@@ -1,0 +1,14 @@
+#!/bin/bash -ex
+
+datadir="internal/data"
+
+dl() {
+    url=$1
+    name=$(basename ${url})
+
+    mkdir -p ${datadir}
+    curl --output ${datadir}/${name} ${url}
+}
+
+dl https://raw.githubusercontent.com/golang/arch/master/x86/x86.v0.2.csv
+dl https://raw.githubusercontent.com/Maratyszcza/Opcodes/master/opcodes/x86_64.xml
