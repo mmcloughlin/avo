@@ -70,7 +70,7 @@ func (p *GoPrinter) function(f *Function) {
 	p.printf("TEXT %s%s(SB),0,$%d-%d\n", dot, f.Name(), f.FrameBytes(), f.ArgumentBytes())
 
 	for _, i := range f.inst {
-		p.printf("\t%s\t%s\n", i.Mnemonic, strings.Join(i.Operands, ", "))
+		p.printf("\t%s\t%s\n", i.Mnemonic, joinOperands(i.Operands))
 	}
 }
 
@@ -82,4 +82,12 @@ func (p *GoPrinter) printf(format string, args ...interface{}) {
 	if _, err := fmt.Fprintf(p.w, format, args...); err != nil {
 		p.err = err
 	}
+}
+
+func joinOperands(operands []Operand) string {
+	asm := make([]string, len(operands))
+	for i, op := range operands {
+		asm[i] = op.Asm()
+	}
+	return strings.Join(asm, ", ")
 }

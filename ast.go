@@ -1,5 +1,9 @@
 package avo
 
+type Asm interface {
+	Asm() string
+}
+
 // GoType represents a Golang type.
 type GoType interface{}
 
@@ -9,10 +13,18 @@ type Parameter struct {
 	Type GoType
 }
 
+type Operand interface {
+	Asm
+}
+
 // Instruction is a single instruction in a function.
 type Instruction struct {
 	Mnemonic string
-	Operands []string
+	Operands []Operand
+}
+
+type Node interface {
+	Asm
 }
 
 // File represents an assembly file.

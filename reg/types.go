@@ -64,7 +64,7 @@ type Register interface {
 	Kind() Kind
 	Mask() uint16
 	Bytes() uint
-	Name() string
+	Asm() string
 	private
 }
 
@@ -77,7 +77,7 @@ type register struct {
 
 func (r register) PhysicalID() uint16 { return r.id }
 func (r register) Kind() Kind         { return r.kind }
-func (r register) Name() string       { return r.name }
+func (r register) Asm() string        { return r.name }
 func (r register) private()           {}
 
 type Spec uint16
