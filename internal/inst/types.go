@@ -1,8 +1,9 @@
 package inst
 
 type Instruction struct {
-	Opcode string
-	Forms  []Form
+	Opcode  string
+	Summary string
+	Forms   []Form
 }
 
 type Form struct {
@@ -22,3 +23,33 @@ const (
 	W  Action = 0x2
 	RW Action = R | W
 )
+
+func ActionFromReadWrite(r, w bool) Action {
+	var a Action
+	if r {
+		a |= R
+	}
+	if w {
+		a |= W
+	}
+	return a
+}
+
+func (a Action) Read() bool {
+	return (a & R) != 0
+}
+
+func (a Action) Write() bool {
+	return (a & W) != 0
+}
+
+func (a Action) String() string {
+	s := ""
+	if a.Read() {
+		s += "r"
+	}
+	if a.Write() {
+		s += "w"
+	}
+	return s
+}
