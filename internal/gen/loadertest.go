@@ -70,9 +70,10 @@ func arg(t string) string {
 	m := map[string]string{
 		// <xs:enumeration value="1" />
 		// <xs:enumeration value="3" />
+		"imm2u": "$3",
 		// <xs:enumeration value="imm4" />
-		// <xs:enumeration value="imm8" />
-		// <xs:enumeration value="imm16" />
+		"imm8":  fmt.Sprintf("$%d", math.MaxInt8),  // <xs:enumeration value="imm8" />
+		"imm16": fmt.Sprintf("$%d", math.MaxInt16), // <xs:enumeration value="imm16" />
 		"imm32": fmt.Sprintf("$%d", math.MaxInt32), // <xs:enumeration value="imm32" />
 		"imm64": fmt.Sprintf("$%d", math.MaxInt64), // <xs:enumeration value="imm64" />
 		// <xs:enumeration value="al" />

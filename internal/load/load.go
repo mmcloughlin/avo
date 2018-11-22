@@ -49,16 +49,15 @@ func (l *Loader) Load() ([]*inst.Instruction, error) {
 				continue
 			}
 
-			opcode := l.goname(f)
-
-			if im[opcode] == nil {
-				im[opcode] = &inst.Instruction{
-					Opcode:  opcode,
-					Summary: i.Summary,
+			for _, opcode := range l.gonames(f) {
+				if im[opcode] == nil {
+					im[opcode] = &inst.Instruction{
+						Opcode:  opcode,
+						Summary: i.Summary,
+					}
 				}
+				im[opcode].Forms = append(im[opcode].Forms, l.form(opcode, f))
 			}
-
-			im[opcode].Forms = append(im[opcode].Forms, l.form(opcode, f))
 		}
 	}
 
@@ -128,15 +127,21 @@ func (l Loader) lookupAlias(f opcodesxml.Form) string {
 	return l.alias[a]
 }
 
-func (l Loader) goname(f opcodesxml.Form) string {
+func (l Loader) gonames(f opcodesxml.Form) []string {
 	// Return alias if available.
 	if a := l.lookupAlias(f); a != "" {
-		return a
+		return []string{a}
+	}
+
+	// Some odd special cases.
+	// TODO(mbm): can this be handled by processing csv entries with slashes /
+	if f.GoName == "RET" && len(f.Operands) == 1 {
+		return []string{"RETFW", "RETFL", "RETFQ"}
 	}
 
 	// Use go opcode from Opcodes XML where available.
 	if f.GoName != "" {
-		return f.GoName
+		return []string{f.GoName}
 	}
 
 	// Fallback to GAS name.
@@ -151,16 +156,25 @@ func (l Loader) goname(f opcodesxml.Form) string {
 		n += suffix[s]
 	}
 
-	return n
+	return []string{n}
 }
 
 func (l Loader) form(opcode string, f opcodesxml.Form) inst.Form {
+	// Map operands to avo format and ensure correct order.
 	ops := operands(f.Operands)
 	if !l.usesIntelOrder[opcode] {
 		for l, r := 0, len(ops)-1; l < r; l, r = l+1, r-1 {
 			ops[l], ops[r] = ops[r], ops[l]
 		}
 	}
+
+	// Handle some exceptions.
+	// TODO(mbm): consider if there's some nicer way to handle the list of special cases.
+	switch opcode {
+	case "SHA1RNDS4":
+		ops[0].Type = "imm2u"
+	}
+
 	return inst.Form{
 		Operands: ops,
 	}
