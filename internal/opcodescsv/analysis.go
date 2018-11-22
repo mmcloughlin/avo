@@ -1,6 +1,7 @@
 package opcodescsv
 
 import (
+	"reflect"
 	"strconv"
 	"strings"
 
@@ -17,7 +18,7 @@ type Alias struct {
 func BuildAliasMap(is []*x86csv.Inst) (map[Alias]string, error) {
 	m := map[Alias]string{}
 	for _, i := range is {
-		s, err := datasize(i.DataSize)
+		s, err := strconv.Atoi("0" + i.DataSize)
 		if err != nil {
 			return nil, err
 		}
@@ -40,9 +41,13 @@ func BuildAliasMap(is []*x86csv.Inst) (map[Alias]string, error) {
 	return m, nil
 }
 
-func datasize(s string) (int, error) {
-	if s == "" {
-		return 0, nil
+// BuildIntelOrderSet builds the set of instructions that use intel order rather than the usual GNU/AT&T order.
+func BuildIntelOrderSet(is []*x86csv.Inst) map[string]bool {
+	s := map[string]bool{}
+	for _, i := range is {
+		if !reflect.DeepEqual(i.GoArgs(), i.GNUArgs()) {
+			s[i.GoOpcode()] = true
+		}
 	}
-	return strconv.Atoi(s)
+	return s
 }

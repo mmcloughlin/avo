@@ -1,7 +1,9 @@
 package gen
 
 import (
+	"fmt"
 	"io"
+	"math"
 	"strings"
 
 	"github.com/mmcloughlin/avo/internal/inst"
@@ -16,8 +18,8 @@ func (l LoaderTest) Generate(w io.Writer, is []*inst.Instruction) error {
 
 	for _, i := range is {
 		p.printf("\t// %s %s\n", i.Opcode, i.Summary)
-		if strings.HasPrefix(i.Opcode, "RET") {
-			p.printf("\t// SKIP: early RET instruction would cause assembler error")
+		if skip, msg := l.skip(i.Opcode); skip {
+			p.printf("\t// SKIP: %s\n", msg)
 			continue
 		}
 
@@ -25,7 +27,7 @@ func (l LoaderTest) Generate(w io.Writer, is []*inst.Instruction) error {
 			as := args(f.Operands)
 			p.printf("\t// %#v\n", f.Operands)
 			if as == nil {
-				p.printf("\t// SKIP:\n")
+				p.printf("\t// TODO\n")
 				continue
 			}
 			p.printf("\t%s\t%s\n", i.Opcode, strings.Join(as, ", "))
@@ -36,6 +38,19 @@ func (l LoaderTest) Generate(w io.Writer, is []*inst.Instruction) error {
 	p.printf("\tRET\n")
 
 	return p.Err()
+}
+
+func (l LoaderTest) skip(opcode string) (bool, string) {
+	prefixes := map[string]string{
+		"PUSH": "PUSH can produce 'unbalanced PUSH/POP' assembler error",
+		"POP":  "POP can produce 'unbalanced PUSH/POP' assembler error",
+	}
+	for p, m := range prefixes {
+		if strings.HasPrefix(opcode, p) {
+			return true, m
+		}
+	}
+	return false, ""
 }
 
 func args(ops []inst.Operand) []string {
@@ -58,8 +73,8 @@ func arg(t string) string {
 		// <xs:enumeration value="imm4" />
 		// <xs:enumeration value="imm8" />
 		// <xs:enumeration value="imm16" />
-		// <xs:enumeration value="imm32" />
-		// <xs:enumeration value="imm64" />
+		"imm32": fmt.Sprintf("$%d", math.MaxInt32), // <xs:enumeration value="imm32" />
+		"imm64": fmt.Sprintf("$%d", math.MaxInt64), // <xs:enumeration value="imm64" />
 		// <xs:enumeration value="al" />
 		// <xs:enumeration value="cl" />
 		// <xs:enumeration value="r8" />

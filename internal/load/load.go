@@ -1,7 +1,6 @@
 package load
 
 import (
-	"log"
 	"path/filepath"
 	"strconv"
 	"strings"
@@ -20,7 +19,8 @@ type Loader struct {
 	X86CSVPath     string
 	OpcodesXMLPath string
 
-	alias map[opcodescsv.Alias]string
+	alias          map[opcodescsv.Alias]string
+	usesIntelOrder map[string]bool
 }
 
 func NewLoaderFromDataDir(dir string) *Loader {
@@ -58,7 +58,7 @@ func (l *Loader) Load() ([]*inst.Instruction, error) {
 				}
 			}
 
-			im[opcode].Forms = append(im[opcode].Forms, l.form(f))
+			im[opcode].Forms = append(im[opcode].Forms, l.form(opcode, f))
 		}
 	}
 
@@ -82,9 +82,7 @@ func (l *Loader) init() error {
 		return err
 	}
 
-	for a, op := range l.alias {
-		log.Printf("alias: %#v -> %s", a, op)
-	}
+	l.usesIntelOrder = opcodescsv.BuildIntelOrderSet(icsv)
 
 	return nil
 }
@@ -156,18 +154,24 @@ func (l Loader) goname(f opcodesxml.Form) string {
 	return n
 }
 
-func (l Loader) form(f opcodesxml.Form) inst.Form {
+func (l Loader) form(opcode string, f opcodesxml.Form) inst.Form {
+	ops := operands(f.Operands)
+	if !l.usesIntelOrder[opcode] {
+		for l, r := 0, len(ops)-1; l < r; l, r = l+1, r-1 {
+			ops[l], ops[r] = ops[r], ops[l]
+		}
+	}
 	return inst.Form{
-		Operands: operands(f.Operands),
+		Operands: ops,
 	}
 }
 
-// operands maps Opcodes XML operands to avo format.
+// operands maps Opcodes XML operands to avo format. Returned in Intel order.
 func operands(ops []opcodesxml.Operand) []inst.Operand {
 	n := len(ops)
-	r := make([]inst.Operand, len(ops))
+	r := make([]inst.Operand, n)
 	for i, op := range ops {
-		r[n-1-i] = operand(op)
+		r[i] = operand(op)
 	}
 	return r
 }
