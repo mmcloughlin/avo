@@ -68,7 +68,6 @@ func (l LoaderTest) skip(opcode string) (bool, string) {
 	prefixes := map[string]string{
 		"PUSH": "PUSH can produce 'unbalanced PUSH/POP' assembler error",
 		"POP":  "POP can produce 'unbalanced PUSH/POP' assembler error",
-		"CALL": "handled specially",
 	}
 	for p, m := range prefixes {
 		if strings.HasPrefix(opcode, p) {
