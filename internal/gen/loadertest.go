@@ -9,12 +9,21 @@ import (
 	"github.com/mmcloughlin/avo/internal/inst"
 )
 
-type LoaderTest struct{}
+type LoaderTest struct {
+	sym   string // reference to the test function symbol
+	rel8  string // label to be used for near jumps
+	rel32 string // label for far jumps
+}
 
-func (l LoaderTest) Generate(w io.Writer, is []*inst.Instruction) error {
+func (l *LoaderTest) Generate(w io.Writer, is []*inst.Instruction) error {
 	p := &printer{w: w}
 
-	p.printf("TEXT loadertest(SB), 0, $0\n")
+	l.sym = "\u00b7loadertest(SB)"
+	p.printf("TEXT %s, 0, $0\n", l.sym)
+
+	// Define a label for far jumps.
+	p.printf("rel32:\n")
+	l.rel32 = "rel32"
 
 	counts := map[string]int{}
 
@@ -26,8 +35,14 @@ func (l LoaderTest) Generate(w io.Writer, is []*inst.Instruction) error {
 			continue
 		}
 
+		if i.Opcode[0] == 'J' {
+			label := fmt.Sprintf("rel8_%s", strings.ToLower(i.Opcode))
+			p.printf("%s:\n", label)
+			l.rel8 = label
+		}
+
 		for _, f := range i.Forms {
-			as := args(f.Operands)
+			as := l.args(i.Opcode, f.Operands)
 			p.printf("\t// %#v\n", f.Operands)
 			if as == nil {
 				p.printf("\t// TODO\n")
@@ -53,6 +68,7 @@ func (l LoaderTest) skip(opcode string) (bool, string) {
 	prefixes := map[string]string{
 		"PUSH": "PUSH can produce 'unbalanced PUSH/POP' assembler error",
 		"POP":  "POP can produce 'unbalanced PUSH/POP' assembler error",
+		"CALL": "handled specially",
 	}
 	for p, m := range prefixes {
 		if strings.HasPrefix(opcode, p) {
@@ -62,10 +78,15 @@ func (l LoaderTest) skip(opcode string) (bool, string) {
 	return false, ""
 }
 
-func args(ops []inst.Operand) []string {
+func (l LoaderTest) args(opcode string, ops []inst.Operand) []string {
+	// Special case for CALL, since it needs a different type of rel32 argument than others.
+	if opcode == "CALL" {
+		return []string{l.sym}
+	}
+
 	as := make([]string, len(ops))
 	for i, op := range ops {
-		a := arg(op.Type)
+		a := l.arg(op.Type)
 		if a == "" {
 			return nil
 		}
@@ -75,7 +96,7 @@ func args(ops []inst.Operand) []string {
 }
 
 // arg generates an argument for an operand of the given type.
-func arg(t string) string {
+func (l LoaderTest) arg(t string) string {
 	m := map[string]string{
 		"1":     "$1", // <xs:enumeration value="1" />
 		"3":     "$3", // <xs:enumeration value="3" />
@@ -145,8 +166,8 @@ func arg(t string) string {
 		// <xs:enumeration value="vm32z{k}" />
 		// <xs:enumeration value="vm64z" />
 		// <xs:enumeration value="vm64z{k}" />
-		// <xs:enumeration value="rel8" />
-		// <xs:enumeration value="rel32" />
+		"rel8":  l.rel8,  // <xs:enumeration value="rel8" />
+		"rel32": l.rel32, // <xs:enumeration value="rel32" />
 		// <xs:enumeration value="{er}" />
 		// <xs:enumeration value="{sae}" />
 

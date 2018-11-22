@@ -103,7 +103,7 @@ func order(i *x86csv.Inst) OperandOrder {
 // skip decides whether to ignore the instruction for analysis purposes.
 func skip(i *x86csv.Inst) bool {
 	switch {
-	case strings.Contains(i.GoOpcode(), "/"):
+	case strings.ContainsAny(i.GoOpcode(), "/*"):
 		return true
 	case i.Mode64 == "I": // Invalid in 64-bit mode.
 		return true

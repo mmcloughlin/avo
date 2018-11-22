@@ -134,7 +134,17 @@ func (l Loader) include(f opcodesxml.Form) bool {
 
 	// Some specific exclusions.
 	switch f.GASName {
-	case "callq":
+	// Certain branch instructions appear to not be supported.
+	//
+	// Reference: https://github.com/golang/go/blob/649b89377e91ad6dbe710784f9e662082d31a1ff/src/cmd/asm/internal/asm/testdata/amd64enc.s#L757
+	//
+	//		//TODO: CALLQ* (BX)                     // ff13
+	//
+	// Reference: https://github.com/golang/go/blob/649b89377e91ad6dbe710784f9e662082d31a1ff/src/cmd/asm/internal/asm/testdata/amd64enc.s#L2108
+	//
+	//		//TODO: LJMPL* (R11)                    // 41ff2b
+	//
+	case "callq", "jmpl":
 		return false
 	}
 
