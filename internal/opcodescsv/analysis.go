@@ -8,8 +8,9 @@ import (
 )
 
 type Alias struct {
-	Opcode   string
-	DataSize int
+	Opcode      string
+	DataSize    int
+	NumOperands int
 }
 
 // BuildAliasMap constructs a map from AT&T/GNU/Intel to Go syntax.
@@ -21,9 +22,18 @@ func BuildAliasMap(is []*x86csv.Inst) (map[Alias]string, error) {
 			return nil, err
 		}
 
+		if strings.Contains(i.GoOpcode(), "/") {
+			continue
+		}
+
 		for _, alt := range []string{i.IntelOpcode(), i.GNUOpcode()} {
 			if strings.ToUpper(alt) != i.GoOpcode() {
-				m[Alias{Opcode: strings.ToLower(alt), DataSize: s}] = i.GoOpcode()
+				a := Alias{
+					Opcode:      strings.ToLower(alt),
+					DataSize:    s,
+					NumOperands: len(i.GoArgs()),
+				}
+				m[a] = i.GoOpcode()
 			}
 		}
 	}

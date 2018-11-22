@@ -72,7 +72,7 @@ type Encoding struct {
 
 type REX struct {
 	Mandatory bool   `xml:"mandatory,attr"`
-	W         int    `xml:"W,attr"`
+	W         uint   `xml:"W,attr"`
 	R         string `xml:"R,attr"`
 	X         string `xml:"X,attr"`
 	B         string `xml:"B,attr"`
@@ -80,8 +80,8 @@ type REX struct {
 
 type VEX struct {
 	Type string `xml:"type,attr"`
-	W    int    `xml:"W,attr"`
-	L    int    `xml:"L,attr"`
+	W    *uint  `xml:"W,attr"`
+	L    uint   `xml:"L,attr"`
 	M5   string `xml:"m-mmmm,attr"`
 	PP   string `xml:"pp,attr"`
 	R    string `xml:"R,attr"`
@@ -93,7 +93,7 @@ type VEX struct {
 type EVEX struct {
 	M2      string `xml:"mm,attr"`
 	PP      string `xml:"pp,attr"`
-	W       int    `xml:"W,attr"`
+	W       *uint  `xml:"W,attr"`
 	LL      string `xml:"LL,attr"`
 	V4      string `xml:"vvvv,attr"`
 	V       string `xml:"V,attr"`

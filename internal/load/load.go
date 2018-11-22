@@ -1,6 +1,7 @@
 package load
 
 import (
+	"log"
 	"path/filepath"
 	"strconv"
 	"strings"
@@ -81,16 +82,24 @@ func (l *Loader) init() error {
 		return err
 	}
 
+	for a, op := range l.alias {
+		log.Printf("alias: %#v -> %s", a, op)
+	}
+
 	return nil
 }
 
 // include decides whether to include the instruction form in the avo listing.
 // This discards some opcodes that are not supported in Go.
 func (l Loader) include(f opcodesxml.Form) bool {
-	// Exclude certain ISAs simply not present in Go.
+	// Exclude certain ISAs simply not present in Go (AMD-only is a common reason).
 	for _, isa := range f.ISA {
 		switch isa.ID {
-		case "TBM", "CLZERO", "MONITORX", "FEMMS":
+		case "TBM", "CLZERO", "MONITORX", "FEMMS", "FMA4", "XOP", "SSE4A":
+			return false
+		}
+		// TODO(mbm): support AVX512
+		if strings.HasPrefix(isa.ID, "AVX512") {
 			return false
 		}
 	}
@@ -113,27 +122,32 @@ func (l Loader) include(f opcodesxml.Form) bool {
 }
 
 func (l Loader) lookupAlias(f opcodesxml.Form) string {
-	a := opcodescsv.Alias{Opcode: f.GASName, DataSize: datasize(f)}
+	a := opcodescsv.Alias{
+		Opcode:      f.GASName,
+		DataSize:    datasize(f),
+		NumOperands: len(f.Operands),
+	}
 	return l.alias[a]
 }
 
 func (l Loader) goname(f opcodesxml.Form) string {
-	// Use go opcode from Opcodes XML where available.
-	if f.GoName != "" {
-		return f.GoName
-	}
-
 	// Return alias if available.
 	if a := l.lookupAlias(f); a != "" {
 		return a
 	}
 
+	// Use go opcode from Opcodes XML where available.
+	if f.GoName != "" {
+		return f.GoName
+	}
+
+	// Fallback to GAS name.
 	n := strings.ToUpper(f.GASName)
 
 	// Some need data sizes added to them.
 	// TODO(mbm): is there a better way of determining which ones these are?
 	s := datasize(f)
-	suffix := map[int]string{16: "W", 32: "L", 64: "Q"}
+	suffix := map[int]string{16: "W", 32: "L", 64: "Q", 128: "X", 256: "Y"}
 	switch n {
 	case "RDRAND", "RDSEED":
 		n += suffix[s]
@@ -150,9 +164,10 @@ func (l Loader) form(f opcodesxml.Form) inst.Form {
 
 // operands maps Opcodes XML operands to avo format.
 func operands(ops []opcodesxml.Operand) []inst.Operand {
-	r := make([]inst.Operand, 0, len(ops))
-	for _, op := range ops {
-		r = append(r, operand(op))
+	n := len(ops)
+	r := make([]inst.Operand, len(ops))
+	for i, op := range ops {
+		r[n-1-i] = operand(op)
 	}
 	return r
 }
@@ -167,14 +182,29 @@ func operand(op opcodesxml.Operand) inst.Operand {
 
 // datasize (intelligently) guesses the datasize of an instruction form.
 func datasize(f opcodesxml.Form) int {
+	// Determine from encoding bits.
+	e := f.Encoding
+	switch {
+	case e.VEX != nil && e.VEX.W == nil:
+		return 128 << e.VEX.L
+	}
+
+	// Guess from operand types.
+	size := 0
 	for _, op := range f.Operands {
-		if !op.Output {
-			continue
+		s := operandsize(op)
+		if s != 0 && (size == 0 || op.Output) {
+			size = s
 		}
-		for s := 8; s <= 64; s *= 2 {
-			if strings.HasSuffix(op.Type, strconv.Itoa(s)) {
-				return s
-			}
+	}
+
+	return size
+}
+
+func operandsize(op opcodesxml.Operand) int {
+	for s := 8; s <= 256; s *= 2 {
+		if strings.HasSuffix(op.Type, strconv.Itoa(s)) {
+			return s
 		}
 	}
 	return 0
