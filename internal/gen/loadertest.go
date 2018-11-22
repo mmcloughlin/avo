@@ -85,17 +85,14 @@ func arg(t string) string {
 		"imm16": fmt.Sprintf("$%d", math.MaxInt16), // <xs:enumeration value="imm16" />
 		"imm32": fmt.Sprintf("$%d", math.MaxInt32), // <xs:enumeration value="imm32" />
 		"imm64": fmt.Sprintf("$%d", math.MaxInt64), // <xs:enumeration value="imm64" />
-		"al":    "AL",                              // <xs:enumeration value="al" />
-		"cl":    "CL",                              // <xs:enumeration value="cl" />
 
-		// <xs:enumeration value="r8" />
-		// <xs:enumeration value="r8l" />
-		// <xs:enumeration value="ax" />
-		// <xs:enumeration value="r16" />
-		// <xs:enumeration value="r16l" />
-		"eax": "AX", // <xs:enumeration value="eax" />
-		// <xs:enumeration value="r32" />
-		// <xs:enumeration value="r32l" />
+		"al":  "AL",  // <xs:enumeration value="al" />
+		"cl":  "CL",  // <xs:enumeration value="cl" />
+		"r8":  "CH",  // <xs:enumeration value="r8" />
+		"ax":  "AX",  // <xs:enumeration value="ax" />
+		"r16": "SI",  // <xs:enumeration value="r16" />
+		"eax": "AX",  // <xs:enumeration value="eax" />
+		"r32": "DX",  // <xs:enumeration value="r32" />
 		"rax": "AX",  // <xs:enumeration value="rax" />
 		"r64": "R15", // <xs:enumeration value="r64" />
 		// <xs:enumeration value="mm" />
@@ -103,7 +100,7 @@ func arg(t string) string {
 		"xmm":  "X7", // <xs:enumeration value="xmm" />
 		// <xs:enumeration value="xmm{k}" />
 		// <xs:enumeration value="xmm{k}{z}" />
-		// <xs:enumeration value="ymm" />
+		"ymm": "Y13", // <xs:enumeration value="ymm" />
 		// <xs:enumeration value="ymm{k}" />
 		// <xs:enumeration value="ymm{k}{z}" />
 		// <xs:enumeration value="zmm" />
@@ -152,6 +149,11 @@ func arg(t string) string {
 		// <xs:enumeration value="rel32" />
 		// <xs:enumeration value="{er}" />
 		// <xs:enumeration value="{sae}" />
+
+		// Appear unused:
+		"r8l":  "????", // <xs:enumeration value="r8l" />
+		"r16l": "????", // <xs:enumeration value="r16l" />
+		"r32l": "????", // <xs:enumeration value="r32l" />
 	}
 	return m[t]
 }

@@ -96,11 +96,19 @@ func (l Loader) include(f opcodesxml.Form) bool {
 	// Exclude certain ISAs simply not present in Go
 	for _, isa := range f.ISA {
 		switch isa.ID {
-		// Most of these are AMD-only.
-		case "TBM", "CLZERO", "MONITORX", "FEMMS", "FMA4", "XOP", "SSE4A":
+		// AMD-only.
+		case "TBM", "CLZERO", "FMA4", "XOP", "SSE4A":
 			return false
 		// Incomplete support for some prefetching instructions.
 		case "PREFETCH", "PREFETCHW", "PREFETCHWT1", "CLWB":
+			return false
+		// Remaining oddities.
+		case "MONITORX", "FEMMS":
+			return false
+		}
+
+		// TODO(mbm): support AVX512
+		if strings.HasPrefix(isa.ID, "AVX512") {
 			return false
 		}
 	}
@@ -150,6 +158,22 @@ func (l Loader) gonames(f opcodesxml.Form) []string {
 		return []string{"RETFW", "RETFL", "RETFQ"}
 	}
 
+	// IMUL 3-operand forms are not recorded correctly in either x86 CSV or opcodes. They are supposed to be called IMUL3{W,L,Q}
+	//
+	// Reference: https://github.com/golang/go/blob/649b89377e91ad6dbe710784f9e662082d31a1ff/src/cmd/internal/obj/x86/asm6.go#L1112-L1114
+	//
+	//		{AIMUL3W, yimul3, Pe, opBytes{0x6b, 00, 0x69, 00}},
+	//		{AIMUL3L, yimul3, Px, opBytes{0x6b, 00, 0x69, 00}},
+	//		{AIMUL3Q, yimul3, Pw, opBytes{0x6b, 00, 0x69, 00}},
+	//
+	// Reference: https://github.com/golang/arch/blob/b19384d3c130858bb31a343ea8fce26be71b5998/x86/x86.v0.2.csv#L549
+	//
+	//	"IMUL r32, r/m32, imm32","IMULL imm32, r/m32, r32","imull imm32, r/m32, r32","69 /r id","V","V","","operand32","rw,r,r","Y","32"
+	//
+	if strings.HasPrefix(f.GASName, "imul") && len(f.Operands) == 3 {
+		return []string{strings.ToUpper(f.GASName[:4] + "3" + f.GASName[4:])}
+	}
+
 	// Use go opcode from Opcodes XML where available.
 	if f.GoName != "" {
 		return []string{f.GoName}
@@ -165,7 +189,20 @@ func (l Loader) gonames(f opcodesxml.Form) []string {
 	switch n {
 	case "VCVTUSI2SS", "VCVTSD2USI", "VCVTSS2USI", "VCVTUSI2SD", "VCVTTSS2USI", "VCVTTSD2USI":
 		fallthrough
-	case "RDRAND", "RDSEED", "MOVBEQ":
+	case "MOVBEW", "MOVBEL", "MOVBEQ":
+		// MOVEBE* instructions seem to be inconsistent with x86 CSV.
+		//
+		// Reference: https://github.com/golang/arch/blob/b19384d3c130858bb31a343ea8fce26be71b5998/x86/x86spec/format.go#L282-L287
+		//
+		//		"MOVBE r16, m16": "movbeww",
+		//		"MOVBE m16, r16": "movbeww",
+		//		"MOVBE m32, r32": "movbell",
+		//		"MOVBE r32, m32": "movbell",
+		//		"MOVBE m64, r64": "movbeqq",
+		//		"MOVBE r64, m64": "movbeqq",
+		//
+		fallthrough
+	case "RDRAND", "RDSEED":
 		n += suffix[s]
 	}
 
