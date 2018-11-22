@@ -97,7 +97,7 @@ func (l Loader) include(f opcodesxml.Form) bool {
 	for _, isa := range f.ISA {
 		switch isa.ID {
 		// AMD-only.
-		case "TBM", "CLZERO", "FMA4", "XOP", "SSE4A":
+		case "TBM", "CLZERO", "FMA4", "XOP", "SSE4A", "3dnow!", "3dnow!+":
 			return false
 		// Incomplete support for some prefetching instructions.
 		case "PREFETCH", "PREFETCHW", "PREFETCHWT1", "CLWB":
@@ -111,6 +111,17 @@ func (l Loader) include(f opcodesxml.Form) bool {
 		if strings.HasPrefix(isa.ID, "AVX512") {
 			return false
 		}
+	}
+
+	// Go appears to have skeleton support for MMX instructions. See the many TODO lines in the testcases:
+	// Reference: https://github.com/golang/go/blob/649b89377e91ad6dbe710784f9e662082d31a1ff/src/cmd/asm/internal/asm/testdata/amd64enc.s#L3310-L3312
+	//
+	//		//TODO: PALIGNR $7, (BX), M2            // 0f3a0f1307
+	//		//TODO: PALIGNR $7, (R11), M2           // 410f3a0f1307
+	//		//TODO: PALIGNR $7, M2, M2              // 0f3a0fd207
+	//
+	if f.MMXMode == "MMX" {
+		return false
 	}
 
 	// x86 csv contains a number of CMOV* instructions which are actually not valid
