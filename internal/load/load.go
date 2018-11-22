@@ -19,8 +19,8 @@ type Loader struct {
 	X86CSVPath     string
 	OpcodesXMLPath string
 
-	alias          map[opcodescsv.Alias]string
-	usesIntelOrder map[string]bool
+	alias map[opcodescsv.Alias]string
+	order map[string]opcodescsv.OperandOrder
 }
 
 func NewLoaderFromDataDir(dir string) *Loader {
@@ -81,7 +81,11 @@ func (l *Loader) init() error {
 		return err
 	}
 
-	l.usesIntelOrder = opcodescsv.BuildIntelOrderSet(icsv)
+	// for a, op := range l.alias {
+	// 	log.Printf("alias %#v -> %s", a, op)
+	// }
+
+	l.order = opcodescsv.BuildOrderMap(icsv)
 
 	return nil
 }
@@ -89,14 +93,14 @@ func (l *Loader) init() error {
 // include decides whether to include the instruction form in the avo listing.
 // This discards some opcodes that are not supported in Go.
 func (l Loader) include(f opcodesxml.Form) bool {
-	// Exclude certain ISAs simply not present in Go (AMD-only is a common reason).
+	// Exclude certain ISAs simply not present in Go
 	for _, isa := range f.ISA {
 		switch isa.ID {
+		// Most of these are AMD-only.
 		case "TBM", "CLZERO", "MONITORX", "FEMMS", "FMA4", "XOP", "SSE4A":
 			return false
-		}
-		// TODO(mbm): support AVX512
-		if strings.HasPrefix(isa.ID, "AVX512") {
+		// Incomplete support for some prefetching instructions.
+		case "PREFETCH", "PREFETCHW", "PREFETCHWT1", "CLWB":
 			return false
 		}
 	}
@@ -119,12 +123,19 @@ func (l Loader) include(f opcodesxml.Form) bool {
 }
 
 func (l Loader) lookupAlias(f opcodesxml.Form) string {
-	a := opcodescsv.Alias{
+	// Attempt lookup with datasize.
+	k := opcodescsv.Alias{
 		Opcode:      f.GASName,
 		DataSize:    datasize(f),
 		NumOperands: len(f.Operands),
 	}
-	return l.alias[a]
+	if a := l.alias[k]; a != "" {
+		return a
+	}
+
+	// Fallback to unknown datasize.
+	k.DataSize = 0
+	return l.alias[k]
 }
 
 func (l Loader) gonames(f opcodesxml.Form) []string {
@@ -152,7 +163,9 @@ func (l Loader) gonames(f opcodesxml.Form) []string {
 	s := datasize(f)
 	suffix := map[int]string{16: "W", 32: "L", 64: "Q", 128: "X", 256: "Y"}
 	switch n {
-	case "RDRAND", "RDSEED":
+	case "VCVTUSI2SS", "VCVTSD2USI", "VCVTSS2USI", "VCVTUSI2SD", "VCVTTSS2USI", "VCVTTSD2USI":
+		fallthrough
+	case "RDRAND", "RDSEED", "MOVBEQ":
 		n += suffix[s]
 	}
 
@@ -162,7 +175,16 @@ func (l Loader) gonames(f opcodesxml.Form) []string {
 func (l Loader) form(opcode string, f opcodesxml.Form) inst.Form {
 	// Map operands to avo format and ensure correct order.
 	ops := operands(f.Operands)
-	if !l.usesIntelOrder[opcode] {
+
+	switch l.order[opcode] {
+	case opcodescsv.IntelOrder:
+		// Nothing to do.
+	case opcodescsv.CMP3Order:
+		ops[0], ops[1] = ops[1], ops[0]
+	case opcodescsv.UnknownOrder:
+		// Instructions not in x86 CSV are assumed to have reverse intel order.
+		fallthrough
+	case opcodescsv.ReverseIntelOrder:
 		for l, r := 0, len(ops)-1; l < r; l, r = l+1, r-1 {
 			ops[l], ops[r] = ops[r], ops[l]
 		}
@@ -171,7 +193,23 @@ func (l Loader) form(opcode string, f opcodesxml.Form) inst.Form {
 	// Handle some exceptions.
 	// TODO(mbm): consider if there's some nicer way to handle the list of special cases.
 	switch opcode {
-	case "SHA1RNDS4":
+	// Go assembler has an internal Yu2 operand type for unsigned 2-bit immediates.
+	//
+	// Reference: https://github.com/golang/go/blob/6d5caf38e37bf9aeba3291f1f0b0081f934b1187/src/cmd/internal/obj/x86/asm6.go#L109
+	//
+	//		Yu2 // $x, x fits in uint2
+	//
+	// Reference: https://github.com/golang/go/blob/6d5caf38e37bf9aeba3291f1f0b0081f934b1187/src/cmd/internal/obj/x86/asm6.go#L858-L864
+	//
+	//	var yextractps = []ytab{
+	//		{Zibr_m, 2, argList{Yu2, Yxr, Yml}},
+	//	}
+	//
+	//	var ysha1rnds4 = []ytab{
+	//		{Zibm_r, 2, argList{Yu2, Yxm, Yxr}},
+	//	}
+	//
+	case "SHA1RNDS4", "EXTRACTPS":
 		ops[0].Type = "imm2u"
 	}
 
@@ -220,7 +258,7 @@ func datasize(f opcodesxml.Form) int {
 }
 
 func operandsize(op opcodesxml.Operand) int {
-	for s := 8; s <= 256; s *= 2 {
+	for s := 256; s >= 8; s /= 2 {
 		if strings.HasSuffix(op.Type, strconv.Itoa(s)) {
 			return s
 		}
