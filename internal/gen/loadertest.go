@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io"
 	"math"
+	"strconv"
 	"strings"
 
 	"github.com/mmcloughlin/avo/internal/inst"
@@ -85,7 +86,7 @@ func (l LoaderTest) args(opcode string, ops []inst.Operand) []string {
 
 	as := make([]string, len(ops))
 	for i, op := range ops {
-		a := l.arg(op.Type)
+		a := l.arg(op.Type, i)
 		if a == "" {
 			return nil
 		}
@@ -95,7 +96,7 @@ func (l LoaderTest) args(opcode string, ops []inst.Operand) []string {
 }
 
 // arg generates an argument for an operand of the given type.
-func (l LoaderTest) arg(t string) string {
+func (l LoaderTest) arg(t string, i int) string {
 	m := map[string]string{
 		"1":     "$1", // <xs:enumeration value="1" />
 		"3":     "$3", // <xs:enumeration value="3" />
@@ -106,21 +107,21 @@ func (l LoaderTest) arg(t string) string {
 		"imm32": fmt.Sprintf("$%d", math.MaxInt32), // <xs:enumeration value="imm32" />
 		"imm64": fmt.Sprintf("$%d", math.MaxInt64), // <xs:enumeration value="imm64" />
 
-		"al":   "AL",  // <xs:enumeration value="al" />
-		"cl":   "CL",  // <xs:enumeration value="cl" />
-		"r8":   "CH",  // <xs:enumeration value="r8" />
-		"ax":   "AX",  // <xs:enumeration value="ax" />
-		"r16":  "SI",  // <xs:enumeration value="r16" />
-		"eax":  "AX",  // <xs:enumeration value="eax" />
-		"r32":  "DX",  // <xs:enumeration value="r32" />
-		"rax":  "AX",  // <xs:enumeration value="rax" />
-		"r64":  "R15", // <xs:enumeration value="r64" />
-		"mm":   "M5",  // <xs:enumeration value="mm" />
-		"xmm0": "X0",  // <xs:enumeration value="xmm0" />
-		"xmm":  "X7",  // <xs:enumeration value="xmm" />
+		"al":   "AL",                    // <xs:enumeration value="al" />
+		"cl":   "CL",                    // <xs:enumeration value="cl" />
+		"r8":   "CH",                    // <xs:enumeration value="r8" />
+		"ax":   "AX",                    // <xs:enumeration value="ax" />
+		"r16":  "SI",                    // <xs:enumeration value="r16" />
+		"eax":  "AX",                    // <xs:enumeration value="eax" />
+		"r32":  "DX",                    // <xs:enumeration value="r32" />
+		"rax":  "AX",                    // <xs:enumeration value="rax" />
+		"r64":  "R15",                   // <xs:enumeration value="r64" />
+		"mm":   "M5",                    // <xs:enumeration value="mm" />
+		"xmm0": "X0",                    // <xs:enumeration value="xmm0" />
+		"xmm":  "X" + strconv.Itoa(7+i), // <xs:enumeration value="xmm" />
 		// <xs:enumeration value="xmm{k}" />
 		// <xs:enumeration value="xmm{k}{z}" />
-		"ymm": "Y13", // <xs:enumeration value="ymm" />
+		"ymm": "Y" + strconv.Itoa(3+i), // <xs:enumeration value="ymm" />
 		// <xs:enumeration value="ymm{k}" />
 		// <xs:enumeration value="ymm{k}{z}" />
 		// <xs:enumeration value="zmm" />
@@ -130,7 +131,7 @@ func (l LoaderTest) arg(t string) string {
 		// <xs:enumeration value="k{k}" />
 		// <xs:enumeration value="moffs32" />
 		// <xs:enumeration value="moffs64" />
-		// <xs:enumeration value="m" />
+		"m":   "0(AX)(CX*2)",  // <xs:enumeration value="m" />
 		"m8":  "8(AX)(CX*2)",  // <xs:enumeration value="m8" />
 		"m16": "16(AX)(CX*2)", // <xs:enumeration value="m16" />
 		// <xs:enumeration value="m16{k}{z}" />
@@ -153,7 +154,7 @@ func (l LoaderTest) arg(t string) string {
 		// <xs:enumeration value="m128/m64bcst" />
 		// <xs:enumeration value="m256/m64bcst" />
 		// <xs:enumeration value="m512/m64bcst" />
-		// <xs:enumeration value="vm32x" />
+		"vm32x": "32(X14*8)", // <xs:enumeration value="vm32x" />
 		// <xs:enumeration value="vm32x{k}" />
 		// <xs:enumeration value="vm64x" />
 		// <xs:enumeration value="vm64x{k}" />
