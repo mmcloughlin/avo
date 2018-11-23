@@ -81,10 +81,6 @@ func (l *Loader) init() error {
 		return err
 	}
 
-	// for a, op := range l.alias {
-	// 	log.Printf("alias %#v -> %s", a, op)
-	// }
-
 	l.order = opcodescsv.BuildOrderMap(icsv)
 
 	return nil
@@ -279,8 +275,24 @@ func (l Loader) form(opcode string, f opcodesxml.Form) inst.Form {
 		ops[0].Type = "imm2u"
 	}
 
+	// Extract implicit operands.
+	var implicits []inst.ImplicitOperand
+	for _, implicit := range f.ImplicitOperands {
+		implicits = append(implicits, inst.ImplicitOperand{
+			Register: implicit.ID,
+			Action:   inst.ActionFromReadWrite(implicit.Input, implicit.Output),
+		})
+	}
+
+	// Extract ISA flags.
+	var isas []string
+	for _, isa := range f.ISA {
+		isas = append(isas, isa.ID)
+	}
+
 	return inst.Form{
 		Operands: ops,
+		ISA:      isas,
 	}
 }
 

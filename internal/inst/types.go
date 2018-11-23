@@ -7,13 +7,19 @@ type Instruction struct {
 }
 
 type Form struct {
-	Operands []Operand
-	CPUID    []string
+	ISA              []string
+	Operands         []Operand
+	ImplicitOperands []Operand
 }
 
 type Operand struct {
 	Type   string
 	Action Action
+}
+
+type ImplicitOperand struct {
+	Register string
+	Action   Action
 }
 
 type Action uint8
