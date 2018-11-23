@@ -45,7 +45,7 @@ func (l *LoaderTest) Generate(w io.Writer, is []*inst.Instruction) error {
 		for _, f := range i.Forms {
 			as := l.args(i.Opcode, f.Operands)
 			if as == nil {
-				p.printf("\t// TODO: %#v\n", f.Operands)
+				p.printf("\t// TODO: %s %#v\n", i.Opcode, f.Operands)
 				counts["todo"]++
 				continue
 			}

@@ -146,6 +146,14 @@ func (l Loader) include(f opcodesxml.Form) bool {
 	//
 	case "callq", "jmpl":
 		return false
+	// MOVABS doesn't seem to be supported either.
+	//
+	// Reference: https://github.com/golang/go/blob/1ac84999b93876bb06887e483ae45b27e03d7423/src/cmd/asm/internal/asm/testdata/amd64enc.s#L2354
+	//
+	//		//TODO: MOVABSB 0x123456789abcdef1, AL  // a0f1debc9a78563412
+	//
+	case "movabs":
+		return false
 	}
 
 	return true
