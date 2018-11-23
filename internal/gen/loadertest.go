@@ -44,9 +44,8 @@ func (l *LoaderTest) Generate(w io.Writer, is []*inst.Instruction) error {
 
 		for _, f := range i.Forms {
 			as := l.args(i.Opcode, f.Operands)
-			p.printf("\t// %#v\n", f.Operands)
 			if as == nil {
-				p.printf("\t// TODO\n")
+				p.printf("\t// TODO: %#v\n", f.Operands)
 				counts["todo"]++
 				continue
 			}
@@ -156,11 +155,11 @@ func (l LoaderTest) arg(t string, i int) string {
 		// <xs:enumeration value="m512/m64bcst" />
 		"vm32x": "32(X14*8)", // <xs:enumeration value="vm32x" />
 		// <xs:enumeration value="vm32x{k}" />
-		// <xs:enumeration value="vm64x" />
+		"vm64x": "64(X14*8)", // <xs:enumeration value="vm64x" />
 		// <xs:enumeration value="vm64x{k}" />
-		// <xs:enumeration value="vm32y" />
+		"vm32y": "32(Y13*8)", // <xs:enumeration value="vm32y" />
 		// <xs:enumeration value="vm32y{k}" />
-		// <xs:enumeration value="vm64y" />
+		"vm64y": "64(Y13*8)", // <xs:enumeration value="vm64y" />
 		// <xs:enumeration value="vm64y{k}" />
 		// <xs:enumeration value="vm32z" />
 		// <xs:enumeration value="vm32z{k}" />
