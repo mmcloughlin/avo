@@ -1,6 +1,8 @@
 package inst_test
 
 import (
+	"io/ioutil"
+	"strings"
 	"testing"
 
 	"github.com/mmcloughlin/avo/internal/gen"
@@ -48,4 +50,28 @@ func TestAssembles(t *testing.T) {
 		t.Fatal(err)
 	}
 	test.Assembles(t, b)
+}
+
+func TestLookup(t *testing.T) {
+	if _, found := inst.Lookup("CPUID"); !found {
+		t.Fatalf("missing CPUID")
+	}
+	if _, found := inst.Lookup(strings.Repeat("XXX", 13)); found {
+		t.Fatalf("lookup returns true on an absurd opcode")
+	}
+}
+
+func TestStdLibOpcodes(t *testing.T) {
+	t.Skip("currently does not pass")
+
+	b, err := ioutil.ReadFile("testdata/stdlibopcodes.txt")
+	if err != nil {
+		t.Fatal(err)
+	}
+	opcodes := strings.Fields(string(b))
+	for _, opcode := range opcodes {
+		if _, found := inst.Lookup(opcode); !found {
+			t.Errorf("missing instruction %s (used in stdlib asm)", opcode)
+		}
+	}
 }
