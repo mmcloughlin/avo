@@ -1,9 +1,15 @@
-package inst
+package inst_test
 
-import "testing"
+import (
+	"testing"
+
+	"github.com/mmcloughlin/avo/internal/gen"
+	"github.com/mmcloughlin/avo/internal/inst"
+	"github.com/mmcloughlin/avo/internal/test"
+)
 
 func TestHaveInstructions(t *testing.T) {
-	n := len(Instructions)
+	n := len(inst.Instructions)
 	t.Logf("number of instructions = %d", n)
 	if n == 0 {
 		t.Fatalf("no instructions")
@@ -12,7 +18,7 @@ func TestHaveInstructions(t *testing.T) {
 
 func TestOpcodeDupes(t *testing.T) {
 	count := map[string]int{}
-	for _, i := range Instructions {
+	for _, i := range inst.Instructions {
 		count[i.Opcode]++
 	}
 
@@ -24,7 +30,7 @@ func TestOpcodeDupes(t *testing.T) {
 }
 
 func TestInstructionProperties(t *testing.T) {
-	for _, i := range Instructions {
+	for _, i := range inst.Instructions {
 		if len(i.Opcode) == 0 {
 			t.Errorf("empty opcode")
 		}
@@ -33,4 +39,13 @@ func TestInstructionProperties(t *testing.T) {
 		}
 	}
 
+}
+
+func TestAssembles(t *testing.T) {
+	g := gen.NewAsmTest(gen.Config{})
+	b, err := g.Generate(inst.Instructions)
+	if err != nil {
+		t.Fatal(err)
+	}
+	test.Assembles(t, b)
 }

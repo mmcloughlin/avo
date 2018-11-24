@@ -1,7 +1,6 @@
 package load_test
 
 import (
-	"bytes"
 	"testing"
 
 	"github.com/mmcloughlin/avo/internal/gen"
@@ -10,7 +9,7 @@ import (
 	"github.com/mmcloughlin/avo/internal/test"
 )
 
-func Load(t *testing.T) []*inst.Instruction {
+func Load(t *testing.T) []inst.Instruction {
 	t.Helper()
 	l := load.NewLoaderFromDataDir("testdata")
 	is, err := l.Load()
@@ -22,10 +21,10 @@ func Load(t *testing.T) []*inst.Instruction {
 
 func TestAssembles(t *testing.T) {
 	is := Load(t)
-
-	g := &gen.LoaderTest{}
-	var buf bytes.Buffer
-	g.Generate(&buf, is)
-
-	test.Assembles(t, buf.Bytes())
+	g := gen.NewAsmTest(gen.Config{})
+	b, err := g.Generate(is)
+	if err != nil {
+		t.Fatal(err)
+	}
+	test.Assembles(t, b)
 }

@@ -20,10 +20,10 @@ func NewAsmTest(cfg Config) Interface {
 	return &asmtest{cfg: cfg}
 }
 
-func (a *asmtest) Generate(is []*inst.Instruction) ([]byte, error) {
+func (a *asmtest) Generate(is []inst.Instruction) ([]byte, error) {
 	p := &printer{}
 
-	p.Printf("# %s\n\n", a.cfg.GeneratedWarning())
+	p.Printf("// %s\n\n", a.cfg.GeneratedWarning())
 
 	a.sym = "\u00b7loadertest(SB)"
 	p.Printf("TEXT %s, 0, $0\n", a.sym)

@@ -12,7 +12,7 @@ func NewGoData(cfg Config) Interface {
 	return GoFmt(godata{cfg: cfg})
 }
 
-func (g godata) Generate(is []*inst.Instruction) ([]byte, error) {
+func (g godata) Generate(is []inst.Instruction) ([]byte, error) {
 	p := &printer{}
 
 	p.Printf("// %s\n\n", g.cfg.GeneratedWarning())

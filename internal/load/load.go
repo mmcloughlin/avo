@@ -31,7 +31,7 @@ func NewLoaderFromDataDir(dir string) *Loader {
 	}
 }
 
-func (l *Loader) Load() ([]*inst.Instruction, error) {
+func (l *Loader) Load() ([]inst.Instruction, error) {
 	if err := l.init(); err != nil {
 		return nil, err
 	}
@@ -63,9 +63,9 @@ func (l *Loader) Load() ([]*inst.Instruction, error) {
 	}
 
 	// Convert to a slice, sorted by opcode.
-	is := make([]*inst.Instruction, 0, len(im))
+	is := make([]inst.Instruction, 0, len(im))
 	for _, i := range im {
-		is = append(is, i)
+		is = append(is, *i)
 	}
 
 	sort.Slice(is, func(i, j int) bool {
