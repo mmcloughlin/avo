@@ -10,17 +10,20 @@ import (
 )
 
 type asmtest struct {
+	cfg   Config
 	sym   string // reference to the test function symbol
 	rel8  string // label to be used for near jumps
 	rel32 string // label for far jumps
 }
 
-func NewAsmTest() Interface {
-	return &asmtest{}
+func NewAsmTest(cfg Config) Interface {
+	return &asmtest{cfg: cfg}
 }
 
 func (a *asmtest) Generate(is []*inst.Instruction) ([]byte, error) {
 	p := &printer{}
+
+	p.Printf("# %s\n\n", a.cfg.GeneratedWarning())
 
 	a.sym = "\u00b7loadertest(SB)"
 	p.Printf("TEXT %s, 0, $0\n", a.sym)

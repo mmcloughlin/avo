@@ -11,9 +11,9 @@ import (
 	"github.com/mmcloughlin/avo/internal/load"
 )
 
-var generators = map[string]gen.Interface{
-	"asmtest": gen.NewAsmTest(),
-	"godata":  gen.NewGoData(),
+var generators = map[string]gen.Builder{
+	"asmtest": gen.NewAsmTest,
+	"godata":  gen.NewGoData,
 }
 
 var datadir = flag.String(
@@ -29,18 +29,23 @@ func main() {
 
 	// Build generator.
 	t := flag.Arg(0)
-	g := generators[t]
-	if g == nil {
+	builder := generators[t]
+	if builder == nil {
 		log.Fatalf("unknown generator type '%s'", t)
 	}
+
+	g := builder(gen.Config{
+		Argv: os.Args,
+	})
 
 	// Determine output writer.
 	w := os.Stdout
 	if *output != "" {
-		f, err := os.Open(*output)
+		f, err := os.Create(*output)
 		if err != nil {
 			log.Fatal(err)
 		}
+		defer f.Close()
 		w = f
 	}
 

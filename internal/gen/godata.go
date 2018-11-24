@@ -5,15 +5,17 @@ import (
 )
 
 type godata struct {
+	cfg Config
 }
 
-func NewGoData() Interface {
-	return GoFmt(godata{})
+func NewGoData(cfg Config) Interface {
+	return GoFmt(godata{cfg: cfg})
 }
 
 func (g godata) Generate(is []*inst.Instruction) ([]byte, error) {
 	p := &printer{}
 
+	p.Printf("// %s\n\n", g.cfg.GeneratedWarning())
 	p.Printf("package inst\n\n")
 
 	p.Printf("var Instructions = []Instruction{\n")

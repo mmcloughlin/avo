@@ -2,6 +2,7 @@ package load
 
 import (
 	"path/filepath"
+	"sort"
 	"strconv"
 	"strings"
 
@@ -61,11 +62,15 @@ func (l *Loader) Load() ([]*inst.Instruction, error) {
 		}
 	}
 
-	// Convert to a slice to return.
+	// Convert to a slice, sorted by opcode.
 	is := make([]*inst.Instruction, 0, len(im))
 	for _, i := range im {
 		is = append(is, i)
 	}
+
+	sort.Slice(is, func(i, j int) bool {
+		return is[i].Opcode < is[j].Opcode
+	})
 
 	return is, nil
 }

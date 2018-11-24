@@ -1,5 +1,7 @@
 package inst
 
+//go:generate avogen -data ../data -output ztable.go godata
+
 type Instruction struct {
 	Opcode  string
 	Summary string
