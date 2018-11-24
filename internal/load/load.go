@@ -291,8 +291,9 @@ func (l Loader) form(opcode string, f opcodesxml.Form) inst.Form {
 	}
 
 	return inst.Form{
-		Operands: ops,
-		ISA:      isas,
+		ISA:              isas,
+		Operands:         ops,
+		ImplicitOperands: implicits,
 	}
 }
 

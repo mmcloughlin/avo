@@ -9,7 +9,7 @@ type Instruction struct {
 type Form struct {
 	ISA              []string
 	Operands         []Operand
-	ImplicitOperands []Operand
+	ImplicitOperands []ImplicitOperand
 }
 
 type Operand struct {
