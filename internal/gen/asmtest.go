@@ -2,7 +2,6 @@ package gen
 
 import (
 	"fmt"
-	"io"
 	"math"
 	"strconv"
 	"strings"
@@ -10,61 +9,65 @@ import (
 	"github.com/mmcloughlin/avo/internal/inst"
 )
 
-type LoaderTest struct {
+type asmtest struct {
 	sym   string // reference to the test function symbol
 	rel8  string // label to be used for near jumps
 	rel32 string // label for far jumps
 }
 
-func (l *LoaderTest) Generate(w io.Writer, is []*inst.Instruction) error {
-	p := &printer{w: w}
+func NewAsmTest() Interface {
+	return &asmtest{}
+}
 
-	l.sym = "\u00b7loadertest(SB)"
-	p.printf("TEXT %s, 0, $0\n", l.sym)
+func (a *asmtest) Generate(is []*inst.Instruction) ([]byte, error) {
+	p := &printer{}
+
+	a.sym = "\u00b7loadertest(SB)"
+	p.Printf("TEXT %s, 0, $0\n", a.sym)
 
 	// Define a label for far jumps.
-	p.printf("rel32:\n")
-	l.rel32 = "rel32"
+	p.Printf("rel32:\n")
+	a.rel32 = "rel32"
 
 	counts := map[string]int{}
 
 	for _, i := range is {
-		p.printf("\t// %s %s\n", i.Opcode, i.Summary)
-		if skip, msg := l.skip(i.Opcode); skip {
-			p.printf("\t// SKIP: %s\n", msg)
+		p.Printf("\t// %s %s\n", i.Opcode, i.Summary)
+		if skip, msg := a.skip(i.Opcode); skip {
+			p.Printf("\t// SKIP: %s\n", msg)
 			counts["skip"]++
 			continue
 		}
 
 		if i.Opcode[0] == 'J' {
 			label := fmt.Sprintf("rel8_%s", strings.ToLower(i.Opcode))
-			p.printf("%s:\n", label)
-			l.rel8 = label
+			p.Printf("%s:\n", label)
+			a.rel8 = label
 		}
 
 		for _, f := range i.Forms {
-			as := l.args(i.Opcode, f.Operands)
+			as := a.args(i.Opcode, f.Operands)
 			if as == nil {
-				p.printf("\t// TODO: %s %#v\n", i.Opcode, f.Operands)
+				p.Printf("\t// TODO: %s %#v\n", i.Opcode, f.Operands)
 				counts["todo"]++
 				continue
 			}
-			p.printf("\t%s\t%s\n", i.Opcode, strings.Join(as, ", "))
+			p.Printf("\t%s\t%s\n", i.Opcode, strings.Join(as, ", "))
 			counts["total"]++
 		}
-		p.printf("\n")
+		p.Printf("\n")
 	}
 
-	p.printf("\tRET\n")
+	p.Printf("\tRET\n")
 
 	for m, c := range counts {
-		p.printf("// %s: %d\n", m, c)
+		p.Printf("// %s: %d\n", m, c)
 	}
 
-	return p.Err()
+	return p.Result()
 }
 
-func (l LoaderTest) skip(opcode string) (bool, string) {
+func (a asmtest) skip(opcode string) (bool, string) {
 	prefixes := map[string]string{
 		"PUSH": "PUSH can produce 'unbalanced PUSH/POP' assembler error",
 		"POP":  "POP can produce 'unbalanced PUSH/POP' assembler error",
@@ -77,15 +80,15 @@ func (l LoaderTest) skip(opcode string) (bool, string) {
 	return false, ""
 }
 
-func (l LoaderTest) args(opcode string, ops []inst.Operand) []string {
+func (a asmtest) args(opcode string, ops []inst.Operand) []string {
 	// Special case for CALL, since it needs a different type of rel32 argument than others.
 	if opcode == "CALL" {
-		return []string{l.sym}
+		return []string{a.sym}
 	}
 
 	as := make([]string, len(ops))
 	for i, op := range ops {
-		a := l.arg(op.Type, i)
+		a := a.arg(op.Type, i)
 		if a == "" {
 			return nil
 		}
@@ -95,7 +98,7 @@ func (l LoaderTest) args(opcode string, ops []inst.Operand) []string {
 }
 
 // arg generates an argument for an operand of the given type.
-func (l LoaderTest) arg(t string, i int) string {
+func (a asmtest) arg(t string, i int) string {
 	m := map[string]string{
 		"1":     "$1", // <xs:enumeration value="1" />
 		"3":     "$3", // <xs:enumeration value="3" />
@@ -165,8 +168,8 @@ func (l LoaderTest) arg(t string, i int) string {
 		// <xs:enumeration value="vm32z{k}" />
 		// <xs:enumeration value="vm64z" />
 		// <xs:enumeration value="vm64z{k}" />
-		"rel8":  l.rel8,  // <xs:enumeration value="rel8" />
-		"rel32": l.rel32, // <xs:enumeration value="rel32" />
+		"rel8":  a.rel8,  // <xs:enumeration value="rel8" />
+		"rel32": a.rel32, // <xs:enumeration value="rel32" />
 		// <xs:enumeration value="{er}" />
 		// <xs:enumeration value="{sae}" />
 
