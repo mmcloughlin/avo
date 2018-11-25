@@ -12,8 +12,9 @@ import (
 )
 
 var generators = map[string]gen.Builder{
-	"asmtest": gen.NewAsmTest,
-	"godata":  gen.NewGoData,
+	"asmtest":    gen.NewAsmTest,
+	"godata":     gen.NewGoData,
+	"godatatest": gen.NewGoDataTest,
 }
 
 var datadir = flag.String(

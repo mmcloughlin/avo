@@ -61,3 +61,37 @@ func (g godata) Generate(is []inst.Instruction) ([]byte, error) {
 
 	return p.Result()
 }
+
+type godatatest struct {
+	cfg Config
+}
+
+func NewGoDataTest(cfg Config) Interface {
+	return GoFmt(godatatest{cfg: cfg})
+}
+
+func (g godatatest) Generate(is []inst.Instruction) ([]byte, error) {
+	p := &printer{}
+
+	p.Printf("// %s\n\n", g.cfg.GeneratedWarning())
+	p.Printf("package inst_test\n\n")
+
+	p.Printf(`import (
+		"reflect"
+		"testing"
+
+		"github.com/mmcloughlin/avo/internal/inst"
+	)
+	`)
+
+	p.Printf("var raw = %#v\n\n", is)
+
+	p.Printf(`func TestVerifyInstructionsList(t *testing.T) {
+		if !reflect.DeepEqual(raw, inst.Instructions) {
+			t.Fatal("bad code generation for instructions list")
+		}
+	}
+	`)
+
+	return p.Result()
+}
