@@ -62,6 +62,13 @@ func (l *Loader) Load() ([]inst.Instruction, error) {
 		}
 	}
 
+	// Apply list of "annoying aliases".
+	for from, to := range annoyingaliases {
+		cpy := *im[to]
+		cpy.Opcode = from
+		im[from] = &cpy
+	}
+
 	// Convert to a slice, sorted by opcode.
 	is := make([]inst.Instruction, 0, len(im))
 	for _, i := range im {

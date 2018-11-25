@@ -4733,6 +4733,166 @@ var Instructions = []Instruction{
 		},
 	},
 	{
+		Opcode:  "JA",
+		Summary: "Jump if above (CF == 0 and ZF == 0) (alias of JHI)",
+		Forms: []Form{
+			{
+				Operands: []Operand{
+					{Type: "rel8", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel32", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel8", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel32", Action: 0x0},
+				},
+			},
+		},
+	},
+	{
+		Opcode:  "JAE",
+		Summary: "Jump if above or equal (CF == 0) (alias of JCC)",
+		Forms: []Form{
+			{
+				Operands: []Operand{
+					{Type: "rel8", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel32", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel8", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel32", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel8", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel32", Action: 0x0},
+				},
+			},
+		},
+	},
+	{
+		Opcode:  "JB",
+		Summary: "Jump if below (CF == 1) (alias of JCS)",
+		Forms: []Form{
+			{
+				Operands: []Operand{
+					{Type: "rel8", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel32", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel8", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel32", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel8", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel32", Action: 0x0},
+				},
+			},
+		},
+	},
+	{
+		Opcode:  "JBE",
+		Summary: "Jump if below or equal (CF == 1 or ZF == 1) (alias of JLS)",
+		Forms: []Form{
+			{
+				Operands: []Operand{
+					{Type: "rel8", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel32", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel8", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel32", Action: 0x0},
+				},
+			},
+		},
+	},
+	{
+		Opcode:  "JC",
+		Summary: "Jump if below (CF == 1) (alias of JCS)",
+		Forms: []Form{
+			{
+				Operands: []Operand{
+					{Type: "rel8", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel32", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel8", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel32", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel8", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel32", Action: 0x0},
+				},
+			},
+		},
+	},
+	{
 		Opcode:  "JCC",
 		Summary: "Jump if above or equal (CF == 0)",
 		Forms: []Form{
@@ -4833,8 +4993,60 @@ var Instructions = []Instruction{
 		},
 	},
 	{
+		Opcode:  "JE",
+		Summary: "Jump if equal (ZF == 1) (alias of JEQ)",
+		Forms: []Form{
+			{
+				Operands: []Operand{
+					{Type: "rel8", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel32", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel8", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel32", Action: 0x0},
+				},
+			},
+		},
+	},
+	{
 		Opcode:  "JEQ",
 		Summary: "Jump if equal (ZF == 1)",
+		Forms: []Form{
+			{
+				Operands: []Operand{
+					{Type: "rel8", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel32", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel8", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel32", Action: 0x0},
+				},
+			},
+		},
+	},
+	{
+		Opcode:  "JG",
+		Summary: "Jump if greater (ZF == 0 and SF == OF) (alias of JGT)",
 		Forms: []Form{
 			{
 				Operands: []Operand{
@@ -4937,9 +5149,107 @@ var Instructions = []Instruction{
 		},
 	},
 	{
+		Opcode:  "JHS",
+		Summary: "Jump if above or equal (CF == 0) (alias of JCC)",
+		Forms: []Form{
+			{
+				Operands: []Operand{
+					{Type: "rel8", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel32", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel8", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel32", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel8", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel32", Action: 0x0},
+				},
+			},
+		},
+	},
+	{
+		Opcode:  "JL",
+		Summary: "Jump if less (SF != OF) (alias of JLT)",
+		Forms: []Form{
+			{
+				Operands: []Operand{
+					{Type: "rel8", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel32", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel8", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel32", Action: 0x0},
+				},
+			},
+		},
+	},
+	{
 		Opcode:  "JLE",
 		Summary: "Jump if less or equal (ZF == 1 or SF != OF)",
 		Forms: []Form{
+			{
+				Operands: []Operand{
+					{Type: "rel8", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel32", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel8", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel32", Action: 0x0},
+				},
+			},
+		},
+	},
+	{
+		Opcode:  "JLO",
+		Summary: "Jump if below (CF == 1) (alias of JCS)",
+		Forms: []Form{
+			{
+				Operands: []Operand{
+					{Type: "rel8", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel32", Action: 0x0},
+				},
+			},
 			{
 				Operands: []Operand{
 					{Type: "rel8", Action: 0x0},
@@ -5057,6 +5367,166 @@ var Instructions = []Instruction{
 		},
 	},
 	{
+		Opcode:  "JNA",
+		Summary: "Jump if below or equal (CF == 1 or ZF == 1) (alias of JLS)",
+		Forms: []Form{
+			{
+				Operands: []Operand{
+					{Type: "rel8", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel32", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel8", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel32", Action: 0x0},
+				},
+			},
+		},
+	},
+	{
+		Opcode:  "JNAE",
+		Summary: "Jump if below (CF == 1) (alias of JCS)",
+		Forms: []Form{
+			{
+				Operands: []Operand{
+					{Type: "rel8", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel32", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel8", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel32", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel8", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel32", Action: 0x0},
+				},
+			},
+		},
+	},
+	{
+		Opcode:  "JNB",
+		Summary: "Jump if above or equal (CF == 0) (alias of JCC)",
+		Forms: []Form{
+			{
+				Operands: []Operand{
+					{Type: "rel8", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel32", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel8", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel32", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel8", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel32", Action: 0x0},
+				},
+			},
+		},
+	},
+	{
+		Opcode:  "JNBE",
+		Summary: "Jump if above (CF == 0 and ZF == 0) (alias of JHI)",
+		Forms: []Form{
+			{
+				Operands: []Operand{
+					{Type: "rel8", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel32", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel8", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel32", Action: 0x0},
+				},
+			},
+		},
+	},
+	{
+		Opcode:  "JNC",
+		Summary: "Jump if above or equal (CF == 0) (alias of JCC)",
+		Forms: []Form{
+			{
+				Operands: []Operand{
+					{Type: "rel8", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel32", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel8", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel32", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel8", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel32", Action: 0x0},
+				},
+			},
+		},
+	},
+	{
 		Opcode:  "JNE",
 		Summary: "Jump if not equal (ZF == 0)",
 		Forms: []Form{
@@ -5070,6 +5540,210 @@ var Instructions = []Instruction{
 					{Type: "rel32", Action: 0x0},
 				},
 			},
+			{
+				Operands: []Operand{
+					{Type: "rel8", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel32", Action: 0x0},
+				},
+			},
+		},
+	},
+	{
+		Opcode:  "JNG",
+		Summary: "Jump if less or equal (ZF == 1 or SF != OF) (alias of JLE)",
+		Forms: []Form{
+			{
+				Operands: []Operand{
+					{Type: "rel8", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel32", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel8", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel32", Action: 0x0},
+				},
+			},
+		},
+	},
+	{
+		Opcode:  "JNGE",
+		Summary: "Jump if less (SF != OF) (alias of JLT)",
+		Forms: []Form{
+			{
+				Operands: []Operand{
+					{Type: "rel8", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel32", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel8", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel32", Action: 0x0},
+				},
+			},
+		},
+	},
+	{
+		Opcode:  "JNL",
+		Summary: "Jump if greater or equal (SF == OF) (alias of JGE)",
+		Forms: []Form{
+			{
+				Operands: []Operand{
+					{Type: "rel8", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel32", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel8", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel32", Action: 0x0},
+				},
+			},
+		},
+	},
+	{
+		Opcode:  "JNLE",
+		Summary: "Jump if greater (ZF == 0 and SF == OF) (alias of JGT)",
+		Forms: []Form{
+			{
+				Operands: []Operand{
+					{Type: "rel8", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel32", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel8", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel32", Action: 0x0},
+				},
+			},
+		},
+	},
+	{
+		Opcode:  "JNO",
+		Summary: "Jump if not overflow (OF == 0) (alias of JOC)",
+		Forms: []Form{
+			{
+				Operands: []Operand{
+					{Type: "rel8", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel32", Action: 0x0},
+				},
+			},
+		},
+	},
+	{
+		Opcode:  "JNP",
+		Summary: "Jump if not parity (PF == 0) (alias of JPC)",
+		Forms: []Form{
+			{
+				Operands: []Operand{
+					{Type: "rel8", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel32", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel8", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel32", Action: 0x0},
+				},
+			},
+		},
+	},
+	{
+		Opcode:  "JNS",
+		Summary: "Jump if not sign (SF == 0) (alias of JPL)",
+		Forms: []Form{
+			{
+				Operands: []Operand{
+					{Type: "rel8", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel32", Action: 0x0},
+				},
+			},
+		},
+	},
+	{
+		Opcode:  "JNZ",
+		Summary: "Jump if not equal (ZF == 0) (alias of JNE)",
+		Forms: []Form{
+			{
+				Operands: []Operand{
+					{Type: "rel8", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel32", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel8", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel32", Action: 0x0},
+				},
+			},
+		},
+	},
+	{
+		Opcode:  "JO",
+		Summary: "Jump if overflow (OF == 1) (alias of JOS)",
+		Forms: []Form{
 			{
 				Operands: []Operand{
 					{Type: "rel8", Action: 0x0},
@@ -5115,8 +5789,60 @@ var Instructions = []Instruction{
 		},
 	},
 	{
+		Opcode:  "JP",
+		Summary: "Jump if parity (PF == 1) (alias of JPS)",
+		Forms: []Form{
+			{
+				Operands: []Operand{
+					{Type: "rel8", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel32", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel8", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel32", Action: 0x0},
+				},
+			},
+		},
+	},
+	{
 		Opcode:  "JPC",
 		Summary: "Jump if not parity (PF == 0)",
+		Forms: []Form{
+			{
+				Operands: []Operand{
+					{Type: "rel8", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel32", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel8", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel32", Action: 0x0},
+				},
+			},
+		},
+	},
+	{
+		Opcode:  "JPE",
+		Summary: "Jump if parity (PF == 1) (alias of JPS)",
 		Forms: []Form{
 			{
 				Operands: []Operand{
@@ -5157,8 +5883,76 @@ var Instructions = []Instruction{
 		},
 	},
 	{
+		Opcode:  "JPO",
+		Summary: "Jump if not parity (PF == 0) (alias of JPC)",
+		Forms: []Form{
+			{
+				Operands: []Operand{
+					{Type: "rel8", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel32", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel8", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel32", Action: 0x0},
+				},
+			},
+		},
+	},
+	{
 		Opcode:  "JPS",
 		Summary: "Jump if parity (PF == 1)",
+		Forms: []Form{
+			{
+				Operands: []Operand{
+					{Type: "rel8", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel32", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel8", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel32", Action: 0x0},
+				},
+			},
+		},
+	},
+	{
+		Opcode:  "JS",
+		Summary: "Jump if sign (SF == 1) (alias of JMI)",
+		Forms: []Form{
+			{
+				Operands: []Operand{
+					{Type: "rel8", Action: 0x0},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "rel32", Action: 0x0},
+				},
+			},
+		},
+	},
+	{
+		Opcode:  "JZ",
+		Summary: "Jump if equal (ZF == 1) (alias of JEQ)",
 		Forms: []Form{
 			{
 				Operands: []Operand{
@@ -5309,6 +6103,22 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "m16", Action: 0x1},
 					{Type: "r16", Action: 0x2},
+				},
+			},
+		},
+	},
+	{
+		Opcode:  "MASKMOVDQU",
+		Summary: "Store Selected Bytes of Double Quadword (alias of MASKMOVOU)",
+		Forms: []Form{
+			{
+				ISA: []string{"SSE2"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+				},
+				ImplicitOperands: []ImplicitOperand{
+					{Register: "rdi", Action: 0x1},
 				},
 			},
 		},
@@ -5774,26 +6584,69 @@ var Instructions = []Instruction{
 	},
 	{
 		Opcode:  "MOVD",
-		Summary: "Move Doubleword",
+		Summary: "Move (alias of MOVQ)",
 		Forms: []Form{
 			{
-				ISA: []string{"SSE2"},
 				Operands: []Operand{
-					{Type: "xmm", Action: 0x1},
-					{Type: "r32", Action: 0x2},
+					{Type: "imm32", Action: 0x0},
+					{Type: "r64", Action: 0x2},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "imm64", Action: 0x0},
+					{Type: "r64", Action: 0x2},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "r64", Action: 0x1},
+					{Type: "r64", Action: 0x2},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "m64", Action: 0x1},
+					{Type: "r64", Action: 0x2},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "imm32", Action: 0x0},
+					{Type: "m64", Action: 0x2},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "r64", Action: 0x1},
+					{Type: "m64", Action: 0x2},
 				},
 			},
 			{
 				ISA: []string{"SSE2"},
 				Operands: []Operand{
-					{Type: "r32", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "r64", Action: 0x2},
+				},
+			},
+			{
+				ISA: []string{"SSE2"},
+				Operands: []Operand{
+					{Type: "r64", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
 			},
 			{
 				ISA: []string{"SSE2"},
 				Operands: []Operand{
-					{Type: "m32", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+			},
+			{
+				ISA: []string{"SSE2"},
+				Operands: []Operand{
+					{Type: "m64", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
 			},
@@ -5801,7 +6654,7 @@ var Instructions = []Instruction{
 				ISA: []string{"SSE2"},
 				Operands: []Operand{
 					{Type: "xmm", Action: 0x1},
-					{Type: "m32", Action: 0x2},
+					{Type: "m64", Action: 0x2},
 				},
 			},
 		},
@@ -5822,6 +6675,83 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "m64", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
+				},
+			},
+		},
+	},
+	{
+		Opcode:  "MOVDQ2Q",
+		Summary: "Move (alias of MOVQ)",
+		Forms: []Form{
+			{
+				Operands: []Operand{
+					{Type: "imm32", Action: 0x0},
+					{Type: "r64", Action: 0x2},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "imm64", Action: 0x0},
+					{Type: "r64", Action: 0x2},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "r64", Action: 0x1},
+					{Type: "r64", Action: 0x2},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "m64", Action: 0x1},
+					{Type: "r64", Action: 0x2},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "imm32", Action: 0x0},
+					{Type: "m64", Action: 0x2},
+				},
+			},
+			{
+				Operands: []Operand{
+					{Type: "r64", Action: 0x1},
+					{Type: "m64", Action: 0x2},
+				},
+			},
+			{
+				ISA: []string{"SSE2"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "r64", Action: 0x2},
+				},
+			},
+			{
+				ISA: []string{"SSE2"},
+				Operands: []Operand{
+					{Type: "r64", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+			},
+			{
+				ISA: []string{"SSE2"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+			},
+			{
+				ISA: []string{"SSE2"},
+				Operands: []Operand{
+					{Type: "m64", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+			},
+			{
+				ISA: []string{"SSE2"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "m64", Action: 0x2},
 				},
 			},
 		},
@@ -6013,6 +6943,19 @@ var Instructions = []Instruction{
 		},
 	},
 	{
+		Opcode:  "MOVNTDQ",
+		Summary: "Store Double Quadword Using Non-Temporal Hint (alias of MOVNTO)",
+		Forms: []Form{
+			{
+				ISA: []string{"SSE2"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "m128", Action: 0x2},
+				},
+			},
+		},
+	},
+	{
 		Opcode:  "MOVNTDQA",
 		Summary: "Load Double Quadword Non-Temporal Aligned Hint",
 		Forms: []Form{
@@ -6093,6 +7036,33 @@ var Instructions = []Instruction{
 	{
 		Opcode:  "MOVO",
 		Summary: "Move Aligned Double Quadword",
+		Forms: []Form{
+			{
+				ISA: []string{"SSE2"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+			},
+			{
+				ISA: []string{"SSE2"},
+				Operands: []Operand{
+					{Type: "m128", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+			},
+			{
+				ISA: []string{"SSE2"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "m128", Action: 0x2},
+				},
+			},
+		},
+	},
+	{
+		Opcode:  "MOVOA",
+		Summary: "Move Aligned Double Quadword (alias of MOVO)",
 		Forms: []Form{
 			{
 				ISA: []string{"SSE2"},
@@ -7269,6 +8239,26 @@ var Instructions = []Instruction{
 	{
 		Opcode:  "PADDB",
 		Summary: "Add Packed Byte Integers",
+		Forms: []Form{
+			{
+				ISA: []string{"SSE2"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+			},
+			{
+				ISA: []string{"SSE2"},
+				Operands: []Operand{
+					{Type: "m128", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+			},
+		},
+	},
+	{
+		Opcode:  "PADDD",
+		Summary: "Add Packed Doubleword Integers (alias of PADDL)",
 		Forms: []Form{
 			{
 				ISA: []string{"SSE2"},
@@ -9287,6 +10277,19 @@ var Instructions = []Instruction{
 		},
 	},
 	{
+		Opcode:  "PSLLDQ",
+		Summary: "Shift Packed Double Quadword Left Logical (alias of PSLLO)",
+		Forms: []Form{
+			{
+				ISA: []string{"SSE2"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "xmm", Action: 0x3},
+				},
+			},
+		},
+	},
+	{
 		Opcode:  "PSLLL",
 		Summary: "Shift Packed Doubleword Data Left Logical",
 		Forms: []Form{
@@ -9429,6 +10432,19 @@ var Instructions = []Instruction{
 				ISA: []string{"SSE2"},
 				Operands: []Operand{
 					{Type: "m128", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+			},
+		},
+	},
+	{
+		Opcode:  "PSRLDQ",
+		Summary: "Shift Packed Double Quadword Right Logical (alias of PSRLO)",
+		Forms: []Form{
+			{
+				ISA: []string{"SSE2"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
 					{Type: "xmm", Action: 0x3},
 				},
 			},
