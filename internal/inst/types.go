@@ -2,6 +2,7 @@ package inst
 
 type Instruction struct {
 	Opcode  string
+	AliasOf string
 	Summary string
 	Forms   []Form
 }

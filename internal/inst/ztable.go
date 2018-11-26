@@ -3842,6 +3842,12 @@ var Instructions = []Instruction{
 					{Type: "r32", Action: 0x2},
 				},
 			},
+		},
+	},
+	{
+		Opcode:  "CVTTSD2SQ",
+		Summary: "Convert with Truncation Scalar Double-Precision FP Value to Signed Integer",
+		Forms: []Form{
 			{
 				ISA: []string{"SSE2"},
 				Operands: []Operand{
@@ -4734,6 +4740,7 @@ var Instructions = []Instruction{
 	},
 	{
 		Opcode:  "JA",
+		AliasOf: "JHI",
 		Summary: "Jump if above (CF == 0 and ZF == 0)",
 		Forms: []Form{
 			{
@@ -4760,6 +4767,7 @@ var Instructions = []Instruction{
 	},
 	{
 		Opcode:  "JAE",
+		AliasOf: "JCC",
 		Summary: "Jump if above or equal (CF == 0)",
 		Forms: []Form{
 			{
@@ -4796,6 +4804,7 @@ var Instructions = []Instruction{
 	},
 	{
 		Opcode:  "JB",
+		AliasOf: "JCS",
 		Summary: "Jump if below (CF == 1)",
 		Forms: []Form{
 			{
@@ -4832,6 +4841,7 @@ var Instructions = []Instruction{
 	},
 	{
 		Opcode:  "JBE",
+		AliasOf: "JLS",
 		Summary: "Jump if below or equal (CF == 1 or ZF == 1)",
 		Forms: []Form{
 			{
@@ -4858,6 +4868,7 @@ var Instructions = []Instruction{
 	},
 	{
 		Opcode:  "JC",
+		AliasOf: "JCS",
 		Summary: "Jump if below (CF == 1)",
 		Forms: []Form{
 			{
@@ -4994,6 +5005,7 @@ var Instructions = []Instruction{
 	},
 	{
 		Opcode:  "JE",
+		AliasOf: "JEQ",
 		Summary: "Jump if equal (ZF == 1)",
 		Forms: []Form{
 			{
@@ -5046,6 +5058,7 @@ var Instructions = []Instruction{
 	},
 	{
 		Opcode:  "JG",
+		AliasOf: "JGT",
 		Summary: "Jump if greater (ZF == 0 and SF == OF)",
 		Forms: []Form{
 			{
@@ -5150,6 +5163,7 @@ var Instructions = []Instruction{
 	},
 	{
 		Opcode:  "JHS",
+		AliasOf: "JCC",
 		Summary: "Jump if above or equal (CF == 0)",
 		Forms: []Form{
 			{
@@ -5186,6 +5200,7 @@ var Instructions = []Instruction{
 	},
 	{
 		Opcode:  "JL",
+		AliasOf: "JLT",
 		Summary: "Jump if less (SF != OF)",
 		Forms: []Form{
 			{
@@ -5238,6 +5253,7 @@ var Instructions = []Instruction{
 	},
 	{
 		Opcode:  "JLO",
+		AliasOf: "JCS",
 		Summary: "Jump if below (CF == 1)",
 		Forms: []Form{
 			{
@@ -5368,6 +5384,7 @@ var Instructions = []Instruction{
 	},
 	{
 		Opcode:  "JNA",
+		AliasOf: "JLS",
 		Summary: "Jump if below or equal (CF == 1 or ZF == 1)",
 		Forms: []Form{
 			{
@@ -5394,6 +5411,7 @@ var Instructions = []Instruction{
 	},
 	{
 		Opcode:  "JNAE",
+		AliasOf: "JCS",
 		Summary: "Jump if below (CF == 1)",
 		Forms: []Form{
 			{
@@ -5430,6 +5448,7 @@ var Instructions = []Instruction{
 	},
 	{
 		Opcode:  "JNB",
+		AliasOf: "JCC",
 		Summary: "Jump if above or equal (CF == 0)",
 		Forms: []Form{
 			{
@@ -5466,6 +5485,7 @@ var Instructions = []Instruction{
 	},
 	{
 		Opcode:  "JNBE",
+		AliasOf: "JHI",
 		Summary: "Jump if above (CF == 0 and ZF == 0)",
 		Forms: []Form{
 			{
@@ -5492,6 +5512,7 @@ var Instructions = []Instruction{
 	},
 	{
 		Opcode:  "JNC",
+		AliasOf: "JCC",
 		Summary: "Jump if above or equal (CF == 0)",
 		Forms: []Form{
 			{
@@ -5554,6 +5575,7 @@ var Instructions = []Instruction{
 	},
 	{
 		Opcode:  "JNG",
+		AliasOf: "JLE",
 		Summary: "Jump if less or equal (ZF == 1 or SF != OF)",
 		Forms: []Form{
 			{
@@ -5580,6 +5602,7 @@ var Instructions = []Instruction{
 	},
 	{
 		Opcode:  "JNGE",
+		AliasOf: "JLT",
 		Summary: "Jump if less (SF != OF)",
 		Forms: []Form{
 			{
@@ -5606,6 +5629,7 @@ var Instructions = []Instruction{
 	},
 	{
 		Opcode:  "JNL",
+		AliasOf: "JGE",
 		Summary: "Jump if greater or equal (SF == OF)",
 		Forms: []Form{
 			{
@@ -5632,6 +5656,7 @@ var Instructions = []Instruction{
 	},
 	{
 		Opcode:  "JNLE",
+		AliasOf: "JGT",
 		Summary: "Jump if greater (ZF == 0 and SF == OF)",
 		Forms: []Form{
 			{
@@ -5658,6 +5683,7 @@ var Instructions = []Instruction{
 	},
 	{
 		Opcode:  "JNO",
+		AliasOf: "JOC",
 		Summary: "Jump if not overflow (OF == 0)",
 		Forms: []Form{
 			{
@@ -5674,6 +5700,7 @@ var Instructions = []Instruction{
 	},
 	{
 		Opcode:  "JNP",
+		AliasOf: "JPC",
 		Summary: "Jump if not parity (PF == 0)",
 		Forms: []Form{
 			{
@@ -5700,6 +5727,7 @@ var Instructions = []Instruction{
 	},
 	{
 		Opcode:  "JNS",
+		AliasOf: "JPL",
 		Summary: "Jump if not sign (SF == 0)",
 		Forms: []Form{
 			{
@@ -5716,6 +5744,7 @@ var Instructions = []Instruction{
 	},
 	{
 		Opcode:  "JNZ",
+		AliasOf: "JNE",
 		Summary: "Jump if not equal (ZF == 0)",
 		Forms: []Form{
 			{
@@ -5742,6 +5771,7 @@ var Instructions = []Instruction{
 	},
 	{
 		Opcode:  "JO",
+		AliasOf: "JOS",
 		Summary: "Jump if overflow (OF == 1)",
 		Forms: []Form{
 			{
@@ -5790,6 +5820,7 @@ var Instructions = []Instruction{
 	},
 	{
 		Opcode:  "JP",
+		AliasOf: "JPS",
 		Summary: "Jump if parity (PF == 1)",
 		Forms: []Form{
 			{
@@ -5842,6 +5873,7 @@ var Instructions = []Instruction{
 	},
 	{
 		Opcode:  "JPE",
+		AliasOf: "JPS",
 		Summary: "Jump if parity (PF == 1)",
 		Forms: []Form{
 			{
@@ -5884,6 +5916,7 @@ var Instructions = []Instruction{
 	},
 	{
 		Opcode:  "JPO",
+		AliasOf: "JPC",
 		Summary: "Jump if not parity (PF == 0)",
 		Forms: []Form{
 			{
@@ -5936,6 +5969,7 @@ var Instructions = []Instruction{
 	},
 	{
 		Opcode:  "JS",
+		AliasOf: "JMI",
 		Summary: "Jump if sign (SF == 1)",
 		Forms: []Form{
 			{
@@ -5952,6 +5986,7 @@ var Instructions = []Instruction{
 	},
 	{
 		Opcode:  "JZ",
+		AliasOf: "JEQ",
 		Summary: "Jump if equal (ZF == 1)",
 		Forms: []Form{
 			{
@@ -6109,6 +6144,7 @@ var Instructions = []Instruction{
 	},
 	{
 		Opcode:  "MASKMOVDQU",
+		AliasOf: "MASKMOVOU",
 		Summary: "Store Selected Bytes of Double Quadword",
 		Forms: []Form{
 			{
@@ -6584,6 +6620,7 @@ var Instructions = []Instruction{
 	},
 	{
 		Opcode:  "MOVD",
+		AliasOf: "MOVQ",
 		Summary: "Move",
 		Forms: []Form{
 			{
@@ -6681,6 +6718,7 @@ var Instructions = []Instruction{
 	},
 	{
 		Opcode:  "MOVDQ2Q",
+		AliasOf: "MOVQ",
 		Summary: "Move",
 		Forms: []Form{
 			{
@@ -6917,6 +6955,18 @@ var Instructions = []Instruction{
 		},
 	},
 	{
+		Opcode:  "MOVLQZX",
+		Summary: "Move with Zero-Extend",
+		Forms: []Form{
+			{
+				Operands: []Operand{
+					{Type: "m32", Action: 0x1},
+					{Type: "r64", Action: 0x2},
+				},
+			},
+		},
+	},
+	{
 		Opcode:  "MOVMSKPD",
 		Summary: "Extract Packed Double-Precision Floating-Point Sign Mask",
 		Forms: []Form{
@@ -6944,6 +6994,7 @@ var Instructions = []Instruction{
 	},
 	{
 		Opcode:  "MOVNTDQ",
+		AliasOf: "MOVNTO",
 		Summary: "Store Double Quadword Using Non-Temporal Hint",
 		Forms: []Form{
 			{
@@ -7062,6 +7113,7 @@ var Instructions = []Instruction{
 	},
 	{
 		Opcode:  "MOVOA",
+		AliasOf: "MOVO",
 		Summary: "Move Aligned Double Quadword",
 		Forms: []Form{
 			{
@@ -8258,6 +8310,7 @@ var Instructions = []Instruction{
 	},
 	{
 		Opcode:  "PADDD",
+		AliasOf: "PADDL",
 		Summary: "Add Packed Doubleword Integers",
 		Forms: []Form{
 			{
@@ -10151,6 +10204,29 @@ var Instructions = []Instruction{
 		},
 	},
 	{
+		Opcode:  "PSHUFD",
+		AliasOf: "PSHUFL",
+		Summary: "Shuffle Packed Doublewords",
+		Forms: []Form{
+			{
+				ISA: []string{"SSE2"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+			},
+			{
+				ISA: []string{"SSE2"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m128", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+			},
+		},
+	},
+	{
 		Opcode:  "PSHUFHW",
 		Summary: "Shuffle Packed High Words",
 		Forms: []Form{
@@ -10278,6 +10354,7 @@ var Instructions = []Instruction{
 	},
 	{
 		Opcode:  "PSLLDQ",
+		AliasOf: "PSLLO",
 		Summary: "Shift Packed Double Quadword Left Logical",
 		Forms: []Form{
 			{
@@ -10439,6 +10516,7 @@ var Instructions = []Instruction{
 	},
 	{
 		Opcode:  "PSRLDQ",
+		AliasOf: "PSRLO",
 		Summary: "Shift Packed Double Quadword Right Logical",
 		Forms: []Form{
 			{

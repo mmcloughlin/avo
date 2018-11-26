@@ -62,10 +62,16 @@ func (l *Loader) Load() ([]inst.Instruction, error) {
 		}
 	}
 
-	// Apply list of "annoying aliases".
-	for from, to := range annoyingaliases {
+	// Add extras to our list.
+	for _, e := range extras {
+		im[e.Opcode] = e
+	}
+
+	// Apply list of aliases.
+	for from, to := range aliases {
 		cpy := *im[to]
 		cpy.Opcode = from
+		cpy.AliasOf = to
 		im[from] = &cpy
 	}
 
@@ -184,6 +190,24 @@ func (l Loader) lookupAlias(f opcodesxml.Form) string {
 }
 
 func (l Loader) gonames(f opcodesxml.Form) []string {
+	s := datasize(f)
+
+	// Suspect a "bug" in x86 CSV for the CVTTSD2SQ instruction, as CVTTSD2SL appears twice.
+	//
+	// Reference: https://github.com/golang/arch/blob/b19384d3c130858bb31a343ea8fce26be71b5998/x86/x86.v0.2.csv#L345-L346
+	//
+	//	"CVTTSD2SI r32, xmm2/m64","CVTTSD2SL xmm2/m64, r32","cvttsd2si xmm2/m64, r32","F2 0F 2C /r","V","V","SSE2","operand16,operand32","w,r","Y","32"
+	//	"CVTTSD2SI r64, xmm2/m64","CVTTSD2SL xmm2/m64, r64","cvttsd2siq xmm2/m64, r64","F2 REX.W 0F 2C /r","N.E.","V","SSE2","","w,r","Y","64"
+	//
+	// Reference: https://github.com/golang/go/blob/048c9164a0c5572df18325e377473e7893dbfb07/src/cmd/internal/obj/x86/asm6.go#L1073-L1074
+	//
+	//		{ACVTTSD2SL, yxcvfl, Pf2, opBytes{0x2c}},
+	//		{ACVTTSD2SQ, yxcvfq, Pw, opBytes{Pf2, 0x2c}},
+	//
+	if f.GASName == "cvttsd2si" && s == 64 {
+		return []string{"CVTTSD2SQ"}
+	}
+
 	// Return alias if available.
 	if a := l.lookupAlias(f); a != "" {
 		return []string{a}
@@ -221,7 +245,6 @@ func (l Loader) gonames(f opcodesxml.Form) []string {
 
 	// Some need data sizes added to them.
 	// TODO(mbm): is there a better way of determining which ones these are?
-	s := datasize(f)
 	suffix := map[int]string{16: "W", 32: "L", 64: "Q", 128: "X", 256: "Y"}
 	switch n {
 	case "VCVTUSI2SS", "VCVTSD2USI", "VCVTSS2USI", "VCVTUSI2SD", "VCVTTSS2USI", "VCVTTSD2USI":

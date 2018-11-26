@@ -24,6 +24,9 @@ func (g godata) Generate(is []inst.Instruction) ([]byte, error) {
 		p.Printf("{\n")
 
 		p.Printf("Opcode: %#v,\n", i.Opcode)
+		if i.AliasOf != "" {
+			p.Printf("AliasOf: %#v,\n", i.AliasOf)
+		}
 		p.Printf("Summary: %#v,\n", i.Summary)
 
 		p.Printf("Forms: []Form{\n")

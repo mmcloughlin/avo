@@ -62,8 +62,6 @@ func TestLookup(t *testing.T) {
 }
 
 func TestStdLibOpcodes(t *testing.T) {
-	t.Skip("currently does not pass")
-
 	b, err := ioutil.ReadFile("testdata/stdlibopcodes.txt")
 	if err != nil {
 		t.Fatal(err)
