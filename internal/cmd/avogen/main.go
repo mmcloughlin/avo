@@ -8,6 +8,7 @@ import (
 	"path/filepath"
 
 	"github.com/mmcloughlin/avo/internal/gen"
+	"github.com/mmcloughlin/avo/internal/inst"
 	"github.com/mmcloughlin/avo/internal/load"
 )
 
@@ -17,15 +18,20 @@ var generators = map[string]gen.Builder{
 	"godatatest": gen.NewGoDataTest,
 }
 
-var datadir = flag.String(
-	"data",
-	filepath.Join(build.Default.GOPATH, "src/github.com/mmcloughlin/avo/internal/data"),
-	"path to data directory",
+// Command-line flags.
+var (
+	bootstrap = flag.Bool("bootstrap", false, "regenerate instruction list from original data")
+	datadir   = flag.String(
+		"data",
+		filepath.Join(build.Default.GOPATH, "src/github.com/mmcloughlin/avo/internal/data"),
+		"path to data directory",
+	)
+	output = flag.String("output", "", "path to output file (default stdout)")
 )
 
-var output = flag.String("output", "", "path to output file (default stdout)")
-
 func main() {
+	log.SetPrefix("avogen: ")
+	log.SetFlags(0)
 	flag.Parse()
 
 	// Build generator.
@@ -51,10 +57,15 @@ func main() {
 	}
 
 	// Load instructions.
-	l := load.NewLoaderFromDataDir(*datadir)
-	is, err := l.Load()
-	if err != nil {
-		log.Fatal(err)
+	is := inst.Instructions
+	if *bootstrap {
+		log.Printf("bootstrap: loading instructions from data directory %s", *datadir)
+		l := load.NewLoaderFromDataDir(*datadir)
+		r, err := l.Load()
+		if err != nil {
+			log.Fatal(err)
+		}
+		is = r
 	}
 
 	// Generate output.
