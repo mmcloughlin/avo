@@ -23,7 +23,10 @@ func NewConstructors(cfg Config) Interface {
 func (c *constructors) Generate(is []inst.Instruction) ([]byte, error) {
 	c.Printf("// %s\n\n", c.cfg.GeneratedWarning())
 	c.Printf("package x86\n\n")
-	c.Printf("import \"github.com/mmcloughlin/avo\"\n\n")
+	c.Printf("import (\n")
+	c.Printf("\t\"%s\"\n", pkg)
+	c.Printf("\t\"%s/operand\"\n", pkg)
+	c.Printf(")\n\n")
 
 	for _, i := range is {
 		c.instruction(i)
@@ -37,10 +40,11 @@ func (c *constructors) instruction(i inst.Instruction) {
 		c.Printf("// %s\n", line)
 	}
 
-	paramlist, _ := params(i)
+	s := params(i)
 
-	c.Printf("func %s(%s) error {\n", i.Opcode, paramlist)
-	c.Printf("\treturn nil\n")
+	c.Printf("func %s(%s) (*avo.Instruction, error) {\n", i.Opcode, s.ParameterList())
+	c.checkargs(i, s)
+	c.Printf("\treturn nil, nil\n")
 	c.Printf("}\n\n")
 }
 
@@ -70,24 +74,77 @@ func (c *constructors) doc(i inst.Instruction) []string {
 	return lines
 }
 
-// params generates the function parameters and a function.
-func params(i inst.Instruction) (string, func(int) string) {
-	a := i.Arities()
-
-	// Handle the case of forms with multiple arities.
-	if len(a) > 1 {
-		return "ops ...avo.Operand", func(j int) string {
-			return fmt.Sprintf("ops[%d]", j)
-		}
+func (c *constructors) checkargs(i inst.Instruction, s signature) {
+	if i.IsNiladic() {
+		return
 	}
 
-	// All forms have the same arity.
-	n := a[0]
-	if n == 0 {
-		return "", func(int) string { panic("unreachable") }
+	c.Printf("switch {\n")
+
+	for _, f := range i.Forms {
+		var conds []string
+
+		if i.IsVariadic() {
+			checklen := fmt.Sprintf("%s == %d", s.Length(), len(f.Operands))
+			conds = append(conds, checklen)
+		}
+
+		for j, op := range f.Operands {
+			checktype := fmt.Sprintf("%s(%s)", checkername(op.Type), s.ParameterName(j))
+			conds = append(conds, checktype)
+		}
+
+		c.Printf("case %s:\n", strings.Join(conds, " && "))
+	}
+
+	c.Printf("default:\n")
+	c.Printf("return nil, ErrBadOperandTypes\n")
+
+	c.Printf("}\n")
+}
+
+// signature provides access to details about the signature of an instruction function.
+type signature interface {
+	ParameterList() string
+	ParameterName(int) string
+	Length() string
+}
+
+// argslist is the signature for a function with the given named parameters.
+type argslist []string
+
+func (a argslist) ParameterList() string      { return strings.Join(a, ", ") + " avo.Operand" }
+func (a argslist) ParameterName(i int) string { return a[i] }
+func (a argslist) Length() string             { return strconv.Itoa(len(a)) }
+
+// variadic is the signature for a variadic function.
+type variadic struct {
+	name string
+}
+
+func (v variadic) ParameterList() string      { return v.name + " ...avo.Operand" }
+func (v variadic) ParameterName(i int) string { return fmt.Sprintf("%s[%d]", v.name, i) }
+func (v variadic) Length() string             { return fmt.Sprintf("len(%s)", v.name) }
+
+// niladic is the signature for a function with no arguments.
+type niladic struct{}
+
+func (n niladic) ParameterList() string      { return "" }
+func (n niladic) ParameterName(i int) string { panic("niladic function has no parameters") }
+func (n niladic) Length() string             { return "0" }
+
+// params generates the function parameters and a function.
+func params(i inst.Instruction) signature {
+	// Handle the case of forms with multiple arities.
+	switch {
+	case i.IsVariadic():
+		return variadic{name: "ops"}
+	case i.IsNiladic():
+		return niladic{}
 	}
 
 	// Generate nice-looking variable names.
+	n := i.Arity()
 	ops := make([]string, n)
 	count := map[string]int{}
 	for j := 0; j < n; j++ {
@@ -117,5 +174,10 @@ func params(i inst.Instruction) (string, func(int) string) {
 		ops[j] = name
 	}
 
-	return strings.Join(ops, ", ") + " avo.Operand", func(j int) string { return ops[j] }
+	return argslist(ops)
+}
+
+// checkername returns the name of the function that checks an operand of type t.
+func checkername(t string) string {
+	return "operand.Is" + strings.Title(t)
 }

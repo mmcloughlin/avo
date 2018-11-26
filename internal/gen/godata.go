@@ -83,9 +83,9 @@ func (g godatatest) Generate(is []inst.Instruction) ([]byte, error) {
 		"reflect"
 		"testing"
 
-		"github.com/mmcloughlin/avo/internal/inst"
+		"%s/internal/inst"
 	)
-	`)
+	`, pkg)
 
 	p.Printf("var raw = %#v\n\n", is)
 

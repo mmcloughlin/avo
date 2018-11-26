@@ -9,6 +9,8 @@ import (
 	"github.com/mmcloughlin/avo/internal/inst"
 )
 
+const pkg = "github.com/mmcloughlin/avo"
+
 type Interface interface {
 	Generate([]inst.Instruction) ([]byte, error)
 }

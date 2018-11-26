@@ -8,14 +8,14 @@ import (
 
 func TestParamsUniqueArgNames(t *testing.T) {
 	for _, i := range inst.Instructions {
-		_, argname := params(i)
+		s := params(i)
 		for _, n := range i.Arities() {
 			if n == 0 {
 				continue
 			}
 			names := map[string]bool{}
 			for j := 0; j < n; j++ {
-				names[argname(j)] = true
+				names[s.ParameterName(j)] = true
 			}
 			if len(names) != n {
 				t.Errorf("repeated argument for instruction %s", i.Opcode)

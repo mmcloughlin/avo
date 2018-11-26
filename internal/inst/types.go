@@ -22,6 +22,23 @@ func (i Instruction) Arities() []int {
 	return a
 }
 
+func (i Instruction) Arity() int {
+	if i.IsVariadic() {
+		panic("variadic")
+	}
+	a := i.Arities()
+	return a[0]
+}
+
+func (i Instruction) IsVariadic() bool {
+	return len(i.Arities()) > 1
+}
+
+func (i Instruction) IsNiladic() bool {
+	a := i.Arities()
+	return len(a) == 1 && a[0] == 0
+}
+
 type Form struct {
 	ISA              []string
 	Operands         []Operand
