@@ -1,0 +1,14 @@
+#!/bin/bash -ex
+
+# Install avogen (for bootstrapping).
+go install ./internal/cmd/avogen
+
+# Attempt to delete generated files, to prove we can recreate them.
+grep -REl 'Code generated.*DO NOT EDIT\.$' . | xargs rm -v
+
+# Generate once.
+go generate -v -x ./...
+
+# If the instruction database has changed, may need to repeat.
+go install ./internal/cmd/avogen
+go generate -v -x ./...
