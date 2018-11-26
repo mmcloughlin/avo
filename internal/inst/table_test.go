@@ -40,6 +40,9 @@ func TestInstructionProperties(t *testing.T) {
 		if len(i.Forms) == 0 {
 			t.Errorf("instruction %s has no forms", i.Opcode)
 		}
+		if len(i.Arities()) == 0 {
+			t.Errorf("instruction %s has empty arities list", i.Opcode)
+		}
 	}
 }
 

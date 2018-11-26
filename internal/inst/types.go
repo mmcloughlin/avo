@@ -28,6 +28,14 @@ type Form struct {
 	ImplicitOperands []ImplicitOperand
 }
 
+func (f Form) Signature() []string {
+	s := make([]string, len(f.Operands))
+	for i, op := range f.Operands {
+		s[i] = op.Type
+	}
+	return s
+}
+
 type Operand struct {
 	Type   string
 	Action Action
