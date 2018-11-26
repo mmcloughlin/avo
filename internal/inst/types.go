@@ -1,10 +1,25 @@
 package inst
 
+import "sort"
+
 type Instruction struct {
 	Opcode  string
 	AliasOf string
 	Summary string
 	Forms   []Form
+}
+
+func (i Instruction) Arities() []int {
+	s := map[int]bool{}
+	for _, f := range i.Forms {
+		s[len(f.Operands)] = true
+	}
+	a := make([]int, 0, len(s))
+	for n := range s {
+		a = append(a, n)
+	}
+	sort.Ints(a)
+	return a
 }
 
 type Form struct {

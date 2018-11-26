@@ -2,6 +2,7 @@ package inst_test
 
 import (
 	"io/ioutil"
+	"reflect"
 	"strings"
 	"testing"
 
@@ -40,7 +41,6 @@ func TestInstructionProperties(t *testing.T) {
 			t.Errorf("instruction %s has no forms", i.Opcode)
 		}
 	}
-
 }
 
 func TestAssembles(t *testing.T) {
@@ -58,6 +58,25 @@ func TestLookup(t *testing.T) {
 	}
 	if _, found := inst.Lookup(strings.Repeat("XXX", 13)); found {
 		t.Fatalf("lookup returns true on an absurd opcode")
+	}
+}
+
+func TestInstructionArities(t *testing.T) {
+	cases := map[string][]int{
+		"AESDEC":    {2},
+		"EXTRACTPS": {3},
+		"SHRQ":      {2, 3},
+		"VMOVHPD":   {2, 3},
+	}
+	for opcode, expect := range cases {
+		i, ok := inst.Lookup(opcode)
+		if !ok {
+			t.Fatalf("could not find %s", opcode)
+		}
+		got := i.Arities()
+		if !reflect.DeepEqual(got, expect) {
+			t.Errorf("arity of %s is %v expected %v", opcode, got, expect)
+		}
 	}
 }
 
