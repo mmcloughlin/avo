@@ -112,6 +112,23 @@ func TestChecks(t *testing.T) {
 
 		{IsM256, Mem{Base: reg.RBX, Index: reg.R12, Scale: 2}, true},
 		{IsM256, Mem{Base: reg.R13L}, false},
+
+		// Vector memory operands
+		{IsVm32x, Mem{Base: reg.R14, Index: reg.X11}, true},
+		{IsVm32x, Mem{Base: reg.R14L, Index: reg.X11}, false},
+		{IsVm32x, Mem{Base: reg.R14, Index: reg.Y11}, false},
+
+		{IsVm64x, Mem{Base: reg.R14, Index: reg.X11}, true},
+		{IsVm64x, Mem{Base: reg.R14L, Index: reg.X11}, false},
+		{IsVm64x, Mem{Base: reg.R14, Index: reg.Y11}, false},
+
+		{IsVm32y, Mem{Base: reg.R9, Index: reg.Y11}, true},
+		{IsVm32y, Mem{Base: reg.R11L, Index: reg.Y11}, false},
+		{IsVm32y, Mem{Base: reg.R8, Index: reg.Z11}, false},
+
+		{IsVm64y, Mem{Base: reg.R9, Index: reg.Y11}, true},
+		{IsVm64y, Mem{Base: reg.R11L, Index: reg.Y11}, false},
+		{IsVm64y, Mem{Base: reg.R8, Index: reg.Z11}, false},
 	}
 
 	for _, c := range cases {

@@ -172,26 +172,47 @@ func IsM256(op avo.Operand) bool {
 	return IsM64(op)
 }
 
+// IsVm32x returns true if op is a vector memory operand with 32-bit XMM index.
 func IsVm32x(op avo.Operand) bool {
-	return false
+	return IsVmx(op)
 }
 
+// IsVm64x returns true if op is a vector memory operand with 64-bit XMM index.
 func IsVm64x(op avo.Operand) bool {
-	return false
+	return IsVmx(op)
 }
 
+// IsVmx returns true if op is a vector memory operand with XMM index.
+func IsVmx(op avo.Operand) bool {
+	return isvm(op, IsXmm)
+}
+
+// IsVm32y returns true if op is a vector memory operand with 32-bit YMM index.
 func IsVm32y(op avo.Operand) bool {
-	return false
+	return IsVmy(op)
 }
 
+// IsVm64y returns true if op is a vector memory operand with 64-bit YMM index.
 func IsVm64y(op avo.Operand) bool {
-	return false
+	return IsVmy(op)
+}
+
+// IsVmy returns true if op is a vector memory operand with YMM index.
+func IsVmy(op avo.Operand) bool {
+	return isvm(op, IsYmm)
+}
+
+func isvm(op avo.Operand, idx func(avo.Operand) bool) bool {
+	m, ok := op.(Mem)
+	return ok && IsR64(m.Base) && idx(m.Index)
 }
 
 func IsRel8(op avo.Operand) bool {
+	// TODO(mbm): implement rel8 operand check
 	return false
 }
 
 func IsRel32(op avo.Operand) bool {
+	// TODO(mbm): implement rel32 operand check
 	return false
 }
