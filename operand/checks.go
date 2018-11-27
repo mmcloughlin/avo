@@ -97,48 +97,79 @@ func IsR64(op avo.Operand) bool {
 
 // IsGP returns true if op is a general-purpose register of size n bytes.
 func IsGP(op avo.Operand, n uint) bool {
-	r, ok := op.(reg.Register)
-	return ok && r.Kind() == reg.GeneralPurpose.Kind && r.Bytes() == n
+	return IsRegisterKindSize(op, reg.GP, n)
 }
 
+// IsXmm0 returns true if op is the X0 register.
 func IsXmm0(op avo.Operand) bool {
-	return false
+	return op == reg.X0
 }
 
+// IsXmm returns true if op is a 128-bit XMM register.
 func IsXmm(op avo.Operand) bool {
-	return false
+	return IsRegisterKindSize(op, reg.SSEAVX, 16)
 }
 
+// IsYmm returns true if op is a 256-bit YMM register.
 func IsYmm(op avo.Operand) bool {
-	return false
+	return IsRegisterKindSize(op, reg.SSEAVX, 32)
 }
 
+// IsRegisterKindSize returns true if op is a register of the given kind and size in bytes.
+func IsRegisterKindSize(op avo.Operand, k reg.Kind, n uint) bool {
+	r, ok := op.(reg.Register)
+	return ok && r.Kind() == k && r.Bytes() == n
+}
+
+// IsM returns true if op is a 16-, 32- or 64-bit memory operand.
 func IsM(op avo.Operand) bool {
-	return false
+	// TODO(mbm): confirm "m" check is defined correctly
+	// Intel manual: "A 16-, 32- or 64-bit operand in memory."
+	return IsM16(op) || IsM32(op) || IsM64(op)
 }
 
+// IsM8 returns true if op is an 8-bit memory operand.
 func IsM8(op avo.Operand) bool {
-	return false
+	// TODO(mbm): confirm "m8" check is defined correctly
+	// Intel manual: "A byte operand in memory, usually expressed as a variable or
+	// array name, but pointed to by the DS:(E)SI or ES:(E)DI registers. In 64-bit
+	// mode, it is pointed to by the RSI or RDI registers."
+	return IsMSize(op, 1)
 }
 
+// IsM16 returns true if op is a 16-bit memory operand.
 func IsM16(op avo.Operand) bool {
-	return false
+	return IsMSize(op, 2)
 }
 
+// IsM32 returns true if op is a 16-bit memory operand.
 func IsM32(op avo.Operand) bool {
-	return false
+	return IsMSize(op, 4)
 }
 
+// IsM64 returns true if op is a 64-bit memory operand.
 func IsM64(op avo.Operand) bool {
-	return false
+	return IsMSize(op, 8)
 }
 
+// IsMSize returns true if op is a memory operand using general-purpose address
+// registers of the given size in bytes.
+func IsMSize(op avo.Operand, n uint) bool {
+	// TODO(mbm): should memory operands have a size attribute as well?
+	m, ok := op.(Mem)
+	return ok && IsGP(m.Base, n) && (m.Index == nil || IsGP(m.Index, n))
+}
+
+// IsM128 returns true if op is a 128-bit memory operand.
 func IsM128(op avo.Operand) bool {
-	return false
+	// TODO(mbm): should "m128" be the same as "m64"?
+	return IsM64(op)
 }
 
+// IsM256 returns true if op is a 256-bit memory operand.
 func IsM256(op avo.Operand) bool {
-	return false
+	// TODO(mbm): should "m256" be the same as "m64"?
+	return IsM64(op)
 }
 
 func IsVm32x(op avo.Operand) bool {
