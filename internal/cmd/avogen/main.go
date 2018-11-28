@@ -13,10 +13,11 @@ import (
 )
 
 var generators = map[string]gen.Builder{
-	"asmtest":      gen.NewAsmTest,
-	"godata":       gen.NewGoData,
-	"godatatest":   gen.NewGoDataTest,
-	"constructors": gen.NewConstructors,
+	"asmtest":    gen.NewAsmTest,
+	"godata":     gen.NewGoData,
+	"godatatest": gen.NewGoDataTest,
+	"ctors":      gen.NewCtors,
+	"ctorstest":  gen.NewCtorsTest,
 }
 
 // Command-line flags.

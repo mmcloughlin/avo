@@ -207,12 +207,17 @@ func isvm(op avo.Operand, idx func(avo.Operand) bool) bool {
 	return ok && IsR64(m.Base) && idx(m.Index)
 }
 
+// IsRel8 returns true if op is an 8-bit offset relative to instruction pointer.
 func IsRel8(op avo.Operand) bool {
-	// TODO(mbm): implement rel8 operand check
-	return false
+	r, ok := op.(Rel)
+	return ok && r == Rel(int8(r))
 }
 
+// IsRel32 returns true if op is an offset relative to instruction pointer, or a
+// label reference.
 func IsRel32(op avo.Operand) bool {
-	// TODO(mbm): implement rel32 operand check
-	return false
+	// TODO(mbm): should labels be considered separately?
+	_, rel := op.(Rel)
+	_, label := op.(LabelRef)
+	return rel || label
 }

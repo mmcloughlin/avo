@@ -30,5 +30,19 @@ func (m Mem) Asm() string {
 type Imm uint64
 
 func (i Imm) Asm() string {
-	return fmt.Sprintf("%#x", uint64(i))
+	return fmt.Sprintf("%#x", i)
+}
+
+// Rel is an offset relative to the instruction pointer.
+type Rel int32
+
+func (r Rel) Asm() string {
+	return fmt.Sprintf(".%+d", r)
+}
+
+// LabelRef is a reference to a label.
+type LabelRef string
+
+func (l LabelRef) Asm() string {
+	return string(l)
 }

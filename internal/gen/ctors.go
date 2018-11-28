@@ -11,16 +11,16 @@ import (
 	"github.com/mmcloughlin/avo/internal/inst"
 )
 
-type constructors struct {
+type ctors struct {
 	cfg Config
 	printer
 }
 
-func NewConstructors(cfg Config) Interface {
-	return GoFmt(&constructors{cfg: cfg})
+func NewCtors(cfg Config) Interface {
+	return GoFmt(&ctors{cfg: cfg})
 }
 
-func (c *constructors) Generate(is []inst.Instruction) ([]byte, error) {
+func (c *ctors) Generate(is []inst.Instruction) ([]byte, error) {
 	c.Printf("// %s\n\n", c.cfg.GeneratedWarning())
 	c.Printf("package x86\n\n")
 	c.Printf("import (\n")
@@ -35,7 +35,7 @@ func (c *constructors) Generate(is []inst.Instruction) ([]byte, error) {
 	return c.Result()
 }
 
-func (c *constructors) instruction(i inst.Instruction) {
+func (c *ctors) instruction(i inst.Instruction) {
 	for _, line := range c.doc(i) {
 		c.Printf("// %s\n", line)
 	}
@@ -49,7 +49,7 @@ func (c *constructors) instruction(i inst.Instruction) {
 }
 
 // doc generates the lines of the function comment.
-func (c *constructors) doc(i inst.Instruction) []string {
+func (c *ctors) doc(i inst.Instruction) []string {
 	lines := []string{
 		fmt.Sprintf("%s: %s.", i.Opcode, i.Summary),
 		"",
@@ -74,7 +74,7 @@ func (c *constructors) doc(i inst.Instruction) []string {
 	return lines
 }
 
-func (c *constructors) checkargs(i inst.Instruction, s signature) {
+func (c *ctors) checkargs(i inst.Instruction, s signature) {
 	if i.IsNiladic() {
 		return
 	}

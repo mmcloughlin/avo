@@ -7,6 +7,7 @@ func TestBuilderInterfaces(t *testing.T) {
 		NewAsmTest,
 		NewGoData,
 		NewGoDataTest,
-		NewConstructors,
+		NewCtors,
+		NewCtorsTest,
 	}
 }

@@ -1,6 +1,7 @@
 package operand
 
 import (
+	"math"
 	"reflect"
 	"runtime"
 	"testing"
@@ -129,6 +130,18 @@ func TestChecks(t *testing.T) {
 		{IsVm64y, Mem{Base: reg.R9, Index: reg.Y11}, true},
 		{IsVm64y, Mem{Base: reg.R11L, Index: reg.Y11}, false},
 		{IsVm64y, Mem{Base: reg.R8, Index: reg.Z11}, false},
+
+		// Relative operands
+		{IsRel8, Rel(math.MinInt8), true},
+		{IsRel8, Rel(math.MaxInt8), true},
+		{IsRel8, Rel(math.MinInt8 - 1), false},
+		{IsRel8, Rel(math.MaxInt8 + 1), false},
+		{IsRel8, reg.R9B, false},
+
+		{IsRel32, Rel(math.MinInt32), true},
+		{IsRel32, Rel(math.MaxInt32), true},
+		{IsRel32, LabelRef("label"), true},
+		{IsRel32, reg.R9L, false},
 	}
 
 	for _, c := range cases {
