@@ -70,7 +70,7 @@ func (p *GoPrinter) function(f *Function) {
 	p.printf("TEXT %s%s(SB),0,$%d-%d\n", dot, f.Name(), f.FrameBytes(), f.ArgumentBytes())
 
 	for _, i := range f.inst {
-		p.printf("\t%s\t%s\n", i.Mnemonic, joinOperands(i.Operands))
+		p.printf("\t%s\t%s\n", i.Opcode, joinOperands(i.Operands))
 	}
 }
 

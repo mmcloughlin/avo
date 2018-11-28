@@ -44,7 +44,7 @@ func (c *ctors) instruction(i inst.Instruction) {
 
 	c.Printf("func %s(%s) (*avo.Instruction, error) {\n", i.Opcode, s.ParameterList())
 	c.checkargs(i, s)
-	c.Printf("\treturn nil, nil\n")
+	c.Printf("\treturn &avo.Instruction{Opcode: %#v, Operands: %s}, nil\n", i.Opcode, s.ParameterSlice())
 	c.Printf("}\n\n")
 }
 
@@ -107,6 +107,7 @@ func (c *ctors) checkargs(i inst.Instruction, s signature) {
 type signature interface {
 	ParameterList() string
 	ParameterName(int) string
+	ParameterSlice() string
 	Length() string
 }
 
@@ -115,7 +116,10 @@ type argslist []string
 
 func (a argslist) ParameterList() string      { return strings.Join(a, ", ") + " avo.Operand" }
 func (a argslist) ParameterName(i int) string { return a[i] }
-func (a argslist) Length() string             { return strconv.Itoa(len(a)) }
+func (a argslist) ParameterSlice() string {
+	return fmt.Sprintf("[]avo.Operand{%s}", strings.Join(a, ", "))
+}
+func (a argslist) Length() string { return strconv.Itoa(len(a)) }
 
 // variadic is the signature for a variadic function.
 type variadic struct {
@@ -124,6 +128,7 @@ type variadic struct {
 
 func (v variadic) ParameterList() string      { return v.name + " ...avo.Operand" }
 func (v variadic) ParameterName(i int) string { return fmt.Sprintf("%s[%d]", v.name, i) }
+func (v variadic) ParameterSlice() string     { return v.name }
 func (v variadic) Length() string             { return fmt.Sprintf("len(%s)", v.name) }
 
 // niladic is the signature for a function with no arguments.
@@ -131,6 +136,7 @@ type niladic struct{}
 
 func (n niladic) ParameterList() string      { return "" }
 func (n niladic) ParameterName(i int) string { panic("niladic function has no parameters") }
+func (n niladic) ParameterSlice() string     { return "nil" }
 func (n niladic) Length() string             { return "0" }
 
 // params generates the function parameters and a function.

@@ -28,7 +28,7 @@ func ADCB(imr, amr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "ADCB", Operands: []avo.Operand{imr, amr}}, nil
 }
 
 // ADCL: Add with Carry.
@@ -56,7 +56,7 @@ func ADCL(imr, emr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "ADCL", Operands: []avo.Operand{imr, emr}}, nil
 }
 
 // ADCQ: Add with Carry.
@@ -84,7 +84,7 @@ func ADCQ(imr, mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "ADCQ", Operands: []avo.Operand{imr, mr}}, nil
 }
 
 // ADCW: Add with Carry.
@@ -112,7 +112,7 @@ func ADCW(imr, amr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "ADCW", Operands: []avo.Operand{imr, amr}}, nil
 }
 
 // ADCXL: Unsigned Integer Addition of Two Operands with Carry Flag.
@@ -128,7 +128,7 @@ func ADCXL(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "ADCXL", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // ADCXQ: Unsigned Integer Addition of Two Operands with Carry Flag.
@@ -144,7 +144,7 @@ func ADCXQ(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "ADCXQ", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // ADDB: Add.
@@ -168,7 +168,7 @@ func ADDB(imr, amr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "ADDB", Operands: []avo.Operand{imr, amr}}, nil
 }
 
 // ADDL: Add.
@@ -196,7 +196,7 @@ func ADDL(imr, emr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "ADDL", Operands: []avo.Operand{imr, emr}}, nil
 }
 
 // ADDPD: Add Packed Double-Precision Floating-Point Values.
@@ -212,7 +212,7 @@ func ADDPD(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "ADDPD", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // ADDPS: Add Packed Single-Precision Floating-Point Values.
@@ -228,7 +228,7 @@ func ADDPS(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "ADDPS", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // ADDQ: Add.
@@ -256,7 +256,7 @@ func ADDQ(imr, mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "ADDQ", Operands: []avo.Operand{imr, mr}}, nil
 }
 
 // ADDSD: Add Scalar Double-Precision Floating-Point Values.
@@ -272,7 +272,7 @@ func ADDSD(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "ADDSD", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // ADDSS: Add Scalar Single-Precision Floating-Point Values.
@@ -288,7 +288,7 @@ func ADDSS(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "ADDSS", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // ADDSUBPD: Packed Double-FP Add/Subtract.
@@ -304,7 +304,7 @@ func ADDSUBPD(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "ADDSUBPD", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // ADDSUBPS: Packed Single-FP Add/Subtract.
@@ -320,7 +320,7 @@ func ADDSUBPS(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "ADDSUBPS", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // ADDW: Add.
@@ -348,7 +348,7 @@ func ADDW(imr, amr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "ADDW", Operands: []avo.Operand{imr, amr}}, nil
 }
 
 // ADOXL: Unsigned Integer Addition of Two Operands with Overflow Flag.
@@ -364,7 +364,7 @@ func ADOXL(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "ADOXL", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // ADOXQ: Unsigned Integer Addition of Two Operands with Overflow Flag.
@@ -380,7 +380,7 @@ func ADOXQ(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "ADOXQ", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // AESDEC: Perform One Round of an AES Decryption Flow.
@@ -396,7 +396,7 @@ func AESDEC(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "AESDEC", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // AESDECLAST: Perform Last Round of an AES Decryption Flow.
@@ -412,7 +412,7 @@ func AESDECLAST(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "AESDECLAST", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // AESENC: Perform One Round of an AES Encryption Flow.
@@ -428,7 +428,7 @@ func AESENC(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "AESENC", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // AESENCLAST: Perform Last Round of an AES Encryption Flow.
@@ -444,7 +444,7 @@ func AESENCLAST(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "AESENCLAST", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // AESIMC: Perform the AES InvMixColumn Transformation.
@@ -460,7 +460,7 @@ func AESIMC(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "AESIMC", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // AESKEYGENASSIST: AES Round Key Generation Assist.
@@ -476,7 +476,7 @@ func AESKEYGENASSIST(i, mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "AESKEYGENASSIST", Operands: []avo.Operand{i, mx, x}}, nil
 }
 
 // ANDB: Logical AND.
@@ -500,7 +500,7 @@ func ANDB(imr, amr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "ANDB", Operands: []avo.Operand{imr, amr}}, nil
 }
 
 // ANDL: Logical AND.
@@ -528,7 +528,7 @@ func ANDL(imr, emr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "ANDL", Operands: []avo.Operand{imr, emr}}, nil
 }
 
 // ANDNL: Logical AND NOT.
@@ -544,7 +544,7 @@ func ANDNL(mr, r, r1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "ANDNL", Operands: []avo.Operand{mr, r, r1}}, nil
 }
 
 // ANDNPD: Bitwise Logical AND NOT of Packed Double-Precision Floating-Point Values.
@@ -560,7 +560,7 @@ func ANDNPD(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "ANDNPD", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // ANDNPS: Bitwise Logical AND NOT of Packed Single-Precision Floating-Point Values.
@@ -576,7 +576,7 @@ func ANDNPS(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "ANDNPS", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // ANDNQ: Logical AND NOT.
@@ -592,7 +592,7 @@ func ANDNQ(mr, r, r1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "ANDNQ", Operands: []avo.Operand{mr, r, r1}}, nil
 }
 
 // ANDPD: Bitwise Logical AND of Packed Double-Precision Floating-Point Values.
@@ -608,7 +608,7 @@ func ANDPD(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "ANDPD", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // ANDPS: Bitwise Logical AND of Packed Single-Precision Floating-Point Values.
@@ -624,7 +624,7 @@ func ANDPS(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "ANDPS", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // ANDQ: Logical AND.
@@ -652,7 +652,7 @@ func ANDQ(imr, mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "ANDQ", Operands: []avo.Operand{imr, mr}}, nil
 }
 
 // ANDW: Logical AND.
@@ -680,7 +680,7 @@ func ANDW(imr, amr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "ANDW", Operands: []avo.Operand{imr, amr}}, nil
 }
 
 // BEXTRL: Bit Field Extract.
@@ -696,7 +696,7 @@ func BEXTRL(r, mr, r1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "BEXTRL", Operands: []avo.Operand{r, mr, r1}}, nil
 }
 
 // BEXTRQ: Bit Field Extract.
@@ -712,7 +712,7 @@ func BEXTRQ(r, mr, r1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "BEXTRQ", Operands: []avo.Operand{r, mr, r1}}, nil
 }
 
 // BLENDPD: Blend Packed Double Precision Floating-Point Values.
@@ -728,7 +728,7 @@ func BLENDPD(i, mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "BLENDPD", Operands: []avo.Operand{i, mx, x}}, nil
 }
 
 // BLENDPS:  Blend Packed Single Precision Floating-Point Values.
@@ -744,7 +744,7 @@ func BLENDPS(i, mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "BLENDPS", Operands: []avo.Operand{i, mx, x}}, nil
 }
 
 // BLENDVPD:  Variable Blend Packed Double Precision Floating-Point Values.
@@ -760,7 +760,7 @@ func BLENDVPD(x, mx, x1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "BLENDVPD", Operands: []avo.Operand{x, mx, x1}}, nil
 }
 
 // BLENDVPS:  Variable Blend Packed Single Precision Floating-Point Values.
@@ -776,7 +776,7 @@ func BLENDVPS(x, mx, x1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "BLENDVPS", Operands: []avo.Operand{x, mx, x1}}, nil
 }
 
 // BLSIL: Isolate Lowest Set Bit.
@@ -792,7 +792,7 @@ func BLSIL(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "BLSIL", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // BLSIQ: Isolate Lowest Set Bit.
@@ -808,7 +808,7 @@ func BLSIQ(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "BLSIQ", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // BLSMSKL: Mask From Lowest Set Bit.
@@ -824,7 +824,7 @@ func BLSMSKL(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "BLSMSKL", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // BLSMSKQ: Mask From Lowest Set Bit.
@@ -840,7 +840,7 @@ func BLSMSKQ(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "BLSMSKQ", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // BLSRL: Reset Lowest Set Bit.
@@ -856,7 +856,7 @@ func BLSRL(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "BLSRL", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // BLSRQ: Reset Lowest Set Bit.
@@ -872,7 +872,7 @@ func BLSRQ(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "BLSRQ", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // BSFL: Bit Scan Forward.
@@ -888,7 +888,7 @@ func BSFL(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "BSFL", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // BSFQ: Bit Scan Forward.
@@ -904,7 +904,7 @@ func BSFQ(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "BSFQ", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // BSFW: Bit Scan Forward.
@@ -920,7 +920,7 @@ func BSFW(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "BSFW", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // BSRL: Bit Scan Reverse.
@@ -936,7 +936,7 @@ func BSRL(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "BSRL", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // BSRQ: Bit Scan Reverse.
@@ -952,7 +952,7 @@ func BSRQ(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "BSRQ", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // BSRW: Bit Scan Reverse.
@@ -968,7 +968,7 @@ func BSRW(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "BSRW", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // BSWAPL: Byte Swap.
@@ -982,7 +982,7 @@ func BSWAPL(r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "BSWAPL", Operands: []avo.Operand{r}}, nil
 }
 
 // BSWAPQ: Byte Swap.
@@ -996,7 +996,7 @@ func BSWAPQ(r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "BSWAPQ", Operands: []avo.Operand{r}}, nil
 }
 
 // BTCL: Bit Test and Complement.
@@ -1016,7 +1016,7 @@ func BTCL(ir, mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "BTCL", Operands: []avo.Operand{ir, mr}}, nil
 }
 
 // BTCQ: Bit Test and Complement.
@@ -1036,7 +1036,7 @@ func BTCQ(ir, mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "BTCQ", Operands: []avo.Operand{ir, mr}}, nil
 }
 
 // BTCW: Bit Test and Complement.
@@ -1056,7 +1056,7 @@ func BTCW(ir, mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "BTCW", Operands: []avo.Operand{ir, mr}}, nil
 }
 
 // BTL: Bit Test.
@@ -1076,7 +1076,7 @@ func BTL(ir, mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "BTL", Operands: []avo.Operand{ir, mr}}, nil
 }
 
 // BTQ: Bit Test.
@@ -1096,7 +1096,7 @@ func BTQ(ir, mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "BTQ", Operands: []avo.Operand{ir, mr}}, nil
 }
 
 // BTRL: Bit Test and Reset.
@@ -1116,7 +1116,7 @@ func BTRL(ir, mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "BTRL", Operands: []avo.Operand{ir, mr}}, nil
 }
 
 // BTRQ: Bit Test and Reset.
@@ -1136,7 +1136,7 @@ func BTRQ(ir, mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "BTRQ", Operands: []avo.Operand{ir, mr}}, nil
 }
 
 // BTRW: Bit Test and Reset.
@@ -1156,7 +1156,7 @@ func BTRW(ir, mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "BTRW", Operands: []avo.Operand{ir, mr}}, nil
 }
 
 // BTSL: Bit Test and Set.
@@ -1176,7 +1176,7 @@ func BTSL(ir, mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "BTSL", Operands: []avo.Operand{ir, mr}}, nil
 }
 
 // BTSQ: Bit Test and Set.
@@ -1196,7 +1196,7 @@ func BTSQ(ir, mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "BTSQ", Operands: []avo.Operand{ir, mr}}, nil
 }
 
 // BTSW: Bit Test and Set.
@@ -1216,7 +1216,7 @@ func BTSW(ir, mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "BTSW", Operands: []avo.Operand{ir, mr}}, nil
 }
 
 // BTW: Bit Test.
@@ -1236,7 +1236,7 @@ func BTW(ir, mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "BTW", Operands: []avo.Operand{ir, mr}}, nil
 }
 
 // BZHIL: Zero High Bits Starting with Specified Bit Position.
@@ -1252,7 +1252,7 @@ func BZHIL(r, mr, r1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "BZHIL", Operands: []avo.Operand{r, mr, r1}}, nil
 }
 
 // BZHIQ: Zero High Bits Starting with Specified Bit Position.
@@ -1268,7 +1268,7 @@ func BZHIQ(r, mr, r1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "BZHIQ", Operands: []avo.Operand{r, mr, r1}}, nil
 }
 
 // CALL: Call Procedure.
@@ -1282,7 +1282,7 @@ func CALL(r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CALL", Operands: []avo.Operand{r}}, nil
 }
 
 // CBW: Convert Byte to Word.
@@ -1291,7 +1291,7 @@ func CALL(r avo.Operand) (*avo.Instruction, error) {
 //
 // 	CBW
 func CBW() (*avo.Instruction, error) {
-	return nil, nil
+	return &avo.Instruction{Opcode: "CBW", Operands: nil}, nil
 }
 
 // CDQ: Convert Doubleword to Quadword.
@@ -1300,7 +1300,7 @@ func CBW() (*avo.Instruction, error) {
 //
 // 	CDQ
 func CDQ() (*avo.Instruction, error) {
-	return nil, nil
+	return &avo.Instruction{Opcode: "CDQ", Operands: nil}, nil
 }
 
 // CDQE: Convert Doubleword to Quadword.
@@ -1309,7 +1309,7 @@ func CDQ() (*avo.Instruction, error) {
 //
 // 	CDQE
 func CDQE() (*avo.Instruction, error) {
-	return nil, nil
+	return &avo.Instruction{Opcode: "CDQE", Operands: nil}, nil
 }
 
 // CLC: Clear Carry Flag.
@@ -1318,7 +1318,7 @@ func CDQE() (*avo.Instruction, error) {
 //
 // 	CLC
 func CLC() (*avo.Instruction, error) {
-	return nil, nil
+	return &avo.Instruction{Opcode: "CLC", Operands: nil}, nil
 }
 
 // CLD: Clear Direction Flag.
@@ -1327,7 +1327,7 @@ func CLC() (*avo.Instruction, error) {
 //
 // 	CLD
 func CLD() (*avo.Instruction, error) {
-	return nil, nil
+	return &avo.Instruction{Opcode: "CLD", Operands: nil}, nil
 }
 
 // CLFLUSH: Flush Cache Line.
@@ -1341,7 +1341,7 @@ func CLFLUSH(m avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CLFLUSH", Operands: []avo.Operand{m}}, nil
 }
 
 // CLFLUSHOPT: Flush Cache Line Optimized.
@@ -1355,7 +1355,7 @@ func CLFLUSHOPT(m avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CLFLUSHOPT", Operands: []avo.Operand{m}}, nil
 }
 
 // CMC: Complement Carry Flag.
@@ -1364,7 +1364,7 @@ func CLFLUSHOPT(m avo.Operand) (*avo.Instruction, error) {
 //
 // 	CMC
 func CMC() (*avo.Instruction, error) {
-	return nil, nil
+	return &avo.Instruction{Opcode: "CMC", Operands: nil}, nil
 }
 
 // CMOVLCC: Move if above or equal (CF == 0).
@@ -1380,7 +1380,7 @@ func CMOVLCC(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CMOVLCC", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // CMOVLCS: Move if below (CF == 1).
@@ -1396,7 +1396,7 @@ func CMOVLCS(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CMOVLCS", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // CMOVLEQ: Move if equal (ZF == 1).
@@ -1412,7 +1412,7 @@ func CMOVLEQ(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CMOVLEQ", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // CMOVLGE: Move if greater or equal (SF == OF).
@@ -1428,7 +1428,7 @@ func CMOVLGE(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CMOVLGE", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // CMOVLGT: Move if greater (ZF == 0 and SF == OF).
@@ -1444,7 +1444,7 @@ func CMOVLGT(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CMOVLGT", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // CMOVLHI: Move if above (CF == 0 and ZF == 0).
@@ -1460,7 +1460,7 @@ func CMOVLHI(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CMOVLHI", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // CMOVLLE: Move if less or equal (ZF == 1 or SF != OF).
@@ -1476,7 +1476,7 @@ func CMOVLLE(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CMOVLLE", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // CMOVLLS: Move if below or equal (CF == 1 or ZF == 1).
@@ -1492,7 +1492,7 @@ func CMOVLLS(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CMOVLLS", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // CMOVLLT: Move if less (SF != OF).
@@ -1508,7 +1508,7 @@ func CMOVLLT(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CMOVLLT", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // CMOVLMI: Move if sign (SF == 1).
@@ -1524,7 +1524,7 @@ func CMOVLMI(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CMOVLMI", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // CMOVLNE: Move if not equal (ZF == 0).
@@ -1540,7 +1540,7 @@ func CMOVLNE(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CMOVLNE", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // CMOVLOC: Move if not overflow (OF == 0).
@@ -1556,7 +1556,7 @@ func CMOVLOC(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CMOVLOC", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // CMOVLOS: Move if overflow (OF == 1).
@@ -1572,7 +1572,7 @@ func CMOVLOS(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CMOVLOS", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // CMOVLPC: Move if not parity (PF == 0).
@@ -1588,7 +1588,7 @@ func CMOVLPC(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CMOVLPC", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // CMOVLPL: Move if not sign (SF == 0).
@@ -1604,7 +1604,7 @@ func CMOVLPL(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CMOVLPL", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // CMOVLPS: Move if parity (PF == 1).
@@ -1620,7 +1620,7 @@ func CMOVLPS(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CMOVLPS", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // CMOVQCC: Move if above or equal (CF == 0).
@@ -1636,7 +1636,7 @@ func CMOVQCC(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CMOVQCC", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // CMOVQCS: Move if below (CF == 1).
@@ -1652,7 +1652,7 @@ func CMOVQCS(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CMOVQCS", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // CMOVQEQ: Move if equal (ZF == 1).
@@ -1668,7 +1668,7 @@ func CMOVQEQ(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CMOVQEQ", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // CMOVQGE: Move if greater or equal (SF == OF).
@@ -1684,7 +1684,7 @@ func CMOVQGE(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CMOVQGE", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // CMOVQGT: Move if greater (ZF == 0 and SF == OF).
@@ -1700,7 +1700,7 @@ func CMOVQGT(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CMOVQGT", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // CMOVQHI: Move if above (CF == 0 and ZF == 0).
@@ -1716,7 +1716,7 @@ func CMOVQHI(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CMOVQHI", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // CMOVQLE: Move if less or equal (ZF == 1 or SF != OF).
@@ -1732,7 +1732,7 @@ func CMOVQLE(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CMOVQLE", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // CMOVQLS: Move if below or equal (CF == 1 or ZF == 1).
@@ -1748,7 +1748,7 @@ func CMOVQLS(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CMOVQLS", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // CMOVQLT: Move if less (SF != OF).
@@ -1764,7 +1764,7 @@ func CMOVQLT(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CMOVQLT", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // CMOVQMI: Move if sign (SF == 1).
@@ -1780,7 +1780,7 @@ func CMOVQMI(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CMOVQMI", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // CMOVQNE: Move if not equal (ZF == 0).
@@ -1796,7 +1796,7 @@ func CMOVQNE(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CMOVQNE", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // CMOVQOC: Move if not overflow (OF == 0).
@@ -1812,7 +1812,7 @@ func CMOVQOC(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CMOVQOC", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // CMOVQOS: Move if overflow (OF == 1).
@@ -1828,7 +1828,7 @@ func CMOVQOS(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CMOVQOS", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // CMOVQPC: Move if not parity (PF == 0).
@@ -1844,7 +1844,7 @@ func CMOVQPC(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CMOVQPC", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // CMOVQPL: Move if not sign (SF == 0).
@@ -1860,7 +1860,7 @@ func CMOVQPL(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CMOVQPL", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // CMOVQPS: Move if parity (PF == 1).
@@ -1876,7 +1876,7 @@ func CMOVQPS(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CMOVQPS", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // CMOVWCC: Move if above or equal (CF == 0).
@@ -1892,7 +1892,7 @@ func CMOVWCC(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CMOVWCC", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // CMOVWCS: Move if below (CF == 1).
@@ -1908,7 +1908,7 @@ func CMOVWCS(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CMOVWCS", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // CMOVWEQ: Move if equal (ZF == 1).
@@ -1924,7 +1924,7 @@ func CMOVWEQ(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CMOVWEQ", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // CMOVWGE: Move if greater or equal (SF == OF).
@@ -1940,7 +1940,7 @@ func CMOVWGE(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CMOVWGE", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // CMOVWGT: Move if greater (ZF == 0 and SF == OF).
@@ -1956,7 +1956,7 @@ func CMOVWGT(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CMOVWGT", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // CMOVWHI: Move if above (CF == 0 and ZF == 0).
@@ -1972,7 +1972,7 @@ func CMOVWHI(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CMOVWHI", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // CMOVWLE: Move if less or equal (ZF == 1 or SF != OF).
@@ -1988,7 +1988,7 @@ func CMOVWLE(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CMOVWLE", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // CMOVWLS: Move if below or equal (CF == 1 or ZF == 1).
@@ -2004,7 +2004,7 @@ func CMOVWLS(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CMOVWLS", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // CMOVWLT: Move if less (SF != OF).
@@ -2020,7 +2020,7 @@ func CMOVWLT(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CMOVWLT", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // CMOVWMI: Move if sign (SF == 1).
@@ -2036,7 +2036,7 @@ func CMOVWMI(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CMOVWMI", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // CMOVWNE: Move if not equal (ZF == 0).
@@ -2052,7 +2052,7 @@ func CMOVWNE(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CMOVWNE", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // CMOVWOC: Move if not overflow (OF == 0).
@@ -2068,7 +2068,7 @@ func CMOVWOC(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CMOVWOC", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // CMOVWOS: Move if overflow (OF == 1).
@@ -2084,7 +2084,7 @@ func CMOVWOS(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CMOVWOS", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // CMOVWPC: Move if not parity (PF == 0).
@@ -2100,7 +2100,7 @@ func CMOVWPC(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CMOVWPC", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // CMOVWPL: Move if not sign (SF == 0).
@@ -2116,7 +2116,7 @@ func CMOVWPL(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CMOVWPL", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // CMOVWPS: Move if parity (PF == 1).
@@ -2132,7 +2132,7 @@ func CMOVWPS(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CMOVWPS", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // CMPB: Compare Two Operands.
@@ -2156,7 +2156,7 @@ func CMPB(amr, imr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CMPB", Operands: []avo.Operand{amr, imr}}, nil
 }
 
 // CMPL: Compare Two Operands.
@@ -2184,7 +2184,7 @@ func CMPL(emr, imr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CMPL", Operands: []avo.Operand{emr, imr}}, nil
 }
 
 // CMPPD: Compare Packed Double-Precision Floating-Point Values.
@@ -2200,7 +2200,7 @@ func CMPPD(mx, x, i avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CMPPD", Operands: []avo.Operand{mx, x, i}}, nil
 }
 
 // CMPPS: Compare Packed Single-Precision Floating-Point Values.
@@ -2216,7 +2216,7 @@ func CMPPS(mx, x, i avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CMPPS", Operands: []avo.Operand{mx, x, i}}, nil
 }
 
 // CMPQ: Compare Two Operands.
@@ -2244,7 +2244,7 @@ func CMPQ(mr, imr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CMPQ", Operands: []avo.Operand{mr, imr}}, nil
 }
 
 // CMPSD: Compare Scalar Double-Precision Floating-Point Values.
@@ -2260,7 +2260,7 @@ func CMPSD(mx, x, i avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CMPSD", Operands: []avo.Operand{mx, x, i}}, nil
 }
 
 // CMPSS: Compare Scalar Single-Precision Floating-Point Values.
@@ -2276,7 +2276,7 @@ func CMPSS(mx, x, i avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CMPSS", Operands: []avo.Operand{mx, x, i}}, nil
 }
 
 // CMPW: Compare Two Operands.
@@ -2304,7 +2304,7 @@ func CMPW(amr, imr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CMPW", Operands: []avo.Operand{amr, imr}}, nil
 }
 
 // CMPXCHG16B: Compare and Exchange 16 Bytes.
@@ -2318,7 +2318,7 @@ func CMPXCHG16B(m avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CMPXCHG16B", Operands: []avo.Operand{m}}, nil
 }
 
 // CMPXCHG8B: Compare and Exchange 8 Bytes.
@@ -2332,7 +2332,7 @@ func CMPXCHG8B(m avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CMPXCHG8B", Operands: []avo.Operand{m}}, nil
 }
 
 // CMPXCHGB: Compare and Exchange.
@@ -2348,7 +2348,7 @@ func CMPXCHGB(r, mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CMPXCHGB", Operands: []avo.Operand{r, mr}}, nil
 }
 
 // CMPXCHGL: Compare and Exchange.
@@ -2364,7 +2364,7 @@ func CMPXCHGL(r, mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CMPXCHGL", Operands: []avo.Operand{r, mr}}, nil
 }
 
 // CMPXCHGQ: Compare and Exchange.
@@ -2380,7 +2380,7 @@ func CMPXCHGQ(r, mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CMPXCHGQ", Operands: []avo.Operand{r, mr}}, nil
 }
 
 // CMPXCHGW: Compare and Exchange.
@@ -2396,7 +2396,7 @@ func CMPXCHGW(r, mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CMPXCHGW", Operands: []avo.Operand{r, mr}}, nil
 }
 
 // COMISD: Compare Scalar Ordered Double-Precision Floating-Point Values and Set EFLAGS.
@@ -2412,7 +2412,7 @@ func COMISD(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "COMISD", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // COMISS: Compare Scalar Ordered Single-Precision Floating-Point Values and Set EFLAGS.
@@ -2428,7 +2428,7 @@ func COMISS(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "COMISS", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // CPUID: CPU Identification.
@@ -2437,7 +2437,7 @@ func COMISS(mx, x avo.Operand) (*avo.Instruction, error) {
 //
 // 	CPUID
 func CPUID() (*avo.Instruction, error) {
-	return nil, nil
+	return &avo.Instruction{Opcode: "CPUID", Operands: nil}, nil
 }
 
 // CQO: Convert Quadword to Octaword.
@@ -2446,7 +2446,7 @@ func CPUID() (*avo.Instruction, error) {
 //
 // 	CQO
 func CQO() (*avo.Instruction, error) {
-	return nil, nil
+	return &avo.Instruction{Opcode: "CQO", Operands: nil}, nil
 }
 
 // CRC32B: Accumulate CRC32 Value.
@@ -2466,7 +2466,7 @@ func CRC32B(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CRC32B", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // CRC32L: Accumulate CRC32 Value.
@@ -2482,7 +2482,7 @@ func CRC32L(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CRC32L", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // CRC32Q: Accumulate CRC32 Value.
@@ -2498,7 +2498,7 @@ func CRC32Q(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CRC32Q", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // CRC32W: Accumulate CRC32 Value.
@@ -2514,7 +2514,7 @@ func CRC32W(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CRC32W", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // CVTPD2PL: Convert Packed Double-Precision FP Values to Packed Dword Integers.
@@ -2530,7 +2530,7 @@ func CVTPD2PL(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CVTPD2PL", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // CVTPD2PS: Convert Packed Double-Precision FP Values to Packed Single-Precision FP Values.
@@ -2546,7 +2546,7 @@ func CVTPD2PS(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CVTPD2PS", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // CVTPL2PD: Convert Packed Dword Integers to Packed Double-Precision FP Values.
@@ -2564,7 +2564,7 @@ func CVTPL2PD(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CVTPL2PD", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // CVTPL2PS: Convert Packed Dword Integers to Packed Single-Precision FP Values.
@@ -2580,7 +2580,7 @@ func CVTPL2PS(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CVTPL2PS", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // CVTPS2PD: Convert Packed Single-Precision FP Values to Packed Double-Precision FP Values.
@@ -2596,7 +2596,7 @@ func CVTPS2PD(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CVTPS2PD", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // CVTPS2PL: Convert Packed Single-Precision FP Values to Packed Dword Integers.
@@ -2612,7 +2612,7 @@ func CVTPS2PL(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CVTPS2PL", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // CVTSD2SL: Convert Scalar Double-Precision FP Value to Integer.
@@ -2632,7 +2632,7 @@ func CVTSD2SL(mx, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CVTSD2SL", Operands: []avo.Operand{mx, r}}, nil
 }
 
 // CVTSD2SS: Convert Scalar Double-Precision FP Value to Scalar Single-Precision FP Value.
@@ -2648,7 +2648,7 @@ func CVTSD2SS(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CVTSD2SS", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // CVTSL2SD: Convert Dword Integer to Scalar Double-Precision FP Value.
@@ -2664,7 +2664,7 @@ func CVTSL2SD(mr, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CVTSL2SD", Operands: []avo.Operand{mr, x}}, nil
 }
 
 // CVTSL2SS: Convert Dword Integer to Scalar Single-Precision FP Value.
@@ -2680,7 +2680,7 @@ func CVTSL2SS(mr, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CVTSL2SS", Operands: []avo.Operand{mr, x}}, nil
 }
 
 // CVTSQ2SD: Convert Dword Integer to Scalar Double-Precision FP Value.
@@ -2696,7 +2696,7 @@ func CVTSQ2SD(mr, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CVTSQ2SD", Operands: []avo.Operand{mr, x}}, nil
 }
 
 // CVTSQ2SS: Convert Dword Integer to Scalar Single-Precision FP Value.
@@ -2712,7 +2712,7 @@ func CVTSQ2SS(mr, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CVTSQ2SS", Operands: []avo.Operand{mr, x}}, nil
 }
 
 // CVTSS2SD: Convert Scalar Single-Precision FP Value to Scalar Double-Precision FP Value.
@@ -2728,7 +2728,7 @@ func CVTSS2SD(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CVTSS2SD", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // CVTSS2SL: Convert Scalar Single-Precision FP Value to Dword Integer.
@@ -2748,7 +2748,7 @@ func CVTSS2SL(mx, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CVTSS2SL", Operands: []avo.Operand{mx, r}}, nil
 }
 
 // CVTTPD2PL: Convert with Truncation Packed Double-Precision FP Values to Packed Dword Integers.
@@ -2764,7 +2764,7 @@ func CVTTPD2PL(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CVTTPD2PL", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // CVTTPS2PL: Convert with Truncation Packed Single-Precision FP Values to Packed Dword Integers.
@@ -2780,7 +2780,7 @@ func CVTTPS2PL(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CVTTPS2PL", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // CVTTSD2SL: Convert with Truncation Scalar Double-Precision FP Value to Signed Integer.
@@ -2796,7 +2796,7 @@ func CVTTSD2SL(mx, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CVTTSD2SL", Operands: []avo.Operand{mx, r}}, nil
 }
 
 // CVTTSD2SQ: Convert with Truncation Scalar Double-Precision FP Value to Signed Integer.
@@ -2812,7 +2812,7 @@ func CVTTSD2SQ(mx, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CVTTSD2SQ", Operands: []avo.Operand{mx, r}}, nil
 }
 
 // CVTTSS2SL: Convert with Truncation Scalar Single-Precision FP Value to Dword Integer.
@@ -2832,7 +2832,7 @@ func CVTTSS2SL(mx, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "CVTTSS2SL", Operands: []avo.Operand{mx, r}}, nil
 }
 
 // CWD: Convert Word to Doubleword.
@@ -2841,7 +2841,7 @@ func CVTTSS2SL(mx, r avo.Operand) (*avo.Instruction, error) {
 //
 // 	CWD
 func CWD() (*avo.Instruction, error) {
-	return nil, nil
+	return &avo.Instruction{Opcode: "CWD", Operands: nil}, nil
 }
 
 // CWDE: Convert Word to Doubleword.
@@ -2850,7 +2850,7 @@ func CWD() (*avo.Instruction, error) {
 //
 // 	CWDE
 func CWDE() (*avo.Instruction, error) {
-	return nil, nil
+	return &avo.Instruction{Opcode: "CWDE", Operands: nil}, nil
 }
 
 // DECB: Decrement by 1.
@@ -2866,7 +2866,7 @@ func DECB(mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "DECB", Operands: []avo.Operand{mr}}, nil
 }
 
 // DECL: Decrement by 1.
@@ -2882,7 +2882,7 @@ func DECL(mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "DECL", Operands: []avo.Operand{mr}}, nil
 }
 
 // DECQ: Decrement by 1.
@@ -2898,7 +2898,7 @@ func DECQ(mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "DECQ", Operands: []avo.Operand{mr}}, nil
 }
 
 // DECW: Decrement by 1.
@@ -2914,7 +2914,7 @@ func DECW(mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "DECW", Operands: []avo.Operand{mr}}, nil
 }
 
 // DIVB: Unsigned Divide.
@@ -2930,7 +2930,7 @@ func DIVB(mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "DIVB", Operands: []avo.Operand{mr}}, nil
 }
 
 // DIVL: Unsigned Divide.
@@ -2946,7 +2946,7 @@ func DIVL(mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "DIVL", Operands: []avo.Operand{mr}}, nil
 }
 
 // DIVPD: Divide Packed Double-Precision Floating-Point Values.
@@ -2962,7 +2962,7 @@ func DIVPD(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "DIVPD", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // DIVPS: Divide Packed Single-Precision Floating-Point Values.
@@ -2978,7 +2978,7 @@ func DIVPS(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "DIVPS", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // DIVQ: Unsigned Divide.
@@ -2994,7 +2994,7 @@ func DIVQ(mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "DIVQ", Operands: []avo.Operand{mr}}, nil
 }
 
 // DIVSD: Divide Scalar Double-Precision Floating-Point Values.
@@ -3010,7 +3010,7 @@ func DIVSD(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "DIVSD", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // DIVSS: Divide Scalar Single-Precision Floating-Point Values.
@@ -3026,7 +3026,7 @@ func DIVSS(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "DIVSS", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // DIVW: Unsigned Divide.
@@ -3042,7 +3042,7 @@ func DIVW(mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "DIVW", Operands: []avo.Operand{mr}}, nil
 }
 
 // DPPD: Dot Product of Packed Double Precision Floating-Point Values.
@@ -3058,7 +3058,7 @@ func DPPD(i, mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "DPPD", Operands: []avo.Operand{i, mx, x}}, nil
 }
 
 // DPPS: Dot Product of Packed Single Precision Floating-Point Values.
@@ -3074,7 +3074,7 @@ func DPPS(i, mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "DPPS", Operands: []avo.Operand{i, mx, x}}, nil
 }
 
 // EXTRACTPS: Extract Packed Single Precision Floating-Point Value.
@@ -3090,7 +3090,7 @@ func EXTRACTPS(i, x, mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "EXTRACTPS", Operands: []avo.Operand{i, x, mr}}, nil
 }
 
 // HADDPD: Packed Double-FP Horizontal Add.
@@ -3106,7 +3106,7 @@ func HADDPD(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "HADDPD", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // HADDPS: Packed Single-FP Horizontal Add.
@@ -3122,7 +3122,7 @@ func HADDPS(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "HADDPS", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // HSUBPD: Packed Double-FP Horizontal Subtract.
@@ -3138,7 +3138,7 @@ func HSUBPD(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "HSUBPD", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // HSUBPS: Packed Single-FP Horizontal Subtract.
@@ -3154,7 +3154,7 @@ func HSUBPS(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "HSUBPS", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // IDIVB: Signed Divide.
@@ -3170,7 +3170,7 @@ func IDIVB(mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "IDIVB", Operands: []avo.Operand{mr}}, nil
 }
 
 // IDIVL: Signed Divide.
@@ -3186,7 +3186,7 @@ func IDIVL(mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "IDIVL", Operands: []avo.Operand{mr}}, nil
 }
 
 // IDIVQ: Signed Divide.
@@ -3202,7 +3202,7 @@ func IDIVQ(mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "IDIVQ", Operands: []avo.Operand{mr}}, nil
 }
 
 // IDIVW: Signed Divide.
@@ -3218,7 +3218,7 @@ func IDIVW(mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "IDIVW", Operands: []avo.Operand{mr}}, nil
 }
 
 // IMUL3L: Signed Multiply.
@@ -3238,7 +3238,7 @@ func IMUL3L(i, mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "IMUL3L", Operands: []avo.Operand{i, mr, r}}, nil
 }
 
 // IMUL3Q: Signed Multiply.
@@ -3258,7 +3258,7 @@ func IMUL3Q(i, mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "IMUL3Q", Operands: []avo.Operand{i, mr, r}}, nil
 }
 
 // IMUL3W: Signed Multiply.
@@ -3278,7 +3278,7 @@ func IMUL3W(i, mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "IMUL3W", Operands: []avo.Operand{i, mr, r}}, nil
 }
 
 // IMULB: Signed Multiply.
@@ -3294,7 +3294,7 @@ func IMULB(mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "IMULB", Operands: []avo.Operand{mr}}, nil
 }
 
 // IMULL: Signed Multiply.
@@ -3314,7 +3314,7 @@ func IMULL(ops ...avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "IMULL", Operands: ops}, nil
 }
 
 // IMULQ: Signed Multiply.
@@ -3334,7 +3334,7 @@ func IMULQ(ops ...avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "IMULQ", Operands: ops}, nil
 }
 
 // IMULW: Signed Multiply.
@@ -3354,7 +3354,7 @@ func IMULW(ops ...avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "IMULW", Operands: ops}, nil
 }
 
 // INCB: Increment by 1.
@@ -3370,7 +3370,7 @@ func INCB(mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "INCB", Operands: []avo.Operand{mr}}, nil
 }
 
 // INCL: Increment by 1.
@@ -3386,7 +3386,7 @@ func INCL(mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "INCL", Operands: []avo.Operand{mr}}, nil
 }
 
 // INCQ: Increment by 1.
@@ -3402,7 +3402,7 @@ func INCQ(mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "INCQ", Operands: []avo.Operand{mr}}, nil
 }
 
 // INCW: Increment by 1.
@@ -3418,7 +3418,7 @@ func INCW(mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "INCW", Operands: []avo.Operand{mr}}, nil
 }
 
 // INSERTPS: Insert Packed Single Precision Floating-Point Value.
@@ -3434,7 +3434,7 @@ func INSERTPS(i, mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "INSERTPS", Operands: []avo.Operand{i, mx, x}}, nil
 }
 
 // INT: Call to Interrupt Procedure.
@@ -3450,7 +3450,7 @@ func INT(i avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "INT", Operands: []avo.Operand{i}}, nil
 }
 
 // JA: Jump if above (CF == 0 and ZF == 0).
@@ -3470,7 +3470,7 @@ func JA(r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "JA", Operands: []avo.Operand{r}}, nil
 }
 
 // JAE: Jump if above or equal (CF == 0).
@@ -3494,7 +3494,7 @@ func JAE(r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "JAE", Operands: []avo.Operand{r}}, nil
 }
 
 // JB: Jump if below (CF == 1).
@@ -3518,7 +3518,7 @@ func JB(r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "JB", Operands: []avo.Operand{r}}, nil
 }
 
 // JBE: Jump if below or equal (CF == 1 or ZF == 1).
@@ -3538,7 +3538,7 @@ func JBE(r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "JBE", Operands: []avo.Operand{r}}, nil
 }
 
 // JC: Jump if below (CF == 1).
@@ -3562,7 +3562,7 @@ func JC(r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "JC", Operands: []avo.Operand{r}}, nil
 }
 
 // JCC: Jump if above or equal (CF == 0).
@@ -3586,7 +3586,7 @@ func JCC(r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "JCC", Operands: []avo.Operand{r}}, nil
 }
 
 // JCS: Jump if below (CF == 1).
@@ -3610,7 +3610,7 @@ func JCS(r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "JCS", Operands: []avo.Operand{r}}, nil
 }
 
 // JCXZL: Jump if ECX register is 0.
@@ -3624,7 +3624,7 @@ func JCXZL(r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "JCXZL", Operands: []avo.Operand{r}}, nil
 }
 
 // JCXZQ: Jump if RCX register is 0.
@@ -3638,7 +3638,7 @@ func JCXZQ(r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "JCXZQ", Operands: []avo.Operand{r}}, nil
 }
 
 // JE: Jump if equal (ZF == 1).
@@ -3658,7 +3658,7 @@ func JE(r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "JE", Operands: []avo.Operand{r}}, nil
 }
 
 // JEQ: Jump if equal (ZF == 1).
@@ -3678,7 +3678,7 @@ func JEQ(r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "JEQ", Operands: []avo.Operand{r}}, nil
 }
 
 // JG: Jump if greater (ZF == 0 and SF == OF).
@@ -3698,7 +3698,7 @@ func JG(r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "JG", Operands: []avo.Operand{r}}, nil
 }
 
 // JGE: Jump if greater or equal (SF == OF).
@@ -3718,7 +3718,7 @@ func JGE(r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "JGE", Operands: []avo.Operand{r}}, nil
 }
 
 // JGT: Jump if greater (ZF == 0 and SF == OF).
@@ -3738,7 +3738,7 @@ func JGT(r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "JGT", Operands: []avo.Operand{r}}, nil
 }
 
 // JHI: Jump if above (CF == 0 and ZF == 0).
@@ -3758,7 +3758,7 @@ func JHI(r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "JHI", Operands: []avo.Operand{r}}, nil
 }
 
 // JHS: Jump if above or equal (CF == 0).
@@ -3782,7 +3782,7 @@ func JHS(r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "JHS", Operands: []avo.Operand{r}}, nil
 }
 
 // JL: Jump if less (SF != OF).
@@ -3802,7 +3802,7 @@ func JL(r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "JL", Operands: []avo.Operand{r}}, nil
 }
 
 // JLE: Jump if less or equal (ZF == 1 or SF != OF).
@@ -3822,7 +3822,7 @@ func JLE(r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "JLE", Operands: []avo.Operand{r}}, nil
 }
 
 // JLO: Jump if below (CF == 1).
@@ -3846,7 +3846,7 @@ func JLO(r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "JLO", Operands: []avo.Operand{r}}, nil
 }
 
 // JLS: Jump if below or equal (CF == 1 or ZF == 1).
@@ -3866,7 +3866,7 @@ func JLS(r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "JLS", Operands: []avo.Operand{r}}, nil
 }
 
 // JLT: Jump if less (SF != OF).
@@ -3886,7 +3886,7 @@ func JLT(r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "JLT", Operands: []avo.Operand{r}}, nil
 }
 
 // JMI: Jump if sign (SF == 1).
@@ -3902,7 +3902,7 @@ func JMI(r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "JMI", Operands: []avo.Operand{r}}, nil
 }
 
 // JMP: Jump Unconditionally.
@@ -3922,7 +3922,7 @@ func JMP(mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "JMP", Operands: []avo.Operand{mr}}, nil
 }
 
 // JNA: Jump if below or equal (CF == 1 or ZF == 1).
@@ -3942,7 +3942,7 @@ func JNA(r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "JNA", Operands: []avo.Operand{r}}, nil
 }
 
 // JNAE: Jump if below (CF == 1).
@@ -3966,7 +3966,7 @@ func JNAE(r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "JNAE", Operands: []avo.Operand{r}}, nil
 }
 
 // JNB: Jump if above or equal (CF == 0).
@@ -3990,7 +3990,7 @@ func JNB(r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "JNB", Operands: []avo.Operand{r}}, nil
 }
 
 // JNBE: Jump if above (CF == 0 and ZF == 0).
@@ -4010,7 +4010,7 @@ func JNBE(r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "JNBE", Operands: []avo.Operand{r}}, nil
 }
 
 // JNC: Jump if above or equal (CF == 0).
@@ -4034,7 +4034,7 @@ func JNC(r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "JNC", Operands: []avo.Operand{r}}, nil
 }
 
 // JNE: Jump if not equal (ZF == 0).
@@ -4054,7 +4054,7 @@ func JNE(r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "JNE", Operands: []avo.Operand{r}}, nil
 }
 
 // JNG: Jump if less or equal (ZF == 1 or SF != OF).
@@ -4074,7 +4074,7 @@ func JNG(r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "JNG", Operands: []avo.Operand{r}}, nil
 }
 
 // JNGE: Jump if less (SF != OF).
@@ -4094,7 +4094,7 @@ func JNGE(r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "JNGE", Operands: []avo.Operand{r}}, nil
 }
 
 // JNL: Jump if greater or equal (SF == OF).
@@ -4114,7 +4114,7 @@ func JNL(r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "JNL", Operands: []avo.Operand{r}}, nil
 }
 
 // JNLE: Jump if greater (ZF == 0 and SF == OF).
@@ -4134,7 +4134,7 @@ func JNLE(r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "JNLE", Operands: []avo.Operand{r}}, nil
 }
 
 // JNO: Jump if not overflow (OF == 0).
@@ -4150,7 +4150,7 @@ func JNO(r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "JNO", Operands: []avo.Operand{r}}, nil
 }
 
 // JNP: Jump if not parity (PF == 0).
@@ -4170,7 +4170,7 @@ func JNP(r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "JNP", Operands: []avo.Operand{r}}, nil
 }
 
 // JNS: Jump if not sign (SF == 0).
@@ -4186,7 +4186,7 @@ func JNS(r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "JNS", Operands: []avo.Operand{r}}, nil
 }
 
 // JNZ: Jump if not equal (ZF == 0).
@@ -4206,7 +4206,7 @@ func JNZ(r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "JNZ", Operands: []avo.Operand{r}}, nil
 }
 
 // JO: Jump if overflow (OF == 1).
@@ -4222,7 +4222,7 @@ func JO(r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "JO", Operands: []avo.Operand{r}}, nil
 }
 
 // JOC: Jump if not overflow (OF == 0).
@@ -4238,7 +4238,7 @@ func JOC(r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "JOC", Operands: []avo.Operand{r}}, nil
 }
 
 // JOS: Jump if overflow (OF == 1).
@@ -4254,7 +4254,7 @@ func JOS(r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "JOS", Operands: []avo.Operand{r}}, nil
 }
 
 // JP: Jump if parity (PF == 1).
@@ -4274,7 +4274,7 @@ func JP(r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "JP", Operands: []avo.Operand{r}}, nil
 }
 
 // JPC: Jump if not parity (PF == 0).
@@ -4294,7 +4294,7 @@ func JPC(r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "JPC", Operands: []avo.Operand{r}}, nil
 }
 
 // JPE: Jump if parity (PF == 1).
@@ -4314,7 +4314,7 @@ func JPE(r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "JPE", Operands: []avo.Operand{r}}, nil
 }
 
 // JPL: Jump if not sign (SF == 0).
@@ -4330,7 +4330,7 @@ func JPL(r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "JPL", Operands: []avo.Operand{r}}, nil
 }
 
 // JPO: Jump if not parity (PF == 0).
@@ -4350,7 +4350,7 @@ func JPO(r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "JPO", Operands: []avo.Operand{r}}, nil
 }
 
 // JPS: Jump if parity (PF == 1).
@@ -4370,7 +4370,7 @@ func JPS(r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "JPS", Operands: []avo.Operand{r}}, nil
 }
 
 // JS: Jump if sign (SF == 1).
@@ -4386,7 +4386,7 @@ func JS(r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "JS", Operands: []avo.Operand{r}}, nil
 }
 
 // JZ: Jump if equal (ZF == 1).
@@ -4406,7 +4406,7 @@ func JZ(r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "JZ", Operands: []avo.Operand{r}}, nil
 }
 
 // LDDQU: Load Unaligned Integer 128 Bits.
@@ -4420,7 +4420,7 @@ func LDDQU(m, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "LDDQU", Operands: []avo.Operand{m, x}}, nil
 }
 
 // LDMXCSR: Load MXCSR Register.
@@ -4434,7 +4434,7 @@ func LDMXCSR(m avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "LDMXCSR", Operands: []avo.Operand{m}}, nil
 }
 
 // LEAL: Load Effective Address.
@@ -4448,7 +4448,7 @@ func LEAL(m, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "LEAL", Operands: []avo.Operand{m, r}}, nil
 }
 
 // LEAQ: Load Effective Address.
@@ -4462,7 +4462,7 @@ func LEAQ(m, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "LEAQ", Operands: []avo.Operand{m, r}}, nil
 }
 
 // LEAW: Load Effective Address.
@@ -4476,7 +4476,7 @@ func LEAW(m, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "LEAW", Operands: []avo.Operand{m, r}}, nil
 }
 
 // LFENCE: Load Fence.
@@ -4485,7 +4485,7 @@ func LEAW(m, r avo.Operand) (*avo.Instruction, error) {
 //
 // 	LFENCE
 func LFENCE() (*avo.Instruction, error) {
-	return nil, nil
+	return &avo.Instruction{Opcode: "LFENCE", Operands: nil}, nil
 }
 
 // LZCNTL: Count the Number of Leading Zero Bits.
@@ -4501,7 +4501,7 @@ func LZCNTL(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "LZCNTL", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // LZCNTQ: Count the Number of Leading Zero Bits.
@@ -4517,7 +4517,7 @@ func LZCNTQ(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "LZCNTQ", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // LZCNTW: Count the Number of Leading Zero Bits.
@@ -4533,7 +4533,7 @@ func LZCNTW(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "LZCNTW", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // MASKMOVDQU: Store Selected Bytes of Double Quadword.
@@ -4547,7 +4547,7 @@ func MASKMOVDQU(x, x1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "MASKMOVDQU", Operands: []avo.Operand{x, x1}}, nil
 }
 
 // MASKMOVOU: Store Selected Bytes of Double Quadword.
@@ -4561,7 +4561,7 @@ func MASKMOVOU(x, x1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "MASKMOVOU", Operands: []avo.Operand{x, x1}}, nil
 }
 
 // MAXPD: Return Maximum Packed Double-Precision Floating-Point Values.
@@ -4577,7 +4577,7 @@ func MAXPD(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "MAXPD", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // MAXPS: Return Maximum Packed Single-Precision Floating-Point Values.
@@ -4593,7 +4593,7 @@ func MAXPS(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "MAXPS", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // MAXSD: Return Maximum Scalar Double-Precision Floating-Point Value.
@@ -4609,7 +4609,7 @@ func MAXSD(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "MAXSD", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // MAXSS: Return Maximum Scalar Single-Precision Floating-Point Value.
@@ -4625,7 +4625,7 @@ func MAXSS(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "MAXSS", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // MFENCE: Memory Fence.
@@ -4634,7 +4634,7 @@ func MAXSS(mx, x avo.Operand) (*avo.Instruction, error) {
 //
 // 	MFENCE
 func MFENCE() (*avo.Instruction, error) {
-	return nil, nil
+	return &avo.Instruction{Opcode: "MFENCE", Operands: nil}, nil
 }
 
 // MINPD: Return Minimum Packed Double-Precision Floating-Point Values.
@@ -4650,7 +4650,7 @@ func MINPD(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "MINPD", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // MINPS: Return Minimum Packed Single-Precision Floating-Point Values.
@@ -4666,7 +4666,7 @@ func MINPS(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "MINPS", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // MINSD: Return Minimum Scalar Double-Precision Floating-Point Value.
@@ -4682,7 +4682,7 @@ func MINSD(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "MINSD", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // MINSS: Return Minimum Scalar Single-Precision Floating-Point Value.
@@ -4698,7 +4698,7 @@ func MINSS(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "MINSS", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // MONITOR: Monitor a Linear Address Range.
@@ -4707,7 +4707,7 @@ func MINSS(mx, x avo.Operand) (*avo.Instruction, error) {
 //
 // 	MONITOR
 func MONITOR() (*avo.Instruction, error) {
-	return nil, nil
+	return &avo.Instruction{Opcode: "MONITOR", Operands: nil}, nil
 }
 
 // MOVAPD: Move Aligned Packed Double-Precision Floating-Point Values.
@@ -4725,7 +4725,7 @@ func MOVAPD(mx, mx1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "MOVAPD", Operands: []avo.Operand{mx, mx1}}, nil
 }
 
 // MOVAPS: Move Aligned Packed Single-Precision Floating-Point Values.
@@ -4743,7 +4743,7 @@ func MOVAPS(mx, mx1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "MOVAPS", Operands: []avo.Operand{mx, mx1}}, nil
 }
 
 // MOVB: Move.
@@ -4765,7 +4765,7 @@ func MOVB(imr, mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "MOVB", Operands: []avo.Operand{imr, mr}}, nil
 }
 
 // MOVBELL: Move Data After Swapping Bytes.
@@ -4781,7 +4781,7 @@ func MOVBELL(mr, mr1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "MOVBELL", Operands: []avo.Operand{mr, mr1}}, nil
 }
 
 // MOVBEQQ: Move Data After Swapping Bytes.
@@ -4797,7 +4797,7 @@ func MOVBEQQ(mr, mr1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "MOVBEQQ", Operands: []avo.Operand{mr, mr1}}, nil
 }
 
 // MOVBEWW: Move Data After Swapping Bytes.
@@ -4813,7 +4813,7 @@ func MOVBEWW(mr, mr1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "MOVBEWW", Operands: []avo.Operand{mr, mr1}}, nil
 }
 
 // MOVBLSX: Move with Sign-Extension.
@@ -4829,7 +4829,7 @@ func MOVBLSX(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "MOVBLSX", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // MOVBLZX: Move with Zero-Extend.
@@ -4845,7 +4845,7 @@ func MOVBLZX(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "MOVBLZX", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // MOVBQSX: Move with Sign-Extension.
@@ -4861,7 +4861,7 @@ func MOVBQSX(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "MOVBQSX", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // MOVBQZX: Move with Zero-Extend.
@@ -4877,7 +4877,7 @@ func MOVBQZX(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "MOVBQZX", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // MOVBWSX: Move with Sign-Extension.
@@ -4893,7 +4893,7 @@ func MOVBWSX(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "MOVBWSX", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // MOVBWZX: Move with Zero-Extend.
@@ -4909,7 +4909,7 @@ func MOVBWZX(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "MOVBWZX", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // MOVD: Move.
@@ -4943,7 +4943,7 @@ func MOVD(imrx, mrx avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "MOVD", Operands: []avo.Operand{imrx, mrx}}, nil
 }
 
 // MOVDDUP: Move One Double-FP and Duplicate.
@@ -4959,7 +4959,7 @@ func MOVDDUP(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "MOVDDUP", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // MOVDQ2Q: Move.
@@ -4993,7 +4993,7 @@ func MOVDQ2Q(imrx, mrx avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "MOVDQ2Q", Operands: []avo.Operand{imrx, mrx}}, nil
 }
 
 // MOVHLPS: Move Packed Single-Precision Floating-Point Values High to Low.
@@ -5007,7 +5007,7 @@ func MOVHLPS(x, x1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "MOVHLPS", Operands: []avo.Operand{x, x1}}, nil
 }
 
 // MOVHPD: Move High Packed Double-Precision Floating-Point Value.
@@ -5023,7 +5023,7 @@ func MOVHPD(mx, mx1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "MOVHPD", Operands: []avo.Operand{mx, mx1}}, nil
 }
 
 // MOVHPS: Move High Packed Single-Precision Floating-Point Values.
@@ -5039,7 +5039,7 @@ func MOVHPS(mx, mx1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "MOVHPS", Operands: []avo.Operand{mx, mx1}}, nil
 }
 
 // MOVL: Move.
@@ -5061,7 +5061,7 @@ func MOVL(imr, mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "MOVL", Operands: []avo.Operand{imr, mr}}, nil
 }
 
 // MOVLHPS: Move Packed Single-Precision Floating-Point Values Low to High.
@@ -5075,7 +5075,7 @@ func MOVLHPS(x, x1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "MOVLHPS", Operands: []avo.Operand{x, x1}}, nil
 }
 
 // MOVLPD: Move Low Packed Double-Precision Floating-Point Value.
@@ -5091,7 +5091,7 @@ func MOVLPD(mx, mx1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "MOVLPD", Operands: []avo.Operand{mx, mx1}}, nil
 }
 
 // MOVLPS: Move Low Packed Single-Precision Floating-Point Values.
@@ -5107,7 +5107,7 @@ func MOVLPS(mx, mx1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "MOVLPS", Operands: []avo.Operand{mx, mx1}}, nil
 }
 
 // MOVLQSX: Move Doubleword to Quadword with Sign-Extension.
@@ -5123,7 +5123,7 @@ func MOVLQSX(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "MOVLQSX", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // MOVLQZX: Move with Zero-Extend.
@@ -5137,7 +5137,7 @@ func MOVLQZX(m, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "MOVLQZX", Operands: []avo.Operand{m, r}}, nil
 }
 
 // MOVMSKPD: Extract Packed Double-Precision Floating-Point Sign Mask.
@@ -5151,7 +5151,7 @@ func MOVMSKPD(x, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "MOVMSKPD", Operands: []avo.Operand{x, r}}, nil
 }
 
 // MOVMSKPS: Extract Packed Single-Precision Floating-Point Sign Mask.
@@ -5165,7 +5165,7 @@ func MOVMSKPS(x, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "MOVMSKPS", Operands: []avo.Operand{x, r}}, nil
 }
 
 // MOVNTDQ: Store Double Quadword Using Non-Temporal Hint.
@@ -5179,7 +5179,7 @@ func MOVNTDQ(x, m avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "MOVNTDQ", Operands: []avo.Operand{x, m}}, nil
 }
 
 // MOVNTDQA: Load Double Quadword Non-Temporal Aligned Hint.
@@ -5193,7 +5193,7 @@ func MOVNTDQA(m, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "MOVNTDQA", Operands: []avo.Operand{m, x}}, nil
 }
 
 // MOVNTIL: Store Doubleword Using Non-Temporal Hint.
@@ -5207,7 +5207,7 @@ func MOVNTIL(r, m avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "MOVNTIL", Operands: []avo.Operand{r, m}}, nil
 }
 
 // MOVNTIQ: Store Doubleword Using Non-Temporal Hint.
@@ -5221,7 +5221,7 @@ func MOVNTIQ(r, m avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "MOVNTIQ", Operands: []avo.Operand{r, m}}, nil
 }
 
 // MOVNTO: Store Double Quadword Using Non-Temporal Hint.
@@ -5235,7 +5235,7 @@ func MOVNTO(x, m avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "MOVNTO", Operands: []avo.Operand{x, m}}, nil
 }
 
 // MOVNTPD: Store Packed Double-Precision Floating-Point Values Using Non-Temporal Hint.
@@ -5249,7 +5249,7 @@ func MOVNTPD(x, m avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "MOVNTPD", Operands: []avo.Operand{x, m}}, nil
 }
 
 // MOVNTPS: Store Packed Single-Precision Floating-Point Values Using Non-Temporal Hint.
@@ -5263,7 +5263,7 @@ func MOVNTPS(x, m avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "MOVNTPS", Operands: []avo.Operand{x, m}}, nil
 }
 
 // MOVO: Move Aligned Double Quadword.
@@ -5281,7 +5281,7 @@ func MOVO(mx, mx1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "MOVO", Operands: []avo.Operand{mx, mx1}}, nil
 }
 
 // MOVOA: Move Aligned Double Quadword.
@@ -5299,7 +5299,7 @@ func MOVOA(mx, mx1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "MOVOA", Operands: []avo.Operand{mx, mx1}}, nil
 }
 
 // MOVOU: Move Unaligned Double Quadword.
@@ -5317,7 +5317,7 @@ func MOVOU(mx, mx1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "MOVOU", Operands: []avo.Operand{mx, mx1}}, nil
 }
 
 // MOVQ: Move.
@@ -5351,7 +5351,7 @@ func MOVQ(imrx, mrx avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "MOVQ", Operands: []avo.Operand{imrx, mrx}}, nil
 }
 
 // MOVSD: Move Scalar Double-Precision Floating-Point Value.
@@ -5369,7 +5369,7 @@ func MOVSD(mx, mx1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "MOVSD", Operands: []avo.Operand{mx, mx1}}, nil
 }
 
 // MOVSHDUP: Move Packed Single-FP High and Duplicate.
@@ -5385,7 +5385,7 @@ func MOVSHDUP(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "MOVSHDUP", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // MOVSLDUP: Move Packed Single-FP Low and Duplicate.
@@ -5401,7 +5401,7 @@ func MOVSLDUP(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "MOVSLDUP", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // MOVSS: Move Scalar Single-Precision Floating-Point Values.
@@ -5419,7 +5419,7 @@ func MOVSS(mx, mx1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "MOVSS", Operands: []avo.Operand{mx, mx1}}, nil
 }
 
 // MOVUPD: Move Unaligned Packed Double-Precision Floating-Point Values.
@@ -5437,7 +5437,7 @@ func MOVUPD(mx, mx1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "MOVUPD", Operands: []avo.Operand{mx, mx1}}, nil
 }
 
 // MOVUPS: Move Unaligned Packed Single-Precision Floating-Point Values.
@@ -5455,7 +5455,7 @@ func MOVUPS(mx, mx1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "MOVUPS", Operands: []avo.Operand{mx, mx1}}, nil
 }
 
 // MOVW: Move.
@@ -5477,7 +5477,7 @@ func MOVW(imr, mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "MOVW", Operands: []avo.Operand{imr, mr}}, nil
 }
 
 // MOVWLSX: Move with Sign-Extension.
@@ -5493,7 +5493,7 @@ func MOVWLSX(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "MOVWLSX", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // MOVWLZX: Move with Zero-Extend.
@@ -5509,7 +5509,7 @@ func MOVWLZX(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "MOVWLZX", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // MOVWQSX: Move with Sign-Extension.
@@ -5525,7 +5525,7 @@ func MOVWQSX(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "MOVWQSX", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // MOVWQZX: Move with Zero-Extend.
@@ -5541,7 +5541,7 @@ func MOVWQZX(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "MOVWQZX", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // MPSADBW: Compute Multiple Packed Sums of Absolute Difference.
@@ -5557,7 +5557,7 @@ func MPSADBW(i, mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "MPSADBW", Operands: []avo.Operand{i, mx, x}}, nil
 }
 
 // MULB: Unsigned Multiply.
@@ -5573,7 +5573,7 @@ func MULB(mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "MULB", Operands: []avo.Operand{mr}}, nil
 }
 
 // MULL: Unsigned Multiply.
@@ -5589,7 +5589,7 @@ func MULL(mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "MULL", Operands: []avo.Operand{mr}}, nil
 }
 
 // MULPD: Multiply Packed Double-Precision Floating-Point Values.
@@ -5605,7 +5605,7 @@ func MULPD(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "MULPD", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // MULPS: Multiply Packed Single-Precision Floating-Point Values.
@@ -5621,7 +5621,7 @@ func MULPS(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "MULPS", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // MULQ: Unsigned Multiply.
@@ -5637,7 +5637,7 @@ func MULQ(mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "MULQ", Operands: []avo.Operand{mr}}, nil
 }
 
 // MULSD: Multiply Scalar Double-Precision Floating-Point Values.
@@ -5653,7 +5653,7 @@ func MULSD(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "MULSD", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // MULSS: Multiply Scalar Single-Precision Floating-Point Values.
@@ -5669,7 +5669,7 @@ func MULSS(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "MULSS", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // MULW: Unsigned Multiply.
@@ -5685,7 +5685,7 @@ func MULW(mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "MULW", Operands: []avo.Operand{mr}}, nil
 }
 
 // MULXL: Unsigned Multiply Without Affecting Flags.
@@ -5701,7 +5701,7 @@ func MULXL(mr, r, r1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "MULXL", Operands: []avo.Operand{mr, r, r1}}, nil
 }
 
 // MULXQ: Unsigned Multiply Without Affecting Flags.
@@ -5717,7 +5717,7 @@ func MULXQ(mr, r, r1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "MULXQ", Operands: []avo.Operand{mr, r, r1}}, nil
 }
 
 // MWAIT: Monitor Wait.
@@ -5726,7 +5726,7 @@ func MULXQ(mr, r, r1 avo.Operand) (*avo.Instruction, error) {
 //
 // 	MWAIT
 func MWAIT() (*avo.Instruction, error) {
-	return nil, nil
+	return &avo.Instruction{Opcode: "MWAIT", Operands: nil}, nil
 }
 
 // NEGB: Two's Complement Negation.
@@ -5742,7 +5742,7 @@ func NEGB(mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "NEGB", Operands: []avo.Operand{mr}}, nil
 }
 
 // NEGL: Two's Complement Negation.
@@ -5758,7 +5758,7 @@ func NEGL(mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "NEGL", Operands: []avo.Operand{mr}}, nil
 }
 
 // NEGQ: Two's Complement Negation.
@@ -5774,7 +5774,7 @@ func NEGQ(mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "NEGQ", Operands: []avo.Operand{mr}}, nil
 }
 
 // NEGW: Two's Complement Negation.
@@ -5790,7 +5790,7 @@ func NEGW(mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "NEGW", Operands: []avo.Operand{mr}}, nil
 }
 
 // NOP: No Operation.
@@ -5799,7 +5799,7 @@ func NEGW(mr avo.Operand) (*avo.Instruction, error) {
 //
 // 	NOP
 func NOP() (*avo.Instruction, error) {
-	return nil, nil
+	return &avo.Instruction{Opcode: "NOP", Operands: nil}, nil
 }
 
 // NOTB: One's Complement Negation.
@@ -5815,7 +5815,7 @@ func NOTB(mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "NOTB", Operands: []avo.Operand{mr}}, nil
 }
 
 // NOTL: One's Complement Negation.
@@ -5831,7 +5831,7 @@ func NOTL(mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "NOTL", Operands: []avo.Operand{mr}}, nil
 }
 
 // NOTQ: One's Complement Negation.
@@ -5847,7 +5847,7 @@ func NOTQ(mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "NOTQ", Operands: []avo.Operand{mr}}, nil
 }
 
 // NOTW: One's Complement Negation.
@@ -5863,7 +5863,7 @@ func NOTW(mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "NOTW", Operands: []avo.Operand{mr}}, nil
 }
 
 // ORB: Logical Inclusive OR.
@@ -5887,7 +5887,7 @@ func ORB(imr, amr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "ORB", Operands: []avo.Operand{imr, amr}}, nil
 }
 
 // ORL: Logical Inclusive OR.
@@ -5915,7 +5915,7 @@ func ORL(imr, emr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "ORL", Operands: []avo.Operand{imr, emr}}, nil
 }
 
 // ORPD: Bitwise Logical OR of Double-Precision Floating-Point Values.
@@ -5931,7 +5931,7 @@ func ORPD(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "ORPD", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // ORPS: Bitwise Logical OR of Single-Precision Floating-Point Values.
@@ -5947,7 +5947,7 @@ func ORPS(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "ORPS", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // ORQ: Logical Inclusive OR.
@@ -5975,7 +5975,7 @@ func ORQ(imr, mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "ORQ", Operands: []avo.Operand{imr, mr}}, nil
 }
 
 // ORW: Logical Inclusive OR.
@@ -6003,7 +6003,7 @@ func ORW(imr, amr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "ORW", Operands: []avo.Operand{imr, amr}}, nil
 }
 
 // PABSB: Packed Absolute Value of Byte Integers.
@@ -6019,7 +6019,7 @@ func PABSB(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PABSB", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PABSD: Packed Absolute Value of Doubleword Integers.
@@ -6035,7 +6035,7 @@ func PABSD(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PABSD", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PABSW: Packed Absolute Value of Word Integers.
@@ -6051,7 +6051,7 @@ func PABSW(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PABSW", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PACKSSLW: Pack Doublewords into Words with Signed Saturation.
@@ -6067,7 +6067,7 @@ func PACKSSLW(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PACKSSLW", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PACKSSWB: Pack Words into Bytes with Signed Saturation.
@@ -6083,7 +6083,7 @@ func PACKSSWB(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PACKSSWB", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PACKUSDW: Pack Doublewords into Words with Unsigned Saturation.
@@ -6099,7 +6099,7 @@ func PACKUSDW(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PACKUSDW", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PACKUSWB: Pack Words into Bytes with Unsigned Saturation.
@@ -6115,7 +6115,7 @@ func PACKUSWB(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PACKUSWB", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PADDB: Add Packed Byte Integers.
@@ -6131,7 +6131,7 @@ func PADDB(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PADDB", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PADDD: Add Packed Doubleword Integers.
@@ -6147,7 +6147,7 @@ func PADDD(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PADDD", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PADDL: Add Packed Doubleword Integers.
@@ -6163,7 +6163,7 @@ func PADDL(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PADDL", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PADDQ: Add Packed Quadword Integers.
@@ -6179,7 +6179,7 @@ func PADDQ(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PADDQ", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PADDSB: Add Packed Signed Byte Integers with Signed Saturation.
@@ -6195,7 +6195,7 @@ func PADDSB(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PADDSB", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PADDSW: Add Packed Signed Word Integers with Signed Saturation.
@@ -6211,7 +6211,7 @@ func PADDSW(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PADDSW", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PADDUSB: Add Packed Unsigned Byte Integers with Unsigned Saturation.
@@ -6227,7 +6227,7 @@ func PADDUSB(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PADDUSB", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PADDUSW: Add Packed Unsigned Word Integers with Unsigned Saturation.
@@ -6243,7 +6243,7 @@ func PADDUSW(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PADDUSW", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PADDW: Add Packed Word Integers.
@@ -6259,7 +6259,7 @@ func PADDW(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PADDW", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PALIGNR: Packed Align Right.
@@ -6275,7 +6275,7 @@ func PALIGNR(i, mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PALIGNR", Operands: []avo.Operand{i, mx, x}}, nil
 }
 
 // PAND: Packed Bitwise Logical AND.
@@ -6291,7 +6291,7 @@ func PAND(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PAND", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PANDN: Packed Bitwise Logical AND NOT.
@@ -6307,7 +6307,7 @@ func PANDN(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PANDN", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PAUSE: Spin Loop Hint.
@@ -6316,7 +6316,7 @@ func PANDN(mx, x avo.Operand) (*avo.Instruction, error) {
 //
 // 	PAUSE
 func PAUSE() (*avo.Instruction, error) {
-	return nil, nil
+	return &avo.Instruction{Opcode: "PAUSE", Operands: nil}, nil
 }
 
 // PAVGB: Average Packed Byte Integers.
@@ -6332,7 +6332,7 @@ func PAVGB(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PAVGB", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PAVGW: Average Packed Word Integers.
@@ -6348,7 +6348,7 @@ func PAVGW(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PAVGW", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PBLENDVB: Variable Blend Packed Bytes.
@@ -6364,7 +6364,7 @@ func PBLENDVB(x, mx, x1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PBLENDVB", Operands: []avo.Operand{x, mx, x1}}, nil
 }
 
 // PBLENDW: Blend Packed Words.
@@ -6380,7 +6380,7 @@ func PBLENDW(i, mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PBLENDW", Operands: []avo.Operand{i, mx, x}}, nil
 }
 
 // PCLMULQDQ: Carry-Less Quadword Multiplication.
@@ -6396,7 +6396,7 @@ func PCLMULQDQ(i, mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PCLMULQDQ", Operands: []avo.Operand{i, mx, x}}, nil
 }
 
 // PCMPEQB: Compare Packed Byte Data for Equality.
@@ -6412,7 +6412,7 @@ func PCMPEQB(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PCMPEQB", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PCMPEQL: Compare Packed Doubleword Data for Equality.
@@ -6428,7 +6428,7 @@ func PCMPEQL(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PCMPEQL", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PCMPEQQ: Compare Packed Quadword Data for Equality.
@@ -6444,7 +6444,7 @@ func PCMPEQQ(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PCMPEQQ", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PCMPEQW: Compare Packed Word Data for Equality.
@@ -6460,7 +6460,7 @@ func PCMPEQW(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PCMPEQW", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PCMPESTRI: Packed Compare Explicit Length Strings, Return Index.
@@ -6476,7 +6476,7 @@ func PCMPESTRI(i, mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PCMPESTRI", Operands: []avo.Operand{i, mx, x}}, nil
 }
 
 // PCMPESTRM: Packed Compare Explicit Length Strings, Return Mask.
@@ -6492,7 +6492,7 @@ func PCMPESTRM(i, mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PCMPESTRM", Operands: []avo.Operand{i, mx, x}}, nil
 }
 
 // PCMPGTB: Compare Packed Signed Byte Integers for Greater Than.
@@ -6508,7 +6508,7 @@ func PCMPGTB(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PCMPGTB", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PCMPGTL: Compare Packed Signed Doubleword Integers for Greater Than.
@@ -6524,7 +6524,7 @@ func PCMPGTL(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PCMPGTL", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PCMPGTQ: Compare Packed Data for Greater Than.
@@ -6540,7 +6540,7 @@ func PCMPGTQ(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PCMPGTQ", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PCMPGTW: Compare Packed Signed Word Integers for Greater Than.
@@ -6556,7 +6556,7 @@ func PCMPGTW(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PCMPGTW", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PCMPISTRI: Packed Compare Implicit Length Strings, Return Index.
@@ -6572,7 +6572,7 @@ func PCMPISTRI(i, mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PCMPISTRI", Operands: []avo.Operand{i, mx, x}}, nil
 }
 
 // PCMPISTRM: Packed Compare Implicit Length Strings, Return Mask.
@@ -6588,7 +6588,7 @@ func PCMPISTRM(i, mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PCMPISTRM", Operands: []avo.Operand{i, mx, x}}, nil
 }
 
 // PDEPL: Parallel Bits Deposit.
@@ -6604,7 +6604,7 @@ func PDEPL(mr, r, r1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PDEPL", Operands: []avo.Operand{mr, r, r1}}, nil
 }
 
 // PDEPQ: Parallel Bits Deposit.
@@ -6620,7 +6620,7 @@ func PDEPQ(mr, r, r1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PDEPQ", Operands: []avo.Operand{mr, r, r1}}, nil
 }
 
 // PEXTL: Parallel Bits Extract.
@@ -6636,7 +6636,7 @@ func PEXTL(mr, r, r1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PEXTL", Operands: []avo.Operand{mr, r, r1}}, nil
 }
 
 // PEXTQ: Parallel Bits Extract.
@@ -6652,7 +6652,7 @@ func PEXTQ(mr, r, r1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PEXTQ", Operands: []avo.Operand{mr, r, r1}}, nil
 }
 
 // PEXTRB: Extract Byte.
@@ -6668,7 +6668,7 @@ func PEXTRB(i, x, mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PEXTRB", Operands: []avo.Operand{i, x, mr}}, nil
 }
 
 // PEXTRD: Extract Doubleword.
@@ -6684,7 +6684,7 @@ func PEXTRD(i, x, mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PEXTRD", Operands: []avo.Operand{i, x, mr}}, nil
 }
 
 // PEXTRQ: Extract Quadword.
@@ -6700,7 +6700,7 @@ func PEXTRQ(i, x, mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PEXTRQ", Operands: []avo.Operand{i, x, mr}}, nil
 }
 
 // PEXTRW: Extract Word.
@@ -6716,7 +6716,7 @@ func PEXTRW(i, x, mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PEXTRW", Operands: []avo.Operand{i, x, mr}}, nil
 }
 
 // PHADDD: Packed Horizontal Add Doubleword Integer.
@@ -6732,7 +6732,7 @@ func PHADDD(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PHADDD", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PHADDSW: Packed Horizontal Add Signed Word Integers with Signed Saturation.
@@ -6748,7 +6748,7 @@ func PHADDSW(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PHADDSW", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PHADDW: Packed Horizontal Add Word Integers.
@@ -6764,7 +6764,7 @@ func PHADDW(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PHADDW", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PHMINPOSUW: Packed Horizontal Minimum of Unsigned Word Integers.
@@ -6780,7 +6780,7 @@ func PHMINPOSUW(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PHMINPOSUW", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PHSUBD: Packed Horizontal Subtract Doubleword Integers.
@@ -6796,7 +6796,7 @@ func PHSUBD(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PHSUBD", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PHSUBSW: Packed Horizontal Subtract Signed Word Integers with Signed Saturation.
@@ -6812,7 +6812,7 @@ func PHSUBSW(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PHSUBSW", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PHSUBW: Packed Horizontal Subtract Word Integers.
@@ -6828,7 +6828,7 @@ func PHSUBW(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PHSUBW", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PINSRB: Insert Byte.
@@ -6844,7 +6844,7 @@ func PINSRB(i, mr, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PINSRB", Operands: []avo.Operand{i, mr, x}}, nil
 }
 
 // PINSRD: Insert Doubleword.
@@ -6860,7 +6860,7 @@ func PINSRD(i, mr, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PINSRD", Operands: []avo.Operand{i, mr, x}}, nil
 }
 
 // PINSRQ: Insert Quadword.
@@ -6876,7 +6876,7 @@ func PINSRQ(i, mr, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PINSRQ", Operands: []avo.Operand{i, mr, x}}, nil
 }
 
 // PINSRW: Insert Word.
@@ -6892,7 +6892,7 @@ func PINSRW(i, mr, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PINSRW", Operands: []avo.Operand{i, mr, x}}, nil
 }
 
 // PMADDUBSW: Multiply and Add Packed Signed and Unsigned Byte Integers.
@@ -6908,7 +6908,7 @@ func PMADDUBSW(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PMADDUBSW", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PMADDWL: Multiply and Add Packed Signed Word Integers.
@@ -6924,7 +6924,7 @@ func PMADDWL(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PMADDWL", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PMAXSB: Maximum of Packed Signed Byte Integers.
@@ -6940,7 +6940,7 @@ func PMAXSB(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PMAXSB", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PMAXSD: Maximum of Packed Signed Doubleword Integers.
@@ -6956,7 +6956,7 @@ func PMAXSD(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PMAXSD", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PMAXSW: Maximum of Packed Signed Word Integers.
@@ -6972,7 +6972,7 @@ func PMAXSW(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PMAXSW", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PMAXUB: Maximum of Packed Unsigned Byte Integers.
@@ -6988,7 +6988,7 @@ func PMAXUB(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PMAXUB", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PMAXUD: Maximum of Packed Unsigned Doubleword Integers.
@@ -7004,7 +7004,7 @@ func PMAXUD(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PMAXUD", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PMAXUW: Maximum of Packed Unsigned Word Integers.
@@ -7020,7 +7020,7 @@ func PMAXUW(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PMAXUW", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PMINSB: Minimum of Packed Signed Byte Integers.
@@ -7036,7 +7036,7 @@ func PMINSB(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PMINSB", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PMINSD: Minimum of Packed Signed Doubleword Integers.
@@ -7052,7 +7052,7 @@ func PMINSD(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PMINSD", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PMINSW: Minimum of Packed Signed Word Integers.
@@ -7068,7 +7068,7 @@ func PMINSW(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PMINSW", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PMINUB: Minimum of Packed Unsigned Byte Integers.
@@ -7084,7 +7084,7 @@ func PMINUB(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PMINUB", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PMINUD: Minimum of Packed Unsigned Doubleword Integers.
@@ -7100,7 +7100,7 @@ func PMINUD(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PMINUD", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PMINUW: Minimum of Packed Unsigned Word Integers.
@@ -7116,7 +7116,7 @@ func PMINUW(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PMINUW", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PMOVMSKB: Move Byte Mask.
@@ -7130,7 +7130,7 @@ func PMOVMSKB(x, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PMOVMSKB", Operands: []avo.Operand{x, r}}, nil
 }
 
 // PMOVSXBD: Move Packed Byte Integers to Doubleword Integers with Sign Extension.
@@ -7146,7 +7146,7 @@ func PMOVSXBD(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PMOVSXBD", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PMOVSXBQ: Move Packed Byte Integers to Quadword Integers with Sign Extension.
@@ -7162,7 +7162,7 @@ func PMOVSXBQ(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PMOVSXBQ", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PMOVSXBW: Move Packed Byte Integers to Word Integers with Sign Extension.
@@ -7178,7 +7178,7 @@ func PMOVSXBW(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PMOVSXBW", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PMOVSXDQ: Move Packed Doubleword Integers to Quadword Integers with Sign Extension.
@@ -7194,7 +7194,7 @@ func PMOVSXDQ(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PMOVSXDQ", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PMOVSXWD: Move Packed Word Integers to Doubleword Integers with Sign Extension.
@@ -7210,7 +7210,7 @@ func PMOVSXWD(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PMOVSXWD", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PMOVSXWQ: Move Packed Word Integers to Quadword Integers with Sign Extension.
@@ -7226,7 +7226,7 @@ func PMOVSXWQ(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PMOVSXWQ", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PMOVZXBD: Move Packed Byte Integers to Doubleword Integers with Zero Extension.
@@ -7242,7 +7242,7 @@ func PMOVZXBD(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PMOVZXBD", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PMOVZXBQ: Move Packed Byte Integers to Quadword Integers with Zero Extension.
@@ -7258,7 +7258,7 @@ func PMOVZXBQ(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PMOVZXBQ", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PMOVZXBW: Move Packed Byte Integers to Word Integers with Zero Extension.
@@ -7274,7 +7274,7 @@ func PMOVZXBW(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PMOVZXBW", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PMOVZXDQ: Move Packed Doubleword Integers to Quadword Integers with Zero Extension.
@@ -7290,7 +7290,7 @@ func PMOVZXDQ(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PMOVZXDQ", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PMOVZXWD: Move Packed Word Integers to Doubleword Integers with Zero Extension.
@@ -7306,7 +7306,7 @@ func PMOVZXWD(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PMOVZXWD", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PMOVZXWQ: Move Packed Word Integers to Quadword Integers with Zero Extension.
@@ -7322,7 +7322,7 @@ func PMOVZXWQ(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PMOVZXWQ", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PMULDQ: Multiply Packed Signed Doubleword Integers and Store Quadword Result.
@@ -7338,7 +7338,7 @@ func PMULDQ(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PMULDQ", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PMULHRSW: Packed Multiply Signed Word Integers and Store High Result with Round and Scale.
@@ -7354,7 +7354,7 @@ func PMULHRSW(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PMULHRSW", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PMULHUW: Multiply Packed Unsigned Word Integers and Store High Result.
@@ -7370,7 +7370,7 @@ func PMULHUW(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PMULHUW", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PMULHW: Multiply Packed Signed Word Integers and Store High Result.
@@ -7386,7 +7386,7 @@ func PMULHW(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PMULHW", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PMULLD: Multiply Packed Signed Doubleword Integers and Store Low Result.
@@ -7402,7 +7402,7 @@ func PMULLD(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PMULLD", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PMULLW: Multiply Packed Signed Word Integers and Store Low Result.
@@ -7418,7 +7418,7 @@ func PMULLW(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PMULLW", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PMULULQ: Multiply Packed Unsigned Doubleword Integers.
@@ -7434,7 +7434,7 @@ func PMULULQ(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PMULULQ", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // POPCNTL: Count of Number of Bits Set to 1.
@@ -7450,7 +7450,7 @@ func POPCNTL(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "POPCNTL", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // POPCNTQ: Count of Number of Bits Set to 1.
@@ -7466,7 +7466,7 @@ func POPCNTQ(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "POPCNTQ", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // POPCNTW: Count of Number of Bits Set to 1.
@@ -7482,7 +7482,7 @@ func POPCNTW(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "POPCNTW", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // POPQ: Pop a Value from the Stack.
@@ -7498,7 +7498,7 @@ func POPQ(mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "POPQ", Operands: []avo.Operand{mr}}, nil
 }
 
 // POPW: Pop a Value from the Stack.
@@ -7514,7 +7514,7 @@ func POPW(mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "POPW", Operands: []avo.Operand{mr}}, nil
 }
 
 // POR: Packed Bitwise Logical OR.
@@ -7530,7 +7530,7 @@ func POR(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "POR", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PREFETCHNTA: Prefetch Data Into Caches using NTA Hint.
@@ -7544,7 +7544,7 @@ func PREFETCHNTA(m avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PREFETCHNTA", Operands: []avo.Operand{m}}, nil
 }
 
 // PREFETCHT0: Prefetch Data Into Caches using T0 Hint.
@@ -7558,7 +7558,7 @@ func PREFETCHT0(m avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PREFETCHT0", Operands: []avo.Operand{m}}, nil
 }
 
 // PREFETCHT1: Prefetch Data Into Caches using T1 Hint.
@@ -7572,7 +7572,7 @@ func PREFETCHT1(m avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PREFETCHT1", Operands: []avo.Operand{m}}, nil
 }
 
 // PREFETCHT2: Prefetch Data Into Caches using T2 Hint.
@@ -7586,7 +7586,7 @@ func PREFETCHT2(m avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PREFETCHT2", Operands: []avo.Operand{m}}, nil
 }
 
 // PSADBW: Compute Sum of Absolute Differences.
@@ -7602,7 +7602,7 @@ func PSADBW(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PSADBW", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PSHUFB: Packed Shuffle Bytes.
@@ -7618,7 +7618,7 @@ func PSHUFB(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PSHUFB", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PSHUFD: Shuffle Packed Doublewords.
@@ -7634,7 +7634,7 @@ func PSHUFD(i, mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PSHUFD", Operands: []avo.Operand{i, mx, x}}, nil
 }
 
 // PSHUFHW: Shuffle Packed High Words.
@@ -7650,7 +7650,7 @@ func PSHUFHW(i, mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PSHUFHW", Operands: []avo.Operand{i, mx, x}}, nil
 }
 
 // PSHUFL: Shuffle Packed Doublewords.
@@ -7666,7 +7666,7 @@ func PSHUFL(i, mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PSHUFL", Operands: []avo.Operand{i, mx, x}}, nil
 }
 
 // PSHUFLW: Shuffle Packed Low Words.
@@ -7682,7 +7682,7 @@ func PSHUFLW(i, mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PSHUFLW", Operands: []avo.Operand{i, mx, x}}, nil
 }
 
 // PSIGNB: Packed Sign of Byte Integers.
@@ -7698,7 +7698,7 @@ func PSIGNB(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PSIGNB", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PSIGND: Packed Sign of Doubleword Integers.
@@ -7714,7 +7714,7 @@ func PSIGND(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PSIGND", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PSIGNW: Packed Sign of Word Integers.
@@ -7730,7 +7730,7 @@ func PSIGNW(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PSIGNW", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PSLLDQ: Shift Packed Double Quadword Left Logical.
@@ -7744,7 +7744,7 @@ func PSLLDQ(i, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PSLLDQ", Operands: []avo.Operand{i, x}}, nil
 }
 
 // PSLLL: Shift Packed Doubleword Data Left Logical.
@@ -7762,7 +7762,7 @@ func PSLLL(imx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PSLLL", Operands: []avo.Operand{imx, x}}, nil
 }
 
 // PSLLO: Shift Packed Double Quadword Left Logical.
@@ -7776,7 +7776,7 @@ func PSLLO(i, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PSLLO", Operands: []avo.Operand{i, x}}, nil
 }
 
 // PSLLQ: Shift Packed Quadword Data Left Logical.
@@ -7794,7 +7794,7 @@ func PSLLQ(imx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PSLLQ", Operands: []avo.Operand{imx, x}}, nil
 }
 
 // PSLLW: Shift Packed Word Data Left Logical.
@@ -7812,7 +7812,7 @@ func PSLLW(imx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PSLLW", Operands: []avo.Operand{imx, x}}, nil
 }
 
 // PSRAL: Shift Packed Doubleword Data Right Arithmetic.
@@ -7830,7 +7830,7 @@ func PSRAL(imx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PSRAL", Operands: []avo.Operand{imx, x}}, nil
 }
 
 // PSRAW: Shift Packed Word Data Right Arithmetic.
@@ -7848,7 +7848,7 @@ func PSRAW(imx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PSRAW", Operands: []avo.Operand{imx, x}}, nil
 }
 
 // PSRLDQ: Shift Packed Double Quadword Right Logical.
@@ -7862,7 +7862,7 @@ func PSRLDQ(i, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PSRLDQ", Operands: []avo.Operand{i, x}}, nil
 }
 
 // PSRLL: Shift Packed Doubleword Data Right Logical.
@@ -7880,7 +7880,7 @@ func PSRLL(imx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PSRLL", Operands: []avo.Operand{imx, x}}, nil
 }
 
 // PSRLO: Shift Packed Double Quadword Right Logical.
@@ -7894,7 +7894,7 @@ func PSRLO(i, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PSRLO", Operands: []avo.Operand{i, x}}, nil
 }
 
 // PSRLQ: Shift Packed Quadword Data Right Logical.
@@ -7912,7 +7912,7 @@ func PSRLQ(imx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PSRLQ", Operands: []avo.Operand{imx, x}}, nil
 }
 
 // PSRLW: Shift Packed Word Data Right Logical.
@@ -7930,7 +7930,7 @@ func PSRLW(imx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PSRLW", Operands: []avo.Operand{imx, x}}, nil
 }
 
 // PSUBB: Subtract Packed Byte Integers.
@@ -7946,7 +7946,7 @@ func PSUBB(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PSUBB", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PSUBL: Subtract Packed Doubleword Integers.
@@ -7962,7 +7962,7 @@ func PSUBL(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PSUBL", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PSUBQ: Subtract Packed Quadword Integers.
@@ -7978,7 +7978,7 @@ func PSUBQ(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PSUBQ", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PSUBSB: Subtract Packed Signed Byte Integers with Signed Saturation.
@@ -7994,7 +7994,7 @@ func PSUBSB(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PSUBSB", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PSUBSW: Subtract Packed Signed Word Integers with Signed Saturation.
@@ -8010,7 +8010,7 @@ func PSUBSW(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PSUBSW", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PSUBUSB: Subtract Packed Unsigned Byte Integers with Unsigned Saturation.
@@ -8026,7 +8026,7 @@ func PSUBUSB(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PSUBUSB", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PSUBUSW: Subtract Packed Unsigned Word Integers with Unsigned Saturation.
@@ -8042,7 +8042,7 @@ func PSUBUSW(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PSUBUSW", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PSUBW: Subtract Packed Word Integers.
@@ -8058,7 +8058,7 @@ func PSUBW(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PSUBW", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PTEST: Packed Logical Compare.
@@ -8074,7 +8074,7 @@ func PTEST(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PTEST", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PUNPCKHBW: Unpack and Interleave High-Order Bytes into Words.
@@ -8090,7 +8090,7 @@ func PUNPCKHBW(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PUNPCKHBW", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PUNPCKHLQ: Unpack and Interleave High-Order Doublewords into Quadwords.
@@ -8106,7 +8106,7 @@ func PUNPCKHLQ(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PUNPCKHLQ", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PUNPCKHQDQ: Unpack and Interleave High-Order Quadwords into Double Quadwords.
@@ -8122,7 +8122,7 @@ func PUNPCKHQDQ(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PUNPCKHQDQ", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PUNPCKHWL: Unpack and Interleave High-Order Words into Doublewords.
@@ -8138,7 +8138,7 @@ func PUNPCKHWL(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PUNPCKHWL", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PUNPCKLBW: Unpack and Interleave Low-Order Bytes into Words.
@@ -8154,7 +8154,7 @@ func PUNPCKLBW(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PUNPCKLBW", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PUNPCKLLQ: Unpack and Interleave Low-Order Doublewords into Quadwords.
@@ -8170,7 +8170,7 @@ func PUNPCKLLQ(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PUNPCKLLQ", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PUNPCKLQDQ: Unpack and Interleave Low-Order Quadwords into Double Quadwords.
@@ -8186,7 +8186,7 @@ func PUNPCKLQDQ(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PUNPCKLQDQ", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PUNPCKLWL: Unpack and Interleave Low-Order Words into Doublewords.
@@ -8202,7 +8202,7 @@ func PUNPCKLWL(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PUNPCKLWL", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // PUSHQ: Push Value Onto the Stack.
@@ -8222,7 +8222,7 @@ func PUSHQ(imr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PUSHQ", Operands: []avo.Operand{imr}}, nil
 }
 
 // PUSHW: Push Value Onto the Stack.
@@ -8238,7 +8238,7 @@ func PUSHW(mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PUSHW", Operands: []avo.Operand{mr}}, nil
 }
 
 // PXOR: Packed Bitwise Logical Exclusive OR.
@@ -8254,7 +8254,7 @@ func PXOR(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "PXOR", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // RCLB: Rotate Left through Carry Flag.
@@ -8278,7 +8278,7 @@ func RCLB(ci, mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "RCLB", Operands: []avo.Operand{ci, mr}}, nil
 }
 
 // RCLL: Rotate Left through Carry Flag.
@@ -8302,7 +8302,7 @@ func RCLL(ci, mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "RCLL", Operands: []avo.Operand{ci, mr}}, nil
 }
 
 // RCLQ: Rotate Left through Carry Flag.
@@ -8326,7 +8326,7 @@ func RCLQ(ci, mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "RCLQ", Operands: []avo.Operand{ci, mr}}, nil
 }
 
 // RCLW: Rotate Left through Carry Flag.
@@ -8350,7 +8350,7 @@ func RCLW(ci, mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "RCLW", Operands: []avo.Operand{ci, mr}}, nil
 }
 
 // RCPPS: Compute Approximate Reciprocals of Packed Single-Precision Floating-Point Values.
@@ -8366,7 +8366,7 @@ func RCPPS(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "RCPPS", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // RCPSS: Compute Approximate Reciprocal of Scalar Single-Precision Floating-Point Values.
@@ -8382,7 +8382,7 @@ func RCPSS(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "RCPSS", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // RCRB: Rotate Right through Carry Flag.
@@ -8406,7 +8406,7 @@ func RCRB(ci, mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "RCRB", Operands: []avo.Operand{ci, mr}}, nil
 }
 
 // RCRL: Rotate Right through Carry Flag.
@@ -8430,7 +8430,7 @@ func RCRL(ci, mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "RCRL", Operands: []avo.Operand{ci, mr}}, nil
 }
 
 // RCRQ: Rotate Right through Carry Flag.
@@ -8454,7 +8454,7 @@ func RCRQ(ci, mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "RCRQ", Operands: []avo.Operand{ci, mr}}, nil
 }
 
 // RCRW: Rotate Right through Carry Flag.
@@ -8478,7 +8478,7 @@ func RCRW(ci, mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "RCRW", Operands: []avo.Operand{ci, mr}}, nil
 }
 
 // RDRANDL: Read Random Number.
@@ -8492,7 +8492,7 @@ func RDRANDL(r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "RDRANDL", Operands: []avo.Operand{r}}, nil
 }
 
 // RDRANDQ: Read Random Number.
@@ -8506,7 +8506,7 @@ func RDRANDQ(r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "RDRANDQ", Operands: []avo.Operand{r}}, nil
 }
 
 // RDRANDW: Read Random Number.
@@ -8520,7 +8520,7 @@ func RDRANDW(r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "RDRANDW", Operands: []avo.Operand{r}}, nil
 }
 
 // RDSEEDL: Read Random SEED.
@@ -8534,7 +8534,7 @@ func RDSEEDL(r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "RDSEEDL", Operands: []avo.Operand{r}}, nil
 }
 
 // RDSEEDQ: Read Random SEED.
@@ -8548,7 +8548,7 @@ func RDSEEDQ(r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "RDSEEDQ", Operands: []avo.Operand{r}}, nil
 }
 
 // RDSEEDW: Read Random SEED.
@@ -8562,7 +8562,7 @@ func RDSEEDW(r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "RDSEEDW", Operands: []avo.Operand{r}}, nil
 }
 
 // RDTSC: Read Time-Stamp Counter.
@@ -8571,7 +8571,7 @@ func RDSEEDW(r avo.Operand) (*avo.Instruction, error) {
 //
 // 	RDTSC
 func RDTSC() (*avo.Instruction, error) {
-	return nil, nil
+	return &avo.Instruction{Opcode: "RDTSC", Operands: nil}, nil
 }
 
 // RDTSCP: Read Time-Stamp Counter and Processor ID.
@@ -8580,7 +8580,7 @@ func RDTSC() (*avo.Instruction, error) {
 //
 // 	RDTSCP
 func RDTSCP() (*avo.Instruction, error) {
-	return nil, nil
+	return &avo.Instruction{Opcode: "RDTSCP", Operands: nil}, nil
 }
 
 // RET: Return from Procedure.
@@ -8589,7 +8589,7 @@ func RDTSCP() (*avo.Instruction, error) {
 //
 // 	RET
 func RET() (*avo.Instruction, error) {
-	return nil, nil
+	return &avo.Instruction{Opcode: "RET", Operands: nil}, nil
 }
 
 // RETFL: Return from Procedure.
@@ -8603,7 +8603,7 @@ func RETFL(i avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "RETFL", Operands: []avo.Operand{i}}, nil
 }
 
 // RETFQ: Return from Procedure.
@@ -8617,7 +8617,7 @@ func RETFQ(i avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "RETFQ", Operands: []avo.Operand{i}}, nil
 }
 
 // RETFW: Return from Procedure.
@@ -8631,7 +8631,7 @@ func RETFW(i avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "RETFW", Operands: []avo.Operand{i}}, nil
 }
 
 // ROLB: Rotate Left.
@@ -8655,7 +8655,7 @@ func ROLB(ci, mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "ROLB", Operands: []avo.Operand{ci, mr}}, nil
 }
 
 // ROLL: Rotate Left.
@@ -8679,7 +8679,7 @@ func ROLL(ci, mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "ROLL", Operands: []avo.Operand{ci, mr}}, nil
 }
 
 // ROLQ: Rotate Left.
@@ -8703,7 +8703,7 @@ func ROLQ(ci, mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "ROLQ", Operands: []avo.Operand{ci, mr}}, nil
 }
 
 // ROLW: Rotate Left.
@@ -8727,7 +8727,7 @@ func ROLW(ci, mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "ROLW", Operands: []avo.Operand{ci, mr}}, nil
 }
 
 // RORB: Rotate Right.
@@ -8751,7 +8751,7 @@ func RORB(ci, mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "RORB", Operands: []avo.Operand{ci, mr}}, nil
 }
 
 // RORL: Rotate Right.
@@ -8775,7 +8775,7 @@ func RORL(ci, mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "RORL", Operands: []avo.Operand{ci, mr}}, nil
 }
 
 // RORQ: Rotate Right.
@@ -8799,7 +8799,7 @@ func RORQ(ci, mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "RORQ", Operands: []avo.Operand{ci, mr}}, nil
 }
 
 // RORW: Rotate Right.
@@ -8823,7 +8823,7 @@ func RORW(ci, mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "RORW", Operands: []avo.Operand{ci, mr}}, nil
 }
 
 // RORXL: Rotate Right Logical Without Affecting Flags.
@@ -8839,7 +8839,7 @@ func RORXL(i, mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "RORXL", Operands: []avo.Operand{i, mr, r}}, nil
 }
 
 // RORXQ: Rotate Right Logical Without Affecting Flags.
@@ -8855,7 +8855,7 @@ func RORXQ(i, mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "RORXQ", Operands: []avo.Operand{i, mr, r}}, nil
 }
 
 // ROUNDPD: Round Packed Double Precision Floating-Point Values.
@@ -8871,7 +8871,7 @@ func ROUNDPD(i, mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "ROUNDPD", Operands: []avo.Operand{i, mx, x}}, nil
 }
 
 // ROUNDPS: Round Packed Single Precision Floating-Point Values.
@@ -8887,7 +8887,7 @@ func ROUNDPS(i, mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "ROUNDPS", Operands: []avo.Operand{i, mx, x}}, nil
 }
 
 // ROUNDSD: Round Scalar Double Precision Floating-Point Values.
@@ -8903,7 +8903,7 @@ func ROUNDSD(i, mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "ROUNDSD", Operands: []avo.Operand{i, mx, x}}, nil
 }
 
 // ROUNDSS: Round Scalar Single Precision Floating-Point Values.
@@ -8919,7 +8919,7 @@ func ROUNDSS(i, mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "ROUNDSS", Operands: []avo.Operand{i, mx, x}}, nil
 }
 
 // RSQRTPS: Compute Reciprocals of Square Roots of Packed Single-Precision Floating-Point Values.
@@ -8935,7 +8935,7 @@ func RSQRTPS(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "RSQRTPS", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // RSQRTSS: Compute Reciprocal of Square Root of Scalar Single-Precision Floating-Point Value.
@@ -8951,7 +8951,7 @@ func RSQRTSS(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "RSQRTSS", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // SALB: Arithmetic Shift Left.
@@ -8975,7 +8975,7 @@ func SALB(ci, mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "SALB", Operands: []avo.Operand{ci, mr}}, nil
 }
 
 // SALL: Arithmetic Shift Left.
@@ -8999,7 +8999,7 @@ func SALL(ci, mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "SALL", Operands: []avo.Operand{ci, mr}}, nil
 }
 
 // SALQ: Arithmetic Shift Left.
@@ -9023,7 +9023,7 @@ func SALQ(ci, mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "SALQ", Operands: []avo.Operand{ci, mr}}, nil
 }
 
 // SALW: Arithmetic Shift Left.
@@ -9047,7 +9047,7 @@ func SALW(ci, mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "SALW", Operands: []avo.Operand{ci, mr}}, nil
 }
 
 // SARB: Arithmetic Shift Right.
@@ -9071,7 +9071,7 @@ func SARB(ci, mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "SARB", Operands: []avo.Operand{ci, mr}}, nil
 }
 
 // SARL: Arithmetic Shift Right.
@@ -9095,7 +9095,7 @@ func SARL(ci, mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "SARL", Operands: []avo.Operand{ci, mr}}, nil
 }
 
 // SARQ: Arithmetic Shift Right.
@@ -9119,7 +9119,7 @@ func SARQ(ci, mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "SARQ", Operands: []avo.Operand{ci, mr}}, nil
 }
 
 // SARW: Arithmetic Shift Right.
@@ -9143,7 +9143,7 @@ func SARW(ci, mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "SARW", Operands: []avo.Operand{ci, mr}}, nil
 }
 
 // SARXL: Arithmetic Shift Right Without Affecting Flags.
@@ -9159,7 +9159,7 @@ func SARXL(r, mr, r1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "SARXL", Operands: []avo.Operand{r, mr, r1}}, nil
 }
 
 // SARXQ: Arithmetic Shift Right Without Affecting Flags.
@@ -9175,7 +9175,7 @@ func SARXQ(r, mr, r1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "SARXQ", Operands: []avo.Operand{r, mr, r1}}, nil
 }
 
 // SBBB: Subtract with Borrow.
@@ -9199,7 +9199,7 @@ func SBBB(imr, amr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "SBBB", Operands: []avo.Operand{imr, amr}}, nil
 }
 
 // SBBL: Subtract with Borrow.
@@ -9227,7 +9227,7 @@ func SBBL(imr, emr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "SBBL", Operands: []avo.Operand{imr, emr}}, nil
 }
 
 // SBBQ: Subtract with Borrow.
@@ -9255,7 +9255,7 @@ func SBBQ(imr, mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "SBBQ", Operands: []avo.Operand{imr, mr}}, nil
 }
 
 // SBBW: Subtract with Borrow.
@@ -9283,7 +9283,7 @@ func SBBW(imr, amr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "SBBW", Operands: []avo.Operand{imr, amr}}, nil
 }
 
 // SETCC: Set byte if above or equal (CF == 0).
@@ -9307,7 +9307,7 @@ func SETCC(mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "SETCC", Operands: []avo.Operand{mr}}, nil
 }
 
 // SETCS: Set byte if below (CF == 1).
@@ -9331,7 +9331,7 @@ func SETCS(mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "SETCS", Operands: []avo.Operand{mr}}, nil
 }
 
 // SETEQ: Set byte if equal (ZF == 1).
@@ -9351,7 +9351,7 @@ func SETEQ(mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "SETEQ", Operands: []avo.Operand{mr}}, nil
 }
 
 // SETGE: Set byte if greater or equal (SF == OF).
@@ -9371,7 +9371,7 @@ func SETGE(mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "SETGE", Operands: []avo.Operand{mr}}, nil
 }
 
 // SETGT: Set byte if greater (ZF == 0 and SF == OF).
@@ -9391,7 +9391,7 @@ func SETGT(mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "SETGT", Operands: []avo.Operand{mr}}, nil
 }
 
 // SETHI: Set byte if above (CF == 0 and ZF == 0).
@@ -9411,7 +9411,7 @@ func SETHI(mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "SETHI", Operands: []avo.Operand{mr}}, nil
 }
 
 // SETLE: Set byte if less or equal (ZF == 1 or SF != OF).
@@ -9431,7 +9431,7 @@ func SETLE(mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "SETLE", Operands: []avo.Operand{mr}}, nil
 }
 
 // SETLS: Set byte if below or equal (CF == 1 or ZF == 1).
@@ -9451,7 +9451,7 @@ func SETLS(mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "SETLS", Operands: []avo.Operand{mr}}, nil
 }
 
 // SETLT: Set byte if less (SF != OF).
@@ -9471,7 +9471,7 @@ func SETLT(mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "SETLT", Operands: []avo.Operand{mr}}, nil
 }
 
 // SETMI: Set byte if sign (SF == 1).
@@ -9487,7 +9487,7 @@ func SETMI(mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "SETMI", Operands: []avo.Operand{mr}}, nil
 }
 
 // SETNE: Set byte if not equal (ZF == 0).
@@ -9507,7 +9507,7 @@ func SETNE(mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "SETNE", Operands: []avo.Operand{mr}}, nil
 }
 
 // SETOC: Set byte if not overflow (OF == 0).
@@ -9523,7 +9523,7 @@ func SETOC(mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "SETOC", Operands: []avo.Operand{mr}}, nil
 }
 
 // SETOS: Set byte if overflow (OF == 1).
@@ -9539,7 +9539,7 @@ func SETOS(mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "SETOS", Operands: []avo.Operand{mr}}, nil
 }
 
 // SETPC: Set byte if not parity (PF == 0).
@@ -9559,7 +9559,7 @@ func SETPC(mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "SETPC", Operands: []avo.Operand{mr}}, nil
 }
 
 // SETPL: Set byte if not sign (SF == 0).
@@ -9575,7 +9575,7 @@ func SETPL(mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "SETPL", Operands: []avo.Operand{mr}}, nil
 }
 
 // SETPS: Set byte if parity (PF == 1).
@@ -9595,7 +9595,7 @@ func SETPS(mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "SETPS", Operands: []avo.Operand{mr}}, nil
 }
 
 // SFENCE: Store Fence.
@@ -9604,7 +9604,7 @@ func SETPS(mr avo.Operand) (*avo.Instruction, error) {
 //
 // 	SFENCE
 func SFENCE() (*avo.Instruction, error) {
-	return nil, nil
+	return &avo.Instruction{Opcode: "SFENCE", Operands: nil}, nil
 }
 
 // SHA1MSG1: Perform an Intermediate Calculation for the Next Four SHA1 Message Doublewords.
@@ -9620,7 +9620,7 @@ func SHA1MSG1(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "SHA1MSG1", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // SHA1MSG2: Perform a Final Calculation for the Next Four SHA1 Message Doublewords.
@@ -9636,7 +9636,7 @@ func SHA1MSG2(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "SHA1MSG2", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // SHA1NEXTE: Calculate SHA1 State Variable E after Four Rounds.
@@ -9652,7 +9652,7 @@ func SHA1NEXTE(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "SHA1NEXTE", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // SHA1RNDS4: Perform Four Rounds of SHA1 Operation.
@@ -9668,7 +9668,7 @@ func SHA1RNDS4(i, mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "SHA1RNDS4", Operands: []avo.Operand{i, mx, x}}, nil
 }
 
 // SHA256MSG1: Perform an Intermediate Calculation for the Next Four SHA256 Message Doublewords.
@@ -9684,7 +9684,7 @@ func SHA256MSG1(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "SHA256MSG1", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // SHA256MSG2: Perform a Final Calculation for the Next Four SHA256 Message Doublewords.
@@ -9700,7 +9700,7 @@ func SHA256MSG2(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "SHA256MSG2", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // SHA256RNDS2: Perform Two Rounds of SHA256 Operation.
@@ -9716,7 +9716,7 @@ func SHA256RNDS2(x, mx, x1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "SHA256RNDS2", Operands: []avo.Operand{x, mx, x1}}, nil
 }
 
 // SHLB: Logical Shift Left.
@@ -9740,7 +9740,7 @@ func SHLB(ci, mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "SHLB", Operands: []avo.Operand{ci, mr}}, nil
 }
 
 // SHLL: Logical Shift Left.
@@ -9772,7 +9772,7 @@ func SHLL(ops ...avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "SHLL", Operands: ops}, nil
 }
 
 // SHLQ: Logical Shift Left.
@@ -9804,7 +9804,7 @@ func SHLQ(ops ...avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "SHLQ", Operands: ops}, nil
 }
 
 // SHLW: Logical Shift Left.
@@ -9836,7 +9836,7 @@ func SHLW(ops ...avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "SHLW", Operands: ops}, nil
 }
 
 // SHLXL: Logical Shift Left Without Affecting Flags.
@@ -9852,7 +9852,7 @@ func SHLXL(r, mr, r1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "SHLXL", Operands: []avo.Operand{r, mr, r1}}, nil
 }
 
 // SHLXQ: Logical Shift Left Without Affecting Flags.
@@ -9868,7 +9868,7 @@ func SHLXQ(r, mr, r1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "SHLXQ", Operands: []avo.Operand{r, mr, r1}}, nil
 }
 
 // SHRB: Logical Shift Right.
@@ -9892,7 +9892,7 @@ func SHRB(ci, mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "SHRB", Operands: []avo.Operand{ci, mr}}, nil
 }
 
 // SHRL: Logical Shift Right.
@@ -9924,7 +9924,7 @@ func SHRL(ops ...avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "SHRL", Operands: ops}, nil
 }
 
 // SHRQ: Logical Shift Right.
@@ -9956,7 +9956,7 @@ func SHRQ(ops ...avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "SHRQ", Operands: ops}, nil
 }
 
 // SHRW: Logical Shift Right.
@@ -9988,7 +9988,7 @@ func SHRW(ops ...avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "SHRW", Operands: ops}, nil
 }
 
 // SHRXL: Logical Shift Right Without Affecting Flags.
@@ -10004,7 +10004,7 @@ func SHRXL(r, mr, r1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "SHRXL", Operands: []avo.Operand{r, mr, r1}}, nil
 }
 
 // SHRXQ: Logical Shift Right Without Affecting Flags.
@@ -10020,7 +10020,7 @@ func SHRXQ(r, mr, r1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "SHRXQ", Operands: []avo.Operand{r, mr, r1}}, nil
 }
 
 // SHUFPD: Shuffle Packed Double-Precision Floating-Point Values.
@@ -10036,7 +10036,7 @@ func SHUFPD(i, mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "SHUFPD", Operands: []avo.Operand{i, mx, x}}, nil
 }
 
 // SHUFPS: Shuffle Packed Single-Precision Floating-Point Values.
@@ -10052,7 +10052,7 @@ func SHUFPS(i, mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "SHUFPS", Operands: []avo.Operand{i, mx, x}}, nil
 }
 
 // SQRTPD: Compute Square Roots of Packed Double-Precision Floating-Point Values.
@@ -10068,7 +10068,7 @@ func SQRTPD(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "SQRTPD", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // SQRTPS: Compute Square Roots of Packed Single-Precision Floating-Point Values.
@@ -10084,7 +10084,7 @@ func SQRTPS(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "SQRTPS", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // SQRTSD: Compute Square Root of Scalar Double-Precision Floating-Point Value.
@@ -10100,7 +10100,7 @@ func SQRTSD(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "SQRTSD", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // SQRTSS: Compute Square Root of Scalar Single-Precision Floating-Point Value.
@@ -10116,7 +10116,7 @@ func SQRTSS(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "SQRTSS", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // STC: Set Carry Flag.
@@ -10125,7 +10125,7 @@ func SQRTSS(mx, x avo.Operand) (*avo.Instruction, error) {
 //
 // 	STC
 func STC() (*avo.Instruction, error) {
-	return nil, nil
+	return &avo.Instruction{Opcode: "STC", Operands: nil}, nil
 }
 
 // STD: Set Direction Flag.
@@ -10134,7 +10134,7 @@ func STC() (*avo.Instruction, error) {
 //
 // 	STD
 func STD() (*avo.Instruction, error) {
-	return nil, nil
+	return &avo.Instruction{Opcode: "STD", Operands: nil}, nil
 }
 
 // STMXCSR: Store MXCSR Register State.
@@ -10148,7 +10148,7 @@ func STMXCSR(m avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "STMXCSR", Operands: []avo.Operand{m}}, nil
 }
 
 // SUBB: Subtract.
@@ -10172,7 +10172,7 @@ func SUBB(imr, amr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "SUBB", Operands: []avo.Operand{imr, amr}}, nil
 }
 
 // SUBL: Subtract.
@@ -10200,7 +10200,7 @@ func SUBL(imr, emr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "SUBL", Operands: []avo.Operand{imr, emr}}, nil
 }
 
 // SUBPD: Subtract Packed Double-Precision Floating-Point Values.
@@ -10216,7 +10216,7 @@ func SUBPD(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "SUBPD", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // SUBPS: Subtract Packed Single-Precision Floating-Point Values.
@@ -10232,7 +10232,7 @@ func SUBPS(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "SUBPS", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // SUBQ: Subtract.
@@ -10260,7 +10260,7 @@ func SUBQ(imr, mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "SUBQ", Operands: []avo.Operand{imr, mr}}, nil
 }
 
 // SUBSD: Subtract Scalar Double-Precision Floating-Point Values.
@@ -10276,7 +10276,7 @@ func SUBSD(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "SUBSD", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // SUBSS: Subtract Scalar Single-Precision Floating-Point Values.
@@ -10292,7 +10292,7 @@ func SUBSS(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "SUBSS", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // SUBW: Subtract.
@@ -10320,7 +10320,7 @@ func SUBW(imr, amr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "SUBW", Operands: []avo.Operand{imr, amr}}, nil
 }
 
 // SYSCALL: Fast System Call.
@@ -10329,7 +10329,7 @@ func SUBW(imr, amr avo.Operand) (*avo.Instruction, error) {
 //
 // 	SYSCALL
 func SYSCALL() (*avo.Instruction, error) {
-	return nil, nil
+	return &avo.Instruction{Opcode: "SYSCALL", Operands: nil}, nil
 }
 
 // TESTB: Logical Compare.
@@ -10351,7 +10351,7 @@ func TESTB(ir, amr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "TESTB", Operands: []avo.Operand{ir, amr}}, nil
 }
 
 // TESTL: Logical Compare.
@@ -10373,7 +10373,7 @@ func TESTL(ir, emr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "TESTL", Operands: []avo.Operand{ir, emr}}, nil
 }
 
 // TESTQ: Logical Compare.
@@ -10395,7 +10395,7 @@ func TESTQ(ir, mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "TESTQ", Operands: []avo.Operand{ir, mr}}, nil
 }
 
 // TESTW: Logical Compare.
@@ -10417,7 +10417,7 @@ func TESTW(ir, amr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "TESTW", Operands: []avo.Operand{ir, amr}}, nil
 }
 
 // TZCNTL: Count the Number of Trailing Zero Bits.
@@ -10433,7 +10433,7 @@ func TZCNTL(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "TZCNTL", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // TZCNTQ: Count the Number of Trailing Zero Bits.
@@ -10449,7 +10449,7 @@ func TZCNTQ(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "TZCNTQ", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // TZCNTW: Count the Number of Trailing Zero Bits.
@@ -10465,7 +10465,7 @@ func TZCNTW(mr, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "TZCNTW", Operands: []avo.Operand{mr, r}}, nil
 }
 
 // UCOMISD: Unordered Compare Scalar Double-Precision Floating-Point Values and Set EFLAGS.
@@ -10481,7 +10481,7 @@ func UCOMISD(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "UCOMISD", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // UCOMISS: Unordered Compare Scalar Single-Precision Floating-Point Values and Set EFLAGS.
@@ -10497,7 +10497,7 @@ func UCOMISS(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "UCOMISS", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // UD2: Undefined Instruction.
@@ -10506,7 +10506,7 @@ func UCOMISS(mx, x avo.Operand) (*avo.Instruction, error) {
 //
 // 	UD2
 func UD2() (*avo.Instruction, error) {
-	return nil, nil
+	return &avo.Instruction{Opcode: "UD2", Operands: nil}, nil
 }
 
 // UNPCKHPD: Unpack and Interleave High Packed Double-Precision Floating-Point Values.
@@ -10522,7 +10522,7 @@ func UNPCKHPD(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "UNPCKHPD", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // UNPCKHPS: Unpack and Interleave High Packed Single-Precision Floating-Point Values.
@@ -10538,7 +10538,7 @@ func UNPCKHPS(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "UNPCKHPS", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // UNPCKLPD: Unpack and Interleave Low Packed Double-Precision Floating-Point Values.
@@ -10554,7 +10554,7 @@ func UNPCKLPD(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "UNPCKLPD", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // UNPCKLPS: Unpack and Interleave Low Packed Single-Precision Floating-Point Values.
@@ -10570,7 +10570,7 @@ func UNPCKLPS(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "UNPCKLPS", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // VADDPD: Add Packed Double-Precision Floating-Point Values.
@@ -10590,7 +10590,7 @@ func VADDPD(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VADDPD", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VADDPS: Add Packed Single-Precision Floating-Point Values.
@@ -10610,7 +10610,7 @@ func VADDPS(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VADDPS", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VADDSD: Add Scalar Double-Precision Floating-Point Values.
@@ -10626,7 +10626,7 @@ func VADDSD(mx, x, x1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VADDSD", Operands: []avo.Operand{mx, x, x1}}, nil
 }
 
 // VADDSS: Add Scalar Single-Precision Floating-Point Values.
@@ -10642,7 +10642,7 @@ func VADDSS(mx, x, x1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VADDSS", Operands: []avo.Operand{mx, x, x1}}, nil
 }
 
 // VADDSUBPD: Packed Double-FP Add/Subtract.
@@ -10662,7 +10662,7 @@ func VADDSUBPD(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VADDSUBPD", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VADDSUBPS: Packed Single-FP Add/Subtract.
@@ -10682,7 +10682,7 @@ func VADDSUBPS(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VADDSUBPS", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VAESDEC: Perform One Round of an AES Decryption Flow.
@@ -10698,7 +10698,7 @@ func VAESDEC(mx, x, x1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VAESDEC", Operands: []avo.Operand{mx, x, x1}}, nil
 }
 
 // VAESDECLAST: Perform Last Round of an AES Decryption Flow.
@@ -10714,7 +10714,7 @@ func VAESDECLAST(mx, x, x1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VAESDECLAST", Operands: []avo.Operand{mx, x, x1}}, nil
 }
 
 // VAESENC: Perform One Round of an AES Encryption Flow.
@@ -10730,7 +10730,7 @@ func VAESENC(mx, x, x1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VAESENC", Operands: []avo.Operand{mx, x, x1}}, nil
 }
 
 // VAESENCLAST: Perform Last Round of an AES Encryption Flow.
@@ -10746,7 +10746,7 @@ func VAESENCLAST(mx, x, x1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VAESENCLAST", Operands: []avo.Operand{mx, x, x1}}, nil
 }
 
 // VAESIMC: Perform the AES InvMixColumn Transformation.
@@ -10762,7 +10762,7 @@ func VAESIMC(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VAESIMC", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // VAESKEYGENASSIST: AES Round Key Generation Assist.
@@ -10778,7 +10778,7 @@ func VAESKEYGENASSIST(i, mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VAESKEYGENASSIST", Operands: []avo.Operand{i, mx, x}}, nil
 }
 
 // VANDNPD: Bitwise Logical AND NOT of Packed Double-Precision Floating-Point Values.
@@ -10798,7 +10798,7 @@ func VANDNPD(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VANDNPD", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VANDNPS: Bitwise Logical AND NOT of Packed Single-Precision Floating-Point Values.
@@ -10818,7 +10818,7 @@ func VANDNPS(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VANDNPS", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VANDPD: Bitwise Logical AND of Packed Double-Precision Floating-Point Values.
@@ -10838,7 +10838,7 @@ func VANDPD(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VANDPD", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VANDPS: Bitwise Logical AND of Packed Single-Precision Floating-Point Values.
@@ -10858,7 +10858,7 @@ func VANDPS(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VANDPS", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VBLENDPD: Blend Packed Double Precision Floating-Point Values.
@@ -10878,7 +10878,7 @@ func VBLENDPD(i, mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VBLENDPD", Operands: []avo.Operand{i, mxy, xy, xy1}}, nil
 }
 
 // VBLENDPS:  Blend Packed Single Precision Floating-Point Values.
@@ -10898,7 +10898,7 @@ func VBLENDPS(i, mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VBLENDPS", Operands: []avo.Operand{i, mxy, xy, xy1}}, nil
 }
 
 // VBLENDVPD:  Variable Blend Packed Double Precision Floating-Point Values.
@@ -10918,7 +10918,7 @@ func VBLENDVPD(xy, mxy, xy1, xy2 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VBLENDVPD", Operands: []avo.Operand{xy, mxy, xy1, xy2}}, nil
 }
 
 // VBLENDVPS:  Variable Blend Packed Single Precision Floating-Point Values.
@@ -10938,7 +10938,7 @@ func VBLENDVPS(xy, mxy, xy1, xy2 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VBLENDVPS", Operands: []avo.Operand{xy, mxy, xy1, xy2}}, nil
 }
 
 // VBROADCASTF128: Broadcast 128 Bit of Floating-Point Data.
@@ -10952,7 +10952,7 @@ func VBROADCASTF128(m, y avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VBROADCASTF128", Operands: []avo.Operand{m, y}}, nil
 }
 
 // VBROADCASTI128: Broadcast 128 Bits of Integer Data.
@@ -10966,7 +10966,7 @@ func VBROADCASTI128(m, y avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VBROADCASTI128", Operands: []avo.Operand{m, y}}, nil
 }
 
 // VBROADCASTSD: Broadcast Double-Precision Floating-Point Element.
@@ -10982,7 +10982,7 @@ func VBROADCASTSD(mx, y avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VBROADCASTSD", Operands: []avo.Operand{mx, y}}, nil
 }
 
 // VBROADCASTSS: Broadcast Single-Precision Floating-Point Element.
@@ -11002,7 +11002,7 @@ func VBROADCASTSS(mx, xy avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VBROADCASTSS", Operands: []avo.Operand{mx, xy}}, nil
 }
 
 // VCMPPD: Compare Packed Double-Precision Floating-Point Values.
@@ -11022,7 +11022,7 @@ func VCMPPD(i, mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VCMPPD", Operands: []avo.Operand{i, mxy, xy, xy1}}, nil
 }
 
 // VCMPPS: Compare Packed Single-Precision Floating-Point Values.
@@ -11042,7 +11042,7 @@ func VCMPPS(i, mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VCMPPS", Operands: []avo.Operand{i, mxy, xy, xy1}}, nil
 }
 
 // VCMPSD: Compare Scalar Double-Precision Floating-Point Values.
@@ -11058,7 +11058,7 @@ func VCMPSD(i, mx, x, x1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VCMPSD", Operands: []avo.Operand{i, mx, x, x1}}, nil
 }
 
 // VCMPSS: Compare Scalar Single-Precision Floating-Point Values.
@@ -11074,7 +11074,7 @@ func VCMPSS(i, mx, x, x1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VCMPSS", Operands: []avo.Operand{i, mx, x, x1}}, nil
 }
 
 // VCOMISD: Compare Scalar Ordered Double-Precision Floating-Point Values and Set EFLAGS.
@@ -11090,7 +11090,7 @@ func VCOMISD(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VCOMISD", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // VCOMISS: Compare Scalar Ordered Single-Precision Floating-Point Values and Set EFLAGS.
@@ -11106,7 +11106,7 @@ func VCOMISS(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VCOMISS", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // VCVTDQ2PD: Convert Packed Dword Integers to Packed Double-Precision FP Values.
@@ -11126,7 +11126,7 @@ func VCVTDQ2PD(mx, xy avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VCVTDQ2PD", Operands: []avo.Operand{mx, xy}}, nil
 }
 
 // VCVTDQ2PS: Convert Packed Dword Integers to Packed Single-Precision FP Values.
@@ -11146,7 +11146,7 @@ func VCVTDQ2PS(mxy, xy avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VCVTDQ2PS", Operands: []avo.Operand{mxy, xy}}, nil
 }
 
 // VCVTPD2DQX: Convert Packed Double-Precision FP Values to Packed Dword Integers.
@@ -11162,7 +11162,7 @@ func VCVTPD2DQX(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VCVTPD2DQX", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // VCVTPD2DQY: Convert Packed Double-Precision FP Values to Packed Dword Integers.
@@ -11178,7 +11178,7 @@ func VCVTPD2DQY(my, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VCVTPD2DQY", Operands: []avo.Operand{my, x}}, nil
 }
 
 // VCVTPD2PSX: Convert Packed Double-Precision FP Values to Packed Single-Precision FP Values.
@@ -11194,7 +11194,7 @@ func VCVTPD2PSX(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VCVTPD2PSX", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // VCVTPD2PSY: Convert Packed Double-Precision FP Values to Packed Single-Precision FP Values.
@@ -11210,7 +11210,7 @@ func VCVTPD2PSY(my, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VCVTPD2PSY", Operands: []avo.Operand{my, x}}, nil
 }
 
 // VCVTPH2PS: Convert Half-Precision FP Values to Single-Precision FP Values.
@@ -11230,7 +11230,7 @@ func VCVTPH2PS(mx, xy avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VCVTPH2PS", Operands: []avo.Operand{mx, xy}}, nil
 }
 
 // VCVTPS2DQ: Convert Packed Single-Precision FP Values to Packed Dword Integers.
@@ -11250,7 +11250,7 @@ func VCVTPS2DQ(mxy, xy avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VCVTPS2DQ", Operands: []avo.Operand{mxy, xy}}, nil
 }
 
 // VCVTPS2PD: Convert Packed Single-Precision FP Values to Packed Double-Precision FP Values.
@@ -11270,7 +11270,7 @@ func VCVTPS2PD(mx, xy avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VCVTPS2PD", Operands: []avo.Operand{mx, xy}}, nil
 }
 
 // VCVTPS2PH: Convert Single-Precision FP value to Half-Precision FP value.
@@ -11290,7 +11290,7 @@ func VCVTPS2PH(i, xy, mx avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VCVTPS2PH", Operands: []avo.Operand{i, xy, mx}}, nil
 }
 
 // VCVTSD2SI: Convert Scalar Double-Precision FP Value to Integer.
@@ -11306,7 +11306,7 @@ func VCVTSD2SI(mx, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VCVTSD2SI", Operands: []avo.Operand{mx, r}}, nil
 }
 
 // VCVTSD2SIQ: Convert Scalar Double-Precision FP Value to Integer.
@@ -11322,7 +11322,7 @@ func VCVTSD2SIQ(mx, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VCVTSD2SIQ", Operands: []avo.Operand{mx, r}}, nil
 }
 
 // VCVTSD2SS: Convert Scalar Double-Precision FP Value to Scalar Single-Precision FP Value.
@@ -11338,7 +11338,7 @@ func VCVTSD2SS(mx, x, x1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VCVTSD2SS", Operands: []avo.Operand{mx, x, x1}}, nil
 }
 
 // VCVTSI2SDL: Convert Dword Integer to Scalar Double-Precision FP Value.
@@ -11354,7 +11354,7 @@ func VCVTSI2SDL(mr, x, x1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VCVTSI2SDL", Operands: []avo.Operand{mr, x, x1}}, nil
 }
 
 // VCVTSI2SDQ: Convert Dword Integer to Scalar Double-Precision FP Value.
@@ -11370,7 +11370,7 @@ func VCVTSI2SDQ(mr, x, x1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VCVTSI2SDQ", Operands: []avo.Operand{mr, x, x1}}, nil
 }
 
 // VCVTSI2SSL: Convert Dword Integer to Scalar Single-Precision FP Value.
@@ -11386,7 +11386,7 @@ func VCVTSI2SSL(mr, x, x1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VCVTSI2SSL", Operands: []avo.Operand{mr, x, x1}}, nil
 }
 
 // VCVTSI2SSQ: Convert Dword Integer to Scalar Single-Precision FP Value.
@@ -11402,7 +11402,7 @@ func VCVTSI2SSQ(mr, x, x1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VCVTSI2SSQ", Operands: []avo.Operand{mr, x, x1}}, nil
 }
 
 // VCVTSS2SD: Convert Scalar Single-Precision FP Value to Scalar Double-Precision FP Value.
@@ -11418,7 +11418,7 @@ func VCVTSS2SD(mx, x, x1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VCVTSS2SD", Operands: []avo.Operand{mx, x, x1}}, nil
 }
 
 // VCVTSS2SI: Convert Scalar Single-Precision FP Value to Dword Integer.
@@ -11434,7 +11434,7 @@ func VCVTSS2SI(mx, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VCVTSS2SI", Operands: []avo.Operand{mx, r}}, nil
 }
 
 // VCVTSS2SIQ: Convert Scalar Single-Precision FP Value to Dword Integer.
@@ -11450,7 +11450,7 @@ func VCVTSS2SIQ(mx, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VCVTSS2SIQ", Operands: []avo.Operand{mx, r}}, nil
 }
 
 // VCVTTPD2DQX: Convert with Truncation Packed Double-Precision FP Values to Packed Dword Integers.
@@ -11466,7 +11466,7 @@ func VCVTTPD2DQX(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VCVTTPD2DQX", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // VCVTTPD2DQY: Convert with Truncation Packed Double-Precision FP Values to Packed Dword Integers.
@@ -11482,7 +11482,7 @@ func VCVTTPD2DQY(my, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VCVTTPD2DQY", Operands: []avo.Operand{my, x}}, nil
 }
 
 // VCVTTPS2DQ: Convert with Truncation Packed Single-Precision FP Values to Packed Dword Integers.
@@ -11502,7 +11502,7 @@ func VCVTTPS2DQ(mxy, xy avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VCVTTPS2DQ", Operands: []avo.Operand{mxy, xy}}, nil
 }
 
 // VCVTTSD2SI: Convert with Truncation Scalar Double-Precision FP Value to Signed Integer.
@@ -11518,7 +11518,7 @@ func VCVTTSD2SI(mx, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VCVTTSD2SI", Operands: []avo.Operand{mx, r}}, nil
 }
 
 // VCVTTSD2SIQ: Convert with Truncation Scalar Double-Precision FP Value to Signed Integer.
@@ -11534,7 +11534,7 @@ func VCVTTSD2SIQ(mx, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VCVTTSD2SIQ", Operands: []avo.Operand{mx, r}}, nil
 }
 
 // VCVTTSS2SI: Convert with Truncation Scalar Single-Precision FP Value to Dword Integer.
@@ -11550,7 +11550,7 @@ func VCVTTSS2SI(mx, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VCVTTSS2SI", Operands: []avo.Operand{mx, r}}, nil
 }
 
 // VCVTTSS2SIQ: Convert with Truncation Scalar Single-Precision FP Value to Dword Integer.
@@ -11566,7 +11566,7 @@ func VCVTTSS2SIQ(mx, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VCVTTSS2SIQ", Operands: []avo.Operand{mx, r}}, nil
 }
 
 // VDIVPD: Divide Packed Double-Precision Floating-Point Values.
@@ -11586,7 +11586,7 @@ func VDIVPD(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VDIVPD", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VDIVPS: Divide Packed Single-Precision Floating-Point Values.
@@ -11606,7 +11606,7 @@ func VDIVPS(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VDIVPS", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VDIVSD: Divide Scalar Double-Precision Floating-Point Values.
@@ -11622,7 +11622,7 @@ func VDIVSD(mx, x, x1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VDIVSD", Operands: []avo.Operand{mx, x, x1}}, nil
 }
 
 // VDIVSS: Divide Scalar Single-Precision Floating-Point Values.
@@ -11638,7 +11638,7 @@ func VDIVSS(mx, x, x1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VDIVSS", Operands: []avo.Operand{mx, x, x1}}, nil
 }
 
 // VDPPD: Dot Product of Packed Double Precision Floating-Point Values.
@@ -11654,7 +11654,7 @@ func VDPPD(i, mx, x, x1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VDPPD", Operands: []avo.Operand{i, mx, x, x1}}, nil
 }
 
 // VDPPS: Dot Product of Packed Single Precision Floating-Point Values.
@@ -11674,7 +11674,7 @@ func VDPPS(i, mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VDPPS", Operands: []avo.Operand{i, mxy, xy, xy1}}, nil
 }
 
 // VEXTRACTF128: Extract Packed Floating-Point Values.
@@ -11690,7 +11690,7 @@ func VEXTRACTF128(i, y, mx avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VEXTRACTF128", Operands: []avo.Operand{i, y, mx}}, nil
 }
 
 // VEXTRACTI128: Extract Packed Integer Values.
@@ -11706,7 +11706,7 @@ func VEXTRACTI128(i, y, mx avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VEXTRACTI128", Operands: []avo.Operand{i, y, mx}}, nil
 }
 
 // VEXTRACTPS: Extract Packed Single Precision Floating-Point Value.
@@ -11722,7 +11722,7 @@ func VEXTRACTPS(i, x, mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VEXTRACTPS", Operands: []avo.Operand{i, x, mr}}, nil
 }
 
 // VFMADD132PD: Fused Multiply-Add of Packed Double-Precision Floating-Point Values.
@@ -11742,7 +11742,7 @@ func VFMADD132PD(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VFMADD132PD", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VFMADD132PS: Fused Multiply-Add of Packed Single-Precision Floating-Point Values.
@@ -11762,7 +11762,7 @@ func VFMADD132PS(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VFMADD132PS", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VFMADD132SD: Fused Multiply-Add of Scalar Double-Precision Floating-Point Values.
@@ -11778,7 +11778,7 @@ func VFMADD132SD(mx, x, x1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VFMADD132SD", Operands: []avo.Operand{mx, x, x1}}, nil
 }
 
 // VFMADD132SS: Fused Multiply-Add of Scalar Single-Precision Floating-Point Values.
@@ -11794,7 +11794,7 @@ func VFMADD132SS(mx, x, x1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VFMADD132SS", Operands: []avo.Operand{mx, x, x1}}, nil
 }
 
 // VFMADD213PD: Fused Multiply-Add of Packed Double-Precision Floating-Point Values.
@@ -11814,7 +11814,7 @@ func VFMADD213PD(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VFMADD213PD", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VFMADD213PS: Fused Multiply-Add of Packed Single-Precision Floating-Point Values.
@@ -11834,7 +11834,7 @@ func VFMADD213PS(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VFMADD213PS", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VFMADD213SD: Fused Multiply-Add of Scalar Double-Precision Floating-Point Values.
@@ -11850,7 +11850,7 @@ func VFMADD213SD(mx, x, x1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VFMADD213SD", Operands: []avo.Operand{mx, x, x1}}, nil
 }
 
 // VFMADD213SS: Fused Multiply-Add of Scalar Single-Precision Floating-Point Values.
@@ -11866,7 +11866,7 @@ func VFMADD213SS(mx, x, x1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VFMADD213SS", Operands: []avo.Operand{mx, x, x1}}, nil
 }
 
 // VFMADD231PD: Fused Multiply-Add of Packed Double-Precision Floating-Point Values.
@@ -11886,7 +11886,7 @@ func VFMADD231PD(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VFMADD231PD", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VFMADD231PS: Fused Multiply-Add of Packed Single-Precision Floating-Point Values.
@@ -11906,7 +11906,7 @@ func VFMADD231PS(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VFMADD231PS", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VFMADD231SD: Fused Multiply-Add of Scalar Double-Precision Floating-Point Values.
@@ -11922,7 +11922,7 @@ func VFMADD231SD(mx, x, x1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VFMADD231SD", Operands: []avo.Operand{mx, x, x1}}, nil
 }
 
 // VFMADD231SS: Fused Multiply-Add of Scalar Single-Precision Floating-Point Values.
@@ -11938,7 +11938,7 @@ func VFMADD231SS(mx, x, x1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VFMADD231SS", Operands: []avo.Operand{mx, x, x1}}, nil
 }
 
 // VFMADDSUB132PD: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values.
@@ -11958,7 +11958,7 @@ func VFMADDSUB132PD(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VFMADDSUB132PD", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VFMADDSUB132PS: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values.
@@ -11978,7 +11978,7 @@ func VFMADDSUB132PS(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VFMADDSUB132PS", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VFMADDSUB213PD: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values.
@@ -11998,7 +11998,7 @@ func VFMADDSUB213PD(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VFMADDSUB213PD", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VFMADDSUB213PS: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values.
@@ -12018,7 +12018,7 @@ func VFMADDSUB213PS(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VFMADDSUB213PS", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VFMADDSUB231PD: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values.
@@ -12038,7 +12038,7 @@ func VFMADDSUB231PD(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VFMADDSUB231PD", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VFMADDSUB231PS: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values.
@@ -12058,7 +12058,7 @@ func VFMADDSUB231PS(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VFMADDSUB231PS", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VFMSUB132PD: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values.
@@ -12078,7 +12078,7 @@ func VFMSUB132PD(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VFMSUB132PD", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VFMSUB132PS: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values.
@@ -12098,7 +12098,7 @@ func VFMSUB132PS(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VFMSUB132PS", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VFMSUB132SD: Fused Multiply-Subtract of Scalar Double-Precision Floating-Point Values.
@@ -12114,7 +12114,7 @@ func VFMSUB132SD(mx, x, x1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VFMSUB132SD", Operands: []avo.Operand{mx, x, x1}}, nil
 }
 
 // VFMSUB132SS: Fused Multiply-Subtract of Scalar Single-Precision Floating-Point Values.
@@ -12130,7 +12130,7 @@ func VFMSUB132SS(mx, x, x1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VFMSUB132SS", Operands: []avo.Operand{mx, x, x1}}, nil
 }
 
 // VFMSUB213PD: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values.
@@ -12150,7 +12150,7 @@ func VFMSUB213PD(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VFMSUB213PD", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VFMSUB213PS: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values.
@@ -12170,7 +12170,7 @@ func VFMSUB213PS(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VFMSUB213PS", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VFMSUB213SD: Fused Multiply-Subtract of Scalar Double-Precision Floating-Point Values.
@@ -12186,7 +12186,7 @@ func VFMSUB213SD(mx, x, x1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VFMSUB213SD", Operands: []avo.Operand{mx, x, x1}}, nil
 }
 
 // VFMSUB213SS: Fused Multiply-Subtract of Scalar Single-Precision Floating-Point Values.
@@ -12202,7 +12202,7 @@ func VFMSUB213SS(mx, x, x1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VFMSUB213SS", Operands: []avo.Operand{mx, x, x1}}, nil
 }
 
 // VFMSUB231PD: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values.
@@ -12222,7 +12222,7 @@ func VFMSUB231PD(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VFMSUB231PD", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VFMSUB231PS: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values.
@@ -12242,7 +12242,7 @@ func VFMSUB231PS(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VFMSUB231PS", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VFMSUB231SD: Fused Multiply-Subtract of Scalar Double-Precision Floating-Point Values.
@@ -12258,7 +12258,7 @@ func VFMSUB231SD(mx, x, x1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VFMSUB231SD", Operands: []avo.Operand{mx, x, x1}}, nil
 }
 
 // VFMSUB231SS: Fused Multiply-Subtract of Scalar Single-Precision Floating-Point Values.
@@ -12274,7 +12274,7 @@ func VFMSUB231SS(mx, x, x1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VFMSUB231SS", Operands: []avo.Operand{mx, x, x1}}, nil
 }
 
 // VFMSUBADD132PD: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values.
@@ -12294,7 +12294,7 @@ func VFMSUBADD132PD(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VFMSUBADD132PD", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VFMSUBADD132PS: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values.
@@ -12314,7 +12314,7 @@ func VFMSUBADD132PS(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VFMSUBADD132PS", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VFMSUBADD213PD: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values.
@@ -12334,7 +12334,7 @@ func VFMSUBADD213PD(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VFMSUBADD213PD", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VFMSUBADD213PS: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values.
@@ -12354,7 +12354,7 @@ func VFMSUBADD213PS(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VFMSUBADD213PS", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VFMSUBADD231PD: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values.
@@ -12374,7 +12374,7 @@ func VFMSUBADD231PD(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VFMSUBADD231PD", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VFMSUBADD231PS: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values.
@@ -12394,7 +12394,7 @@ func VFMSUBADD231PS(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VFMSUBADD231PS", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VFNMADD132PD: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values.
@@ -12414,7 +12414,7 @@ func VFNMADD132PD(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VFNMADD132PD", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VFNMADD132PS: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values.
@@ -12434,7 +12434,7 @@ func VFNMADD132PS(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VFNMADD132PS", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VFNMADD132SD: Fused Negative Multiply-Add of Scalar Double-Precision Floating-Point Values.
@@ -12450,7 +12450,7 @@ func VFNMADD132SD(mx, x, x1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VFNMADD132SD", Operands: []avo.Operand{mx, x, x1}}, nil
 }
 
 // VFNMADD132SS: Fused Negative Multiply-Add of Scalar Single-Precision Floating-Point Values.
@@ -12466,7 +12466,7 @@ func VFNMADD132SS(mx, x, x1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VFNMADD132SS", Operands: []avo.Operand{mx, x, x1}}, nil
 }
 
 // VFNMADD213PD: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values.
@@ -12486,7 +12486,7 @@ func VFNMADD213PD(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VFNMADD213PD", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VFNMADD213PS: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values.
@@ -12506,7 +12506,7 @@ func VFNMADD213PS(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VFNMADD213PS", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VFNMADD213SD: Fused Negative Multiply-Add of Scalar Double-Precision Floating-Point Values.
@@ -12522,7 +12522,7 @@ func VFNMADD213SD(mx, x, x1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VFNMADD213SD", Operands: []avo.Operand{mx, x, x1}}, nil
 }
 
 // VFNMADD213SS: Fused Negative Multiply-Add of Scalar Single-Precision Floating-Point Values.
@@ -12538,7 +12538,7 @@ func VFNMADD213SS(mx, x, x1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VFNMADD213SS", Operands: []avo.Operand{mx, x, x1}}, nil
 }
 
 // VFNMADD231PD: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values.
@@ -12558,7 +12558,7 @@ func VFNMADD231PD(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VFNMADD231PD", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VFNMADD231PS: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values.
@@ -12578,7 +12578,7 @@ func VFNMADD231PS(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VFNMADD231PS", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VFNMADD231SD: Fused Negative Multiply-Add of Scalar Double-Precision Floating-Point Values.
@@ -12594,7 +12594,7 @@ func VFNMADD231SD(mx, x, x1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VFNMADD231SD", Operands: []avo.Operand{mx, x, x1}}, nil
 }
 
 // VFNMADD231SS: Fused Negative Multiply-Add of Scalar Single-Precision Floating-Point Values.
@@ -12610,7 +12610,7 @@ func VFNMADD231SS(mx, x, x1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VFNMADD231SS", Operands: []avo.Operand{mx, x, x1}}, nil
 }
 
 // VFNMSUB132PD: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values.
@@ -12630,7 +12630,7 @@ func VFNMSUB132PD(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VFNMSUB132PD", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VFNMSUB132PS: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values.
@@ -12650,7 +12650,7 @@ func VFNMSUB132PS(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VFNMSUB132PS", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VFNMSUB132SD: Fused Negative Multiply-Subtract of Scalar Double-Precision Floating-Point Values.
@@ -12666,7 +12666,7 @@ func VFNMSUB132SD(mx, x, x1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VFNMSUB132SD", Operands: []avo.Operand{mx, x, x1}}, nil
 }
 
 // VFNMSUB132SS: Fused Negative Multiply-Subtract of Scalar Single-Precision Floating-Point Values.
@@ -12682,7 +12682,7 @@ func VFNMSUB132SS(mx, x, x1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VFNMSUB132SS", Operands: []avo.Operand{mx, x, x1}}, nil
 }
 
 // VFNMSUB213PD: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values.
@@ -12702,7 +12702,7 @@ func VFNMSUB213PD(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VFNMSUB213PD", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VFNMSUB213PS: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values.
@@ -12722,7 +12722,7 @@ func VFNMSUB213PS(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VFNMSUB213PS", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VFNMSUB213SD: Fused Negative Multiply-Subtract of Scalar Double-Precision Floating-Point Values.
@@ -12738,7 +12738,7 @@ func VFNMSUB213SD(mx, x, x1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VFNMSUB213SD", Operands: []avo.Operand{mx, x, x1}}, nil
 }
 
 // VFNMSUB213SS: Fused Negative Multiply-Subtract of Scalar Single-Precision Floating-Point Values.
@@ -12754,7 +12754,7 @@ func VFNMSUB213SS(mx, x, x1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VFNMSUB213SS", Operands: []avo.Operand{mx, x, x1}}, nil
 }
 
 // VFNMSUB231PD: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values.
@@ -12774,7 +12774,7 @@ func VFNMSUB231PD(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VFNMSUB231PD", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VFNMSUB231PS: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values.
@@ -12794,7 +12794,7 @@ func VFNMSUB231PS(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VFNMSUB231PS", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VFNMSUB231SD: Fused Negative Multiply-Subtract of Scalar Double-Precision Floating-Point Values.
@@ -12810,7 +12810,7 @@ func VFNMSUB231SD(mx, x, x1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VFNMSUB231SD", Operands: []avo.Operand{mx, x, x1}}, nil
 }
 
 // VFNMSUB231SS: Fused Negative Multiply-Subtract of Scalar Single-Precision Floating-Point Values.
@@ -12826,7 +12826,7 @@ func VFNMSUB231SS(mx, x, x1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VFNMSUB231SS", Operands: []avo.Operand{mx, x, x1}}, nil
 }
 
 // VGATHERDPD: Gather Packed Double-Precision Floating-Point Values Using Signed Doubleword Indices.
@@ -12842,7 +12842,7 @@ func VGATHERDPD(xy, v, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VGATHERDPD", Operands: []avo.Operand{xy, v, xy1}}, nil
 }
 
 // VGATHERDPS: Gather Packed Single-Precision Floating-Point Values Using Signed Doubleword Indices.
@@ -12858,7 +12858,7 @@ func VGATHERDPS(xy, v, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VGATHERDPS", Operands: []avo.Operand{xy, v, xy1}}, nil
 }
 
 // VGATHERQPD: Gather Packed Double-Precision Floating-Point Values Using Signed Quadword Indices.
@@ -12874,7 +12874,7 @@ func VGATHERQPD(xy, v, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VGATHERQPD", Operands: []avo.Operand{xy, v, xy1}}, nil
 }
 
 // VGATHERQPS: Gather Packed Single-Precision Floating-Point Values Using Signed Quadword Indices.
@@ -12890,7 +12890,7 @@ func VGATHERQPS(x, v, x1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VGATHERQPS", Operands: []avo.Operand{x, v, x1}}, nil
 }
 
 // VHADDPD: Packed Double-FP Horizontal Add.
@@ -12910,7 +12910,7 @@ func VHADDPD(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VHADDPD", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VHADDPS: Packed Single-FP Horizontal Add.
@@ -12930,7 +12930,7 @@ func VHADDPS(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VHADDPS", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VHSUBPD: Packed Double-FP Horizontal Subtract.
@@ -12950,7 +12950,7 @@ func VHSUBPD(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VHSUBPD", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VHSUBPS: Packed Single-FP Horizontal Subtract.
@@ -12970,7 +12970,7 @@ func VHSUBPS(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VHSUBPS", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VINSERTF128: Insert Packed Floating-Point Values.
@@ -12986,7 +12986,7 @@ func VINSERTF128(i, mx, y, y1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VINSERTF128", Operands: []avo.Operand{i, mx, y, y1}}, nil
 }
 
 // VINSERTI128: Insert Packed Integer Values.
@@ -13002,7 +13002,7 @@ func VINSERTI128(i, mx, y, y1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VINSERTI128", Operands: []avo.Operand{i, mx, y, y1}}, nil
 }
 
 // VINSERTPS: Insert Packed Single Precision Floating-Point Value.
@@ -13018,7 +13018,7 @@ func VINSERTPS(i, mx, x, x1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VINSERTPS", Operands: []avo.Operand{i, mx, x, x1}}, nil
 }
 
 // VLDDQU: Load Unaligned Integer 128 Bits.
@@ -13034,7 +13034,7 @@ func VLDDQU(m, xy avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VLDDQU", Operands: []avo.Operand{m, xy}}, nil
 }
 
 // VLDMXCSR: Load MXCSR Register.
@@ -13048,7 +13048,7 @@ func VLDMXCSR(m avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VLDMXCSR", Operands: []avo.Operand{m}}, nil
 }
 
 // VMASKMOVDQU: Store Selected Bytes of Double Quadword.
@@ -13062,7 +13062,7 @@ func VMASKMOVDQU(x, x1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VMASKMOVDQU", Operands: []avo.Operand{x, x1}}, nil
 }
 
 // VMASKMOVPD: Conditional Move Packed Double-Precision Floating-Point Values.
@@ -13082,7 +13082,7 @@ func VMASKMOVPD(mxy, xy, mxy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VMASKMOVPD", Operands: []avo.Operand{mxy, xy, mxy1}}, nil
 }
 
 // VMASKMOVPS: Conditional Move Packed Single-Precision Floating-Point Values.
@@ -13102,7 +13102,7 @@ func VMASKMOVPS(mxy, xy, mxy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VMASKMOVPS", Operands: []avo.Operand{mxy, xy, mxy1}}, nil
 }
 
 // VMAXPD: Return Maximum Packed Double-Precision Floating-Point Values.
@@ -13122,7 +13122,7 @@ func VMAXPD(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VMAXPD", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VMAXPS: Return Maximum Packed Single-Precision Floating-Point Values.
@@ -13142,7 +13142,7 @@ func VMAXPS(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VMAXPS", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VMAXSD: Return Maximum Scalar Double-Precision Floating-Point Value.
@@ -13158,7 +13158,7 @@ func VMAXSD(mx, x, x1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VMAXSD", Operands: []avo.Operand{mx, x, x1}}, nil
 }
 
 // VMAXSS: Return Maximum Scalar Single-Precision Floating-Point Value.
@@ -13174,7 +13174,7 @@ func VMAXSS(mx, x, x1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VMAXSS", Operands: []avo.Operand{mx, x, x1}}, nil
 }
 
 // VMINPD: Return Minimum Packed Double-Precision Floating-Point Values.
@@ -13194,7 +13194,7 @@ func VMINPD(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VMINPD", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VMINPS: Return Minimum Packed Single-Precision Floating-Point Values.
@@ -13214,7 +13214,7 @@ func VMINPS(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VMINPS", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VMINSD: Return Minimum Scalar Double-Precision Floating-Point Value.
@@ -13230,7 +13230,7 @@ func VMINSD(mx, x, x1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VMINSD", Operands: []avo.Operand{mx, x, x1}}, nil
 }
 
 // VMINSS: Return Minimum Scalar Single-Precision Floating-Point Value.
@@ -13246,7 +13246,7 @@ func VMINSS(mx, x, x1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VMINSS", Operands: []avo.Operand{mx, x, x1}}, nil
 }
 
 // VMOVAPD: Move Aligned Packed Double-Precision Floating-Point Values.
@@ -13270,7 +13270,7 @@ func VMOVAPD(mxy, mxy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VMOVAPD", Operands: []avo.Operand{mxy, mxy1}}, nil
 }
 
 // VMOVAPS: Move Aligned Packed Single-Precision Floating-Point Values.
@@ -13294,7 +13294,7 @@ func VMOVAPS(mxy, mxy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VMOVAPS", Operands: []avo.Operand{mxy, mxy1}}, nil
 }
 
 // VMOVD: Move Doubleword.
@@ -13314,7 +13314,7 @@ func VMOVD(mrx, mrx1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VMOVD", Operands: []avo.Operand{mrx, mrx1}}, nil
 }
 
 // VMOVDDUP: Move One Double-FP and Duplicate.
@@ -13334,7 +13334,7 @@ func VMOVDDUP(mxy, xy avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VMOVDDUP", Operands: []avo.Operand{mxy, xy}}, nil
 }
 
 // VMOVDQA: Move Aligned Double Quadword.
@@ -13358,7 +13358,7 @@ func VMOVDQA(mxy, mxy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VMOVDQA", Operands: []avo.Operand{mxy, mxy1}}, nil
 }
 
 // VMOVDQU: Move Unaligned Double Quadword.
@@ -13382,7 +13382,7 @@ func VMOVDQU(mxy, mxy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VMOVDQU", Operands: []avo.Operand{mxy, mxy1}}, nil
 }
 
 // VMOVHLPS: Move Packed Single-Precision Floating-Point Values High to Low.
@@ -13396,7 +13396,7 @@ func VMOVHLPS(x, x1, x2 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VMOVHLPS", Operands: []avo.Operand{x, x1, x2}}, nil
 }
 
 // VMOVHPD: Move High Packed Double-Precision Floating-Point Value.
@@ -13412,7 +13412,7 @@ func VMOVHPD(ops ...avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VMOVHPD", Operands: ops}, nil
 }
 
 // VMOVHPS: Move High Packed Single-Precision Floating-Point Values.
@@ -13428,7 +13428,7 @@ func VMOVHPS(ops ...avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VMOVHPS", Operands: ops}, nil
 }
 
 // VMOVLHPS: Move Packed Single-Precision Floating-Point Values Low to High.
@@ -13442,7 +13442,7 @@ func VMOVLHPS(x, x1, x2 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VMOVLHPS", Operands: []avo.Operand{x, x1, x2}}, nil
 }
 
 // VMOVLPD: Move Low Packed Double-Precision Floating-Point Value.
@@ -13458,7 +13458,7 @@ func VMOVLPD(ops ...avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VMOVLPD", Operands: ops}, nil
 }
 
 // VMOVLPS: Move Low Packed Single-Precision Floating-Point Values.
@@ -13474,7 +13474,7 @@ func VMOVLPS(ops ...avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VMOVLPS", Operands: ops}, nil
 }
 
 // VMOVMSKPD: Extract Packed Double-Precision Floating-Point Sign Mask.
@@ -13490,7 +13490,7 @@ func VMOVMSKPD(xy, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VMOVMSKPD", Operands: []avo.Operand{xy, r}}, nil
 }
 
 // VMOVMSKPS: Extract Packed Single-Precision Floating-Point Sign Mask.
@@ -13506,7 +13506,7 @@ func VMOVMSKPS(xy, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VMOVMSKPS", Operands: []avo.Operand{xy, r}}, nil
 }
 
 // VMOVNTDQ: Store Double Quadword Using Non-Temporal Hint.
@@ -13522,7 +13522,7 @@ func VMOVNTDQ(xy, m avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VMOVNTDQ", Operands: []avo.Operand{xy, m}}, nil
 }
 
 // VMOVNTDQA: Load Double Quadword Non-Temporal Aligned Hint.
@@ -13538,7 +13538,7 @@ func VMOVNTDQA(m, xy avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VMOVNTDQA", Operands: []avo.Operand{m, xy}}, nil
 }
 
 // VMOVNTPD: Store Packed Double-Precision Floating-Point Values Using Non-Temporal Hint.
@@ -13554,7 +13554,7 @@ func VMOVNTPD(xy, m avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VMOVNTPD", Operands: []avo.Operand{xy, m}}, nil
 }
 
 // VMOVNTPS: Store Packed Single-Precision Floating-Point Values Using Non-Temporal Hint.
@@ -13570,7 +13570,7 @@ func VMOVNTPS(xy, m avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VMOVNTPS", Operands: []avo.Operand{xy, m}}, nil
 }
 
 // VMOVQ: Move Quadword.
@@ -13592,7 +13592,7 @@ func VMOVQ(mrx, mrx1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VMOVQ", Operands: []avo.Operand{mrx, mrx1}}, nil
 }
 
 // VMOVSD: Move Scalar Double-Precision Floating-Point Value.
@@ -13610,7 +13610,7 @@ func VMOVSD(ops ...avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VMOVSD", Operands: ops}, nil
 }
 
 // VMOVSHDUP: Move Packed Single-FP High and Duplicate.
@@ -13630,7 +13630,7 @@ func VMOVSHDUP(mxy, xy avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VMOVSHDUP", Operands: []avo.Operand{mxy, xy}}, nil
 }
 
 // VMOVSLDUP: Move Packed Single-FP Low and Duplicate.
@@ -13650,7 +13650,7 @@ func VMOVSLDUP(mxy, xy avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VMOVSLDUP", Operands: []avo.Operand{mxy, xy}}, nil
 }
 
 // VMOVSS: Move Scalar Single-Precision Floating-Point Values.
@@ -13668,7 +13668,7 @@ func VMOVSS(ops ...avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VMOVSS", Operands: ops}, nil
 }
 
 // VMOVUPD: Move Unaligned Packed Double-Precision Floating-Point Values.
@@ -13692,7 +13692,7 @@ func VMOVUPD(mxy, mxy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VMOVUPD", Operands: []avo.Operand{mxy, mxy1}}, nil
 }
 
 // VMOVUPS: Move Unaligned Packed Single-Precision Floating-Point Values.
@@ -13716,7 +13716,7 @@ func VMOVUPS(mxy, mxy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VMOVUPS", Operands: []avo.Operand{mxy, mxy1}}, nil
 }
 
 // VMPSADBW: Compute Multiple Packed Sums of Absolute Difference.
@@ -13736,7 +13736,7 @@ func VMPSADBW(i, mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VMPSADBW", Operands: []avo.Operand{i, mxy, xy, xy1}}, nil
 }
 
 // VMULPD: Multiply Packed Double-Precision Floating-Point Values.
@@ -13756,7 +13756,7 @@ func VMULPD(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VMULPD", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VMULPS: Multiply Packed Single-Precision Floating-Point Values.
@@ -13776,7 +13776,7 @@ func VMULPS(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VMULPS", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VMULSD: Multiply Scalar Double-Precision Floating-Point Values.
@@ -13792,7 +13792,7 @@ func VMULSD(mx, x, x1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VMULSD", Operands: []avo.Operand{mx, x, x1}}, nil
 }
 
 // VMULSS: Multiply Scalar Single-Precision Floating-Point Values.
@@ -13808,7 +13808,7 @@ func VMULSS(mx, x, x1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VMULSS", Operands: []avo.Operand{mx, x, x1}}, nil
 }
 
 // VORPD: Bitwise Logical OR of Double-Precision Floating-Point Values.
@@ -13828,7 +13828,7 @@ func VORPD(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VORPD", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VORPS: Bitwise Logical OR of Single-Precision Floating-Point Values.
@@ -13848,7 +13848,7 @@ func VORPS(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VORPS", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPABSB: Packed Absolute Value of Byte Integers.
@@ -13868,7 +13868,7 @@ func VPABSB(mxy, xy avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPABSB", Operands: []avo.Operand{mxy, xy}}, nil
 }
 
 // VPABSD: Packed Absolute Value of Doubleword Integers.
@@ -13888,7 +13888,7 @@ func VPABSD(mxy, xy avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPABSD", Operands: []avo.Operand{mxy, xy}}, nil
 }
 
 // VPABSW: Packed Absolute Value of Word Integers.
@@ -13908,7 +13908,7 @@ func VPABSW(mxy, xy avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPABSW", Operands: []avo.Operand{mxy, xy}}, nil
 }
 
 // VPACKSSDW: Pack Doublewords into Words with Signed Saturation.
@@ -13928,7 +13928,7 @@ func VPACKSSDW(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPACKSSDW", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPACKSSWB: Pack Words into Bytes with Signed Saturation.
@@ -13948,7 +13948,7 @@ func VPACKSSWB(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPACKSSWB", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPACKUSDW: Pack Doublewords into Words with Unsigned Saturation.
@@ -13968,7 +13968,7 @@ func VPACKUSDW(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPACKUSDW", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPACKUSWB: Pack Words into Bytes with Unsigned Saturation.
@@ -13988,7 +13988,7 @@ func VPACKUSWB(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPACKUSWB", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPADDB: Add Packed Byte Integers.
@@ -14008,7 +14008,7 @@ func VPADDB(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPADDB", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPADDD: Add Packed Doubleword Integers.
@@ -14028,7 +14028,7 @@ func VPADDD(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPADDD", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPADDQ: Add Packed Quadword Integers.
@@ -14048,7 +14048,7 @@ func VPADDQ(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPADDQ", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPADDSB: Add Packed Signed Byte Integers with Signed Saturation.
@@ -14068,7 +14068,7 @@ func VPADDSB(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPADDSB", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPADDSW: Add Packed Signed Word Integers with Signed Saturation.
@@ -14088,7 +14088,7 @@ func VPADDSW(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPADDSW", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPADDUSB: Add Packed Unsigned Byte Integers with Unsigned Saturation.
@@ -14108,7 +14108,7 @@ func VPADDUSB(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPADDUSB", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPADDUSW: Add Packed Unsigned Word Integers with Unsigned Saturation.
@@ -14128,7 +14128,7 @@ func VPADDUSW(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPADDUSW", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPADDW: Add Packed Word Integers.
@@ -14148,7 +14148,7 @@ func VPADDW(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPADDW", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPALIGNR: Packed Align Right.
@@ -14168,7 +14168,7 @@ func VPALIGNR(i, mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPALIGNR", Operands: []avo.Operand{i, mxy, xy, xy1}}, nil
 }
 
 // VPAND: Packed Bitwise Logical AND.
@@ -14188,7 +14188,7 @@ func VPAND(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPAND", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPANDN: Packed Bitwise Logical AND NOT.
@@ -14208,7 +14208,7 @@ func VPANDN(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPANDN", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPAVGB: Average Packed Byte Integers.
@@ -14228,7 +14228,7 @@ func VPAVGB(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPAVGB", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPAVGW: Average Packed Word Integers.
@@ -14248,7 +14248,7 @@ func VPAVGW(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPAVGW", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPBLENDD: Blend Packed Doublewords.
@@ -14268,7 +14268,7 @@ func VPBLENDD(i, mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPBLENDD", Operands: []avo.Operand{i, mxy, xy, xy1}}, nil
 }
 
 // VPBLENDVB: Variable Blend Packed Bytes.
@@ -14288,7 +14288,7 @@ func VPBLENDVB(xy, mxy, xy1, xy2 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPBLENDVB", Operands: []avo.Operand{xy, mxy, xy1, xy2}}, nil
 }
 
 // VPBLENDW: Blend Packed Words.
@@ -14308,7 +14308,7 @@ func VPBLENDW(i, mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPBLENDW", Operands: []avo.Operand{i, mxy, xy, xy1}}, nil
 }
 
 // VPBROADCASTB: Broadcast Byte Integer.
@@ -14328,7 +14328,7 @@ func VPBROADCASTB(mx, xy avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPBROADCASTB", Operands: []avo.Operand{mx, xy}}, nil
 }
 
 // VPBROADCASTD: Broadcast Doubleword Integer.
@@ -14348,7 +14348,7 @@ func VPBROADCASTD(mx, xy avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPBROADCASTD", Operands: []avo.Operand{mx, xy}}, nil
 }
 
 // VPBROADCASTQ: Broadcast Quadword Integer.
@@ -14368,7 +14368,7 @@ func VPBROADCASTQ(mx, xy avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPBROADCASTQ", Operands: []avo.Operand{mx, xy}}, nil
 }
 
 // VPBROADCASTW: Broadcast Word Integer.
@@ -14388,7 +14388,7 @@ func VPBROADCASTW(mx, xy avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPBROADCASTW", Operands: []avo.Operand{mx, xy}}, nil
 }
 
 // VPCLMULQDQ: Carry-Less Quadword Multiplication.
@@ -14404,7 +14404,7 @@ func VPCLMULQDQ(i, mx, x, x1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPCLMULQDQ", Operands: []avo.Operand{i, mx, x, x1}}, nil
 }
 
 // VPCMPEQB: Compare Packed Byte Data for Equality.
@@ -14424,7 +14424,7 @@ func VPCMPEQB(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPCMPEQB", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPCMPEQD: Compare Packed Doubleword Data for Equality.
@@ -14444,7 +14444,7 @@ func VPCMPEQD(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPCMPEQD", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPCMPEQQ: Compare Packed Quadword Data for Equality.
@@ -14464,7 +14464,7 @@ func VPCMPEQQ(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPCMPEQQ", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPCMPEQW: Compare Packed Word Data for Equality.
@@ -14484,7 +14484,7 @@ func VPCMPEQW(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPCMPEQW", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPCMPESTRI: Packed Compare Explicit Length Strings, Return Index.
@@ -14500,7 +14500,7 @@ func VPCMPESTRI(i, mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPCMPESTRI", Operands: []avo.Operand{i, mx, x}}, nil
 }
 
 // VPCMPESTRM: Packed Compare Explicit Length Strings, Return Mask.
@@ -14516,7 +14516,7 @@ func VPCMPESTRM(i, mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPCMPESTRM", Operands: []avo.Operand{i, mx, x}}, nil
 }
 
 // VPCMPGTB: Compare Packed Signed Byte Integers for Greater Than.
@@ -14536,7 +14536,7 @@ func VPCMPGTB(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPCMPGTB", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPCMPGTD: Compare Packed Signed Doubleword Integers for Greater Than.
@@ -14556,7 +14556,7 @@ func VPCMPGTD(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPCMPGTD", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPCMPGTQ: Compare Packed Data for Greater Than.
@@ -14576,7 +14576,7 @@ func VPCMPGTQ(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPCMPGTQ", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPCMPGTW: Compare Packed Signed Word Integers for Greater Than.
@@ -14596,7 +14596,7 @@ func VPCMPGTW(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPCMPGTW", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPCMPISTRI: Packed Compare Implicit Length Strings, Return Index.
@@ -14612,7 +14612,7 @@ func VPCMPISTRI(i, mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPCMPISTRI", Operands: []avo.Operand{i, mx, x}}, nil
 }
 
 // VPCMPISTRM: Packed Compare Implicit Length Strings, Return Mask.
@@ -14628,7 +14628,7 @@ func VPCMPISTRM(i, mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPCMPISTRM", Operands: []avo.Operand{i, mx, x}}, nil
 }
 
 // VPERM2F128: Permute Floating-Point Values.
@@ -14644,7 +14644,7 @@ func VPERM2F128(i, my, y, y1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPERM2F128", Operands: []avo.Operand{i, my, y, y1}}, nil
 }
 
 // VPERM2I128: Permute 128-Bit Integer Values.
@@ -14660,7 +14660,7 @@ func VPERM2I128(i, my, y, y1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPERM2I128", Operands: []avo.Operand{i, my, y, y1}}, nil
 }
 
 // VPERMD: Permute Doubleword Integers.
@@ -14676,7 +14676,7 @@ func VPERMD(my, y, y1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPERMD", Operands: []avo.Operand{my, y, y1}}, nil
 }
 
 // VPERMILPD: Permute Double-Precision Floating-Point Values.
@@ -14704,7 +14704,7 @@ func VPERMILPD(imxy, mxy, xy avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPERMILPD", Operands: []avo.Operand{imxy, mxy, xy}}, nil
 }
 
 // VPERMILPS: Permute Single-Precision Floating-Point Values.
@@ -14732,7 +14732,7 @@ func VPERMILPS(imxy, mxy, xy avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPERMILPS", Operands: []avo.Operand{imxy, mxy, xy}}, nil
 }
 
 // VPERMPD: Permute Double-Precision Floating-Point Elements.
@@ -14748,7 +14748,7 @@ func VPERMPD(i, my, y avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPERMPD", Operands: []avo.Operand{i, my, y}}, nil
 }
 
 // VPERMPS: Permute Single-Precision Floating-Point Elements.
@@ -14764,7 +14764,7 @@ func VPERMPS(my, y, y1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPERMPS", Operands: []avo.Operand{my, y, y1}}, nil
 }
 
 // VPERMQ: Permute Quadword Integers.
@@ -14780,7 +14780,7 @@ func VPERMQ(i, my, y avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPERMQ", Operands: []avo.Operand{i, my, y}}, nil
 }
 
 // VPEXTRB: Extract Byte.
@@ -14796,7 +14796,7 @@ func VPEXTRB(i, x, mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPEXTRB", Operands: []avo.Operand{i, x, mr}}, nil
 }
 
 // VPEXTRD: Extract Doubleword.
@@ -14812,7 +14812,7 @@ func VPEXTRD(i, x, mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPEXTRD", Operands: []avo.Operand{i, x, mr}}, nil
 }
 
 // VPEXTRQ: Extract Quadword.
@@ -14828,7 +14828,7 @@ func VPEXTRQ(i, x, mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPEXTRQ", Operands: []avo.Operand{i, x, mr}}, nil
 }
 
 // VPEXTRW: Extract Word.
@@ -14844,7 +14844,7 @@ func VPEXTRW(i, x, mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPEXTRW", Operands: []avo.Operand{i, x, mr}}, nil
 }
 
 // VPGATHERDD: Gather Packed Doubleword Values Using Signed Doubleword Indices.
@@ -14860,7 +14860,7 @@ func VPGATHERDD(xy, v, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPGATHERDD", Operands: []avo.Operand{xy, v, xy1}}, nil
 }
 
 // VPGATHERDQ: Gather Packed Quadword Values Using Signed Doubleword Indices.
@@ -14876,7 +14876,7 @@ func VPGATHERDQ(xy, v, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPGATHERDQ", Operands: []avo.Operand{xy, v, xy1}}, nil
 }
 
 // VPGATHERQD: Gather Packed Doubleword Values Using Signed Quadword Indices.
@@ -14892,7 +14892,7 @@ func VPGATHERQD(x, v, x1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPGATHERQD", Operands: []avo.Operand{x, v, x1}}, nil
 }
 
 // VPGATHERQQ: Gather Packed Quadword Values Using Signed Quadword Indices.
@@ -14908,7 +14908,7 @@ func VPGATHERQQ(xy, v, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPGATHERQQ", Operands: []avo.Operand{xy, v, xy1}}, nil
 }
 
 // VPHADDD: Packed Horizontal Add Doubleword Integer.
@@ -14928,7 +14928,7 @@ func VPHADDD(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPHADDD", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPHADDSW: Packed Horizontal Add Signed Word Integers with Signed Saturation.
@@ -14948,7 +14948,7 @@ func VPHADDSW(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPHADDSW", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPHADDW: Packed Horizontal Add Word Integers.
@@ -14968,7 +14968,7 @@ func VPHADDW(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPHADDW", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPHMINPOSUW: Packed Horizontal Minimum of Unsigned Word Integers.
@@ -14984,7 +14984,7 @@ func VPHMINPOSUW(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPHMINPOSUW", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // VPHSUBD: Packed Horizontal Subtract Doubleword Integers.
@@ -15004,7 +15004,7 @@ func VPHSUBD(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPHSUBD", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPHSUBSW: Packed Horizontal Subtract Signed Word Integers with Signed Saturation.
@@ -15024,7 +15024,7 @@ func VPHSUBSW(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPHSUBSW", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPHSUBW: Packed Horizontal Subtract Word Integers.
@@ -15044,7 +15044,7 @@ func VPHSUBW(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPHSUBW", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPINSRB: Insert Byte.
@@ -15060,7 +15060,7 @@ func VPINSRB(i, mr, x, x1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPINSRB", Operands: []avo.Operand{i, mr, x, x1}}, nil
 }
 
 // VPINSRD: Insert Doubleword.
@@ -15076,7 +15076,7 @@ func VPINSRD(i, mr, x, x1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPINSRD", Operands: []avo.Operand{i, mr, x, x1}}, nil
 }
 
 // VPINSRQ: Insert Quadword.
@@ -15092,7 +15092,7 @@ func VPINSRQ(i, mr, x, x1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPINSRQ", Operands: []avo.Operand{i, mr, x, x1}}, nil
 }
 
 // VPINSRW: Insert Word.
@@ -15108,7 +15108,7 @@ func VPINSRW(i, mr, x, x1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPINSRW", Operands: []avo.Operand{i, mr, x, x1}}, nil
 }
 
 // VPMADDUBSW: Multiply and Add Packed Signed and Unsigned Byte Integers.
@@ -15128,7 +15128,7 @@ func VPMADDUBSW(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPMADDUBSW", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPMADDWD: Multiply and Add Packed Signed Word Integers.
@@ -15148,7 +15148,7 @@ func VPMADDWD(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPMADDWD", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPMASKMOVD: Conditional Move Packed Doubleword Integers.
@@ -15168,7 +15168,7 @@ func VPMASKMOVD(mxy, xy, mxy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPMASKMOVD", Operands: []avo.Operand{mxy, xy, mxy1}}, nil
 }
 
 // VPMASKMOVQ: Conditional Move Packed Quadword Integers.
@@ -15188,7 +15188,7 @@ func VPMASKMOVQ(mxy, xy, mxy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPMASKMOVQ", Operands: []avo.Operand{mxy, xy, mxy1}}, nil
 }
 
 // VPMAXSB: Maximum of Packed Signed Byte Integers.
@@ -15208,7 +15208,7 @@ func VPMAXSB(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPMAXSB", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPMAXSD: Maximum of Packed Signed Doubleword Integers.
@@ -15228,7 +15228,7 @@ func VPMAXSD(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPMAXSD", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPMAXSW: Maximum of Packed Signed Word Integers.
@@ -15248,7 +15248,7 @@ func VPMAXSW(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPMAXSW", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPMAXUB: Maximum of Packed Unsigned Byte Integers.
@@ -15268,7 +15268,7 @@ func VPMAXUB(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPMAXUB", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPMAXUD: Maximum of Packed Unsigned Doubleword Integers.
@@ -15288,7 +15288,7 @@ func VPMAXUD(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPMAXUD", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPMAXUW: Maximum of Packed Unsigned Word Integers.
@@ -15308,7 +15308,7 @@ func VPMAXUW(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPMAXUW", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPMINSB: Minimum of Packed Signed Byte Integers.
@@ -15328,7 +15328,7 @@ func VPMINSB(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPMINSB", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPMINSD: Minimum of Packed Signed Doubleword Integers.
@@ -15348,7 +15348,7 @@ func VPMINSD(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPMINSD", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPMINSW: Minimum of Packed Signed Word Integers.
@@ -15368,7 +15368,7 @@ func VPMINSW(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPMINSW", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPMINUB: Minimum of Packed Unsigned Byte Integers.
@@ -15388,7 +15388,7 @@ func VPMINUB(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPMINUB", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPMINUD: Minimum of Packed Unsigned Doubleword Integers.
@@ -15408,7 +15408,7 @@ func VPMINUD(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPMINUD", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPMINUW: Minimum of Packed Unsigned Word Integers.
@@ -15428,7 +15428,7 @@ func VPMINUW(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPMINUW", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPMOVMSKB: Move Byte Mask.
@@ -15444,7 +15444,7 @@ func VPMOVMSKB(xy, r avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPMOVMSKB", Operands: []avo.Operand{xy, r}}, nil
 }
 
 // VPMOVSXBD: Move Packed Byte Integers to Doubleword Integers with Sign Extension.
@@ -15464,7 +15464,7 @@ func VPMOVSXBD(mx, xy avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPMOVSXBD", Operands: []avo.Operand{mx, xy}}, nil
 }
 
 // VPMOVSXBQ: Move Packed Byte Integers to Quadword Integers with Sign Extension.
@@ -15484,7 +15484,7 @@ func VPMOVSXBQ(mx, xy avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPMOVSXBQ", Operands: []avo.Operand{mx, xy}}, nil
 }
 
 // VPMOVSXBW: Move Packed Byte Integers to Word Integers with Sign Extension.
@@ -15504,7 +15504,7 @@ func VPMOVSXBW(mx, xy avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPMOVSXBW", Operands: []avo.Operand{mx, xy}}, nil
 }
 
 // VPMOVSXDQ: Move Packed Doubleword Integers to Quadword Integers with Sign Extension.
@@ -15524,7 +15524,7 @@ func VPMOVSXDQ(mx, xy avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPMOVSXDQ", Operands: []avo.Operand{mx, xy}}, nil
 }
 
 // VPMOVSXWD: Move Packed Word Integers to Doubleword Integers with Sign Extension.
@@ -15544,7 +15544,7 @@ func VPMOVSXWD(mx, xy avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPMOVSXWD", Operands: []avo.Operand{mx, xy}}, nil
 }
 
 // VPMOVSXWQ: Move Packed Word Integers to Quadword Integers with Sign Extension.
@@ -15564,7 +15564,7 @@ func VPMOVSXWQ(mx, xy avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPMOVSXWQ", Operands: []avo.Operand{mx, xy}}, nil
 }
 
 // VPMOVZXBD: Move Packed Byte Integers to Doubleword Integers with Zero Extension.
@@ -15584,7 +15584,7 @@ func VPMOVZXBD(mx, xy avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPMOVZXBD", Operands: []avo.Operand{mx, xy}}, nil
 }
 
 // VPMOVZXBQ: Move Packed Byte Integers to Quadword Integers with Zero Extension.
@@ -15604,7 +15604,7 @@ func VPMOVZXBQ(mx, xy avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPMOVZXBQ", Operands: []avo.Operand{mx, xy}}, nil
 }
 
 // VPMOVZXBW: Move Packed Byte Integers to Word Integers with Zero Extension.
@@ -15624,7 +15624,7 @@ func VPMOVZXBW(mx, xy avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPMOVZXBW", Operands: []avo.Operand{mx, xy}}, nil
 }
 
 // VPMOVZXDQ: Move Packed Doubleword Integers to Quadword Integers with Zero Extension.
@@ -15644,7 +15644,7 @@ func VPMOVZXDQ(mx, xy avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPMOVZXDQ", Operands: []avo.Operand{mx, xy}}, nil
 }
 
 // VPMOVZXWD: Move Packed Word Integers to Doubleword Integers with Zero Extension.
@@ -15664,7 +15664,7 @@ func VPMOVZXWD(mx, xy avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPMOVZXWD", Operands: []avo.Operand{mx, xy}}, nil
 }
 
 // VPMOVZXWQ: Move Packed Word Integers to Quadword Integers with Zero Extension.
@@ -15684,7 +15684,7 @@ func VPMOVZXWQ(mx, xy avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPMOVZXWQ", Operands: []avo.Operand{mx, xy}}, nil
 }
 
 // VPMULDQ: Multiply Packed Signed Doubleword Integers and Store Quadword Result.
@@ -15704,7 +15704,7 @@ func VPMULDQ(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPMULDQ", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPMULHRSW: Packed Multiply Signed Word Integers and Store High Result with Round and Scale.
@@ -15724,7 +15724,7 @@ func VPMULHRSW(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPMULHRSW", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPMULHUW: Multiply Packed Unsigned Word Integers and Store High Result.
@@ -15744,7 +15744,7 @@ func VPMULHUW(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPMULHUW", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPMULHW: Multiply Packed Signed Word Integers and Store High Result.
@@ -15764,7 +15764,7 @@ func VPMULHW(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPMULHW", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPMULLD: Multiply Packed Signed Doubleword Integers and Store Low Result.
@@ -15784,7 +15784,7 @@ func VPMULLD(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPMULLD", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPMULLW: Multiply Packed Signed Word Integers and Store Low Result.
@@ -15804,7 +15804,7 @@ func VPMULLW(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPMULLW", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPMULUDQ: Multiply Packed Unsigned Doubleword Integers.
@@ -15824,7 +15824,7 @@ func VPMULUDQ(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPMULUDQ", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPOR: Packed Bitwise Logical OR.
@@ -15844,7 +15844,7 @@ func VPOR(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPOR", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPSADBW: Compute Sum of Absolute Differences.
@@ -15864,7 +15864,7 @@ func VPSADBW(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPSADBW", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPSHUFB: Packed Shuffle Bytes.
@@ -15884,7 +15884,7 @@ func VPSHUFB(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPSHUFB", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPSHUFD: Shuffle Packed Doublewords.
@@ -15904,7 +15904,7 @@ func VPSHUFD(i, mxy, xy avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPSHUFD", Operands: []avo.Operand{i, mxy, xy}}, nil
 }
 
 // VPSHUFHW: Shuffle Packed High Words.
@@ -15924,7 +15924,7 @@ func VPSHUFHW(i, mxy, xy avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPSHUFHW", Operands: []avo.Operand{i, mxy, xy}}, nil
 }
 
 // VPSHUFLW: Shuffle Packed Low Words.
@@ -15944,7 +15944,7 @@ func VPSHUFLW(i, mxy, xy avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPSHUFLW", Operands: []avo.Operand{i, mxy, xy}}, nil
 }
 
 // VPSIGNB: Packed Sign of Byte Integers.
@@ -15964,7 +15964,7 @@ func VPSIGNB(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPSIGNB", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPSIGND: Packed Sign of Doubleword Integers.
@@ -15984,7 +15984,7 @@ func VPSIGND(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPSIGND", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPSIGNW: Packed Sign of Word Integers.
@@ -16004,7 +16004,7 @@ func VPSIGNW(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPSIGNW", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPSLLD: Shift Packed Doubleword Data Left Logical.
@@ -16028,7 +16028,7 @@ func VPSLLD(imx, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPSLLD", Operands: []avo.Operand{imx, xy, xy1}}, nil
 }
 
 // VPSLLDQ: Shift Packed Double Quadword Left Logical.
@@ -16044,7 +16044,7 @@ func VPSLLDQ(i, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPSLLDQ", Operands: []avo.Operand{i, xy, xy1}}, nil
 }
 
 // VPSLLQ: Shift Packed Quadword Data Left Logical.
@@ -16068,7 +16068,7 @@ func VPSLLQ(imx, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPSLLQ", Operands: []avo.Operand{imx, xy, xy1}}, nil
 }
 
 // VPSLLVD: Variable Shift Packed Doubleword Data Left Logical.
@@ -16088,7 +16088,7 @@ func VPSLLVD(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPSLLVD", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPSLLVQ: Variable Shift Packed Quadword Data Left Logical.
@@ -16108,7 +16108,7 @@ func VPSLLVQ(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPSLLVQ", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPSLLW: Shift Packed Word Data Left Logical.
@@ -16132,7 +16132,7 @@ func VPSLLW(imx, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPSLLW", Operands: []avo.Operand{imx, xy, xy1}}, nil
 }
 
 // VPSRAD: Shift Packed Doubleword Data Right Arithmetic.
@@ -16156,7 +16156,7 @@ func VPSRAD(imx, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPSRAD", Operands: []avo.Operand{imx, xy, xy1}}, nil
 }
 
 // VPSRAVD: Variable Shift Packed Doubleword Data Right Arithmetic.
@@ -16176,7 +16176,7 @@ func VPSRAVD(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPSRAVD", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPSRAW: Shift Packed Word Data Right Arithmetic.
@@ -16200,7 +16200,7 @@ func VPSRAW(imx, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPSRAW", Operands: []avo.Operand{imx, xy, xy1}}, nil
 }
 
 // VPSRLD: Shift Packed Doubleword Data Right Logical.
@@ -16224,7 +16224,7 @@ func VPSRLD(imx, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPSRLD", Operands: []avo.Operand{imx, xy, xy1}}, nil
 }
 
 // VPSRLDQ: Shift Packed Double Quadword Right Logical.
@@ -16240,7 +16240,7 @@ func VPSRLDQ(i, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPSRLDQ", Operands: []avo.Operand{i, xy, xy1}}, nil
 }
 
 // VPSRLQ: Shift Packed Quadword Data Right Logical.
@@ -16264,7 +16264,7 @@ func VPSRLQ(imx, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPSRLQ", Operands: []avo.Operand{imx, xy, xy1}}, nil
 }
 
 // VPSRLVD: Variable Shift Packed Doubleword Data Right Logical.
@@ -16284,7 +16284,7 @@ func VPSRLVD(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPSRLVD", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPSRLVQ: Variable Shift Packed Quadword Data Right Logical.
@@ -16304,7 +16304,7 @@ func VPSRLVQ(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPSRLVQ", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPSRLW: Shift Packed Word Data Right Logical.
@@ -16328,7 +16328,7 @@ func VPSRLW(imx, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPSRLW", Operands: []avo.Operand{imx, xy, xy1}}, nil
 }
 
 // VPSUBB: Subtract Packed Byte Integers.
@@ -16348,7 +16348,7 @@ func VPSUBB(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPSUBB", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPSUBD: Subtract Packed Doubleword Integers.
@@ -16368,7 +16368,7 @@ func VPSUBD(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPSUBD", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPSUBQ: Subtract Packed Quadword Integers.
@@ -16388,7 +16388,7 @@ func VPSUBQ(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPSUBQ", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPSUBSB: Subtract Packed Signed Byte Integers with Signed Saturation.
@@ -16408,7 +16408,7 @@ func VPSUBSB(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPSUBSB", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPSUBSW: Subtract Packed Signed Word Integers with Signed Saturation.
@@ -16428,7 +16428,7 @@ func VPSUBSW(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPSUBSW", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPSUBUSB: Subtract Packed Unsigned Byte Integers with Unsigned Saturation.
@@ -16448,7 +16448,7 @@ func VPSUBUSB(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPSUBUSB", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPSUBUSW: Subtract Packed Unsigned Word Integers with Unsigned Saturation.
@@ -16468,7 +16468,7 @@ func VPSUBUSW(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPSUBUSW", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPSUBW: Subtract Packed Word Integers.
@@ -16488,7 +16488,7 @@ func VPSUBW(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPSUBW", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPTEST: Packed Logical Compare.
@@ -16508,7 +16508,7 @@ func VPTEST(mxy, xy avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPTEST", Operands: []avo.Operand{mxy, xy}}, nil
 }
 
 // VPUNPCKHBW: Unpack and Interleave High-Order Bytes into Words.
@@ -16528,7 +16528,7 @@ func VPUNPCKHBW(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPUNPCKHBW", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPUNPCKHDQ: Unpack and Interleave High-Order Doublewords into Quadwords.
@@ -16548,7 +16548,7 @@ func VPUNPCKHDQ(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPUNPCKHDQ", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPUNPCKHQDQ: Unpack and Interleave High-Order Quadwords into Double Quadwords.
@@ -16568,7 +16568,7 @@ func VPUNPCKHQDQ(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPUNPCKHQDQ", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPUNPCKHWD: Unpack and Interleave High-Order Words into Doublewords.
@@ -16588,7 +16588,7 @@ func VPUNPCKHWD(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPUNPCKHWD", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPUNPCKLBW: Unpack and Interleave Low-Order Bytes into Words.
@@ -16608,7 +16608,7 @@ func VPUNPCKLBW(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPUNPCKLBW", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPUNPCKLDQ: Unpack and Interleave Low-Order Doublewords into Quadwords.
@@ -16628,7 +16628,7 @@ func VPUNPCKLDQ(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPUNPCKLDQ", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPUNPCKLQDQ: Unpack and Interleave Low-Order Quadwords into Double Quadwords.
@@ -16648,7 +16648,7 @@ func VPUNPCKLQDQ(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPUNPCKLQDQ", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPUNPCKLWD: Unpack and Interleave Low-Order Words into Doublewords.
@@ -16668,7 +16668,7 @@ func VPUNPCKLWD(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPUNPCKLWD", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VPXOR: Packed Bitwise Logical Exclusive OR.
@@ -16688,7 +16688,7 @@ func VPXOR(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VPXOR", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VRCPPS: Compute Approximate Reciprocals of Packed Single-Precision Floating-Point Values.
@@ -16708,7 +16708,7 @@ func VRCPPS(mxy, xy avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VRCPPS", Operands: []avo.Operand{mxy, xy}}, nil
 }
 
 // VRCPSS: Compute Approximate Reciprocal of Scalar Single-Precision Floating-Point Values.
@@ -16724,7 +16724,7 @@ func VRCPSS(mx, x, x1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VRCPSS", Operands: []avo.Operand{mx, x, x1}}, nil
 }
 
 // VROUNDPD: Round Packed Double Precision Floating-Point Values.
@@ -16744,7 +16744,7 @@ func VROUNDPD(i, mxy, xy avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VROUNDPD", Operands: []avo.Operand{i, mxy, xy}}, nil
 }
 
 // VROUNDPS: Round Packed Single Precision Floating-Point Values.
@@ -16764,7 +16764,7 @@ func VROUNDPS(i, mxy, xy avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VROUNDPS", Operands: []avo.Operand{i, mxy, xy}}, nil
 }
 
 // VROUNDSD: Round Scalar Double Precision Floating-Point Values.
@@ -16780,7 +16780,7 @@ func VROUNDSD(i, mx, x, x1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VROUNDSD", Operands: []avo.Operand{i, mx, x, x1}}, nil
 }
 
 // VROUNDSS: Round Scalar Single Precision Floating-Point Values.
@@ -16796,7 +16796,7 @@ func VROUNDSS(i, mx, x, x1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VROUNDSS", Operands: []avo.Operand{i, mx, x, x1}}, nil
 }
 
 // VRSQRTPS: Compute Reciprocals of Square Roots of Packed Single-Precision Floating-Point Values.
@@ -16816,7 +16816,7 @@ func VRSQRTPS(mxy, xy avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VRSQRTPS", Operands: []avo.Operand{mxy, xy}}, nil
 }
 
 // VRSQRTSS: Compute Reciprocal of Square Root of Scalar Single-Precision Floating-Point Value.
@@ -16832,7 +16832,7 @@ func VRSQRTSS(mx, x, x1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VRSQRTSS", Operands: []avo.Operand{mx, x, x1}}, nil
 }
 
 // VSHUFPD: Shuffle Packed Double-Precision Floating-Point Values.
@@ -16852,7 +16852,7 @@ func VSHUFPD(i, mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VSHUFPD", Operands: []avo.Operand{i, mxy, xy, xy1}}, nil
 }
 
 // VSHUFPS: Shuffle Packed Single-Precision Floating-Point Values.
@@ -16872,7 +16872,7 @@ func VSHUFPS(i, mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VSHUFPS", Operands: []avo.Operand{i, mxy, xy, xy1}}, nil
 }
 
 // VSQRTPD: Compute Square Roots of Packed Double-Precision Floating-Point Values.
@@ -16892,7 +16892,7 @@ func VSQRTPD(mxy, xy avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VSQRTPD", Operands: []avo.Operand{mxy, xy}}, nil
 }
 
 // VSQRTPS: Compute Square Roots of Packed Single-Precision Floating-Point Values.
@@ -16912,7 +16912,7 @@ func VSQRTPS(mxy, xy avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VSQRTPS", Operands: []avo.Operand{mxy, xy}}, nil
 }
 
 // VSQRTSD: Compute Square Root of Scalar Double-Precision Floating-Point Value.
@@ -16928,7 +16928,7 @@ func VSQRTSD(mx, x, x1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VSQRTSD", Operands: []avo.Operand{mx, x, x1}}, nil
 }
 
 // VSQRTSS: Compute Square Root of Scalar Single-Precision Floating-Point Value.
@@ -16944,7 +16944,7 @@ func VSQRTSS(mx, x, x1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VSQRTSS", Operands: []avo.Operand{mx, x, x1}}, nil
 }
 
 // VSTMXCSR: Store MXCSR Register State.
@@ -16958,7 +16958,7 @@ func VSTMXCSR(m avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VSTMXCSR", Operands: []avo.Operand{m}}, nil
 }
 
 // VSUBPD: Subtract Packed Double-Precision Floating-Point Values.
@@ -16978,7 +16978,7 @@ func VSUBPD(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VSUBPD", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VSUBPS: Subtract Packed Single-Precision Floating-Point Values.
@@ -16998,7 +16998,7 @@ func VSUBPS(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VSUBPS", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VSUBSD: Subtract Scalar Double-Precision Floating-Point Values.
@@ -17014,7 +17014,7 @@ func VSUBSD(mx, x, x1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VSUBSD", Operands: []avo.Operand{mx, x, x1}}, nil
 }
 
 // VSUBSS: Subtract Scalar Single-Precision Floating-Point Values.
@@ -17030,7 +17030,7 @@ func VSUBSS(mx, x, x1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VSUBSS", Operands: []avo.Operand{mx, x, x1}}, nil
 }
 
 // VTESTPD: Packed Double-Precision Floating-Point Bit Test.
@@ -17050,7 +17050,7 @@ func VTESTPD(mxy, xy avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VTESTPD", Operands: []avo.Operand{mxy, xy}}, nil
 }
 
 // VTESTPS: Packed Single-Precision Floating-Point Bit Test.
@@ -17070,7 +17070,7 @@ func VTESTPS(mxy, xy avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VTESTPS", Operands: []avo.Operand{mxy, xy}}, nil
 }
 
 // VUCOMISD: Unordered Compare Scalar Double-Precision Floating-Point Values and Set EFLAGS.
@@ -17086,7 +17086,7 @@ func VUCOMISD(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VUCOMISD", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // VUCOMISS: Unordered Compare Scalar Single-Precision Floating-Point Values and Set EFLAGS.
@@ -17102,7 +17102,7 @@ func VUCOMISS(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VUCOMISS", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // VUNPCKHPD: Unpack and Interleave High Packed Double-Precision Floating-Point Values.
@@ -17122,7 +17122,7 @@ func VUNPCKHPD(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VUNPCKHPD", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VUNPCKHPS: Unpack and Interleave High Packed Single-Precision Floating-Point Values.
@@ -17142,7 +17142,7 @@ func VUNPCKHPS(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VUNPCKHPS", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VUNPCKLPD: Unpack and Interleave Low Packed Double-Precision Floating-Point Values.
@@ -17162,7 +17162,7 @@ func VUNPCKLPD(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VUNPCKLPD", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VUNPCKLPS: Unpack and Interleave Low Packed Single-Precision Floating-Point Values.
@@ -17182,7 +17182,7 @@ func VUNPCKLPS(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VUNPCKLPS", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VXORPD: Bitwise Logical XOR for Double-Precision Floating-Point Values.
@@ -17202,7 +17202,7 @@ func VXORPD(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VXORPD", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VXORPS: Bitwise Logical XOR for Single-Precision Floating-Point Values.
@@ -17222,7 +17222,7 @@ func VXORPS(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "VXORPS", Operands: []avo.Operand{mxy, xy, xy1}}, nil
 }
 
 // VZEROALL: Zero All YMM Registers.
@@ -17231,7 +17231,7 @@ func VXORPS(mxy, xy, xy1 avo.Operand) (*avo.Instruction, error) {
 //
 // 	VZEROALL
 func VZEROALL() (*avo.Instruction, error) {
-	return nil, nil
+	return &avo.Instruction{Opcode: "VZEROALL", Operands: nil}, nil
 }
 
 // VZEROUPPER: Zero Upper Bits of YMM Registers.
@@ -17240,7 +17240,7 @@ func VZEROALL() (*avo.Instruction, error) {
 //
 // 	VZEROUPPER
 func VZEROUPPER() (*avo.Instruction, error) {
-	return nil, nil
+	return &avo.Instruction{Opcode: "VZEROUPPER", Operands: nil}, nil
 }
 
 // XADDB: Exchange and Add.
@@ -17256,7 +17256,7 @@ func XADDB(r, mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "XADDB", Operands: []avo.Operand{r, mr}}, nil
 }
 
 // XADDL: Exchange and Add.
@@ -17272,7 +17272,7 @@ func XADDL(r, mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "XADDL", Operands: []avo.Operand{r, mr}}, nil
 }
 
 // XADDQ: Exchange and Add.
@@ -17288,7 +17288,7 @@ func XADDQ(r, mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "XADDQ", Operands: []avo.Operand{r, mr}}, nil
 }
 
 // XADDW: Exchange and Add.
@@ -17304,7 +17304,7 @@ func XADDW(r, mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "XADDW", Operands: []avo.Operand{r, mr}}, nil
 }
 
 // XCHGB: Exchange Register/Memory with Register.
@@ -17322,7 +17322,7 @@ func XCHGB(mr, mr1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "XCHGB", Operands: []avo.Operand{mr, mr1}}, nil
 }
 
 // XCHGL: Exchange Register/Memory with Register.
@@ -17344,7 +17344,7 @@ func XCHGL(emr, emr1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "XCHGL", Operands: []avo.Operand{emr, emr1}}, nil
 }
 
 // XCHGQ: Exchange Register/Memory with Register.
@@ -17366,7 +17366,7 @@ func XCHGQ(mr, mr1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "XCHGQ", Operands: []avo.Operand{mr, mr1}}, nil
 }
 
 // XCHGW: Exchange Register/Memory with Register.
@@ -17388,7 +17388,7 @@ func XCHGW(amr, amr1 avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "XCHGW", Operands: []avo.Operand{amr, amr1}}, nil
 }
 
 // XGETBV: Get Value of Extended Control Register.
@@ -17397,7 +17397,7 @@ func XCHGW(amr, amr1 avo.Operand) (*avo.Instruction, error) {
 //
 // 	XGETBV
 func XGETBV() (*avo.Instruction, error) {
-	return nil, nil
+	return &avo.Instruction{Opcode: "XGETBV", Operands: nil}, nil
 }
 
 // XLAT: Table Look-up Translation.
@@ -17407,7 +17407,7 @@ func XGETBV() (*avo.Instruction, error) {
 // 	XLAT
 // 	XLAT
 func XLAT() (*avo.Instruction, error) {
-	return nil, nil
+	return &avo.Instruction{Opcode: "XLAT", Operands: nil}, nil
 }
 
 // XORB: Logical Exclusive OR.
@@ -17431,7 +17431,7 @@ func XORB(imr, amr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "XORB", Operands: []avo.Operand{imr, amr}}, nil
 }
 
 // XORL: Logical Exclusive OR.
@@ -17459,7 +17459,7 @@ func XORL(imr, emr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "XORL", Operands: []avo.Operand{imr, emr}}, nil
 }
 
 // XORPD: Bitwise Logical XOR for Double-Precision Floating-Point Values.
@@ -17475,7 +17475,7 @@ func XORPD(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "XORPD", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // XORPS: Bitwise Logical XOR for Single-Precision Floating-Point Values.
@@ -17491,7 +17491,7 @@ func XORPS(mx, x avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "XORPS", Operands: []avo.Operand{mx, x}}, nil
 }
 
 // XORQ: Logical Exclusive OR.
@@ -17519,7 +17519,7 @@ func XORQ(imr, mr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "XORQ", Operands: []avo.Operand{imr, mr}}, nil
 }
 
 // XORW: Logical Exclusive OR.
@@ -17547,5 +17547,5 @@ func XORW(imr, amr avo.Operand) (*avo.Instruction, error) {
 	default:
 		return nil, ErrBadOperandTypes
 	}
-	return nil, nil
+	return &avo.Instruction{Opcode: "XORW", Operands: []avo.Operand{imr, amr}}, nil
 }

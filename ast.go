@@ -19,12 +19,8 @@ type Operand interface {
 
 // Instruction is a single instruction in a function.
 type Instruction struct {
-	Mnemonic string
+	Opcode   string
 	Operands []Operand
-}
-
-type Node interface {
-	Asm
 }
 
 // File represents an assembly file.
