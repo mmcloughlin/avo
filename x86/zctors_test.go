@@ -19,14 +19,50 @@ func TestADCBValidForms(t *testing.T) {
 		if _, err := ADCB(operand.Imm(math.MaxInt8), reg.CH); err != nil {
 			t.Fatal(err)
 		}
+		if _, err := ADCB(operand.Imm(math.MaxInt8), reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := ADCB(operand.Imm(math.MaxInt8), reg.R13B); err != nil {
+			t.Fatal(err)
+		}
 	})
 	t.Run("form=r8_r8", func(t *testing.T) {
 		if _, err := ADCB(reg.CH, reg.CH); err != nil {
 			t.Fatal(err)
 		}
+		if _, err := ADCB(reg.CH, reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := ADCB(reg.CH, reg.R13B); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := ADCB(reg.BL, reg.CH); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := ADCB(reg.BL, reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := ADCB(reg.BL, reg.R13B); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := ADCB(reg.R13B, reg.CH); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := ADCB(reg.R13B, reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := ADCB(reg.R13B, reg.R13B); err != nil {
+			t.Fatal(err)
+		}
 	})
 	t.Run("form=m8_r8", func(t *testing.T) {
 		if _, err := ADCB(operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}, reg.CH); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := ADCB(operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}, reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := ADCB(operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}, reg.R13B); err != nil {
 			t.Fatal(err)
 		}
 	})
@@ -37,6 +73,12 @@ func TestADCBValidForms(t *testing.T) {
 	})
 	t.Run("form=r8_m8", func(t *testing.T) {
 		if _, err := ADCB(reg.CH, operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := ADCB(reg.BL, operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := ADCB(reg.R13B, operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}); err != nil {
 			t.Fatal(err)
 		}
 	})
@@ -135,21 +177,39 @@ func TestADCWValidForms(t *testing.T) {
 		}
 	})
 	t.Run("form=imm8_r16", func(t *testing.T) {
+		if _, err := ADCW(operand.Imm(math.MaxInt8), reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := ADCW(operand.Imm(math.MaxInt8), reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=imm16_r16", func(t *testing.T) {
+		if _, err := ADCW(operand.Imm(math.MaxInt16), reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := ADCW(operand.Imm(math.MaxInt16), reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=r16_r16", func(t *testing.T) {
+		if _, err := ADCW(reg.CX, reg.CX); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := ADCW(reg.CX, reg.R9W); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := ADCW(reg.R9W, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := ADCW(reg.R9W, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=m16_r16", func(t *testing.T) {
+		if _, err := ADCW(operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := ADCW(operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
@@ -165,6 +225,9 @@ func TestADCWValidForms(t *testing.T) {
 		}
 	})
 	t.Run("form=r16_m16", func(t *testing.T) {
+		if _, err := ADCW(reg.CX, operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := ADCW(reg.R9W, operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}); err != nil {
 			t.Fatal(err)
 		}
@@ -207,14 +270,50 @@ func TestADDBValidForms(t *testing.T) {
 		if _, err := ADDB(operand.Imm(math.MaxInt8), reg.CH); err != nil {
 			t.Fatal(err)
 		}
+		if _, err := ADDB(operand.Imm(math.MaxInt8), reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := ADDB(operand.Imm(math.MaxInt8), reg.R13B); err != nil {
+			t.Fatal(err)
+		}
 	})
 	t.Run("form=r8_r8", func(t *testing.T) {
 		if _, err := ADDB(reg.CH, reg.CH); err != nil {
 			t.Fatal(err)
 		}
+		if _, err := ADDB(reg.CH, reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := ADDB(reg.CH, reg.R13B); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := ADDB(reg.BL, reg.CH); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := ADDB(reg.BL, reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := ADDB(reg.BL, reg.R13B); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := ADDB(reg.R13B, reg.CH); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := ADDB(reg.R13B, reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := ADDB(reg.R13B, reg.R13B); err != nil {
+			t.Fatal(err)
+		}
 	})
 	t.Run("form=m8_r8", func(t *testing.T) {
 		if _, err := ADDB(operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}, reg.CH); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := ADDB(operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}, reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := ADDB(operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}, reg.R13B); err != nil {
 			t.Fatal(err)
 		}
 	})
@@ -225,6 +324,12 @@ func TestADDBValidForms(t *testing.T) {
 	})
 	t.Run("form=r8_m8", func(t *testing.T) {
 		if _, err := ADDB(reg.CH, operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := ADDB(reg.BL, operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := ADDB(reg.R13B, operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}); err != nil {
 			t.Fatal(err)
 		}
 	})
@@ -401,21 +506,39 @@ func TestADDWValidForms(t *testing.T) {
 		}
 	})
 	t.Run("form=imm8_r16", func(t *testing.T) {
+		if _, err := ADDW(operand.Imm(math.MaxInt8), reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := ADDW(operand.Imm(math.MaxInt8), reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=imm16_r16", func(t *testing.T) {
+		if _, err := ADDW(operand.Imm(math.MaxInt16), reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := ADDW(operand.Imm(math.MaxInt16), reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=r16_r16", func(t *testing.T) {
+		if _, err := ADDW(reg.CX, reg.CX); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := ADDW(reg.CX, reg.R9W); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := ADDW(reg.R9W, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := ADDW(reg.R9W, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=m16_r16", func(t *testing.T) {
+		if _, err := ADDW(operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := ADDW(operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
@@ -431,6 +554,9 @@ func TestADDWValidForms(t *testing.T) {
 		}
 	})
 	t.Run("form=r16_m16", func(t *testing.T) {
+		if _, err := ADDW(reg.CX, operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := ADDW(reg.R9W, operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}); err != nil {
 			t.Fatal(err)
 		}
@@ -551,14 +677,50 @@ func TestANDBValidForms(t *testing.T) {
 		if _, err := ANDB(operand.Imm(math.MaxInt8), reg.CH); err != nil {
 			t.Fatal(err)
 		}
+		if _, err := ANDB(operand.Imm(math.MaxInt8), reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := ANDB(operand.Imm(math.MaxInt8), reg.R13B); err != nil {
+			t.Fatal(err)
+		}
 	})
 	t.Run("form=r8_r8", func(t *testing.T) {
 		if _, err := ANDB(reg.CH, reg.CH); err != nil {
 			t.Fatal(err)
 		}
+		if _, err := ANDB(reg.CH, reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := ANDB(reg.CH, reg.R13B); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := ANDB(reg.BL, reg.CH); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := ANDB(reg.BL, reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := ANDB(reg.BL, reg.R13B); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := ANDB(reg.R13B, reg.CH); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := ANDB(reg.R13B, reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := ANDB(reg.R13B, reg.R13B); err != nil {
+			t.Fatal(err)
+		}
 	})
 	t.Run("form=m8_r8", func(t *testing.T) {
 		if _, err := ANDB(operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}, reg.CH); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := ANDB(operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}, reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := ANDB(operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}, reg.R13B); err != nil {
 			t.Fatal(err)
 		}
 	})
@@ -569,6 +731,12 @@ func TestANDBValidForms(t *testing.T) {
 	})
 	t.Run("form=r8_m8", func(t *testing.T) {
 		if _, err := ANDB(reg.CH, operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := ANDB(reg.BL, operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := ANDB(reg.R13B, operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}); err != nil {
 			t.Fatal(err)
 		}
 	})
@@ -745,21 +913,39 @@ func TestANDWValidForms(t *testing.T) {
 		}
 	})
 	t.Run("form=imm8_r16", func(t *testing.T) {
+		if _, err := ANDW(operand.Imm(math.MaxInt8), reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := ANDW(operand.Imm(math.MaxInt8), reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=imm16_r16", func(t *testing.T) {
+		if _, err := ANDW(operand.Imm(math.MaxInt16), reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := ANDW(operand.Imm(math.MaxInt16), reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=r16_r16", func(t *testing.T) {
+		if _, err := ANDW(reg.CX, reg.CX); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := ANDW(reg.CX, reg.R9W); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := ANDW(reg.R9W, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := ANDW(reg.R9W, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=m16_r16", func(t *testing.T) {
+		if _, err := ANDW(operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := ANDW(operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
@@ -775,6 +961,9 @@ func TestANDWValidForms(t *testing.T) {
 		}
 	})
 	t.Run("form=r16_m16", func(t *testing.T) {
+		if _, err := ANDW(reg.CX, operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := ANDW(reg.R9W, operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}); err != nil {
 			t.Fatal(err)
 		}
@@ -965,11 +1154,23 @@ func TestBSFQValidForms(t *testing.T) {
 
 func TestBSFWValidForms(t *testing.T) {
 	t.Run("form=r16_r16", func(t *testing.T) {
+		if _, err := BSFW(reg.CX, reg.CX); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := BSFW(reg.CX, reg.R9W); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := BSFW(reg.R9W, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := BSFW(reg.R9W, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=m16_r16", func(t *testing.T) {
+		if _, err := BSFW(operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := BSFW(operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
@@ -1004,11 +1205,23 @@ func TestBSRQValidForms(t *testing.T) {
 
 func TestBSRWValidForms(t *testing.T) {
 	t.Run("form=r16_r16", func(t *testing.T) {
+		if _, err := BSRW(reg.CX, reg.CX); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := BSRW(reg.CX, reg.R9W); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := BSRW(reg.R9W, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := BSRW(reg.R9W, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=m16_r16", func(t *testing.T) {
+		if _, err := BSRW(operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := BSRW(operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
@@ -1079,11 +1292,23 @@ func TestBTCQValidForms(t *testing.T) {
 
 func TestBTCWValidForms(t *testing.T) {
 	t.Run("form=imm8_r16", func(t *testing.T) {
+		if _, err := BTCW(operand.Imm(math.MaxInt8), reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := BTCW(operand.Imm(math.MaxInt8), reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=r16_r16", func(t *testing.T) {
+		if _, err := BTCW(reg.CX, reg.CX); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := BTCW(reg.CX, reg.R9W); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := BTCW(reg.R9W, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := BTCW(reg.R9W, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
@@ -1094,6 +1319,9 @@ func TestBTCWValidForms(t *testing.T) {
 		}
 	})
 	t.Run("form=r16_m16", func(t *testing.T) {
+		if _, err := BTCW(reg.CX, operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := BTCW(reg.R9W, operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}); err != nil {
 			t.Fatal(err)
 		}
@@ -1194,11 +1422,23 @@ func TestBTRQValidForms(t *testing.T) {
 
 func TestBTRWValidForms(t *testing.T) {
 	t.Run("form=imm8_r16", func(t *testing.T) {
+		if _, err := BTRW(operand.Imm(math.MaxInt8), reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := BTRW(operand.Imm(math.MaxInt8), reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=r16_r16", func(t *testing.T) {
+		if _, err := BTRW(reg.CX, reg.CX); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := BTRW(reg.CX, reg.R9W); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := BTRW(reg.R9W, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := BTRW(reg.R9W, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
@@ -1209,6 +1449,9 @@ func TestBTRWValidForms(t *testing.T) {
 		}
 	})
 	t.Run("form=r16_m16", func(t *testing.T) {
+		if _, err := BTRW(reg.CX, operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := BTRW(reg.R9W, operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}); err != nil {
 			t.Fatal(err)
 		}
@@ -1263,11 +1506,23 @@ func TestBTSQValidForms(t *testing.T) {
 
 func TestBTSWValidForms(t *testing.T) {
 	t.Run("form=imm8_r16", func(t *testing.T) {
+		if _, err := BTSW(operand.Imm(math.MaxInt8), reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := BTSW(operand.Imm(math.MaxInt8), reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=r16_r16", func(t *testing.T) {
+		if _, err := BTSW(reg.CX, reg.CX); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := BTSW(reg.CX, reg.R9W); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := BTSW(reg.R9W, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := BTSW(reg.R9W, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
@@ -1278,6 +1533,9 @@ func TestBTSWValidForms(t *testing.T) {
 		}
 	})
 	t.Run("form=r16_m16", func(t *testing.T) {
+		if _, err := BTSW(reg.CX, operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := BTSW(reg.R9W, operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}); err != nil {
 			t.Fatal(err)
 		}
@@ -1286,11 +1544,23 @@ func TestBTSWValidForms(t *testing.T) {
 
 func TestBTWValidForms(t *testing.T) {
 	t.Run("form=imm8_r16", func(t *testing.T) {
+		if _, err := BTW(operand.Imm(math.MaxInt8), reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := BTW(operand.Imm(math.MaxInt8), reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=r16_r16", func(t *testing.T) {
+		if _, err := BTW(reg.CX, reg.CX); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := BTW(reg.CX, reg.R9W); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := BTW(reg.R9W, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := BTW(reg.R9W, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
@@ -1301,6 +1571,9 @@ func TestBTWValidForms(t *testing.T) {
 		}
 	})
 	t.Run("form=r16_m16", func(t *testing.T) {
+		if _, err := BTW(reg.CX, operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := BTW(reg.R9W, operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}); err != nil {
 			t.Fatal(err)
 		}
@@ -1826,11 +2099,23 @@ func TestCMOVQPSValidForms(t *testing.T) {
 
 func TestCMOVWCCValidForms(t *testing.T) {
 	t.Run("form=r16_r16", func(t *testing.T) {
+		if _, err := CMOVWCC(reg.CX, reg.CX); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := CMOVWCC(reg.CX, reg.R9W); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := CMOVWCC(reg.R9W, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := CMOVWCC(reg.R9W, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=m16_r16", func(t *testing.T) {
+		if _, err := CMOVWCC(operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := CMOVWCC(operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
@@ -1839,11 +2124,23 @@ func TestCMOVWCCValidForms(t *testing.T) {
 
 func TestCMOVWCSValidForms(t *testing.T) {
 	t.Run("form=r16_r16", func(t *testing.T) {
+		if _, err := CMOVWCS(reg.CX, reg.CX); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := CMOVWCS(reg.CX, reg.R9W); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := CMOVWCS(reg.R9W, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := CMOVWCS(reg.R9W, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=m16_r16", func(t *testing.T) {
+		if _, err := CMOVWCS(operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := CMOVWCS(operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
@@ -1852,11 +2149,23 @@ func TestCMOVWCSValidForms(t *testing.T) {
 
 func TestCMOVWEQValidForms(t *testing.T) {
 	t.Run("form=r16_r16", func(t *testing.T) {
+		if _, err := CMOVWEQ(reg.CX, reg.CX); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := CMOVWEQ(reg.CX, reg.R9W); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := CMOVWEQ(reg.R9W, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := CMOVWEQ(reg.R9W, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=m16_r16", func(t *testing.T) {
+		if _, err := CMOVWEQ(operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := CMOVWEQ(operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
@@ -1865,11 +2174,23 @@ func TestCMOVWEQValidForms(t *testing.T) {
 
 func TestCMOVWGEValidForms(t *testing.T) {
 	t.Run("form=r16_r16", func(t *testing.T) {
+		if _, err := CMOVWGE(reg.CX, reg.CX); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := CMOVWGE(reg.CX, reg.R9W); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := CMOVWGE(reg.R9W, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := CMOVWGE(reg.R9W, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=m16_r16", func(t *testing.T) {
+		if _, err := CMOVWGE(operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := CMOVWGE(operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
@@ -1878,11 +2199,23 @@ func TestCMOVWGEValidForms(t *testing.T) {
 
 func TestCMOVWGTValidForms(t *testing.T) {
 	t.Run("form=r16_r16", func(t *testing.T) {
+		if _, err := CMOVWGT(reg.CX, reg.CX); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := CMOVWGT(reg.CX, reg.R9W); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := CMOVWGT(reg.R9W, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := CMOVWGT(reg.R9W, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=m16_r16", func(t *testing.T) {
+		if _, err := CMOVWGT(operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := CMOVWGT(operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
@@ -1891,11 +2224,23 @@ func TestCMOVWGTValidForms(t *testing.T) {
 
 func TestCMOVWHIValidForms(t *testing.T) {
 	t.Run("form=r16_r16", func(t *testing.T) {
+		if _, err := CMOVWHI(reg.CX, reg.CX); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := CMOVWHI(reg.CX, reg.R9W); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := CMOVWHI(reg.R9W, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := CMOVWHI(reg.R9W, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=m16_r16", func(t *testing.T) {
+		if _, err := CMOVWHI(operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := CMOVWHI(operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
@@ -1904,11 +2249,23 @@ func TestCMOVWHIValidForms(t *testing.T) {
 
 func TestCMOVWLEValidForms(t *testing.T) {
 	t.Run("form=r16_r16", func(t *testing.T) {
+		if _, err := CMOVWLE(reg.CX, reg.CX); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := CMOVWLE(reg.CX, reg.R9W); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := CMOVWLE(reg.R9W, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := CMOVWLE(reg.R9W, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=m16_r16", func(t *testing.T) {
+		if _, err := CMOVWLE(operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := CMOVWLE(operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
@@ -1917,11 +2274,23 @@ func TestCMOVWLEValidForms(t *testing.T) {
 
 func TestCMOVWLSValidForms(t *testing.T) {
 	t.Run("form=r16_r16", func(t *testing.T) {
+		if _, err := CMOVWLS(reg.CX, reg.CX); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := CMOVWLS(reg.CX, reg.R9W); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := CMOVWLS(reg.R9W, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := CMOVWLS(reg.R9W, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=m16_r16", func(t *testing.T) {
+		if _, err := CMOVWLS(operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := CMOVWLS(operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
@@ -1930,11 +2299,23 @@ func TestCMOVWLSValidForms(t *testing.T) {
 
 func TestCMOVWLTValidForms(t *testing.T) {
 	t.Run("form=r16_r16", func(t *testing.T) {
+		if _, err := CMOVWLT(reg.CX, reg.CX); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := CMOVWLT(reg.CX, reg.R9W); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := CMOVWLT(reg.R9W, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := CMOVWLT(reg.R9W, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=m16_r16", func(t *testing.T) {
+		if _, err := CMOVWLT(operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := CMOVWLT(operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
@@ -1943,11 +2324,23 @@ func TestCMOVWLTValidForms(t *testing.T) {
 
 func TestCMOVWMIValidForms(t *testing.T) {
 	t.Run("form=r16_r16", func(t *testing.T) {
+		if _, err := CMOVWMI(reg.CX, reg.CX); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := CMOVWMI(reg.CX, reg.R9W); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := CMOVWMI(reg.R9W, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := CMOVWMI(reg.R9W, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=m16_r16", func(t *testing.T) {
+		if _, err := CMOVWMI(operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := CMOVWMI(operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
@@ -1956,11 +2349,23 @@ func TestCMOVWMIValidForms(t *testing.T) {
 
 func TestCMOVWNEValidForms(t *testing.T) {
 	t.Run("form=r16_r16", func(t *testing.T) {
+		if _, err := CMOVWNE(reg.CX, reg.CX); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := CMOVWNE(reg.CX, reg.R9W); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := CMOVWNE(reg.R9W, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := CMOVWNE(reg.R9W, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=m16_r16", func(t *testing.T) {
+		if _, err := CMOVWNE(operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := CMOVWNE(operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
@@ -1969,11 +2374,23 @@ func TestCMOVWNEValidForms(t *testing.T) {
 
 func TestCMOVWOCValidForms(t *testing.T) {
 	t.Run("form=r16_r16", func(t *testing.T) {
+		if _, err := CMOVWOC(reg.CX, reg.CX); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := CMOVWOC(reg.CX, reg.R9W); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := CMOVWOC(reg.R9W, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := CMOVWOC(reg.R9W, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=m16_r16", func(t *testing.T) {
+		if _, err := CMOVWOC(operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := CMOVWOC(operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
@@ -1982,11 +2399,23 @@ func TestCMOVWOCValidForms(t *testing.T) {
 
 func TestCMOVWOSValidForms(t *testing.T) {
 	t.Run("form=r16_r16", func(t *testing.T) {
+		if _, err := CMOVWOS(reg.CX, reg.CX); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := CMOVWOS(reg.CX, reg.R9W); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := CMOVWOS(reg.R9W, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := CMOVWOS(reg.R9W, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=m16_r16", func(t *testing.T) {
+		if _, err := CMOVWOS(operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := CMOVWOS(operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
@@ -1995,11 +2424,23 @@ func TestCMOVWOSValidForms(t *testing.T) {
 
 func TestCMOVWPCValidForms(t *testing.T) {
 	t.Run("form=r16_r16", func(t *testing.T) {
+		if _, err := CMOVWPC(reg.CX, reg.CX); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := CMOVWPC(reg.CX, reg.R9W); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := CMOVWPC(reg.R9W, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := CMOVWPC(reg.R9W, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=m16_r16", func(t *testing.T) {
+		if _, err := CMOVWPC(operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := CMOVWPC(operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
@@ -2008,11 +2449,23 @@ func TestCMOVWPCValidForms(t *testing.T) {
 
 func TestCMOVWPLValidForms(t *testing.T) {
 	t.Run("form=r16_r16", func(t *testing.T) {
+		if _, err := CMOVWPL(reg.CX, reg.CX); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := CMOVWPL(reg.CX, reg.R9W); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := CMOVWPL(reg.R9W, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := CMOVWPL(reg.R9W, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=m16_r16", func(t *testing.T) {
+		if _, err := CMOVWPL(operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := CMOVWPL(operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
@@ -2021,11 +2474,23 @@ func TestCMOVWPLValidForms(t *testing.T) {
 
 func TestCMOVWPSValidForms(t *testing.T) {
 	t.Run("form=r16_r16", func(t *testing.T) {
+		if _, err := CMOVWPS(reg.CX, reg.CX); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := CMOVWPS(reg.CX, reg.R9W); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := CMOVWPS(reg.R9W, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := CMOVWPS(reg.R9W, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=m16_r16", func(t *testing.T) {
+		if _, err := CMOVWPS(operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := CMOVWPS(operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
@@ -2042,14 +2507,50 @@ func TestCMPBValidForms(t *testing.T) {
 		if _, err := CMPB(reg.CH, operand.Imm(math.MaxInt8)); err != nil {
 			t.Fatal(err)
 		}
+		if _, err := CMPB(reg.BL, operand.Imm(math.MaxInt8)); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := CMPB(reg.R13B, operand.Imm(math.MaxInt8)); err != nil {
+			t.Fatal(err)
+		}
 	})
 	t.Run("form=r8_r8", func(t *testing.T) {
 		if _, err := CMPB(reg.CH, reg.CH); err != nil {
 			t.Fatal(err)
 		}
+		if _, err := CMPB(reg.CH, reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := CMPB(reg.CH, reg.R13B); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := CMPB(reg.BL, reg.CH); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := CMPB(reg.BL, reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := CMPB(reg.BL, reg.R13B); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := CMPB(reg.R13B, reg.CH); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := CMPB(reg.R13B, reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := CMPB(reg.R13B, reg.R13B); err != nil {
+			t.Fatal(err)
+		}
 	})
 	t.Run("form=r8_m8", func(t *testing.T) {
 		if _, err := CMPB(reg.CH, operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := CMPB(reg.BL, operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := CMPB(reg.R13B, operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}); err != nil {
 			t.Fatal(err)
 		}
 	})
@@ -2060,6 +2561,12 @@ func TestCMPBValidForms(t *testing.T) {
 	})
 	t.Run("form=m8_r8", func(t *testing.T) {
 		if _, err := CMPB(operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}, reg.CH); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := CMPB(operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}, reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := CMPB(operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}, reg.R13B); err != nil {
 			t.Fatal(err)
 		}
 	})
@@ -2210,21 +2717,39 @@ func TestCMPWValidForms(t *testing.T) {
 		}
 	})
 	t.Run("form=r16_imm8", func(t *testing.T) {
+		if _, err := CMPW(reg.CX, operand.Imm(math.MaxInt8)); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := CMPW(reg.R9W, operand.Imm(math.MaxInt8)); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=r16_imm16", func(t *testing.T) {
+		if _, err := CMPW(reg.CX, operand.Imm(math.MaxInt16)); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := CMPW(reg.R9W, operand.Imm(math.MaxInt16)); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=r16_r16", func(t *testing.T) {
+		if _, err := CMPW(reg.CX, reg.CX); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := CMPW(reg.CX, reg.R9W); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := CMPW(reg.R9W, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := CMPW(reg.R9W, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=r16_m16", func(t *testing.T) {
+		if _, err := CMPW(reg.CX, operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := CMPW(reg.R9W, operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}); err != nil {
 			t.Fatal(err)
 		}
@@ -2240,6 +2765,9 @@ func TestCMPWValidForms(t *testing.T) {
 		}
 	})
 	t.Run("form=m16_r16", func(t *testing.T) {
+		if _, err := CMPW(operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := CMPW(operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
@@ -2267,9 +2795,39 @@ func TestCMPXCHGBValidForms(t *testing.T) {
 		if _, err := CMPXCHGB(reg.CH, reg.CH); err != nil {
 			t.Fatal(err)
 		}
+		if _, err := CMPXCHGB(reg.CH, reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := CMPXCHGB(reg.CH, reg.R13B); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := CMPXCHGB(reg.BL, reg.CH); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := CMPXCHGB(reg.BL, reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := CMPXCHGB(reg.BL, reg.R13B); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := CMPXCHGB(reg.R13B, reg.CH); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := CMPXCHGB(reg.R13B, reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := CMPXCHGB(reg.R13B, reg.R13B); err != nil {
+			t.Fatal(err)
+		}
 	})
 	t.Run("form=r8_m8", func(t *testing.T) {
 		if _, err := CMPXCHGB(reg.CH, operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := CMPXCHGB(reg.BL, operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := CMPXCHGB(reg.R13B, operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}); err != nil {
 			t.Fatal(err)
 		}
 	})
@@ -2303,11 +2861,23 @@ func TestCMPXCHGQValidForms(t *testing.T) {
 
 func TestCMPXCHGWValidForms(t *testing.T) {
 	t.Run("form=r16_r16", func(t *testing.T) {
+		if _, err := CMPXCHGW(reg.CX, reg.CX); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := CMPXCHGW(reg.CX, reg.R9W); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := CMPXCHGW(reg.R9W, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := CMPXCHGW(reg.R9W, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=r16_m16", func(t *testing.T) {
+		if _, err := CMPXCHGW(reg.CX, operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := CMPXCHGW(reg.R9W, operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}); err != nil {
 			t.Fatal(err)
 		}
@@ -2361,6 +2931,12 @@ func TestCRC32BValidForms(t *testing.T) {
 		if _, err := CRC32B(reg.CH, reg.R10L); err != nil {
 			t.Fatal(err)
 		}
+		if _, err := CRC32B(reg.BL, reg.R10L); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := CRC32B(reg.R13B, reg.R10L); err != nil {
+			t.Fatal(err)
+		}
 	})
 	t.Run("form=m8_r32", func(t *testing.T) {
 		if _, err := CRC32B(operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}, reg.R10L); err != nil {
@@ -2369,6 +2945,12 @@ func TestCRC32BValidForms(t *testing.T) {
 	})
 	t.Run("form=r8_r64", func(t *testing.T) {
 		if _, err := CRC32B(reg.CH, reg.R11); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := CRC32B(reg.BL, reg.R11); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := CRC32B(reg.R13B, reg.R11); err != nil {
 			t.Fatal(err)
 		}
 	})
@@ -2407,6 +2989,9 @@ func TestCRC32QValidForms(t *testing.T) {
 
 func TestCRC32WValidForms(t *testing.T) {
 	t.Run("form=r16_r32", func(t *testing.T) {
+		if _, err := CRC32W(reg.CX, reg.R10L); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := CRC32W(reg.R9W, reg.R10L); err != nil {
 			t.Fatal(err)
 		}
@@ -2721,6 +3306,12 @@ func TestDECBValidForms(t *testing.T) {
 		if _, err := DECB(reg.CH); err != nil {
 			t.Fatal(err)
 		}
+		if _, err := DECB(reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := DECB(reg.R13B); err != nil {
+			t.Fatal(err)
+		}
 	})
 	t.Run("form=m8", func(t *testing.T) {
 		if _, err := DECB(operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}); err != nil {
@@ -2757,6 +3348,9 @@ func TestDECQValidForms(t *testing.T) {
 
 func TestDECWValidForms(t *testing.T) {
 	t.Run("form=r16", func(t *testing.T) {
+		if _, err := DECW(reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := DECW(reg.R9W); err != nil {
 			t.Fatal(err)
 		}
@@ -2771,6 +3365,12 @@ func TestDECWValidForms(t *testing.T) {
 func TestDIVBValidForms(t *testing.T) {
 	t.Run("form=r8", func(t *testing.T) {
 		if _, err := DIVB(reg.CH); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := DIVB(reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := DIVB(reg.R13B); err != nil {
 			t.Fatal(err)
 		}
 	})
@@ -2861,6 +3461,9 @@ func TestDIVSSValidForms(t *testing.T) {
 
 func TestDIVWValidForms(t *testing.T) {
 	t.Run("form=r16", func(t *testing.T) {
+		if _, err := DIVW(reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := DIVW(reg.R9W); err != nil {
 			t.Fatal(err)
 		}
@@ -2900,11 +3503,17 @@ func TestDPPSValidForms(t *testing.T) {
 
 func TestEXTRACTPSValidForms(t *testing.T) {
 	t.Run("form=imm2u_xmm_r32", func(t *testing.T) {
+		if _, err := EXTRACTPS(operand.Imm(1), reg.X7, reg.R10L); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := EXTRACTPS(operand.Imm(3), reg.X7, reg.R10L); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=imm2u_xmm_m32", func(t *testing.T) {
+		if _, err := EXTRACTPS(operand.Imm(1), reg.X7, operand.Mem{Base: reg.EBX, Index: reg.ECX, Scale: 4}); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := EXTRACTPS(operand.Imm(3), reg.X7, operand.Mem{Base: reg.EBX, Index: reg.ECX, Scale: 4}); err != nil {
 			t.Fatal(err)
 		}
@@ -2968,6 +3577,12 @@ func TestIDIVBValidForms(t *testing.T) {
 		if _, err := IDIVB(reg.CH); err != nil {
 			t.Fatal(err)
 		}
+		if _, err := IDIVB(reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := IDIVB(reg.R13B); err != nil {
+			t.Fatal(err)
+		}
 	})
 	t.Run("form=m8", func(t *testing.T) {
 		if _, err := IDIVB(operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}); err != nil {
@@ -3004,6 +3619,9 @@ func TestIDIVQValidForms(t *testing.T) {
 
 func TestIDIVWValidForms(t *testing.T) {
 	t.Run("form=r16", func(t *testing.T) {
+		if _, err := IDIVW(reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := IDIVW(reg.R9W); err != nil {
 			t.Fatal(err)
 		}
@@ -3063,21 +3681,45 @@ func TestIMUL3QValidForms(t *testing.T) {
 
 func TestIMUL3WValidForms(t *testing.T) {
 	t.Run("form=imm8_r16_r16", func(t *testing.T) {
+		if _, err := IMUL3W(operand.Imm(math.MaxInt8), reg.CX, reg.CX); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := IMUL3W(operand.Imm(math.MaxInt8), reg.CX, reg.R9W); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := IMUL3W(operand.Imm(math.MaxInt8), reg.R9W, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := IMUL3W(operand.Imm(math.MaxInt8), reg.R9W, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=imm16_r16_r16", func(t *testing.T) {
+		if _, err := IMUL3W(operand.Imm(math.MaxInt16), reg.CX, reg.CX); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := IMUL3W(operand.Imm(math.MaxInt16), reg.CX, reg.R9W); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := IMUL3W(operand.Imm(math.MaxInt16), reg.R9W, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := IMUL3W(operand.Imm(math.MaxInt16), reg.R9W, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=imm8_m16_r16", func(t *testing.T) {
+		if _, err := IMUL3W(operand.Imm(math.MaxInt8), operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := IMUL3W(operand.Imm(math.MaxInt8), operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=imm16_m16_r16", func(t *testing.T) {
+		if _, err := IMUL3W(operand.Imm(math.MaxInt16), operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := IMUL3W(operand.Imm(math.MaxInt16), operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
@@ -3087,6 +3729,12 @@ func TestIMUL3WValidForms(t *testing.T) {
 func TestIMULBValidForms(t *testing.T) {
 	t.Run("form=r8", func(t *testing.T) {
 		if _, err := IMULB(reg.CH); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := IMULB(reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := IMULB(reg.R13B); err != nil {
 			t.Fatal(err)
 		}
 	})
@@ -3145,6 +3793,9 @@ func TestIMULQValidForms(t *testing.T) {
 
 func TestIMULWValidForms(t *testing.T) {
 	t.Run("form=r16", func(t *testing.T) {
+		if _, err := IMULW(reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := IMULW(reg.R9W); err != nil {
 			t.Fatal(err)
 		}
@@ -3155,11 +3806,23 @@ func TestIMULWValidForms(t *testing.T) {
 		}
 	})
 	t.Run("form=r16_r16", func(t *testing.T) {
+		if _, err := IMULW(reg.CX, reg.CX); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := IMULW(reg.CX, reg.R9W); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := IMULW(reg.R9W, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := IMULW(reg.R9W, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=m16_r16", func(t *testing.T) {
+		if _, err := IMULW(operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := IMULW(operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
@@ -3169,6 +3832,12 @@ func TestIMULWValidForms(t *testing.T) {
 func TestINCBValidForms(t *testing.T) {
 	t.Run("form=r8", func(t *testing.T) {
 		if _, err := INCB(reg.CH); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := INCB(reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := INCB(reg.R13B); err != nil {
 			t.Fatal(err)
 		}
 	})
@@ -3207,6 +3876,9 @@ func TestINCQValidForms(t *testing.T) {
 
 func TestINCWValidForms(t *testing.T) {
 	t.Run("form=r16", func(t *testing.T) {
+		if _, err := INCW(reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := INCW(reg.R9W); err != nil {
 			t.Fatal(err)
 		}
@@ -4651,6 +5323,9 @@ func TestLEAQValidForms(t *testing.T) {
 
 func TestLEAWValidForms(t *testing.T) {
 	t.Run("form=m_r16", func(t *testing.T) {
+		if _, err := LEAW(operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := LEAW(operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
@@ -4693,11 +5368,23 @@ func TestLZCNTQValidForms(t *testing.T) {
 
 func TestLZCNTWValidForms(t *testing.T) {
 	t.Run("form=r16_r16", func(t *testing.T) {
+		if _, err := LZCNTW(reg.CX, reg.CX); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := LZCNTW(reg.CX, reg.R9W); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := LZCNTW(reg.R9W, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := LZCNTW(reg.R9W, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=m16_r16", func(t *testing.T) {
+		if _, err := LZCNTW(operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := LZCNTW(operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
@@ -4881,14 +5568,50 @@ func TestMOVBValidForms(t *testing.T) {
 		if _, err := MOVB(operand.Imm(math.MaxInt8), reg.CH); err != nil {
 			t.Fatal(err)
 		}
+		if _, err := MOVB(operand.Imm(math.MaxInt8), reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := MOVB(operand.Imm(math.MaxInt8), reg.R13B); err != nil {
+			t.Fatal(err)
+		}
 	})
 	t.Run("form=r8_r8", func(t *testing.T) {
 		if _, err := MOVB(reg.CH, reg.CH); err != nil {
 			t.Fatal(err)
 		}
+		if _, err := MOVB(reg.CH, reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := MOVB(reg.CH, reg.R13B); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := MOVB(reg.BL, reg.CH); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := MOVB(reg.BL, reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := MOVB(reg.BL, reg.R13B); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := MOVB(reg.R13B, reg.CH); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := MOVB(reg.R13B, reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := MOVB(reg.R13B, reg.R13B); err != nil {
+			t.Fatal(err)
+		}
 	})
 	t.Run("form=m8_r8", func(t *testing.T) {
 		if _, err := MOVB(operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}, reg.CH); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := MOVB(operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}, reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := MOVB(operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}, reg.R13B); err != nil {
 			t.Fatal(err)
 		}
 	})
@@ -4899,6 +5622,12 @@ func TestMOVBValidForms(t *testing.T) {
 	})
 	t.Run("form=r8_m8", func(t *testing.T) {
 		if _, err := MOVB(reg.CH, operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := MOVB(reg.BL, operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := MOVB(reg.R13B, operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}); err != nil {
 			t.Fatal(err)
 		}
 	})
@@ -4932,11 +5661,17 @@ func TestMOVBEQQValidForms(t *testing.T) {
 
 func TestMOVBEWWValidForms(t *testing.T) {
 	t.Run("form=m16_r16", func(t *testing.T) {
+		if _, err := MOVBEWW(operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := MOVBEWW(operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=r16_m16", func(t *testing.T) {
+		if _, err := MOVBEWW(reg.CX, operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := MOVBEWW(reg.R9W, operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}); err != nil {
 			t.Fatal(err)
 		}
@@ -4946,6 +5681,12 @@ func TestMOVBEWWValidForms(t *testing.T) {
 func TestMOVBLSXValidForms(t *testing.T) {
 	t.Run("form=r8_r32", func(t *testing.T) {
 		if _, err := MOVBLSX(reg.CH, reg.R10L); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := MOVBLSX(reg.BL, reg.R10L); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := MOVBLSX(reg.R13B, reg.R10L); err != nil {
 			t.Fatal(err)
 		}
 	})
@@ -4961,6 +5702,12 @@ func TestMOVBLZXValidForms(t *testing.T) {
 		if _, err := MOVBLZX(reg.CH, reg.R10L); err != nil {
 			t.Fatal(err)
 		}
+		if _, err := MOVBLZX(reg.BL, reg.R10L); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := MOVBLZX(reg.R13B, reg.R10L); err != nil {
+			t.Fatal(err)
+		}
 	})
 	t.Run("form=m8_r32", func(t *testing.T) {
 		if _, err := MOVBLZX(operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}, reg.R10L); err != nil {
@@ -4972,6 +5719,12 @@ func TestMOVBLZXValidForms(t *testing.T) {
 func TestMOVBQSXValidForms(t *testing.T) {
 	t.Run("form=r8_r64", func(t *testing.T) {
 		if _, err := MOVBQSX(reg.CH, reg.R11); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := MOVBQSX(reg.BL, reg.R11); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := MOVBQSX(reg.R13B, reg.R11); err != nil {
 			t.Fatal(err)
 		}
 	})
@@ -4987,6 +5740,12 @@ func TestMOVBQZXValidForms(t *testing.T) {
 		if _, err := MOVBQZX(reg.CH, reg.R11); err != nil {
 			t.Fatal(err)
 		}
+		if _, err := MOVBQZX(reg.BL, reg.R11); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := MOVBQZX(reg.R13B, reg.R11); err != nil {
+			t.Fatal(err)
+		}
 	})
 	t.Run("form=m8_r64", func(t *testing.T) {
 		if _, err := MOVBQZX(operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}, reg.R11); err != nil {
@@ -4997,11 +5756,29 @@ func TestMOVBQZXValidForms(t *testing.T) {
 
 func TestMOVBWSXValidForms(t *testing.T) {
 	t.Run("form=r8_r16", func(t *testing.T) {
+		if _, err := MOVBWSX(reg.CH, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := MOVBWSX(reg.CH, reg.R9W); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := MOVBWSX(reg.BL, reg.CX); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := MOVBWSX(reg.BL, reg.R9W); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := MOVBWSX(reg.R13B, reg.CX); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := MOVBWSX(reg.R13B, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=m8_r16", func(t *testing.T) {
+		if _, err := MOVBWSX(operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := MOVBWSX(operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
@@ -5010,11 +5787,29 @@ func TestMOVBWSXValidForms(t *testing.T) {
 
 func TestMOVBWZXValidForms(t *testing.T) {
 	t.Run("form=r8_r16", func(t *testing.T) {
+		if _, err := MOVBWZX(reg.CH, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := MOVBWZX(reg.CH, reg.R9W); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := MOVBWZX(reg.BL, reg.CX); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := MOVBWZX(reg.BL, reg.R9W); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := MOVBWZX(reg.R13B, reg.CX); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := MOVBWZX(reg.R13B, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=m8_r16", func(t *testing.T) {
+		if _, err := MOVBWZX(operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := MOVBWZX(operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
@@ -5551,16 +6346,31 @@ func TestMOVUPSValidForms(t *testing.T) {
 
 func TestMOVWValidForms(t *testing.T) {
 	t.Run("form=imm16_r16", func(t *testing.T) {
+		if _, err := MOVW(operand.Imm(math.MaxInt16), reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := MOVW(operand.Imm(math.MaxInt16), reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=r16_r16", func(t *testing.T) {
+		if _, err := MOVW(reg.CX, reg.CX); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := MOVW(reg.CX, reg.R9W); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := MOVW(reg.R9W, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := MOVW(reg.R9W, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=m16_r16", func(t *testing.T) {
+		if _, err := MOVW(operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := MOVW(operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
@@ -5571,6 +6381,9 @@ func TestMOVWValidForms(t *testing.T) {
 		}
 	})
 	t.Run("form=r16_m16", func(t *testing.T) {
+		if _, err := MOVW(reg.CX, operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := MOVW(reg.R9W, operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}); err != nil {
 			t.Fatal(err)
 		}
@@ -5579,6 +6392,9 @@ func TestMOVWValidForms(t *testing.T) {
 
 func TestMOVWLSXValidForms(t *testing.T) {
 	t.Run("form=r16_r32", func(t *testing.T) {
+		if _, err := MOVWLSX(reg.CX, reg.R10L); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := MOVWLSX(reg.R9W, reg.R10L); err != nil {
 			t.Fatal(err)
 		}
@@ -5592,6 +6408,9 @@ func TestMOVWLSXValidForms(t *testing.T) {
 
 func TestMOVWLZXValidForms(t *testing.T) {
 	t.Run("form=r16_r32", func(t *testing.T) {
+		if _, err := MOVWLZX(reg.CX, reg.R10L); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := MOVWLZX(reg.R9W, reg.R10L); err != nil {
 			t.Fatal(err)
 		}
@@ -5605,6 +6424,9 @@ func TestMOVWLZXValidForms(t *testing.T) {
 
 func TestMOVWQSXValidForms(t *testing.T) {
 	t.Run("form=r16_r64", func(t *testing.T) {
+		if _, err := MOVWQSX(reg.CX, reg.R11); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := MOVWQSX(reg.R9W, reg.R11); err != nil {
 			t.Fatal(err)
 		}
@@ -5618,6 +6440,9 @@ func TestMOVWQSXValidForms(t *testing.T) {
 
 func TestMOVWQZXValidForms(t *testing.T) {
 	t.Run("form=r16_r64", func(t *testing.T) {
+		if _, err := MOVWQZX(reg.CX, reg.R11); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := MOVWQZX(reg.R9W, reg.R11); err != nil {
 			t.Fatal(err)
 		}
@@ -5645,6 +6470,12 @@ func TestMPSADBWValidForms(t *testing.T) {
 func TestMULBValidForms(t *testing.T) {
 	t.Run("form=r8", func(t *testing.T) {
 		if _, err := MULB(reg.CH); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := MULB(reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := MULB(reg.R13B); err != nil {
 			t.Fatal(err)
 		}
 	})
@@ -5735,6 +6566,9 @@ func TestMULSSValidForms(t *testing.T) {
 
 func TestMULWValidForms(t *testing.T) {
 	t.Run("form=r16", func(t *testing.T) {
+		if _, err := MULW(reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := MULW(reg.R9W); err != nil {
 			t.Fatal(err)
 		}
@@ -5785,6 +6619,12 @@ func TestNEGBValidForms(t *testing.T) {
 		if _, err := NEGB(reg.CH); err != nil {
 			t.Fatal(err)
 		}
+		if _, err := NEGB(reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := NEGB(reg.R13B); err != nil {
+			t.Fatal(err)
+		}
 	})
 	t.Run("form=m8", func(t *testing.T) {
 		if _, err := NEGB(operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}); err != nil {
@@ -5821,6 +6661,9 @@ func TestNEGQValidForms(t *testing.T) {
 
 func TestNEGWValidForms(t *testing.T) {
 	t.Run("form=r16", func(t *testing.T) {
+		if _, err := NEGW(reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := NEGW(reg.R9W); err != nil {
 			t.Fatal(err)
 		}
@@ -5843,6 +6686,12 @@ func TestNOPValidForms(t *testing.T) {
 func TestNOTBValidForms(t *testing.T) {
 	t.Run("form=r8", func(t *testing.T) {
 		if _, err := NOTB(reg.CH); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := NOTB(reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := NOTB(reg.R13B); err != nil {
 			t.Fatal(err)
 		}
 	})
@@ -5881,6 +6730,9 @@ func TestNOTQValidForms(t *testing.T) {
 
 func TestNOTWValidForms(t *testing.T) {
 	t.Run("form=r16", func(t *testing.T) {
+		if _, err := NOTW(reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := NOTW(reg.R9W); err != nil {
 			t.Fatal(err)
 		}
@@ -5902,14 +6754,50 @@ func TestORBValidForms(t *testing.T) {
 		if _, err := ORB(operand.Imm(math.MaxInt8), reg.CH); err != nil {
 			t.Fatal(err)
 		}
+		if _, err := ORB(operand.Imm(math.MaxInt8), reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := ORB(operand.Imm(math.MaxInt8), reg.R13B); err != nil {
+			t.Fatal(err)
+		}
 	})
 	t.Run("form=r8_r8", func(t *testing.T) {
 		if _, err := ORB(reg.CH, reg.CH); err != nil {
 			t.Fatal(err)
 		}
+		if _, err := ORB(reg.CH, reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := ORB(reg.CH, reg.R13B); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := ORB(reg.BL, reg.CH); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := ORB(reg.BL, reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := ORB(reg.BL, reg.R13B); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := ORB(reg.R13B, reg.CH); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := ORB(reg.R13B, reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := ORB(reg.R13B, reg.R13B); err != nil {
+			t.Fatal(err)
+		}
 	})
 	t.Run("form=m8_r8", func(t *testing.T) {
 		if _, err := ORB(operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}, reg.CH); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := ORB(operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}, reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := ORB(operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}, reg.R13B); err != nil {
 			t.Fatal(err)
 		}
 	})
@@ -5920,6 +6808,12 @@ func TestORBValidForms(t *testing.T) {
 	})
 	t.Run("form=r8_m8", func(t *testing.T) {
 		if _, err := ORB(reg.CH, operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := ORB(reg.BL, operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := ORB(reg.R13B, operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}); err != nil {
 			t.Fatal(err)
 		}
 	})
@@ -6044,21 +6938,39 @@ func TestORWValidForms(t *testing.T) {
 		}
 	})
 	t.Run("form=imm8_r16", func(t *testing.T) {
+		if _, err := ORW(operand.Imm(math.MaxInt8), reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := ORW(operand.Imm(math.MaxInt8), reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=imm16_r16", func(t *testing.T) {
+		if _, err := ORW(operand.Imm(math.MaxInt16), reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := ORW(operand.Imm(math.MaxInt16), reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=r16_r16", func(t *testing.T) {
+		if _, err := ORW(reg.CX, reg.CX); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := ORW(reg.CX, reg.R9W); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := ORW(reg.R9W, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := ORW(reg.R9W, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=m16_r16", func(t *testing.T) {
+		if _, err := ORW(operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := ORW(operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
@@ -6074,6 +6986,9 @@ func TestORWValidForms(t *testing.T) {
 		}
 	})
 	t.Run("form=r16_m16", func(t *testing.T) {
+		if _, err := ORW(reg.CX, operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := ORW(reg.R9W, operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}); err != nil {
 			t.Fatal(err)
 		}
@@ -7268,11 +8183,23 @@ func TestPOPCNTQValidForms(t *testing.T) {
 
 func TestPOPCNTWValidForms(t *testing.T) {
 	t.Run("form=r16_r16", func(t *testing.T) {
+		if _, err := POPCNTW(reg.CX, reg.CX); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := POPCNTW(reg.CX, reg.R9W); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := POPCNTW(reg.R9W, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := POPCNTW(reg.R9W, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=m16_r16", func(t *testing.T) {
+		if _, err := POPCNTW(operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := POPCNTW(operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
@@ -7294,6 +8221,9 @@ func TestPOPQValidForms(t *testing.T) {
 
 func TestPOPWValidForms(t *testing.T) {
 	t.Run("form=r16", func(t *testing.T) {
+		if _, err := POPW(reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := POPW(reg.R9W); err != nil {
 			t.Fatal(err)
 		}
@@ -7889,6 +8819,9 @@ func TestPUSHQValidForms(t *testing.T) {
 
 func TestPUSHWValidForms(t *testing.T) {
 	t.Run("form=r16", func(t *testing.T) {
+		if _, err := PUSHW(reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := PUSHW(reg.R9W); err != nil {
 			t.Fatal(err)
 		}
@@ -7918,14 +8851,32 @@ func TestRCLBValidForms(t *testing.T) {
 		if _, err := RCLB(operand.Imm(1), reg.CH); err != nil {
 			t.Fatal(err)
 		}
+		if _, err := RCLB(operand.Imm(1), reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := RCLB(operand.Imm(1), reg.R13B); err != nil {
+			t.Fatal(err)
+		}
 	})
 	t.Run("form=imm8_r8", func(t *testing.T) {
 		if _, err := RCLB(operand.Imm(math.MaxInt8), reg.CH); err != nil {
 			t.Fatal(err)
 		}
+		if _, err := RCLB(operand.Imm(math.MaxInt8), reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := RCLB(operand.Imm(math.MaxInt8), reg.R13B); err != nil {
+			t.Fatal(err)
+		}
 	})
 	t.Run("form=cl_r8", func(t *testing.T) {
 		if _, err := RCLB(reg.CL, reg.CH); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := RCLB(reg.CL, reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := RCLB(reg.CL, reg.R13B); err != nil {
 			t.Fatal(err)
 		}
 	})
@@ -8014,16 +8965,25 @@ func TestRCLQValidForms(t *testing.T) {
 
 func TestRCLWValidForms(t *testing.T) {
 	t.Run("form=1_r16", func(t *testing.T) {
+		if _, err := RCLW(operand.Imm(1), reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := RCLW(operand.Imm(1), reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=imm8_r16", func(t *testing.T) {
+		if _, err := RCLW(operand.Imm(math.MaxInt8), reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := RCLW(operand.Imm(math.MaxInt8), reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=cl_r16", func(t *testing.T) {
+		if _, err := RCLW(reg.CL, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := RCLW(reg.CL, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
@@ -8076,14 +9036,32 @@ func TestRCRBValidForms(t *testing.T) {
 		if _, err := RCRB(operand.Imm(1), reg.CH); err != nil {
 			t.Fatal(err)
 		}
+		if _, err := RCRB(operand.Imm(1), reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := RCRB(operand.Imm(1), reg.R13B); err != nil {
+			t.Fatal(err)
+		}
 	})
 	t.Run("form=imm8_r8", func(t *testing.T) {
 		if _, err := RCRB(operand.Imm(math.MaxInt8), reg.CH); err != nil {
 			t.Fatal(err)
 		}
+		if _, err := RCRB(operand.Imm(math.MaxInt8), reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := RCRB(operand.Imm(math.MaxInt8), reg.R13B); err != nil {
+			t.Fatal(err)
+		}
 	})
 	t.Run("form=cl_r8", func(t *testing.T) {
 		if _, err := RCRB(reg.CL, reg.CH); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := RCRB(reg.CL, reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := RCRB(reg.CL, reg.R13B); err != nil {
 			t.Fatal(err)
 		}
 	})
@@ -8172,16 +9150,25 @@ func TestRCRQValidForms(t *testing.T) {
 
 func TestRCRWValidForms(t *testing.T) {
 	t.Run("form=1_r16", func(t *testing.T) {
+		if _, err := RCRW(operand.Imm(1), reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := RCRW(operand.Imm(1), reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=imm8_r16", func(t *testing.T) {
+		if _, err := RCRW(operand.Imm(math.MaxInt8), reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := RCRW(operand.Imm(math.MaxInt8), reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=cl_r16", func(t *testing.T) {
+		if _, err := RCRW(reg.CL, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := RCRW(reg.CL, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
@@ -8221,6 +9208,9 @@ func TestRDRANDQValidForms(t *testing.T) {
 
 func TestRDRANDWValidForms(t *testing.T) {
 	t.Run("form=r16", func(t *testing.T) {
+		if _, err := RDRANDW(reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := RDRANDW(reg.R9W); err != nil {
 			t.Fatal(err)
 		}
@@ -8245,6 +9235,9 @@ func TestRDSEEDQValidForms(t *testing.T) {
 
 func TestRDSEEDWValidForms(t *testing.T) {
 	t.Run("form=r16", func(t *testing.T) {
+		if _, err := RDSEEDW(reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := RDSEEDW(reg.R9W); err != nil {
 			t.Fatal(err)
 		}
@@ -8304,14 +9297,32 @@ func TestROLBValidForms(t *testing.T) {
 		if _, err := ROLB(operand.Imm(1), reg.CH); err != nil {
 			t.Fatal(err)
 		}
+		if _, err := ROLB(operand.Imm(1), reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := ROLB(operand.Imm(1), reg.R13B); err != nil {
+			t.Fatal(err)
+		}
 	})
 	t.Run("form=imm8_r8", func(t *testing.T) {
 		if _, err := ROLB(operand.Imm(math.MaxInt8), reg.CH); err != nil {
 			t.Fatal(err)
 		}
+		if _, err := ROLB(operand.Imm(math.MaxInt8), reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := ROLB(operand.Imm(math.MaxInt8), reg.R13B); err != nil {
+			t.Fatal(err)
+		}
 	})
 	t.Run("form=cl_r8", func(t *testing.T) {
 		if _, err := ROLB(reg.CL, reg.CH); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := ROLB(reg.CL, reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := ROLB(reg.CL, reg.R13B); err != nil {
 			t.Fatal(err)
 		}
 	})
@@ -8400,16 +9411,25 @@ func TestROLQValidForms(t *testing.T) {
 
 func TestROLWValidForms(t *testing.T) {
 	t.Run("form=1_r16", func(t *testing.T) {
+		if _, err := ROLW(operand.Imm(1), reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := ROLW(operand.Imm(1), reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=imm8_r16", func(t *testing.T) {
+		if _, err := ROLW(operand.Imm(math.MaxInt8), reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := ROLW(operand.Imm(math.MaxInt8), reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=cl_r16", func(t *testing.T) {
+		if _, err := ROLW(reg.CL, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := ROLW(reg.CL, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
@@ -8436,14 +9456,32 @@ func TestRORBValidForms(t *testing.T) {
 		if _, err := RORB(operand.Imm(1), reg.CH); err != nil {
 			t.Fatal(err)
 		}
+		if _, err := RORB(operand.Imm(1), reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := RORB(operand.Imm(1), reg.R13B); err != nil {
+			t.Fatal(err)
+		}
 	})
 	t.Run("form=imm8_r8", func(t *testing.T) {
 		if _, err := RORB(operand.Imm(math.MaxInt8), reg.CH); err != nil {
 			t.Fatal(err)
 		}
+		if _, err := RORB(operand.Imm(math.MaxInt8), reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := RORB(operand.Imm(math.MaxInt8), reg.R13B); err != nil {
+			t.Fatal(err)
+		}
 	})
 	t.Run("form=cl_r8", func(t *testing.T) {
 		if _, err := RORB(reg.CL, reg.CH); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := RORB(reg.CL, reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := RORB(reg.CL, reg.R13B); err != nil {
 			t.Fatal(err)
 		}
 	})
@@ -8532,16 +9570,25 @@ func TestRORQValidForms(t *testing.T) {
 
 func TestRORWValidForms(t *testing.T) {
 	t.Run("form=1_r16", func(t *testing.T) {
+		if _, err := RORW(operand.Imm(1), reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := RORW(operand.Imm(1), reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=imm8_r16", func(t *testing.T) {
+		if _, err := RORW(operand.Imm(math.MaxInt8), reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := RORW(operand.Imm(math.MaxInt8), reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=cl_r16", func(t *testing.T) {
+		if _, err := RORW(reg.CL, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := RORW(reg.CL, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
@@ -8672,14 +9719,32 @@ func TestSALBValidForms(t *testing.T) {
 		if _, err := SALB(operand.Imm(1), reg.CH); err != nil {
 			t.Fatal(err)
 		}
+		if _, err := SALB(operand.Imm(1), reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SALB(operand.Imm(1), reg.R13B); err != nil {
+			t.Fatal(err)
+		}
 	})
 	t.Run("form=imm8_r8", func(t *testing.T) {
 		if _, err := SALB(operand.Imm(math.MaxInt8), reg.CH); err != nil {
 			t.Fatal(err)
 		}
+		if _, err := SALB(operand.Imm(math.MaxInt8), reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SALB(operand.Imm(math.MaxInt8), reg.R13B); err != nil {
+			t.Fatal(err)
+		}
 	})
 	t.Run("form=cl_r8", func(t *testing.T) {
 		if _, err := SALB(reg.CL, reg.CH); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SALB(reg.CL, reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SALB(reg.CL, reg.R13B); err != nil {
 			t.Fatal(err)
 		}
 	})
@@ -8768,16 +9833,25 @@ func TestSALQValidForms(t *testing.T) {
 
 func TestSALWValidForms(t *testing.T) {
 	t.Run("form=1_r16", func(t *testing.T) {
+		if _, err := SALW(operand.Imm(1), reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := SALW(operand.Imm(1), reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=imm8_r16", func(t *testing.T) {
+		if _, err := SALW(operand.Imm(math.MaxInt8), reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := SALW(operand.Imm(math.MaxInt8), reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=cl_r16", func(t *testing.T) {
+		if _, err := SALW(reg.CL, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := SALW(reg.CL, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
@@ -8804,14 +9878,32 @@ func TestSARBValidForms(t *testing.T) {
 		if _, err := SARB(operand.Imm(1), reg.CH); err != nil {
 			t.Fatal(err)
 		}
+		if _, err := SARB(operand.Imm(1), reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SARB(operand.Imm(1), reg.R13B); err != nil {
+			t.Fatal(err)
+		}
 	})
 	t.Run("form=imm8_r8", func(t *testing.T) {
 		if _, err := SARB(operand.Imm(math.MaxInt8), reg.CH); err != nil {
 			t.Fatal(err)
 		}
+		if _, err := SARB(operand.Imm(math.MaxInt8), reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SARB(operand.Imm(math.MaxInt8), reg.R13B); err != nil {
+			t.Fatal(err)
+		}
 	})
 	t.Run("form=cl_r8", func(t *testing.T) {
 		if _, err := SARB(reg.CL, reg.CH); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SARB(reg.CL, reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SARB(reg.CL, reg.R13B); err != nil {
 			t.Fatal(err)
 		}
 	})
@@ -8900,16 +9992,25 @@ func TestSARQValidForms(t *testing.T) {
 
 func TestSARWValidForms(t *testing.T) {
 	t.Run("form=1_r16", func(t *testing.T) {
+		if _, err := SARW(operand.Imm(1), reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := SARW(operand.Imm(1), reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=imm8_r16", func(t *testing.T) {
+		if _, err := SARW(operand.Imm(math.MaxInt8), reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := SARW(operand.Imm(math.MaxInt8), reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=cl_r16", func(t *testing.T) {
+		if _, err := SARW(reg.CL, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := SARW(reg.CL, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
@@ -8967,14 +10068,50 @@ func TestSBBBValidForms(t *testing.T) {
 		if _, err := SBBB(operand.Imm(math.MaxInt8), reg.CH); err != nil {
 			t.Fatal(err)
 		}
+		if _, err := SBBB(operand.Imm(math.MaxInt8), reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SBBB(operand.Imm(math.MaxInt8), reg.R13B); err != nil {
+			t.Fatal(err)
+		}
 	})
 	t.Run("form=r8_r8", func(t *testing.T) {
 		if _, err := SBBB(reg.CH, reg.CH); err != nil {
 			t.Fatal(err)
 		}
+		if _, err := SBBB(reg.CH, reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SBBB(reg.CH, reg.R13B); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SBBB(reg.BL, reg.CH); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SBBB(reg.BL, reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SBBB(reg.BL, reg.R13B); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SBBB(reg.R13B, reg.CH); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SBBB(reg.R13B, reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SBBB(reg.R13B, reg.R13B); err != nil {
+			t.Fatal(err)
+		}
 	})
 	t.Run("form=m8_r8", func(t *testing.T) {
 		if _, err := SBBB(operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}, reg.CH); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SBBB(operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}, reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SBBB(operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}, reg.R13B); err != nil {
 			t.Fatal(err)
 		}
 	})
@@ -8985,6 +10122,12 @@ func TestSBBBValidForms(t *testing.T) {
 	})
 	t.Run("form=r8_m8", func(t *testing.T) {
 		if _, err := SBBB(reg.CH, operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SBBB(reg.BL, operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SBBB(reg.R13B, operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}); err != nil {
 			t.Fatal(err)
 		}
 	})
@@ -9083,21 +10226,39 @@ func TestSBBWValidForms(t *testing.T) {
 		}
 	})
 	t.Run("form=imm8_r16", func(t *testing.T) {
+		if _, err := SBBW(operand.Imm(math.MaxInt8), reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := SBBW(operand.Imm(math.MaxInt8), reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=imm16_r16", func(t *testing.T) {
+		if _, err := SBBW(operand.Imm(math.MaxInt16), reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := SBBW(operand.Imm(math.MaxInt16), reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=r16_r16", func(t *testing.T) {
+		if _, err := SBBW(reg.CX, reg.CX); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SBBW(reg.CX, reg.R9W); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SBBW(reg.R9W, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := SBBW(reg.R9W, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=m16_r16", func(t *testing.T) {
+		if _, err := SBBW(operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := SBBW(operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
@@ -9113,6 +10274,9 @@ func TestSBBWValidForms(t *testing.T) {
 		}
 	})
 	t.Run("form=r16_m16", func(t *testing.T) {
+		if _, err := SBBW(reg.CX, operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := SBBW(reg.R9W, operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}); err != nil {
 			t.Fatal(err)
 		}
@@ -9124,14 +10288,10 @@ func TestSETCCValidForms(t *testing.T) {
 		if _, err := SETCC(reg.CH); err != nil {
 			t.Fatal(err)
 		}
-	})
-	t.Run("form=m8", func(t *testing.T) {
-		if _, err := SETCC(operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}); err != nil {
+		if _, err := SETCC(reg.BL); err != nil {
 			t.Fatal(err)
 		}
-	})
-	t.Run("form=r8", func(t *testing.T) {
-		if _, err := SETCC(reg.CH); err != nil {
+		if _, err := SETCC(reg.R13B); err != nil {
 			t.Fatal(err)
 		}
 	})
@@ -9142,6 +10302,28 @@ func TestSETCCValidForms(t *testing.T) {
 	})
 	t.Run("form=r8", func(t *testing.T) {
 		if _, err := SETCC(reg.CH); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SETCC(reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SETCC(reg.R13B); err != nil {
+			t.Fatal(err)
+		}
+	})
+	t.Run("form=m8", func(t *testing.T) {
+		if _, err := SETCC(operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}); err != nil {
+			t.Fatal(err)
+		}
+	})
+	t.Run("form=r8", func(t *testing.T) {
+		if _, err := SETCC(reg.CH); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SETCC(reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SETCC(reg.R13B); err != nil {
 			t.Fatal(err)
 		}
 	})
@@ -9157,14 +10339,10 @@ func TestSETCSValidForms(t *testing.T) {
 		if _, err := SETCS(reg.CH); err != nil {
 			t.Fatal(err)
 		}
-	})
-	t.Run("form=m8", func(t *testing.T) {
-		if _, err := SETCS(operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}); err != nil {
+		if _, err := SETCS(reg.BL); err != nil {
 			t.Fatal(err)
 		}
-	})
-	t.Run("form=r8", func(t *testing.T) {
-		if _, err := SETCS(reg.CH); err != nil {
+		if _, err := SETCS(reg.R13B); err != nil {
 			t.Fatal(err)
 		}
 	})
@@ -9175,6 +10353,28 @@ func TestSETCSValidForms(t *testing.T) {
 	})
 	t.Run("form=r8", func(t *testing.T) {
 		if _, err := SETCS(reg.CH); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SETCS(reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SETCS(reg.R13B); err != nil {
+			t.Fatal(err)
+		}
+	})
+	t.Run("form=m8", func(t *testing.T) {
+		if _, err := SETCS(operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}); err != nil {
+			t.Fatal(err)
+		}
+	})
+	t.Run("form=r8", func(t *testing.T) {
+		if _, err := SETCS(reg.CH); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SETCS(reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SETCS(reg.R13B); err != nil {
 			t.Fatal(err)
 		}
 	})
@@ -9190,6 +10390,12 @@ func TestSETEQValidForms(t *testing.T) {
 		if _, err := SETEQ(reg.CH); err != nil {
 			t.Fatal(err)
 		}
+		if _, err := SETEQ(reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SETEQ(reg.R13B); err != nil {
+			t.Fatal(err)
+		}
 	})
 	t.Run("form=m8", func(t *testing.T) {
 		if _, err := SETEQ(operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}); err != nil {
@@ -9198,6 +10404,12 @@ func TestSETEQValidForms(t *testing.T) {
 	})
 	t.Run("form=r8", func(t *testing.T) {
 		if _, err := SETEQ(reg.CH); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SETEQ(reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SETEQ(reg.R13B); err != nil {
 			t.Fatal(err)
 		}
 	})
@@ -9213,6 +10425,12 @@ func TestSETGEValidForms(t *testing.T) {
 		if _, err := SETGE(reg.CH); err != nil {
 			t.Fatal(err)
 		}
+		if _, err := SETGE(reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SETGE(reg.R13B); err != nil {
+			t.Fatal(err)
+		}
 	})
 	t.Run("form=m8", func(t *testing.T) {
 		if _, err := SETGE(operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}); err != nil {
@@ -9221,6 +10439,12 @@ func TestSETGEValidForms(t *testing.T) {
 	})
 	t.Run("form=r8", func(t *testing.T) {
 		if _, err := SETGE(reg.CH); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SETGE(reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SETGE(reg.R13B); err != nil {
 			t.Fatal(err)
 		}
 	})
@@ -9236,6 +10460,12 @@ func TestSETGTValidForms(t *testing.T) {
 		if _, err := SETGT(reg.CH); err != nil {
 			t.Fatal(err)
 		}
+		if _, err := SETGT(reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SETGT(reg.R13B); err != nil {
+			t.Fatal(err)
+		}
 	})
 	t.Run("form=m8", func(t *testing.T) {
 		if _, err := SETGT(operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}); err != nil {
@@ -9244,6 +10474,12 @@ func TestSETGTValidForms(t *testing.T) {
 	})
 	t.Run("form=r8", func(t *testing.T) {
 		if _, err := SETGT(reg.CH); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SETGT(reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SETGT(reg.R13B); err != nil {
 			t.Fatal(err)
 		}
 	})
@@ -9259,6 +10495,12 @@ func TestSETHIValidForms(t *testing.T) {
 		if _, err := SETHI(reg.CH); err != nil {
 			t.Fatal(err)
 		}
+		if _, err := SETHI(reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SETHI(reg.R13B); err != nil {
+			t.Fatal(err)
+		}
 	})
 	t.Run("form=m8", func(t *testing.T) {
 		if _, err := SETHI(operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}); err != nil {
@@ -9267,6 +10509,12 @@ func TestSETHIValidForms(t *testing.T) {
 	})
 	t.Run("form=r8", func(t *testing.T) {
 		if _, err := SETHI(reg.CH); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SETHI(reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SETHI(reg.R13B); err != nil {
 			t.Fatal(err)
 		}
 	})
@@ -9282,6 +10530,12 @@ func TestSETLEValidForms(t *testing.T) {
 		if _, err := SETLE(reg.CH); err != nil {
 			t.Fatal(err)
 		}
+		if _, err := SETLE(reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SETLE(reg.R13B); err != nil {
+			t.Fatal(err)
+		}
 	})
 	t.Run("form=m8", func(t *testing.T) {
 		if _, err := SETLE(operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}); err != nil {
@@ -9290,6 +10544,12 @@ func TestSETLEValidForms(t *testing.T) {
 	})
 	t.Run("form=r8", func(t *testing.T) {
 		if _, err := SETLE(reg.CH); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SETLE(reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SETLE(reg.R13B); err != nil {
 			t.Fatal(err)
 		}
 	})
@@ -9305,6 +10565,12 @@ func TestSETLSValidForms(t *testing.T) {
 		if _, err := SETLS(reg.CH); err != nil {
 			t.Fatal(err)
 		}
+		if _, err := SETLS(reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SETLS(reg.R13B); err != nil {
+			t.Fatal(err)
+		}
 	})
 	t.Run("form=m8", func(t *testing.T) {
 		if _, err := SETLS(operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}); err != nil {
@@ -9313,6 +10579,12 @@ func TestSETLSValidForms(t *testing.T) {
 	})
 	t.Run("form=r8", func(t *testing.T) {
 		if _, err := SETLS(reg.CH); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SETLS(reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SETLS(reg.R13B); err != nil {
 			t.Fatal(err)
 		}
 	})
@@ -9328,6 +10600,12 @@ func TestSETLTValidForms(t *testing.T) {
 		if _, err := SETLT(reg.CH); err != nil {
 			t.Fatal(err)
 		}
+		if _, err := SETLT(reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SETLT(reg.R13B); err != nil {
+			t.Fatal(err)
+		}
 	})
 	t.Run("form=m8", func(t *testing.T) {
 		if _, err := SETLT(operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}); err != nil {
@@ -9336,6 +10614,12 @@ func TestSETLTValidForms(t *testing.T) {
 	})
 	t.Run("form=r8", func(t *testing.T) {
 		if _, err := SETLT(reg.CH); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SETLT(reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SETLT(reg.R13B); err != nil {
 			t.Fatal(err)
 		}
 	})
@@ -9351,6 +10635,12 @@ func TestSETMIValidForms(t *testing.T) {
 		if _, err := SETMI(reg.CH); err != nil {
 			t.Fatal(err)
 		}
+		if _, err := SETMI(reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SETMI(reg.R13B); err != nil {
+			t.Fatal(err)
+		}
 	})
 	t.Run("form=m8", func(t *testing.T) {
 		if _, err := SETMI(operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}); err != nil {
@@ -9364,6 +10654,12 @@ func TestSETNEValidForms(t *testing.T) {
 		if _, err := SETNE(reg.CH); err != nil {
 			t.Fatal(err)
 		}
+		if _, err := SETNE(reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SETNE(reg.R13B); err != nil {
+			t.Fatal(err)
+		}
 	})
 	t.Run("form=m8", func(t *testing.T) {
 		if _, err := SETNE(operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}); err != nil {
@@ -9372,6 +10668,12 @@ func TestSETNEValidForms(t *testing.T) {
 	})
 	t.Run("form=r8", func(t *testing.T) {
 		if _, err := SETNE(reg.CH); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SETNE(reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SETNE(reg.R13B); err != nil {
 			t.Fatal(err)
 		}
 	})
@@ -9387,6 +10689,12 @@ func TestSETOCValidForms(t *testing.T) {
 		if _, err := SETOC(reg.CH); err != nil {
 			t.Fatal(err)
 		}
+		if _, err := SETOC(reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SETOC(reg.R13B); err != nil {
+			t.Fatal(err)
+		}
 	})
 	t.Run("form=m8", func(t *testing.T) {
 		if _, err := SETOC(operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}); err != nil {
@@ -9398,6 +10706,12 @@ func TestSETOCValidForms(t *testing.T) {
 func TestSETOSValidForms(t *testing.T) {
 	t.Run("form=r8", func(t *testing.T) {
 		if _, err := SETOS(reg.CH); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SETOS(reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SETOS(reg.R13B); err != nil {
 			t.Fatal(err)
 		}
 	})
@@ -9413,6 +10727,12 @@ func TestSETPCValidForms(t *testing.T) {
 		if _, err := SETPC(reg.CH); err != nil {
 			t.Fatal(err)
 		}
+		if _, err := SETPC(reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SETPC(reg.R13B); err != nil {
+			t.Fatal(err)
+		}
 	})
 	t.Run("form=m8", func(t *testing.T) {
 		if _, err := SETPC(operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}); err != nil {
@@ -9421,6 +10741,12 @@ func TestSETPCValidForms(t *testing.T) {
 	})
 	t.Run("form=r8", func(t *testing.T) {
 		if _, err := SETPC(reg.CH); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SETPC(reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SETPC(reg.R13B); err != nil {
 			t.Fatal(err)
 		}
 	})
@@ -9436,6 +10762,12 @@ func TestSETPLValidForms(t *testing.T) {
 		if _, err := SETPL(reg.CH); err != nil {
 			t.Fatal(err)
 		}
+		if _, err := SETPL(reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SETPL(reg.R13B); err != nil {
+			t.Fatal(err)
+		}
 	})
 	t.Run("form=m8", func(t *testing.T) {
 		if _, err := SETPL(operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}); err != nil {
@@ -9449,6 +10781,12 @@ func TestSETPSValidForms(t *testing.T) {
 		if _, err := SETPS(reg.CH); err != nil {
 			t.Fatal(err)
 		}
+		if _, err := SETPS(reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SETPS(reg.R13B); err != nil {
+			t.Fatal(err)
+		}
 	})
 	t.Run("form=m8", func(t *testing.T) {
 		if _, err := SETPS(operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}); err != nil {
@@ -9457,6 +10795,12 @@ func TestSETPSValidForms(t *testing.T) {
 	})
 	t.Run("form=r8", func(t *testing.T) {
 		if _, err := SETPS(reg.CH); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SETPS(reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SETPS(reg.R13B); err != nil {
 			t.Fatal(err)
 		}
 	})
@@ -9516,11 +10860,17 @@ func TestSHA1NEXTEValidForms(t *testing.T) {
 
 func TestSHA1RNDS4ValidForms(t *testing.T) {
 	t.Run("form=imm2u_xmm_xmm", func(t *testing.T) {
+		if _, err := SHA1RNDS4(operand.Imm(1), reg.X7, reg.X7); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := SHA1RNDS4(operand.Imm(3), reg.X7, reg.X7); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=imm2u_m128_xmm", func(t *testing.T) {
+		if _, err := SHA1RNDS4(operand.Imm(1), operand.Mem{Base: reg.RBX, Index: reg.RCX, Scale: 8}, reg.X7); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := SHA1RNDS4(operand.Imm(3), operand.Mem{Base: reg.RBX, Index: reg.RCX, Scale: 8}, reg.X7); err != nil {
 			t.Fatal(err)
 		}
@@ -9571,14 +10921,32 @@ func TestSHLBValidForms(t *testing.T) {
 		if _, err := SHLB(operand.Imm(1), reg.CH); err != nil {
 			t.Fatal(err)
 		}
+		if _, err := SHLB(operand.Imm(1), reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SHLB(operand.Imm(1), reg.R13B); err != nil {
+			t.Fatal(err)
+		}
 	})
 	t.Run("form=imm8_r8", func(t *testing.T) {
 		if _, err := SHLB(operand.Imm(math.MaxInt8), reg.CH); err != nil {
 			t.Fatal(err)
 		}
+		if _, err := SHLB(operand.Imm(math.MaxInt8), reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SHLB(operand.Imm(math.MaxInt8), reg.R13B); err != nil {
+			t.Fatal(err)
+		}
 	})
 	t.Run("form=cl_r8", func(t *testing.T) {
 		if _, err := SHLB(reg.CL, reg.CH); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SHLB(reg.CL, reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SHLB(reg.CL, reg.R13B); err != nil {
 			t.Fatal(err)
 		}
 	})
@@ -9707,16 +11075,25 @@ func TestSHLQValidForms(t *testing.T) {
 
 func TestSHLWValidForms(t *testing.T) {
 	t.Run("form=1_r16", func(t *testing.T) {
+		if _, err := SHLW(operand.Imm(1), reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := SHLW(operand.Imm(1), reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=imm8_r16", func(t *testing.T) {
+		if _, err := SHLW(operand.Imm(math.MaxInt8), reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := SHLW(operand.Imm(math.MaxInt8), reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=cl_r16", func(t *testing.T) {
+		if _, err := SHLW(reg.CL, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := SHLW(reg.CL, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
@@ -9737,21 +11114,45 @@ func TestSHLWValidForms(t *testing.T) {
 		}
 	})
 	t.Run("form=imm8_r16_r16", func(t *testing.T) {
+		if _, err := SHLW(operand.Imm(math.MaxInt8), reg.CX, reg.CX); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SHLW(operand.Imm(math.MaxInt8), reg.CX, reg.R9W); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SHLW(operand.Imm(math.MaxInt8), reg.R9W, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := SHLW(operand.Imm(math.MaxInt8), reg.R9W, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=cl_r16_r16", func(t *testing.T) {
+		if _, err := SHLW(reg.CL, reg.CX, reg.CX); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SHLW(reg.CL, reg.CX, reg.R9W); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SHLW(reg.CL, reg.R9W, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := SHLW(reg.CL, reg.R9W, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=imm8_r16_m16", func(t *testing.T) {
+		if _, err := SHLW(operand.Imm(math.MaxInt8), reg.CX, operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := SHLW(operand.Imm(math.MaxInt8), reg.R9W, operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=cl_r16_m16", func(t *testing.T) {
+		if _, err := SHLW(reg.CL, reg.CX, operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := SHLW(reg.CL, reg.R9W, operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}); err != nil {
 			t.Fatal(err)
 		}
@@ -9789,14 +11190,32 @@ func TestSHRBValidForms(t *testing.T) {
 		if _, err := SHRB(operand.Imm(1), reg.CH); err != nil {
 			t.Fatal(err)
 		}
+		if _, err := SHRB(operand.Imm(1), reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SHRB(operand.Imm(1), reg.R13B); err != nil {
+			t.Fatal(err)
+		}
 	})
 	t.Run("form=imm8_r8", func(t *testing.T) {
 		if _, err := SHRB(operand.Imm(math.MaxInt8), reg.CH); err != nil {
 			t.Fatal(err)
 		}
+		if _, err := SHRB(operand.Imm(math.MaxInt8), reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SHRB(operand.Imm(math.MaxInt8), reg.R13B); err != nil {
+			t.Fatal(err)
+		}
 	})
 	t.Run("form=cl_r8", func(t *testing.T) {
 		if _, err := SHRB(reg.CL, reg.CH); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SHRB(reg.CL, reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SHRB(reg.CL, reg.R13B); err != nil {
 			t.Fatal(err)
 		}
 	})
@@ -9925,16 +11344,25 @@ func TestSHRQValidForms(t *testing.T) {
 
 func TestSHRWValidForms(t *testing.T) {
 	t.Run("form=1_r16", func(t *testing.T) {
+		if _, err := SHRW(operand.Imm(1), reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := SHRW(operand.Imm(1), reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=imm8_r16", func(t *testing.T) {
+		if _, err := SHRW(operand.Imm(math.MaxInt8), reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := SHRW(operand.Imm(math.MaxInt8), reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=cl_r16", func(t *testing.T) {
+		if _, err := SHRW(reg.CL, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := SHRW(reg.CL, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
@@ -9955,21 +11383,45 @@ func TestSHRWValidForms(t *testing.T) {
 		}
 	})
 	t.Run("form=imm8_r16_r16", func(t *testing.T) {
+		if _, err := SHRW(operand.Imm(math.MaxInt8), reg.CX, reg.CX); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SHRW(operand.Imm(math.MaxInt8), reg.CX, reg.R9W); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SHRW(operand.Imm(math.MaxInt8), reg.R9W, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := SHRW(operand.Imm(math.MaxInt8), reg.R9W, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=cl_r16_r16", func(t *testing.T) {
+		if _, err := SHRW(reg.CL, reg.CX, reg.CX); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SHRW(reg.CL, reg.CX, reg.R9W); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SHRW(reg.CL, reg.R9W, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := SHRW(reg.CL, reg.R9W, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=imm8_r16_m16", func(t *testing.T) {
+		if _, err := SHRW(operand.Imm(math.MaxInt8), reg.CX, operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := SHRW(operand.Imm(math.MaxInt8), reg.R9W, operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=cl_r16_m16", func(t *testing.T) {
+		if _, err := SHRW(reg.CL, reg.CX, operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := SHRW(reg.CL, reg.R9W, operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}); err != nil {
 			t.Fatal(err)
 		}
@@ -10114,14 +11566,50 @@ func TestSUBBValidForms(t *testing.T) {
 		if _, err := SUBB(operand.Imm(math.MaxInt8), reg.CH); err != nil {
 			t.Fatal(err)
 		}
+		if _, err := SUBB(operand.Imm(math.MaxInt8), reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SUBB(operand.Imm(math.MaxInt8), reg.R13B); err != nil {
+			t.Fatal(err)
+		}
 	})
 	t.Run("form=r8_r8", func(t *testing.T) {
 		if _, err := SUBB(reg.CH, reg.CH); err != nil {
 			t.Fatal(err)
 		}
+		if _, err := SUBB(reg.CH, reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SUBB(reg.CH, reg.R13B); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SUBB(reg.BL, reg.CH); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SUBB(reg.BL, reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SUBB(reg.BL, reg.R13B); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SUBB(reg.R13B, reg.CH); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SUBB(reg.R13B, reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SUBB(reg.R13B, reg.R13B); err != nil {
+			t.Fatal(err)
+		}
 	})
 	t.Run("form=m8_r8", func(t *testing.T) {
 		if _, err := SUBB(operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}, reg.CH); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SUBB(operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}, reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SUBB(operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}, reg.R13B); err != nil {
 			t.Fatal(err)
 		}
 	})
@@ -10132,6 +11620,12 @@ func TestSUBBValidForms(t *testing.T) {
 	})
 	t.Run("form=r8_m8", func(t *testing.T) {
 		if _, err := SUBB(reg.CH, operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SUBB(reg.BL, operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SUBB(reg.R13B, operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}); err != nil {
 			t.Fatal(err)
 		}
 	})
@@ -10282,21 +11776,39 @@ func TestSUBWValidForms(t *testing.T) {
 		}
 	})
 	t.Run("form=imm8_r16", func(t *testing.T) {
+		if _, err := SUBW(operand.Imm(math.MaxInt8), reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := SUBW(operand.Imm(math.MaxInt8), reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=imm16_r16", func(t *testing.T) {
+		if _, err := SUBW(operand.Imm(math.MaxInt16), reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := SUBW(operand.Imm(math.MaxInt16), reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=r16_r16", func(t *testing.T) {
+		if _, err := SUBW(reg.CX, reg.CX); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SUBW(reg.CX, reg.R9W); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := SUBW(reg.R9W, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := SUBW(reg.R9W, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=m16_r16", func(t *testing.T) {
+		if _, err := SUBW(operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := SUBW(operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
@@ -10312,6 +11824,9 @@ func TestSUBWValidForms(t *testing.T) {
 		}
 	})
 	t.Run("form=r16_m16", func(t *testing.T) {
+		if _, err := SUBW(reg.CX, operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := SUBW(reg.R9W, operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}); err != nil {
 			t.Fatal(err)
 		}
@@ -10336,9 +11851,39 @@ func TestTESTBValidForms(t *testing.T) {
 		if _, err := TESTB(operand.Imm(math.MaxInt8), reg.CH); err != nil {
 			t.Fatal(err)
 		}
+		if _, err := TESTB(operand.Imm(math.MaxInt8), reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := TESTB(operand.Imm(math.MaxInt8), reg.R13B); err != nil {
+			t.Fatal(err)
+		}
 	})
 	t.Run("form=r8_r8", func(t *testing.T) {
 		if _, err := TESTB(reg.CH, reg.CH); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := TESTB(reg.CH, reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := TESTB(reg.CH, reg.R13B); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := TESTB(reg.BL, reg.CH); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := TESTB(reg.BL, reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := TESTB(reg.BL, reg.R13B); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := TESTB(reg.R13B, reg.CH); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := TESTB(reg.R13B, reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := TESTB(reg.R13B, reg.R13B); err != nil {
 			t.Fatal(err)
 		}
 	})
@@ -10349,6 +11894,12 @@ func TestTESTBValidForms(t *testing.T) {
 	})
 	t.Run("form=r8_m8", func(t *testing.T) {
 		if _, err := TESTB(reg.CH, operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := TESTB(reg.BL, operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := TESTB(reg.R13B, operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}); err != nil {
 			t.Fatal(err)
 		}
 	})
@@ -10417,11 +11968,23 @@ func TestTESTWValidForms(t *testing.T) {
 		}
 	})
 	t.Run("form=imm16_r16", func(t *testing.T) {
+		if _, err := TESTW(operand.Imm(math.MaxInt16), reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := TESTW(operand.Imm(math.MaxInt16), reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=r16_r16", func(t *testing.T) {
+		if _, err := TESTW(reg.CX, reg.CX); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := TESTW(reg.CX, reg.R9W); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := TESTW(reg.R9W, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := TESTW(reg.R9W, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
@@ -10432,6 +11995,9 @@ func TestTESTWValidForms(t *testing.T) {
 		}
 	})
 	t.Run("form=r16_m16", func(t *testing.T) {
+		if _, err := TESTW(reg.CX, operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := TESTW(reg.R9W, operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}); err != nil {
 			t.Fatal(err)
 		}
@@ -10466,11 +12032,23 @@ func TestTZCNTQValidForms(t *testing.T) {
 
 func TestTZCNTWValidForms(t *testing.T) {
 	t.Run("form=r16_r16", func(t *testing.T) {
+		if _, err := TZCNTW(reg.CX, reg.CX); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := TZCNTW(reg.CX, reg.R9W); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := TZCNTW(reg.R9W, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := TZCNTW(reg.R9W, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=m16_r16", func(t *testing.T) {
+		if _, err := TZCNTW(operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := TZCNTW(operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
@@ -17602,9 +19180,39 @@ func TestXADDBValidForms(t *testing.T) {
 		if _, err := XADDB(reg.CH, reg.CH); err != nil {
 			t.Fatal(err)
 		}
+		if _, err := XADDB(reg.CH, reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := XADDB(reg.CH, reg.R13B); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := XADDB(reg.BL, reg.CH); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := XADDB(reg.BL, reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := XADDB(reg.BL, reg.R13B); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := XADDB(reg.R13B, reg.CH); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := XADDB(reg.R13B, reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := XADDB(reg.R13B, reg.R13B); err != nil {
+			t.Fatal(err)
+		}
 	})
 	t.Run("form=r8_m8", func(t *testing.T) {
 		if _, err := XADDB(reg.CH, operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := XADDB(reg.BL, operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := XADDB(reg.R13B, operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}); err != nil {
 			t.Fatal(err)
 		}
 	})
@@ -17638,11 +19246,23 @@ func TestXADDQValidForms(t *testing.T) {
 
 func TestXADDWValidForms(t *testing.T) {
 	t.Run("form=r16_r16", func(t *testing.T) {
+		if _, err := XADDW(reg.CX, reg.CX); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := XADDW(reg.CX, reg.R9W); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := XADDW(reg.R9W, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := XADDW(reg.R9W, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=r16_m16", func(t *testing.T) {
+		if _, err := XADDW(reg.CX, operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := XADDW(reg.R9W, operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}); err != nil {
 			t.Fatal(err)
 		}
@@ -17654,14 +19274,50 @@ func TestXCHGBValidForms(t *testing.T) {
 		if _, err := XCHGB(reg.CH, reg.CH); err != nil {
 			t.Fatal(err)
 		}
+		if _, err := XCHGB(reg.CH, reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := XCHGB(reg.CH, reg.R13B); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := XCHGB(reg.BL, reg.CH); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := XCHGB(reg.BL, reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := XCHGB(reg.BL, reg.R13B); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := XCHGB(reg.R13B, reg.CH); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := XCHGB(reg.R13B, reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := XCHGB(reg.R13B, reg.R13B); err != nil {
+			t.Fatal(err)
+		}
 	})
 	t.Run("form=m8_r8", func(t *testing.T) {
 		if _, err := XCHGB(operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}, reg.CH); err != nil {
 			t.Fatal(err)
 		}
+		if _, err := XCHGB(operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}, reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := XCHGB(operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}, reg.R13B); err != nil {
+			t.Fatal(err)
+		}
 	})
 	t.Run("form=r8_m8", func(t *testing.T) {
 		if _, err := XCHGB(reg.CH, operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := XCHGB(reg.BL, operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := XCHGB(reg.R13B, operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}); err != nil {
 			t.Fatal(err)
 		}
 	})
@@ -17725,26 +19381,47 @@ func TestXCHGQValidForms(t *testing.T) {
 
 func TestXCHGWValidForms(t *testing.T) {
 	t.Run("form=r16_ax", func(t *testing.T) {
+		if _, err := XCHGW(reg.CX, reg.AX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := XCHGW(reg.R9W, reg.AX); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=ax_r16", func(t *testing.T) {
+		if _, err := XCHGW(reg.AX, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := XCHGW(reg.AX, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=r16_r16", func(t *testing.T) {
+		if _, err := XCHGW(reg.CX, reg.CX); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := XCHGW(reg.CX, reg.R9W); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := XCHGW(reg.R9W, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := XCHGW(reg.R9W, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=m16_r16", func(t *testing.T) {
+		if _, err := XCHGW(operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := XCHGW(operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=r16_m16", func(t *testing.T) {
+		if _, err := XCHGW(reg.CX, operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := XCHGW(reg.R9W, operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}); err != nil {
 			t.Fatal(err)
 		}
@@ -17782,14 +19459,50 @@ func TestXORBValidForms(t *testing.T) {
 		if _, err := XORB(operand.Imm(math.MaxInt8), reg.CH); err != nil {
 			t.Fatal(err)
 		}
+		if _, err := XORB(operand.Imm(math.MaxInt8), reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := XORB(operand.Imm(math.MaxInt8), reg.R13B); err != nil {
+			t.Fatal(err)
+		}
 	})
 	t.Run("form=r8_r8", func(t *testing.T) {
 		if _, err := XORB(reg.CH, reg.CH); err != nil {
 			t.Fatal(err)
 		}
+		if _, err := XORB(reg.CH, reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := XORB(reg.CH, reg.R13B); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := XORB(reg.BL, reg.CH); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := XORB(reg.BL, reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := XORB(reg.BL, reg.R13B); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := XORB(reg.R13B, reg.CH); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := XORB(reg.R13B, reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := XORB(reg.R13B, reg.R13B); err != nil {
+			t.Fatal(err)
+		}
 	})
 	t.Run("form=m8_r8", func(t *testing.T) {
 		if _, err := XORB(operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}, reg.CH); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := XORB(operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}, reg.BL); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := XORB(operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}, reg.R13B); err != nil {
 			t.Fatal(err)
 		}
 	})
@@ -17800,6 +19513,12 @@ func TestXORBValidForms(t *testing.T) {
 	})
 	t.Run("form=r8_m8", func(t *testing.T) {
 		if _, err := XORB(reg.CH, operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := XORB(reg.BL, operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := XORB(reg.R13B, operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}); err != nil {
 			t.Fatal(err)
 		}
 	})
@@ -17924,21 +19643,39 @@ func TestXORWValidForms(t *testing.T) {
 		}
 	})
 	t.Run("form=imm8_r16", func(t *testing.T) {
+		if _, err := XORW(operand.Imm(math.MaxInt8), reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := XORW(operand.Imm(math.MaxInt8), reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=imm16_r16", func(t *testing.T) {
+		if _, err := XORW(operand.Imm(math.MaxInt16), reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := XORW(operand.Imm(math.MaxInt16), reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=r16_r16", func(t *testing.T) {
+		if _, err := XORW(reg.CX, reg.CX); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := XORW(reg.CX, reg.R9W); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := XORW(reg.R9W, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := XORW(reg.R9W, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
 	})
 	t.Run("form=m16_r16", func(t *testing.T) {
+		if _, err := XORW(operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}, reg.CX); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := XORW(operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}, reg.R9W); err != nil {
 			t.Fatal(err)
 		}
@@ -17954,6 +19691,9 @@ func TestXORWValidForms(t *testing.T) {
 		}
 	})
 	t.Run("form=r16_m16", func(t *testing.T) {
+		if _, err := XORW(reg.CX, operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}); err != nil {
+			t.Fatal(err)
+		}
 		if _, err := XORW(reg.R9W, operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}); err != nil {
 			t.Fatal(err)
 		}
