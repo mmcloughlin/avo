@@ -2,4 +2,5 @@ language: go
 go:
 - 1.11.1
 script:
+- ./script/lint
 - go test -v ./...

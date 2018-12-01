@@ -1,0 +1,5 @@
+#!/bin/bash -ex
+
+# Ensure the repository is clean after code generation.
+./script/generate
+test -z "$(git status --porcelain)"
