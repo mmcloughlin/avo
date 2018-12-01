@@ -14,7 +14,6 @@ func (c *Context) ADCB(imr, amr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func ADCB(imr, amr avo.Operand) { ctx.ADCB(imr, amr) }
 
 func (c *Context) ADCL(imr, emr avo.Operand) {
@@ -24,7 +23,6 @@ func (c *Context) ADCL(imr, emr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func ADCL(imr, emr avo.Operand) { ctx.ADCL(imr, emr) }
 
 func (c *Context) ADCQ(imr, mr avo.Operand) {
@@ -34,7 +32,6 @@ func (c *Context) ADCQ(imr, mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func ADCQ(imr, mr avo.Operand) { ctx.ADCQ(imr, mr) }
 
 func (c *Context) ADCW(imr, amr avo.Operand) {
@@ -44,7 +41,6 @@ func (c *Context) ADCW(imr, amr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func ADCW(imr, amr avo.Operand) { ctx.ADCW(imr, amr) }
 
 func (c *Context) ADCXL(mr, r avo.Operand) {
@@ -54,7 +50,6 @@ func (c *Context) ADCXL(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func ADCXL(mr, r avo.Operand) { ctx.ADCXL(mr, r) }
 
 func (c *Context) ADCXQ(mr, r avo.Operand) {
@@ -64,7 +59,6 @@ func (c *Context) ADCXQ(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func ADCXQ(mr, r avo.Operand) { ctx.ADCXQ(mr, r) }
 
 func (c *Context) ADDB(imr, amr avo.Operand) {
@@ -74,7 +68,6 @@ func (c *Context) ADDB(imr, amr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func ADDB(imr, amr avo.Operand) { ctx.ADDB(imr, amr) }
 
 func (c *Context) ADDL(imr, emr avo.Operand) {
@@ -84,7 +77,6 @@ func (c *Context) ADDL(imr, emr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func ADDL(imr, emr avo.Operand) { ctx.ADDL(imr, emr) }
 
 func (c *Context) ADDPD(mx, x avo.Operand) {
@@ -94,7 +86,6 @@ func (c *Context) ADDPD(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func ADDPD(mx, x avo.Operand) { ctx.ADDPD(mx, x) }
 
 func (c *Context) ADDPS(mx, x avo.Operand) {
@@ -104,7 +95,6 @@ func (c *Context) ADDPS(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func ADDPS(mx, x avo.Operand) { ctx.ADDPS(mx, x) }
 
 func (c *Context) ADDQ(imr, mr avo.Operand) {
@@ -114,7 +104,6 @@ func (c *Context) ADDQ(imr, mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func ADDQ(imr, mr avo.Operand) { ctx.ADDQ(imr, mr) }
 
 func (c *Context) ADDSD(mx, x avo.Operand) {
@@ -124,7 +113,6 @@ func (c *Context) ADDSD(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func ADDSD(mx, x avo.Operand) { ctx.ADDSD(mx, x) }
 
 func (c *Context) ADDSS(mx, x avo.Operand) {
@@ -134,7 +122,6 @@ func (c *Context) ADDSS(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func ADDSS(mx, x avo.Operand) { ctx.ADDSS(mx, x) }
 
 func (c *Context) ADDSUBPD(mx, x avo.Operand) {
@@ -144,7 +131,6 @@ func (c *Context) ADDSUBPD(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func ADDSUBPD(mx, x avo.Operand) { ctx.ADDSUBPD(mx, x) }
 
 func (c *Context) ADDSUBPS(mx, x avo.Operand) {
@@ -154,7 +140,6 @@ func (c *Context) ADDSUBPS(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func ADDSUBPS(mx, x avo.Operand) { ctx.ADDSUBPS(mx, x) }
 
 func (c *Context) ADDW(imr, amr avo.Operand) {
@@ -164,7 +149,6 @@ func (c *Context) ADDW(imr, amr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func ADDW(imr, amr avo.Operand) { ctx.ADDW(imr, amr) }
 
 func (c *Context) ADOXL(mr, r avo.Operand) {
@@ -174,7 +158,6 @@ func (c *Context) ADOXL(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func ADOXL(mr, r avo.Operand) { ctx.ADOXL(mr, r) }
 
 func (c *Context) ADOXQ(mr, r avo.Operand) {
@@ -184,7 +167,6 @@ func (c *Context) ADOXQ(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func ADOXQ(mr, r avo.Operand) { ctx.ADOXQ(mr, r) }
 
 func (c *Context) AESDEC(mx, x avo.Operand) {
@@ -194,7 +176,6 @@ func (c *Context) AESDEC(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func AESDEC(mx, x avo.Operand) { ctx.AESDEC(mx, x) }
 
 func (c *Context) AESDECLAST(mx, x avo.Operand) {
@@ -204,7 +185,6 @@ func (c *Context) AESDECLAST(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func AESDECLAST(mx, x avo.Operand) { ctx.AESDECLAST(mx, x) }
 
 func (c *Context) AESENC(mx, x avo.Operand) {
@@ -214,7 +194,6 @@ func (c *Context) AESENC(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func AESENC(mx, x avo.Operand) { ctx.AESENC(mx, x) }
 
 func (c *Context) AESENCLAST(mx, x avo.Operand) {
@@ -224,7 +203,6 @@ func (c *Context) AESENCLAST(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func AESENCLAST(mx, x avo.Operand) { ctx.AESENCLAST(mx, x) }
 
 func (c *Context) AESIMC(mx, x avo.Operand) {
@@ -234,7 +212,6 @@ func (c *Context) AESIMC(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func AESIMC(mx, x avo.Operand) { ctx.AESIMC(mx, x) }
 
 func (c *Context) AESKEYGENASSIST(i, mx, x avo.Operand) {
@@ -244,7 +221,6 @@ func (c *Context) AESKEYGENASSIST(i, mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func AESKEYGENASSIST(i, mx, x avo.Operand) { ctx.AESKEYGENASSIST(i, mx, x) }
 
 func (c *Context) ANDB(imr, amr avo.Operand) {
@@ -254,7 +230,6 @@ func (c *Context) ANDB(imr, amr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func ANDB(imr, amr avo.Operand) { ctx.ANDB(imr, amr) }
 
 func (c *Context) ANDL(imr, emr avo.Operand) {
@@ -264,7 +239,6 @@ func (c *Context) ANDL(imr, emr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func ANDL(imr, emr avo.Operand) { ctx.ANDL(imr, emr) }
 
 func (c *Context) ANDNL(mr, r, r1 avo.Operand) {
@@ -274,7 +248,6 @@ func (c *Context) ANDNL(mr, r, r1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func ANDNL(mr, r, r1 avo.Operand) { ctx.ANDNL(mr, r, r1) }
 
 func (c *Context) ANDNPD(mx, x avo.Operand) {
@@ -284,7 +257,6 @@ func (c *Context) ANDNPD(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func ANDNPD(mx, x avo.Operand) { ctx.ANDNPD(mx, x) }
 
 func (c *Context) ANDNPS(mx, x avo.Operand) {
@@ -294,7 +266,6 @@ func (c *Context) ANDNPS(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func ANDNPS(mx, x avo.Operand) { ctx.ANDNPS(mx, x) }
 
 func (c *Context) ANDNQ(mr, r, r1 avo.Operand) {
@@ -304,7 +275,6 @@ func (c *Context) ANDNQ(mr, r, r1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func ANDNQ(mr, r, r1 avo.Operand) { ctx.ANDNQ(mr, r, r1) }
 
 func (c *Context) ANDPD(mx, x avo.Operand) {
@@ -314,7 +284,6 @@ func (c *Context) ANDPD(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func ANDPD(mx, x avo.Operand) { ctx.ANDPD(mx, x) }
 
 func (c *Context) ANDPS(mx, x avo.Operand) {
@@ -324,7 +293,6 @@ func (c *Context) ANDPS(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func ANDPS(mx, x avo.Operand) { ctx.ANDPS(mx, x) }
 
 func (c *Context) ANDQ(imr, mr avo.Operand) {
@@ -334,7 +302,6 @@ func (c *Context) ANDQ(imr, mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func ANDQ(imr, mr avo.Operand) { ctx.ANDQ(imr, mr) }
 
 func (c *Context) ANDW(imr, amr avo.Operand) {
@@ -344,7 +311,6 @@ func (c *Context) ANDW(imr, amr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func ANDW(imr, amr avo.Operand) { ctx.ANDW(imr, amr) }
 
 func (c *Context) BEXTRL(r, mr, r1 avo.Operand) {
@@ -354,7 +320,6 @@ func (c *Context) BEXTRL(r, mr, r1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func BEXTRL(r, mr, r1 avo.Operand) { ctx.BEXTRL(r, mr, r1) }
 
 func (c *Context) BEXTRQ(r, mr, r1 avo.Operand) {
@@ -364,7 +329,6 @@ func (c *Context) BEXTRQ(r, mr, r1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func BEXTRQ(r, mr, r1 avo.Operand) { ctx.BEXTRQ(r, mr, r1) }
 
 func (c *Context) BLENDPD(i, mx, x avo.Operand) {
@@ -374,7 +338,6 @@ func (c *Context) BLENDPD(i, mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func BLENDPD(i, mx, x avo.Operand) { ctx.BLENDPD(i, mx, x) }
 
 func (c *Context) BLENDPS(i, mx, x avo.Operand) {
@@ -384,7 +347,6 @@ func (c *Context) BLENDPS(i, mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func BLENDPS(i, mx, x avo.Operand) { ctx.BLENDPS(i, mx, x) }
 
 func (c *Context) BLENDVPD(x, mx, x1 avo.Operand) {
@@ -394,7 +356,6 @@ func (c *Context) BLENDVPD(x, mx, x1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func BLENDVPD(x, mx, x1 avo.Operand) { ctx.BLENDVPD(x, mx, x1) }
 
 func (c *Context) BLENDVPS(x, mx, x1 avo.Operand) {
@@ -404,7 +365,6 @@ func (c *Context) BLENDVPS(x, mx, x1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func BLENDVPS(x, mx, x1 avo.Operand) { ctx.BLENDVPS(x, mx, x1) }
 
 func (c *Context) BLSIL(mr, r avo.Operand) {
@@ -414,7 +374,6 @@ func (c *Context) BLSIL(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func BLSIL(mr, r avo.Operand) { ctx.BLSIL(mr, r) }
 
 func (c *Context) BLSIQ(mr, r avo.Operand) {
@@ -424,7 +383,6 @@ func (c *Context) BLSIQ(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func BLSIQ(mr, r avo.Operand) { ctx.BLSIQ(mr, r) }
 
 func (c *Context) BLSMSKL(mr, r avo.Operand) {
@@ -434,7 +392,6 @@ func (c *Context) BLSMSKL(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func BLSMSKL(mr, r avo.Operand) { ctx.BLSMSKL(mr, r) }
 
 func (c *Context) BLSMSKQ(mr, r avo.Operand) {
@@ -444,7 +401,6 @@ func (c *Context) BLSMSKQ(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func BLSMSKQ(mr, r avo.Operand) { ctx.BLSMSKQ(mr, r) }
 
 func (c *Context) BLSRL(mr, r avo.Operand) {
@@ -454,7 +410,6 @@ func (c *Context) BLSRL(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func BLSRL(mr, r avo.Operand) { ctx.BLSRL(mr, r) }
 
 func (c *Context) BLSRQ(mr, r avo.Operand) {
@@ -464,7 +419,6 @@ func (c *Context) BLSRQ(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func BLSRQ(mr, r avo.Operand) { ctx.BLSRQ(mr, r) }
 
 func (c *Context) BSFL(mr, r avo.Operand) {
@@ -474,7 +428,6 @@ func (c *Context) BSFL(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func BSFL(mr, r avo.Operand) { ctx.BSFL(mr, r) }
 
 func (c *Context) BSFQ(mr, r avo.Operand) {
@@ -484,7 +437,6 @@ func (c *Context) BSFQ(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func BSFQ(mr, r avo.Operand) { ctx.BSFQ(mr, r) }
 
 func (c *Context) BSFW(mr, r avo.Operand) {
@@ -494,7 +446,6 @@ func (c *Context) BSFW(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func BSFW(mr, r avo.Operand) { ctx.BSFW(mr, r) }
 
 func (c *Context) BSRL(mr, r avo.Operand) {
@@ -504,7 +455,6 @@ func (c *Context) BSRL(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func BSRL(mr, r avo.Operand) { ctx.BSRL(mr, r) }
 
 func (c *Context) BSRQ(mr, r avo.Operand) {
@@ -514,7 +464,6 @@ func (c *Context) BSRQ(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func BSRQ(mr, r avo.Operand) { ctx.BSRQ(mr, r) }
 
 func (c *Context) BSRW(mr, r avo.Operand) {
@@ -524,7 +473,6 @@ func (c *Context) BSRW(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func BSRW(mr, r avo.Operand) { ctx.BSRW(mr, r) }
 
 func (c *Context) BSWAPL(r avo.Operand) {
@@ -534,7 +482,6 @@ func (c *Context) BSWAPL(r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func BSWAPL(r avo.Operand) { ctx.BSWAPL(r) }
 
 func (c *Context) BSWAPQ(r avo.Operand) {
@@ -544,7 +491,6 @@ func (c *Context) BSWAPQ(r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func BSWAPQ(r avo.Operand) { ctx.BSWAPQ(r) }
 
 func (c *Context) BTCL(ir, mr avo.Operand) {
@@ -554,7 +500,6 @@ func (c *Context) BTCL(ir, mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func BTCL(ir, mr avo.Operand) { ctx.BTCL(ir, mr) }
 
 func (c *Context) BTCQ(ir, mr avo.Operand) {
@@ -564,7 +509,6 @@ func (c *Context) BTCQ(ir, mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func BTCQ(ir, mr avo.Operand) { ctx.BTCQ(ir, mr) }
 
 func (c *Context) BTCW(ir, mr avo.Operand) {
@@ -574,7 +518,6 @@ func (c *Context) BTCW(ir, mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func BTCW(ir, mr avo.Operand) { ctx.BTCW(ir, mr) }
 
 func (c *Context) BTL(ir, mr avo.Operand) {
@@ -584,7 +527,6 @@ func (c *Context) BTL(ir, mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func BTL(ir, mr avo.Operand) { ctx.BTL(ir, mr) }
 
 func (c *Context) BTQ(ir, mr avo.Operand) {
@@ -594,7 +536,6 @@ func (c *Context) BTQ(ir, mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func BTQ(ir, mr avo.Operand) { ctx.BTQ(ir, mr) }
 
 func (c *Context) BTRL(ir, mr avo.Operand) {
@@ -604,7 +545,6 @@ func (c *Context) BTRL(ir, mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func BTRL(ir, mr avo.Operand) { ctx.BTRL(ir, mr) }
 
 func (c *Context) BTRQ(ir, mr avo.Operand) {
@@ -614,7 +554,6 @@ func (c *Context) BTRQ(ir, mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func BTRQ(ir, mr avo.Operand) { ctx.BTRQ(ir, mr) }
 
 func (c *Context) BTRW(ir, mr avo.Operand) {
@@ -624,7 +563,6 @@ func (c *Context) BTRW(ir, mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func BTRW(ir, mr avo.Operand) { ctx.BTRW(ir, mr) }
 
 func (c *Context) BTSL(ir, mr avo.Operand) {
@@ -634,7 +572,6 @@ func (c *Context) BTSL(ir, mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func BTSL(ir, mr avo.Operand) { ctx.BTSL(ir, mr) }
 
 func (c *Context) BTSQ(ir, mr avo.Operand) {
@@ -644,7 +581,6 @@ func (c *Context) BTSQ(ir, mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func BTSQ(ir, mr avo.Operand) { ctx.BTSQ(ir, mr) }
 
 func (c *Context) BTSW(ir, mr avo.Operand) {
@@ -654,7 +590,6 @@ func (c *Context) BTSW(ir, mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func BTSW(ir, mr avo.Operand) { ctx.BTSW(ir, mr) }
 
 func (c *Context) BTW(ir, mr avo.Operand) {
@@ -664,7 +599,6 @@ func (c *Context) BTW(ir, mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func BTW(ir, mr avo.Operand) { ctx.BTW(ir, mr) }
 
 func (c *Context) BZHIL(r, mr, r1 avo.Operand) {
@@ -674,7 +608,6 @@ func (c *Context) BZHIL(r, mr, r1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func BZHIL(r, mr, r1 avo.Operand) { ctx.BZHIL(r, mr, r1) }
 
 func (c *Context) BZHIQ(r, mr, r1 avo.Operand) {
@@ -684,7 +617,6 @@ func (c *Context) BZHIQ(r, mr, r1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func BZHIQ(r, mr, r1 avo.Operand) { ctx.BZHIQ(r, mr, r1) }
 
 func (c *Context) CALL(r avo.Operand) {
@@ -694,7 +626,6 @@ func (c *Context) CALL(r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CALL(r avo.Operand) { ctx.CALL(r) }
 
 func (c *Context) CBW() {
@@ -704,7 +635,6 @@ func (c *Context) CBW() {
 		c.AddError(err)
 	}
 }
-
 func CBW() { ctx.CBW() }
 
 func (c *Context) CDQ() {
@@ -714,7 +644,6 @@ func (c *Context) CDQ() {
 		c.AddError(err)
 	}
 }
-
 func CDQ() { ctx.CDQ() }
 
 func (c *Context) CDQE() {
@@ -724,7 +653,6 @@ func (c *Context) CDQE() {
 		c.AddError(err)
 	}
 }
-
 func CDQE() { ctx.CDQE() }
 
 func (c *Context) CLC() {
@@ -734,7 +662,6 @@ func (c *Context) CLC() {
 		c.AddError(err)
 	}
 }
-
 func CLC() { ctx.CLC() }
 
 func (c *Context) CLD() {
@@ -744,7 +671,6 @@ func (c *Context) CLD() {
 		c.AddError(err)
 	}
 }
-
 func CLD() { ctx.CLD() }
 
 func (c *Context) CLFLUSH(m avo.Operand) {
@@ -754,7 +680,6 @@ func (c *Context) CLFLUSH(m avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CLFLUSH(m avo.Operand) { ctx.CLFLUSH(m) }
 
 func (c *Context) CLFLUSHOPT(m avo.Operand) {
@@ -764,7 +689,6 @@ func (c *Context) CLFLUSHOPT(m avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CLFLUSHOPT(m avo.Operand) { ctx.CLFLUSHOPT(m) }
 
 func (c *Context) CMC() {
@@ -774,7 +698,6 @@ func (c *Context) CMC() {
 		c.AddError(err)
 	}
 }
-
 func CMC() { ctx.CMC() }
 
 func (c *Context) CMOVLCC(mr, r avo.Operand) {
@@ -784,7 +707,6 @@ func (c *Context) CMOVLCC(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CMOVLCC(mr, r avo.Operand) { ctx.CMOVLCC(mr, r) }
 
 func (c *Context) CMOVLCS(mr, r avo.Operand) {
@@ -794,7 +716,6 @@ func (c *Context) CMOVLCS(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CMOVLCS(mr, r avo.Operand) { ctx.CMOVLCS(mr, r) }
 
 func (c *Context) CMOVLEQ(mr, r avo.Operand) {
@@ -804,7 +725,6 @@ func (c *Context) CMOVLEQ(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CMOVLEQ(mr, r avo.Operand) { ctx.CMOVLEQ(mr, r) }
 
 func (c *Context) CMOVLGE(mr, r avo.Operand) {
@@ -814,7 +734,6 @@ func (c *Context) CMOVLGE(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CMOVLGE(mr, r avo.Operand) { ctx.CMOVLGE(mr, r) }
 
 func (c *Context) CMOVLGT(mr, r avo.Operand) {
@@ -824,7 +743,6 @@ func (c *Context) CMOVLGT(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CMOVLGT(mr, r avo.Operand) { ctx.CMOVLGT(mr, r) }
 
 func (c *Context) CMOVLHI(mr, r avo.Operand) {
@@ -834,7 +752,6 @@ func (c *Context) CMOVLHI(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CMOVLHI(mr, r avo.Operand) { ctx.CMOVLHI(mr, r) }
 
 func (c *Context) CMOVLLE(mr, r avo.Operand) {
@@ -844,7 +761,6 @@ func (c *Context) CMOVLLE(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CMOVLLE(mr, r avo.Operand) { ctx.CMOVLLE(mr, r) }
 
 func (c *Context) CMOVLLS(mr, r avo.Operand) {
@@ -854,7 +770,6 @@ func (c *Context) CMOVLLS(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CMOVLLS(mr, r avo.Operand) { ctx.CMOVLLS(mr, r) }
 
 func (c *Context) CMOVLLT(mr, r avo.Operand) {
@@ -864,7 +779,6 @@ func (c *Context) CMOVLLT(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CMOVLLT(mr, r avo.Operand) { ctx.CMOVLLT(mr, r) }
 
 func (c *Context) CMOVLMI(mr, r avo.Operand) {
@@ -874,7 +788,6 @@ func (c *Context) CMOVLMI(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CMOVLMI(mr, r avo.Operand) { ctx.CMOVLMI(mr, r) }
 
 func (c *Context) CMOVLNE(mr, r avo.Operand) {
@@ -884,7 +797,6 @@ func (c *Context) CMOVLNE(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CMOVLNE(mr, r avo.Operand) { ctx.CMOVLNE(mr, r) }
 
 func (c *Context) CMOVLOC(mr, r avo.Operand) {
@@ -894,7 +806,6 @@ func (c *Context) CMOVLOC(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CMOVLOC(mr, r avo.Operand) { ctx.CMOVLOC(mr, r) }
 
 func (c *Context) CMOVLOS(mr, r avo.Operand) {
@@ -904,7 +815,6 @@ func (c *Context) CMOVLOS(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CMOVLOS(mr, r avo.Operand) { ctx.CMOVLOS(mr, r) }
 
 func (c *Context) CMOVLPC(mr, r avo.Operand) {
@@ -914,7 +824,6 @@ func (c *Context) CMOVLPC(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CMOVLPC(mr, r avo.Operand) { ctx.CMOVLPC(mr, r) }
 
 func (c *Context) CMOVLPL(mr, r avo.Operand) {
@@ -924,7 +833,6 @@ func (c *Context) CMOVLPL(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CMOVLPL(mr, r avo.Operand) { ctx.CMOVLPL(mr, r) }
 
 func (c *Context) CMOVLPS(mr, r avo.Operand) {
@@ -934,7 +842,6 @@ func (c *Context) CMOVLPS(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CMOVLPS(mr, r avo.Operand) { ctx.CMOVLPS(mr, r) }
 
 func (c *Context) CMOVQCC(mr, r avo.Operand) {
@@ -944,7 +851,6 @@ func (c *Context) CMOVQCC(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CMOVQCC(mr, r avo.Operand) { ctx.CMOVQCC(mr, r) }
 
 func (c *Context) CMOVQCS(mr, r avo.Operand) {
@@ -954,7 +860,6 @@ func (c *Context) CMOVQCS(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CMOVQCS(mr, r avo.Operand) { ctx.CMOVQCS(mr, r) }
 
 func (c *Context) CMOVQEQ(mr, r avo.Operand) {
@@ -964,7 +869,6 @@ func (c *Context) CMOVQEQ(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CMOVQEQ(mr, r avo.Operand) { ctx.CMOVQEQ(mr, r) }
 
 func (c *Context) CMOVQGE(mr, r avo.Operand) {
@@ -974,7 +878,6 @@ func (c *Context) CMOVQGE(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CMOVQGE(mr, r avo.Operand) { ctx.CMOVQGE(mr, r) }
 
 func (c *Context) CMOVQGT(mr, r avo.Operand) {
@@ -984,7 +887,6 @@ func (c *Context) CMOVQGT(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CMOVQGT(mr, r avo.Operand) { ctx.CMOVQGT(mr, r) }
 
 func (c *Context) CMOVQHI(mr, r avo.Operand) {
@@ -994,7 +896,6 @@ func (c *Context) CMOVQHI(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CMOVQHI(mr, r avo.Operand) { ctx.CMOVQHI(mr, r) }
 
 func (c *Context) CMOVQLE(mr, r avo.Operand) {
@@ -1004,7 +905,6 @@ func (c *Context) CMOVQLE(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CMOVQLE(mr, r avo.Operand) { ctx.CMOVQLE(mr, r) }
 
 func (c *Context) CMOVQLS(mr, r avo.Operand) {
@@ -1014,7 +914,6 @@ func (c *Context) CMOVQLS(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CMOVQLS(mr, r avo.Operand) { ctx.CMOVQLS(mr, r) }
 
 func (c *Context) CMOVQLT(mr, r avo.Operand) {
@@ -1024,7 +923,6 @@ func (c *Context) CMOVQLT(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CMOVQLT(mr, r avo.Operand) { ctx.CMOVQLT(mr, r) }
 
 func (c *Context) CMOVQMI(mr, r avo.Operand) {
@@ -1034,7 +932,6 @@ func (c *Context) CMOVQMI(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CMOVQMI(mr, r avo.Operand) { ctx.CMOVQMI(mr, r) }
 
 func (c *Context) CMOVQNE(mr, r avo.Operand) {
@@ -1044,7 +941,6 @@ func (c *Context) CMOVQNE(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CMOVQNE(mr, r avo.Operand) { ctx.CMOVQNE(mr, r) }
 
 func (c *Context) CMOVQOC(mr, r avo.Operand) {
@@ -1054,7 +950,6 @@ func (c *Context) CMOVQOC(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CMOVQOC(mr, r avo.Operand) { ctx.CMOVQOC(mr, r) }
 
 func (c *Context) CMOVQOS(mr, r avo.Operand) {
@@ -1064,7 +959,6 @@ func (c *Context) CMOVQOS(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CMOVQOS(mr, r avo.Operand) { ctx.CMOVQOS(mr, r) }
 
 func (c *Context) CMOVQPC(mr, r avo.Operand) {
@@ -1074,7 +968,6 @@ func (c *Context) CMOVQPC(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CMOVQPC(mr, r avo.Operand) { ctx.CMOVQPC(mr, r) }
 
 func (c *Context) CMOVQPL(mr, r avo.Operand) {
@@ -1084,7 +977,6 @@ func (c *Context) CMOVQPL(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CMOVQPL(mr, r avo.Operand) { ctx.CMOVQPL(mr, r) }
 
 func (c *Context) CMOVQPS(mr, r avo.Operand) {
@@ -1094,7 +986,6 @@ func (c *Context) CMOVQPS(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CMOVQPS(mr, r avo.Operand) { ctx.CMOVQPS(mr, r) }
 
 func (c *Context) CMOVWCC(mr, r avo.Operand) {
@@ -1104,7 +995,6 @@ func (c *Context) CMOVWCC(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CMOVWCC(mr, r avo.Operand) { ctx.CMOVWCC(mr, r) }
 
 func (c *Context) CMOVWCS(mr, r avo.Operand) {
@@ -1114,7 +1004,6 @@ func (c *Context) CMOVWCS(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CMOVWCS(mr, r avo.Operand) { ctx.CMOVWCS(mr, r) }
 
 func (c *Context) CMOVWEQ(mr, r avo.Operand) {
@@ -1124,7 +1013,6 @@ func (c *Context) CMOVWEQ(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CMOVWEQ(mr, r avo.Operand) { ctx.CMOVWEQ(mr, r) }
 
 func (c *Context) CMOVWGE(mr, r avo.Operand) {
@@ -1134,7 +1022,6 @@ func (c *Context) CMOVWGE(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CMOVWGE(mr, r avo.Operand) { ctx.CMOVWGE(mr, r) }
 
 func (c *Context) CMOVWGT(mr, r avo.Operand) {
@@ -1144,7 +1031,6 @@ func (c *Context) CMOVWGT(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CMOVWGT(mr, r avo.Operand) { ctx.CMOVWGT(mr, r) }
 
 func (c *Context) CMOVWHI(mr, r avo.Operand) {
@@ -1154,7 +1040,6 @@ func (c *Context) CMOVWHI(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CMOVWHI(mr, r avo.Operand) { ctx.CMOVWHI(mr, r) }
 
 func (c *Context) CMOVWLE(mr, r avo.Operand) {
@@ -1164,7 +1049,6 @@ func (c *Context) CMOVWLE(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CMOVWLE(mr, r avo.Operand) { ctx.CMOVWLE(mr, r) }
 
 func (c *Context) CMOVWLS(mr, r avo.Operand) {
@@ -1174,7 +1058,6 @@ func (c *Context) CMOVWLS(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CMOVWLS(mr, r avo.Operand) { ctx.CMOVWLS(mr, r) }
 
 func (c *Context) CMOVWLT(mr, r avo.Operand) {
@@ -1184,7 +1067,6 @@ func (c *Context) CMOVWLT(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CMOVWLT(mr, r avo.Operand) { ctx.CMOVWLT(mr, r) }
 
 func (c *Context) CMOVWMI(mr, r avo.Operand) {
@@ -1194,7 +1076,6 @@ func (c *Context) CMOVWMI(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CMOVWMI(mr, r avo.Operand) { ctx.CMOVWMI(mr, r) }
 
 func (c *Context) CMOVWNE(mr, r avo.Operand) {
@@ -1204,7 +1085,6 @@ func (c *Context) CMOVWNE(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CMOVWNE(mr, r avo.Operand) { ctx.CMOVWNE(mr, r) }
 
 func (c *Context) CMOVWOC(mr, r avo.Operand) {
@@ -1214,7 +1094,6 @@ func (c *Context) CMOVWOC(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CMOVWOC(mr, r avo.Operand) { ctx.CMOVWOC(mr, r) }
 
 func (c *Context) CMOVWOS(mr, r avo.Operand) {
@@ -1224,7 +1103,6 @@ func (c *Context) CMOVWOS(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CMOVWOS(mr, r avo.Operand) { ctx.CMOVWOS(mr, r) }
 
 func (c *Context) CMOVWPC(mr, r avo.Operand) {
@@ -1234,7 +1112,6 @@ func (c *Context) CMOVWPC(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CMOVWPC(mr, r avo.Operand) { ctx.CMOVWPC(mr, r) }
 
 func (c *Context) CMOVWPL(mr, r avo.Operand) {
@@ -1244,7 +1121,6 @@ func (c *Context) CMOVWPL(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CMOVWPL(mr, r avo.Operand) { ctx.CMOVWPL(mr, r) }
 
 func (c *Context) CMOVWPS(mr, r avo.Operand) {
@@ -1254,7 +1130,6 @@ func (c *Context) CMOVWPS(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CMOVWPS(mr, r avo.Operand) { ctx.CMOVWPS(mr, r) }
 
 func (c *Context) CMPB(amr, imr avo.Operand) {
@@ -1264,7 +1139,6 @@ func (c *Context) CMPB(amr, imr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CMPB(amr, imr avo.Operand) { ctx.CMPB(amr, imr) }
 
 func (c *Context) CMPL(emr, imr avo.Operand) {
@@ -1274,7 +1148,6 @@ func (c *Context) CMPL(emr, imr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CMPL(emr, imr avo.Operand) { ctx.CMPL(emr, imr) }
 
 func (c *Context) CMPPD(mx, x, i avo.Operand) {
@@ -1284,7 +1157,6 @@ func (c *Context) CMPPD(mx, x, i avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CMPPD(mx, x, i avo.Operand) { ctx.CMPPD(mx, x, i) }
 
 func (c *Context) CMPPS(mx, x, i avo.Operand) {
@@ -1294,7 +1166,6 @@ func (c *Context) CMPPS(mx, x, i avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CMPPS(mx, x, i avo.Operand) { ctx.CMPPS(mx, x, i) }
 
 func (c *Context) CMPQ(mr, imr avo.Operand) {
@@ -1304,7 +1175,6 @@ func (c *Context) CMPQ(mr, imr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CMPQ(mr, imr avo.Operand) { ctx.CMPQ(mr, imr) }
 
 func (c *Context) CMPSD(mx, x, i avo.Operand) {
@@ -1314,7 +1184,6 @@ func (c *Context) CMPSD(mx, x, i avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CMPSD(mx, x, i avo.Operand) { ctx.CMPSD(mx, x, i) }
 
 func (c *Context) CMPSS(mx, x, i avo.Operand) {
@@ -1324,7 +1193,6 @@ func (c *Context) CMPSS(mx, x, i avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CMPSS(mx, x, i avo.Operand) { ctx.CMPSS(mx, x, i) }
 
 func (c *Context) CMPW(amr, imr avo.Operand) {
@@ -1334,7 +1202,6 @@ func (c *Context) CMPW(amr, imr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CMPW(amr, imr avo.Operand) { ctx.CMPW(amr, imr) }
 
 func (c *Context) CMPXCHG16B(m avo.Operand) {
@@ -1344,7 +1211,6 @@ func (c *Context) CMPXCHG16B(m avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CMPXCHG16B(m avo.Operand) { ctx.CMPXCHG16B(m) }
 
 func (c *Context) CMPXCHG8B(m avo.Operand) {
@@ -1354,7 +1220,6 @@ func (c *Context) CMPXCHG8B(m avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CMPXCHG8B(m avo.Operand) { ctx.CMPXCHG8B(m) }
 
 func (c *Context) CMPXCHGB(r, mr avo.Operand) {
@@ -1364,7 +1229,6 @@ func (c *Context) CMPXCHGB(r, mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CMPXCHGB(r, mr avo.Operand) { ctx.CMPXCHGB(r, mr) }
 
 func (c *Context) CMPXCHGL(r, mr avo.Operand) {
@@ -1374,7 +1238,6 @@ func (c *Context) CMPXCHGL(r, mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CMPXCHGL(r, mr avo.Operand) { ctx.CMPXCHGL(r, mr) }
 
 func (c *Context) CMPXCHGQ(r, mr avo.Operand) {
@@ -1384,7 +1247,6 @@ func (c *Context) CMPXCHGQ(r, mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CMPXCHGQ(r, mr avo.Operand) { ctx.CMPXCHGQ(r, mr) }
 
 func (c *Context) CMPXCHGW(r, mr avo.Operand) {
@@ -1394,7 +1256,6 @@ func (c *Context) CMPXCHGW(r, mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CMPXCHGW(r, mr avo.Operand) { ctx.CMPXCHGW(r, mr) }
 
 func (c *Context) COMISD(mx, x avo.Operand) {
@@ -1404,7 +1265,6 @@ func (c *Context) COMISD(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func COMISD(mx, x avo.Operand) { ctx.COMISD(mx, x) }
 
 func (c *Context) COMISS(mx, x avo.Operand) {
@@ -1414,7 +1274,6 @@ func (c *Context) COMISS(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func COMISS(mx, x avo.Operand) { ctx.COMISS(mx, x) }
 
 func (c *Context) CPUID() {
@@ -1424,7 +1283,6 @@ func (c *Context) CPUID() {
 		c.AddError(err)
 	}
 }
-
 func CPUID() { ctx.CPUID() }
 
 func (c *Context) CQO() {
@@ -1434,7 +1292,6 @@ func (c *Context) CQO() {
 		c.AddError(err)
 	}
 }
-
 func CQO() { ctx.CQO() }
 
 func (c *Context) CRC32B(mr, r avo.Operand) {
@@ -1444,7 +1301,6 @@ func (c *Context) CRC32B(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CRC32B(mr, r avo.Operand) { ctx.CRC32B(mr, r) }
 
 func (c *Context) CRC32L(mr, r avo.Operand) {
@@ -1454,7 +1310,6 @@ func (c *Context) CRC32L(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CRC32L(mr, r avo.Operand) { ctx.CRC32L(mr, r) }
 
 func (c *Context) CRC32Q(mr, r avo.Operand) {
@@ -1464,7 +1319,6 @@ func (c *Context) CRC32Q(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CRC32Q(mr, r avo.Operand) { ctx.CRC32Q(mr, r) }
 
 func (c *Context) CRC32W(mr, r avo.Operand) {
@@ -1474,7 +1328,6 @@ func (c *Context) CRC32W(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CRC32W(mr, r avo.Operand) { ctx.CRC32W(mr, r) }
 
 func (c *Context) CVTPD2PL(mx, x avo.Operand) {
@@ -1484,7 +1337,6 @@ func (c *Context) CVTPD2PL(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CVTPD2PL(mx, x avo.Operand) { ctx.CVTPD2PL(mx, x) }
 
 func (c *Context) CVTPD2PS(mx, x avo.Operand) {
@@ -1494,7 +1346,6 @@ func (c *Context) CVTPD2PS(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CVTPD2PS(mx, x avo.Operand) { ctx.CVTPD2PS(mx, x) }
 
 func (c *Context) CVTPL2PD(mx, x avo.Operand) {
@@ -1504,7 +1355,6 @@ func (c *Context) CVTPL2PD(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CVTPL2PD(mx, x avo.Operand) { ctx.CVTPL2PD(mx, x) }
 
 func (c *Context) CVTPL2PS(mx, x avo.Operand) {
@@ -1514,7 +1364,6 @@ func (c *Context) CVTPL2PS(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CVTPL2PS(mx, x avo.Operand) { ctx.CVTPL2PS(mx, x) }
 
 func (c *Context) CVTPS2PD(mx, x avo.Operand) {
@@ -1524,7 +1373,6 @@ func (c *Context) CVTPS2PD(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CVTPS2PD(mx, x avo.Operand) { ctx.CVTPS2PD(mx, x) }
 
 func (c *Context) CVTPS2PL(mx, x avo.Operand) {
@@ -1534,7 +1382,6 @@ func (c *Context) CVTPS2PL(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CVTPS2PL(mx, x avo.Operand) { ctx.CVTPS2PL(mx, x) }
 
 func (c *Context) CVTSD2SL(mx, r avo.Operand) {
@@ -1544,7 +1391,6 @@ func (c *Context) CVTSD2SL(mx, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CVTSD2SL(mx, r avo.Operand) { ctx.CVTSD2SL(mx, r) }
 
 func (c *Context) CVTSD2SS(mx, x avo.Operand) {
@@ -1554,7 +1400,6 @@ func (c *Context) CVTSD2SS(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CVTSD2SS(mx, x avo.Operand) { ctx.CVTSD2SS(mx, x) }
 
 func (c *Context) CVTSL2SD(mr, x avo.Operand) {
@@ -1564,7 +1409,6 @@ func (c *Context) CVTSL2SD(mr, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CVTSL2SD(mr, x avo.Operand) { ctx.CVTSL2SD(mr, x) }
 
 func (c *Context) CVTSL2SS(mr, x avo.Operand) {
@@ -1574,7 +1418,6 @@ func (c *Context) CVTSL2SS(mr, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CVTSL2SS(mr, x avo.Operand) { ctx.CVTSL2SS(mr, x) }
 
 func (c *Context) CVTSQ2SD(mr, x avo.Operand) {
@@ -1584,7 +1427,6 @@ func (c *Context) CVTSQ2SD(mr, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CVTSQ2SD(mr, x avo.Operand) { ctx.CVTSQ2SD(mr, x) }
 
 func (c *Context) CVTSQ2SS(mr, x avo.Operand) {
@@ -1594,7 +1436,6 @@ func (c *Context) CVTSQ2SS(mr, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CVTSQ2SS(mr, x avo.Operand) { ctx.CVTSQ2SS(mr, x) }
 
 func (c *Context) CVTSS2SD(mx, x avo.Operand) {
@@ -1604,7 +1445,6 @@ func (c *Context) CVTSS2SD(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CVTSS2SD(mx, x avo.Operand) { ctx.CVTSS2SD(mx, x) }
 
 func (c *Context) CVTSS2SL(mx, r avo.Operand) {
@@ -1614,7 +1454,6 @@ func (c *Context) CVTSS2SL(mx, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CVTSS2SL(mx, r avo.Operand) { ctx.CVTSS2SL(mx, r) }
 
 func (c *Context) CVTTPD2PL(mx, x avo.Operand) {
@@ -1624,7 +1463,6 @@ func (c *Context) CVTTPD2PL(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CVTTPD2PL(mx, x avo.Operand) { ctx.CVTTPD2PL(mx, x) }
 
 func (c *Context) CVTTPS2PL(mx, x avo.Operand) {
@@ -1634,7 +1472,6 @@ func (c *Context) CVTTPS2PL(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CVTTPS2PL(mx, x avo.Operand) { ctx.CVTTPS2PL(mx, x) }
 
 func (c *Context) CVTTSD2SL(mx, r avo.Operand) {
@@ -1644,7 +1481,6 @@ func (c *Context) CVTTSD2SL(mx, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CVTTSD2SL(mx, r avo.Operand) { ctx.CVTTSD2SL(mx, r) }
 
 func (c *Context) CVTTSD2SQ(mx, r avo.Operand) {
@@ -1654,7 +1490,6 @@ func (c *Context) CVTTSD2SQ(mx, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CVTTSD2SQ(mx, r avo.Operand) { ctx.CVTTSD2SQ(mx, r) }
 
 func (c *Context) CVTTSS2SL(mx, r avo.Operand) {
@@ -1664,7 +1499,6 @@ func (c *Context) CVTTSS2SL(mx, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func CVTTSS2SL(mx, r avo.Operand) { ctx.CVTTSS2SL(mx, r) }
 
 func (c *Context) CWD() {
@@ -1674,7 +1508,6 @@ func (c *Context) CWD() {
 		c.AddError(err)
 	}
 }
-
 func CWD() { ctx.CWD() }
 
 func (c *Context) CWDE() {
@@ -1684,7 +1517,6 @@ func (c *Context) CWDE() {
 		c.AddError(err)
 	}
 }
-
 func CWDE() { ctx.CWDE() }
 
 func (c *Context) DECB(mr avo.Operand) {
@@ -1694,7 +1526,6 @@ func (c *Context) DECB(mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func DECB(mr avo.Operand) { ctx.DECB(mr) }
 
 func (c *Context) DECL(mr avo.Operand) {
@@ -1704,7 +1535,6 @@ func (c *Context) DECL(mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func DECL(mr avo.Operand) { ctx.DECL(mr) }
 
 func (c *Context) DECQ(mr avo.Operand) {
@@ -1714,7 +1544,6 @@ func (c *Context) DECQ(mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func DECQ(mr avo.Operand) { ctx.DECQ(mr) }
 
 func (c *Context) DECW(mr avo.Operand) {
@@ -1724,7 +1553,6 @@ func (c *Context) DECW(mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func DECW(mr avo.Operand) { ctx.DECW(mr) }
 
 func (c *Context) DIVB(mr avo.Operand) {
@@ -1734,7 +1562,6 @@ func (c *Context) DIVB(mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func DIVB(mr avo.Operand) { ctx.DIVB(mr) }
 
 func (c *Context) DIVL(mr avo.Operand) {
@@ -1744,7 +1571,6 @@ func (c *Context) DIVL(mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func DIVL(mr avo.Operand) { ctx.DIVL(mr) }
 
 func (c *Context) DIVPD(mx, x avo.Operand) {
@@ -1754,7 +1580,6 @@ func (c *Context) DIVPD(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func DIVPD(mx, x avo.Operand) { ctx.DIVPD(mx, x) }
 
 func (c *Context) DIVPS(mx, x avo.Operand) {
@@ -1764,7 +1589,6 @@ func (c *Context) DIVPS(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func DIVPS(mx, x avo.Operand) { ctx.DIVPS(mx, x) }
 
 func (c *Context) DIVQ(mr avo.Operand) {
@@ -1774,7 +1598,6 @@ func (c *Context) DIVQ(mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func DIVQ(mr avo.Operand) { ctx.DIVQ(mr) }
 
 func (c *Context) DIVSD(mx, x avo.Operand) {
@@ -1784,7 +1607,6 @@ func (c *Context) DIVSD(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func DIVSD(mx, x avo.Operand) { ctx.DIVSD(mx, x) }
 
 func (c *Context) DIVSS(mx, x avo.Operand) {
@@ -1794,7 +1616,6 @@ func (c *Context) DIVSS(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func DIVSS(mx, x avo.Operand) { ctx.DIVSS(mx, x) }
 
 func (c *Context) DIVW(mr avo.Operand) {
@@ -1804,7 +1625,6 @@ func (c *Context) DIVW(mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func DIVW(mr avo.Operand) { ctx.DIVW(mr) }
 
 func (c *Context) DPPD(i, mx, x avo.Operand) {
@@ -1814,7 +1634,6 @@ func (c *Context) DPPD(i, mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func DPPD(i, mx, x avo.Operand) { ctx.DPPD(i, mx, x) }
 
 func (c *Context) DPPS(i, mx, x avo.Operand) {
@@ -1824,7 +1643,6 @@ func (c *Context) DPPS(i, mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func DPPS(i, mx, x avo.Operand) { ctx.DPPS(i, mx, x) }
 
 func (c *Context) EXTRACTPS(i, x, mr avo.Operand) {
@@ -1834,7 +1652,6 @@ func (c *Context) EXTRACTPS(i, x, mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func EXTRACTPS(i, x, mr avo.Operand) { ctx.EXTRACTPS(i, x, mr) }
 
 func (c *Context) HADDPD(mx, x avo.Operand) {
@@ -1844,7 +1661,6 @@ func (c *Context) HADDPD(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func HADDPD(mx, x avo.Operand) { ctx.HADDPD(mx, x) }
 
 func (c *Context) HADDPS(mx, x avo.Operand) {
@@ -1854,7 +1670,6 @@ func (c *Context) HADDPS(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func HADDPS(mx, x avo.Operand) { ctx.HADDPS(mx, x) }
 
 func (c *Context) HSUBPD(mx, x avo.Operand) {
@@ -1864,7 +1679,6 @@ func (c *Context) HSUBPD(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func HSUBPD(mx, x avo.Operand) { ctx.HSUBPD(mx, x) }
 
 func (c *Context) HSUBPS(mx, x avo.Operand) {
@@ -1874,7 +1688,6 @@ func (c *Context) HSUBPS(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func HSUBPS(mx, x avo.Operand) { ctx.HSUBPS(mx, x) }
 
 func (c *Context) IDIVB(mr avo.Operand) {
@@ -1884,7 +1697,6 @@ func (c *Context) IDIVB(mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func IDIVB(mr avo.Operand) { ctx.IDIVB(mr) }
 
 func (c *Context) IDIVL(mr avo.Operand) {
@@ -1894,7 +1706,6 @@ func (c *Context) IDIVL(mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func IDIVL(mr avo.Operand) { ctx.IDIVL(mr) }
 
 func (c *Context) IDIVQ(mr avo.Operand) {
@@ -1904,7 +1715,6 @@ func (c *Context) IDIVQ(mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func IDIVQ(mr avo.Operand) { ctx.IDIVQ(mr) }
 
 func (c *Context) IDIVW(mr avo.Operand) {
@@ -1914,7 +1724,6 @@ func (c *Context) IDIVW(mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func IDIVW(mr avo.Operand) { ctx.IDIVW(mr) }
 
 func (c *Context) IMUL3L(i, mr, r avo.Operand) {
@@ -1924,7 +1733,6 @@ func (c *Context) IMUL3L(i, mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func IMUL3L(i, mr, r avo.Operand) { ctx.IMUL3L(i, mr, r) }
 
 func (c *Context) IMUL3Q(i, mr, r avo.Operand) {
@@ -1934,7 +1742,6 @@ func (c *Context) IMUL3Q(i, mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func IMUL3Q(i, mr, r avo.Operand) { ctx.IMUL3Q(i, mr, r) }
 
 func (c *Context) IMUL3W(i, mr, r avo.Operand) {
@@ -1944,7 +1751,6 @@ func (c *Context) IMUL3W(i, mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func IMUL3W(i, mr, r avo.Operand) { ctx.IMUL3W(i, mr, r) }
 
 func (c *Context) IMULB(mr avo.Operand) {
@@ -1954,7 +1760,6 @@ func (c *Context) IMULB(mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func IMULB(mr avo.Operand) { ctx.IMULB(mr) }
 
 func (c *Context) IMULL(ops ...avo.Operand) {
@@ -1964,7 +1769,6 @@ func (c *Context) IMULL(ops ...avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func IMULL(ops ...avo.Operand) { ctx.IMULL(ops...) }
 
 func (c *Context) IMULQ(ops ...avo.Operand) {
@@ -1974,7 +1778,6 @@ func (c *Context) IMULQ(ops ...avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func IMULQ(ops ...avo.Operand) { ctx.IMULQ(ops...) }
 
 func (c *Context) IMULW(ops ...avo.Operand) {
@@ -1984,7 +1787,6 @@ func (c *Context) IMULW(ops ...avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func IMULW(ops ...avo.Operand) { ctx.IMULW(ops...) }
 
 func (c *Context) INCB(mr avo.Operand) {
@@ -1994,7 +1796,6 @@ func (c *Context) INCB(mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func INCB(mr avo.Operand) { ctx.INCB(mr) }
 
 func (c *Context) INCL(mr avo.Operand) {
@@ -2004,7 +1805,6 @@ func (c *Context) INCL(mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func INCL(mr avo.Operand) { ctx.INCL(mr) }
 
 func (c *Context) INCQ(mr avo.Operand) {
@@ -2014,7 +1814,6 @@ func (c *Context) INCQ(mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func INCQ(mr avo.Operand) { ctx.INCQ(mr) }
 
 func (c *Context) INCW(mr avo.Operand) {
@@ -2024,7 +1823,6 @@ func (c *Context) INCW(mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func INCW(mr avo.Operand) { ctx.INCW(mr) }
 
 func (c *Context) INSERTPS(i, mx, x avo.Operand) {
@@ -2034,7 +1832,6 @@ func (c *Context) INSERTPS(i, mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func INSERTPS(i, mx, x avo.Operand) { ctx.INSERTPS(i, mx, x) }
 
 func (c *Context) INT(i avo.Operand) {
@@ -2044,7 +1841,6 @@ func (c *Context) INT(i avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func INT(i avo.Operand) { ctx.INT(i) }
 
 func (c *Context) JA(r avo.Operand) {
@@ -2054,7 +1850,6 @@ func (c *Context) JA(r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func JA(r avo.Operand) { ctx.JA(r) }
 
 func (c *Context) JAE(r avo.Operand) {
@@ -2064,7 +1859,6 @@ func (c *Context) JAE(r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func JAE(r avo.Operand) { ctx.JAE(r) }
 
 func (c *Context) JB(r avo.Operand) {
@@ -2074,7 +1868,6 @@ func (c *Context) JB(r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func JB(r avo.Operand) { ctx.JB(r) }
 
 func (c *Context) JBE(r avo.Operand) {
@@ -2084,7 +1877,6 @@ func (c *Context) JBE(r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func JBE(r avo.Operand) { ctx.JBE(r) }
 
 func (c *Context) JC(r avo.Operand) {
@@ -2094,7 +1886,6 @@ func (c *Context) JC(r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func JC(r avo.Operand) { ctx.JC(r) }
 
 func (c *Context) JCC(r avo.Operand) {
@@ -2104,7 +1895,6 @@ func (c *Context) JCC(r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func JCC(r avo.Operand) { ctx.JCC(r) }
 
 func (c *Context) JCS(r avo.Operand) {
@@ -2114,7 +1904,6 @@ func (c *Context) JCS(r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func JCS(r avo.Operand) { ctx.JCS(r) }
 
 func (c *Context) JCXZL(r avo.Operand) {
@@ -2124,7 +1913,6 @@ func (c *Context) JCXZL(r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func JCXZL(r avo.Operand) { ctx.JCXZL(r) }
 
 func (c *Context) JCXZQ(r avo.Operand) {
@@ -2134,7 +1922,6 @@ func (c *Context) JCXZQ(r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func JCXZQ(r avo.Operand) { ctx.JCXZQ(r) }
 
 func (c *Context) JE(r avo.Operand) {
@@ -2144,7 +1931,6 @@ func (c *Context) JE(r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func JE(r avo.Operand) { ctx.JE(r) }
 
 func (c *Context) JEQ(r avo.Operand) {
@@ -2154,7 +1940,6 @@ func (c *Context) JEQ(r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func JEQ(r avo.Operand) { ctx.JEQ(r) }
 
 func (c *Context) JG(r avo.Operand) {
@@ -2164,7 +1949,6 @@ func (c *Context) JG(r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func JG(r avo.Operand) { ctx.JG(r) }
 
 func (c *Context) JGE(r avo.Operand) {
@@ -2174,7 +1958,6 @@ func (c *Context) JGE(r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func JGE(r avo.Operand) { ctx.JGE(r) }
 
 func (c *Context) JGT(r avo.Operand) {
@@ -2184,7 +1967,6 @@ func (c *Context) JGT(r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func JGT(r avo.Operand) { ctx.JGT(r) }
 
 func (c *Context) JHI(r avo.Operand) {
@@ -2194,7 +1976,6 @@ func (c *Context) JHI(r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func JHI(r avo.Operand) { ctx.JHI(r) }
 
 func (c *Context) JHS(r avo.Operand) {
@@ -2204,7 +1985,6 @@ func (c *Context) JHS(r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func JHS(r avo.Operand) { ctx.JHS(r) }
 
 func (c *Context) JL(r avo.Operand) {
@@ -2214,7 +1994,6 @@ func (c *Context) JL(r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func JL(r avo.Operand) { ctx.JL(r) }
 
 func (c *Context) JLE(r avo.Operand) {
@@ -2224,7 +2003,6 @@ func (c *Context) JLE(r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func JLE(r avo.Operand) { ctx.JLE(r) }
 
 func (c *Context) JLO(r avo.Operand) {
@@ -2234,7 +2012,6 @@ func (c *Context) JLO(r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func JLO(r avo.Operand) { ctx.JLO(r) }
 
 func (c *Context) JLS(r avo.Operand) {
@@ -2244,7 +2021,6 @@ func (c *Context) JLS(r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func JLS(r avo.Operand) { ctx.JLS(r) }
 
 func (c *Context) JLT(r avo.Operand) {
@@ -2254,7 +2030,6 @@ func (c *Context) JLT(r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func JLT(r avo.Operand) { ctx.JLT(r) }
 
 func (c *Context) JMI(r avo.Operand) {
@@ -2264,7 +2039,6 @@ func (c *Context) JMI(r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func JMI(r avo.Operand) { ctx.JMI(r) }
 
 func (c *Context) JMP(mr avo.Operand) {
@@ -2274,7 +2048,6 @@ func (c *Context) JMP(mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func JMP(mr avo.Operand) { ctx.JMP(mr) }
 
 func (c *Context) JNA(r avo.Operand) {
@@ -2284,7 +2057,6 @@ func (c *Context) JNA(r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func JNA(r avo.Operand) { ctx.JNA(r) }
 
 func (c *Context) JNAE(r avo.Operand) {
@@ -2294,7 +2066,6 @@ func (c *Context) JNAE(r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func JNAE(r avo.Operand) { ctx.JNAE(r) }
 
 func (c *Context) JNB(r avo.Operand) {
@@ -2304,7 +2075,6 @@ func (c *Context) JNB(r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func JNB(r avo.Operand) { ctx.JNB(r) }
 
 func (c *Context) JNBE(r avo.Operand) {
@@ -2314,7 +2084,6 @@ func (c *Context) JNBE(r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func JNBE(r avo.Operand) { ctx.JNBE(r) }
 
 func (c *Context) JNC(r avo.Operand) {
@@ -2324,7 +2093,6 @@ func (c *Context) JNC(r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func JNC(r avo.Operand) { ctx.JNC(r) }
 
 func (c *Context) JNE(r avo.Operand) {
@@ -2334,7 +2102,6 @@ func (c *Context) JNE(r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func JNE(r avo.Operand) { ctx.JNE(r) }
 
 func (c *Context) JNG(r avo.Operand) {
@@ -2344,7 +2111,6 @@ func (c *Context) JNG(r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func JNG(r avo.Operand) { ctx.JNG(r) }
 
 func (c *Context) JNGE(r avo.Operand) {
@@ -2354,7 +2120,6 @@ func (c *Context) JNGE(r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func JNGE(r avo.Operand) { ctx.JNGE(r) }
 
 func (c *Context) JNL(r avo.Operand) {
@@ -2364,7 +2129,6 @@ func (c *Context) JNL(r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func JNL(r avo.Operand) { ctx.JNL(r) }
 
 func (c *Context) JNLE(r avo.Operand) {
@@ -2374,7 +2138,6 @@ func (c *Context) JNLE(r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func JNLE(r avo.Operand) { ctx.JNLE(r) }
 
 func (c *Context) JNO(r avo.Operand) {
@@ -2384,7 +2147,6 @@ func (c *Context) JNO(r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func JNO(r avo.Operand) { ctx.JNO(r) }
 
 func (c *Context) JNP(r avo.Operand) {
@@ -2394,7 +2156,6 @@ func (c *Context) JNP(r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func JNP(r avo.Operand) { ctx.JNP(r) }
 
 func (c *Context) JNS(r avo.Operand) {
@@ -2404,7 +2165,6 @@ func (c *Context) JNS(r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func JNS(r avo.Operand) { ctx.JNS(r) }
 
 func (c *Context) JNZ(r avo.Operand) {
@@ -2414,7 +2174,6 @@ func (c *Context) JNZ(r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func JNZ(r avo.Operand) { ctx.JNZ(r) }
 
 func (c *Context) JO(r avo.Operand) {
@@ -2424,7 +2183,6 @@ func (c *Context) JO(r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func JO(r avo.Operand) { ctx.JO(r) }
 
 func (c *Context) JOC(r avo.Operand) {
@@ -2434,7 +2192,6 @@ func (c *Context) JOC(r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func JOC(r avo.Operand) { ctx.JOC(r) }
 
 func (c *Context) JOS(r avo.Operand) {
@@ -2444,7 +2201,6 @@ func (c *Context) JOS(r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func JOS(r avo.Operand) { ctx.JOS(r) }
 
 func (c *Context) JP(r avo.Operand) {
@@ -2454,7 +2210,6 @@ func (c *Context) JP(r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func JP(r avo.Operand) { ctx.JP(r) }
 
 func (c *Context) JPC(r avo.Operand) {
@@ -2464,7 +2219,6 @@ func (c *Context) JPC(r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func JPC(r avo.Operand) { ctx.JPC(r) }
 
 func (c *Context) JPE(r avo.Operand) {
@@ -2474,7 +2228,6 @@ func (c *Context) JPE(r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func JPE(r avo.Operand) { ctx.JPE(r) }
 
 func (c *Context) JPL(r avo.Operand) {
@@ -2484,7 +2237,6 @@ func (c *Context) JPL(r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func JPL(r avo.Operand) { ctx.JPL(r) }
 
 func (c *Context) JPO(r avo.Operand) {
@@ -2494,7 +2246,6 @@ func (c *Context) JPO(r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func JPO(r avo.Operand) { ctx.JPO(r) }
 
 func (c *Context) JPS(r avo.Operand) {
@@ -2504,7 +2255,6 @@ func (c *Context) JPS(r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func JPS(r avo.Operand) { ctx.JPS(r) }
 
 func (c *Context) JS(r avo.Operand) {
@@ -2514,7 +2264,6 @@ func (c *Context) JS(r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func JS(r avo.Operand) { ctx.JS(r) }
 
 func (c *Context) JZ(r avo.Operand) {
@@ -2524,7 +2273,6 @@ func (c *Context) JZ(r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func JZ(r avo.Operand) { ctx.JZ(r) }
 
 func (c *Context) LDDQU(m, x avo.Operand) {
@@ -2534,7 +2282,6 @@ func (c *Context) LDDQU(m, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func LDDQU(m, x avo.Operand) { ctx.LDDQU(m, x) }
 
 func (c *Context) LDMXCSR(m avo.Operand) {
@@ -2544,7 +2291,6 @@ func (c *Context) LDMXCSR(m avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func LDMXCSR(m avo.Operand) { ctx.LDMXCSR(m) }
 
 func (c *Context) LEAL(m, r avo.Operand) {
@@ -2554,7 +2300,6 @@ func (c *Context) LEAL(m, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func LEAL(m, r avo.Operand) { ctx.LEAL(m, r) }
 
 func (c *Context) LEAQ(m, r avo.Operand) {
@@ -2564,7 +2309,6 @@ func (c *Context) LEAQ(m, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func LEAQ(m, r avo.Operand) { ctx.LEAQ(m, r) }
 
 func (c *Context) LEAW(m, r avo.Operand) {
@@ -2574,7 +2318,6 @@ func (c *Context) LEAW(m, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func LEAW(m, r avo.Operand) { ctx.LEAW(m, r) }
 
 func (c *Context) LFENCE() {
@@ -2584,7 +2327,6 @@ func (c *Context) LFENCE() {
 		c.AddError(err)
 	}
 }
-
 func LFENCE() { ctx.LFENCE() }
 
 func (c *Context) LZCNTL(mr, r avo.Operand) {
@@ -2594,7 +2336,6 @@ func (c *Context) LZCNTL(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func LZCNTL(mr, r avo.Operand) { ctx.LZCNTL(mr, r) }
 
 func (c *Context) LZCNTQ(mr, r avo.Operand) {
@@ -2604,7 +2345,6 @@ func (c *Context) LZCNTQ(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func LZCNTQ(mr, r avo.Operand) { ctx.LZCNTQ(mr, r) }
 
 func (c *Context) LZCNTW(mr, r avo.Operand) {
@@ -2614,7 +2354,6 @@ func (c *Context) LZCNTW(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func LZCNTW(mr, r avo.Operand) { ctx.LZCNTW(mr, r) }
 
 func (c *Context) MASKMOVDQU(x, x1 avo.Operand) {
@@ -2624,7 +2363,6 @@ func (c *Context) MASKMOVDQU(x, x1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func MASKMOVDQU(x, x1 avo.Operand) { ctx.MASKMOVDQU(x, x1) }
 
 func (c *Context) MASKMOVOU(x, x1 avo.Operand) {
@@ -2634,7 +2372,6 @@ func (c *Context) MASKMOVOU(x, x1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func MASKMOVOU(x, x1 avo.Operand) { ctx.MASKMOVOU(x, x1) }
 
 func (c *Context) MAXPD(mx, x avo.Operand) {
@@ -2644,7 +2381,6 @@ func (c *Context) MAXPD(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func MAXPD(mx, x avo.Operand) { ctx.MAXPD(mx, x) }
 
 func (c *Context) MAXPS(mx, x avo.Operand) {
@@ -2654,7 +2390,6 @@ func (c *Context) MAXPS(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func MAXPS(mx, x avo.Operand) { ctx.MAXPS(mx, x) }
 
 func (c *Context) MAXSD(mx, x avo.Operand) {
@@ -2664,7 +2399,6 @@ func (c *Context) MAXSD(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func MAXSD(mx, x avo.Operand) { ctx.MAXSD(mx, x) }
 
 func (c *Context) MAXSS(mx, x avo.Operand) {
@@ -2674,7 +2408,6 @@ func (c *Context) MAXSS(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func MAXSS(mx, x avo.Operand) { ctx.MAXSS(mx, x) }
 
 func (c *Context) MFENCE() {
@@ -2684,7 +2417,6 @@ func (c *Context) MFENCE() {
 		c.AddError(err)
 	}
 }
-
 func MFENCE() { ctx.MFENCE() }
 
 func (c *Context) MINPD(mx, x avo.Operand) {
@@ -2694,7 +2426,6 @@ func (c *Context) MINPD(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func MINPD(mx, x avo.Operand) { ctx.MINPD(mx, x) }
 
 func (c *Context) MINPS(mx, x avo.Operand) {
@@ -2704,7 +2435,6 @@ func (c *Context) MINPS(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func MINPS(mx, x avo.Operand) { ctx.MINPS(mx, x) }
 
 func (c *Context) MINSD(mx, x avo.Operand) {
@@ -2714,7 +2444,6 @@ func (c *Context) MINSD(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func MINSD(mx, x avo.Operand) { ctx.MINSD(mx, x) }
 
 func (c *Context) MINSS(mx, x avo.Operand) {
@@ -2724,7 +2453,6 @@ func (c *Context) MINSS(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func MINSS(mx, x avo.Operand) { ctx.MINSS(mx, x) }
 
 func (c *Context) MONITOR() {
@@ -2734,7 +2462,6 @@ func (c *Context) MONITOR() {
 		c.AddError(err)
 	}
 }
-
 func MONITOR() { ctx.MONITOR() }
 
 func (c *Context) MOVAPD(mx, mx1 avo.Operand) {
@@ -2744,7 +2471,6 @@ func (c *Context) MOVAPD(mx, mx1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func MOVAPD(mx, mx1 avo.Operand) { ctx.MOVAPD(mx, mx1) }
 
 func (c *Context) MOVAPS(mx, mx1 avo.Operand) {
@@ -2754,7 +2480,6 @@ func (c *Context) MOVAPS(mx, mx1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func MOVAPS(mx, mx1 avo.Operand) { ctx.MOVAPS(mx, mx1) }
 
 func (c *Context) MOVB(imr, mr avo.Operand) {
@@ -2764,7 +2489,6 @@ func (c *Context) MOVB(imr, mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func MOVB(imr, mr avo.Operand) { ctx.MOVB(imr, mr) }
 
 func (c *Context) MOVBELL(mr, mr1 avo.Operand) {
@@ -2774,7 +2498,6 @@ func (c *Context) MOVBELL(mr, mr1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func MOVBELL(mr, mr1 avo.Operand) { ctx.MOVBELL(mr, mr1) }
 
 func (c *Context) MOVBEQQ(mr, mr1 avo.Operand) {
@@ -2784,7 +2507,6 @@ func (c *Context) MOVBEQQ(mr, mr1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func MOVBEQQ(mr, mr1 avo.Operand) { ctx.MOVBEQQ(mr, mr1) }
 
 func (c *Context) MOVBEWW(mr, mr1 avo.Operand) {
@@ -2794,7 +2516,6 @@ func (c *Context) MOVBEWW(mr, mr1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func MOVBEWW(mr, mr1 avo.Operand) { ctx.MOVBEWW(mr, mr1) }
 
 func (c *Context) MOVBLSX(mr, r avo.Operand) {
@@ -2804,7 +2525,6 @@ func (c *Context) MOVBLSX(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func MOVBLSX(mr, r avo.Operand) { ctx.MOVBLSX(mr, r) }
 
 func (c *Context) MOVBLZX(mr, r avo.Operand) {
@@ -2814,7 +2534,6 @@ func (c *Context) MOVBLZX(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func MOVBLZX(mr, r avo.Operand) { ctx.MOVBLZX(mr, r) }
 
 func (c *Context) MOVBQSX(mr, r avo.Operand) {
@@ -2824,7 +2543,6 @@ func (c *Context) MOVBQSX(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func MOVBQSX(mr, r avo.Operand) { ctx.MOVBQSX(mr, r) }
 
 func (c *Context) MOVBQZX(mr, r avo.Operand) {
@@ -2834,7 +2552,6 @@ func (c *Context) MOVBQZX(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func MOVBQZX(mr, r avo.Operand) { ctx.MOVBQZX(mr, r) }
 
 func (c *Context) MOVBWSX(mr, r avo.Operand) {
@@ -2844,7 +2561,6 @@ func (c *Context) MOVBWSX(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func MOVBWSX(mr, r avo.Operand) { ctx.MOVBWSX(mr, r) }
 
 func (c *Context) MOVBWZX(mr, r avo.Operand) {
@@ -2854,7 +2570,6 @@ func (c *Context) MOVBWZX(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func MOVBWZX(mr, r avo.Operand) { ctx.MOVBWZX(mr, r) }
 
 func (c *Context) MOVD(imrx, mrx avo.Operand) {
@@ -2864,7 +2579,6 @@ func (c *Context) MOVD(imrx, mrx avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func MOVD(imrx, mrx avo.Operand) { ctx.MOVD(imrx, mrx) }
 
 func (c *Context) MOVDDUP(mx, x avo.Operand) {
@@ -2874,7 +2588,6 @@ func (c *Context) MOVDDUP(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func MOVDDUP(mx, x avo.Operand) { ctx.MOVDDUP(mx, x) }
 
 func (c *Context) MOVDQ2Q(imrx, mrx avo.Operand) {
@@ -2884,7 +2597,6 @@ func (c *Context) MOVDQ2Q(imrx, mrx avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func MOVDQ2Q(imrx, mrx avo.Operand) { ctx.MOVDQ2Q(imrx, mrx) }
 
 func (c *Context) MOVHLPS(x, x1 avo.Operand) {
@@ -2894,7 +2606,6 @@ func (c *Context) MOVHLPS(x, x1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func MOVHLPS(x, x1 avo.Operand) { ctx.MOVHLPS(x, x1) }
 
 func (c *Context) MOVHPD(mx, mx1 avo.Operand) {
@@ -2904,7 +2615,6 @@ func (c *Context) MOVHPD(mx, mx1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func MOVHPD(mx, mx1 avo.Operand) { ctx.MOVHPD(mx, mx1) }
 
 func (c *Context) MOVHPS(mx, mx1 avo.Operand) {
@@ -2914,7 +2624,6 @@ func (c *Context) MOVHPS(mx, mx1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func MOVHPS(mx, mx1 avo.Operand) { ctx.MOVHPS(mx, mx1) }
 
 func (c *Context) MOVL(imr, mr avo.Operand) {
@@ -2924,7 +2633,6 @@ func (c *Context) MOVL(imr, mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func MOVL(imr, mr avo.Operand) { ctx.MOVL(imr, mr) }
 
 func (c *Context) MOVLHPS(x, x1 avo.Operand) {
@@ -2934,7 +2642,6 @@ func (c *Context) MOVLHPS(x, x1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func MOVLHPS(x, x1 avo.Operand) { ctx.MOVLHPS(x, x1) }
 
 func (c *Context) MOVLPD(mx, mx1 avo.Operand) {
@@ -2944,7 +2651,6 @@ func (c *Context) MOVLPD(mx, mx1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func MOVLPD(mx, mx1 avo.Operand) { ctx.MOVLPD(mx, mx1) }
 
 func (c *Context) MOVLPS(mx, mx1 avo.Operand) {
@@ -2954,7 +2660,6 @@ func (c *Context) MOVLPS(mx, mx1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func MOVLPS(mx, mx1 avo.Operand) { ctx.MOVLPS(mx, mx1) }
 
 func (c *Context) MOVLQSX(mr, r avo.Operand) {
@@ -2964,7 +2669,6 @@ func (c *Context) MOVLQSX(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func MOVLQSX(mr, r avo.Operand) { ctx.MOVLQSX(mr, r) }
 
 func (c *Context) MOVLQZX(m, r avo.Operand) {
@@ -2974,7 +2678,6 @@ func (c *Context) MOVLQZX(m, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func MOVLQZX(m, r avo.Operand) { ctx.MOVLQZX(m, r) }
 
 func (c *Context) MOVMSKPD(x, r avo.Operand) {
@@ -2984,7 +2687,6 @@ func (c *Context) MOVMSKPD(x, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func MOVMSKPD(x, r avo.Operand) { ctx.MOVMSKPD(x, r) }
 
 func (c *Context) MOVMSKPS(x, r avo.Operand) {
@@ -2994,7 +2696,6 @@ func (c *Context) MOVMSKPS(x, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func MOVMSKPS(x, r avo.Operand) { ctx.MOVMSKPS(x, r) }
 
 func (c *Context) MOVNTDQ(x, m avo.Operand) {
@@ -3004,7 +2705,6 @@ func (c *Context) MOVNTDQ(x, m avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func MOVNTDQ(x, m avo.Operand) { ctx.MOVNTDQ(x, m) }
 
 func (c *Context) MOVNTDQA(m, x avo.Operand) {
@@ -3014,7 +2714,6 @@ func (c *Context) MOVNTDQA(m, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func MOVNTDQA(m, x avo.Operand) { ctx.MOVNTDQA(m, x) }
 
 func (c *Context) MOVNTIL(r, m avo.Operand) {
@@ -3024,7 +2723,6 @@ func (c *Context) MOVNTIL(r, m avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func MOVNTIL(r, m avo.Operand) { ctx.MOVNTIL(r, m) }
 
 func (c *Context) MOVNTIQ(r, m avo.Operand) {
@@ -3034,7 +2732,6 @@ func (c *Context) MOVNTIQ(r, m avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func MOVNTIQ(r, m avo.Operand) { ctx.MOVNTIQ(r, m) }
 
 func (c *Context) MOVNTO(x, m avo.Operand) {
@@ -3044,7 +2741,6 @@ func (c *Context) MOVNTO(x, m avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func MOVNTO(x, m avo.Operand) { ctx.MOVNTO(x, m) }
 
 func (c *Context) MOVNTPD(x, m avo.Operand) {
@@ -3054,7 +2750,6 @@ func (c *Context) MOVNTPD(x, m avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func MOVNTPD(x, m avo.Operand) { ctx.MOVNTPD(x, m) }
 
 func (c *Context) MOVNTPS(x, m avo.Operand) {
@@ -3064,7 +2759,6 @@ func (c *Context) MOVNTPS(x, m avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func MOVNTPS(x, m avo.Operand) { ctx.MOVNTPS(x, m) }
 
 func (c *Context) MOVO(mx, mx1 avo.Operand) {
@@ -3074,7 +2768,6 @@ func (c *Context) MOVO(mx, mx1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func MOVO(mx, mx1 avo.Operand) { ctx.MOVO(mx, mx1) }
 
 func (c *Context) MOVOA(mx, mx1 avo.Operand) {
@@ -3084,7 +2777,6 @@ func (c *Context) MOVOA(mx, mx1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func MOVOA(mx, mx1 avo.Operand) { ctx.MOVOA(mx, mx1) }
 
 func (c *Context) MOVOU(mx, mx1 avo.Operand) {
@@ -3094,7 +2786,6 @@ func (c *Context) MOVOU(mx, mx1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func MOVOU(mx, mx1 avo.Operand) { ctx.MOVOU(mx, mx1) }
 
 func (c *Context) MOVQ(imrx, mrx avo.Operand) {
@@ -3104,7 +2795,6 @@ func (c *Context) MOVQ(imrx, mrx avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func MOVQ(imrx, mrx avo.Operand) { ctx.MOVQ(imrx, mrx) }
 
 func (c *Context) MOVSD(mx, mx1 avo.Operand) {
@@ -3114,7 +2804,6 @@ func (c *Context) MOVSD(mx, mx1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func MOVSD(mx, mx1 avo.Operand) { ctx.MOVSD(mx, mx1) }
 
 func (c *Context) MOVSHDUP(mx, x avo.Operand) {
@@ -3124,7 +2813,6 @@ func (c *Context) MOVSHDUP(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func MOVSHDUP(mx, x avo.Operand) { ctx.MOVSHDUP(mx, x) }
 
 func (c *Context) MOVSLDUP(mx, x avo.Operand) {
@@ -3134,7 +2822,6 @@ func (c *Context) MOVSLDUP(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func MOVSLDUP(mx, x avo.Operand) { ctx.MOVSLDUP(mx, x) }
 
 func (c *Context) MOVSS(mx, mx1 avo.Operand) {
@@ -3144,7 +2831,6 @@ func (c *Context) MOVSS(mx, mx1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func MOVSS(mx, mx1 avo.Operand) { ctx.MOVSS(mx, mx1) }
 
 func (c *Context) MOVUPD(mx, mx1 avo.Operand) {
@@ -3154,7 +2840,6 @@ func (c *Context) MOVUPD(mx, mx1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func MOVUPD(mx, mx1 avo.Operand) { ctx.MOVUPD(mx, mx1) }
 
 func (c *Context) MOVUPS(mx, mx1 avo.Operand) {
@@ -3164,7 +2849,6 @@ func (c *Context) MOVUPS(mx, mx1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func MOVUPS(mx, mx1 avo.Operand) { ctx.MOVUPS(mx, mx1) }
 
 func (c *Context) MOVW(imr, mr avo.Operand) {
@@ -3174,7 +2858,6 @@ func (c *Context) MOVW(imr, mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func MOVW(imr, mr avo.Operand) { ctx.MOVW(imr, mr) }
 
 func (c *Context) MOVWLSX(mr, r avo.Operand) {
@@ -3184,7 +2867,6 @@ func (c *Context) MOVWLSX(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func MOVWLSX(mr, r avo.Operand) { ctx.MOVWLSX(mr, r) }
 
 func (c *Context) MOVWLZX(mr, r avo.Operand) {
@@ -3194,7 +2876,6 @@ func (c *Context) MOVWLZX(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func MOVWLZX(mr, r avo.Operand) { ctx.MOVWLZX(mr, r) }
 
 func (c *Context) MOVWQSX(mr, r avo.Operand) {
@@ -3204,7 +2885,6 @@ func (c *Context) MOVWQSX(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func MOVWQSX(mr, r avo.Operand) { ctx.MOVWQSX(mr, r) }
 
 func (c *Context) MOVWQZX(mr, r avo.Operand) {
@@ -3214,7 +2894,6 @@ func (c *Context) MOVWQZX(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func MOVWQZX(mr, r avo.Operand) { ctx.MOVWQZX(mr, r) }
 
 func (c *Context) MPSADBW(i, mx, x avo.Operand) {
@@ -3224,7 +2903,6 @@ func (c *Context) MPSADBW(i, mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func MPSADBW(i, mx, x avo.Operand) { ctx.MPSADBW(i, mx, x) }
 
 func (c *Context) MULB(mr avo.Operand) {
@@ -3234,7 +2912,6 @@ func (c *Context) MULB(mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func MULB(mr avo.Operand) { ctx.MULB(mr) }
 
 func (c *Context) MULL(mr avo.Operand) {
@@ -3244,7 +2921,6 @@ func (c *Context) MULL(mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func MULL(mr avo.Operand) { ctx.MULL(mr) }
 
 func (c *Context) MULPD(mx, x avo.Operand) {
@@ -3254,7 +2930,6 @@ func (c *Context) MULPD(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func MULPD(mx, x avo.Operand) { ctx.MULPD(mx, x) }
 
 func (c *Context) MULPS(mx, x avo.Operand) {
@@ -3264,7 +2939,6 @@ func (c *Context) MULPS(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func MULPS(mx, x avo.Operand) { ctx.MULPS(mx, x) }
 
 func (c *Context) MULQ(mr avo.Operand) {
@@ -3274,7 +2948,6 @@ func (c *Context) MULQ(mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func MULQ(mr avo.Operand) { ctx.MULQ(mr) }
 
 func (c *Context) MULSD(mx, x avo.Operand) {
@@ -3284,7 +2957,6 @@ func (c *Context) MULSD(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func MULSD(mx, x avo.Operand) { ctx.MULSD(mx, x) }
 
 func (c *Context) MULSS(mx, x avo.Operand) {
@@ -3294,7 +2966,6 @@ func (c *Context) MULSS(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func MULSS(mx, x avo.Operand) { ctx.MULSS(mx, x) }
 
 func (c *Context) MULW(mr avo.Operand) {
@@ -3304,7 +2975,6 @@ func (c *Context) MULW(mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func MULW(mr avo.Operand) { ctx.MULW(mr) }
 
 func (c *Context) MULXL(mr, r, r1 avo.Operand) {
@@ -3314,7 +2984,6 @@ func (c *Context) MULXL(mr, r, r1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func MULXL(mr, r, r1 avo.Operand) { ctx.MULXL(mr, r, r1) }
 
 func (c *Context) MULXQ(mr, r, r1 avo.Operand) {
@@ -3324,7 +2993,6 @@ func (c *Context) MULXQ(mr, r, r1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func MULXQ(mr, r, r1 avo.Operand) { ctx.MULXQ(mr, r, r1) }
 
 func (c *Context) MWAIT() {
@@ -3334,7 +3002,6 @@ func (c *Context) MWAIT() {
 		c.AddError(err)
 	}
 }
-
 func MWAIT() { ctx.MWAIT() }
 
 func (c *Context) NEGB(mr avo.Operand) {
@@ -3344,7 +3011,6 @@ func (c *Context) NEGB(mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func NEGB(mr avo.Operand) { ctx.NEGB(mr) }
 
 func (c *Context) NEGL(mr avo.Operand) {
@@ -3354,7 +3020,6 @@ func (c *Context) NEGL(mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func NEGL(mr avo.Operand) { ctx.NEGL(mr) }
 
 func (c *Context) NEGQ(mr avo.Operand) {
@@ -3364,7 +3029,6 @@ func (c *Context) NEGQ(mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func NEGQ(mr avo.Operand) { ctx.NEGQ(mr) }
 
 func (c *Context) NEGW(mr avo.Operand) {
@@ -3374,7 +3038,6 @@ func (c *Context) NEGW(mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func NEGW(mr avo.Operand) { ctx.NEGW(mr) }
 
 func (c *Context) NOP() {
@@ -3384,7 +3047,6 @@ func (c *Context) NOP() {
 		c.AddError(err)
 	}
 }
-
 func NOP() { ctx.NOP() }
 
 func (c *Context) NOTB(mr avo.Operand) {
@@ -3394,7 +3056,6 @@ func (c *Context) NOTB(mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func NOTB(mr avo.Operand) { ctx.NOTB(mr) }
 
 func (c *Context) NOTL(mr avo.Operand) {
@@ -3404,7 +3065,6 @@ func (c *Context) NOTL(mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func NOTL(mr avo.Operand) { ctx.NOTL(mr) }
 
 func (c *Context) NOTQ(mr avo.Operand) {
@@ -3414,7 +3074,6 @@ func (c *Context) NOTQ(mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func NOTQ(mr avo.Operand) { ctx.NOTQ(mr) }
 
 func (c *Context) NOTW(mr avo.Operand) {
@@ -3424,7 +3083,6 @@ func (c *Context) NOTW(mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func NOTW(mr avo.Operand) { ctx.NOTW(mr) }
 
 func (c *Context) ORB(imr, amr avo.Operand) {
@@ -3434,7 +3092,6 @@ func (c *Context) ORB(imr, amr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func ORB(imr, amr avo.Operand) { ctx.ORB(imr, amr) }
 
 func (c *Context) ORL(imr, emr avo.Operand) {
@@ -3444,7 +3101,6 @@ func (c *Context) ORL(imr, emr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func ORL(imr, emr avo.Operand) { ctx.ORL(imr, emr) }
 
 func (c *Context) ORPD(mx, x avo.Operand) {
@@ -3454,7 +3110,6 @@ func (c *Context) ORPD(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func ORPD(mx, x avo.Operand) { ctx.ORPD(mx, x) }
 
 func (c *Context) ORPS(mx, x avo.Operand) {
@@ -3464,7 +3119,6 @@ func (c *Context) ORPS(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func ORPS(mx, x avo.Operand) { ctx.ORPS(mx, x) }
 
 func (c *Context) ORQ(imr, mr avo.Operand) {
@@ -3474,7 +3128,6 @@ func (c *Context) ORQ(imr, mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func ORQ(imr, mr avo.Operand) { ctx.ORQ(imr, mr) }
 
 func (c *Context) ORW(imr, amr avo.Operand) {
@@ -3484,7 +3137,6 @@ func (c *Context) ORW(imr, amr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func ORW(imr, amr avo.Operand) { ctx.ORW(imr, amr) }
 
 func (c *Context) PABSB(mx, x avo.Operand) {
@@ -3494,7 +3146,6 @@ func (c *Context) PABSB(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PABSB(mx, x avo.Operand) { ctx.PABSB(mx, x) }
 
 func (c *Context) PABSD(mx, x avo.Operand) {
@@ -3504,7 +3155,6 @@ func (c *Context) PABSD(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PABSD(mx, x avo.Operand) { ctx.PABSD(mx, x) }
 
 func (c *Context) PABSW(mx, x avo.Operand) {
@@ -3514,7 +3164,6 @@ func (c *Context) PABSW(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PABSW(mx, x avo.Operand) { ctx.PABSW(mx, x) }
 
 func (c *Context) PACKSSLW(mx, x avo.Operand) {
@@ -3524,7 +3173,6 @@ func (c *Context) PACKSSLW(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PACKSSLW(mx, x avo.Operand) { ctx.PACKSSLW(mx, x) }
 
 func (c *Context) PACKSSWB(mx, x avo.Operand) {
@@ -3534,7 +3182,6 @@ func (c *Context) PACKSSWB(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PACKSSWB(mx, x avo.Operand) { ctx.PACKSSWB(mx, x) }
 
 func (c *Context) PACKUSDW(mx, x avo.Operand) {
@@ -3544,7 +3191,6 @@ func (c *Context) PACKUSDW(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PACKUSDW(mx, x avo.Operand) { ctx.PACKUSDW(mx, x) }
 
 func (c *Context) PACKUSWB(mx, x avo.Operand) {
@@ -3554,7 +3200,6 @@ func (c *Context) PACKUSWB(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PACKUSWB(mx, x avo.Operand) { ctx.PACKUSWB(mx, x) }
 
 func (c *Context) PADDB(mx, x avo.Operand) {
@@ -3564,7 +3209,6 @@ func (c *Context) PADDB(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PADDB(mx, x avo.Operand) { ctx.PADDB(mx, x) }
 
 func (c *Context) PADDD(mx, x avo.Operand) {
@@ -3574,7 +3218,6 @@ func (c *Context) PADDD(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PADDD(mx, x avo.Operand) { ctx.PADDD(mx, x) }
 
 func (c *Context) PADDL(mx, x avo.Operand) {
@@ -3584,7 +3227,6 @@ func (c *Context) PADDL(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PADDL(mx, x avo.Operand) { ctx.PADDL(mx, x) }
 
 func (c *Context) PADDQ(mx, x avo.Operand) {
@@ -3594,7 +3236,6 @@ func (c *Context) PADDQ(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PADDQ(mx, x avo.Operand) { ctx.PADDQ(mx, x) }
 
 func (c *Context) PADDSB(mx, x avo.Operand) {
@@ -3604,7 +3245,6 @@ func (c *Context) PADDSB(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PADDSB(mx, x avo.Operand) { ctx.PADDSB(mx, x) }
 
 func (c *Context) PADDSW(mx, x avo.Operand) {
@@ -3614,7 +3254,6 @@ func (c *Context) PADDSW(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PADDSW(mx, x avo.Operand) { ctx.PADDSW(mx, x) }
 
 func (c *Context) PADDUSB(mx, x avo.Operand) {
@@ -3624,7 +3263,6 @@ func (c *Context) PADDUSB(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PADDUSB(mx, x avo.Operand) { ctx.PADDUSB(mx, x) }
 
 func (c *Context) PADDUSW(mx, x avo.Operand) {
@@ -3634,7 +3272,6 @@ func (c *Context) PADDUSW(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PADDUSW(mx, x avo.Operand) { ctx.PADDUSW(mx, x) }
 
 func (c *Context) PADDW(mx, x avo.Operand) {
@@ -3644,7 +3281,6 @@ func (c *Context) PADDW(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PADDW(mx, x avo.Operand) { ctx.PADDW(mx, x) }
 
 func (c *Context) PALIGNR(i, mx, x avo.Operand) {
@@ -3654,7 +3290,6 @@ func (c *Context) PALIGNR(i, mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PALIGNR(i, mx, x avo.Operand) { ctx.PALIGNR(i, mx, x) }
 
 func (c *Context) PAND(mx, x avo.Operand) {
@@ -3664,7 +3299,6 @@ func (c *Context) PAND(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PAND(mx, x avo.Operand) { ctx.PAND(mx, x) }
 
 func (c *Context) PANDN(mx, x avo.Operand) {
@@ -3674,7 +3308,6 @@ func (c *Context) PANDN(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PANDN(mx, x avo.Operand) { ctx.PANDN(mx, x) }
 
 func (c *Context) PAUSE() {
@@ -3684,7 +3317,6 @@ func (c *Context) PAUSE() {
 		c.AddError(err)
 	}
 }
-
 func PAUSE() { ctx.PAUSE() }
 
 func (c *Context) PAVGB(mx, x avo.Operand) {
@@ -3694,7 +3326,6 @@ func (c *Context) PAVGB(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PAVGB(mx, x avo.Operand) { ctx.PAVGB(mx, x) }
 
 func (c *Context) PAVGW(mx, x avo.Operand) {
@@ -3704,7 +3335,6 @@ func (c *Context) PAVGW(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PAVGW(mx, x avo.Operand) { ctx.PAVGW(mx, x) }
 
 func (c *Context) PBLENDVB(x, mx, x1 avo.Operand) {
@@ -3714,7 +3344,6 @@ func (c *Context) PBLENDVB(x, mx, x1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PBLENDVB(x, mx, x1 avo.Operand) { ctx.PBLENDVB(x, mx, x1) }
 
 func (c *Context) PBLENDW(i, mx, x avo.Operand) {
@@ -3724,7 +3353,6 @@ func (c *Context) PBLENDW(i, mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PBLENDW(i, mx, x avo.Operand) { ctx.PBLENDW(i, mx, x) }
 
 func (c *Context) PCLMULQDQ(i, mx, x avo.Operand) {
@@ -3734,7 +3362,6 @@ func (c *Context) PCLMULQDQ(i, mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PCLMULQDQ(i, mx, x avo.Operand) { ctx.PCLMULQDQ(i, mx, x) }
 
 func (c *Context) PCMPEQB(mx, x avo.Operand) {
@@ -3744,7 +3371,6 @@ func (c *Context) PCMPEQB(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PCMPEQB(mx, x avo.Operand) { ctx.PCMPEQB(mx, x) }
 
 func (c *Context) PCMPEQL(mx, x avo.Operand) {
@@ -3754,7 +3380,6 @@ func (c *Context) PCMPEQL(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PCMPEQL(mx, x avo.Operand) { ctx.PCMPEQL(mx, x) }
 
 func (c *Context) PCMPEQQ(mx, x avo.Operand) {
@@ -3764,7 +3389,6 @@ func (c *Context) PCMPEQQ(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PCMPEQQ(mx, x avo.Operand) { ctx.PCMPEQQ(mx, x) }
 
 func (c *Context) PCMPEQW(mx, x avo.Operand) {
@@ -3774,7 +3398,6 @@ func (c *Context) PCMPEQW(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PCMPEQW(mx, x avo.Operand) { ctx.PCMPEQW(mx, x) }
 
 func (c *Context) PCMPESTRI(i, mx, x avo.Operand) {
@@ -3784,7 +3407,6 @@ func (c *Context) PCMPESTRI(i, mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PCMPESTRI(i, mx, x avo.Operand) { ctx.PCMPESTRI(i, mx, x) }
 
 func (c *Context) PCMPESTRM(i, mx, x avo.Operand) {
@@ -3794,7 +3416,6 @@ func (c *Context) PCMPESTRM(i, mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PCMPESTRM(i, mx, x avo.Operand) { ctx.PCMPESTRM(i, mx, x) }
 
 func (c *Context) PCMPGTB(mx, x avo.Operand) {
@@ -3804,7 +3425,6 @@ func (c *Context) PCMPGTB(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PCMPGTB(mx, x avo.Operand) { ctx.PCMPGTB(mx, x) }
 
 func (c *Context) PCMPGTL(mx, x avo.Operand) {
@@ -3814,7 +3434,6 @@ func (c *Context) PCMPGTL(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PCMPGTL(mx, x avo.Operand) { ctx.PCMPGTL(mx, x) }
 
 func (c *Context) PCMPGTQ(mx, x avo.Operand) {
@@ -3824,7 +3443,6 @@ func (c *Context) PCMPGTQ(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PCMPGTQ(mx, x avo.Operand) { ctx.PCMPGTQ(mx, x) }
 
 func (c *Context) PCMPGTW(mx, x avo.Operand) {
@@ -3834,7 +3452,6 @@ func (c *Context) PCMPGTW(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PCMPGTW(mx, x avo.Operand) { ctx.PCMPGTW(mx, x) }
 
 func (c *Context) PCMPISTRI(i, mx, x avo.Operand) {
@@ -3844,7 +3461,6 @@ func (c *Context) PCMPISTRI(i, mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PCMPISTRI(i, mx, x avo.Operand) { ctx.PCMPISTRI(i, mx, x) }
 
 func (c *Context) PCMPISTRM(i, mx, x avo.Operand) {
@@ -3854,7 +3470,6 @@ func (c *Context) PCMPISTRM(i, mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PCMPISTRM(i, mx, x avo.Operand) { ctx.PCMPISTRM(i, mx, x) }
 
 func (c *Context) PDEPL(mr, r, r1 avo.Operand) {
@@ -3864,7 +3479,6 @@ func (c *Context) PDEPL(mr, r, r1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PDEPL(mr, r, r1 avo.Operand) { ctx.PDEPL(mr, r, r1) }
 
 func (c *Context) PDEPQ(mr, r, r1 avo.Operand) {
@@ -3874,7 +3488,6 @@ func (c *Context) PDEPQ(mr, r, r1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PDEPQ(mr, r, r1 avo.Operand) { ctx.PDEPQ(mr, r, r1) }
 
 func (c *Context) PEXTL(mr, r, r1 avo.Operand) {
@@ -3884,7 +3497,6 @@ func (c *Context) PEXTL(mr, r, r1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PEXTL(mr, r, r1 avo.Operand) { ctx.PEXTL(mr, r, r1) }
 
 func (c *Context) PEXTQ(mr, r, r1 avo.Operand) {
@@ -3894,7 +3506,6 @@ func (c *Context) PEXTQ(mr, r, r1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PEXTQ(mr, r, r1 avo.Operand) { ctx.PEXTQ(mr, r, r1) }
 
 func (c *Context) PEXTRB(i, x, mr avo.Operand) {
@@ -3904,7 +3515,6 @@ func (c *Context) PEXTRB(i, x, mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PEXTRB(i, x, mr avo.Operand) { ctx.PEXTRB(i, x, mr) }
 
 func (c *Context) PEXTRD(i, x, mr avo.Operand) {
@@ -3914,7 +3524,6 @@ func (c *Context) PEXTRD(i, x, mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PEXTRD(i, x, mr avo.Operand) { ctx.PEXTRD(i, x, mr) }
 
 func (c *Context) PEXTRQ(i, x, mr avo.Operand) {
@@ -3924,7 +3533,6 @@ func (c *Context) PEXTRQ(i, x, mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PEXTRQ(i, x, mr avo.Operand) { ctx.PEXTRQ(i, x, mr) }
 
 func (c *Context) PEXTRW(i, x, mr avo.Operand) {
@@ -3934,7 +3542,6 @@ func (c *Context) PEXTRW(i, x, mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PEXTRW(i, x, mr avo.Operand) { ctx.PEXTRW(i, x, mr) }
 
 func (c *Context) PHADDD(mx, x avo.Operand) {
@@ -3944,7 +3551,6 @@ func (c *Context) PHADDD(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PHADDD(mx, x avo.Operand) { ctx.PHADDD(mx, x) }
 
 func (c *Context) PHADDSW(mx, x avo.Operand) {
@@ -3954,7 +3560,6 @@ func (c *Context) PHADDSW(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PHADDSW(mx, x avo.Operand) { ctx.PHADDSW(mx, x) }
 
 func (c *Context) PHADDW(mx, x avo.Operand) {
@@ -3964,7 +3569,6 @@ func (c *Context) PHADDW(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PHADDW(mx, x avo.Operand) { ctx.PHADDW(mx, x) }
 
 func (c *Context) PHMINPOSUW(mx, x avo.Operand) {
@@ -3974,7 +3578,6 @@ func (c *Context) PHMINPOSUW(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PHMINPOSUW(mx, x avo.Operand) { ctx.PHMINPOSUW(mx, x) }
 
 func (c *Context) PHSUBD(mx, x avo.Operand) {
@@ -3984,7 +3587,6 @@ func (c *Context) PHSUBD(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PHSUBD(mx, x avo.Operand) { ctx.PHSUBD(mx, x) }
 
 func (c *Context) PHSUBSW(mx, x avo.Operand) {
@@ -3994,7 +3596,6 @@ func (c *Context) PHSUBSW(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PHSUBSW(mx, x avo.Operand) { ctx.PHSUBSW(mx, x) }
 
 func (c *Context) PHSUBW(mx, x avo.Operand) {
@@ -4004,7 +3605,6 @@ func (c *Context) PHSUBW(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PHSUBW(mx, x avo.Operand) { ctx.PHSUBW(mx, x) }
 
 func (c *Context) PINSRB(i, mr, x avo.Operand) {
@@ -4014,7 +3614,6 @@ func (c *Context) PINSRB(i, mr, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PINSRB(i, mr, x avo.Operand) { ctx.PINSRB(i, mr, x) }
 
 func (c *Context) PINSRD(i, mr, x avo.Operand) {
@@ -4024,7 +3623,6 @@ func (c *Context) PINSRD(i, mr, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PINSRD(i, mr, x avo.Operand) { ctx.PINSRD(i, mr, x) }
 
 func (c *Context) PINSRQ(i, mr, x avo.Operand) {
@@ -4034,7 +3632,6 @@ func (c *Context) PINSRQ(i, mr, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PINSRQ(i, mr, x avo.Operand) { ctx.PINSRQ(i, mr, x) }
 
 func (c *Context) PINSRW(i, mr, x avo.Operand) {
@@ -4044,7 +3641,6 @@ func (c *Context) PINSRW(i, mr, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PINSRW(i, mr, x avo.Operand) { ctx.PINSRW(i, mr, x) }
 
 func (c *Context) PMADDUBSW(mx, x avo.Operand) {
@@ -4054,7 +3650,6 @@ func (c *Context) PMADDUBSW(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PMADDUBSW(mx, x avo.Operand) { ctx.PMADDUBSW(mx, x) }
 
 func (c *Context) PMADDWL(mx, x avo.Operand) {
@@ -4064,7 +3659,6 @@ func (c *Context) PMADDWL(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PMADDWL(mx, x avo.Operand) { ctx.PMADDWL(mx, x) }
 
 func (c *Context) PMAXSB(mx, x avo.Operand) {
@@ -4074,7 +3668,6 @@ func (c *Context) PMAXSB(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PMAXSB(mx, x avo.Operand) { ctx.PMAXSB(mx, x) }
 
 func (c *Context) PMAXSD(mx, x avo.Operand) {
@@ -4084,7 +3677,6 @@ func (c *Context) PMAXSD(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PMAXSD(mx, x avo.Operand) { ctx.PMAXSD(mx, x) }
 
 func (c *Context) PMAXSW(mx, x avo.Operand) {
@@ -4094,7 +3686,6 @@ func (c *Context) PMAXSW(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PMAXSW(mx, x avo.Operand) { ctx.PMAXSW(mx, x) }
 
 func (c *Context) PMAXUB(mx, x avo.Operand) {
@@ -4104,7 +3695,6 @@ func (c *Context) PMAXUB(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PMAXUB(mx, x avo.Operand) { ctx.PMAXUB(mx, x) }
 
 func (c *Context) PMAXUD(mx, x avo.Operand) {
@@ -4114,7 +3704,6 @@ func (c *Context) PMAXUD(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PMAXUD(mx, x avo.Operand) { ctx.PMAXUD(mx, x) }
 
 func (c *Context) PMAXUW(mx, x avo.Operand) {
@@ -4124,7 +3713,6 @@ func (c *Context) PMAXUW(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PMAXUW(mx, x avo.Operand) { ctx.PMAXUW(mx, x) }
 
 func (c *Context) PMINSB(mx, x avo.Operand) {
@@ -4134,7 +3722,6 @@ func (c *Context) PMINSB(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PMINSB(mx, x avo.Operand) { ctx.PMINSB(mx, x) }
 
 func (c *Context) PMINSD(mx, x avo.Operand) {
@@ -4144,7 +3731,6 @@ func (c *Context) PMINSD(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PMINSD(mx, x avo.Operand) { ctx.PMINSD(mx, x) }
 
 func (c *Context) PMINSW(mx, x avo.Operand) {
@@ -4154,7 +3740,6 @@ func (c *Context) PMINSW(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PMINSW(mx, x avo.Operand) { ctx.PMINSW(mx, x) }
 
 func (c *Context) PMINUB(mx, x avo.Operand) {
@@ -4164,7 +3749,6 @@ func (c *Context) PMINUB(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PMINUB(mx, x avo.Operand) { ctx.PMINUB(mx, x) }
 
 func (c *Context) PMINUD(mx, x avo.Operand) {
@@ -4174,7 +3758,6 @@ func (c *Context) PMINUD(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PMINUD(mx, x avo.Operand) { ctx.PMINUD(mx, x) }
 
 func (c *Context) PMINUW(mx, x avo.Operand) {
@@ -4184,7 +3767,6 @@ func (c *Context) PMINUW(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PMINUW(mx, x avo.Operand) { ctx.PMINUW(mx, x) }
 
 func (c *Context) PMOVMSKB(x, r avo.Operand) {
@@ -4194,7 +3776,6 @@ func (c *Context) PMOVMSKB(x, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PMOVMSKB(x, r avo.Operand) { ctx.PMOVMSKB(x, r) }
 
 func (c *Context) PMOVSXBD(mx, x avo.Operand) {
@@ -4204,7 +3785,6 @@ func (c *Context) PMOVSXBD(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PMOVSXBD(mx, x avo.Operand) { ctx.PMOVSXBD(mx, x) }
 
 func (c *Context) PMOVSXBQ(mx, x avo.Operand) {
@@ -4214,7 +3794,6 @@ func (c *Context) PMOVSXBQ(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PMOVSXBQ(mx, x avo.Operand) { ctx.PMOVSXBQ(mx, x) }
 
 func (c *Context) PMOVSXBW(mx, x avo.Operand) {
@@ -4224,7 +3803,6 @@ func (c *Context) PMOVSXBW(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PMOVSXBW(mx, x avo.Operand) { ctx.PMOVSXBW(mx, x) }
 
 func (c *Context) PMOVSXDQ(mx, x avo.Operand) {
@@ -4234,7 +3812,6 @@ func (c *Context) PMOVSXDQ(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PMOVSXDQ(mx, x avo.Operand) { ctx.PMOVSXDQ(mx, x) }
 
 func (c *Context) PMOVSXWD(mx, x avo.Operand) {
@@ -4244,7 +3821,6 @@ func (c *Context) PMOVSXWD(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PMOVSXWD(mx, x avo.Operand) { ctx.PMOVSXWD(mx, x) }
 
 func (c *Context) PMOVSXWQ(mx, x avo.Operand) {
@@ -4254,7 +3830,6 @@ func (c *Context) PMOVSXWQ(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PMOVSXWQ(mx, x avo.Operand) { ctx.PMOVSXWQ(mx, x) }
 
 func (c *Context) PMOVZXBD(mx, x avo.Operand) {
@@ -4264,7 +3839,6 @@ func (c *Context) PMOVZXBD(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PMOVZXBD(mx, x avo.Operand) { ctx.PMOVZXBD(mx, x) }
 
 func (c *Context) PMOVZXBQ(mx, x avo.Operand) {
@@ -4274,7 +3848,6 @@ func (c *Context) PMOVZXBQ(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PMOVZXBQ(mx, x avo.Operand) { ctx.PMOVZXBQ(mx, x) }
 
 func (c *Context) PMOVZXBW(mx, x avo.Operand) {
@@ -4284,7 +3857,6 @@ func (c *Context) PMOVZXBW(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PMOVZXBW(mx, x avo.Operand) { ctx.PMOVZXBW(mx, x) }
 
 func (c *Context) PMOVZXDQ(mx, x avo.Operand) {
@@ -4294,7 +3866,6 @@ func (c *Context) PMOVZXDQ(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PMOVZXDQ(mx, x avo.Operand) { ctx.PMOVZXDQ(mx, x) }
 
 func (c *Context) PMOVZXWD(mx, x avo.Operand) {
@@ -4304,7 +3875,6 @@ func (c *Context) PMOVZXWD(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PMOVZXWD(mx, x avo.Operand) { ctx.PMOVZXWD(mx, x) }
 
 func (c *Context) PMOVZXWQ(mx, x avo.Operand) {
@@ -4314,7 +3884,6 @@ func (c *Context) PMOVZXWQ(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PMOVZXWQ(mx, x avo.Operand) { ctx.PMOVZXWQ(mx, x) }
 
 func (c *Context) PMULDQ(mx, x avo.Operand) {
@@ -4324,7 +3893,6 @@ func (c *Context) PMULDQ(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PMULDQ(mx, x avo.Operand) { ctx.PMULDQ(mx, x) }
 
 func (c *Context) PMULHRSW(mx, x avo.Operand) {
@@ -4334,7 +3902,6 @@ func (c *Context) PMULHRSW(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PMULHRSW(mx, x avo.Operand) { ctx.PMULHRSW(mx, x) }
 
 func (c *Context) PMULHUW(mx, x avo.Operand) {
@@ -4344,7 +3911,6 @@ func (c *Context) PMULHUW(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PMULHUW(mx, x avo.Operand) { ctx.PMULHUW(mx, x) }
 
 func (c *Context) PMULHW(mx, x avo.Operand) {
@@ -4354,7 +3920,6 @@ func (c *Context) PMULHW(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PMULHW(mx, x avo.Operand) { ctx.PMULHW(mx, x) }
 
 func (c *Context) PMULLD(mx, x avo.Operand) {
@@ -4364,7 +3929,6 @@ func (c *Context) PMULLD(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PMULLD(mx, x avo.Operand) { ctx.PMULLD(mx, x) }
 
 func (c *Context) PMULLW(mx, x avo.Operand) {
@@ -4374,7 +3938,6 @@ func (c *Context) PMULLW(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PMULLW(mx, x avo.Operand) { ctx.PMULLW(mx, x) }
 
 func (c *Context) PMULULQ(mx, x avo.Operand) {
@@ -4384,7 +3947,6 @@ func (c *Context) PMULULQ(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PMULULQ(mx, x avo.Operand) { ctx.PMULULQ(mx, x) }
 
 func (c *Context) POPCNTL(mr, r avo.Operand) {
@@ -4394,7 +3956,6 @@ func (c *Context) POPCNTL(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func POPCNTL(mr, r avo.Operand) { ctx.POPCNTL(mr, r) }
 
 func (c *Context) POPCNTQ(mr, r avo.Operand) {
@@ -4404,7 +3965,6 @@ func (c *Context) POPCNTQ(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func POPCNTQ(mr, r avo.Operand) { ctx.POPCNTQ(mr, r) }
 
 func (c *Context) POPCNTW(mr, r avo.Operand) {
@@ -4414,7 +3974,6 @@ func (c *Context) POPCNTW(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func POPCNTW(mr, r avo.Operand) { ctx.POPCNTW(mr, r) }
 
 func (c *Context) POPQ(mr avo.Operand) {
@@ -4424,7 +3983,6 @@ func (c *Context) POPQ(mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func POPQ(mr avo.Operand) { ctx.POPQ(mr) }
 
 func (c *Context) POPW(mr avo.Operand) {
@@ -4434,7 +3992,6 @@ func (c *Context) POPW(mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func POPW(mr avo.Operand) { ctx.POPW(mr) }
 
 func (c *Context) POR(mx, x avo.Operand) {
@@ -4444,7 +4001,6 @@ func (c *Context) POR(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func POR(mx, x avo.Operand) { ctx.POR(mx, x) }
 
 func (c *Context) PREFETCHNTA(m avo.Operand) {
@@ -4454,7 +4010,6 @@ func (c *Context) PREFETCHNTA(m avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PREFETCHNTA(m avo.Operand) { ctx.PREFETCHNTA(m) }
 
 func (c *Context) PREFETCHT0(m avo.Operand) {
@@ -4464,7 +4019,6 @@ func (c *Context) PREFETCHT0(m avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PREFETCHT0(m avo.Operand) { ctx.PREFETCHT0(m) }
 
 func (c *Context) PREFETCHT1(m avo.Operand) {
@@ -4474,7 +4028,6 @@ func (c *Context) PREFETCHT1(m avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PREFETCHT1(m avo.Operand) { ctx.PREFETCHT1(m) }
 
 func (c *Context) PREFETCHT2(m avo.Operand) {
@@ -4484,7 +4037,6 @@ func (c *Context) PREFETCHT2(m avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PREFETCHT2(m avo.Operand) { ctx.PREFETCHT2(m) }
 
 func (c *Context) PSADBW(mx, x avo.Operand) {
@@ -4494,7 +4046,6 @@ func (c *Context) PSADBW(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PSADBW(mx, x avo.Operand) { ctx.PSADBW(mx, x) }
 
 func (c *Context) PSHUFB(mx, x avo.Operand) {
@@ -4504,7 +4055,6 @@ func (c *Context) PSHUFB(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PSHUFB(mx, x avo.Operand) { ctx.PSHUFB(mx, x) }
 
 func (c *Context) PSHUFD(i, mx, x avo.Operand) {
@@ -4514,7 +4064,6 @@ func (c *Context) PSHUFD(i, mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PSHUFD(i, mx, x avo.Operand) { ctx.PSHUFD(i, mx, x) }
 
 func (c *Context) PSHUFHW(i, mx, x avo.Operand) {
@@ -4524,7 +4073,6 @@ func (c *Context) PSHUFHW(i, mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PSHUFHW(i, mx, x avo.Operand) { ctx.PSHUFHW(i, mx, x) }
 
 func (c *Context) PSHUFL(i, mx, x avo.Operand) {
@@ -4534,7 +4082,6 @@ func (c *Context) PSHUFL(i, mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PSHUFL(i, mx, x avo.Operand) { ctx.PSHUFL(i, mx, x) }
 
 func (c *Context) PSHUFLW(i, mx, x avo.Operand) {
@@ -4544,7 +4091,6 @@ func (c *Context) PSHUFLW(i, mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PSHUFLW(i, mx, x avo.Operand) { ctx.PSHUFLW(i, mx, x) }
 
 func (c *Context) PSIGNB(mx, x avo.Operand) {
@@ -4554,7 +4100,6 @@ func (c *Context) PSIGNB(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PSIGNB(mx, x avo.Operand) { ctx.PSIGNB(mx, x) }
 
 func (c *Context) PSIGND(mx, x avo.Operand) {
@@ -4564,7 +4109,6 @@ func (c *Context) PSIGND(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PSIGND(mx, x avo.Operand) { ctx.PSIGND(mx, x) }
 
 func (c *Context) PSIGNW(mx, x avo.Operand) {
@@ -4574,7 +4118,6 @@ func (c *Context) PSIGNW(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PSIGNW(mx, x avo.Operand) { ctx.PSIGNW(mx, x) }
 
 func (c *Context) PSLLDQ(i, x avo.Operand) {
@@ -4584,7 +4127,6 @@ func (c *Context) PSLLDQ(i, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PSLLDQ(i, x avo.Operand) { ctx.PSLLDQ(i, x) }
 
 func (c *Context) PSLLL(imx, x avo.Operand) {
@@ -4594,7 +4136,6 @@ func (c *Context) PSLLL(imx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PSLLL(imx, x avo.Operand) { ctx.PSLLL(imx, x) }
 
 func (c *Context) PSLLO(i, x avo.Operand) {
@@ -4604,7 +4145,6 @@ func (c *Context) PSLLO(i, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PSLLO(i, x avo.Operand) { ctx.PSLLO(i, x) }
 
 func (c *Context) PSLLQ(imx, x avo.Operand) {
@@ -4614,7 +4154,6 @@ func (c *Context) PSLLQ(imx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PSLLQ(imx, x avo.Operand) { ctx.PSLLQ(imx, x) }
 
 func (c *Context) PSLLW(imx, x avo.Operand) {
@@ -4624,7 +4163,6 @@ func (c *Context) PSLLW(imx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PSLLW(imx, x avo.Operand) { ctx.PSLLW(imx, x) }
 
 func (c *Context) PSRAL(imx, x avo.Operand) {
@@ -4634,7 +4172,6 @@ func (c *Context) PSRAL(imx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PSRAL(imx, x avo.Operand) { ctx.PSRAL(imx, x) }
 
 func (c *Context) PSRAW(imx, x avo.Operand) {
@@ -4644,7 +4181,6 @@ func (c *Context) PSRAW(imx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PSRAW(imx, x avo.Operand) { ctx.PSRAW(imx, x) }
 
 func (c *Context) PSRLDQ(i, x avo.Operand) {
@@ -4654,7 +4190,6 @@ func (c *Context) PSRLDQ(i, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PSRLDQ(i, x avo.Operand) { ctx.PSRLDQ(i, x) }
 
 func (c *Context) PSRLL(imx, x avo.Operand) {
@@ -4664,7 +4199,6 @@ func (c *Context) PSRLL(imx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PSRLL(imx, x avo.Operand) { ctx.PSRLL(imx, x) }
 
 func (c *Context) PSRLO(i, x avo.Operand) {
@@ -4674,7 +4208,6 @@ func (c *Context) PSRLO(i, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PSRLO(i, x avo.Operand) { ctx.PSRLO(i, x) }
 
 func (c *Context) PSRLQ(imx, x avo.Operand) {
@@ -4684,7 +4217,6 @@ func (c *Context) PSRLQ(imx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PSRLQ(imx, x avo.Operand) { ctx.PSRLQ(imx, x) }
 
 func (c *Context) PSRLW(imx, x avo.Operand) {
@@ -4694,7 +4226,6 @@ func (c *Context) PSRLW(imx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PSRLW(imx, x avo.Operand) { ctx.PSRLW(imx, x) }
 
 func (c *Context) PSUBB(mx, x avo.Operand) {
@@ -4704,7 +4235,6 @@ func (c *Context) PSUBB(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PSUBB(mx, x avo.Operand) { ctx.PSUBB(mx, x) }
 
 func (c *Context) PSUBL(mx, x avo.Operand) {
@@ -4714,7 +4244,6 @@ func (c *Context) PSUBL(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PSUBL(mx, x avo.Operand) { ctx.PSUBL(mx, x) }
 
 func (c *Context) PSUBQ(mx, x avo.Operand) {
@@ -4724,7 +4253,6 @@ func (c *Context) PSUBQ(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PSUBQ(mx, x avo.Operand) { ctx.PSUBQ(mx, x) }
 
 func (c *Context) PSUBSB(mx, x avo.Operand) {
@@ -4734,7 +4262,6 @@ func (c *Context) PSUBSB(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PSUBSB(mx, x avo.Operand) { ctx.PSUBSB(mx, x) }
 
 func (c *Context) PSUBSW(mx, x avo.Operand) {
@@ -4744,7 +4271,6 @@ func (c *Context) PSUBSW(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PSUBSW(mx, x avo.Operand) { ctx.PSUBSW(mx, x) }
 
 func (c *Context) PSUBUSB(mx, x avo.Operand) {
@@ -4754,7 +4280,6 @@ func (c *Context) PSUBUSB(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PSUBUSB(mx, x avo.Operand) { ctx.PSUBUSB(mx, x) }
 
 func (c *Context) PSUBUSW(mx, x avo.Operand) {
@@ -4764,7 +4289,6 @@ func (c *Context) PSUBUSW(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PSUBUSW(mx, x avo.Operand) { ctx.PSUBUSW(mx, x) }
 
 func (c *Context) PSUBW(mx, x avo.Operand) {
@@ -4774,7 +4298,6 @@ func (c *Context) PSUBW(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PSUBW(mx, x avo.Operand) { ctx.PSUBW(mx, x) }
 
 func (c *Context) PTEST(mx, x avo.Operand) {
@@ -4784,7 +4307,6 @@ func (c *Context) PTEST(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PTEST(mx, x avo.Operand) { ctx.PTEST(mx, x) }
 
 func (c *Context) PUNPCKHBW(mx, x avo.Operand) {
@@ -4794,7 +4316,6 @@ func (c *Context) PUNPCKHBW(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PUNPCKHBW(mx, x avo.Operand) { ctx.PUNPCKHBW(mx, x) }
 
 func (c *Context) PUNPCKHLQ(mx, x avo.Operand) {
@@ -4804,7 +4325,6 @@ func (c *Context) PUNPCKHLQ(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PUNPCKHLQ(mx, x avo.Operand) { ctx.PUNPCKHLQ(mx, x) }
 
 func (c *Context) PUNPCKHQDQ(mx, x avo.Operand) {
@@ -4814,7 +4334,6 @@ func (c *Context) PUNPCKHQDQ(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PUNPCKHQDQ(mx, x avo.Operand) { ctx.PUNPCKHQDQ(mx, x) }
 
 func (c *Context) PUNPCKHWL(mx, x avo.Operand) {
@@ -4824,7 +4343,6 @@ func (c *Context) PUNPCKHWL(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PUNPCKHWL(mx, x avo.Operand) { ctx.PUNPCKHWL(mx, x) }
 
 func (c *Context) PUNPCKLBW(mx, x avo.Operand) {
@@ -4834,7 +4352,6 @@ func (c *Context) PUNPCKLBW(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PUNPCKLBW(mx, x avo.Operand) { ctx.PUNPCKLBW(mx, x) }
 
 func (c *Context) PUNPCKLLQ(mx, x avo.Operand) {
@@ -4844,7 +4361,6 @@ func (c *Context) PUNPCKLLQ(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PUNPCKLLQ(mx, x avo.Operand) { ctx.PUNPCKLLQ(mx, x) }
 
 func (c *Context) PUNPCKLQDQ(mx, x avo.Operand) {
@@ -4854,7 +4370,6 @@ func (c *Context) PUNPCKLQDQ(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PUNPCKLQDQ(mx, x avo.Operand) { ctx.PUNPCKLQDQ(mx, x) }
 
 func (c *Context) PUNPCKLWL(mx, x avo.Operand) {
@@ -4864,7 +4379,6 @@ func (c *Context) PUNPCKLWL(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PUNPCKLWL(mx, x avo.Operand) { ctx.PUNPCKLWL(mx, x) }
 
 func (c *Context) PUSHQ(imr avo.Operand) {
@@ -4874,7 +4388,6 @@ func (c *Context) PUSHQ(imr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PUSHQ(imr avo.Operand) { ctx.PUSHQ(imr) }
 
 func (c *Context) PUSHW(mr avo.Operand) {
@@ -4884,7 +4397,6 @@ func (c *Context) PUSHW(mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PUSHW(mr avo.Operand) { ctx.PUSHW(mr) }
 
 func (c *Context) PXOR(mx, x avo.Operand) {
@@ -4894,7 +4406,6 @@ func (c *Context) PXOR(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func PXOR(mx, x avo.Operand) { ctx.PXOR(mx, x) }
 
 func (c *Context) RCLB(ci, mr avo.Operand) {
@@ -4904,7 +4415,6 @@ func (c *Context) RCLB(ci, mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func RCLB(ci, mr avo.Operand) { ctx.RCLB(ci, mr) }
 
 func (c *Context) RCLL(ci, mr avo.Operand) {
@@ -4914,7 +4424,6 @@ func (c *Context) RCLL(ci, mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func RCLL(ci, mr avo.Operand) { ctx.RCLL(ci, mr) }
 
 func (c *Context) RCLQ(ci, mr avo.Operand) {
@@ -4924,7 +4433,6 @@ func (c *Context) RCLQ(ci, mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func RCLQ(ci, mr avo.Operand) { ctx.RCLQ(ci, mr) }
 
 func (c *Context) RCLW(ci, mr avo.Operand) {
@@ -4934,7 +4442,6 @@ func (c *Context) RCLW(ci, mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func RCLW(ci, mr avo.Operand) { ctx.RCLW(ci, mr) }
 
 func (c *Context) RCPPS(mx, x avo.Operand) {
@@ -4944,7 +4451,6 @@ func (c *Context) RCPPS(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func RCPPS(mx, x avo.Operand) { ctx.RCPPS(mx, x) }
 
 func (c *Context) RCPSS(mx, x avo.Operand) {
@@ -4954,7 +4460,6 @@ func (c *Context) RCPSS(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func RCPSS(mx, x avo.Operand) { ctx.RCPSS(mx, x) }
 
 func (c *Context) RCRB(ci, mr avo.Operand) {
@@ -4964,7 +4469,6 @@ func (c *Context) RCRB(ci, mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func RCRB(ci, mr avo.Operand) { ctx.RCRB(ci, mr) }
 
 func (c *Context) RCRL(ci, mr avo.Operand) {
@@ -4974,7 +4478,6 @@ func (c *Context) RCRL(ci, mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func RCRL(ci, mr avo.Operand) { ctx.RCRL(ci, mr) }
 
 func (c *Context) RCRQ(ci, mr avo.Operand) {
@@ -4984,7 +4487,6 @@ func (c *Context) RCRQ(ci, mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func RCRQ(ci, mr avo.Operand) { ctx.RCRQ(ci, mr) }
 
 func (c *Context) RCRW(ci, mr avo.Operand) {
@@ -4994,7 +4496,6 @@ func (c *Context) RCRW(ci, mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func RCRW(ci, mr avo.Operand) { ctx.RCRW(ci, mr) }
 
 func (c *Context) RDRANDL(r avo.Operand) {
@@ -5004,7 +4505,6 @@ func (c *Context) RDRANDL(r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func RDRANDL(r avo.Operand) { ctx.RDRANDL(r) }
 
 func (c *Context) RDRANDQ(r avo.Operand) {
@@ -5014,7 +4514,6 @@ func (c *Context) RDRANDQ(r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func RDRANDQ(r avo.Operand) { ctx.RDRANDQ(r) }
 
 func (c *Context) RDRANDW(r avo.Operand) {
@@ -5024,7 +4523,6 @@ func (c *Context) RDRANDW(r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func RDRANDW(r avo.Operand) { ctx.RDRANDW(r) }
 
 func (c *Context) RDSEEDL(r avo.Operand) {
@@ -5034,7 +4532,6 @@ func (c *Context) RDSEEDL(r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func RDSEEDL(r avo.Operand) { ctx.RDSEEDL(r) }
 
 func (c *Context) RDSEEDQ(r avo.Operand) {
@@ -5044,7 +4541,6 @@ func (c *Context) RDSEEDQ(r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func RDSEEDQ(r avo.Operand) { ctx.RDSEEDQ(r) }
 
 func (c *Context) RDSEEDW(r avo.Operand) {
@@ -5054,7 +4550,6 @@ func (c *Context) RDSEEDW(r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func RDSEEDW(r avo.Operand) { ctx.RDSEEDW(r) }
 
 func (c *Context) RDTSC() {
@@ -5064,7 +4559,6 @@ func (c *Context) RDTSC() {
 		c.AddError(err)
 	}
 }
-
 func RDTSC() { ctx.RDTSC() }
 
 func (c *Context) RDTSCP() {
@@ -5074,7 +4568,6 @@ func (c *Context) RDTSCP() {
 		c.AddError(err)
 	}
 }
-
 func RDTSCP() { ctx.RDTSCP() }
 
 func (c *Context) RET() {
@@ -5084,7 +4577,6 @@ func (c *Context) RET() {
 		c.AddError(err)
 	}
 }
-
 func RET() { ctx.RET() }
 
 func (c *Context) RETFL(i avo.Operand) {
@@ -5094,7 +4586,6 @@ func (c *Context) RETFL(i avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func RETFL(i avo.Operand) { ctx.RETFL(i) }
 
 func (c *Context) RETFQ(i avo.Operand) {
@@ -5104,7 +4595,6 @@ func (c *Context) RETFQ(i avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func RETFQ(i avo.Operand) { ctx.RETFQ(i) }
 
 func (c *Context) RETFW(i avo.Operand) {
@@ -5114,7 +4604,6 @@ func (c *Context) RETFW(i avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func RETFW(i avo.Operand) { ctx.RETFW(i) }
 
 func (c *Context) ROLB(ci, mr avo.Operand) {
@@ -5124,7 +4613,6 @@ func (c *Context) ROLB(ci, mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func ROLB(ci, mr avo.Operand) { ctx.ROLB(ci, mr) }
 
 func (c *Context) ROLL(ci, mr avo.Operand) {
@@ -5134,7 +4622,6 @@ func (c *Context) ROLL(ci, mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func ROLL(ci, mr avo.Operand) { ctx.ROLL(ci, mr) }
 
 func (c *Context) ROLQ(ci, mr avo.Operand) {
@@ -5144,7 +4631,6 @@ func (c *Context) ROLQ(ci, mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func ROLQ(ci, mr avo.Operand) { ctx.ROLQ(ci, mr) }
 
 func (c *Context) ROLW(ci, mr avo.Operand) {
@@ -5154,7 +4640,6 @@ func (c *Context) ROLW(ci, mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func ROLW(ci, mr avo.Operand) { ctx.ROLW(ci, mr) }
 
 func (c *Context) RORB(ci, mr avo.Operand) {
@@ -5164,7 +4649,6 @@ func (c *Context) RORB(ci, mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func RORB(ci, mr avo.Operand) { ctx.RORB(ci, mr) }
 
 func (c *Context) RORL(ci, mr avo.Operand) {
@@ -5174,7 +4658,6 @@ func (c *Context) RORL(ci, mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func RORL(ci, mr avo.Operand) { ctx.RORL(ci, mr) }
 
 func (c *Context) RORQ(ci, mr avo.Operand) {
@@ -5184,7 +4667,6 @@ func (c *Context) RORQ(ci, mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func RORQ(ci, mr avo.Operand) { ctx.RORQ(ci, mr) }
 
 func (c *Context) RORW(ci, mr avo.Operand) {
@@ -5194,7 +4676,6 @@ func (c *Context) RORW(ci, mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func RORW(ci, mr avo.Operand) { ctx.RORW(ci, mr) }
 
 func (c *Context) RORXL(i, mr, r avo.Operand) {
@@ -5204,7 +4685,6 @@ func (c *Context) RORXL(i, mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func RORXL(i, mr, r avo.Operand) { ctx.RORXL(i, mr, r) }
 
 func (c *Context) RORXQ(i, mr, r avo.Operand) {
@@ -5214,7 +4694,6 @@ func (c *Context) RORXQ(i, mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func RORXQ(i, mr, r avo.Operand) { ctx.RORXQ(i, mr, r) }
 
 func (c *Context) ROUNDPD(i, mx, x avo.Operand) {
@@ -5224,7 +4703,6 @@ func (c *Context) ROUNDPD(i, mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func ROUNDPD(i, mx, x avo.Operand) { ctx.ROUNDPD(i, mx, x) }
 
 func (c *Context) ROUNDPS(i, mx, x avo.Operand) {
@@ -5234,7 +4712,6 @@ func (c *Context) ROUNDPS(i, mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func ROUNDPS(i, mx, x avo.Operand) { ctx.ROUNDPS(i, mx, x) }
 
 func (c *Context) ROUNDSD(i, mx, x avo.Operand) {
@@ -5244,7 +4721,6 @@ func (c *Context) ROUNDSD(i, mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func ROUNDSD(i, mx, x avo.Operand) { ctx.ROUNDSD(i, mx, x) }
 
 func (c *Context) ROUNDSS(i, mx, x avo.Operand) {
@@ -5254,7 +4730,6 @@ func (c *Context) ROUNDSS(i, mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func ROUNDSS(i, mx, x avo.Operand) { ctx.ROUNDSS(i, mx, x) }
 
 func (c *Context) RSQRTPS(mx, x avo.Operand) {
@@ -5264,7 +4739,6 @@ func (c *Context) RSQRTPS(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func RSQRTPS(mx, x avo.Operand) { ctx.RSQRTPS(mx, x) }
 
 func (c *Context) RSQRTSS(mx, x avo.Operand) {
@@ -5274,7 +4748,6 @@ func (c *Context) RSQRTSS(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func RSQRTSS(mx, x avo.Operand) { ctx.RSQRTSS(mx, x) }
 
 func (c *Context) SALB(ci, mr avo.Operand) {
@@ -5284,7 +4757,6 @@ func (c *Context) SALB(ci, mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func SALB(ci, mr avo.Operand) { ctx.SALB(ci, mr) }
 
 func (c *Context) SALL(ci, mr avo.Operand) {
@@ -5294,7 +4766,6 @@ func (c *Context) SALL(ci, mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func SALL(ci, mr avo.Operand) { ctx.SALL(ci, mr) }
 
 func (c *Context) SALQ(ci, mr avo.Operand) {
@@ -5304,7 +4775,6 @@ func (c *Context) SALQ(ci, mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func SALQ(ci, mr avo.Operand) { ctx.SALQ(ci, mr) }
 
 func (c *Context) SALW(ci, mr avo.Operand) {
@@ -5314,7 +4784,6 @@ func (c *Context) SALW(ci, mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func SALW(ci, mr avo.Operand) { ctx.SALW(ci, mr) }
 
 func (c *Context) SARB(ci, mr avo.Operand) {
@@ -5324,7 +4793,6 @@ func (c *Context) SARB(ci, mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func SARB(ci, mr avo.Operand) { ctx.SARB(ci, mr) }
 
 func (c *Context) SARL(ci, mr avo.Operand) {
@@ -5334,7 +4802,6 @@ func (c *Context) SARL(ci, mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func SARL(ci, mr avo.Operand) { ctx.SARL(ci, mr) }
 
 func (c *Context) SARQ(ci, mr avo.Operand) {
@@ -5344,7 +4811,6 @@ func (c *Context) SARQ(ci, mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func SARQ(ci, mr avo.Operand) { ctx.SARQ(ci, mr) }
 
 func (c *Context) SARW(ci, mr avo.Operand) {
@@ -5354,7 +4820,6 @@ func (c *Context) SARW(ci, mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func SARW(ci, mr avo.Operand) { ctx.SARW(ci, mr) }
 
 func (c *Context) SARXL(r, mr, r1 avo.Operand) {
@@ -5364,7 +4829,6 @@ func (c *Context) SARXL(r, mr, r1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func SARXL(r, mr, r1 avo.Operand) { ctx.SARXL(r, mr, r1) }
 
 func (c *Context) SARXQ(r, mr, r1 avo.Operand) {
@@ -5374,7 +4838,6 @@ func (c *Context) SARXQ(r, mr, r1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func SARXQ(r, mr, r1 avo.Operand) { ctx.SARXQ(r, mr, r1) }
 
 func (c *Context) SBBB(imr, amr avo.Operand) {
@@ -5384,7 +4847,6 @@ func (c *Context) SBBB(imr, amr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func SBBB(imr, amr avo.Operand) { ctx.SBBB(imr, amr) }
 
 func (c *Context) SBBL(imr, emr avo.Operand) {
@@ -5394,7 +4856,6 @@ func (c *Context) SBBL(imr, emr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func SBBL(imr, emr avo.Operand) { ctx.SBBL(imr, emr) }
 
 func (c *Context) SBBQ(imr, mr avo.Operand) {
@@ -5404,7 +4865,6 @@ func (c *Context) SBBQ(imr, mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func SBBQ(imr, mr avo.Operand) { ctx.SBBQ(imr, mr) }
 
 func (c *Context) SBBW(imr, amr avo.Operand) {
@@ -5414,7 +4874,6 @@ func (c *Context) SBBW(imr, amr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func SBBW(imr, amr avo.Operand) { ctx.SBBW(imr, amr) }
 
 func (c *Context) SETCC(mr avo.Operand) {
@@ -5424,7 +4883,6 @@ func (c *Context) SETCC(mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func SETCC(mr avo.Operand) { ctx.SETCC(mr) }
 
 func (c *Context) SETCS(mr avo.Operand) {
@@ -5434,7 +4892,6 @@ func (c *Context) SETCS(mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func SETCS(mr avo.Operand) { ctx.SETCS(mr) }
 
 func (c *Context) SETEQ(mr avo.Operand) {
@@ -5444,7 +4901,6 @@ func (c *Context) SETEQ(mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func SETEQ(mr avo.Operand) { ctx.SETEQ(mr) }
 
 func (c *Context) SETGE(mr avo.Operand) {
@@ -5454,7 +4910,6 @@ func (c *Context) SETGE(mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func SETGE(mr avo.Operand) { ctx.SETGE(mr) }
 
 func (c *Context) SETGT(mr avo.Operand) {
@@ -5464,7 +4919,6 @@ func (c *Context) SETGT(mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func SETGT(mr avo.Operand) { ctx.SETGT(mr) }
 
 func (c *Context) SETHI(mr avo.Operand) {
@@ -5474,7 +4928,6 @@ func (c *Context) SETHI(mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func SETHI(mr avo.Operand) { ctx.SETHI(mr) }
 
 func (c *Context) SETLE(mr avo.Operand) {
@@ -5484,7 +4937,6 @@ func (c *Context) SETLE(mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func SETLE(mr avo.Operand) { ctx.SETLE(mr) }
 
 func (c *Context) SETLS(mr avo.Operand) {
@@ -5494,7 +4946,6 @@ func (c *Context) SETLS(mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func SETLS(mr avo.Operand) { ctx.SETLS(mr) }
 
 func (c *Context) SETLT(mr avo.Operand) {
@@ -5504,7 +4955,6 @@ func (c *Context) SETLT(mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func SETLT(mr avo.Operand) { ctx.SETLT(mr) }
 
 func (c *Context) SETMI(mr avo.Operand) {
@@ -5514,7 +4964,6 @@ func (c *Context) SETMI(mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func SETMI(mr avo.Operand) { ctx.SETMI(mr) }
 
 func (c *Context) SETNE(mr avo.Operand) {
@@ -5524,7 +4973,6 @@ func (c *Context) SETNE(mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func SETNE(mr avo.Operand) { ctx.SETNE(mr) }
 
 func (c *Context) SETOC(mr avo.Operand) {
@@ -5534,7 +4982,6 @@ func (c *Context) SETOC(mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func SETOC(mr avo.Operand) { ctx.SETOC(mr) }
 
 func (c *Context) SETOS(mr avo.Operand) {
@@ -5544,7 +4991,6 @@ func (c *Context) SETOS(mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func SETOS(mr avo.Operand) { ctx.SETOS(mr) }
 
 func (c *Context) SETPC(mr avo.Operand) {
@@ -5554,7 +5000,6 @@ func (c *Context) SETPC(mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func SETPC(mr avo.Operand) { ctx.SETPC(mr) }
 
 func (c *Context) SETPL(mr avo.Operand) {
@@ -5564,7 +5009,6 @@ func (c *Context) SETPL(mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func SETPL(mr avo.Operand) { ctx.SETPL(mr) }
 
 func (c *Context) SETPS(mr avo.Operand) {
@@ -5574,7 +5018,6 @@ func (c *Context) SETPS(mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func SETPS(mr avo.Operand) { ctx.SETPS(mr) }
 
 func (c *Context) SFENCE() {
@@ -5584,7 +5027,6 @@ func (c *Context) SFENCE() {
 		c.AddError(err)
 	}
 }
-
 func SFENCE() { ctx.SFENCE() }
 
 func (c *Context) SHA1MSG1(mx, x avo.Operand) {
@@ -5594,7 +5036,6 @@ func (c *Context) SHA1MSG1(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func SHA1MSG1(mx, x avo.Operand) { ctx.SHA1MSG1(mx, x) }
 
 func (c *Context) SHA1MSG2(mx, x avo.Operand) {
@@ -5604,7 +5045,6 @@ func (c *Context) SHA1MSG2(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func SHA1MSG2(mx, x avo.Operand) { ctx.SHA1MSG2(mx, x) }
 
 func (c *Context) SHA1NEXTE(mx, x avo.Operand) {
@@ -5614,7 +5054,6 @@ func (c *Context) SHA1NEXTE(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func SHA1NEXTE(mx, x avo.Operand) { ctx.SHA1NEXTE(mx, x) }
 
 func (c *Context) SHA1RNDS4(i, mx, x avo.Operand) {
@@ -5624,7 +5063,6 @@ func (c *Context) SHA1RNDS4(i, mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func SHA1RNDS4(i, mx, x avo.Operand) { ctx.SHA1RNDS4(i, mx, x) }
 
 func (c *Context) SHA256MSG1(mx, x avo.Operand) {
@@ -5634,7 +5072,6 @@ func (c *Context) SHA256MSG1(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func SHA256MSG1(mx, x avo.Operand) { ctx.SHA256MSG1(mx, x) }
 
 func (c *Context) SHA256MSG2(mx, x avo.Operand) {
@@ -5644,7 +5081,6 @@ func (c *Context) SHA256MSG2(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func SHA256MSG2(mx, x avo.Operand) { ctx.SHA256MSG2(mx, x) }
 
 func (c *Context) SHA256RNDS2(x, mx, x1 avo.Operand) {
@@ -5654,7 +5090,6 @@ func (c *Context) SHA256RNDS2(x, mx, x1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func SHA256RNDS2(x, mx, x1 avo.Operand) { ctx.SHA256RNDS2(x, mx, x1) }
 
 func (c *Context) SHLB(ci, mr avo.Operand) {
@@ -5664,7 +5099,6 @@ func (c *Context) SHLB(ci, mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func SHLB(ci, mr avo.Operand) { ctx.SHLB(ci, mr) }
 
 func (c *Context) SHLL(ops ...avo.Operand) {
@@ -5674,7 +5108,6 @@ func (c *Context) SHLL(ops ...avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func SHLL(ops ...avo.Operand) { ctx.SHLL(ops...) }
 
 func (c *Context) SHLQ(ops ...avo.Operand) {
@@ -5684,7 +5117,6 @@ func (c *Context) SHLQ(ops ...avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func SHLQ(ops ...avo.Operand) { ctx.SHLQ(ops...) }
 
 func (c *Context) SHLW(ops ...avo.Operand) {
@@ -5694,7 +5126,6 @@ func (c *Context) SHLW(ops ...avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func SHLW(ops ...avo.Operand) { ctx.SHLW(ops...) }
 
 func (c *Context) SHLXL(r, mr, r1 avo.Operand) {
@@ -5704,7 +5135,6 @@ func (c *Context) SHLXL(r, mr, r1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func SHLXL(r, mr, r1 avo.Operand) { ctx.SHLXL(r, mr, r1) }
 
 func (c *Context) SHLXQ(r, mr, r1 avo.Operand) {
@@ -5714,7 +5144,6 @@ func (c *Context) SHLXQ(r, mr, r1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func SHLXQ(r, mr, r1 avo.Operand) { ctx.SHLXQ(r, mr, r1) }
 
 func (c *Context) SHRB(ci, mr avo.Operand) {
@@ -5724,7 +5153,6 @@ func (c *Context) SHRB(ci, mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func SHRB(ci, mr avo.Operand) { ctx.SHRB(ci, mr) }
 
 func (c *Context) SHRL(ops ...avo.Operand) {
@@ -5734,7 +5162,6 @@ func (c *Context) SHRL(ops ...avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func SHRL(ops ...avo.Operand) { ctx.SHRL(ops...) }
 
 func (c *Context) SHRQ(ops ...avo.Operand) {
@@ -5744,7 +5171,6 @@ func (c *Context) SHRQ(ops ...avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func SHRQ(ops ...avo.Operand) { ctx.SHRQ(ops...) }
 
 func (c *Context) SHRW(ops ...avo.Operand) {
@@ -5754,7 +5180,6 @@ func (c *Context) SHRW(ops ...avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func SHRW(ops ...avo.Operand) { ctx.SHRW(ops...) }
 
 func (c *Context) SHRXL(r, mr, r1 avo.Operand) {
@@ -5764,7 +5189,6 @@ func (c *Context) SHRXL(r, mr, r1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func SHRXL(r, mr, r1 avo.Operand) { ctx.SHRXL(r, mr, r1) }
 
 func (c *Context) SHRXQ(r, mr, r1 avo.Operand) {
@@ -5774,7 +5198,6 @@ func (c *Context) SHRXQ(r, mr, r1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func SHRXQ(r, mr, r1 avo.Operand) { ctx.SHRXQ(r, mr, r1) }
 
 func (c *Context) SHUFPD(i, mx, x avo.Operand) {
@@ -5784,7 +5207,6 @@ func (c *Context) SHUFPD(i, mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func SHUFPD(i, mx, x avo.Operand) { ctx.SHUFPD(i, mx, x) }
 
 func (c *Context) SHUFPS(i, mx, x avo.Operand) {
@@ -5794,7 +5216,6 @@ func (c *Context) SHUFPS(i, mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func SHUFPS(i, mx, x avo.Operand) { ctx.SHUFPS(i, mx, x) }
 
 func (c *Context) SQRTPD(mx, x avo.Operand) {
@@ -5804,7 +5225,6 @@ func (c *Context) SQRTPD(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func SQRTPD(mx, x avo.Operand) { ctx.SQRTPD(mx, x) }
 
 func (c *Context) SQRTPS(mx, x avo.Operand) {
@@ -5814,7 +5234,6 @@ func (c *Context) SQRTPS(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func SQRTPS(mx, x avo.Operand) { ctx.SQRTPS(mx, x) }
 
 func (c *Context) SQRTSD(mx, x avo.Operand) {
@@ -5824,7 +5243,6 @@ func (c *Context) SQRTSD(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func SQRTSD(mx, x avo.Operand) { ctx.SQRTSD(mx, x) }
 
 func (c *Context) SQRTSS(mx, x avo.Operand) {
@@ -5834,7 +5252,6 @@ func (c *Context) SQRTSS(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func SQRTSS(mx, x avo.Operand) { ctx.SQRTSS(mx, x) }
 
 func (c *Context) STC() {
@@ -5844,7 +5261,6 @@ func (c *Context) STC() {
 		c.AddError(err)
 	}
 }
-
 func STC() { ctx.STC() }
 
 func (c *Context) STD() {
@@ -5854,7 +5270,6 @@ func (c *Context) STD() {
 		c.AddError(err)
 	}
 }
-
 func STD() { ctx.STD() }
 
 func (c *Context) STMXCSR(m avo.Operand) {
@@ -5864,7 +5279,6 @@ func (c *Context) STMXCSR(m avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func STMXCSR(m avo.Operand) { ctx.STMXCSR(m) }
 
 func (c *Context) SUBB(imr, amr avo.Operand) {
@@ -5874,7 +5288,6 @@ func (c *Context) SUBB(imr, amr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func SUBB(imr, amr avo.Operand) { ctx.SUBB(imr, amr) }
 
 func (c *Context) SUBL(imr, emr avo.Operand) {
@@ -5884,7 +5297,6 @@ func (c *Context) SUBL(imr, emr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func SUBL(imr, emr avo.Operand) { ctx.SUBL(imr, emr) }
 
 func (c *Context) SUBPD(mx, x avo.Operand) {
@@ -5894,7 +5306,6 @@ func (c *Context) SUBPD(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func SUBPD(mx, x avo.Operand) { ctx.SUBPD(mx, x) }
 
 func (c *Context) SUBPS(mx, x avo.Operand) {
@@ -5904,7 +5315,6 @@ func (c *Context) SUBPS(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func SUBPS(mx, x avo.Operand) { ctx.SUBPS(mx, x) }
 
 func (c *Context) SUBQ(imr, mr avo.Operand) {
@@ -5914,7 +5324,6 @@ func (c *Context) SUBQ(imr, mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func SUBQ(imr, mr avo.Operand) { ctx.SUBQ(imr, mr) }
 
 func (c *Context) SUBSD(mx, x avo.Operand) {
@@ -5924,7 +5333,6 @@ func (c *Context) SUBSD(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func SUBSD(mx, x avo.Operand) { ctx.SUBSD(mx, x) }
 
 func (c *Context) SUBSS(mx, x avo.Operand) {
@@ -5934,7 +5342,6 @@ func (c *Context) SUBSS(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func SUBSS(mx, x avo.Operand) { ctx.SUBSS(mx, x) }
 
 func (c *Context) SUBW(imr, amr avo.Operand) {
@@ -5944,7 +5351,6 @@ func (c *Context) SUBW(imr, amr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func SUBW(imr, amr avo.Operand) { ctx.SUBW(imr, amr) }
 
 func (c *Context) SYSCALL() {
@@ -5954,7 +5360,6 @@ func (c *Context) SYSCALL() {
 		c.AddError(err)
 	}
 }
-
 func SYSCALL() { ctx.SYSCALL() }
 
 func (c *Context) TESTB(ir, amr avo.Operand) {
@@ -5964,7 +5369,6 @@ func (c *Context) TESTB(ir, amr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func TESTB(ir, amr avo.Operand) { ctx.TESTB(ir, amr) }
 
 func (c *Context) TESTL(ir, emr avo.Operand) {
@@ -5974,7 +5378,6 @@ func (c *Context) TESTL(ir, emr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func TESTL(ir, emr avo.Operand) { ctx.TESTL(ir, emr) }
 
 func (c *Context) TESTQ(ir, mr avo.Operand) {
@@ -5984,7 +5387,6 @@ func (c *Context) TESTQ(ir, mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func TESTQ(ir, mr avo.Operand) { ctx.TESTQ(ir, mr) }
 
 func (c *Context) TESTW(ir, amr avo.Operand) {
@@ -5994,7 +5396,6 @@ func (c *Context) TESTW(ir, amr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func TESTW(ir, amr avo.Operand) { ctx.TESTW(ir, amr) }
 
 func (c *Context) TZCNTL(mr, r avo.Operand) {
@@ -6004,7 +5405,6 @@ func (c *Context) TZCNTL(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func TZCNTL(mr, r avo.Operand) { ctx.TZCNTL(mr, r) }
 
 func (c *Context) TZCNTQ(mr, r avo.Operand) {
@@ -6014,7 +5414,6 @@ func (c *Context) TZCNTQ(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func TZCNTQ(mr, r avo.Operand) { ctx.TZCNTQ(mr, r) }
 
 func (c *Context) TZCNTW(mr, r avo.Operand) {
@@ -6024,7 +5423,6 @@ func (c *Context) TZCNTW(mr, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func TZCNTW(mr, r avo.Operand) { ctx.TZCNTW(mr, r) }
 
 func (c *Context) UCOMISD(mx, x avo.Operand) {
@@ -6034,7 +5432,6 @@ func (c *Context) UCOMISD(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func UCOMISD(mx, x avo.Operand) { ctx.UCOMISD(mx, x) }
 
 func (c *Context) UCOMISS(mx, x avo.Operand) {
@@ -6044,7 +5441,6 @@ func (c *Context) UCOMISS(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func UCOMISS(mx, x avo.Operand) { ctx.UCOMISS(mx, x) }
 
 func (c *Context) UD2() {
@@ -6054,7 +5450,6 @@ func (c *Context) UD2() {
 		c.AddError(err)
 	}
 }
-
 func UD2() { ctx.UD2() }
 
 func (c *Context) UNPCKHPD(mx, x avo.Operand) {
@@ -6064,7 +5459,6 @@ func (c *Context) UNPCKHPD(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func UNPCKHPD(mx, x avo.Operand) { ctx.UNPCKHPD(mx, x) }
 
 func (c *Context) UNPCKHPS(mx, x avo.Operand) {
@@ -6074,7 +5468,6 @@ func (c *Context) UNPCKHPS(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func UNPCKHPS(mx, x avo.Operand) { ctx.UNPCKHPS(mx, x) }
 
 func (c *Context) UNPCKLPD(mx, x avo.Operand) {
@@ -6084,7 +5477,6 @@ func (c *Context) UNPCKLPD(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func UNPCKLPD(mx, x avo.Operand) { ctx.UNPCKLPD(mx, x) }
 
 func (c *Context) UNPCKLPS(mx, x avo.Operand) {
@@ -6094,7 +5486,6 @@ func (c *Context) UNPCKLPS(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func UNPCKLPS(mx, x avo.Operand) { ctx.UNPCKLPS(mx, x) }
 
 func (c *Context) VADDPD(mxy, xy, xy1 avo.Operand) {
@@ -6104,7 +5495,6 @@ func (c *Context) VADDPD(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VADDPD(mxy, xy, xy1 avo.Operand) { ctx.VADDPD(mxy, xy, xy1) }
 
 func (c *Context) VADDPS(mxy, xy, xy1 avo.Operand) {
@@ -6114,7 +5504,6 @@ func (c *Context) VADDPS(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VADDPS(mxy, xy, xy1 avo.Operand) { ctx.VADDPS(mxy, xy, xy1) }
 
 func (c *Context) VADDSD(mx, x, x1 avo.Operand) {
@@ -6124,7 +5513,6 @@ func (c *Context) VADDSD(mx, x, x1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VADDSD(mx, x, x1 avo.Operand) { ctx.VADDSD(mx, x, x1) }
 
 func (c *Context) VADDSS(mx, x, x1 avo.Operand) {
@@ -6134,7 +5522,6 @@ func (c *Context) VADDSS(mx, x, x1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VADDSS(mx, x, x1 avo.Operand) { ctx.VADDSS(mx, x, x1) }
 
 func (c *Context) VADDSUBPD(mxy, xy, xy1 avo.Operand) {
@@ -6144,7 +5531,6 @@ func (c *Context) VADDSUBPD(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VADDSUBPD(mxy, xy, xy1 avo.Operand) { ctx.VADDSUBPD(mxy, xy, xy1) }
 
 func (c *Context) VADDSUBPS(mxy, xy, xy1 avo.Operand) {
@@ -6154,7 +5540,6 @@ func (c *Context) VADDSUBPS(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VADDSUBPS(mxy, xy, xy1 avo.Operand) { ctx.VADDSUBPS(mxy, xy, xy1) }
 
 func (c *Context) VAESDEC(mx, x, x1 avo.Operand) {
@@ -6164,7 +5549,6 @@ func (c *Context) VAESDEC(mx, x, x1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VAESDEC(mx, x, x1 avo.Operand) { ctx.VAESDEC(mx, x, x1) }
 
 func (c *Context) VAESDECLAST(mx, x, x1 avo.Operand) {
@@ -6174,7 +5558,6 @@ func (c *Context) VAESDECLAST(mx, x, x1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VAESDECLAST(mx, x, x1 avo.Operand) { ctx.VAESDECLAST(mx, x, x1) }
 
 func (c *Context) VAESENC(mx, x, x1 avo.Operand) {
@@ -6184,7 +5567,6 @@ func (c *Context) VAESENC(mx, x, x1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VAESENC(mx, x, x1 avo.Operand) { ctx.VAESENC(mx, x, x1) }
 
 func (c *Context) VAESENCLAST(mx, x, x1 avo.Operand) {
@@ -6194,7 +5576,6 @@ func (c *Context) VAESENCLAST(mx, x, x1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VAESENCLAST(mx, x, x1 avo.Operand) { ctx.VAESENCLAST(mx, x, x1) }
 
 func (c *Context) VAESIMC(mx, x avo.Operand) {
@@ -6204,7 +5585,6 @@ func (c *Context) VAESIMC(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VAESIMC(mx, x avo.Operand) { ctx.VAESIMC(mx, x) }
 
 func (c *Context) VAESKEYGENASSIST(i, mx, x avo.Operand) {
@@ -6214,7 +5594,6 @@ func (c *Context) VAESKEYGENASSIST(i, mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VAESKEYGENASSIST(i, mx, x avo.Operand) { ctx.VAESKEYGENASSIST(i, mx, x) }
 
 func (c *Context) VANDNPD(mxy, xy, xy1 avo.Operand) {
@@ -6224,7 +5603,6 @@ func (c *Context) VANDNPD(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VANDNPD(mxy, xy, xy1 avo.Operand) { ctx.VANDNPD(mxy, xy, xy1) }
 
 func (c *Context) VANDNPS(mxy, xy, xy1 avo.Operand) {
@@ -6234,7 +5612,6 @@ func (c *Context) VANDNPS(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VANDNPS(mxy, xy, xy1 avo.Operand) { ctx.VANDNPS(mxy, xy, xy1) }
 
 func (c *Context) VANDPD(mxy, xy, xy1 avo.Operand) {
@@ -6244,7 +5621,6 @@ func (c *Context) VANDPD(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VANDPD(mxy, xy, xy1 avo.Operand) { ctx.VANDPD(mxy, xy, xy1) }
 
 func (c *Context) VANDPS(mxy, xy, xy1 avo.Operand) {
@@ -6254,7 +5630,6 @@ func (c *Context) VANDPS(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VANDPS(mxy, xy, xy1 avo.Operand) { ctx.VANDPS(mxy, xy, xy1) }
 
 func (c *Context) VBLENDPD(i, mxy, xy, xy1 avo.Operand) {
@@ -6264,7 +5639,6 @@ func (c *Context) VBLENDPD(i, mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VBLENDPD(i, mxy, xy, xy1 avo.Operand) { ctx.VBLENDPD(i, mxy, xy, xy1) }
 
 func (c *Context) VBLENDPS(i, mxy, xy, xy1 avo.Operand) {
@@ -6274,7 +5648,6 @@ func (c *Context) VBLENDPS(i, mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VBLENDPS(i, mxy, xy, xy1 avo.Operand) { ctx.VBLENDPS(i, mxy, xy, xy1) }
 
 func (c *Context) VBLENDVPD(xy, mxy, xy1, xy2 avo.Operand) {
@@ -6284,7 +5657,6 @@ func (c *Context) VBLENDVPD(xy, mxy, xy1, xy2 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VBLENDVPD(xy, mxy, xy1, xy2 avo.Operand) { ctx.VBLENDVPD(xy, mxy, xy1, xy2) }
 
 func (c *Context) VBLENDVPS(xy, mxy, xy1, xy2 avo.Operand) {
@@ -6294,7 +5666,6 @@ func (c *Context) VBLENDVPS(xy, mxy, xy1, xy2 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VBLENDVPS(xy, mxy, xy1, xy2 avo.Operand) { ctx.VBLENDVPS(xy, mxy, xy1, xy2) }
 
 func (c *Context) VBROADCASTF128(m, y avo.Operand) {
@@ -6304,7 +5675,6 @@ func (c *Context) VBROADCASTF128(m, y avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VBROADCASTF128(m, y avo.Operand) { ctx.VBROADCASTF128(m, y) }
 
 func (c *Context) VBROADCASTI128(m, y avo.Operand) {
@@ -6314,7 +5684,6 @@ func (c *Context) VBROADCASTI128(m, y avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VBROADCASTI128(m, y avo.Operand) { ctx.VBROADCASTI128(m, y) }
 
 func (c *Context) VBROADCASTSD(mx, y avo.Operand) {
@@ -6324,7 +5693,6 @@ func (c *Context) VBROADCASTSD(mx, y avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VBROADCASTSD(mx, y avo.Operand) { ctx.VBROADCASTSD(mx, y) }
 
 func (c *Context) VBROADCASTSS(mx, xy avo.Operand) {
@@ -6334,7 +5702,6 @@ func (c *Context) VBROADCASTSS(mx, xy avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VBROADCASTSS(mx, xy avo.Operand) { ctx.VBROADCASTSS(mx, xy) }
 
 func (c *Context) VCMPPD(i, mxy, xy, xy1 avo.Operand) {
@@ -6344,7 +5711,6 @@ func (c *Context) VCMPPD(i, mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VCMPPD(i, mxy, xy, xy1 avo.Operand) { ctx.VCMPPD(i, mxy, xy, xy1) }
 
 func (c *Context) VCMPPS(i, mxy, xy, xy1 avo.Operand) {
@@ -6354,7 +5720,6 @@ func (c *Context) VCMPPS(i, mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VCMPPS(i, mxy, xy, xy1 avo.Operand) { ctx.VCMPPS(i, mxy, xy, xy1) }
 
 func (c *Context) VCMPSD(i, mx, x, x1 avo.Operand) {
@@ -6364,7 +5729,6 @@ func (c *Context) VCMPSD(i, mx, x, x1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VCMPSD(i, mx, x, x1 avo.Operand) { ctx.VCMPSD(i, mx, x, x1) }
 
 func (c *Context) VCMPSS(i, mx, x, x1 avo.Operand) {
@@ -6374,7 +5738,6 @@ func (c *Context) VCMPSS(i, mx, x, x1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VCMPSS(i, mx, x, x1 avo.Operand) { ctx.VCMPSS(i, mx, x, x1) }
 
 func (c *Context) VCOMISD(mx, x avo.Operand) {
@@ -6384,7 +5747,6 @@ func (c *Context) VCOMISD(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VCOMISD(mx, x avo.Operand) { ctx.VCOMISD(mx, x) }
 
 func (c *Context) VCOMISS(mx, x avo.Operand) {
@@ -6394,7 +5756,6 @@ func (c *Context) VCOMISS(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VCOMISS(mx, x avo.Operand) { ctx.VCOMISS(mx, x) }
 
 func (c *Context) VCVTDQ2PD(mx, xy avo.Operand) {
@@ -6404,7 +5765,6 @@ func (c *Context) VCVTDQ2PD(mx, xy avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VCVTDQ2PD(mx, xy avo.Operand) { ctx.VCVTDQ2PD(mx, xy) }
 
 func (c *Context) VCVTDQ2PS(mxy, xy avo.Operand) {
@@ -6414,7 +5774,6 @@ func (c *Context) VCVTDQ2PS(mxy, xy avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VCVTDQ2PS(mxy, xy avo.Operand) { ctx.VCVTDQ2PS(mxy, xy) }
 
 func (c *Context) VCVTPD2DQX(mx, x avo.Operand) {
@@ -6424,7 +5783,6 @@ func (c *Context) VCVTPD2DQX(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VCVTPD2DQX(mx, x avo.Operand) { ctx.VCVTPD2DQX(mx, x) }
 
 func (c *Context) VCVTPD2DQY(my, x avo.Operand) {
@@ -6434,7 +5792,6 @@ func (c *Context) VCVTPD2DQY(my, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VCVTPD2DQY(my, x avo.Operand) { ctx.VCVTPD2DQY(my, x) }
 
 func (c *Context) VCVTPD2PSX(mx, x avo.Operand) {
@@ -6444,7 +5801,6 @@ func (c *Context) VCVTPD2PSX(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VCVTPD2PSX(mx, x avo.Operand) { ctx.VCVTPD2PSX(mx, x) }
 
 func (c *Context) VCVTPD2PSY(my, x avo.Operand) {
@@ -6454,7 +5810,6 @@ func (c *Context) VCVTPD2PSY(my, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VCVTPD2PSY(my, x avo.Operand) { ctx.VCVTPD2PSY(my, x) }
 
 func (c *Context) VCVTPH2PS(mx, xy avo.Operand) {
@@ -6464,7 +5819,6 @@ func (c *Context) VCVTPH2PS(mx, xy avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VCVTPH2PS(mx, xy avo.Operand) { ctx.VCVTPH2PS(mx, xy) }
 
 func (c *Context) VCVTPS2DQ(mxy, xy avo.Operand) {
@@ -6474,7 +5828,6 @@ func (c *Context) VCVTPS2DQ(mxy, xy avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VCVTPS2DQ(mxy, xy avo.Operand) { ctx.VCVTPS2DQ(mxy, xy) }
 
 func (c *Context) VCVTPS2PD(mx, xy avo.Operand) {
@@ -6484,7 +5837,6 @@ func (c *Context) VCVTPS2PD(mx, xy avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VCVTPS2PD(mx, xy avo.Operand) { ctx.VCVTPS2PD(mx, xy) }
 
 func (c *Context) VCVTPS2PH(i, xy, mx avo.Operand) {
@@ -6494,7 +5846,6 @@ func (c *Context) VCVTPS2PH(i, xy, mx avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VCVTPS2PH(i, xy, mx avo.Operand) { ctx.VCVTPS2PH(i, xy, mx) }
 
 func (c *Context) VCVTSD2SI(mx, r avo.Operand) {
@@ -6504,7 +5855,6 @@ func (c *Context) VCVTSD2SI(mx, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VCVTSD2SI(mx, r avo.Operand) { ctx.VCVTSD2SI(mx, r) }
 
 func (c *Context) VCVTSD2SIQ(mx, r avo.Operand) {
@@ -6514,7 +5864,6 @@ func (c *Context) VCVTSD2SIQ(mx, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VCVTSD2SIQ(mx, r avo.Operand) { ctx.VCVTSD2SIQ(mx, r) }
 
 func (c *Context) VCVTSD2SS(mx, x, x1 avo.Operand) {
@@ -6524,7 +5873,6 @@ func (c *Context) VCVTSD2SS(mx, x, x1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VCVTSD2SS(mx, x, x1 avo.Operand) { ctx.VCVTSD2SS(mx, x, x1) }
 
 func (c *Context) VCVTSI2SDL(mr, x, x1 avo.Operand) {
@@ -6534,7 +5882,6 @@ func (c *Context) VCVTSI2SDL(mr, x, x1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VCVTSI2SDL(mr, x, x1 avo.Operand) { ctx.VCVTSI2SDL(mr, x, x1) }
 
 func (c *Context) VCVTSI2SDQ(mr, x, x1 avo.Operand) {
@@ -6544,7 +5891,6 @@ func (c *Context) VCVTSI2SDQ(mr, x, x1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VCVTSI2SDQ(mr, x, x1 avo.Operand) { ctx.VCVTSI2SDQ(mr, x, x1) }
 
 func (c *Context) VCVTSI2SSL(mr, x, x1 avo.Operand) {
@@ -6554,7 +5900,6 @@ func (c *Context) VCVTSI2SSL(mr, x, x1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VCVTSI2SSL(mr, x, x1 avo.Operand) { ctx.VCVTSI2SSL(mr, x, x1) }
 
 func (c *Context) VCVTSI2SSQ(mr, x, x1 avo.Operand) {
@@ -6564,7 +5909,6 @@ func (c *Context) VCVTSI2SSQ(mr, x, x1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VCVTSI2SSQ(mr, x, x1 avo.Operand) { ctx.VCVTSI2SSQ(mr, x, x1) }
 
 func (c *Context) VCVTSS2SD(mx, x, x1 avo.Operand) {
@@ -6574,7 +5918,6 @@ func (c *Context) VCVTSS2SD(mx, x, x1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VCVTSS2SD(mx, x, x1 avo.Operand) { ctx.VCVTSS2SD(mx, x, x1) }
 
 func (c *Context) VCVTSS2SI(mx, r avo.Operand) {
@@ -6584,7 +5927,6 @@ func (c *Context) VCVTSS2SI(mx, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VCVTSS2SI(mx, r avo.Operand) { ctx.VCVTSS2SI(mx, r) }
 
 func (c *Context) VCVTSS2SIQ(mx, r avo.Operand) {
@@ -6594,7 +5936,6 @@ func (c *Context) VCVTSS2SIQ(mx, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VCVTSS2SIQ(mx, r avo.Operand) { ctx.VCVTSS2SIQ(mx, r) }
 
 func (c *Context) VCVTTPD2DQX(mx, x avo.Operand) {
@@ -6604,7 +5945,6 @@ func (c *Context) VCVTTPD2DQX(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VCVTTPD2DQX(mx, x avo.Operand) { ctx.VCVTTPD2DQX(mx, x) }
 
 func (c *Context) VCVTTPD2DQY(my, x avo.Operand) {
@@ -6614,7 +5954,6 @@ func (c *Context) VCVTTPD2DQY(my, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VCVTTPD2DQY(my, x avo.Operand) { ctx.VCVTTPD2DQY(my, x) }
 
 func (c *Context) VCVTTPS2DQ(mxy, xy avo.Operand) {
@@ -6624,7 +5963,6 @@ func (c *Context) VCVTTPS2DQ(mxy, xy avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VCVTTPS2DQ(mxy, xy avo.Operand) { ctx.VCVTTPS2DQ(mxy, xy) }
 
 func (c *Context) VCVTTSD2SI(mx, r avo.Operand) {
@@ -6634,7 +5972,6 @@ func (c *Context) VCVTTSD2SI(mx, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VCVTTSD2SI(mx, r avo.Operand) { ctx.VCVTTSD2SI(mx, r) }
 
 func (c *Context) VCVTTSD2SIQ(mx, r avo.Operand) {
@@ -6644,7 +5981,6 @@ func (c *Context) VCVTTSD2SIQ(mx, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VCVTTSD2SIQ(mx, r avo.Operand) { ctx.VCVTTSD2SIQ(mx, r) }
 
 func (c *Context) VCVTTSS2SI(mx, r avo.Operand) {
@@ -6654,7 +5990,6 @@ func (c *Context) VCVTTSS2SI(mx, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VCVTTSS2SI(mx, r avo.Operand) { ctx.VCVTTSS2SI(mx, r) }
 
 func (c *Context) VCVTTSS2SIQ(mx, r avo.Operand) {
@@ -6664,7 +5999,6 @@ func (c *Context) VCVTTSS2SIQ(mx, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VCVTTSS2SIQ(mx, r avo.Operand) { ctx.VCVTTSS2SIQ(mx, r) }
 
 func (c *Context) VDIVPD(mxy, xy, xy1 avo.Operand) {
@@ -6674,7 +6008,6 @@ func (c *Context) VDIVPD(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VDIVPD(mxy, xy, xy1 avo.Operand) { ctx.VDIVPD(mxy, xy, xy1) }
 
 func (c *Context) VDIVPS(mxy, xy, xy1 avo.Operand) {
@@ -6684,7 +6017,6 @@ func (c *Context) VDIVPS(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VDIVPS(mxy, xy, xy1 avo.Operand) { ctx.VDIVPS(mxy, xy, xy1) }
 
 func (c *Context) VDIVSD(mx, x, x1 avo.Operand) {
@@ -6694,7 +6026,6 @@ func (c *Context) VDIVSD(mx, x, x1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VDIVSD(mx, x, x1 avo.Operand) { ctx.VDIVSD(mx, x, x1) }
 
 func (c *Context) VDIVSS(mx, x, x1 avo.Operand) {
@@ -6704,7 +6035,6 @@ func (c *Context) VDIVSS(mx, x, x1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VDIVSS(mx, x, x1 avo.Operand) { ctx.VDIVSS(mx, x, x1) }
 
 func (c *Context) VDPPD(i, mx, x, x1 avo.Operand) {
@@ -6714,7 +6044,6 @@ func (c *Context) VDPPD(i, mx, x, x1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VDPPD(i, mx, x, x1 avo.Operand) { ctx.VDPPD(i, mx, x, x1) }
 
 func (c *Context) VDPPS(i, mxy, xy, xy1 avo.Operand) {
@@ -6724,7 +6053,6 @@ func (c *Context) VDPPS(i, mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VDPPS(i, mxy, xy, xy1 avo.Operand) { ctx.VDPPS(i, mxy, xy, xy1) }
 
 func (c *Context) VEXTRACTF128(i, y, mx avo.Operand) {
@@ -6734,7 +6062,6 @@ func (c *Context) VEXTRACTF128(i, y, mx avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VEXTRACTF128(i, y, mx avo.Operand) { ctx.VEXTRACTF128(i, y, mx) }
 
 func (c *Context) VEXTRACTI128(i, y, mx avo.Operand) {
@@ -6744,7 +6071,6 @@ func (c *Context) VEXTRACTI128(i, y, mx avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VEXTRACTI128(i, y, mx avo.Operand) { ctx.VEXTRACTI128(i, y, mx) }
 
 func (c *Context) VEXTRACTPS(i, x, mr avo.Operand) {
@@ -6754,7 +6080,6 @@ func (c *Context) VEXTRACTPS(i, x, mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VEXTRACTPS(i, x, mr avo.Operand) { ctx.VEXTRACTPS(i, x, mr) }
 
 func (c *Context) VFMADD132PD(mxy, xy, xy1 avo.Operand) {
@@ -6764,7 +6089,6 @@ func (c *Context) VFMADD132PD(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VFMADD132PD(mxy, xy, xy1 avo.Operand) { ctx.VFMADD132PD(mxy, xy, xy1) }
 
 func (c *Context) VFMADD132PS(mxy, xy, xy1 avo.Operand) {
@@ -6774,7 +6098,6 @@ func (c *Context) VFMADD132PS(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VFMADD132PS(mxy, xy, xy1 avo.Operand) { ctx.VFMADD132PS(mxy, xy, xy1) }
 
 func (c *Context) VFMADD132SD(mx, x, x1 avo.Operand) {
@@ -6784,7 +6107,6 @@ func (c *Context) VFMADD132SD(mx, x, x1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VFMADD132SD(mx, x, x1 avo.Operand) { ctx.VFMADD132SD(mx, x, x1) }
 
 func (c *Context) VFMADD132SS(mx, x, x1 avo.Operand) {
@@ -6794,7 +6116,6 @@ func (c *Context) VFMADD132SS(mx, x, x1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VFMADD132SS(mx, x, x1 avo.Operand) { ctx.VFMADD132SS(mx, x, x1) }
 
 func (c *Context) VFMADD213PD(mxy, xy, xy1 avo.Operand) {
@@ -6804,7 +6125,6 @@ func (c *Context) VFMADD213PD(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VFMADD213PD(mxy, xy, xy1 avo.Operand) { ctx.VFMADD213PD(mxy, xy, xy1) }
 
 func (c *Context) VFMADD213PS(mxy, xy, xy1 avo.Operand) {
@@ -6814,7 +6134,6 @@ func (c *Context) VFMADD213PS(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VFMADD213PS(mxy, xy, xy1 avo.Operand) { ctx.VFMADD213PS(mxy, xy, xy1) }
 
 func (c *Context) VFMADD213SD(mx, x, x1 avo.Operand) {
@@ -6824,7 +6143,6 @@ func (c *Context) VFMADD213SD(mx, x, x1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VFMADD213SD(mx, x, x1 avo.Operand) { ctx.VFMADD213SD(mx, x, x1) }
 
 func (c *Context) VFMADD213SS(mx, x, x1 avo.Operand) {
@@ -6834,7 +6152,6 @@ func (c *Context) VFMADD213SS(mx, x, x1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VFMADD213SS(mx, x, x1 avo.Operand) { ctx.VFMADD213SS(mx, x, x1) }
 
 func (c *Context) VFMADD231PD(mxy, xy, xy1 avo.Operand) {
@@ -6844,7 +6161,6 @@ func (c *Context) VFMADD231PD(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VFMADD231PD(mxy, xy, xy1 avo.Operand) { ctx.VFMADD231PD(mxy, xy, xy1) }
 
 func (c *Context) VFMADD231PS(mxy, xy, xy1 avo.Operand) {
@@ -6854,7 +6170,6 @@ func (c *Context) VFMADD231PS(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VFMADD231PS(mxy, xy, xy1 avo.Operand) { ctx.VFMADD231PS(mxy, xy, xy1) }
 
 func (c *Context) VFMADD231SD(mx, x, x1 avo.Operand) {
@@ -6864,7 +6179,6 @@ func (c *Context) VFMADD231SD(mx, x, x1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VFMADD231SD(mx, x, x1 avo.Operand) { ctx.VFMADD231SD(mx, x, x1) }
 
 func (c *Context) VFMADD231SS(mx, x, x1 avo.Operand) {
@@ -6874,7 +6188,6 @@ func (c *Context) VFMADD231SS(mx, x, x1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VFMADD231SS(mx, x, x1 avo.Operand) { ctx.VFMADD231SS(mx, x, x1) }
 
 func (c *Context) VFMADDSUB132PD(mxy, xy, xy1 avo.Operand) {
@@ -6884,7 +6197,6 @@ func (c *Context) VFMADDSUB132PD(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VFMADDSUB132PD(mxy, xy, xy1 avo.Operand) { ctx.VFMADDSUB132PD(mxy, xy, xy1) }
 
 func (c *Context) VFMADDSUB132PS(mxy, xy, xy1 avo.Operand) {
@@ -6894,7 +6206,6 @@ func (c *Context) VFMADDSUB132PS(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VFMADDSUB132PS(mxy, xy, xy1 avo.Operand) { ctx.VFMADDSUB132PS(mxy, xy, xy1) }
 
 func (c *Context) VFMADDSUB213PD(mxy, xy, xy1 avo.Operand) {
@@ -6904,7 +6215,6 @@ func (c *Context) VFMADDSUB213PD(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VFMADDSUB213PD(mxy, xy, xy1 avo.Operand) { ctx.VFMADDSUB213PD(mxy, xy, xy1) }
 
 func (c *Context) VFMADDSUB213PS(mxy, xy, xy1 avo.Operand) {
@@ -6914,7 +6224,6 @@ func (c *Context) VFMADDSUB213PS(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VFMADDSUB213PS(mxy, xy, xy1 avo.Operand) { ctx.VFMADDSUB213PS(mxy, xy, xy1) }
 
 func (c *Context) VFMADDSUB231PD(mxy, xy, xy1 avo.Operand) {
@@ -6924,7 +6233,6 @@ func (c *Context) VFMADDSUB231PD(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VFMADDSUB231PD(mxy, xy, xy1 avo.Operand) { ctx.VFMADDSUB231PD(mxy, xy, xy1) }
 
 func (c *Context) VFMADDSUB231PS(mxy, xy, xy1 avo.Operand) {
@@ -6934,7 +6242,6 @@ func (c *Context) VFMADDSUB231PS(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VFMADDSUB231PS(mxy, xy, xy1 avo.Operand) { ctx.VFMADDSUB231PS(mxy, xy, xy1) }
 
 func (c *Context) VFMSUB132PD(mxy, xy, xy1 avo.Operand) {
@@ -6944,7 +6251,6 @@ func (c *Context) VFMSUB132PD(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VFMSUB132PD(mxy, xy, xy1 avo.Operand) { ctx.VFMSUB132PD(mxy, xy, xy1) }
 
 func (c *Context) VFMSUB132PS(mxy, xy, xy1 avo.Operand) {
@@ -6954,7 +6260,6 @@ func (c *Context) VFMSUB132PS(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VFMSUB132PS(mxy, xy, xy1 avo.Operand) { ctx.VFMSUB132PS(mxy, xy, xy1) }
 
 func (c *Context) VFMSUB132SD(mx, x, x1 avo.Operand) {
@@ -6964,7 +6269,6 @@ func (c *Context) VFMSUB132SD(mx, x, x1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VFMSUB132SD(mx, x, x1 avo.Operand) { ctx.VFMSUB132SD(mx, x, x1) }
 
 func (c *Context) VFMSUB132SS(mx, x, x1 avo.Operand) {
@@ -6974,7 +6278,6 @@ func (c *Context) VFMSUB132SS(mx, x, x1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VFMSUB132SS(mx, x, x1 avo.Operand) { ctx.VFMSUB132SS(mx, x, x1) }
 
 func (c *Context) VFMSUB213PD(mxy, xy, xy1 avo.Operand) {
@@ -6984,7 +6287,6 @@ func (c *Context) VFMSUB213PD(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VFMSUB213PD(mxy, xy, xy1 avo.Operand) { ctx.VFMSUB213PD(mxy, xy, xy1) }
 
 func (c *Context) VFMSUB213PS(mxy, xy, xy1 avo.Operand) {
@@ -6994,7 +6296,6 @@ func (c *Context) VFMSUB213PS(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VFMSUB213PS(mxy, xy, xy1 avo.Operand) { ctx.VFMSUB213PS(mxy, xy, xy1) }
 
 func (c *Context) VFMSUB213SD(mx, x, x1 avo.Operand) {
@@ -7004,7 +6305,6 @@ func (c *Context) VFMSUB213SD(mx, x, x1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VFMSUB213SD(mx, x, x1 avo.Operand) { ctx.VFMSUB213SD(mx, x, x1) }
 
 func (c *Context) VFMSUB213SS(mx, x, x1 avo.Operand) {
@@ -7014,7 +6314,6 @@ func (c *Context) VFMSUB213SS(mx, x, x1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VFMSUB213SS(mx, x, x1 avo.Operand) { ctx.VFMSUB213SS(mx, x, x1) }
 
 func (c *Context) VFMSUB231PD(mxy, xy, xy1 avo.Operand) {
@@ -7024,7 +6323,6 @@ func (c *Context) VFMSUB231PD(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VFMSUB231PD(mxy, xy, xy1 avo.Operand) { ctx.VFMSUB231PD(mxy, xy, xy1) }
 
 func (c *Context) VFMSUB231PS(mxy, xy, xy1 avo.Operand) {
@@ -7034,7 +6332,6 @@ func (c *Context) VFMSUB231PS(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VFMSUB231PS(mxy, xy, xy1 avo.Operand) { ctx.VFMSUB231PS(mxy, xy, xy1) }
 
 func (c *Context) VFMSUB231SD(mx, x, x1 avo.Operand) {
@@ -7044,7 +6341,6 @@ func (c *Context) VFMSUB231SD(mx, x, x1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VFMSUB231SD(mx, x, x1 avo.Operand) { ctx.VFMSUB231SD(mx, x, x1) }
 
 func (c *Context) VFMSUB231SS(mx, x, x1 avo.Operand) {
@@ -7054,7 +6350,6 @@ func (c *Context) VFMSUB231SS(mx, x, x1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VFMSUB231SS(mx, x, x1 avo.Operand) { ctx.VFMSUB231SS(mx, x, x1) }
 
 func (c *Context) VFMSUBADD132PD(mxy, xy, xy1 avo.Operand) {
@@ -7064,7 +6359,6 @@ func (c *Context) VFMSUBADD132PD(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VFMSUBADD132PD(mxy, xy, xy1 avo.Operand) { ctx.VFMSUBADD132PD(mxy, xy, xy1) }
 
 func (c *Context) VFMSUBADD132PS(mxy, xy, xy1 avo.Operand) {
@@ -7074,7 +6368,6 @@ func (c *Context) VFMSUBADD132PS(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VFMSUBADD132PS(mxy, xy, xy1 avo.Operand) { ctx.VFMSUBADD132PS(mxy, xy, xy1) }
 
 func (c *Context) VFMSUBADD213PD(mxy, xy, xy1 avo.Operand) {
@@ -7084,7 +6377,6 @@ func (c *Context) VFMSUBADD213PD(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VFMSUBADD213PD(mxy, xy, xy1 avo.Operand) { ctx.VFMSUBADD213PD(mxy, xy, xy1) }
 
 func (c *Context) VFMSUBADD213PS(mxy, xy, xy1 avo.Operand) {
@@ -7094,7 +6386,6 @@ func (c *Context) VFMSUBADD213PS(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VFMSUBADD213PS(mxy, xy, xy1 avo.Operand) { ctx.VFMSUBADD213PS(mxy, xy, xy1) }
 
 func (c *Context) VFMSUBADD231PD(mxy, xy, xy1 avo.Operand) {
@@ -7104,7 +6395,6 @@ func (c *Context) VFMSUBADD231PD(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VFMSUBADD231PD(mxy, xy, xy1 avo.Operand) { ctx.VFMSUBADD231PD(mxy, xy, xy1) }
 
 func (c *Context) VFMSUBADD231PS(mxy, xy, xy1 avo.Operand) {
@@ -7114,7 +6404,6 @@ func (c *Context) VFMSUBADD231PS(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VFMSUBADD231PS(mxy, xy, xy1 avo.Operand) { ctx.VFMSUBADD231PS(mxy, xy, xy1) }
 
 func (c *Context) VFNMADD132PD(mxy, xy, xy1 avo.Operand) {
@@ -7124,7 +6413,6 @@ func (c *Context) VFNMADD132PD(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VFNMADD132PD(mxy, xy, xy1 avo.Operand) { ctx.VFNMADD132PD(mxy, xy, xy1) }
 
 func (c *Context) VFNMADD132PS(mxy, xy, xy1 avo.Operand) {
@@ -7134,7 +6422,6 @@ func (c *Context) VFNMADD132PS(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VFNMADD132PS(mxy, xy, xy1 avo.Operand) { ctx.VFNMADD132PS(mxy, xy, xy1) }
 
 func (c *Context) VFNMADD132SD(mx, x, x1 avo.Operand) {
@@ -7144,7 +6431,6 @@ func (c *Context) VFNMADD132SD(mx, x, x1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VFNMADD132SD(mx, x, x1 avo.Operand) { ctx.VFNMADD132SD(mx, x, x1) }
 
 func (c *Context) VFNMADD132SS(mx, x, x1 avo.Operand) {
@@ -7154,7 +6440,6 @@ func (c *Context) VFNMADD132SS(mx, x, x1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VFNMADD132SS(mx, x, x1 avo.Operand) { ctx.VFNMADD132SS(mx, x, x1) }
 
 func (c *Context) VFNMADD213PD(mxy, xy, xy1 avo.Operand) {
@@ -7164,7 +6449,6 @@ func (c *Context) VFNMADD213PD(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VFNMADD213PD(mxy, xy, xy1 avo.Operand) { ctx.VFNMADD213PD(mxy, xy, xy1) }
 
 func (c *Context) VFNMADD213PS(mxy, xy, xy1 avo.Operand) {
@@ -7174,7 +6458,6 @@ func (c *Context) VFNMADD213PS(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VFNMADD213PS(mxy, xy, xy1 avo.Operand) { ctx.VFNMADD213PS(mxy, xy, xy1) }
 
 func (c *Context) VFNMADD213SD(mx, x, x1 avo.Operand) {
@@ -7184,7 +6467,6 @@ func (c *Context) VFNMADD213SD(mx, x, x1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VFNMADD213SD(mx, x, x1 avo.Operand) { ctx.VFNMADD213SD(mx, x, x1) }
 
 func (c *Context) VFNMADD213SS(mx, x, x1 avo.Operand) {
@@ -7194,7 +6476,6 @@ func (c *Context) VFNMADD213SS(mx, x, x1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VFNMADD213SS(mx, x, x1 avo.Operand) { ctx.VFNMADD213SS(mx, x, x1) }
 
 func (c *Context) VFNMADD231PD(mxy, xy, xy1 avo.Operand) {
@@ -7204,7 +6485,6 @@ func (c *Context) VFNMADD231PD(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VFNMADD231PD(mxy, xy, xy1 avo.Operand) { ctx.VFNMADD231PD(mxy, xy, xy1) }
 
 func (c *Context) VFNMADD231PS(mxy, xy, xy1 avo.Operand) {
@@ -7214,7 +6494,6 @@ func (c *Context) VFNMADD231PS(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VFNMADD231PS(mxy, xy, xy1 avo.Operand) { ctx.VFNMADD231PS(mxy, xy, xy1) }
 
 func (c *Context) VFNMADD231SD(mx, x, x1 avo.Operand) {
@@ -7224,7 +6503,6 @@ func (c *Context) VFNMADD231SD(mx, x, x1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VFNMADD231SD(mx, x, x1 avo.Operand) { ctx.VFNMADD231SD(mx, x, x1) }
 
 func (c *Context) VFNMADD231SS(mx, x, x1 avo.Operand) {
@@ -7234,7 +6512,6 @@ func (c *Context) VFNMADD231SS(mx, x, x1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VFNMADD231SS(mx, x, x1 avo.Operand) { ctx.VFNMADD231SS(mx, x, x1) }
 
 func (c *Context) VFNMSUB132PD(mxy, xy, xy1 avo.Operand) {
@@ -7244,7 +6521,6 @@ func (c *Context) VFNMSUB132PD(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VFNMSUB132PD(mxy, xy, xy1 avo.Operand) { ctx.VFNMSUB132PD(mxy, xy, xy1) }
 
 func (c *Context) VFNMSUB132PS(mxy, xy, xy1 avo.Operand) {
@@ -7254,7 +6530,6 @@ func (c *Context) VFNMSUB132PS(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VFNMSUB132PS(mxy, xy, xy1 avo.Operand) { ctx.VFNMSUB132PS(mxy, xy, xy1) }
 
 func (c *Context) VFNMSUB132SD(mx, x, x1 avo.Operand) {
@@ -7264,7 +6539,6 @@ func (c *Context) VFNMSUB132SD(mx, x, x1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VFNMSUB132SD(mx, x, x1 avo.Operand) { ctx.VFNMSUB132SD(mx, x, x1) }
 
 func (c *Context) VFNMSUB132SS(mx, x, x1 avo.Operand) {
@@ -7274,7 +6548,6 @@ func (c *Context) VFNMSUB132SS(mx, x, x1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VFNMSUB132SS(mx, x, x1 avo.Operand) { ctx.VFNMSUB132SS(mx, x, x1) }
 
 func (c *Context) VFNMSUB213PD(mxy, xy, xy1 avo.Operand) {
@@ -7284,7 +6557,6 @@ func (c *Context) VFNMSUB213PD(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VFNMSUB213PD(mxy, xy, xy1 avo.Operand) { ctx.VFNMSUB213PD(mxy, xy, xy1) }
 
 func (c *Context) VFNMSUB213PS(mxy, xy, xy1 avo.Operand) {
@@ -7294,7 +6566,6 @@ func (c *Context) VFNMSUB213PS(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VFNMSUB213PS(mxy, xy, xy1 avo.Operand) { ctx.VFNMSUB213PS(mxy, xy, xy1) }
 
 func (c *Context) VFNMSUB213SD(mx, x, x1 avo.Operand) {
@@ -7304,7 +6575,6 @@ func (c *Context) VFNMSUB213SD(mx, x, x1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VFNMSUB213SD(mx, x, x1 avo.Operand) { ctx.VFNMSUB213SD(mx, x, x1) }
 
 func (c *Context) VFNMSUB213SS(mx, x, x1 avo.Operand) {
@@ -7314,7 +6584,6 @@ func (c *Context) VFNMSUB213SS(mx, x, x1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VFNMSUB213SS(mx, x, x1 avo.Operand) { ctx.VFNMSUB213SS(mx, x, x1) }
 
 func (c *Context) VFNMSUB231PD(mxy, xy, xy1 avo.Operand) {
@@ -7324,7 +6593,6 @@ func (c *Context) VFNMSUB231PD(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VFNMSUB231PD(mxy, xy, xy1 avo.Operand) { ctx.VFNMSUB231PD(mxy, xy, xy1) }
 
 func (c *Context) VFNMSUB231PS(mxy, xy, xy1 avo.Operand) {
@@ -7334,7 +6602,6 @@ func (c *Context) VFNMSUB231PS(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VFNMSUB231PS(mxy, xy, xy1 avo.Operand) { ctx.VFNMSUB231PS(mxy, xy, xy1) }
 
 func (c *Context) VFNMSUB231SD(mx, x, x1 avo.Operand) {
@@ -7344,7 +6611,6 @@ func (c *Context) VFNMSUB231SD(mx, x, x1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VFNMSUB231SD(mx, x, x1 avo.Operand) { ctx.VFNMSUB231SD(mx, x, x1) }
 
 func (c *Context) VFNMSUB231SS(mx, x, x1 avo.Operand) {
@@ -7354,7 +6620,6 @@ func (c *Context) VFNMSUB231SS(mx, x, x1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VFNMSUB231SS(mx, x, x1 avo.Operand) { ctx.VFNMSUB231SS(mx, x, x1) }
 
 func (c *Context) VGATHERDPD(xy, v, xy1 avo.Operand) {
@@ -7364,7 +6629,6 @@ func (c *Context) VGATHERDPD(xy, v, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VGATHERDPD(xy, v, xy1 avo.Operand) { ctx.VGATHERDPD(xy, v, xy1) }
 
 func (c *Context) VGATHERDPS(xy, v, xy1 avo.Operand) {
@@ -7374,7 +6638,6 @@ func (c *Context) VGATHERDPS(xy, v, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VGATHERDPS(xy, v, xy1 avo.Operand) { ctx.VGATHERDPS(xy, v, xy1) }
 
 func (c *Context) VGATHERQPD(xy, v, xy1 avo.Operand) {
@@ -7384,7 +6647,6 @@ func (c *Context) VGATHERQPD(xy, v, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VGATHERQPD(xy, v, xy1 avo.Operand) { ctx.VGATHERQPD(xy, v, xy1) }
 
 func (c *Context) VGATHERQPS(x, v, x1 avo.Operand) {
@@ -7394,7 +6656,6 @@ func (c *Context) VGATHERQPS(x, v, x1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VGATHERQPS(x, v, x1 avo.Operand) { ctx.VGATHERQPS(x, v, x1) }
 
 func (c *Context) VHADDPD(mxy, xy, xy1 avo.Operand) {
@@ -7404,7 +6665,6 @@ func (c *Context) VHADDPD(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VHADDPD(mxy, xy, xy1 avo.Operand) { ctx.VHADDPD(mxy, xy, xy1) }
 
 func (c *Context) VHADDPS(mxy, xy, xy1 avo.Operand) {
@@ -7414,7 +6674,6 @@ func (c *Context) VHADDPS(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VHADDPS(mxy, xy, xy1 avo.Operand) { ctx.VHADDPS(mxy, xy, xy1) }
 
 func (c *Context) VHSUBPD(mxy, xy, xy1 avo.Operand) {
@@ -7424,7 +6683,6 @@ func (c *Context) VHSUBPD(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VHSUBPD(mxy, xy, xy1 avo.Operand) { ctx.VHSUBPD(mxy, xy, xy1) }
 
 func (c *Context) VHSUBPS(mxy, xy, xy1 avo.Operand) {
@@ -7434,7 +6692,6 @@ func (c *Context) VHSUBPS(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VHSUBPS(mxy, xy, xy1 avo.Operand) { ctx.VHSUBPS(mxy, xy, xy1) }
 
 func (c *Context) VINSERTF128(i, mx, y, y1 avo.Operand) {
@@ -7444,7 +6701,6 @@ func (c *Context) VINSERTF128(i, mx, y, y1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VINSERTF128(i, mx, y, y1 avo.Operand) { ctx.VINSERTF128(i, mx, y, y1) }
 
 func (c *Context) VINSERTI128(i, mx, y, y1 avo.Operand) {
@@ -7454,7 +6710,6 @@ func (c *Context) VINSERTI128(i, mx, y, y1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VINSERTI128(i, mx, y, y1 avo.Operand) { ctx.VINSERTI128(i, mx, y, y1) }
 
 func (c *Context) VINSERTPS(i, mx, x, x1 avo.Operand) {
@@ -7464,7 +6719,6 @@ func (c *Context) VINSERTPS(i, mx, x, x1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VINSERTPS(i, mx, x, x1 avo.Operand) { ctx.VINSERTPS(i, mx, x, x1) }
 
 func (c *Context) VLDDQU(m, xy avo.Operand) {
@@ -7474,7 +6728,6 @@ func (c *Context) VLDDQU(m, xy avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VLDDQU(m, xy avo.Operand) { ctx.VLDDQU(m, xy) }
 
 func (c *Context) VLDMXCSR(m avo.Operand) {
@@ -7484,7 +6737,6 @@ func (c *Context) VLDMXCSR(m avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VLDMXCSR(m avo.Operand) { ctx.VLDMXCSR(m) }
 
 func (c *Context) VMASKMOVDQU(x, x1 avo.Operand) {
@@ -7494,7 +6746,6 @@ func (c *Context) VMASKMOVDQU(x, x1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VMASKMOVDQU(x, x1 avo.Operand) { ctx.VMASKMOVDQU(x, x1) }
 
 func (c *Context) VMASKMOVPD(mxy, xy, mxy1 avo.Operand) {
@@ -7504,7 +6755,6 @@ func (c *Context) VMASKMOVPD(mxy, xy, mxy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VMASKMOVPD(mxy, xy, mxy1 avo.Operand) { ctx.VMASKMOVPD(mxy, xy, mxy1) }
 
 func (c *Context) VMASKMOVPS(mxy, xy, mxy1 avo.Operand) {
@@ -7514,7 +6764,6 @@ func (c *Context) VMASKMOVPS(mxy, xy, mxy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VMASKMOVPS(mxy, xy, mxy1 avo.Operand) { ctx.VMASKMOVPS(mxy, xy, mxy1) }
 
 func (c *Context) VMAXPD(mxy, xy, xy1 avo.Operand) {
@@ -7524,7 +6773,6 @@ func (c *Context) VMAXPD(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VMAXPD(mxy, xy, xy1 avo.Operand) { ctx.VMAXPD(mxy, xy, xy1) }
 
 func (c *Context) VMAXPS(mxy, xy, xy1 avo.Operand) {
@@ -7534,7 +6782,6 @@ func (c *Context) VMAXPS(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VMAXPS(mxy, xy, xy1 avo.Operand) { ctx.VMAXPS(mxy, xy, xy1) }
 
 func (c *Context) VMAXSD(mx, x, x1 avo.Operand) {
@@ -7544,7 +6791,6 @@ func (c *Context) VMAXSD(mx, x, x1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VMAXSD(mx, x, x1 avo.Operand) { ctx.VMAXSD(mx, x, x1) }
 
 func (c *Context) VMAXSS(mx, x, x1 avo.Operand) {
@@ -7554,7 +6800,6 @@ func (c *Context) VMAXSS(mx, x, x1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VMAXSS(mx, x, x1 avo.Operand) { ctx.VMAXSS(mx, x, x1) }
 
 func (c *Context) VMINPD(mxy, xy, xy1 avo.Operand) {
@@ -7564,7 +6809,6 @@ func (c *Context) VMINPD(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VMINPD(mxy, xy, xy1 avo.Operand) { ctx.VMINPD(mxy, xy, xy1) }
 
 func (c *Context) VMINPS(mxy, xy, xy1 avo.Operand) {
@@ -7574,7 +6818,6 @@ func (c *Context) VMINPS(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VMINPS(mxy, xy, xy1 avo.Operand) { ctx.VMINPS(mxy, xy, xy1) }
 
 func (c *Context) VMINSD(mx, x, x1 avo.Operand) {
@@ -7584,7 +6827,6 @@ func (c *Context) VMINSD(mx, x, x1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VMINSD(mx, x, x1 avo.Operand) { ctx.VMINSD(mx, x, x1) }
 
 func (c *Context) VMINSS(mx, x, x1 avo.Operand) {
@@ -7594,7 +6836,6 @@ func (c *Context) VMINSS(mx, x, x1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VMINSS(mx, x, x1 avo.Operand) { ctx.VMINSS(mx, x, x1) }
 
 func (c *Context) VMOVAPD(mxy, mxy1 avo.Operand) {
@@ -7604,7 +6845,6 @@ func (c *Context) VMOVAPD(mxy, mxy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VMOVAPD(mxy, mxy1 avo.Operand) { ctx.VMOVAPD(mxy, mxy1) }
 
 func (c *Context) VMOVAPS(mxy, mxy1 avo.Operand) {
@@ -7614,7 +6854,6 @@ func (c *Context) VMOVAPS(mxy, mxy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VMOVAPS(mxy, mxy1 avo.Operand) { ctx.VMOVAPS(mxy, mxy1) }
 
 func (c *Context) VMOVD(mrx, mrx1 avo.Operand) {
@@ -7624,7 +6863,6 @@ func (c *Context) VMOVD(mrx, mrx1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VMOVD(mrx, mrx1 avo.Operand) { ctx.VMOVD(mrx, mrx1) }
 
 func (c *Context) VMOVDDUP(mxy, xy avo.Operand) {
@@ -7634,7 +6872,6 @@ func (c *Context) VMOVDDUP(mxy, xy avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VMOVDDUP(mxy, xy avo.Operand) { ctx.VMOVDDUP(mxy, xy) }
 
 func (c *Context) VMOVDQA(mxy, mxy1 avo.Operand) {
@@ -7644,7 +6881,6 @@ func (c *Context) VMOVDQA(mxy, mxy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VMOVDQA(mxy, mxy1 avo.Operand) { ctx.VMOVDQA(mxy, mxy1) }
 
 func (c *Context) VMOVDQU(mxy, mxy1 avo.Operand) {
@@ -7654,7 +6890,6 @@ func (c *Context) VMOVDQU(mxy, mxy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VMOVDQU(mxy, mxy1 avo.Operand) { ctx.VMOVDQU(mxy, mxy1) }
 
 func (c *Context) VMOVHLPS(x, x1, x2 avo.Operand) {
@@ -7664,7 +6899,6 @@ func (c *Context) VMOVHLPS(x, x1, x2 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VMOVHLPS(x, x1, x2 avo.Operand) { ctx.VMOVHLPS(x, x1, x2) }
 
 func (c *Context) VMOVHPD(ops ...avo.Operand) {
@@ -7674,7 +6908,6 @@ func (c *Context) VMOVHPD(ops ...avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VMOVHPD(ops ...avo.Operand) { ctx.VMOVHPD(ops...) }
 
 func (c *Context) VMOVHPS(ops ...avo.Operand) {
@@ -7684,7 +6917,6 @@ func (c *Context) VMOVHPS(ops ...avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VMOVHPS(ops ...avo.Operand) { ctx.VMOVHPS(ops...) }
 
 func (c *Context) VMOVLHPS(x, x1, x2 avo.Operand) {
@@ -7694,7 +6926,6 @@ func (c *Context) VMOVLHPS(x, x1, x2 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VMOVLHPS(x, x1, x2 avo.Operand) { ctx.VMOVLHPS(x, x1, x2) }
 
 func (c *Context) VMOVLPD(ops ...avo.Operand) {
@@ -7704,7 +6935,6 @@ func (c *Context) VMOVLPD(ops ...avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VMOVLPD(ops ...avo.Operand) { ctx.VMOVLPD(ops...) }
 
 func (c *Context) VMOVLPS(ops ...avo.Operand) {
@@ -7714,7 +6944,6 @@ func (c *Context) VMOVLPS(ops ...avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VMOVLPS(ops ...avo.Operand) { ctx.VMOVLPS(ops...) }
 
 func (c *Context) VMOVMSKPD(xy, r avo.Operand) {
@@ -7724,7 +6953,6 @@ func (c *Context) VMOVMSKPD(xy, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VMOVMSKPD(xy, r avo.Operand) { ctx.VMOVMSKPD(xy, r) }
 
 func (c *Context) VMOVMSKPS(xy, r avo.Operand) {
@@ -7734,7 +6962,6 @@ func (c *Context) VMOVMSKPS(xy, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VMOVMSKPS(xy, r avo.Operand) { ctx.VMOVMSKPS(xy, r) }
 
 func (c *Context) VMOVNTDQ(xy, m avo.Operand) {
@@ -7744,7 +6971,6 @@ func (c *Context) VMOVNTDQ(xy, m avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VMOVNTDQ(xy, m avo.Operand) { ctx.VMOVNTDQ(xy, m) }
 
 func (c *Context) VMOVNTDQA(m, xy avo.Operand) {
@@ -7754,7 +6980,6 @@ func (c *Context) VMOVNTDQA(m, xy avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VMOVNTDQA(m, xy avo.Operand) { ctx.VMOVNTDQA(m, xy) }
 
 func (c *Context) VMOVNTPD(xy, m avo.Operand) {
@@ -7764,7 +6989,6 @@ func (c *Context) VMOVNTPD(xy, m avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VMOVNTPD(xy, m avo.Operand) { ctx.VMOVNTPD(xy, m) }
 
 func (c *Context) VMOVNTPS(xy, m avo.Operand) {
@@ -7774,7 +6998,6 @@ func (c *Context) VMOVNTPS(xy, m avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VMOVNTPS(xy, m avo.Operand) { ctx.VMOVNTPS(xy, m) }
 
 func (c *Context) VMOVQ(mrx, mrx1 avo.Operand) {
@@ -7784,7 +7007,6 @@ func (c *Context) VMOVQ(mrx, mrx1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VMOVQ(mrx, mrx1 avo.Operand) { ctx.VMOVQ(mrx, mrx1) }
 
 func (c *Context) VMOVSD(ops ...avo.Operand) {
@@ -7794,7 +7016,6 @@ func (c *Context) VMOVSD(ops ...avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VMOVSD(ops ...avo.Operand) { ctx.VMOVSD(ops...) }
 
 func (c *Context) VMOVSHDUP(mxy, xy avo.Operand) {
@@ -7804,7 +7025,6 @@ func (c *Context) VMOVSHDUP(mxy, xy avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VMOVSHDUP(mxy, xy avo.Operand) { ctx.VMOVSHDUP(mxy, xy) }
 
 func (c *Context) VMOVSLDUP(mxy, xy avo.Operand) {
@@ -7814,7 +7034,6 @@ func (c *Context) VMOVSLDUP(mxy, xy avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VMOVSLDUP(mxy, xy avo.Operand) { ctx.VMOVSLDUP(mxy, xy) }
 
 func (c *Context) VMOVSS(ops ...avo.Operand) {
@@ -7824,7 +7043,6 @@ func (c *Context) VMOVSS(ops ...avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VMOVSS(ops ...avo.Operand) { ctx.VMOVSS(ops...) }
 
 func (c *Context) VMOVUPD(mxy, mxy1 avo.Operand) {
@@ -7834,7 +7052,6 @@ func (c *Context) VMOVUPD(mxy, mxy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VMOVUPD(mxy, mxy1 avo.Operand) { ctx.VMOVUPD(mxy, mxy1) }
 
 func (c *Context) VMOVUPS(mxy, mxy1 avo.Operand) {
@@ -7844,7 +7061,6 @@ func (c *Context) VMOVUPS(mxy, mxy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VMOVUPS(mxy, mxy1 avo.Operand) { ctx.VMOVUPS(mxy, mxy1) }
 
 func (c *Context) VMPSADBW(i, mxy, xy, xy1 avo.Operand) {
@@ -7854,7 +7070,6 @@ func (c *Context) VMPSADBW(i, mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VMPSADBW(i, mxy, xy, xy1 avo.Operand) { ctx.VMPSADBW(i, mxy, xy, xy1) }
 
 func (c *Context) VMULPD(mxy, xy, xy1 avo.Operand) {
@@ -7864,7 +7079,6 @@ func (c *Context) VMULPD(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VMULPD(mxy, xy, xy1 avo.Operand) { ctx.VMULPD(mxy, xy, xy1) }
 
 func (c *Context) VMULPS(mxy, xy, xy1 avo.Operand) {
@@ -7874,7 +7088,6 @@ func (c *Context) VMULPS(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VMULPS(mxy, xy, xy1 avo.Operand) { ctx.VMULPS(mxy, xy, xy1) }
 
 func (c *Context) VMULSD(mx, x, x1 avo.Operand) {
@@ -7884,7 +7097,6 @@ func (c *Context) VMULSD(mx, x, x1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VMULSD(mx, x, x1 avo.Operand) { ctx.VMULSD(mx, x, x1) }
 
 func (c *Context) VMULSS(mx, x, x1 avo.Operand) {
@@ -7894,7 +7106,6 @@ func (c *Context) VMULSS(mx, x, x1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VMULSS(mx, x, x1 avo.Operand) { ctx.VMULSS(mx, x, x1) }
 
 func (c *Context) VORPD(mxy, xy, xy1 avo.Operand) {
@@ -7904,7 +7115,6 @@ func (c *Context) VORPD(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VORPD(mxy, xy, xy1 avo.Operand) { ctx.VORPD(mxy, xy, xy1) }
 
 func (c *Context) VORPS(mxy, xy, xy1 avo.Operand) {
@@ -7914,7 +7124,6 @@ func (c *Context) VORPS(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VORPS(mxy, xy, xy1 avo.Operand) { ctx.VORPS(mxy, xy, xy1) }
 
 func (c *Context) VPABSB(mxy, xy avo.Operand) {
@@ -7924,7 +7133,6 @@ func (c *Context) VPABSB(mxy, xy avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPABSB(mxy, xy avo.Operand) { ctx.VPABSB(mxy, xy) }
 
 func (c *Context) VPABSD(mxy, xy avo.Operand) {
@@ -7934,7 +7142,6 @@ func (c *Context) VPABSD(mxy, xy avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPABSD(mxy, xy avo.Operand) { ctx.VPABSD(mxy, xy) }
 
 func (c *Context) VPABSW(mxy, xy avo.Operand) {
@@ -7944,7 +7151,6 @@ func (c *Context) VPABSW(mxy, xy avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPABSW(mxy, xy avo.Operand) { ctx.VPABSW(mxy, xy) }
 
 func (c *Context) VPACKSSDW(mxy, xy, xy1 avo.Operand) {
@@ -7954,7 +7160,6 @@ func (c *Context) VPACKSSDW(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPACKSSDW(mxy, xy, xy1 avo.Operand) { ctx.VPACKSSDW(mxy, xy, xy1) }
 
 func (c *Context) VPACKSSWB(mxy, xy, xy1 avo.Operand) {
@@ -7964,7 +7169,6 @@ func (c *Context) VPACKSSWB(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPACKSSWB(mxy, xy, xy1 avo.Operand) { ctx.VPACKSSWB(mxy, xy, xy1) }
 
 func (c *Context) VPACKUSDW(mxy, xy, xy1 avo.Operand) {
@@ -7974,7 +7178,6 @@ func (c *Context) VPACKUSDW(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPACKUSDW(mxy, xy, xy1 avo.Operand) { ctx.VPACKUSDW(mxy, xy, xy1) }
 
 func (c *Context) VPACKUSWB(mxy, xy, xy1 avo.Operand) {
@@ -7984,7 +7187,6 @@ func (c *Context) VPACKUSWB(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPACKUSWB(mxy, xy, xy1 avo.Operand) { ctx.VPACKUSWB(mxy, xy, xy1) }
 
 func (c *Context) VPADDB(mxy, xy, xy1 avo.Operand) {
@@ -7994,7 +7196,6 @@ func (c *Context) VPADDB(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPADDB(mxy, xy, xy1 avo.Operand) { ctx.VPADDB(mxy, xy, xy1) }
 
 func (c *Context) VPADDD(mxy, xy, xy1 avo.Operand) {
@@ -8004,7 +7205,6 @@ func (c *Context) VPADDD(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPADDD(mxy, xy, xy1 avo.Operand) { ctx.VPADDD(mxy, xy, xy1) }
 
 func (c *Context) VPADDQ(mxy, xy, xy1 avo.Operand) {
@@ -8014,7 +7214,6 @@ func (c *Context) VPADDQ(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPADDQ(mxy, xy, xy1 avo.Operand) { ctx.VPADDQ(mxy, xy, xy1) }
 
 func (c *Context) VPADDSB(mxy, xy, xy1 avo.Operand) {
@@ -8024,7 +7223,6 @@ func (c *Context) VPADDSB(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPADDSB(mxy, xy, xy1 avo.Operand) { ctx.VPADDSB(mxy, xy, xy1) }
 
 func (c *Context) VPADDSW(mxy, xy, xy1 avo.Operand) {
@@ -8034,7 +7232,6 @@ func (c *Context) VPADDSW(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPADDSW(mxy, xy, xy1 avo.Operand) { ctx.VPADDSW(mxy, xy, xy1) }
 
 func (c *Context) VPADDUSB(mxy, xy, xy1 avo.Operand) {
@@ -8044,7 +7241,6 @@ func (c *Context) VPADDUSB(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPADDUSB(mxy, xy, xy1 avo.Operand) { ctx.VPADDUSB(mxy, xy, xy1) }
 
 func (c *Context) VPADDUSW(mxy, xy, xy1 avo.Operand) {
@@ -8054,7 +7250,6 @@ func (c *Context) VPADDUSW(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPADDUSW(mxy, xy, xy1 avo.Operand) { ctx.VPADDUSW(mxy, xy, xy1) }
 
 func (c *Context) VPADDW(mxy, xy, xy1 avo.Operand) {
@@ -8064,7 +7259,6 @@ func (c *Context) VPADDW(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPADDW(mxy, xy, xy1 avo.Operand) { ctx.VPADDW(mxy, xy, xy1) }
 
 func (c *Context) VPALIGNR(i, mxy, xy, xy1 avo.Operand) {
@@ -8074,7 +7268,6 @@ func (c *Context) VPALIGNR(i, mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPALIGNR(i, mxy, xy, xy1 avo.Operand) { ctx.VPALIGNR(i, mxy, xy, xy1) }
 
 func (c *Context) VPAND(mxy, xy, xy1 avo.Operand) {
@@ -8084,7 +7277,6 @@ func (c *Context) VPAND(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPAND(mxy, xy, xy1 avo.Operand) { ctx.VPAND(mxy, xy, xy1) }
 
 func (c *Context) VPANDN(mxy, xy, xy1 avo.Operand) {
@@ -8094,7 +7286,6 @@ func (c *Context) VPANDN(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPANDN(mxy, xy, xy1 avo.Operand) { ctx.VPANDN(mxy, xy, xy1) }
 
 func (c *Context) VPAVGB(mxy, xy, xy1 avo.Operand) {
@@ -8104,7 +7295,6 @@ func (c *Context) VPAVGB(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPAVGB(mxy, xy, xy1 avo.Operand) { ctx.VPAVGB(mxy, xy, xy1) }
 
 func (c *Context) VPAVGW(mxy, xy, xy1 avo.Operand) {
@@ -8114,7 +7304,6 @@ func (c *Context) VPAVGW(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPAVGW(mxy, xy, xy1 avo.Operand) { ctx.VPAVGW(mxy, xy, xy1) }
 
 func (c *Context) VPBLENDD(i, mxy, xy, xy1 avo.Operand) {
@@ -8124,7 +7313,6 @@ func (c *Context) VPBLENDD(i, mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPBLENDD(i, mxy, xy, xy1 avo.Operand) { ctx.VPBLENDD(i, mxy, xy, xy1) }
 
 func (c *Context) VPBLENDVB(xy, mxy, xy1, xy2 avo.Operand) {
@@ -8134,7 +7322,6 @@ func (c *Context) VPBLENDVB(xy, mxy, xy1, xy2 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPBLENDVB(xy, mxy, xy1, xy2 avo.Operand) { ctx.VPBLENDVB(xy, mxy, xy1, xy2) }
 
 func (c *Context) VPBLENDW(i, mxy, xy, xy1 avo.Operand) {
@@ -8144,7 +7331,6 @@ func (c *Context) VPBLENDW(i, mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPBLENDW(i, mxy, xy, xy1 avo.Operand) { ctx.VPBLENDW(i, mxy, xy, xy1) }
 
 func (c *Context) VPBROADCASTB(mx, xy avo.Operand) {
@@ -8154,7 +7340,6 @@ func (c *Context) VPBROADCASTB(mx, xy avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPBROADCASTB(mx, xy avo.Operand) { ctx.VPBROADCASTB(mx, xy) }
 
 func (c *Context) VPBROADCASTD(mx, xy avo.Operand) {
@@ -8164,7 +7349,6 @@ func (c *Context) VPBROADCASTD(mx, xy avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPBROADCASTD(mx, xy avo.Operand) { ctx.VPBROADCASTD(mx, xy) }
 
 func (c *Context) VPBROADCASTQ(mx, xy avo.Operand) {
@@ -8174,7 +7358,6 @@ func (c *Context) VPBROADCASTQ(mx, xy avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPBROADCASTQ(mx, xy avo.Operand) { ctx.VPBROADCASTQ(mx, xy) }
 
 func (c *Context) VPBROADCASTW(mx, xy avo.Operand) {
@@ -8184,7 +7367,6 @@ func (c *Context) VPBROADCASTW(mx, xy avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPBROADCASTW(mx, xy avo.Operand) { ctx.VPBROADCASTW(mx, xy) }
 
 func (c *Context) VPCLMULQDQ(i, mx, x, x1 avo.Operand) {
@@ -8194,7 +7376,6 @@ func (c *Context) VPCLMULQDQ(i, mx, x, x1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPCLMULQDQ(i, mx, x, x1 avo.Operand) { ctx.VPCLMULQDQ(i, mx, x, x1) }
 
 func (c *Context) VPCMPEQB(mxy, xy, xy1 avo.Operand) {
@@ -8204,7 +7385,6 @@ func (c *Context) VPCMPEQB(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPCMPEQB(mxy, xy, xy1 avo.Operand) { ctx.VPCMPEQB(mxy, xy, xy1) }
 
 func (c *Context) VPCMPEQD(mxy, xy, xy1 avo.Operand) {
@@ -8214,7 +7394,6 @@ func (c *Context) VPCMPEQD(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPCMPEQD(mxy, xy, xy1 avo.Operand) { ctx.VPCMPEQD(mxy, xy, xy1) }
 
 func (c *Context) VPCMPEQQ(mxy, xy, xy1 avo.Operand) {
@@ -8224,7 +7403,6 @@ func (c *Context) VPCMPEQQ(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPCMPEQQ(mxy, xy, xy1 avo.Operand) { ctx.VPCMPEQQ(mxy, xy, xy1) }
 
 func (c *Context) VPCMPEQW(mxy, xy, xy1 avo.Operand) {
@@ -8234,7 +7412,6 @@ func (c *Context) VPCMPEQW(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPCMPEQW(mxy, xy, xy1 avo.Operand) { ctx.VPCMPEQW(mxy, xy, xy1) }
 
 func (c *Context) VPCMPESTRI(i, mx, x avo.Operand) {
@@ -8244,7 +7421,6 @@ func (c *Context) VPCMPESTRI(i, mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPCMPESTRI(i, mx, x avo.Operand) { ctx.VPCMPESTRI(i, mx, x) }
 
 func (c *Context) VPCMPESTRM(i, mx, x avo.Operand) {
@@ -8254,7 +7430,6 @@ func (c *Context) VPCMPESTRM(i, mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPCMPESTRM(i, mx, x avo.Operand) { ctx.VPCMPESTRM(i, mx, x) }
 
 func (c *Context) VPCMPGTB(mxy, xy, xy1 avo.Operand) {
@@ -8264,7 +7439,6 @@ func (c *Context) VPCMPGTB(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPCMPGTB(mxy, xy, xy1 avo.Operand) { ctx.VPCMPGTB(mxy, xy, xy1) }
 
 func (c *Context) VPCMPGTD(mxy, xy, xy1 avo.Operand) {
@@ -8274,7 +7448,6 @@ func (c *Context) VPCMPGTD(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPCMPGTD(mxy, xy, xy1 avo.Operand) { ctx.VPCMPGTD(mxy, xy, xy1) }
 
 func (c *Context) VPCMPGTQ(mxy, xy, xy1 avo.Operand) {
@@ -8284,7 +7457,6 @@ func (c *Context) VPCMPGTQ(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPCMPGTQ(mxy, xy, xy1 avo.Operand) { ctx.VPCMPGTQ(mxy, xy, xy1) }
 
 func (c *Context) VPCMPGTW(mxy, xy, xy1 avo.Operand) {
@@ -8294,7 +7466,6 @@ func (c *Context) VPCMPGTW(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPCMPGTW(mxy, xy, xy1 avo.Operand) { ctx.VPCMPGTW(mxy, xy, xy1) }
 
 func (c *Context) VPCMPISTRI(i, mx, x avo.Operand) {
@@ -8304,7 +7475,6 @@ func (c *Context) VPCMPISTRI(i, mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPCMPISTRI(i, mx, x avo.Operand) { ctx.VPCMPISTRI(i, mx, x) }
 
 func (c *Context) VPCMPISTRM(i, mx, x avo.Operand) {
@@ -8314,7 +7484,6 @@ func (c *Context) VPCMPISTRM(i, mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPCMPISTRM(i, mx, x avo.Operand) { ctx.VPCMPISTRM(i, mx, x) }
 
 func (c *Context) VPERM2F128(i, my, y, y1 avo.Operand) {
@@ -8324,7 +7493,6 @@ func (c *Context) VPERM2F128(i, my, y, y1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPERM2F128(i, my, y, y1 avo.Operand) { ctx.VPERM2F128(i, my, y, y1) }
 
 func (c *Context) VPERM2I128(i, my, y, y1 avo.Operand) {
@@ -8334,7 +7502,6 @@ func (c *Context) VPERM2I128(i, my, y, y1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPERM2I128(i, my, y, y1 avo.Operand) { ctx.VPERM2I128(i, my, y, y1) }
 
 func (c *Context) VPERMD(my, y, y1 avo.Operand) {
@@ -8344,7 +7511,6 @@ func (c *Context) VPERMD(my, y, y1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPERMD(my, y, y1 avo.Operand) { ctx.VPERMD(my, y, y1) }
 
 func (c *Context) VPERMILPD(imxy, mxy, xy avo.Operand) {
@@ -8354,7 +7520,6 @@ func (c *Context) VPERMILPD(imxy, mxy, xy avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPERMILPD(imxy, mxy, xy avo.Operand) { ctx.VPERMILPD(imxy, mxy, xy) }
 
 func (c *Context) VPERMILPS(imxy, mxy, xy avo.Operand) {
@@ -8364,7 +7529,6 @@ func (c *Context) VPERMILPS(imxy, mxy, xy avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPERMILPS(imxy, mxy, xy avo.Operand) { ctx.VPERMILPS(imxy, mxy, xy) }
 
 func (c *Context) VPERMPD(i, my, y avo.Operand) {
@@ -8374,7 +7538,6 @@ func (c *Context) VPERMPD(i, my, y avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPERMPD(i, my, y avo.Operand) { ctx.VPERMPD(i, my, y) }
 
 func (c *Context) VPERMPS(my, y, y1 avo.Operand) {
@@ -8384,7 +7547,6 @@ func (c *Context) VPERMPS(my, y, y1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPERMPS(my, y, y1 avo.Operand) { ctx.VPERMPS(my, y, y1) }
 
 func (c *Context) VPERMQ(i, my, y avo.Operand) {
@@ -8394,7 +7556,6 @@ func (c *Context) VPERMQ(i, my, y avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPERMQ(i, my, y avo.Operand) { ctx.VPERMQ(i, my, y) }
 
 func (c *Context) VPEXTRB(i, x, mr avo.Operand) {
@@ -8404,7 +7565,6 @@ func (c *Context) VPEXTRB(i, x, mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPEXTRB(i, x, mr avo.Operand) { ctx.VPEXTRB(i, x, mr) }
 
 func (c *Context) VPEXTRD(i, x, mr avo.Operand) {
@@ -8414,7 +7574,6 @@ func (c *Context) VPEXTRD(i, x, mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPEXTRD(i, x, mr avo.Operand) { ctx.VPEXTRD(i, x, mr) }
 
 func (c *Context) VPEXTRQ(i, x, mr avo.Operand) {
@@ -8424,7 +7583,6 @@ func (c *Context) VPEXTRQ(i, x, mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPEXTRQ(i, x, mr avo.Operand) { ctx.VPEXTRQ(i, x, mr) }
 
 func (c *Context) VPEXTRW(i, x, mr avo.Operand) {
@@ -8434,7 +7592,6 @@ func (c *Context) VPEXTRW(i, x, mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPEXTRW(i, x, mr avo.Operand) { ctx.VPEXTRW(i, x, mr) }
 
 func (c *Context) VPGATHERDD(xy, v, xy1 avo.Operand) {
@@ -8444,7 +7601,6 @@ func (c *Context) VPGATHERDD(xy, v, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPGATHERDD(xy, v, xy1 avo.Operand) { ctx.VPGATHERDD(xy, v, xy1) }
 
 func (c *Context) VPGATHERDQ(xy, v, xy1 avo.Operand) {
@@ -8454,7 +7610,6 @@ func (c *Context) VPGATHERDQ(xy, v, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPGATHERDQ(xy, v, xy1 avo.Operand) { ctx.VPGATHERDQ(xy, v, xy1) }
 
 func (c *Context) VPGATHERQD(x, v, x1 avo.Operand) {
@@ -8464,7 +7619,6 @@ func (c *Context) VPGATHERQD(x, v, x1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPGATHERQD(x, v, x1 avo.Operand) { ctx.VPGATHERQD(x, v, x1) }
 
 func (c *Context) VPGATHERQQ(xy, v, xy1 avo.Operand) {
@@ -8474,7 +7628,6 @@ func (c *Context) VPGATHERQQ(xy, v, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPGATHERQQ(xy, v, xy1 avo.Operand) { ctx.VPGATHERQQ(xy, v, xy1) }
 
 func (c *Context) VPHADDD(mxy, xy, xy1 avo.Operand) {
@@ -8484,7 +7637,6 @@ func (c *Context) VPHADDD(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPHADDD(mxy, xy, xy1 avo.Operand) { ctx.VPHADDD(mxy, xy, xy1) }
 
 func (c *Context) VPHADDSW(mxy, xy, xy1 avo.Operand) {
@@ -8494,7 +7646,6 @@ func (c *Context) VPHADDSW(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPHADDSW(mxy, xy, xy1 avo.Operand) { ctx.VPHADDSW(mxy, xy, xy1) }
 
 func (c *Context) VPHADDW(mxy, xy, xy1 avo.Operand) {
@@ -8504,7 +7655,6 @@ func (c *Context) VPHADDW(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPHADDW(mxy, xy, xy1 avo.Operand) { ctx.VPHADDW(mxy, xy, xy1) }
 
 func (c *Context) VPHMINPOSUW(mx, x avo.Operand) {
@@ -8514,7 +7664,6 @@ func (c *Context) VPHMINPOSUW(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPHMINPOSUW(mx, x avo.Operand) { ctx.VPHMINPOSUW(mx, x) }
 
 func (c *Context) VPHSUBD(mxy, xy, xy1 avo.Operand) {
@@ -8524,7 +7673,6 @@ func (c *Context) VPHSUBD(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPHSUBD(mxy, xy, xy1 avo.Operand) { ctx.VPHSUBD(mxy, xy, xy1) }
 
 func (c *Context) VPHSUBSW(mxy, xy, xy1 avo.Operand) {
@@ -8534,7 +7682,6 @@ func (c *Context) VPHSUBSW(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPHSUBSW(mxy, xy, xy1 avo.Operand) { ctx.VPHSUBSW(mxy, xy, xy1) }
 
 func (c *Context) VPHSUBW(mxy, xy, xy1 avo.Operand) {
@@ -8544,7 +7691,6 @@ func (c *Context) VPHSUBW(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPHSUBW(mxy, xy, xy1 avo.Operand) { ctx.VPHSUBW(mxy, xy, xy1) }
 
 func (c *Context) VPINSRB(i, mr, x, x1 avo.Operand) {
@@ -8554,7 +7700,6 @@ func (c *Context) VPINSRB(i, mr, x, x1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPINSRB(i, mr, x, x1 avo.Operand) { ctx.VPINSRB(i, mr, x, x1) }
 
 func (c *Context) VPINSRD(i, mr, x, x1 avo.Operand) {
@@ -8564,7 +7709,6 @@ func (c *Context) VPINSRD(i, mr, x, x1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPINSRD(i, mr, x, x1 avo.Operand) { ctx.VPINSRD(i, mr, x, x1) }
 
 func (c *Context) VPINSRQ(i, mr, x, x1 avo.Operand) {
@@ -8574,7 +7718,6 @@ func (c *Context) VPINSRQ(i, mr, x, x1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPINSRQ(i, mr, x, x1 avo.Operand) { ctx.VPINSRQ(i, mr, x, x1) }
 
 func (c *Context) VPINSRW(i, mr, x, x1 avo.Operand) {
@@ -8584,7 +7727,6 @@ func (c *Context) VPINSRW(i, mr, x, x1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPINSRW(i, mr, x, x1 avo.Operand) { ctx.VPINSRW(i, mr, x, x1) }
 
 func (c *Context) VPMADDUBSW(mxy, xy, xy1 avo.Operand) {
@@ -8594,7 +7736,6 @@ func (c *Context) VPMADDUBSW(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPMADDUBSW(mxy, xy, xy1 avo.Operand) { ctx.VPMADDUBSW(mxy, xy, xy1) }
 
 func (c *Context) VPMADDWD(mxy, xy, xy1 avo.Operand) {
@@ -8604,7 +7745,6 @@ func (c *Context) VPMADDWD(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPMADDWD(mxy, xy, xy1 avo.Operand) { ctx.VPMADDWD(mxy, xy, xy1) }
 
 func (c *Context) VPMASKMOVD(mxy, xy, mxy1 avo.Operand) {
@@ -8614,7 +7754,6 @@ func (c *Context) VPMASKMOVD(mxy, xy, mxy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPMASKMOVD(mxy, xy, mxy1 avo.Operand) { ctx.VPMASKMOVD(mxy, xy, mxy1) }
 
 func (c *Context) VPMASKMOVQ(mxy, xy, mxy1 avo.Operand) {
@@ -8624,7 +7763,6 @@ func (c *Context) VPMASKMOVQ(mxy, xy, mxy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPMASKMOVQ(mxy, xy, mxy1 avo.Operand) { ctx.VPMASKMOVQ(mxy, xy, mxy1) }
 
 func (c *Context) VPMAXSB(mxy, xy, xy1 avo.Operand) {
@@ -8634,7 +7772,6 @@ func (c *Context) VPMAXSB(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPMAXSB(mxy, xy, xy1 avo.Operand) { ctx.VPMAXSB(mxy, xy, xy1) }
 
 func (c *Context) VPMAXSD(mxy, xy, xy1 avo.Operand) {
@@ -8644,7 +7781,6 @@ func (c *Context) VPMAXSD(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPMAXSD(mxy, xy, xy1 avo.Operand) { ctx.VPMAXSD(mxy, xy, xy1) }
 
 func (c *Context) VPMAXSW(mxy, xy, xy1 avo.Operand) {
@@ -8654,7 +7790,6 @@ func (c *Context) VPMAXSW(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPMAXSW(mxy, xy, xy1 avo.Operand) { ctx.VPMAXSW(mxy, xy, xy1) }
 
 func (c *Context) VPMAXUB(mxy, xy, xy1 avo.Operand) {
@@ -8664,7 +7799,6 @@ func (c *Context) VPMAXUB(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPMAXUB(mxy, xy, xy1 avo.Operand) { ctx.VPMAXUB(mxy, xy, xy1) }
 
 func (c *Context) VPMAXUD(mxy, xy, xy1 avo.Operand) {
@@ -8674,7 +7808,6 @@ func (c *Context) VPMAXUD(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPMAXUD(mxy, xy, xy1 avo.Operand) { ctx.VPMAXUD(mxy, xy, xy1) }
 
 func (c *Context) VPMAXUW(mxy, xy, xy1 avo.Operand) {
@@ -8684,7 +7817,6 @@ func (c *Context) VPMAXUW(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPMAXUW(mxy, xy, xy1 avo.Operand) { ctx.VPMAXUW(mxy, xy, xy1) }
 
 func (c *Context) VPMINSB(mxy, xy, xy1 avo.Operand) {
@@ -8694,7 +7826,6 @@ func (c *Context) VPMINSB(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPMINSB(mxy, xy, xy1 avo.Operand) { ctx.VPMINSB(mxy, xy, xy1) }
 
 func (c *Context) VPMINSD(mxy, xy, xy1 avo.Operand) {
@@ -8704,7 +7835,6 @@ func (c *Context) VPMINSD(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPMINSD(mxy, xy, xy1 avo.Operand) { ctx.VPMINSD(mxy, xy, xy1) }
 
 func (c *Context) VPMINSW(mxy, xy, xy1 avo.Operand) {
@@ -8714,7 +7844,6 @@ func (c *Context) VPMINSW(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPMINSW(mxy, xy, xy1 avo.Operand) { ctx.VPMINSW(mxy, xy, xy1) }
 
 func (c *Context) VPMINUB(mxy, xy, xy1 avo.Operand) {
@@ -8724,7 +7853,6 @@ func (c *Context) VPMINUB(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPMINUB(mxy, xy, xy1 avo.Operand) { ctx.VPMINUB(mxy, xy, xy1) }
 
 func (c *Context) VPMINUD(mxy, xy, xy1 avo.Operand) {
@@ -8734,7 +7862,6 @@ func (c *Context) VPMINUD(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPMINUD(mxy, xy, xy1 avo.Operand) { ctx.VPMINUD(mxy, xy, xy1) }
 
 func (c *Context) VPMINUW(mxy, xy, xy1 avo.Operand) {
@@ -8744,7 +7871,6 @@ func (c *Context) VPMINUW(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPMINUW(mxy, xy, xy1 avo.Operand) { ctx.VPMINUW(mxy, xy, xy1) }
 
 func (c *Context) VPMOVMSKB(xy, r avo.Operand) {
@@ -8754,7 +7880,6 @@ func (c *Context) VPMOVMSKB(xy, r avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPMOVMSKB(xy, r avo.Operand) { ctx.VPMOVMSKB(xy, r) }
 
 func (c *Context) VPMOVSXBD(mx, xy avo.Operand) {
@@ -8764,7 +7889,6 @@ func (c *Context) VPMOVSXBD(mx, xy avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPMOVSXBD(mx, xy avo.Operand) { ctx.VPMOVSXBD(mx, xy) }
 
 func (c *Context) VPMOVSXBQ(mx, xy avo.Operand) {
@@ -8774,7 +7898,6 @@ func (c *Context) VPMOVSXBQ(mx, xy avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPMOVSXBQ(mx, xy avo.Operand) { ctx.VPMOVSXBQ(mx, xy) }
 
 func (c *Context) VPMOVSXBW(mx, xy avo.Operand) {
@@ -8784,7 +7907,6 @@ func (c *Context) VPMOVSXBW(mx, xy avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPMOVSXBW(mx, xy avo.Operand) { ctx.VPMOVSXBW(mx, xy) }
 
 func (c *Context) VPMOVSXDQ(mx, xy avo.Operand) {
@@ -8794,7 +7916,6 @@ func (c *Context) VPMOVSXDQ(mx, xy avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPMOVSXDQ(mx, xy avo.Operand) { ctx.VPMOVSXDQ(mx, xy) }
 
 func (c *Context) VPMOVSXWD(mx, xy avo.Operand) {
@@ -8804,7 +7925,6 @@ func (c *Context) VPMOVSXWD(mx, xy avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPMOVSXWD(mx, xy avo.Operand) { ctx.VPMOVSXWD(mx, xy) }
 
 func (c *Context) VPMOVSXWQ(mx, xy avo.Operand) {
@@ -8814,7 +7934,6 @@ func (c *Context) VPMOVSXWQ(mx, xy avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPMOVSXWQ(mx, xy avo.Operand) { ctx.VPMOVSXWQ(mx, xy) }
 
 func (c *Context) VPMOVZXBD(mx, xy avo.Operand) {
@@ -8824,7 +7943,6 @@ func (c *Context) VPMOVZXBD(mx, xy avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPMOVZXBD(mx, xy avo.Operand) { ctx.VPMOVZXBD(mx, xy) }
 
 func (c *Context) VPMOVZXBQ(mx, xy avo.Operand) {
@@ -8834,7 +7952,6 @@ func (c *Context) VPMOVZXBQ(mx, xy avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPMOVZXBQ(mx, xy avo.Operand) { ctx.VPMOVZXBQ(mx, xy) }
 
 func (c *Context) VPMOVZXBW(mx, xy avo.Operand) {
@@ -8844,7 +7961,6 @@ func (c *Context) VPMOVZXBW(mx, xy avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPMOVZXBW(mx, xy avo.Operand) { ctx.VPMOVZXBW(mx, xy) }
 
 func (c *Context) VPMOVZXDQ(mx, xy avo.Operand) {
@@ -8854,7 +7970,6 @@ func (c *Context) VPMOVZXDQ(mx, xy avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPMOVZXDQ(mx, xy avo.Operand) { ctx.VPMOVZXDQ(mx, xy) }
 
 func (c *Context) VPMOVZXWD(mx, xy avo.Operand) {
@@ -8864,7 +7979,6 @@ func (c *Context) VPMOVZXWD(mx, xy avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPMOVZXWD(mx, xy avo.Operand) { ctx.VPMOVZXWD(mx, xy) }
 
 func (c *Context) VPMOVZXWQ(mx, xy avo.Operand) {
@@ -8874,7 +7988,6 @@ func (c *Context) VPMOVZXWQ(mx, xy avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPMOVZXWQ(mx, xy avo.Operand) { ctx.VPMOVZXWQ(mx, xy) }
 
 func (c *Context) VPMULDQ(mxy, xy, xy1 avo.Operand) {
@@ -8884,7 +7997,6 @@ func (c *Context) VPMULDQ(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPMULDQ(mxy, xy, xy1 avo.Operand) { ctx.VPMULDQ(mxy, xy, xy1) }
 
 func (c *Context) VPMULHRSW(mxy, xy, xy1 avo.Operand) {
@@ -8894,7 +8006,6 @@ func (c *Context) VPMULHRSW(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPMULHRSW(mxy, xy, xy1 avo.Operand) { ctx.VPMULHRSW(mxy, xy, xy1) }
 
 func (c *Context) VPMULHUW(mxy, xy, xy1 avo.Operand) {
@@ -8904,7 +8015,6 @@ func (c *Context) VPMULHUW(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPMULHUW(mxy, xy, xy1 avo.Operand) { ctx.VPMULHUW(mxy, xy, xy1) }
 
 func (c *Context) VPMULHW(mxy, xy, xy1 avo.Operand) {
@@ -8914,7 +8024,6 @@ func (c *Context) VPMULHW(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPMULHW(mxy, xy, xy1 avo.Operand) { ctx.VPMULHW(mxy, xy, xy1) }
 
 func (c *Context) VPMULLD(mxy, xy, xy1 avo.Operand) {
@@ -8924,7 +8033,6 @@ func (c *Context) VPMULLD(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPMULLD(mxy, xy, xy1 avo.Operand) { ctx.VPMULLD(mxy, xy, xy1) }
 
 func (c *Context) VPMULLW(mxy, xy, xy1 avo.Operand) {
@@ -8934,7 +8042,6 @@ func (c *Context) VPMULLW(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPMULLW(mxy, xy, xy1 avo.Operand) { ctx.VPMULLW(mxy, xy, xy1) }
 
 func (c *Context) VPMULUDQ(mxy, xy, xy1 avo.Operand) {
@@ -8944,7 +8051,6 @@ func (c *Context) VPMULUDQ(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPMULUDQ(mxy, xy, xy1 avo.Operand) { ctx.VPMULUDQ(mxy, xy, xy1) }
 
 func (c *Context) VPOR(mxy, xy, xy1 avo.Operand) {
@@ -8954,7 +8060,6 @@ func (c *Context) VPOR(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPOR(mxy, xy, xy1 avo.Operand) { ctx.VPOR(mxy, xy, xy1) }
 
 func (c *Context) VPSADBW(mxy, xy, xy1 avo.Operand) {
@@ -8964,7 +8069,6 @@ func (c *Context) VPSADBW(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPSADBW(mxy, xy, xy1 avo.Operand) { ctx.VPSADBW(mxy, xy, xy1) }
 
 func (c *Context) VPSHUFB(mxy, xy, xy1 avo.Operand) {
@@ -8974,7 +8078,6 @@ func (c *Context) VPSHUFB(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPSHUFB(mxy, xy, xy1 avo.Operand) { ctx.VPSHUFB(mxy, xy, xy1) }
 
 func (c *Context) VPSHUFD(i, mxy, xy avo.Operand) {
@@ -8984,7 +8087,6 @@ func (c *Context) VPSHUFD(i, mxy, xy avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPSHUFD(i, mxy, xy avo.Operand) { ctx.VPSHUFD(i, mxy, xy) }
 
 func (c *Context) VPSHUFHW(i, mxy, xy avo.Operand) {
@@ -8994,7 +8096,6 @@ func (c *Context) VPSHUFHW(i, mxy, xy avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPSHUFHW(i, mxy, xy avo.Operand) { ctx.VPSHUFHW(i, mxy, xy) }
 
 func (c *Context) VPSHUFLW(i, mxy, xy avo.Operand) {
@@ -9004,7 +8105,6 @@ func (c *Context) VPSHUFLW(i, mxy, xy avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPSHUFLW(i, mxy, xy avo.Operand) { ctx.VPSHUFLW(i, mxy, xy) }
 
 func (c *Context) VPSIGNB(mxy, xy, xy1 avo.Operand) {
@@ -9014,7 +8114,6 @@ func (c *Context) VPSIGNB(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPSIGNB(mxy, xy, xy1 avo.Operand) { ctx.VPSIGNB(mxy, xy, xy1) }
 
 func (c *Context) VPSIGND(mxy, xy, xy1 avo.Operand) {
@@ -9024,7 +8123,6 @@ func (c *Context) VPSIGND(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPSIGND(mxy, xy, xy1 avo.Operand) { ctx.VPSIGND(mxy, xy, xy1) }
 
 func (c *Context) VPSIGNW(mxy, xy, xy1 avo.Operand) {
@@ -9034,7 +8132,6 @@ func (c *Context) VPSIGNW(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPSIGNW(mxy, xy, xy1 avo.Operand) { ctx.VPSIGNW(mxy, xy, xy1) }
 
 func (c *Context) VPSLLD(imx, xy, xy1 avo.Operand) {
@@ -9044,7 +8141,6 @@ func (c *Context) VPSLLD(imx, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPSLLD(imx, xy, xy1 avo.Operand) { ctx.VPSLLD(imx, xy, xy1) }
 
 func (c *Context) VPSLLDQ(i, xy, xy1 avo.Operand) {
@@ -9054,7 +8150,6 @@ func (c *Context) VPSLLDQ(i, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPSLLDQ(i, xy, xy1 avo.Operand) { ctx.VPSLLDQ(i, xy, xy1) }
 
 func (c *Context) VPSLLQ(imx, xy, xy1 avo.Operand) {
@@ -9064,7 +8159,6 @@ func (c *Context) VPSLLQ(imx, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPSLLQ(imx, xy, xy1 avo.Operand) { ctx.VPSLLQ(imx, xy, xy1) }
 
 func (c *Context) VPSLLVD(mxy, xy, xy1 avo.Operand) {
@@ -9074,7 +8168,6 @@ func (c *Context) VPSLLVD(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPSLLVD(mxy, xy, xy1 avo.Operand) { ctx.VPSLLVD(mxy, xy, xy1) }
 
 func (c *Context) VPSLLVQ(mxy, xy, xy1 avo.Operand) {
@@ -9084,7 +8177,6 @@ func (c *Context) VPSLLVQ(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPSLLVQ(mxy, xy, xy1 avo.Operand) { ctx.VPSLLVQ(mxy, xy, xy1) }
 
 func (c *Context) VPSLLW(imx, xy, xy1 avo.Operand) {
@@ -9094,7 +8186,6 @@ func (c *Context) VPSLLW(imx, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPSLLW(imx, xy, xy1 avo.Operand) { ctx.VPSLLW(imx, xy, xy1) }
 
 func (c *Context) VPSRAD(imx, xy, xy1 avo.Operand) {
@@ -9104,7 +8195,6 @@ func (c *Context) VPSRAD(imx, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPSRAD(imx, xy, xy1 avo.Operand) { ctx.VPSRAD(imx, xy, xy1) }
 
 func (c *Context) VPSRAVD(mxy, xy, xy1 avo.Operand) {
@@ -9114,7 +8204,6 @@ func (c *Context) VPSRAVD(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPSRAVD(mxy, xy, xy1 avo.Operand) { ctx.VPSRAVD(mxy, xy, xy1) }
 
 func (c *Context) VPSRAW(imx, xy, xy1 avo.Operand) {
@@ -9124,7 +8213,6 @@ func (c *Context) VPSRAW(imx, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPSRAW(imx, xy, xy1 avo.Operand) { ctx.VPSRAW(imx, xy, xy1) }
 
 func (c *Context) VPSRLD(imx, xy, xy1 avo.Operand) {
@@ -9134,7 +8222,6 @@ func (c *Context) VPSRLD(imx, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPSRLD(imx, xy, xy1 avo.Operand) { ctx.VPSRLD(imx, xy, xy1) }
 
 func (c *Context) VPSRLDQ(i, xy, xy1 avo.Operand) {
@@ -9144,7 +8231,6 @@ func (c *Context) VPSRLDQ(i, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPSRLDQ(i, xy, xy1 avo.Operand) { ctx.VPSRLDQ(i, xy, xy1) }
 
 func (c *Context) VPSRLQ(imx, xy, xy1 avo.Operand) {
@@ -9154,7 +8240,6 @@ func (c *Context) VPSRLQ(imx, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPSRLQ(imx, xy, xy1 avo.Operand) { ctx.VPSRLQ(imx, xy, xy1) }
 
 func (c *Context) VPSRLVD(mxy, xy, xy1 avo.Operand) {
@@ -9164,7 +8249,6 @@ func (c *Context) VPSRLVD(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPSRLVD(mxy, xy, xy1 avo.Operand) { ctx.VPSRLVD(mxy, xy, xy1) }
 
 func (c *Context) VPSRLVQ(mxy, xy, xy1 avo.Operand) {
@@ -9174,7 +8258,6 @@ func (c *Context) VPSRLVQ(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPSRLVQ(mxy, xy, xy1 avo.Operand) { ctx.VPSRLVQ(mxy, xy, xy1) }
 
 func (c *Context) VPSRLW(imx, xy, xy1 avo.Operand) {
@@ -9184,7 +8267,6 @@ func (c *Context) VPSRLW(imx, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPSRLW(imx, xy, xy1 avo.Operand) { ctx.VPSRLW(imx, xy, xy1) }
 
 func (c *Context) VPSUBB(mxy, xy, xy1 avo.Operand) {
@@ -9194,7 +8276,6 @@ func (c *Context) VPSUBB(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPSUBB(mxy, xy, xy1 avo.Operand) { ctx.VPSUBB(mxy, xy, xy1) }
 
 func (c *Context) VPSUBD(mxy, xy, xy1 avo.Operand) {
@@ -9204,7 +8285,6 @@ func (c *Context) VPSUBD(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPSUBD(mxy, xy, xy1 avo.Operand) { ctx.VPSUBD(mxy, xy, xy1) }
 
 func (c *Context) VPSUBQ(mxy, xy, xy1 avo.Operand) {
@@ -9214,7 +8294,6 @@ func (c *Context) VPSUBQ(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPSUBQ(mxy, xy, xy1 avo.Operand) { ctx.VPSUBQ(mxy, xy, xy1) }
 
 func (c *Context) VPSUBSB(mxy, xy, xy1 avo.Operand) {
@@ -9224,7 +8303,6 @@ func (c *Context) VPSUBSB(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPSUBSB(mxy, xy, xy1 avo.Operand) { ctx.VPSUBSB(mxy, xy, xy1) }
 
 func (c *Context) VPSUBSW(mxy, xy, xy1 avo.Operand) {
@@ -9234,7 +8312,6 @@ func (c *Context) VPSUBSW(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPSUBSW(mxy, xy, xy1 avo.Operand) { ctx.VPSUBSW(mxy, xy, xy1) }
 
 func (c *Context) VPSUBUSB(mxy, xy, xy1 avo.Operand) {
@@ -9244,7 +8321,6 @@ func (c *Context) VPSUBUSB(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPSUBUSB(mxy, xy, xy1 avo.Operand) { ctx.VPSUBUSB(mxy, xy, xy1) }
 
 func (c *Context) VPSUBUSW(mxy, xy, xy1 avo.Operand) {
@@ -9254,7 +8330,6 @@ func (c *Context) VPSUBUSW(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPSUBUSW(mxy, xy, xy1 avo.Operand) { ctx.VPSUBUSW(mxy, xy, xy1) }
 
 func (c *Context) VPSUBW(mxy, xy, xy1 avo.Operand) {
@@ -9264,7 +8339,6 @@ func (c *Context) VPSUBW(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPSUBW(mxy, xy, xy1 avo.Operand) { ctx.VPSUBW(mxy, xy, xy1) }
 
 func (c *Context) VPTEST(mxy, xy avo.Operand) {
@@ -9274,7 +8348,6 @@ func (c *Context) VPTEST(mxy, xy avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPTEST(mxy, xy avo.Operand) { ctx.VPTEST(mxy, xy) }
 
 func (c *Context) VPUNPCKHBW(mxy, xy, xy1 avo.Operand) {
@@ -9284,7 +8357,6 @@ func (c *Context) VPUNPCKHBW(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPUNPCKHBW(mxy, xy, xy1 avo.Operand) { ctx.VPUNPCKHBW(mxy, xy, xy1) }
 
 func (c *Context) VPUNPCKHDQ(mxy, xy, xy1 avo.Operand) {
@@ -9294,7 +8366,6 @@ func (c *Context) VPUNPCKHDQ(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPUNPCKHDQ(mxy, xy, xy1 avo.Operand) { ctx.VPUNPCKHDQ(mxy, xy, xy1) }
 
 func (c *Context) VPUNPCKHQDQ(mxy, xy, xy1 avo.Operand) {
@@ -9304,7 +8375,6 @@ func (c *Context) VPUNPCKHQDQ(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPUNPCKHQDQ(mxy, xy, xy1 avo.Operand) { ctx.VPUNPCKHQDQ(mxy, xy, xy1) }
 
 func (c *Context) VPUNPCKHWD(mxy, xy, xy1 avo.Operand) {
@@ -9314,7 +8384,6 @@ func (c *Context) VPUNPCKHWD(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPUNPCKHWD(mxy, xy, xy1 avo.Operand) { ctx.VPUNPCKHWD(mxy, xy, xy1) }
 
 func (c *Context) VPUNPCKLBW(mxy, xy, xy1 avo.Operand) {
@@ -9324,7 +8393,6 @@ func (c *Context) VPUNPCKLBW(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPUNPCKLBW(mxy, xy, xy1 avo.Operand) { ctx.VPUNPCKLBW(mxy, xy, xy1) }
 
 func (c *Context) VPUNPCKLDQ(mxy, xy, xy1 avo.Operand) {
@@ -9334,7 +8402,6 @@ func (c *Context) VPUNPCKLDQ(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPUNPCKLDQ(mxy, xy, xy1 avo.Operand) { ctx.VPUNPCKLDQ(mxy, xy, xy1) }
 
 func (c *Context) VPUNPCKLQDQ(mxy, xy, xy1 avo.Operand) {
@@ -9344,7 +8411,6 @@ func (c *Context) VPUNPCKLQDQ(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPUNPCKLQDQ(mxy, xy, xy1 avo.Operand) { ctx.VPUNPCKLQDQ(mxy, xy, xy1) }
 
 func (c *Context) VPUNPCKLWD(mxy, xy, xy1 avo.Operand) {
@@ -9354,7 +8420,6 @@ func (c *Context) VPUNPCKLWD(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPUNPCKLWD(mxy, xy, xy1 avo.Operand) { ctx.VPUNPCKLWD(mxy, xy, xy1) }
 
 func (c *Context) VPXOR(mxy, xy, xy1 avo.Operand) {
@@ -9364,7 +8429,6 @@ func (c *Context) VPXOR(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VPXOR(mxy, xy, xy1 avo.Operand) { ctx.VPXOR(mxy, xy, xy1) }
 
 func (c *Context) VRCPPS(mxy, xy avo.Operand) {
@@ -9374,7 +8438,6 @@ func (c *Context) VRCPPS(mxy, xy avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VRCPPS(mxy, xy avo.Operand) { ctx.VRCPPS(mxy, xy) }
 
 func (c *Context) VRCPSS(mx, x, x1 avo.Operand) {
@@ -9384,7 +8447,6 @@ func (c *Context) VRCPSS(mx, x, x1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VRCPSS(mx, x, x1 avo.Operand) { ctx.VRCPSS(mx, x, x1) }
 
 func (c *Context) VROUNDPD(i, mxy, xy avo.Operand) {
@@ -9394,7 +8456,6 @@ func (c *Context) VROUNDPD(i, mxy, xy avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VROUNDPD(i, mxy, xy avo.Operand) { ctx.VROUNDPD(i, mxy, xy) }
 
 func (c *Context) VROUNDPS(i, mxy, xy avo.Operand) {
@@ -9404,7 +8465,6 @@ func (c *Context) VROUNDPS(i, mxy, xy avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VROUNDPS(i, mxy, xy avo.Operand) { ctx.VROUNDPS(i, mxy, xy) }
 
 func (c *Context) VROUNDSD(i, mx, x, x1 avo.Operand) {
@@ -9414,7 +8474,6 @@ func (c *Context) VROUNDSD(i, mx, x, x1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VROUNDSD(i, mx, x, x1 avo.Operand) { ctx.VROUNDSD(i, mx, x, x1) }
 
 func (c *Context) VROUNDSS(i, mx, x, x1 avo.Operand) {
@@ -9424,7 +8483,6 @@ func (c *Context) VROUNDSS(i, mx, x, x1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VROUNDSS(i, mx, x, x1 avo.Operand) { ctx.VROUNDSS(i, mx, x, x1) }
 
 func (c *Context) VRSQRTPS(mxy, xy avo.Operand) {
@@ -9434,7 +8492,6 @@ func (c *Context) VRSQRTPS(mxy, xy avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VRSQRTPS(mxy, xy avo.Operand) { ctx.VRSQRTPS(mxy, xy) }
 
 func (c *Context) VRSQRTSS(mx, x, x1 avo.Operand) {
@@ -9444,7 +8501,6 @@ func (c *Context) VRSQRTSS(mx, x, x1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VRSQRTSS(mx, x, x1 avo.Operand) { ctx.VRSQRTSS(mx, x, x1) }
 
 func (c *Context) VSHUFPD(i, mxy, xy, xy1 avo.Operand) {
@@ -9454,7 +8510,6 @@ func (c *Context) VSHUFPD(i, mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VSHUFPD(i, mxy, xy, xy1 avo.Operand) { ctx.VSHUFPD(i, mxy, xy, xy1) }
 
 func (c *Context) VSHUFPS(i, mxy, xy, xy1 avo.Operand) {
@@ -9464,7 +8519,6 @@ func (c *Context) VSHUFPS(i, mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VSHUFPS(i, mxy, xy, xy1 avo.Operand) { ctx.VSHUFPS(i, mxy, xy, xy1) }
 
 func (c *Context) VSQRTPD(mxy, xy avo.Operand) {
@@ -9474,7 +8528,6 @@ func (c *Context) VSQRTPD(mxy, xy avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VSQRTPD(mxy, xy avo.Operand) { ctx.VSQRTPD(mxy, xy) }
 
 func (c *Context) VSQRTPS(mxy, xy avo.Operand) {
@@ -9484,7 +8537,6 @@ func (c *Context) VSQRTPS(mxy, xy avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VSQRTPS(mxy, xy avo.Operand) { ctx.VSQRTPS(mxy, xy) }
 
 func (c *Context) VSQRTSD(mx, x, x1 avo.Operand) {
@@ -9494,7 +8546,6 @@ func (c *Context) VSQRTSD(mx, x, x1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VSQRTSD(mx, x, x1 avo.Operand) { ctx.VSQRTSD(mx, x, x1) }
 
 func (c *Context) VSQRTSS(mx, x, x1 avo.Operand) {
@@ -9504,7 +8555,6 @@ func (c *Context) VSQRTSS(mx, x, x1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VSQRTSS(mx, x, x1 avo.Operand) { ctx.VSQRTSS(mx, x, x1) }
 
 func (c *Context) VSTMXCSR(m avo.Operand) {
@@ -9514,7 +8564,6 @@ func (c *Context) VSTMXCSR(m avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VSTMXCSR(m avo.Operand) { ctx.VSTMXCSR(m) }
 
 func (c *Context) VSUBPD(mxy, xy, xy1 avo.Operand) {
@@ -9524,7 +8573,6 @@ func (c *Context) VSUBPD(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VSUBPD(mxy, xy, xy1 avo.Operand) { ctx.VSUBPD(mxy, xy, xy1) }
 
 func (c *Context) VSUBPS(mxy, xy, xy1 avo.Operand) {
@@ -9534,7 +8582,6 @@ func (c *Context) VSUBPS(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VSUBPS(mxy, xy, xy1 avo.Operand) { ctx.VSUBPS(mxy, xy, xy1) }
 
 func (c *Context) VSUBSD(mx, x, x1 avo.Operand) {
@@ -9544,7 +8591,6 @@ func (c *Context) VSUBSD(mx, x, x1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VSUBSD(mx, x, x1 avo.Operand) { ctx.VSUBSD(mx, x, x1) }
 
 func (c *Context) VSUBSS(mx, x, x1 avo.Operand) {
@@ -9554,7 +8600,6 @@ func (c *Context) VSUBSS(mx, x, x1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VSUBSS(mx, x, x1 avo.Operand) { ctx.VSUBSS(mx, x, x1) }
 
 func (c *Context) VTESTPD(mxy, xy avo.Operand) {
@@ -9564,7 +8609,6 @@ func (c *Context) VTESTPD(mxy, xy avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VTESTPD(mxy, xy avo.Operand) { ctx.VTESTPD(mxy, xy) }
 
 func (c *Context) VTESTPS(mxy, xy avo.Operand) {
@@ -9574,7 +8618,6 @@ func (c *Context) VTESTPS(mxy, xy avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VTESTPS(mxy, xy avo.Operand) { ctx.VTESTPS(mxy, xy) }
 
 func (c *Context) VUCOMISD(mx, x avo.Operand) {
@@ -9584,7 +8627,6 @@ func (c *Context) VUCOMISD(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VUCOMISD(mx, x avo.Operand) { ctx.VUCOMISD(mx, x) }
 
 func (c *Context) VUCOMISS(mx, x avo.Operand) {
@@ -9594,7 +8636,6 @@ func (c *Context) VUCOMISS(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VUCOMISS(mx, x avo.Operand) { ctx.VUCOMISS(mx, x) }
 
 func (c *Context) VUNPCKHPD(mxy, xy, xy1 avo.Operand) {
@@ -9604,7 +8645,6 @@ func (c *Context) VUNPCKHPD(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VUNPCKHPD(mxy, xy, xy1 avo.Operand) { ctx.VUNPCKHPD(mxy, xy, xy1) }
 
 func (c *Context) VUNPCKHPS(mxy, xy, xy1 avo.Operand) {
@@ -9614,7 +8654,6 @@ func (c *Context) VUNPCKHPS(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VUNPCKHPS(mxy, xy, xy1 avo.Operand) { ctx.VUNPCKHPS(mxy, xy, xy1) }
 
 func (c *Context) VUNPCKLPD(mxy, xy, xy1 avo.Operand) {
@@ -9624,7 +8663,6 @@ func (c *Context) VUNPCKLPD(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VUNPCKLPD(mxy, xy, xy1 avo.Operand) { ctx.VUNPCKLPD(mxy, xy, xy1) }
 
 func (c *Context) VUNPCKLPS(mxy, xy, xy1 avo.Operand) {
@@ -9634,7 +8672,6 @@ func (c *Context) VUNPCKLPS(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VUNPCKLPS(mxy, xy, xy1 avo.Operand) { ctx.VUNPCKLPS(mxy, xy, xy1) }
 
 func (c *Context) VXORPD(mxy, xy, xy1 avo.Operand) {
@@ -9644,7 +8681,6 @@ func (c *Context) VXORPD(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VXORPD(mxy, xy, xy1 avo.Operand) { ctx.VXORPD(mxy, xy, xy1) }
 
 func (c *Context) VXORPS(mxy, xy, xy1 avo.Operand) {
@@ -9654,7 +8690,6 @@ func (c *Context) VXORPS(mxy, xy, xy1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func VXORPS(mxy, xy, xy1 avo.Operand) { ctx.VXORPS(mxy, xy, xy1) }
 
 func (c *Context) VZEROALL() {
@@ -9664,7 +8699,6 @@ func (c *Context) VZEROALL() {
 		c.AddError(err)
 	}
 }
-
 func VZEROALL() { ctx.VZEROALL() }
 
 func (c *Context) VZEROUPPER() {
@@ -9674,7 +8708,6 @@ func (c *Context) VZEROUPPER() {
 		c.AddError(err)
 	}
 }
-
 func VZEROUPPER() { ctx.VZEROUPPER() }
 
 func (c *Context) XADDB(r, mr avo.Operand) {
@@ -9684,7 +8717,6 @@ func (c *Context) XADDB(r, mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func XADDB(r, mr avo.Operand) { ctx.XADDB(r, mr) }
 
 func (c *Context) XADDL(r, mr avo.Operand) {
@@ -9694,7 +8726,6 @@ func (c *Context) XADDL(r, mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func XADDL(r, mr avo.Operand) { ctx.XADDL(r, mr) }
 
 func (c *Context) XADDQ(r, mr avo.Operand) {
@@ -9704,7 +8735,6 @@ func (c *Context) XADDQ(r, mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func XADDQ(r, mr avo.Operand) { ctx.XADDQ(r, mr) }
 
 func (c *Context) XADDW(r, mr avo.Operand) {
@@ -9714,7 +8744,6 @@ func (c *Context) XADDW(r, mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func XADDW(r, mr avo.Operand) { ctx.XADDW(r, mr) }
 
 func (c *Context) XCHGB(mr, mr1 avo.Operand) {
@@ -9724,7 +8753,6 @@ func (c *Context) XCHGB(mr, mr1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func XCHGB(mr, mr1 avo.Operand) { ctx.XCHGB(mr, mr1) }
 
 func (c *Context) XCHGL(emr, emr1 avo.Operand) {
@@ -9734,7 +8762,6 @@ func (c *Context) XCHGL(emr, emr1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func XCHGL(emr, emr1 avo.Operand) { ctx.XCHGL(emr, emr1) }
 
 func (c *Context) XCHGQ(mr, mr1 avo.Operand) {
@@ -9744,7 +8771,6 @@ func (c *Context) XCHGQ(mr, mr1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func XCHGQ(mr, mr1 avo.Operand) { ctx.XCHGQ(mr, mr1) }
 
 func (c *Context) XCHGW(amr, amr1 avo.Operand) {
@@ -9754,7 +8780,6 @@ func (c *Context) XCHGW(amr, amr1 avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func XCHGW(amr, amr1 avo.Operand) { ctx.XCHGW(amr, amr1) }
 
 func (c *Context) XGETBV() {
@@ -9764,7 +8789,6 @@ func (c *Context) XGETBV() {
 		c.AddError(err)
 	}
 }
-
 func XGETBV() { ctx.XGETBV() }
 
 func (c *Context) XLAT() {
@@ -9774,7 +8798,6 @@ func (c *Context) XLAT() {
 		c.AddError(err)
 	}
 }
-
 func XLAT() { ctx.XLAT() }
 
 func (c *Context) XORB(imr, amr avo.Operand) {
@@ -9784,7 +8807,6 @@ func (c *Context) XORB(imr, amr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func XORB(imr, amr avo.Operand) { ctx.XORB(imr, amr) }
 
 func (c *Context) XORL(imr, emr avo.Operand) {
@@ -9794,7 +8816,6 @@ func (c *Context) XORL(imr, emr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func XORL(imr, emr avo.Operand) { ctx.XORL(imr, emr) }
 
 func (c *Context) XORPD(mx, x avo.Operand) {
@@ -9804,7 +8825,6 @@ func (c *Context) XORPD(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func XORPD(mx, x avo.Operand) { ctx.XORPD(mx, x) }
 
 func (c *Context) XORPS(mx, x avo.Operand) {
@@ -9814,7 +8834,6 @@ func (c *Context) XORPS(mx, x avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func XORPS(mx, x avo.Operand) { ctx.XORPS(mx, x) }
 
 func (c *Context) XORQ(imr, mr avo.Operand) {
@@ -9824,7 +8843,6 @@ func (c *Context) XORQ(imr, mr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func XORQ(imr, mr avo.Operand) { ctx.XORQ(imr, mr) }
 
 func (c *Context) XORW(imr, amr avo.Operand) {
@@ -9834,5 +8852,4 @@ func (c *Context) XORW(imr, amr avo.Operand) {
 		c.AddError(err)
 	}
 }
-
 func XORW(imr, amr avo.Operand) { ctx.XORW(imr, amr) }

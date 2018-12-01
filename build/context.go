@@ -26,11 +26,19 @@ func (c *Context) Function(name string) {
 }
 
 func (c *Context) Instruction(i avo.Instruction) {
+	c.node(i)
+}
+
+func (c *Context) Label(l avo.Label) {
+	c.node(l)
+}
+
+func (c *Context) node(n avo.Node) {
 	if c.function == nil {
 		c.AddErrorMessage("no active function")
 		return
 	}
-	c.function.AddInstruction(i)
+	c.function.AddNode(n)
 }
 
 //go:generate avogen -output zinstructions.go build
@@ -47,7 +55,7 @@ func (c *Context) Result() (*avo.File, []error) {
 	return c.file, c.errs
 }
 
-func (c *Context) Generate(wout, werr io.Writer) {
+func (c *Context) Main(wout, werr io.Writer) int {
 	diag := log.New(werr, "", 0)
 
 	f, errs := c.Result()
@@ -55,11 +63,14 @@ func (c *Context) Generate(wout, werr io.Writer) {
 		for _, err := range errs {
 			diag.Println(err)
 		}
-		return
+		return 1
 	}
 
 	p := avo.NewGoPrinter(wout)
 	if err := p.Print(f); err != nil {
-		diag.Fatal(err)
+		diag.Println(err)
+		return 1
 	}
+
+	return 0
 }

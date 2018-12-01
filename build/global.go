@@ -5,12 +5,15 @@ import (
 	"io"
 	"log"
 	"os"
+
+	"github.com/mmcloughlin/avo"
 )
 
 // ctx provides a global build context.
 var ctx = NewContext()
 
-func TEXT(name string) { ctx.Function(name) }
+func TEXT(name string)  { ctx.Function(name) }
+func LABEL(name string) { ctx.Label(avo.Label(name)) }
 
 var (
 	output = flag.String("output", "", "output filename (default stdout)")
@@ -31,5 +34,5 @@ func EOF() {
 		}
 	}
 
-	ctx.Generate(w, os.Stderr)
+	os.Exit(ctx.Main(w, os.Stderr))
 }

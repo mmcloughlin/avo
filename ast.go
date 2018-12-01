@@ -17,11 +17,21 @@ type Operand interface {
 	Asm
 }
 
+type Node interface {
+	node()
+}
+
+type Label string
+
+func (l Label) node() {}
+
 // Instruction is a single instruction in a function.
 type Instruction struct {
 	Opcode   string
 	Operands []Operand
 }
+
+func (i Instruction) node() {}
 
 // File represents an assembly file.
 type File struct {
@@ -36,7 +46,7 @@ func NewFile() *File {
 type Function struct {
 	name   string
 	params []Parameter
-	inst   []Instruction
+	nodes  []Node
 }
 
 func NewFunction(name string) *Function {
@@ -46,7 +56,15 @@ func NewFunction(name string) *Function {
 }
 
 func (f *Function) AddInstruction(i Instruction) {
-	f.inst = append(f.inst, i)
+	f.AddNode(i)
+}
+
+func (f *Function) AddLabel(l Label) {
+	f.AddNode(l)
+}
+
+func (f *Function) AddNode(n Node) {
+	f.nodes = append(f.nodes, n)
 }
 
 // Name returns the function name.

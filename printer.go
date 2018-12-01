@@ -69,8 +69,15 @@ func (p *GoPrinter) multicomment(lines []string) {
 func (p *GoPrinter) function(f *Function) {
 	p.printf("TEXT %s%s(SB),0,$%d-%d\n", dot, f.Name(), f.FrameBytes(), f.ArgumentBytes())
 
-	for _, i := range f.inst {
-		p.printf("\t%s\t%s\n", i.Opcode, joinOperands(i.Operands))
+	for _, node := range f.nodes {
+		switch n := node.(type) {
+		case Instruction:
+			p.printf("\t%s\t%s\n", n.Opcode, joinOperands(n.Operands))
+		case Label:
+			p.printf("%s:\n", n)
+		default:
+			panic("unexpected node type")
+		}
 	}
 }
 
