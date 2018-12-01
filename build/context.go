@@ -20,9 +20,7 @@ func NewContext() *Context {
 	}
 }
 
-//go:generate avogen -output zinstructions.go build
-
-func (c *Context) TEXT(name string) {
+func (c *Context) Function(name string) {
 	c.function = avo.NewFunction(name)
 	c.file.Functions = append(c.file.Functions, c.function)
 }
@@ -34,6 +32,8 @@ func (c *Context) Instruction(i avo.Instruction) {
 	}
 	c.function.AddInstruction(i)
 }
+
+//go:generate avogen -output zinstructions.go build
 
 func (c *Context) AddError(err error) {
 	c.errs = append(c.errs, err)
