@@ -34,7 +34,7 @@ func (p *GoPrinter) SetGeneratedBy(by string) {
 func (p *GoPrinter) Print(f *File) error {
 	p.header()
 
-	for _, fn := range f.functions {
+	for _, fn := range f.Functions {
 		p.function(fn)
 	}
 

@@ -25,7 +25,11 @@ type Instruction struct {
 
 // File represents an assembly file.
 type File struct {
-	functions []*Function
+	Functions []*Function
+}
+
+func NewFile() *File {
+	return &File{}
 }
 
 // Function represents an assembly function.

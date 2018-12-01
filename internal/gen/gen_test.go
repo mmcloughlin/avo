@@ -9,5 +9,6 @@ func TestBuilderInterfaces(t *testing.T) {
 		NewGoDataTest,
 		NewCtors,
 		NewCtorsTest,
+		NewBuild,
 	}
 }
