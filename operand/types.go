@@ -6,6 +6,10 @@ import (
 	"github.com/mmcloughlin/avo/reg"
 )
 
+type Op interface {
+	Asm() string
+}
+
 type Mem struct {
 	Disp  int
 	Base  reg.Register

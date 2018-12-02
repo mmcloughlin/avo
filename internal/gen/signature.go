@@ -9,6 +9,9 @@ import (
 	"github.com/mmcloughlin/avo/internal/inst"
 )
 
+// operandType
+const operandType = "operand.Op"
+
 // signature provides access to details about the signature of an instruction function.
 type signature interface {
 	ParameterList() string
@@ -21,11 +24,11 @@ type signature interface {
 // argslist is the signature for a function with the given named parameters.
 type argslist []string
 
-func (a argslist) ParameterList() string      { return strings.Join(a, ", ") + " avo.Operand" }
+func (a argslist) ParameterList() string      { return strings.Join(a, ", ") + " " + operandType }
 func (a argslist) Arguments() string          { return strings.Join(a, ", ") }
 func (a argslist) ParameterName(i int) string { return a[i] }
 func (a argslist) ParameterSlice() string {
-	return fmt.Sprintf("[]avo.Operand{%s}", strings.Join(a, ", "))
+	return fmt.Sprintf("[]%s{%s}", operandType, strings.Join(a, ", "))
 }
 func (a argslist) Length() string { return strconv.Itoa(len(a)) }
 
@@ -34,7 +37,7 @@ type variadic struct {
 	name string
 }
 
-func (v variadic) ParameterList() string      { return v.name + " ...avo.Operand" }
+func (v variadic) ParameterList() string      { return v.name + " ..." + operandType }
 func (v variadic) Arguments() string          { return v.name + "..." }
 func (v variadic) ParameterName(i int) string { return fmt.Sprintf("%s[%d]", v.name, i) }
 func (v variadic) ParameterSlice() string     { return v.name }

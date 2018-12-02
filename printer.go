@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"io"
 	"strings"
+
+	"github.com/mmcloughlin/avo/operand"
 )
 
 // dot is the pesky unicode dot used in Go assembly.
@@ -69,7 +71,7 @@ func (p *GoPrinter) multicomment(lines []string) {
 func (p *GoPrinter) function(f *Function) {
 	p.printf("TEXT %s%s(SB),0,$%d-%d\n", dot, f.Name(), f.FrameBytes(), f.ArgumentBytes())
 
-	for _, node := range f.nodes {
+	for _, node := range f.Nodes {
 		switch n := node.(type) {
 		case Instruction:
 			p.printf("\t%s\t%s\n", n.Opcode, joinOperands(n.Operands))
@@ -91,7 +93,7 @@ func (p *GoPrinter) printf(format string, args ...interface{}) {
 	}
 }
 
-func joinOperands(operands []Operand) string {
+func joinOperands(operands []operand.Op) string {
 	asm := make([]string, len(operands))
 	for i, op := range operands {
 		asm[i] = op.Asm()

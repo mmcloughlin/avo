@@ -3,630 +3,630 @@
 package build
 
 import (
-	"github.com/mmcloughlin/avo"
+	"github.com/mmcloughlin/avo/operand"
 	"github.com/mmcloughlin/avo/x86"
 )
 
-func (c *Context) ADCB(imr, amr avo.Operand) {
+func (c *Context) ADCB(imr, amr operand.Op) {
 	if inst, err := x86.ADCB(imr, amr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func ADCB(imr, amr avo.Operand) { ctx.ADCB(imr, amr) }
+func ADCB(imr, amr operand.Op) { ctx.ADCB(imr, amr) }
 
-func (c *Context) ADCL(imr, emr avo.Operand) {
+func (c *Context) ADCL(imr, emr operand.Op) {
 	if inst, err := x86.ADCL(imr, emr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func ADCL(imr, emr avo.Operand) { ctx.ADCL(imr, emr) }
+func ADCL(imr, emr operand.Op) { ctx.ADCL(imr, emr) }
 
-func (c *Context) ADCQ(imr, mr avo.Operand) {
+func (c *Context) ADCQ(imr, mr operand.Op) {
 	if inst, err := x86.ADCQ(imr, mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func ADCQ(imr, mr avo.Operand) { ctx.ADCQ(imr, mr) }
+func ADCQ(imr, mr operand.Op) { ctx.ADCQ(imr, mr) }
 
-func (c *Context) ADCW(imr, amr avo.Operand) {
+func (c *Context) ADCW(imr, amr operand.Op) {
 	if inst, err := x86.ADCW(imr, amr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func ADCW(imr, amr avo.Operand) { ctx.ADCW(imr, amr) }
+func ADCW(imr, amr operand.Op) { ctx.ADCW(imr, amr) }
 
-func (c *Context) ADCXL(mr, r avo.Operand) {
+func (c *Context) ADCXL(mr, r operand.Op) {
 	if inst, err := x86.ADCXL(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func ADCXL(mr, r avo.Operand) { ctx.ADCXL(mr, r) }
+func ADCXL(mr, r operand.Op) { ctx.ADCXL(mr, r) }
 
-func (c *Context) ADCXQ(mr, r avo.Operand) {
+func (c *Context) ADCXQ(mr, r operand.Op) {
 	if inst, err := x86.ADCXQ(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func ADCXQ(mr, r avo.Operand) { ctx.ADCXQ(mr, r) }
+func ADCXQ(mr, r operand.Op) { ctx.ADCXQ(mr, r) }
 
-func (c *Context) ADDB(imr, amr avo.Operand) {
+func (c *Context) ADDB(imr, amr operand.Op) {
 	if inst, err := x86.ADDB(imr, amr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func ADDB(imr, amr avo.Operand) { ctx.ADDB(imr, amr) }
+func ADDB(imr, amr operand.Op) { ctx.ADDB(imr, amr) }
 
-func (c *Context) ADDL(imr, emr avo.Operand) {
+func (c *Context) ADDL(imr, emr operand.Op) {
 	if inst, err := x86.ADDL(imr, emr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func ADDL(imr, emr avo.Operand) { ctx.ADDL(imr, emr) }
+func ADDL(imr, emr operand.Op) { ctx.ADDL(imr, emr) }
 
-func (c *Context) ADDPD(mx, x avo.Operand) {
+func (c *Context) ADDPD(mx, x operand.Op) {
 	if inst, err := x86.ADDPD(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func ADDPD(mx, x avo.Operand) { ctx.ADDPD(mx, x) }
+func ADDPD(mx, x operand.Op) { ctx.ADDPD(mx, x) }
 
-func (c *Context) ADDPS(mx, x avo.Operand) {
+func (c *Context) ADDPS(mx, x operand.Op) {
 	if inst, err := x86.ADDPS(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func ADDPS(mx, x avo.Operand) { ctx.ADDPS(mx, x) }
+func ADDPS(mx, x operand.Op) { ctx.ADDPS(mx, x) }
 
-func (c *Context) ADDQ(imr, mr avo.Operand) {
+func (c *Context) ADDQ(imr, mr operand.Op) {
 	if inst, err := x86.ADDQ(imr, mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func ADDQ(imr, mr avo.Operand) { ctx.ADDQ(imr, mr) }
+func ADDQ(imr, mr operand.Op) { ctx.ADDQ(imr, mr) }
 
-func (c *Context) ADDSD(mx, x avo.Operand) {
+func (c *Context) ADDSD(mx, x operand.Op) {
 	if inst, err := x86.ADDSD(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func ADDSD(mx, x avo.Operand) { ctx.ADDSD(mx, x) }
+func ADDSD(mx, x operand.Op) { ctx.ADDSD(mx, x) }
 
-func (c *Context) ADDSS(mx, x avo.Operand) {
+func (c *Context) ADDSS(mx, x operand.Op) {
 	if inst, err := x86.ADDSS(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func ADDSS(mx, x avo.Operand) { ctx.ADDSS(mx, x) }
+func ADDSS(mx, x operand.Op) { ctx.ADDSS(mx, x) }
 
-func (c *Context) ADDSUBPD(mx, x avo.Operand) {
+func (c *Context) ADDSUBPD(mx, x operand.Op) {
 	if inst, err := x86.ADDSUBPD(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func ADDSUBPD(mx, x avo.Operand) { ctx.ADDSUBPD(mx, x) }
+func ADDSUBPD(mx, x operand.Op) { ctx.ADDSUBPD(mx, x) }
 
-func (c *Context) ADDSUBPS(mx, x avo.Operand) {
+func (c *Context) ADDSUBPS(mx, x operand.Op) {
 	if inst, err := x86.ADDSUBPS(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func ADDSUBPS(mx, x avo.Operand) { ctx.ADDSUBPS(mx, x) }
+func ADDSUBPS(mx, x operand.Op) { ctx.ADDSUBPS(mx, x) }
 
-func (c *Context) ADDW(imr, amr avo.Operand) {
+func (c *Context) ADDW(imr, amr operand.Op) {
 	if inst, err := x86.ADDW(imr, amr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func ADDW(imr, amr avo.Operand) { ctx.ADDW(imr, amr) }
+func ADDW(imr, amr operand.Op) { ctx.ADDW(imr, amr) }
 
-func (c *Context) ADOXL(mr, r avo.Operand) {
+func (c *Context) ADOXL(mr, r operand.Op) {
 	if inst, err := x86.ADOXL(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func ADOXL(mr, r avo.Operand) { ctx.ADOXL(mr, r) }
+func ADOXL(mr, r operand.Op) { ctx.ADOXL(mr, r) }
 
-func (c *Context) ADOXQ(mr, r avo.Operand) {
+func (c *Context) ADOXQ(mr, r operand.Op) {
 	if inst, err := x86.ADOXQ(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func ADOXQ(mr, r avo.Operand) { ctx.ADOXQ(mr, r) }
+func ADOXQ(mr, r operand.Op) { ctx.ADOXQ(mr, r) }
 
-func (c *Context) AESDEC(mx, x avo.Operand) {
+func (c *Context) AESDEC(mx, x operand.Op) {
 	if inst, err := x86.AESDEC(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func AESDEC(mx, x avo.Operand) { ctx.AESDEC(mx, x) }
+func AESDEC(mx, x operand.Op) { ctx.AESDEC(mx, x) }
 
-func (c *Context) AESDECLAST(mx, x avo.Operand) {
+func (c *Context) AESDECLAST(mx, x operand.Op) {
 	if inst, err := x86.AESDECLAST(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func AESDECLAST(mx, x avo.Operand) { ctx.AESDECLAST(mx, x) }
+func AESDECLAST(mx, x operand.Op) { ctx.AESDECLAST(mx, x) }
 
-func (c *Context) AESENC(mx, x avo.Operand) {
+func (c *Context) AESENC(mx, x operand.Op) {
 	if inst, err := x86.AESENC(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func AESENC(mx, x avo.Operand) { ctx.AESENC(mx, x) }
+func AESENC(mx, x operand.Op) { ctx.AESENC(mx, x) }
 
-func (c *Context) AESENCLAST(mx, x avo.Operand) {
+func (c *Context) AESENCLAST(mx, x operand.Op) {
 	if inst, err := x86.AESENCLAST(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func AESENCLAST(mx, x avo.Operand) { ctx.AESENCLAST(mx, x) }
+func AESENCLAST(mx, x operand.Op) { ctx.AESENCLAST(mx, x) }
 
-func (c *Context) AESIMC(mx, x avo.Operand) {
+func (c *Context) AESIMC(mx, x operand.Op) {
 	if inst, err := x86.AESIMC(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func AESIMC(mx, x avo.Operand) { ctx.AESIMC(mx, x) }
+func AESIMC(mx, x operand.Op) { ctx.AESIMC(mx, x) }
 
-func (c *Context) AESKEYGENASSIST(i, mx, x avo.Operand) {
+func (c *Context) AESKEYGENASSIST(i, mx, x operand.Op) {
 	if inst, err := x86.AESKEYGENASSIST(i, mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func AESKEYGENASSIST(i, mx, x avo.Operand) { ctx.AESKEYGENASSIST(i, mx, x) }
+func AESKEYGENASSIST(i, mx, x operand.Op) { ctx.AESKEYGENASSIST(i, mx, x) }
 
-func (c *Context) ANDB(imr, amr avo.Operand) {
+func (c *Context) ANDB(imr, amr operand.Op) {
 	if inst, err := x86.ANDB(imr, amr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func ANDB(imr, amr avo.Operand) { ctx.ANDB(imr, amr) }
+func ANDB(imr, amr operand.Op) { ctx.ANDB(imr, amr) }
 
-func (c *Context) ANDL(imr, emr avo.Operand) {
+func (c *Context) ANDL(imr, emr operand.Op) {
 	if inst, err := x86.ANDL(imr, emr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func ANDL(imr, emr avo.Operand) { ctx.ANDL(imr, emr) }
+func ANDL(imr, emr operand.Op) { ctx.ANDL(imr, emr) }
 
-func (c *Context) ANDNL(mr, r, r1 avo.Operand) {
+func (c *Context) ANDNL(mr, r, r1 operand.Op) {
 	if inst, err := x86.ANDNL(mr, r, r1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func ANDNL(mr, r, r1 avo.Operand) { ctx.ANDNL(mr, r, r1) }
+func ANDNL(mr, r, r1 operand.Op) { ctx.ANDNL(mr, r, r1) }
 
-func (c *Context) ANDNPD(mx, x avo.Operand) {
+func (c *Context) ANDNPD(mx, x operand.Op) {
 	if inst, err := x86.ANDNPD(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func ANDNPD(mx, x avo.Operand) { ctx.ANDNPD(mx, x) }
+func ANDNPD(mx, x operand.Op) { ctx.ANDNPD(mx, x) }
 
-func (c *Context) ANDNPS(mx, x avo.Operand) {
+func (c *Context) ANDNPS(mx, x operand.Op) {
 	if inst, err := x86.ANDNPS(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func ANDNPS(mx, x avo.Operand) { ctx.ANDNPS(mx, x) }
+func ANDNPS(mx, x operand.Op) { ctx.ANDNPS(mx, x) }
 
-func (c *Context) ANDNQ(mr, r, r1 avo.Operand) {
+func (c *Context) ANDNQ(mr, r, r1 operand.Op) {
 	if inst, err := x86.ANDNQ(mr, r, r1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func ANDNQ(mr, r, r1 avo.Operand) { ctx.ANDNQ(mr, r, r1) }
+func ANDNQ(mr, r, r1 operand.Op) { ctx.ANDNQ(mr, r, r1) }
 
-func (c *Context) ANDPD(mx, x avo.Operand) {
+func (c *Context) ANDPD(mx, x operand.Op) {
 	if inst, err := x86.ANDPD(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func ANDPD(mx, x avo.Operand) { ctx.ANDPD(mx, x) }
+func ANDPD(mx, x operand.Op) { ctx.ANDPD(mx, x) }
 
-func (c *Context) ANDPS(mx, x avo.Operand) {
+func (c *Context) ANDPS(mx, x operand.Op) {
 	if inst, err := x86.ANDPS(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func ANDPS(mx, x avo.Operand) { ctx.ANDPS(mx, x) }
+func ANDPS(mx, x operand.Op) { ctx.ANDPS(mx, x) }
 
-func (c *Context) ANDQ(imr, mr avo.Operand) {
+func (c *Context) ANDQ(imr, mr operand.Op) {
 	if inst, err := x86.ANDQ(imr, mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func ANDQ(imr, mr avo.Operand) { ctx.ANDQ(imr, mr) }
+func ANDQ(imr, mr operand.Op) { ctx.ANDQ(imr, mr) }
 
-func (c *Context) ANDW(imr, amr avo.Operand) {
+func (c *Context) ANDW(imr, amr operand.Op) {
 	if inst, err := x86.ANDW(imr, amr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func ANDW(imr, amr avo.Operand) { ctx.ANDW(imr, amr) }
+func ANDW(imr, amr operand.Op) { ctx.ANDW(imr, amr) }
 
-func (c *Context) BEXTRL(r, mr, r1 avo.Operand) {
+func (c *Context) BEXTRL(r, mr, r1 operand.Op) {
 	if inst, err := x86.BEXTRL(r, mr, r1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func BEXTRL(r, mr, r1 avo.Operand) { ctx.BEXTRL(r, mr, r1) }
+func BEXTRL(r, mr, r1 operand.Op) { ctx.BEXTRL(r, mr, r1) }
 
-func (c *Context) BEXTRQ(r, mr, r1 avo.Operand) {
+func (c *Context) BEXTRQ(r, mr, r1 operand.Op) {
 	if inst, err := x86.BEXTRQ(r, mr, r1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func BEXTRQ(r, mr, r1 avo.Operand) { ctx.BEXTRQ(r, mr, r1) }
+func BEXTRQ(r, mr, r1 operand.Op) { ctx.BEXTRQ(r, mr, r1) }
 
-func (c *Context) BLENDPD(i, mx, x avo.Operand) {
+func (c *Context) BLENDPD(i, mx, x operand.Op) {
 	if inst, err := x86.BLENDPD(i, mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func BLENDPD(i, mx, x avo.Operand) { ctx.BLENDPD(i, mx, x) }
+func BLENDPD(i, mx, x operand.Op) { ctx.BLENDPD(i, mx, x) }
 
-func (c *Context) BLENDPS(i, mx, x avo.Operand) {
+func (c *Context) BLENDPS(i, mx, x operand.Op) {
 	if inst, err := x86.BLENDPS(i, mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func BLENDPS(i, mx, x avo.Operand) { ctx.BLENDPS(i, mx, x) }
+func BLENDPS(i, mx, x operand.Op) { ctx.BLENDPS(i, mx, x) }
 
-func (c *Context) BLENDVPD(x, mx, x1 avo.Operand) {
+func (c *Context) BLENDVPD(x, mx, x1 operand.Op) {
 	if inst, err := x86.BLENDVPD(x, mx, x1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func BLENDVPD(x, mx, x1 avo.Operand) { ctx.BLENDVPD(x, mx, x1) }
+func BLENDVPD(x, mx, x1 operand.Op) { ctx.BLENDVPD(x, mx, x1) }
 
-func (c *Context) BLENDVPS(x, mx, x1 avo.Operand) {
+func (c *Context) BLENDVPS(x, mx, x1 operand.Op) {
 	if inst, err := x86.BLENDVPS(x, mx, x1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func BLENDVPS(x, mx, x1 avo.Operand) { ctx.BLENDVPS(x, mx, x1) }
+func BLENDVPS(x, mx, x1 operand.Op) { ctx.BLENDVPS(x, mx, x1) }
 
-func (c *Context) BLSIL(mr, r avo.Operand) {
+func (c *Context) BLSIL(mr, r operand.Op) {
 	if inst, err := x86.BLSIL(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func BLSIL(mr, r avo.Operand) { ctx.BLSIL(mr, r) }
+func BLSIL(mr, r operand.Op) { ctx.BLSIL(mr, r) }
 
-func (c *Context) BLSIQ(mr, r avo.Operand) {
+func (c *Context) BLSIQ(mr, r operand.Op) {
 	if inst, err := x86.BLSIQ(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func BLSIQ(mr, r avo.Operand) { ctx.BLSIQ(mr, r) }
+func BLSIQ(mr, r operand.Op) { ctx.BLSIQ(mr, r) }
 
-func (c *Context) BLSMSKL(mr, r avo.Operand) {
+func (c *Context) BLSMSKL(mr, r operand.Op) {
 	if inst, err := x86.BLSMSKL(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func BLSMSKL(mr, r avo.Operand) { ctx.BLSMSKL(mr, r) }
+func BLSMSKL(mr, r operand.Op) { ctx.BLSMSKL(mr, r) }
 
-func (c *Context) BLSMSKQ(mr, r avo.Operand) {
+func (c *Context) BLSMSKQ(mr, r operand.Op) {
 	if inst, err := x86.BLSMSKQ(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func BLSMSKQ(mr, r avo.Operand) { ctx.BLSMSKQ(mr, r) }
+func BLSMSKQ(mr, r operand.Op) { ctx.BLSMSKQ(mr, r) }
 
-func (c *Context) BLSRL(mr, r avo.Operand) {
+func (c *Context) BLSRL(mr, r operand.Op) {
 	if inst, err := x86.BLSRL(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func BLSRL(mr, r avo.Operand) { ctx.BLSRL(mr, r) }
+func BLSRL(mr, r operand.Op) { ctx.BLSRL(mr, r) }
 
-func (c *Context) BLSRQ(mr, r avo.Operand) {
+func (c *Context) BLSRQ(mr, r operand.Op) {
 	if inst, err := x86.BLSRQ(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func BLSRQ(mr, r avo.Operand) { ctx.BLSRQ(mr, r) }
+func BLSRQ(mr, r operand.Op) { ctx.BLSRQ(mr, r) }
 
-func (c *Context) BSFL(mr, r avo.Operand) {
+func (c *Context) BSFL(mr, r operand.Op) {
 	if inst, err := x86.BSFL(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func BSFL(mr, r avo.Operand) { ctx.BSFL(mr, r) }
+func BSFL(mr, r operand.Op) { ctx.BSFL(mr, r) }
 
-func (c *Context) BSFQ(mr, r avo.Operand) {
+func (c *Context) BSFQ(mr, r operand.Op) {
 	if inst, err := x86.BSFQ(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func BSFQ(mr, r avo.Operand) { ctx.BSFQ(mr, r) }
+func BSFQ(mr, r operand.Op) { ctx.BSFQ(mr, r) }
 
-func (c *Context) BSFW(mr, r avo.Operand) {
+func (c *Context) BSFW(mr, r operand.Op) {
 	if inst, err := x86.BSFW(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func BSFW(mr, r avo.Operand) { ctx.BSFW(mr, r) }
+func BSFW(mr, r operand.Op) { ctx.BSFW(mr, r) }
 
-func (c *Context) BSRL(mr, r avo.Operand) {
+func (c *Context) BSRL(mr, r operand.Op) {
 	if inst, err := x86.BSRL(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func BSRL(mr, r avo.Operand) { ctx.BSRL(mr, r) }
+func BSRL(mr, r operand.Op) { ctx.BSRL(mr, r) }
 
-func (c *Context) BSRQ(mr, r avo.Operand) {
+func (c *Context) BSRQ(mr, r operand.Op) {
 	if inst, err := x86.BSRQ(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func BSRQ(mr, r avo.Operand) { ctx.BSRQ(mr, r) }
+func BSRQ(mr, r operand.Op) { ctx.BSRQ(mr, r) }
 
-func (c *Context) BSRW(mr, r avo.Operand) {
+func (c *Context) BSRW(mr, r operand.Op) {
 	if inst, err := x86.BSRW(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func BSRW(mr, r avo.Operand) { ctx.BSRW(mr, r) }
+func BSRW(mr, r operand.Op) { ctx.BSRW(mr, r) }
 
-func (c *Context) BSWAPL(r avo.Operand) {
+func (c *Context) BSWAPL(r operand.Op) {
 	if inst, err := x86.BSWAPL(r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func BSWAPL(r avo.Operand) { ctx.BSWAPL(r) }
+func BSWAPL(r operand.Op) { ctx.BSWAPL(r) }
 
-func (c *Context) BSWAPQ(r avo.Operand) {
+func (c *Context) BSWAPQ(r operand.Op) {
 	if inst, err := x86.BSWAPQ(r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func BSWAPQ(r avo.Operand) { ctx.BSWAPQ(r) }
+func BSWAPQ(r operand.Op) { ctx.BSWAPQ(r) }
 
-func (c *Context) BTCL(ir, mr avo.Operand) {
+func (c *Context) BTCL(ir, mr operand.Op) {
 	if inst, err := x86.BTCL(ir, mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func BTCL(ir, mr avo.Operand) { ctx.BTCL(ir, mr) }
+func BTCL(ir, mr operand.Op) { ctx.BTCL(ir, mr) }
 
-func (c *Context) BTCQ(ir, mr avo.Operand) {
+func (c *Context) BTCQ(ir, mr operand.Op) {
 	if inst, err := x86.BTCQ(ir, mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func BTCQ(ir, mr avo.Operand) { ctx.BTCQ(ir, mr) }
+func BTCQ(ir, mr operand.Op) { ctx.BTCQ(ir, mr) }
 
-func (c *Context) BTCW(ir, mr avo.Operand) {
+func (c *Context) BTCW(ir, mr operand.Op) {
 	if inst, err := x86.BTCW(ir, mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func BTCW(ir, mr avo.Operand) { ctx.BTCW(ir, mr) }
+func BTCW(ir, mr operand.Op) { ctx.BTCW(ir, mr) }
 
-func (c *Context) BTL(ir, mr avo.Operand) {
+func (c *Context) BTL(ir, mr operand.Op) {
 	if inst, err := x86.BTL(ir, mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func BTL(ir, mr avo.Operand) { ctx.BTL(ir, mr) }
+func BTL(ir, mr operand.Op) { ctx.BTL(ir, mr) }
 
-func (c *Context) BTQ(ir, mr avo.Operand) {
+func (c *Context) BTQ(ir, mr operand.Op) {
 	if inst, err := x86.BTQ(ir, mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func BTQ(ir, mr avo.Operand) { ctx.BTQ(ir, mr) }
+func BTQ(ir, mr operand.Op) { ctx.BTQ(ir, mr) }
 
-func (c *Context) BTRL(ir, mr avo.Operand) {
+func (c *Context) BTRL(ir, mr operand.Op) {
 	if inst, err := x86.BTRL(ir, mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func BTRL(ir, mr avo.Operand) { ctx.BTRL(ir, mr) }
+func BTRL(ir, mr operand.Op) { ctx.BTRL(ir, mr) }
 
-func (c *Context) BTRQ(ir, mr avo.Operand) {
+func (c *Context) BTRQ(ir, mr operand.Op) {
 	if inst, err := x86.BTRQ(ir, mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func BTRQ(ir, mr avo.Operand) { ctx.BTRQ(ir, mr) }
+func BTRQ(ir, mr operand.Op) { ctx.BTRQ(ir, mr) }
 
-func (c *Context) BTRW(ir, mr avo.Operand) {
+func (c *Context) BTRW(ir, mr operand.Op) {
 	if inst, err := x86.BTRW(ir, mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func BTRW(ir, mr avo.Operand) { ctx.BTRW(ir, mr) }
+func BTRW(ir, mr operand.Op) { ctx.BTRW(ir, mr) }
 
-func (c *Context) BTSL(ir, mr avo.Operand) {
+func (c *Context) BTSL(ir, mr operand.Op) {
 	if inst, err := x86.BTSL(ir, mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func BTSL(ir, mr avo.Operand) { ctx.BTSL(ir, mr) }
+func BTSL(ir, mr operand.Op) { ctx.BTSL(ir, mr) }
 
-func (c *Context) BTSQ(ir, mr avo.Operand) {
+func (c *Context) BTSQ(ir, mr operand.Op) {
 	if inst, err := x86.BTSQ(ir, mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func BTSQ(ir, mr avo.Operand) { ctx.BTSQ(ir, mr) }
+func BTSQ(ir, mr operand.Op) { ctx.BTSQ(ir, mr) }
 
-func (c *Context) BTSW(ir, mr avo.Operand) {
+func (c *Context) BTSW(ir, mr operand.Op) {
 	if inst, err := x86.BTSW(ir, mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func BTSW(ir, mr avo.Operand) { ctx.BTSW(ir, mr) }
+func BTSW(ir, mr operand.Op) { ctx.BTSW(ir, mr) }
 
-func (c *Context) BTW(ir, mr avo.Operand) {
+func (c *Context) BTW(ir, mr operand.Op) {
 	if inst, err := x86.BTW(ir, mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func BTW(ir, mr avo.Operand) { ctx.BTW(ir, mr) }
+func BTW(ir, mr operand.Op) { ctx.BTW(ir, mr) }
 
-func (c *Context) BZHIL(r, mr, r1 avo.Operand) {
+func (c *Context) BZHIL(r, mr, r1 operand.Op) {
 	if inst, err := x86.BZHIL(r, mr, r1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func BZHIL(r, mr, r1 avo.Operand) { ctx.BZHIL(r, mr, r1) }
+func BZHIL(r, mr, r1 operand.Op) { ctx.BZHIL(r, mr, r1) }
 
-func (c *Context) BZHIQ(r, mr, r1 avo.Operand) {
+func (c *Context) BZHIQ(r, mr, r1 operand.Op) {
 	if inst, err := x86.BZHIQ(r, mr, r1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func BZHIQ(r, mr, r1 avo.Operand) { ctx.BZHIQ(r, mr, r1) }
+func BZHIQ(r, mr, r1 operand.Op) { ctx.BZHIQ(r, mr, r1) }
 
-func (c *Context) CALL(r avo.Operand) {
+func (c *Context) CALL(r operand.Op) {
 	if inst, err := x86.CALL(r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CALL(r avo.Operand) { ctx.CALL(r) }
+func CALL(r operand.Op) { ctx.CALL(r) }
 
 func (c *Context) CBW() {
 	if inst, err := x86.CBW(); err == nil {
@@ -673,23 +673,23 @@ func (c *Context) CLD() {
 }
 func CLD() { ctx.CLD() }
 
-func (c *Context) CLFLUSH(m avo.Operand) {
+func (c *Context) CLFLUSH(m operand.Op) {
 	if inst, err := x86.CLFLUSH(m); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CLFLUSH(m avo.Operand) { ctx.CLFLUSH(m) }
+func CLFLUSH(m operand.Op) { ctx.CLFLUSH(m) }
 
-func (c *Context) CLFLUSHOPT(m avo.Operand) {
+func (c *Context) CLFLUSHOPT(m operand.Op) {
 	if inst, err := x86.CLFLUSHOPT(m); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CLFLUSHOPT(m avo.Operand) { ctx.CLFLUSHOPT(m) }
+func CLFLUSHOPT(m operand.Op) { ctx.CLFLUSHOPT(m) }
 
 func (c *Context) CMC() {
 	if inst, err := x86.CMC(); err == nil {
@@ -700,581 +700,581 @@ func (c *Context) CMC() {
 }
 func CMC() { ctx.CMC() }
 
-func (c *Context) CMOVLCC(mr, r avo.Operand) {
+func (c *Context) CMOVLCC(mr, r operand.Op) {
 	if inst, err := x86.CMOVLCC(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CMOVLCC(mr, r avo.Operand) { ctx.CMOVLCC(mr, r) }
+func CMOVLCC(mr, r operand.Op) { ctx.CMOVLCC(mr, r) }
 
-func (c *Context) CMOVLCS(mr, r avo.Operand) {
+func (c *Context) CMOVLCS(mr, r operand.Op) {
 	if inst, err := x86.CMOVLCS(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CMOVLCS(mr, r avo.Operand) { ctx.CMOVLCS(mr, r) }
+func CMOVLCS(mr, r operand.Op) { ctx.CMOVLCS(mr, r) }
 
-func (c *Context) CMOVLEQ(mr, r avo.Operand) {
+func (c *Context) CMOVLEQ(mr, r operand.Op) {
 	if inst, err := x86.CMOVLEQ(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CMOVLEQ(mr, r avo.Operand) { ctx.CMOVLEQ(mr, r) }
+func CMOVLEQ(mr, r operand.Op) { ctx.CMOVLEQ(mr, r) }
 
-func (c *Context) CMOVLGE(mr, r avo.Operand) {
+func (c *Context) CMOVLGE(mr, r operand.Op) {
 	if inst, err := x86.CMOVLGE(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CMOVLGE(mr, r avo.Operand) { ctx.CMOVLGE(mr, r) }
+func CMOVLGE(mr, r operand.Op) { ctx.CMOVLGE(mr, r) }
 
-func (c *Context) CMOVLGT(mr, r avo.Operand) {
+func (c *Context) CMOVLGT(mr, r operand.Op) {
 	if inst, err := x86.CMOVLGT(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CMOVLGT(mr, r avo.Operand) { ctx.CMOVLGT(mr, r) }
+func CMOVLGT(mr, r operand.Op) { ctx.CMOVLGT(mr, r) }
 
-func (c *Context) CMOVLHI(mr, r avo.Operand) {
+func (c *Context) CMOVLHI(mr, r operand.Op) {
 	if inst, err := x86.CMOVLHI(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CMOVLHI(mr, r avo.Operand) { ctx.CMOVLHI(mr, r) }
+func CMOVLHI(mr, r operand.Op) { ctx.CMOVLHI(mr, r) }
 
-func (c *Context) CMOVLLE(mr, r avo.Operand) {
+func (c *Context) CMOVLLE(mr, r operand.Op) {
 	if inst, err := x86.CMOVLLE(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CMOVLLE(mr, r avo.Operand) { ctx.CMOVLLE(mr, r) }
+func CMOVLLE(mr, r operand.Op) { ctx.CMOVLLE(mr, r) }
 
-func (c *Context) CMOVLLS(mr, r avo.Operand) {
+func (c *Context) CMOVLLS(mr, r operand.Op) {
 	if inst, err := x86.CMOVLLS(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CMOVLLS(mr, r avo.Operand) { ctx.CMOVLLS(mr, r) }
+func CMOVLLS(mr, r operand.Op) { ctx.CMOVLLS(mr, r) }
 
-func (c *Context) CMOVLLT(mr, r avo.Operand) {
+func (c *Context) CMOVLLT(mr, r operand.Op) {
 	if inst, err := x86.CMOVLLT(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CMOVLLT(mr, r avo.Operand) { ctx.CMOVLLT(mr, r) }
+func CMOVLLT(mr, r operand.Op) { ctx.CMOVLLT(mr, r) }
 
-func (c *Context) CMOVLMI(mr, r avo.Operand) {
+func (c *Context) CMOVLMI(mr, r operand.Op) {
 	if inst, err := x86.CMOVLMI(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CMOVLMI(mr, r avo.Operand) { ctx.CMOVLMI(mr, r) }
+func CMOVLMI(mr, r operand.Op) { ctx.CMOVLMI(mr, r) }
 
-func (c *Context) CMOVLNE(mr, r avo.Operand) {
+func (c *Context) CMOVLNE(mr, r operand.Op) {
 	if inst, err := x86.CMOVLNE(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CMOVLNE(mr, r avo.Operand) { ctx.CMOVLNE(mr, r) }
+func CMOVLNE(mr, r operand.Op) { ctx.CMOVLNE(mr, r) }
 
-func (c *Context) CMOVLOC(mr, r avo.Operand) {
+func (c *Context) CMOVLOC(mr, r operand.Op) {
 	if inst, err := x86.CMOVLOC(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CMOVLOC(mr, r avo.Operand) { ctx.CMOVLOC(mr, r) }
+func CMOVLOC(mr, r operand.Op) { ctx.CMOVLOC(mr, r) }
 
-func (c *Context) CMOVLOS(mr, r avo.Operand) {
+func (c *Context) CMOVLOS(mr, r operand.Op) {
 	if inst, err := x86.CMOVLOS(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CMOVLOS(mr, r avo.Operand) { ctx.CMOVLOS(mr, r) }
+func CMOVLOS(mr, r operand.Op) { ctx.CMOVLOS(mr, r) }
 
-func (c *Context) CMOVLPC(mr, r avo.Operand) {
+func (c *Context) CMOVLPC(mr, r operand.Op) {
 	if inst, err := x86.CMOVLPC(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CMOVLPC(mr, r avo.Operand) { ctx.CMOVLPC(mr, r) }
+func CMOVLPC(mr, r operand.Op) { ctx.CMOVLPC(mr, r) }
 
-func (c *Context) CMOVLPL(mr, r avo.Operand) {
+func (c *Context) CMOVLPL(mr, r operand.Op) {
 	if inst, err := x86.CMOVLPL(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CMOVLPL(mr, r avo.Operand) { ctx.CMOVLPL(mr, r) }
+func CMOVLPL(mr, r operand.Op) { ctx.CMOVLPL(mr, r) }
 
-func (c *Context) CMOVLPS(mr, r avo.Operand) {
+func (c *Context) CMOVLPS(mr, r operand.Op) {
 	if inst, err := x86.CMOVLPS(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CMOVLPS(mr, r avo.Operand) { ctx.CMOVLPS(mr, r) }
+func CMOVLPS(mr, r operand.Op) { ctx.CMOVLPS(mr, r) }
 
-func (c *Context) CMOVQCC(mr, r avo.Operand) {
+func (c *Context) CMOVQCC(mr, r operand.Op) {
 	if inst, err := x86.CMOVQCC(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CMOVQCC(mr, r avo.Operand) { ctx.CMOVQCC(mr, r) }
+func CMOVQCC(mr, r operand.Op) { ctx.CMOVQCC(mr, r) }
 
-func (c *Context) CMOVQCS(mr, r avo.Operand) {
+func (c *Context) CMOVQCS(mr, r operand.Op) {
 	if inst, err := x86.CMOVQCS(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CMOVQCS(mr, r avo.Operand) { ctx.CMOVQCS(mr, r) }
+func CMOVQCS(mr, r operand.Op) { ctx.CMOVQCS(mr, r) }
 
-func (c *Context) CMOVQEQ(mr, r avo.Operand) {
+func (c *Context) CMOVQEQ(mr, r operand.Op) {
 	if inst, err := x86.CMOVQEQ(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CMOVQEQ(mr, r avo.Operand) { ctx.CMOVQEQ(mr, r) }
+func CMOVQEQ(mr, r operand.Op) { ctx.CMOVQEQ(mr, r) }
 
-func (c *Context) CMOVQGE(mr, r avo.Operand) {
+func (c *Context) CMOVQGE(mr, r operand.Op) {
 	if inst, err := x86.CMOVQGE(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CMOVQGE(mr, r avo.Operand) { ctx.CMOVQGE(mr, r) }
+func CMOVQGE(mr, r operand.Op) { ctx.CMOVQGE(mr, r) }
 
-func (c *Context) CMOVQGT(mr, r avo.Operand) {
+func (c *Context) CMOVQGT(mr, r operand.Op) {
 	if inst, err := x86.CMOVQGT(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CMOVQGT(mr, r avo.Operand) { ctx.CMOVQGT(mr, r) }
+func CMOVQGT(mr, r operand.Op) { ctx.CMOVQGT(mr, r) }
 
-func (c *Context) CMOVQHI(mr, r avo.Operand) {
+func (c *Context) CMOVQHI(mr, r operand.Op) {
 	if inst, err := x86.CMOVQHI(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CMOVQHI(mr, r avo.Operand) { ctx.CMOVQHI(mr, r) }
+func CMOVQHI(mr, r operand.Op) { ctx.CMOVQHI(mr, r) }
 
-func (c *Context) CMOVQLE(mr, r avo.Operand) {
+func (c *Context) CMOVQLE(mr, r operand.Op) {
 	if inst, err := x86.CMOVQLE(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CMOVQLE(mr, r avo.Operand) { ctx.CMOVQLE(mr, r) }
+func CMOVQLE(mr, r operand.Op) { ctx.CMOVQLE(mr, r) }
 
-func (c *Context) CMOVQLS(mr, r avo.Operand) {
+func (c *Context) CMOVQLS(mr, r operand.Op) {
 	if inst, err := x86.CMOVQLS(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CMOVQLS(mr, r avo.Operand) { ctx.CMOVQLS(mr, r) }
+func CMOVQLS(mr, r operand.Op) { ctx.CMOVQLS(mr, r) }
 
-func (c *Context) CMOVQLT(mr, r avo.Operand) {
+func (c *Context) CMOVQLT(mr, r operand.Op) {
 	if inst, err := x86.CMOVQLT(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CMOVQLT(mr, r avo.Operand) { ctx.CMOVQLT(mr, r) }
+func CMOVQLT(mr, r operand.Op) { ctx.CMOVQLT(mr, r) }
 
-func (c *Context) CMOVQMI(mr, r avo.Operand) {
+func (c *Context) CMOVQMI(mr, r operand.Op) {
 	if inst, err := x86.CMOVQMI(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CMOVQMI(mr, r avo.Operand) { ctx.CMOVQMI(mr, r) }
+func CMOVQMI(mr, r operand.Op) { ctx.CMOVQMI(mr, r) }
 
-func (c *Context) CMOVQNE(mr, r avo.Operand) {
+func (c *Context) CMOVQNE(mr, r operand.Op) {
 	if inst, err := x86.CMOVQNE(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CMOVQNE(mr, r avo.Operand) { ctx.CMOVQNE(mr, r) }
+func CMOVQNE(mr, r operand.Op) { ctx.CMOVQNE(mr, r) }
 
-func (c *Context) CMOVQOC(mr, r avo.Operand) {
+func (c *Context) CMOVQOC(mr, r operand.Op) {
 	if inst, err := x86.CMOVQOC(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CMOVQOC(mr, r avo.Operand) { ctx.CMOVQOC(mr, r) }
+func CMOVQOC(mr, r operand.Op) { ctx.CMOVQOC(mr, r) }
 
-func (c *Context) CMOVQOS(mr, r avo.Operand) {
+func (c *Context) CMOVQOS(mr, r operand.Op) {
 	if inst, err := x86.CMOVQOS(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CMOVQOS(mr, r avo.Operand) { ctx.CMOVQOS(mr, r) }
+func CMOVQOS(mr, r operand.Op) { ctx.CMOVQOS(mr, r) }
 
-func (c *Context) CMOVQPC(mr, r avo.Operand) {
+func (c *Context) CMOVQPC(mr, r operand.Op) {
 	if inst, err := x86.CMOVQPC(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CMOVQPC(mr, r avo.Operand) { ctx.CMOVQPC(mr, r) }
+func CMOVQPC(mr, r operand.Op) { ctx.CMOVQPC(mr, r) }
 
-func (c *Context) CMOVQPL(mr, r avo.Operand) {
+func (c *Context) CMOVQPL(mr, r operand.Op) {
 	if inst, err := x86.CMOVQPL(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CMOVQPL(mr, r avo.Operand) { ctx.CMOVQPL(mr, r) }
+func CMOVQPL(mr, r operand.Op) { ctx.CMOVQPL(mr, r) }
 
-func (c *Context) CMOVQPS(mr, r avo.Operand) {
+func (c *Context) CMOVQPS(mr, r operand.Op) {
 	if inst, err := x86.CMOVQPS(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CMOVQPS(mr, r avo.Operand) { ctx.CMOVQPS(mr, r) }
+func CMOVQPS(mr, r operand.Op) { ctx.CMOVQPS(mr, r) }
 
-func (c *Context) CMOVWCC(mr, r avo.Operand) {
+func (c *Context) CMOVWCC(mr, r operand.Op) {
 	if inst, err := x86.CMOVWCC(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CMOVWCC(mr, r avo.Operand) { ctx.CMOVWCC(mr, r) }
+func CMOVWCC(mr, r operand.Op) { ctx.CMOVWCC(mr, r) }
 
-func (c *Context) CMOVWCS(mr, r avo.Operand) {
+func (c *Context) CMOVWCS(mr, r operand.Op) {
 	if inst, err := x86.CMOVWCS(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CMOVWCS(mr, r avo.Operand) { ctx.CMOVWCS(mr, r) }
+func CMOVWCS(mr, r operand.Op) { ctx.CMOVWCS(mr, r) }
 
-func (c *Context) CMOVWEQ(mr, r avo.Operand) {
+func (c *Context) CMOVWEQ(mr, r operand.Op) {
 	if inst, err := x86.CMOVWEQ(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CMOVWEQ(mr, r avo.Operand) { ctx.CMOVWEQ(mr, r) }
+func CMOVWEQ(mr, r operand.Op) { ctx.CMOVWEQ(mr, r) }
 
-func (c *Context) CMOVWGE(mr, r avo.Operand) {
+func (c *Context) CMOVWGE(mr, r operand.Op) {
 	if inst, err := x86.CMOVWGE(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CMOVWGE(mr, r avo.Operand) { ctx.CMOVWGE(mr, r) }
+func CMOVWGE(mr, r operand.Op) { ctx.CMOVWGE(mr, r) }
 
-func (c *Context) CMOVWGT(mr, r avo.Operand) {
+func (c *Context) CMOVWGT(mr, r operand.Op) {
 	if inst, err := x86.CMOVWGT(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CMOVWGT(mr, r avo.Operand) { ctx.CMOVWGT(mr, r) }
+func CMOVWGT(mr, r operand.Op) { ctx.CMOVWGT(mr, r) }
 
-func (c *Context) CMOVWHI(mr, r avo.Operand) {
+func (c *Context) CMOVWHI(mr, r operand.Op) {
 	if inst, err := x86.CMOVWHI(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CMOVWHI(mr, r avo.Operand) { ctx.CMOVWHI(mr, r) }
+func CMOVWHI(mr, r operand.Op) { ctx.CMOVWHI(mr, r) }
 
-func (c *Context) CMOVWLE(mr, r avo.Operand) {
+func (c *Context) CMOVWLE(mr, r operand.Op) {
 	if inst, err := x86.CMOVWLE(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CMOVWLE(mr, r avo.Operand) { ctx.CMOVWLE(mr, r) }
+func CMOVWLE(mr, r operand.Op) { ctx.CMOVWLE(mr, r) }
 
-func (c *Context) CMOVWLS(mr, r avo.Operand) {
+func (c *Context) CMOVWLS(mr, r operand.Op) {
 	if inst, err := x86.CMOVWLS(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CMOVWLS(mr, r avo.Operand) { ctx.CMOVWLS(mr, r) }
+func CMOVWLS(mr, r operand.Op) { ctx.CMOVWLS(mr, r) }
 
-func (c *Context) CMOVWLT(mr, r avo.Operand) {
+func (c *Context) CMOVWLT(mr, r operand.Op) {
 	if inst, err := x86.CMOVWLT(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CMOVWLT(mr, r avo.Operand) { ctx.CMOVWLT(mr, r) }
+func CMOVWLT(mr, r operand.Op) { ctx.CMOVWLT(mr, r) }
 
-func (c *Context) CMOVWMI(mr, r avo.Operand) {
+func (c *Context) CMOVWMI(mr, r operand.Op) {
 	if inst, err := x86.CMOVWMI(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CMOVWMI(mr, r avo.Operand) { ctx.CMOVWMI(mr, r) }
+func CMOVWMI(mr, r operand.Op) { ctx.CMOVWMI(mr, r) }
 
-func (c *Context) CMOVWNE(mr, r avo.Operand) {
+func (c *Context) CMOVWNE(mr, r operand.Op) {
 	if inst, err := x86.CMOVWNE(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CMOVWNE(mr, r avo.Operand) { ctx.CMOVWNE(mr, r) }
+func CMOVWNE(mr, r operand.Op) { ctx.CMOVWNE(mr, r) }
 
-func (c *Context) CMOVWOC(mr, r avo.Operand) {
+func (c *Context) CMOVWOC(mr, r operand.Op) {
 	if inst, err := x86.CMOVWOC(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CMOVWOC(mr, r avo.Operand) { ctx.CMOVWOC(mr, r) }
+func CMOVWOC(mr, r operand.Op) { ctx.CMOVWOC(mr, r) }
 
-func (c *Context) CMOVWOS(mr, r avo.Operand) {
+func (c *Context) CMOVWOS(mr, r operand.Op) {
 	if inst, err := x86.CMOVWOS(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CMOVWOS(mr, r avo.Operand) { ctx.CMOVWOS(mr, r) }
+func CMOVWOS(mr, r operand.Op) { ctx.CMOVWOS(mr, r) }
 
-func (c *Context) CMOVWPC(mr, r avo.Operand) {
+func (c *Context) CMOVWPC(mr, r operand.Op) {
 	if inst, err := x86.CMOVWPC(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CMOVWPC(mr, r avo.Operand) { ctx.CMOVWPC(mr, r) }
+func CMOVWPC(mr, r operand.Op) { ctx.CMOVWPC(mr, r) }
 
-func (c *Context) CMOVWPL(mr, r avo.Operand) {
+func (c *Context) CMOVWPL(mr, r operand.Op) {
 	if inst, err := x86.CMOVWPL(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CMOVWPL(mr, r avo.Operand) { ctx.CMOVWPL(mr, r) }
+func CMOVWPL(mr, r operand.Op) { ctx.CMOVWPL(mr, r) }
 
-func (c *Context) CMOVWPS(mr, r avo.Operand) {
+func (c *Context) CMOVWPS(mr, r operand.Op) {
 	if inst, err := x86.CMOVWPS(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CMOVWPS(mr, r avo.Operand) { ctx.CMOVWPS(mr, r) }
+func CMOVWPS(mr, r operand.Op) { ctx.CMOVWPS(mr, r) }
 
-func (c *Context) CMPB(amr, imr avo.Operand) {
+func (c *Context) CMPB(amr, imr operand.Op) {
 	if inst, err := x86.CMPB(amr, imr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CMPB(amr, imr avo.Operand) { ctx.CMPB(amr, imr) }
+func CMPB(amr, imr operand.Op) { ctx.CMPB(amr, imr) }
 
-func (c *Context) CMPL(emr, imr avo.Operand) {
+func (c *Context) CMPL(emr, imr operand.Op) {
 	if inst, err := x86.CMPL(emr, imr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CMPL(emr, imr avo.Operand) { ctx.CMPL(emr, imr) }
+func CMPL(emr, imr operand.Op) { ctx.CMPL(emr, imr) }
 
-func (c *Context) CMPPD(mx, x, i avo.Operand) {
+func (c *Context) CMPPD(mx, x, i operand.Op) {
 	if inst, err := x86.CMPPD(mx, x, i); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CMPPD(mx, x, i avo.Operand) { ctx.CMPPD(mx, x, i) }
+func CMPPD(mx, x, i operand.Op) { ctx.CMPPD(mx, x, i) }
 
-func (c *Context) CMPPS(mx, x, i avo.Operand) {
+func (c *Context) CMPPS(mx, x, i operand.Op) {
 	if inst, err := x86.CMPPS(mx, x, i); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CMPPS(mx, x, i avo.Operand) { ctx.CMPPS(mx, x, i) }
+func CMPPS(mx, x, i operand.Op) { ctx.CMPPS(mx, x, i) }
 
-func (c *Context) CMPQ(mr, imr avo.Operand) {
+func (c *Context) CMPQ(mr, imr operand.Op) {
 	if inst, err := x86.CMPQ(mr, imr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CMPQ(mr, imr avo.Operand) { ctx.CMPQ(mr, imr) }
+func CMPQ(mr, imr operand.Op) { ctx.CMPQ(mr, imr) }
 
-func (c *Context) CMPSD(mx, x, i avo.Operand) {
+func (c *Context) CMPSD(mx, x, i operand.Op) {
 	if inst, err := x86.CMPSD(mx, x, i); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CMPSD(mx, x, i avo.Operand) { ctx.CMPSD(mx, x, i) }
+func CMPSD(mx, x, i operand.Op) { ctx.CMPSD(mx, x, i) }
 
-func (c *Context) CMPSS(mx, x, i avo.Operand) {
+func (c *Context) CMPSS(mx, x, i operand.Op) {
 	if inst, err := x86.CMPSS(mx, x, i); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CMPSS(mx, x, i avo.Operand) { ctx.CMPSS(mx, x, i) }
+func CMPSS(mx, x, i operand.Op) { ctx.CMPSS(mx, x, i) }
 
-func (c *Context) CMPW(amr, imr avo.Operand) {
+func (c *Context) CMPW(amr, imr operand.Op) {
 	if inst, err := x86.CMPW(amr, imr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CMPW(amr, imr avo.Operand) { ctx.CMPW(amr, imr) }
+func CMPW(amr, imr operand.Op) { ctx.CMPW(amr, imr) }
 
-func (c *Context) CMPXCHG16B(m avo.Operand) {
+func (c *Context) CMPXCHG16B(m operand.Op) {
 	if inst, err := x86.CMPXCHG16B(m); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CMPXCHG16B(m avo.Operand) { ctx.CMPXCHG16B(m) }
+func CMPXCHG16B(m operand.Op) { ctx.CMPXCHG16B(m) }
 
-func (c *Context) CMPXCHG8B(m avo.Operand) {
+func (c *Context) CMPXCHG8B(m operand.Op) {
 	if inst, err := x86.CMPXCHG8B(m); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CMPXCHG8B(m avo.Operand) { ctx.CMPXCHG8B(m) }
+func CMPXCHG8B(m operand.Op) { ctx.CMPXCHG8B(m) }
 
-func (c *Context) CMPXCHGB(r, mr avo.Operand) {
+func (c *Context) CMPXCHGB(r, mr operand.Op) {
 	if inst, err := x86.CMPXCHGB(r, mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CMPXCHGB(r, mr avo.Operand) { ctx.CMPXCHGB(r, mr) }
+func CMPXCHGB(r, mr operand.Op) { ctx.CMPXCHGB(r, mr) }
 
-func (c *Context) CMPXCHGL(r, mr avo.Operand) {
+func (c *Context) CMPXCHGL(r, mr operand.Op) {
 	if inst, err := x86.CMPXCHGL(r, mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CMPXCHGL(r, mr avo.Operand) { ctx.CMPXCHGL(r, mr) }
+func CMPXCHGL(r, mr operand.Op) { ctx.CMPXCHGL(r, mr) }
 
-func (c *Context) CMPXCHGQ(r, mr avo.Operand) {
+func (c *Context) CMPXCHGQ(r, mr operand.Op) {
 	if inst, err := x86.CMPXCHGQ(r, mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CMPXCHGQ(r, mr avo.Operand) { ctx.CMPXCHGQ(r, mr) }
+func CMPXCHGQ(r, mr operand.Op) { ctx.CMPXCHGQ(r, mr) }
 
-func (c *Context) CMPXCHGW(r, mr avo.Operand) {
+func (c *Context) CMPXCHGW(r, mr operand.Op) {
 	if inst, err := x86.CMPXCHGW(r, mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CMPXCHGW(r, mr avo.Operand) { ctx.CMPXCHGW(r, mr) }
+func CMPXCHGW(r, mr operand.Op) { ctx.CMPXCHGW(r, mr) }
 
-func (c *Context) COMISD(mx, x avo.Operand) {
+func (c *Context) COMISD(mx, x operand.Op) {
 	if inst, err := x86.COMISD(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func COMISD(mx, x avo.Operand) { ctx.COMISD(mx, x) }
+func COMISD(mx, x operand.Op) { ctx.COMISD(mx, x) }
 
-func (c *Context) COMISS(mx, x avo.Operand) {
+func (c *Context) COMISS(mx, x operand.Op) {
 	if inst, err := x86.COMISS(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func COMISS(mx, x avo.Operand) { ctx.COMISS(mx, x) }
+func COMISS(mx, x operand.Op) { ctx.COMISS(mx, x) }
 
 func (c *Context) CPUID() {
 	if inst, err := x86.CPUID(); err == nil {
@@ -1294,212 +1294,212 @@ func (c *Context) CQO() {
 }
 func CQO() { ctx.CQO() }
 
-func (c *Context) CRC32B(mr, r avo.Operand) {
+func (c *Context) CRC32B(mr, r operand.Op) {
 	if inst, err := x86.CRC32B(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CRC32B(mr, r avo.Operand) { ctx.CRC32B(mr, r) }
+func CRC32B(mr, r operand.Op) { ctx.CRC32B(mr, r) }
 
-func (c *Context) CRC32L(mr, r avo.Operand) {
+func (c *Context) CRC32L(mr, r operand.Op) {
 	if inst, err := x86.CRC32L(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CRC32L(mr, r avo.Operand) { ctx.CRC32L(mr, r) }
+func CRC32L(mr, r operand.Op) { ctx.CRC32L(mr, r) }
 
-func (c *Context) CRC32Q(mr, r avo.Operand) {
+func (c *Context) CRC32Q(mr, r operand.Op) {
 	if inst, err := x86.CRC32Q(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CRC32Q(mr, r avo.Operand) { ctx.CRC32Q(mr, r) }
+func CRC32Q(mr, r operand.Op) { ctx.CRC32Q(mr, r) }
 
-func (c *Context) CRC32W(mr, r avo.Operand) {
+func (c *Context) CRC32W(mr, r operand.Op) {
 	if inst, err := x86.CRC32W(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CRC32W(mr, r avo.Operand) { ctx.CRC32W(mr, r) }
+func CRC32W(mr, r operand.Op) { ctx.CRC32W(mr, r) }
 
-func (c *Context) CVTPD2PL(mx, x avo.Operand) {
+func (c *Context) CVTPD2PL(mx, x operand.Op) {
 	if inst, err := x86.CVTPD2PL(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CVTPD2PL(mx, x avo.Operand) { ctx.CVTPD2PL(mx, x) }
+func CVTPD2PL(mx, x operand.Op) { ctx.CVTPD2PL(mx, x) }
 
-func (c *Context) CVTPD2PS(mx, x avo.Operand) {
+func (c *Context) CVTPD2PS(mx, x operand.Op) {
 	if inst, err := x86.CVTPD2PS(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CVTPD2PS(mx, x avo.Operand) { ctx.CVTPD2PS(mx, x) }
+func CVTPD2PS(mx, x operand.Op) { ctx.CVTPD2PS(mx, x) }
 
-func (c *Context) CVTPL2PD(mx, x avo.Operand) {
+func (c *Context) CVTPL2PD(mx, x operand.Op) {
 	if inst, err := x86.CVTPL2PD(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CVTPL2PD(mx, x avo.Operand) { ctx.CVTPL2PD(mx, x) }
+func CVTPL2PD(mx, x operand.Op) { ctx.CVTPL2PD(mx, x) }
 
-func (c *Context) CVTPL2PS(mx, x avo.Operand) {
+func (c *Context) CVTPL2PS(mx, x operand.Op) {
 	if inst, err := x86.CVTPL2PS(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CVTPL2PS(mx, x avo.Operand) { ctx.CVTPL2PS(mx, x) }
+func CVTPL2PS(mx, x operand.Op) { ctx.CVTPL2PS(mx, x) }
 
-func (c *Context) CVTPS2PD(mx, x avo.Operand) {
+func (c *Context) CVTPS2PD(mx, x operand.Op) {
 	if inst, err := x86.CVTPS2PD(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CVTPS2PD(mx, x avo.Operand) { ctx.CVTPS2PD(mx, x) }
+func CVTPS2PD(mx, x operand.Op) { ctx.CVTPS2PD(mx, x) }
 
-func (c *Context) CVTPS2PL(mx, x avo.Operand) {
+func (c *Context) CVTPS2PL(mx, x operand.Op) {
 	if inst, err := x86.CVTPS2PL(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CVTPS2PL(mx, x avo.Operand) { ctx.CVTPS2PL(mx, x) }
+func CVTPS2PL(mx, x operand.Op) { ctx.CVTPS2PL(mx, x) }
 
-func (c *Context) CVTSD2SL(mx, r avo.Operand) {
+func (c *Context) CVTSD2SL(mx, r operand.Op) {
 	if inst, err := x86.CVTSD2SL(mx, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CVTSD2SL(mx, r avo.Operand) { ctx.CVTSD2SL(mx, r) }
+func CVTSD2SL(mx, r operand.Op) { ctx.CVTSD2SL(mx, r) }
 
-func (c *Context) CVTSD2SS(mx, x avo.Operand) {
+func (c *Context) CVTSD2SS(mx, x operand.Op) {
 	if inst, err := x86.CVTSD2SS(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CVTSD2SS(mx, x avo.Operand) { ctx.CVTSD2SS(mx, x) }
+func CVTSD2SS(mx, x operand.Op) { ctx.CVTSD2SS(mx, x) }
 
-func (c *Context) CVTSL2SD(mr, x avo.Operand) {
+func (c *Context) CVTSL2SD(mr, x operand.Op) {
 	if inst, err := x86.CVTSL2SD(mr, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CVTSL2SD(mr, x avo.Operand) { ctx.CVTSL2SD(mr, x) }
+func CVTSL2SD(mr, x operand.Op) { ctx.CVTSL2SD(mr, x) }
 
-func (c *Context) CVTSL2SS(mr, x avo.Operand) {
+func (c *Context) CVTSL2SS(mr, x operand.Op) {
 	if inst, err := x86.CVTSL2SS(mr, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CVTSL2SS(mr, x avo.Operand) { ctx.CVTSL2SS(mr, x) }
+func CVTSL2SS(mr, x operand.Op) { ctx.CVTSL2SS(mr, x) }
 
-func (c *Context) CVTSQ2SD(mr, x avo.Operand) {
+func (c *Context) CVTSQ2SD(mr, x operand.Op) {
 	if inst, err := x86.CVTSQ2SD(mr, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CVTSQ2SD(mr, x avo.Operand) { ctx.CVTSQ2SD(mr, x) }
+func CVTSQ2SD(mr, x operand.Op) { ctx.CVTSQ2SD(mr, x) }
 
-func (c *Context) CVTSQ2SS(mr, x avo.Operand) {
+func (c *Context) CVTSQ2SS(mr, x operand.Op) {
 	if inst, err := x86.CVTSQ2SS(mr, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CVTSQ2SS(mr, x avo.Operand) { ctx.CVTSQ2SS(mr, x) }
+func CVTSQ2SS(mr, x operand.Op) { ctx.CVTSQ2SS(mr, x) }
 
-func (c *Context) CVTSS2SD(mx, x avo.Operand) {
+func (c *Context) CVTSS2SD(mx, x operand.Op) {
 	if inst, err := x86.CVTSS2SD(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CVTSS2SD(mx, x avo.Operand) { ctx.CVTSS2SD(mx, x) }
+func CVTSS2SD(mx, x operand.Op) { ctx.CVTSS2SD(mx, x) }
 
-func (c *Context) CVTSS2SL(mx, r avo.Operand) {
+func (c *Context) CVTSS2SL(mx, r operand.Op) {
 	if inst, err := x86.CVTSS2SL(mx, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CVTSS2SL(mx, r avo.Operand) { ctx.CVTSS2SL(mx, r) }
+func CVTSS2SL(mx, r operand.Op) { ctx.CVTSS2SL(mx, r) }
 
-func (c *Context) CVTTPD2PL(mx, x avo.Operand) {
+func (c *Context) CVTTPD2PL(mx, x operand.Op) {
 	if inst, err := x86.CVTTPD2PL(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CVTTPD2PL(mx, x avo.Operand) { ctx.CVTTPD2PL(mx, x) }
+func CVTTPD2PL(mx, x operand.Op) { ctx.CVTTPD2PL(mx, x) }
 
-func (c *Context) CVTTPS2PL(mx, x avo.Operand) {
+func (c *Context) CVTTPS2PL(mx, x operand.Op) {
 	if inst, err := x86.CVTTPS2PL(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CVTTPS2PL(mx, x avo.Operand) { ctx.CVTTPS2PL(mx, x) }
+func CVTTPS2PL(mx, x operand.Op) { ctx.CVTTPS2PL(mx, x) }
 
-func (c *Context) CVTTSD2SL(mx, r avo.Operand) {
+func (c *Context) CVTTSD2SL(mx, r operand.Op) {
 	if inst, err := x86.CVTTSD2SL(mx, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CVTTSD2SL(mx, r avo.Operand) { ctx.CVTTSD2SL(mx, r) }
+func CVTTSD2SL(mx, r operand.Op) { ctx.CVTTSD2SL(mx, r) }
 
-func (c *Context) CVTTSD2SQ(mx, r avo.Operand) {
+func (c *Context) CVTTSD2SQ(mx, r operand.Op) {
 	if inst, err := x86.CVTTSD2SQ(mx, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CVTTSD2SQ(mx, r avo.Operand) { ctx.CVTTSD2SQ(mx, r) }
+func CVTTSD2SQ(mx, r operand.Op) { ctx.CVTTSD2SQ(mx, r) }
 
-func (c *Context) CVTTSS2SL(mx, r avo.Operand) {
+func (c *Context) CVTTSS2SL(mx, r operand.Op) {
 	if inst, err := x86.CVTTSS2SL(mx, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func CVTTSS2SL(mx, r avo.Operand) { ctx.CVTTSS2SL(mx, r) }
+func CVTTSS2SL(mx, r operand.Op) { ctx.CVTTSS2SL(mx, r) }
 
 func (c *Context) CWD() {
 	if inst, err := x86.CWD(); err == nil {
@@ -1519,806 +1519,806 @@ func (c *Context) CWDE() {
 }
 func CWDE() { ctx.CWDE() }
 
-func (c *Context) DECB(mr avo.Operand) {
+func (c *Context) DECB(mr operand.Op) {
 	if inst, err := x86.DECB(mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func DECB(mr avo.Operand) { ctx.DECB(mr) }
+func DECB(mr operand.Op) { ctx.DECB(mr) }
 
-func (c *Context) DECL(mr avo.Operand) {
+func (c *Context) DECL(mr operand.Op) {
 	if inst, err := x86.DECL(mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func DECL(mr avo.Operand) { ctx.DECL(mr) }
+func DECL(mr operand.Op) { ctx.DECL(mr) }
 
-func (c *Context) DECQ(mr avo.Operand) {
+func (c *Context) DECQ(mr operand.Op) {
 	if inst, err := x86.DECQ(mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func DECQ(mr avo.Operand) { ctx.DECQ(mr) }
+func DECQ(mr operand.Op) { ctx.DECQ(mr) }
 
-func (c *Context) DECW(mr avo.Operand) {
+func (c *Context) DECW(mr operand.Op) {
 	if inst, err := x86.DECW(mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func DECW(mr avo.Operand) { ctx.DECW(mr) }
+func DECW(mr operand.Op) { ctx.DECW(mr) }
 
-func (c *Context) DIVB(mr avo.Operand) {
+func (c *Context) DIVB(mr operand.Op) {
 	if inst, err := x86.DIVB(mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func DIVB(mr avo.Operand) { ctx.DIVB(mr) }
+func DIVB(mr operand.Op) { ctx.DIVB(mr) }
 
-func (c *Context) DIVL(mr avo.Operand) {
+func (c *Context) DIVL(mr operand.Op) {
 	if inst, err := x86.DIVL(mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func DIVL(mr avo.Operand) { ctx.DIVL(mr) }
+func DIVL(mr operand.Op) { ctx.DIVL(mr) }
 
-func (c *Context) DIVPD(mx, x avo.Operand) {
+func (c *Context) DIVPD(mx, x operand.Op) {
 	if inst, err := x86.DIVPD(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func DIVPD(mx, x avo.Operand) { ctx.DIVPD(mx, x) }
+func DIVPD(mx, x operand.Op) { ctx.DIVPD(mx, x) }
 
-func (c *Context) DIVPS(mx, x avo.Operand) {
+func (c *Context) DIVPS(mx, x operand.Op) {
 	if inst, err := x86.DIVPS(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func DIVPS(mx, x avo.Operand) { ctx.DIVPS(mx, x) }
+func DIVPS(mx, x operand.Op) { ctx.DIVPS(mx, x) }
 
-func (c *Context) DIVQ(mr avo.Operand) {
+func (c *Context) DIVQ(mr operand.Op) {
 	if inst, err := x86.DIVQ(mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func DIVQ(mr avo.Operand) { ctx.DIVQ(mr) }
+func DIVQ(mr operand.Op) { ctx.DIVQ(mr) }
 
-func (c *Context) DIVSD(mx, x avo.Operand) {
+func (c *Context) DIVSD(mx, x operand.Op) {
 	if inst, err := x86.DIVSD(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func DIVSD(mx, x avo.Operand) { ctx.DIVSD(mx, x) }
+func DIVSD(mx, x operand.Op) { ctx.DIVSD(mx, x) }
 
-func (c *Context) DIVSS(mx, x avo.Operand) {
+func (c *Context) DIVSS(mx, x operand.Op) {
 	if inst, err := x86.DIVSS(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func DIVSS(mx, x avo.Operand) { ctx.DIVSS(mx, x) }
+func DIVSS(mx, x operand.Op) { ctx.DIVSS(mx, x) }
 
-func (c *Context) DIVW(mr avo.Operand) {
+func (c *Context) DIVW(mr operand.Op) {
 	if inst, err := x86.DIVW(mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func DIVW(mr avo.Operand) { ctx.DIVW(mr) }
+func DIVW(mr operand.Op) { ctx.DIVW(mr) }
 
-func (c *Context) DPPD(i, mx, x avo.Operand) {
+func (c *Context) DPPD(i, mx, x operand.Op) {
 	if inst, err := x86.DPPD(i, mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func DPPD(i, mx, x avo.Operand) { ctx.DPPD(i, mx, x) }
+func DPPD(i, mx, x operand.Op) { ctx.DPPD(i, mx, x) }
 
-func (c *Context) DPPS(i, mx, x avo.Operand) {
+func (c *Context) DPPS(i, mx, x operand.Op) {
 	if inst, err := x86.DPPS(i, mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func DPPS(i, mx, x avo.Operand) { ctx.DPPS(i, mx, x) }
+func DPPS(i, mx, x operand.Op) { ctx.DPPS(i, mx, x) }
 
-func (c *Context) EXTRACTPS(i, x, mr avo.Operand) {
+func (c *Context) EXTRACTPS(i, x, mr operand.Op) {
 	if inst, err := x86.EXTRACTPS(i, x, mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func EXTRACTPS(i, x, mr avo.Operand) { ctx.EXTRACTPS(i, x, mr) }
+func EXTRACTPS(i, x, mr operand.Op) { ctx.EXTRACTPS(i, x, mr) }
 
-func (c *Context) HADDPD(mx, x avo.Operand) {
+func (c *Context) HADDPD(mx, x operand.Op) {
 	if inst, err := x86.HADDPD(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func HADDPD(mx, x avo.Operand) { ctx.HADDPD(mx, x) }
+func HADDPD(mx, x operand.Op) { ctx.HADDPD(mx, x) }
 
-func (c *Context) HADDPS(mx, x avo.Operand) {
+func (c *Context) HADDPS(mx, x operand.Op) {
 	if inst, err := x86.HADDPS(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func HADDPS(mx, x avo.Operand) { ctx.HADDPS(mx, x) }
+func HADDPS(mx, x operand.Op) { ctx.HADDPS(mx, x) }
 
-func (c *Context) HSUBPD(mx, x avo.Operand) {
+func (c *Context) HSUBPD(mx, x operand.Op) {
 	if inst, err := x86.HSUBPD(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func HSUBPD(mx, x avo.Operand) { ctx.HSUBPD(mx, x) }
+func HSUBPD(mx, x operand.Op) { ctx.HSUBPD(mx, x) }
 
-func (c *Context) HSUBPS(mx, x avo.Operand) {
+func (c *Context) HSUBPS(mx, x operand.Op) {
 	if inst, err := x86.HSUBPS(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func HSUBPS(mx, x avo.Operand) { ctx.HSUBPS(mx, x) }
+func HSUBPS(mx, x operand.Op) { ctx.HSUBPS(mx, x) }
 
-func (c *Context) IDIVB(mr avo.Operand) {
+func (c *Context) IDIVB(mr operand.Op) {
 	if inst, err := x86.IDIVB(mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func IDIVB(mr avo.Operand) { ctx.IDIVB(mr) }
+func IDIVB(mr operand.Op) { ctx.IDIVB(mr) }
 
-func (c *Context) IDIVL(mr avo.Operand) {
+func (c *Context) IDIVL(mr operand.Op) {
 	if inst, err := x86.IDIVL(mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func IDIVL(mr avo.Operand) { ctx.IDIVL(mr) }
+func IDIVL(mr operand.Op) { ctx.IDIVL(mr) }
 
-func (c *Context) IDIVQ(mr avo.Operand) {
+func (c *Context) IDIVQ(mr operand.Op) {
 	if inst, err := x86.IDIVQ(mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func IDIVQ(mr avo.Operand) { ctx.IDIVQ(mr) }
+func IDIVQ(mr operand.Op) { ctx.IDIVQ(mr) }
 
-func (c *Context) IDIVW(mr avo.Operand) {
+func (c *Context) IDIVW(mr operand.Op) {
 	if inst, err := x86.IDIVW(mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func IDIVW(mr avo.Operand) { ctx.IDIVW(mr) }
+func IDIVW(mr operand.Op) { ctx.IDIVW(mr) }
 
-func (c *Context) IMUL3L(i, mr, r avo.Operand) {
+func (c *Context) IMUL3L(i, mr, r operand.Op) {
 	if inst, err := x86.IMUL3L(i, mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func IMUL3L(i, mr, r avo.Operand) { ctx.IMUL3L(i, mr, r) }
+func IMUL3L(i, mr, r operand.Op) { ctx.IMUL3L(i, mr, r) }
 
-func (c *Context) IMUL3Q(i, mr, r avo.Operand) {
+func (c *Context) IMUL3Q(i, mr, r operand.Op) {
 	if inst, err := x86.IMUL3Q(i, mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func IMUL3Q(i, mr, r avo.Operand) { ctx.IMUL3Q(i, mr, r) }
+func IMUL3Q(i, mr, r operand.Op) { ctx.IMUL3Q(i, mr, r) }
 
-func (c *Context) IMUL3W(i, mr, r avo.Operand) {
+func (c *Context) IMUL3W(i, mr, r operand.Op) {
 	if inst, err := x86.IMUL3W(i, mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func IMUL3W(i, mr, r avo.Operand) { ctx.IMUL3W(i, mr, r) }
+func IMUL3W(i, mr, r operand.Op) { ctx.IMUL3W(i, mr, r) }
 
-func (c *Context) IMULB(mr avo.Operand) {
+func (c *Context) IMULB(mr operand.Op) {
 	if inst, err := x86.IMULB(mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func IMULB(mr avo.Operand) { ctx.IMULB(mr) }
+func IMULB(mr operand.Op) { ctx.IMULB(mr) }
 
-func (c *Context) IMULL(ops ...avo.Operand) {
+func (c *Context) IMULL(ops ...operand.Op) {
 	if inst, err := x86.IMULL(ops...); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func IMULL(ops ...avo.Operand) { ctx.IMULL(ops...) }
+func IMULL(ops ...operand.Op) { ctx.IMULL(ops...) }
 
-func (c *Context) IMULQ(ops ...avo.Operand) {
+func (c *Context) IMULQ(ops ...operand.Op) {
 	if inst, err := x86.IMULQ(ops...); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func IMULQ(ops ...avo.Operand) { ctx.IMULQ(ops...) }
+func IMULQ(ops ...operand.Op) { ctx.IMULQ(ops...) }
 
-func (c *Context) IMULW(ops ...avo.Operand) {
+func (c *Context) IMULW(ops ...operand.Op) {
 	if inst, err := x86.IMULW(ops...); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func IMULW(ops ...avo.Operand) { ctx.IMULW(ops...) }
+func IMULW(ops ...operand.Op) { ctx.IMULW(ops...) }
 
-func (c *Context) INCB(mr avo.Operand) {
+func (c *Context) INCB(mr operand.Op) {
 	if inst, err := x86.INCB(mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func INCB(mr avo.Operand) { ctx.INCB(mr) }
+func INCB(mr operand.Op) { ctx.INCB(mr) }
 
-func (c *Context) INCL(mr avo.Operand) {
+func (c *Context) INCL(mr operand.Op) {
 	if inst, err := x86.INCL(mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func INCL(mr avo.Operand) { ctx.INCL(mr) }
+func INCL(mr operand.Op) { ctx.INCL(mr) }
 
-func (c *Context) INCQ(mr avo.Operand) {
+func (c *Context) INCQ(mr operand.Op) {
 	if inst, err := x86.INCQ(mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func INCQ(mr avo.Operand) { ctx.INCQ(mr) }
+func INCQ(mr operand.Op) { ctx.INCQ(mr) }
 
-func (c *Context) INCW(mr avo.Operand) {
+func (c *Context) INCW(mr operand.Op) {
 	if inst, err := x86.INCW(mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func INCW(mr avo.Operand) { ctx.INCW(mr) }
+func INCW(mr operand.Op) { ctx.INCW(mr) }
 
-func (c *Context) INSERTPS(i, mx, x avo.Operand) {
+func (c *Context) INSERTPS(i, mx, x operand.Op) {
 	if inst, err := x86.INSERTPS(i, mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func INSERTPS(i, mx, x avo.Operand) { ctx.INSERTPS(i, mx, x) }
+func INSERTPS(i, mx, x operand.Op) { ctx.INSERTPS(i, mx, x) }
 
-func (c *Context) INT(i avo.Operand) {
+func (c *Context) INT(i operand.Op) {
 	if inst, err := x86.INT(i); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func INT(i avo.Operand) { ctx.INT(i) }
+func INT(i operand.Op) { ctx.INT(i) }
 
-func (c *Context) JA(r avo.Operand) {
+func (c *Context) JA(r operand.Op) {
 	if inst, err := x86.JA(r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func JA(r avo.Operand) { ctx.JA(r) }
+func JA(r operand.Op) { ctx.JA(r) }
 
-func (c *Context) JAE(r avo.Operand) {
+func (c *Context) JAE(r operand.Op) {
 	if inst, err := x86.JAE(r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func JAE(r avo.Operand) { ctx.JAE(r) }
+func JAE(r operand.Op) { ctx.JAE(r) }
 
-func (c *Context) JB(r avo.Operand) {
+func (c *Context) JB(r operand.Op) {
 	if inst, err := x86.JB(r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func JB(r avo.Operand) { ctx.JB(r) }
+func JB(r operand.Op) { ctx.JB(r) }
 
-func (c *Context) JBE(r avo.Operand) {
+func (c *Context) JBE(r operand.Op) {
 	if inst, err := x86.JBE(r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func JBE(r avo.Operand) { ctx.JBE(r) }
+func JBE(r operand.Op) { ctx.JBE(r) }
 
-func (c *Context) JC(r avo.Operand) {
+func (c *Context) JC(r operand.Op) {
 	if inst, err := x86.JC(r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func JC(r avo.Operand) { ctx.JC(r) }
+func JC(r operand.Op) { ctx.JC(r) }
 
-func (c *Context) JCC(r avo.Operand) {
+func (c *Context) JCC(r operand.Op) {
 	if inst, err := x86.JCC(r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func JCC(r avo.Operand) { ctx.JCC(r) }
+func JCC(r operand.Op) { ctx.JCC(r) }
 
-func (c *Context) JCS(r avo.Operand) {
+func (c *Context) JCS(r operand.Op) {
 	if inst, err := x86.JCS(r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func JCS(r avo.Operand) { ctx.JCS(r) }
+func JCS(r operand.Op) { ctx.JCS(r) }
 
-func (c *Context) JCXZL(r avo.Operand) {
+func (c *Context) JCXZL(r operand.Op) {
 	if inst, err := x86.JCXZL(r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func JCXZL(r avo.Operand) { ctx.JCXZL(r) }
+func JCXZL(r operand.Op) { ctx.JCXZL(r) }
 
-func (c *Context) JCXZQ(r avo.Operand) {
+func (c *Context) JCXZQ(r operand.Op) {
 	if inst, err := x86.JCXZQ(r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func JCXZQ(r avo.Operand) { ctx.JCXZQ(r) }
+func JCXZQ(r operand.Op) { ctx.JCXZQ(r) }
 
-func (c *Context) JE(r avo.Operand) {
+func (c *Context) JE(r operand.Op) {
 	if inst, err := x86.JE(r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func JE(r avo.Operand) { ctx.JE(r) }
+func JE(r operand.Op) { ctx.JE(r) }
 
-func (c *Context) JEQ(r avo.Operand) {
+func (c *Context) JEQ(r operand.Op) {
 	if inst, err := x86.JEQ(r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func JEQ(r avo.Operand) { ctx.JEQ(r) }
+func JEQ(r operand.Op) { ctx.JEQ(r) }
 
-func (c *Context) JG(r avo.Operand) {
+func (c *Context) JG(r operand.Op) {
 	if inst, err := x86.JG(r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func JG(r avo.Operand) { ctx.JG(r) }
+func JG(r operand.Op) { ctx.JG(r) }
 
-func (c *Context) JGE(r avo.Operand) {
+func (c *Context) JGE(r operand.Op) {
 	if inst, err := x86.JGE(r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func JGE(r avo.Operand) { ctx.JGE(r) }
+func JGE(r operand.Op) { ctx.JGE(r) }
 
-func (c *Context) JGT(r avo.Operand) {
+func (c *Context) JGT(r operand.Op) {
 	if inst, err := x86.JGT(r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func JGT(r avo.Operand) { ctx.JGT(r) }
+func JGT(r operand.Op) { ctx.JGT(r) }
 
-func (c *Context) JHI(r avo.Operand) {
+func (c *Context) JHI(r operand.Op) {
 	if inst, err := x86.JHI(r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func JHI(r avo.Operand) { ctx.JHI(r) }
+func JHI(r operand.Op) { ctx.JHI(r) }
 
-func (c *Context) JHS(r avo.Operand) {
+func (c *Context) JHS(r operand.Op) {
 	if inst, err := x86.JHS(r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func JHS(r avo.Operand) { ctx.JHS(r) }
+func JHS(r operand.Op) { ctx.JHS(r) }
 
-func (c *Context) JL(r avo.Operand) {
+func (c *Context) JL(r operand.Op) {
 	if inst, err := x86.JL(r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func JL(r avo.Operand) { ctx.JL(r) }
+func JL(r operand.Op) { ctx.JL(r) }
 
-func (c *Context) JLE(r avo.Operand) {
+func (c *Context) JLE(r operand.Op) {
 	if inst, err := x86.JLE(r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func JLE(r avo.Operand) { ctx.JLE(r) }
+func JLE(r operand.Op) { ctx.JLE(r) }
 
-func (c *Context) JLO(r avo.Operand) {
+func (c *Context) JLO(r operand.Op) {
 	if inst, err := x86.JLO(r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func JLO(r avo.Operand) { ctx.JLO(r) }
+func JLO(r operand.Op) { ctx.JLO(r) }
 
-func (c *Context) JLS(r avo.Operand) {
+func (c *Context) JLS(r operand.Op) {
 	if inst, err := x86.JLS(r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func JLS(r avo.Operand) { ctx.JLS(r) }
+func JLS(r operand.Op) { ctx.JLS(r) }
 
-func (c *Context) JLT(r avo.Operand) {
+func (c *Context) JLT(r operand.Op) {
 	if inst, err := x86.JLT(r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func JLT(r avo.Operand) { ctx.JLT(r) }
+func JLT(r operand.Op) { ctx.JLT(r) }
 
-func (c *Context) JMI(r avo.Operand) {
+func (c *Context) JMI(r operand.Op) {
 	if inst, err := x86.JMI(r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func JMI(r avo.Operand) { ctx.JMI(r) }
+func JMI(r operand.Op) { ctx.JMI(r) }
 
-func (c *Context) JMP(mr avo.Operand) {
+func (c *Context) JMP(mr operand.Op) {
 	if inst, err := x86.JMP(mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func JMP(mr avo.Operand) { ctx.JMP(mr) }
+func JMP(mr operand.Op) { ctx.JMP(mr) }
 
-func (c *Context) JNA(r avo.Operand) {
+func (c *Context) JNA(r operand.Op) {
 	if inst, err := x86.JNA(r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func JNA(r avo.Operand) { ctx.JNA(r) }
+func JNA(r operand.Op) { ctx.JNA(r) }
 
-func (c *Context) JNAE(r avo.Operand) {
+func (c *Context) JNAE(r operand.Op) {
 	if inst, err := x86.JNAE(r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func JNAE(r avo.Operand) { ctx.JNAE(r) }
+func JNAE(r operand.Op) { ctx.JNAE(r) }
 
-func (c *Context) JNB(r avo.Operand) {
+func (c *Context) JNB(r operand.Op) {
 	if inst, err := x86.JNB(r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func JNB(r avo.Operand) { ctx.JNB(r) }
+func JNB(r operand.Op) { ctx.JNB(r) }
 
-func (c *Context) JNBE(r avo.Operand) {
+func (c *Context) JNBE(r operand.Op) {
 	if inst, err := x86.JNBE(r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func JNBE(r avo.Operand) { ctx.JNBE(r) }
+func JNBE(r operand.Op) { ctx.JNBE(r) }
 
-func (c *Context) JNC(r avo.Operand) {
+func (c *Context) JNC(r operand.Op) {
 	if inst, err := x86.JNC(r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func JNC(r avo.Operand) { ctx.JNC(r) }
+func JNC(r operand.Op) { ctx.JNC(r) }
 
-func (c *Context) JNE(r avo.Operand) {
+func (c *Context) JNE(r operand.Op) {
 	if inst, err := x86.JNE(r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func JNE(r avo.Operand) { ctx.JNE(r) }
+func JNE(r operand.Op) { ctx.JNE(r) }
 
-func (c *Context) JNG(r avo.Operand) {
+func (c *Context) JNG(r operand.Op) {
 	if inst, err := x86.JNG(r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func JNG(r avo.Operand) { ctx.JNG(r) }
+func JNG(r operand.Op) { ctx.JNG(r) }
 
-func (c *Context) JNGE(r avo.Operand) {
+func (c *Context) JNGE(r operand.Op) {
 	if inst, err := x86.JNGE(r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func JNGE(r avo.Operand) { ctx.JNGE(r) }
+func JNGE(r operand.Op) { ctx.JNGE(r) }
 
-func (c *Context) JNL(r avo.Operand) {
+func (c *Context) JNL(r operand.Op) {
 	if inst, err := x86.JNL(r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func JNL(r avo.Operand) { ctx.JNL(r) }
+func JNL(r operand.Op) { ctx.JNL(r) }
 
-func (c *Context) JNLE(r avo.Operand) {
+func (c *Context) JNLE(r operand.Op) {
 	if inst, err := x86.JNLE(r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func JNLE(r avo.Operand) { ctx.JNLE(r) }
+func JNLE(r operand.Op) { ctx.JNLE(r) }
 
-func (c *Context) JNO(r avo.Operand) {
+func (c *Context) JNO(r operand.Op) {
 	if inst, err := x86.JNO(r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func JNO(r avo.Operand) { ctx.JNO(r) }
+func JNO(r operand.Op) { ctx.JNO(r) }
 
-func (c *Context) JNP(r avo.Operand) {
+func (c *Context) JNP(r operand.Op) {
 	if inst, err := x86.JNP(r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func JNP(r avo.Operand) { ctx.JNP(r) }
+func JNP(r operand.Op) { ctx.JNP(r) }
 
-func (c *Context) JNS(r avo.Operand) {
+func (c *Context) JNS(r operand.Op) {
 	if inst, err := x86.JNS(r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func JNS(r avo.Operand) { ctx.JNS(r) }
+func JNS(r operand.Op) { ctx.JNS(r) }
 
-func (c *Context) JNZ(r avo.Operand) {
+func (c *Context) JNZ(r operand.Op) {
 	if inst, err := x86.JNZ(r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func JNZ(r avo.Operand) { ctx.JNZ(r) }
+func JNZ(r operand.Op) { ctx.JNZ(r) }
 
-func (c *Context) JO(r avo.Operand) {
+func (c *Context) JO(r operand.Op) {
 	if inst, err := x86.JO(r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func JO(r avo.Operand) { ctx.JO(r) }
+func JO(r operand.Op) { ctx.JO(r) }
 
-func (c *Context) JOC(r avo.Operand) {
+func (c *Context) JOC(r operand.Op) {
 	if inst, err := x86.JOC(r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func JOC(r avo.Operand) { ctx.JOC(r) }
+func JOC(r operand.Op) { ctx.JOC(r) }
 
-func (c *Context) JOS(r avo.Operand) {
+func (c *Context) JOS(r operand.Op) {
 	if inst, err := x86.JOS(r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func JOS(r avo.Operand) { ctx.JOS(r) }
+func JOS(r operand.Op) { ctx.JOS(r) }
 
-func (c *Context) JP(r avo.Operand) {
+func (c *Context) JP(r operand.Op) {
 	if inst, err := x86.JP(r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func JP(r avo.Operand) { ctx.JP(r) }
+func JP(r operand.Op) { ctx.JP(r) }
 
-func (c *Context) JPC(r avo.Operand) {
+func (c *Context) JPC(r operand.Op) {
 	if inst, err := x86.JPC(r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func JPC(r avo.Operand) { ctx.JPC(r) }
+func JPC(r operand.Op) { ctx.JPC(r) }
 
-func (c *Context) JPE(r avo.Operand) {
+func (c *Context) JPE(r operand.Op) {
 	if inst, err := x86.JPE(r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func JPE(r avo.Operand) { ctx.JPE(r) }
+func JPE(r operand.Op) { ctx.JPE(r) }
 
-func (c *Context) JPL(r avo.Operand) {
+func (c *Context) JPL(r operand.Op) {
 	if inst, err := x86.JPL(r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func JPL(r avo.Operand) { ctx.JPL(r) }
+func JPL(r operand.Op) { ctx.JPL(r) }
 
-func (c *Context) JPO(r avo.Operand) {
+func (c *Context) JPO(r operand.Op) {
 	if inst, err := x86.JPO(r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func JPO(r avo.Operand) { ctx.JPO(r) }
+func JPO(r operand.Op) { ctx.JPO(r) }
 
-func (c *Context) JPS(r avo.Operand) {
+func (c *Context) JPS(r operand.Op) {
 	if inst, err := x86.JPS(r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func JPS(r avo.Operand) { ctx.JPS(r) }
+func JPS(r operand.Op) { ctx.JPS(r) }
 
-func (c *Context) JS(r avo.Operand) {
+func (c *Context) JS(r operand.Op) {
 	if inst, err := x86.JS(r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func JS(r avo.Operand) { ctx.JS(r) }
+func JS(r operand.Op) { ctx.JS(r) }
 
-func (c *Context) JZ(r avo.Operand) {
+func (c *Context) JZ(r operand.Op) {
 	if inst, err := x86.JZ(r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func JZ(r avo.Operand) { ctx.JZ(r) }
+func JZ(r operand.Op) { ctx.JZ(r) }
 
-func (c *Context) LDDQU(m, x avo.Operand) {
+func (c *Context) LDDQU(m, x operand.Op) {
 	if inst, err := x86.LDDQU(m, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func LDDQU(m, x avo.Operand) { ctx.LDDQU(m, x) }
+func LDDQU(m, x operand.Op) { ctx.LDDQU(m, x) }
 
-func (c *Context) LDMXCSR(m avo.Operand) {
+func (c *Context) LDMXCSR(m operand.Op) {
 	if inst, err := x86.LDMXCSR(m); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func LDMXCSR(m avo.Operand) { ctx.LDMXCSR(m) }
+func LDMXCSR(m operand.Op) { ctx.LDMXCSR(m) }
 
-func (c *Context) LEAL(m, r avo.Operand) {
+func (c *Context) LEAL(m, r operand.Op) {
 	if inst, err := x86.LEAL(m, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func LEAL(m, r avo.Operand) { ctx.LEAL(m, r) }
+func LEAL(m, r operand.Op) { ctx.LEAL(m, r) }
 
-func (c *Context) LEAQ(m, r avo.Operand) {
+func (c *Context) LEAQ(m, r operand.Op) {
 	if inst, err := x86.LEAQ(m, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func LEAQ(m, r avo.Operand) { ctx.LEAQ(m, r) }
+func LEAQ(m, r operand.Op) { ctx.LEAQ(m, r) }
 
-func (c *Context) LEAW(m, r avo.Operand) {
+func (c *Context) LEAW(m, r operand.Op) {
 	if inst, err := x86.LEAW(m, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func LEAW(m, r avo.Operand) { ctx.LEAW(m, r) }
+func LEAW(m, r operand.Op) { ctx.LEAW(m, r) }
 
 func (c *Context) LFENCE() {
 	if inst, err := x86.LFENCE(); err == nil {
@@ -2329,86 +2329,86 @@ func (c *Context) LFENCE() {
 }
 func LFENCE() { ctx.LFENCE() }
 
-func (c *Context) LZCNTL(mr, r avo.Operand) {
+func (c *Context) LZCNTL(mr, r operand.Op) {
 	if inst, err := x86.LZCNTL(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func LZCNTL(mr, r avo.Operand) { ctx.LZCNTL(mr, r) }
+func LZCNTL(mr, r operand.Op) { ctx.LZCNTL(mr, r) }
 
-func (c *Context) LZCNTQ(mr, r avo.Operand) {
+func (c *Context) LZCNTQ(mr, r operand.Op) {
 	if inst, err := x86.LZCNTQ(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func LZCNTQ(mr, r avo.Operand) { ctx.LZCNTQ(mr, r) }
+func LZCNTQ(mr, r operand.Op) { ctx.LZCNTQ(mr, r) }
 
-func (c *Context) LZCNTW(mr, r avo.Operand) {
+func (c *Context) LZCNTW(mr, r operand.Op) {
 	if inst, err := x86.LZCNTW(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func LZCNTW(mr, r avo.Operand) { ctx.LZCNTW(mr, r) }
+func LZCNTW(mr, r operand.Op) { ctx.LZCNTW(mr, r) }
 
-func (c *Context) MASKMOVDQU(x, x1 avo.Operand) {
+func (c *Context) MASKMOVDQU(x, x1 operand.Op) {
 	if inst, err := x86.MASKMOVDQU(x, x1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func MASKMOVDQU(x, x1 avo.Operand) { ctx.MASKMOVDQU(x, x1) }
+func MASKMOVDQU(x, x1 operand.Op) { ctx.MASKMOVDQU(x, x1) }
 
-func (c *Context) MASKMOVOU(x, x1 avo.Operand) {
+func (c *Context) MASKMOVOU(x, x1 operand.Op) {
 	if inst, err := x86.MASKMOVOU(x, x1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func MASKMOVOU(x, x1 avo.Operand) { ctx.MASKMOVOU(x, x1) }
+func MASKMOVOU(x, x1 operand.Op) { ctx.MASKMOVOU(x, x1) }
 
-func (c *Context) MAXPD(mx, x avo.Operand) {
+func (c *Context) MAXPD(mx, x operand.Op) {
 	if inst, err := x86.MAXPD(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func MAXPD(mx, x avo.Operand) { ctx.MAXPD(mx, x) }
+func MAXPD(mx, x operand.Op) { ctx.MAXPD(mx, x) }
 
-func (c *Context) MAXPS(mx, x avo.Operand) {
+func (c *Context) MAXPS(mx, x operand.Op) {
 	if inst, err := x86.MAXPS(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func MAXPS(mx, x avo.Operand) { ctx.MAXPS(mx, x) }
+func MAXPS(mx, x operand.Op) { ctx.MAXPS(mx, x) }
 
-func (c *Context) MAXSD(mx, x avo.Operand) {
+func (c *Context) MAXSD(mx, x operand.Op) {
 	if inst, err := x86.MAXSD(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func MAXSD(mx, x avo.Operand) { ctx.MAXSD(mx, x) }
+func MAXSD(mx, x operand.Op) { ctx.MAXSD(mx, x) }
 
-func (c *Context) MAXSS(mx, x avo.Operand) {
+func (c *Context) MAXSS(mx, x operand.Op) {
 	if inst, err := x86.MAXSS(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func MAXSS(mx, x avo.Operand) { ctx.MAXSS(mx, x) }
+func MAXSS(mx, x operand.Op) { ctx.MAXSS(mx, x) }
 
 func (c *Context) MFENCE() {
 	if inst, err := x86.MFENCE(); err == nil {
@@ -2419,41 +2419,41 @@ func (c *Context) MFENCE() {
 }
 func MFENCE() { ctx.MFENCE() }
 
-func (c *Context) MINPD(mx, x avo.Operand) {
+func (c *Context) MINPD(mx, x operand.Op) {
 	if inst, err := x86.MINPD(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func MINPD(mx, x avo.Operand) { ctx.MINPD(mx, x) }
+func MINPD(mx, x operand.Op) { ctx.MINPD(mx, x) }
 
-func (c *Context) MINPS(mx, x avo.Operand) {
+func (c *Context) MINPS(mx, x operand.Op) {
 	if inst, err := x86.MINPS(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func MINPS(mx, x avo.Operand) { ctx.MINPS(mx, x) }
+func MINPS(mx, x operand.Op) { ctx.MINPS(mx, x) }
 
-func (c *Context) MINSD(mx, x avo.Operand) {
+func (c *Context) MINSD(mx, x operand.Op) {
 	if inst, err := x86.MINSD(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func MINSD(mx, x avo.Operand) { ctx.MINSD(mx, x) }
+func MINSD(mx, x operand.Op) { ctx.MINSD(mx, x) }
 
-func (c *Context) MINSS(mx, x avo.Operand) {
+func (c *Context) MINSS(mx, x operand.Op) {
 	if inst, err := x86.MINSS(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func MINSS(mx, x avo.Operand) { ctx.MINSS(mx, x) }
+func MINSS(mx, x operand.Op) { ctx.MINSS(mx, x) }
 
 func (c *Context) MONITOR() {
 	if inst, err := x86.MONITOR(); err == nil {
@@ -2464,536 +2464,536 @@ func (c *Context) MONITOR() {
 }
 func MONITOR() { ctx.MONITOR() }
 
-func (c *Context) MOVAPD(mx, mx1 avo.Operand) {
+func (c *Context) MOVAPD(mx, mx1 operand.Op) {
 	if inst, err := x86.MOVAPD(mx, mx1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func MOVAPD(mx, mx1 avo.Operand) { ctx.MOVAPD(mx, mx1) }
+func MOVAPD(mx, mx1 operand.Op) { ctx.MOVAPD(mx, mx1) }
 
-func (c *Context) MOVAPS(mx, mx1 avo.Operand) {
+func (c *Context) MOVAPS(mx, mx1 operand.Op) {
 	if inst, err := x86.MOVAPS(mx, mx1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func MOVAPS(mx, mx1 avo.Operand) { ctx.MOVAPS(mx, mx1) }
+func MOVAPS(mx, mx1 operand.Op) { ctx.MOVAPS(mx, mx1) }
 
-func (c *Context) MOVB(imr, mr avo.Operand) {
+func (c *Context) MOVB(imr, mr operand.Op) {
 	if inst, err := x86.MOVB(imr, mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func MOVB(imr, mr avo.Operand) { ctx.MOVB(imr, mr) }
+func MOVB(imr, mr operand.Op) { ctx.MOVB(imr, mr) }
 
-func (c *Context) MOVBELL(mr, mr1 avo.Operand) {
+func (c *Context) MOVBELL(mr, mr1 operand.Op) {
 	if inst, err := x86.MOVBELL(mr, mr1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func MOVBELL(mr, mr1 avo.Operand) { ctx.MOVBELL(mr, mr1) }
+func MOVBELL(mr, mr1 operand.Op) { ctx.MOVBELL(mr, mr1) }
 
-func (c *Context) MOVBEQQ(mr, mr1 avo.Operand) {
+func (c *Context) MOVBEQQ(mr, mr1 operand.Op) {
 	if inst, err := x86.MOVBEQQ(mr, mr1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func MOVBEQQ(mr, mr1 avo.Operand) { ctx.MOVBEQQ(mr, mr1) }
+func MOVBEQQ(mr, mr1 operand.Op) { ctx.MOVBEQQ(mr, mr1) }
 
-func (c *Context) MOVBEWW(mr, mr1 avo.Operand) {
+func (c *Context) MOVBEWW(mr, mr1 operand.Op) {
 	if inst, err := x86.MOVBEWW(mr, mr1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func MOVBEWW(mr, mr1 avo.Operand) { ctx.MOVBEWW(mr, mr1) }
+func MOVBEWW(mr, mr1 operand.Op) { ctx.MOVBEWW(mr, mr1) }
 
-func (c *Context) MOVBLSX(mr, r avo.Operand) {
+func (c *Context) MOVBLSX(mr, r operand.Op) {
 	if inst, err := x86.MOVBLSX(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func MOVBLSX(mr, r avo.Operand) { ctx.MOVBLSX(mr, r) }
+func MOVBLSX(mr, r operand.Op) { ctx.MOVBLSX(mr, r) }
 
-func (c *Context) MOVBLZX(mr, r avo.Operand) {
+func (c *Context) MOVBLZX(mr, r operand.Op) {
 	if inst, err := x86.MOVBLZX(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func MOVBLZX(mr, r avo.Operand) { ctx.MOVBLZX(mr, r) }
+func MOVBLZX(mr, r operand.Op) { ctx.MOVBLZX(mr, r) }
 
-func (c *Context) MOVBQSX(mr, r avo.Operand) {
+func (c *Context) MOVBQSX(mr, r operand.Op) {
 	if inst, err := x86.MOVBQSX(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func MOVBQSX(mr, r avo.Operand) { ctx.MOVBQSX(mr, r) }
+func MOVBQSX(mr, r operand.Op) { ctx.MOVBQSX(mr, r) }
 
-func (c *Context) MOVBQZX(mr, r avo.Operand) {
+func (c *Context) MOVBQZX(mr, r operand.Op) {
 	if inst, err := x86.MOVBQZX(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func MOVBQZX(mr, r avo.Operand) { ctx.MOVBQZX(mr, r) }
+func MOVBQZX(mr, r operand.Op) { ctx.MOVBQZX(mr, r) }
 
-func (c *Context) MOVBWSX(mr, r avo.Operand) {
+func (c *Context) MOVBWSX(mr, r operand.Op) {
 	if inst, err := x86.MOVBWSX(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func MOVBWSX(mr, r avo.Operand) { ctx.MOVBWSX(mr, r) }
+func MOVBWSX(mr, r operand.Op) { ctx.MOVBWSX(mr, r) }
 
-func (c *Context) MOVBWZX(mr, r avo.Operand) {
+func (c *Context) MOVBWZX(mr, r operand.Op) {
 	if inst, err := x86.MOVBWZX(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func MOVBWZX(mr, r avo.Operand) { ctx.MOVBWZX(mr, r) }
+func MOVBWZX(mr, r operand.Op) { ctx.MOVBWZX(mr, r) }
 
-func (c *Context) MOVD(imrx, mrx avo.Operand) {
+func (c *Context) MOVD(imrx, mrx operand.Op) {
 	if inst, err := x86.MOVD(imrx, mrx); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func MOVD(imrx, mrx avo.Operand) { ctx.MOVD(imrx, mrx) }
+func MOVD(imrx, mrx operand.Op) { ctx.MOVD(imrx, mrx) }
 
-func (c *Context) MOVDDUP(mx, x avo.Operand) {
+func (c *Context) MOVDDUP(mx, x operand.Op) {
 	if inst, err := x86.MOVDDUP(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func MOVDDUP(mx, x avo.Operand) { ctx.MOVDDUP(mx, x) }
+func MOVDDUP(mx, x operand.Op) { ctx.MOVDDUP(mx, x) }
 
-func (c *Context) MOVDQ2Q(imrx, mrx avo.Operand) {
+func (c *Context) MOVDQ2Q(imrx, mrx operand.Op) {
 	if inst, err := x86.MOVDQ2Q(imrx, mrx); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func MOVDQ2Q(imrx, mrx avo.Operand) { ctx.MOVDQ2Q(imrx, mrx) }
+func MOVDQ2Q(imrx, mrx operand.Op) { ctx.MOVDQ2Q(imrx, mrx) }
 
-func (c *Context) MOVHLPS(x, x1 avo.Operand) {
+func (c *Context) MOVHLPS(x, x1 operand.Op) {
 	if inst, err := x86.MOVHLPS(x, x1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func MOVHLPS(x, x1 avo.Operand) { ctx.MOVHLPS(x, x1) }
+func MOVHLPS(x, x1 operand.Op) { ctx.MOVHLPS(x, x1) }
 
-func (c *Context) MOVHPD(mx, mx1 avo.Operand) {
+func (c *Context) MOVHPD(mx, mx1 operand.Op) {
 	if inst, err := x86.MOVHPD(mx, mx1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func MOVHPD(mx, mx1 avo.Operand) { ctx.MOVHPD(mx, mx1) }
+func MOVHPD(mx, mx1 operand.Op) { ctx.MOVHPD(mx, mx1) }
 
-func (c *Context) MOVHPS(mx, mx1 avo.Operand) {
+func (c *Context) MOVHPS(mx, mx1 operand.Op) {
 	if inst, err := x86.MOVHPS(mx, mx1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func MOVHPS(mx, mx1 avo.Operand) { ctx.MOVHPS(mx, mx1) }
+func MOVHPS(mx, mx1 operand.Op) { ctx.MOVHPS(mx, mx1) }
 
-func (c *Context) MOVL(imr, mr avo.Operand) {
+func (c *Context) MOVL(imr, mr operand.Op) {
 	if inst, err := x86.MOVL(imr, mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func MOVL(imr, mr avo.Operand) { ctx.MOVL(imr, mr) }
+func MOVL(imr, mr operand.Op) { ctx.MOVL(imr, mr) }
 
-func (c *Context) MOVLHPS(x, x1 avo.Operand) {
+func (c *Context) MOVLHPS(x, x1 operand.Op) {
 	if inst, err := x86.MOVLHPS(x, x1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func MOVLHPS(x, x1 avo.Operand) { ctx.MOVLHPS(x, x1) }
+func MOVLHPS(x, x1 operand.Op) { ctx.MOVLHPS(x, x1) }
 
-func (c *Context) MOVLPD(mx, mx1 avo.Operand) {
+func (c *Context) MOVLPD(mx, mx1 operand.Op) {
 	if inst, err := x86.MOVLPD(mx, mx1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func MOVLPD(mx, mx1 avo.Operand) { ctx.MOVLPD(mx, mx1) }
+func MOVLPD(mx, mx1 operand.Op) { ctx.MOVLPD(mx, mx1) }
 
-func (c *Context) MOVLPS(mx, mx1 avo.Operand) {
+func (c *Context) MOVLPS(mx, mx1 operand.Op) {
 	if inst, err := x86.MOVLPS(mx, mx1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func MOVLPS(mx, mx1 avo.Operand) { ctx.MOVLPS(mx, mx1) }
+func MOVLPS(mx, mx1 operand.Op) { ctx.MOVLPS(mx, mx1) }
 
-func (c *Context) MOVLQSX(mr, r avo.Operand) {
+func (c *Context) MOVLQSX(mr, r operand.Op) {
 	if inst, err := x86.MOVLQSX(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func MOVLQSX(mr, r avo.Operand) { ctx.MOVLQSX(mr, r) }
+func MOVLQSX(mr, r operand.Op) { ctx.MOVLQSX(mr, r) }
 
-func (c *Context) MOVLQZX(m, r avo.Operand) {
+func (c *Context) MOVLQZX(m, r operand.Op) {
 	if inst, err := x86.MOVLQZX(m, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func MOVLQZX(m, r avo.Operand) { ctx.MOVLQZX(m, r) }
+func MOVLQZX(m, r operand.Op) { ctx.MOVLQZX(m, r) }
 
-func (c *Context) MOVMSKPD(x, r avo.Operand) {
+func (c *Context) MOVMSKPD(x, r operand.Op) {
 	if inst, err := x86.MOVMSKPD(x, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func MOVMSKPD(x, r avo.Operand) { ctx.MOVMSKPD(x, r) }
+func MOVMSKPD(x, r operand.Op) { ctx.MOVMSKPD(x, r) }
 
-func (c *Context) MOVMSKPS(x, r avo.Operand) {
+func (c *Context) MOVMSKPS(x, r operand.Op) {
 	if inst, err := x86.MOVMSKPS(x, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func MOVMSKPS(x, r avo.Operand) { ctx.MOVMSKPS(x, r) }
+func MOVMSKPS(x, r operand.Op) { ctx.MOVMSKPS(x, r) }
 
-func (c *Context) MOVNTDQ(x, m avo.Operand) {
+func (c *Context) MOVNTDQ(x, m operand.Op) {
 	if inst, err := x86.MOVNTDQ(x, m); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func MOVNTDQ(x, m avo.Operand) { ctx.MOVNTDQ(x, m) }
+func MOVNTDQ(x, m operand.Op) { ctx.MOVNTDQ(x, m) }
 
-func (c *Context) MOVNTDQA(m, x avo.Operand) {
+func (c *Context) MOVNTDQA(m, x operand.Op) {
 	if inst, err := x86.MOVNTDQA(m, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func MOVNTDQA(m, x avo.Operand) { ctx.MOVNTDQA(m, x) }
+func MOVNTDQA(m, x operand.Op) { ctx.MOVNTDQA(m, x) }
 
-func (c *Context) MOVNTIL(r, m avo.Operand) {
+func (c *Context) MOVNTIL(r, m operand.Op) {
 	if inst, err := x86.MOVNTIL(r, m); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func MOVNTIL(r, m avo.Operand) { ctx.MOVNTIL(r, m) }
+func MOVNTIL(r, m operand.Op) { ctx.MOVNTIL(r, m) }
 
-func (c *Context) MOVNTIQ(r, m avo.Operand) {
+func (c *Context) MOVNTIQ(r, m operand.Op) {
 	if inst, err := x86.MOVNTIQ(r, m); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func MOVNTIQ(r, m avo.Operand) { ctx.MOVNTIQ(r, m) }
+func MOVNTIQ(r, m operand.Op) { ctx.MOVNTIQ(r, m) }
 
-func (c *Context) MOVNTO(x, m avo.Operand) {
+func (c *Context) MOVNTO(x, m operand.Op) {
 	if inst, err := x86.MOVNTO(x, m); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func MOVNTO(x, m avo.Operand) { ctx.MOVNTO(x, m) }
+func MOVNTO(x, m operand.Op) { ctx.MOVNTO(x, m) }
 
-func (c *Context) MOVNTPD(x, m avo.Operand) {
+func (c *Context) MOVNTPD(x, m operand.Op) {
 	if inst, err := x86.MOVNTPD(x, m); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func MOVNTPD(x, m avo.Operand) { ctx.MOVNTPD(x, m) }
+func MOVNTPD(x, m operand.Op) { ctx.MOVNTPD(x, m) }
 
-func (c *Context) MOVNTPS(x, m avo.Operand) {
+func (c *Context) MOVNTPS(x, m operand.Op) {
 	if inst, err := x86.MOVNTPS(x, m); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func MOVNTPS(x, m avo.Operand) { ctx.MOVNTPS(x, m) }
+func MOVNTPS(x, m operand.Op) { ctx.MOVNTPS(x, m) }
 
-func (c *Context) MOVO(mx, mx1 avo.Operand) {
+func (c *Context) MOVO(mx, mx1 operand.Op) {
 	if inst, err := x86.MOVO(mx, mx1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func MOVO(mx, mx1 avo.Operand) { ctx.MOVO(mx, mx1) }
+func MOVO(mx, mx1 operand.Op) { ctx.MOVO(mx, mx1) }
 
-func (c *Context) MOVOA(mx, mx1 avo.Operand) {
+func (c *Context) MOVOA(mx, mx1 operand.Op) {
 	if inst, err := x86.MOVOA(mx, mx1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func MOVOA(mx, mx1 avo.Operand) { ctx.MOVOA(mx, mx1) }
+func MOVOA(mx, mx1 operand.Op) { ctx.MOVOA(mx, mx1) }
 
-func (c *Context) MOVOU(mx, mx1 avo.Operand) {
+func (c *Context) MOVOU(mx, mx1 operand.Op) {
 	if inst, err := x86.MOVOU(mx, mx1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func MOVOU(mx, mx1 avo.Operand) { ctx.MOVOU(mx, mx1) }
+func MOVOU(mx, mx1 operand.Op) { ctx.MOVOU(mx, mx1) }
 
-func (c *Context) MOVQ(imrx, mrx avo.Operand) {
+func (c *Context) MOVQ(imrx, mrx operand.Op) {
 	if inst, err := x86.MOVQ(imrx, mrx); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func MOVQ(imrx, mrx avo.Operand) { ctx.MOVQ(imrx, mrx) }
+func MOVQ(imrx, mrx operand.Op) { ctx.MOVQ(imrx, mrx) }
 
-func (c *Context) MOVSD(mx, mx1 avo.Operand) {
+func (c *Context) MOVSD(mx, mx1 operand.Op) {
 	if inst, err := x86.MOVSD(mx, mx1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func MOVSD(mx, mx1 avo.Operand) { ctx.MOVSD(mx, mx1) }
+func MOVSD(mx, mx1 operand.Op) { ctx.MOVSD(mx, mx1) }
 
-func (c *Context) MOVSHDUP(mx, x avo.Operand) {
+func (c *Context) MOVSHDUP(mx, x operand.Op) {
 	if inst, err := x86.MOVSHDUP(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func MOVSHDUP(mx, x avo.Operand) { ctx.MOVSHDUP(mx, x) }
+func MOVSHDUP(mx, x operand.Op) { ctx.MOVSHDUP(mx, x) }
 
-func (c *Context) MOVSLDUP(mx, x avo.Operand) {
+func (c *Context) MOVSLDUP(mx, x operand.Op) {
 	if inst, err := x86.MOVSLDUP(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func MOVSLDUP(mx, x avo.Operand) { ctx.MOVSLDUP(mx, x) }
+func MOVSLDUP(mx, x operand.Op) { ctx.MOVSLDUP(mx, x) }
 
-func (c *Context) MOVSS(mx, mx1 avo.Operand) {
+func (c *Context) MOVSS(mx, mx1 operand.Op) {
 	if inst, err := x86.MOVSS(mx, mx1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func MOVSS(mx, mx1 avo.Operand) { ctx.MOVSS(mx, mx1) }
+func MOVSS(mx, mx1 operand.Op) { ctx.MOVSS(mx, mx1) }
 
-func (c *Context) MOVUPD(mx, mx1 avo.Operand) {
+func (c *Context) MOVUPD(mx, mx1 operand.Op) {
 	if inst, err := x86.MOVUPD(mx, mx1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func MOVUPD(mx, mx1 avo.Operand) { ctx.MOVUPD(mx, mx1) }
+func MOVUPD(mx, mx1 operand.Op) { ctx.MOVUPD(mx, mx1) }
 
-func (c *Context) MOVUPS(mx, mx1 avo.Operand) {
+func (c *Context) MOVUPS(mx, mx1 operand.Op) {
 	if inst, err := x86.MOVUPS(mx, mx1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func MOVUPS(mx, mx1 avo.Operand) { ctx.MOVUPS(mx, mx1) }
+func MOVUPS(mx, mx1 operand.Op) { ctx.MOVUPS(mx, mx1) }
 
-func (c *Context) MOVW(imr, mr avo.Operand) {
+func (c *Context) MOVW(imr, mr operand.Op) {
 	if inst, err := x86.MOVW(imr, mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func MOVW(imr, mr avo.Operand) { ctx.MOVW(imr, mr) }
+func MOVW(imr, mr operand.Op) { ctx.MOVW(imr, mr) }
 
-func (c *Context) MOVWLSX(mr, r avo.Operand) {
+func (c *Context) MOVWLSX(mr, r operand.Op) {
 	if inst, err := x86.MOVWLSX(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func MOVWLSX(mr, r avo.Operand) { ctx.MOVWLSX(mr, r) }
+func MOVWLSX(mr, r operand.Op) { ctx.MOVWLSX(mr, r) }
 
-func (c *Context) MOVWLZX(mr, r avo.Operand) {
+func (c *Context) MOVWLZX(mr, r operand.Op) {
 	if inst, err := x86.MOVWLZX(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func MOVWLZX(mr, r avo.Operand) { ctx.MOVWLZX(mr, r) }
+func MOVWLZX(mr, r operand.Op) { ctx.MOVWLZX(mr, r) }
 
-func (c *Context) MOVWQSX(mr, r avo.Operand) {
+func (c *Context) MOVWQSX(mr, r operand.Op) {
 	if inst, err := x86.MOVWQSX(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func MOVWQSX(mr, r avo.Operand) { ctx.MOVWQSX(mr, r) }
+func MOVWQSX(mr, r operand.Op) { ctx.MOVWQSX(mr, r) }
 
-func (c *Context) MOVWQZX(mr, r avo.Operand) {
+func (c *Context) MOVWQZX(mr, r operand.Op) {
 	if inst, err := x86.MOVWQZX(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func MOVWQZX(mr, r avo.Operand) { ctx.MOVWQZX(mr, r) }
+func MOVWQZX(mr, r operand.Op) { ctx.MOVWQZX(mr, r) }
 
-func (c *Context) MPSADBW(i, mx, x avo.Operand) {
+func (c *Context) MPSADBW(i, mx, x operand.Op) {
 	if inst, err := x86.MPSADBW(i, mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func MPSADBW(i, mx, x avo.Operand) { ctx.MPSADBW(i, mx, x) }
+func MPSADBW(i, mx, x operand.Op) { ctx.MPSADBW(i, mx, x) }
 
-func (c *Context) MULB(mr avo.Operand) {
+func (c *Context) MULB(mr operand.Op) {
 	if inst, err := x86.MULB(mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func MULB(mr avo.Operand) { ctx.MULB(mr) }
+func MULB(mr operand.Op) { ctx.MULB(mr) }
 
-func (c *Context) MULL(mr avo.Operand) {
+func (c *Context) MULL(mr operand.Op) {
 	if inst, err := x86.MULL(mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func MULL(mr avo.Operand) { ctx.MULL(mr) }
+func MULL(mr operand.Op) { ctx.MULL(mr) }
 
-func (c *Context) MULPD(mx, x avo.Operand) {
+func (c *Context) MULPD(mx, x operand.Op) {
 	if inst, err := x86.MULPD(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func MULPD(mx, x avo.Operand) { ctx.MULPD(mx, x) }
+func MULPD(mx, x operand.Op) { ctx.MULPD(mx, x) }
 
-func (c *Context) MULPS(mx, x avo.Operand) {
+func (c *Context) MULPS(mx, x operand.Op) {
 	if inst, err := x86.MULPS(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func MULPS(mx, x avo.Operand) { ctx.MULPS(mx, x) }
+func MULPS(mx, x operand.Op) { ctx.MULPS(mx, x) }
 
-func (c *Context) MULQ(mr avo.Operand) {
+func (c *Context) MULQ(mr operand.Op) {
 	if inst, err := x86.MULQ(mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func MULQ(mr avo.Operand) { ctx.MULQ(mr) }
+func MULQ(mr operand.Op) { ctx.MULQ(mr) }
 
-func (c *Context) MULSD(mx, x avo.Operand) {
+func (c *Context) MULSD(mx, x operand.Op) {
 	if inst, err := x86.MULSD(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func MULSD(mx, x avo.Operand) { ctx.MULSD(mx, x) }
+func MULSD(mx, x operand.Op) { ctx.MULSD(mx, x) }
 
-func (c *Context) MULSS(mx, x avo.Operand) {
+func (c *Context) MULSS(mx, x operand.Op) {
 	if inst, err := x86.MULSS(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func MULSS(mx, x avo.Operand) { ctx.MULSS(mx, x) }
+func MULSS(mx, x operand.Op) { ctx.MULSS(mx, x) }
 
-func (c *Context) MULW(mr avo.Operand) {
+func (c *Context) MULW(mr operand.Op) {
 	if inst, err := x86.MULW(mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func MULW(mr avo.Operand) { ctx.MULW(mr) }
+func MULW(mr operand.Op) { ctx.MULW(mr) }
 
-func (c *Context) MULXL(mr, r, r1 avo.Operand) {
+func (c *Context) MULXL(mr, r, r1 operand.Op) {
 	if inst, err := x86.MULXL(mr, r, r1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func MULXL(mr, r, r1 avo.Operand) { ctx.MULXL(mr, r, r1) }
+func MULXL(mr, r, r1 operand.Op) { ctx.MULXL(mr, r, r1) }
 
-func (c *Context) MULXQ(mr, r, r1 avo.Operand) {
+func (c *Context) MULXQ(mr, r, r1 operand.Op) {
 	if inst, err := x86.MULXQ(mr, r, r1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func MULXQ(mr, r, r1 avo.Operand) { ctx.MULXQ(mr, r, r1) }
+func MULXQ(mr, r, r1 operand.Op) { ctx.MULXQ(mr, r, r1) }
 
 func (c *Context) MWAIT() {
 	if inst, err := x86.MWAIT(); err == nil {
@@ -3004,41 +3004,41 @@ func (c *Context) MWAIT() {
 }
 func MWAIT() { ctx.MWAIT() }
 
-func (c *Context) NEGB(mr avo.Operand) {
+func (c *Context) NEGB(mr operand.Op) {
 	if inst, err := x86.NEGB(mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func NEGB(mr avo.Operand) { ctx.NEGB(mr) }
+func NEGB(mr operand.Op) { ctx.NEGB(mr) }
 
-func (c *Context) NEGL(mr avo.Operand) {
+func (c *Context) NEGL(mr operand.Op) {
 	if inst, err := x86.NEGL(mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func NEGL(mr avo.Operand) { ctx.NEGL(mr) }
+func NEGL(mr operand.Op) { ctx.NEGL(mr) }
 
-func (c *Context) NEGQ(mr avo.Operand) {
+func (c *Context) NEGQ(mr operand.Op) {
 	if inst, err := x86.NEGQ(mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func NEGQ(mr avo.Operand) { ctx.NEGQ(mr) }
+func NEGQ(mr operand.Op) { ctx.NEGQ(mr) }
 
-func (c *Context) NEGW(mr avo.Operand) {
+func (c *Context) NEGW(mr operand.Op) {
 	if inst, err := x86.NEGW(mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func NEGW(mr avo.Operand) { ctx.NEGW(mr) }
+func NEGW(mr operand.Op) { ctx.NEGW(mr) }
 
 func (c *Context) NOP() {
 	if inst, err := x86.NOP(); err == nil {
@@ -3049,266 +3049,266 @@ func (c *Context) NOP() {
 }
 func NOP() { ctx.NOP() }
 
-func (c *Context) NOTB(mr avo.Operand) {
+func (c *Context) NOTB(mr operand.Op) {
 	if inst, err := x86.NOTB(mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func NOTB(mr avo.Operand) { ctx.NOTB(mr) }
+func NOTB(mr operand.Op) { ctx.NOTB(mr) }
 
-func (c *Context) NOTL(mr avo.Operand) {
+func (c *Context) NOTL(mr operand.Op) {
 	if inst, err := x86.NOTL(mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func NOTL(mr avo.Operand) { ctx.NOTL(mr) }
+func NOTL(mr operand.Op) { ctx.NOTL(mr) }
 
-func (c *Context) NOTQ(mr avo.Operand) {
+func (c *Context) NOTQ(mr operand.Op) {
 	if inst, err := x86.NOTQ(mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func NOTQ(mr avo.Operand) { ctx.NOTQ(mr) }
+func NOTQ(mr operand.Op) { ctx.NOTQ(mr) }
 
-func (c *Context) NOTW(mr avo.Operand) {
+func (c *Context) NOTW(mr operand.Op) {
 	if inst, err := x86.NOTW(mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func NOTW(mr avo.Operand) { ctx.NOTW(mr) }
+func NOTW(mr operand.Op) { ctx.NOTW(mr) }
 
-func (c *Context) ORB(imr, amr avo.Operand) {
+func (c *Context) ORB(imr, amr operand.Op) {
 	if inst, err := x86.ORB(imr, amr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func ORB(imr, amr avo.Operand) { ctx.ORB(imr, amr) }
+func ORB(imr, amr operand.Op) { ctx.ORB(imr, amr) }
 
-func (c *Context) ORL(imr, emr avo.Operand) {
+func (c *Context) ORL(imr, emr operand.Op) {
 	if inst, err := x86.ORL(imr, emr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func ORL(imr, emr avo.Operand) { ctx.ORL(imr, emr) }
+func ORL(imr, emr operand.Op) { ctx.ORL(imr, emr) }
 
-func (c *Context) ORPD(mx, x avo.Operand) {
+func (c *Context) ORPD(mx, x operand.Op) {
 	if inst, err := x86.ORPD(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func ORPD(mx, x avo.Operand) { ctx.ORPD(mx, x) }
+func ORPD(mx, x operand.Op) { ctx.ORPD(mx, x) }
 
-func (c *Context) ORPS(mx, x avo.Operand) {
+func (c *Context) ORPS(mx, x operand.Op) {
 	if inst, err := x86.ORPS(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func ORPS(mx, x avo.Operand) { ctx.ORPS(mx, x) }
+func ORPS(mx, x operand.Op) { ctx.ORPS(mx, x) }
 
-func (c *Context) ORQ(imr, mr avo.Operand) {
+func (c *Context) ORQ(imr, mr operand.Op) {
 	if inst, err := x86.ORQ(imr, mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func ORQ(imr, mr avo.Operand) { ctx.ORQ(imr, mr) }
+func ORQ(imr, mr operand.Op) { ctx.ORQ(imr, mr) }
 
-func (c *Context) ORW(imr, amr avo.Operand) {
+func (c *Context) ORW(imr, amr operand.Op) {
 	if inst, err := x86.ORW(imr, amr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func ORW(imr, amr avo.Operand) { ctx.ORW(imr, amr) }
+func ORW(imr, amr operand.Op) { ctx.ORW(imr, amr) }
 
-func (c *Context) PABSB(mx, x avo.Operand) {
+func (c *Context) PABSB(mx, x operand.Op) {
 	if inst, err := x86.PABSB(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PABSB(mx, x avo.Operand) { ctx.PABSB(mx, x) }
+func PABSB(mx, x operand.Op) { ctx.PABSB(mx, x) }
 
-func (c *Context) PABSD(mx, x avo.Operand) {
+func (c *Context) PABSD(mx, x operand.Op) {
 	if inst, err := x86.PABSD(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PABSD(mx, x avo.Operand) { ctx.PABSD(mx, x) }
+func PABSD(mx, x operand.Op) { ctx.PABSD(mx, x) }
 
-func (c *Context) PABSW(mx, x avo.Operand) {
+func (c *Context) PABSW(mx, x operand.Op) {
 	if inst, err := x86.PABSW(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PABSW(mx, x avo.Operand) { ctx.PABSW(mx, x) }
+func PABSW(mx, x operand.Op) { ctx.PABSW(mx, x) }
 
-func (c *Context) PACKSSLW(mx, x avo.Operand) {
+func (c *Context) PACKSSLW(mx, x operand.Op) {
 	if inst, err := x86.PACKSSLW(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PACKSSLW(mx, x avo.Operand) { ctx.PACKSSLW(mx, x) }
+func PACKSSLW(mx, x operand.Op) { ctx.PACKSSLW(mx, x) }
 
-func (c *Context) PACKSSWB(mx, x avo.Operand) {
+func (c *Context) PACKSSWB(mx, x operand.Op) {
 	if inst, err := x86.PACKSSWB(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PACKSSWB(mx, x avo.Operand) { ctx.PACKSSWB(mx, x) }
+func PACKSSWB(mx, x operand.Op) { ctx.PACKSSWB(mx, x) }
 
-func (c *Context) PACKUSDW(mx, x avo.Operand) {
+func (c *Context) PACKUSDW(mx, x operand.Op) {
 	if inst, err := x86.PACKUSDW(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PACKUSDW(mx, x avo.Operand) { ctx.PACKUSDW(mx, x) }
+func PACKUSDW(mx, x operand.Op) { ctx.PACKUSDW(mx, x) }
 
-func (c *Context) PACKUSWB(mx, x avo.Operand) {
+func (c *Context) PACKUSWB(mx, x operand.Op) {
 	if inst, err := x86.PACKUSWB(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PACKUSWB(mx, x avo.Operand) { ctx.PACKUSWB(mx, x) }
+func PACKUSWB(mx, x operand.Op) { ctx.PACKUSWB(mx, x) }
 
-func (c *Context) PADDB(mx, x avo.Operand) {
+func (c *Context) PADDB(mx, x operand.Op) {
 	if inst, err := x86.PADDB(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PADDB(mx, x avo.Operand) { ctx.PADDB(mx, x) }
+func PADDB(mx, x operand.Op) { ctx.PADDB(mx, x) }
 
-func (c *Context) PADDD(mx, x avo.Operand) {
+func (c *Context) PADDD(mx, x operand.Op) {
 	if inst, err := x86.PADDD(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PADDD(mx, x avo.Operand) { ctx.PADDD(mx, x) }
+func PADDD(mx, x operand.Op) { ctx.PADDD(mx, x) }
 
-func (c *Context) PADDL(mx, x avo.Operand) {
+func (c *Context) PADDL(mx, x operand.Op) {
 	if inst, err := x86.PADDL(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PADDL(mx, x avo.Operand) { ctx.PADDL(mx, x) }
+func PADDL(mx, x operand.Op) { ctx.PADDL(mx, x) }
 
-func (c *Context) PADDQ(mx, x avo.Operand) {
+func (c *Context) PADDQ(mx, x operand.Op) {
 	if inst, err := x86.PADDQ(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PADDQ(mx, x avo.Operand) { ctx.PADDQ(mx, x) }
+func PADDQ(mx, x operand.Op) { ctx.PADDQ(mx, x) }
 
-func (c *Context) PADDSB(mx, x avo.Operand) {
+func (c *Context) PADDSB(mx, x operand.Op) {
 	if inst, err := x86.PADDSB(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PADDSB(mx, x avo.Operand) { ctx.PADDSB(mx, x) }
+func PADDSB(mx, x operand.Op) { ctx.PADDSB(mx, x) }
 
-func (c *Context) PADDSW(mx, x avo.Operand) {
+func (c *Context) PADDSW(mx, x operand.Op) {
 	if inst, err := x86.PADDSW(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PADDSW(mx, x avo.Operand) { ctx.PADDSW(mx, x) }
+func PADDSW(mx, x operand.Op) { ctx.PADDSW(mx, x) }
 
-func (c *Context) PADDUSB(mx, x avo.Operand) {
+func (c *Context) PADDUSB(mx, x operand.Op) {
 	if inst, err := x86.PADDUSB(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PADDUSB(mx, x avo.Operand) { ctx.PADDUSB(mx, x) }
+func PADDUSB(mx, x operand.Op) { ctx.PADDUSB(mx, x) }
 
-func (c *Context) PADDUSW(mx, x avo.Operand) {
+func (c *Context) PADDUSW(mx, x operand.Op) {
 	if inst, err := x86.PADDUSW(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PADDUSW(mx, x avo.Operand) { ctx.PADDUSW(mx, x) }
+func PADDUSW(mx, x operand.Op) { ctx.PADDUSW(mx, x) }
 
-func (c *Context) PADDW(mx, x avo.Operand) {
+func (c *Context) PADDW(mx, x operand.Op) {
 	if inst, err := x86.PADDW(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PADDW(mx, x avo.Operand) { ctx.PADDW(mx, x) }
+func PADDW(mx, x operand.Op) { ctx.PADDW(mx, x) }
 
-func (c *Context) PALIGNR(i, mx, x avo.Operand) {
+func (c *Context) PALIGNR(i, mx, x operand.Op) {
 	if inst, err := x86.PALIGNR(i, mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PALIGNR(i, mx, x avo.Operand) { ctx.PALIGNR(i, mx, x) }
+func PALIGNR(i, mx, x operand.Op) { ctx.PALIGNR(i, mx, x) }
 
-func (c *Context) PAND(mx, x avo.Operand) {
+func (c *Context) PAND(mx, x operand.Op) {
 	if inst, err := x86.PAND(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PAND(mx, x avo.Operand) { ctx.PAND(mx, x) }
+func PAND(mx, x operand.Op) { ctx.PAND(mx, x) }
 
-func (c *Context) PANDN(mx, x avo.Operand) {
+func (c *Context) PANDN(mx, x operand.Op) {
 	if inst, err := x86.PANDN(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PANDN(mx, x avo.Operand) { ctx.PANDN(mx, x) }
+func PANDN(mx, x operand.Op) { ctx.PANDN(mx, x) }
 
 func (c *Context) PAUSE() {
 	if inst, err := x86.PAUSE(); err == nil {
@@ -3319,1238 +3319,1238 @@ func (c *Context) PAUSE() {
 }
 func PAUSE() { ctx.PAUSE() }
 
-func (c *Context) PAVGB(mx, x avo.Operand) {
+func (c *Context) PAVGB(mx, x operand.Op) {
 	if inst, err := x86.PAVGB(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PAVGB(mx, x avo.Operand) { ctx.PAVGB(mx, x) }
+func PAVGB(mx, x operand.Op) { ctx.PAVGB(mx, x) }
 
-func (c *Context) PAVGW(mx, x avo.Operand) {
+func (c *Context) PAVGW(mx, x operand.Op) {
 	if inst, err := x86.PAVGW(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PAVGW(mx, x avo.Operand) { ctx.PAVGW(mx, x) }
+func PAVGW(mx, x operand.Op) { ctx.PAVGW(mx, x) }
 
-func (c *Context) PBLENDVB(x, mx, x1 avo.Operand) {
+func (c *Context) PBLENDVB(x, mx, x1 operand.Op) {
 	if inst, err := x86.PBLENDVB(x, mx, x1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PBLENDVB(x, mx, x1 avo.Operand) { ctx.PBLENDVB(x, mx, x1) }
+func PBLENDVB(x, mx, x1 operand.Op) { ctx.PBLENDVB(x, mx, x1) }
 
-func (c *Context) PBLENDW(i, mx, x avo.Operand) {
+func (c *Context) PBLENDW(i, mx, x operand.Op) {
 	if inst, err := x86.PBLENDW(i, mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PBLENDW(i, mx, x avo.Operand) { ctx.PBLENDW(i, mx, x) }
+func PBLENDW(i, mx, x operand.Op) { ctx.PBLENDW(i, mx, x) }
 
-func (c *Context) PCLMULQDQ(i, mx, x avo.Operand) {
+func (c *Context) PCLMULQDQ(i, mx, x operand.Op) {
 	if inst, err := x86.PCLMULQDQ(i, mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PCLMULQDQ(i, mx, x avo.Operand) { ctx.PCLMULQDQ(i, mx, x) }
+func PCLMULQDQ(i, mx, x operand.Op) { ctx.PCLMULQDQ(i, mx, x) }
 
-func (c *Context) PCMPEQB(mx, x avo.Operand) {
+func (c *Context) PCMPEQB(mx, x operand.Op) {
 	if inst, err := x86.PCMPEQB(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PCMPEQB(mx, x avo.Operand) { ctx.PCMPEQB(mx, x) }
+func PCMPEQB(mx, x operand.Op) { ctx.PCMPEQB(mx, x) }
 
-func (c *Context) PCMPEQL(mx, x avo.Operand) {
+func (c *Context) PCMPEQL(mx, x operand.Op) {
 	if inst, err := x86.PCMPEQL(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PCMPEQL(mx, x avo.Operand) { ctx.PCMPEQL(mx, x) }
+func PCMPEQL(mx, x operand.Op) { ctx.PCMPEQL(mx, x) }
 
-func (c *Context) PCMPEQQ(mx, x avo.Operand) {
+func (c *Context) PCMPEQQ(mx, x operand.Op) {
 	if inst, err := x86.PCMPEQQ(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PCMPEQQ(mx, x avo.Operand) { ctx.PCMPEQQ(mx, x) }
+func PCMPEQQ(mx, x operand.Op) { ctx.PCMPEQQ(mx, x) }
 
-func (c *Context) PCMPEQW(mx, x avo.Operand) {
+func (c *Context) PCMPEQW(mx, x operand.Op) {
 	if inst, err := x86.PCMPEQW(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PCMPEQW(mx, x avo.Operand) { ctx.PCMPEQW(mx, x) }
+func PCMPEQW(mx, x operand.Op) { ctx.PCMPEQW(mx, x) }
 
-func (c *Context) PCMPESTRI(i, mx, x avo.Operand) {
+func (c *Context) PCMPESTRI(i, mx, x operand.Op) {
 	if inst, err := x86.PCMPESTRI(i, mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PCMPESTRI(i, mx, x avo.Operand) { ctx.PCMPESTRI(i, mx, x) }
+func PCMPESTRI(i, mx, x operand.Op) { ctx.PCMPESTRI(i, mx, x) }
 
-func (c *Context) PCMPESTRM(i, mx, x avo.Operand) {
+func (c *Context) PCMPESTRM(i, mx, x operand.Op) {
 	if inst, err := x86.PCMPESTRM(i, mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PCMPESTRM(i, mx, x avo.Operand) { ctx.PCMPESTRM(i, mx, x) }
+func PCMPESTRM(i, mx, x operand.Op) { ctx.PCMPESTRM(i, mx, x) }
 
-func (c *Context) PCMPGTB(mx, x avo.Operand) {
+func (c *Context) PCMPGTB(mx, x operand.Op) {
 	if inst, err := x86.PCMPGTB(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PCMPGTB(mx, x avo.Operand) { ctx.PCMPGTB(mx, x) }
+func PCMPGTB(mx, x operand.Op) { ctx.PCMPGTB(mx, x) }
 
-func (c *Context) PCMPGTL(mx, x avo.Operand) {
+func (c *Context) PCMPGTL(mx, x operand.Op) {
 	if inst, err := x86.PCMPGTL(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PCMPGTL(mx, x avo.Operand) { ctx.PCMPGTL(mx, x) }
+func PCMPGTL(mx, x operand.Op) { ctx.PCMPGTL(mx, x) }
 
-func (c *Context) PCMPGTQ(mx, x avo.Operand) {
+func (c *Context) PCMPGTQ(mx, x operand.Op) {
 	if inst, err := x86.PCMPGTQ(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PCMPGTQ(mx, x avo.Operand) { ctx.PCMPGTQ(mx, x) }
+func PCMPGTQ(mx, x operand.Op) { ctx.PCMPGTQ(mx, x) }
 
-func (c *Context) PCMPGTW(mx, x avo.Operand) {
+func (c *Context) PCMPGTW(mx, x operand.Op) {
 	if inst, err := x86.PCMPGTW(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PCMPGTW(mx, x avo.Operand) { ctx.PCMPGTW(mx, x) }
+func PCMPGTW(mx, x operand.Op) { ctx.PCMPGTW(mx, x) }
 
-func (c *Context) PCMPISTRI(i, mx, x avo.Operand) {
+func (c *Context) PCMPISTRI(i, mx, x operand.Op) {
 	if inst, err := x86.PCMPISTRI(i, mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PCMPISTRI(i, mx, x avo.Operand) { ctx.PCMPISTRI(i, mx, x) }
+func PCMPISTRI(i, mx, x operand.Op) { ctx.PCMPISTRI(i, mx, x) }
 
-func (c *Context) PCMPISTRM(i, mx, x avo.Operand) {
+func (c *Context) PCMPISTRM(i, mx, x operand.Op) {
 	if inst, err := x86.PCMPISTRM(i, mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PCMPISTRM(i, mx, x avo.Operand) { ctx.PCMPISTRM(i, mx, x) }
+func PCMPISTRM(i, mx, x operand.Op) { ctx.PCMPISTRM(i, mx, x) }
 
-func (c *Context) PDEPL(mr, r, r1 avo.Operand) {
+func (c *Context) PDEPL(mr, r, r1 operand.Op) {
 	if inst, err := x86.PDEPL(mr, r, r1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PDEPL(mr, r, r1 avo.Operand) { ctx.PDEPL(mr, r, r1) }
+func PDEPL(mr, r, r1 operand.Op) { ctx.PDEPL(mr, r, r1) }
 
-func (c *Context) PDEPQ(mr, r, r1 avo.Operand) {
+func (c *Context) PDEPQ(mr, r, r1 operand.Op) {
 	if inst, err := x86.PDEPQ(mr, r, r1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PDEPQ(mr, r, r1 avo.Operand) { ctx.PDEPQ(mr, r, r1) }
+func PDEPQ(mr, r, r1 operand.Op) { ctx.PDEPQ(mr, r, r1) }
 
-func (c *Context) PEXTL(mr, r, r1 avo.Operand) {
+func (c *Context) PEXTL(mr, r, r1 operand.Op) {
 	if inst, err := x86.PEXTL(mr, r, r1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PEXTL(mr, r, r1 avo.Operand) { ctx.PEXTL(mr, r, r1) }
+func PEXTL(mr, r, r1 operand.Op) { ctx.PEXTL(mr, r, r1) }
 
-func (c *Context) PEXTQ(mr, r, r1 avo.Operand) {
+func (c *Context) PEXTQ(mr, r, r1 operand.Op) {
 	if inst, err := x86.PEXTQ(mr, r, r1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PEXTQ(mr, r, r1 avo.Operand) { ctx.PEXTQ(mr, r, r1) }
+func PEXTQ(mr, r, r1 operand.Op) { ctx.PEXTQ(mr, r, r1) }
 
-func (c *Context) PEXTRB(i, x, mr avo.Operand) {
+func (c *Context) PEXTRB(i, x, mr operand.Op) {
 	if inst, err := x86.PEXTRB(i, x, mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PEXTRB(i, x, mr avo.Operand) { ctx.PEXTRB(i, x, mr) }
+func PEXTRB(i, x, mr operand.Op) { ctx.PEXTRB(i, x, mr) }
 
-func (c *Context) PEXTRD(i, x, mr avo.Operand) {
+func (c *Context) PEXTRD(i, x, mr operand.Op) {
 	if inst, err := x86.PEXTRD(i, x, mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PEXTRD(i, x, mr avo.Operand) { ctx.PEXTRD(i, x, mr) }
+func PEXTRD(i, x, mr operand.Op) { ctx.PEXTRD(i, x, mr) }
 
-func (c *Context) PEXTRQ(i, x, mr avo.Operand) {
+func (c *Context) PEXTRQ(i, x, mr operand.Op) {
 	if inst, err := x86.PEXTRQ(i, x, mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PEXTRQ(i, x, mr avo.Operand) { ctx.PEXTRQ(i, x, mr) }
+func PEXTRQ(i, x, mr operand.Op) { ctx.PEXTRQ(i, x, mr) }
 
-func (c *Context) PEXTRW(i, x, mr avo.Operand) {
+func (c *Context) PEXTRW(i, x, mr operand.Op) {
 	if inst, err := x86.PEXTRW(i, x, mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PEXTRW(i, x, mr avo.Operand) { ctx.PEXTRW(i, x, mr) }
+func PEXTRW(i, x, mr operand.Op) { ctx.PEXTRW(i, x, mr) }
 
-func (c *Context) PHADDD(mx, x avo.Operand) {
+func (c *Context) PHADDD(mx, x operand.Op) {
 	if inst, err := x86.PHADDD(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PHADDD(mx, x avo.Operand) { ctx.PHADDD(mx, x) }
+func PHADDD(mx, x operand.Op) { ctx.PHADDD(mx, x) }
 
-func (c *Context) PHADDSW(mx, x avo.Operand) {
+func (c *Context) PHADDSW(mx, x operand.Op) {
 	if inst, err := x86.PHADDSW(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PHADDSW(mx, x avo.Operand) { ctx.PHADDSW(mx, x) }
+func PHADDSW(mx, x operand.Op) { ctx.PHADDSW(mx, x) }
 
-func (c *Context) PHADDW(mx, x avo.Operand) {
+func (c *Context) PHADDW(mx, x operand.Op) {
 	if inst, err := x86.PHADDW(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PHADDW(mx, x avo.Operand) { ctx.PHADDW(mx, x) }
+func PHADDW(mx, x operand.Op) { ctx.PHADDW(mx, x) }
 
-func (c *Context) PHMINPOSUW(mx, x avo.Operand) {
+func (c *Context) PHMINPOSUW(mx, x operand.Op) {
 	if inst, err := x86.PHMINPOSUW(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PHMINPOSUW(mx, x avo.Operand) { ctx.PHMINPOSUW(mx, x) }
+func PHMINPOSUW(mx, x operand.Op) { ctx.PHMINPOSUW(mx, x) }
 
-func (c *Context) PHSUBD(mx, x avo.Operand) {
+func (c *Context) PHSUBD(mx, x operand.Op) {
 	if inst, err := x86.PHSUBD(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PHSUBD(mx, x avo.Operand) { ctx.PHSUBD(mx, x) }
+func PHSUBD(mx, x operand.Op) { ctx.PHSUBD(mx, x) }
 
-func (c *Context) PHSUBSW(mx, x avo.Operand) {
+func (c *Context) PHSUBSW(mx, x operand.Op) {
 	if inst, err := x86.PHSUBSW(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PHSUBSW(mx, x avo.Operand) { ctx.PHSUBSW(mx, x) }
+func PHSUBSW(mx, x operand.Op) { ctx.PHSUBSW(mx, x) }
 
-func (c *Context) PHSUBW(mx, x avo.Operand) {
+func (c *Context) PHSUBW(mx, x operand.Op) {
 	if inst, err := x86.PHSUBW(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PHSUBW(mx, x avo.Operand) { ctx.PHSUBW(mx, x) }
+func PHSUBW(mx, x operand.Op) { ctx.PHSUBW(mx, x) }
 
-func (c *Context) PINSRB(i, mr, x avo.Operand) {
+func (c *Context) PINSRB(i, mr, x operand.Op) {
 	if inst, err := x86.PINSRB(i, mr, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PINSRB(i, mr, x avo.Operand) { ctx.PINSRB(i, mr, x) }
+func PINSRB(i, mr, x operand.Op) { ctx.PINSRB(i, mr, x) }
 
-func (c *Context) PINSRD(i, mr, x avo.Operand) {
+func (c *Context) PINSRD(i, mr, x operand.Op) {
 	if inst, err := x86.PINSRD(i, mr, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PINSRD(i, mr, x avo.Operand) { ctx.PINSRD(i, mr, x) }
+func PINSRD(i, mr, x operand.Op) { ctx.PINSRD(i, mr, x) }
 
-func (c *Context) PINSRQ(i, mr, x avo.Operand) {
+func (c *Context) PINSRQ(i, mr, x operand.Op) {
 	if inst, err := x86.PINSRQ(i, mr, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PINSRQ(i, mr, x avo.Operand) { ctx.PINSRQ(i, mr, x) }
+func PINSRQ(i, mr, x operand.Op) { ctx.PINSRQ(i, mr, x) }
 
-func (c *Context) PINSRW(i, mr, x avo.Operand) {
+func (c *Context) PINSRW(i, mr, x operand.Op) {
 	if inst, err := x86.PINSRW(i, mr, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PINSRW(i, mr, x avo.Operand) { ctx.PINSRW(i, mr, x) }
+func PINSRW(i, mr, x operand.Op) { ctx.PINSRW(i, mr, x) }
 
-func (c *Context) PMADDUBSW(mx, x avo.Operand) {
+func (c *Context) PMADDUBSW(mx, x operand.Op) {
 	if inst, err := x86.PMADDUBSW(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PMADDUBSW(mx, x avo.Operand) { ctx.PMADDUBSW(mx, x) }
+func PMADDUBSW(mx, x operand.Op) { ctx.PMADDUBSW(mx, x) }
 
-func (c *Context) PMADDWL(mx, x avo.Operand) {
+func (c *Context) PMADDWL(mx, x operand.Op) {
 	if inst, err := x86.PMADDWL(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PMADDWL(mx, x avo.Operand) { ctx.PMADDWL(mx, x) }
+func PMADDWL(mx, x operand.Op) { ctx.PMADDWL(mx, x) }
 
-func (c *Context) PMAXSB(mx, x avo.Operand) {
+func (c *Context) PMAXSB(mx, x operand.Op) {
 	if inst, err := x86.PMAXSB(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PMAXSB(mx, x avo.Operand) { ctx.PMAXSB(mx, x) }
+func PMAXSB(mx, x operand.Op) { ctx.PMAXSB(mx, x) }
 
-func (c *Context) PMAXSD(mx, x avo.Operand) {
+func (c *Context) PMAXSD(mx, x operand.Op) {
 	if inst, err := x86.PMAXSD(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PMAXSD(mx, x avo.Operand) { ctx.PMAXSD(mx, x) }
+func PMAXSD(mx, x operand.Op) { ctx.PMAXSD(mx, x) }
 
-func (c *Context) PMAXSW(mx, x avo.Operand) {
+func (c *Context) PMAXSW(mx, x operand.Op) {
 	if inst, err := x86.PMAXSW(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PMAXSW(mx, x avo.Operand) { ctx.PMAXSW(mx, x) }
+func PMAXSW(mx, x operand.Op) { ctx.PMAXSW(mx, x) }
 
-func (c *Context) PMAXUB(mx, x avo.Operand) {
+func (c *Context) PMAXUB(mx, x operand.Op) {
 	if inst, err := x86.PMAXUB(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PMAXUB(mx, x avo.Operand) { ctx.PMAXUB(mx, x) }
+func PMAXUB(mx, x operand.Op) { ctx.PMAXUB(mx, x) }
 
-func (c *Context) PMAXUD(mx, x avo.Operand) {
+func (c *Context) PMAXUD(mx, x operand.Op) {
 	if inst, err := x86.PMAXUD(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PMAXUD(mx, x avo.Operand) { ctx.PMAXUD(mx, x) }
+func PMAXUD(mx, x operand.Op) { ctx.PMAXUD(mx, x) }
 
-func (c *Context) PMAXUW(mx, x avo.Operand) {
+func (c *Context) PMAXUW(mx, x operand.Op) {
 	if inst, err := x86.PMAXUW(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PMAXUW(mx, x avo.Operand) { ctx.PMAXUW(mx, x) }
+func PMAXUW(mx, x operand.Op) { ctx.PMAXUW(mx, x) }
 
-func (c *Context) PMINSB(mx, x avo.Operand) {
+func (c *Context) PMINSB(mx, x operand.Op) {
 	if inst, err := x86.PMINSB(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PMINSB(mx, x avo.Operand) { ctx.PMINSB(mx, x) }
+func PMINSB(mx, x operand.Op) { ctx.PMINSB(mx, x) }
 
-func (c *Context) PMINSD(mx, x avo.Operand) {
+func (c *Context) PMINSD(mx, x operand.Op) {
 	if inst, err := x86.PMINSD(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PMINSD(mx, x avo.Operand) { ctx.PMINSD(mx, x) }
+func PMINSD(mx, x operand.Op) { ctx.PMINSD(mx, x) }
 
-func (c *Context) PMINSW(mx, x avo.Operand) {
+func (c *Context) PMINSW(mx, x operand.Op) {
 	if inst, err := x86.PMINSW(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PMINSW(mx, x avo.Operand) { ctx.PMINSW(mx, x) }
+func PMINSW(mx, x operand.Op) { ctx.PMINSW(mx, x) }
 
-func (c *Context) PMINUB(mx, x avo.Operand) {
+func (c *Context) PMINUB(mx, x operand.Op) {
 	if inst, err := x86.PMINUB(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PMINUB(mx, x avo.Operand) { ctx.PMINUB(mx, x) }
+func PMINUB(mx, x operand.Op) { ctx.PMINUB(mx, x) }
 
-func (c *Context) PMINUD(mx, x avo.Operand) {
+func (c *Context) PMINUD(mx, x operand.Op) {
 	if inst, err := x86.PMINUD(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PMINUD(mx, x avo.Operand) { ctx.PMINUD(mx, x) }
+func PMINUD(mx, x operand.Op) { ctx.PMINUD(mx, x) }
 
-func (c *Context) PMINUW(mx, x avo.Operand) {
+func (c *Context) PMINUW(mx, x operand.Op) {
 	if inst, err := x86.PMINUW(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PMINUW(mx, x avo.Operand) { ctx.PMINUW(mx, x) }
+func PMINUW(mx, x operand.Op) { ctx.PMINUW(mx, x) }
 
-func (c *Context) PMOVMSKB(x, r avo.Operand) {
+func (c *Context) PMOVMSKB(x, r operand.Op) {
 	if inst, err := x86.PMOVMSKB(x, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PMOVMSKB(x, r avo.Operand) { ctx.PMOVMSKB(x, r) }
+func PMOVMSKB(x, r operand.Op) { ctx.PMOVMSKB(x, r) }
 
-func (c *Context) PMOVSXBD(mx, x avo.Operand) {
+func (c *Context) PMOVSXBD(mx, x operand.Op) {
 	if inst, err := x86.PMOVSXBD(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PMOVSXBD(mx, x avo.Operand) { ctx.PMOVSXBD(mx, x) }
+func PMOVSXBD(mx, x operand.Op) { ctx.PMOVSXBD(mx, x) }
 
-func (c *Context) PMOVSXBQ(mx, x avo.Operand) {
+func (c *Context) PMOVSXBQ(mx, x operand.Op) {
 	if inst, err := x86.PMOVSXBQ(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PMOVSXBQ(mx, x avo.Operand) { ctx.PMOVSXBQ(mx, x) }
+func PMOVSXBQ(mx, x operand.Op) { ctx.PMOVSXBQ(mx, x) }
 
-func (c *Context) PMOVSXBW(mx, x avo.Operand) {
+func (c *Context) PMOVSXBW(mx, x operand.Op) {
 	if inst, err := x86.PMOVSXBW(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PMOVSXBW(mx, x avo.Operand) { ctx.PMOVSXBW(mx, x) }
+func PMOVSXBW(mx, x operand.Op) { ctx.PMOVSXBW(mx, x) }
 
-func (c *Context) PMOVSXDQ(mx, x avo.Operand) {
+func (c *Context) PMOVSXDQ(mx, x operand.Op) {
 	if inst, err := x86.PMOVSXDQ(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PMOVSXDQ(mx, x avo.Operand) { ctx.PMOVSXDQ(mx, x) }
+func PMOVSXDQ(mx, x operand.Op) { ctx.PMOVSXDQ(mx, x) }
 
-func (c *Context) PMOVSXWD(mx, x avo.Operand) {
+func (c *Context) PMOVSXWD(mx, x operand.Op) {
 	if inst, err := x86.PMOVSXWD(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PMOVSXWD(mx, x avo.Operand) { ctx.PMOVSXWD(mx, x) }
+func PMOVSXWD(mx, x operand.Op) { ctx.PMOVSXWD(mx, x) }
 
-func (c *Context) PMOVSXWQ(mx, x avo.Operand) {
+func (c *Context) PMOVSXWQ(mx, x operand.Op) {
 	if inst, err := x86.PMOVSXWQ(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PMOVSXWQ(mx, x avo.Operand) { ctx.PMOVSXWQ(mx, x) }
+func PMOVSXWQ(mx, x operand.Op) { ctx.PMOVSXWQ(mx, x) }
 
-func (c *Context) PMOVZXBD(mx, x avo.Operand) {
+func (c *Context) PMOVZXBD(mx, x operand.Op) {
 	if inst, err := x86.PMOVZXBD(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PMOVZXBD(mx, x avo.Operand) { ctx.PMOVZXBD(mx, x) }
+func PMOVZXBD(mx, x operand.Op) { ctx.PMOVZXBD(mx, x) }
 
-func (c *Context) PMOVZXBQ(mx, x avo.Operand) {
+func (c *Context) PMOVZXBQ(mx, x operand.Op) {
 	if inst, err := x86.PMOVZXBQ(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PMOVZXBQ(mx, x avo.Operand) { ctx.PMOVZXBQ(mx, x) }
+func PMOVZXBQ(mx, x operand.Op) { ctx.PMOVZXBQ(mx, x) }
 
-func (c *Context) PMOVZXBW(mx, x avo.Operand) {
+func (c *Context) PMOVZXBW(mx, x operand.Op) {
 	if inst, err := x86.PMOVZXBW(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PMOVZXBW(mx, x avo.Operand) { ctx.PMOVZXBW(mx, x) }
+func PMOVZXBW(mx, x operand.Op) { ctx.PMOVZXBW(mx, x) }
 
-func (c *Context) PMOVZXDQ(mx, x avo.Operand) {
+func (c *Context) PMOVZXDQ(mx, x operand.Op) {
 	if inst, err := x86.PMOVZXDQ(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PMOVZXDQ(mx, x avo.Operand) { ctx.PMOVZXDQ(mx, x) }
+func PMOVZXDQ(mx, x operand.Op) { ctx.PMOVZXDQ(mx, x) }
 
-func (c *Context) PMOVZXWD(mx, x avo.Operand) {
+func (c *Context) PMOVZXWD(mx, x operand.Op) {
 	if inst, err := x86.PMOVZXWD(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PMOVZXWD(mx, x avo.Operand) { ctx.PMOVZXWD(mx, x) }
+func PMOVZXWD(mx, x operand.Op) { ctx.PMOVZXWD(mx, x) }
 
-func (c *Context) PMOVZXWQ(mx, x avo.Operand) {
+func (c *Context) PMOVZXWQ(mx, x operand.Op) {
 	if inst, err := x86.PMOVZXWQ(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PMOVZXWQ(mx, x avo.Operand) { ctx.PMOVZXWQ(mx, x) }
+func PMOVZXWQ(mx, x operand.Op) { ctx.PMOVZXWQ(mx, x) }
 
-func (c *Context) PMULDQ(mx, x avo.Operand) {
+func (c *Context) PMULDQ(mx, x operand.Op) {
 	if inst, err := x86.PMULDQ(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PMULDQ(mx, x avo.Operand) { ctx.PMULDQ(mx, x) }
+func PMULDQ(mx, x operand.Op) { ctx.PMULDQ(mx, x) }
 
-func (c *Context) PMULHRSW(mx, x avo.Operand) {
+func (c *Context) PMULHRSW(mx, x operand.Op) {
 	if inst, err := x86.PMULHRSW(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PMULHRSW(mx, x avo.Operand) { ctx.PMULHRSW(mx, x) }
+func PMULHRSW(mx, x operand.Op) { ctx.PMULHRSW(mx, x) }
 
-func (c *Context) PMULHUW(mx, x avo.Operand) {
+func (c *Context) PMULHUW(mx, x operand.Op) {
 	if inst, err := x86.PMULHUW(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PMULHUW(mx, x avo.Operand) { ctx.PMULHUW(mx, x) }
+func PMULHUW(mx, x operand.Op) { ctx.PMULHUW(mx, x) }
 
-func (c *Context) PMULHW(mx, x avo.Operand) {
+func (c *Context) PMULHW(mx, x operand.Op) {
 	if inst, err := x86.PMULHW(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PMULHW(mx, x avo.Operand) { ctx.PMULHW(mx, x) }
+func PMULHW(mx, x operand.Op) { ctx.PMULHW(mx, x) }
 
-func (c *Context) PMULLD(mx, x avo.Operand) {
+func (c *Context) PMULLD(mx, x operand.Op) {
 	if inst, err := x86.PMULLD(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PMULLD(mx, x avo.Operand) { ctx.PMULLD(mx, x) }
+func PMULLD(mx, x operand.Op) { ctx.PMULLD(mx, x) }
 
-func (c *Context) PMULLW(mx, x avo.Operand) {
+func (c *Context) PMULLW(mx, x operand.Op) {
 	if inst, err := x86.PMULLW(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PMULLW(mx, x avo.Operand) { ctx.PMULLW(mx, x) }
+func PMULLW(mx, x operand.Op) { ctx.PMULLW(mx, x) }
 
-func (c *Context) PMULULQ(mx, x avo.Operand) {
+func (c *Context) PMULULQ(mx, x operand.Op) {
 	if inst, err := x86.PMULULQ(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PMULULQ(mx, x avo.Operand) { ctx.PMULULQ(mx, x) }
+func PMULULQ(mx, x operand.Op) { ctx.PMULULQ(mx, x) }
 
-func (c *Context) POPCNTL(mr, r avo.Operand) {
+func (c *Context) POPCNTL(mr, r operand.Op) {
 	if inst, err := x86.POPCNTL(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func POPCNTL(mr, r avo.Operand) { ctx.POPCNTL(mr, r) }
+func POPCNTL(mr, r operand.Op) { ctx.POPCNTL(mr, r) }
 
-func (c *Context) POPCNTQ(mr, r avo.Operand) {
+func (c *Context) POPCNTQ(mr, r operand.Op) {
 	if inst, err := x86.POPCNTQ(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func POPCNTQ(mr, r avo.Operand) { ctx.POPCNTQ(mr, r) }
+func POPCNTQ(mr, r operand.Op) { ctx.POPCNTQ(mr, r) }
 
-func (c *Context) POPCNTW(mr, r avo.Operand) {
+func (c *Context) POPCNTW(mr, r operand.Op) {
 	if inst, err := x86.POPCNTW(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func POPCNTW(mr, r avo.Operand) { ctx.POPCNTW(mr, r) }
+func POPCNTW(mr, r operand.Op) { ctx.POPCNTW(mr, r) }
 
-func (c *Context) POPQ(mr avo.Operand) {
+func (c *Context) POPQ(mr operand.Op) {
 	if inst, err := x86.POPQ(mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func POPQ(mr avo.Operand) { ctx.POPQ(mr) }
+func POPQ(mr operand.Op) { ctx.POPQ(mr) }
 
-func (c *Context) POPW(mr avo.Operand) {
+func (c *Context) POPW(mr operand.Op) {
 	if inst, err := x86.POPW(mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func POPW(mr avo.Operand) { ctx.POPW(mr) }
+func POPW(mr operand.Op) { ctx.POPW(mr) }
 
-func (c *Context) POR(mx, x avo.Operand) {
+func (c *Context) POR(mx, x operand.Op) {
 	if inst, err := x86.POR(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func POR(mx, x avo.Operand) { ctx.POR(mx, x) }
+func POR(mx, x operand.Op) { ctx.POR(mx, x) }
 
-func (c *Context) PREFETCHNTA(m avo.Operand) {
+func (c *Context) PREFETCHNTA(m operand.Op) {
 	if inst, err := x86.PREFETCHNTA(m); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PREFETCHNTA(m avo.Operand) { ctx.PREFETCHNTA(m) }
+func PREFETCHNTA(m operand.Op) { ctx.PREFETCHNTA(m) }
 
-func (c *Context) PREFETCHT0(m avo.Operand) {
+func (c *Context) PREFETCHT0(m operand.Op) {
 	if inst, err := x86.PREFETCHT0(m); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PREFETCHT0(m avo.Operand) { ctx.PREFETCHT0(m) }
+func PREFETCHT0(m operand.Op) { ctx.PREFETCHT0(m) }
 
-func (c *Context) PREFETCHT1(m avo.Operand) {
+func (c *Context) PREFETCHT1(m operand.Op) {
 	if inst, err := x86.PREFETCHT1(m); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PREFETCHT1(m avo.Operand) { ctx.PREFETCHT1(m) }
+func PREFETCHT1(m operand.Op) { ctx.PREFETCHT1(m) }
 
-func (c *Context) PREFETCHT2(m avo.Operand) {
+func (c *Context) PREFETCHT2(m operand.Op) {
 	if inst, err := x86.PREFETCHT2(m); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PREFETCHT2(m avo.Operand) { ctx.PREFETCHT2(m) }
+func PREFETCHT2(m operand.Op) { ctx.PREFETCHT2(m) }
 
-func (c *Context) PSADBW(mx, x avo.Operand) {
+func (c *Context) PSADBW(mx, x operand.Op) {
 	if inst, err := x86.PSADBW(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PSADBW(mx, x avo.Operand) { ctx.PSADBW(mx, x) }
+func PSADBW(mx, x operand.Op) { ctx.PSADBW(mx, x) }
 
-func (c *Context) PSHUFB(mx, x avo.Operand) {
+func (c *Context) PSHUFB(mx, x operand.Op) {
 	if inst, err := x86.PSHUFB(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PSHUFB(mx, x avo.Operand) { ctx.PSHUFB(mx, x) }
+func PSHUFB(mx, x operand.Op) { ctx.PSHUFB(mx, x) }
 
-func (c *Context) PSHUFD(i, mx, x avo.Operand) {
+func (c *Context) PSHUFD(i, mx, x operand.Op) {
 	if inst, err := x86.PSHUFD(i, mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PSHUFD(i, mx, x avo.Operand) { ctx.PSHUFD(i, mx, x) }
+func PSHUFD(i, mx, x operand.Op) { ctx.PSHUFD(i, mx, x) }
 
-func (c *Context) PSHUFHW(i, mx, x avo.Operand) {
+func (c *Context) PSHUFHW(i, mx, x operand.Op) {
 	if inst, err := x86.PSHUFHW(i, mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PSHUFHW(i, mx, x avo.Operand) { ctx.PSHUFHW(i, mx, x) }
+func PSHUFHW(i, mx, x operand.Op) { ctx.PSHUFHW(i, mx, x) }
 
-func (c *Context) PSHUFL(i, mx, x avo.Operand) {
+func (c *Context) PSHUFL(i, mx, x operand.Op) {
 	if inst, err := x86.PSHUFL(i, mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PSHUFL(i, mx, x avo.Operand) { ctx.PSHUFL(i, mx, x) }
+func PSHUFL(i, mx, x operand.Op) { ctx.PSHUFL(i, mx, x) }
 
-func (c *Context) PSHUFLW(i, mx, x avo.Operand) {
+func (c *Context) PSHUFLW(i, mx, x operand.Op) {
 	if inst, err := x86.PSHUFLW(i, mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PSHUFLW(i, mx, x avo.Operand) { ctx.PSHUFLW(i, mx, x) }
+func PSHUFLW(i, mx, x operand.Op) { ctx.PSHUFLW(i, mx, x) }
 
-func (c *Context) PSIGNB(mx, x avo.Operand) {
+func (c *Context) PSIGNB(mx, x operand.Op) {
 	if inst, err := x86.PSIGNB(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PSIGNB(mx, x avo.Operand) { ctx.PSIGNB(mx, x) }
+func PSIGNB(mx, x operand.Op) { ctx.PSIGNB(mx, x) }
 
-func (c *Context) PSIGND(mx, x avo.Operand) {
+func (c *Context) PSIGND(mx, x operand.Op) {
 	if inst, err := x86.PSIGND(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PSIGND(mx, x avo.Operand) { ctx.PSIGND(mx, x) }
+func PSIGND(mx, x operand.Op) { ctx.PSIGND(mx, x) }
 
-func (c *Context) PSIGNW(mx, x avo.Operand) {
+func (c *Context) PSIGNW(mx, x operand.Op) {
 	if inst, err := x86.PSIGNW(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PSIGNW(mx, x avo.Operand) { ctx.PSIGNW(mx, x) }
+func PSIGNW(mx, x operand.Op) { ctx.PSIGNW(mx, x) }
 
-func (c *Context) PSLLDQ(i, x avo.Operand) {
+func (c *Context) PSLLDQ(i, x operand.Op) {
 	if inst, err := x86.PSLLDQ(i, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PSLLDQ(i, x avo.Operand) { ctx.PSLLDQ(i, x) }
+func PSLLDQ(i, x operand.Op) { ctx.PSLLDQ(i, x) }
 
-func (c *Context) PSLLL(imx, x avo.Operand) {
+func (c *Context) PSLLL(imx, x operand.Op) {
 	if inst, err := x86.PSLLL(imx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PSLLL(imx, x avo.Operand) { ctx.PSLLL(imx, x) }
+func PSLLL(imx, x operand.Op) { ctx.PSLLL(imx, x) }
 
-func (c *Context) PSLLO(i, x avo.Operand) {
+func (c *Context) PSLLO(i, x operand.Op) {
 	if inst, err := x86.PSLLO(i, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PSLLO(i, x avo.Operand) { ctx.PSLLO(i, x) }
+func PSLLO(i, x operand.Op) { ctx.PSLLO(i, x) }
 
-func (c *Context) PSLLQ(imx, x avo.Operand) {
+func (c *Context) PSLLQ(imx, x operand.Op) {
 	if inst, err := x86.PSLLQ(imx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PSLLQ(imx, x avo.Operand) { ctx.PSLLQ(imx, x) }
+func PSLLQ(imx, x operand.Op) { ctx.PSLLQ(imx, x) }
 
-func (c *Context) PSLLW(imx, x avo.Operand) {
+func (c *Context) PSLLW(imx, x operand.Op) {
 	if inst, err := x86.PSLLW(imx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PSLLW(imx, x avo.Operand) { ctx.PSLLW(imx, x) }
+func PSLLW(imx, x operand.Op) { ctx.PSLLW(imx, x) }
 
-func (c *Context) PSRAL(imx, x avo.Operand) {
+func (c *Context) PSRAL(imx, x operand.Op) {
 	if inst, err := x86.PSRAL(imx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PSRAL(imx, x avo.Operand) { ctx.PSRAL(imx, x) }
+func PSRAL(imx, x operand.Op) { ctx.PSRAL(imx, x) }
 
-func (c *Context) PSRAW(imx, x avo.Operand) {
+func (c *Context) PSRAW(imx, x operand.Op) {
 	if inst, err := x86.PSRAW(imx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PSRAW(imx, x avo.Operand) { ctx.PSRAW(imx, x) }
+func PSRAW(imx, x operand.Op) { ctx.PSRAW(imx, x) }
 
-func (c *Context) PSRLDQ(i, x avo.Operand) {
+func (c *Context) PSRLDQ(i, x operand.Op) {
 	if inst, err := x86.PSRLDQ(i, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PSRLDQ(i, x avo.Operand) { ctx.PSRLDQ(i, x) }
+func PSRLDQ(i, x operand.Op) { ctx.PSRLDQ(i, x) }
 
-func (c *Context) PSRLL(imx, x avo.Operand) {
+func (c *Context) PSRLL(imx, x operand.Op) {
 	if inst, err := x86.PSRLL(imx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PSRLL(imx, x avo.Operand) { ctx.PSRLL(imx, x) }
+func PSRLL(imx, x operand.Op) { ctx.PSRLL(imx, x) }
 
-func (c *Context) PSRLO(i, x avo.Operand) {
+func (c *Context) PSRLO(i, x operand.Op) {
 	if inst, err := x86.PSRLO(i, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PSRLO(i, x avo.Operand) { ctx.PSRLO(i, x) }
+func PSRLO(i, x operand.Op) { ctx.PSRLO(i, x) }
 
-func (c *Context) PSRLQ(imx, x avo.Operand) {
+func (c *Context) PSRLQ(imx, x operand.Op) {
 	if inst, err := x86.PSRLQ(imx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PSRLQ(imx, x avo.Operand) { ctx.PSRLQ(imx, x) }
+func PSRLQ(imx, x operand.Op) { ctx.PSRLQ(imx, x) }
 
-func (c *Context) PSRLW(imx, x avo.Operand) {
+func (c *Context) PSRLW(imx, x operand.Op) {
 	if inst, err := x86.PSRLW(imx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PSRLW(imx, x avo.Operand) { ctx.PSRLW(imx, x) }
+func PSRLW(imx, x operand.Op) { ctx.PSRLW(imx, x) }
 
-func (c *Context) PSUBB(mx, x avo.Operand) {
+func (c *Context) PSUBB(mx, x operand.Op) {
 	if inst, err := x86.PSUBB(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PSUBB(mx, x avo.Operand) { ctx.PSUBB(mx, x) }
+func PSUBB(mx, x operand.Op) { ctx.PSUBB(mx, x) }
 
-func (c *Context) PSUBL(mx, x avo.Operand) {
+func (c *Context) PSUBL(mx, x operand.Op) {
 	if inst, err := x86.PSUBL(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PSUBL(mx, x avo.Operand) { ctx.PSUBL(mx, x) }
+func PSUBL(mx, x operand.Op) { ctx.PSUBL(mx, x) }
 
-func (c *Context) PSUBQ(mx, x avo.Operand) {
+func (c *Context) PSUBQ(mx, x operand.Op) {
 	if inst, err := x86.PSUBQ(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PSUBQ(mx, x avo.Operand) { ctx.PSUBQ(mx, x) }
+func PSUBQ(mx, x operand.Op) { ctx.PSUBQ(mx, x) }
 
-func (c *Context) PSUBSB(mx, x avo.Operand) {
+func (c *Context) PSUBSB(mx, x operand.Op) {
 	if inst, err := x86.PSUBSB(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PSUBSB(mx, x avo.Operand) { ctx.PSUBSB(mx, x) }
+func PSUBSB(mx, x operand.Op) { ctx.PSUBSB(mx, x) }
 
-func (c *Context) PSUBSW(mx, x avo.Operand) {
+func (c *Context) PSUBSW(mx, x operand.Op) {
 	if inst, err := x86.PSUBSW(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PSUBSW(mx, x avo.Operand) { ctx.PSUBSW(mx, x) }
+func PSUBSW(mx, x operand.Op) { ctx.PSUBSW(mx, x) }
 
-func (c *Context) PSUBUSB(mx, x avo.Operand) {
+func (c *Context) PSUBUSB(mx, x operand.Op) {
 	if inst, err := x86.PSUBUSB(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PSUBUSB(mx, x avo.Operand) { ctx.PSUBUSB(mx, x) }
+func PSUBUSB(mx, x operand.Op) { ctx.PSUBUSB(mx, x) }
 
-func (c *Context) PSUBUSW(mx, x avo.Operand) {
+func (c *Context) PSUBUSW(mx, x operand.Op) {
 	if inst, err := x86.PSUBUSW(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PSUBUSW(mx, x avo.Operand) { ctx.PSUBUSW(mx, x) }
+func PSUBUSW(mx, x operand.Op) { ctx.PSUBUSW(mx, x) }
 
-func (c *Context) PSUBW(mx, x avo.Operand) {
+func (c *Context) PSUBW(mx, x operand.Op) {
 	if inst, err := x86.PSUBW(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PSUBW(mx, x avo.Operand) { ctx.PSUBW(mx, x) }
+func PSUBW(mx, x operand.Op) { ctx.PSUBW(mx, x) }
 
-func (c *Context) PTEST(mx, x avo.Operand) {
+func (c *Context) PTEST(mx, x operand.Op) {
 	if inst, err := x86.PTEST(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PTEST(mx, x avo.Operand) { ctx.PTEST(mx, x) }
+func PTEST(mx, x operand.Op) { ctx.PTEST(mx, x) }
 
-func (c *Context) PUNPCKHBW(mx, x avo.Operand) {
+func (c *Context) PUNPCKHBW(mx, x operand.Op) {
 	if inst, err := x86.PUNPCKHBW(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PUNPCKHBW(mx, x avo.Operand) { ctx.PUNPCKHBW(mx, x) }
+func PUNPCKHBW(mx, x operand.Op) { ctx.PUNPCKHBW(mx, x) }
 
-func (c *Context) PUNPCKHLQ(mx, x avo.Operand) {
+func (c *Context) PUNPCKHLQ(mx, x operand.Op) {
 	if inst, err := x86.PUNPCKHLQ(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PUNPCKHLQ(mx, x avo.Operand) { ctx.PUNPCKHLQ(mx, x) }
+func PUNPCKHLQ(mx, x operand.Op) { ctx.PUNPCKHLQ(mx, x) }
 
-func (c *Context) PUNPCKHQDQ(mx, x avo.Operand) {
+func (c *Context) PUNPCKHQDQ(mx, x operand.Op) {
 	if inst, err := x86.PUNPCKHQDQ(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PUNPCKHQDQ(mx, x avo.Operand) { ctx.PUNPCKHQDQ(mx, x) }
+func PUNPCKHQDQ(mx, x operand.Op) { ctx.PUNPCKHQDQ(mx, x) }
 
-func (c *Context) PUNPCKHWL(mx, x avo.Operand) {
+func (c *Context) PUNPCKHWL(mx, x operand.Op) {
 	if inst, err := x86.PUNPCKHWL(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PUNPCKHWL(mx, x avo.Operand) { ctx.PUNPCKHWL(mx, x) }
+func PUNPCKHWL(mx, x operand.Op) { ctx.PUNPCKHWL(mx, x) }
 
-func (c *Context) PUNPCKLBW(mx, x avo.Operand) {
+func (c *Context) PUNPCKLBW(mx, x operand.Op) {
 	if inst, err := x86.PUNPCKLBW(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PUNPCKLBW(mx, x avo.Operand) { ctx.PUNPCKLBW(mx, x) }
+func PUNPCKLBW(mx, x operand.Op) { ctx.PUNPCKLBW(mx, x) }
 
-func (c *Context) PUNPCKLLQ(mx, x avo.Operand) {
+func (c *Context) PUNPCKLLQ(mx, x operand.Op) {
 	if inst, err := x86.PUNPCKLLQ(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PUNPCKLLQ(mx, x avo.Operand) { ctx.PUNPCKLLQ(mx, x) }
+func PUNPCKLLQ(mx, x operand.Op) { ctx.PUNPCKLLQ(mx, x) }
 
-func (c *Context) PUNPCKLQDQ(mx, x avo.Operand) {
+func (c *Context) PUNPCKLQDQ(mx, x operand.Op) {
 	if inst, err := x86.PUNPCKLQDQ(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PUNPCKLQDQ(mx, x avo.Operand) { ctx.PUNPCKLQDQ(mx, x) }
+func PUNPCKLQDQ(mx, x operand.Op) { ctx.PUNPCKLQDQ(mx, x) }
 
-func (c *Context) PUNPCKLWL(mx, x avo.Operand) {
+func (c *Context) PUNPCKLWL(mx, x operand.Op) {
 	if inst, err := x86.PUNPCKLWL(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PUNPCKLWL(mx, x avo.Operand) { ctx.PUNPCKLWL(mx, x) }
+func PUNPCKLWL(mx, x operand.Op) { ctx.PUNPCKLWL(mx, x) }
 
-func (c *Context) PUSHQ(imr avo.Operand) {
+func (c *Context) PUSHQ(imr operand.Op) {
 	if inst, err := x86.PUSHQ(imr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PUSHQ(imr avo.Operand) { ctx.PUSHQ(imr) }
+func PUSHQ(imr operand.Op) { ctx.PUSHQ(imr) }
 
-func (c *Context) PUSHW(mr avo.Operand) {
+func (c *Context) PUSHW(mr operand.Op) {
 	if inst, err := x86.PUSHW(mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PUSHW(mr avo.Operand) { ctx.PUSHW(mr) }
+func PUSHW(mr operand.Op) { ctx.PUSHW(mr) }
 
-func (c *Context) PXOR(mx, x avo.Operand) {
+func (c *Context) PXOR(mx, x operand.Op) {
 	if inst, err := x86.PXOR(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func PXOR(mx, x avo.Operand) { ctx.PXOR(mx, x) }
+func PXOR(mx, x operand.Op) { ctx.PXOR(mx, x) }
 
-func (c *Context) RCLB(ci, mr avo.Operand) {
+func (c *Context) RCLB(ci, mr operand.Op) {
 	if inst, err := x86.RCLB(ci, mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func RCLB(ci, mr avo.Operand) { ctx.RCLB(ci, mr) }
+func RCLB(ci, mr operand.Op) { ctx.RCLB(ci, mr) }
 
-func (c *Context) RCLL(ci, mr avo.Operand) {
+func (c *Context) RCLL(ci, mr operand.Op) {
 	if inst, err := x86.RCLL(ci, mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func RCLL(ci, mr avo.Operand) { ctx.RCLL(ci, mr) }
+func RCLL(ci, mr operand.Op) { ctx.RCLL(ci, mr) }
 
-func (c *Context) RCLQ(ci, mr avo.Operand) {
+func (c *Context) RCLQ(ci, mr operand.Op) {
 	if inst, err := x86.RCLQ(ci, mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func RCLQ(ci, mr avo.Operand) { ctx.RCLQ(ci, mr) }
+func RCLQ(ci, mr operand.Op) { ctx.RCLQ(ci, mr) }
 
-func (c *Context) RCLW(ci, mr avo.Operand) {
+func (c *Context) RCLW(ci, mr operand.Op) {
 	if inst, err := x86.RCLW(ci, mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func RCLW(ci, mr avo.Operand) { ctx.RCLW(ci, mr) }
+func RCLW(ci, mr operand.Op) { ctx.RCLW(ci, mr) }
 
-func (c *Context) RCPPS(mx, x avo.Operand) {
+func (c *Context) RCPPS(mx, x operand.Op) {
 	if inst, err := x86.RCPPS(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func RCPPS(mx, x avo.Operand) { ctx.RCPPS(mx, x) }
+func RCPPS(mx, x operand.Op) { ctx.RCPPS(mx, x) }
 
-func (c *Context) RCPSS(mx, x avo.Operand) {
+func (c *Context) RCPSS(mx, x operand.Op) {
 	if inst, err := x86.RCPSS(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func RCPSS(mx, x avo.Operand) { ctx.RCPSS(mx, x) }
+func RCPSS(mx, x operand.Op) { ctx.RCPSS(mx, x) }
 
-func (c *Context) RCRB(ci, mr avo.Operand) {
+func (c *Context) RCRB(ci, mr operand.Op) {
 	if inst, err := x86.RCRB(ci, mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func RCRB(ci, mr avo.Operand) { ctx.RCRB(ci, mr) }
+func RCRB(ci, mr operand.Op) { ctx.RCRB(ci, mr) }
 
-func (c *Context) RCRL(ci, mr avo.Operand) {
+func (c *Context) RCRL(ci, mr operand.Op) {
 	if inst, err := x86.RCRL(ci, mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func RCRL(ci, mr avo.Operand) { ctx.RCRL(ci, mr) }
+func RCRL(ci, mr operand.Op) { ctx.RCRL(ci, mr) }
 
-func (c *Context) RCRQ(ci, mr avo.Operand) {
+func (c *Context) RCRQ(ci, mr operand.Op) {
 	if inst, err := x86.RCRQ(ci, mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func RCRQ(ci, mr avo.Operand) { ctx.RCRQ(ci, mr) }
+func RCRQ(ci, mr operand.Op) { ctx.RCRQ(ci, mr) }
 
-func (c *Context) RCRW(ci, mr avo.Operand) {
+func (c *Context) RCRW(ci, mr operand.Op) {
 	if inst, err := x86.RCRW(ci, mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func RCRW(ci, mr avo.Operand) { ctx.RCRW(ci, mr) }
+func RCRW(ci, mr operand.Op) { ctx.RCRW(ci, mr) }
 
-func (c *Context) RDRANDL(r avo.Operand) {
+func (c *Context) RDRANDL(r operand.Op) {
 	if inst, err := x86.RDRANDL(r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func RDRANDL(r avo.Operand) { ctx.RDRANDL(r) }
+func RDRANDL(r operand.Op) { ctx.RDRANDL(r) }
 
-func (c *Context) RDRANDQ(r avo.Operand) {
+func (c *Context) RDRANDQ(r operand.Op) {
 	if inst, err := x86.RDRANDQ(r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func RDRANDQ(r avo.Operand) { ctx.RDRANDQ(r) }
+func RDRANDQ(r operand.Op) { ctx.RDRANDQ(r) }
 
-func (c *Context) RDRANDW(r avo.Operand) {
+func (c *Context) RDRANDW(r operand.Op) {
 	if inst, err := x86.RDRANDW(r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func RDRANDW(r avo.Operand) { ctx.RDRANDW(r) }
+func RDRANDW(r operand.Op) { ctx.RDRANDW(r) }
 
-func (c *Context) RDSEEDL(r avo.Operand) {
+func (c *Context) RDSEEDL(r operand.Op) {
 	if inst, err := x86.RDSEEDL(r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func RDSEEDL(r avo.Operand) { ctx.RDSEEDL(r) }
+func RDSEEDL(r operand.Op) { ctx.RDSEEDL(r) }
 
-func (c *Context) RDSEEDQ(r avo.Operand) {
+func (c *Context) RDSEEDQ(r operand.Op) {
 	if inst, err := x86.RDSEEDQ(r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func RDSEEDQ(r avo.Operand) { ctx.RDSEEDQ(r) }
+func RDSEEDQ(r operand.Op) { ctx.RDSEEDQ(r) }
 
-func (c *Context) RDSEEDW(r avo.Operand) {
+func (c *Context) RDSEEDW(r operand.Op) {
 	if inst, err := x86.RDSEEDW(r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func RDSEEDW(r avo.Operand) { ctx.RDSEEDW(r) }
+func RDSEEDW(r operand.Op) { ctx.RDSEEDW(r) }
 
 func (c *Context) RDTSC() {
 	if inst, err := x86.RDTSC(); err == nil {
@@ -4579,446 +4579,446 @@ func (c *Context) RET() {
 }
 func RET() { ctx.RET() }
 
-func (c *Context) RETFL(i avo.Operand) {
+func (c *Context) RETFL(i operand.Op) {
 	if inst, err := x86.RETFL(i); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func RETFL(i avo.Operand) { ctx.RETFL(i) }
+func RETFL(i operand.Op) { ctx.RETFL(i) }
 
-func (c *Context) RETFQ(i avo.Operand) {
+func (c *Context) RETFQ(i operand.Op) {
 	if inst, err := x86.RETFQ(i); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func RETFQ(i avo.Operand) { ctx.RETFQ(i) }
+func RETFQ(i operand.Op) { ctx.RETFQ(i) }
 
-func (c *Context) RETFW(i avo.Operand) {
+func (c *Context) RETFW(i operand.Op) {
 	if inst, err := x86.RETFW(i); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func RETFW(i avo.Operand) { ctx.RETFW(i) }
+func RETFW(i operand.Op) { ctx.RETFW(i) }
 
-func (c *Context) ROLB(ci, mr avo.Operand) {
+func (c *Context) ROLB(ci, mr operand.Op) {
 	if inst, err := x86.ROLB(ci, mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func ROLB(ci, mr avo.Operand) { ctx.ROLB(ci, mr) }
+func ROLB(ci, mr operand.Op) { ctx.ROLB(ci, mr) }
 
-func (c *Context) ROLL(ci, mr avo.Operand) {
+func (c *Context) ROLL(ci, mr operand.Op) {
 	if inst, err := x86.ROLL(ci, mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func ROLL(ci, mr avo.Operand) { ctx.ROLL(ci, mr) }
+func ROLL(ci, mr operand.Op) { ctx.ROLL(ci, mr) }
 
-func (c *Context) ROLQ(ci, mr avo.Operand) {
+func (c *Context) ROLQ(ci, mr operand.Op) {
 	if inst, err := x86.ROLQ(ci, mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func ROLQ(ci, mr avo.Operand) { ctx.ROLQ(ci, mr) }
+func ROLQ(ci, mr operand.Op) { ctx.ROLQ(ci, mr) }
 
-func (c *Context) ROLW(ci, mr avo.Operand) {
+func (c *Context) ROLW(ci, mr operand.Op) {
 	if inst, err := x86.ROLW(ci, mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func ROLW(ci, mr avo.Operand) { ctx.ROLW(ci, mr) }
+func ROLW(ci, mr operand.Op) { ctx.ROLW(ci, mr) }
 
-func (c *Context) RORB(ci, mr avo.Operand) {
+func (c *Context) RORB(ci, mr operand.Op) {
 	if inst, err := x86.RORB(ci, mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func RORB(ci, mr avo.Operand) { ctx.RORB(ci, mr) }
+func RORB(ci, mr operand.Op) { ctx.RORB(ci, mr) }
 
-func (c *Context) RORL(ci, mr avo.Operand) {
+func (c *Context) RORL(ci, mr operand.Op) {
 	if inst, err := x86.RORL(ci, mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func RORL(ci, mr avo.Operand) { ctx.RORL(ci, mr) }
+func RORL(ci, mr operand.Op) { ctx.RORL(ci, mr) }
 
-func (c *Context) RORQ(ci, mr avo.Operand) {
+func (c *Context) RORQ(ci, mr operand.Op) {
 	if inst, err := x86.RORQ(ci, mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func RORQ(ci, mr avo.Operand) { ctx.RORQ(ci, mr) }
+func RORQ(ci, mr operand.Op) { ctx.RORQ(ci, mr) }
 
-func (c *Context) RORW(ci, mr avo.Operand) {
+func (c *Context) RORW(ci, mr operand.Op) {
 	if inst, err := x86.RORW(ci, mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func RORW(ci, mr avo.Operand) { ctx.RORW(ci, mr) }
+func RORW(ci, mr operand.Op) { ctx.RORW(ci, mr) }
 
-func (c *Context) RORXL(i, mr, r avo.Operand) {
+func (c *Context) RORXL(i, mr, r operand.Op) {
 	if inst, err := x86.RORXL(i, mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func RORXL(i, mr, r avo.Operand) { ctx.RORXL(i, mr, r) }
+func RORXL(i, mr, r operand.Op) { ctx.RORXL(i, mr, r) }
 
-func (c *Context) RORXQ(i, mr, r avo.Operand) {
+func (c *Context) RORXQ(i, mr, r operand.Op) {
 	if inst, err := x86.RORXQ(i, mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func RORXQ(i, mr, r avo.Operand) { ctx.RORXQ(i, mr, r) }
+func RORXQ(i, mr, r operand.Op) { ctx.RORXQ(i, mr, r) }
 
-func (c *Context) ROUNDPD(i, mx, x avo.Operand) {
+func (c *Context) ROUNDPD(i, mx, x operand.Op) {
 	if inst, err := x86.ROUNDPD(i, mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func ROUNDPD(i, mx, x avo.Operand) { ctx.ROUNDPD(i, mx, x) }
+func ROUNDPD(i, mx, x operand.Op) { ctx.ROUNDPD(i, mx, x) }
 
-func (c *Context) ROUNDPS(i, mx, x avo.Operand) {
+func (c *Context) ROUNDPS(i, mx, x operand.Op) {
 	if inst, err := x86.ROUNDPS(i, mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func ROUNDPS(i, mx, x avo.Operand) { ctx.ROUNDPS(i, mx, x) }
+func ROUNDPS(i, mx, x operand.Op) { ctx.ROUNDPS(i, mx, x) }
 
-func (c *Context) ROUNDSD(i, mx, x avo.Operand) {
+func (c *Context) ROUNDSD(i, mx, x operand.Op) {
 	if inst, err := x86.ROUNDSD(i, mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func ROUNDSD(i, mx, x avo.Operand) { ctx.ROUNDSD(i, mx, x) }
+func ROUNDSD(i, mx, x operand.Op) { ctx.ROUNDSD(i, mx, x) }
 
-func (c *Context) ROUNDSS(i, mx, x avo.Operand) {
+func (c *Context) ROUNDSS(i, mx, x operand.Op) {
 	if inst, err := x86.ROUNDSS(i, mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func ROUNDSS(i, mx, x avo.Operand) { ctx.ROUNDSS(i, mx, x) }
+func ROUNDSS(i, mx, x operand.Op) { ctx.ROUNDSS(i, mx, x) }
 
-func (c *Context) RSQRTPS(mx, x avo.Operand) {
+func (c *Context) RSQRTPS(mx, x operand.Op) {
 	if inst, err := x86.RSQRTPS(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func RSQRTPS(mx, x avo.Operand) { ctx.RSQRTPS(mx, x) }
+func RSQRTPS(mx, x operand.Op) { ctx.RSQRTPS(mx, x) }
 
-func (c *Context) RSQRTSS(mx, x avo.Operand) {
+func (c *Context) RSQRTSS(mx, x operand.Op) {
 	if inst, err := x86.RSQRTSS(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func RSQRTSS(mx, x avo.Operand) { ctx.RSQRTSS(mx, x) }
+func RSQRTSS(mx, x operand.Op) { ctx.RSQRTSS(mx, x) }
 
-func (c *Context) SALB(ci, mr avo.Operand) {
+func (c *Context) SALB(ci, mr operand.Op) {
 	if inst, err := x86.SALB(ci, mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func SALB(ci, mr avo.Operand) { ctx.SALB(ci, mr) }
+func SALB(ci, mr operand.Op) { ctx.SALB(ci, mr) }
 
-func (c *Context) SALL(ci, mr avo.Operand) {
+func (c *Context) SALL(ci, mr operand.Op) {
 	if inst, err := x86.SALL(ci, mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func SALL(ci, mr avo.Operand) { ctx.SALL(ci, mr) }
+func SALL(ci, mr operand.Op) { ctx.SALL(ci, mr) }
 
-func (c *Context) SALQ(ci, mr avo.Operand) {
+func (c *Context) SALQ(ci, mr operand.Op) {
 	if inst, err := x86.SALQ(ci, mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func SALQ(ci, mr avo.Operand) { ctx.SALQ(ci, mr) }
+func SALQ(ci, mr operand.Op) { ctx.SALQ(ci, mr) }
 
-func (c *Context) SALW(ci, mr avo.Operand) {
+func (c *Context) SALW(ci, mr operand.Op) {
 	if inst, err := x86.SALW(ci, mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func SALW(ci, mr avo.Operand) { ctx.SALW(ci, mr) }
+func SALW(ci, mr operand.Op) { ctx.SALW(ci, mr) }
 
-func (c *Context) SARB(ci, mr avo.Operand) {
+func (c *Context) SARB(ci, mr operand.Op) {
 	if inst, err := x86.SARB(ci, mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func SARB(ci, mr avo.Operand) { ctx.SARB(ci, mr) }
+func SARB(ci, mr operand.Op) { ctx.SARB(ci, mr) }
 
-func (c *Context) SARL(ci, mr avo.Operand) {
+func (c *Context) SARL(ci, mr operand.Op) {
 	if inst, err := x86.SARL(ci, mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func SARL(ci, mr avo.Operand) { ctx.SARL(ci, mr) }
+func SARL(ci, mr operand.Op) { ctx.SARL(ci, mr) }
 
-func (c *Context) SARQ(ci, mr avo.Operand) {
+func (c *Context) SARQ(ci, mr operand.Op) {
 	if inst, err := x86.SARQ(ci, mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func SARQ(ci, mr avo.Operand) { ctx.SARQ(ci, mr) }
+func SARQ(ci, mr operand.Op) { ctx.SARQ(ci, mr) }
 
-func (c *Context) SARW(ci, mr avo.Operand) {
+func (c *Context) SARW(ci, mr operand.Op) {
 	if inst, err := x86.SARW(ci, mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func SARW(ci, mr avo.Operand) { ctx.SARW(ci, mr) }
+func SARW(ci, mr operand.Op) { ctx.SARW(ci, mr) }
 
-func (c *Context) SARXL(r, mr, r1 avo.Operand) {
+func (c *Context) SARXL(r, mr, r1 operand.Op) {
 	if inst, err := x86.SARXL(r, mr, r1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func SARXL(r, mr, r1 avo.Operand) { ctx.SARXL(r, mr, r1) }
+func SARXL(r, mr, r1 operand.Op) { ctx.SARXL(r, mr, r1) }
 
-func (c *Context) SARXQ(r, mr, r1 avo.Operand) {
+func (c *Context) SARXQ(r, mr, r1 operand.Op) {
 	if inst, err := x86.SARXQ(r, mr, r1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func SARXQ(r, mr, r1 avo.Operand) { ctx.SARXQ(r, mr, r1) }
+func SARXQ(r, mr, r1 operand.Op) { ctx.SARXQ(r, mr, r1) }
 
-func (c *Context) SBBB(imr, amr avo.Operand) {
+func (c *Context) SBBB(imr, amr operand.Op) {
 	if inst, err := x86.SBBB(imr, amr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func SBBB(imr, amr avo.Operand) { ctx.SBBB(imr, amr) }
+func SBBB(imr, amr operand.Op) { ctx.SBBB(imr, amr) }
 
-func (c *Context) SBBL(imr, emr avo.Operand) {
+func (c *Context) SBBL(imr, emr operand.Op) {
 	if inst, err := x86.SBBL(imr, emr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func SBBL(imr, emr avo.Operand) { ctx.SBBL(imr, emr) }
+func SBBL(imr, emr operand.Op) { ctx.SBBL(imr, emr) }
 
-func (c *Context) SBBQ(imr, mr avo.Operand) {
+func (c *Context) SBBQ(imr, mr operand.Op) {
 	if inst, err := x86.SBBQ(imr, mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func SBBQ(imr, mr avo.Operand) { ctx.SBBQ(imr, mr) }
+func SBBQ(imr, mr operand.Op) { ctx.SBBQ(imr, mr) }
 
-func (c *Context) SBBW(imr, amr avo.Operand) {
+func (c *Context) SBBW(imr, amr operand.Op) {
 	if inst, err := x86.SBBW(imr, amr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func SBBW(imr, amr avo.Operand) { ctx.SBBW(imr, amr) }
+func SBBW(imr, amr operand.Op) { ctx.SBBW(imr, amr) }
 
-func (c *Context) SETCC(mr avo.Operand) {
+func (c *Context) SETCC(mr operand.Op) {
 	if inst, err := x86.SETCC(mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func SETCC(mr avo.Operand) { ctx.SETCC(mr) }
+func SETCC(mr operand.Op) { ctx.SETCC(mr) }
 
-func (c *Context) SETCS(mr avo.Operand) {
+func (c *Context) SETCS(mr operand.Op) {
 	if inst, err := x86.SETCS(mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func SETCS(mr avo.Operand) { ctx.SETCS(mr) }
+func SETCS(mr operand.Op) { ctx.SETCS(mr) }
 
-func (c *Context) SETEQ(mr avo.Operand) {
+func (c *Context) SETEQ(mr operand.Op) {
 	if inst, err := x86.SETEQ(mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func SETEQ(mr avo.Operand) { ctx.SETEQ(mr) }
+func SETEQ(mr operand.Op) { ctx.SETEQ(mr) }
 
-func (c *Context) SETGE(mr avo.Operand) {
+func (c *Context) SETGE(mr operand.Op) {
 	if inst, err := x86.SETGE(mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func SETGE(mr avo.Operand) { ctx.SETGE(mr) }
+func SETGE(mr operand.Op) { ctx.SETGE(mr) }
 
-func (c *Context) SETGT(mr avo.Operand) {
+func (c *Context) SETGT(mr operand.Op) {
 	if inst, err := x86.SETGT(mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func SETGT(mr avo.Operand) { ctx.SETGT(mr) }
+func SETGT(mr operand.Op) { ctx.SETGT(mr) }
 
-func (c *Context) SETHI(mr avo.Operand) {
+func (c *Context) SETHI(mr operand.Op) {
 	if inst, err := x86.SETHI(mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func SETHI(mr avo.Operand) { ctx.SETHI(mr) }
+func SETHI(mr operand.Op) { ctx.SETHI(mr) }
 
-func (c *Context) SETLE(mr avo.Operand) {
+func (c *Context) SETLE(mr operand.Op) {
 	if inst, err := x86.SETLE(mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func SETLE(mr avo.Operand) { ctx.SETLE(mr) }
+func SETLE(mr operand.Op) { ctx.SETLE(mr) }
 
-func (c *Context) SETLS(mr avo.Operand) {
+func (c *Context) SETLS(mr operand.Op) {
 	if inst, err := x86.SETLS(mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func SETLS(mr avo.Operand) { ctx.SETLS(mr) }
+func SETLS(mr operand.Op) { ctx.SETLS(mr) }
 
-func (c *Context) SETLT(mr avo.Operand) {
+func (c *Context) SETLT(mr operand.Op) {
 	if inst, err := x86.SETLT(mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func SETLT(mr avo.Operand) { ctx.SETLT(mr) }
+func SETLT(mr operand.Op) { ctx.SETLT(mr) }
 
-func (c *Context) SETMI(mr avo.Operand) {
+func (c *Context) SETMI(mr operand.Op) {
 	if inst, err := x86.SETMI(mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func SETMI(mr avo.Operand) { ctx.SETMI(mr) }
+func SETMI(mr operand.Op) { ctx.SETMI(mr) }
 
-func (c *Context) SETNE(mr avo.Operand) {
+func (c *Context) SETNE(mr operand.Op) {
 	if inst, err := x86.SETNE(mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func SETNE(mr avo.Operand) { ctx.SETNE(mr) }
+func SETNE(mr operand.Op) { ctx.SETNE(mr) }
 
-func (c *Context) SETOC(mr avo.Operand) {
+func (c *Context) SETOC(mr operand.Op) {
 	if inst, err := x86.SETOC(mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func SETOC(mr avo.Operand) { ctx.SETOC(mr) }
+func SETOC(mr operand.Op) { ctx.SETOC(mr) }
 
-func (c *Context) SETOS(mr avo.Operand) {
+func (c *Context) SETOS(mr operand.Op) {
 	if inst, err := x86.SETOS(mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func SETOS(mr avo.Operand) { ctx.SETOS(mr) }
+func SETOS(mr operand.Op) { ctx.SETOS(mr) }
 
-func (c *Context) SETPC(mr avo.Operand) {
+func (c *Context) SETPC(mr operand.Op) {
 	if inst, err := x86.SETPC(mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func SETPC(mr avo.Operand) { ctx.SETPC(mr) }
+func SETPC(mr operand.Op) { ctx.SETPC(mr) }
 
-func (c *Context) SETPL(mr avo.Operand) {
+func (c *Context) SETPL(mr operand.Op) {
 	if inst, err := x86.SETPL(mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func SETPL(mr avo.Operand) { ctx.SETPL(mr) }
+func SETPL(mr operand.Op) { ctx.SETPL(mr) }
 
-func (c *Context) SETPS(mr avo.Operand) {
+func (c *Context) SETPS(mr operand.Op) {
 	if inst, err := x86.SETPS(mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func SETPS(mr avo.Operand) { ctx.SETPS(mr) }
+func SETPS(mr operand.Op) { ctx.SETPS(mr) }
 
 func (c *Context) SFENCE() {
 	if inst, err := x86.SFENCE(); err == nil {
@@ -5029,230 +5029,230 @@ func (c *Context) SFENCE() {
 }
 func SFENCE() { ctx.SFENCE() }
 
-func (c *Context) SHA1MSG1(mx, x avo.Operand) {
+func (c *Context) SHA1MSG1(mx, x operand.Op) {
 	if inst, err := x86.SHA1MSG1(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func SHA1MSG1(mx, x avo.Operand) { ctx.SHA1MSG1(mx, x) }
+func SHA1MSG1(mx, x operand.Op) { ctx.SHA1MSG1(mx, x) }
 
-func (c *Context) SHA1MSG2(mx, x avo.Operand) {
+func (c *Context) SHA1MSG2(mx, x operand.Op) {
 	if inst, err := x86.SHA1MSG2(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func SHA1MSG2(mx, x avo.Operand) { ctx.SHA1MSG2(mx, x) }
+func SHA1MSG2(mx, x operand.Op) { ctx.SHA1MSG2(mx, x) }
 
-func (c *Context) SHA1NEXTE(mx, x avo.Operand) {
+func (c *Context) SHA1NEXTE(mx, x operand.Op) {
 	if inst, err := x86.SHA1NEXTE(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func SHA1NEXTE(mx, x avo.Operand) { ctx.SHA1NEXTE(mx, x) }
+func SHA1NEXTE(mx, x operand.Op) { ctx.SHA1NEXTE(mx, x) }
 
-func (c *Context) SHA1RNDS4(i, mx, x avo.Operand) {
+func (c *Context) SHA1RNDS4(i, mx, x operand.Op) {
 	if inst, err := x86.SHA1RNDS4(i, mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func SHA1RNDS4(i, mx, x avo.Operand) { ctx.SHA1RNDS4(i, mx, x) }
+func SHA1RNDS4(i, mx, x operand.Op) { ctx.SHA1RNDS4(i, mx, x) }
 
-func (c *Context) SHA256MSG1(mx, x avo.Operand) {
+func (c *Context) SHA256MSG1(mx, x operand.Op) {
 	if inst, err := x86.SHA256MSG1(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func SHA256MSG1(mx, x avo.Operand) { ctx.SHA256MSG1(mx, x) }
+func SHA256MSG1(mx, x operand.Op) { ctx.SHA256MSG1(mx, x) }
 
-func (c *Context) SHA256MSG2(mx, x avo.Operand) {
+func (c *Context) SHA256MSG2(mx, x operand.Op) {
 	if inst, err := x86.SHA256MSG2(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func SHA256MSG2(mx, x avo.Operand) { ctx.SHA256MSG2(mx, x) }
+func SHA256MSG2(mx, x operand.Op) { ctx.SHA256MSG2(mx, x) }
 
-func (c *Context) SHA256RNDS2(x, mx, x1 avo.Operand) {
+func (c *Context) SHA256RNDS2(x, mx, x1 operand.Op) {
 	if inst, err := x86.SHA256RNDS2(x, mx, x1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func SHA256RNDS2(x, mx, x1 avo.Operand) { ctx.SHA256RNDS2(x, mx, x1) }
+func SHA256RNDS2(x, mx, x1 operand.Op) { ctx.SHA256RNDS2(x, mx, x1) }
 
-func (c *Context) SHLB(ci, mr avo.Operand) {
+func (c *Context) SHLB(ci, mr operand.Op) {
 	if inst, err := x86.SHLB(ci, mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func SHLB(ci, mr avo.Operand) { ctx.SHLB(ci, mr) }
+func SHLB(ci, mr operand.Op) { ctx.SHLB(ci, mr) }
 
-func (c *Context) SHLL(ops ...avo.Operand) {
+func (c *Context) SHLL(ops ...operand.Op) {
 	if inst, err := x86.SHLL(ops...); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func SHLL(ops ...avo.Operand) { ctx.SHLL(ops...) }
+func SHLL(ops ...operand.Op) { ctx.SHLL(ops...) }
 
-func (c *Context) SHLQ(ops ...avo.Operand) {
+func (c *Context) SHLQ(ops ...operand.Op) {
 	if inst, err := x86.SHLQ(ops...); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func SHLQ(ops ...avo.Operand) { ctx.SHLQ(ops...) }
+func SHLQ(ops ...operand.Op) { ctx.SHLQ(ops...) }
 
-func (c *Context) SHLW(ops ...avo.Operand) {
+func (c *Context) SHLW(ops ...operand.Op) {
 	if inst, err := x86.SHLW(ops...); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func SHLW(ops ...avo.Operand) { ctx.SHLW(ops...) }
+func SHLW(ops ...operand.Op) { ctx.SHLW(ops...) }
 
-func (c *Context) SHLXL(r, mr, r1 avo.Operand) {
+func (c *Context) SHLXL(r, mr, r1 operand.Op) {
 	if inst, err := x86.SHLXL(r, mr, r1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func SHLXL(r, mr, r1 avo.Operand) { ctx.SHLXL(r, mr, r1) }
+func SHLXL(r, mr, r1 operand.Op) { ctx.SHLXL(r, mr, r1) }
 
-func (c *Context) SHLXQ(r, mr, r1 avo.Operand) {
+func (c *Context) SHLXQ(r, mr, r1 operand.Op) {
 	if inst, err := x86.SHLXQ(r, mr, r1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func SHLXQ(r, mr, r1 avo.Operand) { ctx.SHLXQ(r, mr, r1) }
+func SHLXQ(r, mr, r1 operand.Op) { ctx.SHLXQ(r, mr, r1) }
 
-func (c *Context) SHRB(ci, mr avo.Operand) {
+func (c *Context) SHRB(ci, mr operand.Op) {
 	if inst, err := x86.SHRB(ci, mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func SHRB(ci, mr avo.Operand) { ctx.SHRB(ci, mr) }
+func SHRB(ci, mr operand.Op) { ctx.SHRB(ci, mr) }
 
-func (c *Context) SHRL(ops ...avo.Operand) {
+func (c *Context) SHRL(ops ...operand.Op) {
 	if inst, err := x86.SHRL(ops...); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func SHRL(ops ...avo.Operand) { ctx.SHRL(ops...) }
+func SHRL(ops ...operand.Op) { ctx.SHRL(ops...) }
 
-func (c *Context) SHRQ(ops ...avo.Operand) {
+func (c *Context) SHRQ(ops ...operand.Op) {
 	if inst, err := x86.SHRQ(ops...); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func SHRQ(ops ...avo.Operand) { ctx.SHRQ(ops...) }
+func SHRQ(ops ...operand.Op) { ctx.SHRQ(ops...) }
 
-func (c *Context) SHRW(ops ...avo.Operand) {
+func (c *Context) SHRW(ops ...operand.Op) {
 	if inst, err := x86.SHRW(ops...); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func SHRW(ops ...avo.Operand) { ctx.SHRW(ops...) }
+func SHRW(ops ...operand.Op) { ctx.SHRW(ops...) }
 
-func (c *Context) SHRXL(r, mr, r1 avo.Operand) {
+func (c *Context) SHRXL(r, mr, r1 operand.Op) {
 	if inst, err := x86.SHRXL(r, mr, r1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func SHRXL(r, mr, r1 avo.Operand) { ctx.SHRXL(r, mr, r1) }
+func SHRXL(r, mr, r1 operand.Op) { ctx.SHRXL(r, mr, r1) }
 
-func (c *Context) SHRXQ(r, mr, r1 avo.Operand) {
+func (c *Context) SHRXQ(r, mr, r1 operand.Op) {
 	if inst, err := x86.SHRXQ(r, mr, r1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func SHRXQ(r, mr, r1 avo.Operand) { ctx.SHRXQ(r, mr, r1) }
+func SHRXQ(r, mr, r1 operand.Op) { ctx.SHRXQ(r, mr, r1) }
 
-func (c *Context) SHUFPD(i, mx, x avo.Operand) {
+func (c *Context) SHUFPD(i, mx, x operand.Op) {
 	if inst, err := x86.SHUFPD(i, mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func SHUFPD(i, mx, x avo.Operand) { ctx.SHUFPD(i, mx, x) }
+func SHUFPD(i, mx, x operand.Op) { ctx.SHUFPD(i, mx, x) }
 
-func (c *Context) SHUFPS(i, mx, x avo.Operand) {
+func (c *Context) SHUFPS(i, mx, x operand.Op) {
 	if inst, err := x86.SHUFPS(i, mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func SHUFPS(i, mx, x avo.Operand) { ctx.SHUFPS(i, mx, x) }
+func SHUFPS(i, mx, x operand.Op) { ctx.SHUFPS(i, mx, x) }
 
-func (c *Context) SQRTPD(mx, x avo.Operand) {
+func (c *Context) SQRTPD(mx, x operand.Op) {
 	if inst, err := x86.SQRTPD(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func SQRTPD(mx, x avo.Operand) { ctx.SQRTPD(mx, x) }
+func SQRTPD(mx, x operand.Op) { ctx.SQRTPD(mx, x) }
 
-func (c *Context) SQRTPS(mx, x avo.Operand) {
+func (c *Context) SQRTPS(mx, x operand.Op) {
 	if inst, err := x86.SQRTPS(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func SQRTPS(mx, x avo.Operand) { ctx.SQRTPS(mx, x) }
+func SQRTPS(mx, x operand.Op) { ctx.SQRTPS(mx, x) }
 
-func (c *Context) SQRTSD(mx, x avo.Operand) {
+func (c *Context) SQRTSD(mx, x operand.Op) {
 	if inst, err := x86.SQRTSD(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func SQRTSD(mx, x avo.Operand) { ctx.SQRTSD(mx, x) }
+func SQRTSD(mx, x operand.Op) { ctx.SQRTSD(mx, x) }
 
-func (c *Context) SQRTSS(mx, x avo.Operand) {
+func (c *Context) SQRTSS(mx, x operand.Op) {
 	if inst, err := x86.SQRTSS(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func SQRTSS(mx, x avo.Operand) { ctx.SQRTSS(mx, x) }
+func SQRTSS(mx, x operand.Op) { ctx.SQRTSS(mx, x) }
 
 func (c *Context) STC() {
 	if inst, err := x86.STC(); err == nil {
@@ -5272,86 +5272,86 @@ func (c *Context) STD() {
 }
 func STD() { ctx.STD() }
 
-func (c *Context) STMXCSR(m avo.Operand) {
+func (c *Context) STMXCSR(m operand.Op) {
 	if inst, err := x86.STMXCSR(m); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func STMXCSR(m avo.Operand) { ctx.STMXCSR(m) }
+func STMXCSR(m operand.Op) { ctx.STMXCSR(m) }
 
-func (c *Context) SUBB(imr, amr avo.Operand) {
+func (c *Context) SUBB(imr, amr operand.Op) {
 	if inst, err := x86.SUBB(imr, amr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func SUBB(imr, amr avo.Operand) { ctx.SUBB(imr, amr) }
+func SUBB(imr, amr operand.Op) { ctx.SUBB(imr, amr) }
 
-func (c *Context) SUBL(imr, emr avo.Operand) {
+func (c *Context) SUBL(imr, emr operand.Op) {
 	if inst, err := x86.SUBL(imr, emr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func SUBL(imr, emr avo.Operand) { ctx.SUBL(imr, emr) }
+func SUBL(imr, emr operand.Op) { ctx.SUBL(imr, emr) }
 
-func (c *Context) SUBPD(mx, x avo.Operand) {
+func (c *Context) SUBPD(mx, x operand.Op) {
 	if inst, err := x86.SUBPD(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func SUBPD(mx, x avo.Operand) { ctx.SUBPD(mx, x) }
+func SUBPD(mx, x operand.Op) { ctx.SUBPD(mx, x) }
 
-func (c *Context) SUBPS(mx, x avo.Operand) {
+func (c *Context) SUBPS(mx, x operand.Op) {
 	if inst, err := x86.SUBPS(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func SUBPS(mx, x avo.Operand) { ctx.SUBPS(mx, x) }
+func SUBPS(mx, x operand.Op) { ctx.SUBPS(mx, x) }
 
-func (c *Context) SUBQ(imr, mr avo.Operand) {
+func (c *Context) SUBQ(imr, mr operand.Op) {
 	if inst, err := x86.SUBQ(imr, mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func SUBQ(imr, mr avo.Operand) { ctx.SUBQ(imr, mr) }
+func SUBQ(imr, mr operand.Op) { ctx.SUBQ(imr, mr) }
 
-func (c *Context) SUBSD(mx, x avo.Operand) {
+func (c *Context) SUBSD(mx, x operand.Op) {
 	if inst, err := x86.SUBSD(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func SUBSD(mx, x avo.Operand) { ctx.SUBSD(mx, x) }
+func SUBSD(mx, x operand.Op) { ctx.SUBSD(mx, x) }
 
-func (c *Context) SUBSS(mx, x avo.Operand) {
+func (c *Context) SUBSS(mx, x operand.Op) {
 	if inst, err := x86.SUBSS(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func SUBSS(mx, x avo.Operand) { ctx.SUBSS(mx, x) }
+func SUBSS(mx, x operand.Op) { ctx.SUBSS(mx, x) }
 
-func (c *Context) SUBW(imr, amr avo.Operand) {
+func (c *Context) SUBW(imr, amr operand.Op) {
 	if inst, err := x86.SUBW(imr, amr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func SUBW(imr, amr avo.Operand) { ctx.SUBW(imr, amr) }
+func SUBW(imr, amr operand.Op) { ctx.SUBW(imr, amr) }
 
 func (c *Context) SYSCALL() {
 	if inst, err := x86.SYSCALL(); err == nil {
@@ -5362,86 +5362,86 @@ func (c *Context) SYSCALL() {
 }
 func SYSCALL() { ctx.SYSCALL() }
 
-func (c *Context) TESTB(ir, amr avo.Operand) {
+func (c *Context) TESTB(ir, amr operand.Op) {
 	if inst, err := x86.TESTB(ir, amr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func TESTB(ir, amr avo.Operand) { ctx.TESTB(ir, amr) }
+func TESTB(ir, amr operand.Op) { ctx.TESTB(ir, amr) }
 
-func (c *Context) TESTL(ir, emr avo.Operand) {
+func (c *Context) TESTL(ir, emr operand.Op) {
 	if inst, err := x86.TESTL(ir, emr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func TESTL(ir, emr avo.Operand) { ctx.TESTL(ir, emr) }
+func TESTL(ir, emr operand.Op) { ctx.TESTL(ir, emr) }
 
-func (c *Context) TESTQ(ir, mr avo.Operand) {
+func (c *Context) TESTQ(ir, mr operand.Op) {
 	if inst, err := x86.TESTQ(ir, mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func TESTQ(ir, mr avo.Operand) { ctx.TESTQ(ir, mr) }
+func TESTQ(ir, mr operand.Op) { ctx.TESTQ(ir, mr) }
 
-func (c *Context) TESTW(ir, amr avo.Operand) {
+func (c *Context) TESTW(ir, amr operand.Op) {
 	if inst, err := x86.TESTW(ir, amr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func TESTW(ir, amr avo.Operand) { ctx.TESTW(ir, amr) }
+func TESTW(ir, amr operand.Op) { ctx.TESTW(ir, amr) }
 
-func (c *Context) TZCNTL(mr, r avo.Operand) {
+func (c *Context) TZCNTL(mr, r operand.Op) {
 	if inst, err := x86.TZCNTL(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func TZCNTL(mr, r avo.Operand) { ctx.TZCNTL(mr, r) }
+func TZCNTL(mr, r operand.Op) { ctx.TZCNTL(mr, r) }
 
-func (c *Context) TZCNTQ(mr, r avo.Operand) {
+func (c *Context) TZCNTQ(mr, r operand.Op) {
 	if inst, err := x86.TZCNTQ(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func TZCNTQ(mr, r avo.Operand) { ctx.TZCNTQ(mr, r) }
+func TZCNTQ(mr, r operand.Op) { ctx.TZCNTQ(mr, r) }
 
-func (c *Context) TZCNTW(mr, r avo.Operand) {
+func (c *Context) TZCNTW(mr, r operand.Op) {
 	if inst, err := x86.TZCNTW(mr, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func TZCNTW(mr, r avo.Operand) { ctx.TZCNTW(mr, r) }
+func TZCNTW(mr, r operand.Op) { ctx.TZCNTW(mr, r) }
 
-func (c *Context) UCOMISD(mx, x avo.Operand) {
+func (c *Context) UCOMISD(mx, x operand.Op) {
 	if inst, err := x86.UCOMISD(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func UCOMISD(mx, x avo.Operand) { ctx.UCOMISD(mx, x) }
+func UCOMISD(mx, x operand.Op) { ctx.UCOMISD(mx, x) }
 
-func (c *Context) UCOMISS(mx, x avo.Operand) {
+func (c *Context) UCOMISS(mx, x operand.Op) {
 	if inst, err := x86.UCOMISS(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func UCOMISS(mx, x avo.Operand) { ctx.UCOMISS(mx, x) }
+func UCOMISS(mx, x operand.Op) { ctx.UCOMISS(mx, x) }
 
 func (c *Context) UD2() {
 	if inst, err := x86.UD2(); err == nil {
@@ -5452,3245 +5452,3245 @@ func (c *Context) UD2() {
 }
 func UD2() { ctx.UD2() }
 
-func (c *Context) UNPCKHPD(mx, x avo.Operand) {
+func (c *Context) UNPCKHPD(mx, x operand.Op) {
 	if inst, err := x86.UNPCKHPD(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func UNPCKHPD(mx, x avo.Operand) { ctx.UNPCKHPD(mx, x) }
+func UNPCKHPD(mx, x operand.Op) { ctx.UNPCKHPD(mx, x) }
 
-func (c *Context) UNPCKHPS(mx, x avo.Operand) {
+func (c *Context) UNPCKHPS(mx, x operand.Op) {
 	if inst, err := x86.UNPCKHPS(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func UNPCKHPS(mx, x avo.Operand) { ctx.UNPCKHPS(mx, x) }
+func UNPCKHPS(mx, x operand.Op) { ctx.UNPCKHPS(mx, x) }
 
-func (c *Context) UNPCKLPD(mx, x avo.Operand) {
+func (c *Context) UNPCKLPD(mx, x operand.Op) {
 	if inst, err := x86.UNPCKLPD(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func UNPCKLPD(mx, x avo.Operand) { ctx.UNPCKLPD(mx, x) }
+func UNPCKLPD(mx, x operand.Op) { ctx.UNPCKLPD(mx, x) }
 
-func (c *Context) UNPCKLPS(mx, x avo.Operand) {
+func (c *Context) UNPCKLPS(mx, x operand.Op) {
 	if inst, err := x86.UNPCKLPS(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func UNPCKLPS(mx, x avo.Operand) { ctx.UNPCKLPS(mx, x) }
+func UNPCKLPS(mx, x operand.Op) { ctx.UNPCKLPS(mx, x) }
 
-func (c *Context) VADDPD(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VADDPD(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VADDPD(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VADDPD(mxy, xy, xy1 avo.Operand) { ctx.VADDPD(mxy, xy, xy1) }
+func VADDPD(mxy, xy, xy1 operand.Op) { ctx.VADDPD(mxy, xy, xy1) }
 
-func (c *Context) VADDPS(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VADDPS(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VADDPS(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VADDPS(mxy, xy, xy1 avo.Operand) { ctx.VADDPS(mxy, xy, xy1) }
+func VADDPS(mxy, xy, xy1 operand.Op) { ctx.VADDPS(mxy, xy, xy1) }
 
-func (c *Context) VADDSD(mx, x, x1 avo.Operand) {
+func (c *Context) VADDSD(mx, x, x1 operand.Op) {
 	if inst, err := x86.VADDSD(mx, x, x1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VADDSD(mx, x, x1 avo.Operand) { ctx.VADDSD(mx, x, x1) }
+func VADDSD(mx, x, x1 operand.Op) { ctx.VADDSD(mx, x, x1) }
 
-func (c *Context) VADDSS(mx, x, x1 avo.Operand) {
+func (c *Context) VADDSS(mx, x, x1 operand.Op) {
 	if inst, err := x86.VADDSS(mx, x, x1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VADDSS(mx, x, x1 avo.Operand) { ctx.VADDSS(mx, x, x1) }
+func VADDSS(mx, x, x1 operand.Op) { ctx.VADDSS(mx, x, x1) }
 
-func (c *Context) VADDSUBPD(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VADDSUBPD(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VADDSUBPD(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VADDSUBPD(mxy, xy, xy1 avo.Operand) { ctx.VADDSUBPD(mxy, xy, xy1) }
+func VADDSUBPD(mxy, xy, xy1 operand.Op) { ctx.VADDSUBPD(mxy, xy, xy1) }
 
-func (c *Context) VADDSUBPS(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VADDSUBPS(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VADDSUBPS(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VADDSUBPS(mxy, xy, xy1 avo.Operand) { ctx.VADDSUBPS(mxy, xy, xy1) }
+func VADDSUBPS(mxy, xy, xy1 operand.Op) { ctx.VADDSUBPS(mxy, xy, xy1) }
 
-func (c *Context) VAESDEC(mx, x, x1 avo.Operand) {
+func (c *Context) VAESDEC(mx, x, x1 operand.Op) {
 	if inst, err := x86.VAESDEC(mx, x, x1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VAESDEC(mx, x, x1 avo.Operand) { ctx.VAESDEC(mx, x, x1) }
+func VAESDEC(mx, x, x1 operand.Op) { ctx.VAESDEC(mx, x, x1) }
 
-func (c *Context) VAESDECLAST(mx, x, x1 avo.Operand) {
+func (c *Context) VAESDECLAST(mx, x, x1 operand.Op) {
 	if inst, err := x86.VAESDECLAST(mx, x, x1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VAESDECLAST(mx, x, x1 avo.Operand) { ctx.VAESDECLAST(mx, x, x1) }
+func VAESDECLAST(mx, x, x1 operand.Op) { ctx.VAESDECLAST(mx, x, x1) }
 
-func (c *Context) VAESENC(mx, x, x1 avo.Operand) {
+func (c *Context) VAESENC(mx, x, x1 operand.Op) {
 	if inst, err := x86.VAESENC(mx, x, x1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VAESENC(mx, x, x1 avo.Operand) { ctx.VAESENC(mx, x, x1) }
+func VAESENC(mx, x, x1 operand.Op) { ctx.VAESENC(mx, x, x1) }
 
-func (c *Context) VAESENCLAST(mx, x, x1 avo.Operand) {
+func (c *Context) VAESENCLAST(mx, x, x1 operand.Op) {
 	if inst, err := x86.VAESENCLAST(mx, x, x1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VAESENCLAST(mx, x, x1 avo.Operand) { ctx.VAESENCLAST(mx, x, x1) }
+func VAESENCLAST(mx, x, x1 operand.Op) { ctx.VAESENCLAST(mx, x, x1) }
 
-func (c *Context) VAESIMC(mx, x avo.Operand) {
+func (c *Context) VAESIMC(mx, x operand.Op) {
 	if inst, err := x86.VAESIMC(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VAESIMC(mx, x avo.Operand) { ctx.VAESIMC(mx, x) }
+func VAESIMC(mx, x operand.Op) { ctx.VAESIMC(mx, x) }
 
-func (c *Context) VAESKEYGENASSIST(i, mx, x avo.Operand) {
+func (c *Context) VAESKEYGENASSIST(i, mx, x operand.Op) {
 	if inst, err := x86.VAESKEYGENASSIST(i, mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VAESKEYGENASSIST(i, mx, x avo.Operand) { ctx.VAESKEYGENASSIST(i, mx, x) }
+func VAESKEYGENASSIST(i, mx, x operand.Op) { ctx.VAESKEYGENASSIST(i, mx, x) }
 
-func (c *Context) VANDNPD(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VANDNPD(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VANDNPD(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VANDNPD(mxy, xy, xy1 avo.Operand) { ctx.VANDNPD(mxy, xy, xy1) }
+func VANDNPD(mxy, xy, xy1 operand.Op) { ctx.VANDNPD(mxy, xy, xy1) }
 
-func (c *Context) VANDNPS(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VANDNPS(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VANDNPS(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VANDNPS(mxy, xy, xy1 avo.Operand) { ctx.VANDNPS(mxy, xy, xy1) }
+func VANDNPS(mxy, xy, xy1 operand.Op) { ctx.VANDNPS(mxy, xy, xy1) }
 
-func (c *Context) VANDPD(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VANDPD(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VANDPD(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VANDPD(mxy, xy, xy1 avo.Operand) { ctx.VANDPD(mxy, xy, xy1) }
+func VANDPD(mxy, xy, xy1 operand.Op) { ctx.VANDPD(mxy, xy, xy1) }
 
-func (c *Context) VANDPS(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VANDPS(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VANDPS(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VANDPS(mxy, xy, xy1 avo.Operand) { ctx.VANDPS(mxy, xy, xy1) }
+func VANDPS(mxy, xy, xy1 operand.Op) { ctx.VANDPS(mxy, xy, xy1) }
 
-func (c *Context) VBLENDPD(i, mxy, xy, xy1 avo.Operand) {
+func (c *Context) VBLENDPD(i, mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VBLENDPD(i, mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VBLENDPD(i, mxy, xy, xy1 avo.Operand) { ctx.VBLENDPD(i, mxy, xy, xy1) }
+func VBLENDPD(i, mxy, xy, xy1 operand.Op) { ctx.VBLENDPD(i, mxy, xy, xy1) }
 
-func (c *Context) VBLENDPS(i, mxy, xy, xy1 avo.Operand) {
+func (c *Context) VBLENDPS(i, mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VBLENDPS(i, mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VBLENDPS(i, mxy, xy, xy1 avo.Operand) { ctx.VBLENDPS(i, mxy, xy, xy1) }
+func VBLENDPS(i, mxy, xy, xy1 operand.Op) { ctx.VBLENDPS(i, mxy, xy, xy1) }
 
-func (c *Context) VBLENDVPD(xy, mxy, xy1, xy2 avo.Operand) {
+func (c *Context) VBLENDVPD(xy, mxy, xy1, xy2 operand.Op) {
 	if inst, err := x86.VBLENDVPD(xy, mxy, xy1, xy2); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VBLENDVPD(xy, mxy, xy1, xy2 avo.Operand) { ctx.VBLENDVPD(xy, mxy, xy1, xy2) }
+func VBLENDVPD(xy, mxy, xy1, xy2 operand.Op) { ctx.VBLENDVPD(xy, mxy, xy1, xy2) }
 
-func (c *Context) VBLENDVPS(xy, mxy, xy1, xy2 avo.Operand) {
+func (c *Context) VBLENDVPS(xy, mxy, xy1, xy2 operand.Op) {
 	if inst, err := x86.VBLENDVPS(xy, mxy, xy1, xy2); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VBLENDVPS(xy, mxy, xy1, xy2 avo.Operand) { ctx.VBLENDVPS(xy, mxy, xy1, xy2) }
+func VBLENDVPS(xy, mxy, xy1, xy2 operand.Op) { ctx.VBLENDVPS(xy, mxy, xy1, xy2) }
 
-func (c *Context) VBROADCASTF128(m, y avo.Operand) {
+func (c *Context) VBROADCASTF128(m, y operand.Op) {
 	if inst, err := x86.VBROADCASTF128(m, y); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VBROADCASTF128(m, y avo.Operand) { ctx.VBROADCASTF128(m, y) }
+func VBROADCASTF128(m, y operand.Op) { ctx.VBROADCASTF128(m, y) }
 
-func (c *Context) VBROADCASTI128(m, y avo.Operand) {
+func (c *Context) VBROADCASTI128(m, y operand.Op) {
 	if inst, err := x86.VBROADCASTI128(m, y); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VBROADCASTI128(m, y avo.Operand) { ctx.VBROADCASTI128(m, y) }
+func VBROADCASTI128(m, y operand.Op) { ctx.VBROADCASTI128(m, y) }
 
-func (c *Context) VBROADCASTSD(mx, y avo.Operand) {
+func (c *Context) VBROADCASTSD(mx, y operand.Op) {
 	if inst, err := x86.VBROADCASTSD(mx, y); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VBROADCASTSD(mx, y avo.Operand) { ctx.VBROADCASTSD(mx, y) }
+func VBROADCASTSD(mx, y operand.Op) { ctx.VBROADCASTSD(mx, y) }
 
-func (c *Context) VBROADCASTSS(mx, xy avo.Operand) {
+func (c *Context) VBROADCASTSS(mx, xy operand.Op) {
 	if inst, err := x86.VBROADCASTSS(mx, xy); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VBROADCASTSS(mx, xy avo.Operand) { ctx.VBROADCASTSS(mx, xy) }
+func VBROADCASTSS(mx, xy operand.Op) { ctx.VBROADCASTSS(mx, xy) }
 
-func (c *Context) VCMPPD(i, mxy, xy, xy1 avo.Operand) {
+func (c *Context) VCMPPD(i, mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VCMPPD(i, mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VCMPPD(i, mxy, xy, xy1 avo.Operand) { ctx.VCMPPD(i, mxy, xy, xy1) }
+func VCMPPD(i, mxy, xy, xy1 operand.Op) { ctx.VCMPPD(i, mxy, xy, xy1) }
 
-func (c *Context) VCMPPS(i, mxy, xy, xy1 avo.Operand) {
+func (c *Context) VCMPPS(i, mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VCMPPS(i, mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VCMPPS(i, mxy, xy, xy1 avo.Operand) { ctx.VCMPPS(i, mxy, xy, xy1) }
+func VCMPPS(i, mxy, xy, xy1 operand.Op) { ctx.VCMPPS(i, mxy, xy, xy1) }
 
-func (c *Context) VCMPSD(i, mx, x, x1 avo.Operand) {
+func (c *Context) VCMPSD(i, mx, x, x1 operand.Op) {
 	if inst, err := x86.VCMPSD(i, mx, x, x1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VCMPSD(i, mx, x, x1 avo.Operand) { ctx.VCMPSD(i, mx, x, x1) }
+func VCMPSD(i, mx, x, x1 operand.Op) { ctx.VCMPSD(i, mx, x, x1) }
 
-func (c *Context) VCMPSS(i, mx, x, x1 avo.Operand) {
+func (c *Context) VCMPSS(i, mx, x, x1 operand.Op) {
 	if inst, err := x86.VCMPSS(i, mx, x, x1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VCMPSS(i, mx, x, x1 avo.Operand) { ctx.VCMPSS(i, mx, x, x1) }
+func VCMPSS(i, mx, x, x1 operand.Op) { ctx.VCMPSS(i, mx, x, x1) }
 
-func (c *Context) VCOMISD(mx, x avo.Operand) {
+func (c *Context) VCOMISD(mx, x operand.Op) {
 	if inst, err := x86.VCOMISD(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VCOMISD(mx, x avo.Operand) { ctx.VCOMISD(mx, x) }
+func VCOMISD(mx, x operand.Op) { ctx.VCOMISD(mx, x) }
 
-func (c *Context) VCOMISS(mx, x avo.Operand) {
+func (c *Context) VCOMISS(mx, x operand.Op) {
 	if inst, err := x86.VCOMISS(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VCOMISS(mx, x avo.Operand) { ctx.VCOMISS(mx, x) }
+func VCOMISS(mx, x operand.Op) { ctx.VCOMISS(mx, x) }
 
-func (c *Context) VCVTDQ2PD(mx, xy avo.Operand) {
+func (c *Context) VCVTDQ2PD(mx, xy operand.Op) {
 	if inst, err := x86.VCVTDQ2PD(mx, xy); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VCVTDQ2PD(mx, xy avo.Operand) { ctx.VCVTDQ2PD(mx, xy) }
+func VCVTDQ2PD(mx, xy operand.Op) { ctx.VCVTDQ2PD(mx, xy) }
 
-func (c *Context) VCVTDQ2PS(mxy, xy avo.Operand) {
+func (c *Context) VCVTDQ2PS(mxy, xy operand.Op) {
 	if inst, err := x86.VCVTDQ2PS(mxy, xy); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VCVTDQ2PS(mxy, xy avo.Operand) { ctx.VCVTDQ2PS(mxy, xy) }
+func VCVTDQ2PS(mxy, xy operand.Op) { ctx.VCVTDQ2PS(mxy, xy) }
 
-func (c *Context) VCVTPD2DQX(mx, x avo.Operand) {
+func (c *Context) VCVTPD2DQX(mx, x operand.Op) {
 	if inst, err := x86.VCVTPD2DQX(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VCVTPD2DQX(mx, x avo.Operand) { ctx.VCVTPD2DQX(mx, x) }
+func VCVTPD2DQX(mx, x operand.Op) { ctx.VCVTPD2DQX(mx, x) }
 
-func (c *Context) VCVTPD2DQY(my, x avo.Operand) {
+func (c *Context) VCVTPD2DQY(my, x operand.Op) {
 	if inst, err := x86.VCVTPD2DQY(my, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VCVTPD2DQY(my, x avo.Operand) { ctx.VCVTPD2DQY(my, x) }
+func VCVTPD2DQY(my, x operand.Op) { ctx.VCVTPD2DQY(my, x) }
 
-func (c *Context) VCVTPD2PSX(mx, x avo.Operand) {
+func (c *Context) VCVTPD2PSX(mx, x operand.Op) {
 	if inst, err := x86.VCVTPD2PSX(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VCVTPD2PSX(mx, x avo.Operand) { ctx.VCVTPD2PSX(mx, x) }
+func VCVTPD2PSX(mx, x operand.Op) { ctx.VCVTPD2PSX(mx, x) }
 
-func (c *Context) VCVTPD2PSY(my, x avo.Operand) {
+func (c *Context) VCVTPD2PSY(my, x operand.Op) {
 	if inst, err := x86.VCVTPD2PSY(my, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VCVTPD2PSY(my, x avo.Operand) { ctx.VCVTPD2PSY(my, x) }
+func VCVTPD2PSY(my, x operand.Op) { ctx.VCVTPD2PSY(my, x) }
 
-func (c *Context) VCVTPH2PS(mx, xy avo.Operand) {
+func (c *Context) VCVTPH2PS(mx, xy operand.Op) {
 	if inst, err := x86.VCVTPH2PS(mx, xy); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VCVTPH2PS(mx, xy avo.Operand) { ctx.VCVTPH2PS(mx, xy) }
+func VCVTPH2PS(mx, xy operand.Op) { ctx.VCVTPH2PS(mx, xy) }
 
-func (c *Context) VCVTPS2DQ(mxy, xy avo.Operand) {
+func (c *Context) VCVTPS2DQ(mxy, xy operand.Op) {
 	if inst, err := x86.VCVTPS2DQ(mxy, xy); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VCVTPS2DQ(mxy, xy avo.Operand) { ctx.VCVTPS2DQ(mxy, xy) }
+func VCVTPS2DQ(mxy, xy operand.Op) { ctx.VCVTPS2DQ(mxy, xy) }
 
-func (c *Context) VCVTPS2PD(mx, xy avo.Operand) {
+func (c *Context) VCVTPS2PD(mx, xy operand.Op) {
 	if inst, err := x86.VCVTPS2PD(mx, xy); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VCVTPS2PD(mx, xy avo.Operand) { ctx.VCVTPS2PD(mx, xy) }
+func VCVTPS2PD(mx, xy operand.Op) { ctx.VCVTPS2PD(mx, xy) }
 
-func (c *Context) VCVTPS2PH(i, xy, mx avo.Operand) {
+func (c *Context) VCVTPS2PH(i, xy, mx operand.Op) {
 	if inst, err := x86.VCVTPS2PH(i, xy, mx); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VCVTPS2PH(i, xy, mx avo.Operand) { ctx.VCVTPS2PH(i, xy, mx) }
+func VCVTPS2PH(i, xy, mx operand.Op) { ctx.VCVTPS2PH(i, xy, mx) }
 
-func (c *Context) VCVTSD2SI(mx, r avo.Operand) {
+func (c *Context) VCVTSD2SI(mx, r operand.Op) {
 	if inst, err := x86.VCVTSD2SI(mx, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VCVTSD2SI(mx, r avo.Operand) { ctx.VCVTSD2SI(mx, r) }
+func VCVTSD2SI(mx, r operand.Op) { ctx.VCVTSD2SI(mx, r) }
 
-func (c *Context) VCVTSD2SIQ(mx, r avo.Operand) {
+func (c *Context) VCVTSD2SIQ(mx, r operand.Op) {
 	if inst, err := x86.VCVTSD2SIQ(mx, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VCVTSD2SIQ(mx, r avo.Operand) { ctx.VCVTSD2SIQ(mx, r) }
+func VCVTSD2SIQ(mx, r operand.Op) { ctx.VCVTSD2SIQ(mx, r) }
 
-func (c *Context) VCVTSD2SS(mx, x, x1 avo.Operand) {
+func (c *Context) VCVTSD2SS(mx, x, x1 operand.Op) {
 	if inst, err := x86.VCVTSD2SS(mx, x, x1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VCVTSD2SS(mx, x, x1 avo.Operand) { ctx.VCVTSD2SS(mx, x, x1) }
+func VCVTSD2SS(mx, x, x1 operand.Op) { ctx.VCVTSD2SS(mx, x, x1) }
 
-func (c *Context) VCVTSI2SDL(mr, x, x1 avo.Operand) {
+func (c *Context) VCVTSI2SDL(mr, x, x1 operand.Op) {
 	if inst, err := x86.VCVTSI2SDL(mr, x, x1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VCVTSI2SDL(mr, x, x1 avo.Operand) { ctx.VCVTSI2SDL(mr, x, x1) }
+func VCVTSI2SDL(mr, x, x1 operand.Op) { ctx.VCVTSI2SDL(mr, x, x1) }
 
-func (c *Context) VCVTSI2SDQ(mr, x, x1 avo.Operand) {
+func (c *Context) VCVTSI2SDQ(mr, x, x1 operand.Op) {
 	if inst, err := x86.VCVTSI2SDQ(mr, x, x1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VCVTSI2SDQ(mr, x, x1 avo.Operand) { ctx.VCVTSI2SDQ(mr, x, x1) }
+func VCVTSI2SDQ(mr, x, x1 operand.Op) { ctx.VCVTSI2SDQ(mr, x, x1) }
 
-func (c *Context) VCVTSI2SSL(mr, x, x1 avo.Operand) {
+func (c *Context) VCVTSI2SSL(mr, x, x1 operand.Op) {
 	if inst, err := x86.VCVTSI2SSL(mr, x, x1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VCVTSI2SSL(mr, x, x1 avo.Operand) { ctx.VCVTSI2SSL(mr, x, x1) }
+func VCVTSI2SSL(mr, x, x1 operand.Op) { ctx.VCVTSI2SSL(mr, x, x1) }
 
-func (c *Context) VCVTSI2SSQ(mr, x, x1 avo.Operand) {
+func (c *Context) VCVTSI2SSQ(mr, x, x1 operand.Op) {
 	if inst, err := x86.VCVTSI2SSQ(mr, x, x1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VCVTSI2SSQ(mr, x, x1 avo.Operand) { ctx.VCVTSI2SSQ(mr, x, x1) }
+func VCVTSI2SSQ(mr, x, x1 operand.Op) { ctx.VCVTSI2SSQ(mr, x, x1) }
 
-func (c *Context) VCVTSS2SD(mx, x, x1 avo.Operand) {
+func (c *Context) VCVTSS2SD(mx, x, x1 operand.Op) {
 	if inst, err := x86.VCVTSS2SD(mx, x, x1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VCVTSS2SD(mx, x, x1 avo.Operand) { ctx.VCVTSS2SD(mx, x, x1) }
+func VCVTSS2SD(mx, x, x1 operand.Op) { ctx.VCVTSS2SD(mx, x, x1) }
 
-func (c *Context) VCVTSS2SI(mx, r avo.Operand) {
+func (c *Context) VCVTSS2SI(mx, r operand.Op) {
 	if inst, err := x86.VCVTSS2SI(mx, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VCVTSS2SI(mx, r avo.Operand) { ctx.VCVTSS2SI(mx, r) }
+func VCVTSS2SI(mx, r operand.Op) { ctx.VCVTSS2SI(mx, r) }
 
-func (c *Context) VCVTSS2SIQ(mx, r avo.Operand) {
+func (c *Context) VCVTSS2SIQ(mx, r operand.Op) {
 	if inst, err := x86.VCVTSS2SIQ(mx, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VCVTSS2SIQ(mx, r avo.Operand) { ctx.VCVTSS2SIQ(mx, r) }
+func VCVTSS2SIQ(mx, r operand.Op) { ctx.VCVTSS2SIQ(mx, r) }
 
-func (c *Context) VCVTTPD2DQX(mx, x avo.Operand) {
+func (c *Context) VCVTTPD2DQX(mx, x operand.Op) {
 	if inst, err := x86.VCVTTPD2DQX(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VCVTTPD2DQX(mx, x avo.Operand) { ctx.VCVTTPD2DQX(mx, x) }
+func VCVTTPD2DQX(mx, x operand.Op) { ctx.VCVTTPD2DQX(mx, x) }
 
-func (c *Context) VCVTTPD2DQY(my, x avo.Operand) {
+func (c *Context) VCVTTPD2DQY(my, x operand.Op) {
 	if inst, err := x86.VCVTTPD2DQY(my, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VCVTTPD2DQY(my, x avo.Operand) { ctx.VCVTTPD2DQY(my, x) }
+func VCVTTPD2DQY(my, x operand.Op) { ctx.VCVTTPD2DQY(my, x) }
 
-func (c *Context) VCVTTPS2DQ(mxy, xy avo.Operand) {
+func (c *Context) VCVTTPS2DQ(mxy, xy operand.Op) {
 	if inst, err := x86.VCVTTPS2DQ(mxy, xy); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VCVTTPS2DQ(mxy, xy avo.Operand) { ctx.VCVTTPS2DQ(mxy, xy) }
+func VCVTTPS2DQ(mxy, xy operand.Op) { ctx.VCVTTPS2DQ(mxy, xy) }
 
-func (c *Context) VCVTTSD2SI(mx, r avo.Operand) {
+func (c *Context) VCVTTSD2SI(mx, r operand.Op) {
 	if inst, err := x86.VCVTTSD2SI(mx, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VCVTTSD2SI(mx, r avo.Operand) { ctx.VCVTTSD2SI(mx, r) }
+func VCVTTSD2SI(mx, r operand.Op) { ctx.VCVTTSD2SI(mx, r) }
 
-func (c *Context) VCVTTSD2SIQ(mx, r avo.Operand) {
+func (c *Context) VCVTTSD2SIQ(mx, r operand.Op) {
 	if inst, err := x86.VCVTTSD2SIQ(mx, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VCVTTSD2SIQ(mx, r avo.Operand) { ctx.VCVTTSD2SIQ(mx, r) }
+func VCVTTSD2SIQ(mx, r operand.Op) { ctx.VCVTTSD2SIQ(mx, r) }
 
-func (c *Context) VCVTTSS2SI(mx, r avo.Operand) {
+func (c *Context) VCVTTSS2SI(mx, r operand.Op) {
 	if inst, err := x86.VCVTTSS2SI(mx, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VCVTTSS2SI(mx, r avo.Operand) { ctx.VCVTTSS2SI(mx, r) }
+func VCVTTSS2SI(mx, r operand.Op) { ctx.VCVTTSS2SI(mx, r) }
 
-func (c *Context) VCVTTSS2SIQ(mx, r avo.Operand) {
+func (c *Context) VCVTTSS2SIQ(mx, r operand.Op) {
 	if inst, err := x86.VCVTTSS2SIQ(mx, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VCVTTSS2SIQ(mx, r avo.Operand) { ctx.VCVTTSS2SIQ(mx, r) }
+func VCVTTSS2SIQ(mx, r operand.Op) { ctx.VCVTTSS2SIQ(mx, r) }
 
-func (c *Context) VDIVPD(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VDIVPD(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VDIVPD(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VDIVPD(mxy, xy, xy1 avo.Operand) { ctx.VDIVPD(mxy, xy, xy1) }
+func VDIVPD(mxy, xy, xy1 operand.Op) { ctx.VDIVPD(mxy, xy, xy1) }
 
-func (c *Context) VDIVPS(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VDIVPS(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VDIVPS(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VDIVPS(mxy, xy, xy1 avo.Operand) { ctx.VDIVPS(mxy, xy, xy1) }
+func VDIVPS(mxy, xy, xy1 operand.Op) { ctx.VDIVPS(mxy, xy, xy1) }
 
-func (c *Context) VDIVSD(mx, x, x1 avo.Operand) {
+func (c *Context) VDIVSD(mx, x, x1 operand.Op) {
 	if inst, err := x86.VDIVSD(mx, x, x1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VDIVSD(mx, x, x1 avo.Operand) { ctx.VDIVSD(mx, x, x1) }
+func VDIVSD(mx, x, x1 operand.Op) { ctx.VDIVSD(mx, x, x1) }
 
-func (c *Context) VDIVSS(mx, x, x1 avo.Operand) {
+func (c *Context) VDIVSS(mx, x, x1 operand.Op) {
 	if inst, err := x86.VDIVSS(mx, x, x1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VDIVSS(mx, x, x1 avo.Operand) { ctx.VDIVSS(mx, x, x1) }
+func VDIVSS(mx, x, x1 operand.Op) { ctx.VDIVSS(mx, x, x1) }
 
-func (c *Context) VDPPD(i, mx, x, x1 avo.Operand) {
+func (c *Context) VDPPD(i, mx, x, x1 operand.Op) {
 	if inst, err := x86.VDPPD(i, mx, x, x1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VDPPD(i, mx, x, x1 avo.Operand) { ctx.VDPPD(i, mx, x, x1) }
+func VDPPD(i, mx, x, x1 operand.Op) { ctx.VDPPD(i, mx, x, x1) }
 
-func (c *Context) VDPPS(i, mxy, xy, xy1 avo.Operand) {
+func (c *Context) VDPPS(i, mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VDPPS(i, mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VDPPS(i, mxy, xy, xy1 avo.Operand) { ctx.VDPPS(i, mxy, xy, xy1) }
+func VDPPS(i, mxy, xy, xy1 operand.Op) { ctx.VDPPS(i, mxy, xy, xy1) }
 
-func (c *Context) VEXTRACTF128(i, y, mx avo.Operand) {
+func (c *Context) VEXTRACTF128(i, y, mx operand.Op) {
 	if inst, err := x86.VEXTRACTF128(i, y, mx); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VEXTRACTF128(i, y, mx avo.Operand) { ctx.VEXTRACTF128(i, y, mx) }
+func VEXTRACTF128(i, y, mx operand.Op) { ctx.VEXTRACTF128(i, y, mx) }
 
-func (c *Context) VEXTRACTI128(i, y, mx avo.Operand) {
+func (c *Context) VEXTRACTI128(i, y, mx operand.Op) {
 	if inst, err := x86.VEXTRACTI128(i, y, mx); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VEXTRACTI128(i, y, mx avo.Operand) { ctx.VEXTRACTI128(i, y, mx) }
+func VEXTRACTI128(i, y, mx operand.Op) { ctx.VEXTRACTI128(i, y, mx) }
 
-func (c *Context) VEXTRACTPS(i, x, mr avo.Operand) {
+func (c *Context) VEXTRACTPS(i, x, mr operand.Op) {
 	if inst, err := x86.VEXTRACTPS(i, x, mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VEXTRACTPS(i, x, mr avo.Operand) { ctx.VEXTRACTPS(i, x, mr) }
+func VEXTRACTPS(i, x, mr operand.Op) { ctx.VEXTRACTPS(i, x, mr) }
 
-func (c *Context) VFMADD132PD(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VFMADD132PD(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VFMADD132PD(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VFMADD132PD(mxy, xy, xy1 avo.Operand) { ctx.VFMADD132PD(mxy, xy, xy1) }
+func VFMADD132PD(mxy, xy, xy1 operand.Op) { ctx.VFMADD132PD(mxy, xy, xy1) }
 
-func (c *Context) VFMADD132PS(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VFMADD132PS(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VFMADD132PS(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VFMADD132PS(mxy, xy, xy1 avo.Operand) { ctx.VFMADD132PS(mxy, xy, xy1) }
+func VFMADD132PS(mxy, xy, xy1 operand.Op) { ctx.VFMADD132PS(mxy, xy, xy1) }
 
-func (c *Context) VFMADD132SD(mx, x, x1 avo.Operand) {
+func (c *Context) VFMADD132SD(mx, x, x1 operand.Op) {
 	if inst, err := x86.VFMADD132SD(mx, x, x1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VFMADD132SD(mx, x, x1 avo.Operand) { ctx.VFMADD132SD(mx, x, x1) }
+func VFMADD132SD(mx, x, x1 operand.Op) { ctx.VFMADD132SD(mx, x, x1) }
 
-func (c *Context) VFMADD132SS(mx, x, x1 avo.Operand) {
+func (c *Context) VFMADD132SS(mx, x, x1 operand.Op) {
 	if inst, err := x86.VFMADD132SS(mx, x, x1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VFMADD132SS(mx, x, x1 avo.Operand) { ctx.VFMADD132SS(mx, x, x1) }
+func VFMADD132SS(mx, x, x1 operand.Op) { ctx.VFMADD132SS(mx, x, x1) }
 
-func (c *Context) VFMADD213PD(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VFMADD213PD(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VFMADD213PD(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VFMADD213PD(mxy, xy, xy1 avo.Operand) { ctx.VFMADD213PD(mxy, xy, xy1) }
+func VFMADD213PD(mxy, xy, xy1 operand.Op) { ctx.VFMADD213PD(mxy, xy, xy1) }
 
-func (c *Context) VFMADD213PS(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VFMADD213PS(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VFMADD213PS(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VFMADD213PS(mxy, xy, xy1 avo.Operand) { ctx.VFMADD213PS(mxy, xy, xy1) }
+func VFMADD213PS(mxy, xy, xy1 operand.Op) { ctx.VFMADD213PS(mxy, xy, xy1) }
 
-func (c *Context) VFMADD213SD(mx, x, x1 avo.Operand) {
+func (c *Context) VFMADD213SD(mx, x, x1 operand.Op) {
 	if inst, err := x86.VFMADD213SD(mx, x, x1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VFMADD213SD(mx, x, x1 avo.Operand) { ctx.VFMADD213SD(mx, x, x1) }
+func VFMADD213SD(mx, x, x1 operand.Op) { ctx.VFMADD213SD(mx, x, x1) }
 
-func (c *Context) VFMADD213SS(mx, x, x1 avo.Operand) {
+func (c *Context) VFMADD213SS(mx, x, x1 operand.Op) {
 	if inst, err := x86.VFMADD213SS(mx, x, x1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VFMADD213SS(mx, x, x1 avo.Operand) { ctx.VFMADD213SS(mx, x, x1) }
+func VFMADD213SS(mx, x, x1 operand.Op) { ctx.VFMADD213SS(mx, x, x1) }
 
-func (c *Context) VFMADD231PD(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VFMADD231PD(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VFMADD231PD(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VFMADD231PD(mxy, xy, xy1 avo.Operand) { ctx.VFMADD231PD(mxy, xy, xy1) }
+func VFMADD231PD(mxy, xy, xy1 operand.Op) { ctx.VFMADD231PD(mxy, xy, xy1) }
 
-func (c *Context) VFMADD231PS(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VFMADD231PS(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VFMADD231PS(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VFMADD231PS(mxy, xy, xy1 avo.Operand) { ctx.VFMADD231PS(mxy, xy, xy1) }
+func VFMADD231PS(mxy, xy, xy1 operand.Op) { ctx.VFMADD231PS(mxy, xy, xy1) }
 
-func (c *Context) VFMADD231SD(mx, x, x1 avo.Operand) {
+func (c *Context) VFMADD231SD(mx, x, x1 operand.Op) {
 	if inst, err := x86.VFMADD231SD(mx, x, x1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VFMADD231SD(mx, x, x1 avo.Operand) { ctx.VFMADD231SD(mx, x, x1) }
+func VFMADD231SD(mx, x, x1 operand.Op) { ctx.VFMADD231SD(mx, x, x1) }
 
-func (c *Context) VFMADD231SS(mx, x, x1 avo.Operand) {
+func (c *Context) VFMADD231SS(mx, x, x1 operand.Op) {
 	if inst, err := x86.VFMADD231SS(mx, x, x1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VFMADD231SS(mx, x, x1 avo.Operand) { ctx.VFMADD231SS(mx, x, x1) }
+func VFMADD231SS(mx, x, x1 operand.Op) { ctx.VFMADD231SS(mx, x, x1) }
 
-func (c *Context) VFMADDSUB132PD(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VFMADDSUB132PD(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VFMADDSUB132PD(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VFMADDSUB132PD(mxy, xy, xy1 avo.Operand) { ctx.VFMADDSUB132PD(mxy, xy, xy1) }
+func VFMADDSUB132PD(mxy, xy, xy1 operand.Op) { ctx.VFMADDSUB132PD(mxy, xy, xy1) }
 
-func (c *Context) VFMADDSUB132PS(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VFMADDSUB132PS(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VFMADDSUB132PS(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VFMADDSUB132PS(mxy, xy, xy1 avo.Operand) { ctx.VFMADDSUB132PS(mxy, xy, xy1) }
+func VFMADDSUB132PS(mxy, xy, xy1 operand.Op) { ctx.VFMADDSUB132PS(mxy, xy, xy1) }
 
-func (c *Context) VFMADDSUB213PD(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VFMADDSUB213PD(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VFMADDSUB213PD(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VFMADDSUB213PD(mxy, xy, xy1 avo.Operand) { ctx.VFMADDSUB213PD(mxy, xy, xy1) }
+func VFMADDSUB213PD(mxy, xy, xy1 operand.Op) { ctx.VFMADDSUB213PD(mxy, xy, xy1) }
 
-func (c *Context) VFMADDSUB213PS(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VFMADDSUB213PS(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VFMADDSUB213PS(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VFMADDSUB213PS(mxy, xy, xy1 avo.Operand) { ctx.VFMADDSUB213PS(mxy, xy, xy1) }
+func VFMADDSUB213PS(mxy, xy, xy1 operand.Op) { ctx.VFMADDSUB213PS(mxy, xy, xy1) }
 
-func (c *Context) VFMADDSUB231PD(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VFMADDSUB231PD(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VFMADDSUB231PD(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VFMADDSUB231PD(mxy, xy, xy1 avo.Operand) { ctx.VFMADDSUB231PD(mxy, xy, xy1) }
+func VFMADDSUB231PD(mxy, xy, xy1 operand.Op) { ctx.VFMADDSUB231PD(mxy, xy, xy1) }
 
-func (c *Context) VFMADDSUB231PS(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VFMADDSUB231PS(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VFMADDSUB231PS(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VFMADDSUB231PS(mxy, xy, xy1 avo.Operand) { ctx.VFMADDSUB231PS(mxy, xy, xy1) }
+func VFMADDSUB231PS(mxy, xy, xy1 operand.Op) { ctx.VFMADDSUB231PS(mxy, xy, xy1) }
 
-func (c *Context) VFMSUB132PD(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VFMSUB132PD(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VFMSUB132PD(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VFMSUB132PD(mxy, xy, xy1 avo.Operand) { ctx.VFMSUB132PD(mxy, xy, xy1) }
+func VFMSUB132PD(mxy, xy, xy1 operand.Op) { ctx.VFMSUB132PD(mxy, xy, xy1) }
 
-func (c *Context) VFMSUB132PS(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VFMSUB132PS(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VFMSUB132PS(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VFMSUB132PS(mxy, xy, xy1 avo.Operand) { ctx.VFMSUB132PS(mxy, xy, xy1) }
+func VFMSUB132PS(mxy, xy, xy1 operand.Op) { ctx.VFMSUB132PS(mxy, xy, xy1) }
 
-func (c *Context) VFMSUB132SD(mx, x, x1 avo.Operand) {
+func (c *Context) VFMSUB132SD(mx, x, x1 operand.Op) {
 	if inst, err := x86.VFMSUB132SD(mx, x, x1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VFMSUB132SD(mx, x, x1 avo.Operand) { ctx.VFMSUB132SD(mx, x, x1) }
+func VFMSUB132SD(mx, x, x1 operand.Op) { ctx.VFMSUB132SD(mx, x, x1) }
 
-func (c *Context) VFMSUB132SS(mx, x, x1 avo.Operand) {
+func (c *Context) VFMSUB132SS(mx, x, x1 operand.Op) {
 	if inst, err := x86.VFMSUB132SS(mx, x, x1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VFMSUB132SS(mx, x, x1 avo.Operand) { ctx.VFMSUB132SS(mx, x, x1) }
+func VFMSUB132SS(mx, x, x1 operand.Op) { ctx.VFMSUB132SS(mx, x, x1) }
 
-func (c *Context) VFMSUB213PD(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VFMSUB213PD(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VFMSUB213PD(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VFMSUB213PD(mxy, xy, xy1 avo.Operand) { ctx.VFMSUB213PD(mxy, xy, xy1) }
+func VFMSUB213PD(mxy, xy, xy1 operand.Op) { ctx.VFMSUB213PD(mxy, xy, xy1) }
 
-func (c *Context) VFMSUB213PS(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VFMSUB213PS(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VFMSUB213PS(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VFMSUB213PS(mxy, xy, xy1 avo.Operand) { ctx.VFMSUB213PS(mxy, xy, xy1) }
+func VFMSUB213PS(mxy, xy, xy1 operand.Op) { ctx.VFMSUB213PS(mxy, xy, xy1) }
 
-func (c *Context) VFMSUB213SD(mx, x, x1 avo.Operand) {
+func (c *Context) VFMSUB213SD(mx, x, x1 operand.Op) {
 	if inst, err := x86.VFMSUB213SD(mx, x, x1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VFMSUB213SD(mx, x, x1 avo.Operand) { ctx.VFMSUB213SD(mx, x, x1) }
+func VFMSUB213SD(mx, x, x1 operand.Op) { ctx.VFMSUB213SD(mx, x, x1) }
 
-func (c *Context) VFMSUB213SS(mx, x, x1 avo.Operand) {
+func (c *Context) VFMSUB213SS(mx, x, x1 operand.Op) {
 	if inst, err := x86.VFMSUB213SS(mx, x, x1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VFMSUB213SS(mx, x, x1 avo.Operand) { ctx.VFMSUB213SS(mx, x, x1) }
+func VFMSUB213SS(mx, x, x1 operand.Op) { ctx.VFMSUB213SS(mx, x, x1) }
 
-func (c *Context) VFMSUB231PD(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VFMSUB231PD(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VFMSUB231PD(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VFMSUB231PD(mxy, xy, xy1 avo.Operand) { ctx.VFMSUB231PD(mxy, xy, xy1) }
+func VFMSUB231PD(mxy, xy, xy1 operand.Op) { ctx.VFMSUB231PD(mxy, xy, xy1) }
 
-func (c *Context) VFMSUB231PS(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VFMSUB231PS(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VFMSUB231PS(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VFMSUB231PS(mxy, xy, xy1 avo.Operand) { ctx.VFMSUB231PS(mxy, xy, xy1) }
+func VFMSUB231PS(mxy, xy, xy1 operand.Op) { ctx.VFMSUB231PS(mxy, xy, xy1) }
 
-func (c *Context) VFMSUB231SD(mx, x, x1 avo.Operand) {
+func (c *Context) VFMSUB231SD(mx, x, x1 operand.Op) {
 	if inst, err := x86.VFMSUB231SD(mx, x, x1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VFMSUB231SD(mx, x, x1 avo.Operand) { ctx.VFMSUB231SD(mx, x, x1) }
+func VFMSUB231SD(mx, x, x1 operand.Op) { ctx.VFMSUB231SD(mx, x, x1) }
 
-func (c *Context) VFMSUB231SS(mx, x, x1 avo.Operand) {
+func (c *Context) VFMSUB231SS(mx, x, x1 operand.Op) {
 	if inst, err := x86.VFMSUB231SS(mx, x, x1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VFMSUB231SS(mx, x, x1 avo.Operand) { ctx.VFMSUB231SS(mx, x, x1) }
+func VFMSUB231SS(mx, x, x1 operand.Op) { ctx.VFMSUB231SS(mx, x, x1) }
 
-func (c *Context) VFMSUBADD132PD(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VFMSUBADD132PD(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VFMSUBADD132PD(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VFMSUBADD132PD(mxy, xy, xy1 avo.Operand) { ctx.VFMSUBADD132PD(mxy, xy, xy1) }
+func VFMSUBADD132PD(mxy, xy, xy1 operand.Op) { ctx.VFMSUBADD132PD(mxy, xy, xy1) }
 
-func (c *Context) VFMSUBADD132PS(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VFMSUBADD132PS(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VFMSUBADD132PS(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VFMSUBADD132PS(mxy, xy, xy1 avo.Operand) { ctx.VFMSUBADD132PS(mxy, xy, xy1) }
+func VFMSUBADD132PS(mxy, xy, xy1 operand.Op) { ctx.VFMSUBADD132PS(mxy, xy, xy1) }
 
-func (c *Context) VFMSUBADD213PD(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VFMSUBADD213PD(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VFMSUBADD213PD(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VFMSUBADD213PD(mxy, xy, xy1 avo.Operand) { ctx.VFMSUBADD213PD(mxy, xy, xy1) }
+func VFMSUBADD213PD(mxy, xy, xy1 operand.Op) { ctx.VFMSUBADD213PD(mxy, xy, xy1) }
 
-func (c *Context) VFMSUBADD213PS(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VFMSUBADD213PS(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VFMSUBADD213PS(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VFMSUBADD213PS(mxy, xy, xy1 avo.Operand) { ctx.VFMSUBADD213PS(mxy, xy, xy1) }
+func VFMSUBADD213PS(mxy, xy, xy1 operand.Op) { ctx.VFMSUBADD213PS(mxy, xy, xy1) }
 
-func (c *Context) VFMSUBADD231PD(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VFMSUBADD231PD(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VFMSUBADD231PD(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VFMSUBADD231PD(mxy, xy, xy1 avo.Operand) { ctx.VFMSUBADD231PD(mxy, xy, xy1) }
+func VFMSUBADD231PD(mxy, xy, xy1 operand.Op) { ctx.VFMSUBADD231PD(mxy, xy, xy1) }
 
-func (c *Context) VFMSUBADD231PS(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VFMSUBADD231PS(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VFMSUBADD231PS(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VFMSUBADD231PS(mxy, xy, xy1 avo.Operand) { ctx.VFMSUBADD231PS(mxy, xy, xy1) }
+func VFMSUBADD231PS(mxy, xy, xy1 operand.Op) { ctx.VFMSUBADD231PS(mxy, xy, xy1) }
 
-func (c *Context) VFNMADD132PD(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VFNMADD132PD(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VFNMADD132PD(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VFNMADD132PD(mxy, xy, xy1 avo.Operand) { ctx.VFNMADD132PD(mxy, xy, xy1) }
+func VFNMADD132PD(mxy, xy, xy1 operand.Op) { ctx.VFNMADD132PD(mxy, xy, xy1) }
 
-func (c *Context) VFNMADD132PS(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VFNMADD132PS(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VFNMADD132PS(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VFNMADD132PS(mxy, xy, xy1 avo.Operand) { ctx.VFNMADD132PS(mxy, xy, xy1) }
+func VFNMADD132PS(mxy, xy, xy1 operand.Op) { ctx.VFNMADD132PS(mxy, xy, xy1) }
 
-func (c *Context) VFNMADD132SD(mx, x, x1 avo.Operand) {
+func (c *Context) VFNMADD132SD(mx, x, x1 operand.Op) {
 	if inst, err := x86.VFNMADD132SD(mx, x, x1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VFNMADD132SD(mx, x, x1 avo.Operand) { ctx.VFNMADD132SD(mx, x, x1) }
+func VFNMADD132SD(mx, x, x1 operand.Op) { ctx.VFNMADD132SD(mx, x, x1) }
 
-func (c *Context) VFNMADD132SS(mx, x, x1 avo.Operand) {
+func (c *Context) VFNMADD132SS(mx, x, x1 operand.Op) {
 	if inst, err := x86.VFNMADD132SS(mx, x, x1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VFNMADD132SS(mx, x, x1 avo.Operand) { ctx.VFNMADD132SS(mx, x, x1) }
+func VFNMADD132SS(mx, x, x1 operand.Op) { ctx.VFNMADD132SS(mx, x, x1) }
 
-func (c *Context) VFNMADD213PD(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VFNMADD213PD(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VFNMADD213PD(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VFNMADD213PD(mxy, xy, xy1 avo.Operand) { ctx.VFNMADD213PD(mxy, xy, xy1) }
+func VFNMADD213PD(mxy, xy, xy1 operand.Op) { ctx.VFNMADD213PD(mxy, xy, xy1) }
 
-func (c *Context) VFNMADD213PS(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VFNMADD213PS(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VFNMADD213PS(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VFNMADD213PS(mxy, xy, xy1 avo.Operand) { ctx.VFNMADD213PS(mxy, xy, xy1) }
+func VFNMADD213PS(mxy, xy, xy1 operand.Op) { ctx.VFNMADD213PS(mxy, xy, xy1) }
 
-func (c *Context) VFNMADD213SD(mx, x, x1 avo.Operand) {
+func (c *Context) VFNMADD213SD(mx, x, x1 operand.Op) {
 	if inst, err := x86.VFNMADD213SD(mx, x, x1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VFNMADD213SD(mx, x, x1 avo.Operand) { ctx.VFNMADD213SD(mx, x, x1) }
+func VFNMADD213SD(mx, x, x1 operand.Op) { ctx.VFNMADD213SD(mx, x, x1) }
 
-func (c *Context) VFNMADD213SS(mx, x, x1 avo.Operand) {
+func (c *Context) VFNMADD213SS(mx, x, x1 operand.Op) {
 	if inst, err := x86.VFNMADD213SS(mx, x, x1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VFNMADD213SS(mx, x, x1 avo.Operand) { ctx.VFNMADD213SS(mx, x, x1) }
+func VFNMADD213SS(mx, x, x1 operand.Op) { ctx.VFNMADD213SS(mx, x, x1) }
 
-func (c *Context) VFNMADD231PD(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VFNMADD231PD(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VFNMADD231PD(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VFNMADD231PD(mxy, xy, xy1 avo.Operand) { ctx.VFNMADD231PD(mxy, xy, xy1) }
+func VFNMADD231PD(mxy, xy, xy1 operand.Op) { ctx.VFNMADD231PD(mxy, xy, xy1) }
 
-func (c *Context) VFNMADD231PS(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VFNMADD231PS(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VFNMADD231PS(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VFNMADD231PS(mxy, xy, xy1 avo.Operand) { ctx.VFNMADD231PS(mxy, xy, xy1) }
+func VFNMADD231PS(mxy, xy, xy1 operand.Op) { ctx.VFNMADD231PS(mxy, xy, xy1) }
 
-func (c *Context) VFNMADD231SD(mx, x, x1 avo.Operand) {
+func (c *Context) VFNMADD231SD(mx, x, x1 operand.Op) {
 	if inst, err := x86.VFNMADD231SD(mx, x, x1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VFNMADD231SD(mx, x, x1 avo.Operand) { ctx.VFNMADD231SD(mx, x, x1) }
+func VFNMADD231SD(mx, x, x1 operand.Op) { ctx.VFNMADD231SD(mx, x, x1) }
 
-func (c *Context) VFNMADD231SS(mx, x, x1 avo.Operand) {
+func (c *Context) VFNMADD231SS(mx, x, x1 operand.Op) {
 	if inst, err := x86.VFNMADD231SS(mx, x, x1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VFNMADD231SS(mx, x, x1 avo.Operand) { ctx.VFNMADD231SS(mx, x, x1) }
+func VFNMADD231SS(mx, x, x1 operand.Op) { ctx.VFNMADD231SS(mx, x, x1) }
 
-func (c *Context) VFNMSUB132PD(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VFNMSUB132PD(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VFNMSUB132PD(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VFNMSUB132PD(mxy, xy, xy1 avo.Operand) { ctx.VFNMSUB132PD(mxy, xy, xy1) }
+func VFNMSUB132PD(mxy, xy, xy1 operand.Op) { ctx.VFNMSUB132PD(mxy, xy, xy1) }
 
-func (c *Context) VFNMSUB132PS(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VFNMSUB132PS(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VFNMSUB132PS(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VFNMSUB132PS(mxy, xy, xy1 avo.Operand) { ctx.VFNMSUB132PS(mxy, xy, xy1) }
+func VFNMSUB132PS(mxy, xy, xy1 operand.Op) { ctx.VFNMSUB132PS(mxy, xy, xy1) }
 
-func (c *Context) VFNMSUB132SD(mx, x, x1 avo.Operand) {
+func (c *Context) VFNMSUB132SD(mx, x, x1 operand.Op) {
 	if inst, err := x86.VFNMSUB132SD(mx, x, x1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VFNMSUB132SD(mx, x, x1 avo.Operand) { ctx.VFNMSUB132SD(mx, x, x1) }
+func VFNMSUB132SD(mx, x, x1 operand.Op) { ctx.VFNMSUB132SD(mx, x, x1) }
 
-func (c *Context) VFNMSUB132SS(mx, x, x1 avo.Operand) {
+func (c *Context) VFNMSUB132SS(mx, x, x1 operand.Op) {
 	if inst, err := x86.VFNMSUB132SS(mx, x, x1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VFNMSUB132SS(mx, x, x1 avo.Operand) { ctx.VFNMSUB132SS(mx, x, x1) }
+func VFNMSUB132SS(mx, x, x1 operand.Op) { ctx.VFNMSUB132SS(mx, x, x1) }
 
-func (c *Context) VFNMSUB213PD(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VFNMSUB213PD(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VFNMSUB213PD(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VFNMSUB213PD(mxy, xy, xy1 avo.Operand) { ctx.VFNMSUB213PD(mxy, xy, xy1) }
+func VFNMSUB213PD(mxy, xy, xy1 operand.Op) { ctx.VFNMSUB213PD(mxy, xy, xy1) }
 
-func (c *Context) VFNMSUB213PS(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VFNMSUB213PS(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VFNMSUB213PS(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VFNMSUB213PS(mxy, xy, xy1 avo.Operand) { ctx.VFNMSUB213PS(mxy, xy, xy1) }
+func VFNMSUB213PS(mxy, xy, xy1 operand.Op) { ctx.VFNMSUB213PS(mxy, xy, xy1) }
 
-func (c *Context) VFNMSUB213SD(mx, x, x1 avo.Operand) {
+func (c *Context) VFNMSUB213SD(mx, x, x1 operand.Op) {
 	if inst, err := x86.VFNMSUB213SD(mx, x, x1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VFNMSUB213SD(mx, x, x1 avo.Operand) { ctx.VFNMSUB213SD(mx, x, x1) }
+func VFNMSUB213SD(mx, x, x1 operand.Op) { ctx.VFNMSUB213SD(mx, x, x1) }
 
-func (c *Context) VFNMSUB213SS(mx, x, x1 avo.Operand) {
+func (c *Context) VFNMSUB213SS(mx, x, x1 operand.Op) {
 	if inst, err := x86.VFNMSUB213SS(mx, x, x1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VFNMSUB213SS(mx, x, x1 avo.Operand) { ctx.VFNMSUB213SS(mx, x, x1) }
+func VFNMSUB213SS(mx, x, x1 operand.Op) { ctx.VFNMSUB213SS(mx, x, x1) }
 
-func (c *Context) VFNMSUB231PD(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VFNMSUB231PD(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VFNMSUB231PD(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VFNMSUB231PD(mxy, xy, xy1 avo.Operand) { ctx.VFNMSUB231PD(mxy, xy, xy1) }
+func VFNMSUB231PD(mxy, xy, xy1 operand.Op) { ctx.VFNMSUB231PD(mxy, xy, xy1) }
 
-func (c *Context) VFNMSUB231PS(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VFNMSUB231PS(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VFNMSUB231PS(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VFNMSUB231PS(mxy, xy, xy1 avo.Operand) { ctx.VFNMSUB231PS(mxy, xy, xy1) }
+func VFNMSUB231PS(mxy, xy, xy1 operand.Op) { ctx.VFNMSUB231PS(mxy, xy, xy1) }
 
-func (c *Context) VFNMSUB231SD(mx, x, x1 avo.Operand) {
+func (c *Context) VFNMSUB231SD(mx, x, x1 operand.Op) {
 	if inst, err := x86.VFNMSUB231SD(mx, x, x1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VFNMSUB231SD(mx, x, x1 avo.Operand) { ctx.VFNMSUB231SD(mx, x, x1) }
+func VFNMSUB231SD(mx, x, x1 operand.Op) { ctx.VFNMSUB231SD(mx, x, x1) }
 
-func (c *Context) VFNMSUB231SS(mx, x, x1 avo.Operand) {
+func (c *Context) VFNMSUB231SS(mx, x, x1 operand.Op) {
 	if inst, err := x86.VFNMSUB231SS(mx, x, x1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VFNMSUB231SS(mx, x, x1 avo.Operand) { ctx.VFNMSUB231SS(mx, x, x1) }
+func VFNMSUB231SS(mx, x, x1 operand.Op) { ctx.VFNMSUB231SS(mx, x, x1) }
 
-func (c *Context) VGATHERDPD(xy, v, xy1 avo.Operand) {
+func (c *Context) VGATHERDPD(xy, v, xy1 operand.Op) {
 	if inst, err := x86.VGATHERDPD(xy, v, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VGATHERDPD(xy, v, xy1 avo.Operand) { ctx.VGATHERDPD(xy, v, xy1) }
+func VGATHERDPD(xy, v, xy1 operand.Op) { ctx.VGATHERDPD(xy, v, xy1) }
 
-func (c *Context) VGATHERDPS(xy, v, xy1 avo.Operand) {
+func (c *Context) VGATHERDPS(xy, v, xy1 operand.Op) {
 	if inst, err := x86.VGATHERDPS(xy, v, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VGATHERDPS(xy, v, xy1 avo.Operand) { ctx.VGATHERDPS(xy, v, xy1) }
+func VGATHERDPS(xy, v, xy1 operand.Op) { ctx.VGATHERDPS(xy, v, xy1) }
 
-func (c *Context) VGATHERQPD(xy, v, xy1 avo.Operand) {
+func (c *Context) VGATHERQPD(xy, v, xy1 operand.Op) {
 	if inst, err := x86.VGATHERQPD(xy, v, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VGATHERQPD(xy, v, xy1 avo.Operand) { ctx.VGATHERQPD(xy, v, xy1) }
+func VGATHERQPD(xy, v, xy1 operand.Op) { ctx.VGATHERQPD(xy, v, xy1) }
 
-func (c *Context) VGATHERQPS(x, v, x1 avo.Operand) {
+func (c *Context) VGATHERQPS(x, v, x1 operand.Op) {
 	if inst, err := x86.VGATHERQPS(x, v, x1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VGATHERQPS(x, v, x1 avo.Operand) { ctx.VGATHERQPS(x, v, x1) }
+func VGATHERQPS(x, v, x1 operand.Op) { ctx.VGATHERQPS(x, v, x1) }
 
-func (c *Context) VHADDPD(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VHADDPD(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VHADDPD(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VHADDPD(mxy, xy, xy1 avo.Operand) { ctx.VHADDPD(mxy, xy, xy1) }
+func VHADDPD(mxy, xy, xy1 operand.Op) { ctx.VHADDPD(mxy, xy, xy1) }
 
-func (c *Context) VHADDPS(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VHADDPS(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VHADDPS(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VHADDPS(mxy, xy, xy1 avo.Operand) { ctx.VHADDPS(mxy, xy, xy1) }
+func VHADDPS(mxy, xy, xy1 operand.Op) { ctx.VHADDPS(mxy, xy, xy1) }
 
-func (c *Context) VHSUBPD(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VHSUBPD(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VHSUBPD(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VHSUBPD(mxy, xy, xy1 avo.Operand) { ctx.VHSUBPD(mxy, xy, xy1) }
+func VHSUBPD(mxy, xy, xy1 operand.Op) { ctx.VHSUBPD(mxy, xy, xy1) }
 
-func (c *Context) VHSUBPS(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VHSUBPS(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VHSUBPS(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VHSUBPS(mxy, xy, xy1 avo.Operand) { ctx.VHSUBPS(mxy, xy, xy1) }
+func VHSUBPS(mxy, xy, xy1 operand.Op) { ctx.VHSUBPS(mxy, xy, xy1) }
 
-func (c *Context) VINSERTF128(i, mx, y, y1 avo.Operand) {
+func (c *Context) VINSERTF128(i, mx, y, y1 operand.Op) {
 	if inst, err := x86.VINSERTF128(i, mx, y, y1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VINSERTF128(i, mx, y, y1 avo.Operand) { ctx.VINSERTF128(i, mx, y, y1) }
+func VINSERTF128(i, mx, y, y1 operand.Op) { ctx.VINSERTF128(i, mx, y, y1) }
 
-func (c *Context) VINSERTI128(i, mx, y, y1 avo.Operand) {
+func (c *Context) VINSERTI128(i, mx, y, y1 operand.Op) {
 	if inst, err := x86.VINSERTI128(i, mx, y, y1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VINSERTI128(i, mx, y, y1 avo.Operand) { ctx.VINSERTI128(i, mx, y, y1) }
+func VINSERTI128(i, mx, y, y1 operand.Op) { ctx.VINSERTI128(i, mx, y, y1) }
 
-func (c *Context) VINSERTPS(i, mx, x, x1 avo.Operand) {
+func (c *Context) VINSERTPS(i, mx, x, x1 operand.Op) {
 	if inst, err := x86.VINSERTPS(i, mx, x, x1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VINSERTPS(i, mx, x, x1 avo.Operand) { ctx.VINSERTPS(i, mx, x, x1) }
+func VINSERTPS(i, mx, x, x1 operand.Op) { ctx.VINSERTPS(i, mx, x, x1) }
 
-func (c *Context) VLDDQU(m, xy avo.Operand) {
+func (c *Context) VLDDQU(m, xy operand.Op) {
 	if inst, err := x86.VLDDQU(m, xy); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VLDDQU(m, xy avo.Operand) { ctx.VLDDQU(m, xy) }
+func VLDDQU(m, xy operand.Op) { ctx.VLDDQU(m, xy) }
 
-func (c *Context) VLDMXCSR(m avo.Operand) {
+func (c *Context) VLDMXCSR(m operand.Op) {
 	if inst, err := x86.VLDMXCSR(m); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VLDMXCSR(m avo.Operand) { ctx.VLDMXCSR(m) }
+func VLDMXCSR(m operand.Op) { ctx.VLDMXCSR(m) }
 
-func (c *Context) VMASKMOVDQU(x, x1 avo.Operand) {
+func (c *Context) VMASKMOVDQU(x, x1 operand.Op) {
 	if inst, err := x86.VMASKMOVDQU(x, x1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VMASKMOVDQU(x, x1 avo.Operand) { ctx.VMASKMOVDQU(x, x1) }
+func VMASKMOVDQU(x, x1 operand.Op) { ctx.VMASKMOVDQU(x, x1) }
 
-func (c *Context) VMASKMOVPD(mxy, xy, mxy1 avo.Operand) {
+func (c *Context) VMASKMOVPD(mxy, xy, mxy1 operand.Op) {
 	if inst, err := x86.VMASKMOVPD(mxy, xy, mxy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VMASKMOVPD(mxy, xy, mxy1 avo.Operand) { ctx.VMASKMOVPD(mxy, xy, mxy1) }
+func VMASKMOVPD(mxy, xy, mxy1 operand.Op) { ctx.VMASKMOVPD(mxy, xy, mxy1) }
 
-func (c *Context) VMASKMOVPS(mxy, xy, mxy1 avo.Operand) {
+func (c *Context) VMASKMOVPS(mxy, xy, mxy1 operand.Op) {
 	if inst, err := x86.VMASKMOVPS(mxy, xy, mxy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VMASKMOVPS(mxy, xy, mxy1 avo.Operand) { ctx.VMASKMOVPS(mxy, xy, mxy1) }
+func VMASKMOVPS(mxy, xy, mxy1 operand.Op) { ctx.VMASKMOVPS(mxy, xy, mxy1) }
 
-func (c *Context) VMAXPD(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VMAXPD(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VMAXPD(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VMAXPD(mxy, xy, xy1 avo.Operand) { ctx.VMAXPD(mxy, xy, xy1) }
+func VMAXPD(mxy, xy, xy1 operand.Op) { ctx.VMAXPD(mxy, xy, xy1) }
 
-func (c *Context) VMAXPS(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VMAXPS(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VMAXPS(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VMAXPS(mxy, xy, xy1 avo.Operand) { ctx.VMAXPS(mxy, xy, xy1) }
+func VMAXPS(mxy, xy, xy1 operand.Op) { ctx.VMAXPS(mxy, xy, xy1) }
 
-func (c *Context) VMAXSD(mx, x, x1 avo.Operand) {
+func (c *Context) VMAXSD(mx, x, x1 operand.Op) {
 	if inst, err := x86.VMAXSD(mx, x, x1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VMAXSD(mx, x, x1 avo.Operand) { ctx.VMAXSD(mx, x, x1) }
+func VMAXSD(mx, x, x1 operand.Op) { ctx.VMAXSD(mx, x, x1) }
 
-func (c *Context) VMAXSS(mx, x, x1 avo.Operand) {
+func (c *Context) VMAXSS(mx, x, x1 operand.Op) {
 	if inst, err := x86.VMAXSS(mx, x, x1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VMAXSS(mx, x, x1 avo.Operand) { ctx.VMAXSS(mx, x, x1) }
+func VMAXSS(mx, x, x1 operand.Op) { ctx.VMAXSS(mx, x, x1) }
 
-func (c *Context) VMINPD(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VMINPD(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VMINPD(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VMINPD(mxy, xy, xy1 avo.Operand) { ctx.VMINPD(mxy, xy, xy1) }
+func VMINPD(mxy, xy, xy1 operand.Op) { ctx.VMINPD(mxy, xy, xy1) }
 
-func (c *Context) VMINPS(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VMINPS(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VMINPS(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VMINPS(mxy, xy, xy1 avo.Operand) { ctx.VMINPS(mxy, xy, xy1) }
+func VMINPS(mxy, xy, xy1 operand.Op) { ctx.VMINPS(mxy, xy, xy1) }
 
-func (c *Context) VMINSD(mx, x, x1 avo.Operand) {
+func (c *Context) VMINSD(mx, x, x1 operand.Op) {
 	if inst, err := x86.VMINSD(mx, x, x1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VMINSD(mx, x, x1 avo.Operand) { ctx.VMINSD(mx, x, x1) }
+func VMINSD(mx, x, x1 operand.Op) { ctx.VMINSD(mx, x, x1) }
 
-func (c *Context) VMINSS(mx, x, x1 avo.Operand) {
+func (c *Context) VMINSS(mx, x, x1 operand.Op) {
 	if inst, err := x86.VMINSS(mx, x, x1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VMINSS(mx, x, x1 avo.Operand) { ctx.VMINSS(mx, x, x1) }
+func VMINSS(mx, x, x1 operand.Op) { ctx.VMINSS(mx, x, x1) }
 
-func (c *Context) VMOVAPD(mxy, mxy1 avo.Operand) {
+func (c *Context) VMOVAPD(mxy, mxy1 operand.Op) {
 	if inst, err := x86.VMOVAPD(mxy, mxy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VMOVAPD(mxy, mxy1 avo.Operand) { ctx.VMOVAPD(mxy, mxy1) }
+func VMOVAPD(mxy, mxy1 operand.Op) { ctx.VMOVAPD(mxy, mxy1) }
 
-func (c *Context) VMOVAPS(mxy, mxy1 avo.Operand) {
+func (c *Context) VMOVAPS(mxy, mxy1 operand.Op) {
 	if inst, err := x86.VMOVAPS(mxy, mxy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VMOVAPS(mxy, mxy1 avo.Operand) { ctx.VMOVAPS(mxy, mxy1) }
+func VMOVAPS(mxy, mxy1 operand.Op) { ctx.VMOVAPS(mxy, mxy1) }
 
-func (c *Context) VMOVD(mrx, mrx1 avo.Operand) {
+func (c *Context) VMOVD(mrx, mrx1 operand.Op) {
 	if inst, err := x86.VMOVD(mrx, mrx1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VMOVD(mrx, mrx1 avo.Operand) { ctx.VMOVD(mrx, mrx1) }
+func VMOVD(mrx, mrx1 operand.Op) { ctx.VMOVD(mrx, mrx1) }
 
-func (c *Context) VMOVDDUP(mxy, xy avo.Operand) {
+func (c *Context) VMOVDDUP(mxy, xy operand.Op) {
 	if inst, err := x86.VMOVDDUP(mxy, xy); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VMOVDDUP(mxy, xy avo.Operand) { ctx.VMOVDDUP(mxy, xy) }
+func VMOVDDUP(mxy, xy operand.Op) { ctx.VMOVDDUP(mxy, xy) }
 
-func (c *Context) VMOVDQA(mxy, mxy1 avo.Operand) {
+func (c *Context) VMOVDQA(mxy, mxy1 operand.Op) {
 	if inst, err := x86.VMOVDQA(mxy, mxy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VMOVDQA(mxy, mxy1 avo.Operand) { ctx.VMOVDQA(mxy, mxy1) }
+func VMOVDQA(mxy, mxy1 operand.Op) { ctx.VMOVDQA(mxy, mxy1) }
 
-func (c *Context) VMOVDQU(mxy, mxy1 avo.Operand) {
+func (c *Context) VMOVDQU(mxy, mxy1 operand.Op) {
 	if inst, err := x86.VMOVDQU(mxy, mxy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VMOVDQU(mxy, mxy1 avo.Operand) { ctx.VMOVDQU(mxy, mxy1) }
+func VMOVDQU(mxy, mxy1 operand.Op) { ctx.VMOVDQU(mxy, mxy1) }
 
-func (c *Context) VMOVHLPS(x, x1, x2 avo.Operand) {
+func (c *Context) VMOVHLPS(x, x1, x2 operand.Op) {
 	if inst, err := x86.VMOVHLPS(x, x1, x2); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VMOVHLPS(x, x1, x2 avo.Operand) { ctx.VMOVHLPS(x, x1, x2) }
+func VMOVHLPS(x, x1, x2 operand.Op) { ctx.VMOVHLPS(x, x1, x2) }
 
-func (c *Context) VMOVHPD(ops ...avo.Operand) {
+func (c *Context) VMOVHPD(ops ...operand.Op) {
 	if inst, err := x86.VMOVHPD(ops...); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VMOVHPD(ops ...avo.Operand) { ctx.VMOVHPD(ops...) }
+func VMOVHPD(ops ...operand.Op) { ctx.VMOVHPD(ops...) }
 
-func (c *Context) VMOVHPS(ops ...avo.Operand) {
+func (c *Context) VMOVHPS(ops ...operand.Op) {
 	if inst, err := x86.VMOVHPS(ops...); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VMOVHPS(ops ...avo.Operand) { ctx.VMOVHPS(ops...) }
+func VMOVHPS(ops ...operand.Op) { ctx.VMOVHPS(ops...) }
 
-func (c *Context) VMOVLHPS(x, x1, x2 avo.Operand) {
+func (c *Context) VMOVLHPS(x, x1, x2 operand.Op) {
 	if inst, err := x86.VMOVLHPS(x, x1, x2); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VMOVLHPS(x, x1, x2 avo.Operand) { ctx.VMOVLHPS(x, x1, x2) }
+func VMOVLHPS(x, x1, x2 operand.Op) { ctx.VMOVLHPS(x, x1, x2) }
 
-func (c *Context) VMOVLPD(ops ...avo.Operand) {
+func (c *Context) VMOVLPD(ops ...operand.Op) {
 	if inst, err := x86.VMOVLPD(ops...); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VMOVLPD(ops ...avo.Operand) { ctx.VMOVLPD(ops...) }
+func VMOVLPD(ops ...operand.Op) { ctx.VMOVLPD(ops...) }
 
-func (c *Context) VMOVLPS(ops ...avo.Operand) {
+func (c *Context) VMOVLPS(ops ...operand.Op) {
 	if inst, err := x86.VMOVLPS(ops...); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VMOVLPS(ops ...avo.Operand) { ctx.VMOVLPS(ops...) }
+func VMOVLPS(ops ...operand.Op) { ctx.VMOVLPS(ops...) }
 
-func (c *Context) VMOVMSKPD(xy, r avo.Operand) {
+func (c *Context) VMOVMSKPD(xy, r operand.Op) {
 	if inst, err := x86.VMOVMSKPD(xy, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VMOVMSKPD(xy, r avo.Operand) { ctx.VMOVMSKPD(xy, r) }
+func VMOVMSKPD(xy, r operand.Op) { ctx.VMOVMSKPD(xy, r) }
 
-func (c *Context) VMOVMSKPS(xy, r avo.Operand) {
+func (c *Context) VMOVMSKPS(xy, r operand.Op) {
 	if inst, err := x86.VMOVMSKPS(xy, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VMOVMSKPS(xy, r avo.Operand) { ctx.VMOVMSKPS(xy, r) }
+func VMOVMSKPS(xy, r operand.Op) { ctx.VMOVMSKPS(xy, r) }
 
-func (c *Context) VMOVNTDQ(xy, m avo.Operand) {
+func (c *Context) VMOVNTDQ(xy, m operand.Op) {
 	if inst, err := x86.VMOVNTDQ(xy, m); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VMOVNTDQ(xy, m avo.Operand) { ctx.VMOVNTDQ(xy, m) }
+func VMOVNTDQ(xy, m operand.Op) { ctx.VMOVNTDQ(xy, m) }
 
-func (c *Context) VMOVNTDQA(m, xy avo.Operand) {
+func (c *Context) VMOVNTDQA(m, xy operand.Op) {
 	if inst, err := x86.VMOVNTDQA(m, xy); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VMOVNTDQA(m, xy avo.Operand) { ctx.VMOVNTDQA(m, xy) }
+func VMOVNTDQA(m, xy operand.Op) { ctx.VMOVNTDQA(m, xy) }
 
-func (c *Context) VMOVNTPD(xy, m avo.Operand) {
+func (c *Context) VMOVNTPD(xy, m operand.Op) {
 	if inst, err := x86.VMOVNTPD(xy, m); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VMOVNTPD(xy, m avo.Operand) { ctx.VMOVNTPD(xy, m) }
+func VMOVNTPD(xy, m operand.Op) { ctx.VMOVNTPD(xy, m) }
 
-func (c *Context) VMOVNTPS(xy, m avo.Operand) {
+func (c *Context) VMOVNTPS(xy, m operand.Op) {
 	if inst, err := x86.VMOVNTPS(xy, m); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VMOVNTPS(xy, m avo.Operand) { ctx.VMOVNTPS(xy, m) }
+func VMOVNTPS(xy, m operand.Op) { ctx.VMOVNTPS(xy, m) }
 
-func (c *Context) VMOVQ(mrx, mrx1 avo.Operand) {
+func (c *Context) VMOVQ(mrx, mrx1 operand.Op) {
 	if inst, err := x86.VMOVQ(mrx, mrx1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VMOVQ(mrx, mrx1 avo.Operand) { ctx.VMOVQ(mrx, mrx1) }
+func VMOVQ(mrx, mrx1 operand.Op) { ctx.VMOVQ(mrx, mrx1) }
 
-func (c *Context) VMOVSD(ops ...avo.Operand) {
+func (c *Context) VMOVSD(ops ...operand.Op) {
 	if inst, err := x86.VMOVSD(ops...); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VMOVSD(ops ...avo.Operand) { ctx.VMOVSD(ops...) }
+func VMOVSD(ops ...operand.Op) { ctx.VMOVSD(ops...) }
 
-func (c *Context) VMOVSHDUP(mxy, xy avo.Operand) {
+func (c *Context) VMOVSHDUP(mxy, xy operand.Op) {
 	if inst, err := x86.VMOVSHDUP(mxy, xy); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VMOVSHDUP(mxy, xy avo.Operand) { ctx.VMOVSHDUP(mxy, xy) }
+func VMOVSHDUP(mxy, xy operand.Op) { ctx.VMOVSHDUP(mxy, xy) }
 
-func (c *Context) VMOVSLDUP(mxy, xy avo.Operand) {
+func (c *Context) VMOVSLDUP(mxy, xy operand.Op) {
 	if inst, err := x86.VMOVSLDUP(mxy, xy); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VMOVSLDUP(mxy, xy avo.Operand) { ctx.VMOVSLDUP(mxy, xy) }
+func VMOVSLDUP(mxy, xy operand.Op) { ctx.VMOVSLDUP(mxy, xy) }
 
-func (c *Context) VMOVSS(ops ...avo.Operand) {
+func (c *Context) VMOVSS(ops ...operand.Op) {
 	if inst, err := x86.VMOVSS(ops...); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VMOVSS(ops ...avo.Operand) { ctx.VMOVSS(ops...) }
+func VMOVSS(ops ...operand.Op) { ctx.VMOVSS(ops...) }
 
-func (c *Context) VMOVUPD(mxy, mxy1 avo.Operand) {
+func (c *Context) VMOVUPD(mxy, mxy1 operand.Op) {
 	if inst, err := x86.VMOVUPD(mxy, mxy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VMOVUPD(mxy, mxy1 avo.Operand) { ctx.VMOVUPD(mxy, mxy1) }
+func VMOVUPD(mxy, mxy1 operand.Op) { ctx.VMOVUPD(mxy, mxy1) }
 
-func (c *Context) VMOVUPS(mxy, mxy1 avo.Operand) {
+func (c *Context) VMOVUPS(mxy, mxy1 operand.Op) {
 	if inst, err := x86.VMOVUPS(mxy, mxy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VMOVUPS(mxy, mxy1 avo.Operand) { ctx.VMOVUPS(mxy, mxy1) }
+func VMOVUPS(mxy, mxy1 operand.Op) { ctx.VMOVUPS(mxy, mxy1) }
 
-func (c *Context) VMPSADBW(i, mxy, xy, xy1 avo.Operand) {
+func (c *Context) VMPSADBW(i, mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VMPSADBW(i, mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VMPSADBW(i, mxy, xy, xy1 avo.Operand) { ctx.VMPSADBW(i, mxy, xy, xy1) }
+func VMPSADBW(i, mxy, xy, xy1 operand.Op) { ctx.VMPSADBW(i, mxy, xy, xy1) }
 
-func (c *Context) VMULPD(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VMULPD(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VMULPD(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VMULPD(mxy, xy, xy1 avo.Operand) { ctx.VMULPD(mxy, xy, xy1) }
+func VMULPD(mxy, xy, xy1 operand.Op) { ctx.VMULPD(mxy, xy, xy1) }
 
-func (c *Context) VMULPS(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VMULPS(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VMULPS(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VMULPS(mxy, xy, xy1 avo.Operand) { ctx.VMULPS(mxy, xy, xy1) }
+func VMULPS(mxy, xy, xy1 operand.Op) { ctx.VMULPS(mxy, xy, xy1) }
 
-func (c *Context) VMULSD(mx, x, x1 avo.Operand) {
+func (c *Context) VMULSD(mx, x, x1 operand.Op) {
 	if inst, err := x86.VMULSD(mx, x, x1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VMULSD(mx, x, x1 avo.Operand) { ctx.VMULSD(mx, x, x1) }
+func VMULSD(mx, x, x1 operand.Op) { ctx.VMULSD(mx, x, x1) }
 
-func (c *Context) VMULSS(mx, x, x1 avo.Operand) {
+func (c *Context) VMULSS(mx, x, x1 operand.Op) {
 	if inst, err := x86.VMULSS(mx, x, x1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VMULSS(mx, x, x1 avo.Operand) { ctx.VMULSS(mx, x, x1) }
+func VMULSS(mx, x, x1 operand.Op) { ctx.VMULSS(mx, x, x1) }
 
-func (c *Context) VORPD(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VORPD(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VORPD(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VORPD(mxy, xy, xy1 avo.Operand) { ctx.VORPD(mxy, xy, xy1) }
+func VORPD(mxy, xy, xy1 operand.Op) { ctx.VORPD(mxy, xy, xy1) }
 
-func (c *Context) VORPS(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VORPS(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VORPS(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VORPS(mxy, xy, xy1 avo.Operand) { ctx.VORPS(mxy, xy, xy1) }
+func VORPS(mxy, xy, xy1 operand.Op) { ctx.VORPS(mxy, xy, xy1) }
 
-func (c *Context) VPABSB(mxy, xy avo.Operand) {
+func (c *Context) VPABSB(mxy, xy operand.Op) {
 	if inst, err := x86.VPABSB(mxy, xy); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPABSB(mxy, xy avo.Operand) { ctx.VPABSB(mxy, xy) }
+func VPABSB(mxy, xy operand.Op) { ctx.VPABSB(mxy, xy) }
 
-func (c *Context) VPABSD(mxy, xy avo.Operand) {
+func (c *Context) VPABSD(mxy, xy operand.Op) {
 	if inst, err := x86.VPABSD(mxy, xy); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPABSD(mxy, xy avo.Operand) { ctx.VPABSD(mxy, xy) }
+func VPABSD(mxy, xy operand.Op) { ctx.VPABSD(mxy, xy) }
 
-func (c *Context) VPABSW(mxy, xy avo.Operand) {
+func (c *Context) VPABSW(mxy, xy operand.Op) {
 	if inst, err := x86.VPABSW(mxy, xy); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPABSW(mxy, xy avo.Operand) { ctx.VPABSW(mxy, xy) }
+func VPABSW(mxy, xy operand.Op) { ctx.VPABSW(mxy, xy) }
 
-func (c *Context) VPACKSSDW(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPACKSSDW(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPACKSSDW(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPACKSSDW(mxy, xy, xy1 avo.Operand) { ctx.VPACKSSDW(mxy, xy, xy1) }
+func VPACKSSDW(mxy, xy, xy1 operand.Op) { ctx.VPACKSSDW(mxy, xy, xy1) }
 
-func (c *Context) VPACKSSWB(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPACKSSWB(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPACKSSWB(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPACKSSWB(mxy, xy, xy1 avo.Operand) { ctx.VPACKSSWB(mxy, xy, xy1) }
+func VPACKSSWB(mxy, xy, xy1 operand.Op) { ctx.VPACKSSWB(mxy, xy, xy1) }
 
-func (c *Context) VPACKUSDW(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPACKUSDW(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPACKUSDW(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPACKUSDW(mxy, xy, xy1 avo.Operand) { ctx.VPACKUSDW(mxy, xy, xy1) }
+func VPACKUSDW(mxy, xy, xy1 operand.Op) { ctx.VPACKUSDW(mxy, xy, xy1) }
 
-func (c *Context) VPACKUSWB(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPACKUSWB(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPACKUSWB(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPACKUSWB(mxy, xy, xy1 avo.Operand) { ctx.VPACKUSWB(mxy, xy, xy1) }
+func VPACKUSWB(mxy, xy, xy1 operand.Op) { ctx.VPACKUSWB(mxy, xy, xy1) }
 
-func (c *Context) VPADDB(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPADDB(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPADDB(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPADDB(mxy, xy, xy1 avo.Operand) { ctx.VPADDB(mxy, xy, xy1) }
+func VPADDB(mxy, xy, xy1 operand.Op) { ctx.VPADDB(mxy, xy, xy1) }
 
-func (c *Context) VPADDD(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPADDD(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPADDD(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPADDD(mxy, xy, xy1 avo.Operand) { ctx.VPADDD(mxy, xy, xy1) }
+func VPADDD(mxy, xy, xy1 operand.Op) { ctx.VPADDD(mxy, xy, xy1) }
 
-func (c *Context) VPADDQ(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPADDQ(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPADDQ(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPADDQ(mxy, xy, xy1 avo.Operand) { ctx.VPADDQ(mxy, xy, xy1) }
+func VPADDQ(mxy, xy, xy1 operand.Op) { ctx.VPADDQ(mxy, xy, xy1) }
 
-func (c *Context) VPADDSB(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPADDSB(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPADDSB(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPADDSB(mxy, xy, xy1 avo.Operand) { ctx.VPADDSB(mxy, xy, xy1) }
+func VPADDSB(mxy, xy, xy1 operand.Op) { ctx.VPADDSB(mxy, xy, xy1) }
 
-func (c *Context) VPADDSW(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPADDSW(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPADDSW(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPADDSW(mxy, xy, xy1 avo.Operand) { ctx.VPADDSW(mxy, xy, xy1) }
+func VPADDSW(mxy, xy, xy1 operand.Op) { ctx.VPADDSW(mxy, xy, xy1) }
 
-func (c *Context) VPADDUSB(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPADDUSB(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPADDUSB(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPADDUSB(mxy, xy, xy1 avo.Operand) { ctx.VPADDUSB(mxy, xy, xy1) }
+func VPADDUSB(mxy, xy, xy1 operand.Op) { ctx.VPADDUSB(mxy, xy, xy1) }
 
-func (c *Context) VPADDUSW(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPADDUSW(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPADDUSW(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPADDUSW(mxy, xy, xy1 avo.Operand) { ctx.VPADDUSW(mxy, xy, xy1) }
+func VPADDUSW(mxy, xy, xy1 operand.Op) { ctx.VPADDUSW(mxy, xy, xy1) }
 
-func (c *Context) VPADDW(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPADDW(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPADDW(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPADDW(mxy, xy, xy1 avo.Operand) { ctx.VPADDW(mxy, xy, xy1) }
+func VPADDW(mxy, xy, xy1 operand.Op) { ctx.VPADDW(mxy, xy, xy1) }
 
-func (c *Context) VPALIGNR(i, mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPALIGNR(i, mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPALIGNR(i, mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPALIGNR(i, mxy, xy, xy1 avo.Operand) { ctx.VPALIGNR(i, mxy, xy, xy1) }
+func VPALIGNR(i, mxy, xy, xy1 operand.Op) { ctx.VPALIGNR(i, mxy, xy, xy1) }
 
-func (c *Context) VPAND(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPAND(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPAND(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPAND(mxy, xy, xy1 avo.Operand) { ctx.VPAND(mxy, xy, xy1) }
+func VPAND(mxy, xy, xy1 operand.Op) { ctx.VPAND(mxy, xy, xy1) }
 
-func (c *Context) VPANDN(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPANDN(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPANDN(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPANDN(mxy, xy, xy1 avo.Operand) { ctx.VPANDN(mxy, xy, xy1) }
+func VPANDN(mxy, xy, xy1 operand.Op) { ctx.VPANDN(mxy, xy, xy1) }
 
-func (c *Context) VPAVGB(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPAVGB(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPAVGB(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPAVGB(mxy, xy, xy1 avo.Operand) { ctx.VPAVGB(mxy, xy, xy1) }
+func VPAVGB(mxy, xy, xy1 operand.Op) { ctx.VPAVGB(mxy, xy, xy1) }
 
-func (c *Context) VPAVGW(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPAVGW(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPAVGW(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPAVGW(mxy, xy, xy1 avo.Operand) { ctx.VPAVGW(mxy, xy, xy1) }
+func VPAVGW(mxy, xy, xy1 operand.Op) { ctx.VPAVGW(mxy, xy, xy1) }
 
-func (c *Context) VPBLENDD(i, mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPBLENDD(i, mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPBLENDD(i, mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPBLENDD(i, mxy, xy, xy1 avo.Operand) { ctx.VPBLENDD(i, mxy, xy, xy1) }
+func VPBLENDD(i, mxy, xy, xy1 operand.Op) { ctx.VPBLENDD(i, mxy, xy, xy1) }
 
-func (c *Context) VPBLENDVB(xy, mxy, xy1, xy2 avo.Operand) {
+func (c *Context) VPBLENDVB(xy, mxy, xy1, xy2 operand.Op) {
 	if inst, err := x86.VPBLENDVB(xy, mxy, xy1, xy2); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPBLENDVB(xy, mxy, xy1, xy2 avo.Operand) { ctx.VPBLENDVB(xy, mxy, xy1, xy2) }
+func VPBLENDVB(xy, mxy, xy1, xy2 operand.Op) { ctx.VPBLENDVB(xy, mxy, xy1, xy2) }
 
-func (c *Context) VPBLENDW(i, mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPBLENDW(i, mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPBLENDW(i, mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPBLENDW(i, mxy, xy, xy1 avo.Operand) { ctx.VPBLENDW(i, mxy, xy, xy1) }
+func VPBLENDW(i, mxy, xy, xy1 operand.Op) { ctx.VPBLENDW(i, mxy, xy, xy1) }
 
-func (c *Context) VPBROADCASTB(mx, xy avo.Operand) {
+func (c *Context) VPBROADCASTB(mx, xy operand.Op) {
 	if inst, err := x86.VPBROADCASTB(mx, xy); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPBROADCASTB(mx, xy avo.Operand) { ctx.VPBROADCASTB(mx, xy) }
+func VPBROADCASTB(mx, xy operand.Op) { ctx.VPBROADCASTB(mx, xy) }
 
-func (c *Context) VPBROADCASTD(mx, xy avo.Operand) {
+func (c *Context) VPBROADCASTD(mx, xy operand.Op) {
 	if inst, err := x86.VPBROADCASTD(mx, xy); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPBROADCASTD(mx, xy avo.Operand) { ctx.VPBROADCASTD(mx, xy) }
+func VPBROADCASTD(mx, xy operand.Op) { ctx.VPBROADCASTD(mx, xy) }
 
-func (c *Context) VPBROADCASTQ(mx, xy avo.Operand) {
+func (c *Context) VPBROADCASTQ(mx, xy operand.Op) {
 	if inst, err := x86.VPBROADCASTQ(mx, xy); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPBROADCASTQ(mx, xy avo.Operand) { ctx.VPBROADCASTQ(mx, xy) }
+func VPBROADCASTQ(mx, xy operand.Op) { ctx.VPBROADCASTQ(mx, xy) }
 
-func (c *Context) VPBROADCASTW(mx, xy avo.Operand) {
+func (c *Context) VPBROADCASTW(mx, xy operand.Op) {
 	if inst, err := x86.VPBROADCASTW(mx, xy); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPBROADCASTW(mx, xy avo.Operand) { ctx.VPBROADCASTW(mx, xy) }
+func VPBROADCASTW(mx, xy operand.Op) { ctx.VPBROADCASTW(mx, xy) }
 
-func (c *Context) VPCLMULQDQ(i, mx, x, x1 avo.Operand) {
+func (c *Context) VPCLMULQDQ(i, mx, x, x1 operand.Op) {
 	if inst, err := x86.VPCLMULQDQ(i, mx, x, x1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPCLMULQDQ(i, mx, x, x1 avo.Operand) { ctx.VPCLMULQDQ(i, mx, x, x1) }
+func VPCLMULQDQ(i, mx, x, x1 operand.Op) { ctx.VPCLMULQDQ(i, mx, x, x1) }
 
-func (c *Context) VPCMPEQB(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPCMPEQB(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPCMPEQB(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPCMPEQB(mxy, xy, xy1 avo.Operand) { ctx.VPCMPEQB(mxy, xy, xy1) }
+func VPCMPEQB(mxy, xy, xy1 operand.Op) { ctx.VPCMPEQB(mxy, xy, xy1) }
 
-func (c *Context) VPCMPEQD(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPCMPEQD(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPCMPEQD(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPCMPEQD(mxy, xy, xy1 avo.Operand) { ctx.VPCMPEQD(mxy, xy, xy1) }
+func VPCMPEQD(mxy, xy, xy1 operand.Op) { ctx.VPCMPEQD(mxy, xy, xy1) }
 
-func (c *Context) VPCMPEQQ(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPCMPEQQ(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPCMPEQQ(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPCMPEQQ(mxy, xy, xy1 avo.Operand) { ctx.VPCMPEQQ(mxy, xy, xy1) }
+func VPCMPEQQ(mxy, xy, xy1 operand.Op) { ctx.VPCMPEQQ(mxy, xy, xy1) }
 
-func (c *Context) VPCMPEQW(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPCMPEQW(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPCMPEQW(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPCMPEQW(mxy, xy, xy1 avo.Operand) { ctx.VPCMPEQW(mxy, xy, xy1) }
+func VPCMPEQW(mxy, xy, xy1 operand.Op) { ctx.VPCMPEQW(mxy, xy, xy1) }
 
-func (c *Context) VPCMPESTRI(i, mx, x avo.Operand) {
+func (c *Context) VPCMPESTRI(i, mx, x operand.Op) {
 	if inst, err := x86.VPCMPESTRI(i, mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPCMPESTRI(i, mx, x avo.Operand) { ctx.VPCMPESTRI(i, mx, x) }
+func VPCMPESTRI(i, mx, x operand.Op) { ctx.VPCMPESTRI(i, mx, x) }
 
-func (c *Context) VPCMPESTRM(i, mx, x avo.Operand) {
+func (c *Context) VPCMPESTRM(i, mx, x operand.Op) {
 	if inst, err := x86.VPCMPESTRM(i, mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPCMPESTRM(i, mx, x avo.Operand) { ctx.VPCMPESTRM(i, mx, x) }
+func VPCMPESTRM(i, mx, x operand.Op) { ctx.VPCMPESTRM(i, mx, x) }
 
-func (c *Context) VPCMPGTB(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPCMPGTB(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPCMPGTB(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPCMPGTB(mxy, xy, xy1 avo.Operand) { ctx.VPCMPGTB(mxy, xy, xy1) }
+func VPCMPGTB(mxy, xy, xy1 operand.Op) { ctx.VPCMPGTB(mxy, xy, xy1) }
 
-func (c *Context) VPCMPGTD(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPCMPGTD(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPCMPGTD(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPCMPGTD(mxy, xy, xy1 avo.Operand) { ctx.VPCMPGTD(mxy, xy, xy1) }
+func VPCMPGTD(mxy, xy, xy1 operand.Op) { ctx.VPCMPGTD(mxy, xy, xy1) }
 
-func (c *Context) VPCMPGTQ(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPCMPGTQ(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPCMPGTQ(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPCMPGTQ(mxy, xy, xy1 avo.Operand) { ctx.VPCMPGTQ(mxy, xy, xy1) }
+func VPCMPGTQ(mxy, xy, xy1 operand.Op) { ctx.VPCMPGTQ(mxy, xy, xy1) }
 
-func (c *Context) VPCMPGTW(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPCMPGTW(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPCMPGTW(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPCMPGTW(mxy, xy, xy1 avo.Operand) { ctx.VPCMPGTW(mxy, xy, xy1) }
+func VPCMPGTW(mxy, xy, xy1 operand.Op) { ctx.VPCMPGTW(mxy, xy, xy1) }
 
-func (c *Context) VPCMPISTRI(i, mx, x avo.Operand) {
+func (c *Context) VPCMPISTRI(i, mx, x operand.Op) {
 	if inst, err := x86.VPCMPISTRI(i, mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPCMPISTRI(i, mx, x avo.Operand) { ctx.VPCMPISTRI(i, mx, x) }
+func VPCMPISTRI(i, mx, x operand.Op) { ctx.VPCMPISTRI(i, mx, x) }
 
-func (c *Context) VPCMPISTRM(i, mx, x avo.Operand) {
+func (c *Context) VPCMPISTRM(i, mx, x operand.Op) {
 	if inst, err := x86.VPCMPISTRM(i, mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPCMPISTRM(i, mx, x avo.Operand) { ctx.VPCMPISTRM(i, mx, x) }
+func VPCMPISTRM(i, mx, x operand.Op) { ctx.VPCMPISTRM(i, mx, x) }
 
-func (c *Context) VPERM2F128(i, my, y, y1 avo.Operand) {
+func (c *Context) VPERM2F128(i, my, y, y1 operand.Op) {
 	if inst, err := x86.VPERM2F128(i, my, y, y1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPERM2F128(i, my, y, y1 avo.Operand) { ctx.VPERM2F128(i, my, y, y1) }
+func VPERM2F128(i, my, y, y1 operand.Op) { ctx.VPERM2F128(i, my, y, y1) }
 
-func (c *Context) VPERM2I128(i, my, y, y1 avo.Operand) {
+func (c *Context) VPERM2I128(i, my, y, y1 operand.Op) {
 	if inst, err := x86.VPERM2I128(i, my, y, y1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPERM2I128(i, my, y, y1 avo.Operand) { ctx.VPERM2I128(i, my, y, y1) }
+func VPERM2I128(i, my, y, y1 operand.Op) { ctx.VPERM2I128(i, my, y, y1) }
 
-func (c *Context) VPERMD(my, y, y1 avo.Operand) {
+func (c *Context) VPERMD(my, y, y1 operand.Op) {
 	if inst, err := x86.VPERMD(my, y, y1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPERMD(my, y, y1 avo.Operand) { ctx.VPERMD(my, y, y1) }
+func VPERMD(my, y, y1 operand.Op) { ctx.VPERMD(my, y, y1) }
 
-func (c *Context) VPERMILPD(imxy, mxy, xy avo.Operand) {
+func (c *Context) VPERMILPD(imxy, mxy, xy operand.Op) {
 	if inst, err := x86.VPERMILPD(imxy, mxy, xy); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPERMILPD(imxy, mxy, xy avo.Operand) { ctx.VPERMILPD(imxy, mxy, xy) }
+func VPERMILPD(imxy, mxy, xy operand.Op) { ctx.VPERMILPD(imxy, mxy, xy) }
 
-func (c *Context) VPERMILPS(imxy, mxy, xy avo.Operand) {
+func (c *Context) VPERMILPS(imxy, mxy, xy operand.Op) {
 	if inst, err := x86.VPERMILPS(imxy, mxy, xy); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPERMILPS(imxy, mxy, xy avo.Operand) { ctx.VPERMILPS(imxy, mxy, xy) }
+func VPERMILPS(imxy, mxy, xy operand.Op) { ctx.VPERMILPS(imxy, mxy, xy) }
 
-func (c *Context) VPERMPD(i, my, y avo.Operand) {
+func (c *Context) VPERMPD(i, my, y operand.Op) {
 	if inst, err := x86.VPERMPD(i, my, y); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPERMPD(i, my, y avo.Operand) { ctx.VPERMPD(i, my, y) }
+func VPERMPD(i, my, y operand.Op) { ctx.VPERMPD(i, my, y) }
 
-func (c *Context) VPERMPS(my, y, y1 avo.Operand) {
+func (c *Context) VPERMPS(my, y, y1 operand.Op) {
 	if inst, err := x86.VPERMPS(my, y, y1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPERMPS(my, y, y1 avo.Operand) { ctx.VPERMPS(my, y, y1) }
+func VPERMPS(my, y, y1 operand.Op) { ctx.VPERMPS(my, y, y1) }
 
-func (c *Context) VPERMQ(i, my, y avo.Operand) {
+func (c *Context) VPERMQ(i, my, y operand.Op) {
 	if inst, err := x86.VPERMQ(i, my, y); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPERMQ(i, my, y avo.Operand) { ctx.VPERMQ(i, my, y) }
+func VPERMQ(i, my, y operand.Op) { ctx.VPERMQ(i, my, y) }
 
-func (c *Context) VPEXTRB(i, x, mr avo.Operand) {
+func (c *Context) VPEXTRB(i, x, mr operand.Op) {
 	if inst, err := x86.VPEXTRB(i, x, mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPEXTRB(i, x, mr avo.Operand) { ctx.VPEXTRB(i, x, mr) }
+func VPEXTRB(i, x, mr operand.Op) { ctx.VPEXTRB(i, x, mr) }
 
-func (c *Context) VPEXTRD(i, x, mr avo.Operand) {
+func (c *Context) VPEXTRD(i, x, mr operand.Op) {
 	if inst, err := x86.VPEXTRD(i, x, mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPEXTRD(i, x, mr avo.Operand) { ctx.VPEXTRD(i, x, mr) }
+func VPEXTRD(i, x, mr operand.Op) { ctx.VPEXTRD(i, x, mr) }
 
-func (c *Context) VPEXTRQ(i, x, mr avo.Operand) {
+func (c *Context) VPEXTRQ(i, x, mr operand.Op) {
 	if inst, err := x86.VPEXTRQ(i, x, mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPEXTRQ(i, x, mr avo.Operand) { ctx.VPEXTRQ(i, x, mr) }
+func VPEXTRQ(i, x, mr operand.Op) { ctx.VPEXTRQ(i, x, mr) }
 
-func (c *Context) VPEXTRW(i, x, mr avo.Operand) {
+func (c *Context) VPEXTRW(i, x, mr operand.Op) {
 	if inst, err := x86.VPEXTRW(i, x, mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPEXTRW(i, x, mr avo.Operand) { ctx.VPEXTRW(i, x, mr) }
+func VPEXTRW(i, x, mr operand.Op) { ctx.VPEXTRW(i, x, mr) }
 
-func (c *Context) VPGATHERDD(xy, v, xy1 avo.Operand) {
+func (c *Context) VPGATHERDD(xy, v, xy1 operand.Op) {
 	if inst, err := x86.VPGATHERDD(xy, v, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPGATHERDD(xy, v, xy1 avo.Operand) { ctx.VPGATHERDD(xy, v, xy1) }
+func VPGATHERDD(xy, v, xy1 operand.Op) { ctx.VPGATHERDD(xy, v, xy1) }
 
-func (c *Context) VPGATHERDQ(xy, v, xy1 avo.Operand) {
+func (c *Context) VPGATHERDQ(xy, v, xy1 operand.Op) {
 	if inst, err := x86.VPGATHERDQ(xy, v, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPGATHERDQ(xy, v, xy1 avo.Operand) { ctx.VPGATHERDQ(xy, v, xy1) }
+func VPGATHERDQ(xy, v, xy1 operand.Op) { ctx.VPGATHERDQ(xy, v, xy1) }
 
-func (c *Context) VPGATHERQD(x, v, x1 avo.Operand) {
+func (c *Context) VPGATHERQD(x, v, x1 operand.Op) {
 	if inst, err := x86.VPGATHERQD(x, v, x1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPGATHERQD(x, v, x1 avo.Operand) { ctx.VPGATHERQD(x, v, x1) }
+func VPGATHERQD(x, v, x1 operand.Op) { ctx.VPGATHERQD(x, v, x1) }
 
-func (c *Context) VPGATHERQQ(xy, v, xy1 avo.Operand) {
+func (c *Context) VPGATHERQQ(xy, v, xy1 operand.Op) {
 	if inst, err := x86.VPGATHERQQ(xy, v, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPGATHERQQ(xy, v, xy1 avo.Operand) { ctx.VPGATHERQQ(xy, v, xy1) }
+func VPGATHERQQ(xy, v, xy1 operand.Op) { ctx.VPGATHERQQ(xy, v, xy1) }
 
-func (c *Context) VPHADDD(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPHADDD(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPHADDD(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPHADDD(mxy, xy, xy1 avo.Operand) { ctx.VPHADDD(mxy, xy, xy1) }
+func VPHADDD(mxy, xy, xy1 operand.Op) { ctx.VPHADDD(mxy, xy, xy1) }
 
-func (c *Context) VPHADDSW(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPHADDSW(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPHADDSW(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPHADDSW(mxy, xy, xy1 avo.Operand) { ctx.VPHADDSW(mxy, xy, xy1) }
+func VPHADDSW(mxy, xy, xy1 operand.Op) { ctx.VPHADDSW(mxy, xy, xy1) }
 
-func (c *Context) VPHADDW(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPHADDW(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPHADDW(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPHADDW(mxy, xy, xy1 avo.Operand) { ctx.VPHADDW(mxy, xy, xy1) }
+func VPHADDW(mxy, xy, xy1 operand.Op) { ctx.VPHADDW(mxy, xy, xy1) }
 
-func (c *Context) VPHMINPOSUW(mx, x avo.Operand) {
+func (c *Context) VPHMINPOSUW(mx, x operand.Op) {
 	if inst, err := x86.VPHMINPOSUW(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPHMINPOSUW(mx, x avo.Operand) { ctx.VPHMINPOSUW(mx, x) }
+func VPHMINPOSUW(mx, x operand.Op) { ctx.VPHMINPOSUW(mx, x) }
 
-func (c *Context) VPHSUBD(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPHSUBD(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPHSUBD(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPHSUBD(mxy, xy, xy1 avo.Operand) { ctx.VPHSUBD(mxy, xy, xy1) }
+func VPHSUBD(mxy, xy, xy1 operand.Op) { ctx.VPHSUBD(mxy, xy, xy1) }
 
-func (c *Context) VPHSUBSW(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPHSUBSW(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPHSUBSW(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPHSUBSW(mxy, xy, xy1 avo.Operand) { ctx.VPHSUBSW(mxy, xy, xy1) }
+func VPHSUBSW(mxy, xy, xy1 operand.Op) { ctx.VPHSUBSW(mxy, xy, xy1) }
 
-func (c *Context) VPHSUBW(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPHSUBW(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPHSUBW(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPHSUBW(mxy, xy, xy1 avo.Operand) { ctx.VPHSUBW(mxy, xy, xy1) }
+func VPHSUBW(mxy, xy, xy1 operand.Op) { ctx.VPHSUBW(mxy, xy, xy1) }
 
-func (c *Context) VPINSRB(i, mr, x, x1 avo.Operand) {
+func (c *Context) VPINSRB(i, mr, x, x1 operand.Op) {
 	if inst, err := x86.VPINSRB(i, mr, x, x1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPINSRB(i, mr, x, x1 avo.Operand) { ctx.VPINSRB(i, mr, x, x1) }
+func VPINSRB(i, mr, x, x1 operand.Op) { ctx.VPINSRB(i, mr, x, x1) }
 
-func (c *Context) VPINSRD(i, mr, x, x1 avo.Operand) {
+func (c *Context) VPINSRD(i, mr, x, x1 operand.Op) {
 	if inst, err := x86.VPINSRD(i, mr, x, x1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPINSRD(i, mr, x, x1 avo.Operand) { ctx.VPINSRD(i, mr, x, x1) }
+func VPINSRD(i, mr, x, x1 operand.Op) { ctx.VPINSRD(i, mr, x, x1) }
 
-func (c *Context) VPINSRQ(i, mr, x, x1 avo.Operand) {
+func (c *Context) VPINSRQ(i, mr, x, x1 operand.Op) {
 	if inst, err := x86.VPINSRQ(i, mr, x, x1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPINSRQ(i, mr, x, x1 avo.Operand) { ctx.VPINSRQ(i, mr, x, x1) }
+func VPINSRQ(i, mr, x, x1 operand.Op) { ctx.VPINSRQ(i, mr, x, x1) }
 
-func (c *Context) VPINSRW(i, mr, x, x1 avo.Operand) {
+func (c *Context) VPINSRW(i, mr, x, x1 operand.Op) {
 	if inst, err := x86.VPINSRW(i, mr, x, x1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPINSRW(i, mr, x, x1 avo.Operand) { ctx.VPINSRW(i, mr, x, x1) }
+func VPINSRW(i, mr, x, x1 operand.Op) { ctx.VPINSRW(i, mr, x, x1) }
 
-func (c *Context) VPMADDUBSW(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPMADDUBSW(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPMADDUBSW(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPMADDUBSW(mxy, xy, xy1 avo.Operand) { ctx.VPMADDUBSW(mxy, xy, xy1) }
+func VPMADDUBSW(mxy, xy, xy1 operand.Op) { ctx.VPMADDUBSW(mxy, xy, xy1) }
 
-func (c *Context) VPMADDWD(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPMADDWD(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPMADDWD(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPMADDWD(mxy, xy, xy1 avo.Operand) { ctx.VPMADDWD(mxy, xy, xy1) }
+func VPMADDWD(mxy, xy, xy1 operand.Op) { ctx.VPMADDWD(mxy, xy, xy1) }
 
-func (c *Context) VPMASKMOVD(mxy, xy, mxy1 avo.Operand) {
+func (c *Context) VPMASKMOVD(mxy, xy, mxy1 operand.Op) {
 	if inst, err := x86.VPMASKMOVD(mxy, xy, mxy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPMASKMOVD(mxy, xy, mxy1 avo.Operand) { ctx.VPMASKMOVD(mxy, xy, mxy1) }
+func VPMASKMOVD(mxy, xy, mxy1 operand.Op) { ctx.VPMASKMOVD(mxy, xy, mxy1) }
 
-func (c *Context) VPMASKMOVQ(mxy, xy, mxy1 avo.Operand) {
+func (c *Context) VPMASKMOVQ(mxy, xy, mxy1 operand.Op) {
 	if inst, err := x86.VPMASKMOVQ(mxy, xy, mxy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPMASKMOVQ(mxy, xy, mxy1 avo.Operand) { ctx.VPMASKMOVQ(mxy, xy, mxy1) }
+func VPMASKMOVQ(mxy, xy, mxy1 operand.Op) { ctx.VPMASKMOVQ(mxy, xy, mxy1) }
 
-func (c *Context) VPMAXSB(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPMAXSB(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPMAXSB(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPMAXSB(mxy, xy, xy1 avo.Operand) { ctx.VPMAXSB(mxy, xy, xy1) }
+func VPMAXSB(mxy, xy, xy1 operand.Op) { ctx.VPMAXSB(mxy, xy, xy1) }
 
-func (c *Context) VPMAXSD(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPMAXSD(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPMAXSD(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPMAXSD(mxy, xy, xy1 avo.Operand) { ctx.VPMAXSD(mxy, xy, xy1) }
+func VPMAXSD(mxy, xy, xy1 operand.Op) { ctx.VPMAXSD(mxy, xy, xy1) }
 
-func (c *Context) VPMAXSW(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPMAXSW(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPMAXSW(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPMAXSW(mxy, xy, xy1 avo.Operand) { ctx.VPMAXSW(mxy, xy, xy1) }
+func VPMAXSW(mxy, xy, xy1 operand.Op) { ctx.VPMAXSW(mxy, xy, xy1) }
 
-func (c *Context) VPMAXUB(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPMAXUB(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPMAXUB(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPMAXUB(mxy, xy, xy1 avo.Operand) { ctx.VPMAXUB(mxy, xy, xy1) }
+func VPMAXUB(mxy, xy, xy1 operand.Op) { ctx.VPMAXUB(mxy, xy, xy1) }
 
-func (c *Context) VPMAXUD(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPMAXUD(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPMAXUD(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPMAXUD(mxy, xy, xy1 avo.Operand) { ctx.VPMAXUD(mxy, xy, xy1) }
+func VPMAXUD(mxy, xy, xy1 operand.Op) { ctx.VPMAXUD(mxy, xy, xy1) }
 
-func (c *Context) VPMAXUW(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPMAXUW(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPMAXUW(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPMAXUW(mxy, xy, xy1 avo.Operand) { ctx.VPMAXUW(mxy, xy, xy1) }
+func VPMAXUW(mxy, xy, xy1 operand.Op) { ctx.VPMAXUW(mxy, xy, xy1) }
 
-func (c *Context) VPMINSB(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPMINSB(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPMINSB(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPMINSB(mxy, xy, xy1 avo.Operand) { ctx.VPMINSB(mxy, xy, xy1) }
+func VPMINSB(mxy, xy, xy1 operand.Op) { ctx.VPMINSB(mxy, xy, xy1) }
 
-func (c *Context) VPMINSD(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPMINSD(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPMINSD(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPMINSD(mxy, xy, xy1 avo.Operand) { ctx.VPMINSD(mxy, xy, xy1) }
+func VPMINSD(mxy, xy, xy1 operand.Op) { ctx.VPMINSD(mxy, xy, xy1) }
 
-func (c *Context) VPMINSW(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPMINSW(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPMINSW(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPMINSW(mxy, xy, xy1 avo.Operand) { ctx.VPMINSW(mxy, xy, xy1) }
+func VPMINSW(mxy, xy, xy1 operand.Op) { ctx.VPMINSW(mxy, xy, xy1) }
 
-func (c *Context) VPMINUB(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPMINUB(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPMINUB(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPMINUB(mxy, xy, xy1 avo.Operand) { ctx.VPMINUB(mxy, xy, xy1) }
+func VPMINUB(mxy, xy, xy1 operand.Op) { ctx.VPMINUB(mxy, xy, xy1) }
 
-func (c *Context) VPMINUD(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPMINUD(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPMINUD(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPMINUD(mxy, xy, xy1 avo.Operand) { ctx.VPMINUD(mxy, xy, xy1) }
+func VPMINUD(mxy, xy, xy1 operand.Op) { ctx.VPMINUD(mxy, xy, xy1) }
 
-func (c *Context) VPMINUW(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPMINUW(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPMINUW(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPMINUW(mxy, xy, xy1 avo.Operand) { ctx.VPMINUW(mxy, xy, xy1) }
+func VPMINUW(mxy, xy, xy1 operand.Op) { ctx.VPMINUW(mxy, xy, xy1) }
 
-func (c *Context) VPMOVMSKB(xy, r avo.Operand) {
+func (c *Context) VPMOVMSKB(xy, r operand.Op) {
 	if inst, err := x86.VPMOVMSKB(xy, r); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPMOVMSKB(xy, r avo.Operand) { ctx.VPMOVMSKB(xy, r) }
+func VPMOVMSKB(xy, r operand.Op) { ctx.VPMOVMSKB(xy, r) }
 
-func (c *Context) VPMOVSXBD(mx, xy avo.Operand) {
+func (c *Context) VPMOVSXBD(mx, xy operand.Op) {
 	if inst, err := x86.VPMOVSXBD(mx, xy); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPMOVSXBD(mx, xy avo.Operand) { ctx.VPMOVSXBD(mx, xy) }
+func VPMOVSXBD(mx, xy operand.Op) { ctx.VPMOVSXBD(mx, xy) }
 
-func (c *Context) VPMOVSXBQ(mx, xy avo.Operand) {
+func (c *Context) VPMOVSXBQ(mx, xy operand.Op) {
 	if inst, err := x86.VPMOVSXBQ(mx, xy); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPMOVSXBQ(mx, xy avo.Operand) { ctx.VPMOVSXBQ(mx, xy) }
+func VPMOVSXBQ(mx, xy operand.Op) { ctx.VPMOVSXBQ(mx, xy) }
 
-func (c *Context) VPMOVSXBW(mx, xy avo.Operand) {
+func (c *Context) VPMOVSXBW(mx, xy operand.Op) {
 	if inst, err := x86.VPMOVSXBW(mx, xy); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPMOVSXBW(mx, xy avo.Operand) { ctx.VPMOVSXBW(mx, xy) }
+func VPMOVSXBW(mx, xy operand.Op) { ctx.VPMOVSXBW(mx, xy) }
 
-func (c *Context) VPMOVSXDQ(mx, xy avo.Operand) {
+func (c *Context) VPMOVSXDQ(mx, xy operand.Op) {
 	if inst, err := x86.VPMOVSXDQ(mx, xy); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPMOVSXDQ(mx, xy avo.Operand) { ctx.VPMOVSXDQ(mx, xy) }
+func VPMOVSXDQ(mx, xy operand.Op) { ctx.VPMOVSXDQ(mx, xy) }
 
-func (c *Context) VPMOVSXWD(mx, xy avo.Operand) {
+func (c *Context) VPMOVSXWD(mx, xy operand.Op) {
 	if inst, err := x86.VPMOVSXWD(mx, xy); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPMOVSXWD(mx, xy avo.Operand) { ctx.VPMOVSXWD(mx, xy) }
+func VPMOVSXWD(mx, xy operand.Op) { ctx.VPMOVSXWD(mx, xy) }
 
-func (c *Context) VPMOVSXWQ(mx, xy avo.Operand) {
+func (c *Context) VPMOVSXWQ(mx, xy operand.Op) {
 	if inst, err := x86.VPMOVSXWQ(mx, xy); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPMOVSXWQ(mx, xy avo.Operand) { ctx.VPMOVSXWQ(mx, xy) }
+func VPMOVSXWQ(mx, xy operand.Op) { ctx.VPMOVSXWQ(mx, xy) }
 
-func (c *Context) VPMOVZXBD(mx, xy avo.Operand) {
+func (c *Context) VPMOVZXBD(mx, xy operand.Op) {
 	if inst, err := x86.VPMOVZXBD(mx, xy); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPMOVZXBD(mx, xy avo.Operand) { ctx.VPMOVZXBD(mx, xy) }
+func VPMOVZXBD(mx, xy operand.Op) { ctx.VPMOVZXBD(mx, xy) }
 
-func (c *Context) VPMOVZXBQ(mx, xy avo.Operand) {
+func (c *Context) VPMOVZXBQ(mx, xy operand.Op) {
 	if inst, err := x86.VPMOVZXBQ(mx, xy); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPMOVZXBQ(mx, xy avo.Operand) { ctx.VPMOVZXBQ(mx, xy) }
+func VPMOVZXBQ(mx, xy operand.Op) { ctx.VPMOVZXBQ(mx, xy) }
 
-func (c *Context) VPMOVZXBW(mx, xy avo.Operand) {
+func (c *Context) VPMOVZXBW(mx, xy operand.Op) {
 	if inst, err := x86.VPMOVZXBW(mx, xy); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPMOVZXBW(mx, xy avo.Operand) { ctx.VPMOVZXBW(mx, xy) }
+func VPMOVZXBW(mx, xy operand.Op) { ctx.VPMOVZXBW(mx, xy) }
 
-func (c *Context) VPMOVZXDQ(mx, xy avo.Operand) {
+func (c *Context) VPMOVZXDQ(mx, xy operand.Op) {
 	if inst, err := x86.VPMOVZXDQ(mx, xy); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPMOVZXDQ(mx, xy avo.Operand) { ctx.VPMOVZXDQ(mx, xy) }
+func VPMOVZXDQ(mx, xy operand.Op) { ctx.VPMOVZXDQ(mx, xy) }
 
-func (c *Context) VPMOVZXWD(mx, xy avo.Operand) {
+func (c *Context) VPMOVZXWD(mx, xy operand.Op) {
 	if inst, err := x86.VPMOVZXWD(mx, xy); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPMOVZXWD(mx, xy avo.Operand) { ctx.VPMOVZXWD(mx, xy) }
+func VPMOVZXWD(mx, xy operand.Op) { ctx.VPMOVZXWD(mx, xy) }
 
-func (c *Context) VPMOVZXWQ(mx, xy avo.Operand) {
+func (c *Context) VPMOVZXWQ(mx, xy operand.Op) {
 	if inst, err := x86.VPMOVZXWQ(mx, xy); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPMOVZXWQ(mx, xy avo.Operand) { ctx.VPMOVZXWQ(mx, xy) }
+func VPMOVZXWQ(mx, xy operand.Op) { ctx.VPMOVZXWQ(mx, xy) }
 
-func (c *Context) VPMULDQ(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPMULDQ(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPMULDQ(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPMULDQ(mxy, xy, xy1 avo.Operand) { ctx.VPMULDQ(mxy, xy, xy1) }
+func VPMULDQ(mxy, xy, xy1 operand.Op) { ctx.VPMULDQ(mxy, xy, xy1) }
 
-func (c *Context) VPMULHRSW(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPMULHRSW(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPMULHRSW(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPMULHRSW(mxy, xy, xy1 avo.Operand) { ctx.VPMULHRSW(mxy, xy, xy1) }
+func VPMULHRSW(mxy, xy, xy1 operand.Op) { ctx.VPMULHRSW(mxy, xy, xy1) }
 
-func (c *Context) VPMULHUW(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPMULHUW(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPMULHUW(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPMULHUW(mxy, xy, xy1 avo.Operand) { ctx.VPMULHUW(mxy, xy, xy1) }
+func VPMULHUW(mxy, xy, xy1 operand.Op) { ctx.VPMULHUW(mxy, xy, xy1) }
 
-func (c *Context) VPMULHW(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPMULHW(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPMULHW(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPMULHW(mxy, xy, xy1 avo.Operand) { ctx.VPMULHW(mxy, xy, xy1) }
+func VPMULHW(mxy, xy, xy1 operand.Op) { ctx.VPMULHW(mxy, xy, xy1) }
 
-func (c *Context) VPMULLD(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPMULLD(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPMULLD(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPMULLD(mxy, xy, xy1 avo.Operand) { ctx.VPMULLD(mxy, xy, xy1) }
+func VPMULLD(mxy, xy, xy1 operand.Op) { ctx.VPMULLD(mxy, xy, xy1) }
 
-func (c *Context) VPMULLW(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPMULLW(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPMULLW(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPMULLW(mxy, xy, xy1 avo.Operand) { ctx.VPMULLW(mxy, xy, xy1) }
+func VPMULLW(mxy, xy, xy1 operand.Op) { ctx.VPMULLW(mxy, xy, xy1) }
 
-func (c *Context) VPMULUDQ(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPMULUDQ(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPMULUDQ(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPMULUDQ(mxy, xy, xy1 avo.Operand) { ctx.VPMULUDQ(mxy, xy, xy1) }
+func VPMULUDQ(mxy, xy, xy1 operand.Op) { ctx.VPMULUDQ(mxy, xy, xy1) }
 
-func (c *Context) VPOR(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPOR(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPOR(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPOR(mxy, xy, xy1 avo.Operand) { ctx.VPOR(mxy, xy, xy1) }
+func VPOR(mxy, xy, xy1 operand.Op) { ctx.VPOR(mxy, xy, xy1) }
 
-func (c *Context) VPSADBW(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPSADBW(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPSADBW(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPSADBW(mxy, xy, xy1 avo.Operand) { ctx.VPSADBW(mxy, xy, xy1) }
+func VPSADBW(mxy, xy, xy1 operand.Op) { ctx.VPSADBW(mxy, xy, xy1) }
 
-func (c *Context) VPSHUFB(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPSHUFB(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPSHUFB(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPSHUFB(mxy, xy, xy1 avo.Operand) { ctx.VPSHUFB(mxy, xy, xy1) }
+func VPSHUFB(mxy, xy, xy1 operand.Op) { ctx.VPSHUFB(mxy, xy, xy1) }
 
-func (c *Context) VPSHUFD(i, mxy, xy avo.Operand) {
+func (c *Context) VPSHUFD(i, mxy, xy operand.Op) {
 	if inst, err := x86.VPSHUFD(i, mxy, xy); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPSHUFD(i, mxy, xy avo.Operand) { ctx.VPSHUFD(i, mxy, xy) }
+func VPSHUFD(i, mxy, xy operand.Op) { ctx.VPSHUFD(i, mxy, xy) }
 
-func (c *Context) VPSHUFHW(i, mxy, xy avo.Operand) {
+func (c *Context) VPSHUFHW(i, mxy, xy operand.Op) {
 	if inst, err := x86.VPSHUFHW(i, mxy, xy); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPSHUFHW(i, mxy, xy avo.Operand) { ctx.VPSHUFHW(i, mxy, xy) }
+func VPSHUFHW(i, mxy, xy operand.Op) { ctx.VPSHUFHW(i, mxy, xy) }
 
-func (c *Context) VPSHUFLW(i, mxy, xy avo.Operand) {
+func (c *Context) VPSHUFLW(i, mxy, xy operand.Op) {
 	if inst, err := x86.VPSHUFLW(i, mxy, xy); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPSHUFLW(i, mxy, xy avo.Operand) { ctx.VPSHUFLW(i, mxy, xy) }
+func VPSHUFLW(i, mxy, xy operand.Op) { ctx.VPSHUFLW(i, mxy, xy) }
 
-func (c *Context) VPSIGNB(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPSIGNB(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPSIGNB(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPSIGNB(mxy, xy, xy1 avo.Operand) { ctx.VPSIGNB(mxy, xy, xy1) }
+func VPSIGNB(mxy, xy, xy1 operand.Op) { ctx.VPSIGNB(mxy, xy, xy1) }
 
-func (c *Context) VPSIGND(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPSIGND(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPSIGND(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPSIGND(mxy, xy, xy1 avo.Operand) { ctx.VPSIGND(mxy, xy, xy1) }
+func VPSIGND(mxy, xy, xy1 operand.Op) { ctx.VPSIGND(mxy, xy, xy1) }
 
-func (c *Context) VPSIGNW(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPSIGNW(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPSIGNW(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPSIGNW(mxy, xy, xy1 avo.Operand) { ctx.VPSIGNW(mxy, xy, xy1) }
+func VPSIGNW(mxy, xy, xy1 operand.Op) { ctx.VPSIGNW(mxy, xy, xy1) }
 
-func (c *Context) VPSLLD(imx, xy, xy1 avo.Operand) {
+func (c *Context) VPSLLD(imx, xy, xy1 operand.Op) {
 	if inst, err := x86.VPSLLD(imx, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPSLLD(imx, xy, xy1 avo.Operand) { ctx.VPSLLD(imx, xy, xy1) }
+func VPSLLD(imx, xy, xy1 operand.Op) { ctx.VPSLLD(imx, xy, xy1) }
 
-func (c *Context) VPSLLDQ(i, xy, xy1 avo.Operand) {
+func (c *Context) VPSLLDQ(i, xy, xy1 operand.Op) {
 	if inst, err := x86.VPSLLDQ(i, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPSLLDQ(i, xy, xy1 avo.Operand) { ctx.VPSLLDQ(i, xy, xy1) }
+func VPSLLDQ(i, xy, xy1 operand.Op) { ctx.VPSLLDQ(i, xy, xy1) }
 
-func (c *Context) VPSLLQ(imx, xy, xy1 avo.Operand) {
+func (c *Context) VPSLLQ(imx, xy, xy1 operand.Op) {
 	if inst, err := x86.VPSLLQ(imx, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPSLLQ(imx, xy, xy1 avo.Operand) { ctx.VPSLLQ(imx, xy, xy1) }
+func VPSLLQ(imx, xy, xy1 operand.Op) { ctx.VPSLLQ(imx, xy, xy1) }
 
-func (c *Context) VPSLLVD(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPSLLVD(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPSLLVD(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPSLLVD(mxy, xy, xy1 avo.Operand) { ctx.VPSLLVD(mxy, xy, xy1) }
+func VPSLLVD(mxy, xy, xy1 operand.Op) { ctx.VPSLLVD(mxy, xy, xy1) }
 
-func (c *Context) VPSLLVQ(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPSLLVQ(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPSLLVQ(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPSLLVQ(mxy, xy, xy1 avo.Operand) { ctx.VPSLLVQ(mxy, xy, xy1) }
+func VPSLLVQ(mxy, xy, xy1 operand.Op) { ctx.VPSLLVQ(mxy, xy, xy1) }
 
-func (c *Context) VPSLLW(imx, xy, xy1 avo.Operand) {
+func (c *Context) VPSLLW(imx, xy, xy1 operand.Op) {
 	if inst, err := x86.VPSLLW(imx, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPSLLW(imx, xy, xy1 avo.Operand) { ctx.VPSLLW(imx, xy, xy1) }
+func VPSLLW(imx, xy, xy1 operand.Op) { ctx.VPSLLW(imx, xy, xy1) }
 
-func (c *Context) VPSRAD(imx, xy, xy1 avo.Operand) {
+func (c *Context) VPSRAD(imx, xy, xy1 operand.Op) {
 	if inst, err := x86.VPSRAD(imx, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPSRAD(imx, xy, xy1 avo.Operand) { ctx.VPSRAD(imx, xy, xy1) }
+func VPSRAD(imx, xy, xy1 operand.Op) { ctx.VPSRAD(imx, xy, xy1) }
 
-func (c *Context) VPSRAVD(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPSRAVD(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPSRAVD(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPSRAVD(mxy, xy, xy1 avo.Operand) { ctx.VPSRAVD(mxy, xy, xy1) }
+func VPSRAVD(mxy, xy, xy1 operand.Op) { ctx.VPSRAVD(mxy, xy, xy1) }
 
-func (c *Context) VPSRAW(imx, xy, xy1 avo.Operand) {
+func (c *Context) VPSRAW(imx, xy, xy1 operand.Op) {
 	if inst, err := x86.VPSRAW(imx, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPSRAW(imx, xy, xy1 avo.Operand) { ctx.VPSRAW(imx, xy, xy1) }
+func VPSRAW(imx, xy, xy1 operand.Op) { ctx.VPSRAW(imx, xy, xy1) }
 
-func (c *Context) VPSRLD(imx, xy, xy1 avo.Operand) {
+func (c *Context) VPSRLD(imx, xy, xy1 operand.Op) {
 	if inst, err := x86.VPSRLD(imx, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPSRLD(imx, xy, xy1 avo.Operand) { ctx.VPSRLD(imx, xy, xy1) }
+func VPSRLD(imx, xy, xy1 operand.Op) { ctx.VPSRLD(imx, xy, xy1) }
 
-func (c *Context) VPSRLDQ(i, xy, xy1 avo.Operand) {
+func (c *Context) VPSRLDQ(i, xy, xy1 operand.Op) {
 	if inst, err := x86.VPSRLDQ(i, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPSRLDQ(i, xy, xy1 avo.Operand) { ctx.VPSRLDQ(i, xy, xy1) }
+func VPSRLDQ(i, xy, xy1 operand.Op) { ctx.VPSRLDQ(i, xy, xy1) }
 
-func (c *Context) VPSRLQ(imx, xy, xy1 avo.Operand) {
+func (c *Context) VPSRLQ(imx, xy, xy1 operand.Op) {
 	if inst, err := x86.VPSRLQ(imx, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPSRLQ(imx, xy, xy1 avo.Operand) { ctx.VPSRLQ(imx, xy, xy1) }
+func VPSRLQ(imx, xy, xy1 operand.Op) { ctx.VPSRLQ(imx, xy, xy1) }
 
-func (c *Context) VPSRLVD(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPSRLVD(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPSRLVD(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPSRLVD(mxy, xy, xy1 avo.Operand) { ctx.VPSRLVD(mxy, xy, xy1) }
+func VPSRLVD(mxy, xy, xy1 operand.Op) { ctx.VPSRLVD(mxy, xy, xy1) }
 
-func (c *Context) VPSRLVQ(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPSRLVQ(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPSRLVQ(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPSRLVQ(mxy, xy, xy1 avo.Operand) { ctx.VPSRLVQ(mxy, xy, xy1) }
+func VPSRLVQ(mxy, xy, xy1 operand.Op) { ctx.VPSRLVQ(mxy, xy, xy1) }
 
-func (c *Context) VPSRLW(imx, xy, xy1 avo.Operand) {
+func (c *Context) VPSRLW(imx, xy, xy1 operand.Op) {
 	if inst, err := x86.VPSRLW(imx, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPSRLW(imx, xy, xy1 avo.Operand) { ctx.VPSRLW(imx, xy, xy1) }
+func VPSRLW(imx, xy, xy1 operand.Op) { ctx.VPSRLW(imx, xy, xy1) }
 
-func (c *Context) VPSUBB(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPSUBB(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPSUBB(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPSUBB(mxy, xy, xy1 avo.Operand) { ctx.VPSUBB(mxy, xy, xy1) }
+func VPSUBB(mxy, xy, xy1 operand.Op) { ctx.VPSUBB(mxy, xy, xy1) }
 
-func (c *Context) VPSUBD(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPSUBD(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPSUBD(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPSUBD(mxy, xy, xy1 avo.Operand) { ctx.VPSUBD(mxy, xy, xy1) }
+func VPSUBD(mxy, xy, xy1 operand.Op) { ctx.VPSUBD(mxy, xy, xy1) }
 
-func (c *Context) VPSUBQ(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPSUBQ(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPSUBQ(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPSUBQ(mxy, xy, xy1 avo.Operand) { ctx.VPSUBQ(mxy, xy, xy1) }
+func VPSUBQ(mxy, xy, xy1 operand.Op) { ctx.VPSUBQ(mxy, xy, xy1) }
 
-func (c *Context) VPSUBSB(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPSUBSB(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPSUBSB(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPSUBSB(mxy, xy, xy1 avo.Operand) { ctx.VPSUBSB(mxy, xy, xy1) }
+func VPSUBSB(mxy, xy, xy1 operand.Op) { ctx.VPSUBSB(mxy, xy, xy1) }
 
-func (c *Context) VPSUBSW(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPSUBSW(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPSUBSW(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPSUBSW(mxy, xy, xy1 avo.Operand) { ctx.VPSUBSW(mxy, xy, xy1) }
+func VPSUBSW(mxy, xy, xy1 operand.Op) { ctx.VPSUBSW(mxy, xy, xy1) }
 
-func (c *Context) VPSUBUSB(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPSUBUSB(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPSUBUSB(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPSUBUSB(mxy, xy, xy1 avo.Operand) { ctx.VPSUBUSB(mxy, xy, xy1) }
+func VPSUBUSB(mxy, xy, xy1 operand.Op) { ctx.VPSUBUSB(mxy, xy, xy1) }
 
-func (c *Context) VPSUBUSW(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPSUBUSW(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPSUBUSW(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPSUBUSW(mxy, xy, xy1 avo.Operand) { ctx.VPSUBUSW(mxy, xy, xy1) }
+func VPSUBUSW(mxy, xy, xy1 operand.Op) { ctx.VPSUBUSW(mxy, xy, xy1) }
 
-func (c *Context) VPSUBW(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPSUBW(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPSUBW(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPSUBW(mxy, xy, xy1 avo.Operand) { ctx.VPSUBW(mxy, xy, xy1) }
+func VPSUBW(mxy, xy, xy1 operand.Op) { ctx.VPSUBW(mxy, xy, xy1) }
 
-func (c *Context) VPTEST(mxy, xy avo.Operand) {
+func (c *Context) VPTEST(mxy, xy operand.Op) {
 	if inst, err := x86.VPTEST(mxy, xy); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPTEST(mxy, xy avo.Operand) { ctx.VPTEST(mxy, xy) }
+func VPTEST(mxy, xy operand.Op) { ctx.VPTEST(mxy, xy) }
 
-func (c *Context) VPUNPCKHBW(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPUNPCKHBW(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPUNPCKHBW(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPUNPCKHBW(mxy, xy, xy1 avo.Operand) { ctx.VPUNPCKHBW(mxy, xy, xy1) }
+func VPUNPCKHBW(mxy, xy, xy1 operand.Op) { ctx.VPUNPCKHBW(mxy, xy, xy1) }
 
-func (c *Context) VPUNPCKHDQ(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPUNPCKHDQ(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPUNPCKHDQ(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPUNPCKHDQ(mxy, xy, xy1 avo.Operand) { ctx.VPUNPCKHDQ(mxy, xy, xy1) }
+func VPUNPCKHDQ(mxy, xy, xy1 operand.Op) { ctx.VPUNPCKHDQ(mxy, xy, xy1) }
 
-func (c *Context) VPUNPCKHQDQ(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPUNPCKHQDQ(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPUNPCKHQDQ(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPUNPCKHQDQ(mxy, xy, xy1 avo.Operand) { ctx.VPUNPCKHQDQ(mxy, xy, xy1) }
+func VPUNPCKHQDQ(mxy, xy, xy1 operand.Op) { ctx.VPUNPCKHQDQ(mxy, xy, xy1) }
 
-func (c *Context) VPUNPCKHWD(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPUNPCKHWD(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPUNPCKHWD(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPUNPCKHWD(mxy, xy, xy1 avo.Operand) { ctx.VPUNPCKHWD(mxy, xy, xy1) }
+func VPUNPCKHWD(mxy, xy, xy1 operand.Op) { ctx.VPUNPCKHWD(mxy, xy, xy1) }
 
-func (c *Context) VPUNPCKLBW(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPUNPCKLBW(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPUNPCKLBW(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPUNPCKLBW(mxy, xy, xy1 avo.Operand) { ctx.VPUNPCKLBW(mxy, xy, xy1) }
+func VPUNPCKLBW(mxy, xy, xy1 operand.Op) { ctx.VPUNPCKLBW(mxy, xy, xy1) }
 
-func (c *Context) VPUNPCKLDQ(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPUNPCKLDQ(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPUNPCKLDQ(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPUNPCKLDQ(mxy, xy, xy1 avo.Operand) { ctx.VPUNPCKLDQ(mxy, xy, xy1) }
+func VPUNPCKLDQ(mxy, xy, xy1 operand.Op) { ctx.VPUNPCKLDQ(mxy, xy, xy1) }
 
-func (c *Context) VPUNPCKLQDQ(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPUNPCKLQDQ(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPUNPCKLQDQ(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPUNPCKLQDQ(mxy, xy, xy1 avo.Operand) { ctx.VPUNPCKLQDQ(mxy, xy, xy1) }
+func VPUNPCKLQDQ(mxy, xy, xy1 operand.Op) { ctx.VPUNPCKLQDQ(mxy, xy, xy1) }
 
-func (c *Context) VPUNPCKLWD(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPUNPCKLWD(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPUNPCKLWD(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPUNPCKLWD(mxy, xy, xy1 avo.Operand) { ctx.VPUNPCKLWD(mxy, xy, xy1) }
+func VPUNPCKLWD(mxy, xy, xy1 operand.Op) { ctx.VPUNPCKLWD(mxy, xy, xy1) }
 
-func (c *Context) VPXOR(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VPXOR(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VPXOR(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VPXOR(mxy, xy, xy1 avo.Operand) { ctx.VPXOR(mxy, xy, xy1) }
+func VPXOR(mxy, xy, xy1 operand.Op) { ctx.VPXOR(mxy, xy, xy1) }
 
-func (c *Context) VRCPPS(mxy, xy avo.Operand) {
+func (c *Context) VRCPPS(mxy, xy operand.Op) {
 	if inst, err := x86.VRCPPS(mxy, xy); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VRCPPS(mxy, xy avo.Operand) { ctx.VRCPPS(mxy, xy) }
+func VRCPPS(mxy, xy operand.Op) { ctx.VRCPPS(mxy, xy) }
 
-func (c *Context) VRCPSS(mx, x, x1 avo.Operand) {
+func (c *Context) VRCPSS(mx, x, x1 operand.Op) {
 	if inst, err := x86.VRCPSS(mx, x, x1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VRCPSS(mx, x, x1 avo.Operand) { ctx.VRCPSS(mx, x, x1) }
+func VRCPSS(mx, x, x1 operand.Op) { ctx.VRCPSS(mx, x, x1) }
 
-func (c *Context) VROUNDPD(i, mxy, xy avo.Operand) {
+func (c *Context) VROUNDPD(i, mxy, xy operand.Op) {
 	if inst, err := x86.VROUNDPD(i, mxy, xy); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VROUNDPD(i, mxy, xy avo.Operand) { ctx.VROUNDPD(i, mxy, xy) }
+func VROUNDPD(i, mxy, xy operand.Op) { ctx.VROUNDPD(i, mxy, xy) }
 
-func (c *Context) VROUNDPS(i, mxy, xy avo.Operand) {
+func (c *Context) VROUNDPS(i, mxy, xy operand.Op) {
 	if inst, err := x86.VROUNDPS(i, mxy, xy); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VROUNDPS(i, mxy, xy avo.Operand) { ctx.VROUNDPS(i, mxy, xy) }
+func VROUNDPS(i, mxy, xy operand.Op) { ctx.VROUNDPS(i, mxy, xy) }
 
-func (c *Context) VROUNDSD(i, mx, x, x1 avo.Operand) {
+func (c *Context) VROUNDSD(i, mx, x, x1 operand.Op) {
 	if inst, err := x86.VROUNDSD(i, mx, x, x1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VROUNDSD(i, mx, x, x1 avo.Operand) { ctx.VROUNDSD(i, mx, x, x1) }
+func VROUNDSD(i, mx, x, x1 operand.Op) { ctx.VROUNDSD(i, mx, x, x1) }
 
-func (c *Context) VROUNDSS(i, mx, x, x1 avo.Operand) {
+func (c *Context) VROUNDSS(i, mx, x, x1 operand.Op) {
 	if inst, err := x86.VROUNDSS(i, mx, x, x1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VROUNDSS(i, mx, x, x1 avo.Operand) { ctx.VROUNDSS(i, mx, x, x1) }
+func VROUNDSS(i, mx, x, x1 operand.Op) { ctx.VROUNDSS(i, mx, x, x1) }
 
-func (c *Context) VRSQRTPS(mxy, xy avo.Operand) {
+func (c *Context) VRSQRTPS(mxy, xy operand.Op) {
 	if inst, err := x86.VRSQRTPS(mxy, xy); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VRSQRTPS(mxy, xy avo.Operand) { ctx.VRSQRTPS(mxy, xy) }
+func VRSQRTPS(mxy, xy operand.Op) { ctx.VRSQRTPS(mxy, xy) }
 
-func (c *Context) VRSQRTSS(mx, x, x1 avo.Operand) {
+func (c *Context) VRSQRTSS(mx, x, x1 operand.Op) {
 	if inst, err := x86.VRSQRTSS(mx, x, x1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VRSQRTSS(mx, x, x1 avo.Operand) { ctx.VRSQRTSS(mx, x, x1) }
+func VRSQRTSS(mx, x, x1 operand.Op) { ctx.VRSQRTSS(mx, x, x1) }
 
-func (c *Context) VSHUFPD(i, mxy, xy, xy1 avo.Operand) {
+func (c *Context) VSHUFPD(i, mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VSHUFPD(i, mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VSHUFPD(i, mxy, xy, xy1 avo.Operand) { ctx.VSHUFPD(i, mxy, xy, xy1) }
+func VSHUFPD(i, mxy, xy, xy1 operand.Op) { ctx.VSHUFPD(i, mxy, xy, xy1) }
 
-func (c *Context) VSHUFPS(i, mxy, xy, xy1 avo.Operand) {
+func (c *Context) VSHUFPS(i, mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VSHUFPS(i, mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VSHUFPS(i, mxy, xy, xy1 avo.Operand) { ctx.VSHUFPS(i, mxy, xy, xy1) }
+func VSHUFPS(i, mxy, xy, xy1 operand.Op) { ctx.VSHUFPS(i, mxy, xy, xy1) }
 
-func (c *Context) VSQRTPD(mxy, xy avo.Operand) {
+func (c *Context) VSQRTPD(mxy, xy operand.Op) {
 	if inst, err := x86.VSQRTPD(mxy, xy); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VSQRTPD(mxy, xy avo.Operand) { ctx.VSQRTPD(mxy, xy) }
+func VSQRTPD(mxy, xy operand.Op) { ctx.VSQRTPD(mxy, xy) }
 
-func (c *Context) VSQRTPS(mxy, xy avo.Operand) {
+func (c *Context) VSQRTPS(mxy, xy operand.Op) {
 	if inst, err := x86.VSQRTPS(mxy, xy); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VSQRTPS(mxy, xy avo.Operand) { ctx.VSQRTPS(mxy, xy) }
+func VSQRTPS(mxy, xy operand.Op) { ctx.VSQRTPS(mxy, xy) }
 
-func (c *Context) VSQRTSD(mx, x, x1 avo.Operand) {
+func (c *Context) VSQRTSD(mx, x, x1 operand.Op) {
 	if inst, err := x86.VSQRTSD(mx, x, x1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VSQRTSD(mx, x, x1 avo.Operand) { ctx.VSQRTSD(mx, x, x1) }
+func VSQRTSD(mx, x, x1 operand.Op) { ctx.VSQRTSD(mx, x, x1) }
 
-func (c *Context) VSQRTSS(mx, x, x1 avo.Operand) {
+func (c *Context) VSQRTSS(mx, x, x1 operand.Op) {
 	if inst, err := x86.VSQRTSS(mx, x, x1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VSQRTSS(mx, x, x1 avo.Operand) { ctx.VSQRTSS(mx, x, x1) }
+func VSQRTSS(mx, x, x1 operand.Op) { ctx.VSQRTSS(mx, x, x1) }
 
-func (c *Context) VSTMXCSR(m avo.Operand) {
+func (c *Context) VSTMXCSR(m operand.Op) {
 	if inst, err := x86.VSTMXCSR(m); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VSTMXCSR(m avo.Operand) { ctx.VSTMXCSR(m) }
+func VSTMXCSR(m operand.Op) { ctx.VSTMXCSR(m) }
 
-func (c *Context) VSUBPD(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VSUBPD(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VSUBPD(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VSUBPD(mxy, xy, xy1 avo.Operand) { ctx.VSUBPD(mxy, xy, xy1) }
+func VSUBPD(mxy, xy, xy1 operand.Op) { ctx.VSUBPD(mxy, xy, xy1) }
 
-func (c *Context) VSUBPS(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VSUBPS(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VSUBPS(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VSUBPS(mxy, xy, xy1 avo.Operand) { ctx.VSUBPS(mxy, xy, xy1) }
+func VSUBPS(mxy, xy, xy1 operand.Op) { ctx.VSUBPS(mxy, xy, xy1) }
 
-func (c *Context) VSUBSD(mx, x, x1 avo.Operand) {
+func (c *Context) VSUBSD(mx, x, x1 operand.Op) {
 	if inst, err := x86.VSUBSD(mx, x, x1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VSUBSD(mx, x, x1 avo.Operand) { ctx.VSUBSD(mx, x, x1) }
+func VSUBSD(mx, x, x1 operand.Op) { ctx.VSUBSD(mx, x, x1) }
 
-func (c *Context) VSUBSS(mx, x, x1 avo.Operand) {
+func (c *Context) VSUBSS(mx, x, x1 operand.Op) {
 	if inst, err := x86.VSUBSS(mx, x, x1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VSUBSS(mx, x, x1 avo.Operand) { ctx.VSUBSS(mx, x, x1) }
+func VSUBSS(mx, x, x1 operand.Op) { ctx.VSUBSS(mx, x, x1) }
 
-func (c *Context) VTESTPD(mxy, xy avo.Operand) {
+func (c *Context) VTESTPD(mxy, xy operand.Op) {
 	if inst, err := x86.VTESTPD(mxy, xy); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VTESTPD(mxy, xy avo.Operand) { ctx.VTESTPD(mxy, xy) }
+func VTESTPD(mxy, xy operand.Op) { ctx.VTESTPD(mxy, xy) }
 
-func (c *Context) VTESTPS(mxy, xy avo.Operand) {
+func (c *Context) VTESTPS(mxy, xy operand.Op) {
 	if inst, err := x86.VTESTPS(mxy, xy); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VTESTPS(mxy, xy avo.Operand) { ctx.VTESTPS(mxy, xy) }
+func VTESTPS(mxy, xy operand.Op) { ctx.VTESTPS(mxy, xy) }
 
-func (c *Context) VUCOMISD(mx, x avo.Operand) {
+func (c *Context) VUCOMISD(mx, x operand.Op) {
 	if inst, err := x86.VUCOMISD(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VUCOMISD(mx, x avo.Operand) { ctx.VUCOMISD(mx, x) }
+func VUCOMISD(mx, x operand.Op) { ctx.VUCOMISD(mx, x) }
 
-func (c *Context) VUCOMISS(mx, x avo.Operand) {
+func (c *Context) VUCOMISS(mx, x operand.Op) {
 	if inst, err := x86.VUCOMISS(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VUCOMISS(mx, x avo.Operand) { ctx.VUCOMISS(mx, x) }
+func VUCOMISS(mx, x operand.Op) { ctx.VUCOMISS(mx, x) }
 
-func (c *Context) VUNPCKHPD(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VUNPCKHPD(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VUNPCKHPD(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VUNPCKHPD(mxy, xy, xy1 avo.Operand) { ctx.VUNPCKHPD(mxy, xy, xy1) }
+func VUNPCKHPD(mxy, xy, xy1 operand.Op) { ctx.VUNPCKHPD(mxy, xy, xy1) }
 
-func (c *Context) VUNPCKHPS(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VUNPCKHPS(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VUNPCKHPS(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VUNPCKHPS(mxy, xy, xy1 avo.Operand) { ctx.VUNPCKHPS(mxy, xy, xy1) }
+func VUNPCKHPS(mxy, xy, xy1 operand.Op) { ctx.VUNPCKHPS(mxy, xy, xy1) }
 
-func (c *Context) VUNPCKLPD(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VUNPCKLPD(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VUNPCKLPD(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VUNPCKLPD(mxy, xy, xy1 avo.Operand) { ctx.VUNPCKLPD(mxy, xy, xy1) }
+func VUNPCKLPD(mxy, xy, xy1 operand.Op) { ctx.VUNPCKLPD(mxy, xy, xy1) }
 
-func (c *Context) VUNPCKLPS(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VUNPCKLPS(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VUNPCKLPS(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VUNPCKLPS(mxy, xy, xy1 avo.Operand) { ctx.VUNPCKLPS(mxy, xy, xy1) }
+func VUNPCKLPS(mxy, xy, xy1 operand.Op) { ctx.VUNPCKLPS(mxy, xy, xy1) }
 
-func (c *Context) VXORPD(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VXORPD(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VXORPD(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VXORPD(mxy, xy, xy1 avo.Operand) { ctx.VXORPD(mxy, xy, xy1) }
+func VXORPD(mxy, xy, xy1 operand.Op) { ctx.VXORPD(mxy, xy, xy1) }
 
-func (c *Context) VXORPS(mxy, xy, xy1 avo.Operand) {
+func (c *Context) VXORPS(mxy, xy, xy1 operand.Op) {
 	if inst, err := x86.VXORPS(mxy, xy, xy1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func VXORPS(mxy, xy, xy1 avo.Operand) { ctx.VXORPS(mxy, xy, xy1) }
+func VXORPS(mxy, xy, xy1 operand.Op) { ctx.VXORPS(mxy, xy, xy1) }
 
 func (c *Context) VZEROALL() {
 	if inst, err := x86.VZEROALL(); err == nil {
@@ -8710,77 +8710,77 @@ func (c *Context) VZEROUPPER() {
 }
 func VZEROUPPER() { ctx.VZEROUPPER() }
 
-func (c *Context) XADDB(r, mr avo.Operand) {
+func (c *Context) XADDB(r, mr operand.Op) {
 	if inst, err := x86.XADDB(r, mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func XADDB(r, mr avo.Operand) { ctx.XADDB(r, mr) }
+func XADDB(r, mr operand.Op) { ctx.XADDB(r, mr) }
 
-func (c *Context) XADDL(r, mr avo.Operand) {
+func (c *Context) XADDL(r, mr operand.Op) {
 	if inst, err := x86.XADDL(r, mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func XADDL(r, mr avo.Operand) { ctx.XADDL(r, mr) }
+func XADDL(r, mr operand.Op) { ctx.XADDL(r, mr) }
 
-func (c *Context) XADDQ(r, mr avo.Operand) {
+func (c *Context) XADDQ(r, mr operand.Op) {
 	if inst, err := x86.XADDQ(r, mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func XADDQ(r, mr avo.Operand) { ctx.XADDQ(r, mr) }
+func XADDQ(r, mr operand.Op) { ctx.XADDQ(r, mr) }
 
-func (c *Context) XADDW(r, mr avo.Operand) {
+func (c *Context) XADDW(r, mr operand.Op) {
 	if inst, err := x86.XADDW(r, mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func XADDW(r, mr avo.Operand) { ctx.XADDW(r, mr) }
+func XADDW(r, mr operand.Op) { ctx.XADDW(r, mr) }
 
-func (c *Context) XCHGB(mr, mr1 avo.Operand) {
+func (c *Context) XCHGB(mr, mr1 operand.Op) {
 	if inst, err := x86.XCHGB(mr, mr1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func XCHGB(mr, mr1 avo.Operand) { ctx.XCHGB(mr, mr1) }
+func XCHGB(mr, mr1 operand.Op) { ctx.XCHGB(mr, mr1) }
 
-func (c *Context) XCHGL(emr, emr1 avo.Operand) {
+func (c *Context) XCHGL(emr, emr1 operand.Op) {
 	if inst, err := x86.XCHGL(emr, emr1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func XCHGL(emr, emr1 avo.Operand) { ctx.XCHGL(emr, emr1) }
+func XCHGL(emr, emr1 operand.Op) { ctx.XCHGL(emr, emr1) }
 
-func (c *Context) XCHGQ(mr, mr1 avo.Operand) {
+func (c *Context) XCHGQ(mr, mr1 operand.Op) {
 	if inst, err := x86.XCHGQ(mr, mr1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func XCHGQ(mr, mr1 avo.Operand) { ctx.XCHGQ(mr, mr1) }
+func XCHGQ(mr, mr1 operand.Op) { ctx.XCHGQ(mr, mr1) }
 
-func (c *Context) XCHGW(amr, amr1 avo.Operand) {
+func (c *Context) XCHGW(amr, amr1 operand.Op) {
 	if inst, err := x86.XCHGW(amr, amr1); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func XCHGW(amr, amr1 avo.Operand) { ctx.XCHGW(amr, amr1) }
+func XCHGW(amr, amr1 operand.Op) { ctx.XCHGW(amr, amr1) }
 
 func (c *Context) XGETBV() {
 	if inst, err := x86.XGETBV(); err == nil {
@@ -8800,56 +8800,56 @@ func (c *Context) XLAT() {
 }
 func XLAT() { ctx.XLAT() }
 
-func (c *Context) XORB(imr, amr avo.Operand) {
+func (c *Context) XORB(imr, amr operand.Op) {
 	if inst, err := x86.XORB(imr, amr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func XORB(imr, amr avo.Operand) { ctx.XORB(imr, amr) }
+func XORB(imr, amr operand.Op) { ctx.XORB(imr, amr) }
 
-func (c *Context) XORL(imr, emr avo.Operand) {
+func (c *Context) XORL(imr, emr operand.Op) {
 	if inst, err := x86.XORL(imr, emr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func XORL(imr, emr avo.Operand) { ctx.XORL(imr, emr) }
+func XORL(imr, emr operand.Op) { ctx.XORL(imr, emr) }
 
-func (c *Context) XORPD(mx, x avo.Operand) {
+func (c *Context) XORPD(mx, x operand.Op) {
 	if inst, err := x86.XORPD(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func XORPD(mx, x avo.Operand) { ctx.XORPD(mx, x) }
+func XORPD(mx, x operand.Op) { ctx.XORPD(mx, x) }
 
-func (c *Context) XORPS(mx, x avo.Operand) {
+func (c *Context) XORPS(mx, x operand.Op) {
 	if inst, err := x86.XORPS(mx, x); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func XORPS(mx, x avo.Operand) { ctx.XORPS(mx, x) }
+func XORPS(mx, x operand.Op) { ctx.XORPS(mx, x) }
 
-func (c *Context) XORQ(imr, mr avo.Operand) {
+func (c *Context) XORQ(imr, mr operand.Op) {
 	if inst, err := x86.XORQ(imr, mr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func XORQ(imr, mr avo.Operand) { ctx.XORQ(imr, mr) }
+func XORQ(imr, mr operand.Op) { ctx.XORQ(imr, mr) }
 
-func (c *Context) XORW(imr, amr avo.Operand) {
+func (c *Context) XORW(imr, amr operand.Op) {
 	if inst, err := x86.XORW(imr, amr); err == nil {
 		c.Instruction(*inst)
 	} else {
 		c.AddError(err)
 	}
 }
-func XORW(imr, amr avo.Operand) { ctx.XORW(imr, amr) }
+func XORW(imr, amr operand.Op) { ctx.XORW(imr, amr) }

@@ -42,7 +42,7 @@ func (c *ctors) instruction(i inst.Instruction) {
 
 	c.Printf("func %s(%s) (*avo.Instruction, error) {\n", i.Opcode, s.ParameterList())
 	c.checkargs(i, s)
-	c.Printf("\treturn &avo.Instruction{Opcode: %#v, Operands: %s}, nil\n", i.Opcode, s.ParameterSlice())
+	c.Printf("\treturn &%s, nil\n", construct(i, s))
 	c.Printf("}\n\n")
 }
 
@@ -70,6 +70,19 @@ func (c *ctors) doc(i inst.Instruction) []string {
 	}
 
 	return lines
+}
+
+func construct(i inst.Instruction, s signature) string {
+	buf := bytes.NewBuffer(nil)
+	fmt.Fprintf(buf, "avo.Instruction{\n")
+	fmt.Fprintf(buf, "\tOpcode: %#v,\n", i.Opcode)
+	fmt.Fprintf(buf, "\tOperands: %s,\n", s.ParameterSlice())
+	if i.IsBranch() {
+		fmt.Fprintf(buf, "\tIsBranch: true,\n")
+		fmt.Fprintf(buf, "\tIsConditional: %#v,\n", i.IsConditionalBranch())
+	}
+	fmt.Fprintf(buf, "}")
+	return buf.String()
 }
 
 func (c *ctors) checkargs(i inst.Instruction, s signature) {

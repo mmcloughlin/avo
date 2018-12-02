@@ -1,12 +1,38 @@
 package inst
 
-import "sort"
+import (
+	"sort"
+	"strings"
+)
 
 type Instruction struct {
 	Opcode  string
 	AliasOf string
 	Summary string
 	Forms   []Form
+}
+
+func (i Instruction) IsTerminal() bool {
+	// TODO(mbm): how about the RETF* instructions
+	return i.Opcode == "RET"
+}
+
+func (i Instruction) IsBranch() bool {
+	if i.Opcode == "CALL" {
+		return false
+	}
+	for _, f := range i.Forms {
+		for _, op := range f.Operands {
+			if strings.HasPrefix(op.Type, "rel") {
+				return true
+			}
+		}
+	}
+	return false
+}
+
+func (i Instruction) IsConditionalBranch() bool {
+	return i.IsBranch() && i.Opcode != "JMP"
 }
 
 func (i Instruction) Arities() []int {

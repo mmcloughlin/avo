@@ -1,5 +1,9 @@
 package avo
 
+import (
+	"github.com/mmcloughlin/avo/operand"
+)
+
 type Asm interface {
 	Asm() string
 }
@@ -28,7 +32,26 @@ func (l Label) node() {}
 // Instruction is a single instruction in a function.
 type Instruction struct {
 	Opcode   string
-	Operands []Operand
+	Operands []operand.Op
+
+	IsTerminal    bool
+	IsBranch      bool
+	IsConditional bool
+
+	// CFG.
+	Pred []*Instruction
+	Succ []*Instruction
+}
+
+func (i Instruction) TargetLabel() *Label {
+	if !i.IsBranch {
+		return nil
+	}
+	if ref, ok := i.Operands[0].(operand.LabelRef); ok {
+		lbl := Label(ref)
+		return &lbl
+	}
+	return nil
 }
 
 func (i Instruction) node() {}
@@ -46,7 +69,10 @@ func NewFile() *File {
 type Function struct {
 	name   string
 	params []Parameter
-	nodes  []Node
+	Nodes  []Node
+
+	// LabelTarget maps from label name to the following instruction.
+	LabelTarget map[Label]*Instruction
 }
 
 func NewFunction(name string) *Function {
@@ -55,7 +81,7 @@ func NewFunction(name string) *Function {
 	}
 }
 
-func (f *Function) AddInstruction(i Instruction) {
+func (f *Function) AddInstruction(i *Instruction) {
 	f.AddNode(i)
 }
 
@@ -64,7 +90,19 @@ func (f *Function) AddLabel(l Label) {
 }
 
 func (f *Function) AddNode(n Node) {
-	f.nodes = append(f.nodes, n)
+	f.Nodes = append(f.Nodes, n)
+}
+
+// Instructions returns just the list of instruction nodes.
+func (f *Function) Instructions() []*Instruction {
+	var is []*Instruction
+	for _, n := range f.Nodes {
+		i, ok := n.(*Instruction)
+		if ok {
+			is = append(is, i)
+		}
+	}
+	return is
 }
 
 // Name returns the function name.

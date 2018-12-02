@@ -6,14 +6,13 @@ import (
 	"runtime"
 	"testing"
 
-	"github.com/mmcloughlin/avo"
 	"github.com/mmcloughlin/avo/reg"
 )
 
 func TestChecks(t *testing.T) {
 	cases := []struct {
-		Predicate func(avo.Operand) bool
-		Operand   avo.Operand
+		Predicate func(Op) bool
+		Operand   Op
 		Expect    bool
 	}{
 		// Immediates

@@ -16,7 +16,7 @@ func (b *build) Generate(is []inst.Instruction) ([]byte, error) {
 	b.Printf("package build\n\n")
 
 	b.Printf("import (\n")
-	b.Printf("\t\"%s\"\n", pkg)
+	b.Printf("\t\"%s/operand\"\n", pkg)
 	b.Printf("\t\"%s/x86\"\n", pkg)
 	b.Printf(")\n\n")
 
