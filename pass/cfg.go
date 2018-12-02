@@ -37,7 +37,7 @@ func LabelTarget(fn *avo.Function) error {
 	return nil
 }
 
-// CFG constructs the call-flow-graph of each function.
+// CFG constructs the call-flow-graph for the function.
 func CFG(fn *avo.Function) error {
 	is := fn.Instructions()
 	n := len(is)

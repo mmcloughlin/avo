@@ -115,7 +115,7 @@ func IsYmm(op Op) bool {
 
 // IsRegisterKindSize returns true if op is a register of the given kind and size in bytes.
 func IsRegisterKindSize(op Op, k reg.Kind, n uint) bool {
-	r, ok := op.(reg.Register)
+	r, ok := op.(reg.Type)
 	return ok && r.Kind() == k && r.Bytes() == n
 }
 

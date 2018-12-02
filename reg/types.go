@@ -1,5 +1,7 @@
 package reg
 
+import "fmt"
+
 type Size uint
 
 const (
@@ -44,10 +46,16 @@ type private interface {
 	private()
 }
 
-type Virtual interface {
-	VirtualID() uint16
+type Type interface {
 	Kind() Kind
 	Bytes() uint
+	Asm() string
+	private
+}
+
+type Virtual interface {
+	VirtualID() uint16
+	Type
 }
 
 type virtual struct {
@@ -59,13 +67,17 @@ type virtual struct {
 func (v virtual) VirtualID() uint16 { return v.id }
 func (v virtual) Kind() Kind        { return v.kind }
 
+func (v virtual) Asm() string {
+	// TODO(mbm): decide on virtual register syntax
+	return fmt.Sprintf("<virtual:%v:%v:%v>", v.id, v.Kind(), v.Bytes())
+}
+
+func (v virtual) private() {}
+
 type Register interface {
 	PhysicalID() uint16
-	Kind() Kind
 	Mask() uint16
-	Bytes() uint
-	Asm() string
-	private
+	Type
 }
 
 type register struct {
