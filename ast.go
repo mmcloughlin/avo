@@ -47,6 +47,9 @@ func (i Instruction) TargetLabel() *Label {
 	if !i.IsBranch {
 		return nil
 	}
+	if len(i.Operands) == 0 {
+		return nil
+	}
 	if ref, ok := i.Operands[0].(operand.LabelRef); ok {
 		lbl := Label(ref)
 		return &lbl

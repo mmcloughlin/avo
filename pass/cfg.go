@@ -75,7 +75,9 @@ func CFG(fn *avo.Function) error {
 	// Populate predecessors.
 	for _, i := range is {
 		for _, s := range i.Succ {
-			s.Pred = append(s.Pred, i)
+			if s != nil {
+				s.Pred = append(s.Pred, i)
+			}
 		}
 	}
 
