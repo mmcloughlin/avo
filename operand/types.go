@@ -12,8 +12,8 @@ type Op interface {
 
 type Mem struct {
 	Disp  int
-	Base  reg.Register
-	Index reg.Register
+	Base  reg.Physical
+	Index reg.Physical
 	Scale uint8
 }
 

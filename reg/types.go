@@ -20,10 +20,10 @@ type Kind uint8
 
 type Family struct {
 	Kind      Kind
-	registers []Register
+	registers []Physical
 }
 
-func (f *Family) define(s Spec, id uint16, name string) Register {
+func (f *Family) define(s Spec, id uint16, name string) Physical {
 	r := register{
 		id:   id,
 		kind: f.Kind,
@@ -46,7 +46,7 @@ type private interface {
 	private()
 }
 
-type Type interface {
+type Register interface {
 	Kind() Kind
 	Bytes() uint
 	Asm() string
@@ -55,7 +55,7 @@ type Type interface {
 
 type Virtual interface {
 	VirtualID() uint16
-	Type
+	Register
 }
 
 type virtual struct {
@@ -74,10 +74,10 @@ func (v virtual) Asm() string {
 
 func (v virtual) private() {}
 
-type Register interface {
+type Physical interface {
 	PhysicalID() uint16
 	Mask() uint16
-	Type
+	Register
 }
 
 type register struct {
