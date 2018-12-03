@@ -45,9 +45,13 @@ type Instruction struct {
 	// CFG.
 	Pred []*Instruction
 	Succ []*Instruction
+
+	// LiveIn/LiveOut are sets of live register IDs pre/post execution.
+	LiveIn  map[reg.ID]bool
+	LiveOut map[reg.ID]bool
 }
 
-func (i Instruction) node() {}
+func (i *Instruction) node() {}
 
 func (i Instruction) TargetLabel() *Label {
 	if !i.IsBranch {

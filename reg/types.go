@@ -1,6 +1,9 @@
 package reg
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
 type Size uint
 
@@ -23,7 +26,7 @@ type Family struct {
 	registers []Physical
 }
 
-func (f *Family) define(s Spec, id uint16, name string) Physical {
+func (f *Family) define(s Spec, id PID, name string) Physical {
 	r := register{
 		id:   id,
 		kind: f.Kind,
@@ -34,7 +37,7 @@ func (f *Family) define(s Spec, id uint16, name string) Physical {
 	return r
 }
 
-func (f *Family) Virtual(id uint16, s Size) Virtual {
+func (f *Family) Virtual(id VID, s Size) Virtual {
 	return virtual{
 		id:   id,
 		kind: f.Kind,
@@ -46,7 +49,14 @@ type private interface {
 	private()
 }
 
+type (
+	ID  uint32
+	VID uint16
+	PID uint16
+)
+
 type Register interface {
+	ID() ID
 	Kind() Kind
 	Bytes() uint
 	Asm() string
@@ -54,18 +64,22 @@ type Register interface {
 }
 
 type Virtual interface {
-	VirtualID() uint16
+	VirtualID() VID
 	Register
 }
 
 type virtual struct {
-	id   uint16
+	id   VID
 	kind Kind
 	Size
 }
 
-func (v virtual) VirtualID() uint16 { return v.id }
-func (v virtual) Kind() Kind        { return v.kind }
+func (v virtual) VirtualID() VID { return v.id }
+func (v virtual) Kind() Kind     { return v.kind }
+
+func (v virtual) ID() ID {
+	return (ID(math.MaxUint16) << 16) | ID(v.VirtualID())
+}
 
 func (v virtual) Asm() string {
 	// TODO(mbm): decide on virtual register syntax
@@ -75,22 +89,23 @@ func (v virtual) Asm() string {
 func (v virtual) private() {}
 
 type Physical interface {
-	PhysicalID() uint16
+	PhysicalID() PID
 	Mask() uint16
 	Register
 }
 
 type register struct {
-	id   uint16
+	id   PID
 	kind Kind
 	name string
 	Spec
 }
 
-func (r register) PhysicalID() uint16 { return r.id }
-func (r register) Kind() Kind         { return r.kind }
-func (r register) Asm() string        { return r.name }
-func (r register) private()           {}
+func (r register) PhysicalID() PID { return r.id }
+func (r register) ID() ID          { return ID(r.id) }
+func (r register) Kind() Kind      { return r.kind }
+func (r register) Asm() string     { return r.name }
+func (r register) private()        {}
 
 type Spec uint16
 

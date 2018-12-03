@@ -25,7 +25,7 @@ func (c *Context) Function(name string) {
 	c.file.Functions = append(c.file.Functions, c.function)
 }
 
-func (c *Context) Instruction(i avo.Instruction) {
+func (c *Context) Instruction(i *avo.Instruction) {
 	c.node(i)
 }
 

@@ -73,7 +73,7 @@ func (p *GoPrinter) function(f *Function) {
 
 	for _, node := range f.Nodes {
 		switch n := node.(type) {
-		case Instruction:
+		case *Instruction:
 			p.printf("\t%s\t%s\n", n.Opcode, joinOperands(n.Operands))
 		case Label:
 			p.printf("%s:\n", n)

@@ -22,3 +22,15 @@ func TestSpecBytes(t *testing.T) {
 		}
 	}
 }
+
+func TestVirtualPhysicalHaveDifferentIDs(t *testing.T) {
+	// Confirm that ID() returns different results even when virtual and physical IDs are the same.
+	var v Virtual = virtual{id: 42}
+	var p Physical = register{id: 42}
+	if uint16(v.VirtualID()) != uint16(p.PhysicalID()) {
+		t.Fatal("test assumption violated: VirtualID and PhysicalID should agree")
+	}
+	if v.ID() == p.ID() {
+		t.Errorf("virtual and physical IDs should be different")
+	}
+}
