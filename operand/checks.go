@@ -6,6 +6,22 @@ import (
 	"github.com/mmcloughlin/avo/reg"
 )
 
+// Pure type assertion checks:
+
+// IsRegister returns whether op has type reg.Register.
+func IsRegister(op Op) bool { _, ok := op.(reg.Register); return ok }
+
+// IsMem returns whether op has type Mem.
+func IsMem(op Op) bool { _, ok := op.(Mem); return ok }
+
+// IsImm returns whether op has type Imm.
+func IsImm(op Op) bool { _, ok := op.(Imm); return ok }
+
+// IsRel returns whether op has type Rel.
+func IsRel(op Op) bool { _, ok := op.(Rel); return ok }
+
+// Checks corresponding to specific operand types in the Intel Manual:
+
 // Is1 returns true if op is the immediate constant 1.
 func Is1(op Op) bool {
 	i, ok := op.(Imm)

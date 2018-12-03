@@ -1,6 +1,7 @@
 package operand
 
 import (
+	"reflect"
 	"testing"
 
 	"github.com/mmcloughlin/avo/reg"
@@ -23,6 +24,26 @@ func TestMemAsm(t *testing.T) {
 		got := c.Mem.Asm()
 		if got != c.Expect {
 			t.Errorf("%#v.Asm() = %s expected %s", c.Mem, got, c.Expect)
+		}
+	}
+}
+
+func TestRegisters(t *testing.T) {
+	cases := []struct {
+		Op     Op
+		Expect []reg.Register
+	}{
+		{reg.R11, []reg.Register{reg.R11}},
+		{Mem{Base: reg.EAX}, []reg.Register{reg.EAX}},
+		{Mem{Base: reg.RBX, Index: reg.R10}, []reg.Register{reg.RBX, reg.R10}},
+		{Imm(42), nil},
+		{Rel(42), nil},
+		{LabelRef("idk"), nil},
+	}
+	for _, c := range cases {
+		got := Registers(c.Op)
+		if !reflect.DeepEqual(got, c.Expect) {
+			t.Errorf("Registers(%#v) = %#v expected %#v", c.Op, got, c.Expect)
 		}
 	}
 }

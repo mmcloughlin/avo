@@ -2,6 +2,7 @@ package avo
 
 import (
 	"github.com/mmcloughlin/avo/operand"
+	"github.com/mmcloughlin/avo/reg"
 )
 
 type Asm interface {
@@ -46,6 +47,8 @@ type Instruction struct {
 	Succ []*Instruction
 }
 
+func (i Instruction) node() {}
+
 func (i Instruction) TargetLabel() *Label {
 	if !i.IsBranch {
 		return nil
@@ -60,7 +63,28 @@ func (i Instruction) TargetLabel() *Label {
 	return nil
 }
 
-func (i Instruction) node() {}
+func (i Instruction) InputRegisters() []reg.Register {
+	var rs []reg.Register
+	for _, op := range i.Inputs {
+		rs = append(rs, operand.Registers(op)...)
+	}
+	for _, op := range i.Outputs {
+		if operand.IsMem(op) {
+			rs = append(rs, operand.Registers(op)...)
+		}
+	}
+	return rs
+}
+
+func (i Instruction) OutputRegisters() []reg.Register {
+	var rs []reg.Register
+	for _, op := range i.Outputs {
+		if r, ok := op.(reg.Register); ok {
+			rs = append(rs, r)
+		}
+	}
+	return rs
+}
 
 // File represents an assembly file.
 type File struct {

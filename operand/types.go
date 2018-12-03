@@ -12,8 +12,8 @@ type Op interface {
 
 type Mem struct {
 	Disp  int
-	Base  reg.Physical
-	Index reg.Physical
+	Base  reg.Register
+	Index reg.Register
 	Scale uint8
 }
 
@@ -49,4 +49,24 @@ type LabelRef string
 
 func (l LabelRef) Asm() string {
 	return string(l)
+}
+
+// Registers returns the list of all operands involved in the given operand.
+func Registers(op Op) []reg.Register {
+	switch op := op.(type) {
+	case reg.Register:
+		return []reg.Register{op}
+	case Mem:
+		var r []reg.Register
+		if op.Base != nil {
+			r = append(r, op.Base)
+		}
+		if op.Index != nil {
+			r = append(r, op.Index)
+		}
+		return r
+	case Imm, Rel, LabelRef:
+		return nil
+	}
+	panic("unknown operand type")
 }
