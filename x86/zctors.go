@@ -5,6 +5,7 @@ package x86
 import (
 	"github.com/mmcloughlin/avo"
 	"github.com/mmcloughlin/avo/operand"
+	"github.com/mmcloughlin/avo/reg"
 )
 
 // ADCB: Add with Carry.
@@ -2506,8 +2507,8 @@ func CBW() (*avo.Instruction, error) {
 	return &avo.Instruction{
 		Opcode:   "CBW",
 		Operands: nil,
-		Inputs:   []operand.Op{},
-		Outputs:  []operand.Op{},
+		Inputs:   []operand.Op{reg.AL},
+		Outputs:  []operand.Op{reg.AX},
 	}, nil
 }
 
@@ -2520,8 +2521,8 @@ func CDQ() (*avo.Instruction, error) {
 	return &avo.Instruction{
 		Opcode:   "CDQ",
 		Operands: nil,
-		Inputs:   []operand.Op{},
-		Outputs:  []operand.Op{},
+		Inputs:   []operand.Op{reg.EAX},
+		Outputs:  []operand.Op{reg.EDX},
 	}, nil
 }
 
@@ -2534,8 +2535,8 @@ func CDQE() (*avo.Instruction, error) {
 	return &avo.Instruction{
 		Opcode:   "CDQE",
 		Operands: nil,
-		Inputs:   []operand.Op{},
-		Outputs:  []operand.Op{},
+		Inputs:   []operand.Op{reg.EAX},
+		Outputs:  []operand.Op{reg.RAX},
 	}, nil
 }
 
@@ -4260,8 +4261,8 @@ func CMPXCHG16B(m operand.Op) (*avo.Instruction, error) {
 		return &avo.Instruction{
 			Opcode:   "CMPXCHG16B",
 			Operands: []operand.Op{m},
-			Inputs:   []operand.Op{m},
-			Outputs:  []operand.Op{},
+			Inputs:   []operand.Op{m, reg.RAX, reg.RBX, reg.RCX, reg.RDX},
+			Outputs:  []operand.Op{reg.RAX, reg.RDX},
 		}, nil
 	}
 	return nil, ErrBadOperandTypes
@@ -4278,8 +4279,8 @@ func CMPXCHG8B(m operand.Op) (*avo.Instruction, error) {
 		return &avo.Instruction{
 			Opcode:   "CMPXCHG8B",
 			Operands: []operand.Op{m},
-			Inputs:   []operand.Op{m},
-			Outputs:  []operand.Op{},
+			Inputs:   []operand.Op{m, reg.EAX, reg.EBX, reg.ECX, reg.EDX},
+			Outputs:  []operand.Op{reg.EAX, reg.EDX},
 		}, nil
 	}
 	return nil, ErrBadOperandTypes
@@ -4450,8 +4451,8 @@ func CPUID() (*avo.Instruction, error) {
 	return &avo.Instruction{
 		Opcode:   "CPUID",
 		Operands: nil,
-		Inputs:   []operand.Op{},
-		Outputs:  []operand.Op{},
+		Inputs:   []operand.Op{reg.EAX, reg.ECX},
+		Outputs:  []operand.Op{reg.EAX, reg.EBX, reg.ECX, reg.EDX},
 	}, nil
 }
 
@@ -4464,8 +4465,8 @@ func CQO() (*avo.Instruction, error) {
 	return &avo.Instruction{
 		Opcode:   "CQO",
 		Operands: nil,
-		Inputs:   []operand.Op{},
-		Outputs:  []operand.Op{},
+		Inputs:   []operand.Op{reg.RAX},
+		Outputs:  []operand.Op{reg.RDX},
 	}, nil
 }
 
@@ -5140,8 +5141,8 @@ func CWD() (*avo.Instruction, error) {
 	return &avo.Instruction{
 		Opcode:   "CWD",
 		Operands: nil,
-		Inputs:   []operand.Op{},
-		Outputs:  []operand.Op{},
+		Inputs:   []operand.Op{reg.AX},
+		Outputs:  []operand.Op{reg.DX},
 	}, nil
 }
 
@@ -5154,8 +5155,8 @@ func CWDE() (*avo.Instruction, error) {
 	return &avo.Instruction{
 		Opcode:   "CWDE",
 		Operands: nil,
-		Inputs:   []operand.Op{},
-		Outputs:  []operand.Op{},
+		Inputs:   []operand.Op{reg.AX},
+		Outputs:  []operand.Op{reg.EAX},
 	}, nil
 }
 
@@ -5275,15 +5276,15 @@ func DIVB(mr operand.Op) (*avo.Instruction, error) {
 		return &avo.Instruction{
 			Opcode:   "DIVB",
 			Operands: []operand.Op{mr},
-			Inputs:   []operand.Op{mr},
-			Outputs:  []operand.Op{},
+			Inputs:   []operand.Op{mr, reg.AX},
+			Outputs:  []operand.Op{reg.AX},
 		}, nil
 	case operand.IsM8(mr):
 		return &avo.Instruction{
 			Opcode:   "DIVB",
 			Operands: []operand.Op{mr},
-			Inputs:   []operand.Op{mr},
-			Outputs:  []operand.Op{},
+			Inputs:   []operand.Op{mr, reg.AX},
+			Outputs:  []operand.Op{reg.AX},
 		}, nil
 	}
 	return nil, ErrBadOperandTypes
@@ -5301,15 +5302,15 @@ func DIVL(mr operand.Op) (*avo.Instruction, error) {
 		return &avo.Instruction{
 			Opcode:   "DIVL",
 			Operands: []operand.Op{mr},
-			Inputs:   []operand.Op{mr},
-			Outputs:  []operand.Op{},
+			Inputs:   []operand.Op{mr, reg.EAX, reg.EDX},
+			Outputs:  []operand.Op{reg.EAX, reg.EDX},
 		}, nil
 	case operand.IsM32(mr):
 		return &avo.Instruction{
 			Opcode:   "DIVL",
 			Operands: []operand.Op{mr},
-			Inputs:   []operand.Op{mr},
-			Outputs:  []operand.Op{},
+			Inputs:   []operand.Op{mr, reg.EAX, reg.EDX},
+			Outputs:  []operand.Op{reg.EAX, reg.EDX},
 		}, nil
 	}
 	return nil, ErrBadOperandTypes
@@ -5379,15 +5380,15 @@ func DIVQ(mr operand.Op) (*avo.Instruction, error) {
 		return &avo.Instruction{
 			Opcode:   "DIVQ",
 			Operands: []operand.Op{mr},
-			Inputs:   []operand.Op{mr},
-			Outputs:  []operand.Op{},
+			Inputs:   []operand.Op{mr, reg.RAX, reg.RDX},
+			Outputs:  []operand.Op{reg.RAX, reg.RDX},
 		}, nil
 	case operand.IsM64(mr):
 		return &avo.Instruction{
 			Opcode:   "DIVQ",
 			Operands: []operand.Op{mr},
-			Inputs:   []operand.Op{mr},
-			Outputs:  []operand.Op{},
+			Inputs:   []operand.Op{mr, reg.RAX, reg.RDX},
+			Outputs:  []operand.Op{reg.RAX, reg.RDX},
 		}, nil
 	}
 	return nil, ErrBadOperandTypes
@@ -5457,15 +5458,15 @@ func DIVW(mr operand.Op) (*avo.Instruction, error) {
 		return &avo.Instruction{
 			Opcode:   "DIVW",
 			Operands: []operand.Op{mr},
-			Inputs:   []operand.Op{mr},
-			Outputs:  []operand.Op{},
+			Inputs:   []operand.Op{mr, reg.AX, reg.DX},
+			Outputs:  []operand.Op{reg.AX, reg.DX},
 		}, nil
 	case operand.IsM16(mr):
 		return &avo.Instruction{
 			Opcode:   "DIVW",
 			Operands: []operand.Op{mr},
-			Inputs:   []operand.Op{mr},
-			Outputs:  []operand.Op{},
+			Inputs:   []operand.Op{mr, reg.AX, reg.DX},
+			Outputs:  []operand.Op{reg.AX, reg.DX},
 		}, nil
 	}
 	return nil, ErrBadOperandTypes
@@ -5665,15 +5666,15 @@ func IDIVB(mr operand.Op) (*avo.Instruction, error) {
 		return &avo.Instruction{
 			Opcode:   "IDIVB",
 			Operands: []operand.Op{mr},
-			Inputs:   []operand.Op{mr},
-			Outputs:  []operand.Op{},
+			Inputs:   []operand.Op{mr, reg.AX},
+			Outputs:  []operand.Op{reg.AX},
 		}, nil
 	case operand.IsM8(mr):
 		return &avo.Instruction{
 			Opcode:   "IDIVB",
 			Operands: []operand.Op{mr},
-			Inputs:   []operand.Op{mr},
-			Outputs:  []operand.Op{},
+			Inputs:   []operand.Op{mr, reg.AX},
+			Outputs:  []operand.Op{reg.AX},
 		}, nil
 	}
 	return nil, ErrBadOperandTypes
@@ -5691,15 +5692,15 @@ func IDIVL(mr operand.Op) (*avo.Instruction, error) {
 		return &avo.Instruction{
 			Opcode:   "IDIVL",
 			Operands: []operand.Op{mr},
-			Inputs:   []operand.Op{mr},
-			Outputs:  []operand.Op{},
+			Inputs:   []operand.Op{mr, reg.EAX, reg.EDX},
+			Outputs:  []operand.Op{reg.EAX, reg.EDX},
 		}, nil
 	case operand.IsM32(mr):
 		return &avo.Instruction{
 			Opcode:   "IDIVL",
 			Operands: []operand.Op{mr},
-			Inputs:   []operand.Op{mr},
-			Outputs:  []operand.Op{},
+			Inputs:   []operand.Op{mr, reg.EAX, reg.EDX},
+			Outputs:  []operand.Op{reg.EAX, reg.EDX},
 		}, nil
 	}
 	return nil, ErrBadOperandTypes
@@ -5717,15 +5718,15 @@ func IDIVQ(mr operand.Op) (*avo.Instruction, error) {
 		return &avo.Instruction{
 			Opcode:   "IDIVQ",
 			Operands: []operand.Op{mr},
-			Inputs:   []operand.Op{mr},
-			Outputs:  []operand.Op{},
+			Inputs:   []operand.Op{mr, reg.RAX, reg.RDX},
+			Outputs:  []operand.Op{reg.RAX, reg.RDX},
 		}, nil
 	case operand.IsM64(mr):
 		return &avo.Instruction{
 			Opcode:   "IDIVQ",
 			Operands: []operand.Op{mr},
-			Inputs:   []operand.Op{mr},
-			Outputs:  []operand.Op{},
+			Inputs:   []operand.Op{mr, reg.RAX, reg.RDX},
+			Outputs:  []operand.Op{reg.RAX, reg.RDX},
 		}, nil
 	}
 	return nil, ErrBadOperandTypes
@@ -5743,15 +5744,15 @@ func IDIVW(mr operand.Op) (*avo.Instruction, error) {
 		return &avo.Instruction{
 			Opcode:   "IDIVW",
 			Operands: []operand.Op{mr},
-			Inputs:   []operand.Op{mr},
-			Outputs:  []operand.Op{},
+			Inputs:   []operand.Op{mr, reg.AX, reg.DX},
+			Outputs:  []operand.Op{reg.AX, reg.DX},
 		}, nil
 	case operand.IsM16(mr):
 		return &avo.Instruction{
 			Opcode:   "IDIVW",
 			Operands: []operand.Op{mr},
-			Inputs:   []operand.Op{mr},
-			Outputs:  []operand.Op{},
+			Inputs:   []operand.Op{mr, reg.AX, reg.DX},
+			Outputs:  []operand.Op{reg.AX, reg.DX},
 		}, nil
 	}
 	return nil, ErrBadOperandTypes
@@ -5895,15 +5896,15 @@ func IMULB(mr operand.Op) (*avo.Instruction, error) {
 		return &avo.Instruction{
 			Opcode:   "IMULB",
 			Operands: []operand.Op{mr},
-			Inputs:   []operand.Op{mr},
-			Outputs:  []operand.Op{},
+			Inputs:   []operand.Op{mr, reg.AL},
+			Outputs:  []operand.Op{reg.AX},
 		}, nil
 	case operand.IsM8(mr):
 		return &avo.Instruction{
 			Opcode:   "IMULB",
 			Operands: []operand.Op{mr},
-			Inputs:   []operand.Op{mr},
-			Outputs:  []operand.Op{},
+			Inputs:   []operand.Op{mr, reg.AL},
+			Outputs:  []operand.Op{reg.AX},
 		}, nil
 	}
 	return nil, ErrBadOperandTypes
@@ -5923,15 +5924,15 @@ func IMULL(ops ...operand.Op) (*avo.Instruction, error) {
 		return &avo.Instruction{
 			Opcode:   "IMULL",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0]},
-			Outputs:  []operand.Op{},
+			Inputs:   []operand.Op{ops[0], reg.EAX},
+			Outputs:  []operand.Op{reg.EAX, reg.EDX},
 		}, nil
 	case len(ops) == 1 && operand.IsM32(ops[0]):
 		return &avo.Instruction{
 			Opcode:   "IMULL",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0]},
-			Outputs:  []operand.Op{},
+			Inputs:   []operand.Op{ops[0], reg.EAX},
+			Outputs:  []operand.Op{reg.EAX, reg.EDX},
 		}, nil
 	case len(ops) == 2 && operand.IsR32(ops[0]) && operand.IsR32(ops[1]):
 		return &avo.Instruction{
@@ -5965,15 +5966,15 @@ func IMULQ(ops ...operand.Op) (*avo.Instruction, error) {
 		return &avo.Instruction{
 			Opcode:   "IMULQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0]},
-			Outputs:  []operand.Op{},
+			Inputs:   []operand.Op{ops[0], reg.RAX},
+			Outputs:  []operand.Op{reg.RAX, reg.RDX},
 		}, nil
 	case len(ops) == 1 && operand.IsM64(ops[0]):
 		return &avo.Instruction{
 			Opcode:   "IMULQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0]},
-			Outputs:  []operand.Op{},
+			Inputs:   []operand.Op{ops[0], reg.RAX},
+			Outputs:  []operand.Op{reg.RAX, reg.RDX},
 		}, nil
 	case len(ops) == 2 && operand.IsR64(ops[0]) && operand.IsR64(ops[1]):
 		return &avo.Instruction{
@@ -6007,15 +6008,15 @@ func IMULW(ops ...operand.Op) (*avo.Instruction, error) {
 		return &avo.Instruction{
 			Opcode:   "IMULW",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0]},
-			Outputs:  []operand.Op{},
+			Inputs:   []operand.Op{ops[0], reg.AX},
+			Outputs:  []operand.Op{reg.AX, reg.DX},
 		}, nil
 	case len(ops) == 1 && operand.IsM16(ops[0]):
 		return &avo.Instruction{
 			Opcode:   "IMULW",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0]},
-			Outputs:  []operand.Op{},
+			Inputs:   []operand.Op{ops[0], reg.AX},
+			Outputs:  []operand.Op{reg.AX, reg.DX},
 		}, nil
 	case len(ops) == 2 && operand.IsR16(ops[0]) && operand.IsR16(ops[1]):
 		return &avo.Instruction{
@@ -6412,7 +6413,7 @@ func JCXZL(r operand.Op) (*avo.Instruction, error) {
 		return &avo.Instruction{
 			Opcode:        "JCXZL",
 			Operands:      []operand.Op{r},
-			Inputs:        []operand.Op{},
+			Inputs:        []operand.Op{reg.ECX},
 			Outputs:       []operand.Op{},
 			IsBranch:      true,
 			IsConditional: true,
@@ -6432,7 +6433,7 @@ func JCXZQ(r operand.Op) (*avo.Instruction, error) {
 		return &avo.Instruction{
 			Opcode:        "JCXZQ",
 			Operands:      []operand.Op{r},
-			Inputs:        []operand.Op{},
+			Inputs:        []operand.Op{reg.RCX},
 			Outputs:       []operand.Op{},
 			IsBranch:      true,
 			IsConditional: true,
@@ -7824,7 +7825,7 @@ func MASKMOVDQU(x, x1 operand.Op) (*avo.Instruction, error) {
 		return &avo.Instruction{
 			Opcode:   "MASKMOVDQU",
 			Operands: []operand.Op{x, x1},
-			Inputs:   []operand.Op{x, x1},
+			Inputs:   []operand.Op{x, x1, reg.RDI},
 			Outputs:  []operand.Op{},
 		}, nil
 	}
@@ -7842,7 +7843,7 @@ func MASKMOVOU(x, x1 operand.Op) (*avo.Instruction, error) {
 		return &avo.Instruction{
 			Opcode:   "MASKMOVOU",
 			Operands: []operand.Op{x, x1},
-			Inputs:   []operand.Op{x, x1},
+			Inputs:   []operand.Op{x, x1, reg.RDI},
 			Outputs:  []operand.Op{},
 		}, nil
 	}
@@ -8080,7 +8081,7 @@ func MONITOR() (*avo.Instruction, error) {
 	return &avo.Instruction{
 		Opcode:   "MONITOR",
 		Operands: nil,
-		Inputs:   []operand.Op{},
+		Inputs:   []operand.Op{reg.RAX, reg.ECX, reg.EDX},
 		Outputs:  []operand.Op{},
 	}, nil
 }
@@ -9635,15 +9636,15 @@ func MULB(mr operand.Op) (*avo.Instruction, error) {
 		return &avo.Instruction{
 			Opcode:   "MULB",
 			Operands: []operand.Op{mr},
-			Inputs:   []operand.Op{mr},
-			Outputs:  []operand.Op{},
+			Inputs:   []operand.Op{mr, reg.AL},
+			Outputs:  []operand.Op{reg.AX},
 		}, nil
 	case operand.IsM8(mr):
 		return &avo.Instruction{
 			Opcode:   "MULB",
 			Operands: []operand.Op{mr},
-			Inputs:   []operand.Op{mr},
-			Outputs:  []operand.Op{},
+			Inputs:   []operand.Op{mr, reg.AL},
+			Outputs:  []operand.Op{reg.AX},
 		}, nil
 	}
 	return nil, ErrBadOperandTypes
@@ -9661,15 +9662,15 @@ func MULL(mr operand.Op) (*avo.Instruction, error) {
 		return &avo.Instruction{
 			Opcode:   "MULL",
 			Operands: []operand.Op{mr},
-			Inputs:   []operand.Op{mr},
-			Outputs:  []operand.Op{},
+			Inputs:   []operand.Op{mr, reg.EAX},
+			Outputs:  []operand.Op{reg.EAX, reg.EDX},
 		}, nil
 	case operand.IsM32(mr):
 		return &avo.Instruction{
 			Opcode:   "MULL",
 			Operands: []operand.Op{mr},
-			Inputs:   []operand.Op{mr},
-			Outputs:  []operand.Op{},
+			Inputs:   []operand.Op{mr, reg.EAX},
+			Outputs:  []operand.Op{reg.EAX, reg.EDX},
 		}, nil
 	}
 	return nil, ErrBadOperandTypes
@@ -9739,15 +9740,15 @@ func MULQ(mr operand.Op) (*avo.Instruction, error) {
 		return &avo.Instruction{
 			Opcode:   "MULQ",
 			Operands: []operand.Op{mr},
-			Inputs:   []operand.Op{mr},
-			Outputs:  []operand.Op{},
+			Inputs:   []operand.Op{mr, reg.RAX},
+			Outputs:  []operand.Op{reg.RAX, reg.RDX},
 		}, nil
 	case operand.IsM64(mr):
 		return &avo.Instruction{
 			Opcode:   "MULQ",
 			Operands: []operand.Op{mr},
-			Inputs:   []operand.Op{mr},
-			Outputs:  []operand.Op{},
+			Inputs:   []operand.Op{mr, reg.RAX},
+			Outputs:  []operand.Op{reg.RAX, reg.RDX},
 		}, nil
 	}
 	return nil, ErrBadOperandTypes
@@ -9817,15 +9818,15 @@ func MULW(mr operand.Op) (*avo.Instruction, error) {
 		return &avo.Instruction{
 			Opcode:   "MULW",
 			Operands: []operand.Op{mr},
-			Inputs:   []operand.Op{mr},
-			Outputs:  []operand.Op{},
+			Inputs:   []operand.Op{mr, reg.AX},
+			Outputs:  []operand.Op{reg.AX, reg.DX},
 		}, nil
 	case operand.IsM16(mr):
 		return &avo.Instruction{
 			Opcode:   "MULW",
 			Operands: []operand.Op{mr},
-			Inputs:   []operand.Op{mr},
-			Outputs:  []operand.Op{},
+			Inputs:   []operand.Op{mr, reg.AX},
+			Outputs:  []operand.Op{reg.AX, reg.DX},
 		}, nil
 	}
 	return nil, ErrBadOperandTypes
@@ -9843,14 +9844,14 @@ func MULXL(mr, r, r1 operand.Op) (*avo.Instruction, error) {
 		return &avo.Instruction{
 			Opcode:   "MULXL",
 			Operands: []operand.Op{mr, r, r1},
-			Inputs:   []operand.Op{mr},
+			Inputs:   []operand.Op{mr, reg.EDX},
 			Outputs:  []operand.Op{r, r1},
 		}, nil
 	case operand.IsM32(mr) && operand.IsR32(r) && operand.IsR32(r1):
 		return &avo.Instruction{
 			Opcode:   "MULXL",
 			Operands: []operand.Op{mr, r, r1},
-			Inputs:   []operand.Op{mr},
+			Inputs:   []operand.Op{mr, reg.EDX},
 			Outputs:  []operand.Op{r, r1},
 		}, nil
 	}
@@ -9869,14 +9870,14 @@ func MULXQ(mr, r, r1 operand.Op) (*avo.Instruction, error) {
 		return &avo.Instruction{
 			Opcode:   "MULXQ",
 			Operands: []operand.Op{mr, r, r1},
-			Inputs:   []operand.Op{mr},
+			Inputs:   []operand.Op{mr, reg.RDX},
 			Outputs:  []operand.Op{r, r1},
 		}, nil
 	case operand.IsM64(mr) && operand.IsR64(r) && operand.IsR64(r1):
 		return &avo.Instruction{
 			Opcode:   "MULXQ",
 			Operands: []operand.Op{mr, r, r1},
-			Inputs:   []operand.Op{mr},
+			Inputs:   []operand.Op{mr, reg.RDX},
 			Outputs:  []operand.Op{r, r1},
 		}, nil
 	}
@@ -9892,7 +9893,7 @@ func MWAIT() (*avo.Instruction, error) {
 	return &avo.Instruction{
 		Opcode:   "MWAIT",
 		Operands: nil,
-		Inputs:   []operand.Op{},
+		Inputs:   []operand.Op{reg.EAX, reg.ECX},
 		Outputs:  []operand.Op{},
 	}, nil
 }
@@ -11205,15 +11206,15 @@ func PCMPESTRI(i, mx, x operand.Op) (*avo.Instruction, error) {
 		return &avo.Instruction{
 			Opcode:   "PCMPESTRI",
 			Operands: []operand.Op{i, mx, x},
-			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{},
+			Inputs:   []operand.Op{mx, x, reg.EAX, reg.EDX},
+			Outputs:  []operand.Op{reg.ECX},
 		}, nil
 	case operand.IsImm8(i) && operand.IsM128(mx) && operand.IsXmm(x):
 		return &avo.Instruction{
 			Opcode:   "PCMPESTRI",
 			Operands: []operand.Op{i, mx, x},
-			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{},
+			Inputs:   []operand.Op{mx, x, reg.EAX, reg.EDX},
+			Outputs:  []operand.Op{reg.ECX},
 		}, nil
 	}
 	return nil, ErrBadOperandTypes
@@ -11231,15 +11232,15 @@ func PCMPESTRM(i, mx, x operand.Op) (*avo.Instruction, error) {
 		return &avo.Instruction{
 			Opcode:   "PCMPESTRM",
 			Operands: []operand.Op{i, mx, x},
-			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{},
+			Inputs:   []operand.Op{mx, x, reg.EAX, reg.EDX},
+			Outputs:  []operand.Op{reg.X0},
 		}, nil
 	case operand.IsImm8(i) && operand.IsM128(mx) && operand.IsXmm(x):
 		return &avo.Instruction{
 			Opcode:   "PCMPESTRM",
 			Operands: []operand.Op{i, mx, x},
-			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{},
+			Inputs:   []operand.Op{mx, x, reg.EAX, reg.EDX},
+			Outputs:  []operand.Op{reg.X0},
 		}, nil
 	}
 	return nil, ErrBadOperandTypes
@@ -11362,14 +11363,14 @@ func PCMPISTRI(i, mx, x operand.Op) (*avo.Instruction, error) {
 			Opcode:   "PCMPISTRI",
 			Operands: []operand.Op{i, mx, x},
 			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{},
+			Outputs:  []operand.Op{reg.ECX},
 		}, nil
 	case operand.IsImm8(i) && operand.IsM128(mx) && operand.IsXmm(x):
 		return &avo.Instruction{
 			Opcode:   "PCMPISTRI",
 			Operands: []operand.Op{i, mx, x},
 			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{},
+			Outputs:  []operand.Op{reg.ECX},
 		}, nil
 	}
 	return nil, ErrBadOperandTypes
@@ -11388,14 +11389,14 @@ func PCMPISTRM(i, mx, x operand.Op) (*avo.Instruction, error) {
 			Opcode:   "PCMPISTRM",
 			Operands: []operand.Op{i, mx, x},
 			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{},
+			Outputs:  []operand.Op{reg.X0},
 		}, nil
 	case operand.IsImm8(i) && operand.IsM128(mx) && operand.IsXmm(x):
 		return &avo.Instruction{
 			Opcode:   "PCMPISTRM",
 			Operands: []operand.Op{i, mx, x},
 			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{},
+			Outputs:  []operand.Op{reg.X0},
 		}, nil
 	}
 	return nil, ErrBadOperandTypes
@@ -14747,7 +14748,7 @@ func RDTSC() (*avo.Instruction, error) {
 		Opcode:   "RDTSC",
 		Operands: nil,
 		Inputs:   []operand.Op{},
-		Outputs:  []operand.Op{},
+		Outputs:  []operand.Op{reg.EAX, reg.EDX},
 	}, nil
 }
 
@@ -14761,7 +14762,7 @@ func RDTSCP() (*avo.Instruction, error) {
 		Opcode:   "RDTSCP",
 		Operands: nil,
 		Inputs:   []operand.Op{},
-		Outputs:  []operand.Op{},
+		Outputs:  []operand.Op{reg.EAX, reg.ECX, reg.EDX},
 	}, nil
 }
 
@@ -18269,7 +18270,7 @@ func SYSCALL() (*avo.Instruction, error) {
 		Opcode:   "SYSCALL",
 		Operands: nil,
 		Inputs:   []operand.Op{},
-		Outputs:  []operand.Op{},
+		Outputs:  []operand.Op{reg.R11, reg.RCX},
 	}, nil
 }
 
@@ -23362,7 +23363,7 @@ func VMASKMOVDQU(x, x1 operand.Op) (*avo.Instruction, error) {
 		return &avo.Instruction{
 			Opcode:   "VMASKMOVDQU",
 			Operands: []operand.Op{x, x1},
-			Inputs:   []operand.Op{x, x1},
+			Inputs:   []operand.Op{x, x1, reg.RDI},
 			Outputs:  []operand.Op{},
 		}, nil
 	}
@@ -26257,15 +26258,15 @@ func VPCMPESTRI(i, mx, x operand.Op) (*avo.Instruction, error) {
 		return &avo.Instruction{
 			Opcode:   "VPCMPESTRI",
 			Operands: []operand.Op{i, mx, x},
-			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{},
+			Inputs:   []operand.Op{mx, x, reg.EAX, reg.EDX},
+			Outputs:  []operand.Op{reg.ECX},
 		}, nil
 	case operand.IsImm8(i) && operand.IsM128(mx) && operand.IsXmm(x):
 		return &avo.Instruction{
 			Opcode:   "VPCMPESTRI",
 			Operands: []operand.Op{i, mx, x},
-			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{},
+			Inputs:   []operand.Op{mx, x, reg.EAX, reg.EDX},
+			Outputs:  []operand.Op{reg.ECX},
 		}, nil
 	}
 	return nil, ErrBadOperandTypes
@@ -26283,15 +26284,15 @@ func VPCMPESTRM(i, mx, x operand.Op) (*avo.Instruction, error) {
 		return &avo.Instruction{
 			Opcode:   "VPCMPESTRM",
 			Operands: []operand.Op{i, mx, x},
-			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{},
+			Inputs:   []operand.Op{mx, x, reg.EAX, reg.EDX},
+			Outputs:  []operand.Op{reg.X0},
 		}, nil
 	case operand.IsImm8(i) && operand.IsM128(mx) && operand.IsXmm(x):
 		return &avo.Instruction{
 			Opcode:   "VPCMPESTRM",
 			Operands: []operand.Op{i, mx, x},
-			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{},
+			Inputs:   []operand.Op{mx, x, reg.EAX, reg.EDX},
+			Outputs:  []operand.Op{reg.X0},
 		}, nil
 	}
 	return nil, ErrBadOperandTypes
@@ -26478,14 +26479,14 @@ func VPCMPISTRI(i, mx, x operand.Op) (*avo.Instruction, error) {
 			Opcode:   "VPCMPISTRI",
 			Operands: []operand.Op{i, mx, x},
 			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{},
+			Outputs:  []operand.Op{reg.ECX},
 		}, nil
 	case operand.IsImm8(i) && operand.IsM128(mx) && operand.IsXmm(x):
 		return &avo.Instruction{
 			Opcode:   "VPCMPISTRI",
 			Operands: []operand.Op{i, mx, x},
 			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{},
+			Outputs:  []operand.Op{reg.ECX},
 		}, nil
 	}
 	return nil, ErrBadOperandTypes
@@ -26504,14 +26505,14 @@ func VPCMPISTRM(i, mx, x operand.Op) (*avo.Instruction, error) {
 			Opcode:   "VPCMPISTRM",
 			Operands: []operand.Op{i, mx, x},
 			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{},
+			Outputs:  []operand.Op{reg.X0},
 		}, nil
 	case operand.IsImm8(i) && operand.IsM128(mx) && operand.IsXmm(x):
 		return &avo.Instruction{
 			Opcode:   "VPCMPISTRM",
 			Operands: []operand.Op{i, mx, x},
 			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{},
+			Outputs:  []operand.Op{reg.X0},
 		}, nil
 	}
 	return nil, ErrBadOperandTypes
@@ -32126,8 +32127,8 @@ func XGETBV() (*avo.Instruction, error) {
 	return &avo.Instruction{
 		Opcode:   "XGETBV",
 		Operands: nil,
-		Inputs:   []operand.Op{},
-		Outputs:  []operand.Op{},
+		Inputs:   []operand.Op{reg.ECX},
+		Outputs:  []operand.Op{reg.EAX, reg.EDX},
 	}, nil
 }
 
@@ -32140,8 +32141,8 @@ func XLAT() (*avo.Instruction, error) {
 	return &avo.Instruction{
 		Opcode:   "XLAT",
 		Operands: nil,
-		Inputs:   []operand.Op{},
-		Outputs:  []operand.Op{},
+		Inputs:   []operand.Op{reg.AL, reg.EBX},
+		Outputs:  []operand.Op{reg.AL},
 	}, nil
 }
 

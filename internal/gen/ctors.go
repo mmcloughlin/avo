@@ -22,6 +22,7 @@ func (c *ctors) Generate(is []inst.Instruction) ([]byte, error) {
 	c.Printf("package x86\n\n")
 	c.Printf("import (\n")
 	c.Printf("\t\"%s\"\n", pkg)
+	c.Printf("\t\"%s/reg\"\n", pkg)
 	c.Printf("\t\"%s/operand\"\n", pkg)
 	c.Printf(")\n\n")
 
@@ -39,7 +40,7 @@ func (c *ctors) instruction(i inst.Instruction) {
 
 	s := params(i)
 
-	c.Printf("func %s(%s) (*avo.Instruction, error) {\n", i.Opcode, s.ParameterList())
+	c.Printf("func %s(%s) (*%s, error) {\n", i.Opcode, s.ParameterList(), instType)
 	c.forms(i, s)
 	c.Printf("}\n\n")
 }
@@ -78,14 +79,13 @@ func (c *ctors) forms(i inst.Instruction, s signature) {
 
 func construct(i inst.Instruction, f inst.Form, s signature) string {
 	buf := bytes.NewBuffer(nil)
-	fmt.Fprintf(buf, "avo.Instruction{\n")
+	fmt.Fprintf(buf, "%s{\n", instType)
 	fmt.Fprintf(buf, "\tOpcode: %#v,\n", i.Opcode)
 	fmt.Fprintf(buf, "\tOperands: %s,\n", s.ParameterSlice())
 
 	// Input output.
-	// TODO(mbm): handle implicit operands
-	fmt.Fprintf(buf, "\tInputs: %s,\n", actionfilter(f.Operands, inst.R, s))
-	fmt.Fprintf(buf, "\tOutputs: %s,\n", actionfilter(f.Operands, inst.W, s))
+	fmt.Fprintf(buf, "\tInputs: %s,\n", operandsWithAction(f, inst.R, s))
+	fmt.Fprintf(buf, "\tOutputs: %s,\n", operandsWithAction(f, inst.W, s))
 
 	// Branch variables.
 	if i.IsBranch() {
@@ -97,17 +97,17 @@ func construct(i inst.Instruction, f inst.Form, s signature) string {
 	return buf.String()
 }
 
-func actionfilter(ops []inst.Operand, a inst.Action, s signature) string {
+func operandsWithAction(f inst.Form, a inst.Action, s signature) string {
 	opexprs := []string{}
-	for i, op := range ops {
+	for i, op := range f.Operands {
 		if op.Action.Contains(a) {
 			opexprs = append(opexprs, s.ParameterName(i))
 		}
 	}
+	for _, op := range f.ImplicitOperands {
+		if op.Action.Contains(a) {
+			opexprs = append(opexprs, implicitRegister(op.Register))
+		}
+	}
 	return fmt.Sprintf("[]%s{%s}", operandType, strings.Join(opexprs, ", "))
-}
-
-// checkername returns the name of the function that checks an operand of type t.
-func checkername(t string) string {
-	return "operand.Is" + strings.Title(t)
 }

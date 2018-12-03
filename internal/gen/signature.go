@@ -11,9 +11,6 @@ import (
 	"github.com/mmcloughlin/avo/internal/inst"
 )
 
-// operandType
-const operandType = "operand.Op"
-
 // signature provides access to details about the signature of an instruction function.
 type signature interface {
 	ParameterList() string
