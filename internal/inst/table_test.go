@@ -32,6 +32,26 @@ func TestOpcodeDupes(t *testing.T) {
 	}
 }
 
+func TestFormDupes(t *testing.T) {
+	for _, i := range inst.Instructions {
+		if HasFormDupe(i) {
+			t.Errorf("%s has duplicate forms", i.Opcode)
+		}
+	}
+}
+
+func HasFormDupe(i inst.Instruction) bool {
+	n := len(i.Forms)
+	for a := 0; a < n; a++ {
+		for b := a + 1; b < n; b++ {
+			if reflect.DeepEqual(i.Forms[a], i.Forms[b]) {
+				return true
+			}
+		}
+	}
+	return false
+}
+
 func TestInstructionProperties(t *testing.T) {
 	for _, i := range inst.Instructions {
 		if len(i.Opcode) == 0 {
@@ -42,6 +62,9 @@ func TestInstructionProperties(t *testing.T) {
 		}
 		if len(i.Arities()) == 0 {
 			t.Errorf("instruction %s has empty arities list", i.Opcode)
+		}
+		if i.IsNiladic() && len(i.Forms) != 1 {
+			t.Errorf("%s breaks our expectation that niladic functions have one form", i.Opcode)
 		}
 	}
 }

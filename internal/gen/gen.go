@@ -50,18 +50,26 @@ func GoFmt(i Interface) Interface {
 	})
 }
 
-type printer struct {
+type generator struct {
 	buf bytes.Buffer
 	err error
 }
 
-func (p *printer) Printf(format string, args ...interface{}) {
-	if p.err != nil {
+func (g *generator) Printf(format string, args ...interface{}) {
+	if g.err != nil {
 		return
 	}
-	_, p.err = fmt.Fprintf(&p.buf, format, args...)
+	if _, err := fmt.Fprintf(&g.buf, format, args...); err != nil {
+		g.AddError(err)
+	}
 }
 
-func (p *printer) Result() ([]byte, error) {
-	return p.buf.Bytes(), p.err
+func (g *generator) AddError(err error) {
+	if err != nil && g.err == nil {
+		g.err = err
+	}
+}
+
+func (g *generator) Result() ([]byte, error) {
+	return g.buf.Bytes(), g.err
 }

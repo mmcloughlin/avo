@@ -6,80 +6,78 @@ import (
 
 type godata struct {
 	cfg Config
+	generator
 }
 
 func NewGoData(cfg Config) Interface {
-	return GoFmt(godata{cfg: cfg})
+	return GoFmt(&godata{cfg: cfg})
 }
 
-func (g godata) Generate(is []inst.Instruction) ([]byte, error) {
-	p := &printer{}
+func (g *godata) Generate(is []inst.Instruction) ([]byte, error) {
+	g.Printf("// %s\n\n", g.cfg.GeneratedWarning())
+	g.Printf("package inst\n\n")
 
-	p.Printf("// %s\n\n", g.cfg.GeneratedWarning())
-	p.Printf("package inst\n\n")
-
-	p.Printf("var Instructions = []Instruction{\n")
+	g.Printf("var Instructions = []Instruction{\n")
 
 	for _, i := range is {
-		p.Printf("{\n")
+		g.Printf("{\n")
 
-		p.Printf("Opcode: %#v,\n", i.Opcode)
+		g.Printf("Opcode: %#v,\n", i.Opcode)
 		if i.AliasOf != "" {
-			p.Printf("AliasOf: %#v,\n", i.AliasOf)
+			g.Printf("AliasOf: %#v,\n", i.AliasOf)
 		}
-		p.Printf("Summary: %#v,\n", i.Summary)
+		g.Printf("Summary: %#v,\n", i.Summary)
 
-		p.Printf("Forms: []Form{\n")
+		g.Printf("Forms: []Form{\n")
 		for _, f := range i.Forms {
-			p.Printf("{\n")
+			g.Printf("{\n")
 
 			if f.ISA != nil {
-				p.Printf("ISA: %#v,\n", f.ISA)
+				g.Printf("ISA: %#v,\n", f.ISA)
 			}
 
 			if f.Operands != nil {
-				p.Printf("Operands: []Operand{\n")
+				g.Printf("Operands: []Operand{\n")
 				for _, op := range f.Operands {
-					p.Printf("{Type: %#v, Action: %#v},\n", op.Type, op.Action)
+					g.Printf("{Type: %#v, Action: %#v},\n", op.Type, op.Action)
 				}
-				p.Printf("},\n")
+				g.Printf("},\n")
 			}
 
 			if f.ImplicitOperands != nil {
-				p.Printf("ImplicitOperands: []ImplicitOperand{\n")
+				g.Printf("ImplicitOperands: []ImplicitOperand{\n")
 				for _, op := range f.ImplicitOperands {
-					p.Printf("{Register: %#v, Action: %#v},\n", op.Register, op.Action)
+					g.Printf("{Register: %#v, Action: %#v},\n", op.Register, op.Action)
 				}
-				p.Printf("},\n")
+				g.Printf("},\n")
 			}
 
-			p.Printf("},\n")
+			g.Printf("},\n")
 		}
-		p.Printf("},\n")
+		g.Printf("},\n")
 
-		p.Printf("},\n")
+		g.Printf("},\n")
 	}
 
-	p.Printf("}\n")
+	g.Printf("}\n")
 
-	return p.Result()
+	return g.Result()
 }
 
 type godatatest struct {
 	cfg Config
+	generator
 }
 
 func NewGoDataTest(cfg Config) Interface {
-	return GoFmt(godatatest{cfg: cfg})
+	return GoFmt(&godatatest{cfg: cfg})
 }
 
-func (g godatatest) Generate(is []inst.Instruction) ([]byte, error) {
-	p := &printer{}
+func (g *godatatest) Generate(is []inst.Instruction) ([]byte, error) {
+	g.Printf("// %s\n\n", g.cfg.GeneratedWarning())
+	g.Printf("package inst_test\n\n")
 
-	p.Printf("// %s\n\n", g.cfg.GeneratedWarning())
-	p.Printf("package inst_test\n\n")
-
-	p.Printf(`import (
+	g.Printf(`import (
 		"reflect"
 		"testing"
 
@@ -87,14 +85,14 @@ func (g godatatest) Generate(is []inst.Instruction) ([]byte, error) {
 	)
 	`, pkg)
 
-	p.Printf("var raw = %#v\n\n", is)
+	g.Printf("var raw = %#v\n\n", is)
 
-	p.Printf(`func TestVerifyInstructionsList(t *testing.T) {
+	g.Printf(`func TestVerifyInstructionsList(t *testing.T) {
 		if !reflect.DeepEqual(raw, inst.Instructions) {
 			t.Fatal("bad code generation for instructions list")
 		}
 	}
 	`)
 
-	return p.Result()
+	return g.Result()
 }

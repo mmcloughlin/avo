@@ -14,6 +14,7 @@ type asmtest struct {
 	sym   string // reference to the test function symbol
 	rel8  string // label to be used for near jumps
 	rel32 string // label for far jumps
+	generator
 }
 
 func NewAsmTest(cfg Config) Interface {
@@ -21,53 +22,51 @@ func NewAsmTest(cfg Config) Interface {
 }
 
 func (a *asmtest) Generate(is []inst.Instruction) ([]byte, error) {
-	p := &printer{}
-
-	p.Printf("// %s\n\n", a.cfg.GeneratedWarning())
+	a.Printf("// %s\n\n", a.cfg.GeneratedWarning())
 
 	a.sym = "\u00b7loadertest(SB)"
-	p.Printf("TEXT %s, 0, $0\n", a.sym)
+	a.Printf("TEXT %s, 0, $0\n", a.sym)
 
 	// Define a label for far jumps.
-	p.Printf("rel32:\n")
+	a.Printf("rel32:\n")
 	a.rel32 = "rel32"
 
 	counts := map[string]int{}
 
 	for _, i := range is {
-		p.Printf("\t// %s %s\n", i.Opcode, i.Summary)
+		a.Printf("\t// %s %s\n", i.Opcode, i.Summary)
 		if skip, msg := a.skip(i.Opcode); skip {
-			p.Printf("\t// SKIP: %s\n", msg)
+			a.Printf("\t// SKIP: %s\n", msg)
 			counts["skip"]++
 			continue
 		}
 
 		if i.Opcode[0] == 'J' {
 			label := fmt.Sprintf("rel8_%s", strings.ToLower(i.Opcode))
-			p.Printf("%s:\n", label)
+			a.Printf("%s:\n", label)
 			a.rel8 = label
 		}
 
 		for _, f := range i.Forms {
 			as := a.args(i.Opcode, f.Operands)
 			if as == nil {
-				p.Printf("\t// TODO: %s %#v\n", i.Opcode, f.Operands)
+				a.Printf("\t// TODO: %s %#v\n", i.Opcode, f.Operands)
 				counts["todo"]++
 				continue
 			}
-			p.Printf("\t%s\t%s\n", i.Opcode, strings.Join(as, ", "))
+			a.Printf("\t%s\t%s\n", i.Opcode, strings.Join(as, ", "))
 			counts["total"]++
 		}
-		p.Printf("\n")
+		a.Printf("\n")
 	}
 
-	p.Printf("\tRET\n")
+	a.Printf("\tRET\n")
 
 	for m, c := range counts {
-		p.Printf("// %s: %d\n", m, c)
+		a.Printf("// %s: %d\n", m, c)
 	}
 
-	return p.Result()
+	return a.Result()
 }
 
 func (a asmtest) skip(opcode string) (bool, string) {

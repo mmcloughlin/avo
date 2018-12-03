@@ -108,12 +108,16 @@ func ActionFromReadWrite(r, w bool) Action {
 	return a
 }
 
+func (a Action) Contains(s Action) bool {
+	return (a & s) == s
+}
+
 func (a Action) Read() bool {
-	return (a & R) != 0
+	return a.Contains(R)
 }
 
 func (a Action) Write() bool {
-	return (a & W) != 0
+	return a.Contains(W)
 }
 
 func (a Action) String() string {

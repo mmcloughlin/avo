@@ -4,7 +4,7 @@ import "github.com/mmcloughlin/avo/internal/inst"
 
 type build struct {
 	cfg Config
-	printer
+	generator
 }
 
 func NewBuild(cfg Config) Interface {

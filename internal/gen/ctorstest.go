@@ -8,7 +8,7 @@ import (
 
 type ctorstest struct {
 	cfg Config
-	printer
+	generator
 }
 
 func NewCtorsTest(cfg Config) Interface {

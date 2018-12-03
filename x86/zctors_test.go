@@ -3040,11 +3040,6 @@ func TestCVTPL2PDValidForms(t *testing.T) {
 			t.Fatal(err)
 		}
 	})
-	t.Run("form=m64_xmm", func(t *testing.T) {
-		if _, err := CVTPL2PD(operand.Mem{Base: reg.RBX, Index: reg.RCX, Scale: 8}, reg.X7); err != nil {
-			t.Fatal(err)
-		}
-	})
 }
 
 func TestCVTPL2PSValidForms(t *testing.T) {
@@ -3930,48 +3925,9 @@ func TestJAValidForms(t *testing.T) {
 			t.Fatal(err)
 		}
 	})
-	t.Run("form=rel8", func(t *testing.T) {
-		if _, err := JA(operand.Rel(math.MaxInt8)); err != nil {
-			t.Fatal(err)
-		}
-	})
-	t.Run("form=rel32", func(t *testing.T) {
-		if _, err := JA(operand.Rel(math.MaxInt32)); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := JA(operand.LabelRef("lbl")); err != nil {
-			t.Fatal(err)
-		}
-	})
 }
 
 func TestJAEValidForms(t *testing.T) {
-	t.Run("form=rel8", func(t *testing.T) {
-		if _, err := JAE(operand.Rel(math.MaxInt8)); err != nil {
-			t.Fatal(err)
-		}
-	})
-	t.Run("form=rel32", func(t *testing.T) {
-		if _, err := JAE(operand.Rel(math.MaxInt32)); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := JAE(operand.LabelRef("lbl")); err != nil {
-			t.Fatal(err)
-		}
-	})
-	t.Run("form=rel8", func(t *testing.T) {
-		if _, err := JAE(operand.Rel(math.MaxInt8)); err != nil {
-			t.Fatal(err)
-		}
-	})
-	t.Run("form=rel32", func(t *testing.T) {
-		if _, err := JAE(operand.Rel(math.MaxInt32)); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := JAE(operand.LabelRef("lbl")); err != nil {
-			t.Fatal(err)
-		}
-	})
 	t.Run("form=rel8", func(t *testing.T) {
 		if _, err := JAE(operand.Rel(math.MaxInt8)); err != nil {
 			t.Fatal(err)
@@ -4001,48 +3957,9 @@ func TestJBValidForms(t *testing.T) {
 			t.Fatal(err)
 		}
 	})
-	t.Run("form=rel8", func(t *testing.T) {
-		if _, err := JB(operand.Rel(math.MaxInt8)); err != nil {
-			t.Fatal(err)
-		}
-	})
-	t.Run("form=rel32", func(t *testing.T) {
-		if _, err := JB(operand.Rel(math.MaxInt32)); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := JB(operand.LabelRef("lbl")); err != nil {
-			t.Fatal(err)
-		}
-	})
-	t.Run("form=rel8", func(t *testing.T) {
-		if _, err := JB(operand.Rel(math.MaxInt8)); err != nil {
-			t.Fatal(err)
-		}
-	})
-	t.Run("form=rel32", func(t *testing.T) {
-		if _, err := JB(operand.Rel(math.MaxInt32)); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := JB(operand.LabelRef("lbl")); err != nil {
-			t.Fatal(err)
-		}
-	})
 }
 
 func TestJBEValidForms(t *testing.T) {
-	t.Run("form=rel8", func(t *testing.T) {
-		if _, err := JBE(operand.Rel(math.MaxInt8)); err != nil {
-			t.Fatal(err)
-		}
-	})
-	t.Run("form=rel32", func(t *testing.T) {
-		if _, err := JBE(operand.Rel(math.MaxInt32)); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := JBE(operand.LabelRef("lbl")); err != nil {
-			t.Fatal(err)
-		}
-	})
 	t.Run("form=rel8", func(t *testing.T) {
 		if _, err := JBE(operand.Rel(math.MaxInt8)); err != nil {
 			t.Fatal(err)
@@ -4072,32 +3989,6 @@ func TestJCValidForms(t *testing.T) {
 			t.Fatal(err)
 		}
 	})
-	t.Run("form=rel8", func(t *testing.T) {
-		if _, err := JC(operand.Rel(math.MaxInt8)); err != nil {
-			t.Fatal(err)
-		}
-	})
-	t.Run("form=rel32", func(t *testing.T) {
-		if _, err := JC(operand.Rel(math.MaxInt32)); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := JC(operand.LabelRef("lbl")); err != nil {
-			t.Fatal(err)
-		}
-	})
-	t.Run("form=rel8", func(t *testing.T) {
-		if _, err := JC(operand.Rel(math.MaxInt8)); err != nil {
-			t.Fatal(err)
-		}
-	})
-	t.Run("form=rel32", func(t *testing.T) {
-		if _, err := JC(operand.Rel(math.MaxInt32)); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := JC(operand.LabelRef("lbl")); err != nil {
-			t.Fatal(err)
-		}
-	})
 }
 
 func TestJCCValidForms(t *testing.T) {
@@ -4114,61 +4005,9 @@ func TestJCCValidForms(t *testing.T) {
 			t.Fatal(err)
 		}
 	})
-	t.Run("form=rel8", func(t *testing.T) {
-		if _, err := JCC(operand.Rel(math.MaxInt8)); err != nil {
-			t.Fatal(err)
-		}
-	})
-	t.Run("form=rel32", func(t *testing.T) {
-		if _, err := JCC(operand.Rel(math.MaxInt32)); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := JCC(operand.LabelRef("lbl")); err != nil {
-			t.Fatal(err)
-		}
-	})
-	t.Run("form=rel8", func(t *testing.T) {
-		if _, err := JCC(operand.Rel(math.MaxInt8)); err != nil {
-			t.Fatal(err)
-		}
-	})
-	t.Run("form=rel32", func(t *testing.T) {
-		if _, err := JCC(operand.Rel(math.MaxInt32)); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := JCC(operand.LabelRef("lbl")); err != nil {
-			t.Fatal(err)
-		}
-	})
 }
 
 func TestJCSValidForms(t *testing.T) {
-	t.Run("form=rel8", func(t *testing.T) {
-		if _, err := JCS(operand.Rel(math.MaxInt8)); err != nil {
-			t.Fatal(err)
-		}
-	})
-	t.Run("form=rel32", func(t *testing.T) {
-		if _, err := JCS(operand.Rel(math.MaxInt32)); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := JCS(operand.LabelRef("lbl")); err != nil {
-			t.Fatal(err)
-		}
-	})
-	t.Run("form=rel8", func(t *testing.T) {
-		if _, err := JCS(operand.Rel(math.MaxInt8)); err != nil {
-			t.Fatal(err)
-		}
-	})
-	t.Run("form=rel32", func(t *testing.T) {
-		if _, err := JCS(operand.Rel(math.MaxInt32)); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := JCS(operand.LabelRef("lbl")); err != nil {
-			t.Fatal(err)
-		}
-	})
 	t.Run("form=rel8", func(t *testing.T) {
 		if _, err := JCS(operand.Rel(math.MaxInt8)); err != nil {
 			t.Fatal(err)
@@ -4214,35 +4053,9 @@ func TestJEValidForms(t *testing.T) {
 			t.Fatal(err)
 		}
 	})
-	t.Run("form=rel8", func(t *testing.T) {
-		if _, err := JE(operand.Rel(math.MaxInt8)); err != nil {
-			t.Fatal(err)
-		}
-	})
-	t.Run("form=rel32", func(t *testing.T) {
-		if _, err := JE(operand.Rel(math.MaxInt32)); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := JE(operand.LabelRef("lbl")); err != nil {
-			t.Fatal(err)
-		}
-	})
 }
 
 func TestJEQValidForms(t *testing.T) {
-	t.Run("form=rel8", func(t *testing.T) {
-		if _, err := JEQ(operand.Rel(math.MaxInt8)); err != nil {
-			t.Fatal(err)
-		}
-	})
-	t.Run("form=rel32", func(t *testing.T) {
-		if _, err := JEQ(operand.Rel(math.MaxInt32)); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := JEQ(operand.LabelRef("lbl")); err != nil {
-			t.Fatal(err)
-		}
-	})
 	t.Run("form=rel8", func(t *testing.T) {
 		if _, err := JEQ(operand.Rel(math.MaxInt8)); err != nil {
 			t.Fatal(err)
@@ -4272,35 +4085,9 @@ func TestJGValidForms(t *testing.T) {
 			t.Fatal(err)
 		}
 	})
-	t.Run("form=rel8", func(t *testing.T) {
-		if _, err := JG(operand.Rel(math.MaxInt8)); err != nil {
-			t.Fatal(err)
-		}
-	})
-	t.Run("form=rel32", func(t *testing.T) {
-		if _, err := JG(operand.Rel(math.MaxInt32)); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := JG(operand.LabelRef("lbl")); err != nil {
-			t.Fatal(err)
-		}
-	})
 }
 
 func TestJGEValidForms(t *testing.T) {
-	t.Run("form=rel8", func(t *testing.T) {
-		if _, err := JGE(operand.Rel(math.MaxInt8)); err != nil {
-			t.Fatal(err)
-		}
-	})
-	t.Run("form=rel32", func(t *testing.T) {
-		if _, err := JGE(operand.Rel(math.MaxInt32)); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := JGE(operand.LabelRef("lbl")); err != nil {
-			t.Fatal(err)
-		}
-	})
 	t.Run("form=rel8", func(t *testing.T) {
 		if _, err := JGE(operand.Rel(math.MaxInt8)); err != nil {
 			t.Fatal(err)
@@ -4330,35 +4117,9 @@ func TestJGTValidForms(t *testing.T) {
 			t.Fatal(err)
 		}
 	})
-	t.Run("form=rel8", func(t *testing.T) {
-		if _, err := JGT(operand.Rel(math.MaxInt8)); err != nil {
-			t.Fatal(err)
-		}
-	})
-	t.Run("form=rel32", func(t *testing.T) {
-		if _, err := JGT(operand.Rel(math.MaxInt32)); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := JGT(operand.LabelRef("lbl")); err != nil {
-			t.Fatal(err)
-		}
-	})
 }
 
 func TestJHIValidForms(t *testing.T) {
-	t.Run("form=rel8", func(t *testing.T) {
-		if _, err := JHI(operand.Rel(math.MaxInt8)); err != nil {
-			t.Fatal(err)
-		}
-	})
-	t.Run("form=rel32", func(t *testing.T) {
-		if _, err := JHI(operand.Rel(math.MaxInt32)); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := JHI(operand.LabelRef("lbl")); err != nil {
-			t.Fatal(err)
-		}
-	})
 	t.Run("form=rel8", func(t *testing.T) {
 		if _, err := JHI(operand.Rel(math.MaxInt8)); err != nil {
 			t.Fatal(err)
@@ -4388,48 +4149,9 @@ func TestJHSValidForms(t *testing.T) {
 			t.Fatal(err)
 		}
 	})
-	t.Run("form=rel8", func(t *testing.T) {
-		if _, err := JHS(operand.Rel(math.MaxInt8)); err != nil {
-			t.Fatal(err)
-		}
-	})
-	t.Run("form=rel32", func(t *testing.T) {
-		if _, err := JHS(operand.Rel(math.MaxInt32)); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := JHS(operand.LabelRef("lbl")); err != nil {
-			t.Fatal(err)
-		}
-	})
-	t.Run("form=rel8", func(t *testing.T) {
-		if _, err := JHS(operand.Rel(math.MaxInt8)); err != nil {
-			t.Fatal(err)
-		}
-	})
-	t.Run("form=rel32", func(t *testing.T) {
-		if _, err := JHS(operand.Rel(math.MaxInt32)); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := JHS(operand.LabelRef("lbl")); err != nil {
-			t.Fatal(err)
-		}
-	})
 }
 
 func TestJLValidForms(t *testing.T) {
-	t.Run("form=rel8", func(t *testing.T) {
-		if _, err := JL(operand.Rel(math.MaxInt8)); err != nil {
-			t.Fatal(err)
-		}
-	})
-	t.Run("form=rel32", func(t *testing.T) {
-		if _, err := JL(operand.Rel(math.MaxInt32)); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := JL(operand.LabelRef("lbl")); err != nil {
-			t.Fatal(err)
-		}
-	})
 	t.Run("form=rel8", func(t *testing.T) {
 		if _, err := JL(operand.Rel(math.MaxInt8)); err != nil {
 			t.Fatal(err)
@@ -4459,48 +4181,9 @@ func TestJLEValidForms(t *testing.T) {
 			t.Fatal(err)
 		}
 	})
-	t.Run("form=rel8", func(t *testing.T) {
-		if _, err := JLE(operand.Rel(math.MaxInt8)); err != nil {
-			t.Fatal(err)
-		}
-	})
-	t.Run("form=rel32", func(t *testing.T) {
-		if _, err := JLE(operand.Rel(math.MaxInt32)); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := JLE(operand.LabelRef("lbl")); err != nil {
-			t.Fatal(err)
-		}
-	})
 }
 
 func TestJLOValidForms(t *testing.T) {
-	t.Run("form=rel8", func(t *testing.T) {
-		if _, err := JLO(operand.Rel(math.MaxInt8)); err != nil {
-			t.Fatal(err)
-		}
-	})
-	t.Run("form=rel32", func(t *testing.T) {
-		if _, err := JLO(operand.Rel(math.MaxInt32)); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := JLO(operand.LabelRef("lbl")); err != nil {
-			t.Fatal(err)
-		}
-	})
-	t.Run("form=rel8", func(t *testing.T) {
-		if _, err := JLO(operand.Rel(math.MaxInt8)); err != nil {
-			t.Fatal(err)
-		}
-	})
-	t.Run("form=rel32", func(t *testing.T) {
-		if _, err := JLO(operand.Rel(math.MaxInt32)); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := JLO(operand.LabelRef("lbl")); err != nil {
-			t.Fatal(err)
-		}
-	})
 	t.Run("form=rel8", func(t *testing.T) {
 		if _, err := JLO(operand.Rel(math.MaxInt8)); err != nil {
 			t.Fatal(err)
@@ -4530,35 +4213,9 @@ func TestJLSValidForms(t *testing.T) {
 			t.Fatal(err)
 		}
 	})
-	t.Run("form=rel8", func(t *testing.T) {
-		if _, err := JLS(operand.Rel(math.MaxInt8)); err != nil {
-			t.Fatal(err)
-		}
-	})
-	t.Run("form=rel32", func(t *testing.T) {
-		if _, err := JLS(operand.Rel(math.MaxInt32)); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := JLS(operand.LabelRef("lbl")); err != nil {
-			t.Fatal(err)
-		}
-	})
 }
 
 func TestJLTValidForms(t *testing.T) {
-	t.Run("form=rel8", func(t *testing.T) {
-		if _, err := JLT(operand.Rel(math.MaxInt8)); err != nil {
-			t.Fatal(err)
-		}
-	})
-	t.Run("form=rel32", func(t *testing.T) {
-		if _, err := JLT(operand.Rel(math.MaxInt32)); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := JLT(operand.LabelRef("lbl")); err != nil {
-			t.Fatal(err)
-		}
-	})
 	t.Run("form=rel8", func(t *testing.T) {
 		if _, err := JLT(operand.Rel(math.MaxInt8)); err != nil {
 			t.Fatal(err)
@@ -4630,48 +4287,9 @@ func TestJNAValidForms(t *testing.T) {
 			t.Fatal(err)
 		}
 	})
-	t.Run("form=rel8", func(t *testing.T) {
-		if _, err := JNA(operand.Rel(math.MaxInt8)); err != nil {
-			t.Fatal(err)
-		}
-	})
-	t.Run("form=rel32", func(t *testing.T) {
-		if _, err := JNA(operand.Rel(math.MaxInt32)); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := JNA(operand.LabelRef("lbl")); err != nil {
-			t.Fatal(err)
-		}
-	})
 }
 
 func TestJNAEValidForms(t *testing.T) {
-	t.Run("form=rel8", func(t *testing.T) {
-		if _, err := JNAE(operand.Rel(math.MaxInt8)); err != nil {
-			t.Fatal(err)
-		}
-	})
-	t.Run("form=rel32", func(t *testing.T) {
-		if _, err := JNAE(operand.Rel(math.MaxInt32)); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := JNAE(operand.LabelRef("lbl")); err != nil {
-			t.Fatal(err)
-		}
-	})
-	t.Run("form=rel8", func(t *testing.T) {
-		if _, err := JNAE(operand.Rel(math.MaxInt8)); err != nil {
-			t.Fatal(err)
-		}
-	})
-	t.Run("form=rel32", func(t *testing.T) {
-		if _, err := JNAE(operand.Rel(math.MaxInt32)); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := JNAE(operand.LabelRef("lbl")); err != nil {
-			t.Fatal(err)
-		}
-	})
 	t.Run("form=rel8", func(t *testing.T) {
 		if _, err := JNAE(operand.Rel(math.MaxInt8)); err != nil {
 			t.Fatal(err)
@@ -4701,48 +4319,9 @@ func TestJNBValidForms(t *testing.T) {
 			t.Fatal(err)
 		}
 	})
-	t.Run("form=rel8", func(t *testing.T) {
-		if _, err := JNB(operand.Rel(math.MaxInt8)); err != nil {
-			t.Fatal(err)
-		}
-	})
-	t.Run("form=rel32", func(t *testing.T) {
-		if _, err := JNB(operand.Rel(math.MaxInt32)); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := JNB(operand.LabelRef("lbl")); err != nil {
-			t.Fatal(err)
-		}
-	})
-	t.Run("form=rel8", func(t *testing.T) {
-		if _, err := JNB(operand.Rel(math.MaxInt8)); err != nil {
-			t.Fatal(err)
-		}
-	})
-	t.Run("form=rel32", func(t *testing.T) {
-		if _, err := JNB(operand.Rel(math.MaxInt32)); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := JNB(operand.LabelRef("lbl")); err != nil {
-			t.Fatal(err)
-		}
-	})
 }
 
 func TestJNBEValidForms(t *testing.T) {
-	t.Run("form=rel8", func(t *testing.T) {
-		if _, err := JNBE(operand.Rel(math.MaxInt8)); err != nil {
-			t.Fatal(err)
-		}
-	})
-	t.Run("form=rel32", func(t *testing.T) {
-		if _, err := JNBE(operand.Rel(math.MaxInt32)); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := JNBE(operand.LabelRef("lbl")); err != nil {
-			t.Fatal(err)
-		}
-	})
 	t.Run("form=rel8", func(t *testing.T) {
 		if _, err := JNBE(operand.Rel(math.MaxInt8)); err != nil {
 			t.Fatal(err)
@@ -4772,48 +4351,9 @@ func TestJNCValidForms(t *testing.T) {
 			t.Fatal(err)
 		}
 	})
-	t.Run("form=rel8", func(t *testing.T) {
-		if _, err := JNC(operand.Rel(math.MaxInt8)); err != nil {
-			t.Fatal(err)
-		}
-	})
-	t.Run("form=rel32", func(t *testing.T) {
-		if _, err := JNC(operand.Rel(math.MaxInt32)); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := JNC(operand.LabelRef("lbl")); err != nil {
-			t.Fatal(err)
-		}
-	})
-	t.Run("form=rel8", func(t *testing.T) {
-		if _, err := JNC(operand.Rel(math.MaxInt8)); err != nil {
-			t.Fatal(err)
-		}
-	})
-	t.Run("form=rel32", func(t *testing.T) {
-		if _, err := JNC(operand.Rel(math.MaxInt32)); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := JNC(operand.LabelRef("lbl")); err != nil {
-			t.Fatal(err)
-		}
-	})
 }
 
 func TestJNEValidForms(t *testing.T) {
-	t.Run("form=rel8", func(t *testing.T) {
-		if _, err := JNE(operand.Rel(math.MaxInt8)); err != nil {
-			t.Fatal(err)
-		}
-	})
-	t.Run("form=rel32", func(t *testing.T) {
-		if _, err := JNE(operand.Rel(math.MaxInt32)); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := JNE(operand.LabelRef("lbl")); err != nil {
-			t.Fatal(err)
-		}
-	})
 	t.Run("form=rel8", func(t *testing.T) {
 		if _, err := JNE(operand.Rel(math.MaxInt8)); err != nil {
 			t.Fatal(err)
@@ -4843,35 +4383,9 @@ func TestJNGValidForms(t *testing.T) {
 			t.Fatal(err)
 		}
 	})
-	t.Run("form=rel8", func(t *testing.T) {
-		if _, err := JNG(operand.Rel(math.MaxInt8)); err != nil {
-			t.Fatal(err)
-		}
-	})
-	t.Run("form=rel32", func(t *testing.T) {
-		if _, err := JNG(operand.Rel(math.MaxInt32)); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := JNG(operand.LabelRef("lbl")); err != nil {
-			t.Fatal(err)
-		}
-	})
 }
 
 func TestJNGEValidForms(t *testing.T) {
-	t.Run("form=rel8", func(t *testing.T) {
-		if _, err := JNGE(operand.Rel(math.MaxInt8)); err != nil {
-			t.Fatal(err)
-		}
-	})
-	t.Run("form=rel32", func(t *testing.T) {
-		if _, err := JNGE(operand.Rel(math.MaxInt32)); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := JNGE(operand.LabelRef("lbl")); err != nil {
-			t.Fatal(err)
-		}
-	})
 	t.Run("form=rel8", func(t *testing.T) {
 		if _, err := JNGE(operand.Rel(math.MaxInt8)); err != nil {
 			t.Fatal(err)
@@ -4901,35 +4415,9 @@ func TestJNLValidForms(t *testing.T) {
 			t.Fatal(err)
 		}
 	})
-	t.Run("form=rel8", func(t *testing.T) {
-		if _, err := JNL(operand.Rel(math.MaxInt8)); err != nil {
-			t.Fatal(err)
-		}
-	})
-	t.Run("form=rel32", func(t *testing.T) {
-		if _, err := JNL(operand.Rel(math.MaxInt32)); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := JNL(operand.LabelRef("lbl")); err != nil {
-			t.Fatal(err)
-		}
-	})
 }
 
 func TestJNLEValidForms(t *testing.T) {
-	t.Run("form=rel8", func(t *testing.T) {
-		if _, err := JNLE(operand.Rel(math.MaxInt8)); err != nil {
-			t.Fatal(err)
-		}
-	})
-	t.Run("form=rel32", func(t *testing.T) {
-		if _, err := JNLE(operand.Rel(math.MaxInt32)); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := JNLE(operand.LabelRef("lbl")); err != nil {
-			t.Fatal(err)
-		}
-	})
 	t.Run("form=rel8", func(t *testing.T) {
 		if _, err := JNLE(operand.Rel(math.MaxInt8)); err != nil {
 			t.Fatal(err)
@@ -4975,19 +4463,6 @@ func TestJNPValidForms(t *testing.T) {
 			t.Fatal(err)
 		}
 	})
-	t.Run("form=rel8", func(t *testing.T) {
-		if _, err := JNP(operand.Rel(math.MaxInt8)); err != nil {
-			t.Fatal(err)
-		}
-	})
-	t.Run("form=rel32", func(t *testing.T) {
-		if _, err := JNP(operand.Rel(math.MaxInt32)); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := JNP(operand.LabelRef("lbl")); err != nil {
-			t.Fatal(err)
-		}
-	})
 }
 
 func TestJNSValidForms(t *testing.T) {
@@ -5007,19 +4482,6 @@ func TestJNSValidForms(t *testing.T) {
 }
 
 func TestJNZValidForms(t *testing.T) {
-	t.Run("form=rel8", func(t *testing.T) {
-		if _, err := JNZ(operand.Rel(math.MaxInt8)); err != nil {
-			t.Fatal(err)
-		}
-	})
-	t.Run("form=rel32", func(t *testing.T) {
-		if _, err := JNZ(operand.Rel(math.MaxInt32)); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := JNZ(operand.LabelRef("lbl")); err != nil {
-			t.Fatal(err)
-		}
-	})
 	t.Run("form=rel8", func(t *testing.T) {
 		if _, err := JNZ(operand.Rel(math.MaxInt8)); err != nil {
 			t.Fatal(err)
@@ -5097,19 +4559,6 @@ func TestJPValidForms(t *testing.T) {
 			t.Fatal(err)
 		}
 	})
-	t.Run("form=rel8", func(t *testing.T) {
-		if _, err := JP(operand.Rel(math.MaxInt8)); err != nil {
-			t.Fatal(err)
-		}
-	})
-	t.Run("form=rel32", func(t *testing.T) {
-		if _, err := JP(operand.Rel(math.MaxInt32)); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := JP(operand.LabelRef("lbl")); err != nil {
-			t.Fatal(err)
-		}
-	})
 }
 
 func TestJPCValidForms(t *testing.T) {
@@ -5126,35 +4575,9 @@ func TestJPCValidForms(t *testing.T) {
 			t.Fatal(err)
 		}
 	})
-	t.Run("form=rel8", func(t *testing.T) {
-		if _, err := JPC(operand.Rel(math.MaxInt8)); err != nil {
-			t.Fatal(err)
-		}
-	})
-	t.Run("form=rel32", func(t *testing.T) {
-		if _, err := JPC(operand.Rel(math.MaxInt32)); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := JPC(operand.LabelRef("lbl")); err != nil {
-			t.Fatal(err)
-		}
-	})
 }
 
 func TestJPEValidForms(t *testing.T) {
-	t.Run("form=rel8", func(t *testing.T) {
-		if _, err := JPE(operand.Rel(math.MaxInt8)); err != nil {
-			t.Fatal(err)
-		}
-	})
-	t.Run("form=rel32", func(t *testing.T) {
-		if _, err := JPE(operand.Rel(math.MaxInt32)); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := JPE(operand.LabelRef("lbl")); err != nil {
-			t.Fatal(err)
-		}
-	})
 	t.Run("form=rel8", func(t *testing.T) {
 		if _, err := JPE(operand.Rel(math.MaxInt8)); err != nil {
 			t.Fatal(err)
@@ -5200,35 +4623,9 @@ func TestJPOValidForms(t *testing.T) {
 			t.Fatal(err)
 		}
 	})
-	t.Run("form=rel8", func(t *testing.T) {
-		if _, err := JPO(operand.Rel(math.MaxInt8)); err != nil {
-			t.Fatal(err)
-		}
-	})
-	t.Run("form=rel32", func(t *testing.T) {
-		if _, err := JPO(operand.Rel(math.MaxInt32)); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := JPO(operand.LabelRef("lbl")); err != nil {
-			t.Fatal(err)
-		}
-	})
 }
 
 func TestJPSValidForms(t *testing.T) {
-	t.Run("form=rel8", func(t *testing.T) {
-		if _, err := JPS(operand.Rel(math.MaxInt8)); err != nil {
-			t.Fatal(err)
-		}
-	})
-	t.Run("form=rel32", func(t *testing.T) {
-		if _, err := JPS(operand.Rel(math.MaxInt32)); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := JPS(operand.LabelRef("lbl")); err != nil {
-			t.Fatal(err)
-		}
-	})
 	t.Run("form=rel8", func(t *testing.T) {
 		if _, err := JPS(operand.Rel(math.MaxInt8)); err != nil {
 			t.Fatal(err)
@@ -5261,19 +4658,6 @@ func TestJSValidForms(t *testing.T) {
 }
 
 func TestJZValidForms(t *testing.T) {
-	t.Run("form=rel8", func(t *testing.T) {
-		if _, err := JZ(operand.Rel(math.MaxInt8)); err != nil {
-			t.Fatal(err)
-		}
-	})
-	t.Run("form=rel32", func(t *testing.T) {
-		if _, err := JZ(operand.Rel(math.MaxInt32)); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := JZ(operand.LabelRef("lbl")); err != nil {
-			t.Fatal(err)
-		}
-	})
 	t.Run("form=rel8", func(t *testing.T) {
 		if _, err := JZ(operand.Rel(math.MaxInt8)); err != nil {
 			t.Fatal(err)
@@ -10300,73 +9684,9 @@ func TestSETCCValidForms(t *testing.T) {
 			t.Fatal(err)
 		}
 	})
-	t.Run("form=r8", func(t *testing.T) {
-		if _, err := SETCC(reg.CH); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := SETCC(reg.BL); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := SETCC(reg.R13B); err != nil {
-			t.Fatal(err)
-		}
-	})
-	t.Run("form=m8", func(t *testing.T) {
-		if _, err := SETCC(operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}); err != nil {
-			t.Fatal(err)
-		}
-	})
-	t.Run("form=r8", func(t *testing.T) {
-		if _, err := SETCC(reg.CH); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := SETCC(reg.BL); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := SETCC(reg.R13B); err != nil {
-			t.Fatal(err)
-		}
-	})
-	t.Run("form=m8", func(t *testing.T) {
-		if _, err := SETCC(operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}); err != nil {
-			t.Fatal(err)
-		}
-	})
 }
 
 func TestSETCSValidForms(t *testing.T) {
-	t.Run("form=r8", func(t *testing.T) {
-		if _, err := SETCS(reg.CH); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := SETCS(reg.BL); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := SETCS(reg.R13B); err != nil {
-			t.Fatal(err)
-		}
-	})
-	t.Run("form=m8", func(t *testing.T) {
-		if _, err := SETCS(operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}); err != nil {
-			t.Fatal(err)
-		}
-	})
-	t.Run("form=r8", func(t *testing.T) {
-		if _, err := SETCS(reg.CH); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := SETCS(reg.BL); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := SETCS(reg.R13B); err != nil {
-			t.Fatal(err)
-		}
-	})
-	t.Run("form=m8", func(t *testing.T) {
-		if _, err := SETCS(operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}); err != nil {
-			t.Fatal(err)
-		}
-	})
 	t.Run("form=r8", func(t *testing.T) {
 		if _, err := SETCS(reg.CH); err != nil {
 			t.Fatal(err)
@@ -10402,41 +9722,9 @@ func TestSETEQValidForms(t *testing.T) {
 			t.Fatal(err)
 		}
 	})
-	t.Run("form=r8", func(t *testing.T) {
-		if _, err := SETEQ(reg.CH); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := SETEQ(reg.BL); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := SETEQ(reg.R13B); err != nil {
-			t.Fatal(err)
-		}
-	})
-	t.Run("form=m8", func(t *testing.T) {
-		if _, err := SETEQ(operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}); err != nil {
-			t.Fatal(err)
-		}
-	})
 }
 
 func TestSETGEValidForms(t *testing.T) {
-	t.Run("form=r8", func(t *testing.T) {
-		if _, err := SETGE(reg.CH); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := SETGE(reg.BL); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := SETGE(reg.R13B); err != nil {
-			t.Fatal(err)
-		}
-	})
-	t.Run("form=m8", func(t *testing.T) {
-		if _, err := SETGE(operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}); err != nil {
-			t.Fatal(err)
-		}
-	})
 	t.Run("form=r8", func(t *testing.T) {
 		if _, err := SETGE(reg.CH); err != nil {
 			t.Fatal(err)
@@ -10472,41 +9760,9 @@ func TestSETGTValidForms(t *testing.T) {
 			t.Fatal(err)
 		}
 	})
-	t.Run("form=r8", func(t *testing.T) {
-		if _, err := SETGT(reg.CH); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := SETGT(reg.BL); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := SETGT(reg.R13B); err != nil {
-			t.Fatal(err)
-		}
-	})
-	t.Run("form=m8", func(t *testing.T) {
-		if _, err := SETGT(operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}); err != nil {
-			t.Fatal(err)
-		}
-	})
 }
 
 func TestSETHIValidForms(t *testing.T) {
-	t.Run("form=r8", func(t *testing.T) {
-		if _, err := SETHI(reg.CH); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := SETHI(reg.BL); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := SETHI(reg.R13B); err != nil {
-			t.Fatal(err)
-		}
-	})
-	t.Run("form=m8", func(t *testing.T) {
-		if _, err := SETHI(operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}); err != nil {
-			t.Fatal(err)
-		}
-	})
 	t.Run("form=r8", func(t *testing.T) {
 		if _, err := SETHI(reg.CH); err != nil {
 			t.Fatal(err)
@@ -10542,22 +9798,6 @@ func TestSETLEValidForms(t *testing.T) {
 			t.Fatal(err)
 		}
 	})
-	t.Run("form=r8", func(t *testing.T) {
-		if _, err := SETLE(reg.CH); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := SETLE(reg.BL); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := SETLE(reg.R13B); err != nil {
-			t.Fatal(err)
-		}
-	})
-	t.Run("form=m8", func(t *testing.T) {
-		if _, err := SETLE(operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}); err != nil {
-			t.Fatal(err)
-		}
-	})
 }
 
 func TestSETLSValidForms(t *testing.T) {
@@ -10577,41 +9817,9 @@ func TestSETLSValidForms(t *testing.T) {
 			t.Fatal(err)
 		}
 	})
-	t.Run("form=r8", func(t *testing.T) {
-		if _, err := SETLS(reg.CH); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := SETLS(reg.BL); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := SETLS(reg.R13B); err != nil {
-			t.Fatal(err)
-		}
-	})
-	t.Run("form=m8", func(t *testing.T) {
-		if _, err := SETLS(operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}); err != nil {
-			t.Fatal(err)
-		}
-	})
 }
 
 func TestSETLTValidForms(t *testing.T) {
-	t.Run("form=r8", func(t *testing.T) {
-		if _, err := SETLT(reg.CH); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := SETLT(reg.BL); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := SETLT(reg.R13B); err != nil {
-			t.Fatal(err)
-		}
-	})
-	t.Run("form=m8", func(t *testing.T) {
-		if _, err := SETLT(operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}); err != nil {
-			t.Fatal(err)
-		}
-	})
 	t.Run("form=r8", func(t *testing.T) {
 		if _, err := SETLT(reg.CH); err != nil {
 			t.Fatal(err)
@@ -10650,22 +9858,6 @@ func TestSETMIValidForms(t *testing.T) {
 }
 
 func TestSETNEValidForms(t *testing.T) {
-	t.Run("form=r8", func(t *testing.T) {
-		if _, err := SETNE(reg.CH); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := SETNE(reg.BL); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := SETNE(reg.R13B); err != nil {
-			t.Fatal(err)
-		}
-	})
-	t.Run("form=m8", func(t *testing.T) {
-		if _, err := SETNE(operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}); err != nil {
-			t.Fatal(err)
-		}
-	})
 	t.Run("form=r8", func(t *testing.T) {
 		if _, err := SETNE(reg.CH); err != nil {
 			t.Fatal(err)
@@ -10739,22 +9931,6 @@ func TestSETPCValidForms(t *testing.T) {
 			t.Fatal(err)
 		}
 	})
-	t.Run("form=r8", func(t *testing.T) {
-		if _, err := SETPC(reg.CH); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := SETPC(reg.BL); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := SETPC(reg.R13B); err != nil {
-			t.Fatal(err)
-		}
-	})
-	t.Run("form=m8", func(t *testing.T) {
-		if _, err := SETPC(operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}); err != nil {
-			t.Fatal(err)
-		}
-	})
 }
 
 func TestSETPLValidForms(t *testing.T) {
@@ -10777,22 +9953,6 @@ func TestSETPLValidForms(t *testing.T) {
 }
 
 func TestSETPSValidForms(t *testing.T) {
-	t.Run("form=r8", func(t *testing.T) {
-		if _, err := SETPS(reg.CH); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := SETPS(reg.BL); err != nil {
-			t.Fatal(err)
-		}
-		if _, err := SETPS(reg.R13B); err != nil {
-			t.Fatal(err)
-		}
-	})
-	t.Run("form=m8", func(t *testing.T) {
-		if _, err := SETPS(operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}); err != nil {
-			t.Fatal(err)
-		}
-	})
 	t.Run("form=r8", func(t *testing.T) {
 		if _, err := SETPS(reg.CH); err != nil {
 			t.Fatal(err)
@@ -19437,11 +18597,6 @@ func TestXGETBVValidForms(t *testing.T) {
 }
 
 func TestXLATValidForms(t *testing.T) {
-	t.Run("form=", func(t *testing.T) {
-		if _, err := XLAT(); err != nil {
-			t.Fatal(err)
-		}
-	})
 	t.Run("form=", func(t *testing.T) {
 		if _, err := XLAT(); err != nil {
 			t.Fatal(err)

@@ -4,14 +4,13 @@ import (
 	"bytes"
 	"fmt"
 	"strings"
-	"text/tabwriter"
 
 	"github.com/mmcloughlin/avo/internal/inst"
 )
 
 type ctors struct {
 	cfg Config
-	printer
+	generator
 }
 
 func NewCtors(cfg Config) Interface {
@@ -34,59 +33,23 @@ func (c *ctors) Generate(is []inst.Instruction) ([]byte, error) {
 }
 
 func (c *ctors) instruction(i inst.Instruction) {
-	for _, line := range c.doc(i) {
+	for _, line := range doc(i) {
 		c.Printf("// %s\n", line)
 	}
 
 	s := params(i)
 
 	c.Printf("func %s(%s) (*avo.Instruction, error) {\n", i.Opcode, s.ParameterList())
-	c.checkargs(i, s)
-	c.Printf("\treturn &%s, nil\n", construct(i, s))
+	c.forms(i, s)
 	c.Printf("}\n\n")
 }
 
-// doc generates the lines of the function comment.
-func (c *ctors) doc(i inst.Instruction) []string {
-	lines := []string{
-		fmt.Sprintf("%s: %s.", i.Opcode, i.Summary),
-		"",
-		"Forms:",
-		"",
-	}
-
-	// Write a table of instruction forms.
-	buf := bytes.NewBuffer(nil)
-	w := tabwriter.NewWriter(buf, 0, 0, 1, ' ', 0)
-	for _, f := range i.Forms {
-		row := i.Opcode + "\t" + strings.Join(f.Signature(), "\t") + "\n"
-		fmt.Fprint(w, row)
-	}
-	w.Flush()
-
-	tbl := strings.TrimSpace(buf.String())
-	for _, line := range strings.Split(tbl, "\n") {
-		lines = append(lines, "\t"+line)
-	}
-
-	return lines
-}
-
-func construct(i inst.Instruction, s signature) string {
-	buf := bytes.NewBuffer(nil)
-	fmt.Fprintf(buf, "avo.Instruction{\n")
-	fmt.Fprintf(buf, "\tOpcode: %#v,\n", i.Opcode)
-	fmt.Fprintf(buf, "\tOperands: %s,\n", s.ParameterSlice())
-	if i.IsBranch() {
-		fmt.Fprintf(buf, "\tIsBranch: true,\n")
-		fmt.Fprintf(buf, "\tIsConditional: %#v,\n", i.IsConditionalBranch())
-	}
-	fmt.Fprintf(buf, "}")
-	return buf.String()
-}
-
-func (c *ctors) checkargs(i inst.Instruction, s signature) {
+func (c *ctors) forms(i inst.Instruction, s signature) {
 	if i.IsNiladic() {
+		if len(i.Forms) != 1 {
+			c.AddError(fmt.Errorf("%s breaks assumption that niladic instructions have one form", i.Opcode))
+		}
+		c.Printf("return &%s, nil\n", construct(i, i.Forms[0], s))
 		return
 	}
 
@@ -106,12 +69,42 @@ func (c *ctors) checkargs(i inst.Instruction, s signature) {
 		}
 
 		c.Printf("case %s:\n", strings.Join(conds, " && "))
+		c.Printf("return &%s, nil\n", construct(i, f, s))
 	}
 
-	c.Printf("default:\n")
-	c.Printf("return nil, ErrBadOperandTypes\n")
-
 	c.Printf("}\n")
+	c.Printf("return nil, ErrBadOperandTypes\n")
+}
+
+func construct(i inst.Instruction, f inst.Form, s signature) string {
+	buf := bytes.NewBuffer(nil)
+	fmt.Fprintf(buf, "avo.Instruction{\n")
+	fmt.Fprintf(buf, "\tOpcode: %#v,\n", i.Opcode)
+	fmt.Fprintf(buf, "\tOperands: %s,\n", s.ParameterSlice())
+
+	// Input output.
+	// TODO(mbm): handle implicit operands
+	fmt.Fprintf(buf, "\tInputs: %s,\n", actionfilter(f.Operands, inst.R, s))
+	fmt.Fprintf(buf, "\tOutputs: %s,\n", actionfilter(f.Operands, inst.W, s))
+
+	// Branch variables.
+	if i.IsBranch() {
+		fmt.Fprintf(buf, "\tIsBranch: true,\n")
+		fmt.Fprintf(buf, "\tIsConditional: %#v,\n", i.IsConditionalBranch())
+	}
+
+	fmt.Fprintf(buf, "}")
+	return buf.String()
+}
+
+func actionfilter(ops []inst.Operand, a inst.Action, s signature) string {
+	opexprs := []string{}
+	for i, op := range ops {
+		if op.Action.Contains(a) {
+			opexprs = append(opexprs, s.ParameterName(i))
+		}
+	}
+	return fmt.Sprintf("[]%s{%s}", operandType, strings.Join(opexprs, ", "))
 }
 
 // checkername returns the name of the function that checks an operand of type t.

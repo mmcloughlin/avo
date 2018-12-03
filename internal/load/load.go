@@ -2,6 +2,7 @@ package load
 
 import (
 	"path/filepath"
+	"reflect"
 	"sort"
 	"strconv"
 	"strings"
@@ -73,6 +74,11 @@ func (l *Loader) Load() ([]inst.Instruction, error) {
 		cpy.Opcode = from
 		cpy.AliasOf = to
 		im[from] = &cpy
+	}
+
+	// Dedupe forms.
+	for _, i := range im {
+		i.Forms = dedupe(i.Forms)
 	}
 
 	// Convert to a slice, sorted by opcode.
@@ -168,6 +174,20 @@ func (l Loader) include(f opcodesxml.Form) bool {
 	//
 	case "movabs":
 		return false
+	// Only one XLAT form is supported.
+	//
+	// Reference: https://github.com/golang/arch/blob/b19384d3c130858bb31a343ea8fce26be71b5998/x86/x86.v0.2.csv#L2221-L2222
+	//
+	//	"XLATB","XLAT","xlat","D7","V","V","","ignoreREXW","","",""
+	//	"XLATB","XLAT","xlat","REX.W D7","N.E.","V","","pseudo","","",""
+	//
+	// Reference: https://github.com/golang/go/blob/b3294d9491b898396e134bad5412d85337c37b64/src/cmd/internal/obj/x86/asm6.go#L1519
+	//
+	//		{AXLAT, ynone, Px, opBytes{0xd7}},
+	//
+	// TODO(mbm): confirm the Px prefix means non REX mode
+	case "xlatb":
+		return f.Encoding.REX == nil
 	}
 
 	return true
@@ -378,4 +398,22 @@ func operandsize(op opcodesxml.Operand) int {
 		}
 	}
 	return 0
+}
+
+// dedupe a list of forms.
+func dedupe(fs []inst.Form) []inst.Form {
+	uniq := make([]inst.Form, 0, len(fs))
+	for _, f := range fs {
+		have := false
+		for _, u := range uniq {
+			if reflect.DeepEqual(u, f) {
+				have = true
+				break
+			}
+		}
+		if !have {
+			uniq = append(uniq, f)
+		}
+	}
+	return uniq
 }

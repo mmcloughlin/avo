@@ -1,10 +1,12 @@
 package gen
 
 import (
+	"bytes"
 	"fmt"
 	"sort"
 	"strconv"
 	"strings"
+	"text/tabwriter"
 
 	"github.com/mmcloughlin/avo/internal/inst"
 )
@@ -94,4 +96,30 @@ func params(i inst.Instruction) signature {
 	}
 
 	return argslist(ops)
+}
+
+// doc generates the lines of the function comment.
+func doc(i inst.Instruction) []string {
+	lines := []string{
+		fmt.Sprintf("%s: %s.", i.Opcode, i.Summary),
+		"",
+		"Forms:",
+		"",
+	}
+
+	// Write a table of instruction forms.
+	buf := bytes.NewBuffer(nil)
+	w := tabwriter.NewWriter(buf, 0, 0, 1, ' ', 0)
+	for _, f := range i.Forms {
+		row := i.Opcode + "\t" + strings.Join(f.Signature(), "\t") + "\n"
+		fmt.Fprint(w, row)
+	}
+	w.Flush()
+
+	tbl := strings.TrimSpace(buf.String())
+	for _, line := range strings.Split(tbl, "\n") {
+		lines = append(lines, "\t"+line)
+	}
+
+	return lines
 }

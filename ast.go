@@ -34,6 +34,9 @@ type Instruction struct {
 	Opcode   string
 	Operands []operand.Op
 
+	Inputs  []operand.Op
+	Outputs []operand.Op
+
 	IsTerminal    bool
 	IsBranch      bool
 	IsConditional bool
