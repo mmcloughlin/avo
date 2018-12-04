@@ -47,8 +47,8 @@ type Instruction struct {
 	Succ []*Instruction
 
 	// LiveIn/LiveOut are sets of live register IDs pre/post execution.
-	LiveIn  map[reg.ID]bool
-	LiveOut map[reg.ID]bool
+	LiveIn  reg.Set
+	LiveOut reg.Set
 }
 
 func (i *Instruction) node() {}

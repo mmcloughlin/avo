@@ -2,7 +2,6 @@ package reg
 
 import (
 	"fmt"
-	"math"
 )
 
 type Size uint
@@ -39,6 +38,24 @@ func (f *Family) define(s Spec, id PID, name string) Physical {
 
 func (f *Family) Virtual(id VID, s Size) Virtual {
 	return NewVirtual(id, f.Kind, s)
+}
+
+// Registers returns the registers in this family.
+func (f *Family) Registers() []Physical {
+	rs := make([]Physical, 0, len(f.registers))
+	for _, r := range f.registers {
+		rs = append(rs, r)
+	}
+	return rs
+}
+
+// Set returns the set of registers in the family.
+func (f *Family) Set() Set {
+	s := NewEmptySet()
+	for _, r := range f.registers {
+		s.Add(r)
+	}
+	return s
 }
 
 type private interface {
@@ -82,7 +99,7 @@ func (v virtual) VirtualID() VID { return v.id }
 func (v virtual) Kind() Kind     { return v.kind }
 
 func (v virtual) ID() ID {
-	return (ID(math.MaxUint16) << 16) | ID(v.VirtualID())
+	return (ID(1) << 31) | ID(v.VirtualID())
 }
 
 func (v virtual) Asm() string {
@@ -106,7 +123,7 @@ type register struct {
 }
 
 func (r register) PhysicalID() PID { return r.id }
-func (r register) ID() ID          { return ID(r.id) }
+func (r register) ID() ID          { return (ID(r.Mask()) << 16) | ID(r.id) }
 func (r register) Kind() Kind      { return r.kind }
 func (r register) Asm() string     { return r.name }
 func (r register) private()        {}

@@ -11,8 +11,8 @@ func Liveness(fn *avo.Function) error {
 
 	// Initialize to empty sets.
 	for _, i := range is {
-		i.LiveIn = map[reg.ID]bool{}
-		i.LiveOut = map[reg.ID]bool{}
+		i.LiveIn = reg.NewEmptySet()
+		i.LiveOut = reg.NewEmptySet()
 	}
 
 	// Iterative dataflow analysis.
@@ -22,18 +22,9 @@ func Liveness(fn *avo.Function) error {
 		for _, i := range is {
 			// in[n] = use[n] UNION (out[n] - def[n])
 			nin := len(i.LiveIn)
-			for _, r := range i.InputRegisters() {
-				i.LiveIn[r.ID()] = true
-			}
-			def := map[reg.ID]bool{}
-			for _, r := range i.OutputRegisters() {
-				def[r.ID()] = true
-			}
-			for id := range i.LiveOut {
-				if !def[id] {
-					i.LiveIn[id] = true
-				}
-			}
+			i.LiveIn.Update(reg.NewSetFromSlice(i.InputRegisters()))
+			def := reg.NewSetFromSlice(i.OutputRegisters())
+			i.LiveIn.Update(i.LiveOut.Difference(def))
 			if len(i.LiveIn) != nin {
 				changes = true
 			}
@@ -44,9 +35,7 @@ func Liveness(fn *avo.Function) error {
 				if s == nil {
 					continue
 				}
-				for id := range s.LiveIn {
-					i.LiveOut[id] = true
-				}
+				i.LiveOut.Update(s.LiveIn)
 			}
 			if len(i.LiveOut) != nout {
 				changes = true
@@ -58,5 +47,9 @@ func Liveness(fn *avo.Function) error {
 		}
 	}
 
+	return nil
+}
+
+func AllocateRegisters(fn *avo.Function) error {
 	return nil
 }
