@@ -6,17 +6,20 @@ import (
 	"log"
 
 	"github.com/mmcloughlin/avo"
+	"github.com/mmcloughlin/avo/reg"
 )
 
 type Context struct {
 	file     *avo.File
 	function *avo.Function
 	errs     []error
+	reg.Collection
 }
 
 func NewContext() *Context {
 	return &Context{
-		file: avo.NewFile(),
+		file:       avo.NewFile(),
+		Collection: *reg.NewCollection(),
 	}
 }
 

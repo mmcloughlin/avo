@@ -38,11 +38,7 @@ func (f *Family) define(s Spec, id PID, name string) Physical {
 }
 
 func (f *Family) Virtual(id VID, s Size) Virtual {
-	return virtual{
-		id:   id,
-		kind: f.Kind,
-		Size: s,
-	}
+	return NewVirtual(id, f.Kind, s)
 }
 
 type private interface {
@@ -72,6 +68,14 @@ type virtual struct {
 	id   VID
 	kind Kind
 	Size
+}
+
+func NewVirtual(id VID, k Kind, s Size) Virtual {
+	return virtual{
+		id:   id,
+		kind: k,
+		Size: s,
+	}
 }
 
 func (v virtual) VirtualID() VID { return v.id }
