@@ -1,6 +1,7 @@
 package reg
 
 import (
+	"errors"
 	"fmt"
 )
 
@@ -63,7 +64,7 @@ type private interface {
 }
 
 type (
-	ID  uint32
+	ID  uint64
 	VID uint16
 	PID uint16
 )
@@ -79,6 +80,14 @@ type Register interface {
 type Virtual interface {
 	VirtualID() VID
 	Register
+}
+
+// ToVirtual converts r to Virtual if possible, otherwise returns nil.
+func ToVirtual(r Register) Virtual {
+	if v, ok := r.(Virtual); ok {
+		return v
+	}
+	return nil
 }
 
 type virtual struct {
@@ -99,7 +108,7 @@ func (v virtual) VirtualID() VID { return v.id }
 func (v virtual) Kind() Kind     { return v.kind }
 
 func (v virtual) ID() ID {
-	return (ID(1) << 31) | ID(v.VirtualID())
+	return (ID(1) << 63) | (ID(v.Size) << 24) | (ID(v.kind) << 16) | ID(v.VirtualID())
 }
 
 func (v virtual) Asm() string {
@@ -113,6 +122,14 @@ type Physical interface {
 	PhysicalID() PID
 	Mask() uint16
 	Register
+}
+
+// ToPhysical converts r to Physical if possible, otherwise returns nil.
+func ToPhysical(r Register) Physical {
+	if p, ok := r.(Physical); ok {
+		return p
+	}
+	return nil
 }
 
 type register struct {
@@ -154,4 +171,35 @@ func (s Spec) Mask() uint16 {
 func (s Spec) Bytes() uint {
 	x := uint(s)
 	return (x >> 1) + (x & 1)
+}
+
+// AreConflicting returns whether registers conflict with each other.
+func AreConflicting(x, y Physical) bool {
+	return x.Kind() == y.Kind() && x.PhysicalID() == y.PhysicalID() && (x.Mask()&y.Mask()) != 0
+}
+
+// Allocation records a register allocation.
+type Allocation map[Register]Physical
+
+func NewEmptyAllocation() Allocation {
+	return Allocation{}
+}
+
+// Merge allocations from b into a. Errors if there is disagreement on a common
+// register.
+func (a Allocation) Merge(b Allocation) error {
+	for r, p := range b {
+		if alt, found := a[r]; found && alt != p {
+			return errors.New("disagreement on overlapping register")
+		}
+		a[r] = p
+	}
+	return nil
+}
+
+func (a Allocation) LookupDefault(r Register) Register {
+	if p, found := a[r]; found {
+		return p
+	}
+	return r
 }

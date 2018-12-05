@@ -67,6 +67,14 @@ func (i Instruction) TargetLabel() *Label {
 	return nil
 }
 
+func (i Instruction) Registers() []reg.Register {
+	var rs []reg.Register
+	for _, op := range i.Operands {
+		rs = append(rs, operand.Registers(op)...)
+	}
+	return rs
+}
+
 func (i Instruction) InputRegisters() []reg.Register {
 	var rs []reg.Register
 	for _, op := range i.Inputs {
@@ -107,6 +115,9 @@ type Function struct {
 
 	// LabelTarget maps from label name to the following instruction.
 	LabelTarget map[Label]*Instruction
+
+	// Register allocation.
+	Allocation reg.Allocation
 }
 
 func NewFunction(name string) *Function {

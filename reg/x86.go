@@ -8,6 +8,23 @@ const (
 	Mask
 )
 
+var Families = []*Family{
+	GeneralPurpose,
+	SIMD,
+}
+
+var familiesByKind = map[Kind]*Family{}
+
+func init() {
+	for _, f := range Families {
+		familiesByKind[f.Kind] = f
+	}
+}
+
+func FamilyOfKind(k Kind) *Family {
+	return familiesByKind[k]
+}
+
 // General purpose registers.
 var (
 	GeneralPurpose = &Family{Kind: GP}

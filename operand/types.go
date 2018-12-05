@@ -70,3 +70,16 @@ func Registers(op Op) []reg.Register {
 	}
 	panic("unknown operand type")
 }
+
+// ApplyAllocation returns an operand with allocated registers replaced. Registers missing from the allocation are left alone.
+func ApplyAllocation(op Op, a reg.Allocation) Op {
+	switch op := op.(type) {
+	case reg.Register:
+		return a.LookupDefault(op)
+	case Mem:
+		op.Base = a.LookupDefault(op.Base)
+		op.Index = a.LookupDefault(op.Index)
+		return op
+	}
+	return op
+}

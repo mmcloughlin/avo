@@ -23,14 +23,43 @@ func TestSpecBytes(t *testing.T) {
 	}
 }
 
-func TestVirtualPhysicalHaveDifferentIDs(t *testing.T) {
-	// Confirm that ID() returns different results even when virtual and physical IDs are the same.
-	var v Virtual = virtual{id: 42}
-	var p Physical = register{id: 42}
-	if uint16(v.VirtualID()) != uint16(p.PhysicalID()) {
-		t.Fatal("test assumption violated: VirtualID and PhysicalID should agree")
+func TestToVirtual(t *testing.T) {
+	v := GeneralPurpose.Virtual(42, B32)
+	if ToVirtual(v) != v {
+		t.Errorf("ToVirtual(v) != v for virtual register")
 	}
-	if v.ID() == p.ID() {
-		t.Errorf("virtual and physical IDs should be different")
+	if ToVirtual(ECX) != nil {
+		t.Errorf("ToVirtual should be nil for physical registers")
+	}
+}
+
+func TestToPhysical(t *testing.T) {
+	v := GeneralPurpose.Virtual(42, B32)
+	if ToPhysical(v) != nil {
+		t.Errorf("ToPhysical should be nil for virtual registers")
+	}
+	if ToPhysical(ECX) != ECX {
+		t.Errorf("ToPhysical(p) != p for physical register")
+	}
+}
+
+func TestAreConflicting(t *testing.T) {
+	cases := []struct {
+		X, Y   Physical
+		Expect bool
+	}{
+		{ECX, X3, false},
+		{AL, AH, false},
+		{AL, AX, true},
+		{AL, BX, false},
+		{X3, Y4, false},
+		{X3, Y3, true},
+		{Y3, Z4, false},
+		{Y3, Z3, true},
+	}
+	for _, c := range cases {
+		if AreConflicting(c.X, c.Y) != c.Expect {
+			t.Errorf("AreConflicting(%s, %s) != %v", c.X, c.Y, c.Expect)
+		}
 	}
 }
