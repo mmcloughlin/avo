@@ -374,8 +374,7 @@ func operand(op opcodesxml.Operand) inst.Operand {
 func datasize(f opcodesxml.Form) int {
 	// Determine from encoding bits.
 	e := f.Encoding
-	switch {
-	case e.VEX != nil && e.VEX.W == nil:
+	if e.VEX != nil && e.VEX.W == nil {
 		return 128 << e.VEX.L
 	}
 

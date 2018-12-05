@@ -1,6 +1,8 @@
 language: go
 go:
 - 1.11.1
+install:
+- ./script/bootstrap
 script:
 - ./script/lint
 - go test ./...

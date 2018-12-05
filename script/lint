@@ -3,3 +3,6 @@
 # Ensure the repository is clean after code generation.
 ./script/generate
 test -z "$(git status --porcelain)"
+
+# Run suite of golangci-lint checks.
+golangci-lint run
