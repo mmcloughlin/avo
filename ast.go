@@ -109,9 +109,8 @@ func NewFile() *File {
 
 // Function represents an assembly function.
 type Function struct {
-	name   string
-	params []Parameter
-	Nodes  []Node
+	name  string
+	Nodes []Node
 
 	// LabelTarget maps from label name to the following instruction.
 	LabelTarget map[Label]*Instruction

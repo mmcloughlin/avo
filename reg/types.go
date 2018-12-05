@@ -43,11 +43,7 @@ func (f *Family) Virtual(id VID, s Size) Virtual {
 
 // Registers returns the registers in this family.
 func (f *Family) Registers() []Physical {
-	rs := make([]Physical, 0, len(f.registers))
-	for _, r := range f.registers {
-		rs = append(rs, r)
-	}
-	return rs
+	return append([]Physical(nil), f.registers...)
 }
 
 // Set returns the set of registers in the family.
@@ -57,10 +53,6 @@ func (f *Family) Set() Set {
 		s.Add(r)
 	}
 	return s
-}
-
-type private interface {
-	private()
 }
 
 type (
@@ -74,7 +66,7 @@ type Register interface {
 	Kind() Kind
 	Bytes() uint
 	Asm() string
-	private
+	register()
 }
 
 type Virtual interface {
@@ -116,7 +108,7 @@ func (v virtual) Asm() string {
 	return fmt.Sprintf("<virtual:%v:%v:%v>", v.id, v.Kind(), v.Bytes())
 }
 
-func (v virtual) private() {}
+func (v virtual) register() {}
 
 type Physical interface {
 	PhysicalID() PID
@@ -143,7 +135,7 @@ func (r register) PhysicalID() PID { return r.id }
 func (r register) ID() ID          { return (ID(r.Mask()) << 16) | ID(r.id) }
 func (r register) Kind() Kind      { return r.kind }
 func (r register) Asm() string     { return r.name }
-func (r register) private()        {}
+func (r register) register()       {}
 
 type Spec uint16
 

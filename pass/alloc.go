@@ -53,7 +53,9 @@ func (a *Allocator) AddInterference(x, y reg.Register) {
 
 func (a *Allocator) Allocate() (reg.Allocation, error) {
 	for a.remaining() > 0 {
-		a.update()
+		if err := a.update(); err != nil {
+			return nil, err
+		}
 
 		v := a.mostrestricted()
 		if err := a.alloc(v); err != nil {
