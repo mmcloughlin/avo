@@ -140,6 +140,7 @@ func (r register) register()       {}
 type Spec uint16
 
 const (
+	S0   Spec = 0x0 // zero value reserved for pseudo registers
 	S8L  Spec = 0x1
 	S8H  Spec = 0x2
 	S8        = S8L

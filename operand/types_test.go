@@ -7,6 +7,23 @@ import (
 	"github.com/mmcloughlin/avo/reg"
 )
 
+func TestSymbolString(t *testing.T) {
+	cases := []struct {
+		Symbol Symbol
+		Expect string
+	}{
+		{Symbol{}, ""},
+		{Symbol{Name: "name"}, "name"},
+		{Symbol{Name: "static", Static: true}, "static<>"},
+	}
+	for _, c := range cases {
+		got := c.Symbol.String()
+		if got != c.Expect {
+			t.Errorf("%#v.String() = %s expected %s", c.Symbol, got, c.Expect)
+		}
+	}
+}
+
 func TestMemAsm(t *testing.T) {
 	cases := []struct {
 		Mem    Mem
@@ -14,11 +31,16 @@ func TestMemAsm(t *testing.T) {
 	}{
 		{Mem{Base: reg.EAX}, "(AX)"},
 		{Mem{Disp: 16, Base: reg.RAX}, "16(AX)"},
+		{Mem{Disp: -7, Base: reg.RAX}, "-7(AX)"},
 		{Mem{Base: reg.R11, Index: reg.RAX, Scale: 4}, "(R11)(AX*4)"},
 		{Mem{Base: reg.R11, Index: reg.RAX, Scale: 1}, "(R11)(AX*1)"},
 		{Mem{Base: reg.R11, Index: reg.RAX}, "(R11)"},
 		{Mem{Base: reg.R11, Scale: 8}, "(R11)"},
 		{Mem{Disp: 2048, Base: reg.R11, Index: reg.RAX, Scale: 8}, "2048(R11)(AX*8)"},
+		{Mem{Symbol: Symbol{Name: "foo"}, Base: reg.StaticBase}, "foo(SB)"},
+		{Mem{Symbol: Symbol{Name: "foo"}, Base: reg.StaticBase, Disp: 4}, "foo+4(SB)"},
+		{Mem{Symbol: Symbol{Name: "foo"}, Base: reg.StaticBase, Disp: -7}, "foo-7(SB)"},
+		{Mem{Symbol: Symbol{Name: "bar", Static: true}, Base: reg.StaticBase, Disp: 4, Index: reg.R11, Scale: 4}, "bar<>+4(SB)(R11*4)"},
 	}
 	for _, c := range cases {
 		got := c.Mem.Asm()

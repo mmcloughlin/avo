@@ -10,17 +10,35 @@ type Op interface {
 	Asm() string
 }
 
+type Symbol struct {
+	Name   string
+	Static bool
+}
+
+func (s Symbol) String() string {
+	n := s.Name
+	if s.Static {
+		n += "<>"
+	}
+	return n
+}
+
 type Mem struct {
-	Disp  int
-	Base  reg.Register
-	Index reg.Register
-	Scale uint8
+	Symbol Symbol
+	Disp   int
+	Base   reg.Register
+	Index  reg.Register
+	Scale  uint8
 }
 
 func (m Mem) Asm() string {
-	a := ""
+	a := m.Symbol.String()
 	if m.Disp != 0 {
-		a += fmt.Sprintf("%d", m.Disp)
+		if a == "" {
+			a += fmt.Sprintf("%d", m.Disp)
+		} else {
+			a += fmt.Sprintf("%+d", m.Disp)
+		}
 	}
 	if m.Base != nil {
 		a += fmt.Sprintf("(%s)", m.Base.Asm())

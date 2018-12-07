@@ -7,6 +7,7 @@ func TestSpecBytes(t *testing.T) {
 		Spec  Spec
 		Bytes uint
 	}{
+		{S0, 0},
 		{S8L, 1},
 		{S8H, 1},
 		{S16, 2},

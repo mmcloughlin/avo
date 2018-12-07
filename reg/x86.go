@@ -2,13 +2,15 @@ package reg
 
 // Register families.
 const (
-	GP Kind = iota
+	Internal Kind = iota
+	GP
 	MMX
 	SSEAVX
 	Mask
 )
 
 var Families = []*Family{
+	Pseudo,
 	GeneralPurpose,
 	SIMD,
 }
@@ -24,6 +26,16 @@ func init() {
 func FamilyOfKind(k Kind) *Family {
 	return familiesByKind[k]
 }
+
+// Pseudo registers.
+var (
+	Pseudo = &Family{Kind: Internal}
+
+	FramePointer   = Pseudo.define(S0, 0, "FP")
+	ProgramCounter = Pseudo.define(S0, 0, "PC")
+	StaticBase     = Pseudo.define(S0, 0, "SB")
+	StackPointer   = Pseudo.define(S0, 0, "SP")
+)
 
 // General purpose registers.
 var (
