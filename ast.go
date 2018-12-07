@@ -1,6 +1,8 @@
 package avo
 
 import (
+	"go/types"
+
 	"github.com/mmcloughlin/avo/operand"
 	"github.com/mmcloughlin/avo/reg"
 )
@@ -109,7 +111,9 @@ func NewFile() *File {
 
 // Function represents an assembly function.
 type Function struct {
-	name  string
+	Name      string
+	Signature *types.Signature
+
 	Nodes []Node
 
 	// LabelTarget maps from label name to the following instruction.
@@ -121,7 +125,7 @@ type Function struct {
 
 func NewFunction(name string) *Function {
 	return &Function{
-		name: name,
+		Name: name,
 	}
 }
 
@@ -148,9 +152,6 @@ func (f *Function) Instructions() []*Instruction {
 	}
 	return is
 }
-
-// Name returns the function name.
-func (f *Function) Name() string { return f.name }
 
 // FrameBytes returns the size of the stack frame in bytes.
 func (f *Function) FrameBytes() int {
