@@ -31,6 +31,19 @@ type Mem struct {
 	Scale  uint8
 }
 
+// NewParamAddr is a convenience to build a Mem operand pointing to a function
+// parameter, which is a named offset from the frame pointer pseudo register.
+func NewParamAddr(name string, offset int) Mem {
+	return Mem{
+		Symbol: Symbol{
+			Name:   name,
+			Static: false,
+		},
+		Disp: offset,
+		Base: reg.FramePointer,
+	}
+}
+
 func (m Mem) Asm() string {
 	a := m.Symbol.String()
 	if m.Disp != 0 {

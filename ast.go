@@ -155,12 +155,12 @@ func (f *Function) Instructions() []*Instruction {
 
 // FrameBytes returns the size of the stack frame in bytes.
 func (f *Function) FrameBytes() int {
-	// TODO(mbm): implement
+	// TODO(mbm): implement Function.FrameBytes()
 	return 0
 }
 
 // ArgumentBytes returns the size of the arguments in bytes.
 func (f *Function) ArgumentBytes() int {
-	// TODO(mbm): implement
+	// TODO(mbm): implement Function.ArgumentBytes()
 	return 0
 }

@@ -41,6 +41,7 @@ func TestMemAsm(t *testing.T) {
 		{Mem{Symbol: Symbol{Name: "foo"}, Base: reg.StaticBase, Disp: 4}, "foo+4(SB)"},
 		{Mem{Symbol: Symbol{Name: "foo"}, Base: reg.StaticBase, Disp: -7}, "foo-7(SB)"},
 		{Mem{Symbol: Symbol{Name: "bar", Static: true}, Base: reg.StaticBase, Disp: 4, Index: reg.R11, Scale: 4}, "bar<>+4(SB)(R11*4)"},
+		{NewParamAddr("param", 16), "param+16(FP)"},
 	}
 	for _, c := range cases {
 		got := c.Mem.Asm()
