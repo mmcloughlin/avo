@@ -6,6 +6,7 @@ import (
 	"log"
 
 	"github.com/mmcloughlin/avo/gotypes"
+	"github.com/mmcloughlin/avo/pass"
 
 	"github.com/mmcloughlin/avo"
 	"github.com/mmcloughlin/avo/reg"
@@ -81,6 +82,11 @@ func (c *Context) Main(wout, werr io.Writer) int {
 		for _, err := range errs {
 			diag.Println(err)
 		}
+		return 1
+	}
+
+	if err := pass.Compile.Execute(f); err != nil {
+		diag.Println(err)
 		return 1
 	}
 

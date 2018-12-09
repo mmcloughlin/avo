@@ -2,12 +2,14 @@ package main
 
 import (
 	. "github.com/mmcloughlin/avo/build"
-	"github.com/mmcloughlin/avo/reg"
 )
 
 func main() {
 	TEXT("add", "func(x, y uint64) uint64")
-	ADDQ(reg.R8, reg.R11)
+	x := Load(Param("x"), GP64v())
+	y := Load(Param("y"), GP64v())
+	ADDQ(x, y)
+	Store(x, ReturnIndex(0))
 	RET()
 	EOF()
 }
