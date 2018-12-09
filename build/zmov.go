@@ -9,57 +9,57 @@ import (
 
 func (c *Context) mov(a, b operand.Op, an, bn int, t *types.Basic) {
 	switch {
-	case an == 1 && bn == 1 && (t.Info()&types.IsInteger) != 0:
+	case (t.Info()&types.IsInteger) != 0 && an == 1 && bn == 1:
 		c.MOVB(a, b)
-	case an == 1 && bn == 4 && (t.Info()&types.IsInteger) != 0 && (t.Info()&types.IsUnsigned) == 0:
+	case (t.Info()&types.IsInteger) != 0 && (t.Info()&types.IsUnsigned) == 0 && an == 1 && bn == 4:
 		c.MOVBLSX(a, b)
-	case an == 1 && bn == 4 && (t.Info()&types.IsInteger) != 0 && (t.Info()&types.IsUnsigned) != 0:
+	case (t.Info()&types.IsInteger) != 0 && (t.Info()&types.IsUnsigned) != 0 && an == 1 && bn == 4:
 		c.MOVBLZX(a, b)
-	case an == 1 && bn == 8 && (t.Info()&types.IsInteger) != 0 && (t.Info()&types.IsUnsigned) == 0:
+	case (t.Info()&types.IsInteger) != 0 && (t.Info()&types.IsUnsigned) == 0 && an == 1 && bn == 8:
 		c.MOVBQSX(a, b)
-	case an == 1 && bn == 8 && (t.Info()&types.IsInteger) != 0 && (t.Info()&types.IsUnsigned) != 0:
+	case (t.Info()&types.IsInteger) != 0 && (t.Info()&types.IsUnsigned) != 0 && an == 1 && bn == 8:
 		c.MOVBQZX(a, b)
-	case an == 1 && bn == 2 && (t.Info()&types.IsInteger) != 0 && (t.Info()&types.IsUnsigned) == 0:
+	case (t.Info()&types.IsInteger) != 0 && (t.Info()&types.IsUnsigned) == 0 && an == 1 && bn == 2:
 		c.MOVBWSX(a, b)
-	case an == 1 && bn == 2 && (t.Info()&types.IsInteger) != 0 && (t.Info()&types.IsUnsigned) != 0:
+	case (t.Info()&types.IsInteger) != 0 && (t.Info()&types.IsUnsigned) != 0 && an == 1 && bn == 2:
 		c.MOVBWZX(a, b)
-	case an == 4 && bn == 4 && (t.Info()&types.IsInteger) != 0:
+	case (t.Info()&types.IsInteger) != 0 && an == 4 && bn == 4:
 		c.MOVL(a, b)
-	case an == 4 && bn == 8 && (t.Info()&types.IsInteger) != 0 && (t.Info()&types.IsUnsigned) == 0:
+	case (t.Info()&types.IsInteger) != 0 && (t.Info()&types.IsUnsigned) == 0 && an == 4 && bn == 8:
 		c.MOVLQSX(a, b)
-	case an == 4 && bn == 8 && (t.Info()&types.IsInteger) != 0 && (t.Info()&types.IsUnsigned) != 0:
+	case (t.Info()&types.IsInteger) != 0 && (t.Info()&types.IsUnsigned) != 0 && an == 4 && bn == 8:
 		c.MOVLQZX(a, b)
-	case an == 16 && bn == 16 && (t.Info()&types.IsInteger) != 0:
+	case (t.Info()&types.IsInteger) != 0 && an == 16 && bn == 16:
 		c.MOVOU(a, b)
-	case an == 16 && bn == 8 && (t.Info()&types.IsInteger) != 0:
+	case (t.Info()&types.IsInteger) != 0 && an == 8 && bn == 8:
 		c.MOVQ(a, b)
-	case an == 8 && bn == 16 && (t.Info()&types.IsInteger) != 0:
+	case (t.Info()&types.IsInteger) != 0 && an == 8 && bn == 16:
 		c.MOVQ(a, b)
-	case an == 16 && bn == 16 && (t.Info()&types.IsInteger) != 0:
+	case (t.Info()&types.IsInteger) != 0 && an == 16 && bn == 8:
 		c.MOVQ(a, b)
-	case an == 8 && bn == 8 && (t.Info()&types.IsInteger) != 0:
+	case (t.Info()&types.IsInteger) != 0 && an == 16 && bn == 16:
 		c.MOVQ(a, b)
-	case an == 16 && bn == 8 && (t.Info()&types.IsFloat) != 0:
+	case (t.Info()&types.IsFloat) != 0 && an == 8 && bn == 16:
 		c.MOVSD(a, b)
-	case an == 16 && bn == 16 && (t.Info()&types.IsFloat) != 0:
+	case (t.Info()&types.IsFloat) != 0 && an == 16 && bn == 8:
 		c.MOVSD(a, b)
-	case an == 8 && bn == 16 && (t.Info()&types.IsFloat) != 0:
+	case (t.Info()&types.IsFloat) != 0 && an == 16 && bn == 16:
 		c.MOVSD(a, b)
-	case an == 16 && bn == 16 && (t.Info()&types.IsFloat) != 0:
+	case (t.Info()&types.IsFloat) != 0 && an == 4 && bn == 16:
 		c.MOVSS(a, b)
-	case an == 4 && bn == 16 && (t.Info()&types.IsFloat) != 0:
+	case (t.Info()&types.IsFloat) != 0 && an == 16 && bn == 4:
 		c.MOVSS(a, b)
-	case an == 16 && bn == 4 && (t.Info()&types.IsFloat) != 0:
+	case (t.Info()&types.IsFloat) != 0 && an == 16 && bn == 16:
 		c.MOVSS(a, b)
-	case an == 2 && bn == 2 && (t.Info()&types.IsInteger) != 0:
+	case (t.Info()&types.IsInteger) != 0 && an == 2 && bn == 2:
 		c.MOVW(a, b)
-	case an == 2 && bn == 4 && (t.Info()&types.IsInteger) != 0 && (t.Info()&types.IsUnsigned) == 0:
+	case (t.Info()&types.IsInteger) != 0 && (t.Info()&types.IsUnsigned) == 0 && an == 2 && bn == 4:
 		c.MOVWLSX(a, b)
-	case an == 2 && bn == 4 && (t.Info()&types.IsInteger) != 0 && (t.Info()&types.IsUnsigned) != 0:
+	case (t.Info()&types.IsInteger) != 0 && (t.Info()&types.IsUnsigned) != 0 && an == 2 && bn == 4:
 		c.MOVWLZX(a, b)
-	case an == 2 && bn == 8 && (t.Info()&types.IsInteger) != 0 && (t.Info()&types.IsUnsigned) == 0:
+	case (t.Info()&types.IsInteger) != 0 && (t.Info()&types.IsUnsigned) == 0 && an == 2 && bn == 8:
 		c.MOVWQSX(a, b)
-	case an == 2 && bn == 8 && (t.Info()&types.IsInteger) != 0 && (t.Info()&types.IsUnsigned) != 0:
+	case (t.Info()&types.IsInteger) != 0 && (t.Info()&types.IsUnsigned) != 0 && an == 2 && bn == 8:
 		c.MOVWQZX(a, b)
 	default:
 		c.AddErrorMessage("could not deduce mov instruction")

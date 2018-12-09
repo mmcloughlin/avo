@@ -3,6 +3,7 @@ package gen
 import (
 	"errors"
 	"fmt"
+	"sort"
 	"strings"
 
 	"github.com/mmcloughlin/avo/internal/inst"
@@ -57,6 +58,7 @@ func (m *mov) instruction(i inst.Instruction) {
 			cond := fmt.Sprintf("(t.Info() & %s) %s 0", c, cmp[on])
 			conds = append(conds, cond)
 		}
+		sort.Strings(conds)
 		m.Printf("case %s:\n", strings.Join(conds, " && "))
 		m.Printf("c.%s(a, b)\n", i.Opcode)
 	}
@@ -93,7 +95,9 @@ func flags(i inst.Instruction) map[string]bool {
 	return f
 }
 
-type movsize struct{ A, B int }
+type movsize struct{ A, B int8 }
+
+func (s movsize) sortkey() uint16 { return (uint16(s.A) << 8) | uint16(s.B) }
 
 func formsizes(i inst.Instruction) ([]movsize, error) {
 	set := map[movsize]bool{}
@@ -117,10 +121,11 @@ func formsizes(i inst.Instruction) ([]movsize, error) {
 	for s := range set {
 		ss = append(ss, s)
 	}
+	sort.Slice(ss, func(i, j int) bool { return ss[i].sortkey() < ss[j].sortkey() })
 	return ss, nil
 }
 
-var opsize = map[string]int{
+var opsize = map[string]int8{
 	"imm8":  -1,
 	"imm16": -1,
 	"imm32": -1,
