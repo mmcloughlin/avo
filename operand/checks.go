@@ -109,6 +109,11 @@ func IsR64(op Op) bool {
 	return IsGP(op, 8)
 }
 
+// IsPseudo returns true if op is a pseudo register.
+func IsPseudo(op Op) bool {
+	return IsRegisterKindSize(op, reg.Internal, 0)
+}
+
 // IsGP returns true if op is a general-purpose register of size n bytes.
 func IsGP(op Op, n uint) bool {
 	return IsRegisterKindSize(op, reg.GP, n)
@@ -171,7 +176,12 @@ func IsM64(op Op) bool {
 func IsMSize(op Op, n uint) bool {
 	// TODO(mbm): should memory operands have a size attribute as well?
 	m, ok := op.(Mem)
-	return ok && IsGP(m.Base, n) && (m.Index == nil || IsGP(m.Index, n))
+	return ok && IsMRegSize(m.Base, n) && (m.Index == nil || IsMRegSize(m.Index, n))
+}
+
+// IsMRegSize returns true if op is a register that can be used in a memory operand of size n bytes.
+func IsMRegSize(op Op, n uint) bool {
+	return IsPseudo(op) || IsGP(op, n)
 }
 
 // IsM128 returns true if op is a 128-bit memory operand.

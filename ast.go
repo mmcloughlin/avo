@@ -1,8 +1,7 @@
 package avo
 
 import (
-	"go/types"
-
+	"github.com/mmcloughlin/avo/gotypes"
 	"github.com/mmcloughlin/avo/operand"
 	"github.com/mmcloughlin/avo/reg"
 )
@@ -112,7 +111,7 @@ func NewFile() *File {
 // Function represents an assembly function.
 type Function struct {
 	Name      string
-	Signature *types.Signature
+	Signature *gotypes.Signature
 
 	Nodes []Node
 
@@ -125,8 +124,13 @@ type Function struct {
 
 func NewFunction(name string) *Function {
 	return &Function{
-		Name: name,
+		Name:      name,
+		Signature: gotypes.NewSignatureVoid(),
 	}
+}
+
+func (f *Function) SetSignature(s *gotypes.Signature) {
+	f.Signature = s
 }
 
 func (f *Function) AddInstruction(i *Instruction) {
@@ -153,6 +157,11 @@ func (f *Function) Instructions() []*Instruction {
 	return is
 }
 
+// Stub returns the Go function declaration.
+func (f *Function) Stub() string {
+	return "func " + f.Name + f.Signature.String()
+}
+
 // FrameBytes returns the size of the stack frame in bytes.
 func (f *Function) FrameBytes() int {
 	// TODO(mbm): implement Function.FrameBytes()
@@ -161,6 +170,5 @@ func (f *Function) FrameBytes() int {
 
 // ArgumentBytes returns the size of the arguments in bytes.
 func (f *Function) ArgumentBytes() int {
-	// TODO(mbm): implement Function.ArgumentBytes()
-	return 0
+	return f.Signature.Bytes()
 }

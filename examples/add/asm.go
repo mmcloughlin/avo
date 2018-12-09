@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	TEXT("add")
+	TEXT("add", "func(x, y uint64) uint64")
 	ADDQ(reg.R8, reg.R11)
 	RET()
 	EOF()

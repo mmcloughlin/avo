@@ -5,6 +5,8 @@ import (
 	"io"
 	"log"
 
+	"github.com/mmcloughlin/avo/gotypes"
+
 	"github.com/mmcloughlin/avo"
 	"github.com/mmcloughlin/avo/reg"
 )
@@ -28,20 +30,33 @@ func (c *Context) Function(name string) {
 	c.file.Functions = append(c.file.Functions, c.function)
 }
 
+func (c *Context) Signature(s *gotypes.Signature) {
+	c.activefunc().SetSignature(s)
+}
+
+func (c *Context) SignatureExpr(expr string) {
+	s, err := gotypes.ParseSignature(expr)
+	if err != nil {
+		c.AddError(err)
+		return
+	}
+	c.Signature(s)
+}
+
 func (c *Context) Instruction(i *avo.Instruction) {
-	c.node(i)
+	c.activefunc().AddNode(i)
 }
 
 func (c *Context) Label(l avo.Label) {
-	c.node(l)
+	c.activefunc().AddLabel(l)
 }
 
-func (c *Context) node(n avo.Node) {
+func (c *Context) activefunc() *avo.Function {
 	if c.function == nil {
 		c.AddErrorMessage("no active function")
-		return
+		return avo.NewFunction("")
 	}
-	c.function.AddNode(n)
+	return c.function
 }
 
 //go:generate avogen -output zinstructions.go build

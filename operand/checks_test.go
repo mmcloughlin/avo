@@ -85,6 +85,14 @@ func TestChecks(t *testing.T) {
 		{IsYmm, reg.X3, false},
 		{IsYmm, reg.Z3, false},
 
+		// Pseudo registers.
+		{IsPseudo, reg.FramePointer, true},
+		{IsPseudo, reg.ProgramCounter, true},
+		{IsPseudo, reg.StaticBase, true},
+		{IsPseudo, reg.StackPointer, true},
+		{IsPseudo, reg.ECX, false},
+		{IsPseudo, reg.X9, false},
+
 		// Memory operands
 		{IsM, Mem{Base: reg.CX}, true},
 		{IsM, Mem{Base: reg.ECX}, true},
@@ -112,6 +120,13 @@ func TestChecks(t *testing.T) {
 
 		{IsM256, Mem{Base: reg.RBX, Index: reg.R12, Scale: 2}, true},
 		{IsM256, Mem{Base: reg.R13L}, false},
+
+		// Argument references (special cases of memory operands)
+		{IsM, NewParamAddr("foo", 4), true},
+		{IsM8, NewParamAddr("foo", 4), true},
+		{IsM16, NewParamAddr("foo", 4), true},
+		{IsM32, NewParamAddr("foo", 4), true},
+		{IsM64, NewParamAddr("foo", 4), true},
 
 		// Vector memory operands
 		{IsVm32x, Mem{Base: reg.R14, Index: reg.X11}, true},

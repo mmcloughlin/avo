@@ -68,6 +68,7 @@ func (p *GoPrinter) multicomment(lines []string) {
 }
 
 func (p *GoPrinter) function(f *Function) {
+	p.printf("// %s\n", f.Stub())
 	p.printf("TEXT %s%s(SB),0,$%d-%d\n", dot, f.Name, f.FrameBytes(), f.ArgumentBytes())
 
 	for _, node := range f.Nodes {

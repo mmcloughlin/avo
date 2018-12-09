@@ -12,7 +12,11 @@ import (
 // ctx provides a global build context.
 var ctx = NewContext()
 
-func TEXT(name string)  { ctx.Function(name) }
+func TEXT(name, signature string) {
+	ctx.Function(name)
+	ctx.SignatureExpr(signature)
+}
+
 func LABEL(name string) { ctx.Label(avo.Label(name)) }
 
 var (

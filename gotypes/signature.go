@@ -1,7 +1,9 @@
 package gotypes
 
 import (
+	"bytes"
 	"errors"
+	"fmt"
 	"go/token"
 	"go/types"
 	"strconv"
@@ -19,6 +21,10 @@ func NewSignature(sig *types.Signature) *Signature {
 	}
 	s.init()
 	return s
+}
+
+func NewSignatureVoid() *Signature {
+	return NewSignature(types.NewSignature(nil, nil, nil, false))
 }
 
 func ParseSignature(expr string) (*Signature, error) {
@@ -41,6 +47,12 @@ func (s *Signature) Params() *Tuple { return s.params }
 func (s *Signature) Results() *Tuple { return s.results }
 
 func (s *Signature) Bytes() int { return s.Params().Bytes() + s.Results().Bytes() }
+
+func (s *Signature) String() string {
+	var buf bytes.Buffer
+	types.WriteSignature(&buf, s.sig, nil)
+	return buf.String()
+}
 
 func (s *Signature) init() {
 	p := s.sig.Params()
@@ -66,7 +78,7 @@ type Tuple struct {
 func newTuple(t *types.Tuple, offsets []int64, defaultprefix string) *Tuple {
 	tuple := &Tuple{
 		byname: map[string]Component{},
-		size:   int(offsets[t.Len()]),
+		size:   int(offsets[t.Len()] - offsets[0]),
 	}
 	for i := 0; i < t.Len(); i++ {
 		v := t.At(i)
@@ -86,7 +98,13 @@ func newTuple(t *types.Tuple, offsets []int64, defaultprefix string) *Tuple {
 	return tuple
 }
 
-func (t *Tuple) Lookup(name string) Component { return t.byname[name] }
+func (t *Tuple) Lookup(name string) Component {
+	e := t.byname[name]
+	if e == nil {
+		return componenterr(fmt.Sprintf("unknown variable \"%s\"", name))
+	}
+	return e
+}
 
 func (t *Tuple) At(i int) Component { return t.components[i] }
 
