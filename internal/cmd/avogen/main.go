@@ -19,6 +19,7 @@ var generators = map[string]gen.Builder{
 	"ctors":      gen.NewCtors,
 	"ctorstest":  gen.NewCtorsTest,
 	"build":      gen.NewBuild,
+	"mov":        gen.NewMOV,
 }
 
 // Command-line flags.

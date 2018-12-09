@@ -38,7 +38,7 @@ func (i Instruction) IsConditionalBranch() bool {
 func (i Instruction) Arities() []int {
 	s := map[int]bool{}
 	for _, f := range i.Forms {
-		s[len(f.Operands)] = true
+		s[f.Arity()] = true
 	}
 	a := make([]int, 0, len(s))
 	for n := range s {
@@ -71,8 +71,12 @@ type Form struct {
 	ImplicitOperands []ImplicitOperand
 }
 
+func (f Form) Arity() int {
+	return len(f.Operands)
+}
+
 func (f Form) Signature() []string {
-	s := make([]string, len(f.Operands))
+	s := make([]string, f.Arity())
 	for i, op := range f.Operands {
 		s[i] = op.Type
 	}

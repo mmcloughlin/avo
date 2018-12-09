@@ -35,28 +35,30 @@ func (c componenterr) Index(int) Component      { return c }
 
 type component struct {
 	name   string
-	offset int
 	typ    types.Type
+	offset int
 	err    error
 }
 
-func NewComponentFromVar(v *types.Var) Component {
+func NewComponent(name string, t types.Type, offset int) Component {
 	return &component{
-		name: v.Name(),
+		name:   name,
+		typ:    t,
+		offset: offset,
 	}
 }
 
+func NewComponentFromVar(v *types.Var, offset int) Component {
+	return NewComponent(v.Name(), v.Type(), offset)
+}
+
 func (c *component) Resolve() (*Basic, error) {
-	b, ok := c.typ.(*types.Basic)
-	if !ok {
-		return nil, errors.New("not basic type")
-	}
-	if b.Kind() == types.String {
-		return nil, errors.New("string types are handled specially")
+	if !isprimitive(c.typ) {
+		return nil, errors.New("component is not primitive")
 	}
 	return &Basic{
 		Addr: operand.NewParamAddr(c.name, c.offset),
-		Type: b,
+		Type: c.typ.(*types.Basic),
 	}, nil
 }
 
@@ -134,51 +136,7 @@ func (c *component) sub(suffix string, offset int, t types.Type) *component {
 }
 
 // TODO(mbm): gotypes.Component handling for structs
-// TODO(mbm): gotypes.Component handling for complex
-
-type Signature struct {
-	sig *types.Signature
-}
-
-func newSignature(sig *types.Signature) *Signature {
-	return &Signature{
-		sig: sig,
-	}
-}
-
-func ParseSignature(expr string) (*Signature, error) {
-	tv, err := types.Eval(token.NewFileSet(), nil, token.NoPos, expr)
-	if err != nil {
-		return nil, err
-	}
-	if tv.Value != nil {
-		return nil, errors.New("signature expression should have nil value")
-	}
-	s, ok := tv.Type.(*types.Signature)
-	if !ok {
-		return nil, errors.New("provided type is not a function signature")
-	}
-	return newSignature(s), nil
-}
-
-func (s *Signature) Parameter(name string) Component {
-	p := s.param(name)
-	if p == nil {
-		return componenterr("unknown parameter")
-	}
-	return NewComponentFromVar(p)
-}
-
-func (s *Signature) param(name string) *types.Var {
-	t := s.sig.Params()
-	for i := 0; i < t.Len(); i++ {
-		p := t.At(i)
-		if p.Name() == name {
-			return p
-		}
-	}
-	return nil
-}
+// TODO(mbm): gotypes.Component handling for complex64/128
 
 func isslice(t types.Type) bool {
 	_, ok := t.(*types.Slice)
@@ -188,4 +146,10 @@ func isslice(t types.Type) bool {
 func isstring(t types.Type) bool {
 	b, ok := t.(*types.Basic)
 	return ok && b.Kind() == types.String
+}
+
+// isprimitive returns true if the type cannot be broken into components.
+func isprimitive(t types.Type) bool {
+	b, ok := t.(*types.Basic)
+	return ok && (b.Info()&(types.IsString|types.IsComplex)) == 0
 }

@@ -10,5 +10,6 @@ func TestBuilderInterfaces(t *testing.T) {
 		NewCtors,
 		NewCtorsTest,
 		NewBuild,
+		NewMOV,
 	}
 }

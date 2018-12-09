@@ -51,11 +51,11 @@ func TestParseSignature(t *testing.T) {
 		if err != nil {
 			t.Fatal(err)
 		}
-		if !TypesTuplesEqual(s.Params(), c.ExpectParams) {
-			t.Errorf("parameter mismatch\ngot %#v\nexpect %#v\n", s.Params(), c.ExpectParams)
+		if !TypesTuplesEqual(s.sig.Params(), c.ExpectParams) {
+			t.Errorf("parameter mismatch\ngot %#v\nexpect %#v\n", s.sig.Params(), c.ExpectParams)
 		}
-		if !TypesTuplesEqual(s.Results(), c.ExpectReturn) {
-			t.Errorf("return value(s) mismatch\ngot %#v\nexpect %#v\n", s.Results(), c.ExpectReturn)
+		if !TypesTuplesEqual(s.sig.Results(), c.ExpectReturn) {
+			t.Errorf("return value(s) mismatch\ngot %#v\nexpect %#v\n", s.sig.Results(), c.ExpectReturn)
 		}
 	}
 }
