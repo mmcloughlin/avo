@@ -37,7 +37,6 @@ type component struct {
 	name   string
 	typ    types.Type
 	offset int
-	err    error
 }
 
 func NewComponent(name string, t types.Type, offset int) Component {
