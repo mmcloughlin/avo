@@ -7,14 +7,16 @@ import (
 	"strings"
 
 	"github.com/mmcloughlin/avo/internal/inst"
+	"github.com/mmcloughlin/avo/internal/prnt"
+	"github.com/mmcloughlin/avo/printer"
 )
 
 type mov struct {
-	cfg Config
-	generator
+	cfg printer.Config
+	prnt.Generator
 }
 
-func NewMOV(cfg Config) Interface {
+func NewMOV(cfg printer.Config) Interface {
 	return GoFmt(&mov{cfg: cfg})
 }
 

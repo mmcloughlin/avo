@@ -1,13 +1,17 @@
 package gen
 
-import "github.com/mmcloughlin/avo/internal/inst"
+import (
+	"github.com/mmcloughlin/avo/internal/inst"
+	"github.com/mmcloughlin/avo/internal/prnt"
+	"github.com/mmcloughlin/avo/printer"
+)
 
 type build struct {
-	cfg Config
-	generator
+	cfg printer.Config
+	prnt.Generator
 }
 
-func NewBuild(cfg Config) Interface {
+func NewBuild(cfg printer.Config) Interface {
 	return GoFmt(&build{cfg: cfg})
 }
 

@@ -7,17 +7,19 @@ import (
 	"strings"
 
 	"github.com/mmcloughlin/avo/internal/inst"
+	"github.com/mmcloughlin/avo/internal/prnt"
+	"github.com/mmcloughlin/avo/printer"
 )
 
 type asmtest struct {
-	cfg   Config
+	cfg   printer.Config
 	sym   string // reference to the test function symbol
 	rel8  string // label to be used for near jumps
 	rel32 string // label for far jumps
-	generator
+	prnt.Generator
 }
 
-func NewAsmTest(cfg Config) Interface {
+func NewAsmTest(cfg printer.Config) Interface {
 	return &asmtest{cfg: cfg}
 }
 

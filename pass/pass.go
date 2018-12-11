@@ -1,6 +1,11 @@
 package pass
 
-import "github.com/mmcloughlin/avo"
+import (
+	"io"
+
+	"github.com/mmcloughlin/avo"
+	"github.com/mmcloughlin/avo/printer"
+)
 
 var Compile = Concat(
 	FunctionPass(LabelTarget),
@@ -41,4 +46,20 @@ func Concat(passes ...Interface) Interface {
 		}
 		return nil
 	})
+}
+
+type Output struct {
+	Writer  io.WriteCloser
+	Printer printer.Printer
+}
+
+func (o *Output) Execute(f *avo.File) error {
+	b, err := o.Printer.Print(f)
+	if err != nil {
+		return err
+	}
+	if _, err = o.Writer.Write(b); err != nil {
+		return err
+	}
+	return o.Writer.Close()
 }

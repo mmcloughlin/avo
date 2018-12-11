@@ -2,13 +2,9 @@ package build
 
 import (
 	"errors"
-	"io"
-	"log"
-
-	"github.com/mmcloughlin/avo/gotypes"
-	"github.com/mmcloughlin/avo/pass"
 
 	"github.com/mmcloughlin/avo"
+	"github.com/mmcloughlin/avo/gotypes"
 	"github.com/mmcloughlin/avo/reg"
 )
 
@@ -72,29 +68,4 @@ func (c *Context) AddErrorMessage(msg string) {
 
 func (c *Context) Result() (*avo.File, []error) {
 	return c.file, c.errs
-}
-
-func (c *Context) Main(wout, werr io.Writer) int {
-	diag := log.New(werr, "", 0)
-
-	f, errs := c.Result()
-	if errs != nil {
-		for _, err := range errs {
-			diag.Println(err)
-		}
-		return 1
-	}
-
-	if err := pass.Compile.Execute(f); err != nil {
-		diag.Println(err)
-		return 1
-	}
-
-	p := avo.NewGoPrinter(wout)
-	if err := p.Print(f); err != nil {
-		diag.Println(err)
-		return 1
-	}
-
-	return 0
 }

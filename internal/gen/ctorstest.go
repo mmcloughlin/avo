@@ -3,15 +3,18 @@ package gen
 import (
 	"strings"
 
+	"github.com/mmcloughlin/avo/internal/prnt"
+	"github.com/mmcloughlin/avo/printer"
+
 	"github.com/mmcloughlin/avo/internal/inst"
 )
 
 type ctorstest struct {
-	cfg Config
-	generator
+	cfg printer.Config
+	prnt.Generator
 }
 
-func NewCtorsTest(cfg Config) Interface {
+func NewCtorsTest(cfg printer.Config) Interface {
 	return GoFmt(&ctorstest{cfg: cfg})
 }
 

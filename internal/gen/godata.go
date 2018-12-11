@@ -2,14 +2,16 @@ package gen
 
 import (
 	"github.com/mmcloughlin/avo/internal/inst"
+	"github.com/mmcloughlin/avo/internal/prnt"
+	"github.com/mmcloughlin/avo/printer"
 )
 
 type godata struct {
-	cfg Config
-	generator
+	cfg printer.Config
+	prnt.Generator
 }
 
-func NewGoData(cfg Config) Interface {
+func NewGoData(cfg printer.Config) Interface {
 	return GoFmt(&godata{cfg: cfg})
 }
 
@@ -65,11 +67,11 @@ func (g *godata) Generate(is []inst.Instruction) ([]byte, error) {
 }
 
 type godatatest struct {
-	cfg Config
-	generator
+	cfg printer.Config
+	prnt.Generator
 }
 
-func NewGoDataTest(cfg Config) Interface {
+func NewGoDataTest(cfg printer.Config) Interface {
 	return GoFmt(&godatatest{cfg: cfg})
 }
 

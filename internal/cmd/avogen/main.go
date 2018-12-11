@@ -10,6 +10,7 @@ import (
 	"github.com/mmcloughlin/avo/internal/gen"
 	"github.com/mmcloughlin/avo/internal/inst"
 	"github.com/mmcloughlin/avo/internal/load"
+	"github.com/mmcloughlin/avo/printer"
 )
 
 var generators = map[string]gen.Builder{
@@ -45,9 +46,7 @@ func main() {
 		log.Fatalf("unknown generator type '%s'", t)
 	}
 
-	g := builder(gen.Config{
-		Argv: os.Args,
-	})
+	g := builder(printer.NewDefaultConfig())
 
 	// Determine output writer.
 	w := os.Stdout

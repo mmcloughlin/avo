@@ -2,8 +2,6 @@ package build
 
 import (
 	"flag"
-	"io"
-	"log"
 	"os"
 
 	"github.com/mmcloughlin/avo/gotypes"
@@ -23,26 +21,14 @@ func TEXT(name, signature string) {
 
 func LABEL(name string) { ctx.Label(avo.Label(name)) }
 
-var (
-	output = flag.String("output", "", "output filename (default stdout)")
-)
+var flags = NewFlags(flag.CommandLine)
 
-func EOF() {
+func Generate() {
 	if !flag.Parsed() {
 		flag.Parse()
 	}
-
-	var w io.Writer = os.Stdout
-	if *output != "" {
-		if f, err := os.Create(*output); err != nil {
-			log.Fatal(err)
-		} else {
-			defer f.Close()
-			w = f
-		}
-	}
-
-	os.Exit(ctx.Main(w, os.Stderr))
+	cfg := flags.Config()
+	os.Exit(Main(cfg, ctx))
 }
 
 func GP8v() reg.Virtual  { return ctx.GP8v() }
