@@ -9,6 +9,7 @@ import (
 	"github.com/mmcloughlin/avo/internal/gen"
 	"github.com/mmcloughlin/avo/internal/inst"
 	"github.com/mmcloughlin/avo/internal/test"
+	"github.com/mmcloughlin/avo/printer"
 )
 
 func TestHaveInstructions(t *testing.T) {
@@ -70,7 +71,7 @@ func TestInstructionProperties(t *testing.T) {
 }
 
 func TestAssembles(t *testing.T) {
-	g := gen.NewAsmTest(gen.Config{})
+	g := gen.NewAsmTest(printer.NewDefaultConfig())
 	b, err := g.Generate(inst.Instructions)
 	if err != nil {
 		t.Fatal(err)

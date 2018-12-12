@@ -7,6 +7,7 @@ import (
 	"github.com/mmcloughlin/avo/internal/inst"
 	"github.com/mmcloughlin/avo/internal/load"
 	"github.com/mmcloughlin/avo/internal/test"
+	"github.com/mmcloughlin/avo/printer"
 )
 
 func Load(t *testing.T) []inst.Instruction {
@@ -21,7 +22,7 @@ func Load(t *testing.T) []inst.Instruction {
 
 func TestAssembles(t *testing.T) {
 	is := Load(t)
-	g := gen.NewAsmTest(gen.Config{})
+	g := gen.NewAsmTest(printer.NewDefaultConfig())
 	b, err := g.Generate(is)
 	if err != nil {
 		t.Fatal(err)
