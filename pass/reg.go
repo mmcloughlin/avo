@@ -57,11 +57,11 @@ func Liveness(fn *avo.Function) error {
 }
 
 func AllocateRegisters(fn *avo.Function) error {
-	// Build one allocator per register kind and record register interferences.
+	// Populate allocators (one per kind).
 	as := map[reg.Kind]*Allocator{}
 	for _, i := range fn.Instructions() {
-		for _, d := range i.OutputRegisters() {
-			k := d.Kind()
+		for _, r := range i.Registers() {
+			k := r.Kind()
 			if _, found := as[k]; !found {
 				a, err := NewAllocatorForKind(k)
 				if err != nil {
@@ -69,7 +69,14 @@ func AllocateRegisters(fn *avo.Function) error {
 				}
 				as[k] = a
 			}
+			as[k].Add(r)
+		}
+	}
 
+	// Record register interferences.
+	for _, i := range fn.Instructions() {
+		for _, d := range i.OutputRegisters() {
+			k := d.Kind()
 			out := i.LiveOut.OfKind(k)
 			out.Discard(d)
 			as[k].AddInterferenceSet(d, out)

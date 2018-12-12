@@ -11,7 +11,7 @@ func main() {
 	x := Load(Param("x"), GP64v())
 	y := Load(Param("y"), GP64v())
 	ADDQ(x, y)
-	Store(x, ReturnIndex(0))
+	Store(y, ReturnIndex(0))
 	RET()
 	Generate()
 }

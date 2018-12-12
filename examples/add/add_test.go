@@ -8,5 +8,8 @@ import (
 //go:generate go run asm.go -out add.s -stubs stub.go
 
 func TestAdd(t *testing.T) {
-	quick.CheckEqual(Add, func(x, y uint64) uint64 { return x + y }, nil)
+	expect := func(x, y uint64) uint64 { return x + y }
+	if err := quick.CheckEqual(Add, expect, nil); err != nil {
+		t.Fatal(err)
+	}
 }

@@ -21,6 +21,8 @@ type Component interface {
 	Base() Component
 	Len() Component
 	Cap() Component
+	Real() Component
+	Imag() Component
 	Index(int) Component
 }
 
@@ -31,6 +33,8 @@ func (c componenterr) Resolve() (*Basic, error) { return nil, c }
 func (c componenterr) Base() Component          { return c }
 func (c componenterr) Len() Component           { return c }
 func (c componenterr) Cap() Component           { return c }
+func (c componenterr) Real() Component          { return c }
+func (c componenterr) Imag() Component          { return c }
 func (c componenterr) Index(int) Component      { return c }
 
 type component struct {
@@ -96,6 +100,22 @@ func (c *component) Cap() Component {
 	return c.sub("_cap", int(slicehdroffsets[2]), types.Typ[types.Int])
 }
 
+func (c *component) Real() Component {
+	if !iscomplex(c.typ) {
+		return componenterr("only complex types have real values")
+	}
+	f := complextofloat(c.typ)
+	return c.sub("_real", 0, f)
+}
+
+func (c *component) Imag() Component {
+	if !iscomplex(c.typ) {
+		return componenterr("only complex types have imaginary values")
+	}
+	f := complextofloat(c.typ)
+	return c.sub("_imag", int(Sizes.Sizeof(f)), f)
+}
+
 func (c *component) Index(i int) Component {
 	a, ok := c.typ.(*types.Array)
 	if !ok {
@@ -144,6 +164,21 @@ func isslice(t types.Type) bool {
 func isstring(t types.Type) bool {
 	b, ok := t.(*types.Basic)
 	return ok && b.Kind() == types.String
+}
+
+func iscomplex(t types.Type) bool {
+	b, ok := t.(*types.Basic)
+	return ok && (b.Info()&types.IsComplex) != 0
+}
+
+func complextofloat(t types.Type) types.Type {
+	switch Sizes.Sizeof(t) {
+	case 16:
+		return types.Typ[types.Float64]
+	case 8:
+		return types.Typ[types.Float32]
+	}
+	panic("bad")
 }
 
 // isprimitive returns true if the type cannot be broken into components.

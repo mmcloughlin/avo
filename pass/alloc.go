@@ -46,9 +46,21 @@ func (a *Allocator) AddInterferenceSet(r reg.Register, s reg.Set) {
 }
 
 func (a *Allocator) AddInterference(x, y reg.Register) {
-	a.add(x)
-	a.add(y)
+	a.Add(x)
+	a.Add(y)
 	a.edges = append(a.edges, &edge{X: x, Y: y})
+}
+
+// Add adds a register to be allocated. Does nothing if the register has already been added.
+func (a *Allocator) Add(r reg.Register) {
+	v, ok := r.(reg.Virtual)
+	if !ok {
+		return
+	}
+	if _, found := a.possible[v]; found {
+		return
+	}
+	a.possible[v] = a.registersofsize(v.Bytes())
 }
 
 func (a *Allocator) Allocate() (reg.Allocation, error) {
@@ -63,15 +75,6 @@ func (a *Allocator) Allocate() (reg.Allocation, error) {
 		}
 	}
 	return a.allocation, nil
-}
-
-// add adds a register.
-func (a *Allocator) add(r reg.Register) {
-	v, ok := r.(reg.Virtual)
-	if !ok {
-		return
-	}
-	a.possible[v] = a.registersofsize(v.Bytes())
 }
 
 // update possible allocations based on edges.
