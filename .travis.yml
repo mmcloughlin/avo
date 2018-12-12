@@ -4,5 +4,6 @@ go:
 install:
 - ./script/bootstrap
 script:
-- ./script/lint
+- go build ./...
 - go test ./...
+- ./script/lint

@@ -1,5 +1,9 @@
 #!/bin/bash -ex
 
+# Separate core packages from those that depend on the whole library being built.
+core=$(go list ./... | grep -v examples)
+post=$(go list ./... | grep examples)
+
 # Install avogen (for bootstrapping).
 go install ./internal/cmd/avogen
 
@@ -7,8 +11,11 @@ go install ./internal/cmd/avogen
 grep -REl 'Code generated.*DO NOT EDIT\.$' . | xargs rm -v
 
 # Generate once.
-go generate -v -x ./...
+go generate -v -x ${core}
 
 # If the instruction database has changed, may need to repeat.
 go install ./internal/cmd/avogen
-go generate -v -x ./...
+go generate -v -x ${core}
+
+# Generate dependent packages.
+go generate -v -x ${post}
