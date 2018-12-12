@@ -126,12 +126,11 @@ func (c *component) Index(i int) Component {
 }
 
 func (c *component) sub(suffix string, offset int, t types.Type) *component {
-	var s *component
-	*s = *c
+	s := *c
 	s.name += suffix
 	s.offset += offset
 	s.typ = t
-	return s
+	return &s
 }
 
 // TODO(mbm): gotypes.Component handling for structs

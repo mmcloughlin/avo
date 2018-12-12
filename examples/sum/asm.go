@@ -1,0 +1,27 @@
+// +build ignore
+
+package main
+
+import (
+	. "github.com/mmcloughlin/avo/build"
+	"github.com/mmcloughlin/avo/operand"
+)
+
+func main() {
+	TEXT("Sum", "func(xs []uint64) uint64")
+	ptr := Load(Param("xs").Base(), GP64v())
+	n := Load(Param("xs").Len(), GP64v())
+	s := GP64v()
+	XORQ(s, s)
+	LABEL("loop")
+	CMPQ(n, operand.Imm(0))
+	JE(operand.LabelRef("done"))
+	ADDQ(operand.Mem{Base: ptr}, s)
+	ADDQ(operand.Imm(8), ptr)
+	DECQ(n)
+	JMP(operand.LabelRef("loop"))
+	LABEL("done")
+	Store(s, ReturnIndex(0))
+	RET()
+	Generate()
+}

@@ -65,7 +65,7 @@ func (m Mem) Asm() string {
 type Imm uint64
 
 func (i Imm) Asm() string {
-	return fmt.Sprintf("%#x", i)
+	return fmt.Sprintf("$%#x", i)
 }
 
 // Rel is an offset relative to the instruction pointer.
