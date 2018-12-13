@@ -111,7 +111,7 @@ func (a *Allocator) mostrestricted() reg.Virtual {
 	n := int(math.MaxInt32)
 	var v reg.Virtual
 	for r, p := range a.possible {
-		if len(p) < n {
+		if len(p) < n || (len(p) == n && v != nil && r.VirtualID() < v.VirtualID()) {
 			n = len(p)
 			v = r
 		}
