@@ -26,15 +26,24 @@ type Family struct {
 	registers []Physical
 }
 
-func (f *Family) define(s Spec, id PID, name string) Physical {
+func (f *Family) add(s Spec, id PID, name string, info Info) Physical {
 	r := register{
 		id:   id,
 		kind: f.Kind,
 		name: name,
+		info: info,
 		Spec: s,
 	}
 	f.registers = append(f.registers, r)
 	return r
+}
+
+func (f *Family) define(s Spec, id PID, name string) Physical {
+	return f.add(s, id, name, None)
+}
+
+func (f *Family) restricted(s Spec, id PID, name string) Physical {
+	return f.add(s, id, name, Restricted)
 }
 
 func (f *Family) Virtual(id VID, s Size) Virtual {
@@ -110,9 +119,17 @@ func (v virtual) Asm() string {
 
 func (v virtual) register() {}
 
+type Info uint8
+
+const (
+	None       Info = 0
+	Restricted Info = 1 << iota
+)
+
 type Physical interface {
 	PhysicalID() PID
 	Mask() uint16
+	Info() Info
 	Register
 }
 
@@ -128,6 +145,7 @@ type register struct {
 	id   PID
 	kind Kind
 	name string
+	info Info
 	Spec
 }
 
@@ -135,6 +153,7 @@ func (r register) PhysicalID() PID { return r.id }
 func (r register) ID() ID          { return (ID(r.Mask()) << 16) | ID(r.id) }
 func (r register) Kind() Kind      { return r.kind }
 func (r register) Asm() string     { return r.name }
+func (r register) Info() Info      { return r.info }
 func (r register) register()       {}
 
 type Spec uint16

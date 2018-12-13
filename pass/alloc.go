@@ -60,7 +60,7 @@ func (a *Allocator) Add(r reg.Register) {
 	if _, found := a.possible[v]; found {
 		return
 	}
-	a.possible[v] = a.registersofsize(v.Bytes())
+	a.possible[v] = a.possibleregisters(v.Bytes())
 }
 
 func (a *Allocator) Allocate() (reg.Allocation, error) {
@@ -146,11 +146,11 @@ func (a *Allocator) remaining() int {
 	return len(a.possible)
 }
 
-// registersofsize returns all registers of the given size.
-func (a *Allocator) registersofsize(n uint) []reg.Physical {
+// possibleregisters returns all allocate-able registers of the given size.
+func (a *Allocator) possibleregisters(n uint) []reg.Physical {
 	var rs []reg.Physical
 	for _, r := range a.registers {
-		if r.Bytes() == n {
+		if r.Bytes() == n && (r.Info()&reg.Restricted) == 0 {
 			rs = append(rs, r)
 		}
 	}
