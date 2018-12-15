@@ -181,6 +181,7 @@ func IsM64(op Op) bool {
 // registers of the given size in bytes.
 func IsMSize(op Op, n uint) bool {
 	// TODO(mbm): should memory operands have a size attribute as well?
+	// TODO(mbm): m8,m16,m32,m64 checks do not actually check size
 	m, ok := op.(Mem)
 	return ok && IsMReg(m.Base) && (m.Index == nil || IsMReg(m.Index))
 }

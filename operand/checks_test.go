@@ -97,29 +97,29 @@ func TestChecks(t *testing.T) {
 		{IsM, Mem{Base: reg.CX}, true},
 		{IsM, Mem{Base: reg.ECX}, true},
 		{IsM, Mem{Base: reg.RCX}, true},
-		{IsM, Mem{Base: reg.CL}, false},
+		{IsM, Mem{Base: reg.X0}, false},
 
 		{IsM8, Mem{Disp: 8, Base: reg.CL}, true},
 		{IsM8, Mem{Disp: 8, Base: reg.CL, Index: reg.AH, Scale: 2}, true},
-		{IsM8, Mem{Disp: 8, Base: reg.AX, Index: reg.AH, Scale: 2}, false},
-		{IsM8, Mem{Disp: 8, Base: reg.CL, Index: reg.R10, Scale: 2}, false},
+		{IsM8, Mem{Disp: 8, Base: reg.X0, Index: reg.AH, Scale: 2}, false},
+		{IsM8, Mem{Disp: 8, Base: reg.CL, Index: reg.X0, Scale: 2}, false},
 
 		{IsM16, Mem{Disp: 4, Base: reg.DX}, true},
 		{IsM16, Mem{Disp: 4, Base: reg.R13W, Index: reg.R8W, Scale: 2}, true},
-		{IsM16, Mem{Disp: 4, Base: reg.ESI, Index: reg.R8W, Scale: 2}, false},
-		{IsM16, Mem{Disp: 4, Base: reg.R13W, Index: reg.R9, Scale: 2}, false},
+		{IsM16, Mem{Disp: 4, Base: reg.X0, Index: reg.R8W, Scale: 2}, false},
+		{IsM16, Mem{Disp: 4, Base: reg.R13W, Index: reg.X0, Scale: 2}, false},
 
 		{IsM32, Mem{Base: reg.R13L, Index: reg.EBX, Scale: 2}, true},
-		{IsM32, Mem{Base: reg.R13W}, false},
+		{IsM32, Mem{Base: reg.X0}, false},
 
 		{IsM64, Mem{Base: reg.RBX, Index: reg.R12, Scale: 2}, true},
-		{IsM64, Mem{Base: reg.R13L}, false},
+		{IsM64, Mem{Base: reg.X0}, false},
 
 		{IsM128, Mem{Base: reg.RBX, Index: reg.R12, Scale: 2}, true},
-		{IsM128, Mem{Base: reg.R13L}, false},
+		{IsM128, Mem{Base: reg.X0}, false},
 
 		{IsM256, Mem{Base: reg.RBX, Index: reg.R12, Scale: 2}, true},
-		{IsM256, Mem{Base: reg.R13L}, false},
+		{IsM256, Mem{Base: reg.X0}, false},
 
 		// Argument references (special cases of memory operands)
 		{IsM, NewParamAddr("foo", 4), true},
