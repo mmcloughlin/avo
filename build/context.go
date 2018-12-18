@@ -2,6 +2,7 @@ package build
 
 import (
 	"errors"
+	"go/types"
 
 	"github.com/mmcloughlin/avo"
 	"github.com/mmcloughlin/avo/gotypes"
@@ -53,12 +54,19 @@ func (c *Context) Signature(s *gotypes.Signature) {
 }
 
 func (c *Context) SignatureExpr(expr string) {
-	s, err := gotypes.ParseSignatureInPackage(c.pkg.Types, expr)
+	s, err := gotypes.ParseSignatureInPackage(c.types(), expr)
 	if err != nil {
 		c.AddError(err)
 		return
 	}
 	c.Signature(s)
+}
+
+func (c *Context) types() *types.Package {
+	if c.pkg == nil {
+		return nil
+	}
+	return c.pkg.Types
 }
 
 func (c *Context) Instruction(i *avo.Instruction) {
