@@ -2,6 +2,7 @@ package gotypes
 
 import (
 	"errors"
+	"fmt"
 	"go/token"
 	"go/types"
 	"strconv"
@@ -24,9 +25,14 @@ type Component interface {
 	Real() Component
 	Imag() Component
 	Index(int) Component
+	Field(string) Component
 }
 
 type componenterr string
+
+func errorf(format string, args ...interface{}) Component {
+	return componenterr(fmt.Sprintf(format, args...))
+}
 
 func (c componenterr) Error() string            { return string(c) }
 func (c componenterr) Resolve() (*Basic, error) { return nil, c }
@@ -36,6 +42,7 @@ func (c componenterr) Cap() Component           { return c }
 func (c componenterr) Real() Component          { return c }
 func (c componenterr) Imag() Component          { return c }
 func (c componenterr) Index(int) Component      { return c }
+func (c componenterr) Field(string) Component   { return c }
 
 type component struct {
 	name   string
@@ -82,28 +89,28 @@ var slicehdroffsets = Sizes.Offsetsof([]*types.Var{
 
 func (c *component) Base() Component {
 	if !isslice(c.typ) && !isstring(c.typ) {
-		return componenterr("only slices and strings have base pointers")
+		return errorf("only slices and strings have base pointers")
 	}
 	return c.sub("_base", int(slicehdroffsets[0]), types.Typ[types.Uintptr])
 }
 
 func (c *component) Len() Component {
 	if !isslice(c.typ) && !isstring(c.typ) {
-		return componenterr("only slices and strings have length fields")
+		return errorf("only slices and strings have length fields")
 	}
 	return c.sub("_len", int(slicehdroffsets[1]), types.Typ[types.Int])
 }
 
 func (c *component) Cap() Component {
 	if !isslice(c.typ) {
-		return componenterr("only slices have capacity fields")
+		return errorf("only slices have capacity fields")
 	}
 	return c.sub("_cap", int(slicehdroffsets[2]), types.Typ[types.Int])
 }
 
 func (c *component) Real() Component {
 	if !iscomplex(c.typ) {
-		return componenterr("only complex types have real values")
+		return errorf("only complex types have real values")
 	}
 	f := complextofloat(c.typ)
 	return c.sub("_real", 0, f)
@@ -111,7 +118,7 @@ func (c *component) Real() Component {
 
 func (c *component) Imag() Component {
 	if !iscomplex(c.typ) {
-		return componenterr("only complex types have imaginary values")
+		return errorf("only complex types have imaginary values")
 	}
 	f := complextofloat(c.typ)
 	return c.sub("_imag", int(Sizes.Sizeof(f)), f)
@@ -120,10 +127,10 @@ func (c *component) Imag() Component {
 func (c *component) Index(i int) Component {
 	a, ok := c.typ.(*types.Array)
 	if !ok {
-		return componenterr("not array type")
+		return errorf("not array type")
 	}
 	if int64(i) >= a.Len() {
-		return componenterr("array index out of bounds")
+		return errorf("array index out of bounds")
 	}
 	// Reference: https://github.com/golang/tools/blob/bcd4e47d02889ebbc25c9f4bf3d27e4124b0bf9d/go/analysis/passes/asmdecl/asmdecl.go#L482-L494
 	//
@@ -146,6 +153,37 @@ func (c *component) Index(i int) Component {
 	return c.sub("_"+strconv.Itoa(i), i*elemsize, elem)
 }
 
+func (c *component) Field(n string) Component {
+	s, ok := c.typ.Underlying().(*types.Struct)
+	if !ok {
+		return errorf("not struct type")
+	}
+	// Reference: https://github.com/golang/tools/blob/13ba8ad772dfbf0f451b5dd0679e9c5605afc05d/go/analysis/passes/asmdecl/asmdecl.go#L471-L480
+	//
+	//		case asmStruct:
+	//			tu := t.Underlying().(*types.Struct)
+	//			fields := make([]*types.Var, tu.NumFields())
+	//			for i := 0; i < tu.NumFields(); i++ {
+	//				fields[i] = tu.Field(i)
+	//			}
+	//			offsets := arch.sizes.Offsetsof(fields)
+	//			for i, f := range fields {
+	//				cc = appendComponentsRecursive(arch, f.Type(), cc, suffix+"_"+f.Name(), off+int(offsets[i]))
+	//			}
+	//
+	fields := make([]*types.Var, s.NumFields())
+	for i := 0; i < s.NumFields(); i++ {
+		fields[i] = s.Field(i)
+	}
+	offsets := Sizes.Offsetsof(fields)
+	for i, f := range fields {
+		if f.Name() == n {
+			return c.sub("_"+n, int(offsets[i]), f.Type())
+		}
+	}
+	return errorf("struct does not have field '%s'", n)
+}
+
 func (c *component) sub(suffix string, offset int, t types.Type) *component {
 	s := *c
 	s.name += suffix
@@ -153,9 +191,6 @@ func (c *component) sub(suffix string, offset int, t types.Type) *component {
 	s.typ = t
 	return &s
 }
-
-// TODO(mbm): gotypes.Component handling for structs
-// TODO(mbm): gotypes.Component handling for complex64/128
 
 func isslice(t types.Type) bool {
 	_, ok := t.(*types.Slice)
