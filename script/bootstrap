@@ -1,7 +1,9 @@
 #!/bin/bash -ex
 
-# We intend that the x86 arch sub-repo should be the only dependency.
-go get -v -u golang.org/x/arch/x86/...
+# Limit dependencies to golang.org/x repos
+go get -u \
+    golang.org/x/arch/x86/... \
+    golang.org/x/tools/go/...
 
 # Install golangci-lint
 golangci_lint_version='v1.12.3'

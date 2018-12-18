@@ -20,4 +20,4 @@ linters-settings:
     list-type: whitelist
     packages:
       - github.com/mmcloughlin/avo
-      - golang.org/x/arch/x86
+      - golang.org/x/
