@@ -6,9 +6,11 @@ import (
 	"github.com/mmcloughlin/avo"
 	"github.com/mmcloughlin/avo/gotypes"
 	"github.com/mmcloughlin/avo/reg"
+	"golang.org/x/tools/go/packages"
 )
 
 type Context struct {
+	pkg      *packages.Package
 	file     *avo.File
 	function *avo.Function
 	errs     []error
@@ -22,6 +24,25 @@ func NewContext() *Context {
 	}
 }
 
+func (c *Context) Package(path string) {
+	cfg := &packages.Config{
+		Mode: packages.LoadTypes,
+	}
+	pkgs, err := packages.Load(cfg, path)
+	if err != nil {
+		c.AddError(err)
+		return
+	}
+	pkg := pkgs[0]
+	if len(pkg.Errors) > 0 {
+		for _, err := range pkg.Errors {
+			c.AddError(err)
+		}
+		return
+	}
+	c.pkg = pkg
+}
+
 func (c *Context) Function(name string) {
 	c.function = avo.NewFunction(name)
 	c.file.Functions = append(c.file.Functions, c.function)
@@ -32,7 +53,7 @@ func (c *Context) Signature(s *gotypes.Signature) {
 }
 
 func (c *Context) SignatureExpr(expr string) {
-	s, err := gotypes.ParseSignature(expr)
+	s, err := gotypes.ParseSignatureInPackage(c.pkg.Types, expr)
 	if err != nil {
 		c.AddError(err)
 		return

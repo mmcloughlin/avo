@@ -10,13 +10,15 @@ import (
 )
 
 type Signature struct {
+	pkg     *types.Package
 	sig     *types.Signature
 	params  *Tuple
 	results *Tuple
 }
 
-func NewSignature(sig *types.Signature) *Signature {
+func NewSignature(pkg *types.Package, sig *types.Signature) *Signature {
 	s := &Signature{
+		pkg: pkg,
 		sig: sig,
 	}
 	s.init()
@@ -24,11 +26,15 @@ func NewSignature(sig *types.Signature) *Signature {
 }
 
 func NewSignatureVoid() *Signature {
-	return NewSignature(types.NewSignature(nil, nil, nil, false))
+	return NewSignature(nil, types.NewSignature(nil, nil, nil, false))
 }
 
 func ParseSignature(expr string) (*Signature, error) {
-	tv, err := types.Eval(token.NewFileSet(), nil, token.NoPos, expr)
+	return ParseSignatureInPackage(nil, expr)
+}
+
+func ParseSignatureInPackage(pkg *types.Package, expr string) (*Signature, error) {
+	tv, err := types.Eval(token.NewFileSet(), pkg, token.NoPos, expr)
 	if err != nil {
 		return nil, err
 	}
@@ -39,7 +45,7 @@ func ParseSignature(expr string) (*Signature, error) {
 	if !ok {
 		return nil, errors.New("provided type is not a function signature")
 	}
-	return NewSignature(s), nil
+	return NewSignature(pkg, s), nil
 }
 
 func (s *Signature) Params() *Tuple { return s.params }
@@ -50,7 +56,7 @@ func (s *Signature) Bytes() int { return s.Params().Bytes() + s.Results().Bytes(
 
 func (s *Signature) String() string {
 	var buf bytes.Buffer
-	types.WriteSignature(&buf, s.sig, nil)
+	types.WriteSignature(&buf, s.sig, types.RelativeTo(s.pkg))
 	return buf.String()
 }
 

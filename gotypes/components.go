@@ -56,12 +56,13 @@ func NewComponentFromVar(v *types.Var, offset int) Component {
 }
 
 func (c *component) Resolve() (*Basic, error) {
-	if !isprimitive(c.typ) {
+	b := toprimitive(c.typ)
+	if b == nil {
 		return nil, errors.New("component is not primitive")
 	}
 	return &Basic{
 		Addr: operand.NewParamAddr(c.name, c.offset),
-		Type: c.typ.(*types.Basic),
+		Type: b,
 	}, nil
 }
 
@@ -181,8 +182,17 @@ func complextofloat(t types.Type) types.Type {
 	panic("bad")
 }
 
-// isprimitive returns true if the type cannot be broken into components.
-func isprimitive(t types.Type) bool {
-	b, ok := t.(*types.Basic)
-	return ok && (b.Info()&(types.IsString|types.IsComplex)) == 0
+// toprimitive determines whether t is primitive (cannot be reduced into
+// components). If it is, it returns the basic type for t, otherwise returns
+// nil.
+func toprimitive(t types.Type) *types.Basic {
+	switch b := t.(type) {
+	case *types.Basic:
+		if (b.Info() & (types.IsString | types.IsComplex)) == 0 {
+			return b
+		}
+	case *types.Pointer:
+		return types.Typ[types.Uintptr]
+	}
+	return nil
 }

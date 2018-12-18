@@ -14,6 +14,8 @@ import (
 // ctx provides a global build context.
 var ctx = NewContext()
 
+func Package(path string) { ctx.Package(path) }
+
 func TEXT(name, signature string) {
 	ctx.Function(name)
 	ctx.SignatureExpr(signature)
