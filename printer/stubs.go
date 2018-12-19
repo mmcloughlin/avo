@@ -15,8 +15,11 @@ func NewStubs(cfg Config) Printer {
 }
 
 func (s *stubs) Print(f *avo.File) ([]byte, error) {
-	s.Printf("package %s\n\n", s.cfg.Pkg)
+	s.Comment(s.cfg.GeneratedWarning())
+	s.NL()
+	s.Printf("package %s\n", s.cfg.Pkg)
 	for _, fn := range f.Functions {
+		s.NL()
 		s.Printf("%s\n", fn.Stub())
 	}
 	return s.Result()

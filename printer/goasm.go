@@ -29,6 +29,7 @@ func (p *goasm) Print(f *avo.File) ([]byte, error) {
 }
 
 func (p *goasm) header() {
+	p.Comment(p.cfg.GeneratedWarning())
 	p.NL()
 	p.include("textflag.h")
 }

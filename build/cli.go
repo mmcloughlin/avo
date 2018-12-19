@@ -58,7 +58,7 @@ func NewFlags(fs *flag.FlagSet) *Flags {
 }
 
 func (f *Flags) Config() *Config {
-	pc := printer.NewDefaultConfig()
+	pc := printer.NewGoRunConfig()
 	passes := []pass.Interface{pass.Compile}
 	for _, pv := range f.printers {
 		p := pv.Build(pc)

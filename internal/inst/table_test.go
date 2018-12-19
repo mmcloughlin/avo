@@ -71,7 +71,7 @@ func TestInstructionProperties(t *testing.T) {
 }
 
 func TestAssembles(t *testing.T) {
-	g := gen.NewAsmTest(printer.NewDefaultConfig())
+	g := gen.NewAsmTest(printer.NewArgvConfig())
 	b, err := g.Generate(inst.Instructions)
 	if err != nil {
 		t.Fatal(err)

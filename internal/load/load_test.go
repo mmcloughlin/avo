@@ -22,7 +22,7 @@ func Load(t *testing.T) []inst.Instruction {
 
 func TestAssembles(t *testing.T) {
 	is := Load(t)
-	g := gen.NewAsmTest(printer.NewDefaultConfig())
+	g := gen.NewAsmTest(printer.NewArgvConfig())
 	b, err := g.Generate(is)
 	if err != nil {
 		t.Fatal(err)

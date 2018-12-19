@@ -46,7 +46,7 @@ func main() {
 		log.Fatalf("unknown generator type '%s'", t)
 	}
 
-	g := builder(printer.NewDefaultConfig())
+	g := builder(printer.NewArgvConfig())
 
 	// Determine output writer.
 	w := os.Stdout
