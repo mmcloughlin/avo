@@ -9,6 +9,26 @@ import (
 func main() {
 	Package("github.com/mmcloughlin/avo/examples/components")
 
+	TEXT("StringLen", "func(s string) int")
+	strlen := Load(Param("s").Len(), GP64v())
+	Store(strlen, ReturnIndex(0))
+	RET()
+
+	TEXT("SliceLen", "func(s []int) int")
+	slicelen := Load(Param("s").Len(), GP64v())
+	Store(slicelen, ReturnIndex(0))
+	RET()
+
+	TEXT("SliceCap", "func(s []int) int")
+	slicecap := Load(Param("s").Cap(), GP64v())
+	Store(slicecap, ReturnIndex(0))
+	RET()
+
+	TEXT("ArrayThree", "func(a [7]uint64) uint64")
+	a3 := Load(Param("a").Index(3), GP64v())
+	Store(a3, ReturnIndex(0))
+	RET()
+
 	TEXT("FieldByte", "func(s Struct) byte")
 	b := Load(Param("s").Field("Byte"), GP8v())
 	Store(b, ReturnIndex(0))

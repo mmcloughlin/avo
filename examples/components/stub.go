@@ -2,6 +2,14 @@
 
 package components
 
+func StringLen(s string) int
+
+func SliceLen(s []int) int
+
+func SliceCap(s []int) int
+
+func ArrayThree(a [7]uint64) uint64
+
 func FieldByte(s Struct) byte
 
 func FieldInt8(s Struct) int8

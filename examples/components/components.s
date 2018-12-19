@@ -2,6 +2,30 @@
 
 #include "textflag.h"
 
+// func StringLen(s string) int
+TEXT ·StringLen(SB),0,$0-24
+	MOVQ	s_len+8(FP), AX
+	MOVQ	AX, ret+16(FP)
+	RET
+
+// func SliceLen(s []int) int
+TEXT ·SliceLen(SB),0,$0-32
+	MOVQ	s_len+8(FP), AX
+	MOVQ	AX, ret+24(FP)
+	RET
+
+// func SliceCap(s []int) int
+TEXT ·SliceCap(SB),0,$0-32
+	MOVQ	s_cap+16(FP), AX
+	MOVQ	AX, ret+24(FP)
+	RET
+
+// func ArrayThree(a [7]uint64) uint64
+TEXT ·ArrayThree(SB),0,$0-64
+	MOVQ	a_3+24(FP), AX
+	MOVQ	AX, ret+56(FP)
+	RET
+
 // func FieldByte(s Struct) byte
 TEXT ·FieldByte(SB),0,$0-184
 	MOVB	s_Byte(FP), AL
