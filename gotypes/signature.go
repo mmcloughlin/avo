@@ -64,15 +64,21 @@ func (s *Signature) init() {
 	p := s.sig.Params()
 	r := s.sig.Results()
 
-	// Compute offsets of parameters and return values.
+	// Compute parameter offsets.
 	vs := tuplevars(p)
-	vs = append(vs, tuplevars(r)...)
 	vs = append(vs, types.NewParam(token.NoPos, nil, "sentinel", types.Typ[types.Uint64]))
-	offsets := Sizes.Offsetsof(vs)
+	paramsoffsets := Sizes.Offsetsof(vs)
+	paramssize := paramsoffsets[p.Len()]
+	s.params = newTuple(p, paramsoffsets, paramssize, "arg")
 
-	// Build components for them.
-	s.params = newTuple(p, offsets, "arg")
-	s.results = newTuple(r, offsets[p.Len():], "ret")
+	// Result offsets.
+	vs = tuplevars(r)
+	resultsoffsets := Sizes.Offsetsof(vs)
+	for i := range resultsoffsets {
+		resultsoffsets[i] += paramssize
+	}
+	resultssize := Sizes.Sizeof(types.NewStruct(vs, nil))
+	s.results = newTuple(r, resultsoffsets, resultssize, "ret")
 }
 
 type Tuple struct {
@@ -81,10 +87,10 @@ type Tuple struct {
 	size       int
 }
 
-func newTuple(t *types.Tuple, offsets []int64, defaultprefix string) *Tuple {
+func newTuple(t *types.Tuple, offsets []int64, size int64, defaultprefix string) *Tuple {
 	tuple := &Tuple{
 		byname: map[string]Component{},
-		size:   int(offsets[t.Len()] - offsets[0]),
+		size:   int(size),
 	}
 	for i := 0; i < t.Len(); i++ {
 		v := t.At(i)

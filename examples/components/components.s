@@ -27,25 +27,25 @@ TEXT ·ArrayThree(SB),0,$0-64
 	RET
 
 // func FieldByte(s Struct) byte
-TEXT ·FieldByte(SB),0,$0-184
+TEXT ·FieldByte(SB),0,$0-177
 	MOVB	s_Byte(FP), AL
 	MOVB	AL, ret+176(FP)
 	RET
 
 // func FieldInt8(s Struct) int8
-TEXT ·FieldInt8(SB),0,$0-184
+TEXT ·FieldInt8(SB),0,$0-177
 	MOVB	s_Int8+1(FP), AL
 	MOVB	AL, ret+176(FP)
 	RET
 
 // func FieldUint16(s Struct) uint16
-TEXT ·FieldUint16(SB),0,$0-184
+TEXT ·FieldUint16(SB),0,$0-178
 	MOVW	s_Uint16+2(FP), AX
 	MOVW	AX, ret+176(FP)
 	RET
 
 // func FieldInt32(s Struct) int32
-TEXT ·FieldInt32(SB),0,$0-184
+TEXT ·FieldInt32(SB),0,$0-180
 	MOVL	s_Int32+4(FP), AX
 	MOVL	AX, ret+176(FP)
 	RET
@@ -57,7 +57,7 @@ TEXT ·FieldUint64(SB),0,$0-184
 	RET
 
 // func FieldFloat32(s Struct) float32
-TEXT ·FieldFloat32(SB),0,$0-184
+TEXT ·FieldFloat32(SB),0,$0-180
 	MOVSS	s_Float32+16(FP), X0
 	MOVSS	X0, ret+176(FP)
 	RET
@@ -81,19 +81,19 @@ TEXT ·FieldSliceCap(SB),0,$0-184
 	RET
 
 // func FieldArrayTwoBTwo(s Struct) byte
-TEXT ·FieldArrayTwoBTwo(SB),0,$0-184
+TEXT ·FieldArrayTwoBTwo(SB),0,$0-177
 	MOVB	s_Array_2_B_2+114(FP), AL
 	MOVB	AL, ret+176(FP)
 	RET
 
 // func FieldArrayOneC(s Struct) uint16
-TEXT ·FieldArrayOneC(SB),0,$0-184
+TEXT ·FieldArrayOneC(SB),0,$0-178
 	MOVW	s_Array_1_C+100(FP), AX
 	MOVW	AX, ret+176(FP)
 	RET
 
 // func FieldComplex64Imag(s Struct) float32
-TEXT ·FieldComplex64Imag(SB),0,$0-184
+TEXT ·FieldComplex64Imag(SB),0,$0-180
 	MOVSS	s_Complex64_imag+156(FP), X0
 	MOVSS	X0, ret+176(FP)
 	RET

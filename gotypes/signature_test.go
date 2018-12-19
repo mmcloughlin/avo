@@ -93,3 +93,23 @@ func TypesTuplesEqual(a, b *types.Tuple) bool {
 func TypesVarsEqual(a, b *types.Var) bool {
 	return a.Name() == b.Name() && types.Identical(a.Type(), b.Type())
 }
+
+func TestSignatureSizes(t *testing.T) {
+	cases := []struct {
+		Expr    string
+		ArgSize int
+	}{
+		{"func()", 0},
+		{"func(uint64) uint64", 16},
+		{"func([7]byte) byte", 9},
+	}
+	for _, c := range cases {
+		s, err := ParseSignature(c.Expr)
+		if err != nil {
+			t.Fatal(err)
+		}
+		if s.Bytes() != c.ArgSize {
+			t.Errorf("%s: size %d expected %d", s, s.Bytes(), c.ArgSize)
+		}
+	}
+}
