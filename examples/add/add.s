@@ -7,4 +7,4 @@ TEXT ·Add(SB),0,$0-24
 	MOVQ	y+8(FP), CX
 	ADDQ	AX, CX
 	MOVQ	CX, ret+16(FP)
-	RET	
+	RET

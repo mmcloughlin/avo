@@ -18,4 +18,4 @@ loop:
 	JMP	loop
 done:
 	MOVQ	AX, ret+24(FP)
-	RET	
+	RET

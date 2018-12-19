@@ -31,7 +31,6 @@ func (p *goasm) Print(f *avo.File) ([]byte, error) {
 func (p *goasm) header() {
 	p.NL()
 	p.include("textflag.h")
-	p.NL()
 }
 
 func (p *goasm) include(path string) {
@@ -39,13 +38,18 @@ func (p *goasm) include(path string) {
 }
 
 func (p *goasm) function(f *avo.Function) {
+	p.NL()
 	p.Comment(f.Stub())
 	p.Printf("TEXT %s%s(SB),0,$%d-%d\n", dot, f.Name, f.FrameBytes(), f.ArgumentBytes())
 
 	for _, node := range f.Nodes {
 		switch n := node.(type) {
 		case *avo.Instruction:
-			p.Printf("\t%s\t%s\n", n.Opcode, joinOperands(n.Operands))
+			if len(n.Operands) > 0 {
+				p.Printf("\t%s\t%s\n", n.Opcode, joinOperands(n.Operands))
+			} else {
+				p.Printf("\t%s\n", n.Opcode)
+			}
 		case avo.Label:
 			p.Printf("%s:\n", n)
 		default:
