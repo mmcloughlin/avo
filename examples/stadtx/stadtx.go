@@ -1,4 +1,4 @@
-// Downloaded from 'https://github.com/dgryski/go-stadtx/raw/3c3d9b328c24a9b5ecd370654cd6e9d60a85752d/stadtx.go'. DO NOT EDIT.
+// Downloaded from https://github.com/dgryski/go-stadtx/raw/3c3d9b328c24a9b5ecd370654cd6e9d60a85752d/stadtx.go
 
 // Package stadtx implements Stadtx Hash
 /*
