@@ -3,7 +3,6 @@ package gotypes
 import (
 	"bytes"
 	"errors"
-	"fmt"
 	"go/token"
 	"go/types"
 	"strconv"
@@ -113,12 +112,17 @@ func newTuple(t *types.Tuple, offsets []int64, size int64, defaultprefix string)
 func (t *Tuple) Lookup(name string) Component {
 	e := t.byname[name]
 	if e == nil {
-		return componenterr(fmt.Sprintf("unknown variable \"%s\"", name))
+		return errorf("unknown variable \"%s\"", name)
 	}
 	return e
 }
 
-func (t *Tuple) At(i int) Component { return t.components[i] }
+func (t *Tuple) At(i int) Component {
+	if i >= len(t.components) {
+		return errorf("index out of range")
+	}
+	return t.components[i]
+}
 
 func (t *Tuple) Bytes() int { return t.size }
 
