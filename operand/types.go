@@ -44,6 +44,19 @@ func NewParamAddr(name string, offset int) Mem {
 	}
 }
 
+func NewStackAddr(offset int) Mem {
+	return Mem{
+		Disp: offset,
+		Base: reg.StackPointer,
+	}
+}
+
+func (m Mem) Idx(idx int) Mem {
+	a := m
+	a.Disp += idx
+	return a
+}
+
 func (m Mem) Asm() string {
 	a := m.Symbol.String()
 	if m.Disp != 0 {

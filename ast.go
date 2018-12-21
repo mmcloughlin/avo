@@ -10,15 +10,6 @@ type Asm interface {
 	Asm() string
 }
 
-// GoType represents a Golang type.
-type GoType interface{}
-
-// Parameter represents a parameter to an assembly function.
-type Parameter struct {
-	Name string
-	Type GoType
-}
-
 type Operand interface {
 	Asm
 }
@@ -112,6 +103,7 @@ func NewFile() *File {
 type Function struct {
 	Name      string
 	Signature *gotypes.Signature
+	LocalSize int
 
 	Nodes []Node
 
@@ -131,6 +123,12 @@ func NewFunction(name string) *Function {
 
 func (f *Function) SetSignature(s *gotypes.Signature) {
 	f.Signature = s
+}
+
+func (f *Function) AllocLocal(size int) operand.Mem {
+	ptr := operand.NewStackAddr(f.LocalSize)
+	f.LocalSize += size
+	return ptr
 }
 
 func (f *Function) AddInstruction(i *Instruction) {
@@ -164,8 +162,7 @@ func (f *Function) Stub() string {
 
 // FrameBytes returns the size of the stack frame in bytes.
 func (f *Function) FrameBytes() int {
-	// TODO(mbm): implement Function.FrameBytes()
-	return 0
+	return f.LocalSize
 }
 
 // ArgumentBytes returns the size of the arguments in bytes.

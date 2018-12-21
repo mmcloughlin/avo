@@ -5,6 +5,7 @@ import (
 	"os"
 
 	"github.com/mmcloughlin/avo/gotypes"
+	"github.com/mmcloughlin/avo/operand"
 
 	"github.com/mmcloughlin/avo/reg"
 
@@ -47,3 +48,5 @@ func ReturnIndex(i int) gotypes.Component  { return ctx.ReturnIndex(i) }
 
 func Load(src gotypes.Component, dst reg.Register) reg.Register { return ctx.Load(src, dst) }
 func Store(src reg.Register, dst gotypes.Component)             { ctx.Store(src, dst) }
+
+func AllocLocal(size int) operand.Mem { return ctx.AllocLocal(size) }

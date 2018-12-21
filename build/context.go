@@ -6,6 +6,7 @@ import (
 
 	"github.com/mmcloughlin/avo"
 	"github.com/mmcloughlin/avo/gotypes"
+	"github.com/mmcloughlin/avo/operand"
 	"github.com/mmcloughlin/avo/reg"
 	"golang.org/x/tools/go/packages"
 )
@@ -67,6 +68,10 @@ func (c *Context) types() *types.Package {
 		return nil
 	}
 	return c.pkg.Types
+}
+
+func (c *Context) AllocLocal(size int) operand.Mem {
+	return c.activefunc().AllocLocal(size)
 }
 
 func (c *Context) Instruction(i *avo.Instruction) {
