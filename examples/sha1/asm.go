@@ -5,7 +5,7 @@ package main
 import (
 	. "github.com/mmcloughlin/avo/build"
 	. "github.com/mmcloughlin/avo/operand"
-	"github.com/mmcloughlin/avo/reg"
+	. "github.com/mmcloughlin/avo/reg"
 )
 
 func main() {
@@ -37,7 +37,7 @@ func main() {
 
 	// Generate round updates.
 	quarter := []struct {
-		F func(reg.Register, reg.Register, reg.Register) reg.Register
+		F func(Register, Register, Register) Register
 		K uint32
 	}{
 		{choose, 0x5a827999},
@@ -95,7 +95,7 @@ func main() {
 	Generate()
 }
 
-func choose(b, c, d reg.Register) reg.Register {
+func choose(b, c, d Register) Register {
 	r := GP32v()
 	MOVL(d, r)
 	XORL(c, r)
@@ -104,7 +104,7 @@ func choose(b, c, d reg.Register) reg.Register {
 	return r
 }
 
-func xor(b, c, d reg.Register) reg.Register {
+func xor(b, c, d Register) Register {
 	r := GP32v()
 	MOVL(b, r)
 	XORL(c, r)
@@ -112,7 +112,7 @@ func xor(b, c, d reg.Register) reg.Register {
 	return r
 }
 
-func majority(b, c, d reg.Register) reg.Register {
+func majority(b, c, d Register) Register {
 	t, r := GP32v(), GP32v()
 	MOVL(b, t)
 	ORL(c, t)

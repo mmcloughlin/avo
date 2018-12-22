@@ -1,26 +1,46 @@
 package sha1
 
 import (
-	"log"
-	"reflect"
+	"bytes"
+	"crypto/sha1"
+	"encoding/hex"
 	"testing"
+	"testing/quick"
 )
 
 //go:generate go run asm.go -out sha1.s -stubs stub.go
 
-func TestEmptyString(t *testing.T) {
-	h := [...]uint32{0x67452301, 0xefcdab89, 0x98badcfe, 0x10325476, 0xc3d2e1f0}
-	m := make([]byte, 64)
-	m[0] = 0x80
-
-	block(&h, m)
-
-	expect := [...]uint32{0xda39a3ee, 0x5e6b4b0d, 0x3255bfef, 0x95601890, 0xafd80709}
-
-	for i := 0; i < 5; i++ {
-		log.Printf("h[%d] = %08x", i, h[i])
+func TestVectors(t *testing.T) {
+	cases := []struct {
+		Data      string
+		HexDigest string
+	}{
+		{"", "da39a3ee5e6b4b0d3255bfef95601890afd80709"},
+		{"The quick brown fox jumps over the lazy dog", "2fd4e1c67a2d28fced849ee1bb76e7391b93eb12"},
+		{"The quick brown fox jumps over the lazy cog", "de9f2c7fd25e1b3afad3e85a0bd17d9b100db4b3"},
 	}
-	if !reflect.DeepEqual(expect, h) {
-		t.Fatal("incorrect hash")
+	for _, c := range cases {
+		digest := Sum([]byte(c.Data))
+		got := hex.EncodeToString(digest[:])
+		if got != c.HexDigest {
+			t.Errorf("Sum(%#v) = %s; expect %s", c.Data, got, c.HexDigest)
+		}
+	}
+}
+
+func TestCmp(t *testing.T) {
+	if err := quick.CheckEqual(Sum, sha1.Sum, nil); err != nil {
+		t.Fatal(err)
+	}
+}
+
+func TestLengths(t *testing.T) {
+	data := make([]byte, BlockSize)
+	for n := 0; n <= BlockSize; n++ {
+		got := Sum(data[:n])
+		expect := sha1.Sum(data[:n])
+		if !bytes.Equal(got[:], expect[:]) {
+			t.Errorf("failed on length %d", n)
+		}
 	}
 }
