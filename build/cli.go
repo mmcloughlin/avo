@@ -5,18 +5,29 @@ import (
 	"io"
 	"log"
 	"os"
+	"runtime/pprof"
 
 	"github.com/mmcloughlin/avo/pass"
 	"github.com/mmcloughlin/avo/printer"
 )
 
 type Config struct {
-	ErrOut io.Writer
-	Passes []pass.Interface
+	ErrOut     io.Writer
+	CPUProfile io.WriteCloser
+	Passes     []pass.Interface
 }
 
 func Main(cfg *Config, context *Context) int {
 	diag := log.New(cfg.ErrOut, "", 0)
+
+	if cfg.CPUProfile != nil {
+		defer cfg.CPUProfile.Close()
+		if err := pprof.StartCPUProfile(cfg.CPUProfile); err != nil {
+			diag.Println("could not start CPU profile: ", err)
+			return 1
+		}
+		defer pprof.StopCPUProfile()
+	}
 
 	f, errs := context.Result()
 	if errs != nil {
@@ -37,6 +48,7 @@ func Main(cfg *Config, context *Context) int {
 
 type Flags struct {
 	errout   *outputValue
+	cpuprof  *outputValue
 	printers []*printerValue
 }
 
@@ -45,6 +57,9 @@ func NewFlags(fs *flag.FlagSet) *Flags {
 
 	f.errout = newOutputValue(os.Stderr)
 	fs.Var(f.errout, "log", "diagnostics output")
+
+	f.cpuprof = newOutputValue(nil)
+	fs.Var(f.cpuprof, "cpuprofile", "write cpu profile to `file`")
 
 	goasm := newPrinterValue(printer.NewGoAsm, os.Stdout)
 	fs.Var(goasm, "out", "assembly output")
@@ -67,8 +82,9 @@ func (f *Flags) Config() *Config {
 		}
 	}
 	return &Config{
-		ErrOut: f.errout.w,
-		Passes: passes,
+		ErrOut:     f.errout.w,
+		CPUProfile: f.cpuprof.w,
+		Passes:     passes,
 	}
 }
 
