@@ -15,9 +15,15 @@ func Liveness(fn *avo.Function) error {
 
 	is := fn.Instructions()
 
-	// Initialize to empty sets.
+	// Process instructions in reverse: poor approximation to topological sort.
+	// TODO(mbm): process instructions in topological sort order
+	for l, r := 0, len(is)-1; l < r; l, r = l+1, r-1 {
+		is[l], is[r] = is[r], is[l]
+	}
+
+	// Initialize.
 	for _, i := range is {
-		i.LiveIn = reg.NewEmptySet()
+		i.LiveIn = reg.NewSetFromSlice(i.InputRegisters())
 		i.LiveOut = reg.NewEmptySet()
 	}
 
@@ -26,15 +32,6 @@ func Liveness(fn *avo.Function) error {
 		changes := false
 
 		for _, i := range is {
-			// in[n] = use[n] UNION (out[n] - def[n])
-			nin := len(i.LiveIn)
-			i.LiveIn.Update(reg.NewSetFromSlice(i.InputRegisters()))
-			def := reg.NewSetFromSlice(i.OutputRegisters())
-			i.LiveIn.Update(i.LiveOut.Difference(def))
-			if len(i.LiveIn) != nin {
-				changes = true
-			}
-
 			// out[n] = UNION[s IN succ[n]] in[s]
 			nout := len(i.LiveOut)
 			for _, s := range i.Succ {
@@ -44,6 +41,19 @@ func Liveness(fn *avo.Function) error {
 				i.LiveOut.Update(s.LiveIn)
 			}
 			if len(i.LiveOut) != nout {
+				changes = true
+			}
+
+			// in[n] = use[n] UNION (out[n] - def[n])
+			nin := len(i.LiveIn)
+			def := reg.NewSetFromSlice(i.OutputRegisters())
+			i.LiveIn.Update(i.LiveOut.Difference(def))
+			for r := range i.LiveOut {
+				if _, found := def[r]; !found {
+					i.LiveIn.Add(r)
+				}
+			}
+			if len(i.LiveIn) != nin {
 				changes = true
 			}
 		}
