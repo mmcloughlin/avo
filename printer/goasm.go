@@ -22,8 +22,13 @@ func NewGoAsm(cfg Config) Printer {
 
 func (p *goasm) Print(f *avo.File) ([]byte, error) {
 	p.header()
-	for _, fn := range f.Functions {
-		p.function(fn)
+	for _, s := range f.Sections {
+		switch s := s.(type) {
+		case *avo.Function:
+			p.function(s)
+		default:
+			panic("unknown section type")
+		}
 	}
 	return p.Result()
 }

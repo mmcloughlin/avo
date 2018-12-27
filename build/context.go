@@ -47,7 +47,7 @@ func (c *Context) Package(path string) {
 
 func (c *Context) Function(name string) {
 	c.function = avo.NewFunction(name)
-	c.file.Functions = append(c.file.Functions, c.function)
+	c.file.Sections = append(c.file.Sections, c.function)
 }
 
 func (c *Context) Signature(s *gotypes.Signature) {

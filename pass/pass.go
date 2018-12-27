@@ -29,7 +29,7 @@ func (p Func) Execute(f *avo.File) error {
 type FunctionPass func(*avo.Function) error
 
 func (p FunctionPass) Execute(f *avo.File) error {
-	for _, fn := range f.Functions {
+	for _, fn := range f.Functions() {
 		if err := p(fn); err != nil {
 			return err
 		}

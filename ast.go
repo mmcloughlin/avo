@@ -10,10 +10,6 @@ type Asm interface {
 	Asm() string
 }
 
-type Operand interface {
-	Asm
-}
-
 type Node interface {
 	node()
 }
@@ -90,13 +86,27 @@ func (i Instruction) OutputRegisters() []reg.Register {
 	return rs
 }
 
+type Section interface {
+	section()
+}
+
 // File represents an assembly file.
 type File struct {
-	Functions []*Function
+	Sections []Section
 }
 
 func NewFile() *File {
 	return &File{}
+}
+
+func (f *File) Functions() []*Function {
+	var fns []*Function
+	for _, s := range f.Sections {
+		if fn, ok := s.(*Function); ok {
+			fns = append(fns, fn)
+		}
+	}
+	return fns
 }
 
 // Function represents an assembly function.
@@ -113,6 +123,8 @@ type Function struct {
 	// Register allocation.
 	Allocation reg.Allocation
 }
+
+func (f Function) section() {}
 
 func NewFunction(name string) *Function {
 	return &Function{

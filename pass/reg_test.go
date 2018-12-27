@@ -65,10 +65,11 @@ func ConstructLiveness(t *testing.T, ctx *build.Context) *avo.Function {
 		t.FailNow()
 	}
 
-	if len(f.Functions) != 1 {
+	fns := f.Functions()
+	if len(fns) != 1 {
 		t.Fatalf("expect 1 function")
 	}
-	fn := f.Functions[0]
+	fn := fns[0]
 
 	passes := []func(*avo.Function) error{
 		pass.LabelTarget,

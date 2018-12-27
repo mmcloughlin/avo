@@ -18,7 +18,7 @@ func (s *stubs) Print(f *avo.File) ([]byte, error) {
 	s.Comment(s.cfg.GeneratedWarning())
 	s.NL()
 	s.Printf("package %s\n", s.cfg.Pkg)
-	for _, fn := range f.Functions {
+	for _, fn := range f.Functions() {
 		s.NL()
 		s.Printf("%s\n", fn.Stub())
 	}
