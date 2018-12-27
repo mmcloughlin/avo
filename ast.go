@@ -1,6 +1,8 @@
 package avo
 
 import (
+	"errors"
+
 	"github.com/mmcloughlin/avo/gotypes"
 	"github.com/mmcloughlin/avo/operand"
 	"github.com/mmcloughlin/avo/reg"
@@ -99,6 +101,10 @@ func NewFile() *File {
 	return &File{}
 }
 
+func (f *File) AddSection(s Section) {
+	f.Sections = append(f.Sections, s)
+}
+
 func (f *File) Functions() []*Function {
 	var fns []*Function
 	for _, s := range f.Sections {
@@ -124,7 +130,7 @@ type Function struct {
 	Allocation reg.Allocation
 }
 
-func (f Function) section() {}
+func (f *Function) section() {}
 
 func NewFunction(name string) *Function {
 	return &Function{
@@ -180,4 +186,78 @@ func (f *Function) FrameBytes() int {
 // ArgumentBytes returns the size of the arguments in bytes.
 func (f *Function) ArgumentBytes() int {
 	return f.Signature.Bytes()
+}
+
+type Datum struct {
+	Offset int
+	Value  operand.Constant
+}
+
+func NewDatum(offset int, v operand.Constant) Datum {
+	return Datum{
+		Offset: offset,
+		Value:  v,
+	}
+}
+
+// Interval returns the range of bytes this datum will occupy within its section.
+func (d Datum) Interval() (int, int) {
+	return d.Offset, d.Offset + d.Value.Bytes()
+}
+
+func (d Datum) Overlaps(other Datum) bool {
+	s, e := d.Interval()
+	so, eo := other.Interval()
+	return !(eo <= s || e <= so)
+}
+
+type Global struct {
+	Symbol operand.Symbol
+	Data   []Datum
+	Size   int
+}
+
+func NewGlobal(sym operand.Symbol) *Global {
+	return &Global{
+		Symbol: sym,
+	}
+}
+
+func NewStaticGlobal(name string) *Global {
+	return NewGlobal(operand.NewStaticSymbol(name))
+}
+
+func (g *Global) section() {}
+
+func (g *Global) Base() operand.Mem {
+	return operand.NewDataAddr(g.Symbol, 0)
+}
+
+func (g *Global) Grow(size int) {
+	if g.Size < size {
+		g.Size = size
+	}
+}
+
+func (g *Global) AddDatum(d Datum) error {
+	for _, other := range g.Data {
+		if d.Overlaps(other) {
+			return errors.New("overlaps existing datum")
+		}
+	}
+	g.add(d)
+	return nil
+}
+
+func (g *Global) Append(v operand.Constant) {
+	g.add(Datum{
+		Offset: g.Size,
+		Value:  v,
+	})
+}
+
+func (g *Global) add(d Datum) {
+	_, end := d.Interval()
+	g.Grow(end)
+	g.Data = append(g.Data, d)
 }

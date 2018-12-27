@@ -26,6 +26,8 @@ func (p *goasm) Print(f *avo.File) ([]byte, error) {
 		switch s := s.(type) {
 		case *avo.Function:
 			p.function(s)
+		case *avo.Global:
+			p.global(s)
 		default:
 			panic("unknown section type")
 		}
@@ -62,6 +64,16 @@ func (p *goasm) function(f *avo.Function) {
 			panic("unexpected node type")
 		}
 	}
+}
+
+func (p *goasm) global(g *avo.Global) {
+	p.NL()
+	for _, d := range g.Data {
+		a := operand.NewDataAddr(g.Symbol, d.Offset)
+		p.Printf("DATA %s/%d, %s\n", a.Asm(), d.Value.Bytes(), d.Value.Asm())
+	}
+	// TODO(mbm): replace hardcoded RODATA with an attributes list
+	p.Printf("GLOBL %s%s(SB), RODATA, $%d\n", dot, g.Symbol, g.Size)
 }
 
 func joinOperands(operands []operand.Op) string {

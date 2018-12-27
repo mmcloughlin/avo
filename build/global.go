@@ -24,6 +24,14 @@ func TEXT(name, signature string) {
 
 func LABEL(name string) { ctx.Label(avo.Label(name)) }
 
+func GLOBL(name string) operand.Mem {
+	return ctx.StaticGlobal(name)
+}
+
+func DATA(offset int, v operand.Constant) {
+	ctx.AddDatum(offset, v)
+}
+
 var flags = NewFlags(flag.CommandLine)
 
 func Generate() {

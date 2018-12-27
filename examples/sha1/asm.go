@@ -15,16 +15,16 @@ func main() {
 
 	// Store message values on the stack.
 	w := AllocLocal(64)
-	W := func(r int) Mem { return w.Idx((r % 16) * 4) }
+	W := func(r int) Mem { return w.Offset((r % 16) * 4) }
 
 	// Load initial hash.
 	h0, h1, h2, h3, h4 := GP32v(), GP32v(), GP32v(), GP32v(), GP32v()
 
-	MOVL(h.Idx(0), h0)
-	MOVL(h.Idx(4), h1)
-	MOVL(h.Idx(8), h2)
-	MOVL(h.Idx(12), h3)
-	MOVL(h.Idx(16), h4)
+	MOVL(h.Offset(0), h0)
+	MOVL(h.Offset(4), h1)
+	MOVL(h.Offset(8), h2)
+	MOVL(h.Offset(12), h3)
+	MOVL(h.Offset(16), h4)
 
 	// Initialize registers.
 	a, b, c, d, e := GP32v(), GP32v(), GP32v(), GP32v(), GP32v()
@@ -52,7 +52,7 @@ func main() {
 		// Load message value.
 		u := GP32v()
 		if r < 16 {
-			MOVL(m.Idx(4*r), u)
+			MOVL(m.Offset(4*r), u)
 			BSWAPL(u)
 		} else {
 			MOVL(W(r-3), u)
@@ -85,11 +85,11 @@ func main() {
 	ADDL(e, h4)
 
 	// Store results back.
-	MOVL(h0, h.Idx(0))
-	MOVL(h1, h.Idx(4))
-	MOVL(h2, h.Idx(8))
-	MOVL(h3, h.Idx(12))
-	MOVL(h4, h.Idx(16))
+	MOVL(h0, h.Offset(0))
+	MOVL(h1, h.Offset(4))
+	MOVL(h2, h.Offset(8))
+	MOVL(h3, h.Offset(12))
+	MOVL(h4, h.Offset(16))
 	RET()
 
 	Generate()

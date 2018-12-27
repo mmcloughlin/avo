@@ -15,6 +15,10 @@ type Symbol struct {
 	Static bool
 }
 
+func NewStaticSymbol(name string) Symbol {
+	return Symbol{Name: name, Static: true}
+}
+
 func (s Symbol) String() string {
 	n := s.Name
 	if s.Static {
@@ -51,9 +55,24 @@ func NewStackAddr(offset int) Mem {
 	}
 }
 
-func (m Mem) Idx(idx int) Mem {
+func NewDataAddr(sym Symbol, offset int) Mem {
+	return Mem{
+		Symbol: sym,
+		Disp:   offset,
+		Base:   reg.StaticBase,
+	}
+}
+
+func (m Mem) Offset(idx int) Mem {
 	a := m
 	a.Disp += idx
+	return a
+}
+
+func (m Mem) Idx(r reg.Register, s uint8) Mem {
+	a := m
+	a.Index = r
+	a.Scale = s
 	return a
 }
 
