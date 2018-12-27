@@ -8,10 +8,10 @@ TEXT ·Sum(SB),0,$0-32
 	MOVQ	xs_len+8(FP), CX
 	XORQ	DX, DX
 loop:
-	CMPQ	CX, $0x0
+	CMPQ	CX, $0x00
 	JE	done
 	ADDQ	(AX), DX
-	ADDQ	$0x8, AX
+	ADDQ	$0x08, AX
 	DECQ	CX
 	JMP	loop
 done:

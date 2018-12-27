@@ -23,6 +23,7 @@ func (c *ctors) Generate(is []inst.Instruction) ([]byte, error) {
 	c.Printf("// %s\n\n", c.cfg.GeneratedWarning())
 	c.Printf("package x86\n\n")
 	c.Printf("import (\n")
+	c.Printf("\t\"errors\"\n")
 	c.Printf("\t\"%s\"\n", pkg)
 	c.Printf("\t\"%s/reg\"\n", pkg)
 	c.Printf("\t\"%s/operand\"\n", pkg)
@@ -76,7 +77,7 @@ func (c *ctors) forms(i inst.Instruction, s signature) {
 	}
 
 	c.Printf("}\n")
-	c.Printf("return nil, ErrBadOperandTypes\n")
+	c.Printf("return nil, errors.New(\"%s: bad operands\")\n", i.Opcode)
 }
 
 func construct(i inst.Instruction, f inst.Form, s signature) string {

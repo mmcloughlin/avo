@@ -59,17 +59,17 @@ func main() {
 			XORL(W(r-8), u)
 			XORL(W(r-14), u)
 			XORL(W(r-16), u)
-			ROLL(Imm(1), u)
+			ROLL(U8(1), u)
 		}
 		MOVL(u, W(r))
 
 		// Compute the next state register.
 		t := GP32v()
 		MOVL(a, t)
-		ROLL(Imm(5), t)
+		ROLL(U8(5), t)
 		ADDL(q.F(b, c, d), t)
 		ADDL(e, t)
-		ADDL(Imm(q.K), t)
+		ADDL(U32(q.K), t)
 		ADDL(u, t)
 
 		// Update registers.

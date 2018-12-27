@@ -3,6 +3,7 @@
 package x86
 
 import (
+	"errors"
 	"github.com/mmcloughlin/avo"
 	"github.com/mmcloughlin/avo/operand"
 	"github.com/mmcloughlin/avo/reg"
@@ -63,7 +64,7 @@ func ADCB(imr, amr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{amr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("ADCB: bad operands")
 }
 
 // ADCL: Add with Carry.
@@ -137,7 +138,7 @@ func ADCL(imr, emr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{emr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("ADCL: bad operands")
 }
 
 // ADCQ: Add with Carry.
@@ -211,7 +212,7 @@ func ADCQ(imr, mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("ADCQ: bad operands")
 }
 
 // ADCW: Add with Carry.
@@ -285,7 +286,7 @@ func ADCW(imr, amr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{amr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("ADCW: bad operands")
 }
 
 // ADCXL: Unsigned Integer Addition of Two Operands with Carry Flag.
@@ -311,7 +312,7 @@ func ADCXL(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("ADCXL: bad operands")
 }
 
 // ADCXQ: Unsigned Integer Addition of Two Operands with Carry Flag.
@@ -337,7 +338,7 @@ func ADCXQ(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("ADCXQ: bad operands")
 }
 
 // ADDB: Add.
@@ -395,7 +396,7 @@ func ADDB(imr, amr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{amr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("ADDB: bad operands")
 }
 
 // ADDL: Add.
@@ -469,7 +470,7 @@ func ADDL(imr, emr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{emr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("ADDL: bad operands")
 }
 
 // ADDPD: Add Packed Double-Precision Floating-Point Values.
@@ -495,7 +496,7 @@ func ADDPD(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("ADDPD: bad operands")
 }
 
 // ADDPS: Add Packed Single-Precision Floating-Point Values.
@@ -521,7 +522,7 @@ func ADDPS(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("ADDPS: bad operands")
 }
 
 // ADDQ: Add.
@@ -595,7 +596,7 @@ func ADDQ(imr, mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("ADDQ: bad operands")
 }
 
 // ADDSD: Add Scalar Double-Precision Floating-Point Values.
@@ -621,7 +622,7 @@ func ADDSD(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("ADDSD: bad operands")
 }
 
 // ADDSS: Add Scalar Single-Precision Floating-Point Values.
@@ -647,7 +648,7 @@ func ADDSS(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("ADDSS: bad operands")
 }
 
 // ADDSUBPD: Packed Double-FP Add/Subtract.
@@ -673,7 +674,7 @@ func ADDSUBPD(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("ADDSUBPD: bad operands")
 }
 
 // ADDSUBPS: Packed Single-FP Add/Subtract.
@@ -699,7 +700,7 @@ func ADDSUBPS(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("ADDSUBPS: bad operands")
 }
 
 // ADDW: Add.
@@ -773,7 +774,7 @@ func ADDW(imr, amr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{amr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("ADDW: bad operands")
 }
 
 // ADOXL: Unsigned Integer Addition of Two Operands with Overflow Flag.
@@ -799,7 +800,7 @@ func ADOXL(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("ADOXL: bad operands")
 }
 
 // ADOXQ: Unsigned Integer Addition of Two Operands with Overflow Flag.
@@ -825,7 +826,7 @@ func ADOXQ(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("ADOXQ: bad operands")
 }
 
 // AESDEC: Perform One Round of an AES Decryption Flow.
@@ -851,7 +852,7 @@ func AESDEC(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("AESDEC: bad operands")
 }
 
 // AESDECLAST: Perform Last Round of an AES Decryption Flow.
@@ -877,7 +878,7 @@ func AESDECLAST(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("AESDECLAST: bad operands")
 }
 
 // AESENC: Perform One Round of an AES Encryption Flow.
@@ -903,7 +904,7 @@ func AESENC(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("AESENC: bad operands")
 }
 
 // AESENCLAST: Perform Last Round of an AES Encryption Flow.
@@ -929,7 +930,7 @@ func AESENCLAST(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("AESENCLAST: bad operands")
 }
 
 // AESIMC: Perform the AES InvMixColumn Transformation.
@@ -955,7 +956,7 @@ func AESIMC(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("AESIMC: bad operands")
 }
 
 // AESKEYGENASSIST: AES Round Key Generation Assist.
@@ -981,7 +982,7 @@ func AESKEYGENASSIST(i, mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("AESKEYGENASSIST: bad operands")
 }
 
 // ANDB: Logical AND.
@@ -1039,7 +1040,7 @@ func ANDB(imr, amr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{amr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("ANDB: bad operands")
 }
 
 // ANDL: Logical AND.
@@ -1113,7 +1114,7 @@ func ANDL(imr, emr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{emr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("ANDL: bad operands")
 }
 
 // ANDNL: Logical AND NOT.
@@ -1139,7 +1140,7 @@ func ANDNL(mr, r, r1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("ANDNL: bad operands")
 }
 
 // ANDNPD: Bitwise Logical AND NOT of Packed Double-Precision Floating-Point Values.
@@ -1165,7 +1166,7 @@ func ANDNPD(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("ANDNPD: bad operands")
 }
 
 // ANDNPS: Bitwise Logical AND NOT of Packed Single-Precision Floating-Point Values.
@@ -1191,7 +1192,7 @@ func ANDNPS(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("ANDNPS: bad operands")
 }
 
 // ANDNQ: Logical AND NOT.
@@ -1217,7 +1218,7 @@ func ANDNQ(mr, r, r1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("ANDNQ: bad operands")
 }
 
 // ANDPD: Bitwise Logical AND of Packed Double-Precision Floating-Point Values.
@@ -1243,7 +1244,7 @@ func ANDPD(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("ANDPD: bad operands")
 }
 
 // ANDPS: Bitwise Logical AND of Packed Single-Precision Floating-Point Values.
@@ -1269,7 +1270,7 @@ func ANDPS(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("ANDPS: bad operands")
 }
 
 // ANDQ: Logical AND.
@@ -1343,7 +1344,7 @@ func ANDQ(imr, mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("ANDQ: bad operands")
 }
 
 // ANDW: Logical AND.
@@ -1417,7 +1418,7 @@ func ANDW(imr, amr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{amr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("ANDW: bad operands")
 }
 
 // BEXTRL: Bit Field Extract.
@@ -1443,7 +1444,7 @@ func BEXTRL(r, mr, r1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("BEXTRL: bad operands")
 }
 
 // BEXTRQ: Bit Field Extract.
@@ -1469,7 +1470,7 @@ func BEXTRQ(r, mr, r1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("BEXTRQ: bad operands")
 }
 
 // BLENDPD: Blend Packed Double Precision Floating-Point Values.
@@ -1495,7 +1496,7 @@ func BLENDPD(i, mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("BLENDPD: bad operands")
 }
 
 // BLENDPS:  Blend Packed Single Precision Floating-Point Values.
@@ -1521,7 +1522,7 @@ func BLENDPS(i, mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("BLENDPS: bad operands")
 }
 
 // BLENDVPD:  Variable Blend Packed Double Precision Floating-Point Values.
@@ -1547,7 +1548,7 @@ func BLENDVPD(x, mx, x1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("BLENDVPD: bad operands")
 }
 
 // BLENDVPS:  Variable Blend Packed Single Precision Floating-Point Values.
@@ -1573,7 +1574,7 @@ func BLENDVPS(x, mx, x1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("BLENDVPS: bad operands")
 }
 
 // BLSIL: Isolate Lowest Set Bit.
@@ -1599,7 +1600,7 @@ func BLSIL(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("BLSIL: bad operands")
 }
 
 // BLSIQ: Isolate Lowest Set Bit.
@@ -1625,7 +1626,7 @@ func BLSIQ(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("BLSIQ: bad operands")
 }
 
 // BLSMSKL: Mask From Lowest Set Bit.
@@ -1651,7 +1652,7 @@ func BLSMSKL(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("BLSMSKL: bad operands")
 }
 
 // BLSMSKQ: Mask From Lowest Set Bit.
@@ -1677,7 +1678,7 @@ func BLSMSKQ(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("BLSMSKQ: bad operands")
 }
 
 // BLSRL: Reset Lowest Set Bit.
@@ -1703,7 +1704,7 @@ func BLSRL(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("BLSRL: bad operands")
 }
 
 // BLSRQ: Reset Lowest Set Bit.
@@ -1729,7 +1730,7 @@ func BLSRQ(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("BLSRQ: bad operands")
 }
 
 // BSFL: Bit Scan Forward.
@@ -1755,7 +1756,7 @@ func BSFL(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("BSFL: bad operands")
 }
 
 // BSFQ: Bit Scan Forward.
@@ -1781,7 +1782,7 @@ func BSFQ(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("BSFQ: bad operands")
 }
 
 // BSFW: Bit Scan Forward.
@@ -1807,7 +1808,7 @@ func BSFW(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("BSFW: bad operands")
 }
 
 // BSRL: Bit Scan Reverse.
@@ -1833,7 +1834,7 @@ func BSRL(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("BSRL: bad operands")
 }
 
 // BSRQ: Bit Scan Reverse.
@@ -1859,7 +1860,7 @@ func BSRQ(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("BSRQ: bad operands")
 }
 
 // BSRW: Bit Scan Reverse.
@@ -1885,7 +1886,7 @@ func BSRW(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("BSRW: bad operands")
 }
 
 // BSWAPL: Byte Swap.
@@ -1903,7 +1904,7 @@ func BSWAPL(r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("BSWAPL: bad operands")
 }
 
 // BSWAPQ: Byte Swap.
@@ -1921,7 +1922,7 @@ func BSWAPQ(r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("BSWAPQ: bad operands")
 }
 
 // BTCL: Bit Test and Complement.
@@ -1963,7 +1964,7 @@ func BTCL(ir, mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("BTCL: bad operands")
 }
 
 // BTCQ: Bit Test and Complement.
@@ -2005,7 +2006,7 @@ func BTCQ(ir, mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("BTCQ: bad operands")
 }
 
 // BTCW: Bit Test and Complement.
@@ -2047,7 +2048,7 @@ func BTCW(ir, mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("BTCW: bad operands")
 }
 
 // BTL: Bit Test.
@@ -2089,7 +2090,7 @@ func BTL(ir, mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("BTL: bad operands")
 }
 
 // BTQ: Bit Test.
@@ -2131,7 +2132,7 @@ func BTQ(ir, mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("BTQ: bad operands")
 }
 
 // BTRL: Bit Test and Reset.
@@ -2173,7 +2174,7 @@ func BTRL(ir, mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("BTRL: bad operands")
 }
 
 // BTRQ: Bit Test and Reset.
@@ -2215,7 +2216,7 @@ func BTRQ(ir, mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("BTRQ: bad operands")
 }
 
 // BTRW: Bit Test and Reset.
@@ -2257,7 +2258,7 @@ func BTRW(ir, mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("BTRW: bad operands")
 }
 
 // BTSL: Bit Test and Set.
@@ -2299,7 +2300,7 @@ func BTSL(ir, mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("BTSL: bad operands")
 }
 
 // BTSQ: Bit Test and Set.
@@ -2341,7 +2342,7 @@ func BTSQ(ir, mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("BTSQ: bad operands")
 }
 
 // BTSW: Bit Test and Set.
@@ -2383,7 +2384,7 @@ func BTSW(ir, mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("BTSW: bad operands")
 }
 
 // BTW: Bit Test.
@@ -2425,7 +2426,7 @@ func BTW(ir, mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("BTW: bad operands")
 }
 
 // BZHIL: Zero High Bits Starting with Specified Bit Position.
@@ -2451,7 +2452,7 @@ func BZHIL(r, mr, r1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("BZHIL: bad operands")
 }
 
 // BZHIQ: Zero High Bits Starting with Specified Bit Position.
@@ -2477,7 +2478,7 @@ func BZHIQ(r, mr, r1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("BZHIQ: bad operands")
 }
 
 // CALL: Call Procedure.
@@ -2495,7 +2496,7 @@ func CALL(r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CALL: bad operands")
 }
 
 // CBW: Convert Byte to Word.
@@ -2583,7 +2584,7 @@ func CLFLUSH(m operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CLFLUSH: bad operands")
 }
 
 // CLFLUSHOPT: Flush Cache Line Optimized.
@@ -2601,7 +2602,7 @@ func CLFLUSHOPT(m operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CLFLUSHOPT: bad operands")
 }
 
 // CMC: Complement Carry Flag.
@@ -2641,7 +2642,7 @@ func CMOVLCC(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CMOVLCC: bad operands")
 }
 
 // CMOVLCS: Move if below (CF == 1).
@@ -2667,7 +2668,7 @@ func CMOVLCS(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CMOVLCS: bad operands")
 }
 
 // CMOVLEQ: Move if equal (ZF == 1).
@@ -2693,7 +2694,7 @@ func CMOVLEQ(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CMOVLEQ: bad operands")
 }
 
 // CMOVLGE: Move if greater or equal (SF == OF).
@@ -2719,7 +2720,7 @@ func CMOVLGE(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CMOVLGE: bad operands")
 }
 
 // CMOVLGT: Move if greater (ZF == 0 and SF == OF).
@@ -2745,7 +2746,7 @@ func CMOVLGT(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CMOVLGT: bad operands")
 }
 
 // CMOVLHI: Move if above (CF == 0 and ZF == 0).
@@ -2771,7 +2772,7 @@ func CMOVLHI(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CMOVLHI: bad operands")
 }
 
 // CMOVLLE: Move if less or equal (ZF == 1 or SF != OF).
@@ -2797,7 +2798,7 @@ func CMOVLLE(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CMOVLLE: bad operands")
 }
 
 // CMOVLLS: Move if below or equal (CF == 1 or ZF == 1).
@@ -2823,7 +2824,7 @@ func CMOVLLS(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CMOVLLS: bad operands")
 }
 
 // CMOVLLT: Move if less (SF != OF).
@@ -2849,7 +2850,7 @@ func CMOVLLT(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CMOVLLT: bad operands")
 }
 
 // CMOVLMI: Move if sign (SF == 1).
@@ -2875,7 +2876,7 @@ func CMOVLMI(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CMOVLMI: bad operands")
 }
 
 // CMOVLNE: Move if not equal (ZF == 0).
@@ -2901,7 +2902,7 @@ func CMOVLNE(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CMOVLNE: bad operands")
 }
 
 // CMOVLOC: Move if not overflow (OF == 0).
@@ -2927,7 +2928,7 @@ func CMOVLOC(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CMOVLOC: bad operands")
 }
 
 // CMOVLOS: Move if overflow (OF == 1).
@@ -2953,7 +2954,7 @@ func CMOVLOS(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CMOVLOS: bad operands")
 }
 
 // CMOVLPC: Move if not parity (PF == 0).
@@ -2979,7 +2980,7 @@ func CMOVLPC(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CMOVLPC: bad operands")
 }
 
 // CMOVLPL: Move if not sign (SF == 0).
@@ -3005,7 +3006,7 @@ func CMOVLPL(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CMOVLPL: bad operands")
 }
 
 // CMOVLPS: Move if parity (PF == 1).
@@ -3031,7 +3032,7 @@ func CMOVLPS(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CMOVLPS: bad operands")
 }
 
 // CMOVQCC: Move if above or equal (CF == 0).
@@ -3057,7 +3058,7 @@ func CMOVQCC(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CMOVQCC: bad operands")
 }
 
 // CMOVQCS: Move if below (CF == 1).
@@ -3083,7 +3084,7 @@ func CMOVQCS(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CMOVQCS: bad operands")
 }
 
 // CMOVQEQ: Move if equal (ZF == 1).
@@ -3109,7 +3110,7 @@ func CMOVQEQ(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CMOVQEQ: bad operands")
 }
 
 // CMOVQGE: Move if greater or equal (SF == OF).
@@ -3135,7 +3136,7 @@ func CMOVQGE(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CMOVQGE: bad operands")
 }
 
 // CMOVQGT: Move if greater (ZF == 0 and SF == OF).
@@ -3161,7 +3162,7 @@ func CMOVQGT(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CMOVQGT: bad operands")
 }
 
 // CMOVQHI: Move if above (CF == 0 and ZF == 0).
@@ -3187,7 +3188,7 @@ func CMOVQHI(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CMOVQHI: bad operands")
 }
 
 // CMOVQLE: Move if less or equal (ZF == 1 or SF != OF).
@@ -3213,7 +3214,7 @@ func CMOVQLE(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CMOVQLE: bad operands")
 }
 
 // CMOVQLS: Move if below or equal (CF == 1 or ZF == 1).
@@ -3239,7 +3240,7 @@ func CMOVQLS(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CMOVQLS: bad operands")
 }
 
 // CMOVQLT: Move if less (SF != OF).
@@ -3265,7 +3266,7 @@ func CMOVQLT(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CMOVQLT: bad operands")
 }
 
 // CMOVQMI: Move if sign (SF == 1).
@@ -3291,7 +3292,7 @@ func CMOVQMI(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CMOVQMI: bad operands")
 }
 
 // CMOVQNE: Move if not equal (ZF == 0).
@@ -3317,7 +3318,7 @@ func CMOVQNE(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CMOVQNE: bad operands")
 }
 
 // CMOVQOC: Move if not overflow (OF == 0).
@@ -3343,7 +3344,7 @@ func CMOVQOC(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CMOVQOC: bad operands")
 }
 
 // CMOVQOS: Move if overflow (OF == 1).
@@ -3369,7 +3370,7 @@ func CMOVQOS(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CMOVQOS: bad operands")
 }
 
 // CMOVQPC: Move if not parity (PF == 0).
@@ -3395,7 +3396,7 @@ func CMOVQPC(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CMOVQPC: bad operands")
 }
 
 // CMOVQPL: Move if not sign (SF == 0).
@@ -3421,7 +3422,7 @@ func CMOVQPL(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CMOVQPL: bad operands")
 }
 
 // CMOVQPS: Move if parity (PF == 1).
@@ -3447,7 +3448,7 @@ func CMOVQPS(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CMOVQPS: bad operands")
 }
 
 // CMOVWCC: Move if above or equal (CF == 0).
@@ -3473,7 +3474,7 @@ func CMOVWCC(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CMOVWCC: bad operands")
 }
 
 // CMOVWCS: Move if below (CF == 1).
@@ -3499,7 +3500,7 @@ func CMOVWCS(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CMOVWCS: bad operands")
 }
 
 // CMOVWEQ: Move if equal (ZF == 1).
@@ -3525,7 +3526,7 @@ func CMOVWEQ(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CMOVWEQ: bad operands")
 }
 
 // CMOVWGE: Move if greater or equal (SF == OF).
@@ -3551,7 +3552,7 @@ func CMOVWGE(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CMOVWGE: bad operands")
 }
 
 // CMOVWGT: Move if greater (ZF == 0 and SF == OF).
@@ -3577,7 +3578,7 @@ func CMOVWGT(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CMOVWGT: bad operands")
 }
 
 // CMOVWHI: Move if above (CF == 0 and ZF == 0).
@@ -3603,7 +3604,7 @@ func CMOVWHI(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CMOVWHI: bad operands")
 }
 
 // CMOVWLE: Move if less or equal (ZF == 1 or SF != OF).
@@ -3629,7 +3630,7 @@ func CMOVWLE(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CMOVWLE: bad operands")
 }
 
 // CMOVWLS: Move if below or equal (CF == 1 or ZF == 1).
@@ -3655,7 +3656,7 @@ func CMOVWLS(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CMOVWLS: bad operands")
 }
 
 // CMOVWLT: Move if less (SF != OF).
@@ -3681,7 +3682,7 @@ func CMOVWLT(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CMOVWLT: bad operands")
 }
 
 // CMOVWMI: Move if sign (SF == 1).
@@ -3707,7 +3708,7 @@ func CMOVWMI(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CMOVWMI: bad operands")
 }
 
 // CMOVWNE: Move if not equal (ZF == 0).
@@ -3733,7 +3734,7 @@ func CMOVWNE(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CMOVWNE: bad operands")
 }
 
 // CMOVWOC: Move if not overflow (OF == 0).
@@ -3759,7 +3760,7 @@ func CMOVWOC(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CMOVWOC: bad operands")
 }
 
 // CMOVWOS: Move if overflow (OF == 1).
@@ -3785,7 +3786,7 @@ func CMOVWOS(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CMOVWOS: bad operands")
 }
 
 // CMOVWPC: Move if not parity (PF == 0).
@@ -3811,7 +3812,7 @@ func CMOVWPC(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CMOVWPC: bad operands")
 }
 
 // CMOVWPL: Move if not sign (SF == 0).
@@ -3837,7 +3838,7 @@ func CMOVWPL(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CMOVWPL: bad operands")
 }
 
 // CMOVWPS: Move if parity (PF == 1).
@@ -3863,7 +3864,7 @@ func CMOVWPS(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CMOVWPS: bad operands")
 }
 
 // CMPB: Compare Two Operands.
@@ -3921,7 +3922,7 @@ func CMPB(amr, imr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CMPB: bad operands")
 }
 
 // CMPL: Compare Two Operands.
@@ -3995,7 +3996,7 @@ func CMPL(emr, imr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CMPL: bad operands")
 }
 
 // CMPPD: Compare Packed Double-Precision Floating-Point Values.
@@ -4021,7 +4022,7 @@ func CMPPD(mx, x, i operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CMPPD: bad operands")
 }
 
 // CMPPS: Compare Packed Single-Precision Floating-Point Values.
@@ -4047,7 +4048,7 @@ func CMPPS(mx, x, i operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CMPPS: bad operands")
 }
 
 // CMPQ: Compare Two Operands.
@@ -4121,7 +4122,7 @@ func CMPQ(mr, imr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CMPQ: bad operands")
 }
 
 // CMPSD: Compare Scalar Double-Precision Floating-Point Values.
@@ -4147,7 +4148,7 @@ func CMPSD(mx, x, i operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CMPSD: bad operands")
 }
 
 // CMPSS: Compare Scalar Single-Precision Floating-Point Values.
@@ -4173,7 +4174,7 @@ func CMPSS(mx, x, i operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CMPSS: bad operands")
 }
 
 // CMPW: Compare Two Operands.
@@ -4247,7 +4248,7 @@ func CMPW(amr, imr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CMPW: bad operands")
 }
 
 // CMPXCHG16B: Compare and Exchange 16 Bytes.
@@ -4265,7 +4266,7 @@ func CMPXCHG16B(m operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{reg.RAX, reg.RDX},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CMPXCHG16B: bad operands")
 }
 
 // CMPXCHG8B: Compare and Exchange 8 Bytes.
@@ -4283,7 +4284,7 @@ func CMPXCHG8B(m operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{reg.EAX, reg.EDX},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CMPXCHG8B: bad operands")
 }
 
 // CMPXCHGB: Compare and Exchange.
@@ -4309,7 +4310,7 @@ func CMPXCHGB(r, mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CMPXCHGB: bad operands")
 }
 
 // CMPXCHGL: Compare and Exchange.
@@ -4335,7 +4336,7 @@ func CMPXCHGL(r, mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CMPXCHGL: bad operands")
 }
 
 // CMPXCHGQ: Compare and Exchange.
@@ -4361,7 +4362,7 @@ func CMPXCHGQ(r, mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CMPXCHGQ: bad operands")
 }
 
 // CMPXCHGW: Compare and Exchange.
@@ -4387,7 +4388,7 @@ func CMPXCHGW(r, mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CMPXCHGW: bad operands")
 }
 
 // COMISD: Compare Scalar Ordered Double-Precision Floating-Point Values and Set EFLAGS.
@@ -4413,7 +4414,7 @@ func COMISD(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("COMISD: bad operands")
 }
 
 // COMISS: Compare Scalar Ordered Single-Precision Floating-Point Values and Set EFLAGS.
@@ -4439,7 +4440,7 @@ func COMISS(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("COMISS: bad operands")
 }
 
 // CPUID: CPU Identification.
@@ -4509,7 +4510,7 @@ func CRC32B(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CRC32B: bad operands")
 }
 
 // CRC32L: Accumulate CRC32 Value.
@@ -4535,7 +4536,7 @@ func CRC32L(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CRC32L: bad operands")
 }
 
 // CRC32Q: Accumulate CRC32 Value.
@@ -4561,7 +4562,7 @@ func CRC32Q(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CRC32Q: bad operands")
 }
 
 // CRC32W: Accumulate CRC32 Value.
@@ -4587,7 +4588,7 @@ func CRC32W(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CRC32W: bad operands")
 }
 
 // CVTPD2PL: Convert Packed Double-Precision FP Values to Packed Dword Integers.
@@ -4613,7 +4614,7 @@ func CVTPD2PL(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CVTPD2PL: bad operands")
 }
 
 // CVTPD2PS: Convert Packed Double-Precision FP Values to Packed Single-Precision FP Values.
@@ -4639,7 +4640,7 @@ func CVTPD2PS(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CVTPD2PS: bad operands")
 }
 
 // CVTPL2PD: Convert Packed Dword Integers to Packed Double-Precision FP Values.
@@ -4665,7 +4666,7 @@ func CVTPL2PD(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CVTPL2PD: bad operands")
 }
 
 // CVTPL2PS: Convert Packed Dword Integers to Packed Single-Precision FP Values.
@@ -4691,7 +4692,7 @@ func CVTPL2PS(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CVTPL2PS: bad operands")
 }
 
 // CVTPS2PD: Convert Packed Single-Precision FP Values to Packed Double-Precision FP Values.
@@ -4717,7 +4718,7 @@ func CVTPS2PD(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CVTPS2PD: bad operands")
 }
 
 // CVTPS2PL: Convert Packed Single-Precision FP Values to Packed Dword Integers.
@@ -4743,7 +4744,7 @@ func CVTPS2PL(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CVTPS2PL: bad operands")
 }
 
 // CVTSD2SL: Convert Scalar Double-Precision FP Value to Integer.
@@ -4785,7 +4786,7 @@ func CVTSD2SL(mx, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CVTSD2SL: bad operands")
 }
 
 // CVTSD2SS: Convert Scalar Double-Precision FP Value to Scalar Single-Precision FP Value.
@@ -4811,7 +4812,7 @@ func CVTSD2SS(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CVTSD2SS: bad operands")
 }
 
 // CVTSL2SD: Convert Dword Integer to Scalar Double-Precision FP Value.
@@ -4837,7 +4838,7 @@ func CVTSL2SD(mr, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CVTSL2SD: bad operands")
 }
 
 // CVTSL2SS: Convert Dword Integer to Scalar Single-Precision FP Value.
@@ -4863,7 +4864,7 @@ func CVTSL2SS(mr, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CVTSL2SS: bad operands")
 }
 
 // CVTSQ2SD: Convert Dword Integer to Scalar Double-Precision FP Value.
@@ -4889,7 +4890,7 @@ func CVTSQ2SD(mr, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CVTSQ2SD: bad operands")
 }
 
 // CVTSQ2SS: Convert Dword Integer to Scalar Single-Precision FP Value.
@@ -4915,7 +4916,7 @@ func CVTSQ2SS(mr, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CVTSQ2SS: bad operands")
 }
 
 // CVTSS2SD: Convert Scalar Single-Precision FP Value to Scalar Double-Precision FP Value.
@@ -4941,7 +4942,7 @@ func CVTSS2SD(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CVTSS2SD: bad operands")
 }
 
 // CVTSS2SL: Convert Scalar Single-Precision FP Value to Dword Integer.
@@ -4983,7 +4984,7 @@ func CVTSS2SL(mx, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CVTSS2SL: bad operands")
 }
 
 // CVTTPD2PL: Convert with Truncation Packed Double-Precision FP Values to Packed Dword Integers.
@@ -5009,7 +5010,7 @@ func CVTTPD2PL(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CVTTPD2PL: bad operands")
 }
 
 // CVTTPS2PL: Convert with Truncation Packed Single-Precision FP Values to Packed Dword Integers.
@@ -5035,7 +5036,7 @@ func CVTTPS2PL(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CVTTPS2PL: bad operands")
 }
 
 // CVTTSD2SL: Convert with Truncation Scalar Double-Precision FP Value to Signed Integer.
@@ -5061,7 +5062,7 @@ func CVTTSD2SL(mx, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CVTTSD2SL: bad operands")
 }
 
 // CVTTSD2SQ: Convert with Truncation Scalar Double-Precision FP Value to Signed Integer.
@@ -5087,7 +5088,7 @@ func CVTTSD2SQ(mx, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CVTTSD2SQ: bad operands")
 }
 
 // CVTTSS2SL: Convert with Truncation Scalar Single-Precision FP Value to Dword Integer.
@@ -5129,7 +5130,7 @@ func CVTTSS2SL(mx, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("CVTTSS2SL: bad operands")
 }
 
 // CWD: Convert Word to Doubleword.
@@ -5183,7 +5184,7 @@ func DECB(mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("DECB: bad operands")
 }
 
 // DECL: Decrement by 1.
@@ -5209,7 +5210,7 @@ func DECL(mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("DECL: bad operands")
 }
 
 // DECQ: Decrement by 1.
@@ -5235,7 +5236,7 @@ func DECQ(mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("DECQ: bad operands")
 }
 
 // DECW: Decrement by 1.
@@ -5261,7 +5262,7 @@ func DECW(mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("DECW: bad operands")
 }
 
 // DIVB: Unsigned Divide.
@@ -5287,7 +5288,7 @@ func DIVB(mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{reg.AX},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("DIVB: bad operands")
 }
 
 // DIVL: Unsigned Divide.
@@ -5313,7 +5314,7 @@ func DIVL(mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{reg.EAX, reg.EDX},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("DIVL: bad operands")
 }
 
 // DIVPD: Divide Packed Double-Precision Floating-Point Values.
@@ -5339,7 +5340,7 @@ func DIVPD(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("DIVPD: bad operands")
 }
 
 // DIVPS: Divide Packed Single-Precision Floating-Point Values.
@@ -5365,7 +5366,7 @@ func DIVPS(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("DIVPS: bad operands")
 }
 
 // DIVQ: Unsigned Divide.
@@ -5391,7 +5392,7 @@ func DIVQ(mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{reg.RAX, reg.RDX},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("DIVQ: bad operands")
 }
 
 // DIVSD: Divide Scalar Double-Precision Floating-Point Values.
@@ -5417,7 +5418,7 @@ func DIVSD(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("DIVSD: bad operands")
 }
 
 // DIVSS: Divide Scalar Single-Precision Floating-Point Values.
@@ -5443,7 +5444,7 @@ func DIVSS(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("DIVSS: bad operands")
 }
 
 // DIVW: Unsigned Divide.
@@ -5469,7 +5470,7 @@ func DIVW(mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{reg.AX, reg.DX},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("DIVW: bad operands")
 }
 
 // DPPD: Dot Product of Packed Double Precision Floating-Point Values.
@@ -5495,7 +5496,7 @@ func DPPD(i, mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("DPPD: bad operands")
 }
 
 // DPPS: Dot Product of Packed Single Precision Floating-Point Values.
@@ -5521,7 +5522,7 @@ func DPPS(i, mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("DPPS: bad operands")
 }
 
 // EXTRACTPS: Extract Packed Single Precision Floating-Point Value.
@@ -5547,7 +5548,7 @@ func EXTRACTPS(i, x, mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("EXTRACTPS: bad operands")
 }
 
 // HADDPD: Packed Double-FP Horizontal Add.
@@ -5573,7 +5574,7 @@ func HADDPD(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("HADDPD: bad operands")
 }
 
 // HADDPS: Packed Single-FP Horizontal Add.
@@ -5599,7 +5600,7 @@ func HADDPS(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("HADDPS: bad operands")
 }
 
 // HSUBPD: Packed Double-FP Horizontal Subtract.
@@ -5625,7 +5626,7 @@ func HSUBPD(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("HSUBPD: bad operands")
 }
 
 // HSUBPS: Packed Single-FP Horizontal Subtract.
@@ -5651,7 +5652,7 @@ func HSUBPS(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("HSUBPS: bad operands")
 }
 
 // IDIVB: Signed Divide.
@@ -5677,7 +5678,7 @@ func IDIVB(mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{reg.AX},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("IDIVB: bad operands")
 }
 
 // IDIVL: Signed Divide.
@@ -5703,7 +5704,7 @@ func IDIVL(mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{reg.EAX, reg.EDX},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("IDIVL: bad operands")
 }
 
 // IDIVQ: Signed Divide.
@@ -5729,7 +5730,7 @@ func IDIVQ(mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{reg.RAX, reg.RDX},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("IDIVQ: bad operands")
 }
 
 // IDIVW: Signed Divide.
@@ -5755,7 +5756,7 @@ func IDIVW(mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{reg.AX, reg.DX},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("IDIVW: bad operands")
 }
 
 // IMUL3L: Signed Multiply.
@@ -5797,7 +5798,7 @@ func IMUL3L(i, mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("IMUL3L: bad operands")
 }
 
 // IMUL3Q: Signed Multiply.
@@ -5839,7 +5840,7 @@ func IMUL3Q(i, mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("IMUL3Q: bad operands")
 }
 
 // IMUL3W: Signed Multiply.
@@ -5881,7 +5882,7 @@ func IMUL3W(i, mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("IMUL3W: bad operands")
 }
 
 // IMULB: Signed Multiply.
@@ -5907,7 +5908,7 @@ func IMULB(mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{reg.AX},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("IMULB: bad operands")
 }
 
 // IMULL: Signed Multiply.
@@ -5949,7 +5950,7 @@ func IMULL(ops ...operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{ops[1]},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("IMULL: bad operands")
 }
 
 // IMULQ: Signed Multiply.
@@ -5991,7 +5992,7 @@ func IMULQ(ops ...operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{ops[1]},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("IMULQ: bad operands")
 }
 
 // IMULW: Signed Multiply.
@@ -6033,7 +6034,7 @@ func IMULW(ops ...operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{ops[1]},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("IMULW: bad operands")
 }
 
 // INCB: Increment by 1.
@@ -6059,7 +6060,7 @@ func INCB(mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("INCB: bad operands")
 }
 
 // INCL: Increment by 1.
@@ -6085,7 +6086,7 @@ func INCL(mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("INCL: bad operands")
 }
 
 // INCQ: Increment by 1.
@@ -6111,7 +6112,7 @@ func INCQ(mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("INCQ: bad operands")
 }
 
 // INCW: Increment by 1.
@@ -6137,7 +6138,7 @@ func INCW(mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("INCW: bad operands")
 }
 
 // INSERTPS: Insert Packed Single Precision Floating-Point Value.
@@ -6163,7 +6164,7 @@ func INSERTPS(i, mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("INSERTPS: bad operands")
 }
 
 // INT: Call to Interrupt Procedure.
@@ -6189,7 +6190,7 @@ func INT(i operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("INT: bad operands")
 }
 
 // JA: Jump if above (CF == 0 and ZF == 0).
@@ -6219,7 +6220,7 @@ func JA(r operand.Op) (*avo.Instruction, error) {
 			IsConditional: true,
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("JA: bad operands")
 }
 
 // JAE: Jump if above or equal (CF == 0).
@@ -6249,7 +6250,7 @@ func JAE(r operand.Op) (*avo.Instruction, error) {
 			IsConditional: true,
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("JAE: bad operands")
 }
 
 // JB: Jump if below (CF == 1).
@@ -6279,7 +6280,7 @@ func JB(r operand.Op) (*avo.Instruction, error) {
 			IsConditional: true,
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("JB: bad operands")
 }
 
 // JBE: Jump if below or equal (CF == 1 or ZF == 1).
@@ -6309,7 +6310,7 @@ func JBE(r operand.Op) (*avo.Instruction, error) {
 			IsConditional: true,
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("JBE: bad operands")
 }
 
 // JC: Jump if below (CF == 1).
@@ -6339,7 +6340,7 @@ func JC(r operand.Op) (*avo.Instruction, error) {
 			IsConditional: true,
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("JC: bad operands")
 }
 
 // JCC: Jump if above or equal (CF == 0).
@@ -6369,7 +6370,7 @@ func JCC(r operand.Op) (*avo.Instruction, error) {
 			IsConditional: true,
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("JCC: bad operands")
 }
 
 // JCS: Jump if below (CF == 1).
@@ -6399,7 +6400,7 @@ func JCS(r operand.Op) (*avo.Instruction, error) {
 			IsConditional: true,
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("JCS: bad operands")
 }
 
 // JCXZL: Jump if ECX register is 0.
@@ -6419,7 +6420,7 @@ func JCXZL(r operand.Op) (*avo.Instruction, error) {
 			IsConditional: true,
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("JCXZL: bad operands")
 }
 
 // JCXZQ: Jump if RCX register is 0.
@@ -6439,7 +6440,7 @@ func JCXZQ(r operand.Op) (*avo.Instruction, error) {
 			IsConditional: true,
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("JCXZQ: bad operands")
 }
 
 // JE: Jump if equal (ZF == 1).
@@ -6469,7 +6470,7 @@ func JE(r operand.Op) (*avo.Instruction, error) {
 			IsConditional: true,
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("JE: bad operands")
 }
 
 // JEQ: Jump if equal (ZF == 1).
@@ -6499,7 +6500,7 @@ func JEQ(r operand.Op) (*avo.Instruction, error) {
 			IsConditional: true,
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("JEQ: bad operands")
 }
 
 // JG: Jump if greater (ZF == 0 and SF == OF).
@@ -6529,7 +6530,7 @@ func JG(r operand.Op) (*avo.Instruction, error) {
 			IsConditional: true,
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("JG: bad operands")
 }
 
 // JGE: Jump if greater or equal (SF == OF).
@@ -6559,7 +6560,7 @@ func JGE(r operand.Op) (*avo.Instruction, error) {
 			IsConditional: true,
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("JGE: bad operands")
 }
 
 // JGT: Jump if greater (ZF == 0 and SF == OF).
@@ -6589,7 +6590,7 @@ func JGT(r operand.Op) (*avo.Instruction, error) {
 			IsConditional: true,
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("JGT: bad operands")
 }
 
 // JHI: Jump if above (CF == 0 and ZF == 0).
@@ -6619,7 +6620,7 @@ func JHI(r operand.Op) (*avo.Instruction, error) {
 			IsConditional: true,
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("JHI: bad operands")
 }
 
 // JHS: Jump if above or equal (CF == 0).
@@ -6649,7 +6650,7 @@ func JHS(r operand.Op) (*avo.Instruction, error) {
 			IsConditional: true,
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("JHS: bad operands")
 }
 
 // JL: Jump if less (SF != OF).
@@ -6679,7 +6680,7 @@ func JL(r operand.Op) (*avo.Instruction, error) {
 			IsConditional: true,
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("JL: bad operands")
 }
 
 // JLE: Jump if less or equal (ZF == 1 or SF != OF).
@@ -6709,7 +6710,7 @@ func JLE(r operand.Op) (*avo.Instruction, error) {
 			IsConditional: true,
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("JLE: bad operands")
 }
 
 // JLO: Jump if below (CF == 1).
@@ -6739,7 +6740,7 @@ func JLO(r operand.Op) (*avo.Instruction, error) {
 			IsConditional: true,
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("JLO: bad operands")
 }
 
 // JLS: Jump if below or equal (CF == 1 or ZF == 1).
@@ -6769,7 +6770,7 @@ func JLS(r operand.Op) (*avo.Instruction, error) {
 			IsConditional: true,
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("JLS: bad operands")
 }
 
 // JLT: Jump if less (SF != OF).
@@ -6799,7 +6800,7 @@ func JLT(r operand.Op) (*avo.Instruction, error) {
 			IsConditional: true,
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("JLT: bad operands")
 }
 
 // JMI: Jump if sign (SF == 1).
@@ -6829,7 +6830,7 @@ func JMI(r operand.Op) (*avo.Instruction, error) {
 			IsConditional: true,
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("JMI: bad operands")
 }
 
 // JMP: Jump Unconditionally.
@@ -6879,7 +6880,7 @@ func JMP(mr operand.Op) (*avo.Instruction, error) {
 			IsConditional: false,
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("JMP: bad operands")
 }
 
 // JNA: Jump if below or equal (CF == 1 or ZF == 1).
@@ -6909,7 +6910,7 @@ func JNA(r operand.Op) (*avo.Instruction, error) {
 			IsConditional: true,
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("JNA: bad operands")
 }
 
 // JNAE: Jump if below (CF == 1).
@@ -6939,7 +6940,7 @@ func JNAE(r operand.Op) (*avo.Instruction, error) {
 			IsConditional: true,
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("JNAE: bad operands")
 }
 
 // JNB: Jump if above or equal (CF == 0).
@@ -6969,7 +6970,7 @@ func JNB(r operand.Op) (*avo.Instruction, error) {
 			IsConditional: true,
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("JNB: bad operands")
 }
 
 // JNBE: Jump if above (CF == 0 and ZF == 0).
@@ -6999,7 +7000,7 @@ func JNBE(r operand.Op) (*avo.Instruction, error) {
 			IsConditional: true,
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("JNBE: bad operands")
 }
 
 // JNC: Jump if above or equal (CF == 0).
@@ -7029,7 +7030,7 @@ func JNC(r operand.Op) (*avo.Instruction, error) {
 			IsConditional: true,
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("JNC: bad operands")
 }
 
 // JNE: Jump if not equal (ZF == 0).
@@ -7059,7 +7060,7 @@ func JNE(r operand.Op) (*avo.Instruction, error) {
 			IsConditional: true,
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("JNE: bad operands")
 }
 
 // JNG: Jump if less or equal (ZF == 1 or SF != OF).
@@ -7089,7 +7090,7 @@ func JNG(r operand.Op) (*avo.Instruction, error) {
 			IsConditional: true,
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("JNG: bad operands")
 }
 
 // JNGE: Jump if less (SF != OF).
@@ -7119,7 +7120,7 @@ func JNGE(r operand.Op) (*avo.Instruction, error) {
 			IsConditional: true,
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("JNGE: bad operands")
 }
 
 // JNL: Jump if greater or equal (SF == OF).
@@ -7149,7 +7150,7 @@ func JNL(r operand.Op) (*avo.Instruction, error) {
 			IsConditional: true,
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("JNL: bad operands")
 }
 
 // JNLE: Jump if greater (ZF == 0 and SF == OF).
@@ -7179,7 +7180,7 @@ func JNLE(r operand.Op) (*avo.Instruction, error) {
 			IsConditional: true,
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("JNLE: bad operands")
 }
 
 // JNO: Jump if not overflow (OF == 0).
@@ -7209,7 +7210,7 @@ func JNO(r operand.Op) (*avo.Instruction, error) {
 			IsConditional: true,
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("JNO: bad operands")
 }
 
 // JNP: Jump if not parity (PF == 0).
@@ -7239,7 +7240,7 @@ func JNP(r operand.Op) (*avo.Instruction, error) {
 			IsConditional: true,
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("JNP: bad operands")
 }
 
 // JNS: Jump if not sign (SF == 0).
@@ -7269,7 +7270,7 @@ func JNS(r operand.Op) (*avo.Instruction, error) {
 			IsConditional: true,
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("JNS: bad operands")
 }
 
 // JNZ: Jump if not equal (ZF == 0).
@@ -7299,7 +7300,7 @@ func JNZ(r operand.Op) (*avo.Instruction, error) {
 			IsConditional: true,
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("JNZ: bad operands")
 }
 
 // JO: Jump if overflow (OF == 1).
@@ -7329,7 +7330,7 @@ func JO(r operand.Op) (*avo.Instruction, error) {
 			IsConditional: true,
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("JO: bad operands")
 }
 
 // JOC: Jump if not overflow (OF == 0).
@@ -7359,7 +7360,7 @@ func JOC(r operand.Op) (*avo.Instruction, error) {
 			IsConditional: true,
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("JOC: bad operands")
 }
 
 // JOS: Jump if overflow (OF == 1).
@@ -7389,7 +7390,7 @@ func JOS(r operand.Op) (*avo.Instruction, error) {
 			IsConditional: true,
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("JOS: bad operands")
 }
 
 // JP: Jump if parity (PF == 1).
@@ -7419,7 +7420,7 @@ func JP(r operand.Op) (*avo.Instruction, error) {
 			IsConditional: true,
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("JP: bad operands")
 }
 
 // JPC: Jump if not parity (PF == 0).
@@ -7449,7 +7450,7 @@ func JPC(r operand.Op) (*avo.Instruction, error) {
 			IsConditional: true,
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("JPC: bad operands")
 }
 
 // JPE: Jump if parity (PF == 1).
@@ -7479,7 +7480,7 @@ func JPE(r operand.Op) (*avo.Instruction, error) {
 			IsConditional: true,
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("JPE: bad operands")
 }
 
 // JPL: Jump if not sign (SF == 0).
@@ -7509,7 +7510,7 @@ func JPL(r operand.Op) (*avo.Instruction, error) {
 			IsConditional: true,
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("JPL: bad operands")
 }
 
 // JPO: Jump if not parity (PF == 0).
@@ -7539,7 +7540,7 @@ func JPO(r operand.Op) (*avo.Instruction, error) {
 			IsConditional: true,
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("JPO: bad operands")
 }
 
 // JPS: Jump if parity (PF == 1).
@@ -7569,7 +7570,7 @@ func JPS(r operand.Op) (*avo.Instruction, error) {
 			IsConditional: true,
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("JPS: bad operands")
 }
 
 // JS: Jump if sign (SF == 1).
@@ -7599,7 +7600,7 @@ func JS(r operand.Op) (*avo.Instruction, error) {
 			IsConditional: true,
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("JS: bad operands")
 }
 
 // JZ: Jump if equal (ZF == 1).
@@ -7629,7 +7630,7 @@ func JZ(r operand.Op) (*avo.Instruction, error) {
 			IsConditional: true,
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("JZ: bad operands")
 }
 
 // LDDQU: Load Unaligned Integer 128 Bits.
@@ -7647,7 +7648,7 @@ func LDDQU(m, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("LDDQU: bad operands")
 }
 
 // LDMXCSR: Load MXCSR Register.
@@ -7665,7 +7666,7 @@ func LDMXCSR(m operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("LDMXCSR: bad operands")
 }
 
 // LEAL: Load Effective Address.
@@ -7683,7 +7684,7 @@ func LEAL(m, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("LEAL: bad operands")
 }
 
 // LEAQ: Load Effective Address.
@@ -7701,7 +7702,7 @@ func LEAQ(m, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("LEAQ: bad operands")
 }
 
 // LEAW: Load Effective Address.
@@ -7719,7 +7720,7 @@ func LEAW(m, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("LEAW: bad operands")
 }
 
 // LFENCE: Load Fence.
@@ -7759,7 +7760,7 @@ func LZCNTL(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("LZCNTL: bad operands")
 }
 
 // LZCNTQ: Count the Number of Leading Zero Bits.
@@ -7785,7 +7786,7 @@ func LZCNTQ(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("LZCNTQ: bad operands")
 }
 
 // LZCNTW: Count the Number of Leading Zero Bits.
@@ -7811,7 +7812,7 @@ func LZCNTW(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("LZCNTW: bad operands")
 }
 
 // MASKMOVDQU: Store Selected Bytes of Double Quadword.
@@ -7829,7 +7830,7 @@ func MASKMOVDQU(x, x1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("MASKMOVDQU: bad operands")
 }
 
 // MASKMOVOU: Store Selected Bytes of Double Quadword.
@@ -7847,7 +7848,7 @@ func MASKMOVOU(x, x1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("MASKMOVOU: bad operands")
 }
 
 // MAXPD: Return Maximum Packed Double-Precision Floating-Point Values.
@@ -7873,7 +7874,7 @@ func MAXPD(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("MAXPD: bad operands")
 }
 
 // MAXPS: Return Maximum Packed Single-Precision Floating-Point Values.
@@ -7899,7 +7900,7 @@ func MAXPS(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("MAXPS: bad operands")
 }
 
 // MAXSD: Return Maximum Scalar Double-Precision Floating-Point Value.
@@ -7925,7 +7926,7 @@ func MAXSD(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("MAXSD: bad operands")
 }
 
 // MAXSS: Return Maximum Scalar Single-Precision Floating-Point Value.
@@ -7951,7 +7952,7 @@ func MAXSS(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("MAXSS: bad operands")
 }
 
 // MFENCE: Memory Fence.
@@ -7991,7 +7992,7 @@ func MINPD(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("MINPD: bad operands")
 }
 
 // MINPS: Return Minimum Packed Single-Precision Floating-Point Values.
@@ -8017,7 +8018,7 @@ func MINPS(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("MINPS: bad operands")
 }
 
 // MINSD: Return Minimum Scalar Double-Precision Floating-Point Value.
@@ -8043,7 +8044,7 @@ func MINSD(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("MINSD: bad operands")
 }
 
 // MINSS: Return Minimum Scalar Single-Precision Floating-Point Value.
@@ -8069,7 +8070,7 @@ func MINSS(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("MINSS: bad operands")
 }
 
 // MONITOR: Monitor a Linear Address Range.
@@ -8117,7 +8118,7 @@ func MOVAPD(mx, mx1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mx1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("MOVAPD: bad operands")
 }
 
 // MOVAPS: Move Aligned Packed Single-Precision Floating-Point Values.
@@ -8151,7 +8152,7 @@ func MOVAPS(mx, mx1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mx1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("MOVAPS: bad operands")
 }
 
 // MOVB: Move.
@@ -8201,7 +8202,7 @@ func MOVB(imr, mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("MOVB: bad operands")
 }
 
 // MOVBELL: Move Data After Swapping Bytes.
@@ -8227,7 +8228,7 @@ func MOVBELL(mr, mr1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("MOVBELL: bad operands")
 }
 
 // MOVBEQQ: Move Data After Swapping Bytes.
@@ -8253,7 +8254,7 @@ func MOVBEQQ(mr, mr1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("MOVBEQQ: bad operands")
 }
 
 // MOVBEWW: Move Data After Swapping Bytes.
@@ -8279,7 +8280,7 @@ func MOVBEWW(mr, mr1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("MOVBEWW: bad operands")
 }
 
 // MOVBLSX: Move with Sign-Extension.
@@ -8305,7 +8306,7 @@ func MOVBLSX(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("MOVBLSX: bad operands")
 }
 
 // MOVBLZX: Move with Zero-Extend.
@@ -8331,7 +8332,7 @@ func MOVBLZX(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("MOVBLZX: bad operands")
 }
 
 // MOVBQSX: Move with Sign-Extension.
@@ -8357,7 +8358,7 @@ func MOVBQSX(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("MOVBQSX: bad operands")
 }
 
 // MOVBQZX: Move with Zero-Extend.
@@ -8383,7 +8384,7 @@ func MOVBQZX(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("MOVBQZX: bad operands")
 }
 
 // MOVBWSX: Move with Sign-Extension.
@@ -8409,7 +8410,7 @@ func MOVBWSX(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("MOVBWSX: bad operands")
 }
 
 // MOVBWZX: Move with Zero-Extend.
@@ -8435,7 +8436,7 @@ func MOVBWZX(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("MOVBWZX: bad operands")
 }
 
 // MOVD: Move.
@@ -8533,7 +8534,7 @@ func MOVD(imrx, mrx operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mrx},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("MOVD: bad operands")
 }
 
 // MOVDDUP: Move One Double-FP and Duplicate.
@@ -8559,7 +8560,7 @@ func MOVDDUP(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("MOVDDUP: bad operands")
 }
 
 // MOVDQ2Q: Move.
@@ -8657,7 +8658,7 @@ func MOVDQ2Q(imrx, mrx operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mrx},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("MOVDQ2Q: bad operands")
 }
 
 // MOVHLPS: Move Packed Single-Precision Floating-Point Values High to Low.
@@ -8675,7 +8676,7 @@ func MOVHLPS(x, x1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("MOVHLPS: bad operands")
 }
 
 // MOVHPD: Move High Packed Double-Precision Floating-Point Value.
@@ -8701,7 +8702,7 @@ func MOVHPD(mx, mx1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mx1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("MOVHPD: bad operands")
 }
 
 // MOVHPS: Move High Packed Single-Precision Floating-Point Values.
@@ -8727,7 +8728,7 @@ func MOVHPS(mx, mx1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mx1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("MOVHPS: bad operands")
 }
 
 // MOVL: Move.
@@ -8777,7 +8778,7 @@ func MOVL(imr, mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("MOVL: bad operands")
 }
 
 // MOVLHPS: Move Packed Single-Precision Floating-Point Values Low to High.
@@ -8795,7 +8796,7 @@ func MOVLHPS(x, x1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("MOVLHPS: bad operands")
 }
 
 // MOVLPD: Move Low Packed Double-Precision Floating-Point Value.
@@ -8821,7 +8822,7 @@ func MOVLPD(mx, mx1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mx1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("MOVLPD: bad operands")
 }
 
 // MOVLPS: Move Low Packed Single-Precision Floating-Point Values.
@@ -8847,7 +8848,7 @@ func MOVLPS(mx, mx1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mx1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("MOVLPS: bad operands")
 }
 
 // MOVLQSX: Move Doubleword to Quadword with Sign-Extension.
@@ -8873,7 +8874,7 @@ func MOVLQSX(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("MOVLQSX: bad operands")
 }
 
 // MOVLQZX: Move with Zero-Extend.
@@ -8891,7 +8892,7 @@ func MOVLQZX(m, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("MOVLQZX: bad operands")
 }
 
 // MOVMSKPD: Extract Packed Double-Precision Floating-Point Sign Mask.
@@ -8909,7 +8910,7 @@ func MOVMSKPD(x, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("MOVMSKPD: bad operands")
 }
 
 // MOVMSKPS: Extract Packed Single-Precision Floating-Point Sign Mask.
@@ -8927,7 +8928,7 @@ func MOVMSKPS(x, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("MOVMSKPS: bad operands")
 }
 
 // MOVNTDQ: Store Double Quadword Using Non-Temporal Hint.
@@ -8945,7 +8946,7 @@ func MOVNTDQ(x, m operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{m},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("MOVNTDQ: bad operands")
 }
 
 // MOVNTDQA: Load Double Quadword Non-Temporal Aligned Hint.
@@ -8963,7 +8964,7 @@ func MOVNTDQA(m, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("MOVNTDQA: bad operands")
 }
 
 // MOVNTIL: Store Doubleword Using Non-Temporal Hint.
@@ -8981,7 +8982,7 @@ func MOVNTIL(r, m operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{m},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("MOVNTIL: bad operands")
 }
 
 // MOVNTIQ: Store Doubleword Using Non-Temporal Hint.
@@ -8999,7 +9000,7 @@ func MOVNTIQ(r, m operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{m},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("MOVNTIQ: bad operands")
 }
 
 // MOVNTO: Store Double Quadword Using Non-Temporal Hint.
@@ -9017,7 +9018,7 @@ func MOVNTO(x, m operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{m},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("MOVNTO: bad operands")
 }
 
 // MOVNTPD: Store Packed Double-Precision Floating-Point Values Using Non-Temporal Hint.
@@ -9035,7 +9036,7 @@ func MOVNTPD(x, m operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{m},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("MOVNTPD: bad operands")
 }
 
 // MOVNTPS: Store Packed Single-Precision Floating-Point Values Using Non-Temporal Hint.
@@ -9053,7 +9054,7 @@ func MOVNTPS(x, m operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{m},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("MOVNTPS: bad operands")
 }
 
 // MOVO: Move Aligned Double Quadword.
@@ -9087,7 +9088,7 @@ func MOVO(mx, mx1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mx1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("MOVO: bad operands")
 }
 
 // MOVOA: Move Aligned Double Quadword.
@@ -9121,7 +9122,7 @@ func MOVOA(mx, mx1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mx1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("MOVOA: bad operands")
 }
 
 // MOVOU: Move Unaligned Double Quadword.
@@ -9155,7 +9156,7 @@ func MOVOU(mx, mx1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mx1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("MOVOU: bad operands")
 }
 
 // MOVQ: Move.
@@ -9253,7 +9254,7 @@ func MOVQ(imrx, mrx operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mrx},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("MOVQ: bad operands")
 }
 
 // MOVSD: Move Scalar Double-Precision Floating-Point Value.
@@ -9287,7 +9288,7 @@ func MOVSD(mx, mx1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mx1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("MOVSD: bad operands")
 }
 
 // MOVSHDUP: Move Packed Single-FP High and Duplicate.
@@ -9313,7 +9314,7 @@ func MOVSHDUP(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("MOVSHDUP: bad operands")
 }
 
 // MOVSLDUP: Move Packed Single-FP Low and Duplicate.
@@ -9339,7 +9340,7 @@ func MOVSLDUP(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("MOVSLDUP: bad operands")
 }
 
 // MOVSS: Move Scalar Single-Precision Floating-Point Values.
@@ -9373,7 +9374,7 @@ func MOVSS(mx, mx1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mx1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("MOVSS: bad operands")
 }
 
 // MOVUPD: Move Unaligned Packed Double-Precision Floating-Point Values.
@@ -9407,7 +9408,7 @@ func MOVUPD(mx, mx1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mx1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("MOVUPD: bad operands")
 }
 
 // MOVUPS: Move Unaligned Packed Single-Precision Floating-Point Values.
@@ -9441,7 +9442,7 @@ func MOVUPS(mx, mx1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mx1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("MOVUPS: bad operands")
 }
 
 // MOVW: Move.
@@ -9491,7 +9492,7 @@ func MOVW(imr, mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("MOVW: bad operands")
 }
 
 // MOVWLSX: Move with Sign-Extension.
@@ -9517,7 +9518,7 @@ func MOVWLSX(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("MOVWLSX: bad operands")
 }
 
 // MOVWLZX: Move with Zero-Extend.
@@ -9543,7 +9544,7 @@ func MOVWLZX(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("MOVWLZX: bad operands")
 }
 
 // MOVWQSX: Move with Sign-Extension.
@@ -9569,7 +9570,7 @@ func MOVWQSX(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("MOVWQSX: bad operands")
 }
 
 // MOVWQZX: Move with Zero-Extend.
@@ -9595,7 +9596,7 @@ func MOVWQZX(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("MOVWQZX: bad operands")
 }
 
 // MPSADBW: Compute Multiple Packed Sums of Absolute Difference.
@@ -9621,7 +9622,7 @@ func MPSADBW(i, mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("MPSADBW: bad operands")
 }
 
 // MULB: Unsigned Multiply.
@@ -9647,7 +9648,7 @@ func MULB(mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{reg.AX},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("MULB: bad operands")
 }
 
 // MULL: Unsigned Multiply.
@@ -9673,7 +9674,7 @@ func MULL(mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{reg.EAX, reg.EDX},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("MULL: bad operands")
 }
 
 // MULPD: Multiply Packed Double-Precision Floating-Point Values.
@@ -9699,7 +9700,7 @@ func MULPD(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("MULPD: bad operands")
 }
 
 // MULPS: Multiply Packed Single-Precision Floating-Point Values.
@@ -9725,7 +9726,7 @@ func MULPS(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("MULPS: bad operands")
 }
 
 // MULQ: Unsigned Multiply.
@@ -9751,7 +9752,7 @@ func MULQ(mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{reg.RAX, reg.RDX},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("MULQ: bad operands")
 }
 
 // MULSD: Multiply Scalar Double-Precision Floating-Point Values.
@@ -9777,7 +9778,7 @@ func MULSD(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("MULSD: bad operands")
 }
 
 // MULSS: Multiply Scalar Single-Precision Floating-Point Values.
@@ -9803,7 +9804,7 @@ func MULSS(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("MULSS: bad operands")
 }
 
 // MULW: Unsigned Multiply.
@@ -9829,7 +9830,7 @@ func MULW(mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{reg.AX, reg.DX},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("MULW: bad operands")
 }
 
 // MULXL: Unsigned Multiply Without Affecting Flags.
@@ -9855,7 +9856,7 @@ func MULXL(mr, r, r1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r, r1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("MULXL: bad operands")
 }
 
 // MULXQ: Unsigned Multiply Without Affecting Flags.
@@ -9881,7 +9882,7 @@ func MULXQ(mr, r, r1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r, r1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("MULXQ: bad operands")
 }
 
 // MWAIT: Monitor Wait.
@@ -9921,7 +9922,7 @@ func NEGB(mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("NEGB: bad operands")
 }
 
 // NEGL: Two's Complement Negation.
@@ -9947,7 +9948,7 @@ func NEGL(mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("NEGL: bad operands")
 }
 
 // NEGQ: Two's Complement Negation.
@@ -9973,7 +9974,7 @@ func NEGQ(mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("NEGQ: bad operands")
 }
 
 // NEGW: Two's Complement Negation.
@@ -9999,7 +10000,7 @@ func NEGW(mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("NEGW: bad operands")
 }
 
 // NOP: No Operation.
@@ -10039,7 +10040,7 @@ func NOTB(mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("NOTB: bad operands")
 }
 
 // NOTL: One's Complement Negation.
@@ -10065,7 +10066,7 @@ func NOTL(mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("NOTL: bad operands")
 }
 
 // NOTQ: One's Complement Negation.
@@ -10091,7 +10092,7 @@ func NOTQ(mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("NOTQ: bad operands")
 }
 
 // NOTW: One's Complement Negation.
@@ -10117,7 +10118,7 @@ func NOTW(mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("NOTW: bad operands")
 }
 
 // ORB: Logical Inclusive OR.
@@ -10175,7 +10176,7 @@ func ORB(imr, amr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{amr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("ORB: bad operands")
 }
 
 // ORL: Logical Inclusive OR.
@@ -10249,7 +10250,7 @@ func ORL(imr, emr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{emr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("ORL: bad operands")
 }
 
 // ORPD: Bitwise Logical OR of Double-Precision Floating-Point Values.
@@ -10275,7 +10276,7 @@ func ORPD(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("ORPD: bad operands")
 }
 
 // ORPS: Bitwise Logical OR of Single-Precision Floating-Point Values.
@@ -10301,7 +10302,7 @@ func ORPS(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("ORPS: bad operands")
 }
 
 // ORQ: Logical Inclusive OR.
@@ -10375,7 +10376,7 @@ func ORQ(imr, mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("ORQ: bad operands")
 }
 
 // ORW: Logical Inclusive OR.
@@ -10449,7 +10450,7 @@ func ORW(imr, amr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{amr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("ORW: bad operands")
 }
 
 // PABSB: Packed Absolute Value of Byte Integers.
@@ -10475,7 +10476,7 @@ func PABSB(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PABSB: bad operands")
 }
 
 // PABSD: Packed Absolute Value of Doubleword Integers.
@@ -10501,7 +10502,7 @@ func PABSD(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PABSD: bad operands")
 }
 
 // PABSW: Packed Absolute Value of Word Integers.
@@ -10527,7 +10528,7 @@ func PABSW(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PABSW: bad operands")
 }
 
 // PACKSSLW: Pack Doublewords into Words with Signed Saturation.
@@ -10553,7 +10554,7 @@ func PACKSSLW(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PACKSSLW: bad operands")
 }
 
 // PACKSSWB: Pack Words into Bytes with Signed Saturation.
@@ -10579,7 +10580,7 @@ func PACKSSWB(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PACKSSWB: bad operands")
 }
 
 // PACKUSDW: Pack Doublewords into Words with Unsigned Saturation.
@@ -10605,7 +10606,7 @@ func PACKUSDW(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PACKUSDW: bad operands")
 }
 
 // PACKUSWB: Pack Words into Bytes with Unsigned Saturation.
@@ -10631,7 +10632,7 @@ func PACKUSWB(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PACKUSWB: bad operands")
 }
 
 // PADDB: Add Packed Byte Integers.
@@ -10657,7 +10658,7 @@ func PADDB(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PADDB: bad operands")
 }
 
 // PADDD: Add Packed Doubleword Integers.
@@ -10683,7 +10684,7 @@ func PADDD(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PADDD: bad operands")
 }
 
 // PADDL: Add Packed Doubleword Integers.
@@ -10709,7 +10710,7 @@ func PADDL(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PADDL: bad operands")
 }
 
 // PADDQ: Add Packed Quadword Integers.
@@ -10735,7 +10736,7 @@ func PADDQ(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PADDQ: bad operands")
 }
 
 // PADDSB: Add Packed Signed Byte Integers with Signed Saturation.
@@ -10761,7 +10762,7 @@ func PADDSB(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PADDSB: bad operands")
 }
 
 // PADDSW: Add Packed Signed Word Integers with Signed Saturation.
@@ -10787,7 +10788,7 @@ func PADDSW(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PADDSW: bad operands")
 }
 
 // PADDUSB: Add Packed Unsigned Byte Integers with Unsigned Saturation.
@@ -10813,7 +10814,7 @@ func PADDUSB(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PADDUSB: bad operands")
 }
 
 // PADDUSW: Add Packed Unsigned Word Integers with Unsigned Saturation.
@@ -10839,7 +10840,7 @@ func PADDUSW(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PADDUSW: bad operands")
 }
 
 // PADDW: Add Packed Word Integers.
@@ -10865,7 +10866,7 @@ func PADDW(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PADDW: bad operands")
 }
 
 // PALIGNR: Packed Align Right.
@@ -10891,7 +10892,7 @@ func PALIGNR(i, mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PALIGNR: bad operands")
 }
 
 // PAND: Packed Bitwise Logical AND.
@@ -10917,7 +10918,7 @@ func PAND(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PAND: bad operands")
 }
 
 // PANDN: Packed Bitwise Logical AND NOT.
@@ -10943,7 +10944,7 @@ func PANDN(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PANDN: bad operands")
 }
 
 // PAUSE: Spin Loop Hint.
@@ -10983,7 +10984,7 @@ func PAVGB(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PAVGB: bad operands")
 }
 
 // PAVGW: Average Packed Word Integers.
@@ -11009,7 +11010,7 @@ func PAVGW(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PAVGW: bad operands")
 }
 
 // PBLENDVB: Variable Blend Packed Bytes.
@@ -11035,7 +11036,7 @@ func PBLENDVB(x, mx, x1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PBLENDVB: bad operands")
 }
 
 // PBLENDW: Blend Packed Words.
@@ -11061,7 +11062,7 @@ func PBLENDW(i, mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PBLENDW: bad operands")
 }
 
 // PCLMULQDQ: Carry-Less Quadword Multiplication.
@@ -11087,7 +11088,7 @@ func PCLMULQDQ(i, mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PCLMULQDQ: bad operands")
 }
 
 // PCMPEQB: Compare Packed Byte Data for Equality.
@@ -11113,7 +11114,7 @@ func PCMPEQB(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PCMPEQB: bad operands")
 }
 
 // PCMPEQL: Compare Packed Doubleword Data for Equality.
@@ -11139,7 +11140,7 @@ func PCMPEQL(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PCMPEQL: bad operands")
 }
 
 // PCMPEQQ: Compare Packed Quadword Data for Equality.
@@ -11165,7 +11166,7 @@ func PCMPEQQ(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PCMPEQQ: bad operands")
 }
 
 // PCMPEQW: Compare Packed Word Data for Equality.
@@ -11191,7 +11192,7 @@ func PCMPEQW(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PCMPEQW: bad operands")
 }
 
 // PCMPESTRI: Packed Compare Explicit Length Strings, Return Index.
@@ -11217,7 +11218,7 @@ func PCMPESTRI(i, mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{reg.ECX},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PCMPESTRI: bad operands")
 }
 
 // PCMPESTRM: Packed Compare Explicit Length Strings, Return Mask.
@@ -11243,7 +11244,7 @@ func PCMPESTRM(i, mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{reg.X0},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PCMPESTRM: bad operands")
 }
 
 // PCMPGTB: Compare Packed Signed Byte Integers for Greater Than.
@@ -11269,7 +11270,7 @@ func PCMPGTB(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PCMPGTB: bad operands")
 }
 
 // PCMPGTL: Compare Packed Signed Doubleword Integers for Greater Than.
@@ -11295,7 +11296,7 @@ func PCMPGTL(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PCMPGTL: bad operands")
 }
 
 // PCMPGTQ: Compare Packed Data for Greater Than.
@@ -11321,7 +11322,7 @@ func PCMPGTQ(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PCMPGTQ: bad operands")
 }
 
 // PCMPGTW: Compare Packed Signed Word Integers for Greater Than.
@@ -11347,7 +11348,7 @@ func PCMPGTW(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PCMPGTW: bad operands")
 }
 
 // PCMPISTRI: Packed Compare Implicit Length Strings, Return Index.
@@ -11373,7 +11374,7 @@ func PCMPISTRI(i, mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{reg.ECX},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PCMPISTRI: bad operands")
 }
 
 // PCMPISTRM: Packed Compare Implicit Length Strings, Return Mask.
@@ -11399,7 +11400,7 @@ func PCMPISTRM(i, mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{reg.X0},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PCMPISTRM: bad operands")
 }
 
 // PDEPL: Parallel Bits Deposit.
@@ -11425,7 +11426,7 @@ func PDEPL(mr, r, r1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PDEPL: bad operands")
 }
 
 // PDEPQ: Parallel Bits Deposit.
@@ -11451,7 +11452,7 @@ func PDEPQ(mr, r, r1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PDEPQ: bad operands")
 }
 
 // PEXTL: Parallel Bits Extract.
@@ -11477,7 +11478,7 @@ func PEXTL(mr, r, r1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PEXTL: bad operands")
 }
 
 // PEXTQ: Parallel Bits Extract.
@@ -11503,7 +11504,7 @@ func PEXTQ(mr, r, r1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PEXTQ: bad operands")
 }
 
 // PEXTRB: Extract Byte.
@@ -11529,7 +11530,7 @@ func PEXTRB(i, x, mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PEXTRB: bad operands")
 }
 
 // PEXTRD: Extract Doubleword.
@@ -11555,7 +11556,7 @@ func PEXTRD(i, x, mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PEXTRD: bad operands")
 }
 
 // PEXTRQ: Extract Quadword.
@@ -11581,7 +11582,7 @@ func PEXTRQ(i, x, mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PEXTRQ: bad operands")
 }
 
 // PEXTRW: Extract Word.
@@ -11607,7 +11608,7 @@ func PEXTRW(i, x, mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PEXTRW: bad operands")
 }
 
 // PHADDD: Packed Horizontal Add Doubleword Integer.
@@ -11633,7 +11634,7 @@ func PHADDD(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PHADDD: bad operands")
 }
 
 // PHADDSW: Packed Horizontal Add Signed Word Integers with Signed Saturation.
@@ -11659,7 +11660,7 @@ func PHADDSW(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PHADDSW: bad operands")
 }
 
 // PHADDW: Packed Horizontal Add Word Integers.
@@ -11685,7 +11686,7 @@ func PHADDW(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PHADDW: bad operands")
 }
 
 // PHMINPOSUW: Packed Horizontal Minimum of Unsigned Word Integers.
@@ -11711,7 +11712,7 @@ func PHMINPOSUW(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PHMINPOSUW: bad operands")
 }
 
 // PHSUBD: Packed Horizontal Subtract Doubleword Integers.
@@ -11737,7 +11738,7 @@ func PHSUBD(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PHSUBD: bad operands")
 }
 
 // PHSUBSW: Packed Horizontal Subtract Signed Word Integers with Signed Saturation.
@@ -11763,7 +11764,7 @@ func PHSUBSW(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PHSUBSW: bad operands")
 }
 
 // PHSUBW: Packed Horizontal Subtract Word Integers.
@@ -11789,7 +11790,7 @@ func PHSUBW(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PHSUBW: bad operands")
 }
 
 // PINSRB: Insert Byte.
@@ -11815,7 +11816,7 @@ func PINSRB(i, mr, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PINSRB: bad operands")
 }
 
 // PINSRD: Insert Doubleword.
@@ -11841,7 +11842,7 @@ func PINSRD(i, mr, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PINSRD: bad operands")
 }
 
 // PINSRQ: Insert Quadword.
@@ -11867,7 +11868,7 @@ func PINSRQ(i, mr, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PINSRQ: bad operands")
 }
 
 // PINSRW: Insert Word.
@@ -11893,7 +11894,7 @@ func PINSRW(i, mr, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PINSRW: bad operands")
 }
 
 // PMADDUBSW: Multiply and Add Packed Signed and Unsigned Byte Integers.
@@ -11919,7 +11920,7 @@ func PMADDUBSW(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PMADDUBSW: bad operands")
 }
 
 // PMADDWL: Multiply and Add Packed Signed Word Integers.
@@ -11945,7 +11946,7 @@ func PMADDWL(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PMADDWL: bad operands")
 }
 
 // PMAXSB: Maximum of Packed Signed Byte Integers.
@@ -11971,7 +11972,7 @@ func PMAXSB(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PMAXSB: bad operands")
 }
 
 // PMAXSD: Maximum of Packed Signed Doubleword Integers.
@@ -11997,7 +11998,7 @@ func PMAXSD(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PMAXSD: bad operands")
 }
 
 // PMAXSW: Maximum of Packed Signed Word Integers.
@@ -12023,7 +12024,7 @@ func PMAXSW(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PMAXSW: bad operands")
 }
 
 // PMAXUB: Maximum of Packed Unsigned Byte Integers.
@@ -12049,7 +12050,7 @@ func PMAXUB(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PMAXUB: bad operands")
 }
 
 // PMAXUD: Maximum of Packed Unsigned Doubleword Integers.
@@ -12075,7 +12076,7 @@ func PMAXUD(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PMAXUD: bad operands")
 }
 
 // PMAXUW: Maximum of Packed Unsigned Word Integers.
@@ -12101,7 +12102,7 @@ func PMAXUW(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PMAXUW: bad operands")
 }
 
 // PMINSB: Minimum of Packed Signed Byte Integers.
@@ -12127,7 +12128,7 @@ func PMINSB(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PMINSB: bad operands")
 }
 
 // PMINSD: Minimum of Packed Signed Doubleword Integers.
@@ -12153,7 +12154,7 @@ func PMINSD(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PMINSD: bad operands")
 }
 
 // PMINSW: Minimum of Packed Signed Word Integers.
@@ -12179,7 +12180,7 @@ func PMINSW(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PMINSW: bad operands")
 }
 
 // PMINUB: Minimum of Packed Unsigned Byte Integers.
@@ -12205,7 +12206,7 @@ func PMINUB(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PMINUB: bad operands")
 }
 
 // PMINUD: Minimum of Packed Unsigned Doubleword Integers.
@@ -12231,7 +12232,7 @@ func PMINUD(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PMINUD: bad operands")
 }
 
 // PMINUW: Minimum of Packed Unsigned Word Integers.
@@ -12257,7 +12258,7 @@ func PMINUW(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PMINUW: bad operands")
 }
 
 // PMOVMSKB: Move Byte Mask.
@@ -12275,7 +12276,7 @@ func PMOVMSKB(x, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PMOVMSKB: bad operands")
 }
 
 // PMOVSXBD: Move Packed Byte Integers to Doubleword Integers with Sign Extension.
@@ -12301,7 +12302,7 @@ func PMOVSXBD(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PMOVSXBD: bad operands")
 }
 
 // PMOVSXBQ: Move Packed Byte Integers to Quadword Integers with Sign Extension.
@@ -12327,7 +12328,7 @@ func PMOVSXBQ(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PMOVSXBQ: bad operands")
 }
 
 // PMOVSXBW: Move Packed Byte Integers to Word Integers with Sign Extension.
@@ -12353,7 +12354,7 @@ func PMOVSXBW(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PMOVSXBW: bad operands")
 }
 
 // PMOVSXDQ: Move Packed Doubleword Integers to Quadword Integers with Sign Extension.
@@ -12379,7 +12380,7 @@ func PMOVSXDQ(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PMOVSXDQ: bad operands")
 }
 
 // PMOVSXWD: Move Packed Word Integers to Doubleword Integers with Sign Extension.
@@ -12405,7 +12406,7 @@ func PMOVSXWD(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PMOVSXWD: bad operands")
 }
 
 // PMOVSXWQ: Move Packed Word Integers to Quadword Integers with Sign Extension.
@@ -12431,7 +12432,7 @@ func PMOVSXWQ(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PMOVSXWQ: bad operands")
 }
 
 // PMOVZXBD: Move Packed Byte Integers to Doubleword Integers with Zero Extension.
@@ -12457,7 +12458,7 @@ func PMOVZXBD(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PMOVZXBD: bad operands")
 }
 
 // PMOVZXBQ: Move Packed Byte Integers to Quadword Integers with Zero Extension.
@@ -12483,7 +12484,7 @@ func PMOVZXBQ(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PMOVZXBQ: bad operands")
 }
 
 // PMOVZXBW: Move Packed Byte Integers to Word Integers with Zero Extension.
@@ -12509,7 +12510,7 @@ func PMOVZXBW(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PMOVZXBW: bad operands")
 }
 
 // PMOVZXDQ: Move Packed Doubleword Integers to Quadword Integers with Zero Extension.
@@ -12535,7 +12536,7 @@ func PMOVZXDQ(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PMOVZXDQ: bad operands")
 }
 
 // PMOVZXWD: Move Packed Word Integers to Doubleword Integers with Zero Extension.
@@ -12561,7 +12562,7 @@ func PMOVZXWD(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PMOVZXWD: bad operands")
 }
 
 // PMOVZXWQ: Move Packed Word Integers to Quadword Integers with Zero Extension.
@@ -12587,7 +12588,7 @@ func PMOVZXWQ(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PMOVZXWQ: bad operands")
 }
 
 // PMULDQ: Multiply Packed Signed Doubleword Integers and Store Quadword Result.
@@ -12613,7 +12614,7 @@ func PMULDQ(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PMULDQ: bad operands")
 }
 
 // PMULHRSW: Packed Multiply Signed Word Integers and Store High Result with Round and Scale.
@@ -12639,7 +12640,7 @@ func PMULHRSW(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PMULHRSW: bad operands")
 }
 
 // PMULHUW: Multiply Packed Unsigned Word Integers and Store High Result.
@@ -12665,7 +12666,7 @@ func PMULHUW(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PMULHUW: bad operands")
 }
 
 // PMULHW: Multiply Packed Signed Word Integers and Store High Result.
@@ -12691,7 +12692,7 @@ func PMULHW(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PMULHW: bad operands")
 }
 
 // PMULLD: Multiply Packed Signed Doubleword Integers and Store Low Result.
@@ -12717,7 +12718,7 @@ func PMULLD(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PMULLD: bad operands")
 }
 
 // PMULLW: Multiply Packed Signed Word Integers and Store Low Result.
@@ -12743,7 +12744,7 @@ func PMULLW(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PMULLW: bad operands")
 }
 
 // PMULULQ: Multiply Packed Unsigned Doubleword Integers.
@@ -12769,7 +12770,7 @@ func PMULULQ(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PMULULQ: bad operands")
 }
 
 // POPCNTL: Count of Number of Bits Set to 1.
@@ -12795,7 +12796,7 @@ func POPCNTL(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("POPCNTL: bad operands")
 }
 
 // POPCNTQ: Count of Number of Bits Set to 1.
@@ -12821,7 +12822,7 @@ func POPCNTQ(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("POPCNTQ: bad operands")
 }
 
 // POPCNTW: Count of Number of Bits Set to 1.
@@ -12847,7 +12848,7 @@ func POPCNTW(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("POPCNTW: bad operands")
 }
 
 // POPQ: Pop a Value from the Stack.
@@ -12873,7 +12874,7 @@ func POPQ(mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("POPQ: bad operands")
 }
 
 // POPW: Pop a Value from the Stack.
@@ -12899,7 +12900,7 @@ func POPW(mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("POPW: bad operands")
 }
 
 // POR: Packed Bitwise Logical OR.
@@ -12925,7 +12926,7 @@ func POR(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("POR: bad operands")
 }
 
 // PREFETCHNTA: Prefetch Data Into Caches using NTA Hint.
@@ -12943,7 +12944,7 @@ func PREFETCHNTA(m operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PREFETCHNTA: bad operands")
 }
 
 // PREFETCHT0: Prefetch Data Into Caches using T0 Hint.
@@ -12961,7 +12962,7 @@ func PREFETCHT0(m operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PREFETCHT0: bad operands")
 }
 
 // PREFETCHT1: Prefetch Data Into Caches using T1 Hint.
@@ -12979,7 +12980,7 @@ func PREFETCHT1(m operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PREFETCHT1: bad operands")
 }
 
 // PREFETCHT2: Prefetch Data Into Caches using T2 Hint.
@@ -12997,7 +12998,7 @@ func PREFETCHT2(m operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PREFETCHT2: bad operands")
 }
 
 // PSADBW: Compute Sum of Absolute Differences.
@@ -13023,7 +13024,7 @@ func PSADBW(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PSADBW: bad operands")
 }
 
 // PSHUFB: Packed Shuffle Bytes.
@@ -13049,7 +13050,7 @@ func PSHUFB(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PSHUFB: bad operands")
 }
 
 // PSHUFD: Shuffle Packed Doublewords.
@@ -13075,7 +13076,7 @@ func PSHUFD(i, mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PSHUFD: bad operands")
 }
 
 // PSHUFHW: Shuffle Packed High Words.
@@ -13101,7 +13102,7 @@ func PSHUFHW(i, mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PSHUFHW: bad operands")
 }
 
 // PSHUFL: Shuffle Packed Doublewords.
@@ -13127,7 +13128,7 @@ func PSHUFL(i, mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PSHUFL: bad operands")
 }
 
 // PSHUFLW: Shuffle Packed Low Words.
@@ -13153,7 +13154,7 @@ func PSHUFLW(i, mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PSHUFLW: bad operands")
 }
 
 // PSIGNB: Packed Sign of Byte Integers.
@@ -13179,7 +13180,7 @@ func PSIGNB(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PSIGNB: bad operands")
 }
 
 // PSIGND: Packed Sign of Doubleword Integers.
@@ -13205,7 +13206,7 @@ func PSIGND(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PSIGND: bad operands")
 }
 
 // PSIGNW: Packed Sign of Word Integers.
@@ -13231,7 +13232,7 @@ func PSIGNW(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PSIGNW: bad operands")
 }
 
 // PSLLDQ: Shift Packed Double Quadword Left Logical.
@@ -13249,7 +13250,7 @@ func PSLLDQ(i, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PSLLDQ: bad operands")
 }
 
 // PSLLL: Shift Packed Doubleword Data Left Logical.
@@ -13283,7 +13284,7 @@ func PSLLL(imx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PSLLL: bad operands")
 }
 
 // PSLLO: Shift Packed Double Quadword Left Logical.
@@ -13301,7 +13302,7 @@ func PSLLO(i, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PSLLO: bad operands")
 }
 
 // PSLLQ: Shift Packed Quadword Data Left Logical.
@@ -13335,7 +13336,7 @@ func PSLLQ(imx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PSLLQ: bad operands")
 }
 
 // PSLLW: Shift Packed Word Data Left Logical.
@@ -13369,7 +13370,7 @@ func PSLLW(imx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PSLLW: bad operands")
 }
 
 // PSRAL: Shift Packed Doubleword Data Right Arithmetic.
@@ -13403,7 +13404,7 @@ func PSRAL(imx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PSRAL: bad operands")
 }
 
 // PSRAW: Shift Packed Word Data Right Arithmetic.
@@ -13437,7 +13438,7 @@ func PSRAW(imx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PSRAW: bad operands")
 }
 
 // PSRLDQ: Shift Packed Double Quadword Right Logical.
@@ -13455,7 +13456,7 @@ func PSRLDQ(i, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PSRLDQ: bad operands")
 }
 
 // PSRLL: Shift Packed Doubleword Data Right Logical.
@@ -13489,7 +13490,7 @@ func PSRLL(imx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PSRLL: bad operands")
 }
 
 // PSRLO: Shift Packed Double Quadword Right Logical.
@@ -13507,7 +13508,7 @@ func PSRLO(i, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PSRLO: bad operands")
 }
 
 // PSRLQ: Shift Packed Quadword Data Right Logical.
@@ -13541,7 +13542,7 @@ func PSRLQ(imx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PSRLQ: bad operands")
 }
 
 // PSRLW: Shift Packed Word Data Right Logical.
@@ -13575,7 +13576,7 @@ func PSRLW(imx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PSRLW: bad operands")
 }
 
 // PSUBB: Subtract Packed Byte Integers.
@@ -13601,7 +13602,7 @@ func PSUBB(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PSUBB: bad operands")
 }
 
 // PSUBL: Subtract Packed Doubleword Integers.
@@ -13627,7 +13628,7 @@ func PSUBL(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PSUBL: bad operands")
 }
 
 // PSUBQ: Subtract Packed Quadword Integers.
@@ -13653,7 +13654,7 @@ func PSUBQ(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PSUBQ: bad operands")
 }
 
 // PSUBSB: Subtract Packed Signed Byte Integers with Signed Saturation.
@@ -13679,7 +13680,7 @@ func PSUBSB(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PSUBSB: bad operands")
 }
 
 // PSUBSW: Subtract Packed Signed Word Integers with Signed Saturation.
@@ -13705,7 +13706,7 @@ func PSUBSW(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PSUBSW: bad operands")
 }
 
 // PSUBUSB: Subtract Packed Unsigned Byte Integers with Unsigned Saturation.
@@ -13731,7 +13732,7 @@ func PSUBUSB(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PSUBUSB: bad operands")
 }
 
 // PSUBUSW: Subtract Packed Unsigned Word Integers with Unsigned Saturation.
@@ -13757,7 +13758,7 @@ func PSUBUSW(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PSUBUSW: bad operands")
 }
 
 // PSUBW: Subtract Packed Word Integers.
@@ -13783,7 +13784,7 @@ func PSUBW(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PSUBW: bad operands")
 }
 
 // PTEST: Packed Logical Compare.
@@ -13809,7 +13810,7 @@ func PTEST(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PTEST: bad operands")
 }
 
 // PUNPCKHBW: Unpack and Interleave High-Order Bytes into Words.
@@ -13835,7 +13836,7 @@ func PUNPCKHBW(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PUNPCKHBW: bad operands")
 }
 
 // PUNPCKHLQ: Unpack and Interleave High-Order Doublewords into Quadwords.
@@ -13861,7 +13862,7 @@ func PUNPCKHLQ(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PUNPCKHLQ: bad operands")
 }
 
 // PUNPCKHQDQ: Unpack and Interleave High-Order Quadwords into Double Quadwords.
@@ -13887,7 +13888,7 @@ func PUNPCKHQDQ(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PUNPCKHQDQ: bad operands")
 }
 
 // PUNPCKHWL: Unpack and Interleave High-Order Words into Doublewords.
@@ -13913,7 +13914,7 @@ func PUNPCKHWL(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PUNPCKHWL: bad operands")
 }
 
 // PUNPCKLBW: Unpack and Interleave Low-Order Bytes into Words.
@@ -13939,7 +13940,7 @@ func PUNPCKLBW(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PUNPCKLBW: bad operands")
 }
 
 // PUNPCKLLQ: Unpack and Interleave Low-Order Doublewords into Quadwords.
@@ -13965,7 +13966,7 @@ func PUNPCKLLQ(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PUNPCKLLQ: bad operands")
 }
 
 // PUNPCKLQDQ: Unpack and Interleave Low-Order Quadwords into Double Quadwords.
@@ -13991,7 +13992,7 @@ func PUNPCKLQDQ(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PUNPCKLQDQ: bad operands")
 }
 
 // PUNPCKLWL: Unpack and Interleave Low-Order Words into Doublewords.
@@ -14017,7 +14018,7 @@ func PUNPCKLWL(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PUNPCKLWL: bad operands")
 }
 
 // PUSHQ: Push Value Onto the Stack.
@@ -14059,7 +14060,7 @@ func PUSHQ(imr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PUSHQ: bad operands")
 }
 
 // PUSHW: Push Value Onto the Stack.
@@ -14085,7 +14086,7 @@ func PUSHW(mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PUSHW: bad operands")
 }
 
 // PXOR: Packed Bitwise Logical Exclusive OR.
@@ -14111,7 +14112,7 @@ func PXOR(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("PXOR: bad operands")
 }
 
 // RCLB: Rotate Left through Carry Flag.
@@ -14169,7 +14170,7 @@ func RCLB(ci, mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("RCLB: bad operands")
 }
 
 // RCLL: Rotate Left through Carry Flag.
@@ -14227,7 +14228,7 @@ func RCLL(ci, mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("RCLL: bad operands")
 }
 
 // RCLQ: Rotate Left through Carry Flag.
@@ -14285,7 +14286,7 @@ func RCLQ(ci, mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("RCLQ: bad operands")
 }
 
 // RCLW: Rotate Left through Carry Flag.
@@ -14343,7 +14344,7 @@ func RCLW(ci, mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("RCLW: bad operands")
 }
 
 // RCPPS: Compute Approximate Reciprocals of Packed Single-Precision Floating-Point Values.
@@ -14369,7 +14370,7 @@ func RCPPS(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("RCPPS: bad operands")
 }
 
 // RCPSS: Compute Approximate Reciprocal of Scalar Single-Precision Floating-Point Values.
@@ -14395,7 +14396,7 @@ func RCPSS(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("RCPSS: bad operands")
 }
 
 // RCRB: Rotate Right through Carry Flag.
@@ -14453,7 +14454,7 @@ func RCRB(ci, mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("RCRB: bad operands")
 }
 
 // RCRL: Rotate Right through Carry Flag.
@@ -14511,7 +14512,7 @@ func RCRL(ci, mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("RCRL: bad operands")
 }
 
 // RCRQ: Rotate Right through Carry Flag.
@@ -14569,7 +14570,7 @@ func RCRQ(ci, mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("RCRQ: bad operands")
 }
 
 // RCRW: Rotate Right through Carry Flag.
@@ -14627,7 +14628,7 @@ func RCRW(ci, mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("RCRW: bad operands")
 }
 
 // RDRANDL: Read Random Number.
@@ -14645,7 +14646,7 @@ func RDRANDL(r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("RDRANDL: bad operands")
 }
 
 // RDRANDQ: Read Random Number.
@@ -14663,7 +14664,7 @@ func RDRANDQ(r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("RDRANDQ: bad operands")
 }
 
 // RDRANDW: Read Random Number.
@@ -14681,7 +14682,7 @@ func RDRANDW(r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("RDRANDW: bad operands")
 }
 
 // RDSEEDL: Read Random SEED.
@@ -14699,7 +14700,7 @@ func RDSEEDL(r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("RDSEEDL: bad operands")
 }
 
 // RDSEEDQ: Read Random SEED.
@@ -14717,7 +14718,7 @@ func RDSEEDQ(r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("RDSEEDQ: bad operands")
 }
 
 // RDSEEDW: Read Random SEED.
@@ -14735,7 +14736,7 @@ func RDSEEDW(r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("RDSEEDW: bad operands")
 }
 
 // RDTSC: Read Time-Stamp Counter.
@@ -14795,7 +14796,7 @@ func RETFL(i operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("RETFL: bad operands")
 }
 
 // RETFQ: Return from Procedure.
@@ -14813,7 +14814,7 @@ func RETFQ(i operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("RETFQ: bad operands")
 }
 
 // RETFW: Return from Procedure.
@@ -14831,7 +14832,7 @@ func RETFW(i operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("RETFW: bad operands")
 }
 
 // ROLB: Rotate Left.
@@ -14889,7 +14890,7 @@ func ROLB(ci, mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("ROLB: bad operands")
 }
 
 // ROLL: Rotate Left.
@@ -14947,7 +14948,7 @@ func ROLL(ci, mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("ROLL: bad operands")
 }
 
 // ROLQ: Rotate Left.
@@ -15005,7 +15006,7 @@ func ROLQ(ci, mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("ROLQ: bad operands")
 }
 
 // ROLW: Rotate Left.
@@ -15063,7 +15064,7 @@ func ROLW(ci, mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("ROLW: bad operands")
 }
 
 // RORB: Rotate Right.
@@ -15121,7 +15122,7 @@ func RORB(ci, mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("RORB: bad operands")
 }
 
 // RORL: Rotate Right.
@@ -15179,7 +15180,7 @@ func RORL(ci, mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("RORL: bad operands")
 }
 
 // RORQ: Rotate Right.
@@ -15237,7 +15238,7 @@ func RORQ(ci, mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("RORQ: bad operands")
 }
 
 // RORW: Rotate Right.
@@ -15295,7 +15296,7 @@ func RORW(ci, mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("RORW: bad operands")
 }
 
 // RORXL: Rotate Right Logical Without Affecting Flags.
@@ -15321,7 +15322,7 @@ func RORXL(i, mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("RORXL: bad operands")
 }
 
 // RORXQ: Rotate Right Logical Without Affecting Flags.
@@ -15347,7 +15348,7 @@ func RORXQ(i, mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("RORXQ: bad operands")
 }
 
 // ROUNDPD: Round Packed Double Precision Floating-Point Values.
@@ -15373,7 +15374,7 @@ func ROUNDPD(i, mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("ROUNDPD: bad operands")
 }
 
 // ROUNDPS: Round Packed Single Precision Floating-Point Values.
@@ -15399,7 +15400,7 @@ func ROUNDPS(i, mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("ROUNDPS: bad operands")
 }
 
 // ROUNDSD: Round Scalar Double Precision Floating-Point Values.
@@ -15425,7 +15426,7 @@ func ROUNDSD(i, mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("ROUNDSD: bad operands")
 }
 
 // ROUNDSS: Round Scalar Single Precision Floating-Point Values.
@@ -15451,7 +15452,7 @@ func ROUNDSS(i, mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("ROUNDSS: bad operands")
 }
 
 // RSQRTPS: Compute Reciprocals of Square Roots of Packed Single-Precision Floating-Point Values.
@@ -15477,7 +15478,7 @@ func RSQRTPS(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("RSQRTPS: bad operands")
 }
 
 // RSQRTSS: Compute Reciprocal of Square Root of Scalar Single-Precision Floating-Point Value.
@@ -15503,7 +15504,7 @@ func RSQRTSS(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("RSQRTSS: bad operands")
 }
 
 // SALB: Arithmetic Shift Left.
@@ -15561,7 +15562,7 @@ func SALB(ci, mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("SALB: bad operands")
 }
 
 // SALL: Arithmetic Shift Left.
@@ -15619,7 +15620,7 @@ func SALL(ci, mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("SALL: bad operands")
 }
 
 // SALQ: Arithmetic Shift Left.
@@ -15677,7 +15678,7 @@ func SALQ(ci, mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("SALQ: bad operands")
 }
 
 // SALW: Arithmetic Shift Left.
@@ -15735,7 +15736,7 @@ func SALW(ci, mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("SALW: bad operands")
 }
 
 // SARB: Arithmetic Shift Right.
@@ -15793,7 +15794,7 @@ func SARB(ci, mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("SARB: bad operands")
 }
 
 // SARL: Arithmetic Shift Right.
@@ -15851,7 +15852,7 @@ func SARL(ci, mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("SARL: bad operands")
 }
 
 // SARQ: Arithmetic Shift Right.
@@ -15909,7 +15910,7 @@ func SARQ(ci, mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("SARQ: bad operands")
 }
 
 // SARW: Arithmetic Shift Right.
@@ -15967,7 +15968,7 @@ func SARW(ci, mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("SARW: bad operands")
 }
 
 // SARXL: Arithmetic Shift Right Without Affecting Flags.
@@ -15993,7 +15994,7 @@ func SARXL(r, mr, r1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("SARXL: bad operands")
 }
 
 // SARXQ: Arithmetic Shift Right Without Affecting Flags.
@@ -16019,7 +16020,7 @@ func SARXQ(r, mr, r1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("SARXQ: bad operands")
 }
 
 // SBBB: Subtract with Borrow.
@@ -16077,7 +16078,7 @@ func SBBB(imr, amr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{amr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("SBBB: bad operands")
 }
 
 // SBBL: Subtract with Borrow.
@@ -16151,7 +16152,7 @@ func SBBL(imr, emr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{emr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("SBBL: bad operands")
 }
 
 // SBBQ: Subtract with Borrow.
@@ -16225,7 +16226,7 @@ func SBBQ(imr, mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("SBBQ: bad operands")
 }
 
 // SBBW: Subtract with Borrow.
@@ -16299,7 +16300,7 @@ func SBBW(imr, amr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{amr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("SBBW: bad operands")
 }
 
 // SETCC: Set byte if above or equal (CF == 0).
@@ -16325,7 +16326,7 @@ func SETCC(mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("SETCC: bad operands")
 }
 
 // SETCS: Set byte if below (CF == 1).
@@ -16351,7 +16352,7 @@ func SETCS(mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("SETCS: bad operands")
 }
 
 // SETEQ: Set byte if equal (ZF == 1).
@@ -16377,7 +16378,7 @@ func SETEQ(mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("SETEQ: bad operands")
 }
 
 // SETGE: Set byte if greater or equal (SF == OF).
@@ -16403,7 +16404,7 @@ func SETGE(mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("SETGE: bad operands")
 }
 
 // SETGT: Set byte if greater (ZF == 0 and SF == OF).
@@ -16429,7 +16430,7 @@ func SETGT(mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("SETGT: bad operands")
 }
 
 // SETHI: Set byte if above (CF == 0 and ZF == 0).
@@ -16455,7 +16456,7 @@ func SETHI(mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("SETHI: bad operands")
 }
 
 // SETLE: Set byte if less or equal (ZF == 1 or SF != OF).
@@ -16481,7 +16482,7 @@ func SETLE(mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("SETLE: bad operands")
 }
 
 // SETLS: Set byte if below or equal (CF == 1 or ZF == 1).
@@ -16507,7 +16508,7 @@ func SETLS(mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("SETLS: bad operands")
 }
 
 // SETLT: Set byte if less (SF != OF).
@@ -16533,7 +16534,7 @@ func SETLT(mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("SETLT: bad operands")
 }
 
 // SETMI: Set byte if sign (SF == 1).
@@ -16559,7 +16560,7 @@ func SETMI(mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("SETMI: bad operands")
 }
 
 // SETNE: Set byte if not equal (ZF == 0).
@@ -16585,7 +16586,7 @@ func SETNE(mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("SETNE: bad operands")
 }
 
 // SETOC: Set byte if not overflow (OF == 0).
@@ -16611,7 +16612,7 @@ func SETOC(mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("SETOC: bad operands")
 }
 
 // SETOS: Set byte if overflow (OF == 1).
@@ -16637,7 +16638,7 @@ func SETOS(mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("SETOS: bad operands")
 }
 
 // SETPC: Set byte if not parity (PF == 0).
@@ -16663,7 +16664,7 @@ func SETPC(mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("SETPC: bad operands")
 }
 
 // SETPL: Set byte if not sign (SF == 0).
@@ -16689,7 +16690,7 @@ func SETPL(mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("SETPL: bad operands")
 }
 
 // SETPS: Set byte if parity (PF == 1).
@@ -16715,7 +16716,7 @@ func SETPS(mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("SETPS: bad operands")
 }
 
 // SFENCE: Store Fence.
@@ -16755,7 +16756,7 @@ func SHA1MSG1(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("SHA1MSG1: bad operands")
 }
 
 // SHA1MSG2: Perform a Final Calculation for the Next Four SHA1 Message Doublewords.
@@ -16781,7 +16782,7 @@ func SHA1MSG2(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("SHA1MSG2: bad operands")
 }
 
 // SHA1NEXTE: Calculate SHA1 State Variable E after Four Rounds.
@@ -16807,7 +16808,7 @@ func SHA1NEXTE(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("SHA1NEXTE: bad operands")
 }
 
 // SHA1RNDS4: Perform Four Rounds of SHA1 Operation.
@@ -16833,7 +16834,7 @@ func SHA1RNDS4(i, mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("SHA1RNDS4: bad operands")
 }
 
 // SHA256MSG1: Perform an Intermediate Calculation for the Next Four SHA256 Message Doublewords.
@@ -16859,7 +16860,7 @@ func SHA256MSG1(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("SHA256MSG1: bad operands")
 }
 
 // SHA256MSG2: Perform a Final Calculation for the Next Four SHA256 Message Doublewords.
@@ -16885,7 +16886,7 @@ func SHA256MSG2(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("SHA256MSG2: bad operands")
 }
 
 // SHA256RNDS2: Perform Two Rounds of SHA256 Operation.
@@ -16911,7 +16912,7 @@ func SHA256RNDS2(x, mx, x1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("SHA256RNDS2: bad operands")
 }
 
 // SHLB: Logical Shift Left.
@@ -16969,7 +16970,7 @@ func SHLB(ci, mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("SHLB: bad operands")
 }
 
 // SHLL: Logical Shift Left.
@@ -17059,7 +17060,7 @@ func SHLL(ops ...operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{ops[2]},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("SHLL: bad operands")
 }
 
 // SHLQ: Logical Shift Left.
@@ -17149,7 +17150,7 @@ func SHLQ(ops ...operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{ops[2]},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("SHLQ: bad operands")
 }
 
 // SHLW: Logical Shift Left.
@@ -17239,7 +17240,7 @@ func SHLW(ops ...operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{ops[2]},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("SHLW: bad operands")
 }
 
 // SHLXL: Logical Shift Left Without Affecting Flags.
@@ -17265,7 +17266,7 @@ func SHLXL(r, mr, r1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("SHLXL: bad operands")
 }
 
 // SHLXQ: Logical Shift Left Without Affecting Flags.
@@ -17291,7 +17292,7 @@ func SHLXQ(r, mr, r1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("SHLXQ: bad operands")
 }
 
 // SHRB: Logical Shift Right.
@@ -17349,7 +17350,7 @@ func SHRB(ci, mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("SHRB: bad operands")
 }
 
 // SHRL: Logical Shift Right.
@@ -17439,7 +17440,7 @@ func SHRL(ops ...operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{ops[2]},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("SHRL: bad operands")
 }
 
 // SHRQ: Logical Shift Right.
@@ -17529,7 +17530,7 @@ func SHRQ(ops ...operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{ops[2]},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("SHRQ: bad operands")
 }
 
 // SHRW: Logical Shift Right.
@@ -17619,7 +17620,7 @@ func SHRW(ops ...operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{ops[2]},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("SHRW: bad operands")
 }
 
 // SHRXL: Logical Shift Right Without Affecting Flags.
@@ -17645,7 +17646,7 @@ func SHRXL(r, mr, r1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("SHRXL: bad operands")
 }
 
 // SHRXQ: Logical Shift Right Without Affecting Flags.
@@ -17671,7 +17672,7 @@ func SHRXQ(r, mr, r1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("SHRXQ: bad operands")
 }
 
 // SHUFPD: Shuffle Packed Double-Precision Floating-Point Values.
@@ -17697,7 +17698,7 @@ func SHUFPD(i, mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("SHUFPD: bad operands")
 }
 
 // SHUFPS: Shuffle Packed Single-Precision Floating-Point Values.
@@ -17723,7 +17724,7 @@ func SHUFPS(i, mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("SHUFPS: bad operands")
 }
 
 // SQRTPD: Compute Square Roots of Packed Double-Precision Floating-Point Values.
@@ -17749,7 +17750,7 @@ func SQRTPD(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("SQRTPD: bad operands")
 }
 
 // SQRTPS: Compute Square Roots of Packed Single-Precision Floating-Point Values.
@@ -17775,7 +17776,7 @@ func SQRTPS(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("SQRTPS: bad operands")
 }
 
 // SQRTSD: Compute Square Root of Scalar Double-Precision Floating-Point Value.
@@ -17801,7 +17802,7 @@ func SQRTSD(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("SQRTSD: bad operands")
 }
 
 // SQRTSS: Compute Square Root of Scalar Single-Precision Floating-Point Value.
@@ -17827,7 +17828,7 @@ func SQRTSS(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("SQRTSS: bad operands")
 }
 
 // STC: Set Carry Flag.
@@ -17873,7 +17874,7 @@ func STMXCSR(m operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{m},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("STMXCSR: bad operands")
 }
 
 // SUBB: Subtract.
@@ -17931,7 +17932,7 @@ func SUBB(imr, amr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{amr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("SUBB: bad operands")
 }
 
 // SUBL: Subtract.
@@ -18005,7 +18006,7 @@ func SUBL(imr, emr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{emr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("SUBL: bad operands")
 }
 
 // SUBPD: Subtract Packed Double-Precision Floating-Point Values.
@@ -18031,7 +18032,7 @@ func SUBPD(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("SUBPD: bad operands")
 }
 
 // SUBPS: Subtract Packed Single-Precision Floating-Point Values.
@@ -18057,7 +18058,7 @@ func SUBPS(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("SUBPS: bad operands")
 }
 
 // SUBQ: Subtract.
@@ -18131,7 +18132,7 @@ func SUBQ(imr, mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("SUBQ: bad operands")
 }
 
 // SUBSD: Subtract Scalar Double-Precision Floating-Point Values.
@@ -18157,7 +18158,7 @@ func SUBSD(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("SUBSD: bad operands")
 }
 
 // SUBSS: Subtract Scalar Single-Precision Floating-Point Values.
@@ -18183,7 +18184,7 @@ func SUBSS(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("SUBSS: bad operands")
 }
 
 // SUBW: Subtract.
@@ -18257,7 +18258,7 @@ func SUBW(imr, amr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{amr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("SUBW: bad operands")
 }
 
 // SYSCALL: Fast System Call.
@@ -18321,7 +18322,7 @@ func TESTB(ir, amr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("TESTB: bad operands")
 }
 
 // TESTL: Logical Compare.
@@ -18371,7 +18372,7 @@ func TESTL(ir, emr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("TESTL: bad operands")
 }
 
 // TESTQ: Logical Compare.
@@ -18421,7 +18422,7 @@ func TESTQ(ir, mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("TESTQ: bad operands")
 }
 
 // TESTW: Logical Compare.
@@ -18471,7 +18472,7 @@ func TESTW(ir, amr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("TESTW: bad operands")
 }
 
 // TZCNTL: Count the Number of Trailing Zero Bits.
@@ -18497,7 +18498,7 @@ func TZCNTL(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("TZCNTL: bad operands")
 }
 
 // TZCNTQ: Count the Number of Trailing Zero Bits.
@@ -18523,7 +18524,7 @@ func TZCNTQ(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("TZCNTQ: bad operands")
 }
 
 // TZCNTW: Count the Number of Trailing Zero Bits.
@@ -18549,7 +18550,7 @@ func TZCNTW(mr, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("TZCNTW: bad operands")
 }
 
 // UCOMISD: Unordered Compare Scalar Double-Precision Floating-Point Values and Set EFLAGS.
@@ -18575,7 +18576,7 @@ func UCOMISD(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("UCOMISD: bad operands")
 }
 
 // UCOMISS: Unordered Compare Scalar Single-Precision Floating-Point Values and Set EFLAGS.
@@ -18601,7 +18602,7 @@ func UCOMISS(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("UCOMISS: bad operands")
 }
 
 // UD2: Undefined Instruction.
@@ -18641,7 +18642,7 @@ func UNPCKHPD(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("UNPCKHPD: bad operands")
 }
 
 // UNPCKHPS: Unpack and Interleave High Packed Single-Precision Floating-Point Values.
@@ -18667,7 +18668,7 @@ func UNPCKHPS(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("UNPCKHPS: bad operands")
 }
 
 // UNPCKLPD: Unpack and Interleave Low Packed Double-Precision Floating-Point Values.
@@ -18693,7 +18694,7 @@ func UNPCKLPD(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("UNPCKLPD: bad operands")
 }
 
 // UNPCKLPS: Unpack and Interleave Low Packed Single-Precision Floating-Point Values.
@@ -18719,7 +18720,7 @@ func UNPCKLPS(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("UNPCKLPS: bad operands")
 }
 
 // VADDPD: Add Packed Double-Precision Floating-Point Values.
@@ -18761,7 +18762,7 @@ func VADDPD(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VADDPD: bad operands")
 }
 
 // VADDPS: Add Packed Single-Precision Floating-Point Values.
@@ -18803,7 +18804,7 @@ func VADDPS(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VADDPS: bad operands")
 }
 
 // VADDSD: Add Scalar Double-Precision Floating-Point Values.
@@ -18829,7 +18830,7 @@ func VADDSD(mx, x, x1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VADDSD: bad operands")
 }
 
 // VADDSS: Add Scalar Single-Precision Floating-Point Values.
@@ -18855,7 +18856,7 @@ func VADDSS(mx, x, x1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VADDSS: bad operands")
 }
 
 // VADDSUBPD: Packed Double-FP Add/Subtract.
@@ -18897,7 +18898,7 @@ func VADDSUBPD(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VADDSUBPD: bad operands")
 }
 
 // VADDSUBPS: Packed Single-FP Add/Subtract.
@@ -18939,7 +18940,7 @@ func VADDSUBPS(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VADDSUBPS: bad operands")
 }
 
 // VAESDEC: Perform One Round of an AES Decryption Flow.
@@ -18965,7 +18966,7 @@ func VAESDEC(mx, x, x1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VAESDEC: bad operands")
 }
 
 // VAESDECLAST: Perform Last Round of an AES Decryption Flow.
@@ -18991,7 +18992,7 @@ func VAESDECLAST(mx, x, x1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VAESDECLAST: bad operands")
 }
 
 // VAESENC: Perform One Round of an AES Encryption Flow.
@@ -19017,7 +19018,7 @@ func VAESENC(mx, x, x1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VAESENC: bad operands")
 }
 
 // VAESENCLAST: Perform Last Round of an AES Encryption Flow.
@@ -19043,7 +19044,7 @@ func VAESENCLAST(mx, x, x1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VAESENCLAST: bad operands")
 }
 
 // VAESIMC: Perform the AES InvMixColumn Transformation.
@@ -19069,7 +19070,7 @@ func VAESIMC(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VAESIMC: bad operands")
 }
 
 // VAESKEYGENASSIST: AES Round Key Generation Assist.
@@ -19095,7 +19096,7 @@ func VAESKEYGENASSIST(i, mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VAESKEYGENASSIST: bad operands")
 }
 
 // VANDNPD: Bitwise Logical AND NOT of Packed Double-Precision Floating-Point Values.
@@ -19137,7 +19138,7 @@ func VANDNPD(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VANDNPD: bad operands")
 }
 
 // VANDNPS: Bitwise Logical AND NOT of Packed Single-Precision Floating-Point Values.
@@ -19179,7 +19180,7 @@ func VANDNPS(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VANDNPS: bad operands")
 }
 
 // VANDPD: Bitwise Logical AND of Packed Double-Precision Floating-Point Values.
@@ -19221,7 +19222,7 @@ func VANDPD(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VANDPD: bad operands")
 }
 
 // VANDPS: Bitwise Logical AND of Packed Single-Precision Floating-Point Values.
@@ -19263,7 +19264,7 @@ func VANDPS(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VANDPS: bad operands")
 }
 
 // VBLENDPD: Blend Packed Double Precision Floating-Point Values.
@@ -19305,7 +19306,7 @@ func VBLENDPD(i, mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VBLENDPD: bad operands")
 }
 
 // VBLENDPS:  Blend Packed Single Precision Floating-Point Values.
@@ -19347,7 +19348,7 @@ func VBLENDPS(i, mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VBLENDPS: bad operands")
 }
 
 // VBLENDVPD:  Variable Blend Packed Double Precision Floating-Point Values.
@@ -19389,7 +19390,7 @@ func VBLENDVPD(xy, mxy, xy1, xy2 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy2},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VBLENDVPD: bad operands")
 }
 
 // VBLENDVPS:  Variable Blend Packed Single Precision Floating-Point Values.
@@ -19431,7 +19432,7 @@ func VBLENDVPS(xy, mxy, xy1, xy2 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy2},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VBLENDVPS: bad operands")
 }
 
 // VBROADCASTF128: Broadcast 128 Bit of Floating-Point Data.
@@ -19449,7 +19450,7 @@ func VBROADCASTF128(m, y operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{y},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VBROADCASTF128: bad operands")
 }
 
 // VBROADCASTI128: Broadcast 128 Bits of Integer Data.
@@ -19467,7 +19468,7 @@ func VBROADCASTI128(m, y operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{y},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VBROADCASTI128: bad operands")
 }
 
 // VBROADCASTSD: Broadcast Double-Precision Floating-Point Element.
@@ -19493,7 +19494,7 @@ func VBROADCASTSD(mx, y operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{y},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VBROADCASTSD: bad operands")
 }
 
 // VBROADCASTSS: Broadcast Single-Precision Floating-Point Element.
@@ -19535,7 +19536,7 @@ func VBROADCASTSS(mx, xy operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VBROADCASTSS: bad operands")
 }
 
 // VCMPPD: Compare Packed Double-Precision Floating-Point Values.
@@ -19577,7 +19578,7 @@ func VCMPPD(i, mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VCMPPD: bad operands")
 }
 
 // VCMPPS: Compare Packed Single-Precision Floating-Point Values.
@@ -19619,7 +19620,7 @@ func VCMPPS(i, mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VCMPPS: bad operands")
 }
 
 // VCMPSD: Compare Scalar Double-Precision Floating-Point Values.
@@ -19645,7 +19646,7 @@ func VCMPSD(i, mx, x, x1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VCMPSD: bad operands")
 }
 
 // VCMPSS: Compare Scalar Single-Precision Floating-Point Values.
@@ -19671,7 +19672,7 @@ func VCMPSS(i, mx, x, x1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VCMPSS: bad operands")
 }
 
 // VCOMISD: Compare Scalar Ordered Double-Precision Floating-Point Values and Set EFLAGS.
@@ -19697,7 +19698,7 @@ func VCOMISD(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VCOMISD: bad operands")
 }
 
 // VCOMISS: Compare Scalar Ordered Single-Precision Floating-Point Values and Set EFLAGS.
@@ -19723,7 +19724,7 @@ func VCOMISS(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VCOMISS: bad operands")
 }
 
 // VCVTDQ2PD: Convert Packed Dword Integers to Packed Double-Precision FP Values.
@@ -19765,7 +19766,7 @@ func VCVTDQ2PD(mx, xy operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VCVTDQ2PD: bad operands")
 }
 
 // VCVTDQ2PS: Convert Packed Dword Integers to Packed Single-Precision FP Values.
@@ -19807,7 +19808,7 @@ func VCVTDQ2PS(mxy, xy operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VCVTDQ2PS: bad operands")
 }
 
 // VCVTPD2DQX: Convert Packed Double-Precision FP Values to Packed Dword Integers.
@@ -19833,7 +19834,7 @@ func VCVTPD2DQX(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VCVTPD2DQX: bad operands")
 }
 
 // VCVTPD2DQY: Convert Packed Double-Precision FP Values to Packed Dword Integers.
@@ -19859,7 +19860,7 @@ func VCVTPD2DQY(my, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VCVTPD2DQY: bad operands")
 }
 
 // VCVTPD2PSX: Convert Packed Double-Precision FP Values to Packed Single-Precision FP Values.
@@ -19885,7 +19886,7 @@ func VCVTPD2PSX(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VCVTPD2PSX: bad operands")
 }
 
 // VCVTPD2PSY: Convert Packed Double-Precision FP Values to Packed Single-Precision FP Values.
@@ -19911,7 +19912,7 @@ func VCVTPD2PSY(my, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VCVTPD2PSY: bad operands")
 }
 
 // VCVTPH2PS: Convert Half-Precision FP Values to Single-Precision FP Values.
@@ -19953,7 +19954,7 @@ func VCVTPH2PS(mx, xy operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VCVTPH2PS: bad operands")
 }
 
 // VCVTPS2DQ: Convert Packed Single-Precision FP Values to Packed Dword Integers.
@@ -19995,7 +19996,7 @@ func VCVTPS2DQ(mxy, xy operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VCVTPS2DQ: bad operands")
 }
 
 // VCVTPS2PD: Convert Packed Single-Precision FP Values to Packed Double-Precision FP Values.
@@ -20037,7 +20038,7 @@ func VCVTPS2PD(mx, xy operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VCVTPS2PD: bad operands")
 }
 
 // VCVTPS2PH: Convert Single-Precision FP value to Half-Precision FP value.
@@ -20079,7 +20080,7 @@ func VCVTPS2PH(i, xy, mx operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mx},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VCVTPS2PH: bad operands")
 }
 
 // VCVTSD2SI: Convert Scalar Double-Precision FP Value to Integer.
@@ -20105,7 +20106,7 @@ func VCVTSD2SI(mx, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VCVTSD2SI: bad operands")
 }
 
 // VCVTSD2SIQ: Convert Scalar Double-Precision FP Value to Integer.
@@ -20131,7 +20132,7 @@ func VCVTSD2SIQ(mx, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VCVTSD2SIQ: bad operands")
 }
 
 // VCVTSD2SS: Convert Scalar Double-Precision FP Value to Scalar Single-Precision FP Value.
@@ -20157,7 +20158,7 @@ func VCVTSD2SS(mx, x, x1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VCVTSD2SS: bad operands")
 }
 
 // VCVTSI2SDL: Convert Dword Integer to Scalar Double-Precision FP Value.
@@ -20183,7 +20184,7 @@ func VCVTSI2SDL(mr, x, x1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VCVTSI2SDL: bad operands")
 }
 
 // VCVTSI2SDQ: Convert Dword Integer to Scalar Double-Precision FP Value.
@@ -20209,7 +20210,7 @@ func VCVTSI2SDQ(mr, x, x1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VCVTSI2SDQ: bad operands")
 }
 
 // VCVTSI2SSL: Convert Dword Integer to Scalar Single-Precision FP Value.
@@ -20235,7 +20236,7 @@ func VCVTSI2SSL(mr, x, x1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VCVTSI2SSL: bad operands")
 }
 
 // VCVTSI2SSQ: Convert Dword Integer to Scalar Single-Precision FP Value.
@@ -20261,7 +20262,7 @@ func VCVTSI2SSQ(mr, x, x1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VCVTSI2SSQ: bad operands")
 }
 
 // VCVTSS2SD: Convert Scalar Single-Precision FP Value to Scalar Double-Precision FP Value.
@@ -20287,7 +20288,7 @@ func VCVTSS2SD(mx, x, x1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VCVTSS2SD: bad operands")
 }
 
 // VCVTSS2SI: Convert Scalar Single-Precision FP Value to Dword Integer.
@@ -20313,7 +20314,7 @@ func VCVTSS2SI(mx, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VCVTSS2SI: bad operands")
 }
 
 // VCVTSS2SIQ: Convert Scalar Single-Precision FP Value to Dword Integer.
@@ -20339,7 +20340,7 @@ func VCVTSS2SIQ(mx, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VCVTSS2SIQ: bad operands")
 }
 
 // VCVTTPD2DQX: Convert with Truncation Packed Double-Precision FP Values to Packed Dword Integers.
@@ -20365,7 +20366,7 @@ func VCVTTPD2DQX(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VCVTTPD2DQX: bad operands")
 }
 
 // VCVTTPD2DQY: Convert with Truncation Packed Double-Precision FP Values to Packed Dword Integers.
@@ -20391,7 +20392,7 @@ func VCVTTPD2DQY(my, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VCVTTPD2DQY: bad operands")
 }
 
 // VCVTTPS2DQ: Convert with Truncation Packed Single-Precision FP Values to Packed Dword Integers.
@@ -20433,7 +20434,7 @@ func VCVTTPS2DQ(mxy, xy operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VCVTTPS2DQ: bad operands")
 }
 
 // VCVTTSD2SI: Convert with Truncation Scalar Double-Precision FP Value to Signed Integer.
@@ -20459,7 +20460,7 @@ func VCVTTSD2SI(mx, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VCVTTSD2SI: bad operands")
 }
 
 // VCVTTSD2SIQ: Convert with Truncation Scalar Double-Precision FP Value to Signed Integer.
@@ -20485,7 +20486,7 @@ func VCVTTSD2SIQ(mx, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VCVTTSD2SIQ: bad operands")
 }
 
 // VCVTTSS2SI: Convert with Truncation Scalar Single-Precision FP Value to Dword Integer.
@@ -20511,7 +20512,7 @@ func VCVTTSS2SI(mx, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VCVTTSS2SI: bad operands")
 }
 
 // VCVTTSS2SIQ: Convert with Truncation Scalar Single-Precision FP Value to Dword Integer.
@@ -20537,7 +20538,7 @@ func VCVTTSS2SIQ(mx, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VCVTTSS2SIQ: bad operands")
 }
 
 // VDIVPD: Divide Packed Double-Precision Floating-Point Values.
@@ -20579,7 +20580,7 @@ func VDIVPD(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VDIVPD: bad operands")
 }
 
 // VDIVPS: Divide Packed Single-Precision Floating-Point Values.
@@ -20621,7 +20622,7 @@ func VDIVPS(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VDIVPS: bad operands")
 }
 
 // VDIVSD: Divide Scalar Double-Precision Floating-Point Values.
@@ -20647,7 +20648,7 @@ func VDIVSD(mx, x, x1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VDIVSD: bad operands")
 }
 
 // VDIVSS: Divide Scalar Single-Precision Floating-Point Values.
@@ -20673,7 +20674,7 @@ func VDIVSS(mx, x, x1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VDIVSS: bad operands")
 }
 
 // VDPPD: Dot Product of Packed Double Precision Floating-Point Values.
@@ -20699,7 +20700,7 @@ func VDPPD(i, mx, x, x1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VDPPD: bad operands")
 }
 
 // VDPPS: Dot Product of Packed Single Precision Floating-Point Values.
@@ -20741,7 +20742,7 @@ func VDPPS(i, mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VDPPS: bad operands")
 }
 
 // VEXTRACTF128: Extract Packed Floating-Point Values.
@@ -20767,7 +20768,7 @@ func VEXTRACTF128(i, y, mx operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mx},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VEXTRACTF128: bad operands")
 }
 
 // VEXTRACTI128: Extract Packed Integer Values.
@@ -20793,7 +20794,7 @@ func VEXTRACTI128(i, y, mx operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mx},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VEXTRACTI128: bad operands")
 }
 
 // VEXTRACTPS: Extract Packed Single Precision Floating-Point Value.
@@ -20819,7 +20820,7 @@ func VEXTRACTPS(i, x, mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VEXTRACTPS: bad operands")
 }
 
 // VFMADD132PD: Fused Multiply-Add of Packed Double-Precision Floating-Point Values.
@@ -20861,7 +20862,7 @@ func VFMADD132PD(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VFMADD132PD: bad operands")
 }
 
 // VFMADD132PS: Fused Multiply-Add of Packed Single-Precision Floating-Point Values.
@@ -20903,7 +20904,7 @@ func VFMADD132PS(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VFMADD132PS: bad operands")
 }
 
 // VFMADD132SD: Fused Multiply-Add of Scalar Double-Precision Floating-Point Values.
@@ -20929,7 +20930,7 @@ func VFMADD132SD(mx, x, x1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VFMADD132SD: bad operands")
 }
 
 // VFMADD132SS: Fused Multiply-Add of Scalar Single-Precision Floating-Point Values.
@@ -20955,7 +20956,7 @@ func VFMADD132SS(mx, x, x1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VFMADD132SS: bad operands")
 }
 
 // VFMADD213PD: Fused Multiply-Add of Packed Double-Precision Floating-Point Values.
@@ -20997,7 +20998,7 @@ func VFMADD213PD(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VFMADD213PD: bad operands")
 }
 
 // VFMADD213PS: Fused Multiply-Add of Packed Single-Precision Floating-Point Values.
@@ -21039,7 +21040,7 @@ func VFMADD213PS(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VFMADD213PS: bad operands")
 }
 
 // VFMADD213SD: Fused Multiply-Add of Scalar Double-Precision Floating-Point Values.
@@ -21065,7 +21066,7 @@ func VFMADD213SD(mx, x, x1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VFMADD213SD: bad operands")
 }
 
 // VFMADD213SS: Fused Multiply-Add of Scalar Single-Precision Floating-Point Values.
@@ -21091,7 +21092,7 @@ func VFMADD213SS(mx, x, x1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VFMADD213SS: bad operands")
 }
 
 // VFMADD231PD: Fused Multiply-Add of Packed Double-Precision Floating-Point Values.
@@ -21133,7 +21134,7 @@ func VFMADD231PD(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VFMADD231PD: bad operands")
 }
 
 // VFMADD231PS: Fused Multiply-Add of Packed Single-Precision Floating-Point Values.
@@ -21175,7 +21176,7 @@ func VFMADD231PS(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VFMADD231PS: bad operands")
 }
 
 // VFMADD231SD: Fused Multiply-Add of Scalar Double-Precision Floating-Point Values.
@@ -21201,7 +21202,7 @@ func VFMADD231SD(mx, x, x1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VFMADD231SD: bad operands")
 }
 
 // VFMADD231SS: Fused Multiply-Add of Scalar Single-Precision Floating-Point Values.
@@ -21227,7 +21228,7 @@ func VFMADD231SS(mx, x, x1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VFMADD231SS: bad operands")
 }
 
 // VFMADDSUB132PD: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values.
@@ -21269,7 +21270,7 @@ func VFMADDSUB132PD(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VFMADDSUB132PD: bad operands")
 }
 
 // VFMADDSUB132PS: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values.
@@ -21311,7 +21312,7 @@ func VFMADDSUB132PS(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VFMADDSUB132PS: bad operands")
 }
 
 // VFMADDSUB213PD: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values.
@@ -21353,7 +21354,7 @@ func VFMADDSUB213PD(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VFMADDSUB213PD: bad operands")
 }
 
 // VFMADDSUB213PS: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values.
@@ -21395,7 +21396,7 @@ func VFMADDSUB213PS(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VFMADDSUB213PS: bad operands")
 }
 
 // VFMADDSUB231PD: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values.
@@ -21437,7 +21438,7 @@ func VFMADDSUB231PD(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VFMADDSUB231PD: bad operands")
 }
 
 // VFMADDSUB231PS: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values.
@@ -21479,7 +21480,7 @@ func VFMADDSUB231PS(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VFMADDSUB231PS: bad operands")
 }
 
 // VFMSUB132PD: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values.
@@ -21521,7 +21522,7 @@ func VFMSUB132PD(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VFMSUB132PD: bad operands")
 }
 
 // VFMSUB132PS: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values.
@@ -21563,7 +21564,7 @@ func VFMSUB132PS(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VFMSUB132PS: bad operands")
 }
 
 // VFMSUB132SD: Fused Multiply-Subtract of Scalar Double-Precision Floating-Point Values.
@@ -21589,7 +21590,7 @@ func VFMSUB132SD(mx, x, x1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VFMSUB132SD: bad operands")
 }
 
 // VFMSUB132SS: Fused Multiply-Subtract of Scalar Single-Precision Floating-Point Values.
@@ -21615,7 +21616,7 @@ func VFMSUB132SS(mx, x, x1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VFMSUB132SS: bad operands")
 }
 
 // VFMSUB213PD: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values.
@@ -21657,7 +21658,7 @@ func VFMSUB213PD(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VFMSUB213PD: bad operands")
 }
 
 // VFMSUB213PS: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values.
@@ -21699,7 +21700,7 @@ func VFMSUB213PS(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VFMSUB213PS: bad operands")
 }
 
 // VFMSUB213SD: Fused Multiply-Subtract of Scalar Double-Precision Floating-Point Values.
@@ -21725,7 +21726,7 @@ func VFMSUB213SD(mx, x, x1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VFMSUB213SD: bad operands")
 }
 
 // VFMSUB213SS: Fused Multiply-Subtract of Scalar Single-Precision Floating-Point Values.
@@ -21751,7 +21752,7 @@ func VFMSUB213SS(mx, x, x1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VFMSUB213SS: bad operands")
 }
 
 // VFMSUB231PD: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values.
@@ -21793,7 +21794,7 @@ func VFMSUB231PD(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VFMSUB231PD: bad operands")
 }
 
 // VFMSUB231PS: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values.
@@ -21835,7 +21836,7 @@ func VFMSUB231PS(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VFMSUB231PS: bad operands")
 }
 
 // VFMSUB231SD: Fused Multiply-Subtract of Scalar Double-Precision Floating-Point Values.
@@ -21861,7 +21862,7 @@ func VFMSUB231SD(mx, x, x1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VFMSUB231SD: bad operands")
 }
 
 // VFMSUB231SS: Fused Multiply-Subtract of Scalar Single-Precision Floating-Point Values.
@@ -21887,7 +21888,7 @@ func VFMSUB231SS(mx, x, x1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VFMSUB231SS: bad operands")
 }
 
 // VFMSUBADD132PD: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values.
@@ -21929,7 +21930,7 @@ func VFMSUBADD132PD(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VFMSUBADD132PD: bad operands")
 }
 
 // VFMSUBADD132PS: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values.
@@ -21971,7 +21972,7 @@ func VFMSUBADD132PS(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VFMSUBADD132PS: bad operands")
 }
 
 // VFMSUBADD213PD: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values.
@@ -22013,7 +22014,7 @@ func VFMSUBADD213PD(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VFMSUBADD213PD: bad operands")
 }
 
 // VFMSUBADD213PS: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values.
@@ -22055,7 +22056,7 @@ func VFMSUBADD213PS(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VFMSUBADD213PS: bad operands")
 }
 
 // VFMSUBADD231PD: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values.
@@ -22097,7 +22098,7 @@ func VFMSUBADD231PD(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VFMSUBADD231PD: bad operands")
 }
 
 // VFMSUBADD231PS: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values.
@@ -22139,7 +22140,7 @@ func VFMSUBADD231PS(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VFMSUBADD231PS: bad operands")
 }
 
 // VFNMADD132PD: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values.
@@ -22181,7 +22182,7 @@ func VFNMADD132PD(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VFNMADD132PD: bad operands")
 }
 
 // VFNMADD132PS: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values.
@@ -22223,7 +22224,7 @@ func VFNMADD132PS(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VFNMADD132PS: bad operands")
 }
 
 // VFNMADD132SD: Fused Negative Multiply-Add of Scalar Double-Precision Floating-Point Values.
@@ -22249,7 +22250,7 @@ func VFNMADD132SD(mx, x, x1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VFNMADD132SD: bad operands")
 }
 
 // VFNMADD132SS: Fused Negative Multiply-Add of Scalar Single-Precision Floating-Point Values.
@@ -22275,7 +22276,7 @@ func VFNMADD132SS(mx, x, x1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VFNMADD132SS: bad operands")
 }
 
 // VFNMADD213PD: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values.
@@ -22317,7 +22318,7 @@ func VFNMADD213PD(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VFNMADD213PD: bad operands")
 }
 
 // VFNMADD213PS: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values.
@@ -22359,7 +22360,7 @@ func VFNMADD213PS(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VFNMADD213PS: bad operands")
 }
 
 // VFNMADD213SD: Fused Negative Multiply-Add of Scalar Double-Precision Floating-Point Values.
@@ -22385,7 +22386,7 @@ func VFNMADD213SD(mx, x, x1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VFNMADD213SD: bad operands")
 }
 
 // VFNMADD213SS: Fused Negative Multiply-Add of Scalar Single-Precision Floating-Point Values.
@@ -22411,7 +22412,7 @@ func VFNMADD213SS(mx, x, x1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VFNMADD213SS: bad operands")
 }
 
 // VFNMADD231PD: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values.
@@ -22453,7 +22454,7 @@ func VFNMADD231PD(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VFNMADD231PD: bad operands")
 }
 
 // VFNMADD231PS: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values.
@@ -22495,7 +22496,7 @@ func VFNMADD231PS(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VFNMADD231PS: bad operands")
 }
 
 // VFNMADD231SD: Fused Negative Multiply-Add of Scalar Double-Precision Floating-Point Values.
@@ -22521,7 +22522,7 @@ func VFNMADD231SD(mx, x, x1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VFNMADD231SD: bad operands")
 }
 
 // VFNMADD231SS: Fused Negative Multiply-Add of Scalar Single-Precision Floating-Point Values.
@@ -22547,7 +22548,7 @@ func VFNMADD231SS(mx, x, x1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VFNMADD231SS: bad operands")
 }
 
 // VFNMSUB132PD: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values.
@@ -22589,7 +22590,7 @@ func VFNMSUB132PD(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VFNMSUB132PD: bad operands")
 }
 
 // VFNMSUB132PS: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values.
@@ -22631,7 +22632,7 @@ func VFNMSUB132PS(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VFNMSUB132PS: bad operands")
 }
 
 // VFNMSUB132SD: Fused Negative Multiply-Subtract of Scalar Double-Precision Floating-Point Values.
@@ -22657,7 +22658,7 @@ func VFNMSUB132SD(mx, x, x1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VFNMSUB132SD: bad operands")
 }
 
 // VFNMSUB132SS: Fused Negative Multiply-Subtract of Scalar Single-Precision Floating-Point Values.
@@ -22683,7 +22684,7 @@ func VFNMSUB132SS(mx, x, x1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VFNMSUB132SS: bad operands")
 }
 
 // VFNMSUB213PD: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values.
@@ -22725,7 +22726,7 @@ func VFNMSUB213PD(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VFNMSUB213PD: bad operands")
 }
 
 // VFNMSUB213PS: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values.
@@ -22767,7 +22768,7 @@ func VFNMSUB213PS(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VFNMSUB213PS: bad operands")
 }
 
 // VFNMSUB213SD: Fused Negative Multiply-Subtract of Scalar Double-Precision Floating-Point Values.
@@ -22793,7 +22794,7 @@ func VFNMSUB213SD(mx, x, x1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VFNMSUB213SD: bad operands")
 }
 
 // VFNMSUB213SS: Fused Negative Multiply-Subtract of Scalar Single-Precision Floating-Point Values.
@@ -22819,7 +22820,7 @@ func VFNMSUB213SS(mx, x, x1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VFNMSUB213SS: bad operands")
 }
 
 // VFNMSUB231PD: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values.
@@ -22861,7 +22862,7 @@ func VFNMSUB231PD(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VFNMSUB231PD: bad operands")
 }
 
 // VFNMSUB231PS: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values.
@@ -22903,7 +22904,7 @@ func VFNMSUB231PS(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VFNMSUB231PS: bad operands")
 }
 
 // VFNMSUB231SD: Fused Negative Multiply-Subtract of Scalar Double-Precision Floating-Point Values.
@@ -22929,7 +22930,7 @@ func VFNMSUB231SD(mx, x, x1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VFNMSUB231SD: bad operands")
 }
 
 // VFNMSUB231SS: Fused Negative Multiply-Subtract of Scalar Single-Precision Floating-Point Values.
@@ -22955,7 +22956,7 @@ func VFNMSUB231SS(mx, x, x1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VFNMSUB231SS: bad operands")
 }
 
 // VGATHERDPD: Gather Packed Double-Precision Floating-Point Values Using Signed Doubleword Indices.
@@ -22981,7 +22982,7 @@ func VGATHERDPD(xy, v, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy, xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VGATHERDPD: bad operands")
 }
 
 // VGATHERDPS: Gather Packed Single-Precision Floating-Point Values Using Signed Doubleword Indices.
@@ -23007,7 +23008,7 @@ func VGATHERDPS(xy, v, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy, xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VGATHERDPS: bad operands")
 }
 
 // VGATHERQPD: Gather Packed Double-Precision Floating-Point Values Using Signed Quadword Indices.
@@ -23033,7 +23034,7 @@ func VGATHERQPD(xy, v, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy, xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VGATHERQPD: bad operands")
 }
 
 // VGATHERQPS: Gather Packed Single-Precision Floating-Point Values Using Signed Quadword Indices.
@@ -23059,7 +23060,7 @@ func VGATHERQPS(x, v, x1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x, x1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VGATHERQPS: bad operands")
 }
 
 // VHADDPD: Packed Double-FP Horizontal Add.
@@ -23101,7 +23102,7 @@ func VHADDPD(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VHADDPD: bad operands")
 }
 
 // VHADDPS: Packed Single-FP Horizontal Add.
@@ -23143,7 +23144,7 @@ func VHADDPS(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VHADDPS: bad operands")
 }
 
 // VHSUBPD: Packed Double-FP Horizontal Subtract.
@@ -23185,7 +23186,7 @@ func VHSUBPD(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VHSUBPD: bad operands")
 }
 
 // VHSUBPS: Packed Single-FP Horizontal Subtract.
@@ -23227,7 +23228,7 @@ func VHSUBPS(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VHSUBPS: bad operands")
 }
 
 // VINSERTF128: Insert Packed Floating-Point Values.
@@ -23253,7 +23254,7 @@ func VINSERTF128(i, mx, y, y1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{y1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VINSERTF128: bad operands")
 }
 
 // VINSERTI128: Insert Packed Integer Values.
@@ -23279,7 +23280,7 @@ func VINSERTI128(i, mx, y, y1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{y1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VINSERTI128: bad operands")
 }
 
 // VINSERTPS: Insert Packed Single Precision Floating-Point Value.
@@ -23305,7 +23306,7 @@ func VINSERTPS(i, mx, x, x1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VINSERTPS: bad operands")
 }
 
 // VLDDQU: Load Unaligned Integer 128 Bits.
@@ -23331,7 +23332,7 @@ func VLDDQU(m, xy operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VLDDQU: bad operands")
 }
 
 // VLDMXCSR: Load MXCSR Register.
@@ -23349,7 +23350,7 @@ func VLDMXCSR(m operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VLDMXCSR: bad operands")
 }
 
 // VMASKMOVDQU: Store Selected Bytes of Double Quadword.
@@ -23367,7 +23368,7 @@ func VMASKMOVDQU(x, x1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VMASKMOVDQU: bad operands")
 }
 
 // VMASKMOVPD: Conditional Move Packed Double-Precision Floating-Point Values.
@@ -23409,7 +23410,7 @@ func VMASKMOVPD(mxy, xy, mxy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mxy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VMASKMOVPD: bad operands")
 }
 
 // VMASKMOVPS: Conditional Move Packed Single-Precision Floating-Point Values.
@@ -23451,7 +23452,7 @@ func VMASKMOVPS(mxy, xy, mxy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mxy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VMASKMOVPS: bad operands")
 }
 
 // VMAXPD: Return Maximum Packed Double-Precision Floating-Point Values.
@@ -23493,7 +23494,7 @@ func VMAXPD(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VMAXPD: bad operands")
 }
 
 // VMAXPS: Return Maximum Packed Single-Precision Floating-Point Values.
@@ -23535,7 +23536,7 @@ func VMAXPS(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VMAXPS: bad operands")
 }
 
 // VMAXSD: Return Maximum Scalar Double-Precision Floating-Point Value.
@@ -23561,7 +23562,7 @@ func VMAXSD(mx, x, x1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VMAXSD: bad operands")
 }
 
 // VMAXSS: Return Maximum Scalar Single-Precision Floating-Point Value.
@@ -23587,7 +23588,7 @@ func VMAXSS(mx, x, x1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VMAXSS: bad operands")
 }
 
 // VMINPD: Return Minimum Packed Double-Precision Floating-Point Values.
@@ -23629,7 +23630,7 @@ func VMINPD(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VMINPD: bad operands")
 }
 
 // VMINPS: Return Minimum Packed Single-Precision Floating-Point Values.
@@ -23671,7 +23672,7 @@ func VMINPS(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VMINPS: bad operands")
 }
 
 // VMINSD: Return Minimum Scalar Double-Precision Floating-Point Value.
@@ -23697,7 +23698,7 @@ func VMINSD(mx, x, x1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VMINSD: bad operands")
 }
 
 // VMINSS: Return Minimum Scalar Single-Precision Floating-Point Value.
@@ -23723,7 +23724,7 @@ func VMINSS(mx, x, x1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VMINSS: bad operands")
 }
 
 // VMOVAPD: Move Aligned Packed Double-Precision Floating-Point Values.
@@ -23781,7 +23782,7 @@ func VMOVAPD(mxy, mxy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mxy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VMOVAPD: bad operands")
 }
 
 // VMOVAPS: Move Aligned Packed Single-Precision Floating-Point Values.
@@ -23839,7 +23840,7 @@ func VMOVAPS(mxy, mxy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mxy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VMOVAPS: bad operands")
 }
 
 // VMOVD: Move Doubleword.
@@ -23881,7 +23882,7 @@ func VMOVD(mrx, mrx1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mrx1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VMOVD: bad operands")
 }
 
 // VMOVDDUP: Move One Double-FP and Duplicate.
@@ -23923,7 +23924,7 @@ func VMOVDDUP(mxy, xy operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VMOVDDUP: bad operands")
 }
 
 // VMOVDQA: Move Aligned Double Quadword.
@@ -23981,7 +23982,7 @@ func VMOVDQA(mxy, mxy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mxy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VMOVDQA: bad operands")
 }
 
 // VMOVDQU: Move Unaligned Double Quadword.
@@ -24039,7 +24040,7 @@ func VMOVDQU(mxy, mxy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mxy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VMOVDQU: bad operands")
 }
 
 // VMOVHLPS: Move Packed Single-Precision Floating-Point Values High to Low.
@@ -24057,7 +24058,7 @@ func VMOVHLPS(x, x1, x2 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x2},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VMOVHLPS: bad operands")
 }
 
 // VMOVHPD: Move High Packed Double-Precision Floating-Point Value.
@@ -24083,7 +24084,7 @@ func VMOVHPD(ops ...operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{ops[2]},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VMOVHPD: bad operands")
 }
 
 // VMOVHPS: Move High Packed Single-Precision Floating-Point Values.
@@ -24109,7 +24110,7 @@ func VMOVHPS(ops ...operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{ops[2]},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VMOVHPS: bad operands")
 }
 
 // VMOVLHPS: Move Packed Single-Precision Floating-Point Values Low to High.
@@ -24127,7 +24128,7 @@ func VMOVLHPS(x, x1, x2 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x2},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VMOVLHPS: bad operands")
 }
 
 // VMOVLPD: Move Low Packed Double-Precision Floating-Point Value.
@@ -24153,7 +24154,7 @@ func VMOVLPD(ops ...operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{ops[2]},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VMOVLPD: bad operands")
 }
 
 // VMOVLPS: Move Low Packed Single-Precision Floating-Point Values.
@@ -24179,7 +24180,7 @@ func VMOVLPS(ops ...operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{ops[2]},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VMOVLPS: bad operands")
 }
 
 // VMOVMSKPD: Extract Packed Double-Precision Floating-Point Sign Mask.
@@ -24205,7 +24206,7 @@ func VMOVMSKPD(xy, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VMOVMSKPD: bad operands")
 }
 
 // VMOVMSKPS: Extract Packed Single-Precision Floating-Point Sign Mask.
@@ -24231,7 +24232,7 @@ func VMOVMSKPS(xy, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VMOVMSKPS: bad operands")
 }
 
 // VMOVNTDQ: Store Double Quadword Using Non-Temporal Hint.
@@ -24257,7 +24258,7 @@ func VMOVNTDQ(xy, m operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{m},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VMOVNTDQ: bad operands")
 }
 
 // VMOVNTDQA: Load Double Quadword Non-Temporal Aligned Hint.
@@ -24283,7 +24284,7 @@ func VMOVNTDQA(m, xy operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VMOVNTDQA: bad operands")
 }
 
 // VMOVNTPD: Store Packed Double-Precision Floating-Point Values Using Non-Temporal Hint.
@@ -24309,7 +24310,7 @@ func VMOVNTPD(xy, m operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{m},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VMOVNTPD: bad operands")
 }
 
 // VMOVNTPS: Store Packed Single-Precision Floating-Point Values Using Non-Temporal Hint.
@@ -24335,7 +24336,7 @@ func VMOVNTPS(xy, m operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{m},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VMOVNTPS: bad operands")
 }
 
 // VMOVQ: Move Quadword.
@@ -24385,7 +24386,7 @@ func VMOVQ(mrx, mrx1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mrx1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VMOVQ: bad operands")
 }
 
 // VMOVSD: Move Scalar Double-Precision Floating-Point Value.
@@ -24419,7 +24420,7 @@ func VMOVSD(ops ...operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{ops[2]},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VMOVSD: bad operands")
 }
 
 // VMOVSHDUP: Move Packed Single-FP High and Duplicate.
@@ -24461,7 +24462,7 @@ func VMOVSHDUP(mxy, xy operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VMOVSHDUP: bad operands")
 }
 
 // VMOVSLDUP: Move Packed Single-FP Low and Duplicate.
@@ -24503,7 +24504,7 @@ func VMOVSLDUP(mxy, xy operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VMOVSLDUP: bad operands")
 }
 
 // VMOVSS: Move Scalar Single-Precision Floating-Point Values.
@@ -24537,7 +24538,7 @@ func VMOVSS(ops ...operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{ops[2]},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VMOVSS: bad operands")
 }
 
 // VMOVUPD: Move Unaligned Packed Double-Precision Floating-Point Values.
@@ -24595,7 +24596,7 @@ func VMOVUPD(mxy, mxy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mxy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VMOVUPD: bad operands")
 }
 
 // VMOVUPS: Move Unaligned Packed Single-Precision Floating-Point Values.
@@ -24653,7 +24654,7 @@ func VMOVUPS(mxy, mxy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mxy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VMOVUPS: bad operands")
 }
 
 // VMPSADBW: Compute Multiple Packed Sums of Absolute Difference.
@@ -24695,7 +24696,7 @@ func VMPSADBW(i, mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VMPSADBW: bad operands")
 }
 
 // VMULPD: Multiply Packed Double-Precision Floating-Point Values.
@@ -24737,7 +24738,7 @@ func VMULPD(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VMULPD: bad operands")
 }
 
 // VMULPS: Multiply Packed Single-Precision Floating-Point Values.
@@ -24779,7 +24780,7 @@ func VMULPS(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VMULPS: bad operands")
 }
 
 // VMULSD: Multiply Scalar Double-Precision Floating-Point Values.
@@ -24805,7 +24806,7 @@ func VMULSD(mx, x, x1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VMULSD: bad operands")
 }
 
 // VMULSS: Multiply Scalar Single-Precision Floating-Point Values.
@@ -24831,7 +24832,7 @@ func VMULSS(mx, x, x1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VMULSS: bad operands")
 }
 
 // VORPD: Bitwise Logical OR of Double-Precision Floating-Point Values.
@@ -24873,7 +24874,7 @@ func VORPD(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VORPD: bad operands")
 }
 
 // VORPS: Bitwise Logical OR of Single-Precision Floating-Point Values.
@@ -24915,7 +24916,7 @@ func VORPS(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VORPS: bad operands")
 }
 
 // VPABSB: Packed Absolute Value of Byte Integers.
@@ -24957,7 +24958,7 @@ func VPABSB(mxy, xy operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPABSB: bad operands")
 }
 
 // VPABSD: Packed Absolute Value of Doubleword Integers.
@@ -24999,7 +25000,7 @@ func VPABSD(mxy, xy operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPABSD: bad operands")
 }
 
 // VPABSW: Packed Absolute Value of Word Integers.
@@ -25041,7 +25042,7 @@ func VPABSW(mxy, xy operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPABSW: bad operands")
 }
 
 // VPACKSSDW: Pack Doublewords into Words with Signed Saturation.
@@ -25083,7 +25084,7 @@ func VPACKSSDW(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPACKSSDW: bad operands")
 }
 
 // VPACKSSWB: Pack Words into Bytes with Signed Saturation.
@@ -25125,7 +25126,7 @@ func VPACKSSWB(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPACKSSWB: bad operands")
 }
 
 // VPACKUSDW: Pack Doublewords into Words with Unsigned Saturation.
@@ -25167,7 +25168,7 @@ func VPACKUSDW(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPACKUSDW: bad operands")
 }
 
 // VPACKUSWB: Pack Words into Bytes with Unsigned Saturation.
@@ -25209,7 +25210,7 @@ func VPACKUSWB(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPACKUSWB: bad operands")
 }
 
 // VPADDB: Add Packed Byte Integers.
@@ -25251,7 +25252,7 @@ func VPADDB(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPADDB: bad operands")
 }
 
 // VPADDD: Add Packed Doubleword Integers.
@@ -25293,7 +25294,7 @@ func VPADDD(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPADDD: bad operands")
 }
 
 // VPADDQ: Add Packed Quadword Integers.
@@ -25335,7 +25336,7 @@ func VPADDQ(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPADDQ: bad operands")
 }
 
 // VPADDSB: Add Packed Signed Byte Integers with Signed Saturation.
@@ -25377,7 +25378,7 @@ func VPADDSB(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPADDSB: bad operands")
 }
 
 // VPADDSW: Add Packed Signed Word Integers with Signed Saturation.
@@ -25419,7 +25420,7 @@ func VPADDSW(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPADDSW: bad operands")
 }
 
 // VPADDUSB: Add Packed Unsigned Byte Integers with Unsigned Saturation.
@@ -25461,7 +25462,7 @@ func VPADDUSB(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPADDUSB: bad operands")
 }
 
 // VPADDUSW: Add Packed Unsigned Word Integers with Unsigned Saturation.
@@ -25503,7 +25504,7 @@ func VPADDUSW(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPADDUSW: bad operands")
 }
 
 // VPADDW: Add Packed Word Integers.
@@ -25545,7 +25546,7 @@ func VPADDW(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPADDW: bad operands")
 }
 
 // VPALIGNR: Packed Align Right.
@@ -25587,7 +25588,7 @@ func VPALIGNR(i, mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPALIGNR: bad operands")
 }
 
 // VPAND: Packed Bitwise Logical AND.
@@ -25629,7 +25630,7 @@ func VPAND(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPAND: bad operands")
 }
 
 // VPANDN: Packed Bitwise Logical AND NOT.
@@ -25671,7 +25672,7 @@ func VPANDN(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPANDN: bad operands")
 }
 
 // VPAVGB: Average Packed Byte Integers.
@@ -25713,7 +25714,7 @@ func VPAVGB(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPAVGB: bad operands")
 }
 
 // VPAVGW: Average Packed Word Integers.
@@ -25755,7 +25756,7 @@ func VPAVGW(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPAVGW: bad operands")
 }
 
 // VPBLENDD: Blend Packed Doublewords.
@@ -25797,7 +25798,7 @@ func VPBLENDD(i, mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPBLENDD: bad operands")
 }
 
 // VPBLENDVB: Variable Blend Packed Bytes.
@@ -25839,7 +25840,7 @@ func VPBLENDVB(xy, mxy, xy1, xy2 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy2},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPBLENDVB: bad operands")
 }
 
 // VPBLENDW: Blend Packed Words.
@@ -25881,7 +25882,7 @@ func VPBLENDW(i, mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPBLENDW: bad operands")
 }
 
 // VPBROADCASTB: Broadcast Byte Integer.
@@ -25923,7 +25924,7 @@ func VPBROADCASTB(mx, xy operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPBROADCASTB: bad operands")
 }
 
 // VPBROADCASTD: Broadcast Doubleword Integer.
@@ -25965,7 +25966,7 @@ func VPBROADCASTD(mx, xy operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPBROADCASTD: bad operands")
 }
 
 // VPBROADCASTQ: Broadcast Quadword Integer.
@@ -26007,7 +26008,7 @@ func VPBROADCASTQ(mx, xy operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPBROADCASTQ: bad operands")
 }
 
 // VPBROADCASTW: Broadcast Word Integer.
@@ -26049,7 +26050,7 @@ func VPBROADCASTW(mx, xy operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPBROADCASTW: bad operands")
 }
 
 // VPCLMULQDQ: Carry-Less Quadword Multiplication.
@@ -26075,7 +26076,7 @@ func VPCLMULQDQ(i, mx, x, x1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPCLMULQDQ: bad operands")
 }
 
 // VPCMPEQB: Compare Packed Byte Data for Equality.
@@ -26117,7 +26118,7 @@ func VPCMPEQB(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPCMPEQB: bad operands")
 }
 
 // VPCMPEQD: Compare Packed Doubleword Data for Equality.
@@ -26159,7 +26160,7 @@ func VPCMPEQD(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPCMPEQD: bad operands")
 }
 
 // VPCMPEQQ: Compare Packed Quadword Data for Equality.
@@ -26201,7 +26202,7 @@ func VPCMPEQQ(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPCMPEQQ: bad operands")
 }
 
 // VPCMPEQW: Compare Packed Word Data for Equality.
@@ -26243,7 +26244,7 @@ func VPCMPEQW(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPCMPEQW: bad operands")
 }
 
 // VPCMPESTRI: Packed Compare Explicit Length Strings, Return Index.
@@ -26269,7 +26270,7 @@ func VPCMPESTRI(i, mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{reg.ECX},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPCMPESTRI: bad operands")
 }
 
 // VPCMPESTRM: Packed Compare Explicit Length Strings, Return Mask.
@@ -26295,7 +26296,7 @@ func VPCMPESTRM(i, mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{reg.X0},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPCMPESTRM: bad operands")
 }
 
 // VPCMPGTB: Compare Packed Signed Byte Integers for Greater Than.
@@ -26337,7 +26338,7 @@ func VPCMPGTB(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPCMPGTB: bad operands")
 }
 
 // VPCMPGTD: Compare Packed Signed Doubleword Integers for Greater Than.
@@ -26379,7 +26380,7 @@ func VPCMPGTD(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPCMPGTD: bad operands")
 }
 
 // VPCMPGTQ: Compare Packed Data for Greater Than.
@@ -26421,7 +26422,7 @@ func VPCMPGTQ(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPCMPGTQ: bad operands")
 }
 
 // VPCMPGTW: Compare Packed Signed Word Integers for Greater Than.
@@ -26463,7 +26464,7 @@ func VPCMPGTW(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPCMPGTW: bad operands")
 }
 
 // VPCMPISTRI: Packed Compare Implicit Length Strings, Return Index.
@@ -26489,7 +26490,7 @@ func VPCMPISTRI(i, mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{reg.ECX},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPCMPISTRI: bad operands")
 }
 
 // VPCMPISTRM: Packed Compare Implicit Length Strings, Return Mask.
@@ -26515,7 +26516,7 @@ func VPCMPISTRM(i, mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{reg.X0},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPCMPISTRM: bad operands")
 }
 
 // VPERM2F128: Permute Floating-Point Values.
@@ -26541,7 +26542,7 @@ func VPERM2F128(i, my, y, y1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{y1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPERM2F128: bad operands")
 }
 
 // VPERM2I128: Permute 128-Bit Integer Values.
@@ -26567,7 +26568,7 @@ func VPERM2I128(i, my, y, y1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{y1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPERM2I128: bad operands")
 }
 
 // VPERMD: Permute Doubleword Integers.
@@ -26593,7 +26594,7 @@ func VPERMD(my, y, y1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{y1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPERMD: bad operands")
 }
 
 // VPERMILPD: Permute Double-Precision Floating-Point Values.
@@ -26667,7 +26668,7 @@ func VPERMILPD(imxy, mxy, xy operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPERMILPD: bad operands")
 }
 
 // VPERMILPS: Permute Single-Precision Floating-Point Values.
@@ -26741,7 +26742,7 @@ func VPERMILPS(imxy, mxy, xy operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPERMILPS: bad operands")
 }
 
 // VPERMPD: Permute Double-Precision Floating-Point Elements.
@@ -26767,7 +26768,7 @@ func VPERMPD(i, my, y operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{y},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPERMPD: bad operands")
 }
 
 // VPERMPS: Permute Single-Precision Floating-Point Elements.
@@ -26793,7 +26794,7 @@ func VPERMPS(my, y, y1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{y1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPERMPS: bad operands")
 }
 
 // VPERMQ: Permute Quadword Integers.
@@ -26819,7 +26820,7 @@ func VPERMQ(i, my, y operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{y},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPERMQ: bad operands")
 }
 
 // VPEXTRB: Extract Byte.
@@ -26845,7 +26846,7 @@ func VPEXTRB(i, x, mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPEXTRB: bad operands")
 }
 
 // VPEXTRD: Extract Doubleword.
@@ -26871,7 +26872,7 @@ func VPEXTRD(i, x, mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPEXTRD: bad operands")
 }
 
 // VPEXTRQ: Extract Quadword.
@@ -26897,7 +26898,7 @@ func VPEXTRQ(i, x, mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPEXTRQ: bad operands")
 }
 
 // VPEXTRW: Extract Word.
@@ -26923,7 +26924,7 @@ func VPEXTRW(i, x, mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPEXTRW: bad operands")
 }
 
 // VPGATHERDD: Gather Packed Doubleword Values Using Signed Doubleword Indices.
@@ -26949,7 +26950,7 @@ func VPGATHERDD(xy, v, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy, xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPGATHERDD: bad operands")
 }
 
 // VPGATHERDQ: Gather Packed Quadword Values Using Signed Doubleword Indices.
@@ -26975,7 +26976,7 @@ func VPGATHERDQ(xy, v, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy, xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPGATHERDQ: bad operands")
 }
 
 // VPGATHERQD: Gather Packed Doubleword Values Using Signed Quadword Indices.
@@ -27001,7 +27002,7 @@ func VPGATHERQD(x, v, x1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x, x1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPGATHERQD: bad operands")
 }
 
 // VPGATHERQQ: Gather Packed Quadword Values Using Signed Quadword Indices.
@@ -27027,7 +27028,7 @@ func VPGATHERQQ(xy, v, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy, xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPGATHERQQ: bad operands")
 }
 
 // VPHADDD: Packed Horizontal Add Doubleword Integer.
@@ -27069,7 +27070,7 @@ func VPHADDD(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPHADDD: bad operands")
 }
 
 // VPHADDSW: Packed Horizontal Add Signed Word Integers with Signed Saturation.
@@ -27111,7 +27112,7 @@ func VPHADDSW(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPHADDSW: bad operands")
 }
 
 // VPHADDW: Packed Horizontal Add Word Integers.
@@ -27153,7 +27154,7 @@ func VPHADDW(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPHADDW: bad operands")
 }
 
 // VPHMINPOSUW: Packed Horizontal Minimum of Unsigned Word Integers.
@@ -27179,7 +27180,7 @@ func VPHMINPOSUW(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPHMINPOSUW: bad operands")
 }
 
 // VPHSUBD: Packed Horizontal Subtract Doubleword Integers.
@@ -27221,7 +27222,7 @@ func VPHSUBD(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPHSUBD: bad operands")
 }
 
 // VPHSUBSW: Packed Horizontal Subtract Signed Word Integers with Signed Saturation.
@@ -27263,7 +27264,7 @@ func VPHSUBSW(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPHSUBSW: bad operands")
 }
 
 // VPHSUBW: Packed Horizontal Subtract Word Integers.
@@ -27305,7 +27306,7 @@ func VPHSUBW(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPHSUBW: bad operands")
 }
 
 // VPINSRB: Insert Byte.
@@ -27331,7 +27332,7 @@ func VPINSRB(i, mr, x, x1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPINSRB: bad operands")
 }
 
 // VPINSRD: Insert Doubleword.
@@ -27357,7 +27358,7 @@ func VPINSRD(i, mr, x, x1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPINSRD: bad operands")
 }
 
 // VPINSRQ: Insert Quadword.
@@ -27383,7 +27384,7 @@ func VPINSRQ(i, mr, x, x1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPINSRQ: bad operands")
 }
 
 // VPINSRW: Insert Word.
@@ -27409,7 +27410,7 @@ func VPINSRW(i, mr, x, x1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPINSRW: bad operands")
 }
 
 // VPMADDUBSW: Multiply and Add Packed Signed and Unsigned Byte Integers.
@@ -27451,7 +27452,7 @@ func VPMADDUBSW(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPMADDUBSW: bad operands")
 }
 
 // VPMADDWD: Multiply and Add Packed Signed Word Integers.
@@ -27493,7 +27494,7 @@ func VPMADDWD(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPMADDWD: bad operands")
 }
 
 // VPMASKMOVD: Conditional Move Packed Doubleword Integers.
@@ -27535,7 +27536,7 @@ func VPMASKMOVD(mxy, xy, mxy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mxy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPMASKMOVD: bad operands")
 }
 
 // VPMASKMOVQ: Conditional Move Packed Quadword Integers.
@@ -27577,7 +27578,7 @@ func VPMASKMOVQ(mxy, xy, mxy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mxy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPMASKMOVQ: bad operands")
 }
 
 // VPMAXSB: Maximum of Packed Signed Byte Integers.
@@ -27619,7 +27620,7 @@ func VPMAXSB(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPMAXSB: bad operands")
 }
 
 // VPMAXSD: Maximum of Packed Signed Doubleword Integers.
@@ -27661,7 +27662,7 @@ func VPMAXSD(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPMAXSD: bad operands")
 }
 
 // VPMAXSW: Maximum of Packed Signed Word Integers.
@@ -27703,7 +27704,7 @@ func VPMAXSW(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPMAXSW: bad operands")
 }
 
 // VPMAXUB: Maximum of Packed Unsigned Byte Integers.
@@ -27745,7 +27746,7 @@ func VPMAXUB(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPMAXUB: bad operands")
 }
 
 // VPMAXUD: Maximum of Packed Unsigned Doubleword Integers.
@@ -27787,7 +27788,7 @@ func VPMAXUD(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPMAXUD: bad operands")
 }
 
 // VPMAXUW: Maximum of Packed Unsigned Word Integers.
@@ -27829,7 +27830,7 @@ func VPMAXUW(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPMAXUW: bad operands")
 }
 
 // VPMINSB: Minimum of Packed Signed Byte Integers.
@@ -27871,7 +27872,7 @@ func VPMINSB(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPMINSB: bad operands")
 }
 
 // VPMINSD: Minimum of Packed Signed Doubleword Integers.
@@ -27913,7 +27914,7 @@ func VPMINSD(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPMINSD: bad operands")
 }
 
 // VPMINSW: Minimum of Packed Signed Word Integers.
@@ -27955,7 +27956,7 @@ func VPMINSW(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPMINSW: bad operands")
 }
 
 // VPMINUB: Minimum of Packed Unsigned Byte Integers.
@@ -27997,7 +27998,7 @@ func VPMINUB(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPMINUB: bad operands")
 }
 
 // VPMINUD: Minimum of Packed Unsigned Doubleword Integers.
@@ -28039,7 +28040,7 @@ func VPMINUD(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPMINUD: bad operands")
 }
 
 // VPMINUW: Minimum of Packed Unsigned Word Integers.
@@ -28081,7 +28082,7 @@ func VPMINUW(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPMINUW: bad operands")
 }
 
 // VPMOVMSKB: Move Byte Mask.
@@ -28107,7 +28108,7 @@ func VPMOVMSKB(xy, r operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPMOVMSKB: bad operands")
 }
 
 // VPMOVSXBD: Move Packed Byte Integers to Doubleword Integers with Sign Extension.
@@ -28149,7 +28150,7 @@ func VPMOVSXBD(mx, xy operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPMOVSXBD: bad operands")
 }
 
 // VPMOVSXBQ: Move Packed Byte Integers to Quadword Integers with Sign Extension.
@@ -28191,7 +28192,7 @@ func VPMOVSXBQ(mx, xy operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPMOVSXBQ: bad operands")
 }
 
 // VPMOVSXBW: Move Packed Byte Integers to Word Integers with Sign Extension.
@@ -28233,7 +28234,7 @@ func VPMOVSXBW(mx, xy operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPMOVSXBW: bad operands")
 }
 
 // VPMOVSXDQ: Move Packed Doubleword Integers to Quadword Integers with Sign Extension.
@@ -28275,7 +28276,7 @@ func VPMOVSXDQ(mx, xy operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPMOVSXDQ: bad operands")
 }
 
 // VPMOVSXWD: Move Packed Word Integers to Doubleword Integers with Sign Extension.
@@ -28317,7 +28318,7 @@ func VPMOVSXWD(mx, xy operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPMOVSXWD: bad operands")
 }
 
 // VPMOVSXWQ: Move Packed Word Integers to Quadword Integers with Sign Extension.
@@ -28359,7 +28360,7 @@ func VPMOVSXWQ(mx, xy operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPMOVSXWQ: bad operands")
 }
 
 // VPMOVZXBD: Move Packed Byte Integers to Doubleword Integers with Zero Extension.
@@ -28401,7 +28402,7 @@ func VPMOVZXBD(mx, xy operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPMOVZXBD: bad operands")
 }
 
 // VPMOVZXBQ: Move Packed Byte Integers to Quadword Integers with Zero Extension.
@@ -28443,7 +28444,7 @@ func VPMOVZXBQ(mx, xy operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPMOVZXBQ: bad operands")
 }
 
 // VPMOVZXBW: Move Packed Byte Integers to Word Integers with Zero Extension.
@@ -28485,7 +28486,7 @@ func VPMOVZXBW(mx, xy operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPMOVZXBW: bad operands")
 }
 
 // VPMOVZXDQ: Move Packed Doubleword Integers to Quadword Integers with Zero Extension.
@@ -28527,7 +28528,7 @@ func VPMOVZXDQ(mx, xy operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPMOVZXDQ: bad operands")
 }
 
 // VPMOVZXWD: Move Packed Word Integers to Doubleword Integers with Zero Extension.
@@ -28569,7 +28570,7 @@ func VPMOVZXWD(mx, xy operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPMOVZXWD: bad operands")
 }
 
 // VPMOVZXWQ: Move Packed Word Integers to Quadword Integers with Zero Extension.
@@ -28611,7 +28612,7 @@ func VPMOVZXWQ(mx, xy operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPMOVZXWQ: bad operands")
 }
 
 // VPMULDQ: Multiply Packed Signed Doubleword Integers and Store Quadword Result.
@@ -28653,7 +28654,7 @@ func VPMULDQ(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPMULDQ: bad operands")
 }
 
 // VPMULHRSW: Packed Multiply Signed Word Integers and Store High Result with Round and Scale.
@@ -28695,7 +28696,7 @@ func VPMULHRSW(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPMULHRSW: bad operands")
 }
 
 // VPMULHUW: Multiply Packed Unsigned Word Integers and Store High Result.
@@ -28737,7 +28738,7 @@ func VPMULHUW(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPMULHUW: bad operands")
 }
 
 // VPMULHW: Multiply Packed Signed Word Integers and Store High Result.
@@ -28779,7 +28780,7 @@ func VPMULHW(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPMULHW: bad operands")
 }
 
 // VPMULLD: Multiply Packed Signed Doubleword Integers and Store Low Result.
@@ -28821,7 +28822,7 @@ func VPMULLD(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPMULLD: bad operands")
 }
 
 // VPMULLW: Multiply Packed Signed Word Integers and Store Low Result.
@@ -28863,7 +28864,7 @@ func VPMULLW(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPMULLW: bad operands")
 }
 
 // VPMULUDQ: Multiply Packed Unsigned Doubleword Integers.
@@ -28905,7 +28906,7 @@ func VPMULUDQ(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPMULUDQ: bad operands")
 }
 
 // VPOR: Packed Bitwise Logical OR.
@@ -28947,7 +28948,7 @@ func VPOR(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPOR: bad operands")
 }
 
 // VPSADBW: Compute Sum of Absolute Differences.
@@ -28989,7 +28990,7 @@ func VPSADBW(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPSADBW: bad operands")
 }
 
 // VPSHUFB: Packed Shuffle Bytes.
@@ -29031,7 +29032,7 @@ func VPSHUFB(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPSHUFB: bad operands")
 }
 
 // VPSHUFD: Shuffle Packed Doublewords.
@@ -29073,7 +29074,7 @@ func VPSHUFD(i, mxy, xy operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPSHUFD: bad operands")
 }
 
 // VPSHUFHW: Shuffle Packed High Words.
@@ -29115,7 +29116,7 @@ func VPSHUFHW(i, mxy, xy operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPSHUFHW: bad operands")
 }
 
 // VPSHUFLW: Shuffle Packed Low Words.
@@ -29157,7 +29158,7 @@ func VPSHUFLW(i, mxy, xy operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPSHUFLW: bad operands")
 }
 
 // VPSIGNB: Packed Sign of Byte Integers.
@@ -29199,7 +29200,7 @@ func VPSIGNB(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPSIGNB: bad operands")
 }
 
 // VPSIGND: Packed Sign of Doubleword Integers.
@@ -29241,7 +29242,7 @@ func VPSIGND(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPSIGND: bad operands")
 }
 
 // VPSIGNW: Packed Sign of Word Integers.
@@ -29283,7 +29284,7 @@ func VPSIGNW(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPSIGNW: bad operands")
 }
 
 // VPSLLD: Shift Packed Doubleword Data Left Logical.
@@ -29341,7 +29342,7 @@ func VPSLLD(imx, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPSLLD: bad operands")
 }
 
 // VPSLLDQ: Shift Packed Double Quadword Left Logical.
@@ -29367,7 +29368,7 @@ func VPSLLDQ(i, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPSLLDQ: bad operands")
 }
 
 // VPSLLQ: Shift Packed Quadword Data Left Logical.
@@ -29425,7 +29426,7 @@ func VPSLLQ(imx, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPSLLQ: bad operands")
 }
 
 // VPSLLVD: Variable Shift Packed Doubleword Data Left Logical.
@@ -29467,7 +29468,7 @@ func VPSLLVD(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPSLLVD: bad operands")
 }
 
 // VPSLLVQ: Variable Shift Packed Quadword Data Left Logical.
@@ -29509,7 +29510,7 @@ func VPSLLVQ(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPSLLVQ: bad operands")
 }
 
 // VPSLLW: Shift Packed Word Data Left Logical.
@@ -29567,7 +29568,7 @@ func VPSLLW(imx, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPSLLW: bad operands")
 }
 
 // VPSRAD: Shift Packed Doubleword Data Right Arithmetic.
@@ -29625,7 +29626,7 @@ func VPSRAD(imx, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPSRAD: bad operands")
 }
 
 // VPSRAVD: Variable Shift Packed Doubleword Data Right Arithmetic.
@@ -29667,7 +29668,7 @@ func VPSRAVD(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPSRAVD: bad operands")
 }
 
 // VPSRAW: Shift Packed Word Data Right Arithmetic.
@@ -29725,7 +29726,7 @@ func VPSRAW(imx, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPSRAW: bad operands")
 }
 
 // VPSRLD: Shift Packed Doubleword Data Right Logical.
@@ -29783,7 +29784,7 @@ func VPSRLD(imx, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPSRLD: bad operands")
 }
 
 // VPSRLDQ: Shift Packed Double Quadword Right Logical.
@@ -29809,7 +29810,7 @@ func VPSRLDQ(i, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPSRLDQ: bad operands")
 }
 
 // VPSRLQ: Shift Packed Quadword Data Right Logical.
@@ -29867,7 +29868,7 @@ func VPSRLQ(imx, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPSRLQ: bad operands")
 }
 
 // VPSRLVD: Variable Shift Packed Doubleword Data Right Logical.
@@ -29909,7 +29910,7 @@ func VPSRLVD(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPSRLVD: bad operands")
 }
 
 // VPSRLVQ: Variable Shift Packed Quadword Data Right Logical.
@@ -29951,7 +29952,7 @@ func VPSRLVQ(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPSRLVQ: bad operands")
 }
 
 // VPSRLW: Shift Packed Word Data Right Logical.
@@ -30009,7 +30010,7 @@ func VPSRLW(imx, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPSRLW: bad operands")
 }
 
 // VPSUBB: Subtract Packed Byte Integers.
@@ -30051,7 +30052,7 @@ func VPSUBB(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPSUBB: bad operands")
 }
 
 // VPSUBD: Subtract Packed Doubleword Integers.
@@ -30093,7 +30094,7 @@ func VPSUBD(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPSUBD: bad operands")
 }
 
 // VPSUBQ: Subtract Packed Quadword Integers.
@@ -30135,7 +30136,7 @@ func VPSUBQ(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPSUBQ: bad operands")
 }
 
 // VPSUBSB: Subtract Packed Signed Byte Integers with Signed Saturation.
@@ -30177,7 +30178,7 @@ func VPSUBSB(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPSUBSB: bad operands")
 }
 
 // VPSUBSW: Subtract Packed Signed Word Integers with Signed Saturation.
@@ -30219,7 +30220,7 @@ func VPSUBSW(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPSUBSW: bad operands")
 }
 
 // VPSUBUSB: Subtract Packed Unsigned Byte Integers with Unsigned Saturation.
@@ -30261,7 +30262,7 @@ func VPSUBUSB(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPSUBUSB: bad operands")
 }
 
 // VPSUBUSW: Subtract Packed Unsigned Word Integers with Unsigned Saturation.
@@ -30303,7 +30304,7 @@ func VPSUBUSW(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPSUBUSW: bad operands")
 }
 
 // VPSUBW: Subtract Packed Word Integers.
@@ -30345,7 +30346,7 @@ func VPSUBW(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPSUBW: bad operands")
 }
 
 // VPTEST: Packed Logical Compare.
@@ -30387,7 +30388,7 @@ func VPTEST(mxy, xy operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPTEST: bad operands")
 }
 
 // VPUNPCKHBW: Unpack and Interleave High-Order Bytes into Words.
@@ -30429,7 +30430,7 @@ func VPUNPCKHBW(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPUNPCKHBW: bad operands")
 }
 
 // VPUNPCKHDQ: Unpack and Interleave High-Order Doublewords into Quadwords.
@@ -30471,7 +30472,7 @@ func VPUNPCKHDQ(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPUNPCKHDQ: bad operands")
 }
 
 // VPUNPCKHQDQ: Unpack and Interleave High-Order Quadwords into Double Quadwords.
@@ -30513,7 +30514,7 @@ func VPUNPCKHQDQ(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPUNPCKHQDQ: bad operands")
 }
 
 // VPUNPCKHWD: Unpack and Interleave High-Order Words into Doublewords.
@@ -30555,7 +30556,7 @@ func VPUNPCKHWD(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPUNPCKHWD: bad operands")
 }
 
 // VPUNPCKLBW: Unpack and Interleave Low-Order Bytes into Words.
@@ -30597,7 +30598,7 @@ func VPUNPCKLBW(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPUNPCKLBW: bad operands")
 }
 
 // VPUNPCKLDQ: Unpack and Interleave Low-Order Doublewords into Quadwords.
@@ -30639,7 +30640,7 @@ func VPUNPCKLDQ(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPUNPCKLDQ: bad operands")
 }
 
 // VPUNPCKLQDQ: Unpack and Interleave Low-Order Quadwords into Double Quadwords.
@@ -30681,7 +30682,7 @@ func VPUNPCKLQDQ(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPUNPCKLQDQ: bad operands")
 }
 
 // VPUNPCKLWD: Unpack and Interleave Low-Order Words into Doublewords.
@@ -30723,7 +30724,7 @@ func VPUNPCKLWD(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPUNPCKLWD: bad operands")
 }
 
 // VPXOR: Packed Bitwise Logical Exclusive OR.
@@ -30765,7 +30766,7 @@ func VPXOR(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VPXOR: bad operands")
 }
 
 // VRCPPS: Compute Approximate Reciprocals of Packed Single-Precision Floating-Point Values.
@@ -30807,7 +30808,7 @@ func VRCPPS(mxy, xy operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VRCPPS: bad operands")
 }
 
 // VRCPSS: Compute Approximate Reciprocal of Scalar Single-Precision Floating-Point Values.
@@ -30833,7 +30834,7 @@ func VRCPSS(mx, x, x1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VRCPSS: bad operands")
 }
 
 // VROUNDPD: Round Packed Double Precision Floating-Point Values.
@@ -30875,7 +30876,7 @@ func VROUNDPD(i, mxy, xy operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VROUNDPD: bad operands")
 }
 
 // VROUNDPS: Round Packed Single Precision Floating-Point Values.
@@ -30917,7 +30918,7 @@ func VROUNDPS(i, mxy, xy operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VROUNDPS: bad operands")
 }
 
 // VROUNDSD: Round Scalar Double Precision Floating-Point Values.
@@ -30943,7 +30944,7 @@ func VROUNDSD(i, mx, x, x1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VROUNDSD: bad operands")
 }
 
 // VROUNDSS: Round Scalar Single Precision Floating-Point Values.
@@ -30969,7 +30970,7 @@ func VROUNDSS(i, mx, x, x1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VROUNDSS: bad operands")
 }
 
 // VRSQRTPS: Compute Reciprocals of Square Roots of Packed Single-Precision Floating-Point Values.
@@ -31011,7 +31012,7 @@ func VRSQRTPS(mxy, xy operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VRSQRTPS: bad operands")
 }
 
 // VRSQRTSS: Compute Reciprocal of Square Root of Scalar Single-Precision Floating-Point Value.
@@ -31037,7 +31038,7 @@ func VRSQRTSS(mx, x, x1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VRSQRTSS: bad operands")
 }
 
 // VSHUFPD: Shuffle Packed Double-Precision Floating-Point Values.
@@ -31079,7 +31080,7 @@ func VSHUFPD(i, mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VSHUFPD: bad operands")
 }
 
 // VSHUFPS: Shuffle Packed Single-Precision Floating-Point Values.
@@ -31121,7 +31122,7 @@ func VSHUFPS(i, mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VSHUFPS: bad operands")
 }
 
 // VSQRTPD: Compute Square Roots of Packed Double-Precision Floating-Point Values.
@@ -31163,7 +31164,7 @@ func VSQRTPD(mxy, xy operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VSQRTPD: bad operands")
 }
 
 // VSQRTPS: Compute Square Roots of Packed Single-Precision Floating-Point Values.
@@ -31205,7 +31206,7 @@ func VSQRTPS(mxy, xy operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VSQRTPS: bad operands")
 }
 
 // VSQRTSD: Compute Square Root of Scalar Double-Precision Floating-Point Value.
@@ -31231,7 +31232,7 @@ func VSQRTSD(mx, x, x1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VSQRTSD: bad operands")
 }
 
 // VSQRTSS: Compute Square Root of Scalar Single-Precision Floating-Point Value.
@@ -31257,7 +31258,7 @@ func VSQRTSS(mx, x, x1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VSQRTSS: bad operands")
 }
 
 // VSTMXCSR: Store MXCSR Register State.
@@ -31275,7 +31276,7 @@ func VSTMXCSR(m operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{m},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VSTMXCSR: bad operands")
 }
 
 // VSUBPD: Subtract Packed Double-Precision Floating-Point Values.
@@ -31317,7 +31318,7 @@ func VSUBPD(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VSUBPD: bad operands")
 }
 
 // VSUBPS: Subtract Packed Single-Precision Floating-Point Values.
@@ -31359,7 +31360,7 @@ func VSUBPS(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VSUBPS: bad operands")
 }
 
 // VSUBSD: Subtract Scalar Double-Precision Floating-Point Values.
@@ -31385,7 +31386,7 @@ func VSUBSD(mx, x, x1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VSUBSD: bad operands")
 }
 
 // VSUBSS: Subtract Scalar Single-Precision Floating-Point Values.
@@ -31411,7 +31412,7 @@ func VSUBSS(mx, x, x1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VSUBSS: bad operands")
 }
 
 // VTESTPD: Packed Double-Precision Floating-Point Bit Test.
@@ -31453,7 +31454,7 @@ func VTESTPD(mxy, xy operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VTESTPD: bad operands")
 }
 
 // VTESTPS: Packed Single-Precision Floating-Point Bit Test.
@@ -31495,7 +31496,7 @@ func VTESTPS(mxy, xy operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VTESTPS: bad operands")
 }
 
 // VUCOMISD: Unordered Compare Scalar Double-Precision Floating-Point Values and Set EFLAGS.
@@ -31521,7 +31522,7 @@ func VUCOMISD(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VUCOMISD: bad operands")
 }
 
 // VUCOMISS: Unordered Compare Scalar Single-Precision Floating-Point Values and Set EFLAGS.
@@ -31547,7 +31548,7 @@ func VUCOMISS(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VUCOMISS: bad operands")
 }
 
 // VUNPCKHPD: Unpack and Interleave High Packed Double-Precision Floating-Point Values.
@@ -31589,7 +31590,7 @@ func VUNPCKHPD(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VUNPCKHPD: bad operands")
 }
 
 // VUNPCKHPS: Unpack and Interleave High Packed Single-Precision Floating-Point Values.
@@ -31631,7 +31632,7 @@ func VUNPCKHPS(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VUNPCKHPS: bad operands")
 }
 
 // VUNPCKLPD: Unpack and Interleave Low Packed Double-Precision Floating-Point Values.
@@ -31673,7 +31674,7 @@ func VUNPCKLPD(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VUNPCKLPD: bad operands")
 }
 
 // VUNPCKLPS: Unpack and Interleave Low Packed Single-Precision Floating-Point Values.
@@ -31715,7 +31716,7 @@ func VUNPCKLPS(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VUNPCKLPS: bad operands")
 }
 
 // VXORPD: Bitwise Logical XOR for Double-Precision Floating-Point Values.
@@ -31757,7 +31758,7 @@ func VXORPD(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VXORPD: bad operands")
 }
 
 // VXORPS: Bitwise Logical XOR for Single-Precision Floating-Point Values.
@@ -31799,7 +31800,7 @@ func VXORPS(mxy, xy, xy1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{xy1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("VXORPS: bad operands")
 }
 
 // VZEROALL: Zero All YMM Registers.
@@ -31853,7 +31854,7 @@ func XADDB(r, mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r, mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("XADDB: bad operands")
 }
 
 // XADDL: Exchange and Add.
@@ -31879,7 +31880,7 @@ func XADDL(r, mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r, mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("XADDL: bad operands")
 }
 
 // XADDQ: Exchange and Add.
@@ -31905,7 +31906,7 @@ func XADDQ(r, mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r, mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("XADDQ: bad operands")
 }
 
 // XADDW: Exchange and Add.
@@ -31931,7 +31932,7 @@ func XADDW(r, mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{r, mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("XADDW: bad operands")
 }
 
 // XCHGB: Exchange Register/Memory with Register.
@@ -31965,7 +31966,7 @@ func XCHGB(mr, mr1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr, mr1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("XCHGB: bad operands")
 }
 
 // XCHGL: Exchange Register/Memory with Register.
@@ -32015,7 +32016,7 @@ func XCHGL(emr, emr1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{emr, emr1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("XCHGL: bad operands")
 }
 
 // XCHGQ: Exchange Register/Memory with Register.
@@ -32065,7 +32066,7 @@ func XCHGQ(mr, mr1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr, mr1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("XCHGQ: bad operands")
 }
 
 // XCHGW: Exchange Register/Memory with Register.
@@ -32115,7 +32116,7 @@ func XCHGW(amr, amr1 operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{amr, amr1},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("XCHGW: bad operands")
 }
 
 // XGETBV: Get Value of Extended Control Register.
@@ -32201,7 +32202,7 @@ func XORB(imr, amr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{amr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("XORB: bad operands")
 }
 
 // XORL: Logical Exclusive OR.
@@ -32275,7 +32276,7 @@ func XORL(imr, emr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{emr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("XORL: bad operands")
 }
 
 // XORPD: Bitwise Logical XOR for Double-Precision Floating-Point Values.
@@ -32301,7 +32302,7 @@ func XORPD(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("XORPD: bad operands")
 }
 
 // XORPS: Bitwise Logical XOR for Single-Precision Floating-Point Values.
@@ -32327,7 +32328,7 @@ func XORPS(mx, x operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{x},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("XORPS: bad operands")
 }
 
 // XORQ: Logical Exclusive OR.
@@ -32401,7 +32402,7 @@ func XORQ(imr, mr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{mr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("XORQ: bad operands")
 }
 
 // XORW: Logical Exclusive OR.
@@ -32475,5 +32476,5 @@ func XORW(imr, amr operand.Op) (*avo.Instruction, error) {
 			Outputs:  []operand.Op{amr},
 		}, nil
 	}
-	return nil, ErrBadOperandTypes
+	return nil, errors.New("XORW: bad operands")
 }
