@@ -1,8 +1,6 @@
 package operand
 
 import (
-	"math"
-
 	"github.com/mmcloughlin/avo/reg"
 )
 
@@ -14,9 +12,6 @@ func IsRegister(op Op) bool { _, ok := op.(reg.Register); return ok }
 // IsMem returns whether op has type Mem.
 func IsMem(op Op) bool { _, ok := op.(Mem); return ok }
 
-// IsImm returns whether op has type Imm.
-func IsImm(op Op) bool { _, ok := op.(Imm); return ok }
-
 // IsRel returns whether op has type Rel.
 func IsRel(op Op) bool { _, ok := op.(Rel); return ok }
 
@@ -24,43 +19,43 @@ func IsRel(op Op) bool { _, ok := op.(Rel); return ok }
 
 // Is1 returns true if op is the immediate constant 1.
 func Is1(op Op) bool {
-	i, ok := op.(Imm)
+	i, ok := op.(U8)
 	return ok && i == 1
 }
 
 // Is3 returns true if op is the immediate constant 3.
 func Is3(op Op) bool {
-	i, ok := op.(Imm)
+	i, ok := op.(U8)
 	return ok && i == 3
 }
 
 // IsImm2u returns true if op is a 2-bit unsigned immediate (less than 4).
 func IsImm2u(op Op) bool {
-	i, ok := op.(Imm)
+	i, ok := op.(U8)
 	return ok && i < 4
 }
 
 // IsImm8 returns true is op is an 8-bit immediate.
 func IsImm8(op Op) bool {
-	i, ok := op.(Imm)
-	return ok && i <= math.MaxUint8
+	_, ok := op.(U8)
+	return ok
 }
 
 // IsImm16 returns true is op is a 16-bit immediate.
 func IsImm16(op Op) bool {
-	i, ok := op.(Imm)
-	return ok && i <= math.MaxUint16
+	_, ok := op.(U16)
+	return ok
 }
 
 // IsImm32 returns true is op is a 32-bit immediate.
 func IsImm32(op Op) bool {
-	i, ok := op.(Imm)
-	return ok && i <= math.MaxUint32
+	_, ok := op.(U32)
+	return ok
 }
 
 // IsImm64 returns true is op is a 64-bit immediate.
 func IsImm64(op Op) bool {
-	_, ok := op.(Imm)
+	_, ok := op.(U64)
 	return ok
 }
 

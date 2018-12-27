@@ -75,12 +75,6 @@ func (m Mem) Asm() string {
 	return a
 }
 
-type Imm uint64
-
-func (i Imm) Asm() string {
-	return fmt.Sprintf("$%#x", i)
-}
-
 // Rel is an offset relative to the instruction pointer.
 type Rel int32
 
@@ -109,7 +103,7 @@ func Registers(op Op) []reg.Register {
 			r = append(r, op.Index)
 		}
 		return r
-	case Imm, Rel, LabelRef:
+	case Constant, Rel, LabelRef:
 		return nil
 	}
 	panic("unknown operand type")

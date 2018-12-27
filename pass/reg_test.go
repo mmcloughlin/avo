@@ -18,8 +18,8 @@ func TestLivenessBasic(t *testing.T) {
 	ctx.Function("add")
 	a := ctx.GP64v()
 	b := ctx.GP64v()
-	ctx.MOVQ(operand.Imm(1), a)
-	ctx.MOVQ(operand.Imm(2), b)
+	ctx.MOVQ(operand.U64(1), a)
+	ctx.MOVQ(operand.U64(2), b)
 	ctx.ADDQ(a, b)
 
 	AssertLiveness(t, ctx,
