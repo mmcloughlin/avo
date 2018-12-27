@@ -1,6 +1,7 @@
 package build
 
 import (
+	"github.com/mmcloughlin/avo/operand"
 	"github.com/mmcloughlin/avo/reg"
 
 	"github.com/mmcloughlin/avo/gotypes"
@@ -41,4 +42,10 @@ func (c *Context) Store(src reg.Register, dst gotypes.Component) {
 		return
 	}
 	c.mov(src, b.Addr, int(src.Bytes()), int(gotypes.Sizes.Sizeof(b.Type)), b.Type)
+}
+
+func (c *Context) ConstData(name string, v operand.Constant) operand.Mem {
+	g := c.StaticGlobal(name)
+	c.AppendDatum(v)
+	return g
 }

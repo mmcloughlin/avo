@@ -58,3 +58,5 @@ func Load(src gotypes.Component, dst reg.Register) reg.Register { return ctx.Loa
 func Store(src reg.Register, dst gotypes.Component)             { ctx.Store(src, dst) }
 
 func AllocLocal(size int) operand.Mem { return ctx.AllocLocal(size) }
+
+func ConstData(name string, v operand.Constant) operand.Mem { return ctx.ConstData(name, v) }
