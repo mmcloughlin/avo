@@ -3,7 +3,7 @@
 #include "textflag.h"
 
 // func block(h *[5]uint32, m []byte)
-TEXT ·block(SB),0,$64-32
+TEXT ·block(SB), 0, $64-32
 	MOVQ	h(FP), AX
 	MOVQ	m_base+8(FP), CX
 	MOVL	(AX), DX

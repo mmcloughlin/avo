@@ -20,15 +20,14 @@ func main() {
 	DATA(38, U8(0x66))
 	DATA(39, U8(0x77))
 
-	// TEXT ·DataAt(SB),0,$0-9
 	TEXT("DataAt", "func(i int) byte")
-	i := Load(Param("i"), GP64v()) // MOVQ	i+0(FP), AX
+	i := Load(Param("i"), GP64v())
 	ptr := Mem{Base: GP64v()}
-	LEAQ(bytes, ptr.Base) // LEAQ	b<>+0x00(SB), BX
+	LEAQ(bytes, ptr.Base)
 	b := GP8v()
-	MOVB(ptr.Idx(i, 1), b)   // MOVB	0(BX)(AX*1), CL
-	Store(b, ReturnIndex(0)) // MOVB	CL, ret+8(FP)
-	RET()                    // RET
+	MOVB(ptr.Idx(i, 1), b)
+	Store(b, ReturnIndex(0))
+	RET()
 
 	Generate()
 }

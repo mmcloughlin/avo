@@ -1,6 +1,7 @@
 package printer
 
 import (
+	"strconv"
 	"strings"
 
 	"github.com/mmcloughlin/avo"
@@ -48,7 +49,7 @@ func (p *goasm) include(path string) {
 func (p *goasm) function(f *avo.Function) {
 	p.NL()
 	p.Comment(f.Stub())
-	p.Printf("TEXT %s%s(SB),0,$%d-%d\n", dot, f.Name, f.FrameBytes(), f.ArgumentBytes())
+	p.Printf("TEXT %s%s(SB), 0, %s\n", dot, f.Name, textsize(f))
 
 	for _, node := range f.Nodes {
 		switch n := node.(type) {
@@ -73,7 +74,24 @@ func (p *goasm) global(g *avo.Global) {
 		p.Printf("DATA %s/%d, %s\n", a.Asm(), d.Value.Bytes(), d.Value.Asm())
 	}
 	// TODO(mbm): replace hardcoded RODATA with an attributes list
-	p.Printf("GLOBL %s%s(SB), RODATA, $%d\n", dot, g.Symbol, g.Size)
+	p.Printf("GLOBL %s(SB), RODATA, $%d\n", g.Symbol, g.Size)
+}
+
+func textsize(f *avo.Function) string {
+	// Reference: https://github.com/golang/go/blob/b115207baf6c2decc3820ada4574ef4e5ad940ec/src/cmd/internal/obj/util.go#L260-L265
+	//
+	//		case TYPE_TEXTSIZE:
+	//			if a.Val.(int32) == objabi.ArgsSizeUnknown {
+	//				str = fmt.Sprintf("$%d", a.Offset)
+	//			} else {
+	//				str = fmt.Sprintf("$%d-%d", a.Offset, a.Val.(int32))
+	//			}
+	//
+	s := "$" + strconv.Itoa(f.FrameBytes())
+	if argsize := f.ArgumentBytes(); argsize > 0 {
+		return s + "-" + strconv.Itoa(argsize)
+	}
+	return s
 }
 
 func joinOperands(operands []operand.Op) string {
