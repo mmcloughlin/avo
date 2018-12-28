@@ -118,6 +118,7 @@ func (f *File) Functions() []*Function {
 // Function represents an assembly function.
 type Function struct {
 	Name      string
+	Doc       []string
 	Signature *gotypes.Signature
 	LocalSize int
 

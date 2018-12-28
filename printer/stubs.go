@@ -20,6 +20,7 @@ func (s *stubs) Print(f *avo.File) ([]byte, error) {
 	s.Printf("package %s\n", s.cfg.Pkg)
 	for _, fn := range f.Functions() {
 		s.NL()
+		s.Comment(fn.Doc...)
 		s.Printf("%s\n", fn.Stub())
 	}
 	return s.Result()

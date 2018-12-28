@@ -51,6 +51,10 @@ func (c *Context) Function(name string) {
 	c.file.AddSection(c.function)
 }
 
+func (c *Context) Doc(lines ...string) {
+	c.activefunc().Doc = lines
+}
+
 func (c *Context) Signature(s *gotypes.Signature) {
 	c.activefunc().SetSignature(s)
 }
