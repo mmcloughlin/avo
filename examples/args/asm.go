@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	Package("github.com/mmcloughlin/avo/examples/components")
+	Package("github.com/mmcloughlin/avo/examples/args")
 
 	TEXT("StringLen", "func(s string) int")
 	strlen := Load(Param("s").Len(), GP64v())

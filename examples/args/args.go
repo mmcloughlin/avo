@@ -1,4 +1,4 @@
-package components
+package args
 
 type Struct struct {
 	Byte       byte

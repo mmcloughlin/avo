@@ -1,11 +1,11 @@
-package components
+package args
 
 import (
 	"testing"
 	"testing/quick"
 )
 
-//go:generate go run asm.go -out components.s -stubs stub.go
+//go:generate go run asm.go -out args.s -stubs stub.go
 
 func TestFunctionsEqual(t *testing.T) {
 	cases := []struct {
