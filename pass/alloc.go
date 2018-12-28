@@ -64,9 +64,13 @@ func (a *Allocator) Add(r reg.Register) {
 }
 
 func (a *Allocator) Allocate() (reg.Allocation, error) {
-	for a.remaining() > 0 {
+	for {
 		if err := a.update(); err != nil {
 			return nil, err
+		}
+
+		if a.remaining() == 0 {
+			break
 		}
 
 		v := a.mostrestricted()
