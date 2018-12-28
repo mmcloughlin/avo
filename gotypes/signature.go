@@ -73,10 +73,13 @@ func (s *Signature) init() {
 	// Result offsets.
 	vs = tuplevars(r)
 	resultsoffsets := Sizes.Offsetsof(vs)
+	var resultssize int64
+	if n := len(vs); n > 0 {
+		resultssize = resultsoffsets[n-1] + Sizes.Sizeof(vs[n-1].Type())
+	}
 	for i := range resultsoffsets {
 		resultsoffsets[i] += paramssize
 	}
-	resultssize := Sizes.Sizeof(types.NewStruct(vs, nil))
 	s.results = newTuple(r, resultsoffsets, resultssize, "ret")
 }
 
