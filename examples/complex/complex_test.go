@@ -9,8 +9,8 @@ import (
 //go:generate go run asm.go -out complex.s -stubs stub.go
 
 func TestReal(t *testing.T) {
-	expect := func(x complex128) float64 {
-		return real(x)
+	expect := func(z complex128) float64 {
+		return real(z)
 	}
 	if err := quick.CheckEqual(Real, expect, nil); err != nil {
 		t.Fatal(err)
@@ -18,8 +18,8 @@ func TestReal(t *testing.T) {
 }
 
 func TestImag(t *testing.T) {
-	expect := func(x complex128) float64 {
-		return imag(x)
+	expect := func(z complex128) float64 {
+		return imag(z)
 	}
 	if err := quick.CheckEqual(Imag, expect, nil); err != nil {
 		t.Fatal(err)
@@ -27,8 +27,8 @@ func TestImag(t *testing.T) {
 }
 
 func TestNorm(t *testing.T) {
-	expect := func(x complex128) float64 {
-		return math.Sqrt(real(x)*real(x) + imag(x)*imag(x))
+	expect := func(z complex128) float64 {
+		return math.Sqrt(real(z)*real(z) + imag(z)*imag(z))
 	}
 	if err := quick.CheckEqual(Norm, expect, nil); err != nil {
 		t.Fatal(err)

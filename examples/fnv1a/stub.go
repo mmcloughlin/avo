@@ -2,4 +2,5 @@
 
 package fnv1a
 
+// Hash64 computes the FNV-1a hash of data.
 func Hash64(data []byte) uint64

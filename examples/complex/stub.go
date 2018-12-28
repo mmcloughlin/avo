@@ -2,8 +2,11 @@
 
 package complex
 
-func Real(x complex128) float64
+// Real returns the real part of z.
+func Real(z complex128) float64
 
-func Imag(x complex128) float64
+// Imag returns the imaginary part of z.
+func Imag(z complex128) float64
 
-func Norm(x complex128) float64
+// Norm returns the complex norm of z.
+func Norm(z complex128) float64

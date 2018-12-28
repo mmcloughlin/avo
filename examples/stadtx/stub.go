@@ -2,4 +2,5 @@
 
 package stadtx
 
+// Hash computes the Stadtx hash.
 func Hash(state *State, key []byte) uint64

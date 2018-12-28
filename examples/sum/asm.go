@@ -9,6 +9,7 @@ import (
 
 func main() {
 	TEXT("Sum", "func(xs []uint64) uint64")
+	Doc("Sum returns the sum of the elements in xs.")
 	ptr := Load(Param("xs").Base(), GP64v())
 	n := Load(Param("xs").Len(), GP64v())
 	s := GP64v()

@@ -21,6 +21,7 @@ func main() {
 	DATA(39, U8(0x77))
 
 	TEXT("DataAt", "func(i int) byte")
+	Doc("DataAt returns byte i in the 'bytes' global data section.")
 	i := Load(Param("i"), GP64v())
 	ptr := Mem{Base: GP64v()}
 	LEAQ(bytes, ptr.Base)

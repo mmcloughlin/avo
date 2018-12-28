@@ -2,4 +2,5 @@
 
 package data
 
+// DataAt returns byte i in the 'bytes' global data section.
 func DataAt(i int) byte

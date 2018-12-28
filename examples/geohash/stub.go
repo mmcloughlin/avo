@@ -2,4 +2,5 @@
 
 package geohash
 
+// EncodeInt computes the 64-bit integer geohash of (lat, lng).
 func EncodeInt(lat float64, lng float64) uint64

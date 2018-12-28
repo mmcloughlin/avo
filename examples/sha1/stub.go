@@ -2,4 +2,5 @@
 
 package sha1
 
+// block SHA-1 hashes the 64-byte message m into the running state h.
 func block(h *[5]uint32, m []byte)

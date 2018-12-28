@@ -2,4 +2,5 @@
 
 package sum
 
+// Sum returns the sum of the elements in xs.
 func Sum(xs []uint64) uint64
