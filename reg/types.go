@@ -65,13 +65,11 @@ func (f *Family) Set() Set {
 }
 
 type (
-	ID  uint64
 	VID uint16
 	PID uint16
 )
 
 type Register interface {
-	ID() ID
 	Kind() Kind
 	Bytes() uint
 	Asm() string
@@ -107,10 +105,6 @@ func NewVirtual(id VID, k Kind, s Size) Virtual {
 
 func (v virtual) VirtualID() VID { return v.id }
 func (v virtual) Kind() Kind     { return v.kind }
-
-func (v virtual) ID() ID {
-	return (ID(1) << 63) | (ID(v.Size) << 24) | (ID(v.kind) << 16) | ID(v.VirtualID())
-}
 
 func (v virtual) Asm() string {
 	// TODO(mbm): decide on virtual register syntax
@@ -150,7 +144,6 @@ type register struct {
 }
 
 func (r register) PhysicalID() PID { return r.id }
-func (r register) ID() ID          { return (ID(r.Mask()) << 16) | ID(r.id) }
 func (r register) Kind() Kind      { return r.kind }
 func (r register) Asm() string     { return r.name }
 func (r register) Info() Info      { return r.info }
