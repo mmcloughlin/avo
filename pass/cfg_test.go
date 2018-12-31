@@ -12,8 +12,8 @@ import (
 
 func TestLabelTarget(t *testing.T) {
 	expect := map[avo.Label]*avo.Instruction{
-		"lblA": &avo.Instruction{Opcode: "A"},
-		"lblB": &avo.Instruction{Opcode: "B"},
+		"lblA": {Opcode: "A"},
+		"lblB": {Opcode: "B"},
 	}
 
 	f := avo.NewFunction("happypath")

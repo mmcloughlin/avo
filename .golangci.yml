@@ -1,6 +1,10 @@
 linters:
   enable-all: false
   enable:
+    - gosimple
+    - misspell
+    - gocyclo
+    - gofmt
     - structcheck
     - varcheck
     - ineffassign
