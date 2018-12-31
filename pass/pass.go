@@ -14,6 +14,7 @@ var Compile = Concat(
 	FunctionPass(AllocateRegisters),
 	FunctionPass(BindRegisters),
 	FunctionPass(VerifyAllocation),
+	Func(IncludeTextFlagHeader),
 )
 
 type Interface interface {

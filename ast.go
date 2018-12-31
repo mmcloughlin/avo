@@ -99,9 +99,7 @@ type File struct {
 }
 
 func NewFile() *File {
-	return &File{
-		Includes: []string{"textflag.h"},
-	}
+	return &File{}
 }
 
 func (f *File) AddSection(s Section) {
