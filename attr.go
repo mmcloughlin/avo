@@ -71,7 +71,7 @@ func (a Attribute) split() ([]string, Attribute) {
 	var rest Attribute
 	for a != 0 {
 		i := uint(bits.TrailingZeros16(uint16(a)))
-		bit := Attribute(1) << uint(i)
+		bit := Attribute(1) << i
 		if flag := attrname[bit]; flag != "" {
 			flags = append(flags, flag)
 		} else {
