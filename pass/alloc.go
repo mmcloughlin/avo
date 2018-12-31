@@ -18,6 +18,7 @@ type Allocator struct {
 	allocation reg.Allocation
 	edges      []*edge
 	possible   map[reg.Virtual][]reg.Physical
+	vidtopid   map[reg.VID]reg.PID
 }
 
 func NewAllocator(rs []reg.Physical) (*Allocator, error) {
@@ -28,6 +29,7 @@ func NewAllocator(rs []reg.Physical) (*Allocator, error) {
 		registers:  rs,
 		allocation: reg.NewEmptyAllocation(),
 		possible:   map[reg.Virtual][]reg.Physical{},
+		vidtopid:   map[reg.VID]reg.PID{},
 	}, nil
 }
 
@@ -60,7 +62,7 @@ func (a *Allocator) Add(r reg.Register) {
 	if _, found := a.possible[v]; found {
 		return
 	}
-	a.possible[v] = a.possibleregisters(v.Bytes())
+	a.possible[v] = a.possibleregisters(v)
 }
 
 func (a *Allocator) Allocate() (reg.Allocation, error) {
@@ -83,6 +85,16 @@ func (a *Allocator) Allocate() (reg.Allocation, error) {
 
 // update possible allocations based on edges.
 func (a *Allocator) update() error {
+	for v := range a.possible {
+		pid, found := a.vidtopid[v.VirtualID()]
+		if !found {
+			continue
+		}
+		a.possible[v] = filterregisters(a.possible[v], func(r reg.Physical) bool {
+			return r.PhysicalID() == pid
+		})
+	}
+
 	var rem []*edge
 	for _, e := range a.edges {
 		e.X, e.Y = a.allocation.LookupDefault(e.X), a.allocation.LookupDefault(e.Y)
@@ -107,6 +119,7 @@ func (a *Allocator) update() error {
 		}
 	}
 	a.edges = rem
+
 	return nil
 }
 
@@ -125,13 +138,12 @@ func (a *Allocator) mostrestricted() reg.Virtual {
 
 // discardconflicting removes registers from vs possible list that conflict with p.
 func (a *Allocator) discardconflicting(v reg.Virtual, p reg.Physical) {
-	var rs []reg.Physical
-	for _, r := range a.possible[v] {
-		if !reg.AreConflicting(r, p) {
-			rs = append(rs, r)
+	a.possible[v] = filterregisters(a.possible[v], func(r reg.Physical) bool {
+		if pid, found := a.vidtopid[v.VirtualID()]; found && pid == p.PhysicalID() {
+			return true
 		}
-	}
-	a.possible[v] = rs
+		return !reg.AreConflicting(r, p)
+	})
 }
 
 // alloc attempts to allocate a register to v.
@@ -140,8 +152,10 @@ func (a *Allocator) alloc(v reg.Virtual) error {
 	if len(ps) == 0 {
 		return errors.New("failed to allocate registers")
 	}
-	a.allocation[v] = ps[0]
+	p := ps[0]
+	a.allocation[v] = p
 	delete(a.possible, v)
+	a.vidtopid[v.VirtualID()] = p.PhysicalID()
 	return nil
 }
 
@@ -150,11 +164,17 @@ func (a *Allocator) remaining() int {
 	return len(a.possible)
 }
 
-// possibleregisters returns all allocate-able registers of the given size.
-func (a *Allocator) possibleregisters(n uint) []reg.Physical {
+// possibleregisters returns all allocate-able registers for the given virtual.
+func (a *Allocator) possibleregisters(v reg.Virtual) []reg.Physical {
+	return filterregisters(a.registers, func(r reg.Physical) bool {
+		return v.SatisfiedBy(r) && (r.Info()&reg.Restricted) == 0
+	})
+}
+
+func filterregisters(in []reg.Physical, predicate func(reg.Physical) bool) []reg.Physical {
 	var rs []reg.Physical
-	for _, r := range a.registers {
-		if r.Bytes() == n && (r.Info()&reg.Restricted) == 0 {
+	for _, r := range in {
+		if predicate(r) {
 			rs = append(rs, r)
 		}
 	}

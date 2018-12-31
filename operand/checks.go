@@ -106,12 +106,12 @@ func IsR64(op Op) bool {
 
 // IsPseudo returns true if op is a pseudo register.
 func IsPseudo(op Op) bool {
-	return IsRegisterKind(op, reg.Internal)
+	return IsRegisterKind(op, reg.KindPseudo)
 }
 
 // IsGP returns true if op is a general-purpose register of size n bytes.
 func IsGP(op Op, n uint) bool {
-	return IsRegisterKindSize(op, reg.GP, n)
+	return IsRegisterKindSize(op, reg.KindGP, n)
 }
 
 // IsXmm0 returns true if op is the X0 register.
@@ -121,12 +121,12 @@ func IsXmm0(op Op) bool {
 
 // IsXmm returns true if op is a 128-bit XMM register.
 func IsXmm(op Op) bool {
-	return IsRegisterKindSize(op, reg.SSEAVX, 16)
+	return IsRegisterKindSize(op, reg.KindVector, 16)
 }
 
 // IsYmm returns true if op is a 256-bit YMM register.
 func IsYmm(op Op) bool {
-	return IsRegisterKindSize(op, reg.SSEAVX, 32)
+	return IsRegisterKindSize(op, reg.KindVector, 32)
 }
 
 // IsRegisterKindSize returns true if op is a register of the given kind and size in bytes.
@@ -183,7 +183,7 @@ func IsMSize(op Op, n uint) bool {
 
 // IsMReg returns true if op is a register that can be used in a memory operand.
 func IsMReg(op Op) bool {
-	return IsPseudo(op) || IsRegisterKind(op, reg.GP)
+	return IsPseudo(op) || IsRegisterKind(op, reg.KindGP)
 }
 
 // IsM128 returns true if op is a 128-bit memory operand.

@@ -1,8 +1,8 @@
 #!/bin/bash -ex
 
 # Separate core packages from those that depend on the whole library being built.
-core=$(go list ./... | grep -v examples)
-post=$(go list ./... | grep examples)
+core=$(go list ./... | grep -Ev 'avo/(examples|tests)')
+post=$(go list ./... | grep -E  'avo/(examples|tests)')
 
 # Install avogen (for bootstrapping).
 go install ./internal/cmd/avogen

@@ -10,7 +10,7 @@ func TestAllocatorSimple(t *testing.T) {
 	c := reg.NewCollection()
 	x, y := c.Xv(), c.Yv()
 
-	a, err := NewAllocatorForKind(reg.SSEAVX)
+	a, err := NewAllocatorForKind(reg.KindVector)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -32,7 +32,7 @@ func TestAllocatorSimple(t *testing.T) {
 }
 
 func TestAllocatorImpossible(t *testing.T) {
-	a, err := NewAllocatorForKind(reg.SSEAVX)
+	a, err := NewAllocatorForKind(reg.KindVector)
 	if err != nil {
 		t.Fatal(err)
 	}

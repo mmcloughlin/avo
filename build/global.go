@@ -42,12 +42,13 @@ func Generate() {
 	os.Exit(Main(cfg, ctx))
 }
 
-func GP8v() reg.Virtual  { return ctx.GP8v() }
-func GP16v() reg.Virtual { return ctx.GP16v() }
-func GP32v() reg.Virtual { return ctx.GP32v() }
-func GP64v() reg.Virtual { return ctx.GP64v() }
-func Xv() reg.Virtual    { return ctx.Xv() }
-func Yv() reg.Virtual    { return ctx.Yv() }
+func GP8v() reg.GPVirtual  { return ctx.GP8v() }
+func GP16v() reg.GPVirtual { return ctx.GP16v() }
+func GP32v() reg.GPVirtual { return ctx.GP32v() }
+func GP64v() reg.GPVirtual { return ctx.GP64v() }
+func Xv() reg.VecVirtual   { return ctx.Xv() }
+func Yv() reg.VecVirtual   { return ctx.Yv() }
+func Zv() reg.VecVirtual   { return ctx.Zv() }
 
 func Param(name string) gotypes.Component  { return ctx.Param(name) }
 func ParamIndex(i int) gotypes.Component   { return ctx.ParamIndex(i) }

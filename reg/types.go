@@ -26,24 +26,17 @@ type Family struct {
 	registers []Physical
 }
 
-func (f *Family) add(s Spec, id PID, name string, info Info) Physical {
-	r := register{
-		id:   id,
-		kind: f.Kind,
-		name: name,
-		info: info,
-		Spec: s,
-	}
-	f.registers = append(f.registers, r)
+func (f *Family) define(s Spec, id PID, name string, flags ...Info) Physical {
+	r := newregister(f, s, id, name, flags...)
+	f.add(r)
 	return r
 }
 
-func (f *Family) define(s Spec, id PID, name string) Physical {
-	return f.add(s, id, name, None)
-}
-
-func (f *Family) restricted(s Spec, id PID, name string) Physical {
-	return f.add(s, id, name, Restricted)
+func (f *Family) add(r Physical) {
+	if r.Kind() != f.Kind {
+		panic("bad kind")
+	}
+	f.registers = append(f.registers, r)
 }
 
 func (f *Family) Virtual(id VID, s Size) Virtual {
@@ -64,6 +57,16 @@ func (f *Family) Set() Set {
 	return s
 }
 
+// Lookup returns the register with given physical ID and spec. Returns nil if no such register exists.
+func (f *Family) Lookup(id PID, s Spec) Physical {
+	for _, r := range f.registers {
+		if r.PhysicalID() == id && r.Mask() == s.Mask() {
+			return r
+		}
+	}
+	return nil
+}
+
 type (
 	VID uint16
 	PID uint16
@@ -73,11 +76,13 @@ type Register interface {
 	Kind() Kind
 	Bytes() uint
 	Asm() string
+	as(Spec) Register
 	register()
 }
 
 type Virtual interface {
 	VirtualID() VID
+	SatisfiedBy(Physical) bool
 	Register
 }
 
@@ -93,6 +98,7 @@ type virtual struct {
 	id   VID
 	kind Kind
 	Size
+	mask uint16
 }
 
 func NewVirtual(id VID, k Kind, s Size) Virtual {
@@ -109,6 +115,19 @@ func (v virtual) Kind() Kind     { return v.kind }
 func (v virtual) Asm() string {
 	// TODO(mbm): decide on virtual register syntax
 	return fmt.Sprintf("<virtual:%v:%v:%v>", v.id, v.Kind(), v.Bytes())
+}
+
+func (v virtual) SatisfiedBy(p Physical) bool {
+	return v.Kind() == p.Kind() && v.Bytes() == p.Bytes() && (v.mask == 0 || v.mask == p.Mask())
+}
+
+func (v virtual) as(s Spec) Register {
+	return virtual{
+		id:   v.id,
+		kind: v.kind,
+		Size: Size(s.Bytes()),
+		mask: s.Mask(),
+	}
 }
 
 func (v virtual) register() {}
@@ -136,18 +155,37 @@ func ToPhysical(r Register) Physical {
 }
 
 type register struct {
-	id   PID
-	kind Kind
-	name string
-	info Info
+	family *Family
+	id     PID
+	name   string
+	info   Info
 	Spec
 }
 
+func newregister(f *Family, s Spec, id PID, name string, flags ...Info) register {
+	r := register{
+		family: f,
+		id:     id,
+		name:   name,
+		info:   None,
+		Spec:   s,
+	}
+	for _, flag := range flags {
+		r.info |= flag
+	}
+	return r
+}
+
 func (r register) PhysicalID() PID { return r.id }
-func (r register) Kind() Kind      { return r.kind }
+func (r register) Kind() Kind      { return r.family.Kind }
 func (r register) Asm() string     { return r.name }
 func (r register) Info() Info      { return r.info }
-func (r register) register()       {}
+
+func (r register) as(s Spec) Register {
+	return r.family.Lookup(r.PhysicalID(), s)
+}
+
+func (r register) register() {}
 
 type Spec uint16
 

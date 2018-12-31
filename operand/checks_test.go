@@ -69,7 +69,7 @@ func TestChecks(t *testing.T) {
 		{IsR64, reg.R10, true},
 		{IsR64, reg.EBX, false},
 
-		// SIMD registers
+		// Vector registers
 		{IsXmm0, reg.X0, true},
 		{IsXmm0, reg.X13, false},
 		{IsXmm0, reg.Y3, false},

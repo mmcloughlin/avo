@@ -4,10 +4,10 @@ import "testing"
 
 func TestSetRegisterIdentity(t *testing.T) {
 	rs := []Register{
-		NewVirtual(42, GP, B32),
-		NewVirtual(43, GP, B32),
-		NewVirtual(42, SSEAVX, B32),
-		NewVirtual(42, GP, B64),
+		NewVirtual(42, KindGP, B32),
+		NewVirtual(43, KindGP, B32),
+		NewVirtual(42, KindVector, B32),
+		NewVirtual(42, KindGP, B64),
 		AL, AH, CL,
 		AX, R13W,
 		EDX, R9L,
@@ -27,7 +27,7 @@ func TestSetRegisterIdentity(t *testing.T) {
 }
 
 func TestSetFamilyRegisters(t *testing.T) {
-	fs := []*Family{GeneralPurpose, SIMD}
+	fs := []*Family{GeneralPurpose, Vector}
 	s := NewEmptySet()
 	expect := 0
 	for _, f := range fs {
