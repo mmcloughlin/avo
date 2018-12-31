@@ -94,11 +94,14 @@ type Section interface {
 
 // File represents an assembly file.
 type File struct {
+	Includes []string
 	Sections []Section
 }
 
 func NewFile() *File {
-	return &File{}
+	return &File{
+		Includes: []string{"textflag.h"},
+	}
 }
 
 func (f *File) AddSection(s Section) {

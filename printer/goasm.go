@@ -23,6 +23,7 @@ func NewGoAsm(cfg Config) Printer {
 
 func (p *goasm) Print(f *avo.File) ([]byte, error) {
 	p.header()
+	p.includes(f.Includes)
 	for _, s := range f.Sections {
 		switch s := s.(type) {
 		case *avo.Function:
@@ -38,12 +39,16 @@ func (p *goasm) Print(f *avo.File) ([]byte, error) {
 
 func (p *goasm) header() {
 	p.Comment(p.cfg.GeneratedWarning())
-	p.NL()
-	p.include("textflag.h")
 }
 
-func (p *goasm) include(path string) {
-	p.Printf("#include \"%s\"\n", path)
+func (p *goasm) includes(paths []string) {
+	if len(paths) == 0 {
+		return
+	}
+	p.NL()
+	for _, path := range paths {
+		p.Printf("#include \"%s\"\n", path)
+	}
 }
 
 func (p *goasm) function(f *avo.Function) {
