@@ -3,7 +3,7 @@
 #include "textflag.h"
 
 // func Split(x uint64) (q uint64, l uint32, w uint16, b uint8)
-TEXT ·Split(SB), 0, $0-23
+TEXT ·Split(SB), $0-23
 	MOVQ	x(FP), AX
 	MOVQ	AX, q+8(FP)
 	MOVL	AX, l+16(FP)

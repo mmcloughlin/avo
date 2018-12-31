@@ -55,6 +55,10 @@ func (c *Context) Doc(lines ...string) {
 	c.activefunc().Doc = lines
 }
 
+func (c *Context) Attributes(a avo.Attribute) {
+	c.activefunc().Attributes = a
+}
+
 func (c *Context) Signature(s *gotypes.Signature) {
 	c.activefunc().SetSignature(s)
 }

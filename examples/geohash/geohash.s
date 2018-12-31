@@ -3,7 +3,7 @@
 #include "textflag.h"
 
 // func EncodeInt(lat float64, lng float64) uint64
-TEXT ·EncodeInt(SB), 0, $0-24
+TEXT ·EncodeInt(SB), $0-24
 	MOVSD	lat(FP), X0
 	MOVSD	lng+8(FP), X1
 	MULSD	reciprocal180<>(SB), X0

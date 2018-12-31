@@ -49,7 +49,26 @@ func (p *goasm) include(path string) {
 func (p *goasm) function(f *avo.Function) {
 	p.NL()
 	p.Comment(f.Stub())
-	p.Printf("TEXT %s%s(SB), 0, %s\n", dot, f.Name, textsize(f))
+
+	// Reference: https://github.com/golang/go/blob/b115207baf6c2decc3820ada4574ef4e5ad940ec/src/cmd/internal/obj/util.go#L166-L176
+	//
+	//		if p.As == ATEXT {
+	//			// If there are attributes, print them. Otherwise, skip the comma.
+	//			// In short, print one of these two:
+	//			// TEXT	foo(SB), DUPOK|NOSPLIT, $0
+	//			// TEXT	foo(SB), $0
+	//			s := p.From.Sym.Attribute.TextAttrString()
+	//			if s != "" {
+	//				fmt.Fprintf(&buf, "%s%s", sep, s)
+	//				sep = ", "
+	//			}
+	//		}
+	//
+	p.Printf("TEXT %s%s(SB)", dot, f.Name)
+	if f.Attributes != 0 {
+		p.Printf(", %s", f.Attributes.Asm())
+	}
+	p.Printf(", %s\n", textsize(f))
 
 	for _, node := range f.Nodes {
 		switch n := node.(type) {
@@ -73,8 +92,7 @@ func (p *goasm) global(g *avo.Global) {
 		a := operand.NewDataAddr(g.Symbol, d.Offset)
 		p.Printf("DATA %s/%d, %s\n", a.Asm(), d.Value.Bytes(), d.Value.Asm())
 	}
-	// TODO(mbm): replace hardcoded RODATA with an attributes list
-	p.Printf("GLOBL %s(SB), RODATA, $%d\n", g.Symbol, g.Size)
+	p.Printf("GLOBL %s(SB), %s, $%d\n", g.Symbol, g.Attributes.Asm(), g.Size)
 }
 
 func textsize(f *avo.Function) string {

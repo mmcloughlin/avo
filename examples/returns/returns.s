@@ -3,7 +3,7 @@
 #include "textflag.h"
 
 // func Interval(start uint64, size uint64) (uint64, uint64)
-TEXT ·Interval(SB), 0, $0-32
+TEXT ·Interval(SB), $0-32
 	MOVQ	start(FP), AX
 	MOVQ	size+8(FP), CX
 	ADDQ	AX, CX
@@ -12,7 +12,7 @@ TEXT ·Interval(SB), 0, $0-32
 	RET
 
 // func Butterfly(x0 float64, x1 float64) (y0 float64, y1 float64)
-TEXT ·Butterfly(SB), 0, $0-32
+TEXT ·Butterfly(SB), $0-32
 	MOVSD	x0(FP), X0
 	MOVSD	x1+8(FP), X1
 	MOVSD	X0, X2
@@ -24,7 +24,7 @@ TEXT ·Butterfly(SB), 0, $0-32
 	RET
 
 // func Septuple(byte) [7]byte
-TEXT ·Septuple(SB), 0, $0-15
+TEXT ·Septuple(SB), $0-15
 	MOVB	arg(FP), AL
 	MOVB	AL, ret_0+8(FP)
 	MOVB	AL, ret_1+9(FP)
@@ -36,7 +36,7 @@ TEXT ·Septuple(SB), 0, $0-15
 	RET
 
 // func CriticalLine(t float64) complex128
-TEXT ·CriticalLine(SB), 0, $0-24
+TEXT ·CriticalLine(SB), $0-24
 	MOVSD	t(FP), X0
 	MOVSD	half<>(SB), X1
 	MOVSD	X1, ret_real+8(FP)
@@ -47,7 +47,7 @@ DATA half<>(SB)/8, $(0.5)
 GLOBL half<>(SB), RODATA, $8
 
 // func NewStruct(w uint16, p [2]float64, q uint64) Struct
-TEXT ·NewStruct(SB), 0, $0-64
+TEXT ·NewStruct(SB), $0-64
 	MOVW	w(FP), AX
 	MOVSD	p_0+8(FP), X0
 	MOVSD	p_1+16(FP), X1

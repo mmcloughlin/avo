@@ -3,7 +3,7 @@
 #include "textflag.h"
 
 // func Sum(xs []uint64) uint64
-TEXT ·Sum(SB), 0, $0-32
+TEXT ·Sum(SB), $0-32
 	MOVQ	xs_base(FP), AX
 	MOVQ	xs_len+8(FP), CX
 	XORQ	DX, DX

@@ -117,10 +117,11 @@ func (f *File) Functions() []*Function {
 
 // Function represents an assembly function.
 type Function struct {
-	Name      string
-	Doc       []string
-	Signature *gotypes.Signature
-	LocalSize int
+	Name       string
+	Attributes Attribute
+	Doc        []string
+	Signature  *gotypes.Signature
+	LocalSize  int
 
 	Nodes []Node
 
@@ -213,14 +214,16 @@ func (d Datum) Overlaps(other Datum) bool {
 }
 
 type Global struct {
-	Symbol operand.Symbol
-	Data   []Datum
-	Size   int
+	Symbol     operand.Symbol
+	Attributes Attribute
+	Data       []Datum
+	Size       int
 }
 
 func NewGlobal(sym operand.Symbol) *Global {
 	return &Global{
-		Symbol: sym,
+		Symbol:     sym,
+		Attributes: RODATA,
 	}
 }
 

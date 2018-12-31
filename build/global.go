@@ -58,7 +58,8 @@ func ReturnIndex(i int) gotypes.Component  { return ctx.ReturnIndex(i) }
 func Load(src gotypes.Component, dst reg.Register) reg.Register { return ctx.Load(src, dst) }
 func Store(src reg.Register, dst gotypes.Component)             { ctx.Store(src, dst) }
 
-func Doc(lines ...string) { ctx.Doc(lines...) }
+func Doc(lines ...string)        { ctx.Doc(lines...) }
+func Attributes(a avo.Attribute) { ctx.Attributes(a) }
 
 func AllocLocal(size int) operand.Mem { return ctx.AllocLocal(size) }
 

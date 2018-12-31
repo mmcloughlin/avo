@@ -3,7 +3,7 @@
 #include "textflag.h"
 
 // func Dot(x []float32, y []float32) float32
-TEXT ·Dot(SB), 0, $0-52
+TEXT ·Dot(SB), $0-52
 	MOVQ	x_base(FP), AX
 	MOVQ	y_base+24(FP), CX
 	MOVQ	x_len+8(FP), DX

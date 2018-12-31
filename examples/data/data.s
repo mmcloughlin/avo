@@ -13,7 +13,7 @@ DATA bytes<>+39(SB)/1, $0x77
 GLOBL bytes<>(SB), RODATA, $40
 
 // func DataAt(i int) byte
-TEXT ·DataAt(SB), 0, $0-9
+TEXT ·DataAt(SB), $0-9
 	MOVQ	i(FP), AX
 	LEAQ	bytes<>(SB), CX
 	MOVB	(CX)(AX*1), AL
