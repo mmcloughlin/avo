@@ -29,58 +29,58 @@ func Is3(op Op) bool {
 	return ok && i == 3
 }
 
-// IsImm2u returns true if op is a 2-bit unsigned immediate (less than 4).
-func IsImm2u(op Op) bool {
+// IsIMM2U returns true if op is a 2-bit unsigned immediate (less than 4).
+func IsIMM2U(op Op) bool {
 	i, ok := op.(U8)
 	return ok && i < 4
 }
 
-// IsImm8 returns true is op is an 8-bit immediate.
-func IsImm8(op Op) bool {
+// IsIMM8 returns true is op is an 8-bit immediate.
+func IsIMM8(op Op) bool {
 	_, ok := op.(U8)
 	return ok
 }
 
-// IsImm16 returns true is op is a 16-bit immediate.
-func IsImm16(op Op) bool {
+// IsIMM16 returns true is op is a 16-bit immediate.
+func IsIMM16(op Op) bool {
 	_, ok := op.(U16)
 	return ok
 }
 
-// IsImm32 returns true is op is a 32-bit immediate.
-func IsImm32(op Op) bool {
+// IsIMM32 returns true is op is a 32-bit immediate.
+func IsIMM32(op Op) bool {
 	_, ok := op.(U32)
 	return ok
 }
 
-// IsImm64 returns true is op is a 64-bit immediate.
-func IsImm64(op Op) bool {
+// IsIMM64 returns true is op is a 64-bit immediate.
+func IsIMM64(op Op) bool {
 	_, ok := op.(U64)
 	return ok
 }
 
-// IsAl returns true if op is the AL register.
-func IsAl(op Op) bool {
+// IsAL returns true if op is the AL register.
+func IsAL(op Op) bool {
 	return op == reg.AL
 }
 
-// IsCl returns true if op is the CL register.
-func IsCl(op Op) bool {
+// IsCL returns true if op is the CL register.
+func IsCL(op Op) bool {
 	return op == reg.CL
 }
 
-// IsAx returns true if op is the 16-bit AX register.
-func IsAx(op Op) bool {
+// IsAX returns true if op is the 16-bit AX register.
+func IsAX(op Op) bool {
 	return op == reg.AX
 }
 
-// IsEax returns true if op is the 32-bit EAX register.
-func IsEax(op Op) bool {
+// IsEAX returns true if op is the 32-bit EAX register.
+func IsEAX(op Op) bool {
 	return op == reg.EAX
 }
 
-// IsRax returns true if op is the 64-bit RAX register.
-func IsRax(op Op) bool {
+// IsRAX returns true if op is the 64-bit RAX register.
+func IsRAX(op Op) bool {
 	return op == reg.RAX
 }
 
@@ -114,18 +114,18 @@ func IsGP(op Op, n uint) bool {
 	return IsRegisterKindSize(op, reg.KindGP, n)
 }
 
-// IsXmm0 returns true if op is the X0 register.
-func IsXmm0(op Op) bool {
+// IsXMM0 returns true if op is the X0 register.
+func IsXMM0(op Op) bool {
 	return op == reg.X0
 }
 
-// IsXmm returns true if op is a 128-bit XMM register.
-func IsXmm(op Op) bool {
+// IsXMM returns true if op is a 128-bit XMM register.
+func IsXMM(op Op) bool {
 	return IsRegisterKindSize(op, reg.KindVector, 16)
 }
 
-// IsYmm returns true if op is a 256-bit YMM register.
-func IsYmm(op Op) bool {
+// IsYMM returns true if op is a 256-bit YMM register.
+func IsYMM(op Op) bool {
 	return IsRegisterKindSize(op, reg.KindVector, 32)
 }
 
@@ -198,34 +198,34 @@ func IsM256(op Op) bool {
 	return IsM64(op)
 }
 
-// IsVm32x returns true if op is a vector memory operand with 32-bit XMM index.
-func IsVm32x(op Op) bool {
+// IsVM32X returns true if op is a vector memory operand with 32-bit XMM index.
+func IsVM32X(op Op) bool {
 	return IsVmx(op)
 }
 
-// IsVm64x returns true if op is a vector memory operand with 64-bit XMM index.
-func IsVm64x(op Op) bool {
+// IsVM64X returns true if op is a vector memory operand with 64-bit XMM index.
+func IsVM64X(op Op) bool {
 	return IsVmx(op)
 }
 
 // IsVmx returns true if op is a vector memory operand with XMM index.
 func IsVmx(op Op) bool {
-	return isvm(op, IsXmm)
+	return isvm(op, IsXMM)
 }
 
-// IsVm32y returns true if op is a vector memory operand with 32-bit YMM index.
-func IsVm32y(op Op) bool {
+// IsVM32Y returns true if op is a vector memory operand with 32-bit YMM index.
+func IsVM32Y(op Op) bool {
 	return IsVmy(op)
 }
 
-// IsVm64y returns true if op is a vector memory operand with 64-bit YMM index.
-func IsVm64y(op Op) bool {
+// IsVM64Y returns true if op is a vector memory operand with 64-bit YMM index.
+func IsVM64Y(op Op) bool {
 	return IsVmy(op)
 }
 
 // IsVmy returns true if op is a vector memory operand with YMM index.
 func IsVmy(op Op) bool {
-	return isvm(op, IsYmm)
+	return isvm(op, IsYMM)
 }
 
 func isvm(op Op, idx func(Op) bool) bool {
@@ -233,15 +233,15 @@ func isvm(op Op, idx func(Op) bool) bool {
 	return ok && IsR64(m.Base) && idx(m.Index)
 }
 
-// IsRel8 returns true if op is an 8-bit offset relative to instruction pointer.
-func IsRel8(op Op) bool {
+// IsREL8 returns true if op is an 8-bit offset relative to instruction pointer.
+func IsREL8(op Op) bool {
 	r, ok := op.(Rel)
 	return ok && r == Rel(int8(r))
 }
 
-// IsRel32 returns true if op is an offset relative to instruction pointer, or a
+// IsREL32 returns true if op is an offset relative to instruction pointer, or a
 // label reference.
-func IsRel32(op Op) bool {
+func IsREL32(op Op) bool {
 	// TODO(mbm): should labels be considered separately?
 	_, rel := op.(Rel)
 	_, label := op.(LabelRef)

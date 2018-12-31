@@ -22,35 +22,35 @@ func TestChecks(t *testing.T) {
 		{Is3, Imm(3), true},
 		{Is3, Imm(23), false},
 
-		{IsImm2u, Imm(3), true},
-		{IsImm2u, Imm(4), false},
+		{IsIMM2U, Imm(3), true},
+		{IsIMM2U, Imm(4), false},
 
-		{IsImm8, Imm(255), true},
-		{IsImm8, Imm(256), false},
+		{IsIMM8, Imm(255), true},
+		{IsIMM8, Imm(256), false},
 
-		{IsImm16, Imm((1 << 16) - 1), true},
-		{IsImm16, Imm(1 << 16), false},
+		{IsIMM16, Imm((1 << 16) - 1), true},
+		{IsIMM16, Imm(1 << 16), false},
 
-		{IsImm32, Imm((1 << 32) - 1), true},
-		{IsImm32, Imm(1 << 32), false},
+		{IsIMM32, Imm((1 << 32) - 1), true},
+		{IsIMM32, Imm(1 << 32), false},
 
-		{IsImm64, Imm((1 << 64) - 1), true},
+		{IsIMM64, Imm((1 << 64) - 1), true},
 
 		// Specific registers
-		{IsAl, reg.AL, true},
-		{IsAl, reg.CL, false},
+		{IsAL, reg.AL, true},
+		{IsAL, reg.CL, false},
 
-		{IsCl, reg.CL, true},
-		{IsCl, reg.DH, false},
+		{IsCL, reg.CL, true},
+		{IsCL, reg.DH, false},
 
-		{IsAx, reg.AX, true},
-		{IsAx, reg.DX, false},
+		{IsAX, reg.AX, true},
+		{IsAX, reg.DX, false},
 
-		{IsEax, reg.EAX, true},
-		{IsEax, reg.ECX, false},
+		{IsEAX, reg.EAX, true},
+		{IsEAX, reg.ECX, false},
 
-		{IsRax, reg.RAX, true},
-		{IsRax, reg.R13, false},
+		{IsRAX, reg.RAX, true},
+		{IsRAX, reg.R13, false},
 
 		// General-purpose registers
 		{IsR8, reg.AL, true},
@@ -70,20 +70,20 @@ func TestChecks(t *testing.T) {
 		{IsR64, reg.EBX, false},
 
 		// Vector registers
-		{IsXmm0, reg.X0, true},
-		{IsXmm0, reg.X13, false},
-		{IsXmm0, reg.Y3, false},
+		{IsXMM0, reg.X0, true},
+		{IsXMM0, reg.X13, false},
+		{IsXMM0, reg.Y3, false},
 
-		{IsXmm, reg.X0, true},
-		{IsXmm, reg.X13, true},
-		{IsXmm, reg.Y3, false},
-		{IsXmm, reg.Z23, false},
+		{IsXMM, reg.X0, true},
+		{IsXMM, reg.X13, true},
+		{IsXMM, reg.Y3, false},
+		{IsXMM, reg.Z23, false},
 
-		{IsYmm, reg.Y0, true},
-		{IsYmm, reg.Y13, true},
-		{IsYmm, reg.Y31, true},
-		{IsYmm, reg.X3, false},
-		{IsYmm, reg.Z3, false},
+		{IsYMM, reg.Y0, true},
+		{IsYMM, reg.Y13, true},
+		{IsYMM, reg.Y31, true},
+		{IsYMM, reg.X3, false},
+		{IsYMM, reg.Z3, false},
 
 		// Pseudo registers.
 		{IsPseudo, reg.FramePointer, true},
@@ -129,33 +129,33 @@ func TestChecks(t *testing.T) {
 		{IsM64, NewParamAddr("foo", 4), true},
 
 		// Vector memory operands
-		{IsVm32x, Mem{Base: reg.R14, Index: reg.X11}, true},
-		{IsVm32x, Mem{Base: reg.R14L, Index: reg.X11}, false},
-		{IsVm32x, Mem{Base: reg.R14, Index: reg.Y11}, false},
+		{IsVM32X, Mem{Base: reg.R14, Index: reg.X11}, true},
+		{IsVM32X, Mem{Base: reg.R14L, Index: reg.X11}, false},
+		{IsVM32X, Mem{Base: reg.R14, Index: reg.Y11}, false},
 
-		{IsVm64x, Mem{Base: reg.R14, Index: reg.X11}, true},
-		{IsVm64x, Mem{Base: reg.R14L, Index: reg.X11}, false},
-		{IsVm64x, Mem{Base: reg.R14, Index: reg.Y11}, false},
+		{IsVM64X, Mem{Base: reg.R14, Index: reg.X11}, true},
+		{IsVM64X, Mem{Base: reg.R14L, Index: reg.X11}, false},
+		{IsVM64X, Mem{Base: reg.R14, Index: reg.Y11}, false},
 
-		{IsVm32y, Mem{Base: reg.R9, Index: reg.Y11}, true},
-		{IsVm32y, Mem{Base: reg.R11L, Index: reg.Y11}, false},
-		{IsVm32y, Mem{Base: reg.R8, Index: reg.Z11}, false},
+		{IsVM32Y, Mem{Base: reg.R9, Index: reg.Y11}, true},
+		{IsVM32Y, Mem{Base: reg.R11L, Index: reg.Y11}, false},
+		{IsVM32Y, Mem{Base: reg.R8, Index: reg.Z11}, false},
 
-		{IsVm64y, Mem{Base: reg.R9, Index: reg.Y11}, true},
-		{IsVm64y, Mem{Base: reg.R11L, Index: reg.Y11}, false},
-		{IsVm64y, Mem{Base: reg.R8, Index: reg.Z11}, false},
+		{IsVM64Y, Mem{Base: reg.R9, Index: reg.Y11}, true},
+		{IsVM64Y, Mem{Base: reg.R11L, Index: reg.Y11}, false},
+		{IsVM64Y, Mem{Base: reg.R8, Index: reg.Z11}, false},
 
 		// Relative operands
-		{IsRel8, Rel(math.MinInt8), true},
-		{IsRel8, Rel(math.MaxInt8), true},
-		{IsRel8, Rel(math.MinInt8 - 1), false},
-		{IsRel8, Rel(math.MaxInt8 + 1), false},
-		{IsRel8, reg.R9B, false},
+		{IsREL8, Rel(math.MinInt8), true},
+		{IsREL8, Rel(math.MaxInt8), true},
+		{IsREL8, Rel(math.MinInt8 - 1), false},
+		{IsREL8, Rel(math.MaxInt8 + 1), false},
+		{IsREL8, reg.R9B, false},
 
-		{IsRel32, Rel(math.MinInt32), true},
-		{IsRel32, Rel(math.MaxInt32), true},
-		{IsRel32, LabelRef("label"), true},
-		{IsRel32, reg.R9L, false},
+		{IsREL32, Rel(math.MinInt32), true},
+		{IsREL32, Rel(math.MaxInt32), true},
+		{IsREL32, LabelRef("label"), true},
+		{IsREL32, reg.R9L, false},
 	}
 
 	for _, c := range cases {

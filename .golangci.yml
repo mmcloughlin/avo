@@ -1,6 +1,7 @@
 linters:
   enable-all: false
   enable:
+    - golint
     - gosimple
     - misspell
     - gocyclo
