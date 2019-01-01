@@ -107,6 +107,10 @@ func (c *Context) StaticGlobal(name string) operand.Mem {
 	return c.global.Base()
 }
 
+func (c *Context) DataAttributes(a avo.Attribute) {
+	c.activeglobal().Attributes = a
+}
+
 func (c *Context) AddDatum(offset int, v operand.Constant) {
 	if err := c.activeglobal().AddDatum(avo.NewDatum(offset, v)); err != nil {
 		c.AddError(err)

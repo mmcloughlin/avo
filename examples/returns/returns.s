@@ -44,7 +44,7 @@ TEXT ·CriticalLine(SB), $0-24
 	RET
 
 DATA half<>(SB)/8, $(0.5)
-GLOBL half<>(SB), RODATA, $8
+GLOBL half<>(SB), RODATA|NOPTR, $8
 
 // func NewStruct(w uint16, p [2]float64, q uint64) Struct
 TEXT ·NewStruct(SB), $0-64

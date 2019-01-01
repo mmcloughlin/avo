@@ -223,8 +223,7 @@ type Global struct {
 
 func NewGlobal(sym operand.Symbol) *Global {
 	return &Global{
-		Symbol:     sym,
-		Attributes: RODATA,
+		Symbol: sym,
 	}
 }
 

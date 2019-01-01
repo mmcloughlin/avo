@@ -5,12 +5,13 @@ package main
 import (
 	"math"
 
+	"github.com/mmcloughlin/avo"
 	. "github.com/mmcloughlin/avo/build"
 	. "github.com/mmcloughlin/avo/operand"
 )
 
 func main() {
-	bytes := GLOBL("bytes")
+	bytes := GLOBL("bytes", avo.RODATA|avo.NOPTR)
 	DATA(0, U64(0x0011223344556677))
 	DATA(8, String("strconst"))
 	DATA(16, F32(math.Pi))

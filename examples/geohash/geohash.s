@@ -22,13 +22,13 @@ TEXT ·EncodeInt(SB), $0-24
 	RET
 
 DATA reciprocal180<>(SB)/8, $(0.005555555555555556)
-GLOBL reciprocal180<>(SB), RODATA, $8
+GLOBL reciprocal180<>(SB), RODATA|NOPTR, $8
 
 DATA onepointfive<>(SB)/8, $(1.5)
-GLOBL onepointfive<>(SB), RODATA, $8
+GLOBL onepointfive<>(SB), RODATA|NOPTR, $8
 
 DATA reciprocal360<>(SB)/8, $(0.002777777777777778)
-GLOBL reciprocal360<>(SB), RODATA, $8
+GLOBL reciprocal360<>(SB), RODATA|NOPTR, $8
 
 DATA mask<>(SB)/8, $0x5555555555555555
-GLOBL mask<>(SB), RODATA, $8
+GLOBL mask<>(SB), RODATA|NOPTR, $8

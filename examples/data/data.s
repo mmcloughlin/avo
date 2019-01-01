@@ -10,7 +10,7 @@ DATA bytes<>+32(SB)/4, $0x00112233
 DATA bytes<>+36(SB)/2, $0x4455
 DATA bytes<>+38(SB)/1, $0x66
 DATA bytes<>+39(SB)/1, $0x77
-GLOBL bytes<>(SB), RODATA, $40
+GLOBL bytes<>(SB), RODATA|NOPTR, $40
 
 // func DataAt(i int) byte
 TEXT ·DataAt(SB), $0-9

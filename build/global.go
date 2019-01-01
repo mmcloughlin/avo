@@ -24,8 +24,10 @@ func TEXT(name, signature string) {
 
 func LABEL(name string) { ctx.Label(avo.Label(name)) }
 
-func GLOBL(name string) operand.Mem {
-	return ctx.StaticGlobal(name)
+func GLOBL(name string, a avo.Attribute) operand.Mem {
+	g := ctx.StaticGlobal(name)
+	ctx.DataAttributes(a)
+	return g
 }
 
 func DATA(offset int, v operand.Constant) {
