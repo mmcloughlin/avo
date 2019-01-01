@@ -8,7 +8,7 @@ post=$(go list ./... | grep -E  'avo/(examples|tests)')
 go install ./internal/cmd/avogen
 
 # Attempt to delete generated files, to prove we can recreate them.
-grep -REl 'Code generated.*DO NOT EDIT\.$' . | xargs rm -v
+grep -REl 'Code generated.*DO NOT EDIT\.$' . | grep -v '.md$' | xargs rm -v
 
 # Generate once.
 go generate -v -x ${core}
@@ -19,3 +19,6 @@ go generate -v -x ${core}
 
 # Generate dependent packages.
 go generate -v -x ${post}
+
+# Regenerate documentation.
+./script/doc
