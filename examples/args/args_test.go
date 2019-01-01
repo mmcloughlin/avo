@@ -11,6 +11,7 @@ func TestFunctionsEqual(t *testing.T) {
 	cases := []struct {
 		f, g interface{}
 	}{
+		{Second, func(x, y int32) int32 { return y }},
 		{StringLen, func(s string) int { return len(s) }},
 		{SliceLen, func(s []int) int { return len(s) }},
 		{SliceCap, func(s []int) int { return cap(s) }},

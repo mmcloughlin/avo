@@ -2,6 +2,8 @@
 
 package args
 
+func Second(x int32, y int32) int32
+
 func StringLen(s string) int
 
 func SliceLen(s []int) int

@@ -9,6 +9,11 @@ import (
 func main() {
 	Package("github.com/mmcloughlin/avo/examples/args")
 
+	TEXT("Second", "func(x, y int32) int32")
+	y := Load(Param("y"), GP32v())
+	Store(y, ReturnIndex(0))
+	RET()
+
 	TEXT("StringLen", "func(s string) int")
 	strlen := Load(Param("s").Len(), GP64v())
 	Store(strlen, ReturnIndex(0))
