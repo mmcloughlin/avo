@@ -13,7 +13,8 @@ func TestAttributeAsm(t *testing.T) {
 		{DUPOK, "DUPOK"},
 		{RODATA | NOSPLIT, "NOSPLIT|RODATA"},
 		{WRAPPER | 16384 | NOPTR, "NOPTR|WRAPPER|16384"},
-		{NEEDCTXT + NOFRAME + TLSBSS + REFLECTMETHOD, "NEEDCTXT|TLSBSS|NOFRAME|REFLECTMETHOD"},
+		{NEEDCTXT + NOFRAME + TLSBSS, "NEEDCTXT|TLSBSS|NOFRAME"},
+		{REFLECTMETHOD, "1024"}, // REFLECTMETHOD special case due to https://golang.org/issue/29487
 	}
 	for _, c := range cases {
 		got := c.Attribute.Asm()

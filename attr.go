@@ -83,14 +83,14 @@ func (a Attribute) split() ([]string, Attribute) {
 }
 
 var attrname = map[Attribute]string{
-	NOPROF:        "NOPROF",
-	DUPOK:         "DUPOK",
-	NOSPLIT:       "NOSPLIT",
-	RODATA:        "RODATA",
-	NOPTR:         "NOPTR",
-	WRAPPER:       "WRAPPER",
-	NEEDCTXT:      "NEEDCTXT",
-	TLSBSS:        "TLSBSS",
-	NOFRAME:       "NOFRAME",
-	REFLECTMETHOD: "REFLECTMETHOD",
+	NOPROF:   "NOPROF",
+	DUPOK:    "DUPOK",
+	NOSPLIT:  "NOSPLIT",
+	RODATA:   "RODATA",
+	NOPTR:    "NOPTR",
+	WRAPPER:  "WRAPPER",
+	NEEDCTXT: "NEEDCTXT",
+	TLSBSS:   "TLSBSS",
+	NOFRAME:  "NOFRAME",
+	// REFLECTMETHOD excluded due to https://golang.org/issue/29487
 }
