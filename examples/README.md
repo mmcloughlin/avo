@@ -8,4 +8,5 @@ Simple functions:
 Features:
 
 * **[args](args):** Loading function arguments.
+* **[returns](returns):** Building return values.
 * **[complex](complex):** Working with `complex{64,128}` types.
