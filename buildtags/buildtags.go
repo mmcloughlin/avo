@@ -34,6 +34,7 @@ import (
 type Interface interface {
 	ConstraintsConvertable
 	fmt.GoStringer
+	Evaluate(v map[string]bool) bool
 	Validate() error
 }
 
@@ -66,6 +67,15 @@ func (cs Constraints) Validate() error {
 	}
 	return nil
 }
+
+func (cs Constraints) Evaluate(v map[string]bool) bool {
+	r := true
+	for _, c := range cs {
+		r = r && c.Evaluate(v)
+	}
+	return r
+}
+
 func (cs Constraints) GoString() string {
 	s := ""
 	for _, c := range cs {
@@ -84,6 +94,14 @@ func (c Constraint) Validate() error {
 		}
 	}
 	return nil
+}
+
+func (c Constraint) Evaluate(v map[string]bool) bool {
+	r := false
+	for _, o := range c {
+		r = r || o.Evaluate(v)
+	}
+	return r
 }
 
 func (c Constraint) GoString() string {
@@ -107,6 +125,14 @@ func (o Option) Validate() error {
 	return nil
 }
 
+func (o Option) Evaluate(v map[string]bool) bool {
+	r := true
+	for _, t := range o {
+		r = r && t.Evaluate(v)
+	}
+	return r
+}
+
 func (o Option) GoString() string {
 	var ts []string
 	for _, t := range o {
@@ -119,22 +145,24 @@ func (t Term) ToConstraints() Constraints { return t.ToOption().ToConstraints() 
 func (t Term) ToConstraint() Constraint   { return t.ToOption().ToConstraint() }
 func (t Term) ToOption() Option           { return Option{t} }
 
-func (t Term) Validate() error {
-	name := string(t)
+func (t Term) IsNegated() bool { return strings.HasPrefix(string(t), "!") }
 
+func (t Term) Name() string {
+	return strings.TrimPrefix(string(t), "!")
+}
+
+func (t Term) Validate() error {
 	// Reference: https://github.com/golang/go/blob/204a8f55dc2e0ac8d27a781dab0da609b98560da/src/cmd/go/internal/imports/build.go#L110-L112
 	//
 	//		if strings.HasPrefix(name, "!!") { // bad syntax, reject always
 	//			return false
 	//		}
 	//
-	if strings.HasPrefix(name, "!!") {
+	if strings.HasPrefix(string(t), "!!") {
 		return errors.New("at most one '!' allowed")
 	}
 
-	name = strings.TrimPrefix(name, "!")
-
-	if len(name) == 0 {
+	if len(t.Name()) == 0 {
 		return errors.New("empty tag name")
 	}
 
@@ -148,13 +176,17 @@ func (t Term) Validate() error {
 	//			}
 	//		}
 	//
-	for _, c := range name {
+	for _, c := range t.Name() {
 		if !unicode.IsLetter(c) && !unicode.IsDigit(c) && c != '_' && c != '.' {
 			return fmt.Errorf("character '%c' disallowed in tags", c)
 		}
 	}
 
 	return nil
+}
+
+func (t Term) Evaluate(v map[string]bool) bool {
+	return (t.Validate() == nil) && (v[t.Name()] == !t.IsNegated())
 }
 
 func (t Term) GoString() string { return string(t) }
@@ -201,4 +233,12 @@ func ParseConstraint(expr string) (Constraint, error) {
 		c = append(c, opt)
 	}
 	return c, nil
+}
+
+func SetTags(names ...string) map[string]bool {
+	v := map[string]bool{}
+	for _, n := range names {
+		v[n] = true
+	}
+	return v
 }

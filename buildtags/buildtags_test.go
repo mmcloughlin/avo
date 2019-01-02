@@ -65,10 +65,7 @@ func TestParseConstraintRoundTrip(t *testing.T) {
 		"linux,386 darwin,!cgo",
 	}
 	for _, expr := range exprs {
-		c, err := ParseConstraint(expr)
-		if err != nil {
-			t.Fatalf("error parsing expression %q: %q", expr, err)
-		}
+		c := AssertParseConstraint(t, expr)
 		got := c.GoString()
 		expect := "// +build " + expr + "\n"
 		if got != expect {
@@ -83,4 +80,63 @@ func TestParseConstraintError(t *testing.T) {
 	if err == nil {
 		t.Fatalf("expected error parsing %q", expr)
 	}
+}
+
+func TestEvaluate(t *testing.T) {
+	cases := []struct {
+		Constraint Interface
+		Values     map[string]bool
+		Expect     bool
+	}{
+		{Term("a"), SetTags("a"), true},
+		{Term("!a"), SetTags("a"), false},
+		{Term("!a"), SetTags(), true},
+		{Term("inval-id"), SetTags("inval-id"), false},
+
+		{Opt(Term("a"), Term("b")), SetTags(), false},
+		{Opt(Term("a"), Term("b")), SetTags("a"), false},
+		{Opt(Term("a"), Term("b")), SetTags("b"), false},
+		{Opt(Term("a"), Term("b")), SetTags("a", "b"), true},
+		{Opt(Term("a"), Term("b-a-d")), SetTags("a", "b-a-d"), false},
+
+		{
+			Any(Opt(Term("linux"), Term("386")), Opt("darwin", Not("cgo"))),
+			SetTags("linux", "386"),
+			true,
+		},
+		{
+			Any(Opt(Term("linux"), Term("386")), Opt("darwin", Not("cgo"))),
+			SetTags("darwin"),
+			true,
+		},
+		{
+			Any(Opt(Term("linux"), Term("386")), Opt("darwin", Not("cgo"))),
+			SetTags("linux", "darwin", "cgo"),
+			false,
+		},
+
+		{
+			And(Any(Term("linux"), Term("darwin")), Term("386")),
+			SetTags("darwin", "386"),
+			true,
+		},
+	}
+	for _, c := range cases {
+		got := c.Constraint.Evaluate(c.Values)
+		if c.Constraint.Validate() != nil && got {
+			t.Fatal("invalid expressions must evaluate false")
+		}
+		if got != c.Expect {
+			t.Errorf("%#v evaluated with %#v got %v expect %v", c.Constraint, c.Values, got, c.Expect)
+		}
+	}
+}
+
+func AssertParseConstraint(t *testing.T, expr string) Constraint {
+	t.Helper()
+	c, err := ParseConstraint(expr)
+	if err != nil {
+		t.Fatalf("error parsing expression %q: %q", expr, err)
+	}
+	return c
 }
