@@ -1,16 +1,11 @@
-// +build ignore
+# data
 
-package main
+Constructing data sections in `avo`.
 
-import (
-	"math"
+A data section is declared with the `GLOBL` function, and values are specified with `DATA`. The size of the data section will grow as values are added to it.
 
-	. "github.com/mmcloughlin/avo"
-	. "github.com/mmcloughlin/avo/build"
-	. "github.com/mmcloughlin/avo/operand"
-)
-
-func main() {
+[embedmd]:# (asm.go go /.*GLOBL\(/ /^$/)
+```go
 	bytes := GLOBL("bytes", RODATA|NOPTR)
 	DATA(0, U64(0x0011223344556677))
 	DATA(8, String("strconst"))
@@ -20,7 +15,12 @@ func main() {
 	DATA(36, U16(0x4455))
 	DATA(38, U8(0x66))
 	DATA(39, U8(0x77))
+```
 
+The `GLOBL` function returns a reference which may be used in assembly code. The following function indexes into the data section just created.
+
+[embedmd]:# (asm.go go /.*TEXT.*DataAt/ /RET.*/)
+```go
 	TEXT("DataAt", "func(i int) byte")
 	Doc("DataAt returns byte i in the 'bytes' global data section.")
 	i := Load(Param("i"), GP64v())
@@ -30,6 +30,4 @@ func main() {
 	MOVB(ptr.Idx(i, 1), b)
 	Store(b, ReturnIndex(0))
 	RET()
-
-	Generate()
-}
+```
