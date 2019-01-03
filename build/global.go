@@ -41,7 +41,15 @@ func Generate() {
 		flag.Parse()
 	}
 	cfg := flags.Config()
-	os.Exit(Main(cfg, ctx))
+
+	status := Main(cfg, ctx)
+
+	// To record coverage of integration tests we wrap main() functions in a test
+	// functions. In this case we need the main function to terminate, therefore we
+	// only exit for failure status codes.
+	if status != 0 {
+		os.Exit(status)
+	}
 }
 
 func GP8v() reg.GPVirtual  { return ctx.GP8v() }
