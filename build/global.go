@@ -53,9 +53,9 @@ func Generate() {
 	}
 }
 
-func BuildConstraints(t buildtags.ConstraintsConvertable) { ctx.BuildConstraints(t) }
-func BuildConstraint(t buildtags.ConstraintConvertable)   { ctx.BuildConstraint(t) }
-func BuildConstraintExpr(expr string)                     { ctx.BuildConstraintExpr(expr) }
+func Constraints(t buildtags.ConstraintsConvertable) { ctx.Constraints(t) }
+func Constraint(t buildtags.ConstraintConvertable)   { ctx.Constraint(t) }
+func ConstraintExpr(expr string)                     { ctx.ConstraintExpr(expr) }
 
 func GP8v() reg.GPVirtual  { return ctx.GP8v() }
 func GP16v() reg.GPVirtual { return ctx.GP16v() }

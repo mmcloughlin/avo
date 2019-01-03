@@ -47,7 +47,7 @@ func (c *Context) Package(path string) {
 	c.pkg = pkg
 }
 
-func (c *Context) BuildConstraints(t buildtags.ConstraintsConvertable) {
+func (c *Context) Constraints(t buildtags.ConstraintsConvertable) {
 	cs := t.ToConstraints()
 	if err := cs.Validate(); err != nil {
 		c.AddError(err)
@@ -56,17 +56,17 @@ func (c *Context) BuildConstraints(t buildtags.ConstraintsConvertable) {
 	c.file.Constraints = cs
 }
 
-func (c *Context) BuildConstraint(t buildtags.ConstraintConvertable) {
-	c.BuildConstraints(append(c.file.Constraints, t.ToConstraint()))
+func (c *Context) Constraint(t buildtags.ConstraintConvertable) {
+	c.Constraints(append(c.file.Constraints, t.ToConstraint()))
 }
 
-func (c *Context) BuildConstraintExpr(expr string) {
+func (c *Context) ConstraintExpr(expr string) {
 	constraint, err := buildtags.ParseConstraint(expr)
 	if err != nil {
 		c.AddError(err)
 		return
 	}
-	c.BuildConstraint(constraint)
+	c.Constraint(constraint)
 }
 
 func (c *Context) Function(name string) {
