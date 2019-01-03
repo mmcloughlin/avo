@@ -1,6 +1,6 @@
-<p align="center"><img src="logo.svg" /></p>
-
-# avo
+<p align="center">
+  <img src="logo.svg" width="40%" border="0" alt="avo" />
+</p>
 
 Golang x86 assembly generator. Inspired by [PeachPy](https://github.com/Maratyszcza/PeachPy).
 
