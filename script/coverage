@@ -1,0 +1,21 @@
+#!/bin/bash -e
+
+ext=".coverprofile"
+
+# Clean existing coverage files.
+find . -name '*'${ext} | xargs rm -f
+
+# Unit test coverage.
+go test -covermode=count -coverprofile=unit${ext} ./...
+
+# Integration test coverage.
+find . -name 'asm.go' | while read main; do
+	dir=$(dirname ${main})
+	name=$(basename ${dir})
+	coverprofile="${dir}/${name}${ext}"
+	./script/covermain ${main} ${coverprofile} > /dev/null
+done
+
+# Merge.
+all="all${ext}"
+find . -name '*'${ext} | xargs covertool merge --output ${all}
