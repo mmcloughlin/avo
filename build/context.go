@@ -5,6 +5,7 @@ import (
 	"go/types"
 
 	"github.com/mmcloughlin/avo"
+	"github.com/mmcloughlin/avo/buildtags"
 	"github.com/mmcloughlin/avo/gotypes"
 	"github.com/mmcloughlin/avo/operand"
 	"github.com/mmcloughlin/avo/reg"
@@ -44,6 +45,28 @@ func (c *Context) Package(path string) {
 		return
 	}
 	c.pkg = pkg
+}
+
+func (c *Context) BuildConstraints(t buildtags.ConstraintsConvertable) {
+	cs := t.ToConstraints()
+	if err := cs.Validate(); err != nil {
+		c.AddError(err)
+		return
+	}
+	c.file.Constraints = cs
+}
+
+func (c *Context) BuildConstraint(t buildtags.ConstraintConvertable) {
+	c.BuildConstraints(append(c.file.Constraints, t.ToConstraint()))
+}
+
+func (c *Context) BuildConstraintExpr(expr string) {
+	constraint, err := buildtags.ParseConstraint(expr)
+	if err != nil {
+		c.AddError(err)
+		return
+	}
+	c.BuildConstraint(constraint)
 }
 
 func (c *Context) Function(name string) {

@@ -4,6 +4,7 @@ import (
 	"flag"
 	"os"
 
+	"github.com/mmcloughlin/avo/buildtags"
 	"github.com/mmcloughlin/avo/gotypes"
 	"github.com/mmcloughlin/avo/operand"
 
@@ -51,6 +52,10 @@ func Generate() {
 		os.Exit(status)
 	}
 }
+
+func BuildConstraints(t buildtags.ConstraintsConvertable) { ctx.BuildConstraints(t) }
+func BuildConstraint(t buildtags.ConstraintConvertable)   { ctx.BuildConstraint(t) }
+func BuildConstraintExpr(expr string)                     { ctx.BuildConstraintExpr(expr) }
 
 func GP8v() reg.GPVirtual  { return ctx.GP8v() }
 func GP16v() reg.GPVirtual { return ctx.GP16v() }

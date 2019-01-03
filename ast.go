@@ -3,6 +3,7 @@ package avo
 import (
 	"errors"
 
+	"github.com/mmcloughlin/avo/buildtags"
 	"github.com/mmcloughlin/avo/gotypes"
 	"github.com/mmcloughlin/avo/operand"
 	"github.com/mmcloughlin/avo/reg"
@@ -94,8 +95,9 @@ type Section interface {
 
 // File represents an assembly file.
 type File struct {
-	Includes []string
-	Sections []Section
+	Constraints buildtags.Constraints
+	Includes    []string
+	Sections    []Section
 }
 
 func NewFile() *File {
