@@ -1,3 +1,5 @@
+<p align="center"><img src="logo.svg" /></p>
+
 # avo
 
 Golang x86 assembly generator. Inspired by [PeachPy](https://github.com/Maratyszcza/PeachPy).
