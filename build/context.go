@@ -153,7 +153,8 @@ func (c *Context) activeglobal() *avo.Global {
 }
 
 func (c *Context) AddError(err error) {
-	c.errs = append(c.errs, err)
+	e := exterr(err)
+	c.errs = append(c.errs, e)
 }
 
 func (c *Context) AddErrorMessage(msg string) {
