@@ -1,6 +1,6 @@
 # sum
 
-Sum an array of `uint64`s.
+Sum a slice of `uint64`s.
 
 [embedmd]:# (asm.go go /func main/ /^}/)
 ```go

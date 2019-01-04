@@ -88,6 +88,79 @@ func Add(x uint64, y uint64) uint64
 
 See the [`examples/add`](examples/add) directory for the complete working example.
 
+## Examples
+
+### Slice Sum
+
+Sum a slice of `uint64`s:
+
+[embedmd]:# (examples/sum/asm.go /func main/ /^}/)
+```go
+func main() {
+	TEXT("Sum", "func(xs []uint64) uint64")
+	Doc("Sum returns the sum of the elements in xs.")
+	ptr := Load(Param("xs").Base(), GP64v())
+	n := Load(Param("xs").Len(), GP64v())
+	s := GP64v()
+	XORQ(s, s)
+	LABEL("loop")
+	CMPQ(n, operand.Imm(0))
+	JE(operand.LabelRef("done"))
+	ADDQ(operand.Mem{Base: ptr}, s)
+	ADDQ(operand.Imm(8), ptr)
+	DECQ(n)
+	JMP(operand.LabelRef("loop"))
+	LABEL("done")
+	Store(s, ReturnIndex(0))
+	RET()
+	Generate()
+}
+```
+
+### Parameter Load/Store
+
+`avo` provides deconstruction of complex data datatypes into components. For example, load the length of a string argument with:
+
+[embedmd]:# (examples/args/asm.go go /.*TEXT.*StringLen/ /Load.*/)
+```go
+	TEXT("StringLen", "func(s string) int")
+	strlen := Load(Param("s").Len(), GP64v())
+```
+
+Index an array:
+
+[embedmd]:# (examples/args/asm.go go /.*TEXT.*ArrayThree/ /Load.*/)
+```go
+	TEXT("ArrayThree", "func(a [7]uint64) uint64")
+	a3 := Load(Param("a").Index(3), GP64v())
+```
+
+Access a struct field (provided you have loaded your package with the `Package` function):
+
+[embedmd]:# (examples/args/asm.go go /.*TEXT.*FieldFloat64/ /Load.*/)
+```go
+	TEXT("FieldFloat64", "func(s Struct) float64")
+	f64 := Load(Param("s").Field("Float64"), Xv())
+```
+
+Component accesses can be arbitrarily nested:
+
+[embedmd]:# (examples/args/asm.go go /.*TEXT.*FieldArrayTwoBTwo/ /Load.*/)
+```go
+	TEXT("FieldArrayTwoBTwo", "func(s Struct) byte")
+	b2 := Load(Param("s").Field("Array").Index(2).Field("B").Index(2), GP8v())
+```
+
+Very similar techniques apply to writing return values. See [`examples/args`](examples/args) and [`examples/returns`](examples/returns) for the full suite of examples.
+
+### Real Examples
+
+* **[fnv1a](fnv1a):** [FNV-1a](https://en.wikipedia.org/wiki/Fowler%E2%80%93Noll%E2%80%93Vo_hash_function#FNV-1a_hash) hash function.
+* **[dot](dot):** Vector dot product.
+* **[geohash](geohash):** Integer [geohash](https://en.wikipedia.org/wiki/Geohash) encoding.
+* **[sha1](sha1):** [SHA-1](https://en.wikipedia.org/wiki/SHA-1) cryptographic hash.
+* **[stadtx](stadtx):** [`StadtX` hash](https://github.com/demerphq/BeagleHash) port from [dgryski/go-stadtx](https://github.com/dgryski/go-stadtx).
+
 ## Contributing
 
 Contributions to `avo` are welcome:
