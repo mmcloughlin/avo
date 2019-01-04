@@ -90,6 +90,8 @@ See the [`examples/add`](examples/add) directory for the complete working exampl
 
 ## Examples
 
+See [`examples`](examples) for the full suite of examples.
+
 ### Slice Sum
 
 Sum a slice of `uint64`s:
@@ -151,7 +153,7 @@ Component accesses can be arbitrarily nested:
 	b2 := Load(Param("s").Field("Array").Index(2).Field("B").Index(2), GP8v())
 ```
 
-Very similar techniques apply to writing return values. See [`examples/args`](examples/args) and [`examples/returns`](examples/returns) for the full suite of examples.
+Very similar techniques apply to writing return values. See [`examples/args`](examples/args) and [`examples/returns`](examples/returns) for more.
 
 ### Real Examples
 
