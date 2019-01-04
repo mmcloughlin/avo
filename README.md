@@ -79,6 +79,14 @@ func Add(x uint64, y uint64) uint64
 
 See the [`examples/add`](examples/add) directory for the complete working example.
 
+## Contributing
+
+Contributions to `avo` are welcome:
+
+* Feedback from using `avo` in a real project is incredibly valuable.
+* [Submit bug reports](https://github.com/mmcloughlin/avo/issues/new) to the issues page.
+* Pull requests accepted. Take a look at outstanding [issues](https://github.com/mmcloughlin/avo/issues) for ideas (especially the ["good first issue"](https://github.com/mmcloughlin/avo/labels/good%20first%20issue) label).
+
 ## License
 
 `avo` is available under the [BSD 3-Clause License](LICENSE).
