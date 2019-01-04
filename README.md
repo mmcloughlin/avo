@@ -5,9 +5,18 @@
   <a href="http://godoc.org/github.com/mmcloughlin/avo"><img src="http://img.shields.io/badge/godoc-reference-5272B4.svg" alt="GoDoc" /></a>
 </p>
 
-High-level Golang x86 assembly generator. Inspired by [PeachPy](https://github.com/Maratyszcza/PeachPy).
+<p align="center">High-level Golang x86 Assembly Generator</p>
 
-_Warning: `avo` is experimental. APIs are subject to change._
+`avo` aims to make high-performance Go assembly easier to write, review and maintain. It's a Go package that presents a familiar assembly-like interface, together with features to simplify development without sacrificing performance:
+
+* `avo` programs _are_ Go programs: use **control structures** for assembly generation
+* **Register allocation**: write your kernels with **virtual registers** and `avo` assigns physical registers for you
+* Automatic **parameter load/stores**: ensure memory offsets are always correct even for complex data structures
+* Generation of **stub files** to interface with your Go package
+
+Inspired by the [PeachPy](https://github.com/Maratyszcza/PeachPy) and [asmjit](https://github.com/asmjit/asmjit) projects.
+
+_Note: `avo` is still in an experimental phase. APIs subject to change._
 
 ## Install
 
