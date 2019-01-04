@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
-	"runtime"
 	"strings"
 
 	"github.com/mmcloughlin/avo"
+	"github.com/mmcloughlin/avo/internal/stack"
 )
 
 type Printer interface {
@@ -67,21 +67,8 @@ func (c Config) GeneratedWarning() string {
 // mainfile attempts to determine the file path of the main function by
 // inspecting the stack. Returns empty string on failure.
 func mainfile() string {
-	pc := make([]uintptr, 10)
-	n := runtime.Callers(0, pc)
-	if n == 0 {
-		return ""
-	}
-	pc = pc[:n]
-	frames := runtime.CallersFrames(pc)
-	for {
-		frame, more := frames.Next()
-		if frame.Function == "main.main" {
-			return frame.File
-		}
-		if !more {
-			break
-		}
+	if m := stack.Main(); m != nil {
+		return m.File
 	}
 	return ""
 }
