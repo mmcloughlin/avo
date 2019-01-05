@@ -17,6 +17,7 @@ type goasm struct {
 	prnt.Generator
 }
 
+// NewGoAsm constructs a printer for writing Go assembly files.
 func NewGoAsm(cfg Config) Printer {
 	return &goasm{cfg: cfg}
 }

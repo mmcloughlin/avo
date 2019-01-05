@@ -10,6 +10,7 @@ type stubs struct {
 	prnt.Generator
 }
 
+// NewStubs constructs a printer for writing stub function declarations.
 func NewStubs(cfg Config) Printer {
 	return &stubs{cfg: cfg}
 }
