@@ -1,3 +1,4 @@
+// Package src provides types for working with source files.
 package src
 
 import (
