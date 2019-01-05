@@ -66,6 +66,7 @@ func Liveness(fn *avo.Function) error {
 	return nil
 }
 
+// AllocateRegisters performs register allocation.
 func AllocateRegisters(fn *avo.Function) error {
 	// Populate allocators (one per kind).
 	as := map[reg.Kind]*Allocator{}
@@ -108,6 +109,7 @@ func AllocateRegisters(fn *avo.Function) error {
 	return nil
 }
 
+// BindRegisters applies the result of register allocation, replacing all virtual registers with their assigned physical registers.
 func BindRegisters(fn *avo.Function) error {
 	for _, i := range fn.Instructions() {
 		for idx := range i.Operands {
@@ -117,6 +119,7 @@ func BindRegisters(fn *avo.Function) error {
 	return nil
 }
 
+// VerifyAllocation performs sanity checks following register allocation.
 func VerifyAllocation(fn *avo.Function) error {
 	// All registers should be physical.
 	for _, i := range fn.Instructions() {

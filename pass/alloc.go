@@ -13,6 +13,7 @@ type edge struct {
 	X, Y reg.Register
 }
 
+// Allocator is a graph-coloring register allocator.
 type Allocator struct {
 	registers  []reg.Physical
 	allocation reg.Allocation
@@ -21,6 +22,7 @@ type Allocator struct {
 	vidtopid   map[reg.VID]reg.PID
 }
 
+// NewAllocator builds an allocator for the given physical registers.
 func NewAllocator(rs []reg.Physical) (*Allocator, error) {
 	if len(rs) == 0 {
 		return nil, errors.New("no registers")
@@ -33,6 +35,7 @@ func NewAllocator(rs []reg.Physical) (*Allocator, error) {
 	}, nil
 }
 
+// NewAllocatorForKind builds an allocator for the given kind of registers.
 func NewAllocatorForKind(k reg.Kind) (*Allocator, error) {
 	f := reg.FamilyOfKind(k)
 	if f == nil {
@@ -41,12 +44,14 @@ func NewAllocatorForKind(k reg.Kind) (*Allocator, error) {
 	return NewAllocator(f.Registers())
 }
 
+// AddInterferenceSet records that r interferes with every register in s. Convenience wrapper around AddInterference.
 func (a *Allocator) AddInterferenceSet(r reg.Register, s reg.Set) {
 	for y := range s {
 		a.AddInterference(r, y)
 	}
 }
 
+// AddInterference records that x and y must be assigned to non-conflicting physical registers.
 func (a *Allocator) AddInterference(x, y reg.Register) {
 	a.Add(x)
 	a.Add(y)
@@ -65,6 +70,7 @@ func (a *Allocator) Add(r reg.Register) {
 	a.possible[v] = a.possibleregisters(v)
 }
 
+// Allocate allocates physical registers.
 func (a *Allocator) Allocate() (reg.Allocation, error) {
 	for {
 		if err := a.update(); err != nil {
