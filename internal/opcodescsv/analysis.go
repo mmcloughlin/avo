@@ -8,6 +8,7 @@ import (
 	"golang.org/x/arch/x86/x86csv"
 )
 
+// Alias records another possible name for an instruction configuration.
 type Alias struct {
 	Opcode      string
 	DataSize    int
@@ -41,8 +42,10 @@ func BuildAliasMap(is []*x86csv.Inst) (map[Alias]string, error) {
 	return m, nil
 }
 
+// OperandOrder describes the order an instruction takes its operands.
 type OperandOrder uint8
 
+// Possible operand orders.
 const (
 	UnknownOrder = iota
 	IntelOrder
