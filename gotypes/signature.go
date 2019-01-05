@@ -8,6 +8,7 @@ import (
 	"strconv"
 )
 
+// Signature represents a Go function signature.
 type Signature struct {
 	pkg     *types.Package
 	sig     *types.Signature
@@ -15,6 +16,7 @@ type Signature struct {
 	results *Tuple
 }
 
+// NewSignature constructs a Signature.
 func NewSignature(pkg *types.Package, sig *types.Signature) *Signature {
 	s := &Signature{
 		pkg: pkg,
@@ -24,14 +26,20 @@ func NewSignature(pkg *types.Package, sig *types.Signature) *Signature {
 	return s
 }
 
+// NewSignatureVoid builds the void signature "func()".
 func NewSignatureVoid() *Signature {
 	return NewSignature(nil, types.NewSignature(nil, nil, nil, false))
 }
 
+// ParseSignature builds a Signature by parsing a Go function type expression.
+// The function type must reference builtin types only; see
+// ParseSignatureInPackage if custom types are required.
 func ParseSignature(expr string) (*Signature, error) {
 	return ParseSignatureInPackage(nil, expr)
 }
 
+// ParseSignatureInPackage builds a Signature by parsing a Go function type
+// expression. The expression may reference types in the provided package.
 func ParseSignatureInPackage(pkg *types.Package, expr string) (*Signature, error) {
 	tv, err := types.Eval(token.NewFileSet(), pkg, token.NoPos, expr)
 	if err != nil {
@@ -47,12 +55,16 @@ func ParseSignatureInPackage(pkg *types.Package, expr string) (*Signature, error
 	return NewSignature(pkg, s), nil
 }
 
+// Params returns the function signature argument types.
 func (s *Signature) Params() *Tuple { return s.params }
 
+// Results returns the function return types.
 func (s *Signature) Results() *Tuple { return s.results }
 
+// Bytes returns the total size of the function arguments and return values.
 func (s *Signature) Bytes() int { return s.Params().Bytes() + s.Results().Bytes() }
 
+// String writes Signature as a string. This does not include the "func" keyword.
 func (s *Signature) String() string {
 	var buf bytes.Buffer
 	types.WriteSignature(&buf, s.sig, types.RelativeTo(s.pkg))
@@ -83,6 +95,7 @@ func (s *Signature) init() {
 	s.results = newTuple(r, resultsoffsets, resultssize, "ret")
 }
 
+// Tuple represents a tuple of variables, such as function arguments or results.
 type Tuple struct {
 	components []Component
 	byname     map[string]Component
@@ -112,6 +125,7 @@ func newTuple(t *types.Tuple, offsets []int64, size int64, defaultprefix string)
 	return tuple
 }
 
+// Lookup returns the variable with the given name.
 func (t *Tuple) Lookup(name string) Component {
 	e := t.byname[name]
 	if e == nil {
@@ -120,6 +134,7 @@ func (t *Tuple) Lookup(name string) Component {
 	return e
 }
 
+// At returns the variable at index i.
 func (t *Tuple) At(i int) Component {
 	if i >= len(t.components) {
 		return errorf("index out of range")
@@ -127,6 +142,7 @@ func (t *Tuple) At(i int) Component {
 	return t.components[i]
 }
 
+// Bytes returns the size of the Tuple. This may include additional padding.
 func (t *Tuple) Bytes() int { return t.size }
 
 func tuplevars(t *types.Tuple) []*types.Var {

@@ -10,24 +10,35 @@ import (
 	"github.com/mmcloughlin/avo/operand"
 )
 
+// Sizes provides type sizes used by the standard Go compiler on amd64.
 var Sizes = types.SizesFor("gc", "amd64")
 
+// Basic represents a primitive/basic type at a given memory address.
 type Basic struct {
 	Addr operand.Mem
 	Type *types.Basic
 }
 
+// Component provides access to sub-components of a Go type.
 type Component interface {
+	// When the component has no further sub-components, Resolve will return a
+	// reference to the components type and memory address. If there was an error
+	// during any previous calls to Component methods, they will be returned at
+	// resolution time.
 	Resolve() (*Basic, error)
-	Base() Component
-	Len() Component
-	Cap() Component
-	Real() Component
-	Imag() Component
-	Index(int) Component
-	Field(string) Component
+
+	Base() Component        // base pointer of a string or slice
+	Len() Component         // length of a string or slice
+	Cap() Component         // capacity of a slice
+	Real() Component        // real part of a complex value
+	Imag() Component        // imaginary part of a complex value
+	Index(int) Component    // index into an array
+	Field(string) Component // access a struct field
 }
 
+// componenterr is an error that also provides a null implementation of the
+// Component interface. This enables us to return an error from Component
+// methods whilst also allowing method chaining to continue.
 type componenterr string
 
 func errorf(format string, args ...interface{}) Component {
@@ -50,16 +61,13 @@ type component struct {
 	offset int
 }
 
+// NewComponent builds a component for the named type at the given memory offset.
 func NewComponent(name string, t types.Type, offset int) Component {
 	return &component{
 		name:   name,
 		typ:    t,
 		offset: offset,
 	}
-}
-
-func NewComponentFromVar(v *types.Var, offset int) Component {
-	return NewComponent(v.Name(), v.Type(), offset)
 }
 
 func (c *component) Resolve() (*Basic, error) {
