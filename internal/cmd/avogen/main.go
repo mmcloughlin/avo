@@ -1,3 +1,4 @@
+// Command avogen generates code based on the instruction database.
 package main
 
 import (
