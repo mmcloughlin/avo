@@ -12,7 +12,7 @@ func main() {
 		"Split returns the low 64, 32, 16 and 8 bits of x.",
 		"Tests the As() methods of virtual general-purpose registers.",
 	)
-	x := GP64v()
+	x := GP64()
 	Load(Param("x"), x)
 	Store(x, Return("q"))
 	Store(x.As32(), Return("l"))

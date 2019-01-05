@@ -43,8 +43,8 @@ import (
 func main() {
 	TEXT("Add", "func(x, y uint64) uint64")
 	Doc("Add adds x and y.")
-	x := Load(Param("x"), GP64v())
-	y := Load(Param("y"), GP64v())
+	x := Load(Param("x"), GP64())
+	y := Load(Param("y"), GP64())
 	ADDQ(x, y)
 	Store(y, ReturnIndex(0))
 	RET()
@@ -101,9 +101,9 @@ Sum a slice of `uint64`s:
 func main() {
 	TEXT("Sum", "func(xs []uint64) uint64")
 	Doc("Sum returns the sum of the elements in xs.")
-	ptr := Load(Param("xs").Base(), GP64v())
-	n := Load(Param("xs").Len(), GP64v())
-	s := GP64v()
+	ptr := Load(Param("xs").Base(), GP64())
+	n := Load(Param("xs").Len(), GP64())
+	s := GP64()
 	XORQ(s, s)
 	LABEL("loop")
 	CMPQ(n, operand.Imm(0))
@@ -126,7 +126,7 @@ func main() {
 [embedmd]:# (examples/args/asm.go go /.*TEXT.*StringLen/ /Load.*/)
 ```go
 	TEXT("StringLen", "func(s string) int")
-	strlen := Load(Param("s").Len(), GP64v())
+	strlen := Load(Param("s").Len(), GP64())
 ```
 
 Index an array:
@@ -134,7 +134,7 @@ Index an array:
 [embedmd]:# (examples/args/asm.go go /.*TEXT.*ArrayThree/ /Load.*/)
 ```go
 	TEXT("ArrayThree", "func(a [7]uint64) uint64")
-	a3 := Load(Param("a").Index(3), GP64v())
+	a3 := Load(Param("a").Index(3), GP64())
 ```
 
 Access a struct field (provided you have loaded your package with the `Package` function):
@@ -142,7 +142,7 @@ Access a struct field (provided you have loaded your package with the `Package` 
 [embedmd]:# (examples/args/asm.go go /.*TEXT.*FieldFloat64/ /Load.*/)
 ```go
 	TEXT("FieldFloat64", "func(s Struct) float64")
-	f64 := Load(Param("s").Field("Float64"), Xv())
+	f64 := Load(Param("s").Field("Float64"), XMM())
 ```
 
 Component accesses can be arbitrarily nested:
@@ -150,7 +150,7 @@ Component accesses can be arbitrarily nested:
 [embedmd]:# (examples/args/asm.go go /.*TEXT.*FieldArrayTwoBTwo/ /Load.*/)
 ```go
 	TEXT("FieldArrayTwoBTwo", "func(s Struct) byte")
-	b2 := Load(Param("s").Field("Array").Index(2).Field("B").Index(2), GP8v())
+	b2 := Load(Param("s").Field("Array").Index(2).Field("B").Index(2), GP8())
 ```
 
 Very similar techniques apply to writing return values. See [`examples/args`](examples/args) and [`examples/returns`](examples/returns) for more.

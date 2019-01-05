@@ -9,8 +9,8 @@ Refer to ["Geohash in Golang Assembly"](https://mmcloughlin.com/posts/geohash-as
 func main() {
 	TEXT("EncodeInt", "func(lat, lng float64) uint64")
 	Doc("EncodeInt computes the 64-bit integer geohash of (lat, lng).")
-	lat := Load(Param("lat"), Xv())
-	lng := Load(Param("lng"), Xv())
+	lat := Load(Param("lat"), XMM())
+	lng := Load(Param("lng"), XMM())
 
 	MULSD(ConstData("reciprocal180", F64(1/180.0)), lat)
 	onepointfive := ConstData("onepointfive", F64(1.5))
@@ -19,16 +19,16 @@ func main() {
 	MULSD(ConstData("reciprocal360", F64(1/360.0)), lng)
 	ADDSD(onepointfive, lng)
 
-	lngi, lati := GP64v(), GP64v()
+	lngi, lati := GP64(), GP64()
 	MOVQ(lat, lati)
 	SHRQ(U8(20), lati)
 	MOVQ(lng, lngi)
 	SHRQ(U8(20), lngi)
 
 	mask := ConstData("mask", U64(0x5555555555555555))
-	ghsh := GP64v()
+	ghsh := GP64()
 	PDEPQ(mask, lati, ghsh)
-	temp := GP64v()
+	temp := GP64()
 	PDEPQ(mask, lngi, temp)
 	SHLQ(U8(1), temp)
 	XORQ(temp, ghsh)

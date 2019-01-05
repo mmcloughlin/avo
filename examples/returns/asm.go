@@ -15,8 +15,8 @@ func main() {
 		"Interval returns the (start, end) of an interval with the given start and size.",
 		"Demonstrates multiple unnamed return values.",
 	)
-	start := Load(Param("start"), GP64v())
-	size := Load(Param("size"), GP64v())
+	start := Load(Param("start"), GP64())
+	size := Load(Param("size"), GP64())
 	end := size
 	ADDQ(start, end)
 	Store(start, ReturnIndex(0))
@@ -28,9 +28,9 @@ func main() {
 		"Butterfly performs a 2-dimensional butterfly operation: computes (x0+x1, x0-x1).",
 		"Demonstrates multiple named return values.",
 	)
-	x0 := Load(Param("x0"), Xv())
-	x1 := Load(Param("x1"), Xv())
-	y0, y1 := Xv(), Xv()
+	x0 := Load(Param("x0"), XMM())
+	x1 := Load(Param("x1"), XMM())
+	y0, y1 := XMM(), XMM()
 	MOVSD(x0, y0)
 	ADDSD(x1, y0)
 	MOVSD(x0, y1)
@@ -44,7 +44,7 @@ func main() {
 		"Septuple returns an array of seven of the given byte.",
 		"Demonstrates returning array values.",
 	)
-	b := Load(ParamIndex(0), GP8v())
+	b := Load(ParamIndex(0), GP8())
 	for i := 0; i < 7; i++ {
 		Store(b, ReturnIndex(0).Index(i))
 	}
@@ -55,8 +55,8 @@ func main() {
 		"CriticalLine returns the complex value 0.5 + it on Riemann's critical line.",
 		"Demonstrates returning complex values.",
 	)
-	t := Load(Param("t"), Xv())
-	half := Xv()
+	t := Load(Param("t"), XMM())
+	half := XMM()
 	MOVSD(ConstData("half", F64(0.5)), half)
 	Store(half, ReturnIndex(0).Real())
 	Store(t, ReturnIndex(0).Imag())
@@ -67,10 +67,10 @@ func main() {
 		"NewStruct initializes a Struct value.",
 		"Demonstrates returning struct values.",
 	)
-	w := Load(Param("w"), GP16v())
-	x := Load(Param("p").Index(0), Xv())
-	y := Load(Param("p").Index(1), Xv())
-	q := Load(Param("q"), GP64v())
+	w := Load(Param("w"), GP16())
+	x := Load(Param("p").Index(0), XMM())
+	y := Load(Param("p").Index(1), XMM())
+	q := Load(Param("q"), GP64())
 	Store(w, ReturnIndex(0).Field("Word"))
 	Store(x, ReturnIndex(0).Field("Point").Index(0))
 	Store(y, ReturnIndex(0).Field("Point").Index(1))

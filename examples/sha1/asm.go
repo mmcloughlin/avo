@@ -11,15 +11,15 @@ import (
 func main() {
 	TEXT("block", "func(h *[5]uint32, m []byte)")
 	Doc("block SHA-1 hashes the 64-byte message m into the running state h.")
-	h := Mem{Base: Load(Param("h"), GP64v())}
-	m := Mem{Base: Load(Param("m").Base(), GP64v())}
+	h := Mem{Base: Load(Param("h"), GP64())}
+	m := Mem{Base: Load(Param("m").Base(), GP64())}
 
 	// Store message values on the stack.
 	w := AllocLocal(64)
 	W := func(r int) Mem { return w.Offset((r % 16) * 4) }
 
 	// Load initial hash.
-	h0, h1, h2, h3, h4 := GP32v(), GP32v(), GP32v(), GP32v(), GP32v()
+	h0, h1, h2, h3, h4 := GP32(), GP32(), GP32(), GP32(), GP32()
 
 	MOVL(h.Offset(0), h0)
 	MOVL(h.Offset(4), h1)
@@ -28,7 +28,7 @@ func main() {
 	MOVL(h.Offset(16), h4)
 
 	// Initialize registers.
-	a, b, c, d, e := GP32v(), GP32v(), GP32v(), GP32v(), GP32v()
+	a, b, c, d, e := GP32(), GP32(), GP32(), GP32(), GP32()
 
 	MOVL(h0, a)
 	MOVL(h1, b)
@@ -51,7 +51,7 @@ func main() {
 		q := quarter[r/20]
 
 		// Load message value.
-		u := GP32v()
+		u := GP32()
 		if r < 16 {
 			MOVL(m.Offset(4*r), u)
 			BSWAPL(u)
@@ -65,7 +65,7 @@ func main() {
 		MOVL(u, W(r))
 
 		// Compute the next state register.
-		t := GP32v()
+		t := GP32()
 		MOVL(a, t)
 		ROLL(U8(5), t)
 		ADDL(q.F(b, c, d), t)
@@ -97,7 +97,7 @@ func main() {
 }
 
 func choose(b, c, d Register) Register {
-	r := GP32v()
+	r := GP32()
 	MOVL(d, r)
 	XORL(c, r)
 	ANDL(b, r)
@@ -106,7 +106,7 @@ func choose(b, c, d Register) Register {
 }
 
 func xor(b, c, d Register) Register {
-	r := GP32v()
+	r := GP32()
 	MOVL(b, r)
 	XORL(c, r)
 	XORL(d, r)
@@ -114,7 +114,7 @@ func xor(b, c, d Register) Register {
 }
 
 func majority(b, c, d Register) Register {
-	t, r := GP32v(), GP32v()
+	t, r := GP32(), GP32()
 	MOVL(b, t)
 	ORL(c, t)
 	ANDL(d, t)

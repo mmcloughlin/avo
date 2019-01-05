@@ -16,8 +16,8 @@ func TestLivenessBasic(t *testing.T) {
 	// Build: a = 1, b = 2, a = a+b
 	ctx := build.NewContext()
 	ctx.Function("add")
-	a := ctx.GP64v()
-	b := ctx.GP64v()
+	a := ctx.GP64()
+	b := ctx.GP64()
 	ctx.MOVQ(operand.U64(1), a)
 	ctx.MOVQ(operand.U64(2), b)
 	ctx.ADDQ(a, b)

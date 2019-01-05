@@ -9,7 +9,7 @@ Use `Param()` to reference arguments by name. The `Load()` function can be used 
 [embedmd]:# (asm.go go /.*TEXT.*Second/ /RET.*/)
 ```go
 	TEXT("Second", "func(x, y int32) int32")
-	y := Load(Param("y"), GP32v())
+	y := Load(Param("y"), GP32())
 	Store(y, ReturnIndex(0))
 	RET()
 ```
@@ -34,7 +34,7 @@ Strings and slices actually consist of multiple components under the hood: see [
 [embedmd]:# (asm.go go /.*TEXT.*StringLen/ /RET.*/)
 ```go
 	TEXT("StringLen", "func(s string) int")
-	strlen := Load(Param("s").Len(), GP64v())
+	strlen := Load(Param("s").Len(), GP64())
 	Store(strlen, ReturnIndex(0))
 	RET()
 ```
@@ -48,7 +48,7 @@ Arrays can be indexed with the `Index()` method. For example, the following retu
 [embedmd]:# (asm.go go /.*TEXT.*ArrayThree/ /RET.*/)
 ```go
 	TEXT("ArrayThree", "func(a [7]uint64) uint64")
-	a3 := Load(Param("a").Index(3), GP64v())
+	a3 := Load(Param("a").Index(3), GP64())
 	Store(a3, ReturnIndex(0))
 	RET()
 ```
@@ -87,7 +87,7 @@ The following function will return the `Float64` field from this struct.
 [embedmd]:# (asm.go go /.*TEXT.*FieldFloat64/ /RET.*/)
 ```go
 	TEXT("FieldFloat64", "func(s Struct) float64")
-	f64 := Load(Param("s").Field("Float64"), Xv())
+	f64 := Load(Param("s").Field("Float64"), XMM())
 	Store(f64, ReturnIndex(0))
 	RET()
 ```
@@ -99,7 +99,7 @@ Complex types `complex{64,128}` are actually just pairs of `float{32,64}` values
 [embedmd]:# (asm.go go /.*TEXT.*FieldComplex64Imag/ /RET.*/)
 ```go
 	TEXT("FieldComplex64Imag", "func(s Struct) float32")
-	c64i := Load(Param("s").Field("Complex64").Imag(), Xv())
+	c64i := Load(Param("s").Field("Complex64").Imag(), XMM())
 	Store(c64i, ReturnIndex(0))
 	RET()
 ```
@@ -111,7 +111,7 @@ The above methods may be composed to reference arbitrarily nested data structure
 [embedmd]:# (asm.go go /.*TEXT.*FieldArrayTwoBTwo/ /RET.*/)
 ```go
 	TEXT("FieldArrayTwoBTwo", "func(s Struct) byte")
-	b2 := Load(Param("s").Field("Array").Index(2).Field("B").Index(2), GP8v())
+	b2 := Load(Param("s").Field("Array").Index(2).Field("B").Index(2), GP8())
 	Store(b2, ReturnIndex(0))
 	RET()
 ```

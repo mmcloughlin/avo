@@ -9,8 +9,8 @@ import (
 func main() {
 	TEXT("Add", "func(x, y uint64) uint64")
 	Doc("Add adds x and y.")
-	x := Load(Param("x"), GP64v())
-	y := Load(Param("y"), GP64v())
+	x := Load(Param("x"), GP64())
+	y := Load(Param("y"), GP64())
 	ADDQ(x, y)
 	Store(y, ReturnIndex(0))
 	RET()

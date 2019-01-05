@@ -23,10 +23,10 @@ func main() {
 
 	TEXT("DataAt", "func(i int) byte")
 	Doc("DataAt returns byte i in the 'bytes' global data section.")
-	i := Load(Param("i"), GP64v())
-	ptr := Mem{Base: GP64v()}
+	i := Load(Param("i"), GP64())
+	ptr := Mem{Base: GP64()}
 	LEAQ(bytes, ptr.Base)
-	b := GP8v()
+	b := GP8()
 	MOVB(ptr.Idx(i, 1), b)
 	Store(b, ReturnIndex(0))
 	RET()

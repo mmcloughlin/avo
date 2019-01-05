@@ -23,7 +23,7 @@ const (
 )
 
 func imul(k uint64, r Register) {
-	t := GP64v()
+	t := GP64()
 	MOVQ(U64(k), t)
 	IMULQ(t, r)
 }
@@ -41,16 +41,16 @@ func main() {
 	TEXT("Hash", "func(state *State, key []byte) uint64")
 	Doc("Hash computes the Stadtx hash.")
 
-	statePtr := Load(Param("state"), GP64v())
-	ptr := Load(Param("key").Base(), GP64v())
-	n := Load(Param("key").Len(), GP64v())
+	statePtr := Load(Param("state"), GP64())
+	ptr := Load(Param("key").Base(), GP64())
+	n := Load(Param("key").Len(), GP64())
 
-	v0 := GP64v()                          // reg_v0 = GeneralPurposeRegister64()
-	v1 := GP64v()                          // reg_v1 = GeneralPurposeRegister64()
+	v0 := GP64()                           // reg_v0 = GeneralPurposeRegister64()
+	v1 := GP64()                           // reg_v1 = GeneralPurposeRegister64()
 	MOVQ(Mem{Base: statePtr}, v0)          // MOV(reg_v0, [reg_state_ptr])
 	MOVQ(Mem{Base: statePtr, Disp: 8}, v1) // MOV(reg_v1, [reg_state_ptr+8])
 
-	t := GP64v()    // t = GeneralPurposeRegister64()
+	t := GP64()     // t = GeneralPurposeRegister64()
 	MOVQ(n, t)      // MOV(t, reg_ptr_len)
 	ADDQ(U32(1), t) // ADD(t, 1)
 	imul(k0U64, t)  // imul(t, k0U64)
@@ -65,7 +65,7 @@ func main() {
 	CMPQ(n, U32(32))    //		    CMP(reg_ptr_len, 32)
 	JGE(LabelRef(long)) //		    JGE(coreLong)
 	//
-	u64s := GP64v()   //		    reg_u64s = GeneralPurposeRegister64()
+	u64s := GP64()    //		    reg_u64s = GeneralPurposeRegister64()
 	MOVQ(n, u64s)     //		    MOV(reg_u64s, reg_ptr_len)
 	SHRQ(U8(3), u64s) //		    SHR(reg_u64s, 3)
 	//
@@ -77,7 +77,7 @@ func main() {
 	} //
 	for i := 3; i > 0; i-- { //		    for i in range(3, 0, -1):
 		LABEL(labels[i])        //		        LABEL(labels[i])
-		r := GP64v()            //		        r = GeneralPurposeRegister64()
+		r := GP64()             //		        r = GeneralPurposeRegister64()
 		MOVQ(Mem{Base: ptr}, r) //		        MOV(r, [reg_ptr])
 		imul(k3U64, r)          //		        imul(r, k3U64)
 		ADDQ(r, v0)             //		        ADD(reg_v0, r)
@@ -100,7 +100,7 @@ func main() {
 	//
 	after := "shortAfter" //		    after = Label("shortAfter")
 	//
-	ch := GP64v() //		    reg_ch = GeneralPurposeRegister64()
+	ch := GP64() //		    reg_ch = GeneralPurposeRegister64()
 	//
 	LABEL(labels[7])                     //		    LABEL(labels[7])
 	MOVBQZX(Mem{Base: ptr, Disp: 6}, ch) //		    MOVZX(reg_ch, byte[reg_ptr+6])
@@ -189,8 +189,8 @@ func main() {
 	//
 	LABEL(long) //		    LABEL(coreLong)
 	//
-	v2 := GP64v() //		    reg_v2 = GeneralPurposeRegister64()
-	v3 := GP64v() //		    reg_v3 = GeneralPurposeRegister64()
+	v2 := GP64() //		    reg_v2 = GeneralPurposeRegister64()
+	v3 := GP64() //		    reg_v3 = GeneralPurposeRegister64()
 	//
 	MOVQ(Mem{Base: statePtr, Disp: 16}, v2) //		    MOV(reg_v2, [reg_state_ptr+16])
 	MOVQ(Mem{Base: statePtr, Disp: 24}, v3) //		    MOV(reg_v3, [reg_state_ptr+24])
@@ -206,7 +206,7 @@ func main() {
 	imul(k3U64, t)  //		    imul(t, k3U64)
 	XORQ(t, v3)     //		    XOR(reg_v3, t)
 	//
-	r := GP64v()    //		    r = GeneralPurposeRegister64()
+	r := GP64()     //		    r = GeneralPurposeRegister64()
 	loop := "block" //		    with Loop() as loop:
 	LABEL(loop)
 	MOVQ(Mem{Base: ptr}, r) //		        MOV(r, [reg_ptr])
@@ -240,8 +240,8 @@ func main() {
 	JGE(LabelRef(loop)) //		        JGE(loop.begin)
 	//
 	//
-	nsave := GP64v() //		    reg_ptr_len_saved = GeneralPurposeRegister64()
-	MOVQ(n, nsave)   //		    MOV(reg_ptr_len_saved, reg_ptr_len)
+	nsave := GP64() //		    reg_ptr_len_saved = GeneralPurposeRegister64()
+	MOVQ(n, nsave)  //		    MOV(reg_ptr_len_saved, reg_ptr_len)
 	//
 	//		    reg_u64s = GeneralPurposeRegister64()
 	MOVQ(n, u64s)     //		    MOV(reg_u64s, reg_ptr_len)

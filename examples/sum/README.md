@@ -7,9 +7,9 @@ Sum a slice of `uint64`s.
 func main() {
 	TEXT("Sum", "func(xs []uint64) uint64")
 	Doc("Sum returns the sum of the elements in xs.")
-	ptr := Load(Param("xs").Base(), GP64v())
-	n := Load(Param("xs").Len(), GP64v())
-	s := GP64v()
+	ptr := Load(Param("xs").Base(), GP64())
+	n := Load(Param("xs").Len(), GP64())
+	s := GP64()
 	XORQ(s, s)
 	LABEL("loop")
 	CMPQ(n, operand.Imm(0))

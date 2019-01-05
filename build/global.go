@@ -57,13 +57,13 @@ func Constraints(t buildtags.ConstraintsConvertable) { ctx.Constraints(t) }
 func Constraint(t buildtags.ConstraintConvertable)   { ctx.Constraint(t) }
 func ConstraintExpr(expr string)                     { ctx.ConstraintExpr(expr) }
 
-func GP8v() reg.GPVirtual  { return ctx.GP8v() }
-func GP16v() reg.GPVirtual { return ctx.GP16v() }
-func GP32v() reg.GPVirtual { return ctx.GP32v() }
-func GP64v() reg.GPVirtual { return ctx.GP64v() }
-func Xv() reg.VecVirtual   { return ctx.Xv() }
-func Yv() reg.VecVirtual   { return ctx.Yv() }
-func Zv() reg.VecVirtual   { return ctx.Zv() }
+func GP8() reg.GPVirtual  { return ctx.GP8() }
+func GP16() reg.GPVirtual { return ctx.GP16() }
+func GP32() reg.GPVirtual { return ctx.GP32() }
+func GP64() reg.GPVirtual { return ctx.GP64() }
+func XMM() reg.VecVirtual { return ctx.XMM() }
+func YMM() reg.VecVirtual { return ctx.YMM() }
+func ZMM() reg.VecVirtual { return ctx.ZMM() }
 
 func Param(name string) gotypes.Component  { return ctx.Param(name) }
 func ParamIndex(i int) gotypes.Component   { return ctx.ParamIndex(i) }

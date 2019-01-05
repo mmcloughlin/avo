@@ -12,18 +12,18 @@ const (
 func main() {
 	TEXT("Hash64", "func(data []byte) uint64")
 	Doc("Hash64 computes the FNV-1a hash of data.")
-	ptr := Load(Param("data").Base(), GP64v())
-	n := Load(Param("data").Len(), GP64v())
+	ptr := Load(Param("data").Base(), GP64())
+	n := Load(Param("data").Len(), GP64())
 
 	h := reg.RAX
 	MOVQ(operand.Imm(OffsetBasis), h)
-	p := GP64v()
+	p := GP64()
 	MOVQ(operand.Imm(Prime), p)
 
 	LABEL("loop")
 	CMPQ(n, operand.Imm(0))
 	JE(operand.LabelRef("done"))
-	b := GP64v()
+	b := GP64()
 	MOVBQZX(operand.Mem{Base: ptr}, b)
 	XORQ(b, h)
 	MULQ(p)

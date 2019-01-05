@@ -12,14 +12,14 @@ var unroll = 6
 
 func main() {
 	TEXT("Dot", "func(x, y []float32) float32")
-	x := Mem{Base: Load(Param("x").Base(), GP64v())}
-	y := Mem{Base: Load(Param("y").Base(), GP64v())}
-	n := Load(Param("x").Len(), GP64v())
+	x := Mem{Base: Load(Param("x").Base(), GP64())}
+	y := Mem{Base: Load(Param("y").Base(), GP64())}
+	n := Load(Param("x").Len(), GP64())
 
 	// Allocate accumulation registers.
 	acc := make([]VecVirtual, unroll)
 	for i := 0; i < unroll; i++ {
-		acc[i] = Yv()
+		acc[i] = YMM()
 	}
 
 	// Zero initialization.
@@ -37,7 +37,7 @@ func main() {
 	// Load x.
 	xs := make([]VecVirtual, unroll)
 	for i := 0; i < unroll; i++ {
-		xs[i] = Yv()
+		xs[i] = YMM()
 	}
 
 	for i := 0; i < unroll; i++ {
@@ -56,14 +56,14 @@ func main() {
 
 	// Process any trailing entries.
 	LABEL("tail")
-	tail := Xv()
+	tail := XMM()
 	VXORPS(tail, tail, tail)
 
 	LABEL("tailloop")
 	CMPQ(n, U32(0))
 	JE(LabelRef("reduce"))
 
-	xt := Xv()
+	xt := XMM()
 	VMOVSS(x, xt)
 	VFMADD231SS(y, xt, tail)
 
@@ -79,7 +79,7 @@ func main() {
 	}
 
 	result := acc[0].AsX()
-	top := Xv()
+	top := XMM()
 	VEXTRACTF128(U8(1), acc[0], top)
 	VADDPS(result, top, result)
 	VADDPS(result, tail, result)

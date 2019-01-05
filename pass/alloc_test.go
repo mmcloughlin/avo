@@ -8,7 +8,7 @@ import (
 
 func TestAllocatorSimple(t *testing.T) {
 	c := reg.NewCollection()
-	x, y := c.Xv(), c.Yv()
+	x, y := c.XMM(), c.YMM()
 
 	a, err := NewAllocatorForKind(reg.KindVector)
 	if err != nil {
