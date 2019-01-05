@@ -12,11 +12,13 @@ import (
 	"github.com/mmcloughlin/avo/internal/opcodesxml"
 )
 
+// Expected data source filenames.
 const (
-	defaultCSVName        = "x86.v0.2.csv"
-	defaultOpcodesXMLName = "x86_64.xml"
+	DefaultCSVName        = "x86.v0.2.csv"
+	DefaultOpcodesXMLName = "x86_64.xml"
 )
 
+// Loader builds an instruction database from underlying datasources.
 type Loader struct {
 	X86CSVPath     string
 	OpcodesXMLPath string
@@ -25,13 +27,17 @@ type Loader struct {
 	order map[string]opcodescsv.OperandOrder
 }
 
+// NewLoaderFromDataDir constructs an instruction loader from datafiles in the
+// given directory. The files themselves are expected to have the standard
+// names: see Default*Name constants.
 func NewLoaderFromDataDir(dir string) *Loader {
 	return &Loader{
-		X86CSVPath:     filepath.Join(dir, defaultCSVName),
-		OpcodesXMLPath: filepath.Join(dir, defaultOpcodesXMLName),
+		X86CSVPath:     filepath.Join(dir, DefaultCSVName),
+		OpcodesXMLPath: filepath.Join(dir, DefaultOpcodesXMLName),
 	}
 }
 
+// Load performs instruction loading.
 func (l *Loader) Load() ([]inst.Instruction, error) {
 	if err := l.init(); err != nil {
 		return nil, err
