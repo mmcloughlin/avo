@@ -12,6 +12,7 @@ import (
 	"golang.org/x/tools/go/packages"
 )
 
+// Context maintains state for incrementally building an avo File.
 type Context struct {
 	pkg      *packages.Package
 	file     *avo.File
@@ -21,6 +22,7 @@ type Context struct {
 	reg.Collection
 }
 
+// NewContext initializes an empty build Context.
 func NewContext() *Context {
 	return &Context{
 		file:       avo.NewFile(),
@@ -28,6 +30,7 @@ func NewContext() *Context {
 	}
 }
 
+// Package sets the package the generated file will belong to. Required to be able to reference types in the package.
 func (c *Context) Package(path string) {
 	cfg := &packages.Config{
 		Mode: packages.LoadTypes,
@@ -47,6 +50,7 @@ func (c *Context) Package(path string) {
 	c.pkg = pkg
 }
 
+// Constraints sets build constraints for the file.
 func (c *Context) Constraints(t buildtags.ConstraintsConvertable) {
 	cs := t.ToConstraints()
 	if err := cs.Validate(); err != nil {
@@ -56,10 +60,15 @@ func (c *Context) Constraints(t buildtags.ConstraintsConvertable) {
 	c.file.Constraints = cs
 }
 
+// Constraint appends a constraint to the file's build constraints.
 func (c *Context) Constraint(t buildtags.ConstraintConvertable) {
 	c.Constraints(append(c.file.Constraints, t.ToConstraint()))
 }
 
+// Constraint appends a constraint to the file's build constraints. The
+// constraint to add is parsed from the given expression. The expression should
+// look the same as the content following "// +build " in regular build
+// constraint comments.
 func (c *Context) ConstraintExpr(expr string) {
 	constraint, err := buildtags.ParseConstraint(expr)
 	if err != nil {
@@ -69,23 +78,28 @@ func (c *Context) ConstraintExpr(expr string) {
 	c.Constraint(constraint)
 }
 
+// Function starts building a new function with the given name.
 func (c *Context) Function(name string) {
 	c.function = avo.NewFunction(name)
 	c.file.AddSection(c.function)
 }
 
+// Doc sets documentation comment lines for the currently active function.
 func (c *Context) Doc(lines ...string) {
 	c.activefunc().Doc = lines
 }
 
+// Attributes sets function attributes for the currently active function.
 func (c *Context) Attributes(a avo.Attribute) {
 	c.activefunc().Attributes = a
 }
 
+// Signature sets the signature for the currently active function.
 func (c *Context) Signature(s *gotypes.Signature) {
 	c.activefunc().SetSignature(s)
 }
 
+// SignatureExpr parses the signature expression and sets it as the active function's signature.
 func (c *Context) SignatureExpr(expr string) {
 	s, err := gotypes.ParseSignatureInPackage(c.types(), expr)
 	if err != nil {
@@ -102,14 +116,18 @@ func (c *Context) types() *types.Package {
 	return c.pkg.Types
 }
 
+// AllocLocal allocates size bytes in the stack of the currently active function.
+// Returns a reference to the base pointer for the newly allocated region.
 func (c *Context) AllocLocal(size int) operand.Mem {
 	return c.activefunc().AllocLocal(size)
 }
 
+// Instruction adds an instruction to the active function.
 func (c *Context) Instruction(i *avo.Instruction) {
 	c.activefunc().AddNode(i)
 }
 
+// Label adds a label to the active function.
 func (c *Context) Label(l avo.Label) {
 	c.activefunc().AddLabel(l)
 }
