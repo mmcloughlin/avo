@@ -13,6 +13,7 @@ type Position struct {
 	Line     int // 1-up
 }
 
+// FramePosition returns the Position of the given stack frame.
 func FramePosition(f runtime.Frame) Position {
 	return Position{
 		Filename: f.File,
