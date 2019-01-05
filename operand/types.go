@@ -6,15 +6,18 @@ import (
 	"github.com/mmcloughlin/avo/reg"
 )
 
+// Op is an operand.
 type Op interface {
 	Asm() string
 }
 
+// Symbol represents a symbol name.
 type Symbol struct {
 	Name   string
-	Static bool
+	Static bool // only visible in current source file
 }
 
+// NewStaticSymbol builds a static Symbol. Static symbols are only visible in the current source file.
 func NewStaticSymbol(name string) Symbol {
 	return Symbol{Name: name, Static: true}
 }
@@ -27,6 +30,7 @@ func (s Symbol) String() string {
 	return n
 }
 
+// Mem represents a memory reference.
 type Mem struct {
 	Symbol Symbol
 	Disp   int
@@ -48,6 +52,7 @@ func NewParamAddr(name string, offset int) Mem {
 	}
 }
 
+// NewStackAddr returns a memory reference relative to the stack pointer.
 func NewStackAddr(offset int) Mem {
 	return Mem{
 		Disp: offset,
@@ -55,6 +60,7 @@ func NewStackAddr(offset int) Mem {
 	}
 }
 
+// NewDataAddr returns a memory reference relative to the named data symbol.
 func NewDataAddr(sym Symbol, offset int) Mem {
 	return Mem{
 		Symbol: sym,
@@ -63,12 +69,14 @@ func NewDataAddr(sym Symbol, offset int) Mem {
 	}
 }
 
+// Offset returns a reference to m plus idx bytes.
 func (m Mem) Offset(idx int) Mem {
 	a := m
 	a.Disp += idx
 	return a
 }
 
+// Idx returns a new memory reference with (Index, Scale) set to (r, s).
 func (m Mem) Idx(r reg.Register, s uint8) Mem {
 	a := m
 	a.Index = r
@@ -76,6 +84,7 @@ func (m Mem) Idx(r reg.Register, s uint8) Mem {
 	return a
 }
 
+// Asm returns an assembly syntax representation of m.
 func (m Mem) Asm() string {
 	a := m.Symbol.String()
 	if m.Disp != 0 {
@@ -97,6 +106,7 @@ func (m Mem) Asm() string {
 // Rel is an offset relative to the instruction pointer.
 type Rel int32
 
+// Asm returns an assembly syntax representation of r.
 func (r Rel) Asm() string {
 	return fmt.Sprintf(".%+d", r)
 }
@@ -104,6 +114,7 @@ func (r Rel) Asm() string {
 // LabelRef is a reference to a label.
 type LabelRef string
 
+// Asm returns an assembly syntax representation of l.
 func (l LabelRef) Asm() string {
 	return string(l)
 }

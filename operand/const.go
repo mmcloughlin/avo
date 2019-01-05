@@ -2,6 +2,7 @@ package operand
 
 import "fmt"
 
+// Constant represents a constant literal.
 type Constant interface {
 	Op
 	Bytes() int
@@ -13,9 +14,13 @@ type Constant interface {
 // String is a string constant.
 type String string
 
+// Asm returns an assembly syntax representation of the string s.
 func (s String) Asm() string { return fmt.Sprintf("$%q", s) }
-func (s String) Bytes() int  { return len(s) }
-func (s String) constant()   {}
+
+// Bytes returns the length of s.
+func (s String) Bytes() int { return len(s) }
+
+func (s String) constant() {}
 
 // Imm returns an unsigned integer constant with size guessed from x.
 func Imm(x uint64) Constant {
