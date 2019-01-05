@@ -9,7 +9,7 @@ import (
 // Attribute represents TEXT or DATA flags.
 type Attribute uint16
 
-// Reference: https://github.com/golang/go/blob/c043fc4f655ce34f67a0e7fe2833139f6313a3f0/src/runtime/textflag.h#L11-L34
+// Reference: https://github.com/golang/go/blob/35f4ec152b44ae5fc83aaf68e2eb3aa1a778e5cd/src/runtime/textflag.h#L11-L34
 //
 //	// Don't profile the marked routine. This flag is deprecated.
 //	#define NOPROF	1
@@ -34,7 +34,7 @@ type Attribute uint16
 //	// TODO(mwhudson): only implemented for ppc64x at present.
 //	#define NOFRAME 512
 //	// Function can call reflect.Type.Method or reflect.Type.MethodByName.
-//	#define REFLECTMETHOD = 1024
+//	#define REFLECTMETHOD 1024
 //
 const (
 	NOPROF Attribute = 1 << iota
@@ -59,7 +59,7 @@ func (a Attribute) Asm() string {
 	return strings.Join(parts, "|")
 }
 
-// ContainsTextFlags() returns whether the Asm() representation requires macros in "textflags.h".
+// ContainsTextFlags returns whether the Asm() representation requires macros in "textflags.h".
 func (a Attribute) ContainsTextFlags() bool {
 	flags, _ := a.split()
 	return len(flags) > 0

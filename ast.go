@@ -9,14 +9,12 @@ import (
 	"github.com/mmcloughlin/avo/reg"
 )
 
-type Asm interface {
-	Asm() string
-}
-
+// Node is a part of a Function.
 type Node interface {
 	node()
 }
 
+// Label within a function.
 type Label string
 
 func (l Label) node() {}
@@ -44,6 +42,8 @@ type Instruction struct {
 
 func (i *Instruction) node() {}
 
+// TargetLabel returns the label referenced by this instruction. Returns nil if
+// no label is referenced.
 func (i Instruction) TargetLabel() *Label {
 	if !i.IsBranch {
 		return nil
@@ -58,6 +58,7 @@ func (i Instruction) TargetLabel() *Label {
 	return nil
 }
 
+// Registers returns all registers involved in the instruction.
 func (i Instruction) Registers() []reg.Register {
 	var rs []reg.Register
 	for _, op := range i.Operands {
@@ -66,6 +67,7 @@ func (i Instruction) Registers() []reg.Register {
 	return rs
 }
 
+// InputRegisters returns all registers read by this instruction.
 func (i Instruction) InputRegisters() []reg.Register {
 	var rs []reg.Register
 	for _, op := range i.Inputs {
@@ -79,6 +81,7 @@ func (i Instruction) InputRegisters() []reg.Register {
 	return rs
 }
 
+// OutputRegisters returns all registers written by this instruction.
 func (i Instruction) OutputRegisters() []reg.Register {
 	var rs []reg.Register
 	for _, op := range i.Outputs {
@@ -89,6 +92,7 @@ func (i Instruction) OutputRegisters() []reg.Register {
 	return rs
 }
 
+// Section is a part of a file.
 type Section interface {
 	section()
 }
@@ -100,14 +104,17 @@ type File struct {
 	Sections    []Section
 }
 
+// NewFile initializes an empty file.
 func NewFile() *File {
 	return &File{}
 }
 
+// AddSection appends a Section to the file.
 func (f *File) AddSection(s Section) {
 	f.Sections = append(f.Sections, s)
 }
 
+// Functions returns all functions in the file.
 func (f *File) Functions() []*Function {
 	var fns []*Function
 	for _, s := range f.Sections {
@@ -137,6 +144,7 @@ type Function struct {
 
 func (f *Function) section() {}
 
+// NewFunction builds an empty function of the given name.
 func NewFunction(name string) *Function {
 	return &Function{
 		Name:      name,
@@ -144,24 +152,30 @@ func NewFunction(name string) *Function {
 	}
 }
 
+// SetSignature sets the function signature.
 func (f *Function) SetSignature(s *gotypes.Signature) {
 	f.Signature = s
 }
 
+// AllocLocal allocates size bytes in this function's stack.
+// Returns a reference to the base pointer for the newly allocated region.
 func (f *Function) AllocLocal(size int) operand.Mem {
 	ptr := operand.NewStackAddr(f.LocalSize)
 	f.LocalSize += size
 	return ptr
 }
 
+// AddInstruction appends an instruction to f.
 func (f *Function) AddInstruction(i *Instruction) {
 	f.AddNode(i)
 }
 
+// AddLabel appends a label to f.
 func (f *Function) AddLabel(l Label) {
 	f.AddNode(l)
 }
 
+// AddNode appends a Node to f.
 func (f *Function) AddNode(n Node) {
 	f.Nodes = append(f.Nodes, n)
 }
@@ -193,11 +207,13 @@ func (f *Function) ArgumentBytes() int {
 	return f.Signature.Bytes()
 }
 
+// Datum represents a data element at a particular offset of a data section.
 type Datum struct {
 	Offset int
 	Value  operand.Constant
 }
 
+// NewDatum builds a Datum from the given constant.
 func NewDatum(offset int, v operand.Constant) Datum {
 	return Datum{
 		Offset: offset,
@@ -210,12 +226,14 @@ func (d Datum) Interval() (int, int) {
 	return d.Offset, d.Offset + d.Value.Bytes()
 }
 
+// Overlaps returns true
 func (d Datum) Overlaps(other Datum) bool {
 	s, e := d.Interval()
 	so, eo := other.Interval()
 	return !(eo <= s || e <= so)
 }
 
+// Global represents a DATA section.
 type Global struct {
 	Symbol     operand.Symbol
 	Attributes Attribute
@@ -223,28 +241,33 @@ type Global struct {
 	Size       int
 }
 
+// NewGlobal constructs an empty DATA section.
 func NewGlobal(sym operand.Symbol) *Global {
 	return &Global{
 		Symbol: sym,
 	}
 }
 
+// NewStaticGlobal is a convenience for building a static DATA section.
 func NewStaticGlobal(name string) *Global {
 	return NewGlobal(operand.NewStaticSymbol(name))
 }
 
 func (g *Global) section() {}
 
+// Base returns a pointer to the start of the data section.
 func (g *Global) Base() operand.Mem {
 	return operand.NewDataAddr(g.Symbol, 0)
 }
 
+// Grow ensures that the data section has at least the given size.
 func (g *Global) Grow(size int) {
 	if g.Size < size {
 		g.Size = size
 	}
 }
 
+// AddDatum adds d to this data section, growing it if necessary. Errors if the datum overlaps with existing data.
 func (g *Global) AddDatum(d Datum) error {
 	for _, other := range g.Data {
 		if d.Overlaps(other) {
@@ -255,6 +278,7 @@ func (g *Global) AddDatum(d Datum) error {
 	return nil
 }
 
+// Append the constant to the end of the data section.
 func (g *Global) Append(v operand.Constant) {
 	g.add(Datum{
 		Offset: g.Size,
