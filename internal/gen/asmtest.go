@@ -19,6 +19,10 @@ type asmtest struct {
 	prnt.Generator
 }
 
+// NewAsmTest prints one massive assembly function containing a line for every
+// instruction form in the database. The intention is to pass this to the Go
+// assembler and confirm there are no errors, thus helping to ensure our
+// database is compatible.
 func NewAsmTest(cfg printer.Config) Interface {
 	return &asmtest{cfg: cfg}
 }

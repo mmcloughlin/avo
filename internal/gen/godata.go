@@ -11,6 +11,9 @@ type godata struct {
 	prnt.Generator
 }
 
+// NewGoData writes a Go variable containing the instructions database. This is
+// intended to provide a more friendly version of the instruction database,
+// rather than having to use the raw data sources all the time.
 func NewGoData(cfg printer.Config) Interface {
 	return GoFmt(&godata{cfg: cfg})
 }
@@ -71,6 +74,12 @@ type godatatest struct {
 	prnt.Generator
 }
 
+// NewGoDataTest writes a test case to confirm that NewGoData faithfully
+// represented the list. The reason for this is that NewGoData uses custom code
+// to "pretty print" the database so it is somewhat human-readable. In the
+// process we could easily mistakenly print the database incorrectly. This test
+// prints the same slice of instructions with the ugly but correct "%#v" format
+// specifier, and confirms that the two arrays agree.
 func NewGoDataTest(cfg printer.Config) Interface {
 	return GoFmt(&godatatest{cfg: cfg})
 }

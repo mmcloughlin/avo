@@ -14,6 +14,7 @@ type ctorstest struct {
 	prnt.Generator
 }
 
+// NewCtorsTest autogenerates tests for the constructors build by NewCtors.
 func NewCtorsTest(cfg printer.Config) Interface {
 	return GoFmt(&ctorstest{cfg: cfg})
 }
