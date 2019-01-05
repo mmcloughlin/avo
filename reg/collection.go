@@ -1,35 +1,48 @@
 package reg
 
+// Collection represents a collection of virtual registers. This is primarily
+// useful for allocating virtual registers with distinct IDs.
 type Collection struct {
 	vid map[Kind]VID
 }
 
+// NewCollection builds an empty register collection.
 func NewCollection() *Collection {
 	return &Collection{
 		vid: map[Kind]VID{},
 	}
 }
 
+// VirtualRegister allocates and returns a new virtual register of the given kind and size.
 func (c *Collection) VirtualRegister(k Kind, s Size) Virtual {
 	vid := c.vid[k]
 	c.vid[k]++
 	return NewVirtual(vid, k, s)
 }
 
-func (c *Collection) GP8() GPVirtual { return c.GPv(B8) }
+// GP8 allocates and returns a general-purpose 8-bit register.
+func (c *Collection) GP8() GPVirtual { return c.GP(B8) }
 
-func (c *Collection) GP16() GPVirtual { return c.GPv(B16) }
+// GP16 allocates and returns a general-purpose 16-bit register.
+func (c *Collection) GP16() GPVirtual { return c.GP(B16) }
 
-func (c *Collection) GP32() GPVirtual { return c.GPv(B32) }
+// GP32 allocates and returns a general-purpose 32-bit register.
+func (c *Collection) GP32() GPVirtual { return c.GP(B32) }
 
-func (c *Collection) GP64() GPVirtual { return c.GPv(B64) }
+// GP64 allocates and returns a general-purpose 64-bit register.
+func (c *Collection) GP64() GPVirtual { return c.GP(B64) }
 
-func (c *Collection) GPv(s Size) GPVirtual { return newgpv(c.VirtualRegister(KindGP, s)) }
+// GP allocates and returns a general-purpose register of the given size.
+func (c *Collection) GP(s Size) GPVirtual { return newgpv(c.VirtualRegister(KindGP, s)) }
 
-func (c *Collection) XMM() VecVirtual { return c.Vecv(B128) }
+// XMM allocates and returns a 128-bit vector register.
+func (c *Collection) XMM() VecVirtual { return c.Vec(B128) }
 
-func (c *Collection) YMM() VecVirtual { return c.Vecv(B256) }
+// YMM allocates and returns a 256-bit vector register.
+func (c *Collection) YMM() VecVirtual { return c.Vec(B256) }
 
-func (c *Collection) ZMM() VecVirtual { return c.Vecv(B512) }
+// ZMM allocates and returns a 512-bit vector register.
+func (c *Collection) ZMM() VecVirtual { return c.Vec(B512) }
 
-func (c *Collection) Vecv(s Size) VecVirtual { return newvecv(c.VirtualRegister(KindVector, s)) }
+// Vec allocates and returns a vector register of the given size.
+func (c *Collection) Vec(s Size) VecVirtual { return newvecv(c.VirtualRegister(KindVector, s)) }

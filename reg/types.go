@@ -5,8 +5,10 @@ import (
 	"fmt"
 )
 
+// Size is a register size.
 type Size uint
 
+// Typical register sizes.
 const (
 	B8 Size = 1 << iota
 	B16
@@ -17,21 +19,26 @@ const (
 	B512
 )
 
+// Bytes returns the register size in bytes.
 func (s Size) Bytes() uint { return uint(s) }
 
+// Kind is a class of registers.
 type Kind uint8
 
+// Family is a collection of Physical registers of a common kind.
 type Family struct {
 	Kind      Kind
 	registers []Physical
 }
 
+// define builds a register and adds it to the Family.
 func (f *Family) define(s Spec, id PID, name string, flags ...Info) Physical {
 	r := newregister(f, s, id, name, flags...)
 	f.add(r)
 	return r
 }
 
+// add r to the family.
 func (f *Family) add(r Physical) {
 	if r.Kind() != f.Kind {
 		panic("bad kind")
@@ -39,6 +46,7 @@ func (f *Family) add(r Physical) {
 	f.registers = append(f.registers, r)
 }
 
+// Virtual returns a virtual register from this family's kind.
 func (f *Family) Virtual(id VID, s Size) Virtual {
 	return NewVirtual(id, f.Kind, s)
 }
@@ -67,11 +75,7 @@ func (f *Family) Lookup(id PID, s Spec) Physical {
 	return nil
 }
 
-type (
-	VID uint16
-	PID uint16
-)
-
+// Register represents a virtual or physical register.
 type Register interface {
 	Kind() Kind
 	Bytes() uint
@@ -80,6 +84,10 @@ type Register interface {
 	register()
 }
 
+// VID is a virtual register ID.
+type VID uint16
+
+// Virtual is a register of a given type and size, not yet allocated to a physical register.
 type Virtual interface {
 	VirtualID() VID
 	SatisfiedBy(Physical) bool
@@ -101,6 +109,7 @@ type virtual struct {
 	mask uint16
 }
 
+// NewVirtual builds a Virtual register.
 func NewVirtual(id VID, k Kind, s Size) Virtual {
 	return virtual{
 		id:   id,
@@ -132,13 +141,19 @@ func (v virtual) as(s Spec) Register {
 
 func (v virtual) register() {}
 
+// Info is a bitmask of register properties.
 type Info uint8
 
+// Defined register Info flags.
 const (
 	None       Info = 0
 	Restricted Info = 1 << iota
 )
 
+// PID is a physical register ID.
+type PID uint16
+
+// Physical is a concrete register.
 type Physical interface {
 	PhysicalID() PID
 	Mask() uint16
@@ -154,6 +169,7 @@ func ToPhysical(r Register) Physical {
 	return nil
 }
 
+// register implements Physical.
 type register struct {
 	family *Family
 	id     PID
@@ -187,8 +203,11 @@ func (r register) as(s Spec) Register {
 
 func (r register) register() {}
 
+// Spec defines the size of a register as well as the bit ranges it occupies in
+// an underlying physical register.
 type Spec uint16
 
+// Spec values required for x86-64.
 const (
 	S0   Spec = 0x0 // zero value reserved for pseudo registers
 	S8L  Spec = 0x1
@@ -224,6 +243,7 @@ func AreConflicting(x, y Physical) bool {
 // Allocation records a register allocation.
 type Allocation map[Register]Physical
 
+// NewEmptyAllocation builds an empty register allocation.
 func NewEmptyAllocation() Allocation {
 	return Allocation{}
 }
@@ -240,6 +260,7 @@ func (a Allocation) Merge(b Allocation) error {
 	return nil
 }
 
+// LookupDefault returns the register assigned to r, or r itself if there is none.
 func (a Allocation) LookupDefault(r Register) Register {
 	if p, found := a[r]; found {
 		return p

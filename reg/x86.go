@@ -28,6 +28,7 @@ func init() {
 	}
 }
 
+// FamilyOfKind returns the Family of registers of the given kind.
 func FamilyOfKind(k Kind) *Family {
 	return familiesByKind[k]
 }
@@ -40,7 +41,7 @@ var (
 	StackPointer   = Pseudo.define(S0, 0, "SP")
 )
 
-// GP is the interface for a general purpose register.
+// GP provides additional methods for general purpose registers.
 type GP interface {
 	As8() Register
 	As8L() Register
@@ -61,6 +62,7 @@ func (c gpcasts) As16() Register { return c.as(S16) }
 func (c gpcasts) As32() Register { return c.as(S32) }
 func (c gpcasts) As64() Register { return c.as(S64) }
 
+// GPPhysical is a general-purpose physical register.
 type GPPhysical interface {
 	Physical
 	GP
@@ -73,6 +75,7 @@ type gpp struct {
 
 func newgpp(r Physical) GPPhysical { return gpp{Physical: r, GP: gpcasts{r}} }
 
+// GPVirtual is a general-purpose virtual register.
 type GPVirtual interface {
 	Virtual
 	GP
@@ -174,6 +177,7 @@ var (
 	R15 = gp(S64, 15, "R15")
 )
 
+// Vec provides methods for vector registers.
 type Vec interface {
 	AsX() Register
 	AsY() Register
@@ -188,6 +192,7 @@ func (c veccasts) AsX() Register { return c.as(S128) }
 func (c veccasts) AsY() Register { return c.as(S256) }
 func (c veccasts) AsZ() Register { return c.as(S512) }
 
+// VecPhysical is a physical vector register.
 type VecPhysical interface {
 	Physical
 	Vec
@@ -200,6 +205,7 @@ type vecp struct {
 
 func newvecp(r Physical) VecPhysical { return vecp{Physical: r, Vec: veccasts{r}} }
 
+// VecVirtual is a virtual vector register.
 type VecVirtual interface {
 	Virtual
 	Vec
