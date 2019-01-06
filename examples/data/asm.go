@@ -5,7 +5,7 @@ package main
 import (
 	"math"
 
-	. "github.com/mmcloughlin/avo"
+	. "github.com/mmcloughlin/avo/attr"
 	. "github.com/mmcloughlin/avo/build"
 	. "github.com/mmcloughlin/avo/operand"
 )

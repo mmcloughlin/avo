@@ -5,6 +5,7 @@ import (
 	"go/types"
 
 	"github.com/mmcloughlin/avo"
+	"github.com/mmcloughlin/avo/attr"
 	"github.com/mmcloughlin/avo/buildtags"
 	"github.com/mmcloughlin/avo/gotypes"
 	"github.com/mmcloughlin/avo/operand"
@@ -90,7 +91,7 @@ func (c *Context) Doc(lines ...string) {
 }
 
 // Attributes sets function attributes for the currently active function.
-func (c *Context) Attributes(a avo.Attribute) {
+func (c *Context) Attributes(a attr.Attribute) {
 	c.activefunc().Attributes = a
 }
 
@@ -124,12 +125,12 @@ func (c *Context) AllocLocal(size int) operand.Mem {
 
 // Instruction adds an instruction to the active function.
 func (c *Context) Instruction(i *avo.Instruction) {
-	c.activefunc().AddNode(i)
+	c.activefunc().AddInstruction(i)
 }
 
 // Label adds a label to the active function.
-func (c *Context) Label(l avo.Label) {
-	c.activefunc().AddLabel(l)
+func (c *Context) Label(name string) {
+	c.activefunc().AddLabel(avo.Label(name))
 }
 
 func (c *Context) activefunc() *avo.Function {
@@ -150,7 +151,7 @@ func (c *Context) StaticGlobal(name string) operand.Mem {
 }
 
 // DataAttributes sets the attributes on the current active global data section.
-func (c *Context) DataAttributes(a avo.Attribute) {
+func (c *Context) DataAttributes(a attr.Attribute) {
 	c.activeglobal().Attributes = a
 }
 

@@ -76,7 +76,7 @@ func main() {
 		JE(LabelRef(labels[i])) //		        JE(labels[i])
 	} //
 	for i := 3; i > 0; i-- { //		    for i in range(3, 0, -1):
-		LABEL(labels[i])        //		        LABEL(labels[i])
+		Label(labels[i])        //		        Label(labels[i])
 		r := GP64()             //		        r = GeneralPurposeRegister64()
 		MOVQ(Mem{Base: ptr}, r) //		        MOV(r, [reg_ptr])
 		imul(k3U64, r)          //		        imul(r, k3U64)
@@ -88,7 +88,7 @@ func main() {
 		ADDQ(U32(8), ptr)       //		        ADD(reg_ptr,8)
 		SUBQ(U32(8), n)         //		        SUB(reg_ptr_len,8)
 	} //
-	LABEL(labels[0]) //		    LABEL(labels[0])
+	Label(labels[0]) //		    Label(labels[0])
 	//
 	labels = makelabels("shortTail", 8) //		    labels = [Label("shortTail%d" % i) for i in range(8)]
 	//
@@ -102,49 +102,49 @@ func main() {
 	//
 	ch := GP64() //		    reg_ch = GeneralPurposeRegister64()
 	//
-	LABEL(labels[7])                     //		    LABEL(labels[7])
+	Label(labels[7])                     //		    Label(labels[7])
 	MOVBQZX(Mem{Base: ptr, Disp: 6}, ch) //		    MOVZX(reg_ch, byte[reg_ptr+6])
 	SHLQ(U8(32), ch)                     //		    SHL(reg_ch, 32)
 	ADDQ(ch, v0)                         //		    ADD(reg_v0, reg_ch)
 	//
-	LABEL(labels[6])                     //		    LABEL(labels[6])
+	Label(labels[6])                     //		    Label(labels[6])
 	MOVBQZX(Mem{Base: ptr, Disp: 5}, ch) //		    MOVZX(reg_ch, byte[reg_ptr+5])
 	SHLQ(U8(48), ch)                     //		    SHL(reg_ch, 48)
 	ADDQ(ch, v1)                         //		    ADD(reg_v1, reg_ch)
 	//
-	LABEL(labels[5])                     //		    LABEL(labels[5])
+	Label(labels[5])                     //		    Label(labels[5])
 	MOVBQZX(Mem{Base: ptr, Disp: 4}, ch) //		    MOVZX(reg_ch, byte[reg_ptr+4])
 	SHLQ(U8(16), ch)                     //		    SHL(reg_ch, 16)
 	ADDQ(ch, v0)                         //		    ADD(reg_v0, reg_ch)
 	//
-	LABEL(labels[4]) //		    LABEL(labels[4])
+	Label(labels[4]) //		    Label(labels[4])
 	//		    XOR(reg_ch, reg_ch)
 	MOVLQZX(Mem{Base: ptr}, ch) //		    MOV(reg_ch.as_dword, dword[reg_ptr])
 	ADDQ(ch, v1)                //		    ADD(reg_v1, reg_ch)
 	//
 	JMP(LabelRef(after)) //		    JMP(after)
 	//
-	LABEL(labels[3])                     //		    LABEL(labels[3])
+	Label(labels[3])                     //		    Label(labels[3])
 	MOVBQZX(Mem{Base: ptr, Disp: 2}, ch) //		    MOVZX(reg_ch, byte[reg_ptr+2])
 	SHLQ(U8(48), ch)                     //		    SHL(reg_ch, 48)
 	ADDQ(ch, v0)                         //		    ADD(reg_v0, reg_ch)
 	//
-	LABEL(labels[2]) //		    LABEL(labels[2])
+	Label(labels[2]) //		    Label(labels[2])
 	//		    XOR(reg_ch, reg_ch)
 	MOVWQZX(Mem{Base: ptr}, ch) //		    MOV(reg_ch.as_word, word[reg_ptr])
 	ADDQ(ch, v1)                //		    ADD(reg_v1, reg_ch)
 	//
 	JMP(LabelRef(after)) //		    JMP(after)
 	//
-	LABEL(labels[1])            //		    LABEL(labels[1])
+	Label(labels[1])            //		    Label(labels[1])
 	MOVBQZX(Mem{Base: ptr}, ch) //		    MOVZX(reg_ch, byte[reg_ptr])
 	ADDQ(ch, v0)                //		    ADD(reg_v0, reg_ch)
 	//
-	LABEL(labels[0])    //		    LABEL(labels[0])
+	Label(labels[0])    //		    Label(labels[0])
 	RORQ(U8(32), v1)    //		    ROR(reg_v1, 32)
 	XORQ(U32(0xff), v1) //		    XOR(reg_v1, 0xFF)
 	//
-	LABEL(after) //		    LABEL(after)
+	Label(after) //		    Label(after)
 	//
 	XORQ(v0, v1) //		    XOR(reg_v1, reg_v0)
 	//
@@ -187,7 +187,7 @@ func main() {
 	Store(v0, ReturnIndex(0))
 	RET() //		    RETURN(reg_v0)
 	//
-	LABEL(long) //		    LABEL(coreLong)
+	Label(long) //		    Label(coreLong)
 	//
 	v2 := GP64() //		    reg_v2 = GeneralPurposeRegister64()
 	v3 := GP64() //		    reg_v3 = GeneralPurposeRegister64()
@@ -208,7 +208,7 @@ func main() {
 	//
 	r := GP64()     //		    r = GeneralPurposeRegister64()
 	loop := "block" //		    with Loop() as loop:
-	LABEL(loop)
+	Label(loop)
 	MOVQ(Mem{Base: ptr}, r) //		        MOV(r, [reg_ptr])
 	imul(k2U32, r)          //		        imul(r, k2U32)
 	ADDQ(r, v0)             //		        ADD(reg_v0, r)
@@ -253,7 +253,7 @@ func main() {
 		CMPQ(u64s, U32(i))      //		        CMP(reg_u64s, i)
 		JE(LabelRef(labels[i])) //		        JE(labels[i])
 	} //
-	LABEL(labels[3]) //		    LABEL(labels[3])
+	Label(labels[3]) //		    Label(labels[3])
 	//
 	MOVQ(Mem{Base: ptr}, r) //		    MOV(r, [reg_ptr])
 	imul(k2U32, r)          //		    imul(r, k2U32)
@@ -263,7 +263,7 @@ func main() {
 	ADDQ(U32(8), ptr)       //		    ADD(reg_ptr, 8)
 	SUBQ(U32(8), n)         //		    SUB(reg_ptr_len, 8)
 	//
-	LABEL(labels[2]) //		    LABEL(labels[2])
+	Label(labels[2]) //		    Label(labels[2])
 	//
 	MOVQ(Mem{Base: ptr}, r) //		    MOV(r, [reg_ptr])
 	imul(k3U32, r)          //		    imul(r, k3U32)
@@ -273,7 +273,7 @@ func main() {
 	ADDQ(U32(8), ptr)       //		    ADD(reg_ptr, 8)
 	SUBQ(U32(8), n)         //		    SUB(reg_ptr_len, 8)
 	//
-	LABEL(labels[1]) //		    LABEL(labels[1])
+	Label(labels[1]) //		    Label(labels[1])
 	//
 	MOVQ(Mem{Base: ptr}, r) //		    MOV(r, [reg_ptr])
 	imul(k4U32, r)          //		    imul(r, k4U32)
@@ -283,7 +283,7 @@ func main() {
 	ADDQ(U32(8), ptr)       //		    ADD(reg_ptr, 8)
 	SUBQ(U32(8), n)         //		    SUB(reg_ptr_len, 8)
 	//
-	LABEL(labels[0]) //		    LABEL(labels[0])
+	Label(labels[0]) //		    Label(labels[0])
 	//
 	RORQ(U8(11), v3) //		    ROR(reg_v3, 11)
 	SUBQ(v1, v3)     //		    SUB(reg_v3, reg_v1)
@@ -304,11 +304,11 @@ func main() {
 	//
 	//		    reg_ch = GeneralPurposeRegister64()
 	//
-	LABEL(labels[7])                     //		    LABEL(labels[7])
+	Label(labels[7])                     //		    Label(labels[7])
 	MOVBQZX(Mem{Base: ptr, Disp: 6}, ch) //		    MOVZX(reg_ch, byte[reg_ptr+6])
 	ADDQ(ch, v1)                         //		    ADD(reg_v1, reg_ch)
 	//
-	LABEL(labels[6]) //		    LABEL(labels[6])
+	Label(labels[6]) //		    Label(labels[6])
 	//		    XOR(reg_ch, reg_ch)
 	MOVWQZX(Mem{Base: ptr, Disp: 4}, ch) //		    MOV(reg_ch.as_word, word[reg_ptr + 4])
 	ADDQ(ch, v2)                         //		    ADD(reg_v2, reg_ch)
@@ -316,37 +316,37 @@ func main() {
 	ADDQ(ch, v3)                         //		    ADD(reg_v3, reg_ch)
 	JMP(LabelRef(after))                 //		    JMP(after)
 	//
-	LABEL(labels[5])                     //		    LABEL(labels[5])
+	Label(labels[5])                     //		    Label(labels[5])
 	MOVBQZX(Mem{Base: ptr, Disp: 4}, ch) //		    MOVZX(reg_ch, byte[reg_ptr+4])
 	ADDQ(ch, v1)                         //		    ADD(reg_v1, reg_ch)
 	//
-	LABEL(labels[4]) //		    LABEL(labels[4])
+	Label(labels[4]) //		    Label(labels[4])
 	//		    XOR(reg_ch, reg_ch)
 	MOVLQZX(Mem{Base: ptr}, ch) //		    MOV(reg_ch.as_dword, dword[reg_ptr])
 	ADDQ(ch, v2)                //		    ADD(reg_v2, reg_ch)
 	//
 	JMP(LabelRef(after)) //		    JMP(after)
 	//
-	LABEL(labels[3])                     //		    LABEL(labels[3])
+	Label(labels[3])                     //		    Label(labels[3])
 	MOVBQZX(Mem{Base: ptr, Disp: 2}, ch) //		    MOVZX(reg_ch, byte[reg_ptr+2])
 	ADDQ(ch, v3)                         //		    ADD(reg_v3, reg_ch)
 	//
-	LABEL(labels[2]) //		    LABEL(labels[2])
+	Label(labels[2]) //		    Label(labels[2])
 	//		    XOR(reg_ch, reg_ch)
 	MOVWQZX(Mem{Base: ptr}, ch) //		    MOV(reg_ch.as_word, word[reg_ptr])
 	ADDQ(ch, v1)                //		    ADD(reg_v1, reg_ch)
 	//
 	JMP(LabelRef(after)) //		    JMP(after)
 	//
-	LABEL(labels[1])            //		    LABEL(labels[1])
+	Label(labels[1])            //		    Label(labels[1])
 	MOVBQZX(Mem{Base: ptr}, ch) //		    MOVZX(reg_ch, byte[reg_ptr])
 	ADDQ(ch, v2)                //		    ADD(reg_v2, reg_ch)
 	//
-	LABEL(labels[0])    //		    LABEL(labels[0])
+	Label(labels[0])    //		    Label(labels[0])
 	ROLQ(U8(32), v3)    //		    ROL(reg_v3, 32)
 	XORQ(U32(0xff), v3) //		    XOR(reg_v3, 0xFF)
 	//
-	LABEL(after) //		    LABEL(after)
+	Label(after) //		    Label(after)
 	//
 	//		    ## finalize
 	//

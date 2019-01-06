@@ -3,7 +3,7 @@ package printer_test
 import (
 	"testing"
 
-	"github.com/mmcloughlin/avo"
+	"github.com/mmcloughlin/avo/attr"
 	"github.com/mmcloughlin/avo/build"
 	"github.com/mmcloughlin/avo/printer"
 	"github.com/mmcloughlin/avo/reg"
@@ -47,7 +47,7 @@ func TestTextDecl(t *testing.T) {
 
 	ctx.Function("withattr")
 	ctx.SignatureExpr("func()")
-	ctx.Attributes(avo.NOSPLIT | avo.TLSBSS)
+	ctx.Attributes(attr.NOSPLIT | attr.TLSBSS)
 	ctx.RET()
 
 	AssertPrintsLines(t, ctx, printer.NewGoAsm, []string{

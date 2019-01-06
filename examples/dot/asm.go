@@ -30,7 +30,7 @@ func main() {
 	// Loop over blocks and process them with vector instructions.
 	blockitems := 8 * unroll
 	blocksize := 4 * blockitems
-	LABEL("blockloop")
+	Label("blockloop")
 	CMPQ(n, U32(blockitems))
 	JL(LabelRef("tail"))
 
@@ -55,11 +55,11 @@ func main() {
 	JMP(LabelRef("blockloop"))
 
 	// Process any trailing entries.
-	LABEL("tail")
+	Label("tail")
 	tail := XMM()
 	VXORPS(tail, tail, tail)
 
-	LABEL("tailloop")
+	Label("tailloop")
 	CMPQ(n, U32(0))
 	JE(LabelRef("reduce"))
 
@@ -73,7 +73,7 @@ func main() {
 	JMP(LabelRef("tailloop"))
 
 	// Reduce the lanes to one.
-	LABEL("reduce")
+	Label("reduce")
 	for i := 1; i < unroll; i++ {
 		VADDPS(acc[0], acc[i], acc[0])
 	}

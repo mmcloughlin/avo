@@ -24,7 +24,7 @@ func main() {
 	p := GP64()
 	MOVQ(Imm(Prime), p)
 
-	LABEL("loop")
+	Label("loop")
 	CMPQ(n, Imm(0))
 	JE(LabelRef("done"))
 	b := GP64()
@@ -35,7 +35,7 @@ func main() {
 	DECQ(n)
 
 	JMP(LabelRef("loop"))
-	LABEL("done")
+	Label("done")
 	Store(h, ReturnIndex(0))
 	RET()
 	Generate()

@@ -1,7 +1,7 @@
 package build
 
 import (
-	"github.com/mmcloughlin/avo"
+	"github.com/mmcloughlin/avo/attr"
 	"github.com/mmcloughlin/avo/operand"
 	"github.com/mmcloughlin/avo/reg"
 
@@ -57,7 +57,7 @@ func (c *Context) Store(src reg.Register, dst gotypes.Component) {
 // ConstData builds a static data section containing just the given constant.
 func (c *Context) ConstData(name string, v operand.Constant) operand.Mem {
 	g := c.StaticGlobal(name)
-	c.DataAttributes(avo.RODATA | avo.NOPTR)
+	c.DataAttributes(attr.RODATA | attr.NOPTR)
 	c.AppendDatum(v)
 	return g
 }

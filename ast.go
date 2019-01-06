@@ -3,6 +3,7 @@ package avo
 import (
 	"errors"
 
+	"github.com/mmcloughlin/avo/attr"
 	"github.com/mmcloughlin/avo/buildtags"
 	"github.com/mmcloughlin/avo/gotypes"
 	"github.com/mmcloughlin/avo/operand"
@@ -128,7 +129,7 @@ func (f *File) Functions() []*Function {
 // Function represents an assembly function.
 type Function struct {
 	Name       string
-	Attributes Attribute
+	Attributes attr.Attribute
 	Doc        []string
 	Signature  *gotypes.Signature
 	LocalSize  int
@@ -236,7 +237,7 @@ func (d Datum) Overlaps(other Datum) bool {
 // Global represents a DATA section.
 type Global struct {
 	Symbol     operand.Symbol
-	Attributes Attribute
+	Attributes attr.Attribute
 	Data       []Datum
 	Size       int
 }

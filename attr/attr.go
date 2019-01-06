@@ -1,4 +1,5 @@
-package avo
+// Package attr provides attributes for text and data sections.
+package attr
 
 import (
 	"fmt"

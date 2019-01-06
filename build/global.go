@@ -4,13 +4,12 @@ import (
 	"flag"
 	"os"
 
+	"github.com/mmcloughlin/avo/attr"
 	"github.com/mmcloughlin/avo/buildtags"
 	"github.com/mmcloughlin/avo/gotypes"
 	"github.com/mmcloughlin/avo/operand"
 
 	"github.com/mmcloughlin/avo/reg"
-
-	"github.com/mmcloughlin/avo"
 )
 
 // ctx provides a global build context.
@@ -22,11 +21,8 @@ func TEXT(name, signature string) {
 	ctx.SignatureExpr(signature)
 }
 
-// LABEL adds a label to the active function.
-func LABEL(name string) { ctx.Label(avo.Label(name)) }
-
 // GLOBL declares a new static global data section with the given attributes.
-func GLOBL(name string, a avo.Attribute) operand.Mem {
+func GLOBL(name string, a attr.Attribute) operand.Mem {
 	// TODO(mbm): should this be static?
 	g := ctx.StaticGlobal(name)
 	ctx.DataAttributes(a)
@@ -119,11 +115,14 @@ func Store(src reg.Register, dst gotypes.Component) { ctx.Store(src, dst) }
 func Doc(lines ...string) { ctx.Doc(lines...) }
 
 // Attributes sets function attributes for the currently active function.
-func Attributes(a avo.Attribute) { ctx.Attributes(a) }
+func Attributes(a attr.Attribute) { ctx.Attributes(a) }
 
 // AllocLocal allocates size bytes in the stack of the currently active function.
 // Returns a reference to the base pointer for the newly allocated region.
 func AllocLocal(size int) operand.Mem { return ctx.AllocLocal(size) }
+
+// Label adds a label to the active function.
+func Label(name string) { ctx.Label(name) }
 
 // ConstData builds a static data section containing just the given constant.
 func ConstData(name string, v operand.Constant) operand.Mem { return ctx.ConstData(name, v) }
