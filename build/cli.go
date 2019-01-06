@@ -14,6 +14,7 @@ import (
 // Config contains options for an avo main function.
 type Config struct {
 	ErrOut     io.Writer
+	MaxErrors  int // max errors to report; 0 means unlimited
 	CPUProfile io.WriteCloser
 	Passes     []pass.Interface
 }
@@ -33,11 +34,9 @@ func Main(cfg *Config, context *Context) int {
 		defer pprof.StopCPUProfile()
 	}
 
-	f, errs := context.Result()
-	if errs != nil {
-		for _, err := range errs {
-			diag.Println(err)
-		}
+	f, err := context.Result()
+	if err != nil {
+		LogError(diag, err, cfg.MaxErrors)
 		return 1
 	}
 
@@ -52,9 +51,10 @@ func Main(cfg *Config, context *Context) int {
 
 // Flags represents CLI flags for an avo program.
 type Flags struct {
-	errout   *outputValue
-	cpuprof  *outputValue
-	printers []*printerValue
+	errout    *outputValue
+	allerrors bool
+	cpuprof   *outputValue
+	printers  []*printerValue
 }
 
 // NewFlags initializes avo flags for the given FlagSet.
@@ -63,6 +63,8 @@ func NewFlags(fs *flag.FlagSet) *Flags {
 
 	f.errout = newOutputValue(os.Stderr)
 	fs.Var(f.errout, "log", "diagnostics output")
+
+	fs.BoolVar(&f.allerrors, "e", false, "no limit on number of errors reported")
 
 	f.cpuprof = newOutputValue(nil)
 	fs.Var(f.cpuprof, "cpuprofile", "write cpu profile to `file`")
@@ -88,11 +90,19 @@ func (f *Flags) Config() *Config {
 			passes = append(passes, p)
 		}
 	}
-	return &Config{
+
+	cfg := &Config{
 		ErrOut:     f.errout.w,
+		MaxErrors:  10,
 		CPUProfile: f.cpuprof.w,
 		Passes:     passes,
 	}
+
+	if f.allerrors {
+		cfg.MaxErrors = 0
+	}
+
+	return cfg
 }
 
 type outputValue struct {

@@ -19,7 +19,7 @@ type Context struct {
 	file     *avo.File
 	function *avo.Function
 	global   *avo.Global
-	errs     []error
+	errs     ErrorList
 	reg.Collection
 }
 
@@ -176,8 +176,7 @@ func (c *Context) activeglobal() *avo.Global {
 }
 
 func (c *Context) adderror(err error) {
-	e := exterr(err)
-	c.errs = append(c.errs, e)
+	c.errs.addext(err)
 }
 
 func (c *Context) adderrormessage(msg string) {
@@ -185,6 +184,6 @@ func (c *Context) adderrormessage(msg string) {
 }
 
 // Result returns the built file and any accumulated errors.
-func (c *Context) Result() (*avo.File, []error) {
-	return c.file, c.errs
+func (c *Context) Result() (*avo.File, error) {
+	return c.file, c.errs.Err()
 }
