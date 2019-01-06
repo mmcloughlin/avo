@@ -40,6 +40,10 @@ func (e *ErrorList) Add(err Error) {
 	*e = append(*e, err)
 }
 
+func (e *ErrorList) AddAt(p src.Position, err error) {
+	e.Add(Error{p, err})
+}
+
 // addext appends an error to the list, tagged with the
 func (e *ErrorList) addext(err error) {
 	e.Add(exterr(err))
@@ -71,11 +75,11 @@ func (e ErrorList) Error() string {
 func LogError(l *log.Logger, err error, max int) {
 	if list, ok := err.(ErrorList); ok {
 		for i, e := range list {
-			l.Printf("%s\n", e)
 			if max > 0 && i == max {
 				l.Print("too many errors")
 				return
 			}
+			l.Printf("%s\n", e)
 		}
 	} else if err != nil {
 		l.Printf("%s\n", err)
