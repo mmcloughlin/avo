@@ -16,27 +16,32 @@ import (
 // ctx provides a global build context.
 var ctx = NewContext()
 
-func Package(path string) { ctx.Package(path) }
-
+// TEXT starts building a new function called name and sets its signature (see SignatureExpr).
 func TEXT(name, signature string) {
 	ctx.Function(name)
 	ctx.SignatureExpr(signature)
 }
 
+// LABEL adds a label to the active function.
 func LABEL(name string) { ctx.Label(avo.Label(name)) }
 
+// GLOBL declares a new static global data section with the given attributes.
 func GLOBL(name string, a avo.Attribute) operand.Mem {
+	// TODO(mbm): should this be static?
 	g := ctx.StaticGlobal(name)
 	ctx.DataAttributes(a)
 	return g
 }
 
+// DATA adds a data value to the active data section.
 func DATA(offset int, v operand.Constant) {
 	ctx.AddDatum(offset, v)
 }
 
 var flags = NewFlags(flag.CommandLine)
 
+// Generate builds and compiles the avo file built with the global context. This
+// should be the final line of any avo program. Configuration is determined from command-line flags.
 func Generate() {
 	if !flag.Parsed() {
 		flag.Parse()
@@ -53,29 +58,72 @@ func Generate() {
 	}
 }
 
-func Constraints(t buildtags.ConstraintsConvertable) { ctx.Constraints(t) }
-func Constraint(t buildtags.ConstraintConvertable)   { ctx.Constraint(t) }
-func ConstraintExpr(expr string)                     { ctx.ConstraintExpr(expr) }
+// Package sets the package the generated file will belong to. Required to be able to reference types in the package.
+func Package(path string) { ctx.Package(path) }
 
-func GP8() reg.GPVirtual  { return ctx.GP8() }
+// Constraints sets build constraints for the file.
+func Constraints(t buildtags.ConstraintsConvertable) { ctx.Constraints(t) }
+
+// Constraint appends a constraint to the file's build constraints.
+func Constraint(t buildtags.ConstraintConvertable) { ctx.Constraint(t) }
+
+// ConstraintExpr appends a constraint to the file's build constraints. The
+// constraint to add is parsed from the given expression. The expression should
+// look the same as the content following "// +build " in regular build
+// constraint comments.
+func ConstraintExpr(expr string) { ctx.ConstraintExpr(expr) }
+
+// GP8 allocates and returns a general-purpose 8-bit register.
+func GP8() reg.GPVirtual { return ctx.GP8() }
+
+// GP16 allocates and returns a general-purpose 16-bit register.
 func GP16() reg.GPVirtual { return ctx.GP16() }
+
+// GP32 allocates and returns a general-purpose 32-bit register.
 func GP32() reg.GPVirtual { return ctx.GP32() }
+
+// GP64 allocates and returns a general-purpose 64-bit register.
 func GP64() reg.GPVirtual { return ctx.GP64() }
+
+// XMM allocates and returns a 128-bit vector register.
 func XMM() reg.VecVirtual { return ctx.XMM() }
+
+// YMM allocates and returns a 256-bit vector register.
 func YMM() reg.VecVirtual { return ctx.YMM() }
+
+// ZMM allocates and returns a 512-bit vector register.
 func ZMM() reg.VecVirtual { return ctx.ZMM() }
 
-func Param(name string) gotypes.Component  { return ctx.Param(name) }
-func ParamIndex(i int) gotypes.Component   { return ctx.ParamIndex(i) }
+// Param returns a the named argument of the active function.
+func Param(name string) gotypes.Component { return ctx.Param(name) }
+
+// ParamIndex returns the ith argument of the active function.
+func ParamIndex(i int) gotypes.Component { return ctx.ParamIndex(i) }
+
+// Return returns a the named return value of the active function.
 func Return(name string) gotypes.Component { return ctx.Return(name) }
-func ReturnIndex(i int) gotypes.Component  { return ctx.ReturnIndex(i) }
 
+// ReturnIndex returns the ith argument of the active function.
+func ReturnIndex(i int) gotypes.Component { return ctx.ReturnIndex(i) }
+
+// Load the function argument src into register dst. Returns the destination
+// register. This is syntactic sugar: it will attempt to select the right MOV
+// instruction based on the types involved.
 func Load(src gotypes.Component, dst reg.Register) reg.Register { return ctx.Load(src, dst) }
-func Store(src reg.Register, dst gotypes.Component)             { ctx.Store(src, dst) }
 
-func Doc(lines ...string)        { ctx.Doc(lines...) }
+// Store register src into return value dst. This is syntactic sugar: it will
+// attempt to select the right MOV instruction based on the types involved.
+func Store(src reg.Register, dst gotypes.Component) { ctx.Store(src, dst) }
+
+// Doc sets documentation comment lines for the currently active function.
+func Doc(lines ...string) { ctx.Doc(lines...) }
+
+// Attributes sets function attributes for the currently active function.
 func Attributes(a avo.Attribute) { ctx.Attributes(a) }
 
+// AllocLocal allocates size bytes in the stack of the currently active function.
+// Returns a reference to the base pointer for the newly allocated region.
 func AllocLocal(size int) operand.Mem { return ctx.AllocLocal(size) }
 
+// ConstData builds a static data section containing just the given constant.
 func ConstData(name string, v operand.Constant) operand.Mem { return ctx.ConstData(name, v) }

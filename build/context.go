@@ -37,13 +37,13 @@ func (c *Context) Package(path string) {
 	}
 	pkgs, err := packages.Load(cfg, path)
 	if err != nil {
-		c.AddError(err)
+		c.adderror(err)
 		return
 	}
 	pkg := pkgs[0]
 	if len(pkg.Errors) > 0 {
 		for _, err := range pkg.Errors {
-			c.AddError(err)
+			c.adderror(err)
 		}
 		return
 	}
@@ -54,7 +54,7 @@ func (c *Context) Package(path string) {
 func (c *Context) Constraints(t buildtags.ConstraintsConvertable) {
 	cs := t.ToConstraints()
 	if err := cs.Validate(); err != nil {
-		c.AddError(err)
+		c.adderror(err)
 		return
 	}
 	c.file.Constraints = cs
@@ -65,14 +65,14 @@ func (c *Context) Constraint(t buildtags.ConstraintConvertable) {
 	c.Constraints(append(c.file.Constraints, t.ToConstraint()))
 }
 
-// Constraint appends a constraint to the file's build constraints. The
+// ConstraintExpr appends a constraint to the file's build constraints. The
 // constraint to add is parsed from the given expression. The expression should
 // look the same as the content following "// +build " in regular build
 // constraint comments.
 func (c *Context) ConstraintExpr(expr string) {
 	constraint, err := buildtags.ParseConstraint(expr)
 	if err != nil {
-		c.AddError(err)
+		c.adderror(err)
 		return
 	}
 	c.Constraint(constraint)
@@ -103,7 +103,7 @@ func (c *Context) Signature(s *gotypes.Signature) {
 func (c *Context) SignatureExpr(expr string) {
 	s, err := gotypes.ParseSignatureInPackage(c.types(), expr)
 	if err != nil {
-		c.AddError(err)
+		c.adderror(err)
 		return
 	}
 	c.Signature(s)
@@ -134,7 +134,7 @@ func (c *Context) Label(l avo.Label) {
 
 func (c *Context) activefunc() *avo.Function {
 	if c.function == nil {
-		c.AddErrorMessage("no active function")
+		c.adderrormessage("no active function")
 		return avo.NewFunction("")
 	}
 	return c.function
@@ -142,43 +142,48 @@ func (c *Context) activefunc() *avo.Function {
 
 //go:generate avogen -output zinstructions.go build
 
+// StaticGlobal adds a new static data section to the file and returns a pointer to it.
 func (c *Context) StaticGlobal(name string) operand.Mem {
 	c.global = avo.NewStaticGlobal(name)
 	c.file.AddSection(c.global)
 	return c.global.Base()
 }
 
+// DataAttributes sets the attributes on the current active global data section.
 func (c *Context) DataAttributes(a avo.Attribute) {
 	c.activeglobal().Attributes = a
 }
 
+// AddDatum adds constant v at offset to the current active global data section.
 func (c *Context) AddDatum(offset int, v operand.Constant) {
 	if err := c.activeglobal().AddDatum(avo.NewDatum(offset, v)); err != nil {
-		c.AddError(err)
+		c.adderror(err)
 	}
 }
 
+// AppendDatum appends a constant to the current active global data section.
 func (c *Context) AppendDatum(v operand.Constant) {
 	c.activeglobal().Append(v)
 }
 
 func (c *Context) activeglobal() *avo.Global {
 	if c.global == nil {
-		c.AddErrorMessage("no active global")
+		c.adderrormessage("no active global")
 		return avo.NewStaticGlobal("")
 	}
 	return c.global
 }
 
-func (c *Context) AddError(err error) {
+func (c *Context) adderror(err error) {
 	e := exterr(err)
 	c.errs = append(c.errs, e)
 }
 
-func (c *Context) AddErrorMessage(msg string) {
-	c.AddError(errors.New(msg))
+func (c *Context) adderrormessage(msg string) {
+	c.adderror(errors.New(msg))
 }
 
+// Result returns the built file and any accumulated errors.
 func (c *Context) Result() (*avo.File, []error) {
 	return c.file, c.errs
 }

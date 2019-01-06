@@ -62,6 +62,6 @@ func (c *Context) mov(a, b operand.Op, an, bn int, t *types.Basic) {
 	case (t.Info()&types.IsInteger) != 0 && (t.Info()&types.IsUnsigned) != 0 && an == 2 && bn == 8:
 		c.MOVWQZX(a, b)
 	default:
-		c.AddErrorMessage("could not deduce mov instruction")
+		c.adderrormessage("could not deduce mov instruction")
 	}
 }

@@ -11,12 +11,16 @@ import (
 	"github.com/mmcloughlin/avo/printer"
 )
 
+// Config contains options for an avo main function.
 type Config struct {
 	ErrOut     io.Writer
 	CPUProfile io.WriteCloser
 	Passes     []pass.Interface
 }
 
+// Main is the standard main function for an avo program. This extracts the
+// result from the build Context (logging and exiting on error), and performs
+// configured passes.
 func Main(cfg *Config, context *Context) int {
 	diag := log.New(cfg.ErrOut, "", 0)
 
@@ -46,12 +50,14 @@ func Main(cfg *Config, context *Context) int {
 	return 0
 }
 
+// Flags represents CLI flags for an avo program.
 type Flags struct {
 	errout   *outputValue
 	cpuprof  *outputValue
 	printers []*printerValue
 }
 
+// NewFlags initializes avo flags for the given FlagSet.
 func NewFlags(fs *flag.FlagSet) *Flags {
 	f := &Flags{}
 
@@ -72,6 +78,7 @@ func NewFlags(fs *flag.FlagSet) *Flags {
 	return f
 }
 
+// Config builds a configuration object based on flag values.
 func (f *Flags) Config() *Config {
 	pc := printer.NewGoRunConfig()
 	passes := []pass.Interface{pass.Compile}

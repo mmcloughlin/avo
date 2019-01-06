@@ -39,7 +39,7 @@ func (m *mov) Generate(is []inst.Instruction) ([]byte, error) {
 		}
 	}
 	m.Printf("default:\n")
-	m.Printf("c.AddErrorMessage(\"could not deduce mov instruction\")\n")
+	m.Printf("c.adderrormessage(\"could not deduce mov instruction\")\n")
 	m.Printf("}\n")
 	m.Printf("}\n")
 	return m.Result()
