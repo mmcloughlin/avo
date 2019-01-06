@@ -2,7 +2,9 @@
 package test
 
 import (
+	"io"
 	"io/ioutil"
+	"log"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -67,4 +69,23 @@ func goexec(t *testing.T, arg ...string) {
 	if err != nil {
 		t.Fatal(err)
 	}
+}
+
+// Logger builds a logger that writes to the test object.
+func Logger(tb testing.TB) *log.Logger {
+	return log.New(Writer(tb), "test", log.LstdFlags)
+}
+
+type writer struct {
+	tb testing.TB
+}
+
+// Writer builds a writer that logs all writes to the test object.
+func Writer(tb testing.TB) io.Writer {
+	return writer{tb}
+}
+
+func (w writer) Write(p []byte) (n int, err error) {
+	w.tb.Log(string(p))
+	return len(p), nil
 }
