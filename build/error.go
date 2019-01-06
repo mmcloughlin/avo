@@ -40,6 +40,7 @@ func (e *ErrorList) Add(err Error) {
 	*e = append(*e, err)
 }
 
+// AddAt appends an error at position p.
 func (e *ErrorList) AddAt(p src.Position, err error) {
 	e.Add(Error{p, err})
 }
