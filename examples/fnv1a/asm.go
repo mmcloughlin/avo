@@ -4,8 +4,8 @@ package main
 
 import (
 	. "github.com/mmcloughlin/avo/build"
-	"github.com/mmcloughlin/avo/operand"
-	"github.com/mmcloughlin/avo/reg"
+	. "github.com/mmcloughlin/avo/operand"
+	. "github.com/mmcloughlin/avo/reg"
 )
 
 const (
@@ -19,22 +19,22 @@ func main() {
 	ptr := Load(Param("data").Base(), GP64())
 	n := Load(Param("data").Len(), GP64())
 
-	h := reg.RAX
-	MOVQ(operand.Imm(OffsetBasis), h)
+	h := RAX
+	MOVQ(Imm(OffsetBasis), h)
 	p := GP64()
-	MOVQ(operand.Imm(Prime), p)
+	MOVQ(Imm(Prime), p)
 
 	LABEL("loop")
-	CMPQ(n, operand.Imm(0))
-	JE(operand.LabelRef("done"))
+	CMPQ(n, Imm(0))
+	JE(LabelRef("done"))
 	b := GP64()
-	MOVBQZX(operand.Mem{Base: ptr}, b)
+	MOVBQZX(Mem{Base: ptr}, b)
 	XORQ(b, h)
 	MULQ(p)
 	INCQ(ptr)
 	DECQ(n)
 
-	JMP(operand.LabelRef("loop"))
+	JMP(LabelRef("loop"))
 	LABEL("done")
 	Store(h, ReturnIndex(0))
 	RET()

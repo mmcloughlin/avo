@@ -4,7 +4,7 @@ package main
 
 import (
 	. "github.com/mmcloughlin/avo/build"
-	"github.com/mmcloughlin/avo/operand"
+	. "github.com/mmcloughlin/avo/operand"
 )
 
 func main() {
@@ -15,12 +15,12 @@ func main() {
 	s := GP64()
 	XORQ(s, s)
 	LABEL("loop")
-	CMPQ(n, operand.Imm(0))
-	JE(operand.LabelRef("done"))
-	ADDQ(operand.Mem{Base: ptr}, s)
-	ADDQ(operand.Imm(8), ptr)
+	CMPQ(n, Imm(0))
+	JE(LabelRef("done"))
+	ADDQ(Mem{Base: ptr}, s)
+	ADDQ(Imm(8), ptr)
 	DECQ(n)
-	JMP(operand.LabelRef("loop"))
+	JMP(LabelRef("loop"))
 	LABEL("done")
 	Store(s, ReturnIndex(0))
 	RET()
