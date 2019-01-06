@@ -16,7 +16,7 @@
 
 Inspired by the [PeachPy](https://github.com/Maratyszcza/PeachPy) and [asmjit](https://github.com/asmjit/asmjit) projects.
 
-_Note: `avo` is still in an experimental phase. APIs subject to change._
+_Note: APIs subject to change while `avo` is still in an experimental phase. You can use it to build [real things](examples) but we suggest you pin a version with your package manager of choice._
 
 ## Install
 
