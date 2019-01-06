@@ -1,3 +1,4 @@
+// Package prnt provides common functionality for code generators.
 package prnt
 
 import (

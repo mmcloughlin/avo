@@ -1,3 +1,4 @@
+// Package stack provides helpers for querying the callstack.
 package stack
 
 import (

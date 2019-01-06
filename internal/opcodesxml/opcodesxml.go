@@ -1,3 +1,4 @@
+// Package opcodesxml is a reader for the Opcodes XML database.
 package opcodesxml
 
 import (
