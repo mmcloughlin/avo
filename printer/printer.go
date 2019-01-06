@@ -7,13 +7,13 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/mmcloughlin/avo"
 	"github.com/mmcloughlin/avo/internal/stack"
+	"github.com/mmcloughlin/avo/ir"
 )
 
 // Printer can produce output for an avo File.
 type Printer interface {
-	Print(*avo.File) ([]byte, error)
+	Print(*ir.File) ([]byte, error)
 }
 
 // Builder can construct a printer.

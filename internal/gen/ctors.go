@@ -27,7 +27,7 @@ func (c *ctors) Generate(is []inst.Instruction) ([]byte, error) {
 	c.Printf("package x86\n\n")
 	c.Printf("import (\n")
 	c.Printf("\t\"errors\"\n")
-	c.Printf("\t\"%s\"\n", pkg)
+	c.Printf("\tintrep \"%s/ir\"\n", pkg)
 	c.Printf("\t\"%s/reg\"\n", pkg)
 	c.Printf("\t\"%s/operand\"\n", pkg)
 	c.Printf(")\n\n")
@@ -46,7 +46,7 @@ func (c *ctors) instruction(i inst.Instruction) {
 
 	s := params(i)
 
-	c.Printf("func %s(%s) (*%s, error) {\n", i.Opcode, s.ParameterList(), instType)
+	c.Printf("func %s(%s) (*intrep.Instruction, error) {\n", i.Opcode, s.ParameterList())
 	c.forms(i, s)
 	c.Printf("}\n\n")
 }
@@ -85,7 +85,7 @@ func (c *ctors) forms(i inst.Instruction, s signature) {
 
 func construct(i inst.Instruction, f inst.Form, s signature) string {
 	buf := bytes.NewBuffer(nil)
-	fmt.Fprintf(buf, "%s{\n", instType)
+	fmt.Fprintf(buf, "intrep.Instruction{\n")
 	fmt.Fprintf(buf, "\tOpcode: %#v,\n", i.Opcode)
 	fmt.Fprintf(buf, "\tOperands: %s,\n", s.ParameterSlice())
 

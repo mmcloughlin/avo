@@ -1,12 +1,12 @@
 package pass
 
 import (
-	"github.com/mmcloughlin/avo"
 	"github.com/mmcloughlin/avo/attr"
+	"github.com/mmcloughlin/avo/ir"
 )
 
 // IncludeTextFlagHeader includes textflag.h if necessary.
-func IncludeTextFlagHeader(f *avo.File) error {
+func IncludeTextFlagHeader(f *ir.File) error {
 	const textflagheader = "textflag.h"
 
 	// Check if we already have it.
@@ -25,13 +25,13 @@ func IncludeTextFlagHeader(f *avo.File) error {
 }
 
 // requirestextflags returns whether the file uses flags in the textflags.h header.
-func requirestextflags(f *avo.File) bool {
+func requirestextflags(f *ir.File) bool {
 	for _, s := range f.Sections {
 		var a attr.Attribute
 		switch s := s.(type) {
-		case *avo.Function:
+		case *ir.Function:
 			a = s.Attributes
-		case *avo.Global:
+		case *ir.Global:
 			a = s.Attributes
 		}
 		if a.ContainsTextFlags() {

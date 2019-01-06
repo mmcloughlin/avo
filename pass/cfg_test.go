@@ -5,22 +5,21 @@ import (
 	"sort"
 	"testing"
 
+	"github.com/mmcloughlin/avo/ir"
 	"github.com/mmcloughlin/avo/operand"
-
-	"github.com/mmcloughlin/avo"
 )
 
 func TestLabelTarget(t *testing.T) {
-	expect := map[avo.Label]*avo.Instruction{
+	expect := map[ir.Label]*ir.Instruction{
 		"lblA": {Opcode: "A"},
 		"lblB": {Opcode: "B"},
 	}
 
-	f := avo.NewFunction("happypath")
+	f := ir.NewFunction("happypath")
 	for lbl, i := range expect {
 		f.AddLabel(lbl)
 		f.AddInstruction(i)
-		f.AddInstruction(&avo.Instruction{Opcode: "IDK"})
+		f.AddInstruction(&ir.Instruction{Opcode: "IDK"})
 	}
 
 	if err := LabelTarget(f); err != nil {
@@ -33,11 +32,11 @@ func TestLabelTarget(t *testing.T) {
 }
 
 func TestLabelTargetDuplicate(t *testing.T) {
-	f := avo.NewFunction("dupelabel")
-	f.AddLabel(avo.Label("lblA"))
-	f.AddInstruction(&avo.Instruction{Opcode: "A"})
-	f.AddLabel(avo.Label("lblA"))
-	f.AddInstruction(&avo.Instruction{Opcode: "A"})
+	f := ir.NewFunction("dupelabel")
+	f.AddLabel(ir.Label("lblA"))
+	f.AddInstruction(&ir.Instruction{Opcode: "A"})
+	f.AddLabel(ir.Label("lblA"))
+	f.AddInstruction(&ir.Instruction{Opcode: "A"})
 
 	err := LabelTarget(f)
 
@@ -47,9 +46,9 @@ func TestLabelTargetDuplicate(t *testing.T) {
 }
 
 func TestLabelTargetEndsWithLabel(t *testing.T) {
-	f := avo.NewFunction("endswithlabel")
-	f.AddInstruction(&avo.Instruction{Opcode: "A"})
-	f.AddLabel(avo.Label("theend"))
+	f := ir.NewFunction("endswithlabel")
+	f.AddInstruction(&ir.Instruction{Opcode: "A"})
+	f.AddLabel(ir.Label("theend"))
 
 	err := LabelTarget(f)
 
@@ -59,10 +58,10 @@ func TestLabelTargetEndsWithLabel(t *testing.T) {
 }
 
 func TestLabelTargetInstructionFollowLabel(t *testing.T) {
-	f := avo.NewFunction("expectinstafterlabel")
-	f.AddLabel(avo.Label("lblA"))
-	f.AddLabel(avo.Label("lblB"))
-	f.AddInstruction(&avo.Instruction{Opcode: "A"})
+	f := ir.NewFunction("expectinstafterlabel")
+	f.AddLabel(ir.Label("lblA"))
+	f.AddLabel(ir.Label("lblB"))
+	f.AddInstruction(&ir.Instruction{Opcode: "A"})
 
 	err := LabelTarget(f)
 
@@ -72,9 +71,9 @@ func TestLabelTargetInstructionFollowLabel(t *testing.T) {
 }
 
 func TestCFGSingleBasicBlock(t *testing.T) {
-	f := avo.NewFunction("simple")
-	f.AddInstruction(&avo.Instruction{Opcode: "A"})
-	f.AddInstruction(&avo.Instruction{Opcode: "B"})
+	f := ir.NewFunction("simple")
+	f.AddInstruction(&ir.Instruction{Opcode: "A"})
+	f.AddInstruction(&ir.Instruction{Opcode: "B"})
 	f.AddInstruction(Terminal("RET"))
 
 	if err := ComputeCFG(t, f); err != nil {
@@ -95,11 +94,11 @@ func TestCFGSingleBasicBlock(t *testing.T) {
 }
 
 func TestCFGCondBranch(t *testing.T) {
-	f := avo.NewFunction("condbranch")
-	f.AddInstruction(&avo.Instruction{Opcode: "A"})
-	f.AddLabel(avo.Label("lblB"))
-	f.AddInstruction(&avo.Instruction{Opcode: "B"})
-	f.AddInstruction(&avo.Instruction{Opcode: "C"})
+	f := ir.NewFunction("condbranch")
+	f.AddInstruction(&ir.Instruction{Opcode: "A"})
+	f.AddLabel(ir.Label("lblB"))
+	f.AddInstruction(&ir.Instruction{Opcode: "B"})
+	f.AddInstruction(&ir.Instruction{Opcode: "C"})
 	f.AddInstruction(CondBranch("J", "lblB"))
 	f.AddInstruction(Terminal("RET"))
 
@@ -117,10 +116,10 @@ func TestCFGCondBranch(t *testing.T) {
 }
 
 func TestCFGUncondBranch(t *testing.T) {
-	f := avo.NewFunction("uncondbranch")
-	f.AddInstruction(&avo.Instruction{Opcode: "A"})
-	f.AddLabel(avo.Label("lblB"))
-	f.AddInstruction(&avo.Instruction{Opcode: "B"})
+	f := ir.NewFunction("uncondbranch")
+	f.AddInstruction(&ir.Instruction{Opcode: "A"})
+	f.AddLabel(ir.Label("lblB"))
+	f.AddInstruction(&ir.Instruction{Opcode: "B"})
 	f.AddInstruction(UncondBranch("JMP", "lblB"))
 
 	if err := ComputeCFG(t, f); err != nil {
@@ -135,11 +134,11 @@ func TestCFGUncondBranch(t *testing.T) {
 }
 
 func TestCFGJumpForward(t *testing.T) {
-	f := avo.NewFunction("forward")
-	f.AddInstruction(&avo.Instruction{Opcode: "A"})
+	f := ir.NewFunction("forward")
+	f.AddInstruction(&ir.Instruction{Opcode: "A"})
 	f.AddInstruction(CondBranch("J", "done"))
-	f.AddInstruction(&avo.Instruction{Opcode: "B"})
-	f.AddLabel(avo.Label("done"))
+	f.AddInstruction(&ir.Instruction{Opcode: "B"})
+	f.AddLabel(ir.Label("done"))
 	f.AddInstruction(Terminal("RET"))
 
 	if err := ComputeCFG(t, f); err != nil {
@@ -155,13 +154,13 @@ func TestCFGJumpForward(t *testing.T) {
 }
 
 func TestCFGMultiReturn(t *testing.T) {
-	f := avo.NewFunction("multireturn")
-	f.AddInstruction(&avo.Instruction{Opcode: "A"})
+	f := ir.NewFunction("multireturn")
+	f.AddInstruction(&ir.Instruction{Opcode: "A"})
 	f.AddInstruction(CondBranch("J", "fork"))
-	f.AddInstruction(&avo.Instruction{Opcode: "B"})
+	f.AddInstruction(&ir.Instruction{Opcode: "B"})
 	f.AddInstruction(Terminal("RET1"))
-	f.AddLabel(avo.Label("fork"))
-	f.AddInstruction(&avo.Instruction{Opcode: "C"})
+	f.AddLabel(ir.Label("fork"))
+	f.AddInstruction(&ir.Instruction{Opcode: "C"})
 	f.AddInstruction(Terminal("RET2"))
 
 	if err := ComputeCFG(t, f); err != nil {
@@ -179,8 +178,8 @@ func TestCFGMultiReturn(t *testing.T) {
 }
 
 func TestCFGShortLoop(t *testing.T) {
-	f := avo.NewFunction("shortloop")
-	f.AddLabel(avo.Label("cycle"))
+	f := ir.NewFunction("shortloop")
+	f.AddLabel(ir.Label("cycle"))
 	f.AddInstruction(UncondBranch("JMP", "cycle"))
 
 	if err := ComputeCFG(t, f); err != nil {
@@ -193,8 +192,8 @@ func TestCFGShortLoop(t *testing.T) {
 }
 
 func TestCFGUndefinedLabel(t *testing.T) {
-	f := avo.NewFunction("undeflabel")
-	f.AddInstruction(&avo.Instruction{Opcode: "A"})
+	f := ir.NewFunction("undeflabel")
+	f.AddInstruction(&ir.Instruction{Opcode: "A"})
 	f.AddInstruction(CondBranch("J", "undef"))
 
 	err := ComputeCFG(t, f)
@@ -205,9 +204,9 @@ func TestCFGUndefinedLabel(t *testing.T) {
 }
 
 func TestCFGMissingLabel(t *testing.T) {
-	f := avo.NewFunction("missinglabel")
-	f.AddInstruction(&avo.Instruction{Opcode: "A"})
-	f.AddInstruction(&avo.Instruction{Opcode: "J", IsBranch: true}) // no label operand
+	f := ir.NewFunction("missinglabel")
+	f.AddInstruction(&ir.Instruction{Opcode: "A"})
+	f.AddInstruction(&ir.Instruction{Opcode: "J", IsBranch: true}) // no label operand
 	err := ComputeCFG(t, f)
 	if err == nil {
 		t.Fatal("expect error on missing label")
@@ -215,13 +214,13 @@ func TestCFGMissingLabel(t *testing.T) {
 }
 
 // Terminal builds a terminal instruction.
-func Terminal(opcode string) *avo.Instruction {
-	return &avo.Instruction{Opcode: opcode, IsTerminal: true}
+func Terminal(opcode string) *ir.Instruction {
+	return &ir.Instruction{Opcode: opcode, IsTerminal: true}
 }
 
 // CondBranch builds a conditional branch instruction to the given label.
-func CondBranch(opcode, lbl string) *avo.Instruction {
-	return &avo.Instruction{
+func CondBranch(opcode, lbl string) *ir.Instruction {
+	return &ir.Instruction{
 		Opcode:        opcode,
 		Operands:      []operand.Op{operand.LabelRef(lbl)},
 		IsBranch:      true,
@@ -230,8 +229,8 @@ func CondBranch(opcode, lbl string) *avo.Instruction {
 }
 
 // UncondBranch builds an unconditional branch instruction to the given label.
-func UncondBranch(opcode, lbl string) *avo.Instruction {
-	return &avo.Instruction{
+func UncondBranch(opcode, lbl string) *ir.Instruction {
+	return &ir.Instruction{
 		Opcode:        opcode,
 		Operands:      []operand.Op{operand.LabelRef(lbl)},
 		IsBranch:      true,
@@ -239,7 +238,7 @@ func UncondBranch(opcode, lbl string) *avo.Instruction {
 	}
 }
 
-func ComputeCFG(t *testing.T, f *avo.Function) error {
+func ComputeCFG(t *testing.T, f *ir.Function) error {
 	t.Helper()
 	if err := LabelTarget(f); err != nil {
 		t.Fatal(err)
@@ -247,11 +246,11 @@ func ComputeCFG(t *testing.T, f *avo.Function) error {
 	return CFG(f)
 }
 
-func AssertSuccessors(t *testing.T, f *avo.Function, expect map[string][]string) {
+func AssertSuccessors(t *testing.T, f *ir.Function, expect map[string][]string) {
 	AssertEqual(t, "successors", OpcodeSuccessorGraph(f), expect)
 }
 
-func AssertPredecessors(t *testing.T, f *avo.Function, expect map[string][]string) {
+func AssertPredecessors(t *testing.T, f *ir.Function, expect map[string][]string) {
 	AssertEqual(t, "predecessors", OpcodePredecessorGraph(f), expect)
 }
 
@@ -264,17 +263,17 @@ func AssertEqual(t *testing.T, what string, got, expect interface{}) {
 }
 
 // OpcodeSuccessorGraph builds a map from opcode name to successor opcode names.
-func OpcodeSuccessorGraph(f *avo.Function) map[string][]string {
-	return OpcodeGraph(f, func(i *avo.Instruction) []*avo.Instruction { return i.Succ })
+func OpcodeSuccessorGraph(f *ir.Function) map[string][]string {
+	return OpcodeGraph(f, func(i *ir.Instruction) []*ir.Instruction { return i.Succ })
 }
 
 // OpcodePredecessorGraph builds a map from opcode name to predecessor opcode names.
-func OpcodePredecessorGraph(f *avo.Function) map[string][]string {
-	return OpcodeGraph(f, func(i *avo.Instruction) []*avo.Instruction { return i.Pred })
+func OpcodePredecessorGraph(f *ir.Function) map[string][]string {
+	return OpcodeGraph(f, func(i *ir.Instruction) []*ir.Instruction { return i.Pred })
 }
 
 // OpcodeGraph builds a map from opcode name to neighboring opcode names. Each list of neighbors is sorted.
-func OpcodeGraph(f *avo.Function, neighbors func(*avo.Instruction) []*avo.Instruction) map[string][]string {
+func OpcodeGraph(f *ir.Function, neighbors func(*ir.Instruction) []*ir.Instruction) map[string][]string {
 	g := map[string][]string{}
 	for _, i := range f.Instructions() {
 		opcodes := []string{}

@@ -4,8 +4,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/mmcloughlin/avo"
 	"github.com/mmcloughlin/avo/internal/prnt"
+	"github.com/mmcloughlin/avo/ir"
 	"github.com/mmcloughlin/avo/operand"
 )
 
@@ -22,13 +22,13 @@ func NewGoAsm(cfg Config) Printer {
 	return &goasm{cfg: cfg}
 }
 
-func (p *goasm) Print(f *avo.File) ([]byte, error) {
+func (p *goasm) Print(f *ir.File) ([]byte, error) {
 	p.header(f)
 	for _, s := range f.Sections {
 		switch s := s.(type) {
-		case *avo.Function:
+		case *ir.Function:
 			p.function(s)
-		case *avo.Global:
+		case *ir.Global:
 			p.global(s)
 		default:
 			panic("unknown section type")
@@ -37,7 +37,7 @@ func (p *goasm) Print(f *avo.File) ([]byte, error) {
 	return p.Result()
 }
 
-func (p *goasm) header(f *avo.File) {
+func (p *goasm) header(f *ir.File) {
 	p.Comment(p.cfg.GeneratedWarning())
 
 	if len(f.Constraints) > 0 {
@@ -57,7 +57,7 @@ func (p *goasm) includes(paths []string) {
 	}
 }
 
-func (p *goasm) function(f *avo.Function) {
+func (p *goasm) function(f *ir.Function) {
 	p.NL()
 	p.Comment(f.Stub())
 
@@ -83,13 +83,13 @@ func (p *goasm) function(f *avo.Function) {
 
 	for _, node := range f.Nodes {
 		switch n := node.(type) {
-		case *avo.Instruction:
+		case *ir.Instruction:
 			if len(n.Operands) > 0 {
 				p.Printf("\t%s\t%s\n", n.Opcode, joinOperands(n.Operands))
 			} else {
 				p.Printf("\t%s\n", n.Opcode)
 			}
-		case avo.Label:
+		case ir.Label:
 			p.Printf("%s:\n", n)
 		default:
 			panic("unexpected node type")
@@ -97,7 +97,7 @@ func (p *goasm) function(f *avo.Function) {
 	}
 }
 
-func (p *goasm) global(g *avo.Global) {
+func (p *goasm) global(g *ir.Global) {
 	p.NL()
 	for _, d := range g.Data {
 		a := operand.NewDataAddr(g.Symbol, d.Offset)
@@ -106,7 +106,7 @@ func (p *goasm) global(g *avo.Global) {
 	p.Printf("GLOBL %s(SB), %s, $%d\n", g.Symbol, g.Attributes.Asm(), g.Size)
 }
 
-func textsize(f *avo.Function) string {
+func textsize(f *ir.Function) string {
 	// Reference: https://github.com/golang/go/blob/b115207baf6c2decc3820ada4574ef4e5ad940ec/src/cmd/internal/obj/util.go#L260-L265
 	//
 	//		case TYPE_TEXTSIZE:

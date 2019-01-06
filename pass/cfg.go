@@ -4,16 +4,16 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/mmcloughlin/avo"
+	"github.com/mmcloughlin/avo/ir"
 )
 
 // LabelTarget populates the LabelTarget of the given function. This maps from
 // label name to the following instruction.
-func LabelTarget(fn *avo.Function) error {
-	target := map[avo.Label]*avo.Instruction{}
+func LabelTarget(fn *ir.Function) error {
+	target := map[ir.Label]*ir.Instruction{}
 	for idx := 0; idx < len(fn.Nodes); idx++ {
 		// Is this a label?
-		lbl, ok := fn.Nodes[idx].(avo.Label)
+		lbl, ok := fn.Nodes[idx].(ir.Label)
 		if !ok {
 			continue
 		}
@@ -27,7 +27,7 @@ func LabelTarget(fn *avo.Function) error {
 		}
 		idx++
 		// Should be an instruction.
-		i, ok := fn.Nodes[idx].(*avo.Instruction)
+		i, ok := fn.Nodes[idx].(*ir.Instruction)
 		if !ok {
 			return errors.New("instruction should follow a label")
 		}
@@ -38,14 +38,14 @@ func LabelTarget(fn *avo.Function) error {
 }
 
 // CFG constructs the call-flow-graph for the function.
-func CFG(fn *avo.Function) error {
+func CFG(fn *ir.Function) error {
 	is := fn.Instructions()
 	n := len(is)
 
 	// Populate successors.
 	for i := 0; i < n; i++ {
 		cur := is[i]
-		var nxt *avo.Instruction
+		var nxt *ir.Instruction
 		if i+1 < n {
 			nxt = is[i+1]
 		}

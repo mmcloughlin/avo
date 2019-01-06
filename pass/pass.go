@@ -4,7 +4,7 @@ package pass
 import (
 	"io"
 
-	"github.com/mmcloughlin/avo"
+	"github.com/mmcloughlin/avo/ir"
 	"github.com/mmcloughlin/avo/printer"
 )
 
@@ -22,23 +22,23 @@ var Compile = Concat(
 
 // Interface for a processing pass.
 type Interface interface {
-	Execute(*avo.File) error
+	Execute(*ir.File) error
 }
 
 // Func adapts a function to the pass Interface.
-type Func func(*avo.File) error
+type Func func(*ir.File) error
 
 // Execute calls p.
-func (p Func) Execute(f *avo.File) error {
+func (p Func) Execute(f *ir.File) error {
 	return p(f)
 }
 
 // FunctionPass is a convenience for implementing a full file pass with a
 // function that operates on each avo Function independently.
-type FunctionPass func(*avo.Function) error
+type FunctionPass func(*ir.Function) error
 
 // Execute calls p on every function in the file. Exits on the first error.
-func (p FunctionPass) Execute(f *avo.File) error {
+func (p FunctionPass) Execute(f *ir.File) error {
 	for _, fn := range f.Functions() {
 		if err := p(fn); err != nil {
 			return err
@@ -49,7 +49,7 @@ func (p FunctionPass) Execute(f *avo.File) error {
 
 // Concat returns a pass that executes the given passes in order, stopping on the first error.
 func Concat(passes ...Interface) Interface {
-	return Func(func(f *avo.File) error {
+	return Func(func(f *ir.File) error {
 		for _, p := range passes {
 			if err := p.Execute(f); err != nil {
 				return err
@@ -66,7 +66,7 @@ type Output struct {
 }
 
 // Execute prints f with the configured Printer and writes output to Writer.
-func (o *Output) Execute(f *avo.File) error {
+func (o *Output) Execute(f *ir.File) error {
 	b, err := o.Printer.Print(f)
 	if err != nil {
 		return err

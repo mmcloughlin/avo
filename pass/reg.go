@@ -3,13 +3,13 @@ package pass
 import (
 	"errors"
 
-	"github.com/mmcloughlin/avo"
+	"github.com/mmcloughlin/avo/ir"
 	"github.com/mmcloughlin/avo/operand"
 	"github.com/mmcloughlin/avo/reg"
 )
 
 // Liveness computes register liveness.
-func Liveness(fn *avo.Function) error {
+func Liveness(fn *ir.Function) error {
 	// Note this implementation is initially naive so as to be "obviously correct".
 	// There are a well-known optimizations we can apply if necessary.
 
@@ -67,7 +67,7 @@ func Liveness(fn *avo.Function) error {
 }
 
 // AllocateRegisters performs register allocation.
-func AllocateRegisters(fn *avo.Function) error {
+func AllocateRegisters(fn *ir.Function) error {
 	// Populate allocators (one per kind).
 	as := map[reg.Kind]*Allocator{}
 	for _, i := range fn.Instructions() {
@@ -110,7 +110,7 @@ func AllocateRegisters(fn *avo.Function) error {
 }
 
 // BindRegisters applies the result of register allocation, replacing all virtual registers with their assigned physical registers.
-func BindRegisters(fn *avo.Function) error {
+func BindRegisters(fn *ir.Function) error {
 	for _, i := range fn.Instructions() {
 		for idx := range i.Operands {
 			i.Operands[idx] = operand.ApplyAllocation(i.Operands[idx], fn.Allocation)
@@ -120,7 +120,7 @@ func BindRegisters(fn *avo.Function) error {
 }
 
 // VerifyAllocation performs sanity checks following register allocation.
-func VerifyAllocation(fn *avo.Function) error {
+func VerifyAllocation(fn *ir.Function) error {
 	// All registers should be physical.
 	for _, i := range fn.Instructions() {
 		for _, r := range i.Registers() {

@@ -1,4 +1,4 @@
-package avo
+package ir
 
 import (
 	"errors"

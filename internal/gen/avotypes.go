@@ -7,7 +7,6 @@ import (
 
 const (
 	pkg         = "github.com/mmcloughlin/avo"
-	instType    = "avo.Instruction"
 	operandType = "operand.Op"
 )
 

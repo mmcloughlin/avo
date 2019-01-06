@@ -4,11 +4,11 @@ import (
 	"testing"
 
 	"github.com/mmcloughlin/avo/internal/test"
+	"github.com/mmcloughlin/avo/ir"
 	"github.com/mmcloughlin/avo/reg"
 
 	"github.com/mmcloughlin/avo/pass"
 
-	"github.com/mmcloughlin/avo"
 	"github.com/mmcloughlin/avo/build"
 	"github.com/mmcloughlin/avo/operand"
 )
@@ -57,7 +57,7 @@ func AssertRegistersMatchSet(t *testing.T, rs []reg.Register, s reg.Set) {
 	}
 }
 
-func ConstructLiveness(t *testing.T, ctx *build.Context) *avo.Function {
+func ConstructLiveness(t *testing.T, ctx *build.Context) *ir.Function {
 	f, err := ctx.Result()
 	if err != nil {
 		build.LogError(test.Logger(t), err, 0)
@@ -70,7 +70,7 @@ func ConstructLiveness(t *testing.T, ctx *build.Context) *avo.Function {
 	}
 	fn := fns[0]
 
-	passes := []func(*avo.Function) error{
+	passes := []func(*ir.Function) error{
 		pass.LabelTarget,
 		pass.CFG,
 		pass.Liveness,

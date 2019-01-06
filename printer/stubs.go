@@ -1,8 +1,8 @@
 package printer
 
 import (
-	"github.com/mmcloughlin/avo"
 	"github.com/mmcloughlin/avo/internal/prnt"
+	"github.com/mmcloughlin/avo/ir"
 )
 
 type stubs struct {
@@ -15,7 +15,7 @@ func NewStubs(cfg Config) Printer {
 	return &stubs{cfg: cfg}
 }
 
-func (s *stubs) Print(f *avo.File) ([]byte, error) {
+func (s *stubs) Print(f *ir.File) ([]byte, error) {
 	s.Comment(s.cfg.GeneratedWarning())
 
 	if len(f.Constraints) > 0 {
