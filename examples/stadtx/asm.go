@@ -38,7 +38,7 @@ func makelabels(name string, n int) []string {
 
 func main() {
 	Package("github.com/mmcloughlin/avo/examples/stadtx")
-	TEXT("Hash", "func(state *State, key []byte) uint64")
+	TEXT("Hash", NOSPLIT, "func(state *State, key []byte) uint64")
 	Doc("Hash computes the Stadtx hash.")
 
 	statePtr := Load(Param("state"), GP64())

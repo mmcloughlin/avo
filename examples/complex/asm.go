@@ -7,19 +7,19 @@ import (
 )
 
 func main() {
-	TEXT("Real", "func(z complex128) float64")
+	TEXT("Real", NOSPLIT, "func(z complex128) float64")
 	Doc("Real returns the real part of z.")
 	r := Load(Param("z").Real(), XMM())
 	Store(r, ReturnIndex(0))
 	RET()
 
-	TEXT("Imag", "func(z complex128) float64")
+	TEXT("Imag", NOSPLIT, "func(z complex128) float64")
 	Doc("Imag returns the imaginary part of z.")
 	i := Load(Param("z").Imag(), XMM())
 	Store(i, ReturnIndex(0))
 	RET()
 
-	TEXT("Norm", "func(z complex128) float64")
+	TEXT("Norm", NOSPLIT, "func(z complex128) float64")
 	Doc("Norm returns the complex norm of z.")
 	r = Load(Param("z").Real(), XMM())
 	i = Load(Param("z").Imag(), XMM())

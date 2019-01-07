@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	TEXT("Sum", "func(xs []uint64) uint64")
+	TEXT("Sum", NOSPLIT, "func(xs []uint64) uint64")
 	Doc("Sum returns the sum of the elements in xs.")
 	ptr := Load(Param("xs").Base(), GP64())
 	n := Load(Param("xs").Len(), GP64())

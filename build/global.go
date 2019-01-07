@@ -15,9 +15,10 @@ import (
 // ctx provides a global build context.
 var ctx = NewContext()
 
-// TEXT starts building a new function called name and sets its signature (see SignatureExpr).
-func TEXT(name, signature string) {
+// TEXT starts building a new function called name, with attributes a, and sets its signature (see SignatureExpr).
+func TEXT(name string, a attr.Attribute, signature string) {
 	ctx.Function(name)
+	ctx.Attributes(a)
 	ctx.SignatureExpr(signature)
 }
 

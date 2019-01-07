@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	TEXT("Add", "func(x, y uint64) uint64")
+	TEXT("Add", NOSPLIT, "func(x, y uint64) uint64")
 	Doc("Add adds x and y.")
 	x := Load(Param("x"), GP64())
 	y := Load(Param("y"), GP64())

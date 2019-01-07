@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	TEXT("block", "func(h *[5]uint32, m []byte)")
+	TEXT("block", 0, "func(h *[5]uint32, m []byte)")
 	Doc("block SHA-1 hashes the 64-byte message m into the running state h.")
 	h := Mem{Base: Load(Param("h"), GP64())}
 	m := Mem{Base: Load(Param("m").Base(), GP64())}

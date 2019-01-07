@@ -5,7 +5,6 @@ package main
 import (
 	"math"
 
-	. "github.com/mmcloughlin/avo/attr"
 	. "github.com/mmcloughlin/avo/build"
 	. "github.com/mmcloughlin/avo/operand"
 )
@@ -21,7 +20,7 @@ func main() {
 	DATA(38, U8(0x66))
 	DATA(39, U8(0x77))
 
-	TEXT("DataAt", "func(i int) byte")
+	TEXT("DataAt", NOSPLIT, "func(i int) byte")
 	Doc("DataAt returns byte i in the 'bytes' global data section.")
 	i := Load(Param("i"), GP64())
 	ptr := Mem{Base: GP64()}

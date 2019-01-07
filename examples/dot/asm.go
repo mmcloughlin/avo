@@ -11,7 +11,7 @@ import (
 var unroll = 6
 
 func main() {
-	TEXT("Dot", "func(x, y []float32) float32")
+	TEXT("Dot", NOSPLIT, "func(x, y []float32) float32")
 	x := Mem{Base: Load(Param("x").Base(), GP64())}
 	y := Mem{Base: Load(Param("y").Base(), GP64())}
 	n := Load(Param("x").Len(), GP64())

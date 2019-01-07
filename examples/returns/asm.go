@@ -10,7 +10,7 @@ import (
 func main() {
 	Package("github.com/mmcloughlin/avo/examples/returns")
 
-	TEXT("Interval", "func(start, size uint64) (uint64, uint64)")
+	TEXT("Interval", NOSPLIT, "func(start, size uint64) (uint64, uint64)")
 	Doc(
 		"Interval returns the (start, end) of an interval with the given start and size.",
 		"Demonstrates multiple unnamed return values.",
@@ -23,7 +23,7 @@ func main() {
 	Store(end, ReturnIndex(1))
 	RET()
 
-	TEXT("Butterfly", "func(x0, x1 float64) (y0, y1 float64)")
+	TEXT("Butterfly", NOSPLIT, "func(x0, x1 float64) (y0, y1 float64)")
 	Doc(
 		"Butterfly performs a 2-dimensional butterfly operation: computes (x0+x1, x0-x1).",
 		"Demonstrates multiple named return values.",
@@ -39,7 +39,7 @@ func main() {
 	Store(y1, Return("y1"))
 	RET()
 
-	TEXT("Septuple", "func(byte) [7]byte")
+	TEXT("Septuple", NOSPLIT, "func(byte) [7]byte")
 	Doc(
 		"Septuple returns an array of seven of the given byte.",
 		"Demonstrates returning array values.",
@@ -50,7 +50,7 @@ func main() {
 	}
 	RET()
 
-	TEXT("CriticalLine", "func(t float64) complex128")
+	TEXT("CriticalLine", NOSPLIT, "func(t float64) complex128")
 	Doc(
 		"CriticalLine returns the complex value 0.5 + it on Riemann's critical line.",
 		"Demonstrates returning complex values.",
@@ -62,7 +62,7 @@ func main() {
 	Store(t, ReturnIndex(0).Imag())
 	RET()
 
-	TEXT("NewStruct", "func(w uint16, p [2]float64, q uint64) Struct")
+	TEXT("NewStruct", NOSPLIT, "func(w uint16, p [2]float64, q uint64) Struct")
 	Doc(
 		"NewStruct initializes a Struct value.",
 		"Demonstrates returning struct values.",
