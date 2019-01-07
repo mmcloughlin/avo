@@ -3,7 +3,7 @@ package build
 import "github.com/mmcloughlin/avo/attr"
 
 // TEXT and DATA attribute values included for convenience.
-var (
+const (
 	NOPROF        = attr.NOPROF
 	DUPOK         = attr.DUPOK
 	NOSPLIT       = attr.NOSPLIT
