@@ -5,20 +5,18 @@
   <a href="http://godoc.org/github.com/mmcloughlin/avo"><img src="http://img.shields.io/badge/godoc-reference-5272B4.svg" alt="GoDoc" /></a>
 </p>
 
-<p align="center">High-level Golang x86 Assembly Generator</p>
+<p align="center">Generate x86 Assembly with Go</p>
 
-`avo` aims to make high-performance Go assembly easier to write, review and maintain. It's a Go package that presents a familiar assembly-like interface, together with features to simplify development without sacrificing performance:
+`avo` makes high-performance Go assembly easier to write, review and maintain. The `avo` package presents a familiar assembly-like interface that simplifies development without sacrificing performance:
 
-* `avo` programs _are_ Go programs: use **control structures** for assembly generation
-* **Register allocation**: write your kernels with **virtual registers** and `avo` assigns physical registers for you
-* Automatic **parameter load/stores**: ensure memory offsets are always correct even for complex data structures
-* Generation of **stub files** to interface with your Go package
-
-Inspired by the [PeachPy](https://github.com/Maratyszcza/PeachPy) and [asmjit](https://github.com/asmjit/asmjit) projects.
+* **Use Go control structures** for assembly generation; `avo` programs _are_ Go programs
+* **Register allocation**: write functions with virtual registers and `avo` assigns physical registers for you
+* **Automatically load arguments and store return values**: ensure memory offsets are always correct even for complex data structures
+* **Generation of stub files** to interface with your Go package
 
 _Note: APIs subject to change while `avo` is still in an experimental phase. You can use it to build [real things](examples) but we suggest you pin a version with your package manager of choice._
 
-## Install
+## Quick Start
 
 Install `avo` with `go get`:
 
@@ -26,9 +24,7 @@ Install `avo` with `go get`:
 $ go get -u github.com/mmcloughlin/avo
 ```
 
-## Quick Start
-
-`avo` assembly generators are pure Go programs. Let's get started with a function that adds two `uint64` values.
+`avo` assembly generators are pure Go programs. Here's a function that adds two `uint64` values:
 
 [embedmd]:# (examples/add/asm.go)
 ```go
@@ -52,7 +48,7 @@ func main() {
 }
 ```
 
-You can `go run` this code to see the assembly output. To integrate this into the rest of your Go package we recommend a [`go:generate`](https://blog.golang.org/generate) line to produce the assembly and the corresponding Go stub file.
+`go run` this code to see the assembly output. To integrate this into the rest of your Go package we recommend a [`go:generate`](https://blog.golang.org/generate) line to produce the assembly and the corresponding Go stub file.
 
 [embedmd]:# (examples/add/add_test.go go /.*go:generate.*/)
 ```go
@@ -309,6 +305,10 @@ Contributions to `avo` are welcome:
 * Feedback from using `avo` in a real project is incredibly valuable.
 * [Submit bug reports](https://github.com/mmcloughlin/avo/issues/new) to the issues page.
 * Pull requests accepted. Take a look at outstanding [issues](https://github.com/mmcloughlin/avo/issues) for ideas (especially the ["good first issue"](https://github.com/mmcloughlin/avo/labels/good%20first%20issue) label).
+
+## Credits
+
+Inspired by the [PeachPy](https://github.com/Maratyszcza/PeachPy) and [asmjit](https://github.com/asmjit/asmjit) projects.
 
 ## License
 
