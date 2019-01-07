@@ -21,7 +21,7 @@ The `GLOBL` function returns a reference which may be used in assembly code. The
 
 [embedmd]:# (asm.go go /.*TEXT.*DataAt/ /RET.*/)
 ```go
-	TEXT("DataAt", "func(i int) byte")
+	TEXT("DataAt", NOSPLIT, "func(i int) byte")
 	Doc("DataAt returns byte i in the 'bytes' global data section.")
 	i := Load(Param("i"), GP64())
 	ptr := Mem{Base: GP64()}

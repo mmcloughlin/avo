@@ -7,7 +7,7 @@ Refer to ["Geohash in Golang Assembly"](https://mmcloughlin.com/posts/geohash-as
 [embedmd]:# (asm.go /func main/ $)
 ```go
 func main() {
-	TEXT("EncodeInt", "func(lat, lng float64) uint64")
+	TEXT("EncodeInt", NOSPLIT, "func(lat, lng float64) uint64")
 	Doc("EncodeInt computes the 64-bit integer geohash of (lat, lng).")
 	lat := Load(Param("lat"), XMM())
 	lng := Load(Param("lng"), XMM())

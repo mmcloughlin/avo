@@ -8,7 +8,7 @@ Use `ReturnIndex` to reference unnamed return values. For example, the following
 
 [embedmd]:# (asm.go go /.*TEXT.*Interval/ /RET.*/)
 ```go
-	TEXT("Interval", "func(start, size uint64) (uint64, uint64)")
+	TEXT("Interval", NOSPLIT, "func(start, size uint64) (uint64, uint64)")
 	Doc(
 		"Interval returns the (start, end) of an interval with the given start and size.",
 		"Demonstrates multiple unnamed return values.",
@@ -28,7 +28,7 @@ Named return values are referenced much the same as arguments. For example, the 
 
 [embedmd]:# (asm.go go /.*TEXT.*Butterfly/ /RET.*/)
 ```go
-	TEXT("Butterfly", "func(x0, x1 float64) (y0, y1 float64)")
+	TEXT("Butterfly", NOSPLIT, "func(x0, x1 float64) (y0, y1 float64)")
 	Doc(
 		"Butterfly performs a 2-dimensional butterfly operation: computes (x0+x1, x0-x1).",
 		"Demonstrates multiple named return values.",
@@ -53,7 +53,7 @@ The following code returns an array type.
 
 [embedmd]:# (asm.go go /.*TEXT.*Septuple/ /RET.*/)
 ```go
-	TEXT("Septuple", "func(byte) [7]byte")
+	TEXT("Septuple", NOSPLIT, "func(byte) [7]byte")
 	Doc(
 		"Septuple returns an array of seven of the given byte.",
 		"Demonstrates returning array values.",
@@ -69,7 +69,7 @@ Or a complex type:
 
 [embedmd]:# (asm.go go /.*TEXT.*CriticalLine/ /RET.*/)
 ```go
-	TEXT("CriticalLine", "func(t float64) complex128")
+	TEXT("CriticalLine", NOSPLIT, "func(t float64) complex128")
 	Doc(
 		"CriticalLine returns the complex value 0.5 + it on Riemann's critical line.",
 		"Demonstrates returning complex values.",
@@ -86,7 +86,7 @@ You can even build a struct:
 
 [embedmd]:# (asm.go go /.*TEXT.*NewStruct/ /RET.*/)
 ```go
-	TEXT("NewStruct", "func(w uint16, p [2]float64, q uint64) Struct")
+	TEXT("NewStruct", NOSPLIT, "func(w uint16, p [2]float64, q uint64) Struct")
 	Doc(
 		"NewStruct initializes a Struct value.",
 		"Demonstrates returning struct values.",

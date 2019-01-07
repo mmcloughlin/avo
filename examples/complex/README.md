@@ -6,7 +6,7 @@ The `Real()` and `Imag()` parameter methods may be used to load the sub-componen
 
 [embedmd]:# (asm.go go /.*TEXT.*Norm/ /RET.*/)
 ```go
-	TEXT("Norm", "func(z complex128) float64")
+	TEXT("Norm", NOSPLIT, "func(z complex128) float64")
 	Doc("Norm returns the complex norm of z.")
 	r = Load(Param("z").Real(), XMM())
 	i = Load(Param("z").Imag(), XMM())
@@ -24,7 +24,7 @@ Generated assembly:
 [embedmd]:# (complex.s s /.*func Norm/ /RET/)
 ```s
 // func Norm(z complex128) float64
-TEXT ·Norm(SB), $0-24
+TEXT ·Norm(SB), NOSPLIT, $0-24
 	MOVSD	z_real(FP), X0
 	MOVSD	z_imag+8(FP), X1
 	MULSD	X0, X0

@@ -10,7 +10,7 @@ const (
 )
 
 func main() {
-	TEXT("Hash64", "func(data []byte) uint64")
+	TEXT("Hash64", NOSPLIT, "func(data []byte) uint64")
 	Doc("Hash64 computes the FNV-1a hash of data.")
 	ptr := Load(Param("data").Base(), GP64())
 	n := Load(Param("data").Len(), GP64())
