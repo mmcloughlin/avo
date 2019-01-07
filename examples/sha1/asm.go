@@ -19,22 +19,16 @@ func main() {
 	W := func(r int) Mem { return w.Offset((r % 16) * 4) }
 
 	// Load initial hash.
-	h0, h1, h2, h3, h4 := GP32(), GP32(), GP32(), GP32(), GP32()
-
-	MOVL(h.Offset(0), h0)
-	MOVL(h.Offset(4), h1)
-	MOVL(h.Offset(8), h2)
-	MOVL(h.Offset(12), h3)
-	MOVL(h.Offset(16), h4)
+	hash := [5]Register{GP32(), GP32(), GP32(), GP32(), GP32()}
+	for i, r := range hash {
+		MOVL(h.Offset(4*i), r)
+	}
 
 	// Initialize registers.
 	a, b, c, d, e := GP32(), GP32(), GP32(), GP32(), GP32()
-
-	MOVL(h0, a)
-	MOVL(h1, b)
-	MOVL(h2, c)
-	MOVL(h3, d)
-	MOVL(h4, e)
+	for i, r := range []Register{a, b, c, d, e} {
+		MOVL(hash[i], r)
+	}
 
 	// Generate round updates.
 	quarter := []struct {
@@ -79,18 +73,14 @@ func main() {
 	}
 
 	// Final add.
-	ADDL(a, h0)
-	ADDL(b, h1)
-	ADDL(c, h2)
-	ADDL(d, h3)
-	ADDL(e, h4)
+	for i, r := range []Register{a, b, c, d, e} {
+		ADDL(r, hash[i])
+	}
 
 	// Store results back.
-	MOVL(h0, h.Offset(0))
-	MOVL(h1, h.Offset(4))
-	MOVL(h2, h.Offset(8))
-	MOVL(h3, h.Offset(12))
-	MOVL(h4, h.Offset(16))
+	for i, r := range hash {
+		MOVL(r, h.Offset(4*i))
+	}
 	RET()
 
 	Generate()
