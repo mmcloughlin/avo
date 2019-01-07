@@ -1,8 +1,6 @@
 language: go
 go:
 - 1.11.1
-env:
-- GO111MODULE=on
 install:
 - ./script/bootstrap
 script:
