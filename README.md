@@ -264,6 +264,8 @@ func choose(b, c, d Register) Register {
 }
 ```
 
+See the complete code at [`examples/sha1`](examples/sha1).
+
 ### Real Examples
 
 * **[fnv1a](examples/fnv1a):** [FNV-1a](https://en.wikipedia.org/wiki/Fowler%E2%80%93Noll%E2%80%93Vo_hash_function#FNV-1a_hash) hash function.
