@@ -11,7 +11,7 @@
 
 * **Use Go control structures** for assembly generation; `avo` programs _are_ Go programs
 * **Register allocation**: write functions with virtual registers and `avo` assigns physical registers for you
-* **Automatically load arguments and store return values**: ensure memory offsets are always correct even for complex data structures
+* **Automatically load arguments and store return values**: ensure memory offsets are correct for complex structures
 * **Generation of stub files** to interface with your Go package
 
 _Note: APIs subject to change while `avo` is still in an experimental phase. You can use it to build [real things](examples) but we suggest you pin a version with your package manager of choice._
