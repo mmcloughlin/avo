@@ -1,6 +1,8 @@
 package gen
 
 import (
+	"fmt"
+
 	"github.com/mmcloughlin/avo/internal/inst"
 	"github.com/mmcloughlin/avo/internal/prnt"
 	"github.com/mmcloughlin/avo/printer"
@@ -37,14 +39,21 @@ func (b *build) Generate(is []inst.Instruction) ([]byte, error) {
 
 func (b *build) instruction(i inst.Instruction) {
 	s := params(i)
+	d := doc(i)
 
 	// Context method.
+	methoddoc := append([]string{}, d...)
+	methoddoc = append(methoddoc, fmt.Sprintf("Construct and append a %s instruction to the active function.", i.Opcode))
+	b.Comment(methoddoc...)
 	b.Printf("func (c *Context) %s(%s) {\n", i.Opcode, s.ParameterList())
 	b.Printf("if inst, err := x86.%s(%s); err == nil", i.Opcode, s.Arguments())
 	b.Printf(" { c.Instruction(inst) }")
 	b.Printf(" else { c.adderror(err) }\n")
-	b.Printf("}\n")
+	b.Printf("}\n\n")
 
 	// Global version.
+	globaldoc := append([]string{}, methoddoc...)
+	globaldoc = append(globaldoc, "Operates on the global context.")
+	b.Comment(globaldoc...)
 	b.Printf("func %s(%s) { ctx.%s(%s) }\n\n", i.Opcode, s.ParameterList(), i.Opcode, s.Arguments())
 }

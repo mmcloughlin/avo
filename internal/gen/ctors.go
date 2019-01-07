@@ -40,9 +40,7 @@ func (c *ctors) Generate(is []inst.Instruction) ([]byte, error) {
 }
 
 func (c *ctors) instruction(i inst.Instruction) {
-	for _, line := range doc(i) {
-		c.Printf("// %s\n", line)
-	}
+	c.Comment(doc(i)...)
 
 	s := params(i)
 
