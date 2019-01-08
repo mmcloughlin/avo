@@ -183,7 +183,7 @@ Contributions to `avo` are welcome:
 
 ## Credits
 
-Inspired by the [PeachPy](https://github.com/Maratyszcza/PeachPy) and [asmjit](https://github.com/asmjit/asmjit) projects.
+Inspired by the [PeachPy](https://github.com/Maratyszcza/PeachPy) and [asmjit](https://github.com/asmjit/asmjit) projects. Thanks to [Damian Gryski](https://github.com/dgryski) for advice, and his [extensive library of PeachPy Go projects](https://github.com/mmcloughlin/avo/issues/40).
 
 ## License
 
