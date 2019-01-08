@@ -24,7 +24,6 @@ func (s String) constant() {}
 
 // Imm returns an unsigned integer constant with size guessed from x.
 func Imm(x uint64) Constant {
-	// TODO(mbm): remove this function
 	switch {
 	case uint64(uint8(x)) == x:
 		return U8(x)
