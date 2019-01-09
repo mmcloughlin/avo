@@ -8,3 +8,5 @@ script:
 - go test -bench . ./...
 - ./script/coverage
 - ./script/lint
+after_success:
+- bash <(curl -s https://codecov.io/bash) -f all.coverprofile
