@@ -1,24 +1,13 @@
 linters:
-  enable-all: false
-  enable:
-    - golint
-    - gosimple
-    - misspell
-    - gocyclo
-    - gofmt
-    - structcheck
-    - varcheck
-    - ineffassign
-    - typecheck
-    - megacheck
-    - deadcode
-    - govet
-    - errcheck
-    - goimports
-    - depguard
-    - goconst
-    - unconvert
-    - gocritic
+  enable-all: true
+  disable:
+  - maligned
+  - lll
+  - gosec
+  - prealloc
+  - unparam
+  - gochecknoglobals
+  - gochecknoinits
 
 linters-settings:
   depguard:

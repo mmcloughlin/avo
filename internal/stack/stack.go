@@ -35,9 +35,9 @@ func Match(skip int, predicate func(runtime.Frame) bool) *runtime.Frame {
 	i, n := skip+1, 16
 	for {
 		fs := Frames(i, n)
-		for _, f := range fs {
+		for j, f := range fs {
 			if predicate(f) {
-				return &f
+				return &fs[j]
 			}
 		}
 		if len(fs) < n {
