@@ -6,16 +6,19 @@ ext=".coverprofile"
 find . -name '*'${ext} | xargs rm -f
 
 # Unit test coverage.
-go test -covermode=count -coverprofile=unit${ext} ./...
+go test -covermode=count -coverprofile=unittests${ext} ./...
 
 # Integration test coverage.
-find . -name 'asm.go' | while read main; do
+coverprofiles=()
+for main in $(find . -name 'asm.go'); do
 	dir=$(dirname ${main})
 	name=$(basename ${dir})
 	coverprofile="${dir}/${name}${ext}"
 	./script/covermain ${main} ${coverprofile} > /dev/null
+	coverprofiles+=(${coverprofile})
 done
 
+covertool merge --output integration${ext} ${coverprofiles[@]}
+
 # Merge.
-all="all${ext}"
-find . -name '*'${ext} | xargs covertool merge --output ${all}
+covertool merge --output all${ext} unit${ext} integration${ext}

@@ -9,4 +9,5 @@ script:
 - ./script/coverage
 - ./script/lint
 after_success:
-- bash <(curl -s https://codecov.io/bash) -f all.coverprofile
+- bash <(curl -s https://codecov.io/bash) -F unittests -f unittests.coverprofile
+- bash <(curl -s https://codecov.io/bash) -F integration -f integration.coverprofile
