@@ -21,4 +21,4 @@ done
 covertool merge --output integration${ext} ${coverprofiles[@]}
 
 # Merge.
-covertool merge --output all${ext} unit${ext} integration${ext}
+covertool merge --output all${ext} unittests${ext} integration${ext}
