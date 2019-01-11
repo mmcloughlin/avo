@@ -16,13 +16,13 @@ func main() {
 	w := AllocLocal(64)
 	W := func(r int) Mem { return w.Offset((r % 16) * 4) }
 
-	// Load initial hash.
+	Comment("Load initial hash.")
 	hash := [5]Register{GP32(), GP32(), GP32(), GP32(), GP32()}
 	for i, r := range hash {
 		MOVL(h.Offset(4*i), r)
 	}
 
-	// Initialize registers.
+	Comment("Initialize registers.")
 	a, b, c, d, e := GP32(), GP32(), GP32(), GP32(), GP32()
 	for i, r := range []Register{a, b, c, d, e} {
 		MOVL(hash[i], r)
@@ -40,6 +40,7 @@ func main() {
 	}
 
 	for r := 0; r < 80; r++ {
+		Commentf("Round %d.", r)
 		q := quarter[r/20]
 
 		// Load message value.
@@ -70,12 +71,12 @@ func main() {
 		a, b, c, d, e = t, a, b, c, d
 	}
 
-	// Final add.
+	Comment("Final add.")
 	for i, r := range []Register{a, b, c, d, e} {
 		ADDL(r, hash[i])
 	}
 
-	// Store results back.
+	Comment("Store results back.")
 	for i, r := range hash {
 		MOVL(r, h.Offset(4*i))
 	}
