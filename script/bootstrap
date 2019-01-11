@@ -16,4 +16,4 @@ go get -u github.com/campoy/embedmd
 go get -u github.com/dlespiau/covertool
 
 # asmfmt for enforcing assembly style
-go get -u github.com/klauspost/asmfmt
+go get -u github.com/klauspost/asmfmt/cmd/asmfmt
