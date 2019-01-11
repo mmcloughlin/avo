@@ -14,3 +14,6 @@ go get -u github.com/campoy/embedmd
 
 # covertool for merging coverage reports
 go get -u github.com/dlespiau/covertool
+
+# asmfmt for enforcing assembly style
+go get -u github.com/klauspost/asmfmt

@@ -53,7 +53,7 @@ func PrintAttributesTest(w io.Writer, as []attr.Attribute) {
 		fmt.Fprintf(w, "\tCMPW R8, R9\n")
 
 		cont := fmt.Sprintf("cont%d", i)
-		fmt.Fprintf(w, "\tJE %s\n", cont)
+		fmt.Fprintf(w, "\tJE   %s\n", cont)
 		fmt.Fprintf(w, "\tRET\n")
 
 		fmt.Fprintf(w, "%s:\n", cont)
