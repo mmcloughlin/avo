@@ -17,8 +17,8 @@ func main() {
 	s := GP64()
 	XORQ(s, s)
 
-	Comment("Loop until zero bytes remain.")
 	Label("loop")
+	Comment("Loop until zero bytes remain.")
 	CMPQ(n, Imm(0))
 	JE(LabelRef("done"))
 
@@ -30,8 +30,8 @@ func main() {
 	DECQ(n)
 	JMP(LabelRef("loop"))
 
-	Comment("Store sum to return value.")
 	Label("done")
+	Comment("Store sum to return value.")
 	Store(s, ReturnIndex(0))
 	RET()
 	Generate()

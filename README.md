@@ -106,8 +106,8 @@ func main() {
 	s := GP64()
 	XORQ(s, s)
 
-	Comment("Loop until zero bytes remain.")
 	Label("loop")
+	Comment("Loop until zero bytes remain.")
 	CMPQ(n, Imm(0))
 	JE(LabelRef("done"))
 
@@ -119,8 +119,8 @@ func main() {
 	DECQ(n)
 	JMP(LabelRef("loop"))
 
-	Comment("Store sum to return value.")
 	Label("done")
+	Comment("Store sum to return value.")
 	Store(s, ReturnIndex(0))
 	RET()
 	Generate()
@@ -143,8 +143,8 @@ TEXT ·Sum(SB), NOSPLIT, $0-32
 	// Initialize sum register to zero.
 	XORQ DX, DX
 
-	// Loop until zero bytes remain.
 loop:
+	// Loop until zero bytes remain.
 	CMPQ CX, $0x00
 	JE   done
 
@@ -156,8 +156,8 @@ loop:
 	DECQ CX
 	JMP  loop
 
-	// Store sum to return value.
 done:
+	// Store sum to return value.
 	MOVQ DX, ret+24(FP)
 	RET
 ```

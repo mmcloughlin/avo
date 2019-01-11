@@ -10,8 +10,8 @@ TEXT ·Sum(SB), NOSPLIT, $0-32
 	// Initialize sum register to zero.
 	XORQ DX, DX
 
-	// Loop until zero bytes remain.
 loop:
+	// Loop until zero bytes remain.
 	CMPQ CX, $0x00
 	JE   done
 
@@ -23,7 +23,7 @@ loop:
 	DECQ CX
 	JMP  loop
 
-	// Store sum to return value.
 done:
+	// Store sum to return value.
 	MOVQ DX, ret+24(FP)
 	RET
