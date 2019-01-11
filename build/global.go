@@ -128,5 +128,8 @@ func Label(name string) { ctx.Label(name) }
 // Comment adds comment lines to the active function.
 func Comment(lines ...string) { ctx.Comment(lines...) }
 
+// Commentf adds a formtted comment line.
+func Commentf(format string, a ...interface{}) { ctx.Commentf(format, a...) }
+
 // ConstData builds a static data section containing just the given constant.
 func ConstData(name string, v operand.Constant) operand.Mem { return ctx.ConstData(name, v) }

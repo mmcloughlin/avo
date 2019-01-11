@@ -2,6 +2,7 @@ package build
 
 import (
 	"errors"
+	"fmt"
 	"go/types"
 
 	"github.com/mmcloughlin/avo/attr"
@@ -136,6 +137,11 @@ func (c *Context) Label(name string) {
 // Comment adds comment lines to the active function.
 func (c *Context) Comment(lines ...string) {
 	c.activefunc().AddComment(lines...)
+}
+
+// Commentf adds a formtted comment line.
+func (c *Context) Commentf(format string, a ...interface{}) {
+	c.Comment(fmt.Sprintf(format, a...))
 }
 
 func (c *Context) activefunc() *ir.Function {
