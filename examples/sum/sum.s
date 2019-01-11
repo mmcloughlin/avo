@@ -6,16 +6,24 @@
 TEXT ·Sum(SB), NOSPLIT, $0-32
 	MOVQ xs_base(FP), AX
 	MOVQ xs_len+8(FP), CX
+
+	// Initialize sum register to zero.
 	XORQ DX, DX
 
+	// Loop until zero bytes remain.
 loop:
 	CMPQ CX, $0x00
 	JE   done
+
+	// Load from pointer and add to running sum.
 	ADDQ (AX), DX
+
+	// Advance pointer, decrement byte count.
 	ADDQ $0x08, AX
 	DECQ CX
 	JMP  loop
 
+	// Store sum to return value.
 done:
 	MOVQ DX, ret+24(FP)
 	RET

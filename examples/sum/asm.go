@@ -13,24 +13,24 @@ func main() {
 	ptr := Load(Param("xs").Base(), GP64())
 	n := Load(Param("xs").Len(), GP64())
 
-	// Initialize sum register to zero.
+	Comment("Initialize sum register to zero.")
 	s := GP64()
 	XORQ(s, s)
 
-	// Loop until zero bytes remain.
+	Comment("Loop until zero bytes remain.")
 	Label("loop")
 	CMPQ(n, Imm(0))
 	JE(LabelRef("done"))
 
-	// Load from pointer and add to running sum.
+	Comment("Load from pointer and add to running sum.")
 	ADDQ(Mem{Base: ptr}, s)
 
-	// Advance pointer, decrement byte count.
+	Comment("Advance pointer, decrement byte count.")
 	ADDQ(Imm(8), ptr)
 	DECQ(n)
 	JMP(LabelRef("loop"))
 
-	// Store sum to return value.
+	Comment("Store sum to return value.")
 	Label("done")
 	Store(s, ReturnIndex(0))
 	RET()
