@@ -43,9 +43,9 @@ This produces [`add.s`](add.s) as follows:
 
 // func Add(x uint64, y uint64) uint64
 TEXT ·Add(SB), NOSPLIT, $0-24
-	MOVQ	x(FP), AX
-	MOVQ	y+8(FP), CX
-	ADDQ	AX, CX
-	MOVQ	CX, ret+16(FP)
+	MOVQ x(FP), AX
+	MOVQ y+8(FP), CX
+	ADDQ AX, CX
+	MOVQ CX, ret+16(FP)
 	RET
 ```

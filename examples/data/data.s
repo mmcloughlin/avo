@@ -14,8 +14,8 @@ GLOBL bytes<>(SB), RODATA|NOPTR, $40
 
 // func DataAt(i int) byte
 TEXT ·DataAt(SB), NOSPLIT, $0-9
-	MOVQ	i(FP), AX
-	LEAQ	bytes<>(SB), CX
-	MOVB	(CX)(AX*1), AL
-	MOVB	AL, ret+8(FP)
+	MOVQ i(FP), AX
+	LEAQ bytes<>(SB), CX
+	MOVB (CX)(AX*1), AL
+	MOVB AL, ret+8(FP)
 	RET

@@ -1,8 +1,10 @@
 package printer
 
 import (
+	"fmt"
 	"strconv"
 	"strings"
+	"text/tabwriter"
 
 	"github.com/mmcloughlin/avo/internal/prnt"
 	"github.com/mmcloughlin/avo/ir"
@@ -81,20 +83,29 @@ func (p *goasm) function(f *ir.Function) {
 	}
 	p.Printf(", %s\n", textsize(f))
 
+	w := p.tabwriter()
 	for _, node := range f.Nodes {
 		switch n := node.(type) {
 		case *ir.Instruction:
+			leader := []byte{tabwriter.Escape, '\t', tabwriter.Escape}
+			fmt.Fprint(w, string(leader)+n.Opcode)
 			if len(n.Operands) > 0 {
-				p.Printf("\t%s\t%s\n", n.Opcode, joinOperands(n.Operands))
-			} else {
-				p.Printf("\t%s\n", n.Opcode)
+				fmt.Fprintf(w, "\t%s", joinOperands(n.Operands))
 			}
+			fmt.Fprint(w, "\n")
 		case ir.Label:
-			p.Printf("%s:\n", n)
+			w.Flush()
+			w = p.tabwriter()
+			p.Printf("\n%s:\n", n)
 		default:
 			panic("unexpected node type")
 		}
 	}
+	w.Flush()
+}
+
+func (p *goasm) tabwriter() *tabwriter.Writer {
+	return tabwriter.NewWriter(p.Raw(), 4, 4, 1, ' ', tabwriter.StripEscape)
 }
 
 func (p *goasm) global(g *ir.Global) {

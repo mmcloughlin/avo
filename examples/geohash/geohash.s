@@ -4,21 +4,21 @@
 
 // func EncodeInt(lat float64, lng float64) uint64
 TEXT ·EncodeInt(SB), NOSPLIT, $0-24
-	MOVSD	lat(FP), X0
-	MOVSD	lng+8(FP), X1
-	MULSD	reciprocal180<>(SB), X0
-	ADDSD	onepointfive<>(SB), X0
-	MULSD	reciprocal360<>(SB), X1
-	ADDSD	onepointfive<>(SB), X1
-	MOVQ	X0, CX
-	SHRQ	$0x14, CX
-	MOVQ	X1, AX
-	SHRQ	$0x14, AX
-	PDEPQ	mask<>(SB), CX, CX
-	PDEPQ	mask<>(SB), AX, AX
-	SHLQ	$0x01, AX
-	XORQ	AX, CX
-	MOVQ	CX, ret+16(FP)
+	MOVSD lat(FP), X0
+	MOVSD lng+8(FP), X1
+	MULSD reciprocal180<>(SB), X0
+	ADDSD onepointfive<>(SB), X0
+	MULSD reciprocal360<>(SB), X1
+	ADDSD onepointfive<>(SB), X1
+	MOVQ  X0, CX
+	SHRQ  $0x14, CX
+	MOVQ  X1, AX
+	SHRQ  $0x14, AX
+	PDEPQ mask<>(SB), CX, CX
+	PDEPQ mask<>(SB), AX, AX
+	SHLQ  $0x01, AX
+	XORQ  AX, CX
+	MOVQ  CX, ret+16(FP)
 	RET
 
 DATA reciprocal180<>(SB)/8, $(0.005555555555555556)

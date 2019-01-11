@@ -20,8 +20,8 @@ This `avo` code will generate the following assembly. Note that parameter refere
 ```s
 // func Second(x int32, y int32) int32
 TEXT ·Second(SB), NOSPLIT, $0-12
-	MOVL	y+4(FP), AX
-	MOVL	AX, ret+8(FP)
+	MOVL y+4(FP), AX
+	MOVL AX, ret+8(FP)
 	RET
 ```
 

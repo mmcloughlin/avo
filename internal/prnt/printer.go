@@ -4,6 +4,7 @@ package prnt
 import (
 	"bytes"
 	"fmt"
+	"io"
 )
 
 // Generator provides convenience methods for code generators. In particular it
@@ -13,6 +14,11 @@ import (
 type Generator struct {
 	buf bytes.Buffer
 	err error
+}
+
+// Raw provides direct access to the underlying output stream.
+func (g *Generator) Raw() io.Writer {
+	return &g.buf
 }
 
 // Printf prints to the internal buffer.

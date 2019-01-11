@@ -4,16 +4,18 @@
 
 // func Sum(xs []uint64) uint64
 TEXT ·Sum(SB), NOSPLIT, $0-32
-	MOVQ	xs_base(FP), AX
-	MOVQ	xs_len+8(FP), CX
-	XORQ	DX, DX
+	MOVQ xs_base(FP), AX
+	MOVQ xs_len+8(FP), CX
+	XORQ DX, DX
+
 loop:
-	CMPQ	CX, $0x00
-	JE	done
-	ADDQ	(AX), DX
-	ADDQ	$0x08, AX
-	DECQ	CX
-	JMP	loop
+	CMPQ CX, $0x00
+	JE   done
+	ADDQ (AX), DX
+	ADDQ $0x08, AX
+	DECQ CX
+	JMP  loop
+
 done:
-	MOVQ	DX, ret+24(FP)
+	MOVQ DX, ret+24(FP)
 	RET
