@@ -11,27 +11,27 @@ import (
 // label name to the following instruction.
 func LabelTarget(fn *ir.Function) error {
 	target := map[ir.Label]*ir.Instruction{}
-	for idx := 0; idx < len(fn.Nodes); idx++ {
-		// Is this a label?
-		lbl, ok := fn.Nodes[idx].(ir.Label)
-		if !ok {
-			continue
+	var empty ir.Label
+	pending := empty
+	for _, node := range fn.Nodes {
+		switch n := node.(type) {
+		case ir.Label:
+			if pending != empty {
+				return errors.New("instruction should follow a label")
+			}
+			pending = n
+			if _, found := target[pending]; found {
+				return fmt.Errorf("duplicate label \"%s\"", pending)
+			}
+		case *ir.Instruction:
+			if pending != empty {
+				target[pending] = n
+				pending = empty
+			}
 		}
-		// Check for a duplicate label.
-		if _, found := target[lbl]; found {
-			return fmt.Errorf("duplicate label \"%s\"", lbl)
-		}
-		// Advance to next node.
-		if idx == len(fn.Nodes)-1 {
-			return errors.New("function ends with label")
-		}
-		idx++
-		// Should be an instruction.
-		i, ok := fn.Nodes[idx].(*ir.Instruction)
-		if !ok {
-			return errors.New("instruction should follow a label")
-		}
-		target[lbl] = i
+	}
+	if pending != empty {
+		return errors.New("function ends with label")
 	}
 	fn.LabelTarget = target
 	return nil

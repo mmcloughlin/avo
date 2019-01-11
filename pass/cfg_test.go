@@ -18,6 +18,7 @@ func TestLabelTarget(t *testing.T) {
 	f := ir.NewFunction("happypath")
 	for lbl, i := range expect {
 		f.AddLabel(lbl)
+		f.AddComment("comments should be ignored")
 		f.AddInstruction(i)
 		f.AddInstruction(&ir.Instruction{Opcode: "IDK"})
 	}

@@ -84,6 +84,15 @@ func (p *goasm) function(f *ir.Function) {
 	p.Printf(", %s\n", textsize(f))
 
 	w := p.tabwriter()
+	clear := true
+	flush := func() {
+		w.Flush()
+		w = p.tabwriter()
+		if !clear {
+			p.NL()
+			clear = true
+		}
+	}
 	for _, node := range f.Nodes {
 		switch n := node.(type) {
 		case *ir.Instruction:
@@ -93,10 +102,15 @@ func (p *goasm) function(f *ir.Function) {
 				fmt.Fprintf(w, "\t%s", joinOperands(n.Operands))
 			}
 			fmt.Fprint(w, "\n")
+			clear = false
 		case ir.Label:
-			w.Flush()
-			w = p.tabwriter()
-			p.Printf("\n%s:\n", n)
+			flush()
+			p.Printf("%s:\n", n)
+		case *ir.Comment:
+			flush()
+			for _, line := range n.Lines {
+				p.Printf("\t// %s\n", line)
+			}
 		default:
 			panic("unexpected node type")
 		}

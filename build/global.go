@@ -125,5 +125,8 @@ func AllocLocal(size int) operand.Mem { return ctx.AllocLocal(size) }
 // Label adds a label to the active function.
 func Label(name string) { ctx.Label(name) }
 
+// Comment adds comment lines to the active function.
+func Comment(lines ...string) { ctx.Comment(lines...) }
+
 // ConstData builds a static data section containing just the given constant.
 func ConstData(name string, v operand.Constant) operand.Mem { return ctx.ConstData(name, v) }

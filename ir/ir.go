@@ -20,6 +20,20 @@ type Label string
 
 func (l Label) node() {}
 
+// Comment represents a multi-line comment.
+type Comment struct {
+	Lines []string
+}
+
+func (c *Comment) node() {}
+
+// NewComment builds a Comment consisting of the provided lines.
+func NewComment(lines ...string) *Comment {
+	return &Comment{
+		Lines: lines,
+	}
+}
+
 // Instruction is a single instruction in a function.
 type Instruction struct {
 	Opcode   string
@@ -174,6 +188,11 @@ func (f *Function) AddInstruction(i *Instruction) {
 // AddLabel appends a label to f.
 func (f *Function) AddLabel(l Label) {
 	f.AddNode(l)
+}
+
+// AddComment adds comment lines to f.
+func (f *Function) AddComment(lines ...string) {
+	f.AddNode(NewComment(lines...))
 }
 
 // AddNode appends a Node to f.

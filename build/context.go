@@ -133,6 +133,11 @@ func (c *Context) Label(name string) {
 	c.activefunc().AddLabel(ir.Label(name))
 }
 
+// Comment adds comment lines to the active function.
+func (c *Context) Comment(lines ...string) {
+	c.activefunc().AddComment(lines...)
+}
+
 func (c *Context) activefunc() *ir.Function {
 	if c.function == nil {
 		c.adderrormessage("no active function")
