@@ -1,5 +1,6 @@
 package args
 
+// Struct is a struct containing various datatypes, to help demonstrate struct field access.
 type Struct struct {
 	Byte       byte
 	Int8       int8
@@ -15,6 +16,7 @@ type Struct struct {
 	Complex128 complex128
 }
 
+// Sub is a sub-struct of Struct, to demonstrate nested datastructure accesses.
 type Sub struct {
 	A uint64
 	B [3]byte

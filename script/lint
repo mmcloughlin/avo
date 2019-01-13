@@ -10,4 +10,5 @@ find . -name '*.s' | xargs asmfmt -w
 test -z "$(git status --porcelain)"
 
 # Run suite of golangci-lint checks.
-golangci-lint run
+# (Provide examples directory explicitly since it is skipped by default.)
+golangci-lint run ./... ./examples/...

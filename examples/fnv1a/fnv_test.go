@@ -11,7 +11,9 @@ import (
 func TestHash64(t *testing.T) {
 	expect := func(data []byte) uint64 {
 		h := fnv.New64a()
-		h.Write(data)
+		if _, err := h.Write(data); err != nil {
+			t.Fatal(err)
+		}
 		return h.Sum64()
 	}
 	if err := quick.CheckEqual(Hash64, expect, nil); err != nil {
