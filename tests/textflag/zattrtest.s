@@ -2,7 +2,7 @@
 
 #include "textflag.h"
 
-TEXT ·AttrTest(SB), $0-1
+TEXT ·attrtest(SB), $0-1
 	MOVB $0, ret+0(FP)
 	MOVW $(1), R8
 	MOVW $(NOPROF), R9
