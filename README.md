@@ -65,7 +65,7 @@ After running `go generate` the [`add.s`](examples/add/add.s) file will contain 
 
 // func Add(x uint64, y uint64) uint64
 TEXT ·Add(SB), NOSPLIT, $0-24
-	MOVQ x(FP), AX
+	MOVQ x+0(FP), AX
 	MOVQ y+8(FP), CX
 	ADDQ AX, CX
 	MOVQ CX, ret+16(FP)
@@ -137,7 +137,7 @@ The result from this code generator is:
 
 // func Sum(xs []uint64) uint64
 TEXT ·Sum(SB), NOSPLIT, $0-32
-	MOVQ xs_base(FP), AX
+	MOVQ xs_base+0(FP), AX
 	MOVQ xs_len+8(FP), CX
 
 	// Initialize sum register to zero.

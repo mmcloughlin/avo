@@ -2,7 +2,7 @@
 
 // func block(h *[5]uint32, m []byte)
 TEXT ·block(SB), $64-32
-	MOVQ h(FP), AX
+	MOVQ h+0(FP), AX
 	MOVQ m_base+8(FP), CX
 
 	// Load initial hash.

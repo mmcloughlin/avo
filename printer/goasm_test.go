@@ -24,7 +24,7 @@ func TestBasic(t *testing.T) {
 		"",
 		"// func add(x uint64, y uint64) uint64",
 		"TEXT ·add(SB), $0-24",
-		"\tMOVQ x(FP), AX",
+		"\tMOVQ x+0(FP), AX",
 		"\tMOVQ y+8(FP), R9",
 		"\tADDQ AX, R9",
 		"\tMOVQ R9, ret+16(FP)",

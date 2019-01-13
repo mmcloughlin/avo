@@ -87,12 +87,10 @@ func (m Mem) Idx(r reg.Register, s uint8) Mem {
 // Asm returns an assembly syntax representation of m.
 func (m Mem) Asm() string {
 	a := m.Symbol.String()
-	if m.Disp != 0 {
-		if a == "" {
-			a += fmt.Sprintf("%d", m.Disp)
-		} else {
-			a += fmt.Sprintf("%+d", m.Disp)
-		}
+	if a != "" {
+		a += fmt.Sprintf("%+d", m.Disp)
+	} else if m.Disp != 0 {
+		a += fmt.Sprintf("%d", m.Disp)
 	}
 	if m.Base != nil {
 		a += fmt.Sprintf("(%s)", m.Base.Asm())

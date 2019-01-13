@@ -34,7 +34,7 @@ TEXT ·ArrayThree(SB), NOSPLIT, $0-64
 
 // func FieldByte(s Struct) byte
 TEXT ·FieldByte(SB), NOSPLIT, $0-177
-	MOVB s_Byte(FP), AL
+	MOVB s_Byte+0(FP), AL
 	MOVB AL, ret+176(FP)
 	RET
 

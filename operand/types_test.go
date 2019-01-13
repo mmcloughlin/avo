@@ -37,7 +37,7 @@ func TestMemAsm(t *testing.T) {
 		{Mem{Base: reg.R11, Index: reg.RAX}, "(R11)"},
 		{Mem{Base: reg.R11, Scale: 8}, "(R11)"},
 		{Mem{Disp: 2048, Base: reg.R11, Index: reg.RAX, Scale: 8}, "2048(R11)(AX*8)"},
-		{Mem{Symbol: Symbol{Name: "foo"}, Base: reg.StaticBase}, "foo(SB)"},
+		{Mem{Symbol: Symbol{Name: "foo"}, Base: reg.StaticBase}, "foo+0(SB)"},
 		{Mem{Symbol: Symbol{Name: "foo"}, Base: reg.StaticBase, Disp: 4}, "foo+4(SB)"},
 		{Mem{Symbol: Symbol{Name: "foo"}, Base: reg.StaticBase, Disp: -7}, "foo-7(SB)"},
 		{Mem{Symbol: Symbol{Name: "bar", Static: true}, Base: reg.StaticBase, Disp: 4, Index: reg.R11, Scale: 4}, "bar<>+4(SB)(R11*4)"},

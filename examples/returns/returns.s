@@ -4,7 +4,7 @@
 
 // func Interval(start uint64, size uint64) (uint64, uint64)
 TEXT ·Interval(SB), NOSPLIT, $0-32
-	MOVQ start(FP), AX
+	MOVQ start+0(FP), AX
 	MOVQ size+8(FP), CX
 	ADDQ AX, CX
 	MOVQ AX, ret+16(FP)
@@ -13,7 +13,7 @@ TEXT ·Interval(SB), NOSPLIT, $0-32
 
 // func Butterfly(x0 float64, x1 float64) (y0 float64, y1 float64)
 TEXT ·Butterfly(SB), NOSPLIT, $0-32
-	MOVSD x0(FP), X0
+	MOVSD x0+0(FP), X0
 	MOVSD x1+8(FP), X1
 	MOVSD X0, X2
 	ADDSD X1, X2
@@ -25,7 +25,7 @@ TEXT ·Butterfly(SB), NOSPLIT, $0-32
 
 // func Septuple(byte) [7]byte
 TEXT ·Septuple(SB), NOSPLIT, $0-15
-	MOVB arg(FP), AL
+	MOVB arg+0(FP), AL
 	MOVB AL, ret_0+8(FP)
 	MOVB AL, ret_1+9(FP)
 	MOVB AL, ret_2+10(FP)
@@ -37,18 +37,18 @@ TEXT ·Septuple(SB), NOSPLIT, $0-15
 
 // func CriticalLine(t float64) complex128
 TEXT ·CriticalLine(SB), NOSPLIT, $0-24
-	MOVSD t(FP), X0
-	MOVSD half<>(SB), X1
+	MOVSD t+0(FP), X0
+	MOVSD half<>+0(SB), X1
 	MOVSD X1, ret_real+8(FP)
 	MOVSD X0, ret_imag+16(FP)
 	RET
 
-DATA half<>(SB)/8, $(0.5)
+DATA half<>+0(SB)/8, $(0.5)
 GLOBL half<>(SB), RODATA|NOPTR, $8
 
 // func NewStruct(w uint16, p [2]float64, q uint64) Struct
 TEXT ·NewStruct(SB), NOSPLIT, $0-64
-	MOVW  w(FP), AX
+	MOVW  w+0(FP), AX
 	MOVSD p_0+8(FP), X0
 	MOVSD p_1+16(FP), X1
 	MOVQ  q+24(FP), CX

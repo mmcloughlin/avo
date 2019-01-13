@@ -4,7 +4,7 @@
 
 // func Sum(xs []uint64) uint64
 TEXT ·Sum(SB), NOSPLIT, $0-32
-	MOVQ xs_base(FP), AX
+	MOVQ xs_base+0(FP), AX
 	MOVQ xs_len+8(FP), CX
 
 	// Initialize sum register to zero.

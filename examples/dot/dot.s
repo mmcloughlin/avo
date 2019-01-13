@@ -4,7 +4,7 @@
 
 // func Dot(x []float32, y []float32) float32
 TEXT ·Dot(SB), NOSPLIT, $0-52
-	MOVQ   x_base(FP), AX
+	MOVQ   x_base+0(FP), AX
 	MOVQ   y_base+24(FP), CX
 	MOVQ   x_len+8(FP), DX
 	VXORPS Y0, Y0, Y0

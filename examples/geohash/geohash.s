@@ -4,31 +4,31 @@
 
 // func EncodeInt(lat float64, lng float64) uint64
 TEXT ·EncodeInt(SB), NOSPLIT, $0-24
-	MOVSD lat(FP), X0
+	MOVSD lat+0(FP), X0
 	MOVSD lng+8(FP), X1
-	MULSD reciprocal180<>(SB), X0
-	ADDSD onepointfive<>(SB), X0
-	MULSD reciprocal360<>(SB), X1
-	ADDSD onepointfive<>(SB), X1
+	MULSD reciprocal180<>+0(SB), X0
+	ADDSD onepointfive<>+0(SB), X0
+	MULSD reciprocal360<>+0(SB), X1
+	ADDSD onepointfive<>+0(SB), X1
 	MOVQ  X0, CX
 	SHRQ  $0x14, CX
 	MOVQ  X1, AX
 	SHRQ  $0x14, AX
-	PDEPQ mask<>(SB), CX, CX
-	PDEPQ mask<>(SB), AX, AX
+	PDEPQ mask<>+0(SB), CX, CX
+	PDEPQ mask<>+0(SB), AX, AX
 	SHLQ  $0x01, AX
 	XORQ  AX, CX
 	MOVQ  CX, ret+16(FP)
 	RET
 
-DATA reciprocal180<>(SB)/8, $(0.005555555555555556)
+DATA reciprocal180<>+0(SB)/8, $(0.005555555555555556)
 GLOBL reciprocal180<>(SB), RODATA|NOPTR, $8
 
-DATA onepointfive<>(SB)/8, $(1.5)
+DATA onepointfive<>+0(SB)/8, $(1.5)
 GLOBL onepointfive<>(SB), RODATA|NOPTR, $8
 
-DATA reciprocal360<>(SB)/8, $(0.002777777777777778)
+DATA reciprocal360<>+0(SB)/8, $(0.002777777777777778)
 GLOBL reciprocal360<>(SB), RODATA|NOPTR, $8
 
-DATA mask<>(SB)/8, $0x5555555555555555
+DATA mask<>+0(SB)/8, $0x5555555555555555
 GLOBL mask<>(SB), RODATA|NOPTR, $8
