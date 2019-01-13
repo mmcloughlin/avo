@@ -3,6 +3,7 @@
   <br />
   <a href="https://travis-ci.org/mmcloughlin/avo"><img src="https://img.shields.io/travis/mmcloughlin/avo.svg?style=flat-square" alt="Build Status" /></a>
   <a href="http://godoc.org/github.com/mmcloughlin/avo"><img src="http://img.shields.io/badge/godoc-reference-5272B4.svg?style=flat-square" alt="GoDoc" /></a>
+  <a href="https://goreportcard.com/report/github.com/mmcloughlin/avo"><img src="https://goreportcard.com/badge/github.com/mmcloughlin/avo?style=flat-square" alt="Go Report Card" /></a>
 </p>
 
 <p align="center">Generate x86 Assembly with Go</p>
