@@ -21,5 +21,5 @@ issues:
   exclude:
     # errcheck: Almost all programs ignore errors on these functions and in most cases it's ok
     - Error return value of .((os\.)?std(out|err)\..*|.*Close|.*Flush|os\.Remove(All)?|.*printf?|os\.(Un)?Setenv). is not checked
-    # gocritic: unlambda with builtins is invalid.
+    # gocritic: https://github.com/go-critic/go-critic/issues/762
     - ' with `(len|cap|real|imag)`'
