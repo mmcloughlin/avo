@@ -6,5 +6,6 @@
 TEXT ·Issue50(SB), NOSPLIT, $0-12
 	MOVL x+0(FP), AX
 	MOVQ AX, X0
-	MOVQ X0, ret+8(FP)
+	MOVQ X0, AX
+	MOVL AX, ret+8(FP)
 	RET

@@ -15,7 +15,9 @@ func main() {
 	x := Load(Param("x"), GP32())
 	xmm := XMM()
 	MOVQ(x, xmm)
-	Store(xmm, ReturnIndex(0))
+	r := GP32()
+	MOVQ(xmm, r)
+	Store(r, ReturnIndex(0))
 	RET()
 	Generate()
 }
