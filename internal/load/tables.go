@@ -4,9 +4,15 @@ import (
 	"github.com/mmcloughlin/avo/internal/inst"
 )
 
+// alias defines an opcode alias.
+type alias struct {
+	From string
+	To   string
+}
+
 // aliases defines a list of opcode aliases. Where possible these are extracted
 // from the code (see note below).
-var aliases = map[string]string{
+var aliases = []alias{
 	// The PSHUFD/PSHUFL alias is not recorded in the list of "Annoying aliases" below. However the instructions are identical.
 	//
 	// Reference: https://github.com/golang/go/blob/048c9164a0c5572df18325e377473e7893dbfb07/src/cmd/internal/obj/x86/asm6.go#L1365
@@ -17,7 +23,7 @@ var aliases = map[string]string{
 	//
 	//		{APSHUFD, yxshuf, Pq, opBytes{0x70, 0}},
 	//
-	"PSHUFD": "PSHUFL",
+	{"PSHUFD", "PSHUFL"},
 }
 
 // Go contains a list of self-proclaimed "Annoying aliases", as follows. We use
@@ -88,9 +94,7 @@ var aliases = map[string]string{
 //go:generate ./annoyingaliases.sh zannoyingaliases.go
 
 func init() {
-	for from, to := range annoyingaliases {
-		aliases[from] = to
-	}
+	aliases = append(aliases, annoyingaliases...)
 }
 
 // extras is simply a list of extra instructions to add to the database.

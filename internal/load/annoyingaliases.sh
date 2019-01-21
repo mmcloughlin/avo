@@ -12,7 +12,7 @@ arch=${GOROOT}/src/cmd/asm/internal/arch/arch.go
     echo
     echo 'package load'
     echo
-    echo 'var annoyingaliases = map[string]string{'
+    echo 'var annoyingaliases = []alias{'
 
     awk '
         /archX86/ { x86=1 }
@@ -27,7 +27,7 @@ arch=${GOROOT}/src/cmd/asm/internal/arch/arch.go
             sub(/x86\.A/, "", to)
 
             if(from != to) { 
-                printf("\t\"%s\": \"%s\",\n", from, to)
+                printf("\t{\"%s\", \"%s\"},\n", from, to)
             }
         }
     ' ${arch}
