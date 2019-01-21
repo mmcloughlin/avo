@@ -31,9 +31,13 @@ func (c *Context) mov(a, b operand.Op, an, bn int, t *types.Basic) {
 		c.MOVLQZX(a, b)
 	case (t.Info()&types.IsInteger) != 0 && an == 16 && bn == 16:
 		c.MOVOU(a, b)
+	case (t.Info()&types.IsInteger) != 0 && an == 4 && bn == 16:
+		c.MOVQ(a, b)
 	case (t.Info()&types.IsInteger) != 0 && an == 8 && bn == 8:
 		c.MOVQ(a, b)
 	case (t.Info()&types.IsInteger) != 0 && an == 8 && bn == 16:
+		c.MOVQ(a, b)
+	case (t.Info()&types.IsInteger) != 0 && an == 16 && bn == 4:
 		c.MOVQ(a, b)
 	case (t.Info()&types.IsInteger) != 0 && an == 16 && bn == 8:
 		c.MOVQ(a, b)

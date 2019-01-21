@@ -8454,6 +8454,10 @@ func MOVBWZX(mr, r operand.Op) (*intrep.Instruction, error) {
 // 	MOVD xmm   xmm
 // 	MOVD m64   xmm
 // 	MOVD xmm   m64
+// 	MOVD xmm   r32
+// 	MOVD r32   xmm
+// 	MOVD m32   xmm
+// 	MOVD xmm   m32
 func MOVD(imrx, mrx operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsIMM32(imrx) && operand.IsR64(mrx):
@@ -8533,6 +8537,34 @@ func MOVD(imrx, mrx operand.Op) (*intrep.Instruction, error) {
 			Inputs:   []operand.Op{imrx},
 			Outputs:  []operand.Op{mrx},
 		}, nil
+	case operand.IsXMM(imrx) && operand.IsR32(mrx):
+		return &intrep.Instruction{
+			Opcode:   "MOVD",
+			Operands: []operand.Op{imrx, mrx},
+			Inputs:   []operand.Op{imrx},
+			Outputs:  []operand.Op{mrx},
+		}, nil
+	case operand.IsR32(imrx) && operand.IsXMM(mrx):
+		return &intrep.Instruction{
+			Opcode:   "MOVD",
+			Operands: []operand.Op{imrx, mrx},
+			Inputs:   []operand.Op{imrx},
+			Outputs:  []operand.Op{mrx},
+		}, nil
+	case operand.IsM32(imrx) && operand.IsXMM(mrx):
+		return &intrep.Instruction{
+			Opcode:   "MOVD",
+			Operands: []operand.Op{imrx, mrx},
+			Inputs:   []operand.Op{imrx},
+			Outputs:  []operand.Op{mrx},
+		}, nil
+	case operand.IsXMM(imrx) && operand.IsM32(mrx):
+		return &intrep.Instruction{
+			Opcode:   "MOVD",
+			Operands: []operand.Op{imrx, mrx},
+			Inputs:   []operand.Op{imrx},
+			Outputs:  []operand.Op{mrx},
+		}, nil
 	}
 	return nil, errors.New("MOVD: bad operands")
 }
@@ -8578,6 +8610,10 @@ func MOVDDUP(mx, x operand.Op) (*intrep.Instruction, error) {
 // 	MOVDQ2Q xmm   xmm
 // 	MOVDQ2Q m64   xmm
 // 	MOVDQ2Q xmm   m64
+// 	MOVDQ2Q xmm   r32
+// 	MOVDQ2Q r32   xmm
+// 	MOVDQ2Q m32   xmm
+// 	MOVDQ2Q xmm   m32
 func MOVDQ2Q(imrx, mrx operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsIMM32(imrx) && operand.IsR64(mrx):
@@ -8651,6 +8687,34 @@ func MOVDQ2Q(imrx, mrx operand.Op) (*intrep.Instruction, error) {
 			Outputs:  []operand.Op{mrx},
 		}, nil
 	case operand.IsXMM(imrx) && operand.IsM64(mrx):
+		return &intrep.Instruction{
+			Opcode:   "MOVDQ2Q",
+			Operands: []operand.Op{imrx, mrx},
+			Inputs:   []operand.Op{imrx},
+			Outputs:  []operand.Op{mrx},
+		}, nil
+	case operand.IsXMM(imrx) && operand.IsR32(mrx):
+		return &intrep.Instruction{
+			Opcode:   "MOVDQ2Q",
+			Operands: []operand.Op{imrx, mrx},
+			Inputs:   []operand.Op{imrx},
+			Outputs:  []operand.Op{mrx},
+		}, nil
+	case operand.IsR32(imrx) && operand.IsXMM(mrx):
+		return &intrep.Instruction{
+			Opcode:   "MOVDQ2Q",
+			Operands: []operand.Op{imrx, mrx},
+			Inputs:   []operand.Op{imrx},
+			Outputs:  []operand.Op{mrx},
+		}, nil
+	case operand.IsM32(imrx) && operand.IsXMM(mrx):
+		return &intrep.Instruction{
+			Opcode:   "MOVDQ2Q",
+			Operands: []operand.Op{imrx, mrx},
+			Inputs:   []operand.Op{imrx},
+			Outputs:  []operand.Op{mrx},
+		}, nil
+	case operand.IsXMM(imrx) && operand.IsM32(mrx):
 		return &intrep.Instruction{
 			Opcode:   "MOVDQ2Q",
 			Operands: []operand.Op{imrx, mrx},
@@ -9174,6 +9238,10 @@ func MOVOU(mx, mx1 operand.Op) (*intrep.Instruction, error) {
 // 	MOVQ xmm   xmm
 // 	MOVQ m64   xmm
 // 	MOVQ xmm   m64
+// 	MOVQ xmm   r32
+// 	MOVQ r32   xmm
+// 	MOVQ m32   xmm
+// 	MOVQ xmm   m32
 func MOVQ(imrx, mrx operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsIMM32(imrx) && operand.IsR64(mrx):
@@ -9247,6 +9315,34 @@ func MOVQ(imrx, mrx operand.Op) (*intrep.Instruction, error) {
 			Outputs:  []operand.Op{mrx},
 		}, nil
 	case operand.IsXMM(imrx) && operand.IsM64(mrx):
+		return &intrep.Instruction{
+			Opcode:   "MOVQ",
+			Operands: []operand.Op{imrx, mrx},
+			Inputs:   []operand.Op{imrx},
+			Outputs:  []operand.Op{mrx},
+		}, nil
+	case operand.IsXMM(imrx) && operand.IsR32(mrx):
+		return &intrep.Instruction{
+			Opcode:   "MOVQ",
+			Operands: []operand.Op{imrx, mrx},
+			Inputs:   []operand.Op{imrx},
+			Outputs:  []operand.Op{mrx},
+		}, nil
+	case operand.IsR32(imrx) && operand.IsXMM(mrx):
+		return &intrep.Instruction{
+			Opcode:   "MOVQ",
+			Operands: []operand.Op{imrx, mrx},
+			Inputs:   []operand.Op{imrx},
+			Outputs:  []operand.Op{mrx},
+		}, nil
+	case operand.IsM32(imrx) && operand.IsXMM(mrx):
+		return &intrep.Instruction{
+			Opcode:   "MOVQ",
+			Operands: []operand.Op{imrx, mrx},
+			Inputs:   []operand.Op{imrx},
+			Outputs:  []operand.Op{mrx},
+		}, nil
+	case operand.IsXMM(imrx) && operand.IsM32(mrx):
 		return &intrep.Instruction{
 			Opcode:   "MOVQ",
 			Operands: []operand.Op{imrx, mrx},

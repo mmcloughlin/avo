@@ -5256,6 +5256,26 @@ func TestMOVDValidForms(t *testing.T) {
 			t.Fatal(err)
 		}
 	})
+	t.Run("form=xmm_r32", func(t *testing.T) {
+		if _, err := MOVD(reg.X7, reg.R10L); err != nil {
+			t.Fatal(err)
+		}
+	})
+	t.Run("form=r32_xmm", func(t *testing.T) {
+		if _, err := MOVD(reg.R10L, reg.X7); err != nil {
+			t.Fatal(err)
+		}
+	})
+	t.Run("form=m32_xmm", func(t *testing.T) {
+		if _, err := MOVD(operand.Mem{Base: reg.EBX, Index: reg.ECX, Scale: 4}, reg.X7); err != nil {
+			t.Fatal(err)
+		}
+	})
+	t.Run("form=xmm_m32", func(t *testing.T) {
+		if _, err := MOVD(reg.X7, operand.Mem{Base: reg.EBX, Index: reg.ECX, Scale: 4}); err != nil {
+			t.Fatal(err)
+		}
+	})
 }
 
 func TestMOVDDUPValidForms(t *testing.T) {
@@ -5324,6 +5344,26 @@ func TestMOVDQ2QValidForms(t *testing.T) {
 	})
 	t.Run("form=xmm_m64", func(t *testing.T) {
 		if _, err := MOVDQ2Q(reg.X7, operand.Mem{Base: reg.RBX, Index: reg.RCX, Scale: 8}); err != nil {
+			t.Fatal(err)
+		}
+	})
+	t.Run("form=xmm_r32", func(t *testing.T) {
+		if _, err := MOVDQ2Q(reg.X7, reg.R10L); err != nil {
+			t.Fatal(err)
+		}
+	})
+	t.Run("form=r32_xmm", func(t *testing.T) {
+		if _, err := MOVDQ2Q(reg.R10L, reg.X7); err != nil {
+			t.Fatal(err)
+		}
+	})
+	t.Run("form=m32_xmm", func(t *testing.T) {
+		if _, err := MOVDQ2Q(operand.Mem{Base: reg.EBX, Index: reg.ECX, Scale: 4}, reg.X7); err != nil {
+			t.Fatal(err)
+		}
+	})
+	t.Run("form=xmm_m32", func(t *testing.T) {
+		if _, err := MOVDQ2Q(reg.X7, operand.Mem{Base: reg.EBX, Index: reg.ECX, Scale: 4}); err != nil {
 			t.Fatal(err)
 		}
 	})
@@ -5625,6 +5665,26 @@ func TestMOVQValidForms(t *testing.T) {
 	})
 	t.Run("form=xmm_m64", func(t *testing.T) {
 		if _, err := MOVQ(reg.X7, operand.Mem{Base: reg.RBX, Index: reg.RCX, Scale: 8}); err != nil {
+			t.Fatal(err)
+		}
+	})
+	t.Run("form=xmm_r32", func(t *testing.T) {
+		if _, err := MOVQ(reg.X7, reg.R10L); err != nil {
+			t.Fatal(err)
+		}
+	})
+	t.Run("form=r32_xmm", func(t *testing.T) {
+		if _, err := MOVQ(reg.R10L, reg.X7); err != nil {
+			t.Fatal(err)
+		}
+	})
+	t.Run("form=m32_xmm", func(t *testing.T) {
+		if _, err := MOVQ(operand.Mem{Base: reg.EBX, Index: reg.ECX, Scale: 4}, reg.X7); err != nil {
+			t.Fatal(err)
+		}
+	})
+	t.Run("form=xmm_m32", func(t *testing.T) {
+		if _, err := MOVQ(reg.X7, operand.Mem{Base: reg.EBX, Index: reg.ECX, Scale: 4}); err != nil {
 			t.Fatal(err)
 		}
 	})

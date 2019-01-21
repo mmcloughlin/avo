@@ -6217,6 +6217,34 @@ var Instructions = []Instruction{
 					{Type: "m64", Action: 0x2},
 				},
 			},
+			{
+				ISA: []string{"SSE2"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "r32", Action: 0x2},
+				},
+			},
+			{
+				ISA: []string{"SSE2"},
+				Operands: []Operand{
+					{Type: "r32", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+			},
+			{
+				ISA: []string{"SSE2"},
+				Operands: []Operand{
+					{Type: "m32", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+			},
+			{
+				ISA: []string{"SSE2"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "m32", Action: 0x2},
+				},
+			},
 		},
 	},
 	{
@@ -6762,6 +6790,34 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "xmm", Action: 0x1},
 					{Type: "m64", Action: 0x2},
+				},
+			},
+			{
+				ISA: []string{"SSE2"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "r32", Action: 0x2},
+				},
+			},
+			{
+				ISA: []string{"SSE2"},
+				Operands: []Operand{
+					{Type: "r32", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+			},
+			{
+				ISA: []string{"SSE2"},
+				Operands: []Operand{
+					{Type: "m32", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+			},
+			{
+				ISA: []string{"SSE2"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "m32", Action: 0x2},
 				},
 			},
 		},

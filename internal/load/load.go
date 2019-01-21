@@ -76,6 +76,9 @@ func (l *Loader) Load() ([]inst.Instruction, error) {
 
 	// Apply list of aliases.
 	for from, to := range aliases {
+		if existing, found := im[from]; found {
+			im[to].Forms = append(im[to].Forms, existing.Forms...)
+		}
 		cpy := *im[to]
 		cpy.Opcode = from
 		cpy.AliasOf = to

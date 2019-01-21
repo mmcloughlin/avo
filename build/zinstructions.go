@@ -7367,6 +7367,10 @@ func MOVBWZX(mr, r operand.Op) { ctx.MOVBWZX(mr, r) }
 // 	MOVD xmm   xmm
 // 	MOVD m64   xmm
 // 	MOVD xmm   m64
+// 	MOVD xmm   r32
+// 	MOVD r32   xmm
+// 	MOVD m32   xmm
+// 	MOVD xmm   m32
 // Construct and append a MOVD instruction to the active function.
 func (c *Context) MOVD(imrx, mrx operand.Op) {
 	if inst, err := x86.MOVD(imrx, mrx); err == nil {
@@ -7391,6 +7395,10 @@ func (c *Context) MOVD(imrx, mrx operand.Op) {
 // 	MOVD xmm   xmm
 // 	MOVD m64   xmm
 // 	MOVD xmm   m64
+// 	MOVD xmm   r32
+// 	MOVD r32   xmm
+// 	MOVD m32   xmm
+// 	MOVD xmm   m32
 // Construct and append a MOVD instruction to the active function.
 // Operates on the global context.
 func MOVD(imrx, mrx operand.Op) { ctx.MOVD(imrx, mrx) }
@@ -7435,6 +7443,10 @@ func MOVDDUP(mx, x operand.Op) { ctx.MOVDDUP(mx, x) }
 // 	MOVDQ2Q xmm   xmm
 // 	MOVDQ2Q m64   xmm
 // 	MOVDQ2Q xmm   m64
+// 	MOVDQ2Q xmm   r32
+// 	MOVDQ2Q r32   xmm
+// 	MOVDQ2Q m32   xmm
+// 	MOVDQ2Q xmm   m32
 // Construct and append a MOVDQ2Q instruction to the active function.
 func (c *Context) MOVDQ2Q(imrx, mrx operand.Op) {
 	if inst, err := x86.MOVDQ2Q(imrx, mrx); err == nil {
@@ -7459,6 +7471,10 @@ func (c *Context) MOVDQ2Q(imrx, mrx operand.Op) {
 // 	MOVDQ2Q xmm   xmm
 // 	MOVDQ2Q m64   xmm
 // 	MOVDQ2Q xmm   m64
+// 	MOVDQ2Q xmm   r32
+// 	MOVDQ2Q r32   xmm
+// 	MOVDQ2Q m32   xmm
+// 	MOVDQ2Q xmm   m32
 // Construct and append a MOVDQ2Q instruction to the active function.
 // Operates on the global context.
 func MOVDQ2Q(imrx, mrx operand.Op) { ctx.MOVDQ2Q(imrx, mrx) }
@@ -7991,6 +8007,10 @@ func MOVOU(mx, mx1 operand.Op) { ctx.MOVOU(mx, mx1) }
 // 	MOVQ xmm   xmm
 // 	MOVQ m64   xmm
 // 	MOVQ xmm   m64
+// 	MOVQ xmm   r32
+// 	MOVQ r32   xmm
+// 	MOVQ m32   xmm
+// 	MOVQ xmm   m32
 // Construct and append a MOVQ instruction to the active function.
 func (c *Context) MOVQ(imrx, mrx operand.Op) {
 	if inst, err := x86.MOVQ(imrx, mrx); err == nil {
@@ -8015,6 +8035,10 @@ func (c *Context) MOVQ(imrx, mrx operand.Op) {
 // 	MOVQ xmm   xmm
 // 	MOVQ m64   xmm
 // 	MOVQ xmm   m64
+// 	MOVQ xmm   r32
+// 	MOVQ r32   xmm
+// 	MOVQ m32   xmm
+// 	MOVQ xmm   m32
 // Construct and append a MOVQ instruction to the active function.
 // Operates on the global context.
 func MOVQ(imrx, mrx operand.Op) { ctx.MOVQ(imrx, mrx) }
