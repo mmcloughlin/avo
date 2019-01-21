@@ -118,6 +118,10 @@ func Doc(lines ...string) { ctx.Doc(lines...) }
 // Attributes sets function attributes for the currently active function.
 func Attributes(a attr.Attribute) { ctx.Attributes(a) }
 
+// Implement starts building a function of the given name, whose type is
+// specified by a stub in the containing package.
+func Implement(name string) { ctx.Implement(name) }
+
 // AllocLocal allocates size bytes in the stack of the currently active function.
 // Returns a reference to the base pointer for the newly allocated region.
 func AllocLocal(size int) operand.Mem { return ctx.AllocLocal(size) }

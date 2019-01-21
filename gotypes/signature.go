@@ -3,6 +3,7 @@ package gotypes
 import (
 	"bytes"
 	"errors"
+	"fmt"
 	"go/token"
 	"go/types"
 	"strconv"
@@ -29,6 +30,20 @@ func NewSignature(pkg *types.Package, sig *types.Signature) *Signature {
 // NewSignatureVoid builds the void signature "func()".
 func NewSignatureVoid() *Signature {
 	return NewSignature(nil, types.NewSignature(nil, nil, nil, false))
+}
+
+// LookupSignature returns the signature of the named function in the provided package.
+func LookupSignature(pkg *types.Package, name string) (*Signature, error) {
+	scope := pkg.Scope()
+	obj := scope.Lookup(name)
+	if obj == nil {
+		return nil, fmt.Errorf("could not find function \"%s\"", name)
+	}
+	s, ok := obj.Type().(*types.Signature)
+	if !ok {
+		return nil, fmt.Errorf("object \"%s\" does not have signature type", name)
+	}
+	return NewSignature(pkg, s), nil
 }
 
 // ParseSignature builds a Signature by parsing a Go function type expression.
