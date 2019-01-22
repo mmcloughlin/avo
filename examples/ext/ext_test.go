@@ -11,7 +11,7 @@ import (
 
 func TestFunc(t *testing.T) {
 	expect := func(e ext.Struct) byte { return e.B }
-	if err := quick.CheckEqual(ExtStructFieldB, expect, nil); err != nil {
+	if err := quick.CheckEqual(StructFieldB, expect, nil); err != nil {
 		t.Fatal(err)
 	}
 }

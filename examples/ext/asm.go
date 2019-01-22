@@ -8,7 +8,7 @@ import (
 
 func main() {
 	Package("github.com/mmcloughlin/avo/examples/ext")
-	Implement("ExtStructFieldB")
+	Implement("StructFieldB")
 	e := Load(Param("e").Field("B"), GP8())
 	Store(e, ReturnIndex(0))
 	RET()
