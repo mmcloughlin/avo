@@ -15,3 +15,6 @@ golangci-lint run ./... ./examples/...
 
 # Check asm declarations.
 asmdecl ./...
+
+# Custom linters.
+./script/linter/pkgdoc
