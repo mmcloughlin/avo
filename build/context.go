@@ -111,6 +111,23 @@ func (c *Context) SignatureExpr(expr string) {
 	c.Signature(s)
 }
 
+// Implement starts building a function of the given name, whose type is
+// specified by a stub in the containing package.
+func (c *Context) Implement(name string) {
+	pkg := c.types()
+	if pkg == nil {
+		c.adderrormessage("no package specified")
+		return
+	}
+	s, err := gotypes.LookupSignature(pkg, name)
+	if err != nil {
+		c.adderror(err)
+		return
+	}
+	c.Function(name)
+	c.Signature(s)
+}
+
 func (c *Context) types() *types.Package {
 	if c.pkg == nil {
 		return nil

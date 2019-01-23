@@ -171,8 +171,9 @@ For demonstrations of `avo` features:
 
 * **[args](examples/args):** Loading function arguments.
 * **[returns](examples/returns):** Building return values.
-* **[data](examples/data):** Defining `DATA` sections.
 * **[complex](examples/complex):** Working with `complex{64,128}` types.
+* **[data](examples/data):** Defining `DATA` sections.
+* **[ext](examples/ext):** Interacting with types from external packages.
 
 ### Real Examples
 
