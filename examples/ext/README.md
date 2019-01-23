@@ -4,7 +4,7 @@ Demonstrates how to use external types in an `avo` function signature.
 
 In this case, you will need to write the function stub yourself.
 
-[embedmd]:# (stub.go)
+[embedmd]:# (stub.go /package/ $)
 ```go
 package ext
 
