@@ -1,3 +1,4 @@
+// Package ext demonstrates how to interact with external types.
 package ext
 
 import "github.com/mmcloughlin/avo/examples/ext/ext"
