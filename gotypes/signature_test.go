@@ -5,7 +5,63 @@ import (
 	"go/types"
 	"strings"
 	"testing"
+
+	"golang.org/x/tools/go/packages"
 )
+
+func TestLookupSignature(t *testing.T) {
+	pkg := LoadPackageTypes(t, "math")
+	s, err := LookupSignature(pkg, "Frexp")
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	expect, err := ParseSignature("func(f float64) (frac float64, exp int)")
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	if s.String() != expect.String() {
+		t.Errorf("\n   got: %s\nexpect: %s\n", s, expect)
+	}
+}
+
+func TestLookupSignatureErrors(t *testing.T) {
+	cases := []struct {
+		PackagePath   string
+		FunctionName  string
+		ExpectedError string
+	}{
+		{"runtime", "HmmIdk", "could not find function \"HmmIdk\""},
+		{"crypto", "Decrypter", "object \"Decrypter\" does not have signature type"},
+		{"encoding/base64", "StdEncoding", "object \"StdEncoding\" does not have signature type"},
+	}
+	for _, c := range cases {
+		pkg := LoadPackageTypes(t, c.PackagePath)
+		_, err := LookupSignature(pkg, c.FunctionName)
+		if err == nil {
+			t.Fatalf("expected error looking up '%s' in package '%s'", c.FunctionName, c.PackagePath)
+		}
+		if err.Error() != c.ExpectedError {
+			t.Fatalf("wrong error message\n   got: %q\nexpect: %q", err.Error(), c.ExpectedError)
+		}
+	}
+}
+
+func LoadPackageTypes(t *testing.T, path string) *types.Package {
+	t.Helper()
+	cfg := &packages.Config{
+		Mode: packages.LoadTypes,
+	}
+	pkgs, err := packages.Load(cfg, path)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(pkgs) != 1 {
+		t.Fatal("expected to load exactly one package")
+	}
+	return pkgs[0].Types
+}
 
 func TestParseSignature(t *testing.T) {
 	cases := []struct {
