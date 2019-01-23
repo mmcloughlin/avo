@@ -82,7 +82,12 @@ func (s *Signature) Bytes() int { return s.Params().Bytes() + s.Results().Bytes(
 // String writes Signature as a string. This does not include the "func" keyword.
 func (s *Signature) String() string {
 	var buf bytes.Buffer
-	types.WriteSignature(&buf, s.sig, types.RelativeTo(s.pkg))
+	types.WriteSignature(&buf, s.sig, func(pkg *types.Package) string {
+		if pkg == s.pkg {
+			return ""
+		}
+		return pkg.Name()
+	})
 	return buf.String()
 }
 
