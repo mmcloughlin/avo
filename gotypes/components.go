@@ -7,6 +7,8 @@ import (
 	"go/types"
 	"strconv"
 
+	"github.com/mmcloughlin/avo/reg"
+
 	"github.com/mmcloughlin/avo/operand"
 )
 
@@ -27,13 +29,14 @@ type Component interface {
 	// resolution time.
 	Resolve() (*Basic, error)
 
-	Base() Component        // base pointer of a string or slice
-	Len() Component         // length of a string or slice
-	Cap() Component         // capacity of a slice
-	Real() Component        // real part of a complex value
-	Imag() Component        // imaginary part of a complex value
-	Index(int) Component    // index into an array
-	Field(string) Component // access a struct field
+	Dereference(r reg.Register) Component // dereference a pointer
+	Base() Component                      // base pointer of a string or slice
+	Len() Component                       // length of a string or slice
+	Cap() Component                       // capacity of a slice
+	Real() Component                      // real part of a complex value
+	Imag() Component                      // imaginary part of a complex value
+	Index(int) Component                  // index into an array
+	Field(string) Component               // access a struct field
 }
 
 // componenterr is an error that also provides a null implementation of the
@@ -45,15 +48,16 @@ func errorf(format string, args ...interface{}) Component {
 	return componenterr(fmt.Sprintf(format, args...))
 }
 
-func (c componenterr) Error() string            { return string(c) }
-func (c componenterr) Resolve() (*Basic, error) { return nil, c }
-func (c componenterr) Base() Component          { return c }
-func (c componenterr) Len() Component           { return c }
-func (c componenterr) Cap() Component           { return c }
-func (c componenterr) Real() Component          { return c }
-func (c componenterr) Imag() Component          { return c }
-func (c componenterr) Index(int) Component      { return c }
-func (c componenterr) Field(string) Component   { return c }
+func (c componenterr) Error() string                        { return string(c) }
+func (c componenterr) Resolve() (*Basic, error)             { return nil, c }
+func (c componenterr) Dereference(r reg.Register) Component { return c }
+func (c componenterr) Base() Component                      { return c }
+func (c componenterr) Len() Component                       { return c }
+func (c componenterr) Cap() Component                       { return c }
+func (c componenterr) Real() Component                      { return c }
+func (c componenterr) Imag() Component                      { return c }
+func (c componenterr) Index(int) Component                  { return c }
+func (c componenterr) Field(string) Component               { return c }
 
 type component struct {
 	typ  types.Type
@@ -77,6 +81,14 @@ func (c *component) Resolve() (*Basic, error) {
 		Addr: c.addr,
 		Type: b,
 	}, nil
+}
+
+func (c *component) Dereference(r reg.Register) Component {
+	p, ok := c.typ.Underlying().(*types.Pointer)
+	if !ok {
+		return errorf("only pointer types can be dereferenced")
+	}
+	return NewComponent(p.Elem(), operand.Mem{Base: r})
 }
 
 // Reference: https://github.com/golang/go/blob/50bd1c4d4eb4fac8ddeb5f063c099daccfb71b26/src/reflect/value.go#L1800-L1804
