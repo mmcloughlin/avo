@@ -86,7 +86,7 @@ func (c *component) Resolve() (*Basic, error) {
 func (c *component) Dereference(r reg.Register) Component {
 	p, ok := c.typ.Underlying().(*types.Pointer)
 	if !ok {
-		return errorf("only pointer types can be dereferenced")
+		return errorf("not pointer type")
 	}
 	return NewComponent(p.Elem(), operand.Mem{Base: r})
 }
