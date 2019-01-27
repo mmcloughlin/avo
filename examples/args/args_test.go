@@ -1,6 +1,7 @@
 package args
 
 import (
+	"math"
 	"testing"
 	"testing/quick"
 )
@@ -34,5 +35,14 @@ func TestFunctionsEqual(t *testing.T) {
 		if err := quick.CheckEqual(c.f, c.g, nil); err != nil {
 			t.Fatal(err)
 		}
+	}
+}
+
+func TestDereferenceFloat32(t *testing.T) {
+	expect := float32(math.Pi)
+	s := Struct{Float32: expect}
+	got := DereferenceFloat32(&s)
+	if got != expect {
+		t.Errorf("DereferenceFloat32(%v) = %v; expect %v", s, got, expect)
 	}
 }

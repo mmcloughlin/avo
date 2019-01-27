@@ -37,3 +37,5 @@ func FieldArrayOneC(s Struct) uint16
 func FieldComplex64Imag(s Struct) float32
 
 func FieldComplex128Real(s Struct) float64
+
+func DereferenceFloat32(s *Struct) float32
