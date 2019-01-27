@@ -3,6 +3,8 @@ package gotypes
 import (
 	"go/types"
 	"testing"
+
+	"github.com/mmcloughlin/avo/operand"
 )
 
 func TestBasicKindsArePrimitive(t *testing.T) {
@@ -33,7 +35,7 @@ func TestPointersArePrimitive(t *testing.T) {
 }
 
 func AssertPrimitive(t *testing.T, typ types.Type) {
-	c := NewComponent("primitive", typ, 0)
+	c := NewComponent(typ, operand.NewParamAddr("primitive", 0))
 	if _, err := c.Resolve(); err != nil {
 		t.Errorf("expected type %s to be primitive: got error '%s'", typ, err)
 	}

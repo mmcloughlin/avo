@@ -7,6 +7,8 @@ import (
 	"go/token"
 	"go/types"
 	"strconv"
+
+	"github.com/mmcloughlin/avo/operand"
 )
 
 // Signature represents a Go function signature.
@@ -136,7 +138,8 @@ func newTuple(t *types.Tuple, offsets []int64, size int64, defaultprefix string)
 				name += strconv.Itoa(i)
 			}
 		}
-		c := NewComponent(name, v.Type(), int(offsets[i]))
+		addr := operand.NewParamAddr(name, int(offsets[i]))
+		c := NewComponent(v.Type(), addr)
 		tuple.components = append(tuple.components, c)
 		if v.Name() != "" {
 			tuple.byname[v.Name()] = c

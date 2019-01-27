@@ -56,17 +56,15 @@ func (c componenterr) Index(int) Component      { return c }
 func (c componenterr) Field(string) Component   { return c }
 
 type component struct {
-	name   string
-	typ    types.Type
-	offset int
+	typ  types.Type
+	addr operand.Mem
 }
 
-// NewComponent builds a component for the named type at the given memory offset.
-func NewComponent(name string, t types.Type, offset int) Component {
+// NewComponent builds a component for the named type at the given address.
+func NewComponent(t types.Type, addr operand.Mem) Component {
 	return &component{
-		name:   name,
-		typ:    t,
-		offset: offset,
+		typ:  t,
+		addr: addr,
 	}
 }
 
@@ -76,7 +74,7 @@ func (c *component) Resolve() (*Basic, error) {
 		return nil, errors.New("component is not primitive")
 	}
 	return &Basic{
-		Addr: operand.NewParamAddr(c.name, c.offset),
+		Addr: c.addr,
 		Type: b,
 	}, nil
 }
@@ -194,8 +192,10 @@ func (c *component) Field(n string) Component {
 
 func (c *component) sub(suffix string, offset int, t types.Type) *component {
 	s := *c
-	s.name += suffix
-	s.offset += offset
+	if s.addr.Symbol.Name != "" {
+		s.addr.Symbol.Name += suffix
+	}
+	s.addr = s.addr.Offset(offset)
 	s.typ = t
 	return &s
 }
