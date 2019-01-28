@@ -69,3 +69,30 @@ func TestComponentErrors(t *testing.T) {
 		}
 	}
 }
+
+func TestComponentErrorChaining(t *testing.T) {
+	// Build a component with an error.
+	comp := NewComponent(types.Typ[types.Uint32], operand.Mem{}).Index(3)
+	_, expect := comp.Resolve()
+	if expect == nil {
+		t.Fatal("expected error")
+	}
+
+	// Confirm that the error is preserved through chaining operations.
+	cases := []Component{
+		comp.Dereference(reg.R13),
+		comp.Base(),
+		comp.Len(),
+		comp.Cap(),
+		comp.Real(),
+		comp.Imag(),
+		comp.Index(42),
+		comp.Field("field"),
+	}
+	for _, c := range cases {
+		_, err := c.Resolve()
+		if err != expect {
+			t.Fatal("chaining should preserve error")
+		}
+	}
+}
