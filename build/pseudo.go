@@ -54,6 +54,13 @@ func (c *Context) Store(src reg.Register, dst gotypes.Component) {
 	c.mov(src, b.Addr, int(src.Bytes()), int(gotypes.Sizes.Sizeof(b.Type)), b.Type)
 }
 
+// Dereference loads a pointer and returns its element type.
+func (c *Context) Dereference(ptr gotypes.Component) gotypes.Component {
+	r := c.GP64()
+	c.Load(ptr, r)
+	return ptr.Dereference(r)
+}
+
 // ConstData builds a static data section containing just the given constant.
 func (c *Context) ConstData(name string, v operand.Constant) operand.Mem {
 	g := c.StaticGlobal(name)

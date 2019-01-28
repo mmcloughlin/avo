@@ -112,6 +112,9 @@ func Load(src gotypes.Component, dst reg.Register) reg.Register { return ctx.Loa
 // attempt to select the right MOV instruction based on the types involved.
 func Store(src reg.Register, dst gotypes.Component) { ctx.Store(src, dst) }
 
+// Dereference loads a pointer and returns its element type.
+func Dereference(ptr gotypes.Component) gotypes.Component { return ctx.Dereference(ptr) }
+
 // Doc sets documentation comment lines for the currently active function.
 func Doc(lines ...string) { ctx.Doc(lines...) }
 

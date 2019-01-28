@@ -109,3 +109,10 @@ TEXT ·FieldComplex128Real(SB), NOSPLIT, $0-184
 	MOVSD s_Complex128_real+160(FP), X0
 	MOVSD X0, ret+176(FP)
 	RET
+
+// func DereferenceFloat32(s *Struct) float32
+TEXT ·DereferenceFloat32(SB), NOSPLIT, $0-12
+	MOVQ  s+0(FP), AX
+	MOVSS 16(AX), X0
+	MOVSS X0, ret+8(FP)
+	RET
