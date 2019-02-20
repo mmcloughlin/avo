@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	Package("github.com/mmcloughlin/avo/tests/fixedbugs/issue61")
+	Package("github.com/mmcloughlin/avo/tests/fixedbugs/issue62")
 	Implement("private")
 	RET()
 	Generate()
