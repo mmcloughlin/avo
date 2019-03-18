@@ -58,7 +58,7 @@ func CFG(fn *ir.Function) error {
 			}
 			target, found := fn.LabelTarget[*lbl]
 			if !found {
-				return errors.New("unknown label")
+				return fmt.Errorf("unknown label %q", *lbl)
 			}
 			cur.Succ = append(cur.Succ, target)
 		}
