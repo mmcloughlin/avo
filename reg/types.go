@@ -5,12 +5,12 @@ import (
 	"fmt"
 )
 
-// Size is a register size.
-type Size uint
+// Width is a register size.
+type Width uint
 
 // Typical register sizes.
 const (
-	B8 Size = 1 << iota
+	B8 Width = 1 << iota
 	B16
 	B32
 	B64
@@ -19,8 +19,8 @@ const (
 	B512
 )
 
-// Bytes returns the register size in bytes.
-func (s Size) Bytes() uint { return uint(s) }
+// Size returns the register size in bytes.
+func (w Width) Size() uint { return uint(w) }
 
 // Kind is a class of registers.
 type Kind uint8
@@ -47,8 +47,8 @@ func (f *Family) add(r Physical) {
 }
 
 // Virtual returns a virtual register from this family's kind.
-func (f *Family) Virtual(id VID, s Size) Virtual {
-	return NewVirtual(id, f.Kind, s)
+func (f *Family) Virtual(id VID, w Width) Virtual {
+	return NewVirtual(id, f.Kind, w)
 }
 
 // Registers returns the registers in this family.
@@ -78,7 +78,7 @@ func (f *Family) Lookup(id PID, s Spec) Physical {
 // Register represents a virtual or physical register.
 type Register interface {
 	Kind() Kind
-	Bytes() uint
+	Size() uint
 	Asm() string
 	as(Spec) Register
 	register()
@@ -105,16 +105,16 @@ func ToVirtual(r Register) Virtual {
 type virtual struct {
 	id   VID
 	kind Kind
-	Size
+	Width
 	mask uint16
 }
 
 // NewVirtual builds a Virtual register.
-func NewVirtual(id VID, k Kind, s Size) Virtual {
+func NewVirtual(id VID, k Kind, w Width) Virtual {
 	return virtual{
-		id:   id,
-		kind: k,
-		Size: s,
+		id:    id,
+		kind:  k,
+		Width: w,
 	}
 }
 
@@ -123,19 +123,19 @@ func (v virtual) Kind() Kind     { return v.kind }
 
 func (v virtual) Asm() string {
 	// TODO(mbm): decide on virtual register syntax
-	return fmt.Sprintf("<virtual:%v:%v:%v>", v.id, v.Kind(), v.Bytes())
+	return fmt.Sprintf("<virtual:%v:%v:%v>", v.id, v.Kind(), v.Size())
 }
 
 func (v virtual) SatisfiedBy(p Physical) bool {
-	return v.Kind() == p.Kind() && v.Bytes() == p.Bytes() && (v.mask == 0 || v.mask == p.Mask())
+	return v.Kind() == p.Kind() && v.Size() == p.Size() && (v.mask == 0 || v.mask == p.Mask())
 }
 
 func (v virtual) as(s Spec) Register {
 	return virtual{
-		id:   v.id,
-		kind: v.kind,
-		Size: Size(s.Bytes()),
-		mask: s.Mask(),
+		id:    v.id,
+		kind:  v.kind,
+		Width: Width(s.Size()),
+		mask:  s.Mask(),
 	}
 }
 
@@ -229,8 +229,8 @@ func (s Spec) Mask() uint16 {
 	return uint16(s)
 }
 
-// Bytes returns the register size in bytes.
-func (s Spec) Bytes() uint {
+// Size returns the register size in bytes.
+func (s Spec) Size() uint {
 	x := uint(s)
 	return (x >> 1) + (x & 1)
 }
