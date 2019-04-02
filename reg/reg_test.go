@@ -2,10 +2,10 @@ package reg
 
 import "testing"
 
-func TestSpecBytes(t *testing.T) {
+func TestSpecSize(t *testing.T) {
 	cases := []struct {
-		Spec  Spec
-		Bytes uint
+		Spec Spec
+		Size uint
 	}{
 		{S0, 0},
 		{S8L, 1},
@@ -18,8 +18,8 @@ func TestSpecBytes(t *testing.T) {
 		{S512, 64},
 	}
 	for _, c := range cases {
-		if c.Spec.Size() != c.Bytes {
-			t.Errorf("%v.Bytes() = %d; expect = %d", c.Spec, c.Spec.Size(), c.Bytes)
+		if c.Spec.Size() != c.Size {
+			t.Errorf("%v.Size() = %d; expect = %d", c.Spec, c.Spec.Size(), c.Size)
 		}
 	}
 }

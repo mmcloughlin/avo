@@ -5,10 +5,10 @@ import (
 	"fmt"
 )
 
-// Width is a register size.
+// Width is a register width.
 type Width uint
 
-// Typical register sizes.
+// Typical register width values.
 const (
 	B8 Width = 1 << iota
 	B16
@@ -19,7 +19,7 @@ const (
 	B512
 )
 
-// Size returns the register size in bytes.
+// Size returns the register width in bytes.
 func (w Width) Size() uint { return uint(w) }
 
 // Kind is a class of registers.
@@ -229,7 +229,7 @@ func (s Spec) Mask() uint16 {
 	return uint16(s)
 }
 
-// Size returns the register size in bytes.
+// Size returns the register width in bytes.
 func (s Spec) Size() uint {
 	x := uint(s)
 	return (x >> 1) + (x & 1)
