@@ -13,11 +13,11 @@ func NewCollection() *Collection {
 	}
 }
 
-// VirtualRegister allocates and returns a new virtual register of the given kind and size.
-func (c *Collection) VirtualRegister(k Kind, s Size) Virtual {
+// VirtualRegister allocates and returns a new virtual register of the given kind and width.
+func (c *Collection) VirtualRegister(k Kind, w Width) Virtual {
 	vid := c.vid[k]
 	c.vid[k]++
-	return NewVirtual(vid, k, s)
+	return NewVirtual(vid, k, w)
 }
 
 // GP8 allocates and returns a general-purpose 8-bit register.
@@ -32,8 +32,8 @@ func (c *Collection) GP32() GPVirtual { return c.GP(B32) }
 // GP64 allocates and returns a general-purpose 64-bit register.
 func (c *Collection) GP64() GPVirtual { return c.GP(B64) }
 
-// GP allocates and returns a general-purpose register of the given size.
-func (c *Collection) GP(s Size) GPVirtual { return newgpv(c.VirtualRegister(KindGP, s)) }
+// GP allocates and returns a general-purpose register of the given width.
+func (c *Collection) GP(w Width) GPVirtual { return newgpv(c.VirtualRegister(KindGP, w)) }
 
 // XMM allocates and returns a 128-bit vector register.
 func (c *Collection) XMM() VecVirtual { return c.Vec(B128) }
@@ -44,5 +44,5 @@ func (c *Collection) YMM() VecVirtual { return c.Vec(B256) }
 // ZMM allocates and returns a 512-bit vector register.
 func (c *Collection) ZMM() VecVirtual { return c.Vec(B512) }
 
-// Vec allocates and returns a vector register of the given size.
-func (c *Collection) Vec(s Size) VecVirtual { return newvecv(c.VirtualRegister(KindVector, s)) }
+// Vec allocates and returns a vector register of the given width.
+func (c *Collection) Vec(w Width) VecVirtual { return newvecv(c.VirtualRegister(KindVector, w)) }
