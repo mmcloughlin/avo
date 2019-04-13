@@ -143,7 +143,7 @@ func (c *component) Imag() Component {
 }
 
 func (c *component) Index(i int) Component {
-	a, ok := c.typ.(*types.Array)
+	a, ok := c.typ.Underlying().(*types.Array)
 	if !ok {
 		return errorf("not array type")
 	}
@@ -213,17 +213,17 @@ func (c *component) sub(suffix string, offset int, t types.Type) *component {
 }
 
 func isslice(t types.Type) bool {
-	_, ok := t.(*types.Slice)
+	_, ok := t.Underlying().(*types.Slice)
 	return ok
 }
 
 func isstring(t types.Type) bool {
-	b, ok := t.(*types.Basic)
+	b, ok := t.Underlying().(*types.Basic)
 	return ok && b.Kind() == types.String
 }
 
 func iscomplex(t types.Type) bool {
-	b, ok := t.(*types.Basic)
+	b, ok := t.Underlying().(*types.Basic)
 	return ok && (b.Info()&types.IsComplex) != 0
 }
 
