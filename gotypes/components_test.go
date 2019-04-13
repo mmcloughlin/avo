@@ -203,6 +203,7 @@ func TestComponentDeconstruction(t *testing.T) {
 	}
 
 	for _, c := range cases {
+		c := c // avoid scopelint error
 		t.Run(c.Name, func(t *testing.T) {
 			t.Log(c.Type)
 			base := operand.NewParamAddr("test", 0)
