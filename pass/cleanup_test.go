@@ -26,7 +26,9 @@ func TestPruneSelfMoves(t *testing.T) {
 	pre := append([]ir.Node{}, fn.Nodes...)
 
 	// Apply the pass.
-	pass.PruneSelfMoves(fn)
+	if err := pass.PruneSelfMoves(fn); err != nil {
+		t.Fatal(err)
+	}
 
 	// Confirm the self-move was removed and everything else was untouched.
 	expect := []ir.Node{}
