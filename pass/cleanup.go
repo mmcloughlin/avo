@@ -1,9 +1,43 @@
 package pass
 
 import (
+	"errors"
+
 	"github.com/mmcloughlin/avo/ir"
 	"github.com/mmcloughlin/avo/operand"
 )
+
+// PruneJumpToFollowingLabel removes jump instructions that target an
+// immediately following label.
+func PruneJumpToFollowingLabel(fn *ir.Function) error {
+	for i := 0; i+1 < len(fn.Nodes); i++ {
+		node := fn.Nodes[i]
+		next := fn.Nodes[i+1]
+
+		// This node is an unconditional jump.
+		inst, ok := node.(*ir.Instruction)
+		if !ok || !inst.IsBranch || inst.IsConditional {
+			continue
+		}
+
+		target := inst.TargetLabel()
+		if target == nil {
+			return errors.New("no label for branch instruction")
+		}
+
+		// And the jump target is the immediately following node.
+		lbl, ok := next.(ir.Label)
+		if !ok || lbl != *target {
+			continue
+		}
+
+		// Then the jump is unnecessary and can be removed.
+		fn.Nodes = deletenode(fn.Nodes, i)
+		i--
+	}
+
+	return nil
+}
 
 // PruneSelfMoves removes move instructions from one register to itself.
 func PruneSelfMoves(fn *ir.Function) error {
@@ -32,12 +66,18 @@ func removeinstructions(fn *ir.Function, predicate func(*ir.Instruction) bool) e
 			continue
 		}
 
-		copy(fn.Nodes[i:], fn.Nodes[i+1:])
-		fn.Nodes[len(fn.Nodes)-1] = nil
-		fn.Nodes = fn.Nodes[:len(fn.Nodes)-1]
+		fn.Nodes = deletenode(fn.Nodes, i)
 	}
 
 	return nil
+}
+
+// deletenode deletes node i from nodes and returns the resulting slice.
+func deletenode(nodes []ir.Node, i int) []ir.Node {
+	n := len(nodes)
+	copy(nodes[i:], nodes[i+1:])
+	nodes[n-1] = nil
+	return nodes[:n-1]
 }
 
 // invalidatecfg clears CFG structures.
