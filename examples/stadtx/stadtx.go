@@ -28,6 +28,7 @@ func scramble64(v, prime uint64) uint64 {
 }
 
 func SeedState(seed []uint64) State {
+
 	var state State
 
 	state[0] = seed[0] ^ 0x43f6a8885a308d31

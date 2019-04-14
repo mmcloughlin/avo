@@ -2,7 +2,9 @@
 
 package stadtx
 
-import "testing"
+import (
+	"testing"
+)
 
 /*
 
@@ -37,6 +39,7 @@ int main()
 */
 
 func TestHash(t *testing.T) {
+
 	var tests = []uint64{
 		0x0db6608af30c8cc1, 0xe3ffb1e1a2273589, 0xc34df40f05c3d43a, 0xf79284a93cd817cf, 0x178aed7315bcd4b9, 0x48a29a42948da116, 0xa78613b72330a064, 0xa23cd23f7b6eaef7,
 		0x7e4c118aca1d7886, 0x37059645f8797936, 0xcb7197e3253670cb, 0x5dadeebe5a5bc19f, 0x537057981e3f75ad, 0x41d57f7870fbcbf8, 0x7fc3cd6b1bb018c2, 0xbf98dbc2a88c5050,
