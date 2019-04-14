@@ -1,8 +1,6 @@
 package geohash
 
-import (
-	"testing"
-)
+import "testing"
 
 //go:generate go run asm.go -out geohash.s -stubs stub.go
 

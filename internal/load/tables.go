@@ -1,8 +1,6 @@
 package load
 
-import (
-	"github.com/mmcloughlin/avo/internal/inst"
-)
+import "github.com/mmcloughlin/avo/internal/inst"
 
 // alias defines an opcode alias.
 type alias struct {

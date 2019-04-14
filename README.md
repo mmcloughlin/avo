@@ -33,9 +33,7 @@ $ go get -u github.com/mmcloughlin/avo
 
 package main
 
-import (
-	. "github.com/mmcloughlin/avo/build"
-)
+import . "github.com/mmcloughlin/avo/build"
 
 func main() {
 	TEXT("Add", NOSPLIT, "func(x, y uint64) uint64")

@@ -15,9 +15,7 @@ import (
 	"strconv"
 )
 
-var (
-	output = flag.String("output", "", "path to output file (default stdout)")
-)
+var output = flag.String("output", "", "path to output file (default stdout)")
 
 func PrintConstType(w io.Writer, name, typ, format string, size int, doc string) {
 	r := typ[0]

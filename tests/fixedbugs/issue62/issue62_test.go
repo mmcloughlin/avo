@@ -1,8 +1,6 @@
 package issue62
 
-import (
-	"testing"
-)
+import "testing"
 
 //go:generate go run asm.go -out issue62.s
 

@@ -1,8 +1,6 @@
 package opcodesxml
 
-import (
-	"testing"
-)
+import "testing"
 
 func TestReadFile(t *testing.T) {
 	_, err := ReadFile("testdata/x86_64.xml")

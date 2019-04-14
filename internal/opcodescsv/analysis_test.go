@@ -1,8 +1,6 @@
 package opcodescsv
 
-import (
-	"testing"
-)
+import "testing"
 
 func TestBuildOrderMap(t *testing.T) {
 	is, err := ReadFile("testdata/x86.v0.2.csv")
