@@ -3,7 +3,6 @@ package pass_test
 import (
 	"testing"
 
-	"github.com/mmcloughlin/avo/internal/test"
 	"github.com/mmcloughlin/avo/ir"
 	"github.com/mmcloughlin/avo/reg"
 
@@ -58,28 +57,5 @@ func AssertRegistersMatchSet(t *testing.T, rs []reg.Register, s reg.Set) {
 }
 
 func ConstructLiveness(t *testing.T, ctx *build.Context) *ir.Function {
-	f, err := ctx.Result()
-	if err != nil {
-		build.LogError(test.Logger(t), err, 0)
-		t.FailNow()
-	}
-
-	fns := f.Functions()
-	if len(fns) != 1 {
-		t.Fatalf("expect 1 function")
-	}
-	fn := fns[0]
-
-	passes := []func(*ir.Function) error{
-		pass.LabelTarget,
-		pass.CFG,
-		pass.Liveness,
-	}
-	for _, p := range passes {
-		if err := p(fn); err != nil {
-			t.Fatal(err)
-		}
-	}
-
-	return fn
+	return BuildFunction(t, ctx, pass.LabelTarget, pass.CFG, pass.Liveness)
 }
