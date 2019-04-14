@@ -2,9 +2,7 @@
 
 package main
 
-import (
-	. "github.com/mmcloughlin/avo/build"
-)
+import . "github.com/mmcloughlin/avo/build"
 
 func main() {
 	Package("github.com/mmcloughlin/avo/examples/args")

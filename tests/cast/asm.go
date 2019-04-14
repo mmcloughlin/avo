@@ -2,9 +2,7 @@
 
 package main
 
-import (
-	. "github.com/mmcloughlin/avo/build"
-)
+import . "github.com/mmcloughlin/avo/build"
 
 func main() {
 	TEXT("Split", NOSPLIT, "func(x uint64) (q uint64, l uint32, w uint16, b uint8)")

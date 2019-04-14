@@ -1,8 +1,6 @@
 package sha1
 
-import (
-	"encoding/binary"
-)
+import "encoding/binary"
 
 // Size of a SHA-1 checksum in bytes.
 const Size = 20
