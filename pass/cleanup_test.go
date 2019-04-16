@@ -42,3 +42,45 @@ func TestPruneSelfMoves(t *testing.T) {
 		t.Fatal("unexpected result from self-move pruning")
 	}
 }
+
+func TestPruneJumpToFollowingLabel(t *testing.T) {
+	// Construct a function containing a jump to following.
+	ctx := build.NewContext()
+	ctx.Function("add")
+	ctx.XORQ(reg.RAX, reg.RAX)
+	ctx.JMP(operand.LabelRef("next"))
+	ctx.Label("next")
+	ctx.XORQ(reg.RAX, reg.RAX)
+
+	// Build the function with the PruneJumpToFollowingLabel pass.
+	fn := BuildFunction(t, ctx, pass.PruneJumpToFollowingLabel)
+
+	// Confirm no JMP instruction remains.
+	for _, i := range fn.Instructions() {
+		if i.Opcode == "JMP" {
+			t.Fatal("JMP instruction not removed")
+		}
+	}
+}
+
+func TestPruneDanglingLabels(t *testing.T) {
+	// Construct a function containing an unreferenced label.
+	ctx := build.NewContext()
+	ctx.Function("add")
+	ctx.XORQ(reg.RAX, reg.RAX)
+	ctx.JMP(operand.LabelRef("referenced"))
+	ctx.XORQ(reg.RAX, reg.RAX)
+	ctx.Label("dangling")
+	ctx.XORQ(reg.RAX, reg.RAX)
+	ctx.Label("referenced")
+	ctx.XORQ(reg.RAX, reg.RAX)
+
+	// Build the function with the PruneDanglingLabels pass.
+	fn := BuildFunction(t, ctx, pass.PruneDanglingLabels)
+
+	// Confirm the only label remaining is "referenced".
+	expect := []ir.Label{"referenced"}
+	if !reflect.DeepEqual(expect, fn.Labels()) {
+		t.Fatal("expected dangling label to be removed")
+	}
+}

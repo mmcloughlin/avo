@@ -212,6 +212,18 @@ func (f *Function) Instructions() []*Instruction {
 	return is
 }
 
+// Labels returns just the list of label nodes.
+func (f *Function) Labels() []Label {
+	var lbls []Label
+	for _, n := range f.Nodes {
+		lbl, ok := n.(Label)
+		if ok {
+			lbls = append(lbls, lbl)
+		}
+	}
+	return lbls
+}
+
 // Stub returns the Go function declaration.
 func (f *Function) Stub() string {
 	return "func " + f.Name + f.Signature.String()

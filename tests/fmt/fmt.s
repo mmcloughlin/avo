@@ -13,4 +13,5 @@ TEXT ·Formatting(SB), NOSPLIT, $0
 label:
 	// Comment after label.
 	ADDQ R8, R8
+	JMP  label
 	RET

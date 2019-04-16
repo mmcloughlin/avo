@@ -11,6 +11,8 @@ import (
 // Compile pass compiles an avo file. Upon successful completion the avo file
 // may be printed to Go assembly.
 var Compile = Concat(
+	FunctionPass(PruneJumpToFollowingLabel),
+	FunctionPass(PruneDanglingLabels),
 	FunctionPass(LabelTarget),
 	FunctionPass(CFG),
 	FunctionPass(Liveness),
