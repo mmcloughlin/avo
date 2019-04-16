@@ -4,6 +4,7 @@ package main
 
 import (
 	. "github.com/mmcloughlin/avo/build"
+	. "github.com/mmcloughlin/avo/operand"
 	. "github.com/mmcloughlin/avo/reg"
 )
 
@@ -19,6 +20,7 @@ func main() {
 	Label("label")
 	Comment("Comment after label.")
 	ADDQ(R8, R8)
+	JMP(LabelRef("label"))
 
 	RET()
 
