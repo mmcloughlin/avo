@@ -12,6 +12,7 @@ import (
 // may be printed to Go assembly.
 var Compile = Concat(
 	FunctionPass(PruneJumpToFollowingLabel),
+	FunctionPass(PruneDanglingLabels),
 	FunctionPass(LabelTarget),
 	FunctionPass(CFG),
 	FunctionPass(Liveness),

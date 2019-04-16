@@ -1,8 +1,6 @@
 package pass
 
 import (
-	"errors"
-
 	"github.com/mmcloughlin/avo/ir"
 	"github.com/mmcloughlin/avo/operand"
 )
@@ -22,7 +20,7 @@ func PruneJumpToFollowingLabel(fn *ir.Function) error {
 
 		target := inst.TargetLabel()
 		if target == nil {
-			return errors.New("no label for branch instruction")
+			continue
 		}
 
 		// And the jump target is the immediately following node.
@@ -34,6 +32,41 @@ func PruneJumpToFollowingLabel(fn *ir.Function) error {
 		// Then the jump is unnecessary and can be removed.
 		fn.Nodes = deletenode(fn.Nodes, i)
 		i--
+	}
+
+	return nil
+}
+
+// PruneDanglingLabels removes labels that are not referenced by any branches.
+func PruneDanglingLabels(fn *ir.Function) error {
+	// Count label references.
+	count := map[ir.Label]int{}
+	for _, n := range fn.Nodes {
+		i, ok := n.(*ir.Instruction)
+		if !ok || !i.IsBranch {
+			continue
+		}
+
+		target := i.TargetLabel()
+		if target == nil {
+			continue
+		}
+
+		count[*target]++
+	}
+
+	// Look for labels with no references.
+	for i := 0; i < len(fn.Nodes); i++ {
+		node := fn.Nodes[i]
+		lbl, ok := node.(ir.Label)
+		if !ok {
+			continue
+		}
+
+		if count[lbl] == 0 {
+			fn.Nodes = deletenode(fn.Nodes, i)
+			i--
+		}
 	}
 
 	return nil

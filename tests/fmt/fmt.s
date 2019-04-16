@@ -10,7 +10,6 @@ TEXT ·Formatting(SB), NOSPLIT, $0
 	ADDQ R8, R8
 
 	// Comment before label.
-label:
 	// Comment after label.
 	ADDQ R8, R8
 	RET

@@ -6,14 +6,10 @@
 TEXT ·Labels(SB), NOSPLIT, $0-8
 	XORQ AX, AX
 	INCQ AX
-
-neverused:
 	INCQ AX
 	INCQ AX
 	INCQ AX
 	INCQ AX
-
-next:
 	INCQ AX
 	INCQ AX
 	MOVQ AX, ret+0(FP)
