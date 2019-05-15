@@ -20,7 +20,7 @@ var Compile = Concat(
 	FunctionPass(BindRegisters),
 	FunctionPass(VerifyAllocation),
 	Func(IncludeTextFlagHeader),
-	FunctionPass(PruneSelfMoves),
+	// FunctionPass(PruneSelfMoves),
 )
 
 // Interface for a processing pass.
