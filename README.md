@@ -15,6 +15,8 @@
 * **Automatically load arguments and store return values**: ensure memory offsets are correct for complex structures
 * **Generation of stub files** to interface with your Go package
 
+For a full introduction to `avo` watch the [dotGo 2019](https://2019.dotgo.eu/) talk [Better `x86` Assembly Generation with Go](https://www.youtube.com/watch?v=6Y5CZ7_tyA4) ([slides](https://speakerdeck.com/mmcloughlin/better-x86-assembly-generation-with-go)).
+
 _Note: APIs subject to change while `avo` is still in an experimental phase. You can use it to build [real things](examples) but we suggest you pin a version with your package manager of choice._
 
 ## Quick Start
