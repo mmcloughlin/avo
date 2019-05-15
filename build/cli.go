@@ -77,6 +77,10 @@ func NewFlags(fs *flag.FlagSet) *Flags {
 	fs.Var(stubs, "stubs", "go stub file")
 	f.printers = append(f.printers, stubs)
 
+	debug := newPrinterValue(printer.NewDebug, nil)
+	fs.Var(debug, "debug", "debug output")
+	f.printers = append(f.printers, debug)
+
 	return f
 }
 

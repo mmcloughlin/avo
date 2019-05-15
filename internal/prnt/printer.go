@@ -13,8 +13,9 @@ import (
 // any errors to be stored so they can be checked at the end, rather than having
 // error checks obscuring the code generation.
 type Generator struct {
-	buf bytes.Buffer
-	err error
+	buf   bytes.Buffer
+	level int
+	err   error
 }
 
 // Raw provides direct access to the underlying output stream.
@@ -34,6 +35,19 @@ func (g *Generator) Printf(format string, args ...interface{}) {
 // NL prints a new line.
 func (g *Generator) NL() {
 	g.Printf("\n")
+}
+
+// Indent increases indent level.
+func (g *Generator) Indent() { g.level++ }
+
+// Dedent decreases indent level.
+func (g *Generator) Dedent() { g.level-- }
+
+// Linef prints a formatted line, starting with any configured indent.
+func (g *Generator) Linef(format string, args ...interface{}) {
+	indent := strings.Repeat("\t", g.level)
+	g.Printf(indent+format, args...)
+	g.NL()
 }
 
 // Comment writes comment lines prefixed with "// ".
