@@ -35,7 +35,7 @@ func NewContext() *Context {
 // Package sets the package the generated file will belong to. Required to be able to reference types in the package.
 func (c *Context) Package(path string) {
 	cfg := &packages.Config{
-		Mode: packages.LoadAllSyntax,
+		Mode: packages.NeedTypes | packages.NeedDeps,
 	}
 	pkgs, err := packages.Load(cfg, path)
 	if err != nil {
