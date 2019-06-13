@@ -51,7 +51,7 @@ func TestLookupSignatureErrors(t *testing.T) {
 func LoadPackageTypes(t *testing.T, path string) *types.Package {
 	t.Helper()
 	cfg := &packages.Config{
-		Mode: packages.NeedName | packages.NeedFiles | packages.NeedCompiledGoFiles | packages.NeedImports | packages.NeedDeps | packages.NeedTypes | packages.NeedTypesSizes,
+		Mode: packages.NeedTypes,
 	}
 	pkgs, err := packages.Load(cfg, path)
 	if err != nil {
