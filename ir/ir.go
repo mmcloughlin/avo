@@ -42,9 +42,10 @@ type Instruction struct {
 	Inputs  []operand.Op
 	Outputs []operand.Op
 
-	IsTerminal    bool
-	IsBranch      bool
-	IsConditional bool
+	IsTerminal       bool
+	IsBranch         bool
+	IsConditional    bool
+	CancellingInputs bool
 
 	// CFG.
 	Pred []*Instruction

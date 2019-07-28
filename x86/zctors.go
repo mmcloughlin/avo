@@ -1127,10 +1127,11 @@ func ANDNL(mr, r, r1 operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsR32(mr) && operand.IsR32(r) && operand.IsR32(r1):
 		return &intrep.Instruction{
-			Opcode:   "ANDNL",
-			Operands: []operand.Op{mr, r, r1},
-			Inputs:   []operand.Op{mr, r},
-			Outputs:  []operand.Op{r1},
+			Opcode:           "ANDNL",
+			Operands:         []operand.Op{mr, r, r1},
+			Inputs:           []operand.Op{mr, r},
+			Outputs:          []operand.Op{r1},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM32(mr) && operand.IsR32(r) && operand.IsR32(r1):
 		return &intrep.Instruction{
@@ -1153,10 +1154,11 @@ func ANDNPD(mx, x operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsXMM(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
-			Opcode:   "ANDNPD",
-			Operands: []operand.Op{mx, x},
-			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{x},
+			Opcode:           "ANDNPD",
+			Operands:         []operand.Op{mx, x},
+			Inputs:           []operand.Op{mx, x},
+			Outputs:          []operand.Op{x},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -1179,10 +1181,11 @@ func ANDNPS(mx, x operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsXMM(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
-			Opcode:   "ANDNPS",
-			Operands: []operand.Op{mx, x},
-			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{x},
+			Opcode:           "ANDNPS",
+			Operands:         []operand.Op{mx, x},
+			Inputs:           []operand.Op{mx, x},
+			Outputs:          []operand.Op{x},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -1205,10 +1208,11 @@ func ANDNQ(mr, r, r1 operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsR64(mr) && operand.IsR64(r) && operand.IsR64(r1):
 		return &intrep.Instruction{
-			Opcode:   "ANDNQ",
-			Operands: []operand.Op{mr, r, r1},
-			Inputs:   []operand.Op{mr, r},
-			Outputs:  []operand.Op{r1},
+			Opcode:           "ANDNQ",
+			Operands:         []operand.Op{mr, r, r1},
+			Inputs:           []operand.Op{mr, r},
+			Outputs:          []operand.Op{r1},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM64(mr) && operand.IsR64(r) && operand.IsR64(r1):
 		return &intrep.Instruction{
@@ -3895,10 +3899,11 @@ func CMPB(amr, imr operand.Op) (*intrep.Instruction, error) {
 		}, nil
 	case operand.IsR8(amr) && operand.IsR8(imr):
 		return &intrep.Instruction{
-			Opcode:   "CMPB",
-			Operands: []operand.Op{amr, imr},
-			Inputs:   []operand.Op{amr, imr},
-			Outputs:  []operand.Op{},
+			Opcode:           "CMPB",
+			Operands:         []operand.Op{amr, imr},
+			Inputs:           []operand.Op{amr, imr},
+			Outputs:          []operand.Op{},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsR8(amr) && operand.IsM8(imr):
 		return &intrep.Instruction{
@@ -3962,10 +3967,11 @@ func CMPL(emr, imr operand.Op) (*intrep.Instruction, error) {
 		}, nil
 	case operand.IsR32(emr) && operand.IsR32(imr):
 		return &intrep.Instruction{
-			Opcode:   "CMPL",
-			Operands: []operand.Op{emr, imr},
-			Inputs:   []operand.Op{emr, imr},
-			Outputs:  []operand.Op{},
+			Opcode:           "CMPL",
+			Operands:         []operand.Op{emr, imr},
+			Inputs:           []operand.Op{emr, imr},
+			Outputs:          []operand.Op{},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsR32(emr) && operand.IsM32(imr):
 		return &intrep.Instruction{
@@ -4088,10 +4094,11 @@ func CMPQ(mr, imr operand.Op) (*intrep.Instruction, error) {
 		}, nil
 	case operand.IsR64(mr) && operand.IsR64(imr):
 		return &intrep.Instruction{
-			Opcode:   "CMPQ",
-			Operands: []operand.Op{mr, imr},
-			Inputs:   []operand.Op{mr, imr},
-			Outputs:  []operand.Op{},
+			Opcode:           "CMPQ",
+			Operands:         []operand.Op{mr, imr},
+			Inputs:           []operand.Op{mr, imr},
+			Outputs:          []operand.Op{},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsR64(mr) && operand.IsM64(imr):
 		return &intrep.Instruction{
@@ -4214,10 +4221,11 @@ func CMPW(amr, imr operand.Op) (*intrep.Instruction, error) {
 		}, nil
 	case operand.IsR16(amr) && operand.IsR16(imr):
 		return &intrep.Instruction{
-			Opcode:   "CMPW",
-			Operands: []operand.Op{amr, imr},
-			Inputs:   []operand.Op{amr, imr},
-			Outputs:  []operand.Op{},
+			Opcode:           "CMPW",
+			Operands:         []operand.Op{amr, imr},
+			Inputs:           []operand.Op{amr, imr},
+			Outputs:          []operand.Op{},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsR16(amr) && operand.IsM16(imr):
 		return &intrep.Instruction{
@@ -11027,10 +11035,11 @@ func PANDN(mx, x operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsXMM(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
-			Opcode:   "PANDN",
-			Operands: []operand.Op{mx, x},
-			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{x},
+			Opcode:           "PANDN",
+			Operands:         []operand.Op{mx, x},
+			Inputs:           []operand.Op{mx, x},
+			Outputs:          []operand.Op{x},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -11197,10 +11206,11 @@ func PCMPEQB(mx, x operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsXMM(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
-			Opcode:   "PCMPEQB",
-			Operands: []operand.Op{mx, x},
-			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{x},
+			Opcode:           "PCMPEQB",
+			Operands:         []operand.Op{mx, x},
+			Inputs:           []operand.Op{mx, x},
+			Outputs:          []operand.Op{x},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -11223,10 +11233,11 @@ func PCMPEQL(mx, x operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsXMM(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
-			Opcode:   "PCMPEQL",
-			Operands: []operand.Op{mx, x},
-			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{x},
+			Opcode:           "PCMPEQL",
+			Operands:         []operand.Op{mx, x},
+			Inputs:           []operand.Op{mx, x},
+			Outputs:          []operand.Op{x},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -11249,10 +11260,11 @@ func PCMPEQQ(mx, x operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsXMM(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
-			Opcode:   "PCMPEQQ",
-			Operands: []operand.Op{mx, x},
-			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{x},
+			Opcode:           "PCMPEQQ",
+			Operands:         []operand.Op{mx, x},
+			Inputs:           []operand.Op{mx, x},
+			Outputs:          []operand.Op{x},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -11275,10 +11287,11 @@ func PCMPEQW(mx, x operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsXMM(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
-			Opcode:   "PCMPEQW",
-			Operands: []operand.Op{mx, x},
-			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{x},
+			Opcode:           "PCMPEQW",
+			Operands:         []operand.Op{mx, x},
+			Inputs:           []operand.Op{mx, x},
+			Outputs:          []operand.Op{x},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -11353,10 +11366,11 @@ func PCMPGTB(mx, x operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsXMM(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
-			Opcode:   "PCMPGTB",
-			Operands: []operand.Op{mx, x},
-			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{x},
+			Opcode:           "PCMPGTB",
+			Operands:         []operand.Op{mx, x},
+			Inputs:           []operand.Op{mx, x},
+			Outputs:          []operand.Op{x},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -11379,10 +11393,11 @@ func PCMPGTL(mx, x operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsXMM(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
-			Opcode:   "PCMPGTL",
-			Operands: []operand.Op{mx, x},
-			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{x},
+			Opcode:           "PCMPGTL",
+			Operands:         []operand.Op{mx, x},
+			Inputs:           []operand.Op{mx, x},
+			Outputs:          []operand.Op{x},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -11405,10 +11420,11 @@ func PCMPGTQ(mx, x operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsXMM(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
-			Opcode:   "PCMPGTQ",
-			Operands: []operand.Op{mx, x},
-			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{x},
+			Opcode:           "PCMPGTQ",
+			Operands:         []operand.Op{mx, x},
+			Inputs:           []operand.Op{mx, x},
+			Outputs:          []operand.Op{x},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -11431,10 +11447,11 @@ func PCMPGTW(mx, x operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsXMM(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
-			Opcode:   "PCMPGTW",
-			Operands: []operand.Op{mx, x},
-			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{x},
+			Opcode:           "PCMPGTW",
+			Operands:         []operand.Op{mx, x},
+			Inputs:           []operand.Op{mx, x},
+			Outputs:          []operand.Op{x},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -11821,10 +11838,11 @@ func PHSUBD(mx, x operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsXMM(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
-			Opcode:   "PHSUBD",
-			Operands: []operand.Op{mx, x},
-			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{x},
+			Opcode:           "PHSUBD",
+			Operands:         []operand.Op{mx, x},
+			Inputs:           []operand.Op{mx, x},
+			Outputs:          []operand.Op{x},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -11847,10 +11865,11 @@ func PHSUBSW(mx, x operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsXMM(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
-			Opcode:   "PHSUBSW",
-			Operands: []operand.Op{mx, x},
-			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{x},
+			Opcode:           "PHSUBSW",
+			Operands:         []operand.Op{mx, x},
+			Inputs:           []operand.Op{mx, x},
+			Outputs:          []operand.Op{x},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -11873,10 +11892,11 @@ func PHSUBW(mx, x operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsXMM(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
-			Opcode:   "PHSUBW",
-			Operands: []operand.Op{mx, x},
-			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{x},
+			Opcode:           "PHSUBW",
+			Operands:         []operand.Op{mx, x},
+			Inputs:           []operand.Op{mx, x},
+			Outputs:          []operand.Op{x},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -13107,10 +13127,11 @@ func PSADBW(mx, x operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsXMM(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
-			Opcode:   "PSADBW",
-			Operands: []operand.Op{mx, x},
-			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{x},
+			Opcode:           "PSADBW",
+			Operands:         []operand.Op{mx, x},
+			Inputs:           []operand.Op{mx, x},
+			Outputs:          []operand.Op{x},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -13685,10 +13706,11 @@ func PSUBB(mx, x operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsXMM(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
-			Opcode:   "PSUBB",
-			Operands: []operand.Op{mx, x},
-			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{x},
+			Opcode:           "PSUBB",
+			Operands:         []operand.Op{mx, x},
+			Inputs:           []operand.Op{mx, x},
+			Outputs:          []operand.Op{x},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -13711,10 +13733,11 @@ func PSUBL(mx, x operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsXMM(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
-			Opcode:   "PSUBL",
-			Operands: []operand.Op{mx, x},
-			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{x},
+			Opcode:           "PSUBL",
+			Operands:         []operand.Op{mx, x},
+			Inputs:           []operand.Op{mx, x},
+			Outputs:          []operand.Op{x},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -13737,10 +13760,11 @@ func PSUBQ(mx, x operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsXMM(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
-			Opcode:   "PSUBQ",
-			Operands: []operand.Op{mx, x},
-			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{x},
+			Opcode:           "PSUBQ",
+			Operands:         []operand.Op{mx, x},
+			Inputs:           []operand.Op{mx, x},
+			Outputs:          []operand.Op{x},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -13763,10 +13787,11 @@ func PSUBSB(mx, x operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsXMM(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
-			Opcode:   "PSUBSB",
-			Operands: []operand.Op{mx, x},
-			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{x},
+			Opcode:           "PSUBSB",
+			Operands:         []operand.Op{mx, x},
+			Inputs:           []operand.Op{mx, x},
+			Outputs:          []operand.Op{x},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -13789,10 +13814,11 @@ func PSUBSW(mx, x operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsXMM(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
-			Opcode:   "PSUBSW",
-			Operands: []operand.Op{mx, x},
-			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{x},
+			Opcode:           "PSUBSW",
+			Operands:         []operand.Op{mx, x},
+			Inputs:           []operand.Op{mx, x},
+			Outputs:          []operand.Op{x},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -13815,10 +13841,11 @@ func PSUBUSB(mx, x operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsXMM(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
-			Opcode:   "PSUBUSB",
-			Operands: []operand.Op{mx, x},
-			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{x},
+			Opcode:           "PSUBUSB",
+			Operands:         []operand.Op{mx, x},
+			Inputs:           []operand.Op{mx, x},
+			Outputs:          []operand.Op{x},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -13841,10 +13868,11 @@ func PSUBUSW(mx, x operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsXMM(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
-			Opcode:   "PSUBUSW",
-			Operands: []operand.Op{mx, x},
-			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{x},
+			Opcode:           "PSUBUSW",
+			Operands:         []operand.Op{mx, x},
+			Inputs:           []operand.Op{mx, x},
+			Outputs:          []operand.Op{x},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -13867,10 +13895,11 @@ func PSUBW(mx, x operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsXMM(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
-			Opcode:   "PSUBW",
-			Operands: []operand.Op{mx, x},
-			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{x},
+			Opcode:           "PSUBW",
+			Operands:         []operand.Op{mx, x},
+			Inputs:           []operand.Op{mx, x},
+			Outputs:          []operand.Op{x},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -14195,10 +14224,11 @@ func PXOR(mx, x operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsXMM(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
-			Opcode:   "PXOR",
-			Operands: []operand.Op{mx, x},
-			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{x},
+			Opcode:           "PXOR",
+			Operands:         []operand.Op{mx, x},
+			Inputs:           []operand.Op{mx, x},
+			Outputs:          []operand.Op{x},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -16147,10 +16177,11 @@ func SBBB(imr, amr operand.Op) (*intrep.Instruction, error) {
 		}, nil
 	case operand.IsR8(imr) && operand.IsR8(amr):
 		return &intrep.Instruction{
-			Opcode:   "SBBB",
-			Operands: []operand.Op{imr, amr},
-			Inputs:   []operand.Op{imr, amr},
-			Outputs:  []operand.Op{amr},
+			Opcode:           "SBBB",
+			Operands:         []operand.Op{imr, amr},
+			Inputs:           []operand.Op{imr, amr},
+			Outputs:          []operand.Op{amr},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM8(imr) && operand.IsR8(amr):
 		return &intrep.Instruction{
@@ -16214,10 +16245,11 @@ func SBBL(imr, emr operand.Op) (*intrep.Instruction, error) {
 		}, nil
 	case operand.IsR32(imr) && operand.IsR32(emr):
 		return &intrep.Instruction{
-			Opcode:   "SBBL",
-			Operands: []operand.Op{imr, emr},
-			Inputs:   []operand.Op{imr, emr},
-			Outputs:  []operand.Op{emr},
+			Opcode:           "SBBL",
+			Operands:         []operand.Op{imr, emr},
+			Inputs:           []operand.Op{imr, emr},
+			Outputs:          []operand.Op{emr},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM32(imr) && operand.IsR32(emr):
 		return &intrep.Instruction{
@@ -16288,10 +16320,11 @@ func SBBQ(imr, mr operand.Op) (*intrep.Instruction, error) {
 		}, nil
 	case operand.IsR64(imr) && operand.IsR64(mr):
 		return &intrep.Instruction{
-			Opcode:   "SBBQ",
-			Operands: []operand.Op{imr, mr},
-			Inputs:   []operand.Op{imr, mr},
-			Outputs:  []operand.Op{mr},
+			Opcode:           "SBBQ",
+			Operands:         []operand.Op{imr, mr},
+			Inputs:           []operand.Op{imr, mr},
+			Outputs:          []operand.Op{mr},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM64(imr) && operand.IsR64(mr):
 		return &intrep.Instruction{
@@ -16362,10 +16395,11 @@ func SBBW(imr, amr operand.Op) (*intrep.Instruction, error) {
 		}, nil
 	case operand.IsR16(imr) && operand.IsR16(amr):
 		return &intrep.Instruction{
-			Opcode:   "SBBW",
-			Operands: []operand.Op{imr, amr},
-			Inputs:   []operand.Op{imr, amr},
-			Outputs:  []operand.Op{amr},
+			Opcode:           "SBBW",
+			Operands:         []operand.Op{imr, amr},
+			Inputs:           []operand.Op{imr, amr},
+			Outputs:          []operand.Op{amr},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM16(imr) && operand.IsR16(amr):
 		return &intrep.Instruction{
@@ -18001,10 +18035,11 @@ func SUBB(imr, amr operand.Op) (*intrep.Instruction, error) {
 		}, nil
 	case operand.IsR8(imr) && operand.IsR8(amr):
 		return &intrep.Instruction{
-			Opcode:   "SUBB",
-			Operands: []operand.Op{imr, amr},
-			Inputs:   []operand.Op{imr, amr},
-			Outputs:  []operand.Op{amr},
+			Opcode:           "SUBB",
+			Operands:         []operand.Op{imr, amr},
+			Inputs:           []operand.Op{imr, amr},
+			Outputs:          []operand.Op{amr},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM8(imr) && operand.IsR8(amr):
 		return &intrep.Instruction{
@@ -18068,10 +18103,11 @@ func SUBL(imr, emr operand.Op) (*intrep.Instruction, error) {
 		}, nil
 	case operand.IsR32(imr) && operand.IsR32(emr):
 		return &intrep.Instruction{
-			Opcode:   "SUBL",
-			Operands: []operand.Op{imr, emr},
-			Inputs:   []operand.Op{imr, emr},
-			Outputs:  []operand.Op{emr},
+			Opcode:           "SUBL",
+			Operands:         []operand.Op{imr, emr},
+			Inputs:           []operand.Op{imr, emr},
+			Outputs:          []operand.Op{emr},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM32(imr) && operand.IsR32(emr):
 		return &intrep.Instruction{
@@ -18194,10 +18230,11 @@ func SUBQ(imr, mr operand.Op) (*intrep.Instruction, error) {
 		}, nil
 	case operand.IsR64(imr) && operand.IsR64(mr):
 		return &intrep.Instruction{
-			Opcode:   "SUBQ",
-			Operands: []operand.Op{imr, mr},
-			Inputs:   []operand.Op{imr, mr},
-			Outputs:  []operand.Op{mr},
+			Opcode:           "SUBQ",
+			Operands:         []operand.Op{imr, mr},
+			Inputs:           []operand.Op{imr, mr},
+			Outputs:          []operand.Op{mr},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM64(imr) && operand.IsR64(mr):
 		return &intrep.Instruction{
@@ -18320,10 +18357,11 @@ func SUBW(imr, amr operand.Op) (*intrep.Instruction, error) {
 		}, nil
 	case operand.IsR16(imr) && operand.IsR16(amr):
 		return &intrep.Instruction{
-			Opcode:   "SUBW",
-			Operands: []operand.Op{imr, amr},
-			Inputs:   []operand.Op{imr, amr},
-			Outputs:  []operand.Op{amr},
+			Opcode:           "SUBW",
+			Operands:         []operand.Op{imr, amr},
+			Inputs:           []operand.Op{imr, amr},
+			Outputs:          []operand.Op{amr},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM16(imr) && operand.IsR16(amr):
 		return &intrep.Instruction{
@@ -19207,10 +19245,11 @@ func VANDNPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
-			Opcode:   "VANDNPD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Opcode:           "VANDNPD",
+			Operands:         []operand.Op{mxy, xy, xy1},
+			Inputs:           []operand.Op{mxy, xy},
+			Outputs:          []operand.Op{xy1},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -19221,10 +19260,11 @@ func VANDNPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
-			Opcode:   "VANDNPD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Opcode:           "VANDNPD",
+			Operands:         []operand.Op{mxy, xy, xy1},
+			Inputs:           []operand.Op{mxy, xy},
+			Outputs:          []operand.Op{xy1},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -19249,10 +19289,11 @@ func VANDNPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
-			Opcode:   "VANDNPS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Opcode:           "VANDNPS",
+			Operands:         []operand.Op{mxy, xy, xy1},
+			Inputs:           []operand.Op{mxy, xy},
+			Outputs:          []operand.Op{xy1},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -19263,10 +19304,11 @@ func VANDNPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
-			Opcode:   "VANDNPS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Opcode:           "VANDNPS",
+			Operands:         []operand.Op{mxy, xy, xy1},
+			Inputs:           []operand.Op{mxy, xy},
+			Outputs:          []operand.Op{xy1},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -25741,10 +25783,11 @@ func VPANDN(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
-			Opcode:   "VPANDN",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Opcode:           "VPANDN",
+			Operands:         []operand.Op{mxy, xy, xy1},
+			Inputs:           []operand.Op{mxy, xy},
+			Outputs:          []operand.Op{xy1},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -25755,10 +25798,11 @@ func VPANDN(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
-			Opcode:   "VPANDN",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Opcode:           "VPANDN",
+			Operands:         []operand.Op{mxy, xy, xy1},
+			Inputs:           []operand.Op{mxy, xy},
+			Outputs:          []operand.Op{xy1},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -26187,10 +26231,11 @@ func VPCMPEQB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
-			Opcode:   "VPCMPEQB",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Opcode:           "VPCMPEQB",
+			Operands:         []operand.Op{mxy, xy, xy1},
+			Inputs:           []operand.Op{mxy, xy},
+			Outputs:          []operand.Op{xy1},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -26201,10 +26246,11 @@ func VPCMPEQB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
-			Opcode:   "VPCMPEQB",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Opcode:           "VPCMPEQB",
+			Operands:         []operand.Op{mxy, xy, xy1},
+			Inputs:           []operand.Op{mxy, xy},
+			Outputs:          []operand.Op{xy1},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -26229,10 +26275,11 @@ func VPCMPEQD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
-			Opcode:   "VPCMPEQD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Opcode:           "VPCMPEQD",
+			Operands:         []operand.Op{mxy, xy, xy1},
+			Inputs:           []operand.Op{mxy, xy},
+			Outputs:          []operand.Op{xy1},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -26243,10 +26290,11 @@ func VPCMPEQD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
-			Opcode:   "VPCMPEQD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Opcode:           "VPCMPEQD",
+			Operands:         []operand.Op{mxy, xy, xy1},
+			Inputs:           []operand.Op{mxy, xy},
+			Outputs:          []operand.Op{xy1},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -26271,10 +26319,11 @@ func VPCMPEQQ(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
-			Opcode:   "VPCMPEQQ",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Opcode:           "VPCMPEQQ",
+			Operands:         []operand.Op{mxy, xy, xy1},
+			Inputs:           []operand.Op{mxy, xy},
+			Outputs:          []operand.Op{xy1},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -26285,10 +26334,11 @@ func VPCMPEQQ(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
-			Opcode:   "VPCMPEQQ",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Opcode:           "VPCMPEQQ",
+			Operands:         []operand.Op{mxy, xy, xy1},
+			Inputs:           []operand.Op{mxy, xy},
+			Outputs:          []operand.Op{xy1},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -26313,10 +26363,11 @@ func VPCMPEQW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
-			Opcode:   "VPCMPEQW",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Opcode:           "VPCMPEQW",
+			Operands:         []operand.Op{mxy, xy, xy1},
+			Inputs:           []operand.Op{mxy, xy},
+			Outputs:          []operand.Op{xy1},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -26327,10 +26378,11 @@ func VPCMPEQW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
-			Opcode:   "VPCMPEQW",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Opcode:           "VPCMPEQW",
+			Operands:         []operand.Op{mxy, xy, xy1},
+			Inputs:           []operand.Op{mxy, xy},
+			Outputs:          []operand.Op{xy1},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -26407,10 +26459,11 @@ func VPCMPGTB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
-			Opcode:   "VPCMPGTB",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Opcode:           "VPCMPGTB",
+			Operands:         []operand.Op{mxy, xy, xy1},
+			Inputs:           []operand.Op{mxy, xy},
+			Outputs:          []operand.Op{xy1},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -26421,10 +26474,11 @@ func VPCMPGTB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
-			Opcode:   "VPCMPGTB",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Opcode:           "VPCMPGTB",
+			Operands:         []operand.Op{mxy, xy, xy1},
+			Inputs:           []operand.Op{mxy, xy},
+			Outputs:          []operand.Op{xy1},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -26449,10 +26503,11 @@ func VPCMPGTD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
-			Opcode:   "VPCMPGTD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Opcode:           "VPCMPGTD",
+			Operands:         []operand.Op{mxy, xy, xy1},
+			Inputs:           []operand.Op{mxy, xy},
+			Outputs:          []operand.Op{xy1},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -26463,10 +26518,11 @@ func VPCMPGTD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
-			Opcode:   "VPCMPGTD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Opcode:           "VPCMPGTD",
+			Operands:         []operand.Op{mxy, xy, xy1},
+			Inputs:           []operand.Op{mxy, xy},
+			Outputs:          []operand.Op{xy1},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -26491,10 +26547,11 @@ func VPCMPGTQ(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
-			Opcode:   "VPCMPGTQ",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Opcode:           "VPCMPGTQ",
+			Operands:         []operand.Op{mxy, xy, xy1},
+			Inputs:           []operand.Op{mxy, xy},
+			Outputs:          []operand.Op{xy1},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -26505,10 +26562,11 @@ func VPCMPGTQ(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
-			Opcode:   "VPCMPGTQ",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Opcode:           "VPCMPGTQ",
+			Operands:         []operand.Op{mxy, xy, xy1},
+			Inputs:           []operand.Op{mxy, xy},
+			Outputs:          []operand.Op{xy1},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -26533,10 +26591,11 @@ func VPCMPGTW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
-			Opcode:   "VPCMPGTW",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Opcode:           "VPCMPGTW",
+			Operands:         []operand.Op{mxy, xy, xy1},
+			Inputs:           []operand.Op{mxy, xy},
+			Outputs:          []operand.Op{xy1},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -26547,10 +26606,11 @@ func VPCMPGTW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
-			Opcode:   "VPCMPGTW",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Opcode:           "VPCMPGTW",
+			Operands:         []operand.Op{mxy, xy, xy1},
+			Inputs:           []operand.Op{mxy, xy},
+			Outputs:          []operand.Op{xy1},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -27291,10 +27351,11 @@ func VPHSUBD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
-			Opcode:   "VPHSUBD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Opcode:           "VPHSUBD",
+			Operands:         []operand.Op{mxy, xy, xy1},
+			Inputs:           []operand.Op{mxy, xy},
+			Outputs:          []operand.Op{xy1},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -27305,10 +27366,11 @@ func VPHSUBD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
-			Opcode:   "VPHSUBD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Opcode:           "VPHSUBD",
+			Operands:         []operand.Op{mxy, xy, xy1},
+			Inputs:           []operand.Op{mxy, xy},
+			Outputs:          []operand.Op{xy1},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -27333,10 +27395,11 @@ func VPHSUBSW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
-			Opcode:   "VPHSUBSW",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Opcode:           "VPHSUBSW",
+			Operands:         []operand.Op{mxy, xy, xy1},
+			Inputs:           []operand.Op{mxy, xy},
+			Outputs:          []operand.Op{xy1},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -27347,10 +27410,11 @@ func VPHSUBSW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
-			Opcode:   "VPHSUBSW",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Opcode:           "VPHSUBSW",
+			Operands:         []operand.Op{mxy, xy, xy1},
+			Inputs:           []operand.Op{mxy, xy},
+			Outputs:          []operand.Op{xy1},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -27375,10 +27439,11 @@ func VPHSUBW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
-			Opcode:   "VPHSUBW",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Opcode:           "VPHSUBW",
+			Operands:         []operand.Op{mxy, xy, xy1},
+			Inputs:           []operand.Op{mxy, xy},
+			Outputs:          []operand.Op{xy1},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -27389,10 +27454,11 @@ func VPHSUBW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
-			Opcode:   "VPHSUBW",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Opcode:           "VPHSUBW",
+			Operands:         []operand.Op{mxy, xy, xy1},
+			Inputs:           []operand.Op{mxy, xy},
+			Outputs:          []operand.Op{xy1},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -29059,10 +29125,11 @@ func VPSADBW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
-			Opcode:   "VPSADBW",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Opcode:           "VPSADBW",
+			Operands:         []operand.Op{mxy, xy, xy1},
+			Inputs:           []operand.Op{mxy, xy},
+			Outputs:          []operand.Op{xy1},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -29073,10 +29140,11 @@ func VPSADBW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
-			Opcode:   "VPSADBW",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Opcode:           "VPSADBW",
+			Operands:         []operand.Op{mxy, xy, xy1},
+			Inputs:           []operand.Op{mxy, xy},
+			Outputs:          []operand.Op{xy1},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -30121,10 +30189,11 @@ func VPSUBB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
-			Opcode:   "VPSUBB",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Opcode:           "VPSUBB",
+			Operands:         []operand.Op{mxy, xy, xy1},
+			Inputs:           []operand.Op{mxy, xy},
+			Outputs:          []operand.Op{xy1},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -30135,10 +30204,11 @@ func VPSUBB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
-			Opcode:   "VPSUBB",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Opcode:           "VPSUBB",
+			Operands:         []operand.Op{mxy, xy, xy1},
+			Inputs:           []operand.Op{mxy, xy},
+			Outputs:          []operand.Op{xy1},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -30163,10 +30233,11 @@ func VPSUBD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
-			Opcode:   "VPSUBD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Opcode:           "VPSUBD",
+			Operands:         []operand.Op{mxy, xy, xy1},
+			Inputs:           []operand.Op{mxy, xy},
+			Outputs:          []operand.Op{xy1},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -30177,10 +30248,11 @@ func VPSUBD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
-			Opcode:   "VPSUBD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Opcode:           "VPSUBD",
+			Operands:         []operand.Op{mxy, xy, xy1},
+			Inputs:           []operand.Op{mxy, xy},
+			Outputs:          []operand.Op{xy1},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -30205,10 +30277,11 @@ func VPSUBQ(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
-			Opcode:   "VPSUBQ",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Opcode:           "VPSUBQ",
+			Operands:         []operand.Op{mxy, xy, xy1},
+			Inputs:           []operand.Op{mxy, xy},
+			Outputs:          []operand.Op{xy1},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -30219,10 +30292,11 @@ func VPSUBQ(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
-			Opcode:   "VPSUBQ",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Opcode:           "VPSUBQ",
+			Operands:         []operand.Op{mxy, xy, xy1},
+			Inputs:           []operand.Op{mxy, xy},
+			Outputs:          []operand.Op{xy1},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -30247,10 +30321,11 @@ func VPSUBSB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
-			Opcode:   "VPSUBSB",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Opcode:           "VPSUBSB",
+			Operands:         []operand.Op{mxy, xy, xy1},
+			Inputs:           []operand.Op{mxy, xy},
+			Outputs:          []operand.Op{xy1},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -30261,10 +30336,11 @@ func VPSUBSB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
-			Opcode:   "VPSUBSB",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Opcode:           "VPSUBSB",
+			Operands:         []operand.Op{mxy, xy, xy1},
+			Inputs:           []operand.Op{mxy, xy},
+			Outputs:          []operand.Op{xy1},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -30289,10 +30365,11 @@ func VPSUBSW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
-			Opcode:   "VPSUBSW",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Opcode:           "VPSUBSW",
+			Operands:         []operand.Op{mxy, xy, xy1},
+			Inputs:           []operand.Op{mxy, xy},
+			Outputs:          []operand.Op{xy1},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -30303,10 +30380,11 @@ func VPSUBSW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
-			Opcode:   "VPSUBSW",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Opcode:           "VPSUBSW",
+			Operands:         []operand.Op{mxy, xy, xy1},
+			Inputs:           []operand.Op{mxy, xy},
+			Outputs:          []operand.Op{xy1},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -30331,10 +30409,11 @@ func VPSUBUSB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
-			Opcode:   "VPSUBUSB",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Opcode:           "VPSUBUSB",
+			Operands:         []operand.Op{mxy, xy, xy1},
+			Inputs:           []operand.Op{mxy, xy},
+			Outputs:          []operand.Op{xy1},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -30345,10 +30424,11 @@ func VPSUBUSB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
-			Opcode:   "VPSUBUSB",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Opcode:           "VPSUBUSB",
+			Operands:         []operand.Op{mxy, xy, xy1},
+			Inputs:           []operand.Op{mxy, xy},
+			Outputs:          []operand.Op{xy1},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -30373,10 +30453,11 @@ func VPSUBUSW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
-			Opcode:   "VPSUBUSW",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Opcode:           "VPSUBUSW",
+			Operands:         []operand.Op{mxy, xy, xy1},
+			Inputs:           []operand.Op{mxy, xy},
+			Outputs:          []operand.Op{xy1},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -30387,10 +30468,11 @@ func VPSUBUSW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
-			Opcode:   "VPSUBUSW",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Opcode:           "VPSUBUSW",
+			Operands:         []operand.Op{mxy, xy, xy1},
+			Inputs:           []operand.Op{mxy, xy},
+			Outputs:          []operand.Op{xy1},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -30415,10 +30497,11 @@ func VPSUBW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
-			Opcode:   "VPSUBW",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Opcode:           "VPSUBW",
+			Operands:         []operand.Op{mxy, xy, xy1},
+			Inputs:           []operand.Op{mxy, xy},
+			Outputs:          []operand.Op{xy1},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -30429,10 +30512,11 @@ func VPSUBW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
-			Opcode:   "VPSUBW",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Opcode:           "VPSUBW",
+			Operands:         []operand.Op{mxy, xy, xy1},
+			Inputs:           []operand.Op{mxy, xy},
+			Outputs:          []operand.Op{xy1},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -30835,10 +30919,11 @@ func VPXOR(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
-			Opcode:   "VPXOR",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Opcode:           "VPXOR",
+			Operands:         []operand.Op{mxy, xy, xy1},
+			Inputs:           []operand.Op{mxy, xy},
+			Outputs:          []operand.Op{xy1},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -30849,10 +30934,11 @@ func VPXOR(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
-			Opcode:   "VPXOR",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Opcode:           "VPXOR",
+			Operands:         []operand.Op{mxy, xy, xy1},
+			Inputs:           []operand.Op{mxy, xy},
+			Outputs:          []operand.Op{xy1},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -31827,10 +31913,11 @@ func VXORPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
-			Opcode:   "VXORPD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Opcode:           "VXORPD",
+			Operands:         []operand.Op{mxy, xy, xy1},
+			Inputs:           []operand.Op{mxy, xy},
+			Outputs:          []operand.Op{xy1},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -31841,10 +31928,11 @@ func VXORPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
-			Opcode:   "VXORPD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Opcode:           "VXORPD",
+			Operands:         []operand.Op{mxy, xy, xy1},
+			Inputs:           []operand.Op{mxy, xy},
+			Outputs:          []operand.Op{xy1},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -31869,10 +31957,11 @@ func VXORPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
-			Opcode:   "VXORPS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Opcode:           "VXORPS",
+			Operands:         []operand.Op{mxy, xy, xy1},
+			Inputs:           []operand.Op{mxy, xy},
+			Outputs:          []operand.Op{xy1},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -31883,10 +31972,11 @@ func VXORPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
-			Opcode:   "VXORPS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Opcode:           "VXORPS",
+			Operands:         []operand.Op{mxy, xy, xy1},
+			Inputs:           []operand.Op{mxy, xy},
+			Outputs:          []operand.Op{xy1},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -32271,10 +32361,11 @@ func XORB(imr, amr operand.Op) (*intrep.Instruction, error) {
 		}, nil
 	case operand.IsR8(imr) && operand.IsR8(amr):
 		return &intrep.Instruction{
-			Opcode:   "XORB",
-			Operands: []operand.Op{imr, amr},
-			Inputs:   []operand.Op{imr, amr},
-			Outputs:  []operand.Op{amr},
+			Opcode:           "XORB",
+			Operands:         []operand.Op{imr, amr},
+			Inputs:           []operand.Op{imr, amr},
+			Outputs:          []operand.Op{amr},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM8(imr) && operand.IsR8(amr):
 		return &intrep.Instruction{
@@ -32338,10 +32429,11 @@ func XORL(imr, emr operand.Op) (*intrep.Instruction, error) {
 		}, nil
 	case operand.IsR32(imr) && operand.IsR32(emr):
 		return &intrep.Instruction{
-			Opcode:   "XORL",
-			Operands: []operand.Op{imr, emr},
-			Inputs:   []operand.Op{imr, emr},
-			Outputs:  []operand.Op{emr},
+			Opcode:           "XORL",
+			Operands:         []operand.Op{imr, emr},
+			Inputs:           []operand.Op{imr, emr},
+			Outputs:          []operand.Op{emr},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM32(imr) && operand.IsR32(emr):
 		return &intrep.Instruction{
@@ -32385,10 +32477,11 @@ func XORPD(mx, x operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsXMM(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
-			Opcode:   "XORPD",
-			Operands: []operand.Op{mx, x},
-			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{x},
+			Opcode:           "XORPD",
+			Operands:         []operand.Op{mx, x},
+			Inputs:           []operand.Op{mx, x},
+			Outputs:          []operand.Op{x},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -32411,10 +32504,11 @@ func XORPS(mx, x operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsXMM(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
-			Opcode:   "XORPS",
-			Operands: []operand.Op{mx, x},
-			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{x},
+			Opcode:           "XORPS",
+			Operands:         []operand.Op{mx, x},
+			Inputs:           []operand.Op{mx, x},
+			Outputs:          []operand.Op{x},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -32464,10 +32558,11 @@ func XORQ(imr, mr operand.Op) (*intrep.Instruction, error) {
 		}, nil
 	case operand.IsR64(imr) && operand.IsR64(mr):
 		return &intrep.Instruction{
-			Opcode:   "XORQ",
-			Operands: []operand.Op{imr, mr},
-			Inputs:   []operand.Op{imr, mr},
-			Outputs:  []operand.Op{mr},
+			Opcode:           "XORQ",
+			Operands:         []operand.Op{imr, mr},
+			Inputs:           []operand.Op{imr, mr},
+			Outputs:          []operand.Op{mr},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM64(imr) && operand.IsR64(mr):
 		return &intrep.Instruction{
@@ -32538,10 +32633,11 @@ func XORW(imr, amr operand.Op) (*intrep.Instruction, error) {
 		}, nil
 	case operand.IsR16(imr) && operand.IsR16(amr):
 		return &intrep.Instruction{
-			Opcode:   "XORW",
-			Operands: []operand.Op{imr, amr},
-			Inputs:   []operand.Op{imr, amr},
-			Outputs:  []operand.Op{amr},
+			Opcode:           "XORW",
+			Operands:         []operand.Op{imr, amr},
+			Inputs:           []operand.Op{imr, amr},
+			Outputs:          []operand.Op{amr},
+			CancellingInputs: true,
 		}, nil
 	case operand.IsM16(imr) && operand.IsR16(amr):
 		return &intrep.Instruction{

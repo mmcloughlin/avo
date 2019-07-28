@@ -840,6 +840,7 @@ var Instructions = []Instruction{
 					{Type: "r32", Action: 0x1},
 					{Type: "r32", Action: 0x2},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"BMI"},
@@ -861,6 +862,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"SSE2"},
@@ -881,6 +883,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"SSE"},
@@ -902,6 +905,7 @@ var Instructions = []Instruction{
 					{Type: "r64", Action: 0x1},
 					{Type: "r64", Action: 0x2},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"BMI"},
@@ -2929,6 +2933,7 @@ var Instructions = []Instruction{
 					{Type: "r8", Action: 0x1},
 					{Type: "r8", Action: 0x1},
 				},
+				CancellingInputs: true,
 			},
 			{
 				Operands: []Operand{
@@ -2977,6 +2982,7 @@ var Instructions = []Instruction{
 					{Type: "r32", Action: 0x1},
 					{Type: "r32", Action: 0x1},
 				},
+				CancellingInputs: true,
 			},
 			{
 				Operands: []Operand{
@@ -3075,6 +3081,7 @@ var Instructions = []Instruction{
 					{Type: "r64", Action: 0x1},
 					{Type: "r64", Action: 0x1},
 				},
+				CancellingInputs: true,
 			},
 			{
 				Operands: []Operand{
@@ -3173,6 +3180,7 @@ var Instructions = []Instruction{
 					{Type: "r16", Action: 0x1},
 					{Type: "r16", Action: 0x1},
 				},
+				CancellingInputs: true,
 			},
 			{
 				Operands: []Operand{
@@ -8128,6 +8136,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"SSE2"},
@@ -8263,6 +8272,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"SSE2"},
@@ -8283,6 +8293,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"SSE2"},
@@ -8303,6 +8314,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"SSE4.1"},
@@ -8323,6 +8335,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"SSE2"},
@@ -8407,6 +8420,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"SSE2"},
@@ -8427,6 +8441,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"SSE2"},
@@ -8447,6 +8462,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"SSE4.2"},
@@ -8467,6 +8483,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"SSE2"},
@@ -8799,6 +8816,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"SSSE3"},
@@ -8819,6 +8837,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"SSSE3"},
@@ -8839,6 +8858,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"SSSE3"},
@@ -9780,6 +9800,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"SSE2"},
@@ -10239,6 +10260,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"SSE2"},
@@ -10259,6 +10281,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"SSE2"},
@@ -10279,6 +10302,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"SSE2"},
@@ -10299,6 +10323,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"SSE2"},
@@ -10319,6 +10344,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"SSE2"},
@@ -10339,6 +10365,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"SSE2"},
@@ -10359,6 +10386,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"SSE2"},
@@ -10379,6 +10407,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"SSE2"},
@@ -10621,6 +10650,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"SSE2"},
@@ -12059,6 +12089,7 @@ var Instructions = []Instruction{
 					{Type: "r8", Action: 0x1},
 					{Type: "r8", Action: 0x3},
 				},
+				CancellingInputs: true,
 			},
 			{
 				Operands: []Operand{
@@ -12107,6 +12138,7 @@ var Instructions = []Instruction{
 					{Type: "r32", Action: 0x1},
 					{Type: "r32", Action: 0x3},
 				},
+				CancellingInputs: true,
 			},
 			{
 				Operands: []Operand{
@@ -12161,6 +12193,7 @@ var Instructions = []Instruction{
 					{Type: "r64", Action: 0x1},
 					{Type: "r64", Action: 0x3},
 				},
+				CancellingInputs: true,
 			},
 			{
 				Operands: []Operand{
@@ -12215,6 +12248,7 @@ var Instructions = []Instruction{
 					{Type: "r16", Action: 0x1},
 					{Type: "r16", Action: 0x3},
 				},
+				CancellingInputs: true,
 			},
 			{
 				Operands: []Operand{
@@ -13419,6 +13453,7 @@ var Instructions = []Instruction{
 					{Type: "r8", Action: 0x1},
 					{Type: "r8", Action: 0x3},
 				},
+				CancellingInputs: true,
 			},
 			{
 				Operands: []Operand{
@@ -13467,6 +13502,7 @@ var Instructions = []Instruction{
 					{Type: "r32", Action: 0x1},
 					{Type: "r32", Action: 0x3},
 				},
+				CancellingInputs: true,
 			},
 			{
 				Operands: []Operand{
@@ -13561,6 +13597,7 @@ var Instructions = []Instruction{
 					{Type: "r64", Action: 0x1},
 					{Type: "r64", Action: 0x3},
 				},
+				CancellingInputs: true,
 			},
 			{
 				Operands: []Operand{
@@ -13655,6 +13692,7 @@ var Instructions = []Instruction{
 					{Type: "r16", Action: 0x1},
 					{Type: "r16", Action: 0x3},
 				},
+				CancellingInputs: true,
 			},
 			{
 				Operands: []Operand{
@@ -14365,6 +14403,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"AVX"},
@@ -14381,6 +14420,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x1},
 					{Type: "ymm", Action: 0x2},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"AVX"},
@@ -14403,6 +14443,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"AVX"},
@@ -14419,6 +14460,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x1},
 					{Type: "ymm", Action: 0x2},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"AVX"},
@@ -20044,6 +20086,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"AVX"},
@@ -20060,6 +20103,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x1},
 					{Type: "ymm", Action: 0x2},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"AVX2"},
@@ -20444,6 +20488,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"AVX"},
@@ -20460,6 +20505,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x1},
 					{Type: "ymm", Action: 0x2},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"AVX2"},
@@ -20482,6 +20528,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"AVX"},
@@ -20498,6 +20545,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x1},
 					{Type: "ymm", Action: 0x2},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"AVX2"},
@@ -20520,6 +20568,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"AVX"},
@@ -20536,6 +20585,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x1},
 					{Type: "ymm", Action: 0x2},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"AVX2"},
@@ -20558,6 +20608,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"AVX"},
@@ -20574,6 +20625,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x1},
 					{Type: "ymm", Action: 0x2},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"AVX2"},
@@ -20660,6 +20712,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"AVX"},
@@ -20676,6 +20729,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x1},
 					{Type: "ymm", Action: 0x2},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"AVX2"},
@@ -20698,6 +20752,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"AVX"},
@@ -20714,6 +20769,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x1},
 					{Type: "ymm", Action: 0x2},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"AVX2"},
@@ -20736,6 +20792,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"AVX"},
@@ -20752,6 +20809,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x1},
 					{Type: "ymm", Action: 0x2},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"AVX2"},
@@ -20774,6 +20832,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"AVX"},
@@ -20790,6 +20849,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x1},
 					{Type: "ymm", Action: 0x2},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"AVX2"},
@@ -21454,6 +21514,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"AVX"},
@@ -21470,6 +21531,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x1},
 					{Type: "ymm", Action: 0x2},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"AVX2"},
@@ -21492,6 +21554,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"AVX"},
@@ -21508,6 +21571,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x1},
 					{Type: "ymm", Action: 0x2},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"AVX2"},
@@ -21530,6 +21594,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"AVX"},
@@ -21546,6 +21611,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x1},
 					{Type: "ymm", Action: 0x2},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"AVX2"},
@@ -23004,6 +23070,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"AVX"},
@@ -23020,6 +23087,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x1},
 					{Type: "ymm", Action: 0x2},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"AVX2"},
@@ -23974,6 +24042,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"AVX"},
@@ -23990,6 +24059,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x1},
 					{Type: "ymm", Action: 0x2},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"AVX2"},
@@ -24012,6 +24082,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"AVX"},
@@ -24028,6 +24099,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x1},
 					{Type: "ymm", Action: 0x2},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"AVX2"},
@@ -24050,6 +24122,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"AVX"},
@@ -24066,6 +24139,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x1},
 					{Type: "ymm", Action: 0x2},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"AVX2"},
@@ -24088,6 +24162,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"AVX"},
@@ -24104,6 +24179,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x1},
 					{Type: "ymm", Action: 0x2},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"AVX2"},
@@ -24126,6 +24202,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"AVX"},
@@ -24142,6 +24219,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x1},
 					{Type: "ymm", Action: 0x2},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"AVX2"},
@@ -24164,6 +24242,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"AVX"},
@@ -24180,6 +24259,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x1},
 					{Type: "ymm", Action: 0x2},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"AVX2"},
@@ -24202,6 +24282,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"AVX"},
@@ -24218,6 +24299,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x1},
 					{Type: "ymm", Action: 0x2},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"AVX2"},
@@ -24240,6 +24322,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"AVX"},
@@ -24256,6 +24339,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x1},
 					{Type: "ymm", Action: 0x2},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"AVX2"},
@@ -24616,6 +24700,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"AVX"},
@@ -24632,6 +24717,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x1},
 					{Type: "ymm", Action: 0x2},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"AVX2"},
@@ -25478,6 +25564,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"AVX"},
@@ -25494,6 +25581,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x1},
 					{Type: "ymm", Action: 0x2},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"AVX"},
@@ -25516,6 +25604,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"AVX"},
@@ -25532,6 +25621,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x1},
 					{Type: "ymm", Action: 0x2},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"AVX"},
@@ -25815,6 +25905,7 @@ var Instructions = []Instruction{
 					{Type: "r8", Action: 0x1},
 					{Type: "r8", Action: 0x3},
 				},
+				CancellingInputs: true,
 			},
 			{
 				Operands: []Operand{
@@ -25863,6 +25954,7 @@ var Instructions = []Instruction{
 					{Type: "r32", Action: 0x1},
 					{Type: "r32", Action: 0x3},
 				},
+				CancellingInputs: true,
 			},
 			{
 				Operands: []Operand{
@@ -25900,6 +25992,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"SSE2"},
@@ -25920,6 +26013,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
+				CancellingInputs: true,
 			},
 			{
 				ISA: []string{"SSE"},
@@ -25957,6 +26051,7 @@ var Instructions = []Instruction{
 					{Type: "r64", Action: 0x1},
 					{Type: "r64", Action: 0x3},
 				},
+				CancellingInputs: true,
 			},
 			{
 				Operands: []Operand{
@@ -26011,6 +26106,7 @@ var Instructions = []Instruction{
 					{Type: "r16", Action: 0x1},
 					{Type: "r16", Action: 0x3},
 				},
+				CancellingInputs: true,
 			},
 			{
 				Operands: []Operand{
