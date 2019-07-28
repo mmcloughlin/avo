@@ -119,3 +119,42 @@ func TestStdLibOpcodes(t *testing.T) {
 		}
 	}
 }
+
+func TestCancellingInputs(t *testing.T) {
+	// Expect all instruction forms with cancelling inputs to have two input operands of register type.
+	//
+	// Reference: https://github.com/Maratyszcza/PeachPy/blob/01d15157a973a4ae16b8046313ddab371ea582db/peachpy/x86_64/instructions.py#L136-L138
+	//
+	//	            assert len(input_operands) == 2, "Instruction forms with cancelling inputs must have two inputs"
+	//	            assert all(map(lambda op: isinstance(op, Register), input_operands)), \
+	//	                "Both inputs of instruction form with cancelling inputs must be registers"
+	//
+	for _, i := range inst.Instructions {
+		for _, f := range i.Forms {
+			if !f.CancellingInputs {
+				continue
+			}
+
+			if len(f.ImplicitOperands) > 0 {
+				t.Errorf("%s: expected no implicit operands", i.Opcode)
+			}
+
+			// Expect two register inputs.
+			n := 0
+			for _, op := range f.Operands {
+				if op.Action.Read() {
+					n++
+					switch op.Type {
+					case "r8", "r16", "r32", "r64", "xmm", "ymm":
+						// pass
+					default:
+						t.Errorf("%s: unexpected operand type %q for self-cancelling input", i.Opcode, op.Type)
+					}
+				}
+			}
+			if n != 2 {
+				t.Errorf("%s: expected two inputs for self-cancelling form", i.Opcode)
+			}
+		}
+	}
+}
