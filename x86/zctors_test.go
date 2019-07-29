@@ -3,10 +3,11 @@
 package x86
 
 import (
-	"github.com/mmcloughlin/avo/operand"
-	"github.com/mmcloughlin/avo/reg"
 	"math"
 	"testing"
+
+	"github.com/mmcloughlin/avo/operand"
+	"github.com/mmcloughlin/avo/reg"
 )
 
 func TestADCBValidForms(t *testing.T) {

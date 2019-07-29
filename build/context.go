@@ -5,13 +5,14 @@ import (
 	"fmt"
 	"go/types"
 
+	"golang.org/x/tools/go/packages"
+
 	"github.com/mmcloughlin/avo/attr"
 	"github.com/mmcloughlin/avo/buildtags"
 	"github.com/mmcloughlin/avo/gotypes"
 	"github.com/mmcloughlin/avo/ir"
 	"github.com/mmcloughlin/avo/operand"
 	"github.com/mmcloughlin/avo/reg"
-	"golang.org/x/tools/go/packages"
 )
 
 // Context maintains state for incrementally building an avo File.

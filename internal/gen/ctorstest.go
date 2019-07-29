@@ -25,6 +25,7 @@ func (c *ctorstest) Generate(is []inst.Instruction) ([]byte, error) {
 	c.Printf("import (\n")
 	c.Printf("\t\"testing\"\n")
 	c.Printf("\t\"math\"\n")
+	c.NL()
 	c.Printf("\t\"%s/reg\"\n", pkg)
 	c.Printf("\t\"%s/operand\"\n", pkg)
 	c.Printf(")\n\n")

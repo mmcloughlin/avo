@@ -27,6 +27,7 @@ func (c *ctors) Generate(is []inst.Instruction) ([]byte, error) {
 	c.Printf("package x86\n\n")
 	c.Printf("import (\n")
 	c.Printf("\t\"errors\"\n")
+	c.NL()
 	c.Printf("\tintrep \"%s/ir\"\n", pkg)
 	c.Printf("\t\"%s/reg\"\n", pkg)
 	c.Printf("\t\"%s/operand\"\n", pkg)
