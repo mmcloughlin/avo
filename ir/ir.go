@@ -42,9 +42,10 @@ type Instruction struct {
 	Inputs  []operand.Op
 	Outputs []operand.Op
 
-	IsTerminal    bool
-	IsBranch      bool
-	IsConditional bool
+	IsTerminal       bool
+	IsBranch         bool
+	IsConditional    bool
+	CancellingInputs bool
 
 	// CFG.
 	Pred []*Instruction
@@ -87,6 +88,9 @@ func (i Instruction) InputRegisters() []reg.Register {
 	var rs []reg.Register
 	for _, op := range i.Inputs {
 		rs = append(rs, operand.Registers(op)...)
+	}
+	if i.CancellingInputs && rs[0] == rs[1] {
+		rs = []reg.Register{}
 	}
 	for _, op := range i.Outputs {
 		if operand.IsMem(op) {

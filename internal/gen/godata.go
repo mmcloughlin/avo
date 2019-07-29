@@ -57,6 +57,10 @@ func (g *godata) Generate(is []inst.Instruction) ([]byte, error) {
 				g.Printf("},\n")
 			}
 
+			if f.CancellingInputs {
+				g.Printf("CancellingInputs: true,\n")
+			}
+
 			g.Printf("},\n")
 		}
 		g.Printf("},\n")

@@ -79,10 +79,19 @@ func (i Instruction) IsNiladic() bool {
 type Form struct {
 	// Instruction sets this instruction form requires.
 	ISA []string
+
 	// Operands required for this form.
 	Operands []Operand
+
 	// Registers read or written but not explicitly passed to the instruction.
 	ImplicitOperands []ImplicitOperand
+
+	// CancellingInputs indicates this instruction form has no dependency on the
+	// input operands when they refer to the same register. The classic example of
+	// this is "XORQ RAX, RAX", in which case the output has no dependence on the
+	// value of RAX. Instruction forms with cancelling inputs have only two input
+	// operands, which have the same register type.
+	CancellingInputs bool
 }
 
 // Arity returns the number of operands this form expects.

@@ -35,13 +35,13 @@ blockloop:
 	JMP         blockloop
 
 tail:
-	VXORPS X12, X12, X12
+	VXORPS X6, X6, X6
 
 tailloop:
 	CMPQ        DX, $0x00000000
 	JE          reduce
-	VMOVSS      (AX), X6
-	VFMADD231SS (CX), X6, X12
+	VMOVSS      (AX), X7
+	VFMADD231SS (CX), X7, X6
 	ADDQ        $0x00000004, AX
 	ADDQ        $0x00000004, CX
 	DECQ        DX
@@ -55,7 +55,7 @@ reduce:
 	VADDPS       Y0, Y5, Y0
 	VEXTRACTF128 $0x01, Y0, X1
 	VADDPS       X0, X1, X0
-	VADDPS       X0, X12, X0
+	VADDPS       X0, X6, X0
 	VHADDPS      X0, X0, X0
 	VHADDPS      X0, X0, X0
 	MOVSS        X0, ret+48(FP)

@@ -362,6 +362,7 @@ func (l Loader) form(opcode string, f opcodesxml.Form) inst.Form {
 		ISA:              isas,
 		Operands:         ops,
 		ImplicitOperands: implicits,
+		CancellingInputs: f.CancellingInputs,
 	}
 }
 

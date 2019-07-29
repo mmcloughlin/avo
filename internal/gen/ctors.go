@@ -97,6 +97,11 @@ func construct(i inst.Instruction, f inst.Form, s signature) string {
 		fmt.Fprintf(buf, "\tIsConditional: %#v,\n", i.IsConditionalBranch())
 	}
 
+	// Cancelling inputs.
+	if f.CancellingInputs {
+		fmt.Fprintf(buf, "\tCancellingInputs: true,\n")
+	}
+
 	fmt.Fprintf(buf, "}")
 	return buf.String()
 }
