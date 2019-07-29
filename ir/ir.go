@@ -89,6 +89,9 @@ func (i Instruction) InputRegisters() []reg.Register {
 	for _, op := range i.Inputs {
 		rs = append(rs, operand.Registers(op)...)
 	}
+	if i.CancellingInputs && rs[0] == rs[1] {
+		rs = []reg.Register{}
+	}
 	for _, op := range i.Outputs {
 		if operand.IsMem(op) {
 			rs = append(rs, operand.Registers(op)...)
