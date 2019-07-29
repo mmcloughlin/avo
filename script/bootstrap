@@ -1,9 +1,7 @@
 #!/bin/bash -ex
 
-# Limit dependencies to golang.org/x repos
-go get -u \
-    golang.org/x/arch/x86/... \
-    golang.org/x/tools/go/...
+# Install dependencies.
+go mod download
 
 # Standalone version of the asmdecl analysis tool.
 go install ./internal/cmd/asmdecl
@@ -12,14 +10,17 @@ go install ./internal/cmd/asmdecl
 golangci_lint_version='v1.17.1'
 curl -sfL https://install.goreleaser.com/github.com/golangci/golangci-lint.sh | sh -s -- -b $GOPATH/bin ${golangci_lint_version}
 
+# Turn off modules for tools install.
+export GO111MODULE=off
+
 # embedmd required for documentation generation
-go get -u github.com/campoy/embedmd
+go install github.com/campoy/embedmd
 
 # covertool for merging coverage reports
-go get -u github.com/dlespiau/covertool
+go install github.com/dlespiau/covertool
 
 # asmfmt for enforcing assembly style
-go get -u github.com/klauspost/asmfmt/cmd/asmfmt
+go install github.com/klauspost/asmfmt/cmd/asmfmt
 
 # gofumports for stricter formatting
-go get -u mvdan.cc/gofumpt/gofumports
+go install mvdan.cc/gofumpt/gofumports
