@@ -86,7 +86,7 @@ type Form struct {
 	// Registers read or written but not explicitly passed to the instruction.
 	ImplicitOperands []ImplicitOperand
 
-	// CancellingInputs indicates this instruciton form has no dependency on the
+	// CancellingInputs indicates this instruction form has no dependency on the
 	// input operands when they refer to the same register. The classic example of
 	// this is "XORQ RAX, RAX", in which case the output has no dependence on the
 	// value of RAX. Instruction forms with cancelling inputs have only two input
