@@ -3,7 +3,7 @@ package gen
 import "testing"
 
 func TestBuilderInterfaces(t *testing.T) {
-	_ := []Builder{
+	_ = []Builder{
 		NewAsmTest,
 		NewGoData,
 		NewGoDataTest,
