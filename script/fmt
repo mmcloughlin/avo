@@ -8,7 +8,8 @@ files=$(find . -name '*.go' -not -path '*/stadtx/*')
 
 # Remove blank lines in import blocks. This will force formatting to group
 # imports correctly.
-sed -i '' '/^import (/,/)/ { /^$$/ d; }' ${files}
+sed -i.fmtbackup '/^import (/,/)/ { /^$$/ d; }' ${files}
+find . -name '*.fmtbackup' -delete
 
 # gofumports is goimports with stricter formatting.
 gofumports -w -local ${repo} ${files}
