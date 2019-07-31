@@ -1,0 +1,15 @@
+#!/bin/bash -ex
+
+repo="github.com/mmcloughlin/avo"
+
+# Files to apply formatting to. Exclude stadtx since some of it was imported
+# from the original repo.
+files=$(find . -name '*.go' -not -path '*/stadtx/*')
+
+# Remove blank lines in import blocks. This will force formatting to group
+# imports correctly.
+sed -i.fmtbackup '/^import (/,/)/ { /^$$/ d; }' ${files}
+find . -name '*.fmtbackup' -delete
+
+# gofumports is goimports with stricter formatting.
+gofumports -w -local ${repo} ${files}

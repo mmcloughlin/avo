@@ -20,3 +20,6 @@ go get -u github.com/dlespiau/covertool
 
 # asmfmt for enforcing assembly style
 go get -u github.com/klauspost/asmfmt/cmd/asmfmt
+
+# gofumports for stricter formatting
+go get -u mvdan.cc/gofumpt/gofumports

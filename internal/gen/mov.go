@@ -28,6 +28,7 @@ func (m *mov) Generate(is []inst.Instruction) ([]byte, error) {
 
 	m.Printf("import (\n")
 	m.Printf("\t\"go/types\"\n")
+	m.NL()
 	m.Printf("\t\"%s/operand\"\n", pkg)
 	m.Printf(")\n\n")
 

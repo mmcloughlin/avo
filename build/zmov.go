@@ -3,8 +3,9 @@
 package build
 
 import (
-	"github.com/mmcloughlin/avo/operand"
 	"go/types"
+
+	"github.com/mmcloughlin/avo/operand"
 )
 
 func (c *Context) mov(a, b operand.Op, an, bn int, t *types.Basic) {
