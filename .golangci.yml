@@ -1,6 +1,7 @@
 linters:
   enable-all: true
   disable:
+  - funlen
   - maligned
   - lll
   - gosec
