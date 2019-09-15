@@ -14,13 +14,13 @@ curl -sfL https://install.goreleaser.com/github.com/golangci/golangci-lint.sh | 
 export GO111MODULE=off
 
 # embedmd required for documentation generation
-go install github.com/campoy/embedmd
+go get -u github.com/campoy/embedmd
 
 # covertool for merging coverage reports
-go install github.com/dlespiau/covertool
+go get -u github.com/dlespiau/covertool
 
 # asmfmt for enforcing assembly style
-go install github.com/klauspost/asmfmt/cmd/asmfmt
+go get -u github.com/klauspost/asmfmt/cmd/asmfmt
 
 # gofumports for stricter formatting
-go install mvdan.cc/gofumpt/gofumports
+go get -u mvdan.cc/gofumpt/gofumports
