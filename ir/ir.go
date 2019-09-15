@@ -144,10 +144,17 @@ func (f *File) Functions() []*Function {
 	return fns
 }
 
+// Pragma represents a function compiler directive.
+type Pragma struct {
+	Directive string
+	Arguments []string
+}
+
 // Function represents an assembly function.
 type Function struct {
 	Name       string
 	Attributes attr.Attribute
+	Pragmas    []Pragma
 	Doc        []string
 	Signature  *gotypes.Signature
 	LocalSize  int
@@ -169,6 +176,14 @@ func NewFunction(name string) *Function {
 		Name:      name,
 		Signature: gotypes.NewSignatureVoid(),
 	}
+}
+
+// AddPragma adds a pragma to this function.
+func (f *Function) AddPragma(directive string, args ...string) {
+	f.Pragmas = append(f.Pragmas, Pragma{
+		Directive: directive,
+		Arguments: args,
+	})
 }
 
 // SetSignature sets the function signature.

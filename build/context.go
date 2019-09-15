@@ -92,6 +92,11 @@ func (c *Context) Doc(lines ...string) {
 	c.activefunc().Doc = lines
 }
 
+// Pragma adds a compiler directive to the currently active function.
+func (c *Context) Pragma(directive string, args ...string) {
+	c.activefunc().AddPragma(directive, args...)
+}
+
 // Attributes sets function attributes for the currently active function.
 func (c *Context) Attributes(a attr.Attribute) {
 	c.activefunc().Attributes = a

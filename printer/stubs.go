@@ -28,7 +28,18 @@ func (s *stubs) Print(f *ir.File) ([]byte, error) {
 	for _, fn := range f.Functions() {
 		s.NL()
 		s.Comment(fn.Doc...)
+		for _, pragma := range fn.Pragmas {
+			s.pragma(pragma)
+		}
 		s.Printf("%s\n", fn.Stub())
 	}
 	return s.Result()
+}
+
+func (s *stubs) pragma(p ir.Pragma) {
+	s.Printf("//go:%s", p.Directive)
+	for _, arg := range p.Arguments {
+		s.Printf(" %s", arg)
+	}
+	s.NL()
 }
