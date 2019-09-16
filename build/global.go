@@ -118,6 +118,9 @@ func Dereference(ptr gotypes.Component) gotypes.Component { return ctx.Dereferen
 // Doc sets documentation comment lines for the currently active function.
 func Doc(lines ...string) { ctx.Doc(lines...) }
 
+// Pragma adds a compiler directive to the currently active function.
+func Pragma(directive string, args ...string) { ctx.Pragma(directive, args...) }
+
 // Attributes sets function attributes for the currently active function.
 func Attributes(a attr.Attribute) { ctx.Attributes(a) }
 

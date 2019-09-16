@@ -15,6 +15,7 @@ func AssertPrintsLines(t *testing.T, ctx *build.Context, pb printer.Builder, exp
 	lines := strings.Split(output, "\n")
 
 	if len(expect) != len(lines) {
+		t.Logf("output:\n%s", output)
 		t.Fatalf("have %d lines of output; expected %d", len(lines), len(expect))
 	}
 
