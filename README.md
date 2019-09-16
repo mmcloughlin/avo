@@ -174,6 +174,7 @@ For demonstrations of `avo` features:
 * **[complex](examples/complex):** Working with `complex{64,128}` types.
 * **[data](examples/data):** Defining `DATA` sections.
 * **[ext](examples/ext):** Interacting with types from external packages.
+* **[pragma](examples/pragma):** Apply compiler directives to generated functions.
 
 ### Real Examples
 

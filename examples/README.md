@@ -12,7 +12,7 @@ Features:
 * **[complex](complex):** Working with `complex{64,128}` types.
 * **[data](data):** Defining `DATA` sections.
 * **[ext](ext):** Interacting with types from external packages.
-
+* **[pragma](pragma):** Apply compiler directives to generated functions.
 
 "Real" examples:
 
