@@ -15,6 +15,7 @@ func TestAttributeAsm(t *testing.T) {
 		{WRAPPER | 16384 | NOPTR, "NOPTR|WRAPPER|16384"},
 		{NEEDCTXT + NOFRAME + TLSBSS, "NEEDCTXT|TLSBSS|NOFRAME"},
 		{REFLECTMETHOD, "1024"}, // REFLECTMETHOD special case due to https://golang.org/issue/29487
+		{TOPFRAME, "TOPFRAME"},
 	}
 	for _, c := range cases {
 		got := c.Attribute.Asm()
