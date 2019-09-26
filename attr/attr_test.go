@@ -14,7 +14,7 @@ func TestAttributeAsm(t *testing.T) {
 		{RODATA | NOSPLIT, "NOSPLIT|RODATA"},
 		{WRAPPER | 16384 | NOPTR, "NOPTR|WRAPPER|16384"},
 		{NEEDCTXT + NOFRAME + TLSBSS, "NEEDCTXT|TLSBSS|NOFRAME"},
-		{REFLECTMETHOD, "1024"}, // REFLECTMETHOD special case due to https://golang.org/issue/29487
+		{REFLECTMETHOD, "REFLECTMETHOD"},
 		{TOPFRAME, "TOPFRAME"},
 	}
 	for _, c := range cases {
