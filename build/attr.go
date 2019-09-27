@@ -14,4 +14,5 @@ const (
 	TLSBSS        = attr.TLSBSS
 	NOFRAME       = attr.NOFRAME
 	REFLECTMETHOD = attr.REFLECTMETHOD
+	TOPFRAME      = attr.TOPFRAME
 )

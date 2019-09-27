@@ -10,7 +10,7 @@ import (
 // Attribute represents TEXT or DATA flags.
 type Attribute uint16
 
-// Reference: https://github.com/golang/go/blob/35f4ec152b44ae5fc83aaf68e2eb3aa1a778e5cd/src/runtime/textflag.h#L11-L34
+// Reference: https://github.com/golang/go/blob/aafe257390cc9048e8b5df898fabd79a9e0d4c39/src/runtime/textflag.h#L11-L37
 //
 //	// Don't profile the marked routine. This flag is deprecated.
 //	#define NOPROF	1
@@ -36,6 +36,9 @@ type Attribute uint16
 //	#define NOFRAME 512
 //	// Function can call reflect.Type.Method or reflect.Type.MethodByName.
 //	#define REFLECTMETHOD 1024
+//	// Function is the top of the call stack. Call stack unwinders should stop
+//	// at this function.
+//	#define TOPFRAME 2048
 //
 const (
 	NOPROF Attribute = 1 << iota
@@ -49,6 +52,7 @@ const (
 	TLSBSS
 	NOFRAME
 	REFLECTMETHOD
+	TOPFRAME
 )
 
 // Asm returns a representation of the attributes in assembly syntax. This may use macros from "textflags.h"; see ContainsTextFlags() to determine if this header is required.
@@ -84,14 +88,15 @@ func (a Attribute) split() ([]string, Attribute) {
 }
 
 var attrname = map[Attribute]string{
-	NOPROF:   "NOPROF",
-	DUPOK:    "DUPOK",
-	NOSPLIT:  "NOSPLIT",
-	RODATA:   "RODATA",
-	NOPTR:    "NOPTR",
-	WRAPPER:  "WRAPPER",
-	NEEDCTXT: "NEEDCTXT",
-	TLSBSS:   "TLSBSS",
-	NOFRAME:  "NOFRAME",
-	// REFLECTMETHOD excluded due to https://golang.org/issue/29487
+	NOPROF:        "NOPROF",
+	DUPOK:         "DUPOK",
+	NOSPLIT:       "NOSPLIT",
+	RODATA:        "RODATA",
+	NOPTR:         "NOPTR",
+	WRAPPER:       "WRAPPER",
+	NEEDCTXT:      "NEEDCTXT",
+	TLSBSS:        "TLSBSS",
+	NOFRAME:       "NOFRAME",
+	REFLECTMETHOD: "REFLECTMETHOD",
+	TOPFRAME:      "TOPFRAME",
 }
