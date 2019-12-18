@@ -87,7 +87,17 @@ func NewFlags(fs *flag.FlagSet) *Flags {
 // Config builds a configuration object based on flag values.
 func (f *Flags) Config() *Config {
 	pc := printer.NewGoRunConfig()
-	passes := []pass.Interface{pass.Compile}
+	passes := []pass.Interface{
+		pass.FunctionPass(pass.PruneJumpToFollowingLabel),
+		pass.FunctionPass(pass.PruneDanglingLabels),
+		pass.FunctionPass(pass.LabelTarget),
+		pass.FunctionPass(pass.CFG),
+		pass.FunctionPass(pass.Liveness),
+		pass.FunctionPass(pass.AllocateRegisters),
+		pass.FunctionPass(pass.BindRegisters),
+		pass.FunctionPass(pass.VerifyAllocation),
+		pass.Func(pass.IncludeTextFlagHeader),
+	}
 	for _, pv := range f.printers {
 		p := pv.Build(pc)
 		if p != nil {

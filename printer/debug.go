@@ -101,9 +101,19 @@ func (p *debug) instruction(i *ir.Instruction) {
 	}
 	p.leave()
 
-	// // LiveIn/LiveOut are sets of live register IDs pre/post execution.
-	// LiveIn  reg.Set
-	// LiveOut reg.Set
+	p.enter("livein")
+	p.Linef("size = %d", len(i.LiveIn))
+	for r := range i.LiveIn {
+		p.Linef("%s", r.Asm())
+	}
+	p.leave()
+
+	p.enter("liveout")
+	p.Linef("size = %d", len(i.LiveOut))
+	for r := range i.LiveOut {
+		p.Linef("%s", r.Asm())
+	}
+	p.leave()
 
 	p.leave()
 }
