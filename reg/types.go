@@ -106,16 +106,28 @@ type virtual struct {
 	id   VID
 	kind Kind
 	Width
-	mask uint16
+	mask    uint16
+	allocAt string
 }
 
 // NewVirtual builds a Virtual register.
 func NewVirtual(id VID, k Kind, w Width) Virtual {
 	return virtual{
-		id:    id,
-		kind:  k,
-		Width: w,
+		allocAt: getFnNameFile(1),
+		id:      id,
+		kind:    k,
+		Width:   w,
 	}
+}
+
+// AllocInfoer allows to track where resources were allocated.
+type AllocInfoer interface {
+	AllocInfo() string
+}
+
+// AllocInfo returns allocation info.
+func (v virtual) AllocInfo() string {
+	return v.allocAt
 }
 
 func (v virtual) VirtualID() VID { return v.id }
@@ -132,10 +144,11 @@ func (v virtual) SatisfiedBy(p Physical) bool {
 
 func (v virtual) as(s Spec) Register {
 	return virtual{
-		id:    v.id,
-		kind:  v.kind,
-		Width: Width(s.Size()),
-		mask:  s.Mask(),
+		id:      v.id,
+		kind:    v.kind,
+		Width:   Width(s.Size()),
+		mask:    s.Mask(),
+		allocAt: v.allocAt,
 	}
 }
 

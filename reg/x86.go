@@ -20,6 +20,20 @@ var (
 	}
 )
 
+// String returns a human readable representation of the Kind.
+func (k Kind) String() string {
+	switch k {
+	case KindPseudo:
+		return "pseudo"
+	case KindGP:
+		return "gpr"
+	case KindVector:
+		return "vector"
+	default:
+		return "invalid"
+	}
+}
+
 var familiesByKind = map[Kind]*Family{}
 
 func init() {
@@ -84,9 +98,29 @@ type GPVirtual interface {
 type gpv struct {
 	Virtual
 	GP
+	allocAt string
 }
 
-func newgpv(v Virtual) GPVirtual { return gpv{Virtual: v, GP: gpcasts{v}} }
+func newgpv(v Virtual) GPVirtual {
+	g := gpv{
+		Virtual: v,
+		GP:      gpcasts{v},
+		allocAt: getFnNameFile(1),
+	}
+	if ai, ok := v.(AllocInfoer); ok {
+		parent := ai.AllocInfo()
+		if g.allocAt != parent {
+			// Only add ourself if different from parent.
+			g.allocAt = parent + " -> " + g.allocAt
+		}
+	}
+	return g
+}
+
+// AllocInfo returns allocation info.
+func (g gpv) AllocInfo() string {
+	return g.allocAt
+}
 
 func gp(s Spec, id PID, name string, flags ...Info) GPPhysical {
 	r := newgpp(newregister(GeneralPurpose, s, id, name, flags...))

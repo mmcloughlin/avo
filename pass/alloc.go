@@ -2,7 +2,10 @@ package pass
 
 import (
 	"errors"
+	"fmt"
 	"math"
+	"sort"
+	"strings"
 
 	"github.com/mmcloughlin/avo/reg"
 )
@@ -156,7 +159,17 @@ func (a *Allocator) discardconflicting(v reg.Virtual, p reg.Physical) {
 func (a *Allocator) alloc(v reg.Virtual) error {
 	ps := a.possible[v]
 	if len(ps) == 0 {
-		return errors.New("failed to allocate registers")
+		var allocs []string
+		for i, v := range a.allocation {
+			if ai, ok := i.(reg.AllocInfoer); ok {
+				allocs = append(allocs, fmt.Sprintf("%02d: %s (type:%T, kind:%v%d)", v.PhysicalID(), ai.AllocInfo(), i, i.Kind(), i.Size()*8))
+			} else {
+				allocs = append(allocs, fmt.Sprintf("%02d: No alloc info. (type:%T, kind:%v%d)", v.PhysicalID(), i, i.Kind(), i.Size()*8))
+			}
+		}
+		sort.Strings(allocs)
+		err := fmt.Sprintf("failed to allocate registers. %d virtual:\n%s", len(a.allocation), strings.Join(allocs, "\n"))
+		return errors.New(err)
 	}
 	p := ps[0]
 	a.allocation[v] = p
