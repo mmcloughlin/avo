@@ -144,11 +144,12 @@ func (v virtual) SatisfiedBy(p Physical) bool {
 
 func (v virtual) as(s Spec) Register {
 	return virtual{
-		id:      v.id,
-		kind:    v.kind,
-		Width:   Width(s.Size()),
-		mask:    s.Mask(),
-		allocAt: v.allocAt,
+		id:    v.id,
+		kind:  v.kind,
+		Width: Width(s.Size()),
+		mask:  s.Mask(),
+		// Non-breaking space for sorting.
+		allocAt: fmt.Sprintf("\u00A0- As%v() %s", s.String(), getFnNameFile(2)),
 	}
 }
 
@@ -246,6 +247,16 @@ func (s Spec) Mask() uint16 {
 func (s Spec) Size() uint {
 	x := uint(s)
 	return (x >> 1) + (x & 1)
+}
+
+// Size returns the register width in bytes.
+func (s Spec) String() string {
+	switch s {
+	case S8H:
+		return "8H"
+	default:
+		return fmt.Sprint(s.Size() * 8)
+	}
 }
 
 // AreConflicting returns whether registers conflict with each other.
