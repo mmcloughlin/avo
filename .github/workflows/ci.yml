@@ -8,6 +8,8 @@ jobs:
         go-version: [1.13.x]
         platform: [ubuntu-latest]
     runs-on: ${{ matrix.platform }}
+    env:
+      GO111MODULE: off
     steps:
     - name: Install Go
       uses: actions/setup-go@v1
