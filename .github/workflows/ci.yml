@@ -17,7 +17,12 @@ jobs:
       uses: actions/checkout@v1
       with:
         path: src/github.com/${{ github.repository }}
-
+    - name: Bootstrap
+      run: ./script/bootstrap
+    - name: Build
+      run: go build ./...
+    - name: Test
+      run: go test -bench ./...
 
 # language: go
 # go:
