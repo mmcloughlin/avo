@@ -13,12 +13,19 @@ jobs:
       uses: actions/setup-go@v1
       with:
         go-version: ${{ matrix.go-version }}
+    - name: Configure Go Environment
+      run: |
+        echo ::set-env name=GOPATH::${{ runner.workspace }}
+        echo ::add-path::${{ runner.workspace }}/bin
+    - name: Go Environment
+      run: go env
     - name: Checkout code
       uses: actions/checkout@v1
       with:
         path: src/github.com/${{ github.repository }}
     - name: Bootstrap
       run: ./script/bootstrap
+
     - name: Build
       run: go build ./...
     - name: Test
