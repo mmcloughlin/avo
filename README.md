@@ -1,7 +1,7 @@
 <p align="center">
   <img src="logo.svg" width="40%" border="0" alt="avo" />
   <br />
-  <a href="https://github.com/mmcloughlin/avo/actions?query=branch:master"><img src="https://img.shields.io/github/workflow/status/mmcloughlin/avo/ci/master.svg?style=flat-square" alt="Build Status" /></a>
+  <img src="https://img.shields.io/github/workflow/status/mmcloughlin/avo/ci/master.svg?style=flat-square" alt="Build Status" />
   <a href="http://godoc.org/github.com/mmcloughlin/avo"><img src="http://img.shields.io/badge/godoc-reference-5272B4.svg?style=flat-square" alt="GoDoc" /></a>
   <a href="https://goreportcard.com/report/github.com/mmcloughlin/avo"><img src="https://goreportcard.com/badge/github.com/mmcloughlin/avo?style=flat-square" alt="Go Report Card" /></a>
 </p>
