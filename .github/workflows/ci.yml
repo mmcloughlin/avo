@@ -30,8 +30,6 @@ jobs:
       run: go test -bench . ./...
     - name: Coverage
       run: ./script/coverage
-    - name: Lint
-      run: ./script/lint
 
     - name: Upload Unit Test Coverage
       uses: codecov/codecov-action@v1.0.5
@@ -45,3 +43,27 @@ jobs:
         token: ${{ secrets.CODECOV_TOKEN }}
         file: integration.coverprofile
         flags: integration
+
+  lint:
+    strategy:
+      matrix:
+        go-version: [1.13.x]
+        platform: [ubuntu-latest]
+    runs-on: ${{ matrix.platform }}
+    steps:
+    - name: Install Go
+      uses: actions/setup-go@v1
+      with:
+        go-version: ${{ matrix.go-version }}
+    - name: Configure Go Environment
+      run: |
+        echo ::set-env name=GOPATH::${{ runner.workspace }}
+        echo ::add-path::${{ runner.workspace }}/bin
+    - name: Go Environment
+      run: go env
+    - name: Checkout code
+      uses: actions/checkout@v1
+    - name: Bootstrap
+      run: ./script/bootstrap
+    - name: Lint
+      run: ./script/lint
