@@ -4,7 +4,7 @@ on:
       - master
   pull_request:
   schedule:
-    - cron: '17 4 * * 6'
+    - cron: '17 12 * * 6'
 
 name: ci
 jobs:
