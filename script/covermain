@@ -4,7 +4,7 @@ main=$1
 coverprofile=$2
 
 # Temporary working directory.
-workdir=$(mktemp -d)
+workdir=$(mktemp -d tmpXXXXXXXX)
 
 # Wrap the main function in a go test.
 cp ${main} ${workdir}
