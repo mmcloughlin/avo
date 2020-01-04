@@ -15,6 +15,7 @@ jobs:
         go-version: ${{ matrix.go-version }}
     - name: Configure Go Environment
       run: |
+        echo ::set-env name=GOPATH::${{ runner.workspace }}
         echo ::add-path::${{ runner.workspace }}/bin
     - name: Go Environment
       run: go env
@@ -26,7 +27,7 @@ jobs:
     - name: Build
       run: go build ./...
     - name: Test
-      run: go test -bench ./...
+      run: go test -bench . ./...
 
 # language: go
 # go:
