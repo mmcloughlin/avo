@@ -28,6 +28,10 @@ jobs:
       run: go build ./...
     - name: Test
       run: go test -bench . ./...
+    - name: Coverage
+      run: ./script/coverage
+    - name: Lint
+      run: ./script/lint
 
 # language: go
 # go:
