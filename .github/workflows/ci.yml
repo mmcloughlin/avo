@@ -33,16 +33,15 @@ jobs:
     - name: Lint
       run: ./script/lint
 
-# language: go
-# go:
-# - 1.x
-# install:
-# - ./script/bootstrap
-# script:
-# - go build ./...
-# - go test -bench . ./...
-# - ./script/coverage
-# - ./script/lint
-# after_success:
-# - bash <(curl -s https://codecov.io/bash) -F unittests -f unittests.coverprofile
-# - bash <(curl -s https://codecov.io/bash) -F integration -f integration.coverprofile
+    - name: Upload Unit Test Coverage
+      uses: codecov/codecov-action@v1.0.5
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        file: unittests.coverprofile
+        flags: unittests
+    - name: Upload Integration Test Coverage
+      uses: codecov/codecov-action@v1.0.5
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        file: integration.coverprofile
+        flags: integration
