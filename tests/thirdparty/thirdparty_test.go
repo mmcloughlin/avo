@@ -26,8 +26,8 @@ func TestPackages(t *testing.T) {
 	for _, pkg := range pkgs {
 		pkg := pkg // scopelint
 		t.Run(pkg.Name(), func(t *testing.T) {
-			dir, _ := test.TempDir(t)
-			//defer clean()
+			dir, clean := test.TempDir(t)
+			defer clean()
 			pt := PackageTest{
 				T:       t,
 				Package: pkg,
