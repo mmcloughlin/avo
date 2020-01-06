@@ -11,9 +11,14 @@ import (
 	"github.com/mmcloughlin/avo/internal/test"
 )
 
-var pkgsfilename = flag.String("pkgs", "", "packages configuration")
+// Custom flags.
+var (
+	pkgsfilename = flag.String("pkgs", "", "packages configuration")
+	preserve     = flag.Bool("preserve", false, "preserve working directories")
+)
 
 func TestPackages(t *testing.T) {
+	// Load packages.
 	if *pkgsfilename == "" {
 		t.Skip("no packages specified")
 	}
@@ -27,7 +32,11 @@ func TestPackages(t *testing.T) {
 		pkg := pkg // scopelint
 		t.Run(pkg.Name(), func(t *testing.T) {
 			dir, clean := test.TempDir(t)
-			defer clean()
+			if !*preserve {
+				defer clean()
+			} else {
+				t.Logf("working directory: %s", dir)
+			}
 			pt := PackageTest{
 				T:       t,
 				Package: pkg,
@@ -122,7 +131,7 @@ func (t *PackageTest) diff() {
 
 // test runs go test.
 func (t *PackageTest) test() {
-	cmd := exec.Command("go", "test", "-v", "./...")
+	cmd := exec.Command("go", "test", "./...")
 	cmd.Dir = t.repopath
 	test.ExecCommand(t.T, cmd)
 }
