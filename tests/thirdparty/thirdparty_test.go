@@ -15,6 +15,7 @@ import (
 var (
 	pkgsfilename = flag.String("pkgs", "", "packages configuration")
 	preserve     = flag.Bool("preserve", false, "preserve working directories")
+	latest       = flag.Bool("latest", false, "use latest versions of each package")
 )
 
 func TestPackages(t *testing.T) {
@@ -41,6 +42,7 @@ func TestPackages(t *testing.T) {
 				T:       t,
 				Package: pkg,
 				workdir: dir,
+				latest:  *latest,
 			}
 			pt.Run()
 		})
@@ -51,7 +53,9 @@ type PackageTest struct {
 	*testing.T
 	Package
 
-	workdir  string
+	workdir string
+	latest  bool
+
 	repopath string
 }
 
@@ -72,6 +76,10 @@ func (t *PackageTest) checkout() {
 	t.repopath = dst
 
 	// Checkout specific version.
+	if t.latest {
+		t.Log("using latest version")
+		return
+	}
 	t.git("-C", t.repopath, "checkout", "--quiet", t.Version)
 }
 
