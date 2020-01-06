@@ -117,5 +117,18 @@
                 "stub.go"
             ]
         ]
+    },
+    {
+        "import_path": "github.com/phoreproject/bls",
+        "version": "9d5f85bf4a9badf491a1b9b27fb3344b489bd2c4",
+        "generate": [
+            [
+                "go",
+                "run",
+                "asm/asm.go",
+                "-out",
+                "primitivefuncs_amd64.s"
+            ]
+        ]
     }
 ]
