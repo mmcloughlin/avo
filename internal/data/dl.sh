@@ -69,4 +69,15 @@ addlicense() {
     dl https://raw.githubusercontent.com/${repo}/${sha}/license.rst
     addlicense ${repo} ${datadir}/license.rst
 
+    # asmdb
+    repo='asmjit/asmdb'
+    sha='9de003dbe8e28971dfdb9d6345a2b9f0b61f7c92'
+
+    echo "## ${repo}"
+    echo 'Files downloaded:'
+    echo
+    dl https://raw.githubusercontent.com/${repo}/${sha}/x86data.js
+    dl https://raw.githubusercontent.com/${repo}/${sha}/LICENSE.md
+    addlicense ${repo} ${datadir}/LICENSE.md
+
 } > ${datadir}/README.md
