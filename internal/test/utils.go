@@ -46,8 +46,31 @@ func TempDir(t *testing.T) (string, func()) {
 	}
 }
 
-// gobin returns a best guess path to the "go" binary.
-func gobin() string {
+// ExecCommand executes the command, logging the command and output and failing
+// the test on error.
+func ExecCommand(t *testing.T, cmd *exec.Cmd) {
+	t.Helper()
+	t.Logf("exec: %s", cmd.Args)
+	if cmd.Dir != "" {
+		t.Logf("dir: %s", cmd.Dir)
+	}
+	b, err := cmd.CombinedOutput()
+	t.Logf("output:\n%s\n", string(b))
+	if err != nil {
+		t.Fatal(err)
+	}
+}
+
+// Exec executes the named program with the given arguments, logging the command
+// and output and failing the test on error.
+func Exec(t *testing.T, name string, arg ...string) {
+	t.Helper()
+	cmd := exec.Command(name, arg...)
+	ExecCommand(t, cmd)
+}
+
+// GoTool returns a best guess path to the "go" binary.
+func GoTool() string {
 	var exeSuffix string
 	if runtime.GOOS == "windows" {
 		exeSuffix = ".exe"
@@ -61,14 +84,7 @@ func gobin() string {
 
 // goexec runs a "go" command and checks the output.
 func goexec(t *testing.T, arg ...string) {
-	t.Helper()
-	cmd := exec.Command(gobin(), arg...)
-	t.Logf("exec: %s", cmd.Args)
-	b, err := cmd.CombinedOutput()
-	t.Logf("output:\n%s\n", string(b))
-	if err != nil {
-		t.Fatal(err)
-	}
+	Exec(t, GoTool(), arg...)
 }
 
 // Logger builds a logger that writes to the test object.

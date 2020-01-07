@@ -1,0 +1,134 @@
+[
+    {
+        "import_path": "github.com/zeebo/xxh3",
+        "version": "65f423c10688c362d2a2ce6987b665c72ee7bddd",
+        "dir": "avo",
+        "generate": [
+            [
+                "go",
+                "run",
+                ".",
+                "-avx",
+                "-out",
+                "../vector_avx_amd64.s"
+            ],
+            [
+                "go",
+                "run",
+                ".",
+                "-sse",
+                "-out",
+                "../vector_sse_amd64.s"
+            ]
+        ]
+    },
+    {
+        "import_path": "github.com/dgryski/go-sip13",
+        "version": "25c5027a8c7bfa6dab4b577e53e5c9068f6e2152",
+        "generate": [
+            [
+                "go",
+                "run",
+                "_avo/asm.go",
+                "-out",
+                "sip13_amd64.s"
+            ]
+        ]
+    },
+    {
+        "import_path": "github.com/orisano/wyhash",
+        "version": "32a3f7f6ba4797e2d87dab2969cc9dd63d39cce9",
+        "generate": [
+            [
+                "go",
+                "run",
+                "avo/gen.go",
+                "-out",
+                "blocks_amd64.s",
+                "-stubs",
+                "blocks_amd64.go"
+            ]
+        ]
+    },
+    {
+        "import_path": "github.com/dgryski/go-bloomindex",
+        "version": "0902316dce158c154b958ee5cfc706c62af29a42",
+        "generate": [
+            [
+                "go",
+                "run",
+                "asm.go",
+                "-out",
+                "query_amd64.s"
+            ]
+        ]
+    },
+    {
+        "import_path": "github.com/dgryski/go-marvin32",
+        "version": "7d18f4c6ea7c24b29d1c7a670f8ae40b0812f2e3",
+        "generate": [
+            [
+                "go",
+                "run",
+                "asm.go",
+                "-out",
+                "marvin_amd64.s"
+            ]
+        ]
+    },
+    {
+        "import_path": "github.com/dgryski/go-speck",
+        "version": "5b36d4c08d8840c352a153bf37281434ad550ec0",
+        "generate": [
+            [
+                "go",
+                "run",
+                "asm.go",
+                "-out",
+                "speck_amd64.s"
+            ]
+        ]
+    },
+    {
+        "import_path": "github.com/dgryski/go-chaskey",
+        "version": "ba454392bc5ab6daae103e15147185f8f4a27dcc",
+        "generate": [
+            [
+                "go",
+                "run",
+                "asm.go",
+                "-out",
+                "core_amd64.s"
+            ]
+        ]
+    },
+    {
+        "import_path": "github.com/mkevac/gopherconrussia2019",
+        "version": "235b8b0156a20b4e078b88462e669730f99caeb1",
+        "dir": "simplesimd",
+        "generate": [
+            [
+                "go",
+                "run",
+                "asm.go",
+                "-out",
+                "simd.s",
+                "-stubs",
+                "stub.go"
+            ]
+        ]
+    },
+    {
+        "import_path": "github.com/phoreproject/bls",
+        "version": "9d5f85bf4a9badf491a1b9b27fb3344b489bd2c4",
+        "generate": [
+            [
+                "go",
+                "run",
+                "asm/asm.go",
+                "-out",
+                "primitivefuncs_amd64.s"
+            ]
+        ]
+    }
+]
