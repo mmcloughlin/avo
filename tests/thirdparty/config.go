@@ -1,3 +1,4 @@
+// Package thirdparty executes integration tests based on third-party packages that use avo.
 package thirdparty
 
 import (
