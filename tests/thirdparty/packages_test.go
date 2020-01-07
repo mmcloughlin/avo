@@ -18,6 +18,8 @@ var (
 	latest       = flag.Bool("latest", false, "use latest versions of each package")
 )
 
+// TestPackages runs integration tests on all packages specified by packages
+// file given on the command line.
 func TestPackages(t *testing.T) {
 	// Load packages.
 	if *pkgsfilename == "" {
@@ -41,24 +43,26 @@ func TestPackages(t *testing.T) {
 			pt := PackageTest{
 				T:       t,
 				Package: pkg,
-				workdir: dir,
-				latest:  *latest,
+				WorkDir: dir,
+				Latest:  *latest,
 			}
 			pt.Run()
 		})
 	}
 }
 
+// PackageTest executes an integration test based on a given third-party package.
 type PackageTest struct {
 	*testing.T
 	Package
 
-	workdir string
-	latest  bool
+	WorkDir string // working directory for the test
+	Latest  bool   // use latest version of the package
 
-	repopath string
+	repopath string // path the repo is cloned to
 }
 
+// Run the test.
 func (t *PackageTest) Run() {
 	t.checkout()
 	t.modinit()
@@ -69,20 +73,22 @@ func (t *PackageTest) Run() {
 	t.test()
 }
 
+// checkout the code at the specified version.
 func (t *PackageTest) checkout() {
 	// Clone repo.
-	dst := t.path(t.Name())
+	dst := filepath.Join(t.WorkDir, t.Name())
 	t.git("clone", "--quiet", t.CloneURL(), dst)
 	t.repopath = dst
 
 	// Checkout specific version.
-	if t.latest {
+	if t.Latest {
 		t.Log("using latest version")
 		return
 	}
 	t.git("-C", t.repopath, "checkout", "--quiet", t.Version)
 }
 
+// modinit initializes the repo as a go module if it isn't one already.
 func (t *PackageTest) modinit() {
 	// Check if module path already exists.
 	gomod := filepath.Join(t.repopath, "go.mod")
@@ -92,11 +98,10 @@ func (t *PackageTest) modinit() {
 	}
 
 	// Initialize the module.
-	cmd := exec.Command("go", "mod", "init", t.ImportPath)
-	cmd.Dir = t.repopath
-	test.ExecCommand(t.T, cmd)
+	t.gotool("mod", "init", t.ImportPath)
 }
 
+// replaceavo points all avo dependencies to the local version.
 func (t *PackageTest) replaceavo() {
 	// Determine the path to avo.
 	_, self, _, ok := runtime.Caller(1)
@@ -113,7 +118,7 @@ func (t *PackageTest) replaceavo() {
 		if filepath.Base(path) != "go.mod" {
 			return nil
 		}
-		test.Exec(t.T, "go", "mod", "edit", "-replace=github.com/mmcloughlin/avo="+avodir, path)
+		t.gotool("mod", "edit", "-replace=github.com/mmcloughlin/avo="+avodir, path)
 		return nil
 	})
 	if err != nil {
@@ -121,6 +126,7 @@ func (t *PackageTest) replaceavo() {
 	}
 }
 
+// generate runs generate commands.
 func (t *PackageTest) generate() {
 	if len(t.Generate) == 0 {
 		t.Fatal("no commands specified")
@@ -139,15 +145,17 @@ func (t *PackageTest) diff() {
 
 // test runs go test.
 func (t *PackageTest) test() {
-	cmd := exec.Command("go", "test", "./...")
-	cmd.Dir = t.repopath
-	test.ExecCommand(t.T, cmd)
+	t.gotool("test", "./...")
 }
 
-func (t *PackageTest) path(rel string) string {
-	return filepath.Join(t.workdir, rel)
-}
-
+// git runs a git command.
 func (t *PackageTest) git(arg ...string) {
 	test.Exec(t.T, "git", arg...)
+}
+
+// gotool runs a go command.
+func (t *PackageTest) gotool(arg ...string) {
+	cmd := exec.Command(test.GoTool(), arg...)
+	cmd.Dir = t.repopath
+	test.ExecCommand(t.T, cmd)
 }

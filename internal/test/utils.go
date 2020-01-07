@@ -69,8 +69,8 @@ func Exec(t *testing.T, name string, arg ...string) {
 	ExecCommand(t, cmd)
 }
 
-// gobin returns a best guess path to the "go" binary.
-func gobin() string {
+// GoTool returns a best guess path to the "go" binary.
+func GoTool() string {
 	var exeSuffix string
 	if runtime.GOOS == "windows" {
 		exeSuffix = ".exe"
@@ -84,7 +84,7 @@ func gobin() string {
 
 // goexec runs a "go" command and checks the output.
 func goexec(t *testing.T, arg ...string) {
-	Exec(t, gobin(), arg...)
+	Exec(t, GoTool(), arg...)
 }
 
 // Logger builds a logger that writes to the test object.
