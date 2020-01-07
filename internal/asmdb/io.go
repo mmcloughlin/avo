@@ -51,8 +51,8 @@ type Raw struct {
 	Instructions  [][]string          `json:"instructions"`
 }
 
-// ParseRaw parses the asmdb x86data.js file as a raw unprocessed data structure.
-func ParseRaw(r io.Reader) (*Raw, error) {
+// ReadRaw reads the asmdb x86data.js file as a raw unprocessed data structure.
+func ReadRaw(r io.Reader) (*Raw, error) {
 	// Extract the JSON blob from the javascript file.
 	b, err := extractjson(r)
 	if err != nil {
@@ -68,14 +68,14 @@ func ParseRaw(r io.Reader) (*Raw, error) {
 	return db, nil
 }
 
-// ParseRawFile parses an asmdb x86data.js file.
-func ParseRawFile(filename string) (*Raw, error) {
+// ReadRawFile parses an asmdb x86data.js file.
+func ReadRawFile(filename string) (*Raw, error) {
 	f, err := os.Open(filename)
 	if err != nil {
 		return nil, err
 	}
 	defer f.Close()
-	return ParseRaw(f)
+	return ReadRaw(f)
 }
 
 // extractjson extracts the pure JSON part of the x86data.js file.
