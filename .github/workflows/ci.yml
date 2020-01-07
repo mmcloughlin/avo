@@ -73,3 +73,20 @@ jobs:
       run: ./script/bootstrap
     - name: Lint
       run: ./script/lint
+
+  thirdparty:
+    strategy:
+      matrix:
+        go-version: [1.13.x]
+        platform: [ubuntu-latest]
+    runs-on: ${{ matrix.platform }}
+    steps:
+    - name: Install Go
+      uses: actions/setup-go@v1
+      with:
+        go-version: ${{ matrix.go-version }}
+    - name: Checkout code
+      uses: actions/checkout@v1
+    - name: Run Third-Party Tests
+      working-directory: ./tests/thirdparty
+      run: go test -v -pkgs packages.json
