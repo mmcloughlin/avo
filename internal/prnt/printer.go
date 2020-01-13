@@ -5,6 +5,7 @@ import (
 	"bytes"
 	"fmt"
 	"io"
+	"strings"
 )
 
 // Generator provides convenience methods for code generators. In particular it
@@ -38,7 +39,8 @@ func (g *Generator) NL() {
 // Comment writes comment lines prefixed with "// ".
 func (g *Generator) Comment(lines ...string) {
 	for _, line := range lines {
-		g.Printf("// %s\n", line)
+		line = strings.TrimSpace("// " + line)
+		g.Printf("%s\n", line)
 	}
 }
 
