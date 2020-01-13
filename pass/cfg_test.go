@@ -66,7 +66,7 @@ func TestLabelTargetInstructionFollowLabel(t *testing.T) {
 
 	err := LabelTarget(f)
 
-	if err == nil || err.Error() != "instruction should follow a label" {
+	if err == nil || err.Error() != "expected instruction following label \"lblA\"" {
 		t.Fatalf("expected error when label is not followed by instruction; got %v", err)
 	}
 }
