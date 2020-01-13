@@ -17,7 +17,7 @@ func LabelTarget(fn *ir.Function) error {
 		switch n := node.(type) {
 		case ir.Label:
 			if pending != empty {
-				return errors.New("instruction should follow a label")
+				return fmt.Errorf("instruction should follow a label %q", pending)
 			}
 			pending = n
 			if _, found := target[pending]; found {
