@@ -58,10 +58,29 @@ func (f *Family) Lookup(id PID, s Spec) Physical {
 	return nil
 }
 
+// ID is a register identifier.
+type ID uint32
+
+// newid builds a new register ID from the virtual flag v, kind and index.
+func newid(v uint8, kind Kind, idx uint16) ID {
+	return ID(v) | (ID(kind) << 8) | (ID(idx) << 16)
+}
+
+// IsVirtual reports whether this is an ID for a virtual register.
+func (id ID) IsVirtual() bool { return (id & 1) == 1 }
+
+// IsPhysical reports whether this is an ID for a physical register.
+func (id ID) IsPhysical() bool { return !id.IsVirtual() }
+
+// Kind extracts the kind from the register ID.
+func (id ID) Kind() Kind { return Kind(id >> 8) }
+
 // Register represents a virtual or physical register.
 type Register interface {
+	ID() ID
 	Kind() Kind
 	Size() uint
+	Mask() uint16
 	Asm() string
 	as(Spec) Register
 	register()
@@ -100,6 +119,7 @@ func NewVirtual(id VID, k Kind, s Spec) Virtual {
 	}
 }
 
+func (v virtual) ID() ID         { return newid(1, v.kind, uint16(v.id)) }
 func (v virtual) VirtualID() VID { return v.id }
 func (v virtual) Kind() Kind     { return v.kind }
 
@@ -137,7 +157,6 @@ type PID uint16
 // Physical is a concrete register.
 type Physical interface {
 	PhysicalID() PID
-	Mask() uint16
 	Info() Info
 	Register
 }
@@ -173,6 +192,7 @@ func newregister(f *Family, s Spec, id PID, name string, flags ...Info) register
 	return r
 }
 
+func (r register) ID() ID          { return newid(0, r.Kind(), uint16(r.id)) }
 func (r register) PhysicalID() PID { return r.id }
 func (r register) Kind() Kind      { return r.family.Kind }
 func (r register) Asm() string     { return r.name }
