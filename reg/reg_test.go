@@ -25,7 +25,7 @@ func TestSpecSize(t *testing.T) {
 }
 
 func TestToVirtual(t *testing.T) {
-	v := GeneralPurpose.Virtual(42, B32)
+	v := GeneralPurpose.Virtual(42, S32)
 	if ToVirtual(v) != v {
 		t.Errorf("ToVirtual(v) != v for virtual register")
 	}
@@ -35,7 +35,7 @@ func TestToVirtual(t *testing.T) {
 }
 
 func TestToPhysical(t *testing.T) {
-	v := GeneralPurpose.Virtual(42, B32)
+	v := GeneralPurpose.Virtual(42, S32)
 	if ToPhysical(v) != nil {
 		t.Errorf("ToPhysical should be nil for virtual registers")
 	}
@@ -122,12 +122,12 @@ func TestVirtualAs(t *testing.T) {
 		Physical Physical
 		Match    bool
 	}{
-		{GeneralPurpose.Virtual(0, B8), CL, true},
-		{GeneralPurpose.Virtual(0, B8), CH, true},
-		{GeneralPurpose.Virtual(0, B32).as(S8L), CL, true},
-		{GeneralPurpose.Virtual(0, B32).as(S8L), CH, false},
-		{GeneralPurpose.Virtual(0, B16).as(S32), R9L, true},
-		{GeneralPurpose.Virtual(0, B16).as(S32), R9, false},
+		{GeneralPurpose.Virtual(0, S8), CL, true},
+		{GeneralPurpose.Virtual(0, S8H), CH, true},
+		{GeneralPurpose.Virtual(0, S32).as(S8L), CL, true},
+		{GeneralPurpose.Virtual(0, S32).as(S8L), CH, false},
+		{GeneralPurpose.Virtual(0, S16).as(S32), R9L, true},
+		{GeneralPurpose.Virtual(0, S16).as(S32), R9, false},
 	}
 	for _, c := range cases {
 		if c.Virtual.(Virtual).SatisfiedBy(c.Physical) != c.Match {
