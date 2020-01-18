@@ -1,64 +1,77 @@
 package reg
 
-// Set is a set of registers.
-type Set map[Register]bool
+// MaskSet maps register IDs to masks.
+type MaskSet map[ID]uint16
 
-// NewEmptySet builds an empty register set.
-func NewEmptySet() Set {
-	return Set{}
+// NewEmptyMaskSet builds an empty register mask set.
+func NewEmptyMaskSet() MaskSet {
+	return MaskSet{}
 }
 
-// NewSetFromSlice forms a set from the given register list.
-func NewSetFromSlice(rs []Register) Set {
-	s := NewEmptySet()
+// NewMaskSetFromRegisters forms a mask set from the given register list.
+func NewMaskSetFromRegisters(rs []Register) MaskSet {
+	s := NewEmptyMaskSet()
 	for _, r := range rs {
-		s.Add(r)
+		s.AddRegister(r)
 	}
 	return s
 }
 
 // Clone returns a copy of s.
-func (s Set) Clone() Set {
-	c := NewEmptySet()
-	for r := range s {
-		c.Add(r)
+func (s MaskSet) Clone() MaskSet {
+	c := NewEmptyMaskSet()
+	for id, mask := range s {
+		c.Add(id, mask)
 	}
 	return c
 }
 
-// Add r to s.
-func (s Set) Add(r Register) {
-	s[r] = true
+// Add mask to the given register ID.
+func (s MaskSet) Add(id ID, mask uint16) {
+	s[id] |= mask
 }
 
-// Discard removes r from s, if present.
-func (s Set) Discard(r Register) {
-	delete(s, r)
+// AddRegister is a convenience for adding the register's (ID, mask) to the set.
+func (s MaskSet) AddRegister(r Register) {
+	s.Add(r.ID(), r.Mask())
 }
 
-// Update adds every register in t to s.
-func (s Set) Update(t Set) {
-	for r := range t {
-		s.Add(r)
+// Discard clears masked bits from register ID.
+func (s MaskSet) Discard(id ID, mask uint16) {
+	s[id] &^= mask
+	if s[id] == 0 {
+		delete(s, id)
+	}
+}
+
+// DiscardRegister is a convenience for discarding the register's (ID, mask) from the set.
+func (s MaskSet) DiscardRegister(r Register) {
+	s.Discard(r.ID(), r.Mask())
+}
+
+// Update adds masks in t to s.
+func (s MaskSet) Update(t MaskSet) {
+	for id, mask := range t {
+		s.Add(id, mask)
 	}
 }
 
 // Difference returns the set of registers in s but not t.
-func (s Set) Difference(t Set) Set {
+func (s MaskSet) Difference(t MaskSet) MaskSet {
 	d := s.Clone()
 	d.DifferenceUpdate(t)
 	return d
 }
 
 // DifferenceUpdate removes every element of t from s.
-func (s Set) DifferenceUpdate(t Set) {
-	for r := range t {
-		s.Discard(r)
+func (s MaskSet) DifferenceUpdate(t MaskSet) {
+	for id, mask := range t {
+		s.Discard(id, mask)
 	}
 }
 
-// Equals returns true if s and t contain the same registers.
-func (s Set) Equals(t Set) bool {
+// Equals returns true if s and t contain the same masks.
+func (s MaskSet) Equals(t MaskSet) bool {
 	if len(s) != len(t) {
 		return false
 	}
@@ -71,11 +84,11 @@ func (s Set) Equals(t Set) bool {
 }
 
 // OfKind returns the set of elements of s with kind k.
-func (s Set) OfKind(k Kind) Set {
-	t := NewEmptySet()
-	for r := range s {
-		if r.Kind() == k {
-			t.Add(r)
+func (s MaskSet) OfKind(k Kind) MaskSet {
+	t := NewEmptyMaskSet()
+	for id, mask := range s {
+		if id.Kind() == k {
+			t.Add(id, mask)
 		}
 	}
 	return t
