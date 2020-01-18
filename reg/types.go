@@ -39,15 +39,6 @@ func (f *Family) Registers() []Physical {
 	return append([]Physical(nil), f.registers...)
 }
 
-// Set returns the set of registers in the family.
-func (f *Family) Set() Set {
-	s := NewEmptySet()
-	for _, r := range f.registers {
-		s.Add(r)
-	}
-	return s
-}
-
 // Lookup returns the register with given physical ID and spec. Returns nil if no such register exists.
 func (f *Family) Lookup(id PID, s Spec) Physical {
 	for _, r := range f.registers {
