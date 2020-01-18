@@ -5,23 +5,6 @@ import (
 	"fmt"
 )
 
-// Width is a register width.
-type Width uint
-
-// Typical register width values.
-const (
-	B8 Width = 1 << iota
-	B16
-	B32
-	B64
-	B128
-	B256
-	B512
-)
-
-// Size returns the register width in bytes.
-func (w Width) Size() uint { return uint(w) }
-
 // Kind is a class of registers.
 type Kind uint8
 
@@ -47,8 +30,8 @@ func (f *Family) add(r Physical) {
 }
 
 // Virtual returns a virtual register from this family's kind.
-func (f *Family) Virtual(id VID, w Width) Virtual {
-	return NewVirtual(id, f.Kind, w)
+func (f *Family) Virtual(id VID, s Spec) Virtual {
+	return NewVirtual(id, f.Kind, s)
 }
 
 // Registers returns the registers in this family.
@@ -105,16 +88,15 @@ func ToVirtual(r Register) Virtual {
 type virtual struct {
 	id   VID
 	kind Kind
-	Width
-	mask uint16
+	Spec
 }
 
 // NewVirtual builds a Virtual register.
-func NewVirtual(id VID, k Kind, w Width) Virtual {
+func NewVirtual(id VID, k Kind, s Spec) Virtual {
 	return virtual{
-		id:    id,
-		kind:  k,
-		Width: w,
+		id:   id,
+		kind: k,
+		Spec: s,
 	}
 }
 
@@ -127,15 +109,14 @@ func (v virtual) Asm() string {
 }
 
 func (v virtual) SatisfiedBy(p Physical) bool {
-	return v.Kind() == p.Kind() && v.Size() == p.Size() && (v.mask == 0 || v.mask == p.Mask())
+	return v.Kind() == p.Kind() && v.Mask() == p.Mask()
 }
 
 func (v virtual) as(s Spec) Register {
 	return virtual{
-		id:    v.id,
-		kind:  v.kind,
-		Width: Width(s.Size()),
-		mask:  s.Mask(),
+		id:   v.id,
+		kind: v.kind,
+		Spec: s,
 	}
 }
 
