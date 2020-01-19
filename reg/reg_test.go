@@ -44,31 +44,10 @@ func TestToPhysical(t *testing.T) {
 	}
 }
 
-func TestAreConflicting(t *testing.T) {
-	cases := []struct {
-		X, Y   Physical
-		Expect bool
-	}{
-		{ECX, X3, false},
-		{AL, AH, false},
-		{AL, AX, true},
-		{AL, BX, false},
-		{X3, Y4, false},
-		{X3, Y3, true},
-		{Y3, Z4, false},
-		{Y3, Z3, true},
-	}
-	for _, c := range cases {
-		if AreConflicting(c.X, c.Y) != c.Expect {
-			t.Errorf("AreConflicting(%s, %s) != %v", c.X, c.Y, c.Expect)
-		}
-	}
-}
-
 func TestFamilyLookup(t *testing.T) {
 	cases := []struct {
 		Family *Family
-		ID     PID
+		ID     Index
 		Spec   Spec
 		Expect Physical
 	}{
@@ -89,7 +68,7 @@ func TestFamilyLookup(t *testing.T) {
 	for _, c := range cases {
 		got := c.Family.Lookup(c.ID, c.Spec)
 		if got != c.Expect {
-			t.Errorf("pid=%v spec=%v: lookup got %v expect %v", c.ID, c.Spec, got, c.Expect)
+			t.Errorf("idx=%v spec=%v: lookup got %v expect %v", c.ID, c.Spec, got, c.Expect)
 		}
 	}
 }
@@ -117,21 +96,11 @@ func TestPhysicalAs(t *testing.T) {
 }
 
 func TestVirtualAs(t *testing.T) {
-	cases := []struct {
-		Virtual  Register
-		Physical Physical
-		Match    bool
-	}{
-		{GeneralPurpose.Virtual(0, S8), CL, true},
-		{GeneralPurpose.Virtual(0, S8H), CH, true},
-		{GeneralPurpose.Virtual(0, S32).as(S8L), CL, true},
-		{GeneralPurpose.Virtual(0, S32).as(S8L), CH, false},
-		{GeneralPurpose.Virtual(0, S16).as(S32), R9L, true},
-		{GeneralPurpose.Virtual(0, S16).as(S32), R9, false},
-	}
-	for _, c := range cases {
-		if c.Virtual.(Virtual).SatisfiedBy(c.Physical) != c.Match {
-			t.Errorf("%s.SatisfiedBy(%v) != %v", c.Virtual.Asm(), c.Physical, c.Match)
+	v := GeneralPurpose.Virtual(0, S64)
+	specs := []Spec{S8, S8L, S8H, S16, S32, S64}
+	for _, s := range specs {
+		if v.as(s).Mask() != s.Mask() {
+			t.FailNow()
 		}
 	}
 }
