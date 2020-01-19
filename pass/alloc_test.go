@@ -15,9 +15,9 @@ func TestAllocatorSimple(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	a.Add(x)
-	a.Add(y)
-	a.AddInterference(x, y)
+	a.Add(x.ID())
+	a.Add(y.ID())
+	a.AddInterference(x.ID(), y.ID())
 
 	alloc, err := a.Allocate()
 	if err != nil {
@@ -26,7 +26,7 @@ func TestAllocatorSimple(t *testing.T) {
 
 	t.Log(alloc)
 
-	if alloc[x] != reg.X0 || alloc[y] != reg.Y1 {
+	if alloc.LookupRegister(x) != reg.X0 || alloc.LookupRegister(y) != reg.Y1 {
 		t.Fatalf("unexpected allocation")
 	}
 }
@@ -37,7 +37,7 @@ func TestAllocatorImpossible(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	a.AddInterference(reg.X7, reg.Z7)
+	a.AddInterference(reg.X7.ID(), reg.Z7.ID())
 
 	_, err = a.Allocate()
 	if err == nil {
