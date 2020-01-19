@@ -225,11 +225,6 @@ func (s Spec) Size() uint {
 	return (x >> 1) + (x & 1)
 }
 
-// AreConflicting returns whether registers conflict with each other.
-func AreConflicting(x, y Physical) bool {
-	return x.Kind() == y.Kind() && x.PhysicalID() == y.PhysicalID() && (x.Mask()&y.Mask()) != 0
-}
-
 func LookupPhysical(k Kind, idx Index, s Spec) Physical {
 	f := FamilyOfKind(k)
 	if f == nil {
