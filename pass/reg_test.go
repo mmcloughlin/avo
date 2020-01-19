@@ -50,8 +50,8 @@ func AssertLiveness(t *testing.T, ctx *build.Context, in, out [][]reg.Register) 
 	}
 }
 
-func AssertRegistersMatchSet(t *testing.T, rs []reg.Register, s reg.Set) {
-	if !s.Equals(reg.NewSetFromSlice(rs)) {
+func AssertRegistersMatchSet(t *testing.T, rs []reg.Register, s reg.MaskSet) {
+	if !s.Equals(reg.NewMaskSetFromRegisters(rs)) {
 		t.Fatalf("register slice does not match set: %#v and %#v", rs, s)
 	}
 }
