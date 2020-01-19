@@ -37,12 +37,12 @@ func Liveness(fn *ir.Function) error {
 				if s == nil {
 					continue
 				}
-				changes = changes || i.LiveOut.Update(s.LiveIn)
+				changes = i.LiveOut.Update(s.LiveIn) || changes
 			}
 
 			// in[n] = use[n] UNION (out[n] - def[n])
 			def := reg.NewMaskSetFromRegisters(i.OutputRegisters())
-			changes = changes || i.LiveIn.Update(i.LiveOut.Difference(def))
+			changes = i.LiveIn.Update(i.LiveOut.Difference(def)) || changes
 		}
 
 		if !changes {
