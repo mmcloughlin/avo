@@ -225,6 +225,7 @@ func (s Spec) Size() uint {
 	return (x >> 1) + (x & 1)
 }
 
+// LookupPhysical returns the physical register with the given parameters, or nil if not found.
 func LookupPhysical(k Kind, idx Index, s Spec) Physical {
 	f := FamilyOfKind(k)
 	if f == nil {
@@ -233,6 +234,7 @@ func LookupPhysical(k Kind, idx Index, s Spec) Physical {
 	return f.Lookup(idx, s)
 }
 
+// LookupID returns the physical register with the given id and spec, or nil if not found.
 func LookupID(id ID, s Spec) Physical {
 	if id.IsVirtual() {
 		return nil
@@ -260,6 +262,8 @@ func (a Allocation) Merge(b Allocation) error {
 	return nil
 }
 
+// LookupDefault returns the register ID assigned by this allocation, returning
+// id if none is found.
 func (a Allocation) LookupDefault(id ID) ID {
 	if _, found := a[id]; found {
 		return a[id]
@@ -283,7 +287,7 @@ func (a Allocation) LookupRegister(r Register) Physical {
 	return LookupID(id, r.spec())
 }
 
-// LookupDefault returns the register assigned to r, or r itself if there is none.
+// LookupRegisterDefault returns the register assigned to r, or r itself if there is none.
 func (a Allocation) LookupRegisterDefault(r Register) Register {
 	if r == nil {
 		return nil

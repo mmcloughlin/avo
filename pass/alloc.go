@@ -139,7 +139,7 @@ func (a *Allocator) mostrestricted() reg.ID {
 	var v reg.ID
 	for w, p := range a.possible {
 		// On a tie, choose the smallest ID in numeric order. This avoids
-		// non-determinisitic allocations due to map iteration order.
+		// non-deterministic allocations due to map iteration order.
 		if len(p) < n || (len(p) == n && w < v) {
 			n = len(p)
 			v = w
