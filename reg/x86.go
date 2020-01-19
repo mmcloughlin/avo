@@ -28,7 +28,7 @@ func init() {
 	}
 }
 
-// FamilyOfKind returns the Family of registers of the given kind.
+// FamilyOfKind returns the Family of registers of the given kind, or nil if not found.
 func FamilyOfKind(k Kind) *Family {
 	return familiesByKind[k]
 }
@@ -88,7 +88,7 @@ type gpv struct {
 
 func newgpv(v Virtual) GPVirtual { return gpv{Virtual: v, GP: gpcasts{v}} }
 
-func gp(s Spec, id PID, name string, flags ...Info) GPPhysical {
+func gp(s Spec, id Index, name string, flags ...Info) GPPhysical {
 	r := newgpp(newregister(GeneralPurpose, s, id, name, flags...))
 	GeneralPurpose.add(r)
 	return r
@@ -218,7 +218,7 @@ type vecv struct {
 
 func newvecv(v Virtual) VecVirtual { return vecv{Virtual: v, Vec: veccasts{v}} }
 
-func vec(s Spec, id PID, name string, flags ...Info) VecPhysical {
+func vec(s Spec, id Index, name string, flags ...Info) VecPhysical {
 	r := newvecp(newregister(Vector, s, id, name, flags...))
 	Vector.add(r)
 	return r

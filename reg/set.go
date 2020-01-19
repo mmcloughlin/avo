@@ -27,33 +27,48 @@ func (s MaskSet) Clone() MaskSet {
 }
 
 // Add mask to the given register ID.
-func (s MaskSet) Add(id ID, mask uint16) {
+// Reports whether this made any change to the set.
+func (s MaskSet) Add(id ID, mask uint16) bool {
+	if s[id] == mask {
+		return false
+	}
 	s[id] |= mask
+	return true
 }
 
 // AddRegister is a convenience for adding the register's (ID, mask) to the set.
-func (s MaskSet) AddRegister(r Register) {
-	s.Add(r.ID(), r.Mask())
+// Reports whether this made any change to the set.
+func (s MaskSet) AddRegister(r Register) bool {
+	return s.Add(r.ID(), r.Mask())
 }
 
 // Discard clears masked bits from register ID.
-func (s MaskSet) Discard(id ID, mask uint16) {
+// Reports whether this made any change to the set.
+func (s MaskSet) Discard(id ID, mask uint16) bool {
+	if curr, found := s[id]; !found || (curr&mask) == 0 {
+		return false
+	}
 	s[id] &^= mask
 	if s[id] == 0 {
 		delete(s, id)
 	}
+	return true
 }
 
 // DiscardRegister is a convenience for discarding the register's (ID, mask) from the set.
-func (s MaskSet) DiscardRegister(r Register) {
-	s.Discard(r.ID(), r.Mask())
+// Reports whether this made any change to the set.
+func (s MaskSet) DiscardRegister(r Register) bool {
+	return s.Discard(r.ID(), r.Mask())
 }
 
 // Update adds masks in t to s.
-func (s MaskSet) Update(t MaskSet) {
+// Reports whether this made any change to the set.
+func (s MaskSet) Update(t MaskSet) bool {
+	change := false
 	for id, mask := range t {
-		s.Add(id, mask)
+		change = change || s.Add(id, mask)
 	}
+	return change
 }
 
 // Difference returns the set of registers in s but not t.
@@ -64,10 +79,12 @@ func (s MaskSet) Difference(t MaskSet) MaskSet {
 }
 
 // DifferenceUpdate removes every element of t from s.
-func (s MaskSet) DifferenceUpdate(t MaskSet) {
+func (s MaskSet) DifferenceUpdate(t MaskSet) bool {
+	change := false
 	for id, mask := range t {
-		s.Discard(id, mask)
+		change = change || s.Discard(id, mask)
 	}
+	return change
 }
 
 // Equals returns true if s and t contain the same masks.
@@ -75,8 +92,8 @@ func (s MaskSet) Equals(t MaskSet) bool {
 	if len(s) != len(t) {
 		return false
 	}
-	for r := range s {
-		if _, found := t[r]; !found {
+	for id, mask := range s {
+		if _, found := t[id]; !found || mask != t[id] {
 			return false
 		}
 	}
