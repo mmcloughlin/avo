@@ -55,8 +55,8 @@ type Instruction struct {
 	Succ []*Instruction
 
 	// LiveIn/LiveOut are sets of live register IDs pre/post execution.
-	LiveIn  reg.Set
-	LiveOut reg.Set
+	LiveIn  reg.MaskSet
+	LiveOut reg.MaskSet
 }
 
 func (i *Instruction) node() {}

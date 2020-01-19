@@ -3,21 +3,21 @@ package reg
 // Collection represents a collection of virtual registers. This is primarily
 // useful for allocating virtual registers with distinct IDs.
 type Collection struct {
-	vid map[Kind]VID
+	idx map[Kind]Index
 }
 
 // NewCollection builds an empty register collection.
 func NewCollection() *Collection {
 	return &Collection{
-		vid: map[Kind]VID{},
+		idx: map[Kind]Index{},
 	}
 }
 
 // VirtualRegister allocates and returns a new virtual register of the given kind and width.
 func (c *Collection) VirtualRegister(k Kind, s Spec) Virtual {
-	vid := c.vid[k]
-	c.vid[k]++
-	return NewVirtual(vid, k, s)
+	idx := c.idx[k]
+	c.idx[k]++
+	return NewVirtual(idx, k, s)
 }
 
 // GP8L allocates and returns a general-purpose 8-bit register (low byte).

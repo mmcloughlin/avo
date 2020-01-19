@@ -23,8 +23,8 @@ func Liveness(fn *ir.Function) error {
 
 	// Initialize.
 	for _, i := range is {
-		i.LiveIn = reg.NewSetFromSlice(i.InputRegisters())
-		i.LiveOut = reg.NewEmptySet()
+		i.LiveIn = reg.NewMaskSetFromRegisters(i.InputRegisters())
+		i.LiveOut = reg.NewEmptyMaskSet()
 	}
 
 	// Iterative dataflow analysis.
@@ -33,29 +33,16 @@ func Liveness(fn *ir.Function) error {
 
 		for _, i := range is {
 			// out[n] = UNION[s IN succ[n]] in[s]
-			nout := len(i.LiveOut)
 			for _, s := range i.Succ {
 				if s == nil {
 					continue
 				}
-				i.LiveOut.Update(s.LiveIn)
-			}
-			if len(i.LiveOut) != nout {
-				changes = true
+				changes = changes || i.LiveOut.Update(s.LiveIn)
 			}
 
 			// in[n] = use[n] UNION (out[n] - def[n])
-			nin := len(i.LiveIn)
-			def := reg.NewSetFromSlice(i.OutputRegisters())
-			i.LiveIn.Update(i.LiveOut.Difference(def))
-			for r := range i.LiveOut {
-				if _, found := def[r]; !found {
-					i.LiveIn.Add(r)
-				}
-			}
-			if len(i.LiveIn) != nin {
-				changes = true
-			}
+			def := reg.NewMaskSetFromRegisters(i.OutputRegisters())
+			changes = changes || i.LiveIn.Update(i.LiveOut.Difference(def))
 		}
 
 		if !changes {
@@ -80,7 +67,7 @@ func AllocateRegisters(fn *ir.Function) error {
 				}
 				as[k] = a
 			}
-			as[k].Add(r)
+			as[k].Add(r.ID())
 		}
 	}
 
@@ -89,7 +76,7 @@ func AllocateRegisters(fn *ir.Function) error {
 		for _, d := range i.OutputRegisters() {
 			k := d.Kind()
 			out := i.LiveOut.OfKind(k)
-			out.Discard(d)
+			out.DiscardRegister(d)
 			as[k].AddInterferenceSet(d, out)
 		}
 	}
