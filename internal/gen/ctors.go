@@ -92,6 +92,11 @@ func construct(i inst.Instruction, f inst.Form, s signature) string {
 	fmt.Fprintf(buf, "\tInputs: %s,\n", operandsWithAction(f, inst.R, s))
 	fmt.Fprintf(buf, "\tOutputs: %s,\n", operandsWithAction(f, inst.W, s))
 
+	// ISAs.
+	if len(f.ISA) > 0 {
+		fmt.Fprintf(buf, "\tISA: %#v,\n", f.ISA)
+	}
+
 	// Branch variables.
 	if i.IsBranch() {
 		fmt.Fprintf(buf, "\tIsBranch: true,\n")

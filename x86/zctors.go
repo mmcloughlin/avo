@@ -304,6 +304,7 @@ func ADCXL(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"ADX"},
 		}, nil
 	case operand.IsM32(mr) && operand.IsR32(r):
 		return &intrep.Instruction{
@@ -311,6 +312,7 @@ func ADCXL(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"ADX"},
 		}, nil
 	}
 	return nil, errors.New("ADCXL: bad operands")
@@ -330,6 +332,7 @@ func ADCXQ(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"ADX"},
 		}, nil
 	case operand.IsM64(mr) && operand.IsR64(r):
 		return &intrep.Instruction{
@@ -337,6 +340,7 @@ func ADCXQ(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"ADX"},
 		}, nil
 	}
 	return nil, errors.New("ADCXQ: bad operands")
@@ -488,6 +492,7 @@ func ADDPD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -495,6 +500,7 @@ func ADDPD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("ADDPD: bad operands")
@@ -514,6 +520,7 @@ func ADDPS(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -521,6 +528,7 @@ func ADDPS(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE"},
 		}, nil
 	}
 	return nil, errors.New("ADDPS: bad operands")
@@ -614,6 +622,7 @@ func ADDSD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM64(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -621,6 +630,7 @@ func ADDSD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("ADDSD: bad operands")
@@ -640,6 +650,7 @@ func ADDSS(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE"},
 		}, nil
 	case operand.IsM32(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -647,6 +658,7 @@ func ADDSS(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE"},
 		}, nil
 	}
 	return nil, errors.New("ADDSS: bad operands")
@@ -666,6 +678,7 @@ func ADDSUBPD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE3"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -673,6 +686,7 @@ func ADDSUBPD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE3"},
 		}, nil
 	}
 	return nil, errors.New("ADDSUBPD: bad operands")
@@ -692,6 +706,7 @@ func ADDSUBPS(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE3"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -699,6 +714,7 @@ func ADDSUBPS(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE3"},
 		}, nil
 	}
 	return nil, errors.New("ADDSUBPS: bad operands")
@@ -792,6 +808,7 @@ func ADOXL(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"ADX"},
 		}, nil
 	case operand.IsM32(mr) && operand.IsR32(r):
 		return &intrep.Instruction{
@@ -799,6 +816,7 @@ func ADOXL(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"ADX"},
 		}, nil
 	}
 	return nil, errors.New("ADOXL: bad operands")
@@ -818,6 +836,7 @@ func ADOXQ(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"ADX"},
 		}, nil
 	case operand.IsM64(mr) && operand.IsR64(r):
 		return &intrep.Instruction{
@@ -825,6 +844,7 @@ func ADOXQ(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"ADX"},
 		}, nil
 	}
 	return nil, errors.New("ADOXQ: bad operands")
@@ -844,6 +864,7 @@ func AESDEC(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"AES"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -851,6 +872,7 @@ func AESDEC(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"AES"},
 		}, nil
 	}
 	return nil, errors.New("AESDEC: bad operands")
@@ -870,6 +892,7 @@ func AESDECLAST(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"AES"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -877,6 +900,7 @@ func AESDECLAST(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"AES"},
 		}, nil
 	}
 	return nil, errors.New("AESDECLAST: bad operands")
@@ -896,6 +920,7 @@ func AESENC(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"AES"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -903,6 +928,7 @@ func AESENC(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"AES"},
 		}, nil
 	}
 	return nil, errors.New("AESENC: bad operands")
@@ -922,6 +948,7 @@ func AESENCLAST(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"AES"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -929,6 +956,7 @@ func AESENCLAST(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"AES"},
 		}, nil
 	}
 	return nil, errors.New("AESENCLAST: bad operands")
@@ -948,6 +976,7 @@ func AESIMC(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"AES"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -955,6 +984,7 @@ func AESIMC(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"AES"},
 		}, nil
 	}
 	return nil, errors.New("AESIMC: bad operands")
@@ -974,6 +1004,7 @@ func AESKEYGENASSIST(i, mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"AES"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -981,6 +1012,7 @@ func AESKEYGENASSIST(i, mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"AES"},
 		}, nil
 	}
 	return nil, errors.New("AESKEYGENASSIST: bad operands")
@@ -1132,6 +1164,7 @@ func ANDNL(mr, r, r1 operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mr, r, r1},
 			Inputs:           []operand.Op{mr, r},
 			Outputs:          []operand.Op{r1},
+			ISA:              []string{"BMI"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM32(mr) && operand.IsR32(r) && operand.IsR32(r1):
@@ -1140,6 +1173,7 @@ func ANDNL(mr, r, r1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r, r1},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r1},
+			ISA:      []string{"BMI"},
 		}, nil
 	}
 	return nil, errors.New("ANDNL: bad operands")
@@ -1159,6 +1193,7 @@ func ANDNPD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mx, x},
 			Inputs:           []operand.Op{mx, x},
 			Outputs:          []operand.Op{x},
+			ISA:              []string{"SSE2"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
@@ -1167,6 +1202,7 @@ func ANDNPD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("ANDNPD: bad operands")
@@ -1186,6 +1222,7 @@ func ANDNPS(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mx, x},
 			Inputs:           []operand.Op{mx, x},
 			Outputs:          []operand.Op{x},
+			ISA:              []string{"SSE"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
@@ -1194,6 +1231,7 @@ func ANDNPS(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE"},
 		}, nil
 	}
 	return nil, errors.New("ANDNPS: bad operands")
@@ -1213,6 +1251,7 @@ func ANDNQ(mr, r, r1 operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mr, r, r1},
 			Inputs:           []operand.Op{mr, r},
 			Outputs:          []operand.Op{r1},
+			ISA:              []string{"BMI"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM64(mr) && operand.IsR64(r) && operand.IsR64(r1):
@@ -1221,6 +1260,7 @@ func ANDNQ(mr, r, r1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r, r1},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r1},
+			ISA:      []string{"BMI"},
 		}, nil
 	}
 	return nil, errors.New("ANDNQ: bad operands")
@@ -1240,6 +1280,7 @@ func ANDPD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -1247,6 +1288,7 @@ func ANDPD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("ANDPD: bad operands")
@@ -1266,6 +1308,7 @@ func ANDPS(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -1273,6 +1316,7 @@ func ANDPS(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE"},
 		}, nil
 	}
 	return nil, errors.New("ANDPS: bad operands")
@@ -1440,6 +1484,7 @@ func BEXTRL(r, mr, r1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{r, mr, r1},
 			Inputs:   []operand.Op{r, mr},
 			Outputs:  []operand.Op{r1},
+			ISA:      []string{"BMI"},
 		}, nil
 	case operand.IsR32(r) && operand.IsM32(mr) && operand.IsR32(r1):
 		return &intrep.Instruction{
@@ -1447,6 +1492,7 @@ func BEXTRL(r, mr, r1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{r, mr, r1},
 			Inputs:   []operand.Op{r, mr},
 			Outputs:  []operand.Op{r1},
+			ISA:      []string{"BMI"},
 		}, nil
 	}
 	return nil, errors.New("BEXTRL: bad operands")
@@ -1466,6 +1512,7 @@ func BEXTRQ(r, mr, r1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{r, mr, r1},
 			Inputs:   []operand.Op{r, mr},
 			Outputs:  []operand.Op{r1},
+			ISA:      []string{"BMI"},
 		}, nil
 	case operand.IsR64(r) && operand.IsM64(mr) && operand.IsR64(r1):
 		return &intrep.Instruction{
@@ -1473,6 +1520,7 @@ func BEXTRQ(r, mr, r1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{r, mr, r1},
 			Inputs:   []operand.Op{r, mr},
 			Outputs:  []operand.Op{r1},
+			ISA:      []string{"BMI"},
 		}, nil
 	}
 	return nil, errors.New("BEXTRQ: bad operands")
@@ -1492,6 +1540,7 @@ func BLENDPD(i, mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -1499,6 +1548,7 @@ func BLENDPD(i, mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	}
 	return nil, errors.New("BLENDPD: bad operands")
@@ -1518,6 +1568,7 @@ func BLENDPS(i, mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -1525,6 +1576,7 @@ func BLENDPS(i, mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	}
 	return nil, errors.New("BLENDPS: bad operands")
@@ -1544,6 +1596,7 @@ func BLENDVPD(x, mx, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{x, mx, x1},
 			Inputs:   []operand.Op{x, mx, x1},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	case operand.IsXMM0(x) && operand.IsM128(mx) && operand.IsXMM(x1):
 		return &intrep.Instruction{
@@ -1551,6 +1604,7 @@ func BLENDVPD(x, mx, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{x, mx, x1},
 			Inputs:   []operand.Op{x, mx, x1},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	}
 	return nil, errors.New("BLENDVPD: bad operands")
@@ -1570,6 +1624,7 @@ func BLENDVPS(x, mx, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{x, mx, x1},
 			Inputs:   []operand.Op{x, mx, x1},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	case operand.IsXMM0(x) && operand.IsM128(mx) && operand.IsXMM(x1):
 		return &intrep.Instruction{
@@ -1577,6 +1632,7 @@ func BLENDVPS(x, mx, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{x, mx, x1},
 			Inputs:   []operand.Op{x, mx, x1},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	}
 	return nil, errors.New("BLENDVPS: bad operands")
@@ -1596,6 +1652,7 @@ func BLSIL(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"BMI"},
 		}, nil
 	case operand.IsM32(mr) && operand.IsR32(r):
 		return &intrep.Instruction{
@@ -1603,6 +1660,7 @@ func BLSIL(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"BMI"},
 		}, nil
 	}
 	return nil, errors.New("BLSIL: bad operands")
@@ -1622,6 +1680,7 @@ func BLSIQ(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"BMI"},
 		}, nil
 	case operand.IsM64(mr) && operand.IsR64(r):
 		return &intrep.Instruction{
@@ -1629,6 +1688,7 @@ func BLSIQ(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"BMI"},
 		}, nil
 	}
 	return nil, errors.New("BLSIQ: bad operands")
@@ -1648,6 +1708,7 @@ func BLSMSKL(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"BMI"},
 		}, nil
 	case operand.IsM32(mr) && operand.IsR32(r):
 		return &intrep.Instruction{
@@ -1655,6 +1716,7 @@ func BLSMSKL(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"BMI"},
 		}, nil
 	}
 	return nil, errors.New("BLSMSKL: bad operands")
@@ -1674,6 +1736,7 @@ func BLSMSKQ(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"BMI"},
 		}, nil
 	case operand.IsM64(mr) && operand.IsR64(r):
 		return &intrep.Instruction{
@@ -1681,6 +1744,7 @@ func BLSMSKQ(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"BMI"},
 		}, nil
 	}
 	return nil, errors.New("BLSMSKQ: bad operands")
@@ -1700,6 +1764,7 @@ func BLSRL(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"BMI"},
 		}, nil
 	case operand.IsM32(mr) && operand.IsR32(r):
 		return &intrep.Instruction{
@@ -1707,6 +1772,7 @@ func BLSRL(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"BMI"},
 		}, nil
 	}
 	return nil, errors.New("BLSRL: bad operands")
@@ -1726,6 +1792,7 @@ func BLSRQ(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"BMI"},
 		}, nil
 	case operand.IsM64(mr) && operand.IsR64(r):
 		return &intrep.Instruction{
@@ -1733,6 +1800,7 @@ func BLSRQ(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"BMI"},
 		}, nil
 	}
 	return nil, errors.New("BLSRQ: bad operands")
@@ -2448,6 +2516,7 @@ func BZHIL(r, mr, r1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{r, mr, r1},
 			Inputs:   []operand.Op{r, mr},
 			Outputs:  []operand.Op{r1},
+			ISA:      []string{"BMI2"},
 		}, nil
 	case operand.IsR32(r) && operand.IsM32(mr) && operand.IsR32(r1):
 		return &intrep.Instruction{
@@ -2455,6 +2524,7 @@ func BZHIL(r, mr, r1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{r, mr, r1},
 			Inputs:   []operand.Op{r, mr},
 			Outputs:  []operand.Op{r1},
+			ISA:      []string{"BMI2"},
 		}, nil
 	}
 	return nil, errors.New("BZHIL: bad operands")
@@ -2474,6 +2544,7 @@ func BZHIQ(r, mr, r1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{r, mr, r1},
 			Inputs:   []operand.Op{r, mr},
 			Outputs:  []operand.Op{r1},
+			ISA:      []string{"BMI2"},
 		}, nil
 	case operand.IsR64(r) && operand.IsM64(mr) && operand.IsR64(r1):
 		return &intrep.Instruction{
@@ -2481,6 +2552,7 @@ func BZHIQ(r, mr, r1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{r, mr, r1},
 			Inputs:   []operand.Op{r, mr},
 			Outputs:  []operand.Op{r1},
+			ISA:      []string{"BMI2"},
 		}, nil
 	}
 	return nil, errors.New("BZHIQ: bad operands")
@@ -2587,6 +2659,7 @@ func CLFLUSH(m operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{m},
 			Inputs:   []operand.Op{m},
 			Outputs:  []operand.Op{},
+			ISA:      []string{"CLFLUSH"},
 		}, nil
 	}
 	return nil, errors.New("CLFLUSH: bad operands")
@@ -2605,6 +2678,7 @@ func CLFLUSHOPT(m operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{m},
 			Inputs:   []operand.Op{m},
 			Outputs:  []operand.Op{},
+			ISA:      []string{"CLFLUSHOPT"},
 		}, nil
 	}
 	return nil, errors.New("CLFLUSHOPT: bad operands")
@@ -2638,6 +2712,7 @@ func CMOVLCC(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	case operand.IsM32(mr) && operand.IsR32(r):
 		return &intrep.Instruction{
@@ -2645,6 +2720,7 @@ func CMOVLCC(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	}
 	return nil, errors.New("CMOVLCC: bad operands")
@@ -2664,6 +2740,7 @@ func CMOVLCS(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	case operand.IsM32(mr) && operand.IsR32(r):
 		return &intrep.Instruction{
@@ -2671,6 +2748,7 @@ func CMOVLCS(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	}
 	return nil, errors.New("CMOVLCS: bad operands")
@@ -2690,6 +2768,7 @@ func CMOVLEQ(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	case operand.IsM32(mr) && operand.IsR32(r):
 		return &intrep.Instruction{
@@ -2697,6 +2776,7 @@ func CMOVLEQ(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	}
 	return nil, errors.New("CMOVLEQ: bad operands")
@@ -2716,6 +2796,7 @@ func CMOVLGE(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	case operand.IsM32(mr) && operand.IsR32(r):
 		return &intrep.Instruction{
@@ -2723,6 +2804,7 @@ func CMOVLGE(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	}
 	return nil, errors.New("CMOVLGE: bad operands")
@@ -2742,6 +2824,7 @@ func CMOVLGT(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	case operand.IsM32(mr) && operand.IsR32(r):
 		return &intrep.Instruction{
@@ -2749,6 +2832,7 @@ func CMOVLGT(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	}
 	return nil, errors.New("CMOVLGT: bad operands")
@@ -2768,6 +2852,7 @@ func CMOVLHI(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	case operand.IsM32(mr) && operand.IsR32(r):
 		return &intrep.Instruction{
@@ -2775,6 +2860,7 @@ func CMOVLHI(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	}
 	return nil, errors.New("CMOVLHI: bad operands")
@@ -2794,6 +2880,7 @@ func CMOVLLE(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	case operand.IsM32(mr) && operand.IsR32(r):
 		return &intrep.Instruction{
@@ -2801,6 +2888,7 @@ func CMOVLLE(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	}
 	return nil, errors.New("CMOVLLE: bad operands")
@@ -2820,6 +2908,7 @@ func CMOVLLS(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	case operand.IsM32(mr) && operand.IsR32(r):
 		return &intrep.Instruction{
@@ -2827,6 +2916,7 @@ func CMOVLLS(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	}
 	return nil, errors.New("CMOVLLS: bad operands")
@@ -2846,6 +2936,7 @@ func CMOVLLT(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	case operand.IsM32(mr) && operand.IsR32(r):
 		return &intrep.Instruction{
@@ -2853,6 +2944,7 @@ func CMOVLLT(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	}
 	return nil, errors.New("CMOVLLT: bad operands")
@@ -2872,6 +2964,7 @@ func CMOVLMI(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	case operand.IsM32(mr) && operand.IsR32(r):
 		return &intrep.Instruction{
@@ -2879,6 +2972,7 @@ func CMOVLMI(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	}
 	return nil, errors.New("CMOVLMI: bad operands")
@@ -2898,6 +2992,7 @@ func CMOVLNE(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	case operand.IsM32(mr) && operand.IsR32(r):
 		return &intrep.Instruction{
@@ -2905,6 +3000,7 @@ func CMOVLNE(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	}
 	return nil, errors.New("CMOVLNE: bad operands")
@@ -2924,6 +3020,7 @@ func CMOVLOC(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	case operand.IsM32(mr) && operand.IsR32(r):
 		return &intrep.Instruction{
@@ -2931,6 +3028,7 @@ func CMOVLOC(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	}
 	return nil, errors.New("CMOVLOC: bad operands")
@@ -2950,6 +3048,7 @@ func CMOVLOS(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	case operand.IsM32(mr) && operand.IsR32(r):
 		return &intrep.Instruction{
@@ -2957,6 +3056,7 @@ func CMOVLOS(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	}
 	return nil, errors.New("CMOVLOS: bad operands")
@@ -2976,6 +3076,7 @@ func CMOVLPC(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	case operand.IsM32(mr) && operand.IsR32(r):
 		return &intrep.Instruction{
@@ -2983,6 +3084,7 @@ func CMOVLPC(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	}
 	return nil, errors.New("CMOVLPC: bad operands")
@@ -3002,6 +3104,7 @@ func CMOVLPL(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	case operand.IsM32(mr) && operand.IsR32(r):
 		return &intrep.Instruction{
@@ -3009,6 +3112,7 @@ func CMOVLPL(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	}
 	return nil, errors.New("CMOVLPL: bad operands")
@@ -3028,6 +3132,7 @@ func CMOVLPS(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	case operand.IsM32(mr) && operand.IsR32(r):
 		return &intrep.Instruction{
@@ -3035,6 +3140,7 @@ func CMOVLPS(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	}
 	return nil, errors.New("CMOVLPS: bad operands")
@@ -3054,6 +3160,7 @@ func CMOVQCC(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	case operand.IsM64(mr) && operand.IsR64(r):
 		return &intrep.Instruction{
@@ -3061,6 +3168,7 @@ func CMOVQCC(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	}
 	return nil, errors.New("CMOVQCC: bad operands")
@@ -3080,6 +3188,7 @@ func CMOVQCS(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	case operand.IsM64(mr) && operand.IsR64(r):
 		return &intrep.Instruction{
@@ -3087,6 +3196,7 @@ func CMOVQCS(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	}
 	return nil, errors.New("CMOVQCS: bad operands")
@@ -3106,6 +3216,7 @@ func CMOVQEQ(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	case operand.IsM64(mr) && operand.IsR64(r):
 		return &intrep.Instruction{
@@ -3113,6 +3224,7 @@ func CMOVQEQ(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	}
 	return nil, errors.New("CMOVQEQ: bad operands")
@@ -3132,6 +3244,7 @@ func CMOVQGE(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	case operand.IsM64(mr) && operand.IsR64(r):
 		return &intrep.Instruction{
@@ -3139,6 +3252,7 @@ func CMOVQGE(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	}
 	return nil, errors.New("CMOVQGE: bad operands")
@@ -3158,6 +3272,7 @@ func CMOVQGT(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	case operand.IsM64(mr) && operand.IsR64(r):
 		return &intrep.Instruction{
@@ -3165,6 +3280,7 @@ func CMOVQGT(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	}
 	return nil, errors.New("CMOVQGT: bad operands")
@@ -3184,6 +3300,7 @@ func CMOVQHI(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	case operand.IsM64(mr) && operand.IsR64(r):
 		return &intrep.Instruction{
@@ -3191,6 +3308,7 @@ func CMOVQHI(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	}
 	return nil, errors.New("CMOVQHI: bad operands")
@@ -3210,6 +3328,7 @@ func CMOVQLE(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	case operand.IsM64(mr) && operand.IsR64(r):
 		return &intrep.Instruction{
@@ -3217,6 +3336,7 @@ func CMOVQLE(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	}
 	return nil, errors.New("CMOVQLE: bad operands")
@@ -3236,6 +3356,7 @@ func CMOVQLS(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	case operand.IsM64(mr) && operand.IsR64(r):
 		return &intrep.Instruction{
@@ -3243,6 +3364,7 @@ func CMOVQLS(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	}
 	return nil, errors.New("CMOVQLS: bad operands")
@@ -3262,6 +3384,7 @@ func CMOVQLT(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	case operand.IsM64(mr) && operand.IsR64(r):
 		return &intrep.Instruction{
@@ -3269,6 +3392,7 @@ func CMOVQLT(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	}
 	return nil, errors.New("CMOVQLT: bad operands")
@@ -3288,6 +3412,7 @@ func CMOVQMI(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	case operand.IsM64(mr) && operand.IsR64(r):
 		return &intrep.Instruction{
@@ -3295,6 +3420,7 @@ func CMOVQMI(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	}
 	return nil, errors.New("CMOVQMI: bad operands")
@@ -3314,6 +3440,7 @@ func CMOVQNE(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	case operand.IsM64(mr) && operand.IsR64(r):
 		return &intrep.Instruction{
@@ -3321,6 +3448,7 @@ func CMOVQNE(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	}
 	return nil, errors.New("CMOVQNE: bad operands")
@@ -3340,6 +3468,7 @@ func CMOVQOC(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	case operand.IsM64(mr) && operand.IsR64(r):
 		return &intrep.Instruction{
@@ -3347,6 +3476,7 @@ func CMOVQOC(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	}
 	return nil, errors.New("CMOVQOC: bad operands")
@@ -3366,6 +3496,7 @@ func CMOVQOS(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	case operand.IsM64(mr) && operand.IsR64(r):
 		return &intrep.Instruction{
@@ -3373,6 +3504,7 @@ func CMOVQOS(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	}
 	return nil, errors.New("CMOVQOS: bad operands")
@@ -3392,6 +3524,7 @@ func CMOVQPC(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	case operand.IsM64(mr) && operand.IsR64(r):
 		return &intrep.Instruction{
@@ -3399,6 +3532,7 @@ func CMOVQPC(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	}
 	return nil, errors.New("CMOVQPC: bad operands")
@@ -3418,6 +3552,7 @@ func CMOVQPL(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	case operand.IsM64(mr) && operand.IsR64(r):
 		return &intrep.Instruction{
@@ -3425,6 +3560,7 @@ func CMOVQPL(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	}
 	return nil, errors.New("CMOVQPL: bad operands")
@@ -3444,6 +3580,7 @@ func CMOVQPS(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	case operand.IsM64(mr) && operand.IsR64(r):
 		return &intrep.Instruction{
@@ -3451,6 +3588,7 @@ func CMOVQPS(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	}
 	return nil, errors.New("CMOVQPS: bad operands")
@@ -3470,6 +3608,7 @@ func CMOVWCC(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	case operand.IsM16(mr) && operand.IsR16(r):
 		return &intrep.Instruction{
@@ -3477,6 +3616,7 @@ func CMOVWCC(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	}
 	return nil, errors.New("CMOVWCC: bad operands")
@@ -3496,6 +3636,7 @@ func CMOVWCS(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	case operand.IsM16(mr) && operand.IsR16(r):
 		return &intrep.Instruction{
@@ -3503,6 +3644,7 @@ func CMOVWCS(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	}
 	return nil, errors.New("CMOVWCS: bad operands")
@@ -3522,6 +3664,7 @@ func CMOVWEQ(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	case operand.IsM16(mr) && operand.IsR16(r):
 		return &intrep.Instruction{
@@ -3529,6 +3672,7 @@ func CMOVWEQ(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	}
 	return nil, errors.New("CMOVWEQ: bad operands")
@@ -3548,6 +3692,7 @@ func CMOVWGE(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	case operand.IsM16(mr) && operand.IsR16(r):
 		return &intrep.Instruction{
@@ -3555,6 +3700,7 @@ func CMOVWGE(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	}
 	return nil, errors.New("CMOVWGE: bad operands")
@@ -3574,6 +3720,7 @@ func CMOVWGT(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	case operand.IsM16(mr) && operand.IsR16(r):
 		return &intrep.Instruction{
@@ -3581,6 +3728,7 @@ func CMOVWGT(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	}
 	return nil, errors.New("CMOVWGT: bad operands")
@@ -3600,6 +3748,7 @@ func CMOVWHI(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	case operand.IsM16(mr) && operand.IsR16(r):
 		return &intrep.Instruction{
@@ -3607,6 +3756,7 @@ func CMOVWHI(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	}
 	return nil, errors.New("CMOVWHI: bad operands")
@@ -3626,6 +3776,7 @@ func CMOVWLE(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	case operand.IsM16(mr) && operand.IsR16(r):
 		return &intrep.Instruction{
@@ -3633,6 +3784,7 @@ func CMOVWLE(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	}
 	return nil, errors.New("CMOVWLE: bad operands")
@@ -3652,6 +3804,7 @@ func CMOVWLS(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	case operand.IsM16(mr) && operand.IsR16(r):
 		return &intrep.Instruction{
@@ -3659,6 +3812,7 @@ func CMOVWLS(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	}
 	return nil, errors.New("CMOVWLS: bad operands")
@@ -3678,6 +3832,7 @@ func CMOVWLT(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	case operand.IsM16(mr) && operand.IsR16(r):
 		return &intrep.Instruction{
@@ -3685,6 +3840,7 @@ func CMOVWLT(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	}
 	return nil, errors.New("CMOVWLT: bad operands")
@@ -3704,6 +3860,7 @@ func CMOVWMI(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	case operand.IsM16(mr) && operand.IsR16(r):
 		return &intrep.Instruction{
@@ -3711,6 +3868,7 @@ func CMOVWMI(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	}
 	return nil, errors.New("CMOVWMI: bad operands")
@@ -3730,6 +3888,7 @@ func CMOVWNE(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	case operand.IsM16(mr) && operand.IsR16(r):
 		return &intrep.Instruction{
@@ -3737,6 +3896,7 @@ func CMOVWNE(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	}
 	return nil, errors.New("CMOVWNE: bad operands")
@@ -3756,6 +3916,7 @@ func CMOVWOC(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	case operand.IsM16(mr) && operand.IsR16(r):
 		return &intrep.Instruction{
@@ -3763,6 +3924,7 @@ func CMOVWOC(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	}
 	return nil, errors.New("CMOVWOC: bad operands")
@@ -3782,6 +3944,7 @@ func CMOVWOS(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	case operand.IsM16(mr) && operand.IsR16(r):
 		return &intrep.Instruction{
@@ -3789,6 +3952,7 @@ func CMOVWOS(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	}
 	return nil, errors.New("CMOVWOS: bad operands")
@@ -3808,6 +3972,7 @@ func CMOVWPC(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	case operand.IsM16(mr) && operand.IsR16(r):
 		return &intrep.Instruction{
@@ -3815,6 +3980,7 @@ func CMOVWPC(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	}
 	return nil, errors.New("CMOVWPC: bad operands")
@@ -3834,6 +4000,7 @@ func CMOVWPL(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	case operand.IsM16(mr) && operand.IsR16(r):
 		return &intrep.Instruction{
@@ -3841,6 +4008,7 @@ func CMOVWPL(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	}
 	return nil, errors.New("CMOVWPL: bad operands")
@@ -3860,6 +4028,7 @@ func CMOVWPS(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	case operand.IsM16(mr) && operand.IsR16(r):
 		return &intrep.Instruction{
@@ -3867,6 +4036,7 @@ func CMOVWPS(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"CMOV"},
 		}, nil
 	}
 	return nil, errors.New("CMOVWPS: bad operands")
@@ -4020,6 +4190,7 @@ func CMPPD(mx, x, i operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, i},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x) && operand.IsIMM8(i):
 		return &intrep.Instruction{
@@ -4027,6 +4198,7 @@ func CMPPD(mx, x, i operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, i},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("CMPPD: bad operands")
@@ -4046,6 +4218,7 @@ func CMPPS(mx, x, i operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, i},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x) && operand.IsIMM8(i):
 		return &intrep.Instruction{
@@ -4053,6 +4226,7 @@ func CMPPS(mx, x, i operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, i},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE"},
 		}, nil
 	}
 	return nil, errors.New("CMPPS: bad operands")
@@ -4147,6 +4321,7 @@ func CMPSD(mx, x, i operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, i},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM64(mx) && operand.IsXMM(x) && operand.IsIMM8(i):
 		return &intrep.Instruction{
@@ -4154,6 +4329,7 @@ func CMPSD(mx, x, i operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, i},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("CMPSD: bad operands")
@@ -4173,6 +4349,7 @@ func CMPSS(mx, x, i operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, i},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE"},
 		}, nil
 	case operand.IsM32(mx) && operand.IsXMM(x) && operand.IsIMM8(i):
 		return &intrep.Instruction{
@@ -4180,6 +4357,7 @@ func CMPSS(mx, x, i operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, i},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE"},
 		}, nil
 	}
 	return nil, errors.New("CMPSS: bad operands")
@@ -4414,6 +4592,7 @@ func COMISD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM64(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -4421,6 +4600,7 @@ func COMISD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("COMISD: bad operands")
@@ -4440,6 +4620,7 @@ func COMISS(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{},
+			ISA:      []string{"SSE"},
 		}, nil
 	case operand.IsM32(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -4447,6 +4628,7 @@ func COMISS(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{},
+			ISA:      []string{"SSE"},
 		}, nil
 	}
 	return nil, errors.New("COMISS: bad operands")
@@ -4463,6 +4645,7 @@ func CPUID() (*intrep.Instruction, error) {
 		Operands: nil,
 		Inputs:   []operand.Op{reg.EAX, reg.ECX},
 		Outputs:  []operand.Op{reg.EAX, reg.EBX, reg.ECX, reg.EDX},
+		ISA:      []string{"CPUID"},
 	}, nil
 }
 
@@ -4496,6 +4679,7 @@ func CRC32B(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"SSE4.2"},
 		}, nil
 	case operand.IsM8(mr) && operand.IsR32(r):
 		return &intrep.Instruction{
@@ -4503,6 +4687,7 @@ func CRC32B(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"SSE4.2"},
 		}, nil
 	case operand.IsR8(mr) && operand.IsR64(r):
 		return &intrep.Instruction{
@@ -4510,6 +4695,7 @@ func CRC32B(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"SSE4.2"},
 		}, nil
 	case operand.IsM8(mr) && operand.IsR64(r):
 		return &intrep.Instruction{
@@ -4517,6 +4703,7 @@ func CRC32B(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"SSE4.2"},
 		}, nil
 	}
 	return nil, errors.New("CRC32B: bad operands")
@@ -4536,6 +4723,7 @@ func CRC32L(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"SSE4.2"},
 		}, nil
 	case operand.IsM32(mr) && operand.IsR32(r):
 		return &intrep.Instruction{
@@ -4543,6 +4731,7 @@ func CRC32L(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"SSE4.2"},
 		}, nil
 	}
 	return nil, errors.New("CRC32L: bad operands")
@@ -4562,6 +4751,7 @@ func CRC32Q(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"SSE4.2"},
 		}, nil
 	case operand.IsM64(mr) && operand.IsR64(r):
 		return &intrep.Instruction{
@@ -4569,6 +4759,7 @@ func CRC32Q(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"SSE4.2"},
 		}, nil
 	}
 	return nil, errors.New("CRC32Q: bad operands")
@@ -4588,6 +4779,7 @@ func CRC32W(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"SSE4.2"},
 		}, nil
 	case operand.IsM16(mr) && operand.IsR32(r):
 		return &intrep.Instruction{
@@ -4595,6 +4787,7 @@ func CRC32W(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"SSE4.2"},
 		}, nil
 	}
 	return nil, errors.New("CRC32W: bad operands")
@@ -4614,6 +4807,7 @@ func CVTPD2PL(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -4621,6 +4815,7 @@ func CVTPD2PL(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("CVTPD2PL: bad operands")
@@ -4640,6 +4835,7 @@ func CVTPD2PS(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -4647,6 +4843,7 @@ func CVTPD2PS(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("CVTPD2PS: bad operands")
@@ -4666,6 +4863,7 @@ func CVTPL2PD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM64(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -4673,6 +4871,7 @@ func CVTPL2PD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("CVTPL2PD: bad operands")
@@ -4692,6 +4891,7 @@ func CVTPL2PS(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -4699,6 +4899,7 @@ func CVTPL2PS(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("CVTPL2PS: bad operands")
@@ -4718,6 +4919,7 @@ func CVTPS2PD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM64(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -4725,6 +4927,7 @@ func CVTPS2PD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("CVTPS2PD: bad operands")
@@ -4744,6 +4947,7 @@ func CVTPS2PL(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -4751,6 +4955,7 @@ func CVTPS2PL(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("CVTPS2PL: bad operands")
@@ -4772,6 +4977,7 @@ func CVTSD2SL(mx, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, r},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM64(mx) && operand.IsR32(r):
 		return &intrep.Instruction{
@@ -4779,6 +4985,7 @@ func CVTSD2SL(mx, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, r},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsXMM(mx) && operand.IsR64(r):
 		return &intrep.Instruction{
@@ -4786,6 +4993,7 @@ func CVTSD2SL(mx, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, r},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM64(mx) && operand.IsR64(r):
 		return &intrep.Instruction{
@@ -4793,6 +5001,7 @@ func CVTSD2SL(mx, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, r},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("CVTSD2SL: bad operands")
@@ -4812,6 +5021,7 @@ func CVTSD2SS(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM64(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -4819,6 +5029,7 @@ func CVTSD2SS(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("CVTSD2SS: bad operands")
@@ -4838,6 +5049,7 @@ func CVTSL2SD(mr, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, x},
 			Inputs:   []operand.Op{mr, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM32(mr) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -4845,6 +5057,7 @@ func CVTSL2SD(mr, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, x},
 			Inputs:   []operand.Op{mr, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("CVTSL2SD: bad operands")
@@ -4864,6 +5077,7 @@ func CVTSL2SS(mr, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, x},
 			Inputs:   []operand.Op{mr, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE"},
 		}, nil
 	case operand.IsM32(mr) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -4871,6 +5085,7 @@ func CVTSL2SS(mr, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, x},
 			Inputs:   []operand.Op{mr, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE"},
 		}, nil
 	}
 	return nil, errors.New("CVTSL2SS: bad operands")
@@ -4890,6 +5105,7 @@ func CVTSQ2SD(mr, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, x},
 			Inputs:   []operand.Op{mr, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM64(mr) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -4897,6 +5113,7 @@ func CVTSQ2SD(mr, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, x},
 			Inputs:   []operand.Op{mr, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("CVTSQ2SD: bad operands")
@@ -4916,6 +5133,7 @@ func CVTSQ2SS(mr, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, x},
 			Inputs:   []operand.Op{mr, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE"},
 		}, nil
 	case operand.IsM64(mr) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -4923,6 +5141,7 @@ func CVTSQ2SS(mr, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, x},
 			Inputs:   []operand.Op{mr, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE"},
 		}, nil
 	}
 	return nil, errors.New("CVTSQ2SS: bad operands")
@@ -4942,6 +5161,7 @@ func CVTSS2SD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM32(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -4949,6 +5169,7 @@ func CVTSS2SD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("CVTSS2SD: bad operands")
@@ -4970,6 +5191,7 @@ func CVTSS2SL(mx, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, r},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"SSE"},
 		}, nil
 	case operand.IsM32(mx) && operand.IsR32(r):
 		return &intrep.Instruction{
@@ -4977,6 +5199,7 @@ func CVTSS2SL(mx, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, r},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"SSE"},
 		}, nil
 	case operand.IsXMM(mx) && operand.IsR64(r):
 		return &intrep.Instruction{
@@ -4984,6 +5207,7 @@ func CVTSS2SL(mx, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, r},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"SSE"},
 		}, nil
 	case operand.IsM32(mx) && operand.IsR64(r):
 		return &intrep.Instruction{
@@ -4991,6 +5215,7 @@ func CVTSS2SL(mx, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, r},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"SSE"},
 		}, nil
 	}
 	return nil, errors.New("CVTSS2SL: bad operands")
@@ -5010,6 +5235,7 @@ func CVTTPD2PL(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -5017,6 +5243,7 @@ func CVTTPD2PL(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("CVTTPD2PL: bad operands")
@@ -5036,6 +5263,7 @@ func CVTTPS2PL(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -5043,6 +5271,7 @@ func CVTTPS2PL(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("CVTTPS2PL: bad operands")
@@ -5062,6 +5291,7 @@ func CVTTSD2SL(mx, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, r},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM64(mx) && operand.IsR32(r):
 		return &intrep.Instruction{
@@ -5069,6 +5299,7 @@ func CVTTSD2SL(mx, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, r},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("CVTTSD2SL: bad operands")
@@ -5088,6 +5319,7 @@ func CVTTSD2SQ(mx, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, r},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM64(mx) && operand.IsR64(r):
 		return &intrep.Instruction{
@@ -5095,6 +5327,7 @@ func CVTTSD2SQ(mx, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, r},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("CVTTSD2SQ: bad operands")
@@ -5116,6 +5349,7 @@ func CVTTSS2SL(mx, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, r},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"SSE"},
 		}, nil
 	case operand.IsM32(mx) && operand.IsR32(r):
 		return &intrep.Instruction{
@@ -5123,6 +5357,7 @@ func CVTTSS2SL(mx, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, r},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"SSE"},
 		}, nil
 	case operand.IsXMM(mx) && operand.IsR64(r):
 		return &intrep.Instruction{
@@ -5130,6 +5365,7 @@ func CVTTSS2SL(mx, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, r},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"SSE"},
 		}, nil
 	case operand.IsM32(mx) && operand.IsR64(r):
 		return &intrep.Instruction{
@@ -5137,6 +5373,7 @@ func CVTTSS2SL(mx, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, r},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"SSE"},
 		}, nil
 	}
 	return nil, errors.New("CVTTSS2SL: bad operands")
@@ -5340,6 +5577,7 @@ func DIVPD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -5347,6 +5585,7 @@ func DIVPD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("DIVPD: bad operands")
@@ -5366,6 +5605,7 @@ func DIVPS(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -5373,6 +5613,7 @@ func DIVPS(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE"},
 		}, nil
 	}
 	return nil, errors.New("DIVPS: bad operands")
@@ -5418,6 +5659,7 @@ func DIVSD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM64(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -5425,6 +5667,7 @@ func DIVSD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("DIVSD: bad operands")
@@ -5444,6 +5687,7 @@ func DIVSS(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE"},
 		}, nil
 	case operand.IsM32(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -5451,6 +5695,7 @@ func DIVSS(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE"},
 		}, nil
 	}
 	return nil, errors.New("DIVSS: bad operands")
@@ -5496,6 +5741,7 @@ func DPPD(i, mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -5503,6 +5749,7 @@ func DPPD(i, mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	}
 	return nil, errors.New("DPPD: bad operands")
@@ -5522,6 +5769,7 @@ func DPPS(i, mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -5529,6 +5777,7 @@ func DPPS(i, mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	}
 	return nil, errors.New("DPPS: bad operands")
@@ -5548,6 +5797,7 @@ func EXTRACTPS(i, x, mr operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, x, mr},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{mr},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	case operand.IsIMM2U(i) && operand.IsXMM(x) && operand.IsM32(mr):
 		return &intrep.Instruction{
@@ -5555,6 +5805,7 @@ func EXTRACTPS(i, x, mr operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, x, mr},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{mr},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	}
 	return nil, errors.New("EXTRACTPS: bad operands")
@@ -5574,6 +5825,7 @@ func HADDPD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE3"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -5581,6 +5833,7 @@ func HADDPD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE3"},
 		}, nil
 	}
 	return nil, errors.New("HADDPD: bad operands")
@@ -5600,6 +5853,7 @@ func HADDPS(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE3"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -5607,6 +5861,7 @@ func HADDPS(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE3"},
 		}, nil
 	}
 	return nil, errors.New("HADDPS: bad operands")
@@ -5626,6 +5881,7 @@ func HSUBPD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE3"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -5633,6 +5889,7 @@ func HSUBPD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE3"},
 		}, nil
 	}
 	return nil, errors.New("HSUBPD: bad operands")
@@ -5652,6 +5909,7 @@ func HSUBPS(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE3"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -5659,6 +5917,7 @@ func HSUBPS(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE3"},
 		}, nil
 	}
 	return nil, errors.New("HSUBPS: bad operands")
@@ -6164,6 +6423,7 @@ func INSERTPS(i, mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM32(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -6171,6 +6431,7 @@ func INSERTPS(i, mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	}
 	return nil, errors.New("INSERTPS: bad operands")
@@ -7655,6 +7916,7 @@ func LDDQU(m, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{m, x},
 			Inputs:   []operand.Op{m},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE3"},
 		}, nil
 	}
 	return nil, errors.New("LDDQU: bad operands")
@@ -7673,6 +7935,7 @@ func LDMXCSR(m operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{m},
 			Inputs:   []operand.Op{m},
 			Outputs:  []operand.Op{},
+			ISA:      []string{"SSE"},
 		}, nil
 	}
 	return nil, errors.New("LDMXCSR: bad operands")
@@ -7743,6 +8006,7 @@ func LFENCE() (*intrep.Instruction, error) {
 		Operands: nil,
 		Inputs:   []operand.Op{},
 		Outputs:  []operand.Op{},
+		ISA:      []string{"SSE2"},
 	}, nil
 }
 
@@ -7760,6 +8024,7 @@ func LZCNTL(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"LZCNT"},
 		}, nil
 	case operand.IsM32(mr) && operand.IsR32(r):
 		return &intrep.Instruction{
@@ -7767,6 +8032,7 @@ func LZCNTL(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"LZCNT"},
 		}, nil
 	}
 	return nil, errors.New("LZCNTL: bad operands")
@@ -7786,6 +8052,7 @@ func LZCNTQ(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"LZCNT"},
 		}, nil
 	case operand.IsM64(mr) && operand.IsR64(r):
 		return &intrep.Instruction{
@@ -7793,6 +8060,7 @@ func LZCNTQ(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"LZCNT"},
 		}, nil
 	}
 	return nil, errors.New("LZCNTQ: bad operands")
@@ -7812,6 +8080,7 @@ func LZCNTW(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"LZCNT"},
 		}, nil
 	case operand.IsM16(mr) && operand.IsR16(r):
 		return &intrep.Instruction{
@@ -7819,6 +8088,7 @@ func LZCNTW(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"LZCNT"},
 		}, nil
 	}
 	return nil, errors.New("LZCNTW: bad operands")
@@ -7837,6 +8107,7 @@ func MASKMOVDQU(x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{x, x1},
 			Inputs:   []operand.Op{x, x1, reg.RDI},
 			Outputs:  []operand.Op{},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("MASKMOVDQU: bad operands")
@@ -7855,6 +8126,7 @@ func MASKMOVOU(x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{x, x1},
 			Inputs:   []operand.Op{x, x1, reg.RDI},
 			Outputs:  []operand.Op{},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("MASKMOVOU: bad operands")
@@ -7874,6 +8146,7 @@ func MAXPD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -7881,6 +8154,7 @@ func MAXPD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("MAXPD: bad operands")
@@ -7900,6 +8174,7 @@ func MAXPS(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -7907,6 +8182,7 @@ func MAXPS(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE"},
 		}, nil
 	}
 	return nil, errors.New("MAXPS: bad operands")
@@ -7926,6 +8202,7 @@ func MAXSD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM64(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -7933,6 +8210,7 @@ func MAXSD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("MAXSD: bad operands")
@@ -7952,6 +8230,7 @@ func MAXSS(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE"},
 		}, nil
 	case operand.IsM32(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -7959,6 +8238,7 @@ func MAXSS(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE"},
 		}, nil
 	}
 	return nil, errors.New("MAXSS: bad operands")
@@ -7975,6 +8255,7 @@ func MFENCE() (*intrep.Instruction, error) {
 		Operands: nil,
 		Inputs:   []operand.Op{},
 		Outputs:  []operand.Op{},
+		ISA:      []string{"SSE2"},
 	}, nil
 }
 
@@ -7992,6 +8273,7 @@ func MINPD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -7999,6 +8281,7 @@ func MINPD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("MINPD: bad operands")
@@ -8018,6 +8301,7 @@ func MINPS(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -8025,6 +8309,7 @@ func MINPS(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE"},
 		}, nil
 	}
 	return nil, errors.New("MINPS: bad operands")
@@ -8044,6 +8329,7 @@ func MINSD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM64(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -8051,6 +8337,7 @@ func MINSD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("MINSD: bad operands")
@@ -8070,6 +8357,7 @@ func MINSS(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE"},
 		}, nil
 	case operand.IsM32(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -8077,6 +8365,7 @@ func MINSS(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE"},
 		}, nil
 	}
 	return nil, errors.New("MINSS: bad operands")
@@ -8093,6 +8382,7 @@ func MONITOR() (*intrep.Instruction, error) {
 		Operands: nil,
 		Inputs:   []operand.Op{reg.RAX, reg.ECX, reg.EDX},
 		Outputs:  []operand.Op{},
+		ISA:      []string{"MONITOR"},
 	}, nil
 }
 
@@ -8111,6 +8401,7 @@ func MOVAPD(mx, mx1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, mx1},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{mx1},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(mx1):
 		return &intrep.Instruction{
@@ -8118,6 +8409,7 @@ func MOVAPD(mx, mx1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, mx1},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{mx1},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsXMM(mx) && operand.IsM128(mx1):
 		return &intrep.Instruction{
@@ -8125,6 +8417,7 @@ func MOVAPD(mx, mx1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, mx1},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{mx1},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("MOVAPD: bad operands")
@@ -8145,6 +8438,7 @@ func MOVAPS(mx, mx1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, mx1},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{mx1},
+			ISA:      []string{"SSE"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(mx1):
 		return &intrep.Instruction{
@@ -8152,6 +8446,7 @@ func MOVAPS(mx, mx1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, mx1},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{mx1},
+			ISA:      []string{"SSE"},
 		}, nil
 	case operand.IsXMM(mx) && operand.IsM128(mx1):
 		return &intrep.Instruction{
@@ -8159,6 +8454,7 @@ func MOVAPS(mx, mx1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, mx1},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{mx1},
+			ISA:      []string{"SSE"},
 		}, nil
 	}
 	return nil, errors.New("MOVAPS: bad operands")
@@ -8228,6 +8524,7 @@ func MOVBELL(mr, mr1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, mr1},
 			Inputs:   []operand.Op{mr},
 			Outputs:  []operand.Op{mr1},
+			ISA:      []string{"MOVBE"},
 		}, nil
 	case operand.IsR32(mr) && operand.IsM32(mr1):
 		return &intrep.Instruction{
@@ -8235,6 +8532,7 @@ func MOVBELL(mr, mr1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, mr1},
 			Inputs:   []operand.Op{mr},
 			Outputs:  []operand.Op{mr1},
+			ISA:      []string{"MOVBE"},
 		}, nil
 	}
 	return nil, errors.New("MOVBELL: bad operands")
@@ -8254,6 +8552,7 @@ func MOVBEQQ(mr, mr1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, mr1},
 			Inputs:   []operand.Op{mr},
 			Outputs:  []operand.Op{mr1},
+			ISA:      []string{"MOVBE"},
 		}, nil
 	case operand.IsR64(mr) && operand.IsM64(mr1):
 		return &intrep.Instruction{
@@ -8261,6 +8560,7 @@ func MOVBEQQ(mr, mr1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, mr1},
 			Inputs:   []operand.Op{mr},
 			Outputs:  []operand.Op{mr1},
+			ISA:      []string{"MOVBE"},
 		}, nil
 	}
 	return nil, errors.New("MOVBEQQ: bad operands")
@@ -8280,6 +8580,7 @@ func MOVBEWW(mr, mr1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, mr1},
 			Inputs:   []operand.Op{mr},
 			Outputs:  []operand.Op{mr1},
+			ISA:      []string{"MOVBE"},
 		}, nil
 	case operand.IsR16(mr) && operand.IsM16(mr1):
 		return &intrep.Instruction{
@@ -8287,6 +8588,7 @@ func MOVBEWW(mr, mr1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, mr1},
 			Inputs:   []operand.Op{mr},
 			Outputs:  []operand.Op{mr1},
+			ISA:      []string{"MOVBE"},
 		}, nil
 	}
 	return nil, errors.New("MOVBEWW: bad operands")
@@ -8517,6 +8819,7 @@ func MOVD(imrx, mrx operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imrx, mrx},
 			Inputs:   []operand.Op{imrx},
 			Outputs:  []operand.Op{mrx},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsR64(imrx) && operand.IsXMM(mrx):
 		return &intrep.Instruction{
@@ -8524,6 +8827,7 @@ func MOVD(imrx, mrx operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imrx, mrx},
 			Inputs:   []operand.Op{imrx},
 			Outputs:  []operand.Op{mrx},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsXMM(imrx) && operand.IsXMM(mrx):
 		return &intrep.Instruction{
@@ -8531,6 +8835,7 @@ func MOVD(imrx, mrx operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imrx, mrx},
 			Inputs:   []operand.Op{imrx},
 			Outputs:  []operand.Op{mrx},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM64(imrx) && operand.IsXMM(mrx):
 		return &intrep.Instruction{
@@ -8538,6 +8843,7 @@ func MOVD(imrx, mrx operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imrx, mrx},
 			Inputs:   []operand.Op{imrx},
 			Outputs:  []operand.Op{mrx},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsXMM(imrx) && operand.IsM64(mrx):
 		return &intrep.Instruction{
@@ -8545,6 +8851,7 @@ func MOVD(imrx, mrx operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imrx, mrx},
 			Inputs:   []operand.Op{imrx},
 			Outputs:  []operand.Op{mrx},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsXMM(imrx) && operand.IsR32(mrx):
 		return &intrep.Instruction{
@@ -8552,6 +8859,7 @@ func MOVD(imrx, mrx operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imrx, mrx},
 			Inputs:   []operand.Op{imrx},
 			Outputs:  []operand.Op{mrx},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsR32(imrx) && operand.IsXMM(mrx):
 		return &intrep.Instruction{
@@ -8559,6 +8867,7 @@ func MOVD(imrx, mrx operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imrx, mrx},
 			Inputs:   []operand.Op{imrx},
 			Outputs:  []operand.Op{mrx},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM32(imrx) && operand.IsXMM(mrx):
 		return &intrep.Instruction{
@@ -8566,6 +8875,7 @@ func MOVD(imrx, mrx operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imrx, mrx},
 			Inputs:   []operand.Op{imrx},
 			Outputs:  []operand.Op{mrx},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsXMM(imrx) && operand.IsM32(mrx):
 		return &intrep.Instruction{
@@ -8573,6 +8883,7 @@ func MOVD(imrx, mrx operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imrx, mrx},
 			Inputs:   []operand.Op{imrx},
 			Outputs:  []operand.Op{mrx},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("MOVD: bad operands")
@@ -8592,6 +8903,7 @@ func MOVDDUP(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE3"},
 		}, nil
 	case operand.IsM64(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -8599,6 +8911,7 @@ func MOVDDUP(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE3"},
 		}, nil
 	}
 	return nil, errors.New("MOVDDUP: bad operands")
@@ -8673,6 +8986,7 @@ func MOVDQ2Q(imrx, mrx operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imrx, mrx},
 			Inputs:   []operand.Op{imrx},
 			Outputs:  []operand.Op{mrx},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsR64(imrx) && operand.IsXMM(mrx):
 		return &intrep.Instruction{
@@ -8680,6 +8994,7 @@ func MOVDQ2Q(imrx, mrx operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imrx, mrx},
 			Inputs:   []operand.Op{imrx},
 			Outputs:  []operand.Op{mrx},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsXMM(imrx) && operand.IsXMM(mrx):
 		return &intrep.Instruction{
@@ -8687,6 +9002,7 @@ func MOVDQ2Q(imrx, mrx operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imrx, mrx},
 			Inputs:   []operand.Op{imrx},
 			Outputs:  []operand.Op{mrx},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM64(imrx) && operand.IsXMM(mrx):
 		return &intrep.Instruction{
@@ -8694,6 +9010,7 @@ func MOVDQ2Q(imrx, mrx operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imrx, mrx},
 			Inputs:   []operand.Op{imrx},
 			Outputs:  []operand.Op{mrx},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsXMM(imrx) && operand.IsM64(mrx):
 		return &intrep.Instruction{
@@ -8701,6 +9018,7 @@ func MOVDQ2Q(imrx, mrx operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imrx, mrx},
 			Inputs:   []operand.Op{imrx},
 			Outputs:  []operand.Op{mrx},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsXMM(imrx) && operand.IsR32(mrx):
 		return &intrep.Instruction{
@@ -8708,6 +9026,7 @@ func MOVDQ2Q(imrx, mrx operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imrx, mrx},
 			Inputs:   []operand.Op{imrx},
 			Outputs:  []operand.Op{mrx},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsR32(imrx) && operand.IsXMM(mrx):
 		return &intrep.Instruction{
@@ -8715,6 +9034,7 @@ func MOVDQ2Q(imrx, mrx operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imrx, mrx},
 			Inputs:   []operand.Op{imrx},
 			Outputs:  []operand.Op{mrx},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM32(imrx) && operand.IsXMM(mrx):
 		return &intrep.Instruction{
@@ -8722,6 +9042,7 @@ func MOVDQ2Q(imrx, mrx operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imrx, mrx},
 			Inputs:   []operand.Op{imrx},
 			Outputs:  []operand.Op{mrx},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsXMM(imrx) && operand.IsM32(mrx):
 		return &intrep.Instruction{
@@ -8729,6 +9050,7 @@ func MOVDQ2Q(imrx, mrx operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imrx, mrx},
 			Inputs:   []operand.Op{imrx},
 			Outputs:  []operand.Op{mrx},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("MOVDQ2Q: bad operands")
@@ -8747,6 +9069,7 @@ func MOVHLPS(x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{x, x1},
 			Inputs:   []operand.Op{x, x1},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"SSE"},
 		}, nil
 	}
 	return nil, errors.New("MOVHLPS: bad operands")
@@ -8766,6 +9089,7 @@ func MOVHPD(mx, mx1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, mx1},
 			Inputs:   []operand.Op{mx, mx1},
 			Outputs:  []operand.Op{mx1},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsXMM(mx) && operand.IsM64(mx1):
 		return &intrep.Instruction{
@@ -8773,6 +9097,7 @@ func MOVHPD(mx, mx1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, mx1},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{mx1},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("MOVHPD: bad operands")
@@ -8792,6 +9117,7 @@ func MOVHPS(mx, mx1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, mx1},
 			Inputs:   []operand.Op{mx, mx1},
 			Outputs:  []operand.Op{mx1},
+			ISA:      []string{"SSE"},
 		}, nil
 	case operand.IsXMM(mx) && operand.IsM64(mx1):
 		return &intrep.Instruction{
@@ -8799,6 +9125,7 @@ func MOVHPS(mx, mx1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, mx1},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{mx1},
+			ISA:      []string{"SSE"},
 		}, nil
 	}
 	return nil, errors.New("MOVHPS: bad operands")
@@ -8867,6 +9194,7 @@ func MOVLHPS(x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{x, x1},
 			Inputs:   []operand.Op{x, x1},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"SSE"},
 		}, nil
 	}
 	return nil, errors.New("MOVLHPS: bad operands")
@@ -8886,6 +9214,7 @@ func MOVLPD(mx, mx1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, mx1},
 			Inputs:   []operand.Op{mx, mx1},
 			Outputs:  []operand.Op{mx1},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsXMM(mx) && operand.IsM64(mx1):
 		return &intrep.Instruction{
@@ -8893,6 +9222,7 @@ func MOVLPD(mx, mx1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, mx1},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{mx1},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("MOVLPD: bad operands")
@@ -8912,6 +9242,7 @@ func MOVLPS(mx, mx1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, mx1},
 			Inputs:   []operand.Op{mx, mx1},
 			Outputs:  []operand.Op{mx1},
+			ISA:      []string{"SSE"},
 		}, nil
 	case operand.IsXMM(mx) && operand.IsM64(mx1):
 		return &intrep.Instruction{
@@ -8919,6 +9250,7 @@ func MOVLPS(mx, mx1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, mx1},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{mx1},
+			ISA:      []string{"SSE"},
 		}, nil
 	}
 	return nil, errors.New("MOVLPS: bad operands")
@@ -8981,6 +9313,7 @@ func MOVMSKPD(x, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{x, r},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("MOVMSKPD: bad operands")
@@ -8999,6 +9332,7 @@ func MOVMSKPS(x, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{x, r},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"SSE"},
 		}, nil
 	}
 	return nil, errors.New("MOVMSKPS: bad operands")
@@ -9017,6 +9351,7 @@ func MOVNTDQ(x, m operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{x, m},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{m},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("MOVNTDQ: bad operands")
@@ -9035,6 +9370,7 @@ func MOVNTDQA(m, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{m, x},
 			Inputs:   []operand.Op{m},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	}
 	return nil, errors.New("MOVNTDQA: bad operands")
@@ -9053,6 +9389,7 @@ func MOVNTIL(r, m operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{r, m},
 			Inputs:   []operand.Op{r},
 			Outputs:  []operand.Op{m},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("MOVNTIL: bad operands")
@@ -9071,6 +9408,7 @@ func MOVNTIQ(r, m operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{r, m},
 			Inputs:   []operand.Op{r},
 			Outputs:  []operand.Op{m},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("MOVNTIQ: bad operands")
@@ -9089,6 +9427,7 @@ func MOVNTO(x, m operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{x, m},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{m},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("MOVNTO: bad operands")
@@ -9107,6 +9446,7 @@ func MOVNTPD(x, m operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{x, m},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{m},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("MOVNTPD: bad operands")
@@ -9125,6 +9465,7 @@ func MOVNTPS(x, m operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{x, m},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{m},
+			ISA:      []string{"SSE"},
 		}, nil
 	}
 	return nil, errors.New("MOVNTPS: bad operands")
@@ -9145,6 +9486,7 @@ func MOVO(mx, mx1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, mx1},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{mx1},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(mx1):
 		return &intrep.Instruction{
@@ -9152,6 +9494,7 @@ func MOVO(mx, mx1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, mx1},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{mx1},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsXMM(mx) && operand.IsM128(mx1):
 		return &intrep.Instruction{
@@ -9159,6 +9502,7 @@ func MOVO(mx, mx1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, mx1},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{mx1},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("MOVO: bad operands")
@@ -9179,6 +9523,7 @@ func MOVOA(mx, mx1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, mx1},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{mx1},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(mx1):
 		return &intrep.Instruction{
@@ -9186,6 +9531,7 @@ func MOVOA(mx, mx1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, mx1},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{mx1},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsXMM(mx) && operand.IsM128(mx1):
 		return &intrep.Instruction{
@@ -9193,6 +9539,7 @@ func MOVOA(mx, mx1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, mx1},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{mx1},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("MOVOA: bad operands")
@@ -9213,6 +9560,7 @@ func MOVOU(mx, mx1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, mx1},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{mx1},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(mx1):
 		return &intrep.Instruction{
@@ -9220,6 +9568,7 @@ func MOVOU(mx, mx1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, mx1},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{mx1},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsXMM(mx) && operand.IsM128(mx1):
 		return &intrep.Instruction{
@@ -9227,6 +9576,7 @@ func MOVOU(mx, mx1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, mx1},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{mx1},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("MOVOU: bad operands")
@@ -9301,6 +9651,7 @@ func MOVQ(imrx, mrx operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imrx, mrx},
 			Inputs:   []operand.Op{imrx},
 			Outputs:  []operand.Op{mrx},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsR64(imrx) && operand.IsXMM(mrx):
 		return &intrep.Instruction{
@@ -9308,6 +9659,7 @@ func MOVQ(imrx, mrx operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imrx, mrx},
 			Inputs:   []operand.Op{imrx},
 			Outputs:  []operand.Op{mrx},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsXMM(imrx) && operand.IsXMM(mrx):
 		return &intrep.Instruction{
@@ -9315,6 +9667,7 @@ func MOVQ(imrx, mrx operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imrx, mrx},
 			Inputs:   []operand.Op{imrx},
 			Outputs:  []operand.Op{mrx},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM64(imrx) && operand.IsXMM(mrx):
 		return &intrep.Instruction{
@@ -9322,6 +9675,7 @@ func MOVQ(imrx, mrx operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imrx, mrx},
 			Inputs:   []operand.Op{imrx},
 			Outputs:  []operand.Op{mrx},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsXMM(imrx) && operand.IsM64(mrx):
 		return &intrep.Instruction{
@@ -9329,6 +9683,7 @@ func MOVQ(imrx, mrx operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imrx, mrx},
 			Inputs:   []operand.Op{imrx},
 			Outputs:  []operand.Op{mrx},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsXMM(imrx) && operand.IsR32(mrx):
 		return &intrep.Instruction{
@@ -9336,6 +9691,7 @@ func MOVQ(imrx, mrx operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imrx, mrx},
 			Inputs:   []operand.Op{imrx},
 			Outputs:  []operand.Op{mrx},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsR32(imrx) && operand.IsXMM(mrx):
 		return &intrep.Instruction{
@@ -9343,6 +9699,7 @@ func MOVQ(imrx, mrx operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imrx, mrx},
 			Inputs:   []operand.Op{imrx},
 			Outputs:  []operand.Op{mrx},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM32(imrx) && operand.IsXMM(mrx):
 		return &intrep.Instruction{
@@ -9350,6 +9707,7 @@ func MOVQ(imrx, mrx operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imrx, mrx},
 			Inputs:   []operand.Op{imrx},
 			Outputs:  []operand.Op{mrx},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsXMM(imrx) && operand.IsM32(mrx):
 		return &intrep.Instruction{
@@ -9357,6 +9715,7 @@ func MOVQ(imrx, mrx operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imrx, mrx},
 			Inputs:   []operand.Op{imrx},
 			Outputs:  []operand.Op{mrx},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("MOVQ: bad operands")
@@ -9377,6 +9736,7 @@ func MOVSD(mx, mx1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, mx1},
 			Inputs:   []operand.Op{mx, mx1},
 			Outputs:  []operand.Op{mx1},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM64(mx) && operand.IsXMM(mx1):
 		return &intrep.Instruction{
@@ -9384,6 +9744,7 @@ func MOVSD(mx, mx1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, mx1},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{mx1},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsXMM(mx) && operand.IsM64(mx1):
 		return &intrep.Instruction{
@@ -9391,6 +9752,7 @@ func MOVSD(mx, mx1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, mx1},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{mx1},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("MOVSD: bad operands")
@@ -9410,6 +9772,7 @@ func MOVSHDUP(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE3"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -9417,6 +9780,7 @@ func MOVSHDUP(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE3"},
 		}, nil
 	}
 	return nil, errors.New("MOVSHDUP: bad operands")
@@ -9436,6 +9800,7 @@ func MOVSLDUP(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE3"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -9443,6 +9808,7 @@ func MOVSLDUP(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE3"},
 		}, nil
 	}
 	return nil, errors.New("MOVSLDUP: bad operands")
@@ -9463,6 +9829,7 @@ func MOVSS(mx, mx1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, mx1},
 			Inputs:   []operand.Op{mx, mx1},
 			Outputs:  []operand.Op{mx1},
+			ISA:      []string{"SSE"},
 		}, nil
 	case operand.IsM32(mx) && operand.IsXMM(mx1):
 		return &intrep.Instruction{
@@ -9470,6 +9837,7 @@ func MOVSS(mx, mx1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, mx1},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{mx1},
+			ISA:      []string{"SSE"},
 		}, nil
 	case operand.IsXMM(mx) && operand.IsM32(mx1):
 		return &intrep.Instruction{
@@ -9477,6 +9845,7 @@ func MOVSS(mx, mx1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, mx1},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{mx1},
+			ISA:      []string{"SSE"},
 		}, nil
 	}
 	return nil, errors.New("MOVSS: bad operands")
@@ -9497,6 +9866,7 @@ func MOVUPD(mx, mx1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, mx1},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{mx1},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(mx1):
 		return &intrep.Instruction{
@@ -9504,6 +9874,7 @@ func MOVUPD(mx, mx1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, mx1},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{mx1},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsXMM(mx) && operand.IsM128(mx1):
 		return &intrep.Instruction{
@@ -9511,6 +9882,7 @@ func MOVUPD(mx, mx1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, mx1},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{mx1},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("MOVUPD: bad operands")
@@ -9531,6 +9903,7 @@ func MOVUPS(mx, mx1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, mx1},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{mx1},
+			ISA:      []string{"SSE"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(mx1):
 		return &intrep.Instruction{
@@ -9538,6 +9911,7 @@ func MOVUPS(mx, mx1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, mx1},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{mx1},
+			ISA:      []string{"SSE"},
 		}, nil
 	case operand.IsXMM(mx) && operand.IsM128(mx1):
 		return &intrep.Instruction{
@@ -9545,6 +9919,7 @@ func MOVUPS(mx, mx1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, mx1},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{mx1},
+			ISA:      []string{"SSE"},
 		}, nil
 	}
 	return nil, errors.New("MOVUPS: bad operands")
@@ -9718,6 +10093,7 @@ func MPSADBW(i, mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -9725,6 +10101,7 @@ func MPSADBW(i, mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	}
 	return nil, errors.New("MPSADBW: bad operands")
@@ -9796,6 +10173,7 @@ func MULPD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -9803,6 +10181,7 @@ func MULPD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("MULPD: bad operands")
@@ -9822,6 +10201,7 @@ func MULPS(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -9829,6 +10209,7 @@ func MULPS(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE"},
 		}, nil
 	}
 	return nil, errors.New("MULPS: bad operands")
@@ -9874,6 +10255,7 @@ func MULSD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM64(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -9881,6 +10263,7 @@ func MULSD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("MULSD: bad operands")
@@ -9900,6 +10283,7 @@ func MULSS(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE"},
 		}, nil
 	case operand.IsM32(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -9907,6 +10291,7 @@ func MULSS(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE"},
 		}, nil
 	}
 	return nil, errors.New("MULSS: bad operands")
@@ -9952,6 +10337,7 @@ func MULXL(mr, r, r1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r, r1},
 			Inputs:   []operand.Op{mr, reg.EDX},
 			Outputs:  []operand.Op{r, r1},
+			ISA:      []string{"BMI2"},
 		}, nil
 	case operand.IsM32(mr) && operand.IsR32(r) && operand.IsR32(r1):
 		return &intrep.Instruction{
@@ -9959,6 +10345,7 @@ func MULXL(mr, r, r1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r, r1},
 			Inputs:   []operand.Op{mr, reg.EDX},
 			Outputs:  []operand.Op{r, r1},
+			ISA:      []string{"BMI2"},
 		}, nil
 	}
 	return nil, errors.New("MULXL: bad operands")
@@ -9978,6 +10365,7 @@ func MULXQ(mr, r, r1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r, r1},
 			Inputs:   []operand.Op{mr, reg.RDX},
 			Outputs:  []operand.Op{r, r1},
+			ISA:      []string{"BMI2"},
 		}, nil
 	case operand.IsM64(mr) && operand.IsR64(r) && operand.IsR64(r1):
 		return &intrep.Instruction{
@@ -9985,6 +10373,7 @@ func MULXQ(mr, r, r1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r, r1},
 			Inputs:   []operand.Op{mr, reg.RDX},
 			Outputs:  []operand.Op{r, r1},
+			ISA:      []string{"BMI2"},
 		}, nil
 	}
 	return nil, errors.New("MULXQ: bad operands")
@@ -10001,6 +10390,7 @@ func MWAIT() (*intrep.Instruction, error) {
 		Operands: nil,
 		Inputs:   []operand.Op{reg.EAX, reg.ECX},
 		Outputs:  []operand.Op{},
+		ISA:      []string{"MONITOR"},
 	}, nil
 }
 
@@ -10372,6 +10762,7 @@ func ORPD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -10379,6 +10770,7 @@ func ORPD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("ORPD: bad operands")
@@ -10398,6 +10790,7 @@ func ORPS(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -10405,6 +10798,7 @@ func ORPS(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE"},
 		}, nil
 	}
 	return nil, errors.New("ORPS: bad operands")
@@ -10572,6 +10966,7 @@ func PABSB(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSSE3"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -10579,6 +10974,7 @@ func PABSB(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSSE3"},
 		}, nil
 	}
 	return nil, errors.New("PABSB: bad operands")
@@ -10598,6 +10994,7 @@ func PABSD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSSE3"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -10605,6 +11002,7 @@ func PABSD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSSE3"},
 		}, nil
 	}
 	return nil, errors.New("PABSD: bad operands")
@@ -10624,6 +11022,7 @@ func PABSW(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSSE3"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -10631,6 +11030,7 @@ func PABSW(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSSE3"},
 		}, nil
 	}
 	return nil, errors.New("PABSW: bad operands")
@@ -10650,6 +11050,7 @@ func PACKSSLW(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -10657,6 +11058,7 @@ func PACKSSLW(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("PACKSSLW: bad operands")
@@ -10676,6 +11078,7 @@ func PACKSSWB(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -10683,6 +11086,7 @@ func PACKSSWB(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("PACKSSWB: bad operands")
@@ -10702,6 +11106,7 @@ func PACKUSDW(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -10709,6 +11114,7 @@ func PACKUSDW(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	}
 	return nil, errors.New("PACKUSDW: bad operands")
@@ -10728,6 +11134,7 @@ func PACKUSWB(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -10735,6 +11142,7 @@ func PACKUSWB(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("PACKUSWB: bad operands")
@@ -10754,6 +11162,7 @@ func PADDB(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -10761,6 +11170,7 @@ func PADDB(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("PADDB: bad operands")
@@ -10780,6 +11190,7 @@ func PADDD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -10787,6 +11198,7 @@ func PADDD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("PADDD: bad operands")
@@ -10806,6 +11218,7 @@ func PADDL(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -10813,6 +11226,7 @@ func PADDL(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("PADDL: bad operands")
@@ -10832,6 +11246,7 @@ func PADDQ(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -10839,6 +11254,7 @@ func PADDQ(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("PADDQ: bad operands")
@@ -10858,6 +11274,7 @@ func PADDSB(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -10865,6 +11282,7 @@ func PADDSB(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("PADDSB: bad operands")
@@ -10884,6 +11302,7 @@ func PADDSW(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -10891,6 +11310,7 @@ func PADDSW(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("PADDSW: bad operands")
@@ -10910,6 +11330,7 @@ func PADDUSB(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -10917,6 +11338,7 @@ func PADDUSB(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("PADDUSB: bad operands")
@@ -10936,6 +11358,7 @@ func PADDUSW(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -10943,6 +11366,7 @@ func PADDUSW(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("PADDUSW: bad operands")
@@ -10962,6 +11386,7 @@ func PADDW(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -10969,6 +11394,7 @@ func PADDW(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("PADDW: bad operands")
@@ -10988,6 +11414,7 @@ func PALIGNR(i, mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSSE3"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -10995,6 +11422,7 @@ func PALIGNR(i, mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSSE3"},
 		}, nil
 	}
 	return nil, errors.New("PALIGNR: bad operands")
@@ -11014,6 +11442,7 @@ func PAND(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -11021,6 +11450,7 @@ func PAND(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("PAND: bad operands")
@@ -11040,6 +11470,7 @@ func PANDN(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mx, x},
 			Inputs:           []operand.Op{mx, x},
 			Outputs:          []operand.Op{x},
+			ISA:              []string{"SSE2"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
@@ -11048,6 +11479,7 @@ func PANDN(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("PANDN: bad operands")
@@ -11081,6 +11513,7 @@ func PAVGB(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -11088,6 +11521,7 @@ func PAVGB(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("PAVGB: bad operands")
@@ -11107,6 +11541,7 @@ func PAVGW(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -11114,6 +11549,7 @@ func PAVGW(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("PAVGW: bad operands")
@@ -11133,6 +11569,7 @@ func PBLENDVB(x, mx, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{x, mx, x1},
 			Inputs:   []operand.Op{x, mx, x1},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	case operand.IsXMM0(x) && operand.IsM128(mx) && operand.IsXMM(x1):
 		return &intrep.Instruction{
@@ -11140,6 +11577,7 @@ func PBLENDVB(x, mx, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{x, mx, x1},
 			Inputs:   []operand.Op{x, mx, x1},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	}
 	return nil, errors.New("PBLENDVB: bad operands")
@@ -11159,6 +11597,7 @@ func PBLENDW(i, mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -11166,6 +11605,7 @@ func PBLENDW(i, mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	}
 	return nil, errors.New("PBLENDW: bad operands")
@@ -11185,6 +11625,7 @@ func PCLMULQDQ(i, mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"PCLMULQDQ"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -11192,6 +11633,7 @@ func PCLMULQDQ(i, mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"PCLMULQDQ"},
 		}, nil
 	}
 	return nil, errors.New("PCLMULQDQ: bad operands")
@@ -11211,6 +11653,7 @@ func PCMPEQB(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mx, x},
 			Inputs:           []operand.Op{mx, x},
 			Outputs:          []operand.Op{x},
+			ISA:              []string{"SSE2"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
@@ -11219,6 +11662,7 @@ func PCMPEQB(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("PCMPEQB: bad operands")
@@ -11238,6 +11682,7 @@ func PCMPEQL(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mx, x},
 			Inputs:           []operand.Op{mx, x},
 			Outputs:          []operand.Op{x},
+			ISA:              []string{"SSE2"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
@@ -11246,6 +11691,7 @@ func PCMPEQL(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("PCMPEQL: bad operands")
@@ -11265,6 +11711,7 @@ func PCMPEQQ(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mx, x},
 			Inputs:           []operand.Op{mx, x},
 			Outputs:          []operand.Op{x},
+			ISA:              []string{"SSE4.1"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
@@ -11273,6 +11720,7 @@ func PCMPEQQ(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	}
 	return nil, errors.New("PCMPEQQ: bad operands")
@@ -11292,6 +11740,7 @@ func PCMPEQW(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mx, x},
 			Inputs:           []operand.Op{mx, x},
 			Outputs:          []operand.Op{x},
+			ISA:              []string{"SSE2"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
@@ -11300,6 +11749,7 @@ func PCMPEQW(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("PCMPEQW: bad operands")
@@ -11319,6 +11769,7 @@ func PCMPESTRI(i, mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x},
 			Inputs:   []operand.Op{mx, x, reg.EAX, reg.EDX},
 			Outputs:  []operand.Op{reg.ECX},
+			ISA:      []string{"SSE4.2"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -11326,6 +11777,7 @@ func PCMPESTRI(i, mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x},
 			Inputs:   []operand.Op{mx, x, reg.EAX, reg.EDX},
 			Outputs:  []operand.Op{reg.ECX},
+			ISA:      []string{"SSE4.2"},
 		}, nil
 	}
 	return nil, errors.New("PCMPESTRI: bad operands")
@@ -11345,6 +11797,7 @@ func PCMPESTRM(i, mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x},
 			Inputs:   []operand.Op{mx, x, reg.EAX, reg.EDX},
 			Outputs:  []operand.Op{reg.X0},
+			ISA:      []string{"SSE4.2"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -11352,6 +11805,7 @@ func PCMPESTRM(i, mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x},
 			Inputs:   []operand.Op{mx, x, reg.EAX, reg.EDX},
 			Outputs:  []operand.Op{reg.X0},
+			ISA:      []string{"SSE4.2"},
 		}, nil
 	}
 	return nil, errors.New("PCMPESTRM: bad operands")
@@ -11371,6 +11825,7 @@ func PCMPGTB(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mx, x},
 			Inputs:           []operand.Op{mx, x},
 			Outputs:          []operand.Op{x},
+			ISA:              []string{"SSE2"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
@@ -11379,6 +11834,7 @@ func PCMPGTB(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("PCMPGTB: bad operands")
@@ -11398,6 +11854,7 @@ func PCMPGTL(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mx, x},
 			Inputs:           []operand.Op{mx, x},
 			Outputs:          []operand.Op{x},
+			ISA:              []string{"SSE2"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
@@ -11406,6 +11863,7 @@ func PCMPGTL(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("PCMPGTL: bad operands")
@@ -11425,6 +11883,7 @@ func PCMPGTQ(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mx, x},
 			Inputs:           []operand.Op{mx, x},
 			Outputs:          []operand.Op{x},
+			ISA:              []string{"SSE4.2"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
@@ -11433,6 +11892,7 @@ func PCMPGTQ(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.2"},
 		}, nil
 	}
 	return nil, errors.New("PCMPGTQ: bad operands")
@@ -11452,6 +11912,7 @@ func PCMPGTW(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mx, x},
 			Inputs:           []operand.Op{mx, x},
 			Outputs:          []operand.Op{x},
+			ISA:              []string{"SSE2"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
@@ -11460,6 +11921,7 @@ func PCMPGTW(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("PCMPGTW: bad operands")
@@ -11479,6 +11941,7 @@ func PCMPISTRI(i, mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{reg.ECX},
+			ISA:      []string{"SSE4.2"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -11486,6 +11949,7 @@ func PCMPISTRI(i, mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{reg.ECX},
+			ISA:      []string{"SSE4.2"},
 		}, nil
 	}
 	return nil, errors.New("PCMPISTRI: bad operands")
@@ -11505,6 +11969,7 @@ func PCMPISTRM(i, mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{reg.X0},
+			ISA:      []string{"SSE4.2"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -11512,6 +11977,7 @@ func PCMPISTRM(i, mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{reg.X0},
+			ISA:      []string{"SSE4.2"},
 		}, nil
 	}
 	return nil, errors.New("PCMPISTRM: bad operands")
@@ -11531,6 +11997,7 @@ func PDEPL(mr, r, r1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r, r1},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r1},
+			ISA:      []string{"BMI2"},
 		}, nil
 	case operand.IsM32(mr) && operand.IsR32(r) && operand.IsR32(r1):
 		return &intrep.Instruction{
@@ -11538,6 +12005,7 @@ func PDEPL(mr, r, r1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r, r1},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r1},
+			ISA:      []string{"BMI2"},
 		}, nil
 	}
 	return nil, errors.New("PDEPL: bad operands")
@@ -11557,6 +12025,7 @@ func PDEPQ(mr, r, r1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r, r1},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r1},
+			ISA:      []string{"BMI2"},
 		}, nil
 	case operand.IsM64(mr) && operand.IsR64(r) && operand.IsR64(r1):
 		return &intrep.Instruction{
@@ -11564,6 +12033,7 @@ func PDEPQ(mr, r, r1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r, r1},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r1},
+			ISA:      []string{"BMI2"},
 		}, nil
 	}
 	return nil, errors.New("PDEPQ: bad operands")
@@ -11583,6 +12053,7 @@ func PEXTL(mr, r, r1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r, r1},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r1},
+			ISA:      []string{"BMI2"},
 		}, nil
 	case operand.IsM32(mr) && operand.IsR32(r) && operand.IsR32(r1):
 		return &intrep.Instruction{
@@ -11590,6 +12061,7 @@ func PEXTL(mr, r, r1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r, r1},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r1},
+			ISA:      []string{"BMI2"},
 		}, nil
 	}
 	return nil, errors.New("PEXTL: bad operands")
@@ -11609,6 +12081,7 @@ func PEXTQ(mr, r, r1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r, r1},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r1},
+			ISA:      []string{"BMI2"},
 		}, nil
 	case operand.IsM64(mr) && operand.IsR64(r) && operand.IsR64(r1):
 		return &intrep.Instruction{
@@ -11616,6 +12089,7 @@ func PEXTQ(mr, r, r1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r, r1},
 			Inputs:   []operand.Op{mr, r},
 			Outputs:  []operand.Op{r1},
+			ISA:      []string{"BMI2"},
 		}, nil
 	}
 	return nil, errors.New("PEXTQ: bad operands")
@@ -11635,6 +12109,7 @@ func PEXTRB(i, x, mr operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, x, mr},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{mr},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsXMM(x) && operand.IsM8(mr):
 		return &intrep.Instruction{
@@ -11642,6 +12117,7 @@ func PEXTRB(i, x, mr operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, x, mr},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{mr},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	}
 	return nil, errors.New("PEXTRB: bad operands")
@@ -11661,6 +12137,7 @@ func PEXTRD(i, x, mr operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, x, mr},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{mr},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsXMM(x) && operand.IsM32(mr):
 		return &intrep.Instruction{
@@ -11668,6 +12145,7 @@ func PEXTRD(i, x, mr operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, x, mr},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{mr},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	}
 	return nil, errors.New("PEXTRD: bad operands")
@@ -11687,6 +12165,7 @@ func PEXTRQ(i, x, mr operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, x, mr},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{mr},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsXMM(x) && operand.IsM64(mr):
 		return &intrep.Instruction{
@@ -11694,6 +12173,7 @@ func PEXTRQ(i, x, mr operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, x, mr},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{mr},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	}
 	return nil, errors.New("PEXTRQ: bad operands")
@@ -11713,6 +12193,7 @@ func PEXTRW(i, x, mr operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, x, mr},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{mr},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsXMM(x) && operand.IsM16(mr):
 		return &intrep.Instruction{
@@ -11720,6 +12201,7 @@ func PEXTRW(i, x, mr operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, x, mr},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{mr},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	}
 	return nil, errors.New("PEXTRW: bad operands")
@@ -11739,6 +12221,7 @@ func PHADDD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSSE3"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -11746,6 +12229,7 @@ func PHADDD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSSE3"},
 		}, nil
 	}
 	return nil, errors.New("PHADDD: bad operands")
@@ -11765,6 +12249,7 @@ func PHADDSW(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSSE3"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -11772,6 +12257,7 @@ func PHADDSW(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSSE3"},
 		}, nil
 	}
 	return nil, errors.New("PHADDSW: bad operands")
@@ -11791,6 +12277,7 @@ func PHADDW(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSSE3"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -11798,6 +12285,7 @@ func PHADDW(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSSE3"},
 		}, nil
 	}
 	return nil, errors.New("PHADDW: bad operands")
@@ -11817,6 +12305,7 @@ func PHMINPOSUW(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -11824,6 +12313,7 @@ func PHMINPOSUW(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	}
 	return nil, errors.New("PHMINPOSUW: bad operands")
@@ -11843,6 +12333,7 @@ func PHSUBD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mx, x},
 			Inputs:           []operand.Op{mx, x},
 			Outputs:          []operand.Op{x},
+			ISA:              []string{"SSSE3"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
@@ -11851,6 +12342,7 @@ func PHSUBD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSSE3"},
 		}, nil
 	}
 	return nil, errors.New("PHSUBD: bad operands")
@@ -11870,6 +12362,7 @@ func PHSUBSW(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mx, x},
 			Inputs:           []operand.Op{mx, x},
 			Outputs:          []operand.Op{x},
+			ISA:              []string{"SSSE3"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
@@ -11878,6 +12371,7 @@ func PHSUBSW(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSSE3"},
 		}, nil
 	}
 	return nil, errors.New("PHSUBSW: bad operands")
@@ -11897,6 +12391,7 @@ func PHSUBW(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mx, x},
 			Inputs:           []operand.Op{mx, x},
 			Outputs:          []operand.Op{x},
+			ISA:              []string{"SSSE3"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
@@ -11905,6 +12400,7 @@ func PHSUBW(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSSE3"},
 		}, nil
 	}
 	return nil, errors.New("PHSUBW: bad operands")
@@ -11924,6 +12420,7 @@ func PINSRB(i, mr, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mr, x},
 			Inputs:   []operand.Op{mr, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM8(mr) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -11931,6 +12428,7 @@ func PINSRB(i, mr, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mr, x},
 			Inputs:   []operand.Op{mr, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	}
 	return nil, errors.New("PINSRB: bad operands")
@@ -11950,6 +12448,7 @@ func PINSRD(i, mr, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mr, x},
 			Inputs:   []operand.Op{mr, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM32(mr) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -11957,6 +12456,7 @@ func PINSRD(i, mr, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mr, x},
 			Inputs:   []operand.Op{mr, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	}
 	return nil, errors.New("PINSRD: bad operands")
@@ -11976,6 +12476,7 @@ func PINSRQ(i, mr, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mr, x},
 			Inputs:   []operand.Op{mr, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM64(mr) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -11983,6 +12484,7 @@ func PINSRQ(i, mr, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mr, x},
 			Inputs:   []operand.Op{mr, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	}
 	return nil, errors.New("PINSRQ: bad operands")
@@ -12002,6 +12504,7 @@ func PINSRW(i, mr, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mr, x},
 			Inputs:   []operand.Op{mr, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM16(mr) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -12009,6 +12512,7 @@ func PINSRW(i, mr, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mr, x},
 			Inputs:   []operand.Op{mr, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("PINSRW: bad operands")
@@ -12028,6 +12532,7 @@ func PMADDUBSW(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSSE3"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -12035,6 +12540,7 @@ func PMADDUBSW(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSSE3"},
 		}, nil
 	}
 	return nil, errors.New("PMADDUBSW: bad operands")
@@ -12054,6 +12560,7 @@ func PMADDWL(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -12061,6 +12568,7 @@ func PMADDWL(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("PMADDWL: bad operands")
@@ -12080,6 +12588,7 @@ func PMAXSB(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -12087,6 +12596,7 @@ func PMAXSB(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	}
 	return nil, errors.New("PMAXSB: bad operands")
@@ -12106,6 +12616,7 @@ func PMAXSD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -12113,6 +12624,7 @@ func PMAXSD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	}
 	return nil, errors.New("PMAXSD: bad operands")
@@ -12132,6 +12644,7 @@ func PMAXSW(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -12139,6 +12652,7 @@ func PMAXSW(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("PMAXSW: bad operands")
@@ -12158,6 +12672,7 @@ func PMAXUB(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -12165,6 +12680,7 @@ func PMAXUB(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("PMAXUB: bad operands")
@@ -12184,6 +12700,7 @@ func PMAXUD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -12191,6 +12708,7 @@ func PMAXUD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	}
 	return nil, errors.New("PMAXUD: bad operands")
@@ -12210,6 +12728,7 @@ func PMAXUW(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -12217,6 +12736,7 @@ func PMAXUW(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	}
 	return nil, errors.New("PMAXUW: bad operands")
@@ -12236,6 +12756,7 @@ func PMINSB(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -12243,6 +12764,7 @@ func PMINSB(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	}
 	return nil, errors.New("PMINSB: bad operands")
@@ -12262,6 +12784,7 @@ func PMINSD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -12269,6 +12792,7 @@ func PMINSD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	}
 	return nil, errors.New("PMINSD: bad operands")
@@ -12288,6 +12812,7 @@ func PMINSW(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -12295,6 +12820,7 @@ func PMINSW(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("PMINSW: bad operands")
@@ -12314,6 +12840,7 @@ func PMINUB(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -12321,6 +12848,7 @@ func PMINUB(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("PMINUB: bad operands")
@@ -12340,6 +12868,7 @@ func PMINUD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -12347,6 +12876,7 @@ func PMINUD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	}
 	return nil, errors.New("PMINUD: bad operands")
@@ -12366,6 +12896,7 @@ func PMINUW(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -12373,6 +12904,7 @@ func PMINUW(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	}
 	return nil, errors.New("PMINUW: bad operands")
@@ -12391,6 +12923,7 @@ func PMOVMSKB(x, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{x, r},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("PMOVMSKB: bad operands")
@@ -12410,6 +12943,7 @@ func PMOVSXBD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	case operand.IsM32(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -12417,6 +12951,7 @@ func PMOVSXBD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	}
 	return nil, errors.New("PMOVSXBD: bad operands")
@@ -12436,6 +12971,7 @@ func PMOVSXBQ(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	case operand.IsM16(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -12443,6 +12979,7 @@ func PMOVSXBQ(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	}
 	return nil, errors.New("PMOVSXBQ: bad operands")
@@ -12462,6 +12999,7 @@ func PMOVSXBW(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	case operand.IsM64(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -12469,6 +13007,7 @@ func PMOVSXBW(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	}
 	return nil, errors.New("PMOVSXBW: bad operands")
@@ -12488,6 +13027,7 @@ func PMOVSXDQ(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	case operand.IsM64(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -12495,6 +13035,7 @@ func PMOVSXDQ(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	}
 	return nil, errors.New("PMOVSXDQ: bad operands")
@@ -12514,6 +13055,7 @@ func PMOVSXWD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	case operand.IsM64(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -12521,6 +13063,7 @@ func PMOVSXWD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	}
 	return nil, errors.New("PMOVSXWD: bad operands")
@@ -12540,6 +13083,7 @@ func PMOVSXWQ(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	case operand.IsM32(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -12547,6 +13091,7 @@ func PMOVSXWQ(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	}
 	return nil, errors.New("PMOVSXWQ: bad operands")
@@ -12566,6 +13111,7 @@ func PMOVZXBD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	case operand.IsM32(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -12573,6 +13119,7 @@ func PMOVZXBD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	}
 	return nil, errors.New("PMOVZXBD: bad operands")
@@ -12592,6 +13139,7 @@ func PMOVZXBQ(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	case operand.IsM16(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -12599,6 +13147,7 @@ func PMOVZXBQ(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	}
 	return nil, errors.New("PMOVZXBQ: bad operands")
@@ -12618,6 +13167,7 @@ func PMOVZXBW(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	case operand.IsM64(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -12625,6 +13175,7 @@ func PMOVZXBW(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	}
 	return nil, errors.New("PMOVZXBW: bad operands")
@@ -12644,6 +13195,7 @@ func PMOVZXDQ(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	case operand.IsM64(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -12651,6 +13203,7 @@ func PMOVZXDQ(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	}
 	return nil, errors.New("PMOVZXDQ: bad operands")
@@ -12670,6 +13223,7 @@ func PMOVZXWD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	case operand.IsM64(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -12677,6 +13231,7 @@ func PMOVZXWD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	}
 	return nil, errors.New("PMOVZXWD: bad operands")
@@ -12696,6 +13251,7 @@ func PMOVZXWQ(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	case operand.IsM32(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -12703,6 +13259,7 @@ func PMOVZXWQ(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	}
 	return nil, errors.New("PMOVZXWQ: bad operands")
@@ -12722,6 +13279,7 @@ func PMULDQ(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -12729,6 +13287,7 @@ func PMULDQ(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	}
 	return nil, errors.New("PMULDQ: bad operands")
@@ -12748,6 +13307,7 @@ func PMULHRSW(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSSE3"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -12755,6 +13315,7 @@ func PMULHRSW(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSSE3"},
 		}, nil
 	}
 	return nil, errors.New("PMULHRSW: bad operands")
@@ -12774,6 +13335,7 @@ func PMULHUW(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -12781,6 +13343,7 @@ func PMULHUW(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("PMULHUW: bad operands")
@@ -12800,6 +13363,7 @@ func PMULHW(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -12807,6 +13371,7 @@ func PMULHW(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("PMULHW: bad operands")
@@ -12826,6 +13391,7 @@ func PMULLD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -12833,6 +13399,7 @@ func PMULLD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	}
 	return nil, errors.New("PMULLD: bad operands")
@@ -12852,6 +13419,7 @@ func PMULLW(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -12859,6 +13427,7 @@ func PMULLW(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("PMULLW: bad operands")
@@ -12878,6 +13447,7 @@ func PMULULQ(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -12885,6 +13455,7 @@ func PMULULQ(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("PMULULQ: bad operands")
@@ -12904,6 +13475,7 @@ func POPCNTL(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"POPCNT"},
 		}, nil
 	case operand.IsM32(mr) && operand.IsR32(r):
 		return &intrep.Instruction{
@@ -12911,6 +13483,7 @@ func POPCNTL(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"POPCNT"},
 		}, nil
 	}
 	return nil, errors.New("POPCNTL: bad operands")
@@ -12930,6 +13503,7 @@ func POPCNTQ(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"POPCNT"},
 		}, nil
 	case operand.IsM64(mr) && operand.IsR64(r):
 		return &intrep.Instruction{
@@ -12937,6 +13511,7 @@ func POPCNTQ(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"POPCNT"},
 		}, nil
 	}
 	return nil, errors.New("POPCNTQ: bad operands")
@@ -12956,6 +13531,7 @@ func POPCNTW(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"POPCNT"},
 		}, nil
 	case operand.IsM16(mr) && operand.IsR16(r):
 		return &intrep.Instruction{
@@ -12963,6 +13539,7 @@ func POPCNTW(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"POPCNT"},
 		}, nil
 	}
 	return nil, errors.New("POPCNTW: bad operands")
@@ -13034,6 +13611,7 @@ func POR(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -13041,6 +13619,7 @@ func POR(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("POR: bad operands")
@@ -13059,6 +13638,7 @@ func PREFETCHNTA(m operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{m},
 			Inputs:   []operand.Op{m},
 			Outputs:  []operand.Op{},
+			ISA:      []string{"MMX+"},
 		}, nil
 	}
 	return nil, errors.New("PREFETCHNTA: bad operands")
@@ -13077,6 +13657,7 @@ func PREFETCHT0(m operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{m},
 			Inputs:   []operand.Op{m},
 			Outputs:  []operand.Op{},
+			ISA:      []string{"MMX+"},
 		}, nil
 	}
 	return nil, errors.New("PREFETCHT0: bad operands")
@@ -13095,6 +13676,7 @@ func PREFETCHT1(m operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{m},
 			Inputs:   []operand.Op{m},
 			Outputs:  []operand.Op{},
+			ISA:      []string{"MMX+"},
 		}, nil
 	}
 	return nil, errors.New("PREFETCHT1: bad operands")
@@ -13113,6 +13695,7 @@ func PREFETCHT2(m operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{m},
 			Inputs:   []operand.Op{m},
 			Outputs:  []operand.Op{},
+			ISA:      []string{"MMX+"},
 		}, nil
 	}
 	return nil, errors.New("PREFETCHT2: bad operands")
@@ -13132,6 +13715,7 @@ func PSADBW(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mx, x},
 			Inputs:           []operand.Op{mx, x},
 			Outputs:          []operand.Op{x},
+			ISA:              []string{"SSE2"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
@@ -13140,6 +13724,7 @@ func PSADBW(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("PSADBW: bad operands")
@@ -13159,6 +13744,7 @@ func PSHUFB(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSSE3"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -13166,6 +13752,7 @@ func PSHUFB(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSSE3"},
 		}, nil
 	}
 	return nil, errors.New("PSHUFB: bad operands")
@@ -13185,6 +13772,7 @@ func PSHUFD(i, mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -13192,6 +13780,7 @@ func PSHUFD(i, mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("PSHUFD: bad operands")
@@ -13211,6 +13800,7 @@ func PSHUFHW(i, mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -13218,6 +13808,7 @@ func PSHUFHW(i, mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("PSHUFHW: bad operands")
@@ -13237,6 +13828,7 @@ func PSHUFL(i, mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -13244,6 +13836,7 @@ func PSHUFL(i, mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("PSHUFL: bad operands")
@@ -13263,6 +13856,7 @@ func PSHUFLW(i, mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -13270,6 +13864,7 @@ func PSHUFLW(i, mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("PSHUFLW: bad operands")
@@ -13289,6 +13884,7 @@ func PSIGNB(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSSE3"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -13296,6 +13892,7 @@ func PSIGNB(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSSE3"},
 		}, nil
 	}
 	return nil, errors.New("PSIGNB: bad operands")
@@ -13315,6 +13912,7 @@ func PSIGND(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSSE3"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -13322,6 +13920,7 @@ func PSIGND(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSSE3"},
 		}, nil
 	}
 	return nil, errors.New("PSIGND: bad operands")
@@ -13341,6 +13940,7 @@ func PSIGNW(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSSE3"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -13348,6 +13948,7 @@ func PSIGNW(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSSE3"},
 		}, nil
 	}
 	return nil, errors.New("PSIGNW: bad operands")
@@ -13366,6 +13967,7 @@ func PSLLDQ(i, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, x},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("PSLLDQ: bad operands")
@@ -13386,6 +13988,7 @@ func PSLLL(imx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imx, x},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsXMM(imx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -13393,6 +13996,7 @@ func PSLLL(imx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imx, x},
 			Inputs:   []operand.Op{imx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM128(imx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -13400,6 +14004,7 @@ func PSLLL(imx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imx, x},
 			Inputs:   []operand.Op{imx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("PSLLL: bad operands")
@@ -13418,6 +14023,7 @@ func PSLLO(i, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, x},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("PSLLO: bad operands")
@@ -13438,6 +14044,7 @@ func PSLLQ(imx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imx, x},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsXMM(imx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -13445,6 +14052,7 @@ func PSLLQ(imx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imx, x},
 			Inputs:   []operand.Op{imx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM128(imx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -13452,6 +14060,7 @@ func PSLLQ(imx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imx, x},
 			Inputs:   []operand.Op{imx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("PSLLQ: bad operands")
@@ -13472,6 +14081,7 @@ func PSLLW(imx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imx, x},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsXMM(imx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -13479,6 +14089,7 @@ func PSLLW(imx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imx, x},
 			Inputs:   []operand.Op{imx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM128(imx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -13486,6 +14097,7 @@ func PSLLW(imx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imx, x},
 			Inputs:   []operand.Op{imx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("PSLLW: bad operands")
@@ -13506,6 +14118,7 @@ func PSRAL(imx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imx, x},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsXMM(imx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -13513,6 +14126,7 @@ func PSRAL(imx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imx, x},
 			Inputs:   []operand.Op{imx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM128(imx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -13520,6 +14134,7 @@ func PSRAL(imx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imx, x},
 			Inputs:   []operand.Op{imx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("PSRAL: bad operands")
@@ -13540,6 +14155,7 @@ func PSRAW(imx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imx, x},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsXMM(imx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -13547,6 +14163,7 @@ func PSRAW(imx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imx, x},
 			Inputs:   []operand.Op{imx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM128(imx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -13554,6 +14171,7 @@ func PSRAW(imx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imx, x},
 			Inputs:   []operand.Op{imx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("PSRAW: bad operands")
@@ -13572,6 +14190,7 @@ func PSRLDQ(i, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, x},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("PSRLDQ: bad operands")
@@ -13592,6 +14211,7 @@ func PSRLL(imx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imx, x},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsXMM(imx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -13599,6 +14219,7 @@ func PSRLL(imx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imx, x},
 			Inputs:   []operand.Op{imx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM128(imx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -13606,6 +14227,7 @@ func PSRLL(imx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imx, x},
 			Inputs:   []operand.Op{imx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("PSRLL: bad operands")
@@ -13624,6 +14246,7 @@ func PSRLO(i, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, x},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("PSRLO: bad operands")
@@ -13644,6 +14267,7 @@ func PSRLQ(imx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imx, x},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsXMM(imx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -13651,6 +14275,7 @@ func PSRLQ(imx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imx, x},
 			Inputs:   []operand.Op{imx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM128(imx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -13658,6 +14283,7 @@ func PSRLQ(imx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imx, x},
 			Inputs:   []operand.Op{imx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("PSRLQ: bad operands")
@@ -13678,6 +14304,7 @@ func PSRLW(imx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imx, x},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsXMM(imx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -13685,6 +14312,7 @@ func PSRLW(imx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imx, x},
 			Inputs:   []operand.Op{imx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM128(imx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -13692,6 +14320,7 @@ func PSRLW(imx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imx, x},
 			Inputs:   []operand.Op{imx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("PSRLW: bad operands")
@@ -13711,6 +14340,7 @@ func PSUBB(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mx, x},
 			Inputs:           []operand.Op{mx, x},
 			Outputs:          []operand.Op{x},
+			ISA:              []string{"SSE2"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
@@ -13719,6 +14349,7 @@ func PSUBB(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("PSUBB: bad operands")
@@ -13738,6 +14369,7 @@ func PSUBL(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mx, x},
 			Inputs:           []operand.Op{mx, x},
 			Outputs:          []operand.Op{x},
+			ISA:              []string{"SSE2"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
@@ -13746,6 +14378,7 @@ func PSUBL(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("PSUBL: bad operands")
@@ -13765,6 +14398,7 @@ func PSUBQ(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mx, x},
 			Inputs:           []operand.Op{mx, x},
 			Outputs:          []operand.Op{x},
+			ISA:              []string{"SSE2"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
@@ -13773,6 +14407,7 @@ func PSUBQ(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("PSUBQ: bad operands")
@@ -13792,6 +14427,7 @@ func PSUBSB(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mx, x},
 			Inputs:           []operand.Op{mx, x},
 			Outputs:          []operand.Op{x},
+			ISA:              []string{"SSE2"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
@@ -13800,6 +14436,7 @@ func PSUBSB(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("PSUBSB: bad operands")
@@ -13819,6 +14456,7 @@ func PSUBSW(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mx, x},
 			Inputs:           []operand.Op{mx, x},
 			Outputs:          []operand.Op{x},
+			ISA:              []string{"SSE2"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
@@ -13827,6 +14465,7 @@ func PSUBSW(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("PSUBSW: bad operands")
@@ -13846,6 +14485,7 @@ func PSUBUSB(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mx, x},
 			Inputs:           []operand.Op{mx, x},
 			Outputs:          []operand.Op{x},
+			ISA:              []string{"SSE2"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
@@ -13854,6 +14494,7 @@ func PSUBUSB(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("PSUBUSB: bad operands")
@@ -13873,6 +14514,7 @@ func PSUBUSW(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mx, x},
 			Inputs:           []operand.Op{mx, x},
 			Outputs:          []operand.Op{x},
+			ISA:              []string{"SSE2"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
@@ -13881,6 +14523,7 @@ func PSUBUSW(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("PSUBUSW: bad operands")
@@ -13900,6 +14543,7 @@ func PSUBW(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mx, x},
 			Inputs:           []operand.Op{mx, x},
 			Outputs:          []operand.Op{x},
+			ISA:              []string{"SSE2"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
@@ -13908,6 +14552,7 @@ func PSUBW(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("PSUBW: bad operands")
@@ -13927,6 +14572,7 @@ func PTEST(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -13934,6 +14580,7 @@ func PTEST(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	}
 	return nil, errors.New("PTEST: bad operands")
@@ -13953,6 +14600,7 @@ func PUNPCKHBW(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -13960,6 +14608,7 @@ func PUNPCKHBW(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("PUNPCKHBW: bad operands")
@@ -13979,6 +14628,7 @@ func PUNPCKHLQ(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -13986,6 +14636,7 @@ func PUNPCKHLQ(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("PUNPCKHLQ: bad operands")
@@ -14005,6 +14656,7 @@ func PUNPCKHQDQ(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -14012,6 +14664,7 @@ func PUNPCKHQDQ(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("PUNPCKHQDQ: bad operands")
@@ -14031,6 +14684,7 @@ func PUNPCKHWL(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -14038,6 +14692,7 @@ func PUNPCKHWL(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("PUNPCKHWL: bad operands")
@@ -14057,6 +14712,7 @@ func PUNPCKLBW(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -14064,6 +14720,7 @@ func PUNPCKLBW(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("PUNPCKLBW: bad operands")
@@ -14083,6 +14740,7 @@ func PUNPCKLLQ(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -14090,6 +14748,7 @@ func PUNPCKLLQ(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("PUNPCKLLQ: bad operands")
@@ -14109,6 +14768,7 @@ func PUNPCKLQDQ(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -14116,6 +14776,7 @@ func PUNPCKLQDQ(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("PUNPCKLQDQ: bad operands")
@@ -14135,6 +14796,7 @@ func PUNPCKLWL(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -14142,6 +14804,7 @@ func PUNPCKLWL(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("PUNPCKLWL: bad operands")
@@ -14229,6 +14892,7 @@ func PXOR(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mx, x},
 			Inputs:           []operand.Op{mx, x},
 			Outputs:          []operand.Op{x},
+			ISA:              []string{"SSE2"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
@@ -14237,6 +14901,7 @@ func PXOR(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("PXOR: bad operands")
@@ -14488,6 +15153,7 @@ func RCPPS(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -14495,6 +15161,7 @@ func RCPPS(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE"},
 		}, nil
 	}
 	return nil, errors.New("RCPPS: bad operands")
@@ -14514,6 +15181,7 @@ func RCPSS(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE"},
 		}, nil
 	case operand.IsM32(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -14521,6 +15189,7 @@ func RCPSS(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE"},
 		}, nil
 	}
 	return nil, errors.New("RCPSS: bad operands")
@@ -14771,6 +15440,7 @@ func RDRANDL(r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{r},
 			Inputs:   []operand.Op{},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"RDRAND"},
 		}, nil
 	}
 	return nil, errors.New("RDRANDL: bad operands")
@@ -14789,6 +15459,7 @@ func RDRANDQ(r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{r},
 			Inputs:   []operand.Op{},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"RDRAND"},
 		}, nil
 	}
 	return nil, errors.New("RDRANDQ: bad operands")
@@ -14807,6 +15478,7 @@ func RDRANDW(r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{r},
 			Inputs:   []operand.Op{},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"RDRAND"},
 		}, nil
 	}
 	return nil, errors.New("RDRANDW: bad operands")
@@ -14825,6 +15497,7 @@ func RDSEEDL(r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{r},
 			Inputs:   []operand.Op{},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"RDSEED"},
 		}, nil
 	}
 	return nil, errors.New("RDSEEDL: bad operands")
@@ -14843,6 +15516,7 @@ func RDSEEDQ(r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{r},
 			Inputs:   []operand.Op{},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"RDSEED"},
 		}, nil
 	}
 	return nil, errors.New("RDSEEDQ: bad operands")
@@ -14861,6 +15535,7 @@ func RDSEEDW(r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{r},
 			Inputs:   []operand.Op{},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"RDSEED"},
 		}, nil
 	}
 	return nil, errors.New("RDSEEDW: bad operands")
@@ -14877,6 +15552,7 @@ func RDTSC() (*intrep.Instruction, error) {
 		Operands: nil,
 		Inputs:   []operand.Op{},
 		Outputs:  []operand.Op{reg.EAX, reg.EDX},
+		ISA:      []string{"RDTSC"},
 	}, nil
 }
 
@@ -14891,6 +15567,7 @@ func RDTSCP() (*intrep.Instruction, error) {
 		Operands: nil,
 		Inputs:   []operand.Op{},
 		Outputs:  []operand.Op{reg.EAX, reg.ECX, reg.EDX},
+		ISA:      []string{"RDTSCP"},
 	}, nil
 }
 
@@ -15440,6 +16117,7 @@ func RORXL(i, mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mr, r},
 			Inputs:   []operand.Op{mr},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"BMI2"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM32(mr) && operand.IsR32(r):
 		return &intrep.Instruction{
@@ -15447,6 +16125,7 @@ func RORXL(i, mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mr, r},
 			Inputs:   []operand.Op{mr},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"BMI2"},
 		}, nil
 	}
 	return nil, errors.New("RORXL: bad operands")
@@ -15466,6 +16145,7 @@ func RORXQ(i, mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mr, r},
 			Inputs:   []operand.Op{mr},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"BMI2"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM64(mr) && operand.IsR64(r):
 		return &intrep.Instruction{
@@ -15473,6 +16153,7 @@ func RORXQ(i, mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mr, r},
 			Inputs:   []operand.Op{mr},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"BMI2"},
 		}, nil
 	}
 	return nil, errors.New("RORXQ: bad operands")
@@ -15492,6 +16173,7 @@ func ROUNDPD(i, mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -15499,6 +16181,7 @@ func ROUNDPD(i, mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	}
 	return nil, errors.New("ROUNDPD: bad operands")
@@ -15518,6 +16201,7 @@ func ROUNDPS(i, mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -15525,6 +16209,7 @@ func ROUNDPS(i, mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	}
 	return nil, errors.New("ROUNDPS: bad operands")
@@ -15544,6 +16229,7 @@ func ROUNDSD(i, mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM64(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -15551,6 +16237,7 @@ func ROUNDSD(i, mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	}
 	return nil, errors.New("ROUNDSD: bad operands")
@@ -15570,6 +16257,7 @@ func ROUNDSS(i, mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM32(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -15577,6 +16265,7 @@ func ROUNDSS(i, mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE4.1"},
 		}, nil
 	}
 	return nil, errors.New("ROUNDSS: bad operands")
@@ -15596,6 +16285,7 @@ func RSQRTPS(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -15603,6 +16293,7 @@ func RSQRTPS(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE"},
 		}, nil
 	}
 	return nil, errors.New("RSQRTPS: bad operands")
@@ -15622,6 +16313,7 @@ func RSQRTSS(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE"},
 		}, nil
 	case operand.IsM32(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -15629,6 +16321,7 @@ func RSQRTSS(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE"},
 		}, nil
 	}
 	return nil, errors.New("RSQRTSS: bad operands")
@@ -16112,6 +16805,7 @@ func SARXL(r, mr, r1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{r, mr, r1},
 			Inputs:   []operand.Op{r, mr},
 			Outputs:  []operand.Op{r1},
+			ISA:      []string{"BMI2"},
 		}, nil
 	case operand.IsR32(r) && operand.IsM32(mr) && operand.IsR32(r1):
 		return &intrep.Instruction{
@@ -16119,6 +16813,7 @@ func SARXL(r, mr, r1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{r, mr, r1},
 			Inputs:   []operand.Op{r, mr},
 			Outputs:  []operand.Op{r1},
+			ISA:      []string{"BMI2"},
 		}, nil
 	}
 	return nil, errors.New("SARXL: bad operands")
@@ -16138,6 +16833,7 @@ func SARXQ(r, mr, r1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{r, mr, r1},
 			Inputs:   []operand.Op{r, mr},
 			Outputs:  []operand.Op{r1},
+			ISA:      []string{"BMI2"},
 		}, nil
 	case operand.IsR64(r) && operand.IsM64(mr) && operand.IsR64(r1):
 		return &intrep.Instruction{
@@ -16145,6 +16841,7 @@ func SARXQ(r, mr, r1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{r, mr, r1},
 			Inputs:   []operand.Op{r, mr},
 			Outputs:  []operand.Op{r1},
+			ISA:      []string{"BMI2"},
 		}, nil
 	}
 	return nil, errors.New("SARXQ: bad operands")
@@ -16861,6 +17558,7 @@ func SFENCE() (*intrep.Instruction, error) {
 		Operands: nil,
 		Inputs:   []operand.Op{},
 		Outputs:  []operand.Op{},
+		ISA:      []string{"MMX+"},
 	}, nil
 }
 
@@ -16878,6 +17576,7 @@ func SHA1MSG1(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SHA"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -16885,6 +17584,7 @@ func SHA1MSG1(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SHA"},
 		}, nil
 	}
 	return nil, errors.New("SHA1MSG1: bad operands")
@@ -16904,6 +17604,7 @@ func SHA1MSG2(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SHA"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -16911,6 +17612,7 @@ func SHA1MSG2(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SHA"},
 		}, nil
 	}
 	return nil, errors.New("SHA1MSG2: bad operands")
@@ -16930,6 +17632,7 @@ func SHA1NEXTE(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SHA"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -16937,6 +17640,7 @@ func SHA1NEXTE(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SHA"},
 		}, nil
 	}
 	return nil, errors.New("SHA1NEXTE: bad operands")
@@ -16956,6 +17660,7 @@ func SHA1RNDS4(i, mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SHA"},
 		}, nil
 	case operand.IsIMM2U(i) && operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -16963,6 +17668,7 @@ func SHA1RNDS4(i, mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SHA"},
 		}, nil
 	}
 	return nil, errors.New("SHA1RNDS4: bad operands")
@@ -16982,6 +17688,7 @@ func SHA256MSG1(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SHA"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -16989,6 +17696,7 @@ func SHA256MSG1(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SHA"},
 		}, nil
 	}
 	return nil, errors.New("SHA256MSG1: bad operands")
@@ -17008,6 +17716,7 @@ func SHA256MSG2(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SHA"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -17015,6 +17724,7 @@ func SHA256MSG2(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SHA"},
 		}, nil
 	}
 	return nil, errors.New("SHA256MSG2: bad operands")
@@ -17034,6 +17744,7 @@ func SHA256RNDS2(x, mx, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{x, mx, x1},
 			Inputs:   []operand.Op{x, mx, x1},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"SHA"},
 		}, nil
 	case operand.IsXMM0(x) && operand.IsM128(mx) && operand.IsXMM(x1):
 		return &intrep.Instruction{
@@ -17041,6 +17752,7 @@ func SHA256RNDS2(x, mx, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{x, mx, x1},
 			Inputs:   []operand.Op{x, mx, x1},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"SHA"},
 		}, nil
 	}
 	return nil, errors.New("SHA256RNDS2: bad operands")
@@ -17388,6 +18100,7 @@ func SHLXL(r, mr, r1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{r, mr, r1},
 			Inputs:   []operand.Op{r, mr},
 			Outputs:  []operand.Op{r1},
+			ISA:      []string{"BMI2"},
 		}, nil
 	case operand.IsR32(r) && operand.IsM32(mr) && operand.IsR32(r1):
 		return &intrep.Instruction{
@@ -17395,6 +18108,7 @@ func SHLXL(r, mr, r1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{r, mr, r1},
 			Inputs:   []operand.Op{r, mr},
 			Outputs:  []operand.Op{r1},
+			ISA:      []string{"BMI2"},
 		}, nil
 	}
 	return nil, errors.New("SHLXL: bad operands")
@@ -17414,6 +18128,7 @@ func SHLXQ(r, mr, r1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{r, mr, r1},
 			Inputs:   []operand.Op{r, mr},
 			Outputs:  []operand.Op{r1},
+			ISA:      []string{"BMI2"},
 		}, nil
 	case operand.IsR64(r) && operand.IsM64(mr) && operand.IsR64(r1):
 		return &intrep.Instruction{
@@ -17421,6 +18136,7 @@ func SHLXQ(r, mr, r1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{r, mr, r1},
 			Inputs:   []operand.Op{r, mr},
 			Outputs:  []operand.Op{r1},
+			ISA:      []string{"BMI2"},
 		}, nil
 	}
 	return nil, errors.New("SHLXQ: bad operands")
@@ -17768,6 +18484,7 @@ func SHRXL(r, mr, r1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{r, mr, r1},
 			Inputs:   []operand.Op{r, mr},
 			Outputs:  []operand.Op{r1},
+			ISA:      []string{"BMI2"},
 		}, nil
 	case operand.IsR32(r) && operand.IsM32(mr) && operand.IsR32(r1):
 		return &intrep.Instruction{
@@ -17775,6 +18492,7 @@ func SHRXL(r, mr, r1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{r, mr, r1},
 			Inputs:   []operand.Op{r, mr},
 			Outputs:  []operand.Op{r1},
+			ISA:      []string{"BMI2"},
 		}, nil
 	}
 	return nil, errors.New("SHRXL: bad operands")
@@ -17794,6 +18512,7 @@ func SHRXQ(r, mr, r1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{r, mr, r1},
 			Inputs:   []operand.Op{r, mr},
 			Outputs:  []operand.Op{r1},
+			ISA:      []string{"BMI2"},
 		}, nil
 	case operand.IsR64(r) && operand.IsM64(mr) && operand.IsR64(r1):
 		return &intrep.Instruction{
@@ -17801,6 +18520,7 @@ func SHRXQ(r, mr, r1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{r, mr, r1},
 			Inputs:   []operand.Op{r, mr},
 			Outputs:  []operand.Op{r1},
+			ISA:      []string{"BMI2"},
 		}, nil
 	}
 	return nil, errors.New("SHRXQ: bad operands")
@@ -17820,6 +18540,7 @@ func SHUFPD(i, mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -17827,6 +18548,7 @@ func SHUFPD(i, mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("SHUFPD: bad operands")
@@ -17846,6 +18568,7 @@ func SHUFPS(i, mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -17853,6 +18576,7 @@ func SHUFPS(i, mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE"},
 		}, nil
 	}
 	return nil, errors.New("SHUFPS: bad operands")
@@ -17872,6 +18596,7 @@ func SQRTPD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -17879,6 +18604,7 @@ func SQRTPD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("SQRTPD: bad operands")
@@ -17898,6 +18624,7 @@ func SQRTPS(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -17905,6 +18632,7 @@ func SQRTPS(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE"},
 		}, nil
 	}
 	return nil, errors.New("SQRTPS: bad operands")
@@ -17924,6 +18652,7 @@ func SQRTSD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM64(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -17931,6 +18660,7 @@ func SQRTSD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("SQRTSD: bad operands")
@@ -17950,6 +18680,7 @@ func SQRTSS(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE"},
 		}, nil
 	case operand.IsM32(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -17957,6 +18688,7 @@ func SQRTSS(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE"},
 		}, nil
 	}
 	return nil, errors.New("SQRTSS: bad operands")
@@ -18003,6 +18735,7 @@ func STMXCSR(m operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{m},
 			Inputs:   []operand.Op{},
 			Outputs:  []operand.Op{m},
+			ISA:      []string{"SSE"},
 		}, nil
 	}
 	return nil, errors.New("STMXCSR: bad operands")
@@ -18156,6 +18889,7 @@ func SUBPD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -18163,6 +18897,7 @@ func SUBPD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("SUBPD: bad operands")
@@ -18182,6 +18917,7 @@ func SUBPS(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -18189,6 +18925,7 @@ func SUBPS(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE"},
 		}, nil
 	}
 	return nil, errors.New("SUBPS: bad operands")
@@ -18283,6 +19020,7 @@ func SUBSD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM64(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -18290,6 +19028,7 @@ func SUBSD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("SUBSD: bad operands")
@@ -18309,6 +19048,7 @@ func SUBSS(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE"},
 		}, nil
 	case operand.IsM32(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -18316,6 +19056,7 @@ func SUBSS(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE"},
 		}, nil
 	}
 	return nil, errors.New("SUBSS: bad operands")
@@ -18624,6 +19365,7 @@ func TZCNTL(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"BMI"},
 		}, nil
 	case operand.IsM32(mr) && operand.IsR32(r):
 		return &intrep.Instruction{
@@ -18631,6 +19373,7 @@ func TZCNTL(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"BMI"},
 		}, nil
 	}
 	return nil, errors.New("TZCNTL: bad operands")
@@ -18650,6 +19393,7 @@ func TZCNTQ(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"BMI"},
 		}, nil
 	case operand.IsM64(mr) && operand.IsR64(r):
 		return &intrep.Instruction{
@@ -18657,6 +19401,7 @@ func TZCNTQ(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"BMI"},
 		}, nil
 	}
 	return nil, errors.New("TZCNTQ: bad operands")
@@ -18676,6 +19421,7 @@ func TZCNTW(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"BMI"},
 		}, nil
 	case operand.IsM16(mr) && operand.IsR16(r):
 		return &intrep.Instruction{
@@ -18683,6 +19429,7 @@ func TZCNTW(mr, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, r},
 			Inputs:   []operand.Op{mr},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"BMI"},
 		}, nil
 	}
 	return nil, errors.New("TZCNTW: bad operands")
@@ -18702,6 +19449,7 @@ func UCOMISD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM64(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -18709,6 +19457,7 @@ func UCOMISD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("UCOMISD: bad operands")
@@ -18728,6 +19477,7 @@ func UCOMISS(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{},
+			ISA:      []string{"SSE"},
 		}, nil
 	case operand.IsM32(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -18735,6 +19485,7 @@ func UCOMISS(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{},
+			ISA:      []string{"SSE"},
 		}, nil
 	}
 	return nil, errors.New("UCOMISS: bad operands")
@@ -18768,6 +19519,7 @@ func UNPCKHPD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -18775,6 +19527,7 @@ func UNPCKHPD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("UNPCKHPD: bad operands")
@@ -18794,6 +19547,7 @@ func UNPCKHPS(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -18801,6 +19555,7 @@ func UNPCKHPS(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE"},
 		}, nil
 	}
 	return nil, errors.New("UNPCKHPS: bad operands")
@@ -18820,6 +19575,7 @@ func UNPCKLPD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -18827,6 +19583,7 @@ func UNPCKLPD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("UNPCKLPD: bad operands")
@@ -18846,6 +19603,7 @@ func UNPCKLPS(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -18853,6 +19611,7 @@ func UNPCKLPS(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE"},
 		}, nil
 	}
 	return nil, errors.New("UNPCKLPS: bad operands")
@@ -18874,6 +19633,7 @@ func VADDPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -18881,6 +19641,7 @@ func VADDPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -18888,6 +19649,7 @@ func VADDPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -18895,6 +19657,7 @@ func VADDPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VADDPD: bad operands")
@@ -18916,6 +19679,7 @@ func VADDPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -18923,6 +19687,7 @@ func VADDPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -18930,6 +19695,7 @@ func VADDPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -18937,6 +19703,7 @@ func VADDPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VADDPS: bad operands")
@@ -18956,6 +19723,7 @@ func VADDSD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM64(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
@@ -18963,6 +19731,7 @@ func VADDSD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VADDSD: bad operands")
@@ -18982,6 +19751,7 @@ func VADDSS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM32(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
@@ -18989,6 +19759,7 @@ func VADDSS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VADDSS: bad operands")
@@ -19010,6 +19781,7 @@ func VADDSUBPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -19017,6 +19789,7 @@ func VADDSUBPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -19024,6 +19797,7 @@ func VADDSUBPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -19031,6 +19805,7 @@ func VADDSUBPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VADDSUBPD: bad operands")
@@ -19052,6 +19827,7 @@ func VADDSUBPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -19059,6 +19835,7 @@ func VADDSUBPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -19066,6 +19843,7 @@ func VADDSUBPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -19073,6 +19851,7 @@ func VADDSUBPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VADDSUBPS: bad operands")
@@ -19092,6 +19871,7 @@ func VAESDEC(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX", "AES"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
@@ -19099,6 +19879,7 @@ func VAESDEC(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX", "AES"},
 		}, nil
 	}
 	return nil, errors.New("VAESDEC: bad operands")
@@ -19118,6 +19899,7 @@ func VAESDECLAST(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX", "AES"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
@@ -19125,6 +19907,7 @@ func VAESDECLAST(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX", "AES"},
 		}, nil
 	}
 	return nil, errors.New("VAESDECLAST: bad operands")
@@ -19144,6 +19927,7 @@ func VAESENC(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX", "AES"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
@@ -19151,6 +19935,7 @@ func VAESENC(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX", "AES"},
 		}, nil
 	}
 	return nil, errors.New("VAESENC: bad operands")
@@ -19170,6 +19955,7 @@ func VAESENCLAST(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX", "AES"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
@@ -19177,6 +19963,7 @@ func VAESENCLAST(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX", "AES"},
 		}, nil
 	}
 	return nil, errors.New("VAESENCLAST: bad operands")
@@ -19196,6 +19983,7 @@ func VAESIMC(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"AVX", "AES"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -19203,6 +19991,7 @@ func VAESIMC(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"AVX", "AES"},
 		}, nil
 	}
 	return nil, errors.New("VAESIMC: bad operands")
@@ -19222,6 +20011,7 @@ func VAESKEYGENASSIST(i, mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"AVX", "AES"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -19229,6 +20019,7 @@ func VAESKEYGENASSIST(i, mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"AVX", "AES"},
 		}, nil
 	}
 	return nil, errors.New("VAESKEYGENASSIST: bad operands")
@@ -19250,6 +20041,7 @@ func VANDNPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mxy, xy, xy1},
 			Inputs:           []operand.Op{mxy, xy},
 			Outputs:          []operand.Op{xy1},
+			ISA:              []string{"AVX"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
@@ -19258,6 +20050,7 @@ func VANDNPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -19265,6 +20058,7 @@ func VANDNPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mxy, xy, xy1},
 			Inputs:           []operand.Op{mxy, xy},
 			Outputs:          []operand.Op{xy1},
+			ISA:              []string{"AVX"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
@@ -19273,6 +20067,7 @@ func VANDNPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VANDNPD: bad operands")
@@ -19294,6 +20089,7 @@ func VANDNPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mxy, xy, xy1},
 			Inputs:           []operand.Op{mxy, xy},
 			Outputs:          []operand.Op{xy1},
+			ISA:              []string{"AVX"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
@@ -19302,6 +20098,7 @@ func VANDNPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -19309,6 +20106,7 @@ func VANDNPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mxy, xy, xy1},
 			Inputs:           []operand.Op{mxy, xy},
 			Outputs:          []operand.Op{xy1},
+			ISA:              []string{"AVX"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
@@ -19317,6 +20115,7 @@ func VANDNPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VANDNPS: bad operands")
@@ -19338,6 +20137,7 @@ func VANDPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -19345,6 +20145,7 @@ func VANDPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -19352,6 +20153,7 @@ func VANDPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -19359,6 +20161,7 @@ func VANDPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VANDPD: bad operands")
@@ -19380,6 +20183,7 @@ func VANDPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -19387,6 +20191,7 @@ func VANDPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -19394,6 +20199,7 @@ func VANDPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -19401,6 +20207,7 @@ func VANDPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VANDPS: bad operands")
@@ -19422,6 +20229,7 @@ func VBLENDPD(i, mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -19429,6 +20237,7 @@ func VBLENDPD(i, mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -19436,6 +20245,7 @@ func VBLENDPD(i, mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -19443,6 +20253,7 @@ func VBLENDPD(i, mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VBLENDPD: bad operands")
@@ -19464,6 +20275,7 @@ func VBLENDPS(i, mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -19471,6 +20283,7 @@ func VBLENDPS(i, mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -19478,6 +20291,7 @@ func VBLENDPS(i, mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -19485,6 +20299,7 @@ func VBLENDPS(i, mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VBLENDPS: bad operands")
@@ -19506,6 +20321,7 @@ func VBLENDVPD(xy, mxy, xy1, xy2 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{xy, mxy, xy1, xy2},
 			Inputs:   []operand.Op{xy, mxy, xy1},
 			Outputs:  []operand.Op{xy2},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsXMM(xy) && operand.IsM128(mxy) && operand.IsXMM(xy1) && operand.IsXMM(xy2):
 		return &intrep.Instruction{
@@ -19513,6 +20329,7 @@ func VBLENDVPD(xy, mxy, xy1, xy2 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{xy, mxy, xy1, xy2},
 			Inputs:   []operand.Op{xy, mxy, xy1},
 			Outputs:  []operand.Op{xy2},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(xy) && operand.IsYMM(mxy) && operand.IsYMM(xy1) && operand.IsYMM(xy2):
 		return &intrep.Instruction{
@@ -19520,6 +20337,7 @@ func VBLENDVPD(xy, mxy, xy1, xy2 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{xy, mxy, xy1, xy2},
 			Inputs:   []operand.Op{xy, mxy, xy1},
 			Outputs:  []operand.Op{xy2},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(xy) && operand.IsM256(mxy) && operand.IsYMM(xy1) && operand.IsYMM(xy2):
 		return &intrep.Instruction{
@@ -19527,6 +20345,7 @@ func VBLENDVPD(xy, mxy, xy1, xy2 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{xy, mxy, xy1, xy2},
 			Inputs:   []operand.Op{xy, mxy, xy1},
 			Outputs:  []operand.Op{xy2},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VBLENDVPD: bad operands")
@@ -19548,6 +20367,7 @@ func VBLENDVPS(xy, mxy, xy1, xy2 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{xy, mxy, xy1, xy2},
 			Inputs:   []operand.Op{xy, mxy, xy1},
 			Outputs:  []operand.Op{xy2},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsXMM(xy) && operand.IsM128(mxy) && operand.IsXMM(xy1) && operand.IsXMM(xy2):
 		return &intrep.Instruction{
@@ -19555,6 +20375,7 @@ func VBLENDVPS(xy, mxy, xy1, xy2 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{xy, mxy, xy1, xy2},
 			Inputs:   []operand.Op{xy, mxy, xy1},
 			Outputs:  []operand.Op{xy2},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(xy) && operand.IsYMM(mxy) && operand.IsYMM(xy1) && operand.IsYMM(xy2):
 		return &intrep.Instruction{
@@ -19562,6 +20383,7 @@ func VBLENDVPS(xy, mxy, xy1, xy2 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{xy, mxy, xy1, xy2},
 			Inputs:   []operand.Op{xy, mxy, xy1},
 			Outputs:  []operand.Op{xy2},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(xy) && operand.IsM256(mxy) && operand.IsYMM(xy1) && operand.IsYMM(xy2):
 		return &intrep.Instruction{
@@ -19569,6 +20391,7 @@ func VBLENDVPS(xy, mxy, xy1, xy2 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{xy, mxy, xy1, xy2},
 			Inputs:   []operand.Op{xy, mxy, xy1},
 			Outputs:  []operand.Op{xy2},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VBLENDVPS: bad operands")
@@ -19587,6 +20410,7 @@ func VBROADCASTF128(m, y operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{m, y},
 			Inputs:   []operand.Op{m},
 			Outputs:  []operand.Op{y},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VBROADCASTF128: bad operands")
@@ -19605,6 +20429,7 @@ func VBROADCASTI128(m, y operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{m, y},
 			Inputs:   []operand.Op{m},
 			Outputs:  []operand.Op{y},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VBROADCASTI128: bad operands")
@@ -19624,6 +20449,7 @@ func VBROADCASTSD(mx, y operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, y},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{y},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM64(mx) && operand.IsYMM(y):
 		return &intrep.Instruction{
@@ -19631,6 +20457,7 @@ func VBROADCASTSD(mx, y operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, y},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{y},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VBROADCASTSD: bad operands")
@@ -19652,6 +20479,7 @@ func VBROADCASTSS(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM32(mx) && operand.IsXMM(xy):
 		return &intrep.Instruction{
@@ -19659,6 +20487,7 @@ func VBROADCASTSS(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsXMM(mx) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -19666,6 +20495,7 @@ func VBROADCASTSS(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM32(mx) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -19673,6 +20503,7 @@ func VBROADCASTSS(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VBROADCASTSS: bad operands")
@@ -19694,6 +20525,7 @@ func VCMPPD(i, mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -19701,6 +20533,7 @@ func VCMPPD(i, mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -19708,6 +20541,7 @@ func VCMPPD(i, mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -19715,6 +20549,7 @@ func VCMPPD(i, mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VCMPPD: bad operands")
@@ -19736,6 +20571,7 @@ func VCMPPS(i, mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -19743,6 +20579,7 @@ func VCMPPS(i, mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -19750,6 +20587,7 @@ func VCMPPS(i, mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -19757,6 +20595,7 @@ func VCMPPS(i, mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VCMPPS: bad operands")
@@ -19776,6 +20615,7 @@ func VCMPSD(i, mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x, x1},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM64(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
@@ -19783,6 +20623,7 @@ func VCMPSD(i, mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x, x1},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VCMPSD: bad operands")
@@ -19802,6 +20643,7 @@ func VCMPSS(i, mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x, x1},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM32(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
@@ -19809,6 +20651,7 @@ func VCMPSS(i, mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x, x1},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VCMPSS: bad operands")
@@ -19828,6 +20671,7 @@ func VCOMISD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM64(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -19835,6 +20679,7 @@ func VCOMISD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VCOMISD: bad operands")
@@ -19854,6 +20699,7 @@ func VCOMISS(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM32(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -19861,6 +20707,7 @@ func VCOMISS(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VCOMISS: bad operands")
@@ -19882,6 +20729,7 @@ func VCVTDQ2PD(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM64(mx) && operand.IsXMM(xy):
 		return &intrep.Instruction{
@@ -19889,6 +20737,7 @@ func VCVTDQ2PD(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsXMM(mx) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -19896,6 +20745,7 @@ func VCVTDQ2PD(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -19903,6 +20753,7 @@ func VCVTDQ2PD(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VCVTDQ2PD: bad operands")
@@ -19924,6 +20775,7 @@ func VCVTDQ2PS(mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy):
 		return &intrep.Instruction{
@@ -19931,6 +20783,7 @@ func VCVTDQ2PS(mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -19938,6 +20791,7 @@ func VCVTDQ2PS(mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -19945,6 +20799,7 @@ func VCVTDQ2PS(mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VCVTDQ2PS: bad operands")
@@ -19964,6 +20819,7 @@ func VCVTPD2DQX(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -19971,6 +20827,7 @@ func VCVTPD2DQX(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VCVTPD2DQX: bad operands")
@@ -19990,6 +20847,7 @@ func VCVTPD2DQY(my, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{my, x},
 			Inputs:   []operand.Op{my},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM256(my) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -19997,6 +20855,7 @@ func VCVTPD2DQY(my, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{my, x},
 			Inputs:   []operand.Op{my},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VCVTPD2DQY: bad operands")
@@ -20016,6 +20875,7 @@ func VCVTPD2PSX(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -20023,6 +20883,7 @@ func VCVTPD2PSX(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VCVTPD2PSX: bad operands")
@@ -20042,6 +20903,7 @@ func VCVTPD2PSY(my, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{my, x},
 			Inputs:   []operand.Op{my},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM256(my) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -20049,6 +20911,7 @@ func VCVTPD2PSY(my, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{my, x},
 			Inputs:   []operand.Op{my},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VCVTPD2PSY: bad operands")
@@ -20070,6 +20933,7 @@ func VCVTPH2PS(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"F16C"},
 		}, nil
 	case operand.IsM64(mx) && operand.IsXMM(xy):
 		return &intrep.Instruction{
@@ -20077,6 +20941,7 @@ func VCVTPH2PS(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"F16C"},
 		}, nil
 	case operand.IsXMM(mx) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -20084,6 +20949,7 @@ func VCVTPH2PS(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"F16C"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -20091,6 +20957,7 @@ func VCVTPH2PS(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"F16C"},
 		}, nil
 	}
 	return nil, errors.New("VCVTPH2PS: bad operands")
@@ -20112,6 +20979,7 @@ func VCVTPS2DQ(mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy):
 		return &intrep.Instruction{
@@ -20119,6 +20987,7 @@ func VCVTPS2DQ(mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -20126,6 +20995,7 @@ func VCVTPS2DQ(mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -20133,6 +21003,7 @@ func VCVTPS2DQ(mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VCVTPS2DQ: bad operands")
@@ -20154,6 +21025,7 @@ func VCVTPS2PD(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM64(mx) && operand.IsXMM(xy):
 		return &intrep.Instruction{
@@ -20161,6 +21033,7 @@ func VCVTPS2PD(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsXMM(mx) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -20168,6 +21041,7 @@ func VCVTPS2PD(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -20175,6 +21049,7 @@ func VCVTPS2PD(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VCVTPS2PD: bad operands")
@@ -20196,6 +21071,7 @@ func VCVTPS2PH(i, xy, mx operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, xy, mx},
 			Inputs:   []operand.Op{xy},
 			Outputs:  []operand.Op{mx},
+			ISA:      []string{"F16C"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsYMM(xy) && operand.IsXMM(mx):
 		return &intrep.Instruction{
@@ -20203,6 +21079,7 @@ func VCVTPS2PH(i, xy, mx operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, xy, mx},
 			Inputs:   []operand.Op{xy},
 			Outputs:  []operand.Op{mx},
+			ISA:      []string{"F16C"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsXMM(xy) && operand.IsM64(mx):
 		return &intrep.Instruction{
@@ -20210,6 +21087,7 @@ func VCVTPS2PH(i, xy, mx operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, xy, mx},
 			Inputs:   []operand.Op{xy},
 			Outputs:  []operand.Op{mx},
+			ISA:      []string{"F16C"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsYMM(xy) && operand.IsM128(mx):
 		return &intrep.Instruction{
@@ -20217,6 +21095,7 @@ func VCVTPS2PH(i, xy, mx operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, xy, mx},
 			Inputs:   []operand.Op{xy},
 			Outputs:  []operand.Op{mx},
+			ISA:      []string{"F16C"},
 		}, nil
 	}
 	return nil, errors.New("VCVTPS2PH: bad operands")
@@ -20236,6 +21115,7 @@ func VCVTSD2SI(mx, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, r},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM64(mx) && operand.IsR32(r):
 		return &intrep.Instruction{
@@ -20243,6 +21123,7 @@ func VCVTSD2SI(mx, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, r},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VCVTSD2SI: bad operands")
@@ -20262,6 +21143,7 @@ func VCVTSD2SIQ(mx, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, r},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM64(mx) && operand.IsR64(r):
 		return &intrep.Instruction{
@@ -20269,6 +21151,7 @@ func VCVTSD2SIQ(mx, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, r},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VCVTSD2SIQ: bad operands")
@@ -20288,6 +21171,7 @@ func VCVTSD2SS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM64(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
@@ -20295,6 +21179,7 @@ func VCVTSD2SS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VCVTSD2SS: bad operands")
@@ -20314,6 +21199,7 @@ func VCVTSI2SDL(mr, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, x, x1},
 			Inputs:   []operand.Op{mr, x},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM32(mr) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
@@ -20321,6 +21207,7 @@ func VCVTSI2SDL(mr, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, x, x1},
 			Inputs:   []operand.Op{mr, x},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VCVTSI2SDL: bad operands")
@@ -20340,6 +21227,7 @@ func VCVTSI2SDQ(mr, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, x, x1},
 			Inputs:   []operand.Op{mr, x},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM64(mr) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
@@ -20347,6 +21235,7 @@ func VCVTSI2SDQ(mr, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, x, x1},
 			Inputs:   []operand.Op{mr, x},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VCVTSI2SDQ: bad operands")
@@ -20366,6 +21255,7 @@ func VCVTSI2SSL(mr, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, x, x1},
 			Inputs:   []operand.Op{mr, x},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM32(mr) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
@@ -20373,6 +21263,7 @@ func VCVTSI2SSL(mr, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, x, x1},
 			Inputs:   []operand.Op{mr, x},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VCVTSI2SSL: bad operands")
@@ -20392,6 +21283,7 @@ func VCVTSI2SSQ(mr, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, x, x1},
 			Inputs:   []operand.Op{mr, x},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM64(mr) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
@@ -20399,6 +21291,7 @@ func VCVTSI2SSQ(mr, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, x, x1},
 			Inputs:   []operand.Op{mr, x},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VCVTSI2SSQ: bad operands")
@@ -20418,6 +21311,7 @@ func VCVTSS2SD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM32(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
@@ -20425,6 +21319,7 @@ func VCVTSS2SD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VCVTSS2SD: bad operands")
@@ -20444,6 +21339,7 @@ func VCVTSS2SI(mx, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, r},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM32(mx) && operand.IsR32(r):
 		return &intrep.Instruction{
@@ -20451,6 +21347,7 @@ func VCVTSS2SI(mx, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, r},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VCVTSS2SI: bad operands")
@@ -20470,6 +21367,7 @@ func VCVTSS2SIQ(mx, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, r},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM32(mx) && operand.IsR64(r):
 		return &intrep.Instruction{
@@ -20477,6 +21375,7 @@ func VCVTSS2SIQ(mx, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, r},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VCVTSS2SIQ: bad operands")
@@ -20496,6 +21395,7 @@ func VCVTTPD2DQX(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -20503,6 +21403,7 @@ func VCVTTPD2DQX(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VCVTTPD2DQX: bad operands")
@@ -20522,6 +21423,7 @@ func VCVTTPD2DQY(my, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{my, x},
 			Inputs:   []operand.Op{my},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM256(my) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -20529,6 +21431,7 @@ func VCVTTPD2DQY(my, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{my, x},
 			Inputs:   []operand.Op{my},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VCVTTPD2DQY: bad operands")
@@ -20550,6 +21453,7 @@ func VCVTTPS2DQ(mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy):
 		return &intrep.Instruction{
@@ -20557,6 +21461,7 @@ func VCVTTPS2DQ(mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -20564,6 +21469,7 @@ func VCVTTPS2DQ(mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -20571,6 +21477,7 @@ func VCVTTPS2DQ(mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VCVTTPS2DQ: bad operands")
@@ -20590,6 +21497,7 @@ func VCVTTSD2SI(mx, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, r},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM64(mx) && operand.IsR32(r):
 		return &intrep.Instruction{
@@ -20597,6 +21505,7 @@ func VCVTTSD2SI(mx, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, r},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VCVTTSD2SI: bad operands")
@@ -20616,6 +21525,7 @@ func VCVTTSD2SIQ(mx, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, r},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM64(mx) && operand.IsR64(r):
 		return &intrep.Instruction{
@@ -20623,6 +21533,7 @@ func VCVTTSD2SIQ(mx, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, r},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VCVTTSD2SIQ: bad operands")
@@ -20642,6 +21553,7 @@ func VCVTTSS2SI(mx, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, r},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM32(mx) && operand.IsR32(r):
 		return &intrep.Instruction{
@@ -20649,6 +21561,7 @@ func VCVTTSS2SI(mx, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, r},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VCVTTSS2SI: bad operands")
@@ -20668,6 +21581,7 @@ func VCVTTSS2SIQ(mx, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, r},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM32(mx) && operand.IsR64(r):
 		return &intrep.Instruction{
@@ -20675,6 +21589,7 @@ func VCVTTSS2SIQ(mx, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, r},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VCVTTSS2SIQ: bad operands")
@@ -20696,6 +21611,7 @@ func VDIVPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -20703,6 +21619,7 @@ func VDIVPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -20710,6 +21627,7 @@ func VDIVPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -20717,6 +21635,7 @@ func VDIVPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VDIVPD: bad operands")
@@ -20738,6 +21657,7 @@ func VDIVPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -20745,6 +21665,7 @@ func VDIVPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -20752,6 +21673,7 @@ func VDIVPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -20759,6 +21681,7 @@ func VDIVPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VDIVPS: bad operands")
@@ -20778,6 +21701,7 @@ func VDIVSD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM64(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
@@ -20785,6 +21709,7 @@ func VDIVSD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VDIVSD: bad operands")
@@ -20804,6 +21729,7 @@ func VDIVSS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM32(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
@@ -20811,6 +21737,7 @@ func VDIVSS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VDIVSS: bad operands")
@@ -20830,6 +21757,7 @@ func VDPPD(i, mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x, x1},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM128(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
@@ -20837,6 +21765,7 @@ func VDPPD(i, mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x, x1},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VDPPD: bad operands")
@@ -20858,6 +21787,7 @@ func VDPPS(i, mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -20865,6 +21795,7 @@ func VDPPS(i, mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -20872,6 +21803,7 @@ func VDPPS(i, mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -20879,6 +21811,7 @@ func VDPPS(i, mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VDPPS: bad operands")
@@ -20898,6 +21831,7 @@ func VEXTRACTF128(i, y, mx operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, y, mx},
 			Inputs:   []operand.Op{y},
 			Outputs:  []operand.Op{mx},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsYMM(y) && operand.IsM128(mx):
 		return &intrep.Instruction{
@@ -20905,6 +21839,7 @@ func VEXTRACTF128(i, y, mx operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, y, mx},
 			Inputs:   []operand.Op{y},
 			Outputs:  []operand.Op{mx},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VEXTRACTF128: bad operands")
@@ -20924,6 +21859,7 @@ func VEXTRACTI128(i, y, mx operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, y, mx},
 			Inputs:   []operand.Op{y},
 			Outputs:  []operand.Op{mx},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsYMM(y) && operand.IsM128(mx):
 		return &intrep.Instruction{
@@ -20931,6 +21867,7 @@ func VEXTRACTI128(i, y, mx operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, y, mx},
 			Inputs:   []operand.Op{y},
 			Outputs:  []operand.Op{mx},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VEXTRACTI128: bad operands")
@@ -20950,6 +21887,7 @@ func VEXTRACTPS(i, x, mr operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, x, mr},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{mr},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsXMM(x) && operand.IsM32(mr):
 		return &intrep.Instruction{
@@ -20957,6 +21895,7 @@ func VEXTRACTPS(i, x, mr operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, x, mr},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{mr},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VEXTRACTPS: bad operands")
@@ -20978,6 +21917,7 @@ func VFMADD132PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -20985,6 +21925,7 @@ func VFMADD132PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -20992,6 +21933,7 @@ func VFMADD132PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -20999,6 +21941,7 @@ func VFMADD132PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	}
 	return nil, errors.New("VFMADD132PD: bad operands")
@@ -21020,6 +21963,7 @@ func VFMADD132PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -21027,6 +21971,7 @@ func VFMADD132PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -21034,6 +21979,7 @@ func VFMADD132PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -21041,6 +21987,7 @@ func VFMADD132PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	}
 	return nil, errors.New("VFMADD132PS: bad operands")
@@ -21060,6 +22007,7 @@ func VFMADD132SD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x, x1},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM64(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
@@ -21067,6 +22015,7 @@ func VFMADD132SD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x, x1},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	}
 	return nil, errors.New("VFMADD132SD: bad operands")
@@ -21086,6 +22035,7 @@ func VFMADD132SS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x, x1},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM32(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
@@ -21093,6 +22043,7 @@ func VFMADD132SS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x, x1},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	}
 	return nil, errors.New("VFMADD132SS: bad operands")
@@ -21114,6 +22065,7 @@ func VFMADD213PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -21121,6 +22073,7 @@ func VFMADD213PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -21128,6 +22081,7 @@ func VFMADD213PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -21135,6 +22089,7 @@ func VFMADD213PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	}
 	return nil, errors.New("VFMADD213PD: bad operands")
@@ -21156,6 +22111,7 @@ func VFMADD213PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -21163,6 +22119,7 @@ func VFMADD213PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -21170,6 +22127,7 @@ func VFMADD213PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -21177,6 +22135,7 @@ func VFMADD213PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	}
 	return nil, errors.New("VFMADD213PS: bad operands")
@@ -21196,6 +22155,7 @@ func VFMADD213SD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x, x1},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM64(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
@@ -21203,6 +22163,7 @@ func VFMADD213SD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x, x1},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	}
 	return nil, errors.New("VFMADD213SD: bad operands")
@@ -21222,6 +22183,7 @@ func VFMADD213SS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x, x1},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM32(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
@@ -21229,6 +22191,7 @@ func VFMADD213SS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x, x1},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	}
 	return nil, errors.New("VFMADD213SS: bad operands")
@@ -21250,6 +22213,7 @@ func VFMADD231PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -21257,6 +22221,7 @@ func VFMADD231PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -21264,6 +22229,7 @@ func VFMADD231PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -21271,6 +22237,7 @@ func VFMADD231PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	}
 	return nil, errors.New("VFMADD231PD: bad operands")
@@ -21292,6 +22259,7 @@ func VFMADD231PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -21299,6 +22267,7 @@ func VFMADD231PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -21306,6 +22275,7 @@ func VFMADD231PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -21313,6 +22283,7 @@ func VFMADD231PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	}
 	return nil, errors.New("VFMADD231PS: bad operands")
@@ -21332,6 +22303,7 @@ func VFMADD231SD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x, x1},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM64(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
@@ -21339,6 +22311,7 @@ func VFMADD231SD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x, x1},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	}
 	return nil, errors.New("VFMADD231SD: bad operands")
@@ -21358,6 +22331,7 @@ func VFMADD231SS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x, x1},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM32(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
@@ -21365,6 +22339,7 @@ func VFMADD231SS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x, x1},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	}
 	return nil, errors.New("VFMADD231SS: bad operands")
@@ -21386,6 +22361,7 @@ func VFMADDSUB132PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -21393,6 +22369,7 @@ func VFMADDSUB132PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -21400,6 +22377,7 @@ func VFMADDSUB132PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -21407,6 +22385,7 @@ func VFMADDSUB132PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	}
 	return nil, errors.New("VFMADDSUB132PD: bad operands")
@@ -21428,6 +22407,7 @@ func VFMADDSUB132PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -21435,6 +22415,7 @@ func VFMADDSUB132PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -21442,6 +22423,7 @@ func VFMADDSUB132PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -21449,6 +22431,7 @@ func VFMADDSUB132PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	}
 	return nil, errors.New("VFMADDSUB132PS: bad operands")
@@ -21470,6 +22453,7 @@ func VFMADDSUB213PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -21477,6 +22461,7 @@ func VFMADDSUB213PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -21484,6 +22469,7 @@ func VFMADDSUB213PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -21491,6 +22477,7 @@ func VFMADDSUB213PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	}
 	return nil, errors.New("VFMADDSUB213PD: bad operands")
@@ -21512,6 +22499,7 @@ func VFMADDSUB213PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -21519,6 +22507,7 @@ func VFMADDSUB213PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -21526,6 +22515,7 @@ func VFMADDSUB213PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -21533,6 +22523,7 @@ func VFMADDSUB213PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	}
 	return nil, errors.New("VFMADDSUB213PS: bad operands")
@@ -21554,6 +22545,7 @@ func VFMADDSUB231PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -21561,6 +22553,7 @@ func VFMADDSUB231PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -21568,6 +22561,7 @@ func VFMADDSUB231PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -21575,6 +22569,7 @@ func VFMADDSUB231PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	}
 	return nil, errors.New("VFMADDSUB231PD: bad operands")
@@ -21596,6 +22591,7 @@ func VFMADDSUB231PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -21603,6 +22599,7 @@ func VFMADDSUB231PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -21610,6 +22607,7 @@ func VFMADDSUB231PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -21617,6 +22615,7 @@ func VFMADDSUB231PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	}
 	return nil, errors.New("VFMADDSUB231PS: bad operands")
@@ -21638,6 +22637,7 @@ func VFMSUB132PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -21645,6 +22645,7 @@ func VFMSUB132PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -21652,6 +22653,7 @@ func VFMSUB132PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -21659,6 +22661,7 @@ func VFMSUB132PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	}
 	return nil, errors.New("VFMSUB132PD: bad operands")
@@ -21680,6 +22683,7 @@ func VFMSUB132PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -21687,6 +22691,7 @@ func VFMSUB132PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -21694,6 +22699,7 @@ func VFMSUB132PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -21701,6 +22707,7 @@ func VFMSUB132PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	}
 	return nil, errors.New("VFMSUB132PS: bad operands")
@@ -21720,6 +22727,7 @@ func VFMSUB132SD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x, x1},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM64(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
@@ -21727,6 +22735,7 @@ func VFMSUB132SD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x, x1},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	}
 	return nil, errors.New("VFMSUB132SD: bad operands")
@@ -21746,6 +22755,7 @@ func VFMSUB132SS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x, x1},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM32(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
@@ -21753,6 +22763,7 @@ func VFMSUB132SS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x, x1},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	}
 	return nil, errors.New("VFMSUB132SS: bad operands")
@@ -21774,6 +22785,7 @@ func VFMSUB213PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -21781,6 +22793,7 @@ func VFMSUB213PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -21788,6 +22801,7 @@ func VFMSUB213PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -21795,6 +22809,7 @@ func VFMSUB213PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	}
 	return nil, errors.New("VFMSUB213PD: bad operands")
@@ -21816,6 +22831,7 @@ func VFMSUB213PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -21823,6 +22839,7 @@ func VFMSUB213PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -21830,6 +22847,7 @@ func VFMSUB213PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -21837,6 +22855,7 @@ func VFMSUB213PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	}
 	return nil, errors.New("VFMSUB213PS: bad operands")
@@ -21856,6 +22875,7 @@ func VFMSUB213SD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x, x1},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM64(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
@@ -21863,6 +22883,7 @@ func VFMSUB213SD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x, x1},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	}
 	return nil, errors.New("VFMSUB213SD: bad operands")
@@ -21882,6 +22903,7 @@ func VFMSUB213SS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x, x1},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM32(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
@@ -21889,6 +22911,7 @@ func VFMSUB213SS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x, x1},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	}
 	return nil, errors.New("VFMSUB213SS: bad operands")
@@ -21910,6 +22933,7 @@ func VFMSUB231PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -21917,6 +22941,7 @@ func VFMSUB231PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -21924,6 +22949,7 @@ func VFMSUB231PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -21931,6 +22957,7 @@ func VFMSUB231PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	}
 	return nil, errors.New("VFMSUB231PD: bad operands")
@@ -21952,6 +22979,7 @@ func VFMSUB231PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -21959,6 +22987,7 @@ func VFMSUB231PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -21966,6 +22995,7 @@ func VFMSUB231PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -21973,6 +23003,7 @@ func VFMSUB231PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	}
 	return nil, errors.New("VFMSUB231PS: bad operands")
@@ -21992,6 +23023,7 @@ func VFMSUB231SD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x, x1},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM64(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
@@ -21999,6 +23031,7 @@ func VFMSUB231SD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x, x1},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	}
 	return nil, errors.New("VFMSUB231SD: bad operands")
@@ -22018,6 +23051,7 @@ func VFMSUB231SS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x, x1},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM32(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
@@ -22025,6 +23059,7 @@ func VFMSUB231SS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x, x1},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	}
 	return nil, errors.New("VFMSUB231SS: bad operands")
@@ -22046,6 +23081,7 @@ func VFMSUBADD132PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -22053,6 +23089,7 @@ func VFMSUBADD132PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -22060,6 +23097,7 @@ func VFMSUBADD132PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -22067,6 +23105,7 @@ func VFMSUBADD132PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	}
 	return nil, errors.New("VFMSUBADD132PD: bad operands")
@@ -22088,6 +23127,7 @@ func VFMSUBADD132PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -22095,6 +23135,7 @@ func VFMSUBADD132PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -22102,6 +23143,7 @@ func VFMSUBADD132PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -22109,6 +23151,7 @@ func VFMSUBADD132PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	}
 	return nil, errors.New("VFMSUBADD132PS: bad operands")
@@ -22130,6 +23173,7 @@ func VFMSUBADD213PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -22137,6 +23181,7 @@ func VFMSUBADD213PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -22144,6 +23189,7 @@ func VFMSUBADD213PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -22151,6 +23197,7 @@ func VFMSUBADD213PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	}
 	return nil, errors.New("VFMSUBADD213PD: bad operands")
@@ -22172,6 +23219,7 @@ func VFMSUBADD213PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -22179,6 +23227,7 @@ func VFMSUBADD213PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -22186,6 +23235,7 @@ func VFMSUBADD213PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -22193,6 +23243,7 @@ func VFMSUBADD213PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	}
 	return nil, errors.New("VFMSUBADD213PS: bad operands")
@@ -22214,6 +23265,7 @@ func VFMSUBADD231PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -22221,6 +23273,7 @@ func VFMSUBADD231PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -22228,6 +23281,7 @@ func VFMSUBADD231PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -22235,6 +23289,7 @@ func VFMSUBADD231PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	}
 	return nil, errors.New("VFMSUBADD231PD: bad operands")
@@ -22256,6 +23311,7 @@ func VFMSUBADD231PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -22263,6 +23319,7 @@ func VFMSUBADD231PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -22270,6 +23327,7 @@ func VFMSUBADD231PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -22277,6 +23335,7 @@ func VFMSUBADD231PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	}
 	return nil, errors.New("VFMSUBADD231PS: bad operands")
@@ -22298,6 +23357,7 @@ func VFNMADD132PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -22305,6 +23365,7 @@ func VFNMADD132PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -22312,6 +23373,7 @@ func VFNMADD132PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -22319,6 +23381,7 @@ func VFNMADD132PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	}
 	return nil, errors.New("VFNMADD132PD: bad operands")
@@ -22340,6 +23403,7 @@ func VFNMADD132PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -22347,6 +23411,7 @@ func VFNMADD132PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -22354,6 +23419,7 @@ func VFNMADD132PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -22361,6 +23427,7 @@ func VFNMADD132PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	}
 	return nil, errors.New("VFNMADD132PS: bad operands")
@@ -22380,6 +23447,7 @@ func VFNMADD132SD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x, x1},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM64(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
@@ -22387,6 +23455,7 @@ func VFNMADD132SD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x, x1},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	}
 	return nil, errors.New("VFNMADD132SD: bad operands")
@@ -22406,6 +23475,7 @@ func VFNMADD132SS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x, x1},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM32(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
@@ -22413,6 +23483,7 @@ func VFNMADD132SS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x, x1},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	}
 	return nil, errors.New("VFNMADD132SS: bad operands")
@@ -22434,6 +23505,7 @@ func VFNMADD213PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -22441,6 +23513,7 @@ func VFNMADD213PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -22448,6 +23521,7 @@ func VFNMADD213PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -22455,6 +23529,7 @@ func VFNMADD213PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	}
 	return nil, errors.New("VFNMADD213PD: bad operands")
@@ -22476,6 +23551,7 @@ func VFNMADD213PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -22483,6 +23559,7 @@ func VFNMADD213PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -22490,6 +23567,7 @@ func VFNMADD213PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -22497,6 +23575,7 @@ func VFNMADD213PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	}
 	return nil, errors.New("VFNMADD213PS: bad operands")
@@ -22516,6 +23595,7 @@ func VFNMADD213SD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x, x1},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM64(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
@@ -22523,6 +23603,7 @@ func VFNMADD213SD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x, x1},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	}
 	return nil, errors.New("VFNMADD213SD: bad operands")
@@ -22542,6 +23623,7 @@ func VFNMADD213SS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x, x1},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM32(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
@@ -22549,6 +23631,7 @@ func VFNMADD213SS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x, x1},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	}
 	return nil, errors.New("VFNMADD213SS: bad operands")
@@ -22570,6 +23653,7 @@ func VFNMADD231PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -22577,6 +23661,7 @@ func VFNMADD231PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -22584,6 +23669,7 @@ func VFNMADD231PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -22591,6 +23677,7 @@ func VFNMADD231PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	}
 	return nil, errors.New("VFNMADD231PD: bad operands")
@@ -22612,6 +23699,7 @@ func VFNMADD231PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -22619,6 +23707,7 @@ func VFNMADD231PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -22626,6 +23715,7 @@ func VFNMADD231PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -22633,6 +23723,7 @@ func VFNMADD231PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	}
 	return nil, errors.New("VFNMADD231PS: bad operands")
@@ -22652,6 +23743,7 @@ func VFNMADD231SD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x, x1},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM64(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
@@ -22659,6 +23751,7 @@ func VFNMADD231SD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x, x1},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	}
 	return nil, errors.New("VFNMADD231SD: bad operands")
@@ -22678,6 +23771,7 @@ func VFNMADD231SS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x, x1},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM32(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
@@ -22685,6 +23779,7 @@ func VFNMADD231SS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x, x1},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	}
 	return nil, errors.New("VFNMADD231SS: bad operands")
@@ -22706,6 +23801,7 @@ func VFNMSUB132PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -22713,6 +23809,7 @@ func VFNMSUB132PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -22720,6 +23817,7 @@ func VFNMSUB132PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -22727,6 +23825,7 @@ func VFNMSUB132PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	}
 	return nil, errors.New("VFNMSUB132PD: bad operands")
@@ -22748,6 +23847,7 @@ func VFNMSUB132PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -22755,6 +23855,7 @@ func VFNMSUB132PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -22762,6 +23863,7 @@ func VFNMSUB132PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -22769,6 +23871,7 @@ func VFNMSUB132PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	}
 	return nil, errors.New("VFNMSUB132PS: bad operands")
@@ -22788,6 +23891,7 @@ func VFNMSUB132SD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x, x1},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM64(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
@@ -22795,6 +23899,7 @@ func VFNMSUB132SD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x, x1},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	}
 	return nil, errors.New("VFNMSUB132SD: bad operands")
@@ -22814,6 +23919,7 @@ func VFNMSUB132SS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x, x1},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM32(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
@@ -22821,6 +23927,7 @@ func VFNMSUB132SS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x, x1},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	}
 	return nil, errors.New("VFNMSUB132SS: bad operands")
@@ -22842,6 +23949,7 @@ func VFNMSUB213PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -22849,6 +23957,7 @@ func VFNMSUB213PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -22856,6 +23965,7 @@ func VFNMSUB213PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -22863,6 +23973,7 @@ func VFNMSUB213PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	}
 	return nil, errors.New("VFNMSUB213PD: bad operands")
@@ -22884,6 +23995,7 @@ func VFNMSUB213PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -22891,6 +24003,7 @@ func VFNMSUB213PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -22898,6 +24011,7 @@ func VFNMSUB213PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -22905,6 +24019,7 @@ func VFNMSUB213PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	}
 	return nil, errors.New("VFNMSUB213PS: bad operands")
@@ -22924,6 +24039,7 @@ func VFNMSUB213SD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x, x1},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM64(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
@@ -22931,6 +24047,7 @@ func VFNMSUB213SD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x, x1},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	}
 	return nil, errors.New("VFNMSUB213SD: bad operands")
@@ -22950,6 +24067,7 @@ func VFNMSUB213SS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x, x1},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM32(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
@@ -22957,6 +24075,7 @@ func VFNMSUB213SS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x, x1},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	}
 	return nil, errors.New("VFNMSUB213SS: bad operands")
@@ -22978,6 +24097,7 @@ func VFNMSUB231PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -22985,6 +24105,7 @@ func VFNMSUB231PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -22992,6 +24113,7 @@ func VFNMSUB231PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -22999,6 +24121,7 @@ func VFNMSUB231PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	}
 	return nil, errors.New("VFNMSUB231PD: bad operands")
@@ -23020,6 +24143,7 @@ func VFNMSUB231PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -23027,6 +24151,7 @@ func VFNMSUB231PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -23034,6 +24159,7 @@ func VFNMSUB231PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -23041,6 +24167,7 @@ func VFNMSUB231PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy, xy1},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	}
 	return nil, errors.New("VFNMSUB231PS: bad operands")
@@ -23060,6 +24187,7 @@ func VFNMSUB231SD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x, x1},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM64(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
@@ -23067,6 +24195,7 @@ func VFNMSUB231SD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x, x1},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	}
 	return nil, errors.New("VFNMSUB231SD: bad operands")
@@ -23086,6 +24215,7 @@ func VFNMSUB231SS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x, x1},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	case operand.IsM32(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
@@ -23093,6 +24223,7 @@ func VFNMSUB231SS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x, x1},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"FMA3"},
 		}, nil
 	}
 	return nil, errors.New("VFNMSUB231SS: bad operands")
@@ -23112,6 +24243,7 @@ func VGATHERDPD(xy, v, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{xy, v, xy1},
 			Inputs:   []operand.Op{xy, v, xy1},
 			Outputs:  []operand.Op{xy, xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsYMM(xy) && operand.IsVM32X(v) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -23119,6 +24251,7 @@ func VGATHERDPD(xy, v, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{xy, v, xy1},
 			Inputs:   []operand.Op{xy, v, xy1},
 			Outputs:  []operand.Op{xy, xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VGATHERDPD: bad operands")
@@ -23138,6 +24271,7 @@ func VGATHERDPS(xy, v, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{xy, v, xy1},
 			Inputs:   []operand.Op{xy, v, xy1},
 			Outputs:  []operand.Op{xy, xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsYMM(xy) && operand.IsVM32Y(v) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -23145,6 +24279,7 @@ func VGATHERDPS(xy, v, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{xy, v, xy1},
 			Inputs:   []operand.Op{xy, v, xy1},
 			Outputs:  []operand.Op{xy, xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VGATHERDPS: bad operands")
@@ -23164,6 +24299,7 @@ func VGATHERQPD(xy, v, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{xy, v, xy1},
 			Inputs:   []operand.Op{xy, v, xy1},
 			Outputs:  []operand.Op{xy, xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsYMM(xy) && operand.IsVM64Y(v) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -23171,6 +24307,7 @@ func VGATHERQPD(xy, v, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{xy, v, xy1},
 			Inputs:   []operand.Op{xy, v, xy1},
 			Outputs:  []operand.Op{xy, xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VGATHERQPD: bad operands")
@@ -23190,6 +24327,7 @@ func VGATHERQPS(x, v, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{x, v, x1},
 			Inputs:   []operand.Op{x, v, x1},
 			Outputs:  []operand.Op{x, x1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsXMM(x) && operand.IsVM64Y(v) && operand.IsXMM(x1):
 		return &intrep.Instruction{
@@ -23197,6 +24335,7 @@ func VGATHERQPS(x, v, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{x, v, x1},
 			Inputs:   []operand.Op{x, v, x1},
 			Outputs:  []operand.Op{x, x1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VGATHERQPS: bad operands")
@@ -23218,6 +24357,7 @@ func VHADDPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -23225,6 +24365,7 @@ func VHADDPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -23232,6 +24373,7 @@ func VHADDPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -23239,6 +24381,7 @@ func VHADDPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VHADDPD: bad operands")
@@ -23260,6 +24403,7 @@ func VHADDPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -23267,6 +24411,7 @@ func VHADDPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -23274,6 +24419,7 @@ func VHADDPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -23281,6 +24427,7 @@ func VHADDPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VHADDPS: bad operands")
@@ -23302,6 +24449,7 @@ func VHSUBPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -23309,6 +24457,7 @@ func VHSUBPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -23316,6 +24465,7 @@ func VHSUBPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -23323,6 +24473,7 @@ func VHSUBPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VHSUBPD: bad operands")
@@ -23344,6 +24495,7 @@ func VHSUBPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -23351,6 +24503,7 @@ func VHSUBPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -23358,6 +24511,7 @@ func VHSUBPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -23365,6 +24519,7 @@ func VHSUBPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VHSUBPS: bad operands")
@@ -23384,6 +24539,7 @@ func VINSERTF128(i, mx, y, y1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, y, y1},
 			Inputs:   []operand.Op{mx, y},
 			Outputs:  []operand.Op{y1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM128(mx) && operand.IsYMM(y) && operand.IsYMM(y1):
 		return &intrep.Instruction{
@@ -23391,6 +24547,7 @@ func VINSERTF128(i, mx, y, y1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, y, y1},
 			Inputs:   []operand.Op{mx, y},
 			Outputs:  []operand.Op{y1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VINSERTF128: bad operands")
@@ -23410,6 +24567,7 @@ func VINSERTI128(i, mx, y, y1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, y, y1},
 			Inputs:   []operand.Op{mx, y},
 			Outputs:  []operand.Op{y1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM128(mx) && operand.IsYMM(y) && operand.IsYMM(y1):
 		return &intrep.Instruction{
@@ -23417,6 +24575,7 @@ func VINSERTI128(i, mx, y, y1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, y, y1},
 			Inputs:   []operand.Op{mx, y},
 			Outputs:  []operand.Op{y1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VINSERTI128: bad operands")
@@ -23436,6 +24595,7 @@ func VINSERTPS(i, mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x, x1},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM32(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
@@ -23443,6 +24603,7 @@ func VINSERTPS(i, mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x, x1},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VINSERTPS: bad operands")
@@ -23462,6 +24623,7 @@ func VLDDQU(m, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{m, xy},
 			Inputs:   []operand.Op{m},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM256(m) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -23469,6 +24631,7 @@ func VLDDQU(m, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{m, xy},
 			Inputs:   []operand.Op{m},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VLDDQU: bad operands")
@@ -23487,6 +24650,7 @@ func VLDMXCSR(m operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{m},
 			Inputs:   []operand.Op{m},
 			Outputs:  []operand.Op{},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VLDMXCSR: bad operands")
@@ -23505,6 +24669,7 @@ func VMASKMOVDQU(x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{x, x1},
 			Inputs:   []operand.Op{x, x1, reg.RDI},
 			Outputs:  []operand.Op{},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VMASKMOVDQU: bad operands")
@@ -23526,6 +24691,7 @@ func VMASKMOVPD(mxy, xy, mxy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, mxy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{mxy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(mxy1):
 		return &intrep.Instruction{
@@ -23533,6 +24699,7 @@ func VMASKMOVPD(mxy, xy, mxy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, mxy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{mxy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsM128(mxy1):
 		return &intrep.Instruction{
@@ -23540,6 +24707,7 @@ func VMASKMOVPD(mxy, xy, mxy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, mxy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{mxy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsM256(mxy1):
 		return &intrep.Instruction{
@@ -23547,6 +24715,7 @@ func VMASKMOVPD(mxy, xy, mxy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, mxy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{mxy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VMASKMOVPD: bad operands")
@@ -23568,6 +24737,7 @@ func VMASKMOVPS(mxy, xy, mxy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, mxy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{mxy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(mxy1):
 		return &intrep.Instruction{
@@ -23575,6 +24745,7 @@ func VMASKMOVPS(mxy, xy, mxy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, mxy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{mxy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsM128(mxy1):
 		return &intrep.Instruction{
@@ -23582,6 +24753,7 @@ func VMASKMOVPS(mxy, xy, mxy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, mxy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{mxy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsM256(mxy1):
 		return &intrep.Instruction{
@@ -23589,6 +24761,7 @@ func VMASKMOVPS(mxy, xy, mxy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, mxy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{mxy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VMASKMOVPS: bad operands")
@@ -23610,6 +24783,7 @@ func VMAXPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -23617,6 +24791,7 @@ func VMAXPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -23624,6 +24799,7 @@ func VMAXPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -23631,6 +24807,7 @@ func VMAXPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VMAXPD: bad operands")
@@ -23652,6 +24829,7 @@ func VMAXPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -23659,6 +24837,7 @@ func VMAXPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -23666,6 +24845,7 @@ func VMAXPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -23673,6 +24853,7 @@ func VMAXPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VMAXPS: bad operands")
@@ -23692,6 +24873,7 @@ func VMAXSD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM64(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
@@ -23699,6 +24881,7 @@ func VMAXSD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VMAXSD: bad operands")
@@ -23718,6 +24901,7 @@ func VMAXSS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM32(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
@@ -23725,6 +24909,7 @@ func VMAXSS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VMAXSS: bad operands")
@@ -23746,6 +24931,7 @@ func VMINPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -23753,6 +24939,7 @@ func VMINPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -23760,6 +24947,7 @@ func VMINPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -23767,6 +24955,7 @@ func VMINPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VMINPD: bad operands")
@@ -23788,6 +24977,7 @@ func VMINPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -23795,6 +24985,7 @@ func VMINPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -23802,6 +24993,7 @@ func VMINPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -23809,6 +25001,7 @@ func VMINPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VMINPS: bad operands")
@@ -23828,6 +25021,7 @@ func VMINSD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM64(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
@@ -23835,6 +25029,7 @@ func VMINSD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VMINSD: bad operands")
@@ -23854,6 +25049,7 @@ func VMINSS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM32(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
@@ -23861,6 +25057,7 @@ func VMINSS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VMINSS: bad operands")
@@ -23884,6 +25081,7 @@ func VMOVAPD(mxy, mxy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, mxy1},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{mxy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(mxy1):
 		return &intrep.Instruction{
@@ -23891,6 +25089,7 @@ func VMOVAPD(mxy, mxy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, mxy1},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{mxy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(mxy1):
 		return &intrep.Instruction{
@@ -23898,6 +25097,7 @@ func VMOVAPD(mxy, mxy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, mxy1},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{mxy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(mxy1):
 		return &intrep.Instruction{
@@ -23905,6 +25105,7 @@ func VMOVAPD(mxy, mxy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, mxy1},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{mxy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsXMM(mxy) && operand.IsM128(mxy1):
 		return &intrep.Instruction{
@@ -23912,6 +25113,7 @@ func VMOVAPD(mxy, mxy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, mxy1},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{mxy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsM256(mxy1):
 		return &intrep.Instruction{
@@ -23919,6 +25121,7 @@ func VMOVAPD(mxy, mxy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, mxy1},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{mxy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VMOVAPD: bad operands")
@@ -23942,6 +25145,7 @@ func VMOVAPS(mxy, mxy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, mxy1},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{mxy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(mxy1):
 		return &intrep.Instruction{
@@ -23949,6 +25153,7 @@ func VMOVAPS(mxy, mxy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, mxy1},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{mxy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(mxy1):
 		return &intrep.Instruction{
@@ -23956,6 +25161,7 @@ func VMOVAPS(mxy, mxy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, mxy1},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{mxy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(mxy1):
 		return &intrep.Instruction{
@@ -23963,6 +25169,7 @@ func VMOVAPS(mxy, mxy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, mxy1},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{mxy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsXMM(mxy) && operand.IsM128(mxy1):
 		return &intrep.Instruction{
@@ -23970,6 +25177,7 @@ func VMOVAPS(mxy, mxy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, mxy1},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{mxy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsM256(mxy1):
 		return &intrep.Instruction{
@@ -23977,6 +25185,7 @@ func VMOVAPS(mxy, mxy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, mxy1},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{mxy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VMOVAPS: bad operands")
@@ -23998,6 +25207,7 @@ func VMOVD(mrx, mrx1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mrx, mrx1},
 			Inputs:   []operand.Op{mrx},
 			Outputs:  []operand.Op{mrx1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsR32(mrx) && operand.IsXMM(mrx1):
 		return &intrep.Instruction{
@@ -24005,6 +25215,7 @@ func VMOVD(mrx, mrx1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mrx, mrx1},
 			Inputs:   []operand.Op{mrx},
 			Outputs:  []operand.Op{mrx1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM32(mrx) && operand.IsXMM(mrx1):
 		return &intrep.Instruction{
@@ -24012,6 +25223,7 @@ func VMOVD(mrx, mrx1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mrx, mrx1},
 			Inputs:   []operand.Op{mrx},
 			Outputs:  []operand.Op{mrx1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsXMM(mrx) && operand.IsM32(mrx1):
 		return &intrep.Instruction{
@@ -24019,6 +25231,7 @@ func VMOVD(mrx, mrx1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mrx, mrx1},
 			Inputs:   []operand.Op{mrx},
 			Outputs:  []operand.Op{mrx1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VMOVD: bad operands")
@@ -24040,6 +25253,7 @@ func VMOVDDUP(mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM64(mxy) && operand.IsXMM(xy):
 		return &intrep.Instruction{
@@ -24047,6 +25261,7 @@ func VMOVDDUP(mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -24054,6 +25269,7 @@ func VMOVDDUP(mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -24061,6 +25277,7 @@ func VMOVDDUP(mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VMOVDDUP: bad operands")
@@ -24084,6 +25301,7 @@ func VMOVDQA(mxy, mxy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, mxy1},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{mxy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(mxy1):
 		return &intrep.Instruction{
@@ -24091,6 +25309,7 @@ func VMOVDQA(mxy, mxy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, mxy1},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{mxy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(mxy1):
 		return &intrep.Instruction{
@@ -24098,6 +25317,7 @@ func VMOVDQA(mxy, mxy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, mxy1},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{mxy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(mxy1):
 		return &intrep.Instruction{
@@ -24105,6 +25325,7 @@ func VMOVDQA(mxy, mxy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, mxy1},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{mxy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsXMM(mxy) && operand.IsM128(mxy1):
 		return &intrep.Instruction{
@@ -24112,6 +25333,7 @@ func VMOVDQA(mxy, mxy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, mxy1},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{mxy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsM256(mxy1):
 		return &intrep.Instruction{
@@ -24119,6 +25341,7 @@ func VMOVDQA(mxy, mxy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, mxy1},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{mxy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VMOVDQA: bad operands")
@@ -24142,6 +25365,7 @@ func VMOVDQU(mxy, mxy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, mxy1},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{mxy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(mxy1):
 		return &intrep.Instruction{
@@ -24149,6 +25373,7 @@ func VMOVDQU(mxy, mxy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, mxy1},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{mxy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(mxy1):
 		return &intrep.Instruction{
@@ -24156,6 +25381,7 @@ func VMOVDQU(mxy, mxy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, mxy1},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{mxy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(mxy1):
 		return &intrep.Instruction{
@@ -24163,6 +25389,7 @@ func VMOVDQU(mxy, mxy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, mxy1},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{mxy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsXMM(mxy) && operand.IsM128(mxy1):
 		return &intrep.Instruction{
@@ -24170,6 +25397,7 @@ func VMOVDQU(mxy, mxy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, mxy1},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{mxy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsM256(mxy1):
 		return &intrep.Instruction{
@@ -24177,6 +25405,7 @@ func VMOVDQU(mxy, mxy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, mxy1},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{mxy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VMOVDQU: bad operands")
@@ -24195,6 +25424,7 @@ func VMOVHLPS(x, x1, x2 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{x, x1, x2},
 			Inputs:   []operand.Op{x, x1},
 			Outputs:  []operand.Op{x2},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VMOVHLPS: bad operands")
@@ -24214,6 +25444,7 @@ func VMOVHPD(ops ...operand.Op) (*intrep.Instruction, error) {
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX"},
 		}, nil
 	case len(ops) == 3 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
@@ -24221,6 +25452,7 @@ func VMOVHPD(ops ...operand.Op) (*intrep.Instruction, error) {
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VMOVHPD: bad operands")
@@ -24240,6 +25472,7 @@ func VMOVHPS(ops ...operand.Op) (*intrep.Instruction, error) {
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX"},
 		}, nil
 	case len(ops) == 3 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
@@ -24247,6 +25480,7 @@ func VMOVHPS(ops ...operand.Op) (*intrep.Instruction, error) {
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VMOVHPS: bad operands")
@@ -24265,6 +25499,7 @@ func VMOVLHPS(x, x1, x2 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{x, x1, x2},
 			Inputs:   []operand.Op{x, x1},
 			Outputs:  []operand.Op{x2},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VMOVLHPS: bad operands")
@@ -24284,6 +25519,7 @@ func VMOVLPD(ops ...operand.Op) (*intrep.Instruction, error) {
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX"},
 		}, nil
 	case len(ops) == 3 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
@@ -24291,6 +25527,7 @@ func VMOVLPD(ops ...operand.Op) (*intrep.Instruction, error) {
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VMOVLPD: bad operands")
@@ -24310,6 +25547,7 @@ func VMOVLPS(ops ...operand.Op) (*intrep.Instruction, error) {
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX"},
 		}, nil
 	case len(ops) == 3 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
@@ -24317,6 +25555,7 @@ func VMOVLPS(ops ...operand.Op) (*intrep.Instruction, error) {
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VMOVLPS: bad operands")
@@ -24336,6 +25575,7 @@ func VMOVMSKPD(xy, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{xy, r},
 			Inputs:   []operand.Op{xy},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(xy) && operand.IsR32(r):
 		return &intrep.Instruction{
@@ -24343,6 +25583,7 @@ func VMOVMSKPD(xy, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{xy, r},
 			Inputs:   []operand.Op{xy},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VMOVMSKPD: bad operands")
@@ -24362,6 +25603,7 @@ func VMOVMSKPS(xy, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{xy, r},
 			Inputs:   []operand.Op{xy},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(xy) && operand.IsR32(r):
 		return &intrep.Instruction{
@@ -24369,6 +25611,7 @@ func VMOVMSKPS(xy, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{xy, r},
 			Inputs:   []operand.Op{xy},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VMOVMSKPS: bad operands")
@@ -24388,6 +25631,7 @@ func VMOVNTDQ(xy, m operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{xy, m},
 			Inputs:   []operand.Op{xy},
 			Outputs:  []operand.Op{m},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(xy) && operand.IsM256(m):
 		return &intrep.Instruction{
@@ -24395,6 +25639,7 @@ func VMOVNTDQ(xy, m operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{xy, m},
 			Inputs:   []operand.Op{xy},
 			Outputs:  []operand.Op{m},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VMOVNTDQ: bad operands")
@@ -24414,6 +25659,7 @@ func VMOVNTDQA(m, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{m, xy},
 			Inputs:   []operand.Op{m},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM256(m) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -24421,6 +25667,7 @@ func VMOVNTDQA(m, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{m, xy},
 			Inputs:   []operand.Op{m},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VMOVNTDQA: bad operands")
@@ -24440,6 +25687,7 @@ func VMOVNTPD(xy, m operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{xy, m},
 			Inputs:   []operand.Op{xy},
 			Outputs:  []operand.Op{m},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(xy) && operand.IsM256(m):
 		return &intrep.Instruction{
@@ -24447,6 +25695,7 @@ func VMOVNTPD(xy, m operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{xy, m},
 			Inputs:   []operand.Op{xy},
 			Outputs:  []operand.Op{m},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VMOVNTPD: bad operands")
@@ -24466,6 +25715,7 @@ func VMOVNTPS(xy, m operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{xy, m},
 			Inputs:   []operand.Op{xy},
 			Outputs:  []operand.Op{m},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(xy) && operand.IsM256(m):
 		return &intrep.Instruction{
@@ -24473,6 +25723,7 @@ func VMOVNTPS(xy, m operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{xy, m},
 			Inputs:   []operand.Op{xy},
 			Outputs:  []operand.Op{m},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VMOVNTPS: bad operands")
@@ -24495,6 +25746,7 @@ func VMOVQ(mrx, mrx1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mrx, mrx1},
 			Inputs:   []operand.Op{mrx},
 			Outputs:  []operand.Op{mrx1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsR64(mrx) && operand.IsXMM(mrx1):
 		return &intrep.Instruction{
@@ -24502,6 +25754,7 @@ func VMOVQ(mrx, mrx1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mrx, mrx1},
 			Inputs:   []operand.Op{mrx},
 			Outputs:  []operand.Op{mrx1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsXMM(mrx) && operand.IsXMM(mrx1):
 		return &intrep.Instruction{
@@ -24509,6 +25762,7 @@ func VMOVQ(mrx, mrx1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mrx, mrx1},
 			Inputs:   []operand.Op{mrx},
 			Outputs:  []operand.Op{mrx1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM64(mrx) && operand.IsXMM(mrx1):
 		return &intrep.Instruction{
@@ -24516,6 +25770,7 @@ func VMOVQ(mrx, mrx1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mrx, mrx1},
 			Inputs:   []operand.Op{mrx},
 			Outputs:  []operand.Op{mrx1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsXMM(mrx) && operand.IsM64(mrx1):
 		return &intrep.Instruction{
@@ -24523,6 +25778,7 @@ func VMOVQ(mrx, mrx1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mrx, mrx1},
 			Inputs:   []operand.Op{mrx},
 			Outputs:  []operand.Op{mrx1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VMOVQ: bad operands")
@@ -24543,6 +25799,7 @@ func VMOVSD(ops ...operand.Op) (*intrep.Instruction, error) {
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX"},
 		}, nil
 	case len(ops) == 2 && operand.IsXMM(ops[0]) && operand.IsM64(ops[1]):
 		return &intrep.Instruction{
@@ -24550,6 +25807,7 @@ func VMOVSD(ops ...operand.Op) (*intrep.Instruction, error) {
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX"},
 		}, nil
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
@@ -24557,6 +25815,7 @@ func VMOVSD(ops ...operand.Op) (*intrep.Instruction, error) {
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VMOVSD: bad operands")
@@ -24578,6 +25837,7 @@ func VMOVSHDUP(mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy):
 		return &intrep.Instruction{
@@ -24585,6 +25845,7 @@ func VMOVSHDUP(mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -24592,6 +25853,7 @@ func VMOVSHDUP(mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -24599,6 +25861,7 @@ func VMOVSHDUP(mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VMOVSHDUP: bad operands")
@@ -24620,6 +25883,7 @@ func VMOVSLDUP(mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy):
 		return &intrep.Instruction{
@@ -24627,6 +25891,7 @@ func VMOVSLDUP(mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -24634,6 +25899,7 @@ func VMOVSLDUP(mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -24641,6 +25907,7 @@ func VMOVSLDUP(mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VMOVSLDUP: bad operands")
@@ -24661,6 +25928,7 @@ func VMOVSS(ops ...operand.Op) (*intrep.Instruction, error) {
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX"},
 		}, nil
 	case len(ops) == 2 && operand.IsXMM(ops[0]) && operand.IsM32(ops[1]):
 		return &intrep.Instruction{
@@ -24668,6 +25936,7 @@ func VMOVSS(ops ...operand.Op) (*intrep.Instruction, error) {
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX"},
 		}, nil
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
@@ -24675,6 +25944,7 @@ func VMOVSS(ops ...operand.Op) (*intrep.Instruction, error) {
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VMOVSS: bad operands")
@@ -24698,6 +25968,7 @@ func VMOVUPD(mxy, mxy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, mxy1},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{mxy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(mxy1):
 		return &intrep.Instruction{
@@ -24705,6 +25976,7 @@ func VMOVUPD(mxy, mxy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, mxy1},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{mxy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(mxy1):
 		return &intrep.Instruction{
@@ -24712,6 +25984,7 @@ func VMOVUPD(mxy, mxy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, mxy1},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{mxy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(mxy1):
 		return &intrep.Instruction{
@@ -24719,6 +25992,7 @@ func VMOVUPD(mxy, mxy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, mxy1},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{mxy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsXMM(mxy) && operand.IsM128(mxy1):
 		return &intrep.Instruction{
@@ -24726,6 +26000,7 @@ func VMOVUPD(mxy, mxy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, mxy1},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{mxy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsM256(mxy1):
 		return &intrep.Instruction{
@@ -24733,6 +26008,7 @@ func VMOVUPD(mxy, mxy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, mxy1},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{mxy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VMOVUPD: bad operands")
@@ -24756,6 +26032,7 @@ func VMOVUPS(mxy, mxy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, mxy1},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{mxy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(mxy1):
 		return &intrep.Instruction{
@@ -24763,6 +26040,7 @@ func VMOVUPS(mxy, mxy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, mxy1},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{mxy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(mxy1):
 		return &intrep.Instruction{
@@ -24770,6 +26048,7 @@ func VMOVUPS(mxy, mxy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, mxy1},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{mxy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(mxy1):
 		return &intrep.Instruction{
@@ -24777,6 +26056,7 @@ func VMOVUPS(mxy, mxy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, mxy1},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{mxy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsXMM(mxy) && operand.IsM128(mxy1):
 		return &intrep.Instruction{
@@ -24784,6 +26064,7 @@ func VMOVUPS(mxy, mxy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, mxy1},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{mxy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsM256(mxy1):
 		return &intrep.Instruction{
@@ -24791,6 +26072,7 @@ func VMOVUPS(mxy, mxy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, mxy1},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{mxy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VMOVUPS: bad operands")
@@ -24812,6 +26094,7 @@ func VMPSADBW(i, mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -24819,6 +26102,7 @@ func VMPSADBW(i, mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -24826,6 +26110,7 @@ func VMPSADBW(i, mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -24833,6 +26118,7 @@ func VMPSADBW(i, mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VMPSADBW: bad operands")
@@ -24854,6 +26140,7 @@ func VMULPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -24861,6 +26148,7 @@ func VMULPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -24868,6 +26156,7 @@ func VMULPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -24875,6 +26164,7 @@ func VMULPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VMULPD: bad operands")
@@ -24896,6 +26186,7 @@ func VMULPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -24903,6 +26194,7 @@ func VMULPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -24910,6 +26202,7 @@ func VMULPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -24917,6 +26210,7 @@ func VMULPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VMULPS: bad operands")
@@ -24936,6 +26230,7 @@ func VMULSD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM64(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
@@ -24943,6 +26238,7 @@ func VMULSD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VMULSD: bad operands")
@@ -24962,6 +26258,7 @@ func VMULSS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM32(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
@@ -24969,6 +26266,7 @@ func VMULSS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VMULSS: bad operands")
@@ -24990,6 +26288,7 @@ func VORPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -24997,6 +26296,7 @@ func VORPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -25004,6 +26304,7 @@ func VORPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -25011,6 +26312,7 @@ func VORPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VORPD: bad operands")
@@ -25032,6 +26334,7 @@ func VORPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -25039,6 +26342,7 @@ func VORPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -25046,6 +26350,7 @@ func VORPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -25053,6 +26358,7 @@ func VORPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VORPS: bad operands")
@@ -25074,6 +26380,7 @@ func VPABSB(mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy):
 		return &intrep.Instruction{
@@ -25081,6 +26388,7 @@ func VPABSB(mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -25088,6 +26396,7 @@ func VPABSB(mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -25095,6 +26404,7 @@ func VPABSB(mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPABSB: bad operands")
@@ -25116,6 +26426,7 @@ func VPABSD(mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy):
 		return &intrep.Instruction{
@@ -25123,6 +26434,7 @@ func VPABSD(mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -25130,6 +26442,7 @@ func VPABSD(mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -25137,6 +26450,7 @@ func VPABSD(mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPABSD: bad operands")
@@ -25158,6 +26472,7 @@ func VPABSW(mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy):
 		return &intrep.Instruction{
@@ -25165,6 +26480,7 @@ func VPABSW(mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -25172,6 +26488,7 @@ func VPABSW(mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -25179,6 +26496,7 @@ func VPABSW(mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPABSW: bad operands")
@@ -25200,6 +26518,7 @@ func VPACKSSDW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -25207,6 +26526,7 @@ func VPACKSSDW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -25214,6 +26534,7 @@ func VPACKSSDW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -25221,6 +26542,7 @@ func VPACKSSDW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPACKSSDW: bad operands")
@@ -25242,6 +26564,7 @@ func VPACKSSWB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -25249,6 +26572,7 @@ func VPACKSSWB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -25256,6 +26580,7 @@ func VPACKSSWB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -25263,6 +26588,7 @@ func VPACKSSWB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPACKSSWB: bad operands")
@@ -25284,6 +26610,7 @@ func VPACKUSDW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -25291,6 +26618,7 @@ func VPACKUSDW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -25298,6 +26626,7 @@ func VPACKUSDW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -25305,6 +26634,7 @@ func VPACKUSDW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPACKUSDW: bad operands")
@@ -25326,6 +26656,7 @@ func VPACKUSWB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -25333,6 +26664,7 @@ func VPACKUSWB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -25340,6 +26672,7 @@ func VPACKUSWB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -25347,6 +26680,7 @@ func VPACKUSWB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPACKUSWB: bad operands")
@@ -25368,6 +26702,7 @@ func VPADDB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -25375,6 +26710,7 @@ func VPADDB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -25382,6 +26718,7 @@ func VPADDB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -25389,6 +26726,7 @@ func VPADDB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPADDB: bad operands")
@@ -25410,6 +26748,7 @@ func VPADDD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -25417,6 +26756,7 @@ func VPADDD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -25424,6 +26764,7 @@ func VPADDD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -25431,6 +26772,7 @@ func VPADDD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPADDD: bad operands")
@@ -25452,6 +26794,7 @@ func VPADDQ(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -25459,6 +26802,7 @@ func VPADDQ(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -25466,6 +26810,7 @@ func VPADDQ(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -25473,6 +26818,7 @@ func VPADDQ(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPADDQ: bad operands")
@@ -25494,6 +26840,7 @@ func VPADDSB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -25501,6 +26848,7 @@ func VPADDSB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -25508,6 +26856,7 @@ func VPADDSB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -25515,6 +26864,7 @@ func VPADDSB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPADDSB: bad operands")
@@ -25536,6 +26886,7 @@ func VPADDSW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -25543,6 +26894,7 @@ func VPADDSW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -25550,6 +26902,7 @@ func VPADDSW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -25557,6 +26910,7 @@ func VPADDSW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPADDSW: bad operands")
@@ -25578,6 +26932,7 @@ func VPADDUSB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -25585,6 +26940,7 @@ func VPADDUSB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -25592,6 +26948,7 @@ func VPADDUSB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -25599,6 +26956,7 @@ func VPADDUSB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPADDUSB: bad operands")
@@ -25620,6 +26978,7 @@ func VPADDUSW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -25627,6 +26986,7 @@ func VPADDUSW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -25634,6 +26994,7 @@ func VPADDUSW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -25641,6 +27002,7 @@ func VPADDUSW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPADDUSW: bad operands")
@@ -25662,6 +27024,7 @@ func VPADDW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -25669,6 +27032,7 @@ func VPADDW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -25676,6 +27040,7 @@ func VPADDW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -25683,6 +27048,7 @@ func VPADDW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPADDW: bad operands")
@@ -25704,6 +27070,7 @@ func VPALIGNR(i, mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -25711,6 +27078,7 @@ func VPALIGNR(i, mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -25718,6 +27086,7 @@ func VPALIGNR(i, mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -25725,6 +27094,7 @@ func VPALIGNR(i, mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPALIGNR: bad operands")
@@ -25746,6 +27116,7 @@ func VPAND(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -25753,6 +27124,7 @@ func VPAND(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -25760,6 +27132,7 @@ func VPAND(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -25767,6 +27140,7 @@ func VPAND(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPAND: bad operands")
@@ -25788,6 +27162,7 @@ func VPANDN(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mxy, xy, xy1},
 			Inputs:           []operand.Op{mxy, xy},
 			Outputs:          []operand.Op{xy1},
+			ISA:              []string{"AVX"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
@@ -25796,6 +27171,7 @@ func VPANDN(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -25803,6 +27179,7 @@ func VPANDN(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mxy, xy, xy1},
 			Inputs:           []operand.Op{mxy, xy},
 			Outputs:          []operand.Op{xy1},
+			ISA:              []string{"AVX2"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
@@ -25811,6 +27188,7 @@ func VPANDN(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPANDN: bad operands")
@@ -25832,6 +27210,7 @@ func VPAVGB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -25839,6 +27218,7 @@ func VPAVGB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -25846,6 +27226,7 @@ func VPAVGB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -25853,6 +27234,7 @@ func VPAVGB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPAVGB: bad operands")
@@ -25874,6 +27256,7 @@ func VPAVGW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -25881,6 +27264,7 @@ func VPAVGW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -25888,6 +27272,7 @@ func VPAVGW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -25895,6 +27280,7 @@ func VPAVGW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPAVGW: bad operands")
@@ -25916,6 +27302,7 @@ func VPBLENDD(i, mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -25923,6 +27310,7 @@ func VPBLENDD(i, mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -25930,6 +27318,7 @@ func VPBLENDD(i, mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -25937,6 +27326,7 @@ func VPBLENDD(i, mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPBLENDD: bad operands")
@@ -25958,6 +27348,7 @@ func VPBLENDVB(xy, mxy, xy1, xy2 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{xy, mxy, xy1, xy2},
 			Inputs:   []operand.Op{xy, mxy, xy1},
 			Outputs:  []operand.Op{xy2},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsXMM(xy) && operand.IsM128(mxy) && operand.IsXMM(xy1) && operand.IsXMM(xy2):
 		return &intrep.Instruction{
@@ -25965,6 +27356,7 @@ func VPBLENDVB(xy, mxy, xy1, xy2 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{xy, mxy, xy1, xy2},
 			Inputs:   []operand.Op{xy, mxy, xy1},
 			Outputs:  []operand.Op{xy2},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(xy) && operand.IsYMM(mxy) && operand.IsYMM(xy1) && operand.IsYMM(xy2):
 		return &intrep.Instruction{
@@ -25972,6 +27364,7 @@ func VPBLENDVB(xy, mxy, xy1, xy2 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{xy, mxy, xy1, xy2},
 			Inputs:   []operand.Op{xy, mxy, xy1},
 			Outputs:  []operand.Op{xy2},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsYMM(xy) && operand.IsM256(mxy) && operand.IsYMM(xy1) && operand.IsYMM(xy2):
 		return &intrep.Instruction{
@@ -25979,6 +27372,7 @@ func VPBLENDVB(xy, mxy, xy1, xy2 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{xy, mxy, xy1, xy2},
 			Inputs:   []operand.Op{xy, mxy, xy1},
 			Outputs:  []operand.Op{xy2},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPBLENDVB: bad operands")
@@ -26000,6 +27394,7 @@ func VPBLENDW(i, mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -26007,6 +27402,7 @@ func VPBLENDW(i, mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -26014,6 +27410,7 @@ func VPBLENDW(i, mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -26021,6 +27418,7 @@ func VPBLENDW(i, mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPBLENDW: bad operands")
@@ -26042,6 +27440,7 @@ func VPBROADCASTB(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM8(mx) && operand.IsXMM(xy):
 		return &intrep.Instruction{
@@ -26049,6 +27448,7 @@ func VPBROADCASTB(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsXMM(mx) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -26056,6 +27456,7 @@ func VPBROADCASTB(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM8(mx) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -26063,6 +27464,7 @@ func VPBROADCASTB(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPBROADCASTB: bad operands")
@@ -26084,6 +27486,7 @@ func VPBROADCASTD(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM32(mx) && operand.IsXMM(xy):
 		return &intrep.Instruction{
@@ -26091,6 +27494,7 @@ func VPBROADCASTD(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsXMM(mx) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -26098,6 +27502,7 @@ func VPBROADCASTD(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM32(mx) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -26105,6 +27510,7 @@ func VPBROADCASTD(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPBROADCASTD: bad operands")
@@ -26126,6 +27532,7 @@ func VPBROADCASTQ(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM64(mx) && operand.IsXMM(xy):
 		return &intrep.Instruction{
@@ -26133,6 +27540,7 @@ func VPBROADCASTQ(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsXMM(mx) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -26140,6 +27548,7 @@ func VPBROADCASTQ(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM64(mx) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -26147,6 +27556,7 @@ func VPBROADCASTQ(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPBROADCASTQ: bad operands")
@@ -26168,6 +27578,7 @@ func VPBROADCASTW(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM16(mx) && operand.IsXMM(xy):
 		return &intrep.Instruction{
@@ -26175,6 +27586,7 @@ func VPBROADCASTW(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsXMM(mx) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -26182,6 +27594,7 @@ func VPBROADCASTW(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM16(mx) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -26189,6 +27602,7 @@ func VPBROADCASTW(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPBROADCASTW: bad operands")
@@ -26208,6 +27622,7 @@ func VPCLMULQDQ(i, mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x, x1},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX", "PCLMULQDQ"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM128(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
@@ -26215,6 +27630,7 @@ func VPCLMULQDQ(i, mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x, x1},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX", "PCLMULQDQ"},
 		}, nil
 	}
 	return nil, errors.New("VPCLMULQDQ: bad operands")
@@ -26236,6 +27652,7 @@ func VPCMPEQB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mxy, xy, xy1},
 			Inputs:           []operand.Op{mxy, xy},
 			Outputs:          []operand.Op{xy1},
+			ISA:              []string{"AVX"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
@@ -26244,6 +27661,7 @@ func VPCMPEQB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -26251,6 +27669,7 @@ func VPCMPEQB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mxy, xy, xy1},
 			Inputs:           []operand.Op{mxy, xy},
 			Outputs:          []operand.Op{xy1},
+			ISA:              []string{"AVX2"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
@@ -26259,6 +27678,7 @@ func VPCMPEQB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPCMPEQB: bad operands")
@@ -26280,6 +27700,7 @@ func VPCMPEQD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mxy, xy, xy1},
 			Inputs:           []operand.Op{mxy, xy},
 			Outputs:          []operand.Op{xy1},
+			ISA:              []string{"AVX"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
@@ -26288,6 +27709,7 @@ func VPCMPEQD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -26295,6 +27717,7 @@ func VPCMPEQD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mxy, xy, xy1},
 			Inputs:           []operand.Op{mxy, xy},
 			Outputs:          []operand.Op{xy1},
+			ISA:              []string{"AVX2"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
@@ -26303,6 +27726,7 @@ func VPCMPEQD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPCMPEQD: bad operands")
@@ -26324,6 +27748,7 @@ func VPCMPEQQ(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mxy, xy, xy1},
 			Inputs:           []operand.Op{mxy, xy},
 			Outputs:          []operand.Op{xy1},
+			ISA:              []string{"AVX"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
@@ -26332,6 +27757,7 @@ func VPCMPEQQ(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -26339,6 +27765,7 @@ func VPCMPEQQ(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mxy, xy, xy1},
 			Inputs:           []operand.Op{mxy, xy},
 			Outputs:          []operand.Op{xy1},
+			ISA:              []string{"AVX2"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
@@ -26347,6 +27774,7 @@ func VPCMPEQQ(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPCMPEQQ: bad operands")
@@ -26368,6 +27796,7 @@ func VPCMPEQW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mxy, xy, xy1},
 			Inputs:           []operand.Op{mxy, xy},
 			Outputs:          []operand.Op{xy1},
+			ISA:              []string{"AVX"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
@@ -26376,6 +27805,7 @@ func VPCMPEQW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -26383,6 +27813,7 @@ func VPCMPEQW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mxy, xy, xy1},
 			Inputs:           []operand.Op{mxy, xy},
 			Outputs:          []operand.Op{xy1},
+			ISA:              []string{"AVX2"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
@@ -26391,6 +27822,7 @@ func VPCMPEQW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPCMPEQW: bad operands")
@@ -26410,6 +27842,7 @@ func VPCMPESTRI(i, mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x},
 			Inputs:   []operand.Op{mx, x, reg.EAX, reg.EDX},
 			Outputs:  []operand.Op{reg.ECX},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -26417,6 +27850,7 @@ func VPCMPESTRI(i, mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x},
 			Inputs:   []operand.Op{mx, x, reg.EAX, reg.EDX},
 			Outputs:  []operand.Op{reg.ECX},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VPCMPESTRI: bad operands")
@@ -26436,6 +27870,7 @@ func VPCMPESTRM(i, mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x},
 			Inputs:   []operand.Op{mx, x, reg.EAX, reg.EDX},
 			Outputs:  []operand.Op{reg.X0},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -26443,6 +27878,7 @@ func VPCMPESTRM(i, mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x},
 			Inputs:   []operand.Op{mx, x, reg.EAX, reg.EDX},
 			Outputs:  []operand.Op{reg.X0},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VPCMPESTRM: bad operands")
@@ -26464,6 +27900,7 @@ func VPCMPGTB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mxy, xy, xy1},
 			Inputs:           []operand.Op{mxy, xy},
 			Outputs:          []operand.Op{xy1},
+			ISA:              []string{"AVX"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
@@ -26472,6 +27909,7 @@ func VPCMPGTB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -26479,6 +27917,7 @@ func VPCMPGTB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mxy, xy, xy1},
 			Inputs:           []operand.Op{mxy, xy},
 			Outputs:          []operand.Op{xy1},
+			ISA:              []string{"AVX2"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
@@ -26487,6 +27926,7 @@ func VPCMPGTB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPCMPGTB: bad operands")
@@ -26508,6 +27948,7 @@ func VPCMPGTD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mxy, xy, xy1},
 			Inputs:           []operand.Op{mxy, xy},
 			Outputs:          []operand.Op{xy1},
+			ISA:              []string{"AVX"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
@@ -26516,6 +27957,7 @@ func VPCMPGTD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -26523,6 +27965,7 @@ func VPCMPGTD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mxy, xy, xy1},
 			Inputs:           []operand.Op{mxy, xy},
 			Outputs:          []operand.Op{xy1},
+			ISA:              []string{"AVX2"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
@@ -26531,6 +27974,7 @@ func VPCMPGTD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPCMPGTD: bad operands")
@@ -26552,6 +27996,7 @@ func VPCMPGTQ(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mxy, xy, xy1},
 			Inputs:           []operand.Op{mxy, xy},
 			Outputs:          []operand.Op{xy1},
+			ISA:              []string{"AVX"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
@@ -26560,6 +28005,7 @@ func VPCMPGTQ(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -26567,6 +28013,7 @@ func VPCMPGTQ(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mxy, xy, xy1},
 			Inputs:           []operand.Op{mxy, xy},
 			Outputs:          []operand.Op{xy1},
+			ISA:              []string{"AVX2"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
@@ -26575,6 +28022,7 @@ func VPCMPGTQ(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPCMPGTQ: bad operands")
@@ -26596,6 +28044,7 @@ func VPCMPGTW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mxy, xy, xy1},
 			Inputs:           []operand.Op{mxy, xy},
 			Outputs:          []operand.Op{xy1},
+			ISA:              []string{"AVX"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
@@ -26604,6 +28053,7 @@ func VPCMPGTW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -26611,6 +28061,7 @@ func VPCMPGTW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mxy, xy, xy1},
 			Inputs:           []operand.Op{mxy, xy},
 			Outputs:          []operand.Op{xy1},
+			ISA:              []string{"AVX2"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
@@ -26619,6 +28070,7 @@ func VPCMPGTW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPCMPGTW: bad operands")
@@ -26638,6 +28090,7 @@ func VPCMPISTRI(i, mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{reg.ECX},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -26645,6 +28098,7 @@ func VPCMPISTRI(i, mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{reg.ECX},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VPCMPISTRI: bad operands")
@@ -26664,6 +28118,7 @@ func VPCMPISTRM(i, mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{reg.X0},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -26671,6 +28126,7 @@ func VPCMPISTRM(i, mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{reg.X0},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VPCMPISTRM: bad operands")
@@ -26690,6 +28146,7 @@ func VPERM2F128(i, my, y, y1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, my, y, y1},
 			Inputs:   []operand.Op{my, y},
 			Outputs:  []operand.Op{y1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM256(my) && operand.IsYMM(y) && operand.IsYMM(y1):
 		return &intrep.Instruction{
@@ -26697,6 +28154,7 @@ func VPERM2F128(i, my, y, y1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, my, y, y1},
 			Inputs:   []operand.Op{my, y},
 			Outputs:  []operand.Op{y1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VPERM2F128: bad operands")
@@ -26716,6 +28174,7 @@ func VPERM2I128(i, my, y, y1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, my, y, y1},
 			Inputs:   []operand.Op{my, y},
 			Outputs:  []operand.Op{y1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM256(my) && operand.IsYMM(y) && operand.IsYMM(y1):
 		return &intrep.Instruction{
@@ -26723,6 +28182,7 @@ func VPERM2I128(i, my, y, y1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, my, y, y1},
 			Inputs:   []operand.Op{my, y},
 			Outputs:  []operand.Op{y1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPERM2I128: bad operands")
@@ -26742,6 +28202,7 @@ func VPERMD(my, y, y1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{my, y, y1},
 			Inputs:   []operand.Op{my, y},
 			Outputs:  []operand.Op{y1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM256(my) && operand.IsYMM(y) && operand.IsYMM(y1):
 		return &intrep.Instruction{
@@ -26749,6 +28210,7 @@ func VPERMD(my, y, y1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{my, y, y1},
 			Inputs:   []operand.Op{my, y},
 			Outputs:  []operand.Op{y1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPERMD: bad operands")
@@ -26774,6 +28236,7 @@ func VPERMILPD(imxy, mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imxy, mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsXMM(imxy) && operand.IsXMM(mxy) && operand.IsXMM(xy):
 		return &intrep.Instruction{
@@ -26781,6 +28244,7 @@ func VPERMILPD(imxy, mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imxy, mxy, xy},
 			Inputs:   []operand.Op{imxy, mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(imxy) && operand.IsXMM(mxy) && operand.IsXMM(xy):
 		return &intrep.Instruction{
@@ -26788,6 +28252,7 @@ func VPERMILPD(imxy, mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imxy, mxy, xy},
 			Inputs:   []operand.Op{imxy, mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(imxy) && operand.IsM128(mxy) && operand.IsXMM(xy):
 		return &intrep.Instruction{
@@ -26795,6 +28260,7 @@ func VPERMILPD(imxy, mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imxy, mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(imxy) && operand.IsYMM(mxy) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -26802,6 +28268,7 @@ func VPERMILPD(imxy, mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imxy, mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(imxy) && operand.IsYMM(mxy) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -26809,6 +28276,7 @@ func VPERMILPD(imxy, mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imxy, mxy, xy},
 			Inputs:   []operand.Op{imxy, mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM256(imxy) && operand.IsYMM(mxy) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -26816,6 +28284,7 @@ func VPERMILPD(imxy, mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imxy, mxy, xy},
 			Inputs:   []operand.Op{imxy, mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(imxy) && operand.IsM256(mxy) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -26823,6 +28292,7 @@ func VPERMILPD(imxy, mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imxy, mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VPERMILPD: bad operands")
@@ -26848,6 +28318,7 @@ func VPERMILPS(imxy, mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imxy, mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsXMM(imxy) && operand.IsXMM(mxy) && operand.IsXMM(xy):
 		return &intrep.Instruction{
@@ -26855,6 +28326,7 @@ func VPERMILPS(imxy, mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imxy, mxy, xy},
 			Inputs:   []operand.Op{imxy, mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(imxy) && operand.IsXMM(mxy) && operand.IsXMM(xy):
 		return &intrep.Instruction{
@@ -26862,6 +28334,7 @@ func VPERMILPS(imxy, mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imxy, mxy, xy},
 			Inputs:   []operand.Op{imxy, mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(imxy) && operand.IsM128(mxy) && operand.IsXMM(xy):
 		return &intrep.Instruction{
@@ -26869,6 +28342,7 @@ func VPERMILPS(imxy, mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imxy, mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(imxy) && operand.IsYMM(mxy) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -26876,6 +28350,7 @@ func VPERMILPS(imxy, mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imxy, mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(imxy) && operand.IsYMM(mxy) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -26883,6 +28358,7 @@ func VPERMILPS(imxy, mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imxy, mxy, xy},
 			Inputs:   []operand.Op{imxy, mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM256(imxy) && operand.IsYMM(mxy) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -26890,6 +28366,7 @@ func VPERMILPS(imxy, mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imxy, mxy, xy},
 			Inputs:   []operand.Op{imxy, mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(imxy) && operand.IsM256(mxy) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -26897,6 +28374,7 @@ func VPERMILPS(imxy, mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imxy, mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VPERMILPS: bad operands")
@@ -26916,6 +28394,7 @@ func VPERMPD(i, my, y operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, my, y},
 			Inputs:   []operand.Op{my},
 			Outputs:  []operand.Op{y},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM256(my) && operand.IsYMM(y):
 		return &intrep.Instruction{
@@ -26923,6 +28402,7 @@ func VPERMPD(i, my, y operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, my, y},
 			Inputs:   []operand.Op{my},
 			Outputs:  []operand.Op{y},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPERMPD: bad operands")
@@ -26942,6 +28422,7 @@ func VPERMPS(my, y, y1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{my, y, y1},
 			Inputs:   []operand.Op{my, y},
 			Outputs:  []operand.Op{y1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM256(my) && operand.IsYMM(y) && operand.IsYMM(y1):
 		return &intrep.Instruction{
@@ -26949,6 +28430,7 @@ func VPERMPS(my, y, y1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{my, y, y1},
 			Inputs:   []operand.Op{my, y},
 			Outputs:  []operand.Op{y1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPERMPS: bad operands")
@@ -26968,6 +28450,7 @@ func VPERMQ(i, my, y operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, my, y},
 			Inputs:   []operand.Op{my},
 			Outputs:  []operand.Op{y},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM256(my) && operand.IsYMM(y):
 		return &intrep.Instruction{
@@ -26975,6 +28458,7 @@ func VPERMQ(i, my, y operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, my, y},
 			Inputs:   []operand.Op{my},
 			Outputs:  []operand.Op{y},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPERMQ: bad operands")
@@ -26994,6 +28478,7 @@ func VPEXTRB(i, x, mr operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, x, mr},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{mr},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsXMM(x) && operand.IsM8(mr):
 		return &intrep.Instruction{
@@ -27001,6 +28486,7 @@ func VPEXTRB(i, x, mr operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, x, mr},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{mr},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VPEXTRB: bad operands")
@@ -27020,6 +28506,7 @@ func VPEXTRD(i, x, mr operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, x, mr},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{mr},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsXMM(x) && operand.IsM32(mr):
 		return &intrep.Instruction{
@@ -27027,6 +28514,7 @@ func VPEXTRD(i, x, mr operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, x, mr},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{mr},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VPEXTRD: bad operands")
@@ -27046,6 +28534,7 @@ func VPEXTRQ(i, x, mr operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, x, mr},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{mr},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsXMM(x) && operand.IsM64(mr):
 		return &intrep.Instruction{
@@ -27053,6 +28542,7 @@ func VPEXTRQ(i, x, mr operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, x, mr},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{mr},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VPEXTRQ: bad operands")
@@ -27072,6 +28562,7 @@ func VPEXTRW(i, x, mr operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, x, mr},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{mr},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsXMM(x) && operand.IsM16(mr):
 		return &intrep.Instruction{
@@ -27079,6 +28570,7 @@ func VPEXTRW(i, x, mr operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, x, mr},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{mr},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VPEXTRW: bad operands")
@@ -27098,6 +28590,7 @@ func VPGATHERDD(xy, v, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{xy, v, xy1},
 			Inputs:   []operand.Op{xy, v, xy1},
 			Outputs:  []operand.Op{xy, xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsYMM(xy) && operand.IsVM32Y(v) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -27105,6 +28598,7 @@ func VPGATHERDD(xy, v, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{xy, v, xy1},
 			Inputs:   []operand.Op{xy, v, xy1},
 			Outputs:  []operand.Op{xy, xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPGATHERDD: bad operands")
@@ -27124,6 +28618,7 @@ func VPGATHERDQ(xy, v, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{xy, v, xy1},
 			Inputs:   []operand.Op{xy, v, xy1},
 			Outputs:  []operand.Op{xy, xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsYMM(xy) && operand.IsVM32X(v) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -27131,6 +28626,7 @@ func VPGATHERDQ(xy, v, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{xy, v, xy1},
 			Inputs:   []operand.Op{xy, v, xy1},
 			Outputs:  []operand.Op{xy, xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPGATHERDQ: bad operands")
@@ -27150,6 +28646,7 @@ func VPGATHERQD(x, v, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{x, v, x1},
 			Inputs:   []operand.Op{x, v, x1},
 			Outputs:  []operand.Op{x, x1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsXMM(x) && operand.IsVM64Y(v) && operand.IsXMM(x1):
 		return &intrep.Instruction{
@@ -27157,6 +28654,7 @@ func VPGATHERQD(x, v, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{x, v, x1},
 			Inputs:   []operand.Op{x, v, x1},
 			Outputs:  []operand.Op{x, x1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPGATHERQD: bad operands")
@@ -27176,6 +28674,7 @@ func VPGATHERQQ(xy, v, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{xy, v, xy1},
 			Inputs:   []operand.Op{xy, v, xy1},
 			Outputs:  []operand.Op{xy, xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsYMM(xy) && operand.IsVM64Y(v) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -27183,6 +28682,7 @@ func VPGATHERQQ(xy, v, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{xy, v, xy1},
 			Inputs:   []operand.Op{xy, v, xy1},
 			Outputs:  []operand.Op{xy, xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPGATHERQQ: bad operands")
@@ -27204,6 +28704,7 @@ func VPHADDD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -27211,6 +28712,7 @@ func VPHADDD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -27218,6 +28720,7 @@ func VPHADDD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -27225,6 +28728,7 @@ func VPHADDD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPHADDD: bad operands")
@@ -27246,6 +28750,7 @@ func VPHADDSW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -27253,6 +28758,7 @@ func VPHADDSW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -27260,6 +28766,7 @@ func VPHADDSW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -27267,6 +28774,7 @@ func VPHADDSW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPHADDSW: bad operands")
@@ -27288,6 +28796,7 @@ func VPHADDW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -27295,6 +28804,7 @@ func VPHADDW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -27302,6 +28812,7 @@ func VPHADDW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -27309,6 +28820,7 @@ func VPHADDW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPHADDW: bad operands")
@@ -27328,6 +28840,7 @@ func VPHMINPOSUW(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -27335,6 +28848,7 @@ func VPHMINPOSUW(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VPHMINPOSUW: bad operands")
@@ -27356,6 +28870,7 @@ func VPHSUBD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mxy, xy, xy1},
 			Inputs:           []operand.Op{mxy, xy},
 			Outputs:          []operand.Op{xy1},
+			ISA:              []string{"AVX"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
@@ -27364,6 +28879,7 @@ func VPHSUBD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -27371,6 +28887,7 @@ func VPHSUBD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mxy, xy, xy1},
 			Inputs:           []operand.Op{mxy, xy},
 			Outputs:          []operand.Op{xy1},
+			ISA:              []string{"AVX2"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
@@ -27379,6 +28896,7 @@ func VPHSUBD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPHSUBD: bad operands")
@@ -27400,6 +28918,7 @@ func VPHSUBSW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mxy, xy, xy1},
 			Inputs:           []operand.Op{mxy, xy},
 			Outputs:          []operand.Op{xy1},
+			ISA:              []string{"AVX"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
@@ -27408,6 +28927,7 @@ func VPHSUBSW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -27415,6 +28935,7 @@ func VPHSUBSW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mxy, xy, xy1},
 			Inputs:           []operand.Op{mxy, xy},
 			Outputs:          []operand.Op{xy1},
+			ISA:              []string{"AVX2"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
@@ -27423,6 +28944,7 @@ func VPHSUBSW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPHSUBSW: bad operands")
@@ -27444,6 +28966,7 @@ func VPHSUBW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mxy, xy, xy1},
 			Inputs:           []operand.Op{mxy, xy},
 			Outputs:          []operand.Op{xy1},
+			ISA:              []string{"AVX"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
@@ -27452,6 +28975,7 @@ func VPHSUBW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -27459,6 +28983,7 @@ func VPHSUBW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mxy, xy, xy1},
 			Inputs:           []operand.Op{mxy, xy},
 			Outputs:          []operand.Op{xy1},
+			ISA:              []string{"AVX2"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
@@ -27467,6 +28992,7 @@ func VPHSUBW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPHSUBW: bad operands")
@@ -27486,6 +29012,7 @@ func VPINSRB(i, mr, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mr, x, x1},
 			Inputs:   []operand.Op{mr, x},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM8(mr) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
@@ -27493,6 +29020,7 @@ func VPINSRB(i, mr, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mr, x, x1},
 			Inputs:   []operand.Op{mr, x},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VPINSRB: bad operands")
@@ -27512,6 +29040,7 @@ func VPINSRD(i, mr, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mr, x, x1},
 			Inputs:   []operand.Op{mr, x},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM32(mr) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
@@ -27519,6 +29048,7 @@ func VPINSRD(i, mr, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mr, x, x1},
 			Inputs:   []operand.Op{mr, x},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VPINSRD: bad operands")
@@ -27538,6 +29068,7 @@ func VPINSRQ(i, mr, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mr, x, x1},
 			Inputs:   []operand.Op{mr, x},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM64(mr) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
@@ -27545,6 +29076,7 @@ func VPINSRQ(i, mr, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mr, x, x1},
 			Inputs:   []operand.Op{mr, x},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VPINSRQ: bad operands")
@@ -27564,6 +29096,7 @@ func VPINSRW(i, mr, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mr, x, x1},
 			Inputs:   []operand.Op{mr, x},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM16(mr) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
@@ -27571,6 +29104,7 @@ func VPINSRW(i, mr, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mr, x, x1},
 			Inputs:   []operand.Op{mr, x},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VPINSRW: bad operands")
@@ -27592,6 +29126,7 @@ func VPMADDUBSW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -27599,6 +29134,7 @@ func VPMADDUBSW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -27606,6 +29142,7 @@ func VPMADDUBSW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -27613,6 +29150,7 @@ func VPMADDUBSW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPMADDUBSW: bad operands")
@@ -27634,6 +29172,7 @@ func VPMADDWD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -27641,6 +29180,7 @@ func VPMADDWD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -27648,6 +29188,7 @@ func VPMADDWD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -27655,6 +29196,7 @@ func VPMADDWD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPMADDWD: bad operands")
@@ -27676,6 +29218,7 @@ func VPMASKMOVD(mxy, xy, mxy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, mxy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{mxy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(mxy1):
 		return &intrep.Instruction{
@@ -27683,6 +29226,7 @@ func VPMASKMOVD(mxy, xy, mxy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, mxy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{mxy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsM128(mxy1):
 		return &intrep.Instruction{
@@ -27690,6 +29234,7 @@ func VPMASKMOVD(mxy, xy, mxy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, mxy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{mxy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsM256(mxy1):
 		return &intrep.Instruction{
@@ -27697,6 +29242,7 @@ func VPMASKMOVD(mxy, xy, mxy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, mxy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{mxy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPMASKMOVD: bad operands")
@@ -27718,6 +29264,7 @@ func VPMASKMOVQ(mxy, xy, mxy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, mxy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{mxy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(mxy1):
 		return &intrep.Instruction{
@@ -27725,6 +29272,7 @@ func VPMASKMOVQ(mxy, xy, mxy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, mxy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{mxy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsM128(mxy1):
 		return &intrep.Instruction{
@@ -27732,6 +29280,7 @@ func VPMASKMOVQ(mxy, xy, mxy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, mxy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{mxy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsM256(mxy1):
 		return &intrep.Instruction{
@@ -27739,6 +29288,7 @@ func VPMASKMOVQ(mxy, xy, mxy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, mxy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{mxy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPMASKMOVQ: bad operands")
@@ -27760,6 +29310,7 @@ func VPMAXSB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -27767,6 +29318,7 @@ func VPMAXSB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -27774,6 +29326,7 @@ func VPMAXSB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -27781,6 +29334,7 @@ func VPMAXSB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPMAXSB: bad operands")
@@ -27802,6 +29356,7 @@ func VPMAXSD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -27809,6 +29364,7 @@ func VPMAXSD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -27816,6 +29372,7 @@ func VPMAXSD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -27823,6 +29380,7 @@ func VPMAXSD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPMAXSD: bad operands")
@@ -27844,6 +29402,7 @@ func VPMAXSW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -27851,6 +29410,7 @@ func VPMAXSW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -27858,6 +29418,7 @@ func VPMAXSW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -27865,6 +29426,7 @@ func VPMAXSW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPMAXSW: bad operands")
@@ -27886,6 +29448,7 @@ func VPMAXUB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -27893,6 +29456,7 @@ func VPMAXUB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -27900,6 +29464,7 @@ func VPMAXUB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -27907,6 +29472,7 @@ func VPMAXUB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPMAXUB: bad operands")
@@ -27928,6 +29494,7 @@ func VPMAXUD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -27935,6 +29502,7 @@ func VPMAXUD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -27942,6 +29510,7 @@ func VPMAXUD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -27949,6 +29518,7 @@ func VPMAXUD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPMAXUD: bad operands")
@@ -27970,6 +29540,7 @@ func VPMAXUW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -27977,6 +29548,7 @@ func VPMAXUW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -27984,6 +29556,7 @@ func VPMAXUW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -27991,6 +29564,7 @@ func VPMAXUW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPMAXUW: bad operands")
@@ -28012,6 +29586,7 @@ func VPMINSB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -28019,6 +29594,7 @@ func VPMINSB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -28026,6 +29602,7 @@ func VPMINSB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -28033,6 +29610,7 @@ func VPMINSB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPMINSB: bad operands")
@@ -28054,6 +29632,7 @@ func VPMINSD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -28061,6 +29640,7 @@ func VPMINSD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -28068,6 +29648,7 @@ func VPMINSD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -28075,6 +29656,7 @@ func VPMINSD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPMINSD: bad operands")
@@ -28096,6 +29678,7 @@ func VPMINSW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -28103,6 +29686,7 @@ func VPMINSW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -28110,6 +29694,7 @@ func VPMINSW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -28117,6 +29702,7 @@ func VPMINSW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPMINSW: bad operands")
@@ -28138,6 +29724,7 @@ func VPMINUB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -28145,6 +29732,7 @@ func VPMINUB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -28152,6 +29740,7 @@ func VPMINUB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -28159,6 +29748,7 @@ func VPMINUB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPMINUB: bad operands")
@@ -28180,6 +29770,7 @@ func VPMINUD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -28187,6 +29778,7 @@ func VPMINUD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -28194,6 +29786,7 @@ func VPMINUD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -28201,6 +29794,7 @@ func VPMINUD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPMINUD: bad operands")
@@ -28222,6 +29816,7 @@ func VPMINUW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -28229,6 +29824,7 @@ func VPMINUW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -28236,6 +29832,7 @@ func VPMINUW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -28243,6 +29840,7 @@ func VPMINUW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPMINUW: bad operands")
@@ -28262,6 +29860,7 @@ func VPMOVMSKB(xy, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{xy, r},
 			Inputs:   []operand.Op{xy},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(xy) && operand.IsR32(r):
 		return &intrep.Instruction{
@@ -28269,6 +29868,7 @@ func VPMOVMSKB(xy, r operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{xy, r},
 			Inputs:   []operand.Op{xy},
 			Outputs:  []operand.Op{r},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPMOVMSKB: bad operands")
@@ -28290,6 +29890,7 @@ func VPMOVSXBD(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM32(mx) && operand.IsXMM(xy):
 		return &intrep.Instruction{
@@ -28297,6 +29898,7 @@ func VPMOVSXBD(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsXMM(mx) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -28304,6 +29906,7 @@ func VPMOVSXBD(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM64(mx) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -28311,6 +29914,7 @@ func VPMOVSXBD(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPMOVSXBD: bad operands")
@@ -28332,6 +29936,7 @@ func VPMOVSXBQ(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM16(mx) && operand.IsXMM(xy):
 		return &intrep.Instruction{
@@ -28339,6 +29944,7 @@ func VPMOVSXBQ(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsXMM(mx) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -28346,6 +29952,7 @@ func VPMOVSXBQ(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM32(mx) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -28353,6 +29960,7 @@ func VPMOVSXBQ(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPMOVSXBQ: bad operands")
@@ -28374,6 +29982,7 @@ func VPMOVSXBW(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM64(mx) && operand.IsXMM(xy):
 		return &intrep.Instruction{
@@ -28381,6 +29990,7 @@ func VPMOVSXBW(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsXMM(mx) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -28388,6 +29998,7 @@ func VPMOVSXBW(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -28395,6 +30006,7 @@ func VPMOVSXBW(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPMOVSXBW: bad operands")
@@ -28416,6 +30028,7 @@ func VPMOVSXDQ(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM64(mx) && operand.IsXMM(xy):
 		return &intrep.Instruction{
@@ -28423,6 +30036,7 @@ func VPMOVSXDQ(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsXMM(mx) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -28430,6 +30044,7 @@ func VPMOVSXDQ(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -28437,6 +30052,7 @@ func VPMOVSXDQ(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPMOVSXDQ: bad operands")
@@ -28458,6 +30074,7 @@ func VPMOVSXWD(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM64(mx) && operand.IsXMM(xy):
 		return &intrep.Instruction{
@@ -28465,6 +30082,7 @@ func VPMOVSXWD(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsXMM(mx) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -28472,6 +30090,7 @@ func VPMOVSXWD(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -28479,6 +30098,7 @@ func VPMOVSXWD(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPMOVSXWD: bad operands")
@@ -28500,6 +30120,7 @@ func VPMOVSXWQ(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM32(mx) && operand.IsXMM(xy):
 		return &intrep.Instruction{
@@ -28507,6 +30128,7 @@ func VPMOVSXWQ(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsXMM(mx) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -28514,6 +30136,7 @@ func VPMOVSXWQ(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM64(mx) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -28521,6 +30144,7 @@ func VPMOVSXWQ(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPMOVSXWQ: bad operands")
@@ -28542,6 +30166,7 @@ func VPMOVZXBD(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM32(mx) && operand.IsXMM(xy):
 		return &intrep.Instruction{
@@ -28549,6 +30174,7 @@ func VPMOVZXBD(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsXMM(mx) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -28556,6 +30182,7 @@ func VPMOVZXBD(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM64(mx) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -28563,6 +30190,7 @@ func VPMOVZXBD(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPMOVZXBD: bad operands")
@@ -28584,6 +30212,7 @@ func VPMOVZXBQ(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM16(mx) && operand.IsXMM(xy):
 		return &intrep.Instruction{
@@ -28591,6 +30220,7 @@ func VPMOVZXBQ(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsXMM(mx) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -28598,6 +30228,7 @@ func VPMOVZXBQ(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM32(mx) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -28605,6 +30236,7 @@ func VPMOVZXBQ(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPMOVZXBQ: bad operands")
@@ -28626,6 +30258,7 @@ func VPMOVZXBW(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM64(mx) && operand.IsXMM(xy):
 		return &intrep.Instruction{
@@ -28633,6 +30266,7 @@ func VPMOVZXBW(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsXMM(mx) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -28640,6 +30274,7 @@ func VPMOVZXBW(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -28647,6 +30282,7 @@ func VPMOVZXBW(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPMOVZXBW: bad operands")
@@ -28668,6 +30304,7 @@ func VPMOVZXDQ(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM64(mx) && operand.IsXMM(xy):
 		return &intrep.Instruction{
@@ -28675,6 +30312,7 @@ func VPMOVZXDQ(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsXMM(mx) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -28682,6 +30320,7 @@ func VPMOVZXDQ(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -28689,6 +30328,7 @@ func VPMOVZXDQ(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPMOVZXDQ: bad operands")
@@ -28710,6 +30350,7 @@ func VPMOVZXWD(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM64(mx) && operand.IsXMM(xy):
 		return &intrep.Instruction{
@@ -28717,6 +30358,7 @@ func VPMOVZXWD(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsXMM(mx) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -28724,6 +30366,7 @@ func VPMOVZXWD(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM128(mx) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -28731,6 +30374,7 @@ func VPMOVZXWD(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPMOVZXWD: bad operands")
@@ -28752,6 +30396,7 @@ func VPMOVZXWQ(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM32(mx) && operand.IsXMM(xy):
 		return &intrep.Instruction{
@@ -28759,6 +30404,7 @@ func VPMOVZXWQ(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsXMM(mx) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -28766,6 +30412,7 @@ func VPMOVZXWQ(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM64(mx) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -28773,6 +30420,7 @@ func VPMOVZXWQ(mx, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, xy},
 			Inputs:   []operand.Op{mx},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPMOVZXWQ: bad operands")
@@ -28794,6 +30442,7 @@ func VPMULDQ(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -28801,6 +30450,7 @@ func VPMULDQ(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -28808,6 +30458,7 @@ func VPMULDQ(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -28815,6 +30466,7 @@ func VPMULDQ(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPMULDQ: bad operands")
@@ -28836,6 +30488,7 @@ func VPMULHRSW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -28843,6 +30496,7 @@ func VPMULHRSW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -28850,6 +30504,7 @@ func VPMULHRSW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -28857,6 +30512,7 @@ func VPMULHRSW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPMULHRSW: bad operands")
@@ -28878,6 +30534,7 @@ func VPMULHUW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -28885,6 +30542,7 @@ func VPMULHUW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -28892,6 +30550,7 @@ func VPMULHUW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -28899,6 +30558,7 @@ func VPMULHUW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPMULHUW: bad operands")
@@ -28920,6 +30580,7 @@ func VPMULHW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -28927,6 +30588,7 @@ func VPMULHW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -28934,6 +30596,7 @@ func VPMULHW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -28941,6 +30604,7 @@ func VPMULHW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPMULHW: bad operands")
@@ -28962,6 +30626,7 @@ func VPMULLD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -28969,6 +30634,7 @@ func VPMULLD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -28976,6 +30642,7 @@ func VPMULLD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -28983,6 +30650,7 @@ func VPMULLD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPMULLD: bad operands")
@@ -29004,6 +30672,7 @@ func VPMULLW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -29011,6 +30680,7 @@ func VPMULLW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -29018,6 +30688,7 @@ func VPMULLW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -29025,6 +30696,7 @@ func VPMULLW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPMULLW: bad operands")
@@ -29046,6 +30718,7 @@ func VPMULUDQ(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -29053,6 +30726,7 @@ func VPMULUDQ(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -29060,6 +30734,7 @@ func VPMULUDQ(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -29067,6 +30742,7 @@ func VPMULUDQ(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPMULUDQ: bad operands")
@@ -29088,6 +30764,7 @@ func VPOR(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -29095,6 +30772,7 @@ func VPOR(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -29102,6 +30780,7 @@ func VPOR(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -29109,6 +30788,7 @@ func VPOR(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPOR: bad operands")
@@ -29130,6 +30810,7 @@ func VPSADBW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mxy, xy, xy1},
 			Inputs:           []operand.Op{mxy, xy},
 			Outputs:          []operand.Op{xy1},
+			ISA:              []string{"AVX"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
@@ -29138,6 +30819,7 @@ func VPSADBW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -29145,6 +30827,7 @@ func VPSADBW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mxy, xy, xy1},
 			Inputs:           []operand.Op{mxy, xy},
 			Outputs:          []operand.Op{xy1},
+			ISA:              []string{"AVX2"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
@@ -29153,6 +30836,7 @@ func VPSADBW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPSADBW: bad operands")
@@ -29174,6 +30858,7 @@ func VPSHUFB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -29181,6 +30866,7 @@ func VPSHUFB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -29188,6 +30874,7 @@ func VPSHUFB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -29195,6 +30882,7 @@ func VPSHUFB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPSHUFB: bad operands")
@@ -29216,6 +30904,7 @@ func VPSHUFD(i, mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM128(mxy) && operand.IsXMM(xy):
 		return &intrep.Instruction{
@@ -29223,6 +30912,7 @@ func VPSHUFD(i, mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsYMM(mxy) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -29230,6 +30920,7 @@ func VPSHUFD(i, mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM256(mxy) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -29237,6 +30928,7 @@ func VPSHUFD(i, mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPSHUFD: bad operands")
@@ -29258,6 +30950,7 @@ func VPSHUFHW(i, mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM128(mxy) && operand.IsXMM(xy):
 		return &intrep.Instruction{
@@ -29265,6 +30958,7 @@ func VPSHUFHW(i, mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsYMM(mxy) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -29272,6 +30966,7 @@ func VPSHUFHW(i, mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM256(mxy) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -29279,6 +30974,7 @@ func VPSHUFHW(i, mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPSHUFHW: bad operands")
@@ -29300,6 +30996,7 @@ func VPSHUFLW(i, mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM128(mxy) && operand.IsXMM(xy):
 		return &intrep.Instruction{
@@ -29307,6 +31004,7 @@ func VPSHUFLW(i, mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsYMM(mxy) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -29314,6 +31012,7 @@ func VPSHUFLW(i, mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM256(mxy) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -29321,6 +31020,7 @@ func VPSHUFLW(i, mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPSHUFLW: bad operands")
@@ -29342,6 +31042,7 @@ func VPSIGNB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -29349,6 +31050,7 @@ func VPSIGNB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -29356,6 +31058,7 @@ func VPSIGNB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -29363,6 +31066,7 @@ func VPSIGNB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPSIGNB: bad operands")
@@ -29384,6 +31088,7 @@ func VPSIGND(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -29391,6 +31096,7 @@ func VPSIGND(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -29398,6 +31104,7 @@ func VPSIGND(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -29405,6 +31112,7 @@ func VPSIGND(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPSIGND: bad operands")
@@ -29426,6 +31134,7 @@ func VPSIGNW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -29433,6 +31142,7 @@ func VPSIGNW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -29440,6 +31150,7 @@ func VPSIGNW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -29447,6 +31158,7 @@ func VPSIGNW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPSIGNW: bad operands")
@@ -29470,6 +31182,7 @@ func VPSLLD(imx, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imx, xy, xy1},
 			Inputs:   []operand.Op{xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsXMM(imx) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -29477,6 +31190,7 @@ func VPSLLD(imx, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imx, xy, xy1},
 			Inputs:   []operand.Op{imx, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(imx) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -29484,6 +31198,7 @@ func VPSLLD(imx, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imx, xy, xy1},
 			Inputs:   []operand.Op{imx, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(imx) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -29491,6 +31206,7 @@ func VPSLLD(imx, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imx, xy, xy1},
 			Inputs:   []operand.Op{xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsXMM(imx) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -29498,6 +31214,7 @@ func VPSLLD(imx, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imx, xy, xy1},
 			Inputs:   []operand.Op{imx, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM128(imx) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -29505,6 +31222,7 @@ func VPSLLD(imx, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imx, xy, xy1},
 			Inputs:   []operand.Op{imx, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPSLLD: bad operands")
@@ -29524,6 +31242,7 @@ func VPSLLDQ(i, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, xy, xy1},
 			Inputs:   []operand.Op{xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -29531,6 +31250,7 @@ func VPSLLDQ(i, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, xy, xy1},
 			Inputs:   []operand.Op{xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPSLLDQ: bad operands")
@@ -29554,6 +31274,7 @@ func VPSLLQ(imx, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imx, xy, xy1},
 			Inputs:   []operand.Op{xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsXMM(imx) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -29561,6 +31282,7 @@ func VPSLLQ(imx, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imx, xy, xy1},
 			Inputs:   []operand.Op{imx, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(imx) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -29568,6 +31290,7 @@ func VPSLLQ(imx, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imx, xy, xy1},
 			Inputs:   []operand.Op{imx, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(imx) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -29575,6 +31298,7 @@ func VPSLLQ(imx, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imx, xy, xy1},
 			Inputs:   []operand.Op{xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsXMM(imx) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -29582,6 +31306,7 @@ func VPSLLQ(imx, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imx, xy, xy1},
 			Inputs:   []operand.Op{imx, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM128(imx) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -29589,6 +31314,7 @@ func VPSLLQ(imx, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imx, xy, xy1},
 			Inputs:   []operand.Op{imx, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPSLLQ: bad operands")
@@ -29610,6 +31336,7 @@ func VPSLLVD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -29617,6 +31344,7 @@ func VPSLLVD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -29624,6 +31352,7 @@ func VPSLLVD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -29631,6 +31360,7 @@ func VPSLLVD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPSLLVD: bad operands")
@@ -29652,6 +31382,7 @@ func VPSLLVQ(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -29659,6 +31390,7 @@ func VPSLLVQ(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -29666,6 +31398,7 @@ func VPSLLVQ(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -29673,6 +31406,7 @@ func VPSLLVQ(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPSLLVQ: bad operands")
@@ -29696,6 +31430,7 @@ func VPSLLW(imx, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imx, xy, xy1},
 			Inputs:   []operand.Op{xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsXMM(imx) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -29703,6 +31438,7 @@ func VPSLLW(imx, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imx, xy, xy1},
 			Inputs:   []operand.Op{imx, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(imx) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -29710,6 +31446,7 @@ func VPSLLW(imx, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imx, xy, xy1},
 			Inputs:   []operand.Op{imx, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(imx) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -29717,6 +31454,7 @@ func VPSLLW(imx, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imx, xy, xy1},
 			Inputs:   []operand.Op{xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsXMM(imx) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -29724,6 +31462,7 @@ func VPSLLW(imx, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imx, xy, xy1},
 			Inputs:   []operand.Op{imx, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM128(imx) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -29731,6 +31470,7 @@ func VPSLLW(imx, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imx, xy, xy1},
 			Inputs:   []operand.Op{imx, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPSLLW: bad operands")
@@ -29754,6 +31494,7 @@ func VPSRAD(imx, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imx, xy, xy1},
 			Inputs:   []operand.Op{xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsXMM(imx) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -29761,6 +31502,7 @@ func VPSRAD(imx, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imx, xy, xy1},
 			Inputs:   []operand.Op{imx, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(imx) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -29768,6 +31510,7 @@ func VPSRAD(imx, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imx, xy, xy1},
 			Inputs:   []operand.Op{imx, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(imx) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -29775,6 +31518,7 @@ func VPSRAD(imx, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imx, xy, xy1},
 			Inputs:   []operand.Op{xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsXMM(imx) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -29782,6 +31526,7 @@ func VPSRAD(imx, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imx, xy, xy1},
 			Inputs:   []operand.Op{imx, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM128(imx) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -29789,6 +31534,7 @@ func VPSRAD(imx, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imx, xy, xy1},
 			Inputs:   []operand.Op{imx, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPSRAD: bad operands")
@@ -29810,6 +31556,7 @@ func VPSRAVD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -29817,6 +31564,7 @@ func VPSRAVD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -29824,6 +31572,7 @@ func VPSRAVD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -29831,6 +31580,7 @@ func VPSRAVD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPSRAVD: bad operands")
@@ -29854,6 +31604,7 @@ func VPSRAW(imx, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imx, xy, xy1},
 			Inputs:   []operand.Op{xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsXMM(imx) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -29861,6 +31612,7 @@ func VPSRAW(imx, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imx, xy, xy1},
 			Inputs:   []operand.Op{imx, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(imx) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -29868,6 +31620,7 @@ func VPSRAW(imx, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imx, xy, xy1},
 			Inputs:   []operand.Op{imx, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(imx) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -29875,6 +31628,7 @@ func VPSRAW(imx, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imx, xy, xy1},
 			Inputs:   []operand.Op{xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsXMM(imx) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -29882,6 +31636,7 @@ func VPSRAW(imx, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imx, xy, xy1},
 			Inputs:   []operand.Op{imx, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM128(imx) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -29889,6 +31644,7 @@ func VPSRAW(imx, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imx, xy, xy1},
 			Inputs:   []operand.Op{imx, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPSRAW: bad operands")
@@ -29912,6 +31668,7 @@ func VPSRLD(imx, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imx, xy, xy1},
 			Inputs:   []operand.Op{xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsXMM(imx) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -29919,6 +31676,7 @@ func VPSRLD(imx, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imx, xy, xy1},
 			Inputs:   []operand.Op{imx, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(imx) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -29926,6 +31684,7 @@ func VPSRLD(imx, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imx, xy, xy1},
 			Inputs:   []operand.Op{imx, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(imx) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -29933,6 +31692,7 @@ func VPSRLD(imx, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imx, xy, xy1},
 			Inputs:   []operand.Op{xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsXMM(imx) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -29940,6 +31700,7 @@ func VPSRLD(imx, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imx, xy, xy1},
 			Inputs:   []operand.Op{imx, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM128(imx) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -29947,6 +31708,7 @@ func VPSRLD(imx, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imx, xy, xy1},
 			Inputs:   []operand.Op{imx, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPSRLD: bad operands")
@@ -29966,6 +31728,7 @@ func VPSRLDQ(i, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, xy, xy1},
 			Inputs:   []operand.Op{xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -29973,6 +31736,7 @@ func VPSRLDQ(i, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, xy, xy1},
 			Inputs:   []operand.Op{xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPSRLDQ: bad operands")
@@ -29996,6 +31760,7 @@ func VPSRLQ(imx, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imx, xy, xy1},
 			Inputs:   []operand.Op{xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsXMM(imx) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -30003,6 +31768,7 @@ func VPSRLQ(imx, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imx, xy, xy1},
 			Inputs:   []operand.Op{imx, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(imx) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -30010,6 +31776,7 @@ func VPSRLQ(imx, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imx, xy, xy1},
 			Inputs:   []operand.Op{imx, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(imx) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -30017,6 +31784,7 @@ func VPSRLQ(imx, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imx, xy, xy1},
 			Inputs:   []operand.Op{xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsXMM(imx) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -30024,6 +31792,7 @@ func VPSRLQ(imx, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imx, xy, xy1},
 			Inputs:   []operand.Op{imx, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM128(imx) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -30031,6 +31800,7 @@ func VPSRLQ(imx, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imx, xy, xy1},
 			Inputs:   []operand.Op{imx, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPSRLQ: bad operands")
@@ -30052,6 +31822,7 @@ func VPSRLVD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -30059,6 +31830,7 @@ func VPSRLVD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -30066,6 +31838,7 @@ func VPSRLVD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -30073,6 +31846,7 @@ func VPSRLVD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPSRLVD: bad operands")
@@ -30094,6 +31868,7 @@ func VPSRLVQ(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -30101,6 +31876,7 @@ func VPSRLVQ(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -30108,6 +31884,7 @@ func VPSRLVQ(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -30115,6 +31892,7 @@ func VPSRLVQ(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPSRLVQ: bad operands")
@@ -30138,6 +31916,7 @@ func VPSRLW(imx, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imx, xy, xy1},
 			Inputs:   []operand.Op{xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsXMM(imx) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -30145,6 +31924,7 @@ func VPSRLW(imx, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imx, xy, xy1},
 			Inputs:   []operand.Op{imx, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(imx) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -30152,6 +31932,7 @@ func VPSRLW(imx, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imx, xy, xy1},
 			Inputs:   []operand.Op{imx, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(imx) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -30159,6 +31940,7 @@ func VPSRLW(imx, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imx, xy, xy1},
 			Inputs:   []operand.Op{xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsXMM(imx) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -30166,6 +31948,7 @@ func VPSRLW(imx, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imx, xy, xy1},
 			Inputs:   []operand.Op{imx, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM128(imx) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -30173,6 +31956,7 @@ func VPSRLW(imx, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{imx, xy, xy1},
 			Inputs:   []operand.Op{imx, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPSRLW: bad operands")
@@ -30194,6 +31978,7 @@ func VPSUBB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mxy, xy, xy1},
 			Inputs:           []operand.Op{mxy, xy},
 			Outputs:          []operand.Op{xy1},
+			ISA:              []string{"AVX"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
@@ -30202,6 +31987,7 @@ func VPSUBB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -30209,6 +31995,7 @@ func VPSUBB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mxy, xy, xy1},
 			Inputs:           []operand.Op{mxy, xy},
 			Outputs:          []operand.Op{xy1},
+			ISA:              []string{"AVX2"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
@@ -30217,6 +32004,7 @@ func VPSUBB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPSUBB: bad operands")
@@ -30238,6 +32026,7 @@ func VPSUBD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mxy, xy, xy1},
 			Inputs:           []operand.Op{mxy, xy},
 			Outputs:          []operand.Op{xy1},
+			ISA:              []string{"AVX"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
@@ -30246,6 +32035,7 @@ func VPSUBD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -30253,6 +32043,7 @@ func VPSUBD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mxy, xy, xy1},
 			Inputs:           []operand.Op{mxy, xy},
 			Outputs:          []operand.Op{xy1},
+			ISA:              []string{"AVX2"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
@@ -30261,6 +32052,7 @@ func VPSUBD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPSUBD: bad operands")
@@ -30282,6 +32074,7 @@ func VPSUBQ(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mxy, xy, xy1},
 			Inputs:           []operand.Op{mxy, xy},
 			Outputs:          []operand.Op{xy1},
+			ISA:              []string{"AVX"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
@@ -30290,6 +32083,7 @@ func VPSUBQ(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -30297,6 +32091,7 @@ func VPSUBQ(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mxy, xy, xy1},
 			Inputs:           []operand.Op{mxy, xy},
 			Outputs:          []operand.Op{xy1},
+			ISA:              []string{"AVX2"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
@@ -30305,6 +32100,7 @@ func VPSUBQ(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPSUBQ: bad operands")
@@ -30326,6 +32122,7 @@ func VPSUBSB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mxy, xy, xy1},
 			Inputs:           []operand.Op{mxy, xy},
 			Outputs:          []operand.Op{xy1},
+			ISA:              []string{"AVX"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
@@ -30334,6 +32131,7 @@ func VPSUBSB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -30341,6 +32139,7 @@ func VPSUBSB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mxy, xy, xy1},
 			Inputs:           []operand.Op{mxy, xy},
 			Outputs:          []operand.Op{xy1},
+			ISA:              []string{"AVX2"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
@@ -30349,6 +32148,7 @@ func VPSUBSB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPSUBSB: bad operands")
@@ -30370,6 +32170,7 @@ func VPSUBSW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mxy, xy, xy1},
 			Inputs:           []operand.Op{mxy, xy},
 			Outputs:          []operand.Op{xy1},
+			ISA:              []string{"AVX"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
@@ -30378,6 +32179,7 @@ func VPSUBSW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -30385,6 +32187,7 @@ func VPSUBSW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mxy, xy, xy1},
 			Inputs:           []operand.Op{mxy, xy},
 			Outputs:          []operand.Op{xy1},
+			ISA:              []string{"AVX2"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
@@ -30393,6 +32196,7 @@ func VPSUBSW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPSUBSW: bad operands")
@@ -30414,6 +32218,7 @@ func VPSUBUSB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mxy, xy, xy1},
 			Inputs:           []operand.Op{mxy, xy},
 			Outputs:          []operand.Op{xy1},
+			ISA:              []string{"AVX"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
@@ -30422,6 +32227,7 @@ func VPSUBUSB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -30429,6 +32235,7 @@ func VPSUBUSB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mxy, xy, xy1},
 			Inputs:           []operand.Op{mxy, xy},
 			Outputs:          []operand.Op{xy1},
+			ISA:              []string{"AVX2"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
@@ -30437,6 +32244,7 @@ func VPSUBUSB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPSUBUSB: bad operands")
@@ -30458,6 +32266,7 @@ func VPSUBUSW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mxy, xy, xy1},
 			Inputs:           []operand.Op{mxy, xy},
 			Outputs:          []operand.Op{xy1},
+			ISA:              []string{"AVX"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
@@ -30466,6 +32275,7 @@ func VPSUBUSW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -30473,6 +32283,7 @@ func VPSUBUSW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mxy, xy, xy1},
 			Inputs:           []operand.Op{mxy, xy},
 			Outputs:          []operand.Op{xy1},
+			ISA:              []string{"AVX2"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
@@ -30481,6 +32292,7 @@ func VPSUBUSW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPSUBUSW: bad operands")
@@ -30502,6 +32314,7 @@ func VPSUBW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mxy, xy, xy1},
 			Inputs:           []operand.Op{mxy, xy},
 			Outputs:          []operand.Op{xy1},
+			ISA:              []string{"AVX"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
@@ -30510,6 +32323,7 @@ func VPSUBW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -30517,6 +32331,7 @@ func VPSUBW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mxy, xy, xy1},
 			Inputs:           []operand.Op{mxy, xy},
 			Outputs:          []operand.Op{xy1},
+			ISA:              []string{"AVX2"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
@@ -30525,6 +32340,7 @@ func VPSUBW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPSUBW: bad operands")
@@ -30546,6 +32362,7 @@ func VPTEST(mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy):
 		return &intrep.Instruction{
@@ -30553,6 +32370,7 @@ func VPTEST(mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -30560,6 +32378,7 @@ func VPTEST(mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -30567,6 +32386,7 @@ func VPTEST(mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VPTEST: bad operands")
@@ -30588,6 +32408,7 @@ func VPUNPCKHBW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -30595,6 +32416,7 @@ func VPUNPCKHBW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -30602,6 +32424,7 @@ func VPUNPCKHBW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -30609,6 +32432,7 @@ func VPUNPCKHBW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPUNPCKHBW: bad operands")
@@ -30630,6 +32454,7 @@ func VPUNPCKHDQ(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -30637,6 +32462,7 @@ func VPUNPCKHDQ(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -30644,6 +32470,7 @@ func VPUNPCKHDQ(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -30651,6 +32478,7 @@ func VPUNPCKHDQ(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPUNPCKHDQ: bad operands")
@@ -30672,6 +32500,7 @@ func VPUNPCKHQDQ(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -30679,6 +32508,7 @@ func VPUNPCKHQDQ(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -30686,6 +32516,7 @@ func VPUNPCKHQDQ(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -30693,6 +32524,7 @@ func VPUNPCKHQDQ(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPUNPCKHQDQ: bad operands")
@@ -30714,6 +32546,7 @@ func VPUNPCKHWD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -30721,6 +32554,7 @@ func VPUNPCKHWD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -30728,6 +32562,7 @@ func VPUNPCKHWD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -30735,6 +32570,7 @@ func VPUNPCKHWD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPUNPCKHWD: bad operands")
@@ -30756,6 +32592,7 @@ func VPUNPCKLBW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -30763,6 +32600,7 @@ func VPUNPCKLBW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -30770,6 +32608,7 @@ func VPUNPCKLBW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -30777,6 +32616,7 @@ func VPUNPCKLBW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPUNPCKLBW: bad operands")
@@ -30798,6 +32638,7 @@ func VPUNPCKLDQ(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -30805,6 +32646,7 @@ func VPUNPCKLDQ(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -30812,6 +32654,7 @@ func VPUNPCKLDQ(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -30819,6 +32662,7 @@ func VPUNPCKLDQ(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPUNPCKLDQ: bad operands")
@@ -30840,6 +32684,7 @@ func VPUNPCKLQDQ(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -30847,6 +32692,7 @@ func VPUNPCKLQDQ(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -30854,6 +32700,7 @@ func VPUNPCKLQDQ(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -30861,6 +32708,7 @@ func VPUNPCKLQDQ(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPUNPCKLQDQ: bad operands")
@@ -30882,6 +32730,7 @@ func VPUNPCKLWD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -30889,6 +32738,7 @@ func VPUNPCKLWD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -30896,6 +32746,7 @@ func VPUNPCKLWD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -30903,6 +32754,7 @@ func VPUNPCKLWD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPUNPCKLWD: bad operands")
@@ -30924,6 +32776,7 @@ func VPXOR(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mxy, xy, xy1},
 			Inputs:           []operand.Op{mxy, xy},
 			Outputs:          []operand.Op{xy1},
+			ISA:              []string{"AVX"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
@@ -30932,6 +32785,7 @@ func VPXOR(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -30939,6 +32793,7 @@ func VPXOR(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mxy, xy, xy1},
 			Inputs:           []operand.Op{mxy, xy},
 			Outputs:          []operand.Op{xy1},
+			ISA:              []string{"AVX2"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
@@ -30947,6 +32802,7 @@ func VPXOR(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPXOR: bad operands")
@@ -30968,6 +32824,7 @@ func VRCPPS(mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy):
 		return &intrep.Instruction{
@@ -30975,6 +32832,7 @@ func VRCPPS(mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -30982,6 +32840,7 @@ func VRCPPS(mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -30989,6 +32848,7 @@ func VRCPPS(mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VRCPPS: bad operands")
@@ -31008,6 +32868,7 @@ func VRCPSS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM32(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
@@ -31015,6 +32876,7 @@ func VRCPSS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VRCPSS: bad operands")
@@ -31036,6 +32898,7 @@ func VROUNDPD(i, mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM128(mxy) && operand.IsXMM(xy):
 		return &intrep.Instruction{
@@ -31043,6 +32906,7 @@ func VROUNDPD(i, mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsYMM(mxy) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -31050,6 +32914,7 @@ func VROUNDPD(i, mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM256(mxy) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -31057,6 +32922,7 @@ func VROUNDPD(i, mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VROUNDPD: bad operands")
@@ -31078,6 +32944,7 @@ func VROUNDPS(i, mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM128(mxy) && operand.IsXMM(xy):
 		return &intrep.Instruction{
@@ -31085,6 +32952,7 @@ func VROUNDPS(i, mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsYMM(mxy) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -31092,6 +32960,7 @@ func VROUNDPS(i, mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM256(mxy) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -31099,6 +32968,7 @@ func VROUNDPS(i, mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VROUNDPS: bad operands")
@@ -31118,6 +32988,7 @@ func VROUNDSD(i, mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x, x1},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM64(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
@@ -31125,6 +32996,7 @@ func VROUNDSD(i, mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x, x1},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VROUNDSD: bad operands")
@@ -31144,6 +33016,7 @@ func VROUNDSS(i, mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x, x1},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM32(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
@@ -31151,6 +33024,7 @@ func VROUNDSS(i, mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x, x1},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VROUNDSS: bad operands")
@@ -31172,6 +33046,7 @@ func VRSQRTPS(mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy):
 		return &intrep.Instruction{
@@ -31179,6 +33054,7 @@ func VRSQRTPS(mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -31186,6 +33062,7 @@ func VRSQRTPS(mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -31193,6 +33070,7 @@ func VRSQRTPS(mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VRSQRTPS: bad operands")
@@ -31212,6 +33090,7 @@ func VRSQRTSS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM32(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
@@ -31219,6 +33098,7 @@ func VRSQRTSS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VRSQRTSS: bad operands")
@@ -31240,6 +33120,7 @@ func VSHUFPD(i, mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -31247,6 +33128,7 @@ func VSHUFPD(i, mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -31254,6 +33136,7 @@ func VSHUFPD(i, mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -31261,6 +33144,7 @@ func VSHUFPD(i, mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VSHUFPD: bad operands")
@@ -31282,6 +33166,7 @@ func VSHUFPS(i, mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -31289,6 +33174,7 @@ func VSHUFPS(i, mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -31296,6 +33182,7 @@ func VSHUFPS(i, mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsIMM8(i) && operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -31303,6 +33190,7 @@ func VSHUFPS(i, mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VSHUFPS: bad operands")
@@ -31324,6 +33212,7 @@ func VSQRTPD(mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy):
 		return &intrep.Instruction{
@@ -31331,6 +33220,7 @@ func VSQRTPD(mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -31338,6 +33228,7 @@ func VSQRTPD(mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -31345,6 +33236,7 @@ func VSQRTPD(mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VSQRTPD: bad operands")
@@ -31366,6 +33258,7 @@ func VSQRTPS(mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy):
 		return &intrep.Instruction{
@@ -31373,6 +33266,7 @@ func VSQRTPS(mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -31380,6 +33274,7 @@ func VSQRTPS(mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -31387,6 +33282,7 @@ func VSQRTPS(mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy},
 			Inputs:   []operand.Op{mxy},
 			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VSQRTPS: bad operands")
@@ -31406,6 +33302,7 @@ func VSQRTSD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM64(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
@@ -31413,6 +33310,7 @@ func VSQRTSD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VSQRTSD: bad operands")
@@ -31432,6 +33330,7 @@ func VSQRTSS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM32(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
@@ -31439,6 +33338,7 @@ func VSQRTSS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VSQRTSS: bad operands")
@@ -31457,6 +33357,7 @@ func VSTMXCSR(m operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{m},
 			Inputs:   []operand.Op{},
 			Outputs:  []operand.Op{m},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VSTMXCSR: bad operands")
@@ -31478,6 +33379,7 @@ func VSUBPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -31485,6 +33387,7 @@ func VSUBPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -31492,6 +33395,7 @@ func VSUBPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -31499,6 +33403,7 @@ func VSUBPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VSUBPD: bad operands")
@@ -31520,6 +33425,7 @@ func VSUBPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -31527,6 +33433,7 @@ func VSUBPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -31534,6 +33441,7 @@ func VSUBPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -31541,6 +33449,7 @@ func VSUBPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VSUBPS: bad operands")
@@ -31560,6 +33469,7 @@ func VSUBSD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM64(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
@@ -31567,6 +33477,7 @@ func VSUBSD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VSUBSD: bad operands")
@@ -31586,6 +33497,7 @@ func VSUBSS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM32(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
@@ -31593,6 +33505,7 @@ func VSUBSS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x, x1},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VSUBSS: bad operands")
@@ -31614,6 +33527,7 @@ func VTESTPD(mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy):
 		return &intrep.Instruction{
@@ -31621,6 +33535,7 @@ func VTESTPD(mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -31628,6 +33543,7 @@ func VTESTPD(mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -31635,6 +33551,7 @@ func VTESTPD(mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VTESTPD: bad operands")
@@ -31656,6 +33573,7 @@ func VTESTPS(mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy):
 		return &intrep.Instruction{
@@ -31663,6 +33581,7 @@ func VTESTPS(mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -31670,6 +33589,7 @@ func VTESTPS(mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy):
 		return &intrep.Instruction{
@@ -31677,6 +33597,7 @@ func VTESTPS(mxy, xy operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VTESTPS: bad operands")
@@ -31696,6 +33617,7 @@ func VUCOMISD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM64(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -31703,6 +33625,7 @@ func VUCOMISD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VUCOMISD: bad operands")
@@ -31722,6 +33645,7 @@ func VUCOMISS(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM32(mx) && operand.IsXMM(x):
 		return &intrep.Instruction{
@@ -31729,6 +33653,7 @@ func VUCOMISS(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VUCOMISS: bad operands")
@@ -31750,6 +33675,7 @@ func VUNPCKHPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -31757,6 +33683,7 @@ func VUNPCKHPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -31764,6 +33691,7 @@ func VUNPCKHPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -31771,6 +33699,7 @@ func VUNPCKHPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VUNPCKHPD: bad operands")
@@ -31792,6 +33721,7 @@ func VUNPCKHPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -31799,6 +33729,7 @@ func VUNPCKHPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -31806,6 +33737,7 @@ func VUNPCKHPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -31813,6 +33745,7 @@ func VUNPCKHPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VUNPCKHPS: bad operands")
@@ -31834,6 +33767,7 @@ func VUNPCKLPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -31841,6 +33775,7 @@ func VUNPCKLPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -31848,6 +33783,7 @@ func VUNPCKLPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -31855,6 +33791,7 @@ func VUNPCKLPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VUNPCKLPD: bad operands")
@@ -31876,6 +33813,7 @@ func VUNPCKLPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
 		return &intrep.Instruction{
@@ -31883,6 +33821,7 @@ func VUNPCKLPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -31890,6 +33829,7 @@ func VUNPCKLPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -31897,6 +33837,7 @@ func VUNPCKLPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VUNPCKLPS: bad operands")
@@ -31918,6 +33859,7 @@ func VXORPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mxy, xy, xy1},
 			Inputs:           []operand.Op{mxy, xy},
 			Outputs:          []operand.Op{xy1},
+			ISA:              []string{"AVX"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
@@ -31926,6 +33868,7 @@ func VXORPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -31933,6 +33876,7 @@ func VXORPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mxy, xy, xy1},
 			Inputs:           []operand.Op{mxy, xy},
 			Outputs:          []operand.Op{xy1},
+			ISA:              []string{"AVX"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
@@ -31941,6 +33885,7 @@ func VXORPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VXORPD: bad operands")
@@ -31962,6 +33907,7 @@ func VXORPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mxy, xy, xy1},
 			Inputs:           []operand.Op{mxy, xy},
 			Outputs:          []operand.Op{xy1},
+			ISA:              []string{"AVX"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
@@ -31970,6 +33916,7 @@ func VXORPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
 		return &intrep.Instruction{
@@ -31977,6 +33924,7 @@ func VXORPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mxy, xy, xy1},
 			Inputs:           []operand.Op{mxy, xy},
 			Outputs:          []operand.Op{xy1},
+			ISA:              []string{"AVX"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
@@ -31985,6 +33933,7 @@ func VXORPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mxy, xy, xy1},
 			Inputs:   []operand.Op{mxy, xy},
 			Outputs:  []operand.Op{xy1},
+			ISA:      []string{"AVX"},
 		}, nil
 	}
 	return nil, errors.New("VXORPS: bad operands")
@@ -32001,6 +33950,7 @@ func VZEROALL() (*intrep.Instruction, error) {
 		Operands: nil,
 		Inputs:   []operand.Op{},
 		Outputs:  []operand.Op{},
+		ISA:      []string{"AVX"},
 	}, nil
 }
 
@@ -32015,6 +33965,7 @@ func VZEROUPPER() (*intrep.Instruction, error) {
 		Operands: nil,
 		Inputs:   []operand.Op{},
 		Outputs:  []operand.Op{},
+		ISA:      []string{"AVX"},
 	}, nil
 }
 
@@ -32482,6 +34433,7 @@ func XORPD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mx, x},
 			Inputs:           []operand.Op{mx, x},
 			Outputs:          []operand.Op{x},
+			ISA:              []string{"SSE2"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
@@ -32490,6 +34442,7 @@ func XORPD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE2"},
 		}, nil
 	}
 	return nil, errors.New("XORPD: bad operands")
@@ -32509,6 +34462,7 @@ func XORPS(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands:         []operand.Op{mx, x},
 			Inputs:           []operand.Op{mx, x},
 			Outputs:          []operand.Op{x},
+			ISA:              []string{"SSE"},
 			CancellingInputs: true,
 		}, nil
 	case operand.IsM128(mx) && operand.IsXMM(x):
@@ -32517,6 +34471,7 @@ func XORPS(mx, x operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mx, x},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x},
+			ISA:      []string{"SSE"},
 		}, nil
 	}
 	return nil, errors.New("XORPS: bad operands")

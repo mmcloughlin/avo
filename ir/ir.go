@@ -47,6 +47,9 @@ type Instruction struct {
 	IsConditional    bool
 	CancellingInputs bool
 
+	// ISA is the list of required instruction set extensions.
+	ISA []string
+
 	// CFG.
 	Pred []*Instruction
 	Succ []*Instruction
