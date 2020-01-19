@@ -265,8 +265,15 @@ func (a Allocation) Merge(b Allocation) error {
 	return nil
 }
 
-// Lookup the allocation for register r, or return nil if there is none.
-func (a Allocation) Lookup(r Register) Physical {
+func (a Allocation) LookupDefault(id ID) ID {
+	if _, found := a[id]; found {
+		return a[id]
+	}
+	return id
+}
+
+// LookupRegister the allocation for register r, or return nil if there is none.
+func (a Allocation) LookupRegister(r Register) Physical {
 	// Return immediately if it is already a physical register.
 	if p := ToPhysical(r); p != nil {
 		return p
@@ -282,8 +289,11 @@ func (a Allocation) Lookup(r Register) Physical {
 }
 
 // LookupDefault returns the register assigned to r, or r itself if there is none.
-func (a Allocation) LookupDefault(r Register) Register {
-	if p := a.Lookup(r); p != nil {
+func (a Allocation) LookupRegisterDefault(r Register) Register {
+	if r == nil {
+		return nil
+	}
+	if p := a.LookupRegister(r); p != nil {
 		return p
 	}
 	return r

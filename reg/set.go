@@ -29,7 +29,7 @@ func (s MaskSet) Clone() MaskSet {
 // Add mask to the given register ID.
 // Reports whether this made any change to the set.
 func (s MaskSet) Add(id ID, mask uint16) bool {
-	if s[id] == mask {
+	if (s[id] & mask) == mask {
 		return false
 	}
 	s[id] |= mask
@@ -66,7 +66,7 @@ func (s MaskSet) DiscardRegister(r Register) bool {
 func (s MaskSet) Update(t MaskSet) bool {
 	change := false
 	for id, mask := range t {
-		change = change || s.Add(id, mask)
+		change = s.Add(id, mask) || change
 	}
 	return change
 }
@@ -82,7 +82,7 @@ func (s MaskSet) Difference(t MaskSet) MaskSet {
 func (s MaskSet) DifferenceUpdate(t MaskSet) bool {
 	change := false
 	for id, mask := range t {
-		change = change || s.Discard(id, mask)
+		change = s.Discard(id, mask) || change
 	}
 	return change
 }

@@ -110,18 +110,20 @@ func (a *Allocator) Allocate() (reg.Allocation, error) {
 func (a *Allocator) update() error {
 	var rem []*edge
 	for _, e := range a.edges {
+		x := a.allocation.LookupDefault(e.X)
+		y := a.allocation.LookupDefault(e.Y)
 		switch {
-		case e.X.IsVirtual() && e.Y.IsVirtual():
+		case x.IsVirtual() && y.IsVirtual():
 			rem = append(rem, e)
 			continue
-		case e.X.IsPhysical() && e.Y.IsPhysical():
-			if e.X != e.Y {
+		case x.IsPhysical() && y.IsPhysical():
+			if x == y {
 				return errors.New("impossible register allocation")
 			}
-		case e.X.IsPhysical() && e.Y.IsVirtual():
-			a.discardconflicting(e.Y, e.X)
-		case e.X.IsVirtual() && e.Y.IsPhysical():
-			a.discardconflicting(e.X, e.Y)
+		case x.IsPhysical() && y.IsVirtual():
+			a.discardconflicting(y, x)
+		case x.IsVirtual() && y.IsPhysical():
+			a.discardconflicting(x, y)
 		default:
 			panic("unreachable")
 		}
