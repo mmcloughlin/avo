@@ -169,6 +169,9 @@ type Function struct {
 
 	// Register allocation.
 	Allocation reg.Allocation
+
+	// ISA is the list of required instruction set extensions.
+	ISA []string
 }
 
 func (f *Function) section() {}
