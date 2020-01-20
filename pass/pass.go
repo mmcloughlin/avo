@@ -21,6 +21,7 @@ var Compile = Concat(
 	FunctionPass(VerifyAllocation),
 	Func(IncludeTextFlagHeader),
 	FunctionPass(PruneSelfMoves),
+	FunctionPass(RequiredISAExtensions),
 )
 
 // Interface for a processing pass.

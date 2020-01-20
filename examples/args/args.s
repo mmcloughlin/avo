@@ -63,12 +63,14 @@ TEXT ·FieldUint64(SB), NOSPLIT, $0-184
 	RET
 
 // func FieldFloat32(s Struct) float32
+// Requires: SSE
 TEXT ·FieldFloat32(SB), NOSPLIT, $0-180
 	MOVSS s_Float32+16(FP), X0
 	MOVSS X0, ret+176(FP)
 	RET
 
 // func FieldFloat64(s Struct) float64
+// Requires: SSE2
 TEXT ·FieldFloat64(SB), NOSPLIT, $0-184
 	MOVSD s_Float64+24(FP), X0
 	MOVSD X0, ret+176(FP)
@@ -99,18 +101,21 @@ TEXT ·FieldArrayOneC(SB), NOSPLIT, $0-178
 	RET
 
 // func FieldComplex64Imag(s Struct) float32
+// Requires: SSE
 TEXT ·FieldComplex64Imag(SB), NOSPLIT, $0-180
 	MOVSS s_Complex64_imag+156(FP), X0
 	MOVSS X0, ret+176(FP)
 	RET
 
 // func FieldComplex128Real(s Struct) float64
+// Requires: SSE2
 TEXT ·FieldComplex128Real(SB), NOSPLIT, $0-184
 	MOVSD s_Complex128_real+160(FP), X0
 	MOVSD X0, ret+176(FP)
 	RET
 
 // func DereferenceFloat32(s *Struct) float32
+// Requires: SSE
 TEXT ·DereferenceFloat32(SB), NOSPLIT, $0-12
 	MOVQ  s+0(FP), AX
 	MOVSS 16(AX), X0

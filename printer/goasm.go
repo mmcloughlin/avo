@@ -63,6 +63,10 @@ func (p *goasm) function(f *ir.Function) {
 	p.NL()
 	p.Comment(f.Stub())
 
+	if len(f.ISA) > 0 {
+		p.Comment("Requires: " + strings.Join(f.ISA, ", "))
+	}
+
 	// Reference: https://github.com/golang/go/blob/b115207baf6c2decc3820ada4574ef4e5ad940ec/src/cmd/internal/obj/util.go#L166-L176
 	//
 	//		if p.As == ATEXT {

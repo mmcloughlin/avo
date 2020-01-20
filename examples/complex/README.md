@@ -24,6 +24,7 @@ Generated assembly:
 [embedmd]:# (complex.s s /.*func Norm/ /RET/)
 ```s
 // func Norm(z complex128) float64
+// Requires: SSE2
 TEXT ·Norm(SB), NOSPLIT, $0-24
 	MOVSD  z_real+0(FP), X0
 	MOVSD  z_imag+8(FP), X1
