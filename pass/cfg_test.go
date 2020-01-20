@@ -58,16 +58,25 @@ func TestLabelTargetEndsWithLabel(t *testing.T) {
 	}
 }
 
-func TestLabelTargetInstructionFollowLabel(t *testing.T) {
-	f := ir.NewFunction("expectinstafterlabel")
+func TestLabelTargetConsecutiveLabels(t *testing.T) {
+	i := &ir.Instruction{Opcode: "A"}
+
+	f := ir.NewFunction("consecutivelabels")
 	f.AddLabel(ir.Label("lblA"))
 	f.AddLabel(ir.Label("lblB"))
-	f.AddInstruction(&ir.Instruction{Opcode: "A"})
+	f.AddInstruction(i)
 
-	err := LabelTarget(f)
+	expect := map[ir.Label]*ir.Instruction{
+		"lblA": i,
+		"lblB": i,
+	}
 
-	if err == nil || err.Error() != "expected instruction following label \"lblA\"" {
-		t.Fatalf("expected error when label is not followed by instruction; got %v", err)
+	if err := LabelTarget(f); err != nil {
+		t.Fatal(err)
+	}
+
+	if !reflect.DeepEqual(expect, f.LabelTarget) {
+		t.Fatalf("incorrect LabelTarget value\ngot=%#v\nexpext=%#v\n", f.LabelTarget, expect)
 	}
 }
 
