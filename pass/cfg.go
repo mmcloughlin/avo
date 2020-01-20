@@ -11,26 +11,22 @@ import (
 // label name to the following instruction.
 func LabelTarget(fn *ir.Function) error {
 	target := map[ir.Label]*ir.Instruction{}
-	var empty ir.Label
-	pending := empty
+	var pending []ir.Label
 	for _, node := range fn.Nodes {
 		switch n := node.(type) {
 		case ir.Label:
-			if pending != empty {
-				return fmt.Errorf("expected instruction following label %q", pending)
+			if _, found := target[n]; found {
+				return fmt.Errorf("duplicate label \"%s\"", n)
 			}
-			pending = n
-			if _, found := target[pending]; found {
-				return fmt.Errorf("duplicate label \"%s\"", pending)
-			}
+			pending = append(pending, n)
 		case *ir.Instruction:
-			if pending != empty {
-				target[pending] = n
-				pending = empty
+			for _, label := range pending {
+				target[label] = n
 			}
+			pending = nil
 		}
 	}
-	if pending != empty {
+	if len(pending) != 0 {
 		return errors.New("function ends with label")
 	}
 	fn.LabelTarget = target
