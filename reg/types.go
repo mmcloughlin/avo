@@ -106,16 +106,28 @@ type virtual struct {
 	id   VID
 	kind Kind
 	Width
-	mask uint16
+	mask    uint16
+	allocAt string
 }
 
 // NewVirtual builds a Virtual register.
 func NewVirtual(id VID, k Kind, w Width) Virtual {
 	return virtual{
-		id:    id,
-		kind:  k,
-		Width: w,
+		allocAt: getFnNameFile(1),
+		id:      id,
+		kind:    k,
+		Width:   w,
 	}
+}
+
+// AllocInfoer allows to track where resources were allocated.
+type AllocInfoer interface {
+	AllocInfo() string
+}
+
+// AllocInfo returns allocation info.
+func (v virtual) AllocInfo() string {
+	return v.allocAt
 }
 
 func (v virtual) VirtualID() VID { return v.id }
@@ -136,6 +148,8 @@ func (v virtual) as(s Spec) Register {
 		kind:  v.kind,
 		Width: Width(s.Size()),
 		mask:  s.Mask(),
+		// Non-breaking space for sorting.
+		allocAt: fmt.Sprintf("\u00A0- As%v() %s", s.String(), getFnNameFile(2)),
 	}
 }
 
@@ -233,6 +247,16 @@ func (s Spec) Mask() uint16 {
 func (s Spec) Size() uint {
 	x := uint(s)
 	return (x >> 1) + (x & 1)
+}
+
+// Size returns the register width in bytes.
+func (s Spec) String() string {
+	switch s {
+	case S8H:
+		return "8H"
+	default:
+		return fmt.Sprint(s.Size() * 8)
+	}
 }
 
 // AreConflicting returns whether registers conflict with each other.
