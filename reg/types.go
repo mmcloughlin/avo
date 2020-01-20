@@ -18,8 +18,8 @@ type Family struct {
 }
 
 // define builds a register and adds it to the Family.
-func (f *Family) define(s Spec, id Index, name string, flags ...Info) Physical {
-	r := newregister(f, s, id, name, flags...)
+func (f *Family) define(s Spec, idx Index, name string, flags ...Info) Physical {
+	r := newregister(f, s, idx, name, flags...)
 	f.add(r)
 	return r
 }
@@ -33,8 +33,8 @@ func (f *Family) add(r Physical) {
 }
 
 // Virtual returns a virtual register from this family's kind.
-func (f *Family) Virtual(id Index, s Spec) Virtual {
-	return NewVirtual(id, f.Kind, s)
+func (f *Family) Virtual(idx Index, s Spec) Virtual {
+	return NewVirtual(idx, f.Kind, s)
 }
 
 // Registers returns the registers in this family.
@@ -42,10 +42,10 @@ func (f *Family) Registers() []Physical {
 	return append([]Physical(nil), f.registers...)
 }
 
-// Lookup returns the register with given physical ID and spec. Returns nil if no such register exists.
-func (f *Family) Lookup(id Index, s Spec) Physical {
+// Lookup returns the register with given physical index and spec. Returns nil if no such register exists.
+func (f *Family) Lookup(idx Index, s Spec) Physical {
 	for _, r := range f.registers {
-		if r.PhysicalID() == id && r.Mask() == s.Mask() {
+		if r.PhysicalIndex() == idx && r.Mask() == s.Mask() {
 			return r
 		}
 	}
@@ -86,7 +86,7 @@ type Register interface {
 
 // Virtual is a register of a given type and size, not yet allocated to a physical register.
 type Virtual interface {
-	VirtualID() Index
+	VirtualIndex() Index
 	Register
 }
 
@@ -99,32 +99,32 @@ func ToVirtual(r Register) Virtual {
 }
 
 type virtual struct {
-	id   Index
+	idx  Index
 	kind Kind
 	Spec
 }
 
 // NewVirtual builds a Virtual register.
-func NewVirtual(id Index, k Kind, s Spec) Virtual {
+func NewVirtual(idx Index, k Kind, s Spec) Virtual {
 	return virtual{
-		id:   id,
+		idx:  idx,
 		kind: k,
 		Spec: s,
 	}
 }
 
-func (v virtual) ID() ID           { return newid(1, v.kind, v.id) }
-func (v virtual) VirtualID() Index { return v.id }
-func (v virtual) Kind() Kind       { return v.kind }
+func (v virtual) ID() ID              { return newid(1, v.kind, v.idx) }
+func (v virtual) VirtualIndex() Index { return v.idx }
+func (v virtual) Kind() Kind          { return v.kind }
 
 func (v virtual) Asm() string {
 	// TODO(mbm): decide on virtual register syntax
-	return fmt.Sprintf("<virtual:%v:%v:%v>", v.id, v.Kind(), v.Size())
+	return fmt.Sprintf("<virtual:%v:%v:%v>", v.idx, v.Kind(), v.Size())
 }
 
 func (v virtual) as(s Spec) Register {
 	return virtual{
-		id:   v.id,
+		idx:  v.idx,
 		kind: v.kind,
 		Spec: s,
 	}
@@ -144,7 +144,7 @@ const (
 
 // Physical is a concrete register.
 type Physical interface {
-	PhysicalID() Index
+	PhysicalIndex() Index
 	Info() Info
 	Register
 }
@@ -160,16 +160,16 @@ func ToPhysical(r Register) Physical {
 // register implements Physical.
 type register struct {
 	family *Family
-	id     Index
+	idx    Index
 	name   string
 	info   Info
 	Spec
 }
 
-func newregister(f *Family, s Spec, id Index, name string, flags ...Info) register {
+func newregister(f *Family, s Spec, idx Index, name string, flags ...Info) register {
 	r := register{
 		family: f,
-		id:     id,
+		idx:    idx,
 		name:   name,
 		info:   None,
 		Spec:   s,
@@ -180,14 +180,14 @@ func newregister(f *Family, s Spec, id Index, name string, flags ...Info) regist
 	return r
 }
 
-func (r register) ID() ID            { return newid(0, r.Kind(), r.id) }
-func (r register) PhysicalID() Index { return r.id }
-func (r register) Kind() Kind        { return r.family.Kind }
-func (r register) Asm() string       { return r.name }
-func (r register) Info() Info        { return r.info }
+func (r register) ID() ID               { return newid(0, r.Kind(), r.idx) }
+func (r register) PhysicalIndex() Index { return r.idx }
+func (r register) Kind() Kind           { return r.family.Kind }
+func (r register) Asm() string          { return r.name }
+func (r register) Info() Info           { return r.info }
 
 func (r register) as(s Spec) Register {
-	return r.family.Lookup(r.PhysicalID(), s)
+	return r.family.Lookup(r.PhysicalIndex(), s)
 }
 
 func (r register) spec() Spec { return r.Spec }
