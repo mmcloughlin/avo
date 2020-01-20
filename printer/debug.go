@@ -3,6 +3,7 @@ package printer
 import (
 	"github.com/mmcloughlin/avo/internal/prnt"
 	"github.com/mmcloughlin/avo/ir"
+	"github.com/mmcloughlin/avo/reg"
 )
 
 type debug struct {
@@ -102,9 +103,17 @@ func (p *debug) instruction(i *ir.Instruction) {
 	p.leave()
 
 	// // LiveIn/LiveOut are sets of live register IDs pre/post execution.
-	// LiveIn  reg.Set
-	// LiveOut reg.Set
+	p.maskset("livein", i.LiveIn)
+	p.maskset("liveout", i.LiveOut)
 
+	p.leave()
+}
+
+func (p *debug) maskset(name string, s reg.MaskSet) {
+	p.enter(name)
+	for id, mask := range s {
+		p.Linef("%08x: %02x", id, mask)
+	}
 	p.leave()
 }
 
