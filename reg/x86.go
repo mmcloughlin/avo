@@ -55,12 +55,12 @@ type gpcasts struct {
 	Register
 }
 
-func (c gpcasts) As8() Register  { return c.as(S8) }
-func (c gpcasts) As8L() Register { return c.as(S8L) }
-func (c gpcasts) As8H() Register { return c.as(S8H) }
-func (c gpcasts) As16() Register { return c.as(S16) }
-func (c gpcasts) As32() Register { return c.as(S32) }
-func (c gpcasts) As64() Register { return c.as(S64) }
+func (c gpcasts) As8() Register  { return gpcasts{c.as(S8)} }
+func (c gpcasts) As8L() Register { return gpcasts{c.as(S8L)} }
+func (c gpcasts) As8H() Register { return gpcasts{c.as(S8H)} }
+func (c gpcasts) As16() Register { return gpcasts{c.as(S16)} }
+func (c gpcasts) As32() Register { return gpcasts{c.as(S32)} }
+func (c gpcasts) As64() Register { return gpcasts{c.as(S64)} }
 
 // GPPhysical is a general-purpose physical register.
 type GPPhysical interface {
@@ -188,9 +188,9 @@ type veccasts struct {
 	Register
 }
 
-func (c veccasts) AsX() Register { return c.as(S128) }
-func (c veccasts) AsY() Register { return c.as(S256) }
-func (c veccasts) AsZ() Register { return c.as(S512) }
+func (c veccasts) AsX() Register { return veccasts{c.as(S128)} }
+func (c veccasts) AsY() Register { return veccasts{c.as(S256)} }
+func (c veccasts) AsZ() Register { return veccasts{c.as(S512)} }
 
 // VecPhysical is a physical vector register.
 type VecPhysical interface {
