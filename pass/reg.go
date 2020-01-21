@@ -2,11 +2,31 @@ package pass
 
 import (
 	"errors"
+	"log"
 
 	"github.com/mmcloughlin/avo/ir"
 	"github.com/mmcloughlin/avo/operand"
 	"github.com/mmcloughlin/avo/reg"
 )
+
+// ZeroExtend32BitOutputs applies the rule that "32-bit operands generate a
+// 32-bit result, zero-extended to a 64-bit result in the destination
+// general-purpose register" (Intel Software Developer’s Manual, Volume 1,
+// 3.4.1.1).
+func ZeroExtend32BitOutputs(i *ir.Instruction) error {
+	for j, op := range i.Outputs {
+		if !operand.IsR32(op) {
+			continue
+		}
+		r, ok := op.(reg.GP)
+		if !ok {
+			log.Printf("r32: %#v", op)
+			panic("r32 operand should satisfy reg.GP")
+		}
+		i.Outputs[j] = r.As64()
+	}
+	return nil
+}
 
 // Liveness computes register liveness.
 func Liveness(fn *ir.Function) error {
