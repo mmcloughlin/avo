@@ -2,7 +2,6 @@ package pass
 
 import (
 	"errors"
-	"log"
 
 	"github.com/mmcloughlin/avo/ir"
 	"github.com/mmcloughlin/avo/operand"
@@ -20,7 +19,6 @@ func ZeroExtend32BitOutputs(i *ir.Instruction) error {
 		}
 		r, ok := op.(reg.GP)
 		if !ok {
-			log.Printf("r32: %#v", op)
 			panic("r32 operand should satisfy reg.GP")
 		}
 		i.Outputs[j] = r.As64()
