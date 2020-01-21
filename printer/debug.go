@@ -111,6 +111,7 @@ func (p *debug) instruction(i *ir.Instruction) {
 
 func (p *debug) maskset(name string, s reg.MaskSet) {
 	p.enter(name)
+	p.Linef("count: %d", len(s))
 	for id, mask := range s {
 		p.Linef("%08x: %02x", id, mask)
 	}
