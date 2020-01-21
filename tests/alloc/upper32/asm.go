@@ -21,35 +21,44 @@ import (
 
 func main() {
 	const (
-		n = 14 // number of registers
+		r = 14 // number of registers
 		m = 3  // number of iterations
+		n = r * m
 	)
 
 	TEXT("Upper32", NOSPLIT, "func() uint64")
-	Doc("Upper32 computes the sum 1+2+...+" + strconv.Itoa(n*m) + ".")
+	Doc("Upper32 computes the sum 1+2+...+" + strconv.Itoa(n) + ".")
 
 	Comment("Initialize sum.")
 	s := GP64()
 	XORQ(s, s)
 
-	k := 1
+	// Allocate n 64-bit registers and populate them.
+	Comment("Initialize registers.")
+	x := make([]GPVirtual, n)
+	for i := 0; i < n; i++ {
+		x[i] = GP64()
+		MOVQ(U64(0x9e77d78aacb8cbcc), x[i])
+	}
+
+	k := 0
 	for i := 0; i < m; i++ {
 		Commentf("Iteration %d.", i+1)
 
-		// Allocate n 64-bit registers and write to their 32-bit aliases.
-		x := make([]GPVirtual, n)
-		for i := 0; i < n; i++ {
-			x[i] = GP64()
-			MOVL(U32(k), x[i].As32())
-			k++
+		// Write to the 32-bit aliases of r registers.
+		for j := 0; j < r; j++ {
+			MOVL(U32(k+j+1), x[k+j].As32())
 		}
 
 		// Sum them up.
-		for i := 0; i < n; i++ {
-			ADDQ(x[i], s)
+		for j := 0; j < r; j++ {
+			ADDQ(x[k+j], s)
 		}
+
+		k += r
 	}
 
+	Comment("Store result and return.")
 	Store(s, ReturnIndex(0))
 	RET()
 
