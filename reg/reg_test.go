@@ -1,6 +1,40 @@
 package reg
 
-import "testing"
+import (
+	"testing"
+	"testing/quick"
+)
+
+func TestIDFields(t *testing.T) {
+	f := func(v uint8, kind Kind, idx Index) bool {
+		id := newid(v, kind, idx)
+		return id.Kind() == kind && id.Index() == idx
+	}
+	if err := quick.Check(f, nil); err != nil {
+		t.Fatal(err)
+	}
+}
+
+func TestIDIsVirtual(t *testing.T) {
+	cases := []Virtual{
+		GeneralPurpose.Virtual(42, S64),
+		Vector.Virtual(42, S128),
+	}
+	for _, r := range cases {
+		if !r.ID().IsVirtual() {
+			t.FailNow()
+		}
+	}
+}
+
+func TestIDIsPhysical(t *testing.T) {
+	cases := []Physical{AL, AH, AX, EAX, RAX, X1, Y2, Z31}
+	for _, r := range cases {
+		if !r.ID().IsPhysical() {
+			t.FailNow()
+		}
+	}
+}
 
 func TestSpecSize(t *testing.T) {
 	cases := []struct {
