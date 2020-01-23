@@ -141,10 +141,10 @@ func Registers(op Op) []reg.Register {
 func ApplyAllocation(op Op, a reg.Allocation) Op {
 	switch op := op.(type) {
 	case reg.Register:
-		return a.LookupDefault(op)
+		return a.LookupRegisterDefault(op)
 	case Mem:
-		op.Base = a.LookupDefault(op.Base)
-		op.Index = a.LookupDefault(op.Index)
+		op.Base = a.LookupRegisterDefault(op.Base)
+		op.Index = a.LookupRegisterDefault(op.Index)
 		return op
 	}
 	return op

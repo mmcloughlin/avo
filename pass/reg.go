@@ -8,6 +8,24 @@ import (
 	"github.com/mmcloughlin/avo/reg"
 )
 
+// ZeroExtend32BitOutputs applies the rule that "32-bit operands generate a
+// 32-bit result, zero-extended to a 64-bit result in the destination
+// general-purpose register" (Intel Software Developer’s Manual, Volume 1,
+// 3.4.1.1).
+func ZeroExtend32BitOutputs(i *ir.Instruction) error {
+	for j, op := range i.Outputs {
+		if !operand.IsR32(op) {
+			continue
+		}
+		r, ok := op.(reg.GP)
+		if !ok {
+			panic("r32 operand should satisfy reg.GP")
+		}
+		i.Outputs[j] = r.As64()
+	}
+	return nil
+}
+
 // Liveness computes register liveness.
 func Liveness(fn *ir.Function) error {
 	// Note this implementation is initially naive so as to be "obviously correct".
@@ -23,8 +41,8 @@ func Liveness(fn *ir.Function) error {
 
 	// Initialize.
 	for _, i := range is {
-		i.LiveIn = reg.NewSetFromSlice(i.InputRegisters())
-		i.LiveOut = reg.NewEmptySet()
+		i.LiveIn = reg.NewMaskSetFromRegisters(i.InputRegisters())
+		i.LiveOut = reg.NewEmptyMaskSet()
 	}
 
 	// Iterative dataflow analysis.
@@ -33,29 +51,16 @@ func Liveness(fn *ir.Function) error {
 
 		for _, i := range is {
 			// out[n] = UNION[s IN succ[n]] in[s]
-			nout := len(i.LiveOut)
 			for _, s := range i.Succ {
 				if s == nil {
 					continue
 				}
-				i.LiveOut.Update(s.LiveIn)
-			}
-			if len(i.LiveOut) != nout {
-				changes = true
+				changes = i.LiveOut.Update(s.LiveIn) || changes
 			}
 
 			// in[n] = use[n] UNION (out[n] - def[n])
-			nin := len(i.LiveIn)
-			def := reg.NewSetFromSlice(i.OutputRegisters())
-			i.LiveIn.Update(i.LiveOut.Difference(def))
-			for r := range i.LiveOut {
-				if _, found := def[r]; !found {
-					i.LiveIn.Add(r)
-				}
-			}
-			if len(i.LiveIn) != nin {
-				changes = true
-			}
+			def := reg.NewMaskSetFromRegisters(i.OutputRegisters())
+			changes = i.LiveIn.Update(i.LiveOut.Difference(def)) || changes
 		}
 
 		if !changes {
@@ -80,7 +85,7 @@ func AllocateRegisters(fn *ir.Function) error {
 				}
 				as[k] = a
 			}
-			as[k].Add(r)
+			as[k].Add(r.ID())
 		}
 	}
 
@@ -89,7 +94,7 @@ func AllocateRegisters(fn *ir.Function) error {
 		for _, d := range i.OutputRegisters() {
 			k := d.Kind()
 			out := i.LiveOut.OfKind(k)
-			out.Discard(d)
+			out.DiscardRegister(d)
 			as[k].AddInterferenceSet(d, out)
 		}
 	}

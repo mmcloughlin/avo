@@ -1,6 +1,40 @@
 package reg
 
-import "testing"
+import (
+	"testing"
+	"testing/quick"
+)
+
+func TestIDFields(t *testing.T) {
+	f := func(v uint8, kind Kind, idx Index) bool {
+		id := newid(v, kind, idx)
+		return id.Kind() == kind && id.Index() == idx
+	}
+	if err := quick.Check(f, nil); err != nil {
+		t.Fatal(err)
+	}
+}
+
+func TestIDIsVirtual(t *testing.T) {
+	cases := []Virtual{
+		GeneralPurpose.Virtual(42, S64),
+		Vector.Virtual(42, S128),
+	}
+	for _, r := range cases {
+		if !r.ID().IsVirtual() {
+			t.FailNow()
+		}
+	}
+}
+
+func TestIDIsPhysical(t *testing.T) {
+	cases := []Physical{AL, AH, AX, EAX, RAX, X1, Y2, Z31}
+	for _, r := range cases {
+		if !r.ID().IsPhysical() {
+			t.FailNow()
+		}
+	}
+}
 
 func TestSpecSize(t *testing.T) {
 	cases := []struct {
@@ -25,7 +59,7 @@ func TestSpecSize(t *testing.T) {
 }
 
 func TestToVirtual(t *testing.T) {
-	v := GeneralPurpose.Virtual(42, B32)
+	v := GeneralPurpose.Virtual(42, S32)
 	if ToVirtual(v) != v {
 		t.Errorf("ToVirtual(v) != v for virtual register")
 	}
@@ -35,7 +69,7 @@ func TestToVirtual(t *testing.T) {
 }
 
 func TestToPhysical(t *testing.T) {
-	v := GeneralPurpose.Virtual(42, B32)
+	v := GeneralPurpose.Virtual(42, S32)
 	if ToPhysical(v) != nil {
 		t.Errorf("ToPhysical should be nil for virtual registers")
 	}
@@ -44,31 +78,10 @@ func TestToPhysical(t *testing.T) {
 	}
 }
 
-func TestAreConflicting(t *testing.T) {
-	cases := []struct {
-		X, Y   Physical
-		Expect bool
-	}{
-		{ECX, X3, false},
-		{AL, AH, false},
-		{AL, AX, true},
-		{AL, BX, false},
-		{X3, Y4, false},
-		{X3, Y3, true},
-		{Y3, Z4, false},
-		{Y3, Z3, true},
-	}
-	for _, c := range cases {
-		if AreConflicting(c.X, c.Y) != c.Expect {
-			t.Errorf("AreConflicting(%s, %s) != %v", c.X, c.Y, c.Expect)
-		}
-	}
-}
-
 func TestFamilyLookup(t *testing.T) {
 	cases := []struct {
 		Family *Family
-		ID     PID
+		ID     Index
 		Spec   Spec
 		Expect Physical
 	}{
@@ -89,7 +102,7 @@ func TestFamilyLookup(t *testing.T) {
 	for _, c := range cases {
 		got := c.Family.Lookup(c.ID, c.Spec)
 		if got != c.Expect {
-			t.Errorf("pid=%v spec=%v: lookup got %v expect %v", c.ID, c.Spec, got, c.Expect)
+			t.Errorf("idx=%v spec=%v: lookup got %v expect %v", c.ID, c.Spec, got, c.Expect)
 		}
 	}
 }
@@ -117,21 +130,45 @@ func TestPhysicalAs(t *testing.T) {
 }
 
 func TestVirtualAs(t *testing.T) {
+	v := GeneralPurpose.Virtual(0, S64)
+	specs := []Spec{S8, S8L, S8H, S16, S32, S64}
+	for _, s := range specs {
+		if v.as(s).Mask() != s.Mask() {
+			t.FailNow()
+		}
+	}
+}
+
+func TestLookupPhysical(t *testing.T) {
 	cases := []struct {
-		Virtual  Register
-		Physical Physical
-		Match    bool
+		Kind   Kind
+		Index  Index
+		Spec   Spec
+		Expect Physical
 	}{
-		{GeneralPurpose.Virtual(0, B8), CL, true},
-		{GeneralPurpose.Virtual(0, B8), CH, true},
-		{GeneralPurpose.Virtual(0, B32).as(S8L), CL, true},
-		{GeneralPurpose.Virtual(0, B32).as(S8L), CH, false},
-		{GeneralPurpose.Virtual(0, B16).as(S32), R9L, true},
-		{GeneralPurpose.Virtual(0, B16).as(S32), R9, false},
+		{KindGP, 0, S8L, AL},
+		{KindGP, 1, S8H, CH},
+		{KindGP, 7, S8, DIB},
+		{KindGP, 8, S16, R8W},
+		{KindGP, 9, S32, R9L},
+		{KindGP, 10, S64, R10},
+
+		{KindVector, 7, S128, X7},
+		{KindVector, 17, S256, Y17},
+		{KindVector, 27, S512, Z27},
 	}
 	for _, c := range cases {
-		if c.Virtual.(Virtual).SatisfiedBy(c.Physical) != c.Match {
-			t.Errorf("%s.SatisfiedBy(%v) != %v", c.Virtual.Asm(), c.Physical, c.Match)
+		if got := LookupPhysical(c.Kind, c.Index, c.Spec); !Equal(got, c.Expect) {
+			t.FailNow()
+		}
+	}
+}
+
+func TestLookupIDSelf(t *testing.T) {
+	cases := []Physical{AL, AH, AX, EAX, RAX, X1, Y2, Z31}
+	for _, r := range cases {
+		if got := LookupID(r.ID(), r.spec()); !Equal(got, r) {
+			t.FailNow()
 		}
 	}
 }

@@ -21,7 +21,67 @@ func TestAsMethods(t *testing.T) {
 		{Z9.AsZ(), Z9},
 	}
 	for _, c := range cases {
-		if c[0] != c[1] {
+		if !Equal(c[0], c[1]) {
+			t.FailNow()
+		}
+	}
+}
+
+func TestAsPreservesGPPhysical(t *testing.T) {
+	cases := []Register{
+		RAX.As8(),
+		R13.As8L(),
+		AL.As8H(),
+		EAX.As16(),
+		CH.As32(),
+		EBX.As64(),
+	}
+	for _, r := range cases {
+		if _, ok := r.(GPPhysical); !ok {
+			t.FailNow()
+		}
+	}
+}
+
+func TestAsPreservesGPVirtual(t *testing.T) {
+	collection := NewCollection()
+	cases := []Register{
+		collection.GP16().As8(),
+		collection.GP32().As8L(),
+		collection.GP64().As8H(),
+		collection.GP8().As16(),
+		collection.GP8L().As32(),
+		collection.GP8H().As64(),
+	}
+	for _, r := range cases {
+		if _, ok := r.(GPVirtual); !ok {
+			t.FailNow()
+		}
+	}
+}
+
+func TestAsPreservesVecPhysical(t *testing.T) {
+	cases := []Register{
+		Y13.AsX(),
+		X3.AsY(),
+		Y10.AsZ(),
+	}
+	for _, r := range cases {
+		if _, ok := r.(VecPhysical); !ok {
+			t.FailNow()
+		}
+	}
+}
+
+func TestAsPreservesVecVirtual(t *testing.T) {
+	collection := NewCollection()
+	cases := []Register{
+		collection.ZMM().AsX(),
+		collection.XMM().AsY(),
+		collection.YMM().AsZ(),
+	}
+	for _, r := range cases {
+		if _, ok := r.(VecVirtual); !ok {
 			t.FailNow()
 		}
 	}

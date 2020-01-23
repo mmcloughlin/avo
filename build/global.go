@@ -70,7 +70,13 @@ func Constraint(t buildtags.ConstraintConvertable) { ctx.Constraint(t) }
 // constraint comments.
 func ConstraintExpr(expr string) { ctx.ConstraintExpr(expr) }
 
-// GP8 allocates and returns a general-purpose 8-bit register.
+// GP8L allocates and returns a general-purpose 8-bit register (low byte).
+func GP8L() reg.GPVirtual { return ctx.GP8L() }
+
+// GP8H allocates and returns a general-purpose 8-bit register (high byte).
+func GP8H() reg.GPVirtual { return ctx.GP8H() }
+
+// GP8 allocates and returns a general-purpose 8-bit register (low byte).
 func GP8() reg.GPVirtual { return ctx.GP8() }
 
 // GP16 allocates and returns a general-purpose 16-bit register.

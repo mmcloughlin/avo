@@ -5,25 +5,11 @@ import (
 	"fmt"
 )
 
-// Width is a register width.
-type Width uint
-
-// Typical register width values.
-const (
-	B8 Width = 1 << iota
-	B16
-	B32
-	B64
-	B128
-	B256
-	B512
-)
-
-// Size returns the register width in bytes.
-func (w Width) Size() uint { return uint(w) }
-
 // Kind is a class of registers.
 type Kind uint8
+
+// Index of a register within a kind.
+type Index uint16
 
 // Family is a collection of Physical registers of a common kind.
 type Family struct {
@@ -32,8 +18,8 @@ type Family struct {
 }
 
 // define builds a register and adds it to the Family.
-func (f *Family) define(s Spec, id PID, name string, flags ...Info) Physical {
-	r := newregister(f, s, id, name, flags...)
+func (f *Family) define(s Spec, idx Index, name string, flags ...Info) Physical {
+	r := newregister(f, s, idx, name, flags...)
 	f.add(r)
 	return r
 }
@@ -47,8 +33,8 @@ func (f *Family) add(r Physical) {
 }
 
 // Virtual returns a virtual register from this family's kind.
-func (f *Family) Virtual(id VID, w Width) Virtual {
-	return NewVirtual(id, f.Kind, w)
+func (f *Family) Virtual(idx Index, s Spec) Virtual {
+	return NewVirtual(idx, f.Kind, s)
 }
 
 // Registers returns the registers in this family.
@@ -56,41 +42,56 @@ func (f *Family) Registers() []Physical {
 	return append([]Physical(nil), f.registers...)
 }
 
-// Set returns the set of registers in the family.
-func (f *Family) Set() Set {
-	s := NewEmptySet()
+// Lookup returns the register with given physical index and spec. Returns nil if no such register exists.
+func (f *Family) Lookup(idx Index, s Spec) Physical {
 	for _, r := range f.registers {
-		s.Add(r)
-	}
-	return s
-}
-
-// Lookup returns the register with given physical ID and spec. Returns nil if no such register exists.
-func (f *Family) Lookup(id PID, s Spec) Physical {
-	for _, r := range f.registers {
-		if r.PhysicalID() == id && r.Mask() == s.Mask() {
+		if r.PhysicalIndex() == idx && r.Mask() == s.Mask() {
 			return r
 		}
 	}
 	return nil
 }
 
+// ID is a register identifier.
+type ID uint32
+
+// newid builds a new register ID from the virtual flag v, kind and index.
+func newid(v uint8, kind Kind, idx Index) ID {
+	return ID(v) | (ID(kind) << 8) | (ID(idx) << 16)
+}
+
+// IsVirtual reports whether this is an ID for a virtual register.
+func (id ID) IsVirtual() bool { return (id & 1) == 1 }
+
+// IsPhysical reports whether this is an ID for a physical register.
+func (id ID) IsPhysical() bool { return !id.IsVirtual() }
+
+// Kind extracts the kind from the register ID.
+func (id ID) Kind() Kind { return Kind(id >> 8) }
+
+// Index extracts the index from the register ID.
+func (id ID) Index() Index { return Index(id >> 16) }
+
 // Register represents a virtual or physical register.
 type Register interface {
+	ID() ID
 	Kind() Kind
 	Size() uint
+	Mask() uint16
 	Asm() string
 	as(Spec) Register
+	spec() Spec
 	register()
 }
 
-// VID is a virtual register ID.
-type VID uint16
+// Equal reports whether a and b are equal registers.
+func Equal(a, b Register) bool {
+	return (a.ID() == b.ID()) && (a.Mask() == b.Mask())
+}
 
 // Virtual is a register of a given type and size, not yet allocated to a physical register.
 type Virtual interface {
-	VirtualID() VID
-	SatisfiedBy(Physical) bool
+	VirtualIndex() Index
 	Register
 }
 
@@ -103,43 +104,39 @@ func ToVirtual(r Register) Virtual {
 }
 
 type virtual struct {
-	id   VID
+	idx  Index
 	kind Kind
-	Width
-	mask uint16
+	Spec
 }
 
 // NewVirtual builds a Virtual register.
-func NewVirtual(id VID, k Kind, w Width) Virtual {
+func NewVirtual(idx Index, k Kind, s Spec) Virtual {
 	return virtual{
-		id:    id,
-		kind:  k,
-		Width: w,
+		idx:  idx,
+		kind: k,
+		Spec: s,
 	}
 }
 
-func (v virtual) VirtualID() VID { return v.id }
-func (v virtual) Kind() Kind     { return v.kind }
+func (v virtual) ID() ID              { return newid(1, v.kind, v.idx) }
+func (v virtual) VirtualIndex() Index { return v.idx }
+func (v virtual) Kind() Kind          { return v.kind }
 
 func (v virtual) Asm() string {
 	// TODO(mbm): decide on virtual register syntax
-	return fmt.Sprintf("<virtual:%v:%v:%v>", v.id, v.Kind(), v.Size())
-}
-
-func (v virtual) SatisfiedBy(p Physical) bool {
-	return v.Kind() == p.Kind() && v.Size() == p.Size() && (v.mask == 0 || v.mask == p.Mask())
+	return fmt.Sprintf("<virtual:%v:%v:%v>", v.idx, v.Kind(), v.Size())
 }
 
 func (v virtual) as(s Spec) Register {
 	return virtual{
-		id:    v.id,
-		kind:  v.kind,
-		Width: Width(s.Size()),
-		mask:  s.Mask(),
+		idx:  v.idx,
+		kind: v.kind,
+		Spec: s,
 	}
 }
 
-func (v virtual) register() {}
+func (v virtual) spec() Spec { return v.Spec }
+func (v virtual) register()  {}
 
 // Info is a bitmask of register properties.
 type Info uint8
@@ -150,13 +147,9 @@ const (
 	Restricted Info = 1 << iota
 )
 
-// PID is a physical register ID.
-type PID uint16
-
 // Physical is a concrete register.
 type Physical interface {
-	PhysicalID() PID
-	Mask() uint16
+	PhysicalIndex() Index
 	Info() Info
 	Register
 }
@@ -172,16 +165,16 @@ func ToPhysical(r Register) Physical {
 // register implements Physical.
 type register struct {
 	family *Family
-	id     PID
+	idx    Index
 	name   string
 	info   Info
 	Spec
 }
 
-func newregister(f *Family, s Spec, id PID, name string, flags ...Info) register {
+func newregister(f *Family, s Spec, idx Index, name string, flags ...Info) register {
 	r := register{
 		family: f,
-		id:     id,
+		idx:    idx,
 		name:   name,
 		info:   None,
 		Spec:   s,
@@ -192,16 +185,18 @@ func newregister(f *Family, s Spec, id PID, name string, flags ...Info) register
 	return r
 }
 
-func (r register) PhysicalID() PID { return r.id }
-func (r register) Kind() Kind      { return r.family.Kind }
-func (r register) Asm() string     { return r.name }
-func (r register) Info() Info      { return r.info }
+func (r register) ID() ID               { return newid(0, r.Kind(), r.idx) }
+func (r register) PhysicalIndex() Index { return r.idx }
+func (r register) Kind() Kind           { return r.family.Kind }
+func (r register) Asm() string          { return r.name }
+func (r register) Info() Info           { return r.info }
 
 func (r register) as(s Spec) Register {
-	return r.family.Lookup(r.PhysicalID(), s)
+	return r.family.Lookup(r.PhysicalIndex(), s)
 }
 
-func (r register) register() {}
+func (r register) spec() Spec { return r.Spec }
+func (r register) register()  {}
 
 // Spec defines the size of a register as well as the bit ranges it occupies in
 // an underlying physical register.
@@ -235,13 +230,25 @@ func (s Spec) Size() uint {
 	return (x >> 1) + (x & 1)
 }
 
-// AreConflicting returns whether registers conflict with each other.
-func AreConflicting(x, y Physical) bool {
-	return x.Kind() == y.Kind() && x.PhysicalID() == y.PhysicalID() && (x.Mask()&y.Mask()) != 0
+// LookupPhysical returns the physical register with the given parameters, or nil if not found.
+func LookupPhysical(k Kind, idx Index, s Spec) Physical {
+	f := FamilyOfKind(k)
+	if f == nil {
+		return nil
+	}
+	return f.Lookup(idx, s)
+}
+
+// LookupID returns the physical register with the given id and spec, or nil if not found.
+func LookupID(id ID, s Spec) Physical {
+	if id.IsVirtual() {
+		return nil
+	}
+	return LookupPhysical(id.Kind(), id.Index(), s)
 }
 
 // Allocation records a register allocation.
-type Allocation map[Register]Physical
+type Allocation map[ID]ID
 
 // NewEmptyAllocation builds an empty register allocation.
 func NewEmptyAllocation() Allocation {
@@ -251,18 +258,46 @@ func NewEmptyAllocation() Allocation {
 // Merge allocations from b into a. Errors if there is disagreement on a common
 // register.
 func (a Allocation) Merge(b Allocation) error {
-	for r, p := range b {
-		if alt, found := a[r]; found && alt != p {
+	for id, p := range b {
+		if alt, found := a[id]; found && alt != p {
 			return errors.New("disagreement on overlapping register")
 		}
-		a[r] = p
+		a[id] = p
 	}
 	return nil
 }
 
-// LookupDefault returns the register assigned to r, or r itself if there is none.
-func (a Allocation) LookupDefault(r Register) Register {
-	if p, found := a[r]; found {
+// LookupDefault returns the register ID assigned by this allocation, returning
+// id if none is found.
+func (a Allocation) LookupDefault(id ID) ID {
+	if _, found := a[id]; found {
+		return a[id]
+	}
+	return id
+}
+
+// LookupRegister the allocation for register r, or return nil if there is none.
+func (a Allocation) LookupRegister(r Register) Physical {
+	// Return immediately if it is already a physical register.
+	if p := ToPhysical(r); p != nil {
+		return p
+	}
+
+	// Lookup an allocation for this virtual ID.
+	id, found := a[r.ID()]
+	if !found {
+		return nil
+	}
+
+	return LookupID(id, r.spec())
+}
+
+// LookupRegisterDefault returns the register assigned to r, or r itself if there is none.
+func (a Allocation) LookupRegisterDefault(r Register) Register {
+	if r == nil {
+		return nil
+	}
+	if p := a.LookupRegister(r); p != nil {
 		return p
 	}
 	return r

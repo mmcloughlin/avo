@@ -3,6 +3,7 @@ package pass
 import (
 	"errors"
 	"math"
+	"sort"
 
 	"github.com/mmcloughlin/avo/reg"
 )
@@ -10,28 +11,43 @@ import (
 // edge is an edge of the interference graph, indicating that registers X and Y
 // must be in non-conflicting registers.
 type edge struct {
-	X, Y reg.Register
+	X, Y reg.ID
 }
 
 // Allocator is a graph-coloring register allocator.
 type Allocator struct {
-	registers  []reg.Physical
+	registers  []reg.ID
 	allocation reg.Allocation
 	edges      []*edge
-	possible   map[reg.Virtual][]reg.Physical
-	vidtopid   map[reg.VID]reg.PID
+	possible   map[reg.ID][]reg.ID
 }
 
 // NewAllocator builds an allocator for the given physical registers.
 func NewAllocator(rs []reg.Physical) (*Allocator, error) {
-	if len(rs) == 0 {
-		return nil, errors.New("no registers")
+	// Set of IDs, excluding restricted registers.
+	idset := map[reg.ID]bool{}
+	for _, r := range rs {
+		if (r.Info() & reg.Restricted) != 0 {
+			continue
+		}
+		idset[r.ID()] = true
 	}
+
+	if len(idset) == 0 {
+		return nil, errors.New("no allocatable registers")
+	}
+
+	// Produce slice of unique register IDs.
+	var ids []reg.ID
+	for id := range idset {
+		ids = append(ids, id)
+	}
+	sort.Slice(ids, func(i, j int) bool { return ids[i] < ids[j] })
+
 	return &Allocator{
-		registers:  rs,
+		registers:  ids,
 		allocation: reg.NewEmptyAllocation(),
-		possible:   map[reg.Virtual][]reg.Physical{},
-		vidtopid:   map[reg.VID]reg.PID{},
+		possible:   map[reg.ID][]reg.ID{},
 	}, nil
 }
 
@@ -45,23 +61,24 @@ func NewAllocatorForKind(k reg.Kind) (*Allocator, error) {
 }
 
 // AddInterferenceSet records that r interferes with every register in s. Convenience wrapper around AddInterference.
-func (a *Allocator) AddInterferenceSet(r reg.Register, s reg.Set) {
-	for y := range s {
-		a.AddInterference(r, y)
+func (a *Allocator) AddInterferenceSet(r reg.Register, s reg.MaskSet) {
+	for id, mask := range s {
+		if (r.Mask() & mask) != 0 {
+			a.AddInterference(r.ID(), id)
+		}
 	}
 }
 
 // AddInterference records that x and y must be assigned to non-conflicting physical registers.
-func (a *Allocator) AddInterference(x, y reg.Register) {
+func (a *Allocator) AddInterference(x, y reg.ID) {
 	a.Add(x)
 	a.Add(y)
 	a.edges = append(a.edges, &edge{X: x, Y: y})
 }
 
 // Add adds a register to be allocated. Does nothing if the register has already been added.
-func (a *Allocator) Add(r reg.Register) {
-	v, ok := r.(reg.Virtual)
-	if !ok {
+func (a *Allocator) Add(v reg.ID) {
+	if !v.IsVirtual() {
 		return
 	}
 	if _, found := a.possible[v]; found {
@@ -91,35 +108,22 @@ func (a *Allocator) Allocate() (reg.Allocation, error) {
 
 // update possible allocations based on edges.
 func (a *Allocator) update() error {
-	for v := range a.possible {
-		pid, found := a.vidtopid[v.VirtualID()]
-		if !found {
-			continue
-		}
-		a.possible[v] = filterregisters(a.possible[v], func(r reg.Physical) bool {
-			return r.PhysicalID() == pid
-		})
-	}
-
 	var rem []*edge
 	for _, e := range a.edges {
-		e.X, e.Y = a.allocation.LookupDefault(e.X), a.allocation.LookupDefault(e.Y)
-
-		px, py := reg.ToPhysical(e.X), reg.ToPhysical(e.Y)
-		vx, vy := reg.ToVirtual(e.X), reg.ToVirtual(e.Y)
-
+		x := a.allocation.LookupDefault(e.X)
+		y := a.allocation.LookupDefault(e.Y)
 		switch {
-		case vx != nil && vy != nil:
+		case x.IsVirtual() && y.IsVirtual():
 			rem = append(rem, e)
 			continue
-		case px != nil && py != nil:
-			if reg.AreConflicting(px, py) {
+		case x.IsPhysical() && y.IsPhysical():
+			if x == y {
 				return errors.New("impossible register allocation")
 			}
-		case px != nil && vy != nil:
-			a.discardconflicting(vy, px)
-		case vx != nil && py != nil:
-			a.discardconflicting(vx, py)
+		case x.IsPhysical() && y.IsVirtual():
+			a.discardconflicting(y, x)
+		case x.IsVirtual() && y.IsPhysical():
+			a.discardconflicting(x, y)
 		default:
 			panic("unreachable")
 		}
@@ -130,30 +134,29 @@ func (a *Allocator) update() error {
 }
 
 // mostrestricted returns the virtual register with the least possibilities.
-func (a *Allocator) mostrestricted() reg.Virtual {
+func (a *Allocator) mostrestricted() reg.ID {
 	n := int(math.MaxInt32)
-	var v reg.Virtual
-	for r, p := range a.possible {
-		if len(p) < n || (len(p) == n && v != nil && r.VirtualID() < v.VirtualID()) {
+	var v reg.ID
+	for w, p := range a.possible {
+		// On a tie, choose the smallest ID in numeric order. This avoids
+		// non-deterministic allocations due to map iteration order.
+		if len(p) < n || (len(p) == n && w < v) {
 			n = len(p)
-			v = r
+			v = w
 		}
 	}
 	return v
 }
 
 // discardconflicting removes registers from vs possible list that conflict with p.
-func (a *Allocator) discardconflicting(v reg.Virtual, p reg.Physical) {
-	a.possible[v] = filterregisters(a.possible[v], func(r reg.Physical) bool {
-		if pid, found := a.vidtopid[v.VirtualID()]; found && pid == p.PhysicalID() {
-			return true
-		}
-		return !reg.AreConflicting(r, p)
+func (a *Allocator) discardconflicting(v, p reg.ID) {
+	a.possible[v] = filterregisters(a.possible[v], func(r reg.ID) bool {
+		return r != p
 	})
 }
 
 // alloc attempts to allocate a register to v.
-func (a *Allocator) alloc(v reg.Virtual) error {
+func (a *Allocator) alloc(v reg.ID) error {
 	ps := a.possible[v]
 	if len(ps) == 0 {
 		return errors.New("failed to allocate registers")
@@ -161,7 +164,6 @@ func (a *Allocator) alloc(v reg.Virtual) error {
 	p := ps[0]
 	a.allocation[v] = p
 	delete(a.possible, v)
-	a.vidtopid[v.VirtualID()] = p.PhysicalID()
 	return nil
 }
 
@@ -171,14 +173,14 @@ func (a *Allocator) remaining() int {
 }
 
 // possibleregisters returns all allocate-able registers for the given virtual.
-func (a *Allocator) possibleregisters(v reg.Virtual) []reg.Physical {
-	return filterregisters(a.registers, func(r reg.Physical) bool {
-		return v.SatisfiedBy(r) && (r.Info()&reg.Restricted) == 0
+func (a *Allocator) possibleregisters(v reg.ID) []reg.ID {
+	return filterregisters(a.registers, func(r reg.ID) bool {
+		return v.Kind() == r.Kind()
 	})
 }
 
-func filterregisters(in []reg.Physical, predicate func(reg.Physical) bool) []reg.Physical {
-	var rs []reg.Physical
+func filterregisters(in []reg.ID, predicate func(reg.ID) bool) []reg.ID {
+	var rs []reg.ID
 	for _, r := range in {
 		if predicate(r) {
 			rs = append(rs, r)

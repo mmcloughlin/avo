@@ -16,6 +16,7 @@ var Compile = Concat(
 	FunctionPass(PruneDanglingLabels),
 	FunctionPass(LabelTarget),
 	FunctionPass(CFG),
+	InstructionPass(ZeroExtend32BitOutputs),
 	FunctionPass(Liveness),
 	FunctionPass(AllocateRegisters),
 	FunctionPass(BindRegisters),
