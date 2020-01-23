@@ -26,3 +26,22 @@ func TestAsMethods(t *testing.T) {
 		}
 	}
 }
+
+func TestAsPreservesPhysical(t *testing.T) {
+	cases := []Register{
+		RAX.As8(),
+		R13.As8L(),
+		AL.As8H(),
+		EAX.As16(),
+		CH.As32(),
+		EBX.As64(),
+		Y13.AsX(),
+		X3.AsY(),
+		Y10.AsZ(),
+	}
+	for _, c := range cases {
+		if ToPhysical(c) == nil {
+			t.FailNow()
+		}
+	}
+}
