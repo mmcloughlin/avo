@@ -51,17 +51,6 @@ type GP interface {
 	As64() Register
 }
 
-type gpcasts struct {
-	Register
-}
-
-func (c gpcasts) As8() Register  { return gpcasts{c.as(S8)} }
-func (c gpcasts) As8L() Register { return gpcasts{c.as(S8L)} }
-func (c gpcasts) As8H() Register { return gpcasts{c.as(S8H)} }
-func (c gpcasts) As16() Register { return gpcasts{c.as(S16)} }
-func (c gpcasts) As32() Register { return gpcasts{c.as(S32)} }
-func (c gpcasts) As64() Register { return gpcasts{c.as(S64)} }
-
 // GPPhysical is a general-purpose physical register.
 type GPPhysical interface {
 	Physical
@@ -70,10 +59,16 @@ type GPPhysical interface {
 
 type gpp struct {
 	Physical
-	GP
 }
 
-func newgpp(r Physical) GPPhysical { return gpp{Physical: r, GP: gpcasts{r}} }
+func newgpp(r Physical) GPPhysical { return gpp{Physical: r} }
+
+func (p gpp) As8() Register  { return newgpp(p.as(S8).(Physical)) }
+func (p gpp) As8L() Register { return newgpp(p.as(S8L).(Physical)) }
+func (p gpp) As8H() Register { return newgpp(p.as(S8H).(Physical)) }
+func (p gpp) As16() Register { return newgpp(p.as(S16).(Physical)) }
+func (p gpp) As32() Register { return newgpp(p.as(S32).(Physical)) }
+func (p gpp) As64() Register { return newgpp(p.as(S64).(Physical)) }
 
 // GPVirtual is a general-purpose virtual register.
 type GPVirtual interface {
@@ -83,10 +78,16 @@ type GPVirtual interface {
 
 type gpv struct {
 	Virtual
-	GP
 }
 
-func newgpv(v Virtual) GPVirtual { return gpv{Virtual: v, GP: gpcasts{v}} }
+func newgpv(v Virtual) GPVirtual { return gpv{Virtual: v} }
+
+func (v gpv) As8() Register  { return newgpv(v.as(S8).(Virtual)) }
+func (v gpv) As8L() Register { return newgpv(v.as(S8L).(Virtual)) }
+func (v gpv) As8H() Register { return newgpv(v.as(S8H).(Virtual)) }
+func (v gpv) As16() Register { return newgpv(v.as(S16).(Virtual)) }
+func (v gpv) As32() Register { return newgpv(v.as(S32).(Virtual)) }
+func (v gpv) As64() Register { return newgpv(v.as(S64).(Virtual)) }
 
 func gp(s Spec, id Index, name string, flags ...Info) GPPhysical {
 	r := newgpp(newregister(GeneralPurpose, s, id, name, flags...))
@@ -184,14 +185,6 @@ type Vec interface {
 	AsZ() Register
 }
 
-type veccasts struct {
-	Register
-}
-
-func (c veccasts) AsX() Register { return veccasts{c.as(S128)} }
-func (c veccasts) AsY() Register { return veccasts{c.as(S256)} }
-func (c veccasts) AsZ() Register { return veccasts{c.as(S512)} }
-
 // VecPhysical is a physical vector register.
 type VecPhysical interface {
 	Physical
@@ -203,7 +196,11 @@ type vecp struct {
 	Vec
 }
 
-func newvecp(r Physical) VecPhysical { return vecp{Physical: r, Vec: veccasts{r}} }
+func newvecp(r Physical) VecPhysical { return vecp{Physical: r} }
+
+func (p vecp) AsX() Register { return newvecp(p.as(S128).(Physical)) }
+func (p vecp) AsY() Register { return newvecp(p.as(S256).(Physical)) }
+func (p vecp) AsZ() Register { return newvecp(p.as(S512).(Physical)) }
 
 // VecVirtual is a virtual vector register.
 type VecVirtual interface {
@@ -216,7 +213,11 @@ type vecv struct {
 	Vec
 }
 
-func newvecv(v Virtual) VecVirtual { return vecv{Virtual: v, Vec: veccasts{v}} }
+func newvecv(v Virtual) VecVirtual { return vecv{Virtual: v} }
+
+func (v vecv) AsX() Register { return newvecv(v.as(S128).(Virtual)) }
+func (v vecv) AsY() Register { return newvecv(v.as(S256).(Virtual)) }
+func (v vecv) AsZ() Register { return newvecv(v.as(S512).(Virtual)) }
 
 func vec(s Spec, id Index, name string, flags ...Info) VecPhysical {
 	r := newvecp(newregister(Vector, s, id, name, flags...))
