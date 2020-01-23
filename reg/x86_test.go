@@ -21,7 +21,7 @@ func TestAsMethods(t *testing.T) {
 		{Z9.AsZ(), Z9},
 	}
 	for _, c := range cases {
-		if !(c[0].ID() == c[1].ID() && c[0].Mask() == c[1].Mask()) {
+		if !Equal(c[0], c[1]) {
 			t.FailNow()
 		}
 	}

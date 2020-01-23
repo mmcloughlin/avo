@@ -84,6 +84,11 @@ type Register interface {
 	register()
 }
 
+// Equal reports whether a and b are equal registers.
+func Equal(a, b Register) bool {
+	return (a.ID() == b.ID()) && (a.Mask() == b.Mask())
+}
+
 // Virtual is a register of a given type and size, not yet allocated to a physical register.
 type Virtual interface {
 	VirtualIndex() Index

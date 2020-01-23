@@ -1,7 +1,6 @@
 package pass_test
 
 import (
-	"reflect"
 	"testing"
 
 	"github.com/mmcloughlin/avo/build"
@@ -12,8 +11,19 @@ import (
 )
 
 func TestZeroExtend32BitOutputs(t *testing.T) {
+	collection := reg.NewCollection()
+	v16 := collection.GP16()
+	v32 := collection.GP32()
+
 	i := &ir.Instruction{
-		Outputs: []operand.Op{reg.R8B, reg.R9W, reg.R10L, reg.R11},
+		Outputs: []operand.Op{
+			reg.R8B,
+			reg.R9W,
+			reg.R10L,
+			reg.R11,
+			v16,
+			v32,
+		},
 	}
 
 	err := pass.ZeroExtend32BitOutputs(i)
@@ -21,9 +31,29 @@ func TestZeroExtend32BitOutputs(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	expect := []operand.Op{reg.R8B, reg.R9W, reg.R10, reg.R11}
-	if !reflect.DeepEqual(expect, i.Outputs) {
-		t.Fatalf("\n   got: %v\nexpect: %v", i.Outputs, expect)
+	got := i.Outputs
+	expect := []reg.Register{
+		reg.R8B,
+		reg.R9W,
+		reg.R10, // converted from R10L
+		reg.R11,
+		v16,
+		v32.As64(), // converted from 32-bit
+	}
+
+	if len(expect) != len(got) {
+		t.Fatal("length mismatch")
+	}
+
+	for j := range got {
+		r, ok := got[j].(reg.Register)
+		if !ok {
+			t.Fatalf("expected register; got %s", got[j].Asm())
+		}
+
+		if !reg.Equal(expect[j], r) {
+			t.Fatalf("got %s; expect %s", expect[j].Asm(), r.Asm())
+		}
 	}
 }
 
