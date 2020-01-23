@@ -138,3 +138,37 @@ func TestVirtualAs(t *testing.T) {
 		}
 	}
 }
+
+func TestLookupPhysical(t *testing.T) {
+	cases := []struct {
+		Kind   Kind
+		Index  Index
+		Spec   Spec
+		Expect Physical
+	}{
+		{KindGP, 0, S8L, AL},
+		{KindGP, 1, S8H, CH},
+		{KindGP, 7, S8, DIB},
+		{KindGP, 8, S16, R8W},
+		{KindGP, 9, S32, R9L},
+		{KindGP, 10, S64, R10},
+
+		{KindVector, 7, S128, X7},
+		{KindVector, 17, S256, Y17},
+		{KindVector, 27, S512, Z27},
+	}
+	for _, c := range cases {
+		if got := LookupPhysical(c.Kind, c.Index, c.Spec); !Equal(got, c.Expect) {
+			t.FailNow()
+		}
+	}
+}
+
+func TestLookupIDSelf(t *testing.T) {
+	cases := []Physical{AL, AH, AX, EAX, RAX, X1, Y2, Z31}
+	for _, r := range cases {
+		if got := LookupID(r.ID(), r.spec()); !Equal(got, r) {
+			t.FailNow()
+		}
+	}
+}
