@@ -69,22 +69,6 @@ func (p InstructionPass) Execute(f *ir.File) error {
 	return nil
 }
 
-// InstructionPass is a convenience for implementing a full file pass with a
-// function that operates on each Instruction independently.
-type InstructionPass func(*ir.Instruction) error
-
-// Execute calls p on every instruction in the file. Exits on the first error.
-func (p InstructionPass) Execute(f *ir.File) error {
-	for _, fn := range f.Functions() {
-		for _, i := range fn.Instructions() {
-			if err := p(i); err != nil {
-				return err
-			}
-		}
-	}
-	return nil
-}
-
 // Concat returns a pass that executes the given passes in order, stopping on the first error.
 func Concat(passes ...Interface) Interface {
 	return Func(func(f *ir.File) error {
