@@ -11,6 +11,7 @@ import (
 // Compile pass compiles an avo file. Upon successful completion the avo file
 // may be printed to Go assembly.
 var Compile = Concat(
+	Verify,
 	FunctionPass(PruneJumpToFollowingLabel),
 	FunctionPass(PruneDanglingLabels),
 	FunctionPass(LabelTarget),
@@ -46,6 +47,22 @@ func (p FunctionPass) Execute(f *ir.File) error {
 	for _, fn := range f.Functions() {
 		if err := p(fn); err != nil {
 			return err
+		}
+	}
+	return nil
+}
+
+// InstructionPass is a convenience for implementing a full file pass with a
+// function that operates on each Instruction independently.
+type InstructionPass func(*ir.Instruction) error
+
+// Execute calls p on every instruction in the file. Exits on the first error.
+func (p InstructionPass) Execute(f *ir.File) error {
+	for _, fn := range f.Functions() {
+		for _, i := range fn.Instructions() {
+			if err := p(i); err != nil {
+				return err
+			}
 		}
 	}
 	return nil
