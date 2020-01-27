@@ -1,6 +1,6 @@
-//+build generate
+// +build generate
 
-//go:generate go run gen.go -out encodeblock_amd64.s -stubs encodeblock_amd64.go
+//go:generate go run $GOFILE -out issue100.s -stubs stub.go
 
 package main
 
@@ -48,7 +48,7 @@ func genEncodeBlockAsm(name string, tableBits, skipLog int, avx bool) {
 	// "var table [maxTableSize]uint32" takes up 4 * (1 << tableBits) bytes of stack space.
 	// Extra bytes are added to keep less used values.
 	var (
-		tableSize = 1 << tableBits
+		tableSize = 1 << uint(tableBits)
 		// Keep base stack multiple of 16.
 		baseStack = 0
 		// try to keep extraStack + baseStack multiple of 16
@@ -207,13 +207,13 @@ func genEncodeBlockAsm(name string, tableBits, skipLog int, avx bool) {
 				left, right := GP64(), GP64()
 				MOVL(s, rep)
 				SUBL(repeatL, rep) // rep = s - repeat
-				MOVL(Mem{Base: src, Index: rep, Disp: checkRep}, right.As32())
+				MOVL(Mem{Base: src, Index: rep, Scale: 1, Disp: checkRep}, right.As32())
 				MOVQ(cv, left)
 				SHLQ(U8(checkRep*8), left)
 				CMPL(left.As32(), right.As32())
 
 				// FIXME: Unable to allocate if enabled.
-				// JNE(LabelRef("no_repeat_found_" + name))
+				JNE(LabelRef("no_repeat_found_" + name))
 			}
 			// base = s + 1
 			base := GP64()
@@ -289,7 +289,7 @@ func genEncodeBlockAsm(name string, tableBits, skipLog int, avx bool) {
 				TESTL(tmp.As32(), tmp.As32())
 
 				// FIXME: fails to allocate regs if enabled:
-				// JZ(LabelRef("repeat_as_copy_" + name))
+				JZ(LabelRef("repeat_as_copy_" + name))
 
 				emitRepeat("match_repeat_", length, offsetVal, nil, dst, LabelRef("repeat_end_emit_"+name))
 
@@ -488,7 +488,7 @@ func genEncodeBlockAsm(name string, tableBits, skipLog int, avx bool) {
 			LEAQ(Mem{Base: s, Disp: -2}, sm2)
 			MOVL(sm2.As32(), table.Idx(hash0, 1))
 			MOVL(s, table.Idx(hash1, 1))
-			CMPL(Mem{Base: src, Index: hash1}, x.As32())
+			CMPL(Mem{Base: src, Index: hash1, Scale: 1}, x.As32())
 			JEQ(LabelRef("match_nolit_loop_" + name))
 			INCL(s)
 		}
