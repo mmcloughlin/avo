@@ -6,4 +6,4 @@
 // environment.
 package allocfail
 
-//go:generate go run asm.go -out allocfail.s -stubs stub.go
+//go:generate go run asm.go -out allocfail.s -stubs stubs.go
