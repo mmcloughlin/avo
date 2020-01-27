@@ -5,3 +5,5 @@
 // comments re-activated and other minimal edits to make it work in this
 // environment.
 package allocfail
+
+//go:generate go run asm.go -out allocfail.s -stubs stub.go

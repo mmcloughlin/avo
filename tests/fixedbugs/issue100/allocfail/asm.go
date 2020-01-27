@@ -1,6 +1,4 @@
-// +build generate
-
-//go:generate go run $GOFILE -out issue100.s -stubs stub.go
+// +build ignore
 
 package main
 
