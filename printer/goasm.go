@@ -123,7 +123,8 @@ func (p *goasm) flush() {
 		return
 	}
 
-	// Determine instruction width.
+	// Determine instruction width. Instructions with no operands are not
+	// considered in this calculation.
 	width := 0
 	for _, i := range p.instructions {
 		if len(i.Operands) > 0 && len(i.Opcode) > width {
