@@ -316,7 +316,7 @@ emit_lit_memmove_repeat_emit_encodeBlockAsm_memmove_move_256through2048:
 	LEAQ  256(BX), BX
 	JGE   emit_lit_memmove_repeat_emit_encodeBlockAsm_memmove_move_256through2048
 	JMP   emit_lit_memmove_repeat_emit_encodeBlockAsm_memmove_tail
-	MOVQ  R8, BX
+	MOVQ R8, BX
 
 emit_literal_done_repeat_emit_encodeBlockAsm:
 	MOVQ BX, dst_base+0(FP)
@@ -911,7 +911,7 @@ emit_lit_memmove_match_emit_encodeBlockAsm_memmove_move_256through2048:
 	LEAQ  256(SI), SI
 	JGE   emit_lit_memmove_match_emit_encodeBlockAsm_memmove_move_256through2048
 	JMP   emit_lit_memmove_match_emit_encodeBlockAsm_memmove_tail
-	MOVQ  R8, SI
+	MOVQ R8, SI
 
 emit_literal_done_match_emit_encodeBlockAsm:
 	MOVQ SI, dst_base+0(FP)
@@ -1418,7 +1418,7 @@ emit_lit_memmove_emit_remainder_encodeBlockAsm_memmove_move_256through2048:
 	LEAQ  256(CX), CX
 	JGE   emit_lit_memmove_emit_remainder_encodeBlockAsm_memmove_move_256through2048
 	JMP   emit_lit_memmove_emit_remainder_encodeBlockAsm_memmove_tail
-	MOVQ  DX, CX
+	MOVQ DX, CX
 
 emit_literal_done_emit_remainder_encodeBlockAsm:
 	MOVQ CX, dst_base+0(FP)
@@ -1739,7 +1739,7 @@ emit_lit_memmove_repeat_emit_encodeBlockAsm14B_memmove_move_256through2048:
 	LEAQ  256(BX), BX
 	JGE   emit_lit_memmove_repeat_emit_encodeBlockAsm14B_memmove_move_256through2048
 	JMP   emit_lit_memmove_repeat_emit_encodeBlockAsm14B_memmove_tail
-	MOVQ  R8, BX
+	MOVQ R8, BX
 
 emit_literal_done_repeat_emit_encodeBlockAsm14B:
 	MOVQ BX, dst_base+0(FP)
@@ -2334,7 +2334,7 @@ emit_lit_memmove_match_emit_encodeBlockAsm14B_memmove_move_256through2048:
 	LEAQ  256(SI), SI
 	JGE   emit_lit_memmove_match_emit_encodeBlockAsm14B_memmove_move_256through2048
 	JMP   emit_lit_memmove_match_emit_encodeBlockAsm14B_memmove_tail
-	MOVQ  R8, SI
+	MOVQ R8, SI
 
 emit_literal_done_match_emit_encodeBlockAsm14B:
 	MOVQ SI, dst_base+0(FP)
@@ -2841,7 +2841,7 @@ emit_lit_memmove_emit_remainder_encodeBlockAsm14B_memmove_move_256through2048:
 	LEAQ  256(CX), CX
 	JGE   emit_lit_memmove_emit_remainder_encodeBlockAsm14B_memmove_move_256through2048
 	JMP   emit_lit_memmove_emit_remainder_encodeBlockAsm14B_memmove_tail
-	MOVQ  DX, CX
+	MOVQ DX, CX
 
 emit_literal_done_emit_remainder_encodeBlockAsm14B:
 	MOVQ CX, dst_base+0(FP)
@@ -3162,7 +3162,7 @@ emit_lit_memmove_repeat_emit_encodeBlockAsm12B_memmove_move_256through2048:
 	LEAQ  256(BX), BX
 	JGE   emit_lit_memmove_repeat_emit_encodeBlockAsm12B_memmove_move_256through2048
 	JMP   emit_lit_memmove_repeat_emit_encodeBlockAsm12B_memmove_tail
-	MOVQ  R8, BX
+	MOVQ R8, BX
 
 emit_literal_done_repeat_emit_encodeBlockAsm12B:
 	MOVQ BX, dst_base+0(FP)
@@ -3757,7 +3757,7 @@ emit_lit_memmove_match_emit_encodeBlockAsm12B_memmove_move_256through2048:
 	LEAQ  256(SI), SI
 	JGE   emit_lit_memmove_match_emit_encodeBlockAsm12B_memmove_move_256through2048
 	JMP   emit_lit_memmove_match_emit_encodeBlockAsm12B_memmove_tail
-	MOVQ  R8, SI
+	MOVQ R8, SI
 
 emit_literal_done_match_emit_encodeBlockAsm12B:
 	MOVQ SI, dst_base+0(FP)
@@ -4264,7 +4264,7 @@ emit_lit_memmove_emit_remainder_encodeBlockAsm12B_memmove_move_256through2048:
 	LEAQ  256(CX), CX
 	JGE   emit_lit_memmove_emit_remainder_encodeBlockAsm12B_memmove_move_256through2048
 	JMP   emit_lit_memmove_emit_remainder_encodeBlockAsm12B_memmove_tail
-	MOVQ  DX, CX
+	MOVQ DX, CX
 
 emit_literal_done_emit_remainder_encodeBlockAsm12B:
 	MOVQ CX, dst_base+0(FP)
@@ -4633,7 +4633,7 @@ emit_lit_memmove_repeat_emit_encodeBlockAsmAvx_memmove_gobble_128_loop:
 	MOVOU   X11, -32(SI)
 	MOVOU   X12, -16(SI)
 	JMP     emit_literal_done_repeat_emit_encodeBlockAsmAvx
-	MOVQ    R8, BX
+	MOVQ R8, BX
 
 emit_literal_done_repeat_emit_encodeBlockAsmAvx:
 	MOVQ BX, dst_base+0(FP)
@@ -5276,7 +5276,7 @@ emit_lit_memmove_match_emit_encodeBlockAsmAvx_memmove_gobble_128_loop:
 	MOVOU   X11, -32(DI)
 	MOVOU   X12, -16(DI)
 	JMP     emit_literal_done_match_emit_encodeBlockAsmAvx
-	MOVQ    R8, SI
+	MOVQ R8, SI
 
 emit_literal_done_match_emit_encodeBlockAsmAvx:
 	MOVQ SI, dst_base+0(FP)
@@ -5831,7 +5831,7 @@ emit_lit_memmove_emit_remainder_encodeBlockAsmAvx_memmove_gobble_128_loop:
 	MOVOU   X11, -32(BX)
 	MOVOU   X12, -16(BX)
 	JMP     emit_literal_done_emit_remainder_encodeBlockAsmAvx
-	MOVQ    DX, CX
+	MOVQ DX, CX
 
 emit_literal_done_emit_remainder_encodeBlockAsmAvx:
 	MOVQ CX, dst_base+0(FP)
@@ -6200,7 +6200,7 @@ emit_lit_memmove_repeat_emit_encodeBlockAsm14BAvx_memmove_gobble_128_loop:
 	MOVOU   X11, -32(SI)
 	MOVOU   X12, -16(SI)
 	JMP     emit_literal_done_repeat_emit_encodeBlockAsm14BAvx
-	MOVQ    R8, BX
+	MOVQ R8, BX
 
 emit_literal_done_repeat_emit_encodeBlockAsm14BAvx:
 	MOVQ BX, dst_base+0(FP)
@@ -6843,7 +6843,7 @@ emit_lit_memmove_match_emit_encodeBlockAsm14BAvx_memmove_gobble_128_loop:
 	MOVOU   X11, -32(DI)
 	MOVOU   X12, -16(DI)
 	JMP     emit_literal_done_match_emit_encodeBlockAsm14BAvx
-	MOVQ    R8, SI
+	MOVQ R8, SI
 
 emit_literal_done_match_emit_encodeBlockAsm14BAvx:
 	MOVQ SI, dst_base+0(FP)
@@ -7398,7 +7398,7 @@ emit_lit_memmove_emit_remainder_encodeBlockAsm14BAvx_memmove_gobble_128_loop:
 	MOVOU   X11, -32(BX)
 	MOVOU   X12, -16(BX)
 	JMP     emit_literal_done_emit_remainder_encodeBlockAsm14BAvx
-	MOVQ    DX, CX
+	MOVQ DX, CX
 
 emit_literal_done_emit_remainder_encodeBlockAsm14BAvx:
 	MOVQ CX, dst_base+0(FP)
@@ -7767,7 +7767,7 @@ emit_lit_memmove_repeat_emit_encodeBlockAsm12BAvx_memmove_gobble_128_loop:
 	MOVOU   X11, -32(SI)
 	MOVOU   X12, -16(SI)
 	JMP     emit_literal_done_repeat_emit_encodeBlockAsm12BAvx
-	MOVQ    R8, BX
+	MOVQ R8, BX
 
 emit_literal_done_repeat_emit_encodeBlockAsm12BAvx:
 	MOVQ BX, dst_base+0(FP)
@@ -8410,7 +8410,7 @@ emit_lit_memmove_match_emit_encodeBlockAsm12BAvx_memmove_gobble_128_loop:
 	MOVOU   X11, -32(DI)
 	MOVOU   X12, -16(DI)
 	JMP     emit_literal_done_match_emit_encodeBlockAsm12BAvx
-	MOVQ    R8, SI
+	MOVQ R8, SI
 
 emit_literal_done_match_emit_encodeBlockAsm12BAvx:
 	MOVQ SI, dst_base+0(FP)
@@ -8965,7 +8965,7 @@ emit_lit_memmove_emit_remainder_encodeBlockAsm12BAvx_memmove_gobble_128_loop:
 	MOVOU   X11, -32(BX)
 	MOVOU   X12, -16(BX)
 	JMP     emit_literal_done_emit_remainder_encodeBlockAsm12BAvx
-	MOVQ    DX, CX
+	MOVQ DX, CX
 
 emit_literal_done_emit_remainder_encodeBlockAsm12BAvx:
 	MOVQ CX, dst_base+0(FP)

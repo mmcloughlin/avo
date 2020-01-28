@@ -93,6 +93,9 @@ func (p *goasm) function(f *ir.Function) {
 		switch n := node.(type) {
 		case *ir.Instruction:
 			p.instruction(n)
+			if n.IsTerminal || n.IsUnconditionalBranch() {
+				p.flush()
+			}
 		case ir.Label:
 			p.flush()
 			p.ensureclear()
