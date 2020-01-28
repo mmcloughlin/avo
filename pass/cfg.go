@@ -62,7 +62,7 @@ func CFG(fn *ir.Function) error {
 		// Otherwise, could continue to the following instruction.
 		switch {
 		case cur.IsTerminal:
-		case cur.IsBranch && !cur.IsConditional:
+		case cur.IsUnconditionalBranch():
 		default:
 			cur.Succ = append(cur.Succ, nxt)
 		}

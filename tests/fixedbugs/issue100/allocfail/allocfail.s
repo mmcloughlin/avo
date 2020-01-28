@@ -4624,16 +4624,16 @@ emit_lit_memmove_repeat_emit_encodeBlockAsmAvx_memmove_gobble_128_loop:
 	ADDQ    BX, SI
 	VMOVDQU Y4, (R11)
 	VZEROUPPER
-	MOVOU X5, -128(SI)
-	MOVOU X6, -112(SI)
-	MOVOU X7, -96(SI)
-	MOVOU X8, -80(SI)
-	MOVOU X9, -64(SI)
-	MOVOU X10, -48(SI)
-	MOVOU X11, -32(SI)
-	MOVOU X12, -16(SI)
-	JMP   emit_literal_done_repeat_emit_encodeBlockAsmAvx
-	MOVQ  R8, BX
+	MOVOU   X5, -128(SI)
+	MOVOU   X6, -112(SI)
+	MOVOU   X7, -96(SI)
+	MOVOU   X8, -80(SI)
+	MOVOU   X9, -64(SI)
+	MOVOU   X10, -48(SI)
+	MOVOU   X11, -32(SI)
+	MOVOU   X12, -16(SI)
+	JMP     emit_literal_done_repeat_emit_encodeBlockAsmAvx
+	MOVQ    R8, BX
 
 emit_literal_done_repeat_emit_encodeBlockAsmAvx:
 	MOVQ BX, dst_base+0(FP)
@@ -5267,16 +5267,16 @@ emit_lit_memmove_match_emit_encodeBlockAsmAvx_memmove_gobble_128_loop:
 	ADDQ    SI, DI
 	VMOVDQU Y4, (R11)
 	VZEROUPPER
-	MOVOU X5, -128(DI)
-	MOVOU X6, -112(DI)
-	MOVOU X7, -96(DI)
-	MOVOU X8, -80(DI)
-	MOVOU X9, -64(DI)
-	MOVOU X10, -48(DI)
-	MOVOU X11, -32(DI)
-	MOVOU X12, -16(DI)
-	JMP   emit_literal_done_match_emit_encodeBlockAsmAvx
-	MOVQ  R8, SI
+	MOVOU   X5, -128(DI)
+	MOVOU   X6, -112(DI)
+	MOVOU   X7, -96(DI)
+	MOVOU   X8, -80(DI)
+	MOVOU   X9, -64(DI)
+	MOVOU   X10, -48(DI)
+	MOVOU   X11, -32(DI)
+	MOVOU   X12, -16(DI)
+	JMP     emit_literal_done_match_emit_encodeBlockAsmAvx
+	MOVQ    R8, SI
 
 emit_literal_done_match_emit_encodeBlockAsmAvx:
 	MOVQ SI, dst_base+0(FP)
@@ -5822,16 +5822,16 @@ emit_lit_memmove_emit_remainder_encodeBlockAsmAvx_memmove_gobble_128_loop:
 	ADDQ    CX, BX
 	VMOVDQU Y4, (DI)
 	VZEROUPPER
-	MOVOU X5, -128(BX)
-	MOVOU X6, -112(BX)
-	MOVOU X7, -96(BX)
-	MOVOU X8, -80(BX)
-	MOVOU X9, -64(BX)
-	MOVOU X10, -48(BX)
-	MOVOU X11, -32(BX)
-	MOVOU X12, -16(BX)
-	JMP   emit_literal_done_emit_remainder_encodeBlockAsmAvx
-	MOVQ  DX, CX
+	MOVOU   X5, -128(BX)
+	MOVOU   X6, -112(BX)
+	MOVOU   X7, -96(BX)
+	MOVOU   X8, -80(BX)
+	MOVOU   X9, -64(BX)
+	MOVOU   X10, -48(BX)
+	MOVOU   X11, -32(BX)
+	MOVOU   X12, -16(BX)
+	JMP     emit_literal_done_emit_remainder_encodeBlockAsmAvx
+	MOVQ    DX, CX
 
 emit_literal_done_emit_remainder_encodeBlockAsmAvx:
 	MOVQ CX, dst_base+0(FP)
@@ -6191,16 +6191,16 @@ emit_lit_memmove_repeat_emit_encodeBlockAsm14BAvx_memmove_gobble_128_loop:
 	ADDQ    BX, SI
 	VMOVDQU Y4, (R11)
 	VZEROUPPER
-	MOVOU X5, -128(SI)
-	MOVOU X6, -112(SI)
-	MOVOU X7, -96(SI)
-	MOVOU X8, -80(SI)
-	MOVOU X9, -64(SI)
-	MOVOU X10, -48(SI)
-	MOVOU X11, -32(SI)
-	MOVOU X12, -16(SI)
-	JMP   emit_literal_done_repeat_emit_encodeBlockAsm14BAvx
-	MOVQ  R8, BX
+	MOVOU   X5, -128(SI)
+	MOVOU   X6, -112(SI)
+	MOVOU   X7, -96(SI)
+	MOVOU   X8, -80(SI)
+	MOVOU   X9, -64(SI)
+	MOVOU   X10, -48(SI)
+	MOVOU   X11, -32(SI)
+	MOVOU   X12, -16(SI)
+	JMP     emit_literal_done_repeat_emit_encodeBlockAsm14BAvx
+	MOVQ    R8, BX
 
 emit_literal_done_repeat_emit_encodeBlockAsm14BAvx:
 	MOVQ BX, dst_base+0(FP)
@@ -6834,16 +6834,16 @@ emit_lit_memmove_match_emit_encodeBlockAsm14BAvx_memmove_gobble_128_loop:
 	ADDQ    SI, DI
 	VMOVDQU Y4, (R11)
 	VZEROUPPER
-	MOVOU X5, -128(DI)
-	MOVOU X6, -112(DI)
-	MOVOU X7, -96(DI)
-	MOVOU X8, -80(DI)
-	MOVOU X9, -64(DI)
-	MOVOU X10, -48(DI)
-	MOVOU X11, -32(DI)
-	MOVOU X12, -16(DI)
-	JMP   emit_literal_done_match_emit_encodeBlockAsm14BAvx
-	MOVQ  R8, SI
+	MOVOU   X5, -128(DI)
+	MOVOU   X6, -112(DI)
+	MOVOU   X7, -96(DI)
+	MOVOU   X8, -80(DI)
+	MOVOU   X9, -64(DI)
+	MOVOU   X10, -48(DI)
+	MOVOU   X11, -32(DI)
+	MOVOU   X12, -16(DI)
+	JMP     emit_literal_done_match_emit_encodeBlockAsm14BAvx
+	MOVQ    R8, SI
 
 emit_literal_done_match_emit_encodeBlockAsm14BAvx:
 	MOVQ SI, dst_base+0(FP)
@@ -7389,16 +7389,16 @@ emit_lit_memmove_emit_remainder_encodeBlockAsm14BAvx_memmove_gobble_128_loop:
 	ADDQ    CX, BX
 	VMOVDQU Y4, (DI)
 	VZEROUPPER
-	MOVOU X5, -128(BX)
-	MOVOU X6, -112(BX)
-	MOVOU X7, -96(BX)
-	MOVOU X8, -80(BX)
-	MOVOU X9, -64(BX)
-	MOVOU X10, -48(BX)
-	MOVOU X11, -32(BX)
-	MOVOU X12, -16(BX)
-	JMP   emit_literal_done_emit_remainder_encodeBlockAsm14BAvx
-	MOVQ  DX, CX
+	MOVOU   X5, -128(BX)
+	MOVOU   X6, -112(BX)
+	MOVOU   X7, -96(BX)
+	MOVOU   X8, -80(BX)
+	MOVOU   X9, -64(BX)
+	MOVOU   X10, -48(BX)
+	MOVOU   X11, -32(BX)
+	MOVOU   X12, -16(BX)
+	JMP     emit_literal_done_emit_remainder_encodeBlockAsm14BAvx
+	MOVQ    DX, CX
 
 emit_literal_done_emit_remainder_encodeBlockAsm14BAvx:
 	MOVQ CX, dst_base+0(FP)
@@ -7758,16 +7758,16 @@ emit_lit_memmove_repeat_emit_encodeBlockAsm12BAvx_memmove_gobble_128_loop:
 	ADDQ    BX, SI
 	VMOVDQU Y4, (R11)
 	VZEROUPPER
-	MOVOU X5, -128(SI)
-	MOVOU X6, -112(SI)
-	MOVOU X7, -96(SI)
-	MOVOU X8, -80(SI)
-	MOVOU X9, -64(SI)
-	MOVOU X10, -48(SI)
-	MOVOU X11, -32(SI)
-	MOVOU X12, -16(SI)
-	JMP   emit_literal_done_repeat_emit_encodeBlockAsm12BAvx
-	MOVQ  R8, BX
+	MOVOU   X5, -128(SI)
+	MOVOU   X6, -112(SI)
+	MOVOU   X7, -96(SI)
+	MOVOU   X8, -80(SI)
+	MOVOU   X9, -64(SI)
+	MOVOU   X10, -48(SI)
+	MOVOU   X11, -32(SI)
+	MOVOU   X12, -16(SI)
+	JMP     emit_literal_done_repeat_emit_encodeBlockAsm12BAvx
+	MOVQ    R8, BX
 
 emit_literal_done_repeat_emit_encodeBlockAsm12BAvx:
 	MOVQ BX, dst_base+0(FP)
@@ -8401,16 +8401,16 @@ emit_lit_memmove_match_emit_encodeBlockAsm12BAvx_memmove_gobble_128_loop:
 	ADDQ    SI, DI
 	VMOVDQU Y4, (R11)
 	VZEROUPPER
-	MOVOU X5, -128(DI)
-	MOVOU X6, -112(DI)
-	MOVOU X7, -96(DI)
-	MOVOU X8, -80(DI)
-	MOVOU X9, -64(DI)
-	MOVOU X10, -48(DI)
-	MOVOU X11, -32(DI)
-	MOVOU X12, -16(DI)
-	JMP   emit_literal_done_match_emit_encodeBlockAsm12BAvx
-	MOVQ  R8, SI
+	MOVOU   X5, -128(DI)
+	MOVOU   X6, -112(DI)
+	MOVOU   X7, -96(DI)
+	MOVOU   X8, -80(DI)
+	MOVOU   X9, -64(DI)
+	MOVOU   X10, -48(DI)
+	MOVOU   X11, -32(DI)
+	MOVOU   X12, -16(DI)
+	JMP     emit_literal_done_match_emit_encodeBlockAsm12BAvx
+	MOVQ    R8, SI
 
 emit_literal_done_match_emit_encodeBlockAsm12BAvx:
 	MOVQ SI, dst_base+0(FP)
@@ -8956,16 +8956,16 @@ emit_lit_memmove_emit_remainder_encodeBlockAsm12BAvx_memmove_gobble_128_loop:
 	ADDQ    CX, BX
 	VMOVDQU Y4, (DI)
 	VZEROUPPER
-	MOVOU X5, -128(BX)
-	MOVOU X6, -112(BX)
-	MOVOU X7, -96(BX)
-	MOVOU X8, -80(BX)
-	MOVOU X9, -64(BX)
-	MOVOU X10, -48(BX)
-	MOVOU X11, -32(BX)
-	MOVOU X12, -16(BX)
-	JMP   emit_literal_done_emit_remainder_encodeBlockAsm12BAvx
-	MOVQ  DX, CX
+	MOVOU   X5, -128(BX)
+	MOVOU   X6, -112(BX)
+	MOVOU   X7, -96(BX)
+	MOVOU   X8, -80(BX)
+	MOVOU   X9, -64(BX)
+	MOVOU   X10, -48(BX)
+	MOVOU   X11, -32(BX)
+	MOVOU   X12, -16(BX)
+	JMP     emit_literal_done_emit_remainder_encodeBlockAsm12BAvx
+	MOVQ    DX, CX
 
 emit_literal_done_emit_remainder_encodeBlockAsm12BAvx:
 	MOVQ CX, dst_base+0(FP)
@@ -9478,14 +9478,14 @@ emit_lit_memmove_standalone_memmove_gobble_128_loop:
 	ADDQ    AX, DX
 	VMOVDQU Y4, (R8)
 	VZEROUPPER
-	MOVOU X5, -128(DX)
-	MOVOU X6, -112(DX)
-	MOVOU X7, -96(DX)
-	MOVOU X8, -80(DX)
-	MOVOU X9, -64(DX)
-	MOVOU X10, -48(DX)
-	MOVOU X11, -32(DX)
-	MOVOU X12, -16(DX)
+	MOVOU   X5, -128(DX)
+	MOVOU   X6, -112(DX)
+	MOVOU   X7, -96(DX)
+	MOVOU   X8, -80(DX)
+	MOVOU   X9, -64(DX)
+	MOVOU   X10, -48(DX)
+	MOVOU   X11, -32(DX)
+	MOVOU   X12, -16(DX)
 
 emit_literal_end_avx_standalone:
 	MOVQ BX, ret+48(FP)
