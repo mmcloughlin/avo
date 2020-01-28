@@ -101,7 +101,7 @@ func genEncodeBlockAsm(name string, tableBits, skipLog int, avx bool) {
 	dstBase := dstBaseBasic.Addr
 
 	if tmpStack > extraStack+baseStack {
-		panic(fmt.Sprintf("tmp stack exceeded", tmpStack))
+		panic(fmt.Sprintf("tmp stack exceeded: %v", tmpStack))
 	}
 
 	// Zero table
