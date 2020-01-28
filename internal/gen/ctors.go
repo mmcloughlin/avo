@@ -98,6 +98,10 @@ func construct(i inst.Instruction, f inst.Form, s signature) string {
 	}
 
 	// Branch variables.
+	if i.IsTerminal() {
+		fmt.Fprintf(buf, "\tIsTerminal: true,\n")
+	}
+
 	if i.IsBranch() {
 		fmt.Fprintf(buf, "\tIsBranch: true,\n")
 		fmt.Fprintf(buf, "\tIsConditional: %#v,\n", i.IsConditionalBranch())

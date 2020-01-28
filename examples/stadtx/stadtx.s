@@ -33,10 +33,10 @@ TEXT ·Hash(SB), NOSPLIT, $0-40
 	JE    shortCore3
 
 shortCore3:
-	MOVQ  (CX), SI
-	MOVQ  $0x9c1b8e1e9628323f, DI
-	IMULQ DI, SI
-	ADDQ  SI, BX
+	MOVQ  (CX), AX
+	MOVQ  $0x9c1b8e1e9628323f, SI
+	IMULQ SI, AX
+	ADDQ  AX, BX
 	RORQ  $0x11, BX
 	XORQ  BP, BX
 	RORQ  $0x35, BP
@@ -45,10 +45,10 @@ shortCore3:
 	SUBQ  $0x00000008, DX
 
 shortCore2:
-	MOVQ  (CX), SI
-	MOVQ  $0x9c1b8e1e9628323f, DI
-	IMULQ DI, SI
-	ADDQ  SI, BX
+	MOVQ  (CX), AX
+	MOVQ  $0x9c1b8e1e9628323f, SI
+	IMULQ SI, AX
+	ADDQ  AX, BX
 	RORQ  $0x11, BX
 	XORQ  BP, BX
 	RORQ  $0x35, BP
@@ -57,10 +57,10 @@ shortCore2:
 	SUBQ  $0x00000008, DX
 
 shortCore1:
-	MOVQ  (CX), SI
-	MOVQ  $0x9c1b8e1e9628323f, DI
-	IMULQ DI, SI
-	ADDQ  SI, BX
+	MOVQ  (CX), AX
+	MOVQ  $0x9c1b8e1e9628323f, SI
+	IMULQ SI, AX
+	ADDQ  AX, BX
 	RORQ  $0x11, BX
 	XORQ  BP, BX
 	RORQ  $0x35, BP
@@ -87,38 +87,38 @@ shortCore0:
 	JE   shortTail7
 
 shortTail7:
-	MOVBQZX 6(CX), SI
-	SHLQ    $0x20, SI
-	ADDQ    SI, BX
+	MOVBQZX 6(CX), DX
+	SHLQ    $0x20, DX
+	ADDQ    DX, BX
 
 shortTail6:
-	MOVBQZX 5(CX), SI
-	SHLQ    $0x30, SI
-	ADDQ    SI, BP
+	MOVBQZX 5(CX), DX
+	SHLQ    $0x30, DX
+	ADDQ    DX, BP
 
 shortTail5:
-	MOVBQZX 4(CX), SI
-	SHLQ    $0x10, SI
-	ADDQ    SI, BX
+	MOVBQZX 4(CX), DX
+	SHLQ    $0x10, DX
+	ADDQ    DX, BX
 
 shortTail4:
-	MOVLQZX (CX), SI
-	ADDQ    SI, BP
+	MOVLQZX (CX), DX
+	ADDQ    DX, BP
 	JMP     shortAfter
 
 shortTail3:
-	MOVBQZX 2(CX), SI
-	SHLQ    $0x30, SI
-	ADDQ    SI, BX
+	MOVBQZX 2(CX), DX
+	SHLQ    $0x30, DX
+	ADDQ    DX, BX
 
 shortTail2:
-	MOVWQZX (CX), SI
-	ADDQ    SI, BP
+	MOVWQZX (CX), DX
+	ADDQ    DX, BP
 	JMP     shortAfter
 
 shortTail1:
-	MOVBQZX (CX), SI
-	ADDQ    SI, BX
+	MOVBQZX (CX), DX
+	ADDQ    DX, BX
 
 shortTail0:
 	RORQ $0x20, BP
@@ -262,37 +262,37 @@ longCore0:
 	JE    longTail7
 
 longTail7:
-	MOVBQZX 6(CX), SI
-	ADDQ    SI, BP
+	MOVBQZX 6(CX), DX
+	ADDQ    DX, BP
 
 longTail6:
-	MOVWQZX 4(CX), SI
-	ADDQ    SI, DI
-	MOVLQZX (CX), SI
-	ADDQ    SI, AX
+	MOVWQZX 4(CX), DX
+	ADDQ    DX, DI
+	MOVLQZX (CX), DX
+	ADDQ    DX, AX
 	JMP     longAfter
 
 longTail5:
-	MOVBQZX 4(CX), SI
-	ADDQ    SI, BP
+	MOVBQZX 4(CX), DX
+	ADDQ    DX, BP
 
 longTail4:
-	MOVLQZX (CX), SI
-	ADDQ    SI, DI
+	MOVLQZX (CX), DX
+	ADDQ    DX, DI
 	JMP     longAfter
 
 longTail3:
-	MOVBQZX 2(CX), SI
-	ADDQ    SI, AX
+	MOVBQZX 2(CX), DX
+	ADDQ    DX, AX
 
 longTail2:
-	MOVWQZX (CX), SI
-	ADDQ    SI, BP
+	MOVWQZX (CX), DX
+	ADDQ    DX, BP
 	JMP     longAfter
 
 longTail1:
-	MOVBQZX (CX), SI
-	ADDQ    SI, DI
+	MOVBQZX (CX), DX
+	ADDQ    DX, DI
 
 longTail0:
 	ROLQ $0x20, AX

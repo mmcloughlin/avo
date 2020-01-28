@@ -15578,10 +15578,11 @@ func RDTSCP() (*intrep.Instruction, error) {
 // 	RET
 func RET() (*intrep.Instruction, error) {
 	return &intrep.Instruction{
-		Opcode:   "RET",
-		Operands: nil,
-		Inputs:   []operand.Op{},
-		Outputs:  []operand.Op{},
+		Opcode:     "RET",
+		Operands:   nil,
+		Inputs:     []operand.Op{},
+		Outputs:    []operand.Op{},
+		IsTerminal: true,
 	}, nil
 }
 
