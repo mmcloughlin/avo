@@ -61,6 +61,11 @@ type Instruction struct {
 
 func (i *Instruction) node() {}
 
+// IsUnconditionalBranch reports whether i is an unconditional branch.
+func (i Instruction) IsUnconditionalBranch() bool {
+	return i.IsBranch && !i.IsConditional
+}
+
 // TargetLabel returns the label referenced by this instruction. Returns nil if
 // no label is referenced.
 func (i Instruction) TargetLabel() *Label {

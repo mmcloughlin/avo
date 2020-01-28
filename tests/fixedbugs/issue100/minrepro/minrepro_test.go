@@ -1,10 +1,10 @@
-package issue100
+package minrepro
 
 import (
 	"testing"
 )
 
-//go:generate go run asm.go -out issue100.s -stubs stub.go
+//go:generate go run asm.go -out minrepro.s -stubs stub.go
 
 func TestIssue100(t *testing.T) {
 	n := uint64(100)
