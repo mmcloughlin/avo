@@ -329,7 +329,7 @@ func genEncodeBlockAsm(name string, tableBits, skipLog int, avx bool) {
 			// candidate = int(table[hash2])
 			MOVL(table.Idx(hash2, 1), candidate)
 
-			//if uint32(cv>>8) == load32(src, candidate2)
+			// if uint32(cv>>8) == load32(src, candidate2)
 			CMPL(Mem{Base: src, Index: candidate2, Scale: 1}, cv.As32())
 			JEQ(LabelRef("candidate2_match_" + name))
 
@@ -888,7 +888,7 @@ const (
 // Will jump to end label when finished.
 // Uses 2 GP registers.
 func emitCopy(name string, length, offset, retval, dstBase reg.GPVirtual, end LabelRef) {
-	//if offset >= 65536 {
+	// if offset >= 65536 {
 	CMPL(offset.As32(), U32(65536))
 	JL(LabelRef("two_byte_offset_" + name))
 
@@ -950,7 +950,7 @@ func emitCopy(name string, length, offset, retval, dstBase reg.GPVirtual, end La
 	Label("two_byte_offset_" + name)
 	// Offset no more than 2 bytes.
 
-	//if length > 64 {
+	// if length > 64 {
 	CMPL(length.As32(), U8(64))
 	JLE(LabelRef("two_byte_offset_short_" + name))
 	// Emit a length 60 copy, encoded as 3 bytes.
@@ -974,7 +974,7 @@ func emitCopy(name string, length, offset, retval, dstBase reg.GPVirtual, end La
 	emitRepeat(name+"_emit_copy_short", length, offset, retval, dstBase, end)
 
 	Label("two_byte_offset_short_" + name)
-	//if length >= 12 || offset >= 2048 {
+	// if length >= 12 || offset >= 2048 {
 	CMPL(length.As32(), U8(12))
 	JGE(LabelRef("emit_copy_three_" + name))
 	CMPL(offset.As32(), U32(2048))
