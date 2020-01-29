@@ -130,5 +130,22 @@
                 "primitivefuncs_amd64.s"
             ]
         ]
+    },
+    {
+        "import_path": "github.com/klauspost/compress",
+        "version": "23a5980ed240fd76b89481403c834f48943b3788",
+        "dir": "s2",
+        "generate": [
+            [
+                "go",
+                "run",
+                "gen.go",
+                "-out",
+                "encodeblock_amd64.s",
+                "-stubs",
+                "encodeblock_amd64.go"
+            ]
+        ],
+        "test": "./s2"
     }
 ]

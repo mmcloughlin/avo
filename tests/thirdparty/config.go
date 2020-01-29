@@ -14,6 +14,7 @@ type Package struct {
 	Version    string     `json:"version"`     // git sha, tag or branch
 	Generate   [][]string `json:"generate"`    // generate commands to run
 	Dir        string     `json:"dir"`         // working directory for generate commands
+	Test       string     `json:"test"`        // test path relative to repo root (if empty defaults to ./...)
 }
 
 // Name returns the package name.
@@ -24,6 +25,14 @@ func (p Package) Name() string {
 // CloneURL returns the git clone URL.
 func (p Package) CloneURL() string {
 	return "https://" + p.ImportPath + ".git"
+}
+
+// TestPath returns the paths to run "go test" on, relative to the repository root.
+func (p Package) TestPath() string {
+	if p.Test == "" {
+		return "./..."
+	}
+	return p.Test
 }
 
 // LoadPackages loads a list of package configurations from JSON format.
