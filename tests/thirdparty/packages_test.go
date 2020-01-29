@@ -145,7 +145,7 @@ func (t *PackageTest) diff() {
 
 // test runs go test.
 func (t *PackageTest) test() {
-	t.gotool("test", "./...")
+	t.gotool("test", t.TestPath())
 }
 
 // git runs a git command.

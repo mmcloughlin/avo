@@ -19,6 +19,18 @@ func TestPackageCloneURL(t *testing.T) {
 	}
 }
 
+func TestPackagesTestPath(t *testing.T) {
+	p := Package{}
+	if p.TestPath() != "./..." {
+		t.Fail()
+	}
+
+	p.Test = "./sub"
+	if p.TestPath() != "./sub" {
+		t.Fail()
+	}
+}
+
 func TestLoadPackages(t *testing.T) {
 	r := strings.NewReader(`[{"unknown_field": "value"}]`)
 	_, err := LoadPackages(r)

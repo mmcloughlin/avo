@@ -145,6 +145,7 @@
                 "-stubs",
                 "encodeblock_amd64.go"
             ]
-        ]
+        ],
+        "test": "./s2"
     }
 ]
