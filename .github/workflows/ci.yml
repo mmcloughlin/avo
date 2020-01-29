@@ -89,4 +89,4 @@ jobs:
       uses: actions/checkout@v1
     - name: Run Third-Party Tests
       working-directory: ./tests/thirdparty
-      run: go test -v -pkgs packages.json
+      run: go test -pkgs packages.json
