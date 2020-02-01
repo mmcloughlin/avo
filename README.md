@@ -2,7 +2,7 @@
   <img src="logo.svg" width="40%" border="0" alt="avo" />
   <br />
   <img src="https://img.shields.io/github/workflow/status/mmcloughlin/avo/ci/master.svg?style=flat-square" alt="Build Status" />
-  <a href="http://godoc.org/github.com/mmcloughlin/avo"><img src="http://img.shields.io/badge/godoc-reference-5272B4.svg?style=flat-square" alt="GoDoc" /></a>
+  <a href="https://pkg.go.dev/github.com/mmcloughlin/avo"><img src="https://img.shields.io/badge/doc-reference-007d9b?logo=go&style=flat-square" alt="go.dev" /></a>
   <a href="https://goreportcard.com/report/github.com/mmcloughlin/avo"><img src="https://goreportcard.com/badge/github.com/mmcloughlin/avo?style=flat-square" alt="Go Report Card" /></a>
 </p>
 
