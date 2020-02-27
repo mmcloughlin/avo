@@ -147,5 +147,26 @@
             ]
         ],
         "test": "./s2"
+    },
+    {
+        "import_path": "github.com/zeebo/blake3",
+        "version": "25dba572f0e78ec108f0dd79c9c15288f542d7d9",
+        "dir": "avo",
+        "generate": [
+            [
+                "go",
+                "run",
+                "./avx2",
+                "-out",
+                "../avx2/impl.s"
+            ],
+            [
+                "go",
+                "run",
+                "./sse41",
+                "-out",
+                "../sse41/impl.s"
+            ]
+        ]
     }
 ]
