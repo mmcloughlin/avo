@@ -168,5 +168,20 @@
                 "../sse41/impl.s"
             ]
         ]
+    },
+    {
+        "import_path": "github.com/lukechampine/us",
+        "version": "dff56a80f83653cb14eeeb57ba6ba3c3e942c412",
+        "dir": "merkle/blake2b",
+        "generate": [
+            [
+                "go",
+                "run",
+                "gen.go",
+                "-out",
+                "blake2b_amd64.s"
+            ]
+        ],
+        "test": "./merkle/..."
     }
 ]
