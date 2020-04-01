@@ -2,13 +2,14 @@ package max
 
 import (
 	"math/rand"
+	"strconv"
 	"testing"
 )
 
 //go:generate go run asm.go -out max.s -stubs stub.go
 
 func TestMax(t *testing.T) {
-	n := 16 * 43
+	n := 64 * 43
 	x, y := RandomArray(n), RandomArray(n)
 
 	got := Copy(x)
@@ -18,6 +19,39 @@ func TestMax(t *testing.T) {
 	Expect(expect, y)
 
 	AssertEqualArray(t, expect, got)
+}
+
+func BenchmarkAsm600K(b *testing.B) {
+	benchmarkSize(b, 600000, Max)
+}
+
+func BenchmarkNaive600K(b *testing.B) {
+	benchmarkSize(b, 600000, Expect)
+}
+
+func BenchmarkAsmSizes(b *testing.B) {
+	benchmarkSizes(b, Max)
+}
+
+func BenchmarkNaiveSizes(b *testing.B) {
+	benchmarkSizes(b, Expect)
+}
+
+func benchmarkSizes(b *testing.B, mx func(x, y []uint8)) {
+	for n := 6; n <= 26; n += 4 {
+		size := 1 << uint(n)
+		b.Run("size="+strconv.Itoa(size), func(b *testing.B) {
+			benchmarkSize(b, size, mx)
+		})
+	}
+}
+
+func benchmarkSize(b *testing.B, size int, mx func(x, y []uint8)) {
+	x, y := RandomArray(size), RandomArray(size)
+	for i := 0; i < b.N; i++ {
+		mx(x, y)
+	}
+	b.SetBytes(2 * int64(size))
 }
 
 func Expect(x, y []uint8) {

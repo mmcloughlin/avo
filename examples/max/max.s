@@ -3,7 +3,7 @@
 #include "textflag.h"
 
 // func Max(x []uint8, y []uint8)
-// Requires: AVX, SSE2
+// Requires: SSE2
 TEXT ·Max(SB), NOSPLIT, $0-48
 	MOVQ x_base+0(FP), AX
 	MOVQ y_base+24(FP), CX
@@ -16,12 +16,21 @@ loop:
 	JE   done
 
 	// Load.
-	VMOVDQU (CX)(BX*1), X0
-	PMAXUB  (AX)(BX*1), X0
-	VMOVDQU X0, (AX)(BX*1)
+	MOVUPD (CX)(BX*1), X0
+	MOVUPD 16(CX)(BX*1), X1
+	MOVUPD 32(CX)(BX*1), X2
+	MOVUPD 48(CX)(BX*1), X3
+	PMAXUB (AX)(BX*1), X0
+	PMAXUB 16(AX)(BX*1), X1
+	PMAXUB 32(AX)(BX*1), X2
+	PMAXUB 48(AX)(BX*1), X3
+	MOVUPD X0, (AX)(BX*1)
+	MOVUPD X1, 16(AX)(BX*1)
+	MOVUPD X2, 32(AX)(BX*1)
+	MOVUPD X3, 48(AX)(BX*1)
 
 	// Advance index.
-	ADDQ $0x10, BX
+	ADDQ $0x40, BX
 	JMP  loop
 
 done:
