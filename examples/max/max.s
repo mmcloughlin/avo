@@ -2,9 +2,9 @@
 
 #include "textflag.h"
 
-// func Max(x []uint8, y []uint8) uint64
+// func Max(x []uint8, y []uint8)
 // Requires: AVX, SSE2
-TEXT ·Max(SB), NOSPLIT, $0-56
+TEXT ·Max(SB), NOSPLIT, $0-48
 	MOVQ x_base+0(FP), AX
 	MOVQ y_base+24(FP), CX
 	MOVQ x_len+8(FP), DX

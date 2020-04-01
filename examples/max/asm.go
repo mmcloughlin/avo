@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	TEXT("Max", NOSPLIT, "func(x, y []uint8) uint64")
+	TEXT("Max", NOSPLIT, "func(x, y []uint8)")
 	Doc("Max sets x to the pairwise max of x and y.")
 	x := Load(Param("x").Base(), GP64())
 	y := Load(Param("y").Base(), GP64())

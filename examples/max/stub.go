@@ -3,4 +3,4 @@
 package max
 
 // Max sets x to the pairwise max of x and y.
-func Max(x []uint8, y []uint8) uint64
+func Max(x []uint8, y []uint8)
