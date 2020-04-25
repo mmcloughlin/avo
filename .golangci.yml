@@ -9,6 +9,9 @@ linters:
   - unparam
   - gochecknoglobals
   - gochecknoinits
+  - gomnd
+  - wsl
+  - godox
 
 linters-settings:
   depguard:
