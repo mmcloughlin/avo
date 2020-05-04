@@ -10,17 +10,17 @@ go install ./internal/cmd/asmdecl
 golangci_lint_version='v1.23.6'
 curl -sfL https://install.goreleaser.com/github.com/golangci/golangci-lint.sh | sh -s -- -b $GOPATH/bin ${golangci_lint_version}
 
-# Turn off modules for tools install.
-export GO111MODULE=off
+# Use gobin for tools install.
+GO111MODULE=off go get -u github.com/myitcv/gobin
 
 # embedmd required for documentation generation
-go get -u github.com/campoy/embedmd
+gobin github.com/campoy/embedmd@v1.0.0
 
 # covertool for merging coverage reports
-go get -u github.com/dlespiau/covertool
+gobin github.com/dlespiau/covertool@v0.0.0-20180314162135-b0c4c6d0583a
 
 # asmfmt for enforcing assembly style
-go get -u github.com/klauspost/asmfmt/cmd/asmfmt
+gobin github.com/klauspost/asmfmt/cmd/asmfmt@v1.2.1
 
 # gofumports for stricter formatting
-go get -u mvdan.cc/gofumpt/gofumports
+gobin mvdan.cc/gofumpt/gofumports@v0.0.0-20200412215918-a91da47f375c
