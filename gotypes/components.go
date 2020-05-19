@@ -37,6 +37,7 @@ type Component interface {
 	Imag() Component                      // imaginary part of a complex value
 	Index(int) Component                  // index into an array
 	Field(string) Component               // access a struct field
+	MustAddr() operand.Mem                // access address of component (experts only)
 }
 
 // componenterr is an error that also provides a null implementation of the
@@ -58,6 +59,7 @@ func (c componenterr) Real() Component                      { return c }
 func (c componenterr) Imag() Component                      { return c }
 func (c componenterr) Index(int) Component                  { return c }
 func (c componenterr) Field(string) Component               { return c }
+func (c componenterr) MustAddr() operand.Mem                { panic(c) }
 
 type component struct {
 	typ  types.Type
@@ -70,6 +72,10 @@ func NewComponent(t types.Type, addr operand.Mem) Component {
 		typ:  t,
 		addr: addr,
 	}
+}
+
+func (c *component) MustAddr() operand.Mem {
+	return c.addr
 }
 
 func (c *component) Resolve() (*Basic, error) {
