@@ -104,6 +104,16 @@ func TestComponentErrorChaining(t *testing.T) {
 	}
 }
 
+func TestComponentMustAddrPanic(t *testing.T) {
+	defer func() {
+		if recover() == nil {
+			t.Fatal("expected panic")
+		}
+	}()
+	comp := NewComponent(types.Typ[types.Uint32], operand.Mem{}).Index(3)
+	comp.MustAddr()
+}
+
 func TestComponentDeconstruction(t *testing.T) {
 	cases := []struct {
 		Name   string
@@ -237,6 +247,10 @@ func TestComponentDeconstruction(t *testing.T) {
 
 			if a != b.Addr {
 				t.Errorf("Addr() = %v; expect %v", a, b.Addr)
+			}
+
+			if ma := comp.MustAddr(); ma != a {
+				t.Errorf("MustAddr() = %v; expect %v, the same as Addr()", ma, a)
 			}
 		})
 	}

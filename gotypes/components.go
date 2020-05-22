@@ -36,6 +36,7 @@ type Component interface {
 	// register into a [2]uint64. Returns an error if there was a problem with
 	// any prior calls to Component methods.
 	Addr() (operand.Mem, error)
+	MustAddr() operand.Mem
 
 	Dereference(r reg.Register) Component // dereference a pointer
 	Base() Component                      // base pointer of a string or slice
@@ -59,6 +60,7 @@ func errorf(format string, args ...interface{}) Component {
 func (c componenterr) Error() string                        { return string(c) }
 func (c componenterr) Resolve() (*Basic, error)             { return nil, c }
 func (c componenterr) Addr() (operand.Mem, error)           { return operand.Mem{}, c }
+func (c componenterr) MustAddr() operand.Mem                { panic(c) }
 func (c componenterr) Dereference(r reg.Register) Component { return c }
 func (c componenterr) Base() Component                      { return c }
 func (c componenterr) Len() Component                       { return c }
@@ -94,6 +96,10 @@ func (c *component) Resolve() (*Basic, error) {
 
 func (c *component) Addr() (operand.Mem, error) {
 	return c.addr, nil
+}
+
+func (c *component) MustAddr() operand.Mem {
+	return c.addr
 }
 
 func (c *component) Dereference(r reg.Register) Component {
