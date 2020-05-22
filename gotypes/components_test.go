@@ -68,6 +68,10 @@ func TestComponentErrors(t *testing.T) {
 		if !strings.Contains(err.Error(), c.ErrorSubstring) {
 			t.Fatalf("error message %q; expected substring %q", err.Error(), c.ErrorSubstring)
 		}
+		_, erraddr := c.Component.Addr()
+		if erraddr != err {
+			t.Fatal("expected same error from Resolve() and Addr()")
+		}
 	}
 }
 
@@ -91,9 +95,11 @@ func TestComponentErrorChaining(t *testing.T) {
 		comp.Field("field"),
 	}
 	for _, c := range cases {
-		_, err := c.Resolve()
-		if err != expect {
-			t.Fatal("chaining should preserve error")
+		if _, err := c.Resolve(); err != expect {
+			t.Fatal("Resolve: chaining should preserve error")
+		}
+		if _, err := c.Addr(); err != expect {
+			t.Fatal("Addr: chaining should preserve error")
 		}
 	}
 }
@@ -222,6 +228,15 @@ func TestComponentDeconstruction(t *testing.T) {
 
 			if b.Addr.Disp != c.Offset {
 				t.Errorf("offset %d; expected %d", b.Addr.Disp, c.Offset)
+			}
+
+			a, err := comp.Addr()
+			if err != nil {
+				t.Fatal(err)
+			}
+
+			if a != b.Addr {
+				t.Errorf("Addr() = %v; expect %v", a, b.Addr)
 			}
 		})
 	}

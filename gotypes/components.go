@@ -29,6 +29,14 @@ type Component interface {
 	// resolution time.
 	Resolve() (*Basic, error)
 
+	// Addr returns the memory address of the start of this component. Unlike
+	// Resolve(), the component need not be pointing at a primitive type for
+	// this to work. Therefore Resolve() should usually be preferred, but Addr()
+	// can be essential for certain "unsafe" use cases like moving a 128-bit
+	// register into a [2]uint64. Returns an error if there was a problem with
+	// any prior calls to Component methods.
+	Addr() (operand.Mem, error)
+
 	Dereference(r reg.Register) Component // dereference a pointer
 	Base() Component                      // base pointer of a string or slice
 	Len() Component                       // length of a string or slice
@@ -50,6 +58,7 @@ func errorf(format string, args ...interface{}) Component {
 
 func (c componenterr) Error() string                        { return string(c) }
 func (c componenterr) Resolve() (*Basic, error)             { return nil, c }
+func (c componenterr) Addr() (operand.Mem, error)           { return operand.Mem{}, c }
 func (c componenterr) Dereference(r reg.Register) Component { return c }
 func (c componenterr) Base() Component                      { return c }
 func (c componenterr) Len() Component                       { return c }
@@ -81,6 +90,10 @@ func (c *component) Resolve() (*Basic, error) {
 		Addr: c.addr,
 		Type: b,
 	}, nil
+}
+
+func (c *component) Addr() (operand.Mem, error) {
+	return c.addr, nil
 }
 
 func (c *component) Dereference(r reg.Register) Component {
