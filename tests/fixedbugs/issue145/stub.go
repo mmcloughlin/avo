@@ -2,5 +2,5 @@
 
 package issue145
 
-// Shuffle performs in-place shuffling of data according to a shuffle control mask.
-func Shuffle(mask []byte, data []byte) [4]uint32
+// Halves returns the two 32-bit halves of a 64-bit word.
+func Halves(x uint64) [2]uint32

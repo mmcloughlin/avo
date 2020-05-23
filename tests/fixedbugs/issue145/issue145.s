@@ -2,12 +2,8 @@
 
 #include "textflag.h"
 
-// func Shuffle(mask []byte, data []byte) [4]uint32
-// Requires: SSE2, SSSE3
-TEXT ·Shuffle(SB), NOSPLIT, $0-64
-	MOVQ   mask_base+0(FP), AX
-	MOVQ   data_base+24(FP), CX
-	MOVOU  (CX), X0
-	PSHUFB (AX), X0
-	MOVOU  X0, ret+48(FP)
+// func Halves(x uint64) [2]uint32
+TEXT ·Halves(SB), NOSPLIT, $0-16
+	MOVQ x+0(FP), AX
+	MOVQ AX, ret+8(FP)
 	RET
