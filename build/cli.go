@@ -54,6 +54,7 @@ type Flags struct {
 	errout    *outputValue
 	allerrors bool
 	cpuprof   *outputValue
+	pkg       string
 	printers  []*printerValue
 }
 
@@ -69,6 +70,8 @@ func NewFlags(fs *flag.FlagSet) *Flags {
 	f.cpuprof = newOutputValue(nil)
 	fs.Var(f.cpuprof, "cpuprofile", "write cpu profile to `file`")
 
+	fs.StringVar(&f.pkg, "pkg", "", "package name (defaults to current directory name)")
+
 	goasm := newPrinterValue(printer.NewGoAsm, os.Stdout)
 	fs.Var(goasm, "out", "assembly output")
 	f.printers = append(f.printers, goasm)
@@ -83,6 +86,9 @@ func NewFlags(fs *flag.FlagSet) *Flags {
 // Config builds a configuration object based on flag values.
 func (f *Flags) Config() *Config {
 	pc := printer.NewGoRunConfig()
+	if f.pkg != "" {
+		pc.Pkg = f.pkg
+	}
 	passes := []pass.Interface{pass.Compile}
 	for _, pv := range f.printers {
 		p := pv.Build(pc)
