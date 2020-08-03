@@ -7,6 +7,7 @@ import (
 	"github.com/mmcloughlin/avo/attr"
 	"github.com/mmcloughlin/avo/buildtags"
 	"github.com/mmcloughlin/avo/gotypes"
+	"github.com/mmcloughlin/avo/ir"
 	"github.com/mmcloughlin/avo/operand"
 
 	"github.com/mmcloughlin/avo/reg"
@@ -149,3 +150,6 @@ func Commentf(format string, a ...interface{}) { ctx.Commentf(format, a...) }
 
 // ConstData builds a static data section containing just the given constant.
 func ConstData(name string, v operand.Constant) operand.Mem { return ctx.ConstData(name, v) }
+
+// Instruction adds an instruction to the active function.
+func Instruction(i *ir.Instruction) { ctx.Instruction(i) }
