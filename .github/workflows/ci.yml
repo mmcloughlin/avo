@@ -21,7 +21,7 @@ jobs:
         go-version: ${{ matrix.go-version }}
     - name: Configure Go Environment
       run: |
-        echo name=GOPATH::${{ runner.workspace }} >> $GITHUB_ENV
+        echo GOPATH=${{ runner.workspace }} >> $GITHUB_ENV
         echo ${{ runner.workspace }}/bin >> $GITHUB_PATH
     - name: Go Environment
       run: go env
@@ -63,7 +63,7 @@ jobs:
         go-version: ${{ matrix.go-version }}
     - name: Configure Go Environment
       run: |
-        echo name=GOPATH::${{ runner.workspace }} >> $GITHUB_ENV
+        echo GOPATH=${{ runner.workspace }} >> $GITHUB_ENV
         echo ${{ runner.workspace }}/bin >> $GITHUB_PATH
     - name: Go Environment
       run: go env
