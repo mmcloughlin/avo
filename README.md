@@ -193,6 +193,7 @@ Contributions to `avo` are welcome:
 * Feedback from using `avo` in a real project is incredibly valuable. Consider [porting an existing project to `avo`](https://github.com/mmcloughlin/avo/issues/40).
 * [Submit bug reports](https://github.com/mmcloughlin/avo/issues/new) to the issues page.
 * Pull requests accepted. Take a look at outstanding [issues](https://github.com/mmcloughlin/avo/issues) for ideas (especially the ["good first issue"](https://github.com/mmcloughlin/avo/labels/good%20first%20issue) label).
+* Join us in the [#assembly](https://gophers.slack.com/archives/C6WDZJ70S) channel of [Gophers Slack](https://invite.slack.golangbridge.org/).
 
 ## Credits
 
