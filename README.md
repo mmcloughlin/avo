@@ -15,7 +15,7 @@
 * **Automatically load arguments and store return values**: ensure memory offsets are correct for complex structures
 * **Generation of stub files** to interface with your Go package
 
-For an introduction to `avo` watch the [dotGo 2019](https://2019.dotgo.eu/) talk [Better `x86` Assembly Generation with Go](https://www.youtube.com/watch?v=6Y5CZ7_tyA4) ([slides](https://speakerdeck.com/mmcloughlin/better-x86-assembly-generation-with-go)), or see the [Gophercon 2019 talk](https://www.youtube.com/watch?v=WaD8sNqroAw) ([slides](https://speakerdeck.com/mmcloughlin/better-x86-assembly-generation-with-go-gophercon-2019)) for a longer tutorial.
+For an introduction to `avo` watch the [dotGo 2019](https://2019.dotgo.eu/) talk [Better `x86` Assembly Generation with Go](https://www.youtube.com/watch?v=6Y5CZ7_tyA4) ([slides](https://speakerdeck.com/mmcloughlin/better-x86-assembly-generation-with-go)), or see the [Gophercon 2019 talk](https://www.youtube.com/watch?v=WaD8sNqroAw) ([slides](https://speakerdeck.com/mmcloughlin/better-x86-assembly-generation-with-go-gophercon-2019)) for a longer tutorial. To discuss `avo` and general Go assembly topics, join us in the [#assembly](https://gophers.slack.com/archives/C6WDZJ70S) channel of [Gophers Slack](https://invite.slack.golangbridge.org/).
 
 _Note: APIs subject to change while `avo` is still in an experimental phase. You can use it to build [real things](examples) but we suggest you pin a version with your package manager of choice._
 
