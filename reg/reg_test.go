@@ -19,6 +19,7 @@ func TestIDIsVirtual(t *testing.T) {
 	cases := []Virtual{
 		GeneralPurpose.Virtual(42, S64),
 		Vector.Virtual(42, S128),
+		Opmask.Virtual(42, S64),
 	}
 	for _, r := range cases {
 		if !r.ID().IsVirtual() {
@@ -28,7 +29,7 @@ func TestIDIsVirtual(t *testing.T) {
 }
 
 func TestIDIsPhysical(t *testing.T) {
-	cases := []Physical{AL, AH, AX, EAX, RAX, X1, Y2, Z31}
+	cases := []Physical{AL, AH, AX, EAX, RAX, X1, Y2, Z31, K1}
 	for _, r := range cases {
 		if !r.ID().IsPhysical() {
 			t.FailNow()
@@ -98,6 +99,9 @@ func TestFamilyLookup(t *testing.T) {
 		{Vector, 27, S512, Z27},
 		{Vector, 1, S16, nil},
 		{Vector, 299, S256, nil},
+		{Opmask, 1, S64, K1},
+		{Opmask, 8, S64, nil},
+		{Opmask, 0, S64, K0},
 	}
 	for _, c := range cases {
 		got := c.Family.Lookup(c.ID, c.Spec)
@@ -156,6 +160,8 @@ func TestLookupPhysical(t *testing.T) {
 		{KindVector, 7, S128, X7},
 		{KindVector, 17, S256, Y17},
 		{KindVector, 27, S512, Z27},
+
+		{KindOpmask, 1, S64, K1},
 	}
 	for _, c := range cases {
 		if got := LookupPhysical(c.Kind, c.Index, c.Spec); !Equal(got, c.Expect) {
@@ -165,7 +171,7 @@ func TestLookupPhysical(t *testing.T) {
 }
 
 func TestLookupIDSelf(t *testing.T) {
-	cases := []Physical{AL, AH, AX, EAX, RAX, X1, Y2, Z31}
+	cases := []Physical{AL, AH, AX, EAX, RAX, X1, Y2, Z31, K1}
 	for _, r := range cases {
 		if got := LookupID(r.ID(), r.spec()); !Equal(got, r) {
 			t.FailNow()
