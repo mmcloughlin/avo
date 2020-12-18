@@ -5,6 +5,7 @@ const (
 	KindPseudo Kind = iota
 	KindGP
 	KindVector
+	KindOpmask
 )
 
 // Declare register families.
@@ -12,11 +13,13 @@ var (
 	Pseudo         = &Family{Kind: KindPseudo}
 	GeneralPurpose = &Family{Kind: KindGP}
 	Vector         = &Family{Kind: KindVector}
+	Opmask         = &Family{Kind: KindOpmask}
 
 	Families = []*Family{
 		Pseudo,
 		GeneralPurpose,
 		Vector,
+		Opmask,
 	}
 )
 
@@ -39,6 +42,7 @@ var (
 	ProgramCounter = Pseudo.define(S0, 0, "PC")
 	StaticBase     = Pseudo.define(S0, 0, "SB")
 	StackPointer   = Pseudo.define(S0, 0, "SP")
+	TrueOpmask     = Pseudo.define(S0, 0, "K0") // K0 can't be used as a predicate mask
 )
 
 // GP provides additional methods for general purpose registers.
@@ -328,4 +332,57 @@ var (
 	Z29 = vec(S512, 29, "Z29")
 	Z30 = vec(S512, 30, "Z30")
 	Z31 = vec(S512, 31, "Z31")
+)
+
+// OM provides additional methods for opmask registers.
+type OM interface {
+}
+
+// OMPhysical is a opmask physical register.
+type OMPhysical interface {
+	Physical
+	OM
+}
+
+type omp struct {
+	Physical
+}
+
+func newomp(r Physical) OMPhysical { return omp{Physical: r} }
+
+// OMVirtual is a virtual opmask register.
+type OMVirtual interface {
+	Virtual
+	OM
+}
+
+type omv struct {
+	Virtual
+}
+
+func newomv(v Virtual) OMVirtual { return omv{Virtual: v} }
+
+func om(s Spec, id Index, name string, flags ...Info) OMPhysical {
+	r := newomp(newregister(Opmask, s, id, name, flags...))
+	Opmask.add(r)
+	return r
+}
+
+// Opmask registers
+// Note! While K0 is a physical opmask register (it is a valid opmask src &
+// dest operand), it cannot be used as an opmask predicate value because in
+// that context K0 means "all true" or "no mask" regardless of the
+// actual contents of the physical register. For that reason, K0 should never
+// be assigned as a "general purpose" opmask register. However, it *can* be
+// explicitly operated upon by name as non-predicate operand (e.g. to hold a
+// constant or temporary value during calculations on other opmask registers).
+var (
+	K0 = om(S64, 0, "K0", Restricted) // Don't allocate K0
+	K1 = om(S64, 1, "K1")
+	K2 = om(S64, 2, "K2")
+	K3 = om(S64, 3, "K3")
+	K4 = om(S64, 4, "K4")
+	K5 = om(S64, 5, "K5")
+	K6 = om(S64, 6, "K6")
+	K7 = om(S64, 7, "K7")
 )
