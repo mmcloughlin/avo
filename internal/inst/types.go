@@ -92,6 +92,26 @@ type Form struct {
 	// value of RAX. Instruction forms with cancelling inputs have only two input
 	// operands, which have the same register type.
 	CancellingInputs bool
+
+	// Zeroing indicates whether the instruction form supports AVX-512 zeroing.
+	// This is the .Z suffix in Go, usually indicated with {z} operand suffix in
+	// Intel manuals.
+	Zeroing bool
+
+	// EmbeddedRounding indicates whether the instruction form supports AVX-512
+	// embedded rounding. This is the RN_SAE, RZ_SAE, RD_SAE and RU_SAE suffixes
+	// in Go, usually indicated with {er} in Intel manuals.
+	EmbeddedRounding bool
+
+	// SuppressAllExceptions indicates whether the instruction form supports
+	// AVX-512 "suppress all exceptions". This is the SAE suffix in Go, usually
+	// indicated with {sae} in Intel manuals.
+	SuppressAllExceptions bool
+
+	// Broadcast indicates whether the instruction form supports AVX-512
+	// broadcast. This is the BCST suffix in Go, usually indicated by operand
+	// types like "m64bcst" in Intel manuals.
+	Broadcast bool
 }
 
 // Arity returns the number of operands this form expects.
