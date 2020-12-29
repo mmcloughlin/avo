@@ -14238,6 +14238,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -14288,6 +14289,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
@@ -14314,6 +14316,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -14365,6 +14368,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -14389,6 +14393,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m64", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
@@ -14422,6 +14427,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
@@ -14447,6 +14453,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m32", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
@@ -14480,6 +14487,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
@@ -14714,6 +14722,7 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
 					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -14733,6 +14742,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
@@ -14760,6 +14770,7 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
 					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -14779,6 +14790,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
@@ -14960,6 +14972,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -14977,6 +14990,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
@@ -15002,6 +15016,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -15019,6 +15034,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
@@ -15222,6 +15238,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "m128", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -15243,6 +15260,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "m256", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -15277,6 +15295,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "m128", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -15298,6 +15317,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "m256", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -15319,6 +15339,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -15330,6 +15351,15 @@ var Instructions = []Instruction{
 					{Type: "m64", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "m64", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				Zeroing: true,
 			},
 			{
 				ISA: []string{"AVX2"},
@@ -15361,6 +15391,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -15372,6 +15403,15 @@ var Instructions = []Instruction{
 					{Type: "m32", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "m32", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				Zeroing: true,
 			},
 			{
 				ISA: []string{"AVX2"},
@@ -15422,6 +15462,7 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
 					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "k", Action: 0x2},
 				},
@@ -15477,6 +15518,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "k", Action: 0x2},
@@ -15504,6 +15546,7 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
 					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "k", Action: 0x2},
 				},
@@ -15560,6 +15603,7 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
 					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "k", Action: 0x2},
 				},
@@ -15585,6 +15629,7 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
 					{Type: "m64", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "k", Action: 0x2},
 				},
@@ -15621,6 +15666,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
+					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "k", Action: 0x2},
@@ -15647,6 +15693,7 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
 					{Type: "m32", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "k", Action: 0x2},
 				},
@@ -15683,6 +15730,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
+					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "k", Action: 0x2},
@@ -15775,6 +15823,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -15790,6 +15839,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "m512", Action: 0x2},
 				},
@@ -15811,6 +15861,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -15826,6 +15877,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "m512", Action: 0x2},
 				},
@@ -15848,6 +15900,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "m256/m32bcst", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -15864,6 +15917,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "ymm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -15914,6 +15968,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "m512/m32bcst", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -15959,6 +16014,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -15982,6 +16038,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "m512/m64bcst", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "ymm", Action: 0x2},
 				},
@@ -15999,6 +16056,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "ymm", Action: 0x2},
 				},
@@ -16062,6 +16120,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "m512/m64bcst", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "ymm", Action: 0x2},
 				},
@@ -16079,6 +16138,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "ymm", Action: 0x2},
 				},
@@ -16142,6 +16202,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "m512/m64bcst", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "ymm", Action: 0x2},
 				},
@@ -16159,6 +16220,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "ymm", Action: 0x2},
 				},
@@ -16181,6 +16243,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "m256", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -16225,6 +16288,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "ymm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -16248,6 +16312,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "m512/m32bcst", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -16293,6 +16358,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -16316,6 +16382,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "m256/m32bcst", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -16361,6 +16428,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "ymm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -16385,6 +16453,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "m256", Action: 0x2},
 				},
@@ -16435,6 +16504,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "ymm", Action: 0x2},
 				},
@@ -16458,6 +16528,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "m512/m32bcst", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -16475,6 +16546,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -16569,6 +16641,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m64", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
@@ -16602,6 +16675,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
@@ -16824,6 +16898,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m32", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
@@ -16857,6 +16932,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
@@ -16993,6 +17069,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "m512/m64bcst", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "ymm", Action: 0x2},
 				},
@@ -17010,6 +17087,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "ymm", Action: 0x2},
 				},
@@ -17073,6 +17151,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "m512/m64bcst", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "ymm", Action: 0x2},
 				},
@@ -17090,6 +17169,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "ymm", Action: 0x2},
 				},
@@ -17113,6 +17193,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "m512/m32bcst", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -17158,6 +17239,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -17181,6 +17263,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "m512/m32bcst", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -17198,6 +17281,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -17445,6 +17529,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "m256/m32bcst", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -17461,6 +17546,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "ymm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -17483,6 +17569,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "m512/m32bcst", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -17500,6 +17587,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -17616,6 +17704,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -17666,6 +17755,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
@@ -17692,6 +17782,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -17743,6 +17834,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -17767,6 +17859,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m64", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
@@ -17800,6 +17893,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
@@ -17825,6 +17919,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m32", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
@@ -17858,6 +17953,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
@@ -17947,6 +18043,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -17958,6 +18055,15 @@ var Instructions = []Instruction{
 					{Type: "m512", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "m512", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				Zeroing: true,
 			},
 		},
 	},
@@ -17975,6 +18081,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -17986,6 +18093,15 @@ var Instructions = []Instruction{
 					{Type: "m512", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "m512", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				Zeroing: true,
 			},
 		},
 	},
@@ -18027,6 +18143,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
@@ -18044,6 +18161,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "m128", Action: 0x2},
 				},
@@ -18067,6 +18185,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "ymm", Action: 0x2},
 				},
@@ -18084,6 +18203,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "m256", Action: 0x2},
 				},
@@ -18129,6 +18249,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
@@ -18146,6 +18267,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "m128", Action: 0x2},
 				},
@@ -18169,6 +18291,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "ymm", Action: 0x2},
 				},
@@ -18186,6 +18309,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "m256", Action: 0x2},
 				},
@@ -18250,6 +18374,7 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
 					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
@@ -18270,6 +18395,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
@@ -18298,6 +18424,7 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
 					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
@@ -18318,6 +18445,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
@@ -18345,6 +18473,7 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
 					{Type: "m64", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
@@ -18364,6 +18493,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
+					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
@@ -18391,6 +18521,7 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
 					{Type: "m32", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
@@ -18410,6 +18541,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
+					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
@@ -18436,6 +18568,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
@@ -18486,6 +18619,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
@@ -18512,6 +18646,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
@@ -18563,6 +18698,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
@@ -18587,6 +18723,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m64", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
@@ -18620,6 +18757,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
@@ -18645,6 +18783,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m32", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
@@ -18678,6 +18817,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
@@ -18704,6 +18844,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
@@ -18754,6 +18895,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
@@ -18780,6 +18922,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
@@ -18831,6 +18974,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
@@ -18855,6 +18999,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m64", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
@@ -18888,6 +19033,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
@@ -18913,6 +19059,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m32", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
@@ -18946,6 +19093,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
@@ -18972,6 +19120,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
@@ -19022,6 +19171,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
@@ -19048,6 +19198,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
@@ -19099,6 +19250,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
@@ -19123,6 +19275,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m64", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
@@ -19156,6 +19309,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
@@ -19181,6 +19335,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m32", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
@@ -19214,6 +19369,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
@@ -19240,6 +19396,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
@@ -19290,6 +19447,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
@@ -19316,6 +19474,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
@@ -19366,6 +19525,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
@@ -19392,6 +19552,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
@@ -19442,6 +19603,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
@@ -19468,6 +19630,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
@@ -19518,6 +19681,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
@@ -19544,6 +19708,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
@@ -19594,6 +19759,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
@@ -19620,6 +19786,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
@@ -19670,6 +19837,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
@@ -19696,6 +19864,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
@@ -19746,6 +19915,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
@@ -19772,6 +19942,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
@@ -19823,6 +19994,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
@@ -19847,6 +20019,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m64", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
@@ -19880,6 +20053,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
@@ -19905,6 +20079,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m32", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
@@ -19938,6 +20113,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
@@ -19964,6 +20140,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
@@ -20014,6 +20191,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
@@ -20040,6 +20218,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
@@ -20091,6 +20270,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
@@ -20115,6 +20295,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m64", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
@@ -20148,6 +20329,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
@@ -20173,6 +20355,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m32", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
@@ -20206,6 +20389,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
@@ -20232,6 +20416,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
@@ -20282,6 +20467,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
@@ -20308,6 +20494,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
@@ -20359,6 +20546,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
@@ -20383,6 +20571,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m64", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
@@ -20416,6 +20605,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
@@ -20441,6 +20631,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m32", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
@@ -20474,6 +20665,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
@@ -20500,6 +20692,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
@@ -20550,6 +20743,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
@@ -20576,6 +20770,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
@@ -20626,6 +20821,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
@@ -20652,6 +20848,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
@@ -20702,6 +20899,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
@@ -20728,6 +20926,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
@@ -20778,6 +20977,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
@@ -20804,6 +21004,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
@@ -20854,6 +21055,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
@@ -20880,6 +21082,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
@@ -20930,6 +21133,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
@@ -20956,6 +21160,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
@@ -21006,6 +21211,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
@@ -21032,6 +21238,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
@@ -21083,6 +21290,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
@@ -21107,6 +21315,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m64", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
@@ -21140,6 +21349,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
@@ -21165,6 +21375,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m32", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
@@ -21198,6 +21409,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
@@ -21224,6 +21436,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
@@ -21274,6 +21487,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
@@ -21300,6 +21514,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
@@ -21351,6 +21566,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
@@ -21375,6 +21591,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m64", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
@@ -21408,6 +21625,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
@@ -21433,6 +21651,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m32", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
@@ -21466,6 +21685,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
@@ -21492,6 +21712,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
@@ -21542,6 +21763,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
@@ -21568,6 +21790,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
@@ -21619,6 +21842,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
@@ -21643,6 +21867,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m64", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
@@ -21676,6 +21901,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
@@ -21701,6 +21927,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m32", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
@@ -21734,6 +21961,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
@@ -21760,6 +21988,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
@@ -21810,6 +22039,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
@@ -21836,6 +22066,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
@@ -21887,6 +22118,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
@@ -21911,6 +22143,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m64", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
@@ -21944,6 +22177,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
@@ -21969,6 +22203,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m32", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
@@ -22002,6 +22237,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
@@ -22028,6 +22264,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
@@ -22078,6 +22315,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
@@ -22104,6 +22342,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
@@ -22155,6 +22394,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
@@ -22179,6 +22419,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m64", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
@@ -22212,6 +22453,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
@@ -22237,6 +22479,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m32", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
@@ -22270,6 +22513,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
@@ -22296,6 +22540,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
@@ -22346,6 +22591,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
@@ -22372,6 +22618,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
@@ -22423,6 +22670,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
@@ -22447,6 +22695,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m64", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
@@ -22480,6 +22729,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
@@ -22505,6 +22755,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m32", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
@@ -22539,6 +22790,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
@@ -22555,12 +22807,6 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "vm32y", Action: 0x1},
-					{Type: "zmm", Action: 0x3},
-				},
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
@@ -22591,12 +22837,6 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "vm32z", Action: 0x1},
-					{Type: "zmm", Action: 0x3},
-				},
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
@@ -22627,12 +22867,6 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "vm64z", Action: 0x1},
-					{Type: "zmm", Action: 0x3},
-				},
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
@@ -22663,12 +22897,6 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "vm64z", Action: 0x1},
-					{Type: "ymm", Action: 0x3},
-				},
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
 					{Type: "k", Action: 0x1},
 					{Type: "ymm", Action: 0x3},
 				},
@@ -22706,6 +22934,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "m512/m64bcst", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -22723,6 +22952,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -22746,6 +22976,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "m512/m32bcst", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -22763,6 +22994,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -22787,6 +23019,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m64", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
@@ -22804,6 +23037,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
@@ -22829,6 +23063,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m32", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
@@ -22846,6 +23081,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
@@ -22872,6 +23108,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
+					{Type: "m512/m64bcst", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -22891,6 +23128,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -22916,6 +23154,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
+					{Type: "m512/m32bcst", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -22935,6 +23174,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -22961,6 +23201,7 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
 					{Type: "m64", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
@@ -22980,6 +23221,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
+					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
@@ -23007,6 +23249,7 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
 					{Type: "m32", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
@@ -23026,6 +23269,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
+					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
@@ -23229,6 +23473,7 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
 					{Type: "xmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -23248,6 +23493,7 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
 					{Type: "m128", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -23273,6 +23519,7 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
 					{Type: "ymm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -23292,6 +23539,7 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
 					{Type: "m256", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -23341,6 +23589,7 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
 					{Type: "xmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -23360,6 +23609,7 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
 					{Type: "m128", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -23385,6 +23635,7 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
 					{Type: "ymm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -23404,6 +23655,7 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
 					{Type: "m256", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -23594,6 +23846,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -23644,6 +23897,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
@@ -23670,6 +23924,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -23721,6 +23976,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -23745,6 +24001,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m64", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
@@ -23778,6 +24035,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
@@ -23803,6 +24061,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m32", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
@@ -23836,6 +24095,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
@@ -23862,6 +24122,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -23912,6 +24173,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
@@ -23938,6 +24200,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -23989,6 +24252,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -24013,6 +24277,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m64", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
@@ -24046,6 +24311,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
@@ -24071,6 +24337,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m32", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
@@ -24105,6 +24372,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
@@ -24127,6 +24395,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "m512", Action: 0x2},
 				},
@@ -24142,6 +24411,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -24153,6 +24423,15 @@ var Instructions = []Instruction{
 					{Type: "m512", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "m512", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				Zeroing: true,
 			},
 			{
 				ISA: []string{"AVX"},
@@ -24212,6 +24491,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "m512", Action: 0x2},
 				},
@@ -24227,6 +24507,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -24238,6 +24519,15 @@ var Instructions = []Instruction{
 					{Type: "m512", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "m512", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				Zeroing: true,
 			},
 			{
 				ISA: []string{"AVX"},
@@ -24359,6 +24649,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -24370,6 +24661,15 @@ var Instructions = []Instruction{
 					{Type: "m512", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "m512", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				Zeroing: true,
 			},
 			{
 				ISA: []string{"AVX"},
@@ -24463,6 +24763,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "m512", Action: 0x2},
 				},
@@ -24478,6 +24779,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -24489,6 +24791,15 @@ var Instructions = []Instruction{
 					{Type: "m512", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "m512", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				Zeroing: true,
 			},
 		},
 	},
@@ -24506,6 +24817,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "m512", Action: 0x2},
 				},
@@ -24521,6 +24833,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -24532,6 +24845,15 @@ var Instructions = []Instruction{
 					{Type: "m512", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "m512", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				Zeroing: true,
 			},
 		},
 	},
@@ -24597,6 +24919,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "m512", Action: 0x2},
 				},
@@ -24612,6 +24935,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -24623,6 +24947,15 @@ var Instructions = []Instruction{
 					{Type: "m512", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "m512", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				Zeroing: true,
 			},
 		},
 	},
@@ -24640,6 +24973,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "m512", Action: 0x2},
 				},
@@ -24655,6 +24989,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -24666,6 +25001,15 @@ var Instructions = []Instruction{
 					{Type: "m512", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "m512", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				Zeroing: true,
 			},
 		},
 	},
@@ -25095,6 +25439,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "m64", Action: 0x2},
 				},
@@ -25109,6 +25454,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "m64", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
@@ -25139,6 +25485,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
@@ -25169,6 +25516,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -25180,6 +25528,15 @@ var Instructions = []Instruction{
 					{Type: "m512", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "m512", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				Zeroing: true,
 			},
 			{
 				ISA: []string{"AVX"},
@@ -25225,6 +25582,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -25236,6 +25594,15 @@ var Instructions = []Instruction{
 					{Type: "m512", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "m512", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				Zeroing: true,
 			},
 			{
 				ISA: []string{"AVX"},
@@ -25281,6 +25648,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "m32", Action: 0x2},
 				},
@@ -25295,6 +25663,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "m32", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
@@ -25325,6 +25694,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
@@ -25355,6 +25725,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "m512", Action: 0x2},
 				},
@@ -25370,6 +25741,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -25381,6 +25753,15 @@ var Instructions = []Instruction{
 					{Type: "m512", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "m512", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				Zeroing: true,
 			},
 			{
 				ISA: []string{"AVX"},
@@ -25440,6 +25821,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "m512", Action: 0x2},
 				},
@@ -25455,6 +25837,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -25466,6 +25849,15 @@ var Instructions = []Instruction{
 					{Type: "m512", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "m512", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				Zeroing: true,
 			},
 			{
 				ISA: []string{"AVX"},
@@ -25570,6 +25962,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -25620,6 +26013,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
@@ -25646,6 +26040,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -25697,6 +26092,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -25721,6 +26117,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m64", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
@@ -25754,6 +26151,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
@@ -25779,6 +26177,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m32", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
@@ -25812,6 +26211,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
@@ -25946,6 +26346,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "m512/m32bcst", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -25962,6 +26363,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -26012,6 +26414,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "m512/m64bcst", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -26028,6 +26431,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -26276,6 +26680,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -26293,6 +26698,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
@@ -26350,6 +26756,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -26367,6 +26774,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
@@ -26694,6 +27102,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -26711,6 +27120,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
@@ -26776,6 +27186,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -26793,6 +27204,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
@@ -26818,6 +27230,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -26835,6 +27248,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
@@ -26860,6 +27274,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -26877,6 +27292,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
@@ -27020,6 +27436,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -27037,6 +27454,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
@@ -27062,6 +27480,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -27079,6 +27498,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
@@ -27219,6 +27639,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "r32", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -27234,9 +27655,27 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				Zeroing: true,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
 					{Type: "m32", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "m32", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				Zeroing: true,
 			},
 			{
 				ISA: []string{"AVX2"},
@@ -27282,6 +27721,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "r64", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -27297,9 +27737,27 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				Zeroing: true,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
 					{Type: "m64", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "m64", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				Zeroing: true,
 			},
 			{
 				ISA: []string{"AVX2"},
@@ -27408,6 +27866,7 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
 					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "k", Action: 0x2},
 				},
@@ -27426,6 +27885,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "k", Action: 0x2},
@@ -27490,6 +27950,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "k", Action: 0x2},
 				},
@@ -27507,6 +27968,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "k", Action: 0x2},
@@ -27566,6 +28028,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "k", Action: 0x2},
 				},
@@ -27583,6 +28046,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "k", Action: 0x2},
@@ -27786,6 +28250,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "k", Action: 0x2},
 				},
@@ -27803,6 +28268,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "k", Action: 0x2},
@@ -27862,6 +28328,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "k", Action: 0x2},
 				},
@@ -27879,6 +28346,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "k", Action: 0x2},
@@ -28036,6 +28504,7 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
 					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "k", Action: 0x2},
 				},
@@ -28054,6 +28523,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "k", Action: 0x2},
@@ -28080,6 +28550,7 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
 					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "k", Action: 0x2},
 				},
@@ -28098,6 +28569,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "k", Action: 0x2},
@@ -28124,6 +28596,7 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
 					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "k", Action: 0x2},
 				},
@@ -28142,6 +28615,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "k", Action: 0x2},
@@ -28163,6 +28637,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -28178,6 +28653,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "m512", Action: 0x2},
 				},
@@ -28199,6 +28675,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -28214,6 +28691,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "m512", Action: 0x2},
 				},
@@ -28286,6 +28764,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -28303,6 +28782,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
@@ -28344,6 +28824,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
@@ -28361,6 +28842,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
@@ -28386,6 +28868,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
@@ -28403,6 +28886,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
@@ -28428,6 +28912,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
@@ -28445,6 +28930,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
@@ -28470,6 +28956,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
@@ -28487,6 +28974,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
@@ -28512,6 +29000,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
+					{Type: "m512/m64bcst", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -28531,6 +29020,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -28549,6 +29039,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -28565,6 +29056,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
@@ -28654,6 +29146,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
+					{Type: "m512/m32bcst", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -28673,6 +29166,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -28691,6 +29185,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -28707,6 +29202,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
@@ -28796,6 +29292,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
+					{Type: "m512/m64bcst", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -28815,6 +29312,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -28833,6 +29331,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -28849,6 +29348,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
@@ -28890,6 +29390,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -28907,6 +29408,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
@@ -28948,6 +29450,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
+					{Type: "m512/m64bcst", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -28967,6 +29470,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -28985,6 +29489,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -29001,6 +29506,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
@@ -29042,6 +29548,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
@@ -29059,6 +29566,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
@@ -29084,6 +29592,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
@@ -29101,6 +29610,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
@@ -29126,6 +29636,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
@@ -29143,6 +29654,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
@@ -29168,6 +29680,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
@@ -29185,6 +29698,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
@@ -29207,6 +29721,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -29218,6 +29733,15 @@ var Instructions = []Instruction{
 					{Type: "m512", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "m512", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				Zeroing: true,
 			},
 		},
 	},
@@ -29235,6 +29759,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -29246,6 +29771,15 @@ var Instructions = []Instruction{
 					{Type: "m512", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "m512", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				Zeroing: true,
 			},
 		},
 	},
@@ -29345,12 +29879,6 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "vm32z", Action: 0x1},
-					{Type: "zmm", Action: 0x3},
-				},
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
@@ -29381,12 +29909,6 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "vm32y", Action: 0x1},
-					{Type: "zmm", Action: 0x3},
-				},
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
@@ -29417,12 +29939,6 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "vm64z", Action: 0x1},
-					{Type: "ymm", Action: 0x3},
-				},
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
 					{Type: "k", Action: 0x1},
 					{Type: "ymm", Action: 0x3},
 				},
@@ -29453,12 +29969,6 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "vm64z", Action: 0x1},
-					{Type: "zmm", Action: 0x3},
-				},
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
@@ -30038,6 +30548,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -30055,6 +30566,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
@@ -30112,6 +30624,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -30129,6 +30642,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
@@ -30230,6 +30744,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -30247,6 +30762,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
@@ -30304,6 +30820,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -30321,6 +30838,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
@@ -30422,6 +30940,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -30439,6 +30958,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
@@ -30496,6 +31016,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -30513,6 +31034,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
@@ -30614,6 +31136,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -30631,6 +31154,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
@@ -30688,6 +31212,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -30705,6 +31230,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
@@ -30765,6 +31291,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
@@ -30780,6 +31307,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "m128", Action: 0x2},
 				},
@@ -30801,6 +31329,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "ymm", Action: 0x2},
 				},
@@ -30816,6 +31345,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "m256", Action: 0x2},
 				},
@@ -30857,6 +31387,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
@@ -30872,6 +31403,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "m64", Action: 0x2},
 				},
@@ -30893,6 +31425,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "ymm", Action: 0x2},
 				},
@@ -30908,6 +31441,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "m256", Action: 0x2},
 				},
@@ -30929,6 +31463,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
@@ -30944,6 +31479,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "m128", Action: 0x2},
 				},
@@ -30965,6 +31501,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
@@ -30980,6 +31517,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "m128", Action: 0x2},
 				},
@@ -31001,6 +31539,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "ymm", Action: 0x2},
 				},
@@ -31016,6 +31555,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "m256", Action: 0x2},
 				},
@@ -31037,6 +31577,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
@@ -31052,6 +31593,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "m64", Action: 0x2},
 				},
@@ -31073,6 +31615,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "ymm", Action: 0x2},
 				},
@@ -31088,6 +31631,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "m256", Action: 0x2},
 				},
@@ -31109,6 +31653,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
@@ -31124,6 +31669,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "m128", Action: 0x2},
 				},
@@ -31145,6 +31691,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -31156,6 +31703,15 @@ var Instructions = []Instruction{
 					{Type: "m128", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "m128", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				Zeroing: true,
 			},
 			{
 				ISA: []string{"AVX"},
@@ -31201,6 +31757,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -31212,6 +31769,15 @@ var Instructions = []Instruction{
 					{Type: "m64", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "m64", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				Zeroing: true,
 			},
 			{
 				ISA: []string{"AVX"},
@@ -31291,6 +31857,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "ymm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -31302,6 +31869,15 @@ var Instructions = []Instruction{
 					{Type: "m256", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "m256", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				Zeroing: true,
 			},
 			{
 				ISA: []string{"AVX"},
@@ -31347,6 +31923,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "ymm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -31358,6 +31935,15 @@ var Instructions = []Instruction{
 					{Type: "m256", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "m256", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				Zeroing: true,
 			},
 			{
 				ISA: []string{"AVX"},
@@ -31403,6 +31989,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -31414,6 +32001,15 @@ var Instructions = []Instruction{
 					{Type: "m128", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "m128", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				Zeroing: true,
 			},
 			{
 				ISA: []string{"AVX"},
@@ -31459,6 +32055,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
@@ -31474,6 +32071,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "m128", Action: 0x2},
 				},
@@ -31495,6 +32093,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "ymm", Action: 0x2},
 				},
@@ -31510,6 +32109,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "m256", Action: 0x2},
 				},
@@ -31531,6 +32131,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
@@ -31546,6 +32147,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "m64", Action: 0x2},
 				},
@@ -31567,6 +32169,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "ymm", Action: 0x2},
 				},
@@ -31582,6 +32185,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "m256", Action: 0x2},
 				},
@@ -31603,6 +32207,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
@@ -31618,6 +32223,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "m128", Action: 0x2},
 				},
@@ -31639,6 +32245,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -31650,6 +32257,15 @@ var Instructions = []Instruction{
 					{Type: "m128", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "m128", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				Zeroing: true,
 			},
 			{
 				ISA: []string{"AVX"},
@@ -31695,6 +32311,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -31706,6 +32323,15 @@ var Instructions = []Instruction{
 					{Type: "m64", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "m64", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				Zeroing: true,
 			},
 			{
 				ISA: []string{"AVX"},
@@ -31785,6 +32411,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "ymm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -31796,6 +32423,15 @@ var Instructions = []Instruction{
 					{Type: "m256", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "m256", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				Zeroing: true,
 			},
 			{
 				ISA: []string{"AVX"},
@@ -31841,6 +32477,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "ymm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -31852,6 +32489,15 @@ var Instructions = []Instruction{
 					{Type: "m256", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "m256", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				Zeroing: true,
 			},
 			{
 				ISA: []string{"AVX"},
@@ -31897,6 +32543,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -31908,6 +32555,15 @@ var Instructions = []Instruction{
 					{Type: "m128", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "m128", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				Zeroing: true,
 			},
 			{
 				ISA: []string{"AVX"},
@@ -31956,6 +32612,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -31973,6 +32630,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
@@ -32144,6 +32802,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -32161,6 +32820,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
@@ -32256,6 +32916,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -32273,6 +32934,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
@@ -32368,6 +33030,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -32385,6 +33048,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
@@ -32410,6 +33074,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -32427,6 +33092,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
@@ -32452,6 +33118,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
+					{Type: "m512/m32bcst", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -32470,6 +33137,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -32494,6 +33162,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
+					{Type: "m512/m64bcst", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -32512,6 +33181,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -32536,6 +33206,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -32553,6 +33224,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
@@ -32578,6 +33250,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -32595,6 +33268,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
@@ -32620,6 +33294,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
+					{Type: "m512/m32bcst", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -32638,6 +33313,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -32662,6 +33338,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
+					{Type: "m512/m64bcst", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -32680,6 +33357,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -32704,6 +33382,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -32721,6 +33400,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
@@ -32746,6 +33426,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -32763,6 +33444,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
@@ -32819,12 +33501,6 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "zmm", Action: 0x1},
-					{Type: "vm32z", Action: 0x2},
-				},
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
 					{Type: "k", Action: 0x1},
 					{Type: "vm32z", Action: 0x2},
 				},
@@ -32839,12 +33515,6 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "zmm", Action: 0x1},
-					{Type: "vm32y", Action: 0x2},
-				},
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
 					{Type: "k", Action: 0x1},
 					{Type: "vm32y", Action: 0x2},
 				},
@@ -32859,12 +33529,6 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "ymm", Action: 0x1},
-					{Type: "vm64z", Action: 0x2},
-				},
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
 					{Type: "k", Action: 0x1},
 					{Type: "vm64z", Action: 0x2},
 				},
@@ -32879,12 +33543,6 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "zmm", Action: 0x1},
-					{Type: "vm64z", Action: 0x2},
-				},
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
 					{Type: "k", Action: 0x1},
 					{Type: "vm64z", Action: 0x2},
 				},
@@ -32946,6 +33604,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
+					{Type: "m512/m32bcst", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -32964,6 +33623,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -33210,6 +33870,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
+					{Type: "m512/m32bcst", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -33228,6 +33889,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -33245,6 +33907,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "xmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -33262,6 +33925,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m128", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -33356,6 +34020,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
+					{Type: "m512/m64bcst", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -33374,6 +34039,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -33391,6 +34057,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "xmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -33408,6 +34075,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m128", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -33480,6 +34148,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -33497,6 +34166,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
@@ -33554,6 +34224,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -33571,6 +34242,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
@@ -33682,6 +34354,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
+					{Type: "m512/m32bcst", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -33700,6 +34373,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -33717,6 +34391,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "xmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -33734,6 +34409,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m128", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -33806,6 +34482,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
+					{Type: "m512/m64bcst", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -33824,6 +34501,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -33841,6 +34519,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "xmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -33858,6 +34537,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m128", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -33882,6 +34562,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -33899,6 +34580,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
@@ -33956,6 +34638,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -33973,6 +34656,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
@@ -34052,6 +34736,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
+					{Type: "m512/m32bcst", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -34070,6 +34755,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -34087,6 +34773,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "xmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -34104,6 +34791,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m128", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -34198,6 +34886,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
+					{Type: "m512/m64bcst", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -34216,6 +34905,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -34233,6 +34923,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "xmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -34250,6 +34941,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m128", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -34322,6 +35014,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -34339,6 +35032,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
@@ -34396,6 +35090,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -34413,6 +35108,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
@@ -34564,6 +35260,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -34582,6 +35279,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
@@ -34642,6 +35340,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -34660,6 +35359,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
@@ -34922,6 +35622,7 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
 					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
@@ -34941,6 +35642,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
@@ -34968,6 +35670,7 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
 					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
@@ -34987,6 +35690,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
@@ -35046,6 +35750,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "k", Action: 0x2},
 				},
@@ -35062,6 +35767,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "k", Action: 0x2},
@@ -35086,6 +35792,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "k", Action: 0x2},
 				},
@@ -35102,6 +35809,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "k", Action: 0x2},
@@ -35126,6 +35834,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "k", Action: 0x2},
 				},
@@ -35142,6 +35851,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "k", Action: 0x2},
@@ -35166,6 +35876,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "k", Action: 0x2},
 				},
@@ -35182,6 +35893,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "k", Action: 0x2},
@@ -35244,6 +35956,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -35261,6 +35974,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
@@ -35318,6 +36032,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -35335,6 +36050,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
@@ -35468,6 +36184,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -35485,6 +36202,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
@@ -35542,6 +36260,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -35559,6 +36278,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
@@ -35694,6 +36414,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -35711,6 +36432,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
@@ -35736,6 +36458,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -35753,6 +36476,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
@@ -35776,6 +36500,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "m512/m64bcst", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -35792,6 +36517,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -35814,6 +36540,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "m512/m32bcst", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -35830,6 +36557,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -35853,6 +36581,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
@@ -35870,6 +36599,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m64", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
@@ -35893,6 +36623,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
@@ -35910,6 +36641,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m32", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
@@ -35990,6 +36722,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
+					{Type: "m512/m64bcst", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -36009,6 +36742,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -36034,6 +36768,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
+					{Type: "m512/m32bcst", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -36053,6 +36788,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -36079,6 +36815,7 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
 					{Type: "m64", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
@@ -36098,6 +36835,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
+					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
@@ -36125,6 +36863,7 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
 					{Type: "m32", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
@@ -36144,6 +36883,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
+					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
@@ -36292,6 +37032,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "m512/m64bcst", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -36308,6 +37049,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -36330,6 +37072,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "m512/m32bcst", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -36346,6 +37089,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -36369,6 +37113,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
@@ -36386,6 +37131,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m64", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
@@ -36409,6 +37155,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
@@ -36426,6 +37173,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m32", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
@@ -36506,6 +37254,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -36524,6 +37273,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
@@ -36550,6 +37300,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -36568,6 +37319,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
@@ -36593,6 +37345,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m64", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
@@ -36610,6 +37363,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
@@ -36635,6 +37389,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m32", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
@@ -36653,6 +37408,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
@@ -36669,12 +37425,6 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "zmm", Action: 0x1},
-					{Type: "vm32y", Action: 0x2},
-				},
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
 					{Type: "k", Action: 0x1},
 					{Type: "vm32y", Action: 0x2},
 				},
@@ -36689,12 +37439,6 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "zmm", Action: 0x1},
-					{Type: "vm32z", Action: 0x2},
-				},
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
 					{Type: "k", Action: 0x1},
 					{Type: "vm32z", Action: 0x2},
 				},
@@ -36709,12 +37453,6 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "zmm", Action: 0x1},
-					{Type: "vm64z", Action: 0x2},
-				},
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
 					{Type: "k", Action: 0x1},
 					{Type: "vm64z", Action: 0x2},
 				},
@@ -36729,12 +37467,6 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "ymm", Action: 0x1},
-					{Type: "vm64z", Action: 0x2},
-				},
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
 					{Type: "k", Action: 0x1},
 					{Type: "vm64z", Action: 0x2},
 				},
@@ -36760,6 +37492,7 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
 					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -36779,6 +37512,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
@@ -36806,6 +37540,7 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
 					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -36825,6 +37560,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
@@ -36852,6 +37588,7 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
 					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -36871,6 +37608,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
@@ -36898,6 +37636,7 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
 					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -36917,6 +37656,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
@@ -36944,6 +37684,7 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
 					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -36963,6 +37704,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
@@ -37026,6 +37768,7 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
 					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -37045,6 +37788,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
@@ -37104,6 +37848,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "m512/m64bcst", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -37149,6 +37894,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -37172,6 +37918,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "m512/m32bcst", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -37217,6 +37964,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -37241,6 +37989,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m64", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
@@ -37274,6 +38023,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
@@ -37299,6 +38049,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m32", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
@@ -37332,6 +38083,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
@@ -37370,6 +38122,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -37420,6 +38173,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
@@ -37446,6 +38200,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -37497,6 +38252,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -37521,6 +38277,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m64", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
@@ -37554,6 +38311,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
@@ -37579,6 +38337,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m32", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
@@ -37612,6 +38371,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
@@ -37776,6 +38536,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -37793,6 +38554,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
@@ -37850,6 +38612,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -37867,6 +38630,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
@@ -37924,6 +38688,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -37941,6 +38706,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
@@ -37998,6 +38764,7 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
@@ -38015,6 +38782,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},

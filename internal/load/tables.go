@@ -95,6 +95,54 @@ func init() {
 	aliases = append(aliases, annoyingaliases...)
 }
 
+// maskrequired is a set of AVX-512 opcodes where the mask register is required.
+// Usually the mask register can be ommitted, in which case K0 is implied.
+var maskrequired = map[string]bool{
+	// Reference: https://github.com/golang/go/blob/4fd94558820100129b98f284e21b19fc27a99926/src/cmd/internal/obj/x86/asm6.go#L4219-L4240
+	//
+	//		// Checks to warn about instruction/arguments combinations that
+	//		// will unconditionally trigger illegal instruction trap (#UD).
+	//		switch p.As {
+	//		case AVGATHERDPD,
+	//			AVGATHERQPD,
+	//			AVGATHERDPS,
+	//			AVGATHERQPS,
+	//			AVPGATHERDD,
+	//			AVPGATHERQD,
+	//			AVPGATHERDQ,
+	//			AVPGATHERQQ:
+	//			// AVX512 gather requires explicit K mask.
+	//			if p.GetFrom3().Reg >= REG_K0 && p.GetFrom3().Reg <= REG_K7 {
+	//				if !avx512gatherValid(ctxt, p) {
+	//					return
+	//				}
+	//			} else {
+	//				if !avx2gatherValid(ctxt, p) {
+	//					return
+	//				}
+	//			}
+	//		}
+	//
+	"VGATHERDPD": true,
+	"VGATHERQPD": true,
+	"VGATHERDPS": true,
+	"VGATHERQPS": true,
+	"VPGATHERDD": true,
+	"VPGATHERQD": true,
+	"VPGATHERDQ": true,
+	"VPGATHERQQ": true,
+
+	// Restriction applies to SCATTER instructions too.
+	"VPSCATTERDD": true,
+	"VPSCATTERDQ": true,
+	"VPSCATTERQD": true,
+	"VPSCATTERQQ": true,
+	"VSCATTERDPD": true,
+	"VSCATTERDPS": true,
+	"VSCATTERQPD": true,
+	"VSCATTERQPS": true,
+}
+
 // extras is simply a list of extra instructions to add to the database.
 var extras = []*inst.Instruction{
 	// MOVLQZX does not appear in either x86 CSV or Opcodes, but does appear in stdlib assembly.
