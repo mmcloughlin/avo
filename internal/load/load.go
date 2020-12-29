@@ -276,27 +276,7 @@ func (l Loader) gonames(f opcodesxml.Form) []string {
 	n := strings.ToUpper(f.GASName)
 
 	// Some need data sizes added to them.
-	// TODO(mbm): is there a better way of determining which ones these are?
-	suffix := map[int]string{16: "W", 32: "L", 64: "Q", 128: "X", 256: "Y"}
-	switch n {
-	case "VCVTUSI2SS", "VCVTSD2USI", "VCVTSS2USI", "VCVTUSI2SD", "VCVTTSS2USI", "VCVTTSD2USI":
-		fallthrough
-	case "MOVBEW", "MOVBEL", "MOVBEQ":
-		// MOVEBE* instructions seem to be inconsistent with x86 CSV.
-		//
-		// Reference: https://github.com/golang/arch/blob/b19384d3c130858bb31a343ea8fce26be71b5998/x86/x86spec/format.go#L282-L287
-		//
-		//		"MOVBE r16, m16": "movbeww",
-		//		"MOVBE m16, r16": "movbeww",
-		//		"MOVBE m32, r32": "movbell",
-		//		"MOVBE r32, m32": "movbell",
-		//		"MOVBE m64, r64": "movbeqq",
-		//		"MOVBE r64, m64": "movbeqq",
-		//
-		fallthrough
-	case "RDRAND", "RDSEED":
-		n += suffix[s]
-	}
+	n += sizesuffix(n, f)
 
 	return []string{n}
 }
@@ -484,6 +464,138 @@ func operandsize(op opcodesxml.Operand) int {
 		}
 	}
 	return 0
+}
+
+// sizesuffix returns an optional size suffix to be added to the opcode name.
+func sizesuffix(n string, f opcodesxml.Form) string {
+	// Reference: https://github.com/golang/arch/blob/5de9028c2478e6cb4e1c1b1f4386f3f0a93e383a/x86/x86avxgen/main.go#L275-L322
+	//
+	//	func addGoSuffixes(ctx *context) {
+	//		var opcodeSuffixMatchers map[string][]string
+	//		{
+	//			opXY := []string{"VL=0", "X", "VL=1", "Y"}
+	//			opXYZ := []string{"VL=0", "X", "VL=1", "Y", "VL=2", "Z"}
+	//			opQ := []string{"REXW=1", "Q"}
+	//			opLQ := []string{"REXW=0", "L", "REXW=1", "Q"}
+	//
+	//			opcodeSuffixMatchers = map[string][]string{
+	//				"VCVTPD2DQ":   opXY,
+	//				"VCVTPD2PS":   opXY,
+	//				"VCVTTPD2DQ":  opXY,
+	//				"VCVTQQ2PS":   opXY,
+	//				"VCVTUQQ2PS":  opXY,
+	//				"VCVTPD2UDQ":  opXY,
+	//				"VCVTTPD2UDQ": opXY,
+	//
+	//				"VFPCLASSPD": opXYZ,
+	//				"VFPCLASSPS": opXYZ,
+	//
+	//				"VCVTSD2SI":  opQ,
+	//				"VCVTTSD2SI": opQ,
+	//				"VCVTTSS2SI": opQ,
+	//				"VCVTSS2SI":  opQ,
+	//
+	//				"VCVTSD2USI":  opLQ,
+	//				"VCVTSS2USI":  opLQ,
+	//				"VCVTTSD2USI": opLQ,
+	//				"VCVTTSS2USI": opLQ,
+	//				"VCVTUSI2SD":  opLQ,
+	//				"VCVTUSI2SS":  opLQ,
+	//				"VCVTSI2SD":   opLQ,
+	//				"VCVTSI2SS":   opLQ,
+	//				"ANDN":        opLQ,
+	//				"BEXTR":       opLQ,
+	//				"BLSI":        opLQ,
+	//				"BLSMSK":      opLQ,
+	//				"BLSR":        opLQ,
+	//				"BZHI":        opLQ,
+	//				"MULX":        opLQ,
+	//				"PDEP":        opLQ,
+	//				"PEXT":        opLQ,
+	//				"RORX":        opLQ,
+	//				"SARX":        opLQ,
+	//				"SHLX":        opLQ,
+	//				"SHRX":        opLQ,
+	//			}
+	//		}
+	//
+
+	type rule struct {
+		Size   func(opcodesxml.Form) int
+		Suffix map[int]string
+	}
+
+	var (
+		Q   = rule{rexWsize, map[int]string{64: "Q"}}
+		LQ  = rule{rexWsize, map[int]string{32: "L", 64: "Q"}}
+		WLQ = rule{datasize, map[int]string{16: "W", 32: "L", 64: "Q"}}
+	)
+
+	rules := map[string]rule{
+		"VCVTSD2SI":  Q,
+		"VCVTTSD2SI": Q,
+		"VCVTTSS2SI": Q,
+		"VCVTSS2SI":  Q,
+
+		"VCVTSD2USI":  LQ,
+		"VCVTSS2USI":  LQ,
+		"VCVTTSD2USI": LQ,
+		"VCVTTSS2USI": LQ,
+		"VCVTUSI2SD":  LQ,
+		"VCVTUSI2SS":  LQ,
+		"VCVTSI2SD":   LQ,
+		"VCVTSI2SS":   LQ,
+		"ANDN":        LQ,
+		"BEXTR":       LQ,
+		"BLSI":        LQ,
+		"BLSMSK":      LQ,
+		"BLSR":        LQ,
+		"BZHI":        LQ,
+		"MULX":        LQ,
+		"PDEP":        LQ,
+		"PEXT":        LQ,
+		"RORX":        LQ,
+		"SARX":        LQ,
+		"SHLX":        LQ,
+		"SHRX":        LQ,
+
+		"RDRAND": LQ,
+		"RDSEED": LQ,
+
+		// MOVEBE* instructions seem to be inconsistent with x86 CSV.
+		//
+		// Insert: https://github.com/golang/arch/blob/b19384d3c130858bb31a343ea8fce26be71b5998/x86/x86spec/format.go#L282-L287
+		"MOVBEW": WLQ,
+		"MOVBEL": WLQ,
+		"MOVBEQ": WLQ,
+	}
+
+	r, ok := rules[n]
+	if !ok {
+		return ""
+	}
+
+	s := r.Size(f)
+	return r.Suffix[s]
+}
+
+func rexWsize(f opcodesxml.Form) int {
+	e := f.Encoding
+	switch {
+	case e.EVEX != nil && e.EVEX.W != nil:
+		return 32 << *e.EVEX.W
+	default:
+		return 32
+	}
+}
+
+func evexLLsize(f opcodesxml.Form) int {
+	e := f.Encoding
+	if e.EVEX == nil {
+		return 0
+	}
+	size := map[string]int{"00": 128, "01": 256, "10": 512}
+	return size[e.EVEX.LL]
 }
 
 // dedupe a list of forms.
