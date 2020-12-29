@@ -570,7 +570,15 @@ func sizesuffix(n string, f opcodesxml.Form) string {
 
 		// MOVEBE* instructions seem to be inconsistent with x86 CSV.
 		//
-		// Insert: https://github.com/golang/arch/blob/b19384d3c130858bb31a343ea8fce26be71b5998/x86/x86spec/format.go#L282-L287
+		// Reference: https://github.com/golang/arch/blob/b19384d3c130858bb31a343ea8fce26be71b5998/x86/x86spec/format.go#L282-L287
+		//
+		//		"MOVBE r16, m16": "movbeww",
+		//		"MOVBE m16, r16": "movbeww",
+		//		"MOVBE m32, r32": "movbell",
+		//		"MOVBE r32, m32": "movbell",
+		//		"MOVBE m64, r64": "movbeqq",
+		//		"MOVBE r64, m64": "movbeqq",
+		//
 		"MOVBEW": WLQ,
 		"MOVBEL": WLQ,
 		"MOVBEQ": WLQ,
