@@ -37,13 +37,10 @@ func (a *asmtest) Generate(is []inst.Instruction) ([]byte, error) {
 	a.Printf("rel32:\n")
 	a.rel32 = "rel32"
 
-	counts := map[string]int{}
-
 	for _, i := range is {
 		a.Printf("\t// %s %s\n", i.Opcode, i.Summary)
 		if skip, msg := a.skip(i.Opcode); skip {
 			a.Printf("\t// SKIP: %s\n", msg)
-			counts["skip"]++
 			continue
 		}
 
@@ -54,23 +51,16 @@ func (a *asmtest) Generate(is []inst.Instruction) ([]byte, error) {
 		}
 
 		for _, f := range i.Forms {
-			as := a.args(i.Opcode, f.Operands)
-			if as == nil {
-				a.Printf("\t// TODO: %s %#v\n", i.Opcode, f.Operands)
-				counts["todo"]++
-				continue
+			as, err := a.args(i.Opcode, f.Operands)
+			if err != nil {
+				return nil, fmt.Errorf("tests for %s: %w", i.Opcode, err)
 			}
 			a.Printf("\t%s\t%s\n", i.Opcode, strings.Join(as, ", "))
-			counts["total"]++
 		}
 		a.Printf("\n")
 	}
 
 	a.Printf("\tRET\n")
-
-	for m, c := range counts {
-		a.Printf("// %s: %d\n", m, c)
-	}
 
 	return a.Result()
 }
@@ -88,21 +78,21 @@ func (a asmtest) skip(opcode string) (bool, string) {
 	return false, ""
 }
 
-func (a asmtest) args(opcode string, ops []inst.Operand) []string {
+func (a asmtest) args(opcode string, ops []inst.Operand) ([]string, error) {
 	// Special case for CALL, since it needs a different type of rel32 argument than others.
 	if opcode == "CALL" {
-		return []string{a.sym}
+		return []string{a.sym}, nil
 	}
 
 	as := make([]string, len(ops))
 	for i, op := range ops {
 		a := a.arg(op.Type, i)
 		if a == "" {
-			return nil
+			return nil, fmt.Errorf("unsupported operand type %q", op.Type)
 		}
 		as[i] = a
 	}
-	return as
+	return as, nil
 }
 
 // arg generates an argument for an operand of the given type.
