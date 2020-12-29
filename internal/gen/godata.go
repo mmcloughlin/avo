@@ -57,8 +57,19 @@ func (g *godata) Generate(is []inst.Instruction) ([]byte, error) {
 				g.Printf("},\n")
 			}
 
-			if f.CancellingInputs {
-				g.Printf("CancellingInputs: true,\n")
+			for _, flag := range []struct {
+				Field   string
+				Enabled bool
+			}{
+				{"CancellingInputs", f.CancellingInputs},
+				{"Zeroing", f.Zeroing},
+				{"EmbeddedRounding", f.EmbeddedRounding},
+				{"SuppressAllExceptions", f.SuppressAllExceptions},
+				{"Broadcast", f.Broadcast},
+			} {
+				if flag.Enabled {
+					g.Printf("%s: true,\n", flag.Field)
+				}
 			}
 
 			g.Printf("},\n")
