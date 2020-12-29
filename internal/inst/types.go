@@ -128,6 +128,15 @@ func (f Form) Signature() []string {
 	return s
 }
 
+// Clone the instruction form.
+func (f Form) Clone() Form {
+	c := f
+	c.ISA = append([]string(nil), f.ISA...)
+	c.Operands = append([]Operand(nil), f.Operands...)
+	c.ImplicitOperands = append([]ImplicitOperand(nil), f.ImplicitOperands...)
+	return c
+}
+
 // Operand is an operand to an instruction, describing the expected type and read/write action.
 type Operand struct {
 	Type   string

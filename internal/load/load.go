@@ -64,7 +64,8 @@ func (l *Loader) Load() ([]inst.Instruction, error) {
 						Summary: i.Summary,
 					}
 				}
-				im[opcode].Forms = append(im[opcode].Forms, l.form(opcode, f))
+				forms := l.forms(opcode, f)
+				im[opcode].Forms = append(im[opcode].Forms, forms...)
 			}
 		}
 	}
@@ -132,16 +133,14 @@ func (l Loader) include(f opcodesxml.Form) bool {
 		// AMD-only.
 		case "TBM", "CLZERO", "FMA4", "XOP", "SSE4A", "3dnow!", "3dnow!+":
 			return false
+		// Partial support for AVX-512.
+		case "AVX512BW", "AVX512CD", "AVX512DQ", "AVX512ER", "AVX512IFMA", "AVX512PF", "AVX512VBMI", "AVX512VL", "AVX512VPOPCNTDQ":
+			return false
 		// Incomplete support for some prefetching instructions.
 		case "PREFETCH", "PREFETCHW", "PREFETCHWT1", "CLWB":
 			return false
 		// Remaining oddities.
 		case "MONITORX", "FEMMS":
-			return false
-		}
-
-		// TODO(mbm): support AVX512
-		if strings.HasPrefix(isa.ID, "AVX512") {
 			return false
 		}
 	}
@@ -302,7 +301,7 @@ func (l Loader) gonames(f opcodesxml.Form) []string {
 	return []string{n}
 }
 
-func (l Loader) form(opcode string, f opcodesxml.Form) inst.Form {
+func (l Loader) forms(opcode string, f opcodesxml.Form) []inst.Form {
 	// Map operands to avo format and ensure correct order.
 	ops := operands(f.Operands)
 
@@ -358,12 +357,86 @@ func (l Loader) form(opcode string, f opcodesxml.Form) inst.Form {
 		isas = append(isas, isa.ID)
 	}
 
-	return inst.Form{
+	// Initialize form.
+	form := inst.Form{
 		ISA:              isas,
 		Operands:         ops,
 		ImplicitOperands: implicits,
 		CancellingInputs: f.CancellingInputs,
 	}
+
+	// AVX-512 embedded rounding. Opcodes database represents these as {er}
+	// operands, whereas Go uses instruction suffixes. Remove the operand if
+	// present and set the corresponding flag.
+	if i, found := findoperand(form.Operands, "{er}"); found {
+		form.Operands = append(form.Operands[:i], form.Operands[i+1:]...)
+		form.EmbeddedRounding = true
+	}
+
+	// AVX-512 "suppress all exceptions". Opcodes database represents these as
+	// {sae} operands, whereas Go uses instruction suffixes. Remove the operand
+	// if present and set the corresponding flag.
+	if i, found := findoperand(form.Operands, "{sae}"); found {
+		form.Operands = append(form.Operands[:i], form.Operands[i+1:]...)
+		form.SuppressAllExceptions = true
+	}
+
+	// AVX-512 zeroing. Opcodes database represents this with a {z} suffix on
+	// the operand type (just like Intel manual), but Go uses an instruction
+	// suffix. Remove the {z} suffix from operands and set the corresponding
+	// flag.
+	for i, op := range form.Operands {
+		if strings.HasSuffix(op.Type, "{z}") {
+			form.Zeroing = true
+			form.Operands[i].Type = strings.TrimSuffix(op.Type, "{z}")
+		}
+	}
+
+	// AVX-512 broadcast. Opcodes database uses operands like "m512/m64bcst" to
+	// indicate broadcast. Go uses the BCST suffix to enable it. Set the
+	// Broadcast flag on the instruction form if any operands are memory
+	// broadcast.
+	for _, op := range form.Operands {
+		if strings.HasPrefix(op.Type, "m") && strings.HasSuffix(op.Type, "bcst") {
+			form.Broadcast = true
+		}
+	}
+
+	// AVX-512 masking. In order to support implicit masking (with K0), Go has
+	// two instruction forms, one with the mask and one without. The mask
+	// register preceeds the output register. If the form is masked, we
+	// duplicate it to create the masked and unmasked versions.
+	masked := false
+	idx := -1
+	for i, op := range form.Operands {
+		if strings.HasSuffix(op.Type, "{k}") {
+			masked = true
+			idx = i
+			break
+		}
+	}
+
+	forms := []inst.Form{form}
+	if masked {
+		// Remove the {k} part of the operand.
+		form.Operands[idx].Type = strings.TrimSuffix(form.Operands[idx].Type, "{k}")
+
+		// Unmasked variant. Clear zeroing flag if necessary.
+		unmasked := form.Clone()
+		unmasked.Zeroing = false
+
+		// Masked form has "k" operand inserted.
+		masked := form
+		mask := inst.Operand{Type: "k", Action: inst.R}
+		ops := append(masked.Operands[:idx-1], mask)
+		ops = append(ops, masked.Operands[idx:]...)
+		masked.Operands = ops
+
+		// Return both forms.
+		forms = []inst.Form{unmasked, masked}
+	}
+
+	return forms
 }
 
 // operands maps Opcodes XML operands to avo format. Returned in Intel order.
@@ -429,4 +502,14 @@ func dedupe(fs []inst.Form) []inst.Form {
 		}
 	}
 	return uniq
+}
+
+// findoperand looks for an operand type and returns its index, if found.
+func findoperand(ops []inst.Operand, t string) (int, bool) {
+	for i, op := range ops {
+		if op.Type == t {
+			return i, true
+		}
+	}
+	return 0, false
 }
