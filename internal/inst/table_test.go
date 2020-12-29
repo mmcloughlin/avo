@@ -160,3 +160,70 @@ func TestCancellingInputs(t *testing.T) {
 		}
 	}
 }
+
+func TestFlagOperandTypes(t *testing.T) {
+	for _, i := range inst.Instructions {
+		for _, f := range i.Forms {
+			// Check for memory operands.
+			mem := false
+			for _, op := range f.Operands {
+				if strings.HasPrefix(op.Type, "m") {
+					mem = true
+				}
+			}
+
+			// Broadcast applies to memory instructions only.
+			if f.Broadcast && !mem {
+				t.Errorf("%s: expect broadcast form to have memory operand", i.Opcode)
+			}
+
+			// Embedded rounding must be register-only.
+			if f.EmbeddedRounding && mem {
+				t.Errorf("%s: embedded-rounding only supported for register-only forms", i.Opcode)
+			}
+
+			// Suppress all exceptions is register only.
+			if f.SuppressAllExceptions && mem {
+				t.Errorf("%s: embedded-rounding only supported for register-only forms", i.Opcode)
+			}
+		}
+	}
+}
+
+func TestFlagCombinations(t *testing.T) {
+	for _, i := range inst.Instructions {
+		for _, f := range i.Forms {
+			if f.EmbeddedRounding && f.SuppressAllExceptions {
+				t.Errorf("%s: embedded-rounding cannot be combined with suppress-all-exceptions", i.Opcode)
+			}
+			if f.Broadcast && f.EmbeddedRounding {
+				t.Errorf("%s: broadcast cannot be combined with embedded-rounding", i.Opcode)
+			}
+			if f.Broadcast && f.SuppressAllExceptions {
+				t.Errorf("%s: broadcast cannot be combined with suppress-all-exceptions", i.Opcode)
+			}
+		}
+	}
+}
+
+func TestZeroingHasMask(t *testing.T) {
+	for _, i := range inst.Instructions {
+		for _, f := range i.Forms {
+			if !f.Zeroing {
+				continue
+			}
+
+			// Expect mask operand.
+			mask := false
+			for _, op := range f.Operands {
+				if op.Type == "k" {
+					mask = true
+				}
+			}
+
+			if !mask {
+				t.Errorf("%s: expect mask operand if zeroing is enabled", i.Opcode)
+			}
+		}
+	}
+}
