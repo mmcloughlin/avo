@@ -55,7 +55,11 @@ func (a *asmtest) Generate(is []inst.Instruction) ([]byte, error) {
 			if err != nil {
 				return nil, fmt.Errorf("tests for %s: %w", i.Opcode, err)
 			}
-			a.Printf("\t%s\t%s\n", i.Opcode, strings.Join(as, ", "))
+			for _, suffixes := range f.SupportedSuffixes() {
+				parts := []string{i.Opcode}
+				parts = append(parts, suffixes...)
+				a.Printf("\t%s\t%s\n", strings.Join(parts, "."), strings.Join(as, ", "))
+			}
 		}
 		a.Printf("\n")
 	}
