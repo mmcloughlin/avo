@@ -143,16 +143,18 @@ func TestCancellingInputs(t *testing.T) {
 			n := 0
 			for _, op := range f.Operands {
 				if op.Action.Read() {
-					n++
 					switch op.Type {
-					case "r8", "r16", "r32", "r64", "xmm", "ymm":
-						// pass
+					case "r8", "r16", "r32", "r64", "xmm", "ymm", "zmm":
+						n++
+					case "k":
+						// skip mask registers
 					default:
 						t.Errorf("%s: unexpected operand type %q for self-cancelling input", i.Opcode, op.Type)
 					}
 				}
 			}
 			if n != 2 {
+				t.Log(f)
 				t.Errorf("%s: expected two inputs for self-cancelling form", i.Opcode)
 			}
 		}
