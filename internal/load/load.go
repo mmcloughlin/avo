@@ -408,12 +408,18 @@ func (l Loader) forms(opcode string, f opcodesxml.Form) []inst.Form {
 		// Masked form has "k" operand inserted.
 		masked := form
 		mask := inst.Operand{Type: "k", Action: inst.R}
-		ops := append(masked.Operands[:idx-1], mask)
+		ops := append([]inst.Operand(nil), masked.Operands[:idx]...)
+		ops = append(ops, mask)
 		ops = append(ops, masked.Operands[idx:]...)
 		masked.Operands = ops
 
-		// Return both forms.
-		forms = []inst.Form{unmasked, masked}
+		// Almost all instructions take an optional mask, apart from a few
+		// special cases.
+		if maskrequired[opcode] {
+			forms = []inst.Form{masked}
+		} else {
+			forms = []inst.Form{unmasked, masked}
+		}
 	}
 
 	return forms
