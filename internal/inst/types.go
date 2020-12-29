@@ -137,6 +137,44 @@ func (f Form) Clone() Form {
 	return c
 }
 
+// SupportedSuffixes returns the list of all possible suffix combinations
+// supported by this instruction form.
+func (f Form) SupportedSuffixes() [][]string {
+	suffixes := [][]string{
+		{},
+	}
+
+	add := func(ss ...string) {
+		var exts [][]string
+		for _, s := range ss {
+			for _, suffix := range suffixes {
+				ext := append([]string(nil), suffix...)
+				ext = append(ext, s)
+				exts = append(exts, ext)
+			}
+		}
+		suffixes = append(suffixes, exts...)
+	}
+
+	if f.Broadcast {
+		add("BCST")
+	}
+
+	if f.EmbeddedRounding {
+		add("RN_SAE", "RZ_SAE", "RD_SAE", "RU_SAE")
+	}
+
+	if f.SuppressAllExceptions {
+		add("SAE")
+	}
+
+	if f.Zeroing {
+		add("Z")
+	}
+
+	return suffixes
+}
+
 // Operand is an operand to an instruction, describing the expected type and read/write action.
 type Operand struct {
 	Type   string
