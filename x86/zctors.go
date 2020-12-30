@@ -7903,6 +7903,251 @@ func JZ(r operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("JZ: bad operands")
 }
 
+// KANDNW: Bitwise Logical AND NOT 16-bit Masks.
+//
+// Forms:
+//
+// 	KANDNW k k k
+func KANDNW(k, k1, k2 operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case operand.IsK(k) && operand.IsK(k1) && operand.IsK(k2):
+		return &intrep.Instruction{
+			Opcode:   "KANDNW",
+			Operands: []operand.Op{k, k1, k2},
+			Inputs:   []operand.Op{k, k1},
+			Outputs:  []operand.Op{k2},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("KANDNW: bad operands")
+}
+
+// KANDW: Bitwise Logical AND 16-bit Masks.
+//
+// Forms:
+//
+// 	KANDW k k k
+func KANDW(k, k1, k2 operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case operand.IsK(k) && operand.IsK(k1) && operand.IsK(k2):
+		return &intrep.Instruction{
+			Opcode:   "KANDW",
+			Operands: []operand.Op{k, k1, k2},
+			Inputs:   []operand.Op{k, k1},
+			Outputs:  []operand.Op{k2},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("KANDW: bad operands")
+}
+
+// KMOVW: Move 16-bit Mask.
+//
+// Forms:
+//
+// 	KMOVW k   k
+// 	KMOVW r32 k
+// 	KMOVW m16 k
+// 	KMOVW k   r32
+// 	KMOVW k   m16
+func KMOVW(kmr, kmr1 operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case operand.IsK(kmr) && operand.IsK(kmr1):
+		return &intrep.Instruction{
+			Opcode:   "KMOVW",
+			Operands: []operand.Op{kmr, kmr1},
+			Inputs:   []operand.Op{kmr},
+			Outputs:  []operand.Op{kmr1},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case operand.IsR32(kmr) && operand.IsK(kmr1):
+		return &intrep.Instruction{
+			Opcode:   "KMOVW",
+			Operands: []operand.Op{kmr, kmr1},
+			Inputs:   []operand.Op{kmr},
+			Outputs:  []operand.Op{kmr1},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case operand.IsM16(kmr) && operand.IsK(kmr1):
+		return &intrep.Instruction{
+			Opcode:   "KMOVW",
+			Operands: []operand.Op{kmr, kmr1},
+			Inputs:   []operand.Op{kmr},
+			Outputs:  []operand.Op{kmr1},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case operand.IsK(kmr) && operand.IsR32(kmr1):
+		return &intrep.Instruction{
+			Opcode:   "KMOVW",
+			Operands: []operand.Op{kmr, kmr1},
+			Inputs:   []operand.Op{kmr},
+			Outputs:  []operand.Op{kmr1},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case operand.IsK(kmr) && operand.IsM16(kmr1):
+		return &intrep.Instruction{
+			Opcode:   "KMOVW",
+			Operands: []operand.Op{kmr, kmr1},
+			Inputs:   []operand.Op{kmr},
+			Outputs:  []operand.Op{kmr1},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("KMOVW: bad operands")
+}
+
+// KNOTW: NOT 16-bit Mask Register.
+//
+// Forms:
+//
+// 	KNOTW k k
+func KNOTW(k, k1 operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case operand.IsK(k) && operand.IsK(k1):
+		return &intrep.Instruction{
+			Opcode:   "KNOTW",
+			Operands: []operand.Op{k, k1},
+			Inputs:   []operand.Op{k},
+			Outputs:  []operand.Op{k1},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("KNOTW: bad operands")
+}
+
+// KORTESTW: OR 16-bit Masks and Set Flags.
+//
+// Forms:
+//
+// 	KORTESTW k k
+func KORTESTW(k, k1 operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case operand.IsK(k) && operand.IsK(k1):
+		return &intrep.Instruction{
+			Opcode:   "KORTESTW",
+			Operands: []operand.Op{k, k1},
+			Inputs:   []operand.Op{k, k1},
+			Outputs:  []operand.Op{},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("KORTESTW: bad operands")
+}
+
+// KORW: Bitwise Logical OR 16-bit Masks.
+//
+// Forms:
+//
+// 	KORW k k k
+func KORW(k, k1, k2 operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case operand.IsK(k) && operand.IsK(k1) && operand.IsK(k2):
+		return &intrep.Instruction{
+			Opcode:   "KORW",
+			Operands: []operand.Op{k, k1, k2},
+			Inputs:   []operand.Op{k, k1},
+			Outputs:  []operand.Op{k2},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("KORW: bad operands")
+}
+
+// KSHIFTLW: Shift Left 16-bit Masks.
+//
+// Forms:
+//
+// 	KSHIFTLW imm8 k k
+func KSHIFTLW(i, k, k1 operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case operand.IsIMM8(i) && operand.IsK(k) && operand.IsK(k1):
+		return &intrep.Instruction{
+			Opcode:   "KSHIFTLW",
+			Operands: []operand.Op{i, k, k1},
+			Inputs:   []operand.Op{k},
+			Outputs:  []operand.Op{k1},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("KSHIFTLW: bad operands")
+}
+
+// KSHIFTRW: Shift Right 16-bit Masks.
+//
+// Forms:
+//
+// 	KSHIFTRW imm8 k k
+func KSHIFTRW(i, k, k1 operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case operand.IsIMM8(i) && operand.IsK(k) && operand.IsK(k1):
+		return &intrep.Instruction{
+			Opcode:   "KSHIFTRW",
+			Operands: []operand.Op{i, k, k1},
+			Inputs:   []operand.Op{k},
+			Outputs:  []operand.Op{k1},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("KSHIFTRW: bad operands")
+}
+
+// KUNPCKBW: Unpack and Interleave 8-bit Masks.
+//
+// Forms:
+//
+// 	KUNPCKBW k k k
+func KUNPCKBW(k, k1, k2 operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case operand.IsK(k) && operand.IsK(k1) && operand.IsK(k2):
+		return &intrep.Instruction{
+			Opcode:   "KUNPCKBW",
+			Operands: []operand.Op{k, k1, k2},
+			Inputs:   []operand.Op{k, k1},
+			Outputs:  []operand.Op{k2},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("KUNPCKBW: bad operands")
+}
+
+// KXNORW: Bitwise Logical XNOR 16-bit Masks.
+//
+// Forms:
+//
+// 	KXNORW k k k
+func KXNORW(k, k1, k2 operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case operand.IsK(k) && operand.IsK(k1) && operand.IsK(k2):
+		return &intrep.Instruction{
+			Opcode:   "KXNORW",
+			Operands: []operand.Op{k, k1, k2},
+			Inputs:   []operand.Op{k, k1},
+			Outputs:  []operand.Op{k2},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("KXNORW: bad operands")
+}
+
+// KXORW: Bitwise Logical XOR 16-bit Masks.
+//
+// Forms:
+//
+// 	KXORW k k k
+func KXORW(k, k1, k2 operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case operand.IsK(k) && operand.IsK(k1) && operand.IsK(k2):
+		return &intrep.Instruction{
+			Opcode:   "KXORW",
+			Operands: []operand.Op{k, k1, k2},
+			Inputs:   []operand.Op{k, k1},
+			Outputs:  []operand.Op{k2},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("KXORW: bad operands")
+}
+
 // LDDQU: Load Unaligned Integer 128 Bits.
 //
 // Forms:
@@ -15431,10 +15676,28 @@ func RCRW(ci, mr operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+// 	RDRANDL r16
 // 	RDRANDL r32
+// 	RDRANDL r64
 func RDRANDL(r operand.Op) (*intrep.Instruction, error) {
 	switch {
+	case operand.IsR16(r):
+		return &intrep.Instruction{
+			Opcode:   "RDRANDL",
+			Operands: []operand.Op{r},
+			Inputs:   []operand.Op{},
+			Outputs:  []operand.Op{r},
+			ISA:      []string{"RDRAND"},
+		}, nil
 	case operand.IsR32(r):
+		return &intrep.Instruction{
+			Opcode:   "RDRANDL",
+			Operands: []operand.Op{r},
+			Inputs:   []operand.Op{},
+			Outputs:  []operand.Op{r},
+			ISA:      []string{"RDRAND"},
+		}, nil
+	case operand.IsR64(r):
 		return &intrep.Instruction{
 			Opcode:   "RDRANDL",
 			Operands: []operand.Op{r},
@@ -15446,52 +15709,32 @@ func RDRANDL(r operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("RDRANDL: bad operands")
 }
 
-// RDRANDQ: Read Random Number.
-//
-// Forms:
-//
-// 	RDRANDQ r64
-func RDRANDQ(r operand.Op) (*intrep.Instruction, error) {
-	switch {
-	case operand.IsR64(r):
-		return &intrep.Instruction{
-			Opcode:   "RDRANDQ",
-			Operands: []operand.Op{r},
-			Inputs:   []operand.Op{},
-			Outputs:  []operand.Op{r},
-			ISA:      []string{"RDRAND"},
-		}, nil
-	}
-	return nil, errors.New("RDRANDQ: bad operands")
-}
-
-// RDRANDW: Read Random Number.
-//
-// Forms:
-//
-// 	RDRANDW r16
-func RDRANDW(r operand.Op) (*intrep.Instruction, error) {
-	switch {
-	case operand.IsR16(r):
-		return &intrep.Instruction{
-			Opcode:   "RDRANDW",
-			Operands: []operand.Op{r},
-			Inputs:   []operand.Op{},
-			Outputs:  []operand.Op{r},
-			ISA:      []string{"RDRAND"},
-		}, nil
-	}
-	return nil, errors.New("RDRANDW: bad operands")
-}
-
 // RDSEEDL: Read Random SEED.
 //
 // Forms:
 //
+// 	RDSEEDL r16
 // 	RDSEEDL r32
+// 	RDSEEDL r64
 func RDSEEDL(r operand.Op) (*intrep.Instruction, error) {
 	switch {
+	case operand.IsR16(r):
+		return &intrep.Instruction{
+			Opcode:   "RDSEEDL",
+			Operands: []operand.Op{r},
+			Inputs:   []operand.Op{},
+			Outputs:  []operand.Op{r},
+			ISA:      []string{"RDSEED"},
+		}, nil
 	case operand.IsR32(r):
+		return &intrep.Instruction{
+			Opcode:   "RDSEEDL",
+			Operands: []operand.Op{r},
+			Inputs:   []operand.Op{},
+			Outputs:  []operand.Op{r},
+			ISA:      []string{"RDSEED"},
+		}, nil
+	case operand.IsR64(r):
 		return &intrep.Instruction{
 			Opcode:   "RDSEEDL",
 			Operands: []operand.Op{r},
@@ -15501,44 +15744,6 @@ func RDSEEDL(r operand.Op) (*intrep.Instruction, error) {
 		}, nil
 	}
 	return nil, errors.New("RDSEEDL: bad operands")
-}
-
-// RDSEEDQ: Read Random SEED.
-//
-// Forms:
-//
-// 	RDSEEDQ r64
-func RDSEEDQ(r operand.Op) (*intrep.Instruction, error) {
-	switch {
-	case operand.IsR64(r):
-		return &intrep.Instruction{
-			Opcode:   "RDSEEDQ",
-			Operands: []operand.Op{r},
-			Inputs:   []operand.Op{},
-			Outputs:  []operand.Op{r},
-			ISA:      []string{"RDSEED"},
-		}, nil
-	}
-	return nil, errors.New("RDSEEDQ: bad operands")
-}
-
-// RDSEEDW: Read Random SEED.
-//
-// Forms:
-//
-// 	RDSEEDW r16
-func RDSEEDW(r operand.Op) (*intrep.Instruction, error) {
-	switch {
-	case operand.IsR16(r):
-		return &intrep.Instruction{
-			Opcode:   "RDSEEDW",
-			Operands: []operand.Op{r},
-			Inputs:   []operand.Op{},
-			Outputs:  []operand.Op{r},
-			ISA:      []string{"RDSEED"},
-		}, nil
-	}
-	return nil, errors.New("RDSEEDW: bad operands")
 }
 
 // RDTSC: Read Time-Stamp Counter.
@@ -19622,43 +19827,79 @@ func UNPCKLPS(mx, x operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VADDPD xmm  xmm xmm
-// 	VADDPD m128 xmm xmm
-// 	VADDPD ymm  ymm ymm
-// 	VADDPD m256 ymm ymm
-func VADDPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VADDPD m512/m64bcst zmm zmm
+// 	VADDPD m512/m64bcst zmm k zmm
+// 	VADDPD xmm          xmm xmm
+// 	VADDPD m128         xmm xmm
+// 	VADDPD ymm          ymm ymm
+// 	VADDPD m256         ymm ymm
+// 	VADDPD zmm          zmm zmm
+// 	VADDPD zmm          zmm k zmm
+func VADDPD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VADDPD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VADDPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VADDPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VADDPD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VADDPD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VADDPD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VADDPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VADDPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VADDPD: bad operands")
@@ -19668,43 +19909,79 @@ func VADDPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VADDPS xmm  xmm xmm
-// 	VADDPS m128 xmm xmm
-// 	VADDPS ymm  ymm ymm
-// 	VADDPS m256 ymm ymm
-func VADDPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VADDPS m512/m32bcst zmm zmm
+// 	VADDPS m512/m32bcst zmm k zmm
+// 	VADDPS xmm          xmm xmm
+// 	VADDPS m128         xmm xmm
+// 	VADDPS ymm          ymm ymm
+// 	VADDPS m256         ymm ymm
+// 	VADDPS zmm          zmm zmm
+// 	VADDPS zmm          zmm k zmm
+func VADDPS(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VADDPS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VADDPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VADDPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VADDPS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VADDPS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VADDPS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VADDPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VADDPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VADDPS: bad operands")
@@ -19714,25 +19991,61 @@ func VADDPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+// 	VADDSD m64 xmm xmm
+// 	VADDSD m64 xmm k xmm
 // 	VADDSD xmm xmm xmm
 // 	VADDSD m64 xmm xmm
-func VADDSD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
+// 	VADDSD xmm xmm xmm
+// 	VADDSD xmm xmm k xmm
+func VADDSD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VADDSD",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VADDSD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VADDSD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM64(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VADDSD",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VADDSD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VADDSD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VADDSD: bad operands")
@@ -19742,25 +20055,61 @@ func VADDSD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+// 	VADDSS m32 xmm xmm
+// 	VADDSS m32 xmm k xmm
 // 	VADDSS xmm xmm xmm
 // 	VADDSS m32 xmm xmm
-func VADDSS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
+// 	VADDSS xmm xmm xmm
+// 	VADDSS xmm xmm k xmm
+func VADDSS(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VADDSS",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VADDSS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VADDSS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM32(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VADDSS",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VADDSS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VADDSS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VADDSS: bad operands")
@@ -20026,6 +20375,98 @@ func VAESKEYGENASSIST(i, mx, x operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VAESKEYGENASSIST: bad operands")
 }
 
+// VALIGND: Align Doubleword Vectors.
+//
+// Forms:
+//
+// 	VALIGND imm8 m512/m32bcst zmm zmm
+// 	VALIGND imm8 m512/m32bcst zmm k zmm
+// 	VALIGND imm8 zmm          zmm zmm
+// 	VALIGND imm8 zmm          zmm k zmm
+func VALIGND(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM512M32BCST(ops[1]) && operand.IsZMM(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VALIGND",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsM512M32BCST(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]) && operand.IsZMM(ops[4]):
+		return &intrep.Instruction{
+			Opcode:   "VALIGND",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[4]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VALIGND",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]) && operand.IsZMM(ops[4]):
+		return &intrep.Instruction{
+			Opcode:   "VALIGND",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[4]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VALIGND: bad operands")
+}
+
+// VALIGNQ: Align Quadword Vectors.
+//
+// Forms:
+//
+// 	VALIGNQ imm8 m512/m64bcst zmm zmm
+// 	VALIGNQ imm8 m512/m64bcst zmm k zmm
+// 	VALIGNQ imm8 zmm          zmm zmm
+// 	VALIGNQ imm8 zmm          zmm k zmm
+func VALIGNQ(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsZMM(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VALIGNQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]) && operand.IsZMM(ops[4]):
+		return &intrep.Instruction{
+			Opcode:   "VALIGNQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[4]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VALIGNQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]) && operand.IsZMM(ops[4]):
+		return &intrep.Instruction{
+			Opcode:   "VALIGNQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[4]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VALIGNQ: bad operands")
+}
+
 // VANDNPD: Bitwise Logical AND NOT of Packed Double-Precision Floating-Point Values.
 //
 // Forms:
@@ -20212,6 +20653,98 @@ func VANDPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 		}, nil
 	}
 	return nil, errors.New("VANDPS: bad operands")
+}
+
+// VBLENDMPD: Blend Packed Double-Precision Floating-Point Vectors Using an OpMask Control.
+//
+// Forms:
+//
+// 	VBLENDMPD m512/m64bcst zmm zmm
+// 	VBLENDMPD m512/m64bcst zmm k zmm
+// 	VBLENDMPD zmm          zmm zmm
+// 	VBLENDMPD zmm          zmm k zmm
+func VBLENDMPD(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VBLENDMPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VBLENDMPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VBLENDMPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VBLENDMPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VBLENDMPD: bad operands")
+}
+
+// VBLENDMPS: Blend Packed Single-Precision Floating-Point Vectors Using an OpMask Control.
+//
+// Forms:
+//
+// 	VBLENDMPS m512/m32bcst zmm zmm
+// 	VBLENDMPS m512/m32bcst zmm k zmm
+// 	VBLENDMPS zmm          zmm zmm
+// 	VBLENDMPS zmm          zmm k zmm
+func VBLENDMPS(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VBLENDMPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VBLENDMPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VBLENDMPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VBLENDMPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VBLENDMPS: bad operands")
 }
 
 // VBLENDPD: Blend Packed Double Precision Floating-Point Values.
@@ -20417,6 +20950,62 @@ func VBROADCASTF128(m, y operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VBROADCASTF128: bad operands")
 }
 
+// VBROADCASTF32X4: Broadcast Four Single-Precision Floating-Point Elements.
+//
+// Forms:
+//
+// 	VBROADCASTF32X4 m128 zmm
+// 	VBROADCASTF32X4 m128 k zmm
+func VBROADCASTF32X4(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 2 && operand.IsM128(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VBROADCASTF32X4",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VBROADCASTF32X4",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VBROADCASTF32X4: bad operands")
+}
+
+// VBROADCASTF64X4: Broadcast Four Double-Precision Floating-Point Elements.
+//
+// Forms:
+//
+// 	VBROADCASTF64X4 m256 zmm
+// 	VBROADCASTF64X4 m256 k zmm
+func VBROADCASTF64X4(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 2 && operand.IsM256(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VBROADCASTF64X4",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VBROADCASTF64X4",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VBROADCASTF64X4: bad operands")
+}
+
 // VBROADCASTI128: Broadcast 128 Bits of Integer Data.
 //
 // Forms:
@@ -20436,28 +21025,120 @@ func VBROADCASTI128(m, y operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VBROADCASTI128: bad operands")
 }
 
+// VBROADCASTI32X4: Broadcast Four Doubleword Elements.
+//
+// Forms:
+//
+// 	VBROADCASTI32X4 m128 zmm
+// 	VBROADCASTI32X4 m128 k zmm
+func VBROADCASTI32X4(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 2 && operand.IsM128(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VBROADCASTI32X4",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VBROADCASTI32X4",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VBROADCASTI32X4: bad operands")
+}
+
+// VBROADCASTI64X4: Broadcast Four Quadword Elements.
+//
+// Forms:
+//
+// 	VBROADCASTI64X4 m256 zmm
+// 	VBROADCASTI64X4 m256 k zmm
+func VBROADCASTI64X4(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 2 && operand.IsM256(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VBROADCASTI64X4",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VBROADCASTI64X4",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VBROADCASTI64X4: bad operands")
+}
+
 // VBROADCASTSD: Broadcast Double-Precision Floating-Point Element.
 //
 // Forms:
 //
+// 	VBROADCASTSD xmm zmm
+// 	VBROADCASTSD xmm k zmm
+// 	VBROADCASTSD m64 zmm
+// 	VBROADCASTSD m64 k zmm
 // 	VBROADCASTSD xmm ymm
 // 	VBROADCASTSD m64 ymm
-func VBROADCASTSD(mx, y operand.Op) (*intrep.Instruction, error) {
+func VBROADCASTSD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mx) && operand.IsYMM(y):
+	case len(ops) == 2 && operand.IsXMM(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VBROADCASTSD",
-			Operands: []operand.Op{mx, y},
-			Inputs:   []operand.Op{mx},
-			Outputs:  []operand.Op{y},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VBROADCASTSD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsM64(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VBROADCASTSD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsM64(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VBROADCASTSD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsXMM(ops[0]) && operand.IsYMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VBROADCASTSD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX2"},
 		}, nil
-	case operand.IsM64(mx) && operand.IsYMM(y):
+	case len(ops) == 2 && operand.IsM64(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VBROADCASTSD",
-			Operands: []operand.Op{mx, y},
-			Inputs:   []operand.Op{mx},
-			Outputs:  []operand.Op{y},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
 	}
@@ -20468,42 +21149,78 @@ func VBROADCASTSD(mx, y operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+// 	VBROADCASTSS xmm zmm
+// 	VBROADCASTSS xmm k zmm
+// 	VBROADCASTSS m32 zmm
+// 	VBROADCASTSS m32 k zmm
 // 	VBROADCASTSS xmm xmm
 // 	VBROADCASTSS m32 xmm
 // 	VBROADCASTSS xmm ymm
 // 	VBROADCASTSS m32 ymm
-func VBROADCASTSS(mx, xy operand.Op) (*intrep.Instruction, error) {
+func VBROADCASTSS(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mx) && operand.IsXMM(xy):
+	case len(ops) == 2 && operand.IsXMM(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VBROADCASTSS",
-			Operands: []operand.Op{mx, xy},
-			Inputs:   []operand.Op{mx},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VBROADCASTSS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsM32(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VBROADCASTSS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsM32(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VBROADCASTSS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VBROADCASTSS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX2"},
 		}, nil
-	case operand.IsM32(mx) && operand.IsXMM(xy):
+	case len(ops) == 2 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VBROADCASTSS",
-			Operands: []operand.Op{mx, xy},
-			Inputs:   []operand.Op{mx},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsXMM(mx) && operand.IsYMM(xy):
+	case len(ops) == 2 && operand.IsXMM(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VBROADCASTSS",
-			Operands: []operand.Op{mx, xy},
-			Inputs:   []operand.Op{mx},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX2"},
 		}, nil
-	case operand.IsM32(mx) && operand.IsYMM(xy):
+	case len(ops) == 2 && operand.IsM32(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VBROADCASTSS",
-			Operands: []operand.Op{mx, xy},
-			Inputs:   []operand.Op{mx},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
 	}
@@ -20514,43 +21231,79 @@ func VBROADCASTSS(mx, xy operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VCMPPD imm8 xmm  xmm xmm
-// 	VCMPPD imm8 m128 xmm xmm
-// 	VCMPPD imm8 ymm  ymm ymm
-// 	VCMPPD imm8 m256 ymm ymm
-func VCMPPD(i, mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VCMPPD imm8 m512/m64bcst zmm k
+// 	VCMPPD imm8 m512/m64bcst zmm k k
+// 	VCMPPD imm8 xmm          xmm xmm
+// 	VCMPPD imm8 m128         xmm xmm
+// 	VCMPPD imm8 ymm          ymm ymm
+// 	VCMPPD imm8 m256         ymm ymm
+// 	VCMPPD imm8 zmm          zmm k
+// 	VCMPPD imm8 zmm          zmm k k
+func VCMPPD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsIMM8(i) && operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VCMPPD",
-			Operands: []operand.Op{i, mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]) && operand.IsK(ops[4]):
+		return &intrep.Instruction{
+			Opcode:   "VCMPPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[4]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VCMPPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsIMM8(i) && operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM128(ops[1]) && operand.IsXMM(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VCMPPD",
-			Operands: []operand.Op{i, mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsIMM8(i) && operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]) && operand.IsYMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VCMPPD",
-			Operands: []operand.Op{i, mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsIMM8(i) && operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM256(ops[1]) && operand.IsYMM(ops[2]) && operand.IsYMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VCMPPD",
-			Operands: []operand.Op{i, mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VCMPPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]) && operand.IsK(ops[4]):
+		return &intrep.Instruction{
+			Opcode:   "VCMPPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[4]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VCMPPD: bad operands")
@@ -20560,43 +21313,79 @@ func VCMPPD(i, mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VCMPPS imm8 xmm  xmm xmm
-// 	VCMPPS imm8 m128 xmm xmm
-// 	VCMPPS imm8 ymm  ymm ymm
-// 	VCMPPS imm8 m256 ymm ymm
-func VCMPPS(i, mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VCMPPS imm8 m512/m32bcst zmm k
+// 	VCMPPS imm8 m512/m32bcst zmm k k
+// 	VCMPPS imm8 xmm          xmm xmm
+// 	VCMPPS imm8 m128         xmm xmm
+// 	VCMPPS imm8 ymm          ymm ymm
+// 	VCMPPS imm8 m256         ymm ymm
+// 	VCMPPS imm8 zmm          zmm k
+// 	VCMPPS imm8 zmm          zmm k k
+func VCMPPS(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsIMM8(i) && operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM512M32BCST(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VCMPPS",
-			Operands: []operand.Op{i, mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsM512M32BCST(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]) && operand.IsK(ops[4]):
+		return &intrep.Instruction{
+			Opcode:   "VCMPPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[4]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VCMPPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsIMM8(i) && operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM128(ops[1]) && operand.IsXMM(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VCMPPS",
-			Operands: []operand.Op{i, mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsIMM8(i) && operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]) && operand.IsYMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VCMPPS",
-			Operands: []operand.Op{i, mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsIMM8(i) && operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM256(ops[1]) && operand.IsYMM(ops[2]) && operand.IsYMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VCMPPS",
-			Operands: []operand.Op{i, mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VCMPPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]) && operand.IsK(ops[4]):
+		return &intrep.Instruction{
+			Opcode:   "VCMPPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[4]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VCMPPS: bad operands")
@@ -20606,25 +21395,61 @@ func VCMPPS(i, mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+// 	VCMPSD imm8 m64 xmm k
+// 	VCMPSD imm8 m64 xmm k k
 // 	VCMPSD imm8 xmm xmm xmm
 // 	VCMPSD imm8 m64 xmm xmm
-func VCMPSD(i, mx, x, x1 operand.Op) (*intrep.Instruction, error) {
+// 	VCMPSD imm8 xmm xmm k
+// 	VCMPSD imm8 xmm xmm k k
+func VCMPSD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsIMM8(i) && operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM64(ops[1]) && operand.IsXMM(ops[2]) && operand.IsK(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VCMPSD",
-			Operands: []operand.Op{i, mx, x, x1},
-			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsM64(ops[1]) && operand.IsXMM(ops[2]) && operand.IsK(ops[3]) && operand.IsK(ops[4]):
+		return &intrep.Instruction{
+			Opcode:   "VCMPSD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[4]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VCMPSD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsIMM8(i) && operand.IsM64(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM64(ops[1]) && operand.IsXMM(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VCMPSD",
-			Operands: []operand.Op{i, mx, x, x1},
-			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]) && operand.IsK(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VCMPSD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]) && operand.IsK(ops[3]) && operand.IsK(ops[4]):
+		return &intrep.Instruction{
+			Opcode:   "VCMPSD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[4]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VCMPSD: bad operands")
@@ -20634,25 +21459,61 @@ func VCMPSD(i, mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+// 	VCMPSS imm8 m32 xmm k
+// 	VCMPSS imm8 m32 xmm k k
 // 	VCMPSS imm8 xmm xmm xmm
 // 	VCMPSS imm8 m32 xmm xmm
-func VCMPSS(i, mx, x, x1 operand.Op) (*intrep.Instruction, error) {
+// 	VCMPSS imm8 xmm xmm k
+// 	VCMPSS imm8 xmm xmm k k
+func VCMPSS(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsIMM8(i) && operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM32(ops[1]) && operand.IsXMM(ops[2]) && operand.IsK(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VCMPSS",
-			Operands: []operand.Op{i, mx, x, x1},
-			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsM32(ops[1]) && operand.IsXMM(ops[2]) && operand.IsK(ops[3]) && operand.IsK(ops[4]):
+		return &intrep.Instruction{
+			Opcode:   "VCMPSS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[4]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VCMPSS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsIMM8(i) && operand.IsM32(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM32(ops[1]) && operand.IsXMM(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VCMPSS",
-			Operands: []operand.Op{i, mx, x, x1},
-			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]) && operand.IsK(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VCMPSS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]) && operand.IsK(ops[3]) && operand.IsK(ops[4]):
+		return &intrep.Instruction{
+			Opcode:   "VCMPSS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[4]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VCMPSS: bad operands")
@@ -20664,6 +21525,8 @@ func VCMPSS(i, mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 //
 // 	VCOMISD xmm xmm
 // 	VCOMISD m64 xmm
+// 	VCOMISD m64 xmm
+// 	VCOMISD xmm xmm
 func VCOMISD(mx, x operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsXMM(mx) && operand.IsXMM(x):
@@ -20682,6 +21545,22 @@ func VCOMISD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Outputs:  []operand.Op{},
 			ISA:      []string{"AVX"},
 		}, nil
+	case operand.IsM64(mx) && operand.IsXMM(x):
+		return &intrep.Instruction{
+			Opcode:   "VCOMISD",
+			Operands: []operand.Op{mx, x},
+			Inputs:   []operand.Op{mx, x},
+			Outputs:  []operand.Op{},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case operand.IsXMM(mx) && operand.IsXMM(x):
+		return &intrep.Instruction{
+			Opcode:   "VCOMISD",
+			Operands: []operand.Op{mx, x},
+			Inputs:   []operand.Op{mx, x},
+			Outputs:  []operand.Op{},
+			ISA:      []string{"AVX512F"},
+		}, nil
 	}
 	return nil, errors.New("VCOMISD: bad operands")
 }
@@ -20692,6 +21571,8 @@ func VCOMISD(mx, x operand.Op) (*intrep.Instruction, error) {
 //
 // 	VCOMISS xmm xmm
 // 	VCOMISS m32 xmm
+// 	VCOMISS m32 xmm
+// 	VCOMISS xmm xmm
 func VCOMISS(mx, x operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsXMM(mx) && operand.IsXMM(x):
@@ -20710,50 +21591,194 @@ func VCOMISS(mx, x operand.Op) (*intrep.Instruction, error) {
 			Outputs:  []operand.Op{},
 			ISA:      []string{"AVX"},
 		}, nil
+	case operand.IsM32(mx) && operand.IsXMM(x):
+		return &intrep.Instruction{
+			Opcode:   "VCOMISS",
+			Operands: []operand.Op{mx, x},
+			Inputs:   []operand.Op{mx, x},
+			Outputs:  []operand.Op{},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case operand.IsXMM(mx) && operand.IsXMM(x):
+		return &intrep.Instruction{
+			Opcode:   "VCOMISS",
+			Operands: []operand.Op{mx, x},
+			Inputs:   []operand.Op{mx, x},
+			Outputs:  []operand.Op{},
+			ISA:      []string{"AVX512F"},
+		}, nil
 	}
 	return nil, errors.New("VCOMISS: bad operands")
+}
+
+// VCOMPRESSPD: Store Sparse Packed Double-Precision Floating-Point Values into Dense Memory/Register.
+//
+// Forms:
+//
+// 	VCOMPRESSPD zmm zmm
+// 	VCOMPRESSPD zmm k zmm
+// 	VCOMPRESSPD zmm m512
+// 	VCOMPRESSPD zmm k m512
+func VCOMPRESSPD(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VCOMPRESSPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VCOMPRESSPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsM512(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VCOMPRESSPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsM512(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VCOMPRESSPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VCOMPRESSPD: bad operands")
+}
+
+// VCOMPRESSPS: Store Sparse Packed Single-Precision Floating-Point Values into Dense Memory/Register.
+//
+// Forms:
+//
+// 	VCOMPRESSPS zmm zmm
+// 	VCOMPRESSPS zmm k zmm
+// 	VCOMPRESSPS zmm m512
+// 	VCOMPRESSPS zmm k m512
+func VCOMPRESSPS(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VCOMPRESSPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VCOMPRESSPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsM512(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VCOMPRESSPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsM512(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VCOMPRESSPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VCOMPRESSPS: bad operands")
 }
 
 // VCVTDQ2PD: Convert Packed Dword Integers to Packed Double-Precision FP Values.
 //
 // Forms:
 //
-// 	VCVTDQ2PD xmm  xmm
-// 	VCVTDQ2PD m64  xmm
-// 	VCVTDQ2PD xmm  ymm
-// 	VCVTDQ2PD m128 ymm
-func VCVTDQ2PD(mx, xy operand.Op) (*intrep.Instruction, error) {
+// 	VCVTDQ2PD m256/m32bcst zmm
+// 	VCVTDQ2PD m256/m32bcst k zmm
+// 	VCVTDQ2PD ymm          zmm
+// 	VCVTDQ2PD ymm          k zmm
+// 	VCVTDQ2PD xmm          xmm
+// 	VCVTDQ2PD m64          xmm
+// 	VCVTDQ2PD xmm          ymm
+// 	VCVTDQ2PD m128         ymm
+func VCVTDQ2PD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mx) && operand.IsXMM(xy):
+	case len(ops) == 2 && operand.IsM256M32BCST(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTDQ2PD",
-			Operands: []operand.Op{mx, xy},
-			Inputs:   []operand.Op{mx},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsM256M32BCST(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VCVTDQ2PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsYMM(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VCVTDQ2PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VCVTDQ2PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VCVTDQ2PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM64(mx) && operand.IsXMM(xy):
+	case len(ops) == 2 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTDQ2PD",
-			Operands: []operand.Op{mx, xy},
-			Inputs:   []operand.Op{mx},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsXMM(mx) && operand.IsYMM(xy):
+	case len(ops) == 2 && operand.IsXMM(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTDQ2PD",
-			Operands: []operand.Op{mx, xy},
-			Inputs:   []operand.Op{mx},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM128(mx) && operand.IsYMM(xy):
+	case len(ops) == 2 && operand.IsM128(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTDQ2PD",
-			Operands: []operand.Op{mx, xy},
-			Inputs:   []operand.Op{mx},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
 	}
@@ -20764,46 +21789,128 @@ func VCVTDQ2PD(mx, xy operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VCVTDQ2PS xmm  xmm
-// 	VCVTDQ2PS m128 xmm
-// 	VCVTDQ2PS ymm  ymm
-// 	VCVTDQ2PS m256 ymm
-func VCVTDQ2PS(mxy, xy operand.Op) (*intrep.Instruction, error) {
+// 	VCVTDQ2PS m512/m32bcst zmm
+// 	VCVTDQ2PS m512/m32bcst k zmm
+// 	VCVTDQ2PS xmm          xmm
+// 	VCVTDQ2PS m128         xmm
+// 	VCVTDQ2PS ymm          ymm
+// 	VCVTDQ2PS m256         ymm
+// 	VCVTDQ2PS zmm          zmm
+// 	VCVTDQ2PS zmm          k zmm
+func VCVTDQ2PS(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy):
+	case len(ops) == 2 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTDQ2PS",
-			Operands: []operand.Op{mxy, xy},
-			Inputs:   []operand.Op{mxy},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VCVTDQ2PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VCVTDQ2PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy):
+	case len(ops) == 2 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTDQ2PS",
-			Operands: []operand.Op{mxy, xy},
-			Inputs:   []operand.Op{mxy},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy):
+	case len(ops) == 2 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTDQ2PS",
-			Operands: []operand.Op{mxy, xy},
-			Inputs:   []operand.Op{mxy},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy):
+	case len(ops) == 2 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTDQ2PS",
-			Operands: []operand.Op{mxy, xy},
-			Inputs:   []operand.Op{mxy},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
+		}, nil
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VCVTDQ2PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VCVTDQ2PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VCVTDQ2PS: bad operands")
+}
+
+// VCVTPD2DQ: Convert Packed Double-Precision FP Values to Packed Dword Integers.
+//
+// Forms:
+//
+// 	VCVTPD2DQ m512/m64bcst ymm
+// 	VCVTPD2DQ m512/m64bcst k ymm
+// 	VCVTPD2DQ zmm          ymm
+// 	VCVTPD2DQ zmm          k ymm
+func VCVTPD2DQ(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 2 && operand.IsM512M64BCST(ops[0]) && operand.IsYMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VCVTPD2DQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsK(ops[1]) && operand.IsYMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VCVTPD2DQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsYMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VCVTPD2DQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsYMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VCVTPD2DQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VCVTPD2DQ: bad operands")
 }
 
 // VCVTPD2DQX: Convert Packed Double-Precision FP Values to Packed Dword Integers.
@@ -20862,6 +21969,52 @@ func VCVTPD2DQY(my, x operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTPD2DQY: bad operands")
 }
 
+// VCVTPD2PS: Convert Packed Double-Precision FP Values to Packed Single-Precision FP Values.
+//
+// Forms:
+//
+// 	VCVTPD2PS m512/m64bcst ymm
+// 	VCVTPD2PS m512/m64bcst k ymm
+// 	VCVTPD2PS zmm          ymm
+// 	VCVTPD2PS zmm          k ymm
+func VCVTPD2PS(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 2 && operand.IsM512M64BCST(ops[0]) && operand.IsYMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VCVTPD2PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsK(ops[1]) && operand.IsYMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VCVTPD2PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsYMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VCVTPD2PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsYMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VCVTPD2PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VCVTPD2PS: bad operands")
+}
+
 // VCVTPD2PSX: Convert Packed Double-Precision FP Values to Packed Single-Precision FP Values.
 //
 // Forms:
@@ -20918,47 +22071,129 @@ func VCVTPD2PSY(my, x operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTPD2PSY: bad operands")
 }
 
+// VCVTPD2UDQ: Convert Packed Double-Precision Floating-Point Values to Packed Unsigned Doubleword Integers.
+//
+// Forms:
+//
+// 	VCVTPD2UDQ m512/m64bcst ymm
+// 	VCVTPD2UDQ m512/m64bcst k ymm
+// 	VCVTPD2UDQ zmm          ymm
+// 	VCVTPD2UDQ zmm          k ymm
+func VCVTPD2UDQ(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 2 && operand.IsM512M64BCST(ops[0]) && operand.IsYMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VCVTPD2UDQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsK(ops[1]) && operand.IsYMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VCVTPD2UDQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsYMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VCVTPD2UDQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsYMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VCVTPD2UDQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VCVTPD2UDQ: bad operands")
+}
+
 // VCVTPH2PS: Convert Half-Precision FP Values to Single-Precision FP Values.
 //
 // Forms:
 //
+// 	VCVTPH2PS m256 zmm
+// 	VCVTPH2PS m256 k zmm
 // 	VCVTPH2PS xmm  xmm
 // 	VCVTPH2PS m64  xmm
 // 	VCVTPH2PS xmm  ymm
 // 	VCVTPH2PS m128 ymm
-func VCVTPH2PS(mx, xy operand.Op) (*intrep.Instruction, error) {
+// 	VCVTPH2PS ymm  zmm
+// 	VCVTPH2PS ymm  k zmm
+func VCVTPH2PS(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mx) && operand.IsXMM(xy):
+	case len(ops) == 2 && operand.IsM256(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPH2PS",
-			Operands: []operand.Op{mx, xy},
-			Inputs:   []operand.Op{mx},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VCVTPH2PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VCVTPH2PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"F16C"},
 		}, nil
-	case operand.IsM64(mx) && operand.IsXMM(xy):
+	case len(ops) == 2 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPH2PS",
-			Operands: []operand.Op{mx, xy},
-			Inputs:   []operand.Op{mx},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"F16C"},
 		}, nil
-	case operand.IsXMM(mx) && operand.IsYMM(xy):
+	case len(ops) == 2 && operand.IsXMM(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPH2PS",
-			Operands: []operand.Op{mx, xy},
-			Inputs:   []operand.Op{mx},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"F16C"},
 		}, nil
-	case operand.IsM128(mx) && operand.IsYMM(xy):
+	case len(ops) == 2 && operand.IsM128(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPH2PS",
-			Operands: []operand.Op{mx, xy},
-			Inputs:   []operand.Op{mx},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"F16C"},
+		}, nil
+	case len(ops) == 2 && operand.IsYMM(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VCVTPH2PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VCVTPH2PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VCVTPH2PS: bad operands")
@@ -20968,43 +22203,79 @@ func VCVTPH2PS(mx, xy operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VCVTPS2DQ xmm  xmm
-// 	VCVTPS2DQ m128 xmm
-// 	VCVTPS2DQ ymm  ymm
-// 	VCVTPS2DQ m256 ymm
-func VCVTPS2DQ(mxy, xy operand.Op) (*intrep.Instruction, error) {
+// 	VCVTPS2DQ m512/m32bcst zmm
+// 	VCVTPS2DQ m512/m32bcst k zmm
+// 	VCVTPS2DQ xmm          xmm
+// 	VCVTPS2DQ m128         xmm
+// 	VCVTPS2DQ ymm          ymm
+// 	VCVTPS2DQ m256         ymm
+// 	VCVTPS2DQ zmm          zmm
+// 	VCVTPS2DQ zmm          k zmm
+func VCVTPS2DQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy):
+	case len(ops) == 2 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPS2DQ",
-			Operands: []operand.Op{mxy, xy},
-			Inputs:   []operand.Op{mxy},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VCVTPS2DQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VCVTPS2DQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy):
+	case len(ops) == 2 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPS2DQ",
-			Operands: []operand.Op{mxy, xy},
-			Inputs:   []operand.Op{mxy},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy):
+	case len(ops) == 2 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPS2DQ",
-			Operands: []operand.Op{mxy, xy},
-			Inputs:   []operand.Op{mxy},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy):
+	case len(ops) == 2 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPS2DQ",
-			Operands: []operand.Op{mxy, xy},
-			Inputs:   []operand.Op{mxy},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
+		}, nil
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VCVTPS2DQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VCVTPS2DQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VCVTPS2DQ: bad operands")
@@ -21014,43 +22285,79 @@ func VCVTPS2DQ(mxy, xy operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VCVTPS2PD xmm  xmm
-// 	VCVTPS2PD m64  xmm
-// 	VCVTPS2PD xmm  ymm
-// 	VCVTPS2PD m128 ymm
-func VCVTPS2PD(mx, xy operand.Op) (*intrep.Instruction, error) {
+// 	VCVTPS2PD m256/m32bcst zmm
+// 	VCVTPS2PD m256/m32bcst k zmm
+// 	VCVTPS2PD xmm          xmm
+// 	VCVTPS2PD m64          xmm
+// 	VCVTPS2PD xmm          ymm
+// 	VCVTPS2PD m128         ymm
+// 	VCVTPS2PD ymm          zmm
+// 	VCVTPS2PD ymm          k zmm
+func VCVTPS2PD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mx) && operand.IsXMM(xy):
+	case len(ops) == 2 && operand.IsM256M32BCST(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPS2PD",
-			Operands: []operand.Op{mx, xy},
-			Inputs:   []operand.Op{mx},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsM256M32BCST(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VCVTPS2PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VCVTPS2PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM64(mx) && operand.IsXMM(xy):
+	case len(ops) == 2 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPS2PD",
-			Operands: []operand.Op{mx, xy},
-			Inputs:   []operand.Op{mx},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsXMM(mx) && operand.IsYMM(xy):
+	case len(ops) == 2 && operand.IsXMM(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPS2PD",
-			Operands: []operand.Op{mx, xy},
-			Inputs:   []operand.Op{mx},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM128(mx) && operand.IsYMM(xy):
+	case len(ops) == 2 && operand.IsM128(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPS2PD",
-			Operands: []operand.Op{mx, xy},
-			Inputs:   []operand.Op{mx},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
+		}, nil
+	case len(ops) == 2 && operand.IsYMM(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VCVTPS2PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VCVTPS2PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VCVTPS2PD: bad operands")
@@ -21060,46 +22367,128 @@ func VCVTPS2PD(mx, xy operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+// 	VCVTPS2PH imm8 zmm m256
+// 	VCVTPS2PH imm8 zmm k m256
 // 	VCVTPS2PH imm8 xmm xmm
 // 	VCVTPS2PH imm8 ymm xmm
 // 	VCVTPS2PH imm8 xmm m64
 // 	VCVTPS2PH imm8 ymm m128
-func VCVTPS2PH(i, xy, mx operand.Op) (*intrep.Instruction, error) {
+// 	VCVTPS2PH imm8 zmm ymm
+// 	VCVTPS2PH imm8 zmm k ymm
+func VCVTPS2PH(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsIMM8(i) && operand.IsXMM(xy) && operand.IsXMM(mx):
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsM256(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPS2PH",
-			Operands: []operand.Op{i, xy, mx},
-			Inputs:   []operand.Op{xy},
-			Outputs:  []operand.Op{mx},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsM256(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VCVTPS2PH",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VCVTPS2PH",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"F16C"},
 		}, nil
-	case operand.IsIMM8(i) && operand.IsYMM(xy) && operand.IsXMM(mx):
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsYMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPS2PH",
-			Operands: []operand.Op{i, xy, mx},
-			Inputs:   []operand.Op{xy},
-			Outputs:  []operand.Op{mx},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"F16C"},
 		}, nil
-	case operand.IsIMM8(i) && operand.IsXMM(xy) && operand.IsM64(mx):
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsXMM(ops[1]) && operand.IsM64(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPS2PH",
-			Operands: []operand.Op{i, xy, mx},
-			Inputs:   []operand.Op{xy},
-			Outputs:  []operand.Op{mx},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"F16C"},
 		}, nil
-	case operand.IsIMM8(i) && operand.IsYMM(xy) && operand.IsM128(mx):
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsYMM(ops[1]) && operand.IsM128(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPS2PH",
-			Operands: []operand.Op{i, xy, mx},
-			Inputs:   []operand.Op{xy},
-			Outputs:  []operand.Op{mx},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"F16C"},
+		}, nil
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsYMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VCVTPS2PH",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsYMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VCVTPS2PH",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VCVTPS2PH: bad operands")
+}
+
+// VCVTPS2UDQ: Convert Packed Single-Precision Floating-Point Values to Packed Unsigned Doubleword Integer Values.
+//
+// Forms:
+//
+// 	VCVTPS2UDQ m512/m32bcst zmm
+// 	VCVTPS2UDQ m512/m32bcst k zmm
+// 	VCVTPS2UDQ zmm          zmm
+// 	VCVTPS2UDQ zmm          k zmm
+func VCVTPS2UDQ(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 2 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VCVTPS2UDQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VCVTPS2UDQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VCVTPS2UDQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VCVTPS2UDQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VCVTPS2UDQ: bad operands")
 }
 
 // VCVTSD2SI: Convert Scalar Double-Precision FP Value to Integer.
@@ -21108,6 +22497,8 @@ func VCVTPS2PH(i, xy, mx operand.Op) (*intrep.Instruction, error) {
 //
 // 	VCVTSD2SI xmm r32
 // 	VCVTSD2SI m64 r32
+// 	VCVTSD2SI m64 r32
+// 	VCVTSD2SI xmm r32
 func VCVTSD2SI(mx, r operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsXMM(mx) && operand.IsR32(r):
@@ -21126,6 +22517,22 @@ func VCVTSD2SI(mx, r operand.Op) (*intrep.Instruction, error) {
 			Outputs:  []operand.Op{r},
 			ISA:      []string{"AVX"},
 		}, nil
+	case operand.IsM64(mx) && operand.IsR32(r):
+		return &intrep.Instruction{
+			Opcode:   "VCVTSD2SI",
+			Operands: []operand.Op{mx, r},
+			Inputs:   []operand.Op{mx},
+			Outputs:  []operand.Op{r},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case operand.IsXMM(mx) && operand.IsR32(r):
+		return &intrep.Instruction{
+			Opcode:   "VCVTSD2SI",
+			Operands: []operand.Op{mx, r},
+			Inputs:   []operand.Op{mx},
+			Outputs:  []operand.Op{r},
+			ISA:      []string{"AVX512F"},
+		}, nil
 	}
 	return nil, errors.New("VCVTSD2SI: bad operands")
 }
@@ -21136,6 +22543,8 @@ func VCVTSD2SI(mx, r operand.Op) (*intrep.Instruction, error) {
 //
 // 	VCVTSD2SIQ xmm r64
 // 	VCVTSD2SIQ m64 r64
+// 	VCVTSD2SIQ m64 r64
+// 	VCVTSD2SIQ xmm r64
 func VCVTSD2SIQ(mx, r operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsXMM(mx) && operand.IsR64(r):
@@ -21154,6 +22563,22 @@ func VCVTSD2SIQ(mx, r operand.Op) (*intrep.Instruction, error) {
 			Outputs:  []operand.Op{r},
 			ISA:      []string{"AVX"},
 		}, nil
+	case operand.IsM64(mx) && operand.IsR64(r):
+		return &intrep.Instruction{
+			Opcode:   "VCVTSD2SIQ",
+			Operands: []operand.Op{mx, r},
+			Inputs:   []operand.Op{mx},
+			Outputs:  []operand.Op{r},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case operand.IsXMM(mx) && operand.IsR64(r):
+		return &intrep.Instruction{
+			Opcode:   "VCVTSD2SIQ",
+			Operands: []operand.Op{mx, r},
+			Inputs:   []operand.Op{mx},
+			Outputs:  []operand.Op{r},
+			ISA:      []string{"AVX512F"},
+		}, nil
 	}
 	return nil, errors.New("VCVTSD2SIQ: bad operands")
 }
@@ -21162,28 +22587,120 @@ func VCVTSD2SIQ(mx, r operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+// 	VCVTSD2SS m64 xmm xmm
+// 	VCVTSD2SS m64 xmm k xmm
 // 	VCVTSD2SS xmm xmm xmm
 // 	VCVTSD2SS m64 xmm xmm
-func VCVTSD2SS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
+// 	VCVTSD2SS xmm xmm xmm
+// 	VCVTSD2SS xmm xmm k xmm
+func VCVTSD2SS(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTSD2SS",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VCVTSD2SS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VCVTSD2SS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM64(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTSD2SS",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VCVTSD2SS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VCVTSD2SS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VCVTSD2SS: bad operands")
+}
+
+// VCVTSD2USIL: Convert Scalar Double-Precision Floating-Point Value to Unsigned Doubleword Integer.
+//
+// Forms:
+//
+// 	VCVTSD2USIL m64 r32
+// 	VCVTSD2USIL xmm r32
+func VCVTSD2USIL(mx, r operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case operand.IsM64(mx) && operand.IsR32(r):
+		return &intrep.Instruction{
+			Opcode:   "VCVTSD2USIL",
+			Operands: []operand.Op{mx, r},
+			Inputs:   []operand.Op{mx},
+			Outputs:  []operand.Op{r},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case operand.IsXMM(mx) && operand.IsR32(r):
+		return &intrep.Instruction{
+			Opcode:   "VCVTSD2USIL",
+			Operands: []operand.Op{mx, r},
+			Inputs:   []operand.Op{mx},
+			Outputs:  []operand.Op{r},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VCVTSD2USIL: bad operands")
+}
+
+// VCVTSD2USIQ: Convert Scalar Double-Precision Floating-Point Value to Unsigned Doubleword Integer.
+//
+// Forms:
+//
+// 	VCVTSD2USIQ m64 r64
+// 	VCVTSD2USIQ xmm r64
+func VCVTSD2USIQ(mx, r operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case operand.IsM64(mx) && operand.IsR64(r):
+		return &intrep.Instruction{
+			Opcode:   "VCVTSD2USIQ",
+			Operands: []operand.Op{mx, r},
+			Inputs:   []operand.Op{mx},
+			Outputs:  []operand.Op{r},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case operand.IsXMM(mx) && operand.IsR64(r):
+		return &intrep.Instruction{
+			Opcode:   "VCVTSD2USIQ",
+			Operands: []operand.Op{mx, r},
+			Inputs:   []operand.Op{mx},
+			Outputs:  []operand.Op{r},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VCVTSD2USIQ: bad operands")
 }
 
 // VCVTSI2SDL: Convert Dword Integer to Scalar Double-Precision FP Value.
@@ -21191,10 +22708,28 @@ func VCVTSD2SS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 // Forms:
 //
 // 	VCVTSI2SDL r32 xmm xmm
+// 	VCVTSI2SDL r32 xmm xmm
+// 	VCVTSI2SDL m32 xmm xmm
 // 	VCVTSI2SDL m32 xmm xmm
 func VCVTSI2SDL(mr, x, x1 operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsR32(mr) && operand.IsXMM(x) && operand.IsXMM(x1):
+		return &intrep.Instruction{
+			Opcode:   "VCVTSI2SDL",
+			Operands: []operand.Op{mr, x, x1},
+			Inputs:   []operand.Op{mr, x},
+			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX"},
+		}, nil
+	case operand.IsR32(mr) && operand.IsXMM(x) && operand.IsXMM(x1):
+		return &intrep.Instruction{
+			Opcode:   "VCVTSI2SDL",
+			Operands: []operand.Op{mr, x, x1},
+			Inputs:   []operand.Op{mr, x},
+			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case operand.IsM32(mr) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VCVTSI2SDL",
 			Operands: []operand.Op{mr, x, x1},
@@ -21208,7 +22743,7 @@ func VCVTSI2SDL(mr, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mr, x, x1},
 			Inputs:   []operand.Op{mr, x},
 			Outputs:  []operand.Op{x1},
-			ISA:      []string{"AVX"},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VCVTSI2SDL: bad operands")
@@ -21220,6 +22755,8 @@ func VCVTSI2SDL(mr, x, x1 operand.Op) (*intrep.Instruction, error) {
 //
 // 	VCVTSI2SDQ r64 xmm xmm
 // 	VCVTSI2SDQ m64 xmm xmm
+// 	VCVTSI2SDQ m64 xmm xmm
+// 	VCVTSI2SDQ r64 xmm xmm
 func VCVTSI2SDQ(mr, x, x1 operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsR64(mr) && operand.IsXMM(x) && operand.IsXMM(x1):
@@ -21238,6 +22775,22 @@ func VCVTSI2SDQ(mr, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Outputs:  []operand.Op{x1},
 			ISA:      []string{"AVX"},
 		}, nil
+	case operand.IsM64(mr) && operand.IsXMM(x) && operand.IsXMM(x1):
+		return &intrep.Instruction{
+			Opcode:   "VCVTSI2SDQ",
+			Operands: []operand.Op{mr, x, x1},
+			Inputs:   []operand.Op{mr, x},
+			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case operand.IsR64(mr) && operand.IsXMM(x) && operand.IsXMM(x1):
+		return &intrep.Instruction{
+			Opcode:   "VCVTSI2SDQ",
+			Operands: []operand.Op{mr, x, x1},
+			Inputs:   []operand.Op{mr, x},
+			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX512F"},
+		}, nil
 	}
 	return nil, errors.New("VCVTSI2SDQ: bad operands")
 }
@@ -21248,6 +22801,8 @@ func VCVTSI2SDQ(mr, x, x1 operand.Op) (*intrep.Instruction, error) {
 //
 // 	VCVTSI2SSL r32 xmm xmm
 // 	VCVTSI2SSL m32 xmm xmm
+// 	VCVTSI2SSL m32 xmm xmm
+// 	VCVTSI2SSL r32 xmm xmm
 func VCVTSI2SSL(mr, x, x1 operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsR32(mr) && operand.IsXMM(x) && operand.IsXMM(x1):
@@ -21266,6 +22821,22 @@ func VCVTSI2SSL(mr, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Outputs:  []operand.Op{x1},
 			ISA:      []string{"AVX"},
 		}, nil
+	case operand.IsM32(mr) && operand.IsXMM(x) && operand.IsXMM(x1):
+		return &intrep.Instruction{
+			Opcode:   "VCVTSI2SSL",
+			Operands: []operand.Op{mr, x, x1},
+			Inputs:   []operand.Op{mr, x},
+			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case operand.IsR32(mr) && operand.IsXMM(x) && operand.IsXMM(x1):
+		return &intrep.Instruction{
+			Opcode:   "VCVTSI2SSL",
+			Operands: []operand.Op{mr, x, x1},
+			Inputs:   []operand.Op{mr, x},
+			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX512F"},
+		}, nil
 	}
 	return nil, errors.New("VCVTSI2SSL: bad operands")
 }
@@ -21276,6 +22847,8 @@ func VCVTSI2SSL(mr, x, x1 operand.Op) (*intrep.Instruction, error) {
 //
 // 	VCVTSI2SSQ r64 xmm xmm
 // 	VCVTSI2SSQ m64 xmm xmm
+// 	VCVTSI2SSQ m64 xmm xmm
+// 	VCVTSI2SSQ r64 xmm xmm
 func VCVTSI2SSQ(mr, x, x1 operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsR64(mr) && operand.IsXMM(x) && operand.IsXMM(x1):
@@ -21294,6 +22867,22 @@ func VCVTSI2SSQ(mr, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Outputs:  []operand.Op{x1},
 			ISA:      []string{"AVX"},
 		}, nil
+	case operand.IsM64(mr) && operand.IsXMM(x) && operand.IsXMM(x1):
+		return &intrep.Instruction{
+			Opcode:   "VCVTSI2SSQ",
+			Operands: []operand.Op{mr, x, x1},
+			Inputs:   []operand.Op{mr, x},
+			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case operand.IsR64(mr) && operand.IsXMM(x) && operand.IsXMM(x1):
+		return &intrep.Instruction{
+			Opcode:   "VCVTSI2SSQ",
+			Operands: []operand.Op{mr, x, x1},
+			Inputs:   []operand.Op{mr, x},
+			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX512F"},
+		}, nil
 	}
 	return nil, errors.New("VCVTSI2SSQ: bad operands")
 }
@@ -21302,25 +22891,61 @@ func VCVTSI2SSQ(mr, x, x1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+// 	VCVTSS2SD m32 xmm xmm
+// 	VCVTSS2SD m32 xmm k xmm
 // 	VCVTSS2SD xmm xmm xmm
 // 	VCVTSS2SD m32 xmm xmm
-func VCVTSS2SD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
+// 	VCVTSS2SD xmm xmm xmm
+// 	VCVTSS2SD xmm xmm k xmm
+func VCVTSS2SD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTSS2SD",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VCVTSS2SD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VCVTSS2SD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM32(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTSS2SD",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VCVTSS2SD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VCVTSS2SD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VCVTSS2SD: bad operands")
@@ -21332,6 +22957,8 @@ func VCVTSS2SD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 //
 // 	VCVTSS2SI xmm r32
 // 	VCVTSS2SI m32 r32
+// 	VCVTSS2SI m32 r32
+// 	VCVTSS2SI xmm r32
 func VCVTSS2SI(mx, r operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsXMM(mx) && operand.IsR32(r):
@@ -21350,6 +22977,22 @@ func VCVTSS2SI(mx, r operand.Op) (*intrep.Instruction, error) {
 			Outputs:  []operand.Op{r},
 			ISA:      []string{"AVX"},
 		}, nil
+	case operand.IsM32(mx) && operand.IsR32(r):
+		return &intrep.Instruction{
+			Opcode:   "VCVTSS2SI",
+			Operands: []operand.Op{mx, r},
+			Inputs:   []operand.Op{mx},
+			Outputs:  []operand.Op{r},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case operand.IsXMM(mx) && operand.IsR32(r):
+		return &intrep.Instruction{
+			Opcode:   "VCVTSS2SI",
+			Operands: []operand.Op{mx, r},
+			Inputs:   []operand.Op{mx},
+			Outputs:  []operand.Op{r},
+			ISA:      []string{"AVX512F"},
+		}, nil
 	}
 	return nil, errors.New("VCVTSS2SI: bad operands")
 }
@@ -21360,6 +23003,8 @@ func VCVTSS2SI(mx, r operand.Op) (*intrep.Instruction, error) {
 //
 // 	VCVTSS2SIQ xmm r64
 // 	VCVTSS2SIQ m32 r64
+// 	VCVTSS2SIQ m32 r64
+// 	VCVTSS2SIQ xmm r64
 func VCVTSS2SIQ(mx, r operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsXMM(mx) && operand.IsR64(r):
@@ -21378,8 +23023,126 @@ func VCVTSS2SIQ(mx, r operand.Op) (*intrep.Instruction, error) {
 			Outputs:  []operand.Op{r},
 			ISA:      []string{"AVX"},
 		}, nil
+	case operand.IsM32(mx) && operand.IsR64(r):
+		return &intrep.Instruction{
+			Opcode:   "VCVTSS2SIQ",
+			Operands: []operand.Op{mx, r},
+			Inputs:   []operand.Op{mx},
+			Outputs:  []operand.Op{r},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case operand.IsXMM(mx) && operand.IsR64(r):
+		return &intrep.Instruction{
+			Opcode:   "VCVTSS2SIQ",
+			Operands: []operand.Op{mx, r},
+			Inputs:   []operand.Op{mx},
+			Outputs:  []operand.Op{r},
+			ISA:      []string{"AVX512F"},
+		}, nil
 	}
 	return nil, errors.New("VCVTSS2SIQ: bad operands")
+}
+
+// VCVTSS2USIL: Convert Scalar Single-Precision Floating-Point Value to Unsigned Doubleword Integer.
+//
+// Forms:
+//
+// 	VCVTSS2USIL m32 r32
+// 	VCVTSS2USIL xmm r32
+func VCVTSS2USIL(mx, r operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case operand.IsM32(mx) && operand.IsR32(r):
+		return &intrep.Instruction{
+			Opcode:   "VCVTSS2USIL",
+			Operands: []operand.Op{mx, r},
+			Inputs:   []operand.Op{mx},
+			Outputs:  []operand.Op{r},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case operand.IsXMM(mx) && operand.IsR32(r):
+		return &intrep.Instruction{
+			Opcode:   "VCVTSS2USIL",
+			Operands: []operand.Op{mx, r},
+			Inputs:   []operand.Op{mx},
+			Outputs:  []operand.Op{r},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VCVTSS2USIL: bad operands")
+}
+
+// VCVTSS2USIQ: Convert Scalar Single-Precision Floating-Point Value to Unsigned Doubleword Integer.
+//
+// Forms:
+//
+// 	VCVTSS2USIQ m32 r64
+// 	VCVTSS2USIQ xmm r64
+func VCVTSS2USIQ(mx, r operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case operand.IsM32(mx) && operand.IsR64(r):
+		return &intrep.Instruction{
+			Opcode:   "VCVTSS2USIQ",
+			Operands: []operand.Op{mx, r},
+			Inputs:   []operand.Op{mx},
+			Outputs:  []operand.Op{r},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case operand.IsXMM(mx) && operand.IsR64(r):
+		return &intrep.Instruction{
+			Opcode:   "VCVTSS2USIQ",
+			Operands: []operand.Op{mx, r},
+			Inputs:   []operand.Op{mx},
+			Outputs:  []operand.Op{r},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VCVTSS2USIQ: bad operands")
+}
+
+// VCVTTPD2DQ: Convert with Truncation Packed Double-Precision FP Values to Packed Dword Integers.
+//
+// Forms:
+//
+// 	VCVTTPD2DQ m512/m64bcst ymm
+// 	VCVTTPD2DQ m512/m64bcst k ymm
+// 	VCVTTPD2DQ zmm          ymm
+// 	VCVTTPD2DQ zmm          k ymm
+func VCVTTPD2DQ(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 2 && operand.IsM512M64BCST(ops[0]) && operand.IsYMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VCVTTPD2DQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsK(ops[1]) && operand.IsYMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VCVTTPD2DQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsYMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VCVTTPD2DQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsYMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VCVTTPD2DQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VCVTTPD2DQ: bad operands")
 }
 
 // VCVTTPD2DQX: Convert with Truncation Packed Double-Precision FP Values to Packed Dword Integers.
@@ -21438,50 +23201,178 @@ func VCVTTPD2DQY(my, x operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTTPD2DQY: bad operands")
 }
 
+// VCVTTPD2UDQ: Convert with Truncation Packed Double-Precision Floating-Point Values to Packed Unsigned Doubleword Integers.
+//
+// Forms:
+//
+// 	VCVTTPD2UDQ m512/m64bcst ymm
+// 	VCVTTPD2UDQ m512/m64bcst k ymm
+// 	VCVTTPD2UDQ zmm          ymm
+// 	VCVTTPD2UDQ zmm          k ymm
+func VCVTTPD2UDQ(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 2 && operand.IsM512M64BCST(ops[0]) && operand.IsYMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VCVTTPD2UDQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsK(ops[1]) && operand.IsYMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VCVTTPD2UDQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsYMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VCVTTPD2UDQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsYMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VCVTTPD2UDQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VCVTTPD2UDQ: bad operands")
+}
+
 // VCVTTPS2DQ: Convert with Truncation Packed Single-Precision FP Values to Packed Dword Integers.
 //
 // Forms:
 //
-// 	VCVTTPS2DQ xmm  xmm
-// 	VCVTTPS2DQ m128 xmm
-// 	VCVTTPS2DQ ymm  ymm
-// 	VCVTTPS2DQ m256 ymm
-func VCVTTPS2DQ(mxy, xy operand.Op) (*intrep.Instruction, error) {
+// 	VCVTTPS2DQ m512/m32bcst zmm
+// 	VCVTTPS2DQ m512/m32bcst k zmm
+// 	VCVTTPS2DQ xmm          xmm
+// 	VCVTTPS2DQ m128         xmm
+// 	VCVTTPS2DQ ymm          ymm
+// 	VCVTTPS2DQ m256         ymm
+// 	VCVTTPS2DQ zmm          zmm
+// 	VCVTTPS2DQ zmm          k zmm
+func VCVTTPS2DQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy):
+	case len(ops) == 2 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTTPS2DQ",
-			Operands: []operand.Op{mxy, xy},
-			Inputs:   []operand.Op{mxy},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VCVTTPS2DQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VCVTTPS2DQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy):
+	case len(ops) == 2 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTTPS2DQ",
-			Operands: []operand.Op{mxy, xy},
-			Inputs:   []operand.Op{mxy},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy):
+	case len(ops) == 2 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTTPS2DQ",
-			Operands: []operand.Op{mxy, xy},
-			Inputs:   []operand.Op{mxy},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy):
+	case len(ops) == 2 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTTPS2DQ",
-			Operands: []operand.Op{mxy, xy},
-			Inputs:   []operand.Op{mxy},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
+		}, nil
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VCVTTPS2DQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VCVTTPS2DQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VCVTTPS2DQ: bad operands")
+}
+
+// VCVTTPS2UDQ: Convert with Truncation Packed Single-Precision Floating-Point Values to Packed Unsigned Doubleword Integer Values.
+//
+// Forms:
+//
+// 	VCVTTPS2UDQ m512/m32bcst zmm
+// 	VCVTTPS2UDQ m512/m32bcst k zmm
+// 	VCVTTPS2UDQ zmm          zmm
+// 	VCVTTPS2UDQ zmm          k zmm
+func VCVTTPS2UDQ(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 2 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VCVTTPS2UDQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VCVTTPS2UDQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VCVTTPS2UDQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VCVTTPS2UDQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VCVTTPS2UDQ: bad operands")
 }
 
 // VCVTTSD2SI: Convert with Truncation Scalar Double-Precision FP Value to Signed Integer.
@@ -21490,6 +23381,8 @@ func VCVTTPS2DQ(mxy, xy operand.Op) (*intrep.Instruction, error) {
 //
 // 	VCVTTSD2SI xmm r32
 // 	VCVTTSD2SI m64 r32
+// 	VCVTTSD2SI m64 r32
+// 	VCVTTSD2SI xmm r32
 func VCVTTSD2SI(mx, r operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsXMM(mx) && operand.IsR32(r):
@@ -21508,6 +23401,22 @@ func VCVTTSD2SI(mx, r operand.Op) (*intrep.Instruction, error) {
 			Outputs:  []operand.Op{r},
 			ISA:      []string{"AVX"},
 		}, nil
+	case operand.IsM64(mx) && operand.IsR32(r):
+		return &intrep.Instruction{
+			Opcode:   "VCVTTSD2SI",
+			Operands: []operand.Op{mx, r},
+			Inputs:   []operand.Op{mx},
+			Outputs:  []operand.Op{r},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case operand.IsXMM(mx) && operand.IsR32(r):
+		return &intrep.Instruction{
+			Opcode:   "VCVTTSD2SI",
+			Operands: []operand.Op{mx, r},
+			Inputs:   []operand.Op{mx},
+			Outputs:  []operand.Op{r},
+			ISA:      []string{"AVX512F"},
+		}, nil
 	}
 	return nil, errors.New("VCVTTSD2SI: bad operands")
 }
@@ -21518,6 +23427,8 @@ func VCVTTSD2SI(mx, r operand.Op) (*intrep.Instruction, error) {
 //
 // 	VCVTTSD2SIQ xmm r64
 // 	VCVTTSD2SIQ m64 r64
+// 	VCVTTSD2SIQ m64 r64
+// 	VCVTTSD2SIQ xmm r64
 func VCVTTSD2SIQ(mx, r operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsXMM(mx) && operand.IsR64(r):
@@ -21536,8 +23447,80 @@ func VCVTTSD2SIQ(mx, r operand.Op) (*intrep.Instruction, error) {
 			Outputs:  []operand.Op{r},
 			ISA:      []string{"AVX"},
 		}, nil
+	case operand.IsM64(mx) && operand.IsR64(r):
+		return &intrep.Instruction{
+			Opcode:   "VCVTTSD2SIQ",
+			Operands: []operand.Op{mx, r},
+			Inputs:   []operand.Op{mx},
+			Outputs:  []operand.Op{r},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case operand.IsXMM(mx) && operand.IsR64(r):
+		return &intrep.Instruction{
+			Opcode:   "VCVTTSD2SIQ",
+			Operands: []operand.Op{mx, r},
+			Inputs:   []operand.Op{mx},
+			Outputs:  []operand.Op{r},
+			ISA:      []string{"AVX512F"},
+		}, nil
 	}
 	return nil, errors.New("VCVTTSD2SIQ: bad operands")
+}
+
+// VCVTTSD2USIL: Convert with Truncation Scalar Double-Precision Floating-Point Value to Unsigned Integer.
+//
+// Forms:
+//
+// 	VCVTTSD2USIL m64 r32
+// 	VCVTTSD2USIL xmm r32
+func VCVTTSD2USIL(mx, r operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case operand.IsM64(mx) && operand.IsR32(r):
+		return &intrep.Instruction{
+			Opcode:   "VCVTTSD2USIL",
+			Operands: []operand.Op{mx, r},
+			Inputs:   []operand.Op{mx},
+			Outputs:  []operand.Op{r},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case operand.IsXMM(mx) && operand.IsR32(r):
+		return &intrep.Instruction{
+			Opcode:   "VCVTTSD2USIL",
+			Operands: []operand.Op{mx, r},
+			Inputs:   []operand.Op{mx},
+			Outputs:  []operand.Op{r},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VCVTTSD2USIL: bad operands")
+}
+
+// VCVTTSD2USIQ: Convert with Truncation Scalar Double-Precision Floating-Point Value to Unsigned Integer.
+//
+// Forms:
+//
+// 	VCVTTSD2USIQ m64 r64
+// 	VCVTTSD2USIQ xmm r64
+func VCVTTSD2USIQ(mx, r operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case operand.IsM64(mx) && operand.IsR64(r):
+		return &intrep.Instruction{
+			Opcode:   "VCVTTSD2USIQ",
+			Operands: []operand.Op{mx, r},
+			Inputs:   []operand.Op{mx},
+			Outputs:  []operand.Op{r},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case operand.IsXMM(mx) && operand.IsR64(r):
+		return &intrep.Instruction{
+			Opcode:   "VCVTTSD2USIQ",
+			Operands: []operand.Op{mx, r},
+			Inputs:   []operand.Op{mx},
+			Outputs:  []operand.Op{r},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VCVTTSD2USIQ: bad operands")
 }
 
 // VCVTTSS2SI: Convert with Truncation Scalar Single-Precision FP Value to Dword Integer.
@@ -21546,6 +23529,8 @@ func VCVTTSD2SIQ(mx, r operand.Op) (*intrep.Instruction, error) {
 //
 // 	VCVTTSS2SI xmm r32
 // 	VCVTTSS2SI m32 r32
+// 	VCVTTSS2SI m32 r32
+// 	VCVTTSS2SI xmm r32
 func VCVTTSS2SI(mx, r operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsXMM(mx) && operand.IsR32(r):
@@ -21564,6 +23549,22 @@ func VCVTTSS2SI(mx, r operand.Op) (*intrep.Instruction, error) {
 			Outputs:  []operand.Op{r},
 			ISA:      []string{"AVX"},
 		}, nil
+	case operand.IsM32(mx) && operand.IsR32(r):
+		return &intrep.Instruction{
+			Opcode:   "VCVTTSS2SI",
+			Operands: []operand.Op{mx, r},
+			Inputs:   []operand.Op{mx},
+			Outputs:  []operand.Op{r},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case operand.IsXMM(mx) && operand.IsR32(r):
+		return &intrep.Instruction{
+			Opcode:   "VCVTTSS2SI",
+			Operands: []operand.Op{mx, r},
+			Inputs:   []operand.Op{mx},
+			Outputs:  []operand.Op{r},
+			ISA:      []string{"AVX512F"},
+		}, nil
 	}
 	return nil, errors.New("VCVTTSS2SI: bad operands")
 }
@@ -21574,6 +23575,8 @@ func VCVTTSS2SI(mx, r operand.Op) (*intrep.Instruction, error) {
 //
 // 	VCVTTSS2SIQ xmm r64
 // 	VCVTTSS2SIQ m32 r64
+// 	VCVTTSS2SIQ m32 r64
+// 	VCVTTSS2SIQ xmm r64
 func VCVTTSS2SIQ(mx, r operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsXMM(mx) && operand.IsR64(r):
@@ -21592,51 +23595,363 @@ func VCVTTSS2SIQ(mx, r operand.Op) (*intrep.Instruction, error) {
 			Outputs:  []operand.Op{r},
 			ISA:      []string{"AVX"},
 		}, nil
+	case operand.IsM32(mx) && operand.IsR64(r):
+		return &intrep.Instruction{
+			Opcode:   "VCVTTSS2SIQ",
+			Operands: []operand.Op{mx, r},
+			Inputs:   []operand.Op{mx},
+			Outputs:  []operand.Op{r},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case operand.IsXMM(mx) && operand.IsR64(r):
+		return &intrep.Instruction{
+			Opcode:   "VCVTTSS2SIQ",
+			Operands: []operand.Op{mx, r},
+			Inputs:   []operand.Op{mx},
+			Outputs:  []operand.Op{r},
+			ISA:      []string{"AVX512F"},
+		}, nil
 	}
 	return nil, errors.New("VCVTTSS2SIQ: bad operands")
+}
+
+// VCVTTSS2USIL: Convert with Truncation Scalar Single-Precision Floating-Point Value to Unsigned Integer.
+//
+// Forms:
+//
+// 	VCVTTSS2USIL m32 r32
+// 	VCVTTSS2USIL xmm r32
+func VCVTTSS2USIL(mx, r operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case operand.IsM32(mx) && operand.IsR32(r):
+		return &intrep.Instruction{
+			Opcode:   "VCVTTSS2USIL",
+			Operands: []operand.Op{mx, r},
+			Inputs:   []operand.Op{mx},
+			Outputs:  []operand.Op{r},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case operand.IsXMM(mx) && operand.IsR32(r):
+		return &intrep.Instruction{
+			Opcode:   "VCVTTSS2USIL",
+			Operands: []operand.Op{mx, r},
+			Inputs:   []operand.Op{mx},
+			Outputs:  []operand.Op{r},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VCVTTSS2USIL: bad operands")
+}
+
+// VCVTTSS2USIQ: Convert with Truncation Scalar Single-Precision Floating-Point Value to Unsigned Integer.
+//
+// Forms:
+//
+// 	VCVTTSS2USIQ m32 r64
+// 	VCVTTSS2USIQ xmm r64
+func VCVTTSS2USIQ(mx, r operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case operand.IsM32(mx) && operand.IsR64(r):
+		return &intrep.Instruction{
+			Opcode:   "VCVTTSS2USIQ",
+			Operands: []operand.Op{mx, r},
+			Inputs:   []operand.Op{mx},
+			Outputs:  []operand.Op{r},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case operand.IsXMM(mx) && operand.IsR64(r):
+		return &intrep.Instruction{
+			Opcode:   "VCVTTSS2USIQ",
+			Operands: []operand.Op{mx, r},
+			Inputs:   []operand.Op{mx},
+			Outputs:  []operand.Op{r},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VCVTTSS2USIQ: bad operands")
+}
+
+// VCVTUDQ2PD: Convert Packed Unsigned Doubleword Integers to Packed Double-Precision Floating-Point Values.
+//
+// Forms:
+//
+// 	VCVTUDQ2PD m256/m32bcst zmm
+// 	VCVTUDQ2PD m256/m32bcst k zmm
+// 	VCVTUDQ2PD ymm          zmm
+// 	VCVTUDQ2PD ymm          k zmm
+func VCVTUDQ2PD(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 2 && operand.IsM256M32BCST(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VCVTUDQ2PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsM256M32BCST(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VCVTUDQ2PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsYMM(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VCVTUDQ2PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VCVTUDQ2PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VCVTUDQ2PD: bad operands")
+}
+
+// VCVTUDQ2PS: Convert Packed Unsigned Doubleword Integers to Packed Single-Precision Floating-Point Values.
+//
+// Forms:
+//
+// 	VCVTUDQ2PS m512/m32bcst zmm
+// 	VCVTUDQ2PS m512/m32bcst k zmm
+// 	VCVTUDQ2PS zmm          zmm
+// 	VCVTUDQ2PS zmm          k zmm
+func VCVTUDQ2PS(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 2 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VCVTUDQ2PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VCVTUDQ2PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VCVTUDQ2PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VCVTUDQ2PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VCVTUDQ2PS: bad operands")
+}
+
+// VCVTUSI2SDL: Convert Unsigned Integer to Scalar Double-Precision Floating-Point Value.
+//
+// Forms:
+//
+// 	VCVTUSI2SDL r32 xmm xmm
+// 	VCVTUSI2SDL m32 xmm xmm
+func VCVTUSI2SDL(mr, x, x1 operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case operand.IsR32(mr) && operand.IsXMM(x) && operand.IsXMM(x1):
+		return &intrep.Instruction{
+			Opcode:   "VCVTUSI2SDL",
+			Operands: []operand.Op{mr, x, x1},
+			Inputs:   []operand.Op{mr, x},
+			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case operand.IsM32(mr) && operand.IsXMM(x) && operand.IsXMM(x1):
+		return &intrep.Instruction{
+			Opcode:   "VCVTUSI2SDL",
+			Operands: []operand.Op{mr, x, x1},
+			Inputs:   []operand.Op{mr, x},
+			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VCVTUSI2SDL: bad operands")
+}
+
+// VCVTUSI2SDQ: Convert Unsigned Integer to Scalar Double-Precision Floating-Point Value.
+//
+// Forms:
+//
+// 	VCVTUSI2SDQ m64 xmm xmm
+// 	VCVTUSI2SDQ r64 xmm xmm
+func VCVTUSI2SDQ(mr, x, x1 operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case operand.IsM64(mr) && operand.IsXMM(x) && operand.IsXMM(x1):
+		return &intrep.Instruction{
+			Opcode:   "VCVTUSI2SDQ",
+			Operands: []operand.Op{mr, x, x1},
+			Inputs:   []operand.Op{mr, x},
+			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case operand.IsR64(mr) && operand.IsXMM(x) && operand.IsXMM(x1):
+		return &intrep.Instruction{
+			Opcode:   "VCVTUSI2SDQ",
+			Operands: []operand.Op{mr, x, x1},
+			Inputs:   []operand.Op{mr, x},
+			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VCVTUSI2SDQ: bad operands")
+}
+
+// VCVTUSI2SSL: Convert Unsigned Integer to Scalar Single-Precision Floating-Point Value.
+//
+// Forms:
+//
+// 	VCVTUSI2SSL m32 xmm xmm
+// 	VCVTUSI2SSL r32 xmm xmm
+func VCVTUSI2SSL(mr, x, x1 operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case operand.IsM32(mr) && operand.IsXMM(x) && operand.IsXMM(x1):
+		return &intrep.Instruction{
+			Opcode:   "VCVTUSI2SSL",
+			Operands: []operand.Op{mr, x, x1},
+			Inputs:   []operand.Op{mr, x},
+			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case operand.IsR32(mr) && operand.IsXMM(x) && operand.IsXMM(x1):
+		return &intrep.Instruction{
+			Opcode:   "VCVTUSI2SSL",
+			Operands: []operand.Op{mr, x, x1},
+			Inputs:   []operand.Op{mr, x},
+			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VCVTUSI2SSL: bad operands")
+}
+
+// VCVTUSI2SSQ: Convert Unsigned Integer to Scalar Single-Precision Floating-Point Value.
+//
+// Forms:
+//
+// 	VCVTUSI2SSQ m64 xmm xmm
+// 	VCVTUSI2SSQ r64 xmm xmm
+func VCVTUSI2SSQ(mr, x, x1 operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case operand.IsM64(mr) && operand.IsXMM(x) && operand.IsXMM(x1):
+		return &intrep.Instruction{
+			Opcode:   "VCVTUSI2SSQ",
+			Operands: []operand.Op{mr, x, x1},
+			Inputs:   []operand.Op{mr, x},
+			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case operand.IsR64(mr) && operand.IsXMM(x) && operand.IsXMM(x1):
+		return &intrep.Instruction{
+			Opcode:   "VCVTUSI2SSQ",
+			Operands: []operand.Op{mr, x, x1},
+			Inputs:   []operand.Op{mr, x},
+			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VCVTUSI2SSQ: bad operands")
 }
 
 // VDIVPD: Divide Packed Double-Precision Floating-Point Values.
 //
 // Forms:
 //
-// 	VDIVPD xmm  xmm xmm
-// 	VDIVPD m128 xmm xmm
-// 	VDIVPD ymm  ymm ymm
-// 	VDIVPD m256 ymm ymm
-func VDIVPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VDIVPD m512/m64bcst zmm zmm
+// 	VDIVPD m512/m64bcst zmm k zmm
+// 	VDIVPD xmm          xmm xmm
+// 	VDIVPD m128         xmm xmm
+// 	VDIVPD ymm          ymm ymm
+// 	VDIVPD m256         ymm ymm
+// 	VDIVPD zmm          zmm zmm
+// 	VDIVPD zmm          zmm k zmm
+func VDIVPD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VDIVPD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VDIVPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VDIVPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VDIVPD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VDIVPD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VDIVPD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VDIVPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VDIVPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VDIVPD: bad operands")
@@ -21646,43 +23961,79 @@ func VDIVPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VDIVPS xmm  xmm xmm
-// 	VDIVPS m128 xmm xmm
-// 	VDIVPS ymm  ymm ymm
-// 	VDIVPS m256 ymm ymm
-func VDIVPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VDIVPS m512/m32bcst zmm zmm
+// 	VDIVPS m512/m32bcst zmm k zmm
+// 	VDIVPS xmm          xmm xmm
+// 	VDIVPS m128         xmm xmm
+// 	VDIVPS ymm          ymm ymm
+// 	VDIVPS m256         ymm ymm
+// 	VDIVPS zmm          zmm zmm
+// 	VDIVPS zmm          zmm k zmm
+func VDIVPS(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VDIVPS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VDIVPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VDIVPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VDIVPS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VDIVPS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VDIVPS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VDIVPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VDIVPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VDIVPS: bad operands")
@@ -21692,25 +24043,61 @@ func VDIVPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+// 	VDIVSD m64 xmm xmm
+// 	VDIVSD m64 xmm k xmm
 // 	VDIVSD xmm xmm xmm
 // 	VDIVSD m64 xmm xmm
-func VDIVSD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
+// 	VDIVSD xmm xmm xmm
+// 	VDIVSD xmm xmm k xmm
+func VDIVSD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VDIVSD",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VDIVSD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VDIVSD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM64(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VDIVSD",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VDIVSD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VDIVSD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VDIVSD: bad operands")
@@ -21720,25 +24107,61 @@ func VDIVSD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+// 	VDIVSS m32 xmm xmm
+// 	VDIVSS m32 xmm k xmm
 // 	VDIVSS xmm xmm xmm
 // 	VDIVSS m32 xmm xmm
-func VDIVSS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
+// 	VDIVSS xmm xmm xmm
+// 	VDIVSS xmm xmm k xmm
+func VDIVSS(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VDIVSS",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VDIVSS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VDIVSS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM32(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VDIVSS",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VDIVSS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VDIVSS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VDIVSS: bad operands")
@@ -21818,6 +24241,98 @@ func VDPPS(i, mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VDPPS: bad operands")
 }
 
+// VEXPANDPD: Load Sparse Packed Double-Precision Floating-Point Values from Dense Memory.
+//
+// Forms:
+//
+// 	VEXPANDPD zmm  zmm
+// 	VEXPANDPD zmm  k zmm
+// 	VEXPANDPD m512 zmm
+// 	VEXPANDPD m512 k zmm
+func VEXPANDPD(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VEXPANDPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VEXPANDPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsM512(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VEXPANDPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsM512(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VEXPANDPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VEXPANDPD: bad operands")
+}
+
+// VEXPANDPS: Load Sparse Packed Single-Precision Floating-Point Values from Dense Memory.
+//
+// Forms:
+//
+// 	VEXPANDPS zmm  zmm
+// 	VEXPANDPS zmm  k zmm
+// 	VEXPANDPS m512 zmm
+// 	VEXPANDPS m512 k zmm
+func VEXPANDPS(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VEXPANDPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VEXPANDPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsM512(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VEXPANDPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsM512(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VEXPANDPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VEXPANDPS: bad operands")
+}
+
 // VEXTRACTF128: Extract Packed Floating-Point Values.
 //
 // Forms:
@@ -21844,6 +24359,98 @@ func VEXTRACTF128(i, y, mx operand.Op) (*intrep.Instruction, error) {
 		}, nil
 	}
 	return nil, errors.New("VEXTRACTF128: bad operands")
+}
+
+// VEXTRACTF32X4: Extract 128 Bits of Packed Single-Precision Floating-Point Values.
+//
+// Forms:
+//
+// 	VEXTRACTF32X4 imm8 zmm xmm
+// 	VEXTRACTF32X4 imm8 zmm k xmm
+// 	VEXTRACTF32X4 imm8 zmm m128
+// 	VEXTRACTF32X4 imm8 zmm k m128
+func VEXTRACTF32X4(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VEXTRACTF32X4",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VEXTRACTF32X4",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsM128(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VEXTRACTF32X4",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsM128(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VEXTRACTF32X4",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VEXTRACTF32X4: bad operands")
+}
+
+// VEXTRACTF64X4: Extract 256 Bits of Packed Double-Precision Floating-Point Values.
+//
+// Forms:
+//
+// 	VEXTRACTF64X4 imm8 zmm ymm
+// 	VEXTRACTF64X4 imm8 zmm k ymm
+// 	VEXTRACTF64X4 imm8 zmm m256
+// 	VEXTRACTF64X4 imm8 zmm k m256
+func VEXTRACTF64X4(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsYMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VEXTRACTF64X4",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsYMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VEXTRACTF64X4",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsM256(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VEXTRACTF64X4",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsM256(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VEXTRACTF64X4",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VEXTRACTF64X4: bad operands")
 }
 
 // VEXTRACTI128: Extract Packed Integer Values.
@@ -21874,15 +24481,125 @@ func VEXTRACTI128(i, y, mx operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VEXTRACTI128: bad operands")
 }
 
+// VEXTRACTI32X4: Extract 128 Bits of Packed Doubleword Integer Values.
+//
+// Forms:
+//
+// 	VEXTRACTI32X4 imm8 zmm xmm
+// 	VEXTRACTI32X4 imm8 zmm k xmm
+// 	VEXTRACTI32X4 imm8 zmm m128
+// 	VEXTRACTI32X4 imm8 zmm k m128
+func VEXTRACTI32X4(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VEXTRACTI32X4",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VEXTRACTI32X4",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsM128(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VEXTRACTI32X4",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsM128(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VEXTRACTI32X4",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VEXTRACTI32X4: bad operands")
+}
+
+// VEXTRACTI64X4: Extract 256 Bits of Packed Quadword Integer Values.
+//
+// Forms:
+//
+// 	VEXTRACTI64X4 imm8 zmm ymm
+// 	VEXTRACTI64X4 imm8 zmm k ymm
+// 	VEXTRACTI64X4 imm8 zmm m256
+// 	VEXTRACTI64X4 imm8 zmm k m256
+func VEXTRACTI64X4(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsYMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VEXTRACTI64X4",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsYMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VEXTRACTI64X4",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsM256(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VEXTRACTI64X4",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsM256(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VEXTRACTI64X4",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VEXTRACTI64X4: bad operands")
+}
+
 // VEXTRACTPS: Extract Packed Single Precision Floating-Point Value.
 //
 // Forms:
 //
 // 	VEXTRACTPS imm8 xmm r32
+// 	VEXTRACTPS imm8 xmm r32
+// 	VEXTRACTPS imm8 xmm m32
 // 	VEXTRACTPS imm8 xmm m32
 func VEXTRACTPS(i, x, mr operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsIMM8(i) && operand.IsXMM(x) && operand.IsR32(mr):
+		return &intrep.Instruction{
+			Opcode:   "VEXTRACTPS",
+			Operands: []operand.Op{i, x, mr},
+			Inputs:   []operand.Op{x},
+			Outputs:  []operand.Op{mr},
+			ISA:      []string{"AVX"},
+		}, nil
+	case operand.IsIMM8(i) && operand.IsXMM(x) && operand.IsR32(mr):
+		return &intrep.Instruction{
+			Opcode:   "VEXTRACTPS",
+			Operands: []operand.Op{i, x, mr},
+			Inputs:   []operand.Op{x},
+			Outputs:  []operand.Op{mr},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case operand.IsIMM8(i) && operand.IsXMM(x) && operand.IsM32(mr):
 		return &intrep.Instruction{
 			Opcode:   "VEXTRACTPS",
 			Operands: []operand.Op{i, x, mr},
@@ -21896,53 +24613,273 @@ func VEXTRACTPS(i, x, mr operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, x, mr},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{mr},
-			ISA:      []string{"AVX"},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VEXTRACTPS: bad operands")
+}
+
+// VFIXUPIMMPD: Fix Up Special Packed Double-Precision Floating-Point Values.
+//
+// Forms:
+//
+// 	VFIXUPIMMPD imm8 m512/m64bcst zmm zmm
+// 	VFIXUPIMMPD imm8 m512/m64bcst zmm k zmm
+// 	VFIXUPIMMPD imm8 zmm          zmm zmm
+// 	VFIXUPIMMPD imm8 zmm          zmm k zmm
+func VFIXUPIMMPD(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsZMM(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFIXUPIMMPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]) && operand.IsZMM(ops[4]):
+		return &intrep.Instruction{
+			Opcode:   "VFIXUPIMMPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3], ops[4]},
+			Outputs:  []operand.Op{ops[4]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFIXUPIMMPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]) && operand.IsZMM(ops[4]):
+		return &intrep.Instruction{
+			Opcode:   "VFIXUPIMMPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3], ops[4]},
+			Outputs:  []operand.Op{ops[4]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VFIXUPIMMPD: bad operands")
+}
+
+// VFIXUPIMMPS: Fix Up Special Packed Single-Precision Floating-Point Values.
+//
+// Forms:
+//
+// 	VFIXUPIMMPS imm8 m512/m32bcst zmm zmm
+// 	VFIXUPIMMPS imm8 m512/m32bcst zmm k zmm
+// 	VFIXUPIMMPS imm8 zmm          zmm zmm
+// 	VFIXUPIMMPS imm8 zmm          zmm k zmm
+func VFIXUPIMMPS(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM512M32BCST(ops[1]) && operand.IsZMM(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFIXUPIMMPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsM512M32BCST(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]) && operand.IsZMM(ops[4]):
+		return &intrep.Instruction{
+			Opcode:   "VFIXUPIMMPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3], ops[4]},
+			Outputs:  []operand.Op{ops[4]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFIXUPIMMPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]) && operand.IsZMM(ops[4]):
+		return &intrep.Instruction{
+			Opcode:   "VFIXUPIMMPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3], ops[4]},
+			Outputs:  []operand.Op{ops[4]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VFIXUPIMMPS: bad operands")
+}
+
+// VFIXUPIMMSD: Fix Up Special Scalar Double-Precision Floating-Point Value.
+//
+// Forms:
+//
+// 	VFIXUPIMMSD imm8 m64 xmm xmm
+// 	VFIXUPIMMSD imm8 m64 xmm k xmm
+// 	VFIXUPIMMSD imm8 xmm xmm xmm
+// 	VFIXUPIMMSD imm8 xmm xmm k xmm
+func VFIXUPIMMSD(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM64(ops[1]) && operand.IsXMM(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFIXUPIMMSD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsM64(ops[1]) && operand.IsXMM(ops[2]) && operand.IsK(ops[3]) && operand.IsXMM(ops[4]):
+		return &intrep.Instruction{
+			Opcode:   "VFIXUPIMMSD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3], ops[4]},
+			Outputs:  []operand.Op{ops[4]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFIXUPIMMSD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]) && operand.IsK(ops[3]) && operand.IsXMM(ops[4]):
+		return &intrep.Instruction{
+			Opcode:   "VFIXUPIMMSD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3], ops[4]},
+			Outputs:  []operand.Op{ops[4]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VFIXUPIMMSD: bad operands")
+}
+
+// VFIXUPIMMSS: Fix Up Special Scalar Single-Precision Floating-Point Value.
+//
+// Forms:
+//
+// 	VFIXUPIMMSS imm8 m32 xmm xmm
+// 	VFIXUPIMMSS imm8 m32 xmm k xmm
+// 	VFIXUPIMMSS imm8 xmm xmm xmm
+// 	VFIXUPIMMSS imm8 xmm xmm k xmm
+func VFIXUPIMMSS(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM32(ops[1]) && operand.IsXMM(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFIXUPIMMSS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsM32(ops[1]) && operand.IsXMM(ops[2]) && operand.IsK(ops[3]) && operand.IsXMM(ops[4]):
+		return &intrep.Instruction{
+			Opcode:   "VFIXUPIMMSS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3], ops[4]},
+			Outputs:  []operand.Op{ops[4]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFIXUPIMMSS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]) && operand.IsK(ops[3]) && operand.IsXMM(ops[4]):
+		return &intrep.Instruction{
+			Opcode:   "VFIXUPIMMSS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3], ops[4]},
+			Outputs:  []operand.Op{ops[4]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VFIXUPIMMSS: bad operands")
 }
 
 // VFMADD132PD: Fused Multiply-Add of Packed Double-Precision Floating-Point Values.
 //
 // Forms:
 //
-// 	VFMADD132PD xmm  xmm xmm
-// 	VFMADD132PD m128 xmm xmm
-// 	VFMADD132PD ymm  ymm ymm
-// 	VFMADD132PD m256 ymm ymm
-func VFMADD132PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VFMADD132PD m512/m64bcst zmm zmm
+// 	VFMADD132PD m512/m64bcst zmm k zmm
+// 	VFMADD132PD xmm          xmm xmm
+// 	VFMADD132PD m128         xmm xmm
+// 	VFMADD132PD ymm          ymm ymm
+// 	VFMADD132PD m256         ymm ymm
+// 	VFMADD132PD zmm          zmm zmm
+// 	VFMADD132PD zmm          zmm k zmm
+func VFMADD132PD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD132PD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFMADD132PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFMADD132PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD132PD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD132PD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD132PD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFMADD132PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFMADD132PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VFMADD132PD: bad operands")
@@ -21952,43 +24889,79 @@ func VFMADD132PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VFMADD132PS xmm  xmm xmm
-// 	VFMADD132PS m128 xmm xmm
-// 	VFMADD132PS ymm  ymm ymm
-// 	VFMADD132PS m256 ymm ymm
-func VFMADD132PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VFMADD132PS m512/m32bcst zmm zmm
+// 	VFMADD132PS m512/m32bcst zmm k zmm
+// 	VFMADD132PS xmm          xmm xmm
+// 	VFMADD132PS m128         xmm xmm
+// 	VFMADD132PS ymm          ymm ymm
+// 	VFMADD132PS m256         ymm ymm
+// 	VFMADD132PS zmm          zmm zmm
+// 	VFMADD132PS zmm          zmm k zmm
+func VFMADD132PS(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD132PS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFMADD132PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFMADD132PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD132PS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD132PS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD132PS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFMADD132PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFMADD132PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VFMADD132PS: bad operands")
@@ -21998,25 +24971,61 @@ func VFMADD132PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+// 	VFMADD132SD m64 xmm xmm
+// 	VFMADD132SD m64 xmm k xmm
 // 	VFMADD132SD xmm xmm xmm
 // 	VFMADD132SD m64 xmm xmm
-func VFMADD132SD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
+// 	VFMADD132SD xmm xmm xmm
+// 	VFMADD132SD xmm xmm k xmm
+func VFMADD132SD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD132SD",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x, x1},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFMADD132SD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFMADD132SD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM64(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD132SD",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x, x1},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFMADD132SD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFMADD132SD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VFMADD132SD: bad operands")
@@ -22026,25 +25035,61 @@ func VFMADD132SD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+// 	VFMADD132SS m32 xmm xmm
+// 	VFMADD132SS m32 xmm k xmm
 // 	VFMADD132SS xmm xmm xmm
 // 	VFMADD132SS m32 xmm xmm
-func VFMADD132SS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
+// 	VFMADD132SS xmm xmm xmm
+// 	VFMADD132SS xmm xmm k xmm
+func VFMADD132SS(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD132SS",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x, x1},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFMADD132SS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFMADD132SS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM32(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD132SS",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x, x1},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFMADD132SS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFMADD132SS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VFMADD132SS: bad operands")
@@ -22054,43 +25099,79 @@ func VFMADD132SS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VFMADD213PD xmm  xmm xmm
-// 	VFMADD213PD m128 xmm xmm
-// 	VFMADD213PD ymm  ymm ymm
-// 	VFMADD213PD m256 ymm ymm
-func VFMADD213PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VFMADD213PD m512/m64bcst zmm zmm
+// 	VFMADD213PD m512/m64bcst zmm k zmm
+// 	VFMADD213PD xmm          xmm xmm
+// 	VFMADD213PD m128         xmm xmm
+// 	VFMADD213PD ymm          ymm ymm
+// 	VFMADD213PD m256         ymm ymm
+// 	VFMADD213PD zmm          zmm zmm
+// 	VFMADD213PD zmm          zmm k zmm
+func VFMADD213PD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD213PD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFMADD213PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFMADD213PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD213PD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD213PD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD213PD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFMADD213PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFMADD213PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VFMADD213PD: bad operands")
@@ -22100,43 +25181,79 @@ func VFMADD213PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VFMADD213PS xmm  xmm xmm
-// 	VFMADD213PS m128 xmm xmm
-// 	VFMADD213PS ymm  ymm ymm
-// 	VFMADD213PS m256 ymm ymm
-func VFMADD213PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VFMADD213PS m512/m32bcst zmm zmm
+// 	VFMADD213PS m512/m32bcst zmm k zmm
+// 	VFMADD213PS xmm          xmm xmm
+// 	VFMADD213PS m128         xmm xmm
+// 	VFMADD213PS ymm          ymm ymm
+// 	VFMADD213PS m256         ymm ymm
+// 	VFMADD213PS zmm          zmm zmm
+// 	VFMADD213PS zmm          zmm k zmm
+func VFMADD213PS(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD213PS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFMADD213PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFMADD213PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD213PS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD213PS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD213PS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFMADD213PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFMADD213PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VFMADD213PS: bad operands")
@@ -22146,25 +25263,61 @@ func VFMADD213PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+// 	VFMADD213SD m64 xmm xmm
+// 	VFMADD213SD m64 xmm k xmm
 // 	VFMADD213SD xmm xmm xmm
 // 	VFMADD213SD m64 xmm xmm
-func VFMADD213SD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
+// 	VFMADD213SD xmm xmm xmm
+// 	VFMADD213SD xmm xmm k xmm
+func VFMADD213SD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD213SD",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x, x1},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFMADD213SD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFMADD213SD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM64(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD213SD",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x, x1},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFMADD213SD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFMADD213SD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VFMADD213SD: bad operands")
@@ -22174,25 +25327,61 @@ func VFMADD213SD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+// 	VFMADD213SS m32 xmm xmm
+// 	VFMADD213SS m32 xmm k xmm
 // 	VFMADD213SS xmm xmm xmm
 // 	VFMADD213SS m32 xmm xmm
-func VFMADD213SS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
+// 	VFMADD213SS xmm xmm xmm
+// 	VFMADD213SS xmm xmm k xmm
+func VFMADD213SS(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD213SS",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x, x1},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFMADD213SS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFMADD213SS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM32(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD213SS",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x, x1},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFMADD213SS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFMADD213SS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VFMADD213SS: bad operands")
@@ -22202,43 +25391,79 @@ func VFMADD213SS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VFMADD231PD xmm  xmm xmm
-// 	VFMADD231PD m128 xmm xmm
-// 	VFMADD231PD ymm  ymm ymm
-// 	VFMADD231PD m256 ymm ymm
-func VFMADD231PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VFMADD231PD m512/m64bcst zmm zmm
+// 	VFMADD231PD m512/m64bcst zmm k zmm
+// 	VFMADD231PD xmm          xmm xmm
+// 	VFMADD231PD m128         xmm xmm
+// 	VFMADD231PD ymm          ymm ymm
+// 	VFMADD231PD m256         ymm ymm
+// 	VFMADD231PD zmm          zmm zmm
+// 	VFMADD231PD zmm          zmm k zmm
+func VFMADD231PD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD231PD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFMADD231PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFMADD231PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD231PD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD231PD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD231PD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFMADD231PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFMADD231PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VFMADD231PD: bad operands")
@@ -22248,43 +25473,79 @@ func VFMADD231PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VFMADD231PS xmm  xmm xmm
-// 	VFMADD231PS m128 xmm xmm
-// 	VFMADD231PS ymm  ymm ymm
-// 	VFMADD231PS m256 ymm ymm
-func VFMADD231PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VFMADD231PS m512/m32bcst zmm zmm
+// 	VFMADD231PS m512/m32bcst zmm k zmm
+// 	VFMADD231PS xmm          xmm xmm
+// 	VFMADD231PS m128         xmm xmm
+// 	VFMADD231PS ymm          ymm ymm
+// 	VFMADD231PS m256         ymm ymm
+// 	VFMADD231PS zmm          zmm zmm
+// 	VFMADD231PS zmm          zmm k zmm
+func VFMADD231PS(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD231PS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFMADD231PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFMADD231PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD231PS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD231PS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD231PS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFMADD231PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFMADD231PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VFMADD231PS: bad operands")
@@ -22294,25 +25555,61 @@ func VFMADD231PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+// 	VFMADD231SD m64 xmm xmm
+// 	VFMADD231SD m64 xmm k xmm
 // 	VFMADD231SD xmm xmm xmm
 // 	VFMADD231SD m64 xmm xmm
-func VFMADD231SD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
+// 	VFMADD231SD xmm xmm xmm
+// 	VFMADD231SD xmm xmm k xmm
+func VFMADD231SD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD231SD",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x, x1},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFMADD231SD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFMADD231SD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM64(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD231SD",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x, x1},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFMADD231SD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFMADD231SD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VFMADD231SD: bad operands")
@@ -22322,25 +25619,61 @@ func VFMADD231SD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+// 	VFMADD231SS m32 xmm xmm
+// 	VFMADD231SS m32 xmm k xmm
 // 	VFMADD231SS xmm xmm xmm
 // 	VFMADD231SS m32 xmm xmm
-func VFMADD231SS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
+// 	VFMADD231SS xmm xmm xmm
+// 	VFMADD231SS xmm xmm k xmm
+func VFMADD231SS(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD231SS",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x, x1},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFMADD231SS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFMADD231SS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM32(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD231SS",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x, x1},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFMADD231SS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFMADD231SS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VFMADD231SS: bad operands")
@@ -22350,43 +25683,79 @@ func VFMADD231SS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VFMADDSUB132PD xmm  xmm xmm
-// 	VFMADDSUB132PD m128 xmm xmm
-// 	VFMADDSUB132PD ymm  ymm ymm
-// 	VFMADDSUB132PD m256 ymm ymm
-func VFMADDSUB132PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VFMADDSUB132PD m512/m64bcst zmm zmm
+// 	VFMADDSUB132PD m512/m64bcst zmm k zmm
+// 	VFMADDSUB132PD xmm          xmm xmm
+// 	VFMADDSUB132PD m128         xmm xmm
+// 	VFMADDSUB132PD ymm          ymm ymm
+// 	VFMADDSUB132PD m256         ymm ymm
+// 	VFMADDSUB132PD zmm          zmm zmm
+// 	VFMADDSUB132PD zmm          zmm k zmm
+func VFMADDSUB132PD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB132PD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFMADDSUB132PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFMADDSUB132PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB132PD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB132PD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB132PD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFMADDSUB132PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFMADDSUB132PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VFMADDSUB132PD: bad operands")
@@ -22396,43 +25765,79 @@ func VFMADDSUB132PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VFMADDSUB132PS xmm  xmm xmm
-// 	VFMADDSUB132PS m128 xmm xmm
-// 	VFMADDSUB132PS ymm  ymm ymm
-// 	VFMADDSUB132PS m256 ymm ymm
-func VFMADDSUB132PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VFMADDSUB132PS m512/m32bcst zmm zmm
+// 	VFMADDSUB132PS m512/m32bcst zmm k zmm
+// 	VFMADDSUB132PS xmm          xmm xmm
+// 	VFMADDSUB132PS m128         xmm xmm
+// 	VFMADDSUB132PS ymm          ymm ymm
+// 	VFMADDSUB132PS m256         ymm ymm
+// 	VFMADDSUB132PS zmm          zmm zmm
+// 	VFMADDSUB132PS zmm          zmm k zmm
+func VFMADDSUB132PS(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB132PS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFMADDSUB132PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFMADDSUB132PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB132PS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB132PS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB132PS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFMADDSUB132PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFMADDSUB132PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VFMADDSUB132PS: bad operands")
@@ -22442,43 +25847,79 @@ func VFMADDSUB132PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VFMADDSUB213PD xmm  xmm xmm
-// 	VFMADDSUB213PD m128 xmm xmm
-// 	VFMADDSUB213PD ymm  ymm ymm
-// 	VFMADDSUB213PD m256 ymm ymm
-func VFMADDSUB213PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VFMADDSUB213PD m512/m64bcst zmm zmm
+// 	VFMADDSUB213PD m512/m64bcst zmm k zmm
+// 	VFMADDSUB213PD xmm          xmm xmm
+// 	VFMADDSUB213PD m128         xmm xmm
+// 	VFMADDSUB213PD ymm          ymm ymm
+// 	VFMADDSUB213PD m256         ymm ymm
+// 	VFMADDSUB213PD zmm          zmm zmm
+// 	VFMADDSUB213PD zmm          zmm k zmm
+func VFMADDSUB213PD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB213PD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFMADDSUB213PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFMADDSUB213PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB213PD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB213PD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB213PD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFMADDSUB213PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFMADDSUB213PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VFMADDSUB213PD: bad operands")
@@ -22488,43 +25929,79 @@ func VFMADDSUB213PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VFMADDSUB213PS xmm  xmm xmm
-// 	VFMADDSUB213PS m128 xmm xmm
-// 	VFMADDSUB213PS ymm  ymm ymm
-// 	VFMADDSUB213PS m256 ymm ymm
-func VFMADDSUB213PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VFMADDSUB213PS m512/m32bcst zmm zmm
+// 	VFMADDSUB213PS m512/m32bcst zmm k zmm
+// 	VFMADDSUB213PS xmm          xmm xmm
+// 	VFMADDSUB213PS m128         xmm xmm
+// 	VFMADDSUB213PS ymm          ymm ymm
+// 	VFMADDSUB213PS m256         ymm ymm
+// 	VFMADDSUB213PS zmm          zmm zmm
+// 	VFMADDSUB213PS zmm          zmm k zmm
+func VFMADDSUB213PS(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB213PS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFMADDSUB213PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFMADDSUB213PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB213PS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB213PS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB213PS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFMADDSUB213PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFMADDSUB213PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VFMADDSUB213PS: bad operands")
@@ -22534,43 +26011,79 @@ func VFMADDSUB213PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VFMADDSUB231PD xmm  xmm xmm
-// 	VFMADDSUB231PD m128 xmm xmm
-// 	VFMADDSUB231PD ymm  ymm ymm
-// 	VFMADDSUB231PD m256 ymm ymm
-func VFMADDSUB231PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VFMADDSUB231PD m512/m64bcst zmm zmm
+// 	VFMADDSUB231PD m512/m64bcst zmm k zmm
+// 	VFMADDSUB231PD xmm          xmm xmm
+// 	VFMADDSUB231PD m128         xmm xmm
+// 	VFMADDSUB231PD ymm          ymm ymm
+// 	VFMADDSUB231PD m256         ymm ymm
+// 	VFMADDSUB231PD zmm          zmm zmm
+// 	VFMADDSUB231PD zmm          zmm k zmm
+func VFMADDSUB231PD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB231PD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFMADDSUB231PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFMADDSUB231PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB231PD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB231PD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB231PD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFMADDSUB231PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFMADDSUB231PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VFMADDSUB231PD: bad operands")
@@ -22580,43 +26093,79 @@ func VFMADDSUB231PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VFMADDSUB231PS xmm  xmm xmm
-// 	VFMADDSUB231PS m128 xmm xmm
-// 	VFMADDSUB231PS ymm  ymm ymm
-// 	VFMADDSUB231PS m256 ymm ymm
-func VFMADDSUB231PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VFMADDSUB231PS m512/m32bcst zmm zmm
+// 	VFMADDSUB231PS m512/m32bcst zmm k zmm
+// 	VFMADDSUB231PS xmm          xmm xmm
+// 	VFMADDSUB231PS m128         xmm xmm
+// 	VFMADDSUB231PS ymm          ymm ymm
+// 	VFMADDSUB231PS m256         ymm ymm
+// 	VFMADDSUB231PS zmm          zmm zmm
+// 	VFMADDSUB231PS zmm          zmm k zmm
+func VFMADDSUB231PS(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB231PS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFMADDSUB231PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFMADDSUB231PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB231PS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB231PS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB231PS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFMADDSUB231PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFMADDSUB231PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VFMADDSUB231PS: bad operands")
@@ -22626,43 +26175,79 @@ func VFMADDSUB231PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VFMSUB132PD xmm  xmm xmm
-// 	VFMSUB132PD m128 xmm xmm
-// 	VFMSUB132PD ymm  ymm ymm
-// 	VFMSUB132PD m256 ymm ymm
-func VFMSUB132PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VFMSUB132PD m512/m64bcst zmm zmm
+// 	VFMSUB132PD m512/m64bcst zmm k zmm
+// 	VFMSUB132PD xmm          xmm xmm
+// 	VFMSUB132PD m128         xmm xmm
+// 	VFMSUB132PD ymm          ymm ymm
+// 	VFMSUB132PD m256         ymm ymm
+// 	VFMSUB132PD zmm          zmm zmm
+// 	VFMSUB132PD zmm          zmm k zmm
+func VFMSUB132PD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB132PD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFMSUB132PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFMSUB132PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB132PD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB132PD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB132PD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFMSUB132PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFMSUB132PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VFMSUB132PD: bad operands")
@@ -22672,43 +26257,79 @@ func VFMSUB132PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VFMSUB132PS xmm  xmm xmm
-// 	VFMSUB132PS m128 xmm xmm
-// 	VFMSUB132PS ymm  ymm ymm
-// 	VFMSUB132PS m256 ymm ymm
-func VFMSUB132PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VFMSUB132PS m512/m32bcst zmm zmm
+// 	VFMSUB132PS m512/m32bcst zmm k zmm
+// 	VFMSUB132PS xmm          xmm xmm
+// 	VFMSUB132PS m128         xmm xmm
+// 	VFMSUB132PS ymm          ymm ymm
+// 	VFMSUB132PS m256         ymm ymm
+// 	VFMSUB132PS zmm          zmm zmm
+// 	VFMSUB132PS zmm          zmm k zmm
+func VFMSUB132PS(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB132PS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFMSUB132PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFMSUB132PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB132PS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB132PS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB132PS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFMSUB132PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFMSUB132PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VFMSUB132PS: bad operands")
@@ -22718,25 +26339,61 @@ func VFMSUB132PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+// 	VFMSUB132SD m64 xmm xmm
+// 	VFMSUB132SD m64 xmm k xmm
 // 	VFMSUB132SD xmm xmm xmm
 // 	VFMSUB132SD m64 xmm xmm
-func VFMSUB132SD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
+// 	VFMSUB132SD xmm xmm xmm
+// 	VFMSUB132SD xmm xmm k xmm
+func VFMSUB132SD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB132SD",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x, x1},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFMSUB132SD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFMSUB132SD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM64(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB132SD",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x, x1},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFMSUB132SD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFMSUB132SD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VFMSUB132SD: bad operands")
@@ -22746,25 +26403,61 @@ func VFMSUB132SD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+// 	VFMSUB132SS m32 xmm xmm
+// 	VFMSUB132SS m32 xmm k xmm
 // 	VFMSUB132SS xmm xmm xmm
 // 	VFMSUB132SS m32 xmm xmm
-func VFMSUB132SS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
+// 	VFMSUB132SS xmm xmm xmm
+// 	VFMSUB132SS xmm xmm k xmm
+func VFMSUB132SS(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB132SS",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x, x1},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFMSUB132SS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFMSUB132SS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM32(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB132SS",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x, x1},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFMSUB132SS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFMSUB132SS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VFMSUB132SS: bad operands")
@@ -22774,43 +26467,79 @@ func VFMSUB132SS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VFMSUB213PD xmm  xmm xmm
-// 	VFMSUB213PD m128 xmm xmm
-// 	VFMSUB213PD ymm  ymm ymm
-// 	VFMSUB213PD m256 ymm ymm
-func VFMSUB213PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VFMSUB213PD m512/m64bcst zmm zmm
+// 	VFMSUB213PD m512/m64bcst zmm k zmm
+// 	VFMSUB213PD xmm          xmm xmm
+// 	VFMSUB213PD m128         xmm xmm
+// 	VFMSUB213PD ymm          ymm ymm
+// 	VFMSUB213PD m256         ymm ymm
+// 	VFMSUB213PD zmm          zmm zmm
+// 	VFMSUB213PD zmm          zmm k zmm
+func VFMSUB213PD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB213PD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFMSUB213PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFMSUB213PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB213PD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB213PD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB213PD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFMSUB213PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFMSUB213PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VFMSUB213PD: bad operands")
@@ -22820,43 +26549,79 @@ func VFMSUB213PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VFMSUB213PS xmm  xmm xmm
-// 	VFMSUB213PS m128 xmm xmm
-// 	VFMSUB213PS ymm  ymm ymm
-// 	VFMSUB213PS m256 ymm ymm
-func VFMSUB213PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VFMSUB213PS m512/m32bcst zmm zmm
+// 	VFMSUB213PS m512/m32bcst zmm k zmm
+// 	VFMSUB213PS xmm          xmm xmm
+// 	VFMSUB213PS m128         xmm xmm
+// 	VFMSUB213PS ymm          ymm ymm
+// 	VFMSUB213PS m256         ymm ymm
+// 	VFMSUB213PS zmm          zmm zmm
+// 	VFMSUB213PS zmm          zmm k zmm
+func VFMSUB213PS(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB213PS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFMSUB213PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFMSUB213PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB213PS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB213PS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB213PS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFMSUB213PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFMSUB213PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VFMSUB213PS: bad operands")
@@ -22866,25 +26631,61 @@ func VFMSUB213PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+// 	VFMSUB213SD m64 xmm xmm
+// 	VFMSUB213SD m64 xmm k xmm
 // 	VFMSUB213SD xmm xmm xmm
 // 	VFMSUB213SD m64 xmm xmm
-func VFMSUB213SD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
+// 	VFMSUB213SD xmm xmm xmm
+// 	VFMSUB213SD xmm xmm k xmm
+func VFMSUB213SD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB213SD",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x, x1},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFMSUB213SD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFMSUB213SD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM64(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB213SD",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x, x1},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFMSUB213SD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFMSUB213SD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VFMSUB213SD: bad operands")
@@ -22894,25 +26695,61 @@ func VFMSUB213SD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+// 	VFMSUB213SS m32 xmm xmm
+// 	VFMSUB213SS m32 xmm k xmm
 // 	VFMSUB213SS xmm xmm xmm
 // 	VFMSUB213SS m32 xmm xmm
-func VFMSUB213SS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
+// 	VFMSUB213SS xmm xmm xmm
+// 	VFMSUB213SS xmm xmm k xmm
+func VFMSUB213SS(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB213SS",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x, x1},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFMSUB213SS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFMSUB213SS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM32(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB213SS",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x, x1},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFMSUB213SS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFMSUB213SS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VFMSUB213SS: bad operands")
@@ -22922,43 +26759,79 @@ func VFMSUB213SS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VFMSUB231PD xmm  xmm xmm
-// 	VFMSUB231PD m128 xmm xmm
-// 	VFMSUB231PD ymm  ymm ymm
-// 	VFMSUB231PD m256 ymm ymm
-func VFMSUB231PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VFMSUB231PD m512/m64bcst zmm zmm
+// 	VFMSUB231PD m512/m64bcst zmm k zmm
+// 	VFMSUB231PD xmm          xmm xmm
+// 	VFMSUB231PD m128         xmm xmm
+// 	VFMSUB231PD ymm          ymm ymm
+// 	VFMSUB231PD m256         ymm ymm
+// 	VFMSUB231PD zmm          zmm zmm
+// 	VFMSUB231PD zmm          zmm k zmm
+func VFMSUB231PD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB231PD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFMSUB231PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFMSUB231PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB231PD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB231PD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB231PD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFMSUB231PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFMSUB231PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VFMSUB231PD: bad operands")
@@ -22968,43 +26841,79 @@ func VFMSUB231PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VFMSUB231PS xmm  xmm xmm
-// 	VFMSUB231PS m128 xmm xmm
-// 	VFMSUB231PS ymm  ymm ymm
-// 	VFMSUB231PS m256 ymm ymm
-func VFMSUB231PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VFMSUB231PS m512/m32bcst zmm zmm
+// 	VFMSUB231PS m512/m32bcst zmm k zmm
+// 	VFMSUB231PS xmm          xmm xmm
+// 	VFMSUB231PS m128         xmm xmm
+// 	VFMSUB231PS ymm          ymm ymm
+// 	VFMSUB231PS m256         ymm ymm
+// 	VFMSUB231PS zmm          zmm zmm
+// 	VFMSUB231PS zmm          zmm k zmm
+func VFMSUB231PS(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB231PS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFMSUB231PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFMSUB231PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB231PS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB231PS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB231PS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFMSUB231PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFMSUB231PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VFMSUB231PS: bad operands")
@@ -23014,25 +26923,61 @@ func VFMSUB231PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+// 	VFMSUB231SD m64 xmm xmm
+// 	VFMSUB231SD m64 xmm k xmm
 // 	VFMSUB231SD xmm xmm xmm
 // 	VFMSUB231SD m64 xmm xmm
-func VFMSUB231SD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
+// 	VFMSUB231SD xmm xmm xmm
+// 	VFMSUB231SD xmm xmm k xmm
+func VFMSUB231SD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB231SD",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x, x1},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFMSUB231SD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFMSUB231SD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM64(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB231SD",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x, x1},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFMSUB231SD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFMSUB231SD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VFMSUB231SD: bad operands")
@@ -23042,25 +26987,61 @@ func VFMSUB231SD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+// 	VFMSUB231SS m32 xmm xmm
+// 	VFMSUB231SS m32 xmm k xmm
 // 	VFMSUB231SS xmm xmm xmm
 // 	VFMSUB231SS m32 xmm xmm
-func VFMSUB231SS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
+// 	VFMSUB231SS xmm xmm xmm
+// 	VFMSUB231SS xmm xmm k xmm
+func VFMSUB231SS(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB231SS",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x, x1},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFMSUB231SS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFMSUB231SS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM32(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB231SS",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x, x1},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFMSUB231SS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFMSUB231SS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VFMSUB231SS: bad operands")
@@ -23070,43 +27051,79 @@ func VFMSUB231SS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VFMSUBADD132PD xmm  xmm xmm
-// 	VFMSUBADD132PD m128 xmm xmm
-// 	VFMSUBADD132PD ymm  ymm ymm
-// 	VFMSUBADD132PD m256 ymm ymm
-func VFMSUBADD132PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VFMSUBADD132PD m512/m64bcst zmm zmm
+// 	VFMSUBADD132PD m512/m64bcst zmm k zmm
+// 	VFMSUBADD132PD xmm          xmm xmm
+// 	VFMSUBADD132PD m128         xmm xmm
+// 	VFMSUBADD132PD ymm          ymm ymm
+// 	VFMSUBADD132PD m256         ymm ymm
+// 	VFMSUBADD132PD zmm          zmm zmm
+// 	VFMSUBADD132PD zmm          zmm k zmm
+func VFMSUBADD132PD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD132PD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFMSUBADD132PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFMSUBADD132PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD132PD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD132PD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD132PD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFMSUBADD132PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFMSUBADD132PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VFMSUBADD132PD: bad operands")
@@ -23116,43 +27133,79 @@ func VFMSUBADD132PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VFMSUBADD132PS xmm  xmm xmm
-// 	VFMSUBADD132PS m128 xmm xmm
-// 	VFMSUBADD132PS ymm  ymm ymm
-// 	VFMSUBADD132PS m256 ymm ymm
-func VFMSUBADD132PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VFMSUBADD132PS m512/m32bcst zmm zmm
+// 	VFMSUBADD132PS m512/m32bcst zmm k zmm
+// 	VFMSUBADD132PS xmm          xmm xmm
+// 	VFMSUBADD132PS m128         xmm xmm
+// 	VFMSUBADD132PS ymm          ymm ymm
+// 	VFMSUBADD132PS m256         ymm ymm
+// 	VFMSUBADD132PS zmm          zmm zmm
+// 	VFMSUBADD132PS zmm          zmm k zmm
+func VFMSUBADD132PS(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD132PS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFMSUBADD132PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFMSUBADD132PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD132PS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD132PS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD132PS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFMSUBADD132PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFMSUBADD132PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VFMSUBADD132PS: bad operands")
@@ -23162,43 +27215,79 @@ func VFMSUBADD132PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VFMSUBADD213PD xmm  xmm xmm
-// 	VFMSUBADD213PD m128 xmm xmm
-// 	VFMSUBADD213PD ymm  ymm ymm
-// 	VFMSUBADD213PD m256 ymm ymm
-func VFMSUBADD213PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VFMSUBADD213PD m512/m64bcst zmm zmm
+// 	VFMSUBADD213PD m512/m64bcst zmm k zmm
+// 	VFMSUBADD213PD xmm          xmm xmm
+// 	VFMSUBADD213PD m128         xmm xmm
+// 	VFMSUBADD213PD ymm          ymm ymm
+// 	VFMSUBADD213PD m256         ymm ymm
+// 	VFMSUBADD213PD zmm          zmm zmm
+// 	VFMSUBADD213PD zmm          zmm k zmm
+func VFMSUBADD213PD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD213PD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFMSUBADD213PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFMSUBADD213PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD213PD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD213PD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD213PD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFMSUBADD213PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFMSUBADD213PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VFMSUBADD213PD: bad operands")
@@ -23208,43 +27297,79 @@ func VFMSUBADD213PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VFMSUBADD213PS xmm  xmm xmm
-// 	VFMSUBADD213PS m128 xmm xmm
-// 	VFMSUBADD213PS ymm  ymm ymm
-// 	VFMSUBADD213PS m256 ymm ymm
-func VFMSUBADD213PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VFMSUBADD213PS m512/m32bcst zmm zmm
+// 	VFMSUBADD213PS m512/m32bcst zmm k zmm
+// 	VFMSUBADD213PS xmm          xmm xmm
+// 	VFMSUBADD213PS m128         xmm xmm
+// 	VFMSUBADD213PS ymm          ymm ymm
+// 	VFMSUBADD213PS m256         ymm ymm
+// 	VFMSUBADD213PS zmm          zmm zmm
+// 	VFMSUBADD213PS zmm          zmm k zmm
+func VFMSUBADD213PS(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD213PS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFMSUBADD213PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFMSUBADD213PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD213PS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD213PS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD213PS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFMSUBADD213PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFMSUBADD213PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VFMSUBADD213PS: bad operands")
@@ -23254,43 +27379,79 @@ func VFMSUBADD213PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VFMSUBADD231PD xmm  xmm xmm
-// 	VFMSUBADD231PD m128 xmm xmm
-// 	VFMSUBADD231PD ymm  ymm ymm
-// 	VFMSUBADD231PD m256 ymm ymm
-func VFMSUBADD231PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VFMSUBADD231PD m512/m64bcst zmm zmm
+// 	VFMSUBADD231PD m512/m64bcst zmm k zmm
+// 	VFMSUBADD231PD xmm          xmm xmm
+// 	VFMSUBADD231PD m128         xmm xmm
+// 	VFMSUBADD231PD ymm          ymm ymm
+// 	VFMSUBADD231PD m256         ymm ymm
+// 	VFMSUBADD231PD zmm          zmm zmm
+// 	VFMSUBADD231PD zmm          zmm k zmm
+func VFMSUBADD231PD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD231PD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFMSUBADD231PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFMSUBADD231PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD231PD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD231PD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD231PD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFMSUBADD231PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFMSUBADD231PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VFMSUBADD231PD: bad operands")
@@ -23300,43 +27461,79 @@ func VFMSUBADD231PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VFMSUBADD231PS xmm  xmm xmm
-// 	VFMSUBADD231PS m128 xmm xmm
-// 	VFMSUBADD231PS ymm  ymm ymm
-// 	VFMSUBADD231PS m256 ymm ymm
-func VFMSUBADD231PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VFMSUBADD231PS m512/m32bcst zmm zmm
+// 	VFMSUBADD231PS m512/m32bcst zmm k zmm
+// 	VFMSUBADD231PS xmm          xmm xmm
+// 	VFMSUBADD231PS m128         xmm xmm
+// 	VFMSUBADD231PS ymm          ymm ymm
+// 	VFMSUBADD231PS m256         ymm ymm
+// 	VFMSUBADD231PS zmm          zmm zmm
+// 	VFMSUBADD231PS zmm          zmm k zmm
+func VFMSUBADD231PS(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD231PS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFMSUBADD231PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFMSUBADD231PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD231PS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD231PS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD231PS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFMSUBADD231PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFMSUBADD231PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VFMSUBADD231PS: bad operands")
@@ -23346,43 +27543,79 @@ func VFMSUBADD231PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VFNMADD132PD xmm  xmm xmm
-// 	VFNMADD132PD m128 xmm xmm
-// 	VFNMADD132PD ymm  ymm ymm
-// 	VFNMADD132PD m256 ymm ymm
-func VFNMADD132PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VFNMADD132PD m512/m64bcst zmm zmm
+// 	VFNMADD132PD m512/m64bcst zmm k zmm
+// 	VFNMADD132PD xmm          xmm xmm
+// 	VFNMADD132PD m128         xmm xmm
+// 	VFNMADD132PD ymm          ymm ymm
+// 	VFNMADD132PD m256         ymm ymm
+// 	VFNMADD132PD zmm          zmm zmm
+// 	VFNMADD132PD zmm          zmm k zmm
+func VFNMADD132PD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD132PD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMADD132PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMADD132PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD132PD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD132PD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD132PD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMADD132PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMADD132PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VFNMADD132PD: bad operands")
@@ -23392,43 +27625,79 @@ func VFNMADD132PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VFNMADD132PS xmm  xmm xmm
-// 	VFNMADD132PS m128 xmm xmm
-// 	VFNMADD132PS ymm  ymm ymm
-// 	VFNMADD132PS m256 ymm ymm
-func VFNMADD132PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VFNMADD132PS m512/m32bcst zmm zmm
+// 	VFNMADD132PS m512/m32bcst zmm k zmm
+// 	VFNMADD132PS xmm          xmm xmm
+// 	VFNMADD132PS m128         xmm xmm
+// 	VFNMADD132PS ymm          ymm ymm
+// 	VFNMADD132PS m256         ymm ymm
+// 	VFNMADD132PS zmm          zmm zmm
+// 	VFNMADD132PS zmm          zmm k zmm
+func VFNMADD132PS(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD132PS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMADD132PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMADD132PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD132PS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD132PS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD132PS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMADD132PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMADD132PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VFNMADD132PS: bad operands")
@@ -23438,25 +27707,61 @@ func VFNMADD132PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+// 	VFNMADD132SD m64 xmm xmm
+// 	VFNMADD132SD m64 xmm k xmm
 // 	VFNMADD132SD xmm xmm xmm
 // 	VFNMADD132SD m64 xmm xmm
-func VFNMADD132SD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
+// 	VFNMADD132SD xmm xmm xmm
+// 	VFNMADD132SD xmm xmm k xmm
+func VFNMADD132SD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD132SD",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x, x1},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMADD132SD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMADD132SD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM64(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD132SD",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x, x1},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMADD132SD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMADD132SD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VFNMADD132SD: bad operands")
@@ -23466,25 +27771,61 @@ func VFNMADD132SD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+// 	VFNMADD132SS m32 xmm xmm
+// 	VFNMADD132SS m32 xmm k xmm
 // 	VFNMADD132SS xmm xmm xmm
 // 	VFNMADD132SS m32 xmm xmm
-func VFNMADD132SS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
+// 	VFNMADD132SS xmm xmm xmm
+// 	VFNMADD132SS xmm xmm k xmm
+func VFNMADD132SS(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD132SS",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x, x1},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMADD132SS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMADD132SS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM32(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD132SS",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x, x1},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMADD132SS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMADD132SS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VFNMADD132SS: bad operands")
@@ -23494,43 +27835,79 @@ func VFNMADD132SS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VFNMADD213PD xmm  xmm xmm
-// 	VFNMADD213PD m128 xmm xmm
-// 	VFNMADD213PD ymm  ymm ymm
-// 	VFNMADD213PD m256 ymm ymm
-func VFNMADD213PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VFNMADD213PD m512/m64bcst zmm zmm
+// 	VFNMADD213PD m512/m64bcst zmm k zmm
+// 	VFNMADD213PD xmm          xmm xmm
+// 	VFNMADD213PD m128         xmm xmm
+// 	VFNMADD213PD ymm          ymm ymm
+// 	VFNMADD213PD m256         ymm ymm
+// 	VFNMADD213PD zmm          zmm zmm
+// 	VFNMADD213PD zmm          zmm k zmm
+func VFNMADD213PD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD213PD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMADD213PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMADD213PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD213PD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD213PD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD213PD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMADD213PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMADD213PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VFNMADD213PD: bad operands")
@@ -23540,43 +27917,79 @@ func VFNMADD213PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VFNMADD213PS xmm  xmm xmm
-// 	VFNMADD213PS m128 xmm xmm
-// 	VFNMADD213PS ymm  ymm ymm
-// 	VFNMADD213PS m256 ymm ymm
-func VFNMADD213PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VFNMADD213PS m512/m32bcst zmm zmm
+// 	VFNMADD213PS m512/m32bcst zmm k zmm
+// 	VFNMADD213PS xmm          xmm xmm
+// 	VFNMADD213PS m128         xmm xmm
+// 	VFNMADD213PS ymm          ymm ymm
+// 	VFNMADD213PS m256         ymm ymm
+// 	VFNMADD213PS zmm          zmm zmm
+// 	VFNMADD213PS zmm          zmm k zmm
+func VFNMADD213PS(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD213PS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMADD213PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMADD213PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD213PS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD213PS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD213PS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMADD213PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMADD213PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VFNMADD213PS: bad operands")
@@ -23586,25 +27999,61 @@ func VFNMADD213PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+// 	VFNMADD213SD m64 xmm xmm
+// 	VFNMADD213SD m64 xmm k xmm
 // 	VFNMADD213SD xmm xmm xmm
 // 	VFNMADD213SD m64 xmm xmm
-func VFNMADD213SD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
+// 	VFNMADD213SD xmm xmm xmm
+// 	VFNMADD213SD xmm xmm k xmm
+func VFNMADD213SD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD213SD",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x, x1},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMADD213SD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMADD213SD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM64(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD213SD",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x, x1},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMADD213SD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMADD213SD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VFNMADD213SD: bad operands")
@@ -23614,25 +28063,61 @@ func VFNMADD213SD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+// 	VFNMADD213SS m32 xmm xmm
+// 	VFNMADD213SS m32 xmm k xmm
 // 	VFNMADD213SS xmm xmm xmm
 // 	VFNMADD213SS m32 xmm xmm
-func VFNMADD213SS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
+// 	VFNMADD213SS xmm xmm xmm
+// 	VFNMADD213SS xmm xmm k xmm
+func VFNMADD213SS(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD213SS",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x, x1},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMADD213SS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMADD213SS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM32(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD213SS",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x, x1},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMADD213SS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMADD213SS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VFNMADD213SS: bad operands")
@@ -23642,43 +28127,79 @@ func VFNMADD213SS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VFNMADD231PD xmm  xmm xmm
-// 	VFNMADD231PD m128 xmm xmm
-// 	VFNMADD231PD ymm  ymm ymm
-// 	VFNMADD231PD m256 ymm ymm
-func VFNMADD231PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VFNMADD231PD m512/m64bcst zmm zmm
+// 	VFNMADD231PD m512/m64bcst zmm k zmm
+// 	VFNMADD231PD xmm          xmm xmm
+// 	VFNMADD231PD m128         xmm xmm
+// 	VFNMADD231PD ymm          ymm ymm
+// 	VFNMADD231PD m256         ymm ymm
+// 	VFNMADD231PD zmm          zmm zmm
+// 	VFNMADD231PD zmm          zmm k zmm
+func VFNMADD231PD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD231PD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMADD231PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMADD231PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD231PD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD231PD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD231PD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMADD231PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMADD231PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VFNMADD231PD: bad operands")
@@ -23688,43 +28209,79 @@ func VFNMADD231PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VFNMADD231PS xmm  xmm xmm
-// 	VFNMADD231PS m128 xmm xmm
-// 	VFNMADD231PS ymm  ymm ymm
-// 	VFNMADD231PS m256 ymm ymm
-func VFNMADD231PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VFNMADD231PS m512/m32bcst zmm zmm
+// 	VFNMADD231PS m512/m32bcst zmm k zmm
+// 	VFNMADD231PS xmm          xmm xmm
+// 	VFNMADD231PS m128         xmm xmm
+// 	VFNMADD231PS ymm          ymm ymm
+// 	VFNMADD231PS m256         ymm ymm
+// 	VFNMADD231PS zmm          zmm zmm
+// 	VFNMADD231PS zmm          zmm k zmm
+func VFNMADD231PS(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD231PS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMADD231PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMADD231PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD231PS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD231PS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD231PS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMADD231PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMADD231PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VFNMADD231PS: bad operands")
@@ -23734,25 +28291,61 @@ func VFNMADD231PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+// 	VFNMADD231SD m64 xmm xmm
+// 	VFNMADD231SD m64 xmm k xmm
 // 	VFNMADD231SD xmm xmm xmm
 // 	VFNMADD231SD m64 xmm xmm
-func VFNMADD231SD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
+// 	VFNMADD231SD xmm xmm xmm
+// 	VFNMADD231SD xmm xmm k xmm
+func VFNMADD231SD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD231SD",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x, x1},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMADD231SD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMADD231SD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM64(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD231SD",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x, x1},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMADD231SD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMADD231SD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VFNMADD231SD: bad operands")
@@ -23762,25 +28355,61 @@ func VFNMADD231SD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+// 	VFNMADD231SS m32 xmm xmm
+// 	VFNMADD231SS m32 xmm k xmm
 // 	VFNMADD231SS xmm xmm xmm
 // 	VFNMADD231SS m32 xmm xmm
-func VFNMADD231SS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
+// 	VFNMADD231SS xmm xmm xmm
+// 	VFNMADD231SS xmm xmm k xmm
+func VFNMADD231SS(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD231SS",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x, x1},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMADD231SS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMADD231SS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM32(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD231SS",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x, x1},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMADD231SS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMADD231SS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VFNMADD231SS: bad operands")
@@ -23790,43 +28419,79 @@ func VFNMADD231SS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VFNMSUB132PD xmm  xmm xmm
-// 	VFNMSUB132PD m128 xmm xmm
-// 	VFNMSUB132PD ymm  ymm ymm
-// 	VFNMSUB132PD m256 ymm ymm
-func VFNMSUB132PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VFNMSUB132PD m512/m64bcst zmm zmm
+// 	VFNMSUB132PD m512/m64bcst zmm k zmm
+// 	VFNMSUB132PD xmm          xmm xmm
+// 	VFNMSUB132PD m128         xmm xmm
+// 	VFNMSUB132PD ymm          ymm ymm
+// 	VFNMSUB132PD m256         ymm ymm
+// 	VFNMSUB132PD zmm          zmm zmm
+// 	VFNMSUB132PD zmm          zmm k zmm
+func VFNMSUB132PD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB132PD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMSUB132PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMSUB132PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB132PD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB132PD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB132PD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMSUB132PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMSUB132PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VFNMSUB132PD: bad operands")
@@ -23836,43 +28501,79 @@ func VFNMSUB132PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VFNMSUB132PS xmm  xmm xmm
-// 	VFNMSUB132PS m128 xmm xmm
-// 	VFNMSUB132PS ymm  ymm ymm
-// 	VFNMSUB132PS m256 ymm ymm
-func VFNMSUB132PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VFNMSUB132PS m512/m32bcst zmm zmm
+// 	VFNMSUB132PS m512/m32bcst zmm k zmm
+// 	VFNMSUB132PS xmm          xmm xmm
+// 	VFNMSUB132PS m128         xmm xmm
+// 	VFNMSUB132PS ymm          ymm ymm
+// 	VFNMSUB132PS m256         ymm ymm
+// 	VFNMSUB132PS zmm          zmm zmm
+// 	VFNMSUB132PS zmm          zmm k zmm
+func VFNMSUB132PS(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB132PS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMSUB132PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMSUB132PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB132PS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB132PS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB132PS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMSUB132PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMSUB132PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VFNMSUB132PS: bad operands")
@@ -23882,25 +28583,61 @@ func VFNMSUB132PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+// 	VFNMSUB132SD m64 xmm xmm
+// 	VFNMSUB132SD m64 xmm k xmm
 // 	VFNMSUB132SD xmm xmm xmm
 // 	VFNMSUB132SD m64 xmm xmm
-func VFNMSUB132SD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
+// 	VFNMSUB132SD xmm xmm xmm
+// 	VFNMSUB132SD xmm xmm k xmm
+func VFNMSUB132SD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB132SD",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x, x1},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMSUB132SD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMSUB132SD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM64(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB132SD",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x, x1},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMSUB132SD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMSUB132SD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VFNMSUB132SD: bad operands")
@@ -23910,25 +28647,61 @@ func VFNMSUB132SD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+// 	VFNMSUB132SS m32 xmm xmm
+// 	VFNMSUB132SS m32 xmm k xmm
 // 	VFNMSUB132SS xmm xmm xmm
 // 	VFNMSUB132SS m32 xmm xmm
-func VFNMSUB132SS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
+// 	VFNMSUB132SS xmm xmm xmm
+// 	VFNMSUB132SS xmm xmm k xmm
+func VFNMSUB132SS(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB132SS",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x, x1},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMSUB132SS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMSUB132SS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM32(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB132SS",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x, x1},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMSUB132SS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMSUB132SS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VFNMSUB132SS: bad operands")
@@ -23938,43 +28711,79 @@ func VFNMSUB132SS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VFNMSUB213PD xmm  xmm xmm
-// 	VFNMSUB213PD m128 xmm xmm
-// 	VFNMSUB213PD ymm  ymm ymm
-// 	VFNMSUB213PD m256 ymm ymm
-func VFNMSUB213PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VFNMSUB213PD m512/m64bcst zmm zmm
+// 	VFNMSUB213PD m512/m64bcst zmm k zmm
+// 	VFNMSUB213PD xmm          xmm xmm
+// 	VFNMSUB213PD m128         xmm xmm
+// 	VFNMSUB213PD ymm          ymm ymm
+// 	VFNMSUB213PD m256         ymm ymm
+// 	VFNMSUB213PD zmm          zmm zmm
+// 	VFNMSUB213PD zmm          zmm k zmm
+func VFNMSUB213PD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB213PD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMSUB213PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMSUB213PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB213PD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB213PD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB213PD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMSUB213PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMSUB213PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VFNMSUB213PD: bad operands")
@@ -23984,43 +28793,79 @@ func VFNMSUB213PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VFNMSUB213PS xmm  xmm xmm
-// 	VFNMSUB213PS m128 xmm xmm
-// 	VFNMSUB213PS ymm  ymm ymm
-// 	VFNMSUB213PS m256 ymm ymm
-func VFNMSUB213PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VFNMSUB213PS m512/m32bcst zmm zmm
+// 	VFNMSUB213PS m512/m32bcst zmm k zmm
+// 	VFNMSUB213PS xmm          xmm xmm
+// 	VFNMSUB213PS m128         xmm xmm
+// 	VFNMSUB213PS ymm          ymm ymm
+// 	VFNMSUB213PS m256         ymm ymm
+// 	VFNMSUB213PS zmm          zmm zmm
+// 	VFNMSUB213PS zmm          zmm k zmm
+func VFNMSUB213PS(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB213PS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMSUB213PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMSUB213PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB213PS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB213PS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB213PS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMSUB213PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMSUB213PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VFNMSUB213PS: bad operands")
@@ -24030,25 +28875,61 @@ func VFNMSUB213PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+// 	VFNMSUB213SD m64 xmm xmm
+// 	VFNMSUB213SD m64 xmm k xmm
 // 	VFNMSUB213SD xmm xmm xmm
 // 	VFNMSUB213SD m64 xmm xmm
-func VFNMSUB213SD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
+// 	VFNMSUB213SD xmm xmm xmm
+// 	VFNMSUB213SD xmm xmm k xmm
+func VFNMSUB213SD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB213SD",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x, x1},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMSUB213SD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMSUB213SD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM64(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB213SD",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x, x1},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMSUB213SD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMSUB213SD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VFNMSUB213SD: bad operands")
@@ -24058,25 +28939,61 @@ func VFNMSUB213SD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+// 	VFNMSUB213SS m32 xmm xmm
+// 	VFNMSUB213SS m32 xmm k xmm
 // 	VFNMSUB213SS xmm xmm xmm
 // 	VFNMSUB213SS m32 xmm xmm
-func VFNMSUB213SS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
+// 	VFNMSUB213SS xmm xmm xmm
+// 	VFNMSUB213SS xmm xmm k xmm
+func VFNMSUB213SS(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB213SS",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x, x1},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMSUB213SS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMSUB213SS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM32(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB213SS",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x, x1},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMSUB213SS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMSUB213SS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VFNMSUB213SS: bad operands")
@@ -24086,43 +29003,79 @@ func VFNMSUB213SS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VFNMSUB231PD xmm  xmm xmm
-// 	VFNMSUB231PD m128 xmm xmm
-// 	VFNMSUB231PD ymm  ymm ymm
-// 	VFNMSUB231PD m256 ymm ymm
-func VFNMSUB231PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VFNMSUB231PD m512/m64bcst zmm zmm
+// 	VFNMSUB231PD m512/m64bcst zmm k zmm
+// 	VFNMSUB231PD xmm          xmm xmm
+// 	VFNMSUB231PD m128         xmm xmm
+// 	VFNMSUB231PD ymm          ymm ymm
+// 	VFNMSUB231PD m256         ymm ymm
+// 	VFNMSUB231PD zmm          zmm zmm
+// 	VFNMSUB231PD zmm          zmm k zmm
+func VFNMSUB231PD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB231PD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMSUB231PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMSUB231PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB231PD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB231PD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB231PD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMSUB231PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMSUB231PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VFNMSUB231PD: bad operands")
@@ -24132,43 +29085,79 @@ func VFNMSUB231PD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VFNMSUB231PS xmm  xmm xmm
-// 	VFNMSUB231PS m128 xmm xmm
-// 	VFNMSUB231PS ymm  ymm ymm
-// 	VFNMSUB231PS m256 ymm ymm
-func VFNMSUB231PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VFNMSUB231PS m512/m32bcst zmm zmm
+// 	VFNMSUB231PS m512/m32bcst zmm k zmm
+// 	VFNMSUB231PS xmm          xmm xmm
+// 	VFNMSUB231PS m128         xmm xmm
+// 	VFNMSUB231PS ymm          ymm ymm
+// 	VFNMSUB231PS m256         ymm ymm
+// 	VFNMSUB231PS zmm          zmm zmm
+// 	VFNMSUB231PS zmm          zmm k zmm
+func VFNMSUB231PS(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB231PS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMSUB231PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMSUB231PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB231PS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB231PS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB231PS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy, xy1},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMSUB231PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMSUB231PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VFNMSUB231PS: bad operands")
@@ -24178,25 +29167,61 @@ func VFNMSUB231PS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+// 	VFNMSUB231SD m64 xmm xmm
+// 	VFNMSUB231SD m64 xmm k xmm
 // 	VFNMSUB231SD xmm xmm xmm
 // 	VFNMSUB231SD m64 xmm xmm
-func VFNMSUB231SD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
+// 	VFNMSUB231SD xmm xmm xmm
+// 	VFNMSUB231SD xmm xmm k xmm
+func VFNMSUB231SD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB231SD",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x, x1},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMSUB231SD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMSUB231SD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM64(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB231SD",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x, x1},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMSUB231SD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMSUB231SD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VFNMSUB231SD: bad operands")
@@ -24206,25 +29231,61 @@ func VFNMSUB231SD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+// 	VFNMSUB231SS m32 xmm xmm
+// 	VFNMSUB231SS m32 xmm k xmm
 // 	VFNMSUB231SS xmm xmm xmm
 // 	VFNMSUB231SS m32 xmm xmm
-func VFNMSUB231SS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
+// 	VFNMSUB231SS xmm xmm xmm
+// 	VFNMSUB231SS xmm xmm k xmm
+func VFNMSUB231SS(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB231SS",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x, x1},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMSUB231SS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMSUB231SS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
 		}, nil
-	case operand.IsM32(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB231SS",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x, x1},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"FMA3"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMSUB231SS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VFNMSUB231SS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VFNMSUB231SS: bad operands")
@@ -24234,24 +29295,33 @@ func VFNMSUB231SS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VGATHERDPD xmm vm32x xmm
-// 	VGATHERDPD ymm vm32x ymm
-func VGATHERDPD(xy, v, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VGATHERDPD vm32y k     zmm
+// 	VGATHERDPD xmm   vm32x xmm
+// 	VGATHERDPD ymm   vm32x ymm
+func VGATHERDPD(vxy, kv, xyz operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(xy) && operand.IsVM32X(v) && operand.IsXMM(xy1):
+	case operand.IsVM32Y(vxy) && operand.IsK(kv) && operand.IsZMM(xyz):
 		return &intrep.Instruction{
 			Opcode:   "VGATHERDPD",
-			Operands: []operand.Op{xy, v, xy1},
-			Inputs:   []operand.Op{xy, v, xy1},
-			Outputs:  []operand.Op{xy, xy1},
+			Operands: []operand.Op{vxy, kv, xyz},
+			Inputs:   []operand.Op{vxy, kv, xyz},
+			Outputs:  []operand.Op{xyz},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case operand.IsXMM(vxy) && operand.IsVM32X(kv) && operand.IsXMM(xyz):
+		return &intrep.Instruction{
+			Opcode:   "VGATHERDPD",
+			Operands: []operand.Op{vxy, kv, xyz},
+			Inputs:   []operand.Op{vxy, kv, xyz},
+			Outputs:  []operand.Op{vxy, xyz},
 			ISA:      []string{"AVX2"},
 		}, nil
-	case operand.IsYMM(xy) && operand.IsVM32X(v) && operand.IsYMM(xy1):
+	case operand.IsYMM(vxy) && operand.IsVM32X(kv) && operand.IsYMM(xyz):
 		return &intrep.Instruction{
 			Opcode:   "VGATHERDPD",
-			Operands: []operand.Op{xy, v, xy1},
-			Inputs:   []operand.Op{xy, v, xy1},
-			Outputs:  []operand.Op{xy, xy1},
+			Operands: []operand.Op{vxy, kv, xyz},
+			Inputs:   []operand.Op{vxy, kv, xyz},
+			Outputs:  []operand.Op{vxy, xyz},
 			ISA:      []string{"AVX2"},
 		}, nil
 	}
@@ -24262,24 +29332,33 @@ func VGATHERDPD(xy, v, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VGATHERDPS xmm vm32x xmm
-// 	VGATHERDPS ymm vm32y ymm
-func VGATHERDPS(xy, v, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VGATHERDPS vm32z k     zmm
+// 	VGATHERDPS xmm   vm32x xmm
+// 	VGATHERDPS ymm   vm32y ymm
+func VGATHERDPS(vxy, kv, xyz operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(xy) && operand.IsVM32X(v) && operand.IsXMM(xy1):
+	case operand.IsVM32Z(vxy) && operand.IsK(kv) && operand.IsZMM(xyz):
 		return &intrep.Instruction{
 			Opcode:   "VGATHERDPS",
-			Operands: []operand.Op{xy, v, xy1},
-			Inputs:   []operand.Op{xy, v, xy1},
-			Outputs:  []operand.Op{xy, xy1},
+			Operands: []operand.Op{vxy, kv, xyz},
+			Inputs:   []operand.Op{vxy, kv, xyz},
+			Outputs:  []operand.Op{xyz},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case operand.IsXMM(vxy) && operand.IsVM32X(kv) && operand.IsXMM(xyz):
+		return &intrep.Instruction{
+			Opcode:   "VGATHERDPS",
+			Operands: []operand.Op{vxy, kv, xyz},
+			Inputs:   []operand.Op{vxy, kv, xyz},
+			Outputs:  []operand.Op{vxy, xyz},
 			ISA:      []string{"AVX2"},
 		}, nil
-	case operand.IsYMM(xy) && operand.IsVM32Y(v) && operand.IsYMM(xy1):
+	case operand.IsYMM(vxy) && operand.IsVM32Y(kv) && operand.IsYMM(xyz):
 		return &intrep.Instruction{
 			Opcode:   "VGATHERDPS",
-			Operands: []operand.Op{xy, v, xy1},
-			Inputs:   []operand.Op{xy, v, xy1},
-			Outputs:  []operand.Op{xy, xy1},
+			Operands: []operand.Op{vxy, kv, xyz},
+			Inputs:   []operand.Op{vxy, kv, xyz},
+			Outputs:  []operand.Op{vxy, xyz},
 			ISA:      []string{"AVX2"},
 		}, nil
 	}
@@ -24290,24 +29369,33 @@ func VGATHERDPS(xy, v, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VGATHERQPD xmm vm64x xmm
-// 	VGATHERQPD ymm vm64y ymm
-func VGATHERQPD(xy, v, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VGATHERQPD vm64z k     zmm
+// 	VGATHERQPD xmm   vm64x xmm
+// 	VGATHERQPD ymm   vm64y ymm
+func VGATHERQPD(vxy, kv, xyz operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(xy) && operand.IsVM64X(v) && operand.IsXMM(xy1):
+	case operand.IsVM64Z(vxy) && operand.IsK(kv) && operand.IsZMM(xyz):
 		return &intrep.Instruction{
 			Opcode:   "VGATHERQPD",
-			Operands: []operand.Op{xy, v, xy1},
-			Inputs:   []operand.Op{xy, v, xy1},
-			Outputs:  []operand.Op{xy, xy1},
+			Operands: []operand.Op{vxy, kv, xyz},
+			Inputs:   []operand.Op{vxy, kv, xyz},
+			Outputs:  []operand.Op{xyz},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case operand.IsXMM(vxy) && operand.IsVM64X(kv) && operand.IsXMM(xyz):
+		return &intrep.Instruction{
+			Opcode:   "VGATHERQPD",
+			Operands: []operand.Op{vxy, kv, xyz},
+			Inputs:   []operand.Op{vxy, kv, xyz},
+			Outputs:  []operand.Op{vxy, xyz},
 			ISA:      []string{"AVX2"},
 		}, nil
-	case operand.IsYMM(xy) && operand.IsVM64Y(v) && operand.IsYMM(xy1):
+	case operand.IsYMM(vxy) && operand.IsVM64Y(kv) && operand.IsYMM(xyz):
 		return &intrep.Instruction{
 			Opcode:   "VGATHERQPD",
-			Operands: []operand.Op{xy, v, xy1},
-			Inputs:   []operand.Op{xy, v, xy1},
-			Outputs:  []operand.Op{xy, xy1},
+			Operands: []operand.Op{vxy, kv, xyz},
+			Inputs:   []operand.Op{vxy, kv, xyz},
+			Outputs:  []operand.Op{vxy, xyz},
 			ISA:      []string{"AVX2"},
 		}, nil
 	}
@@ -24318,28 +29406,405 @@ func VGATHERQPD(xy, v, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VGATHERQPS xmm vm64x xmm
-// 	VGATHERQPS xmm vm64y xmm
-func VGATHERQPS(x, v, x1 operand.Op) (*intrep.Instruction, error) {
+// 	VGATHERQPS vm64z k     ymm
+// 	VGATHERQPS xmm   vm64x xmm
+// 	VGATHERQPS xmm   vm64y xmm
+func VGATHERQPS(vx, kv, xy operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(x) && operand.IsVM64X(v) && operand.IsXMM(x1):
+	case operand.IsVM64Z(vx) && operand.IsK(kv) && operand.IsYMM(xy):
 		return &intrep.Instruction{
 			Opcode:   "VGATHERQPS",
-			Operands: []operand.Op{x, v, x1},
-			Inputs:   []operand.Op{x, v, x1},
-			Outputs:  []operand.Op{x, x1},
+			Operands: []operand.Op{vx, kv, xy},
+			Inputs:   []operand.Op{vx, kv, xy},
+			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case operand.IsXMM(vx) && operand.IsVM64X(kv) && operand.IsXMM(xy):
+		return &intrep.Instruction{
+			Opcode:   "VGATHERQPS",
+			Operands: []operand.Op{vx, kv, xy},
+			Inputs:   []operand.Op{vx, kv, xy},
+			Outputs:  []operand.Op{vx, xy},
 			ISA:      []string{"AVX2"},
 		}, nil
-	case operand.IsXMM(x) && operand.IsVM64Y(v) && operand.IsXMM(x1):
+	case operand.IsXMM(vx) && operand.IsVM64Y(kv) && operand.IsXMM(xy):
 		return &intrep.Instruction{
 			Opcode:   "VGATHERQPS",
-			Operands: []operand.Op{x, v, x1},
-			Inputs:   []operand.Op{x, v, x1},
-			Outputs:  []operand.Op{x, x1},
+			Operands: []operand.Op{vx, kv, xy},
+			Inputs:   []operand.Op{vx, kv, xy},
+			Outputs:  []operand.Op{vx, xy},
 			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VGATHERQPS: bad operands")
+}
+
+// VGETEXPPD: Extract Exponents of Packed Double-Precision Floating-Point Values as Double-Precision Floating-Point Values.
+//
+// Forms:
+//
+// 	VGETEXPPD m512/m64bcst zmm
+// 	VGETEXPPD m512/m64bcst k zmm
+// 	VGETEXPPD zmm          zmm
+// 	VGETEXPPD zmm          k zmm
+func VGETEXPPD(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 2 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VGETEXPPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VGETEXPPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VGETEXPPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VGETEXPPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VGETEXPPD: bad operands")
+}
+
+// VGETEXPPS: Extract Exponents of Packed Single-Precision Floating-Point Values as Single-Precision Floating-Point Values.
+//
+// Forms:
+//
+// 	VGETEXPPS m512/m32bcst zmm
+// 	VGETEXPPS m512/m32bcst k zmm
+// 	VGETEXPPS zmm          zmm
+// 	VGETEXPPS zmm          k zmm
+func VGETEXPPS(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 2 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VGETEXPPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VGETEXPPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VGETEXPPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VGETEXPPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VGETEXPPS: bad operands")
+}
+
+// VGETEXPSD: Extract Exponent of Scalar Double-Precision Floating-Point Value as Double-Precision Floating-Point Value.
+//
+// Forms:
+//
+// 	VGETEXPSD m64 xmm xmm
+// 	VGETEXPSD m64 xmm k xmm
+// 	VGETEXPSD xmm xmm xmm
+// 	VGETEXPSD xmm xmm k xmm
+func VGETEXPSD(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 3 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VGETEXPSD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VGETEXPSD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VGETEXPSD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VGETEXPSD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VGETEXPSD: bad operands")
+}
+
+// VGETEXPSS: Extract Exponent of Scalar Single-Precision Floating-Point Value as Single-Precision Floating-Point Value.
+//
+// Forms:
+//
+// 	VGETEXPSS m32 xmm xmm
+// 	VGETEXPSS m32 xmm k xmm
+// 	VGETEXPSS xmm xmm xmm
+// 	VGETEXPSS xmm xmm k xmm
+func VGETEXPSS(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 3 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VGETEXPSS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VGETEXPSS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VGETEXPSS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VGETEXPSS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VGETEXPSS: bad operands")
+}
+
+// VGETMANTPD: Extract Normalized Mantissas from Packed Double-Precision Floating-Point Values.
+//
+// Forms:
+//
+// 	VGETMANTPD imm8 m512/m64bcst zmm
+// 	VGETMANTPD imm8 m512/m64bcst k zmm
+// 	VGETMANTPD imm8 zmm          zmm
+// 	VGETMANTPD imm8 zmm          k zmm
+func VGETMANTPD(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VGETMANTPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VGETMANTPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VGETMANTPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VGETMANTPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VGETMANTPD: bad operands")
+}
+
+// VGETMANTPS: Extract Normalized Mantissas from Packed Single-Precision Floating-Point Values.
+//
+// Forms:
+//
+// 	VGETMANTPS imm8 m512/m32bcst zmm
+// 	VGETMANTPS imm8 m512/m32bcst k zmm
+// 	VGETMANTPS imm8 zmm          zmm
+// 	VGETMANTPS imm8 zmm          k zmm
+func VGETMANTPS(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsM512M32BCST(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VGETMANTPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM512M32BCST(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VGETMANTPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VGETMANTPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VGETMANTPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VGETMANTPS: bad operands")
+}
+
+// VGETMANTSD: Extract Normalized Mantissa from Scalar Double-Precision Floating-Point Value.
+//
+// Forms:
+//
+// 	VGETMANTSD imm8 m64 xmm xmm
+// 	VGETMANTSD imm8 m64 xmm k xmm
+// 	VGETMANTSD imm8 xmm xmm xmm
+// 	VGETMANTSD imm8 xmm xmm k xmm
+func VGETMANTSD(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM64(ops[1]) && operand.IsXMM(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VGETMANTSD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsM64(ops[1]) && operand.IsXMM(ops[2]) && operand.IsK(ops[3]) && operand.IsXMM(ops[4]):
+		return &intrep.Instruction{
+			Opcode:   "VGETMANTSD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[4]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VGETMANTSD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]) && operand.IsK(ops[3]) && operand.IsXMM(ops[4]):
+		return &intrep.Instruction{
+			Opcode:   "VGETMANTSD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[4]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VGETMANTSD: bad operands")
+}
+
+// VGETMANTSS: Extract Normalized Mantissa from Scalar Single-Precision Floating-Point Value.
+//
+// Forms:
+//
+// 	VGETMANTSS imm8 m32 xmm xmm
+// 	VGETMANTSS imm8 m32 xmm k xmm
+// 	VGETMANTSS imm8 xmm xmm xmm
+// 	VGETMANTSS imm8 xmm xmm k xmm
+func VGETMANTSS(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM32(ops[1]) && operand.IsXMM(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VGETMANTSS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsM32(ops[1]) && operand.IsXMM(ops[2]) && operand.IsK(ops[3]) && operand.IsXMM(ops[4]):
+		return &intrep.Instruction{
+			Opcode:   "VGETMANTSS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[4]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VGETMANTSS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]) && operand.IsK(ops[3]) && operand.IsXMM(ops[4]):
+		return &intrep.Instruction{
+			Opcode:   "VGETMANTSS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[4]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VGETMANTSS: bad operands")
 }
 
 // VHADDPD: Packed Double-FP Horizontal Add.
@@ -24554,6 +30019,98 @@ func VINSERTF128(i, mx, y, y1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VINSERTF128: bad operands")
 }
 
+// VINSERTF32X4: Insert 128 Bits of Packed Single-Precision Floating-Point Values.
+//
+// Forms:
+//
+// 	VINSERTF32X4 imm8 xmm  zmm zmm
+// 	VINSERTF32X4 imm8 xmm  zmm k zmm
+// 	VINSERTF32X4 imm8 m128 zmm zmm
+// 	VINSERTF32X4 imm8 m128 zmm k zmm
+func VINSERTF32X4(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsXMM(ops[1]) && operand.IsZMM(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VINSERTF32X4",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsXMM(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]) && operand.IsZMM(ops[4]):
+		return &intrep.Instruction{
+			Opcode:   "VINSERTF32X4",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[4]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM128(ops[1]) && operand.IsZMM(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VINSERTF32X4",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsM128(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]) && operand.IsZMM(ops[4]):
+		return &intrep.Instruction{
+			Opcode:   "VINSERTF32X4",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[4]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VINSERTF32X4: bad operands")
+}
+
+// VINSERTF64X4: Insert 256 Bits of Packed Double-Precision Floating-Point Values.
+//
+// Forms:
+//
+// 	VINSERTF64X4 imm8 ymm  zmm zmm
+// 	VINSERTF64X4 imm8 ymm  zmm k zmm
+// 	VINSERTF64X4 imm8 m256 zmm zmm
+// 	VINSERTF64X4 imm8 m256 zmm k zmm
+func VINSERTF64X4(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsYMM(ops[1]) && operand.IsZMM(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VINSERTF64X4",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsYMM(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]) && operand.IsZMM(ops[4]):
+		return &intrep.Instruction{
+			Opcode:   "VINSERTF64X4",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[4]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM256(ops[1]) && operand.IsZMM(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VINSERTF64X4",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsM256(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]) && operand.IsZMM(ops[4]):
+		return &intrep.Instruction{
+			Opcode:   "VINSERTF64X4",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[4]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VINSERTF64X4: bad operands")
+}
+
 // VINSERTI128: Insert Packed Integer Values.
 //
 // Forms:
@@ -24582,15 +30139,125 @@ func VINSERTI128(i, mx, y, y1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VINSERTI128: bad operands")
 }
 
+// VINSERTI32X4: Insert 128 Bits of Packed Doubleword Integer Values.
+//
+// Forms:
+//
+// 	VINSERTI32X4 imm8 xmm  zmm zmm
+// 	VINSERTI32X4 imm8 xmm  zmm k zmm
+// 	VINSERTI32X4 imm8 m128 zmm zmm
+// 	VINSERTI32X4 imm8 m128 zmm k zmm
+func VINSERTI32X4(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsXMM(ops[1]) && operand.IsZMM(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VINSERTI32X4",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsXMM(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]) && operand.IsZMM(ops[4]):
+		return &intrep.Instruction{
+			Opcode:   "VINSERTI32X4",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[4]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM128(ops[1]) && operand.IsZMM(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VINSERTI32X4",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsM128(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]) && operand.IsZMM(ops[4]):
+		return &intrep.Instruction{
+			Opcode:   "VINSERTI32X4",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[4]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VINSERTI32X4: bad operands")
+}
+
+// VINSERTI64X4: Insert 256 Bits of Packed Quadword Integer Values.
+//
+// Forms:
+//
+// 	VINSERTI64X4 imm8 ymm  zmm zmm
+// 	VINSERTI64X4 imm8 ymm  zmm k zmm
+// 	VINSERTI64X4 imm8 m256 zmm zmm
+// 	VINSERTI64X4 imm8 m256 zmm k zmm
+func VINSERTI64X4(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsYMM(ops[1]) && operand.IsZMM(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VINSERTI64X4",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsYMM(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]) && operand.IsZMM(ops[4]):
+		return &intrep.Instruction{
+			Opcode:   "VINSERTI64X4",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[4]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM256(ops[1]) && operand.IsZMM(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VINSERTI64X4",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsM256(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]) && operand.IsZMM(ops[4]):
+		return &intrep.Instruction{
+			Opcode:   "VINSERTI64X4",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[4]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VINSERTI64X4: bad operands")
+}
+
 // VINSERTPS: Insert Packed Single Precision Floating-Point Value.
 //
 // Forms:
 //
 // 	VINSERTPS imm8 xmm xmm xmm
+// 	VINSERTPS imm8 xmm xmm xmm
+// 	VINSERTPS imm8 m32 xmm xmm
 // 	VINSERTPS imm8 m32 xmm xmm
 func VINSERTPS(i, mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsIMM8(i) && operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+		return &intrep.Instruction{
+			Opcode:   "VINSERTPS",
+			Operands: []operand.Op{i, mx, x, x1},
+			Inputs:   []operand.Op{mx, x},
+			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX"},
+		}, nil
+	case operand.IsIMM8(i) && operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+		return &intrep.Instruction{
+			Opcode:   "VINSERTPS",
+			Operands: []operand.Op{i, mx, x, x1},
+			Inputs:   []operand.Op{mx, x},
+			Outputs:  []operand.Op{x1},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case operand.IsIMM8(i) && operand.IsM32(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VINSERTPS",
 			Operands: []operand.Op{i, mx, x, x1},
@@ -24604,7 +30271,7 @@ func VINSERTPS(i, mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{i, mx, x, x1},
 			Inputs:   []operand.Op{mx, x},
 			Outputs:  []operand.Op{x1},
-			ISA:      []string{"AVX"},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VINSERTPS: bad operands")
@@ -24772,43 +30439,79 @@ func VMASKMOVPS(mxy, xy, mxy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VMAXPD xmm  xmm xmm
-// 	VMAXPD m128 xmm xmm
-// 	VMAXPD ymm  ymm ymm
-// 	VMAXPD m256 ymm ymm
-func VMAXPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VMAXPD m512/m64bcst zmm zmm
+// 	VMAXPD m512/m64bcst zmm k zmm
+// 	VMAXPD xmm          xmm xmm
+// 	VMAXPD m128         xmm xmm
+// 	VMAXPD ymm          ymm ymm
+// 	VMAXPD m256         ymm ymm
+// 	VMAXPD zmm          zmm zmm
+// 	VMAXPD zmm          zmm k zmm
+func VMAXPD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VMAXPD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VMAXPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VMAXPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VMAXPD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VMAXPD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VMAXPD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VMAXPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VMAXPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VMAXPD: bad operands")
@@ -24818,43 +30521,79 @@ func VMAXPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VMAXPS xmm  xmm xmm
-// 	VMAXPS m128 xmm xmm
-// 	VMAXPS ymm  ymm ymm
-// 	VMAXPS m256 ymm ymm
-func VMAXPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VMAXPS m512/m32bcst zmm zmm
+// 	VMAXPS m512/m32bcst zmm k zmm
+// 	VMAXPS xmm          xmm xmm
+// 	VMAXPS m128         xmm xmm
+// 	VMAXPS ymm          ymm ymm
+// 	VMAXPS m256         ymm ymm
+// 	VMAXPS zmm          zmm zmm
+// 	VMAXPS zmm          zmm k zmm
+func VMAXPS(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VMAXPS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VMAXPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VMAXPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VMAXPS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VMAXPS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VMAXPS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VMAXPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VMAXPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VMAXPS: bad operands")
@@ -24864,25 +30603,61 @@ func VMAXPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+// 	VMAXSD m64 xmm xmm
+// 	VMAXSD m64 xmm k xmm
 // 	VMAXSD xmm xmm xmm
 // 	VMAXSD m64 xmm xmm
-func VMAXSD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
+// 	VMAXSD xmm xmm xmm
+// 	VMAXSD xmm xmm k xmm
+func VMAXSD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VMAXSD",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VMAXSD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VMAXSD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM64(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VMAXSD",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VMAXSD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VMAXSD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VMAXSD: bad operands")
@@ -24892,25 +30667,61 @@ func VMAXSD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+// 	VMAXSS m32 xmm xmm
+// 	VMAXSS m32 xmm k xmm
 // 	VMAXSS xmm xmm xmm
 // 	VMAXSS m32 xmm xmm
-func VMAXSS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
+// 	VMAXSS xmm xmm xmm
+// 	VMAXSS xmm xmm k xmm
+func VMAXSS(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VMAXSS",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VMAXSS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VMAXSS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM32(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VMAXSS",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VMAXSS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VMAXSS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VMAXSS: bad operands")
@@ -24920,43 +30731,79 @@ func VMAXSS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VMINPD xmm  xmm xmm
-// 	VMINPD m128 xmm xmm
-// 	VMINPD ymm  ymm ymm
-// 	VMINPD m256 ymm ymm
-func VMINPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VMINPD m512/m64bcst zmm zmm
+// 	VMINPD m512/m64bcst zmm k zmm
+// 	VMINPD xmm          xmm xmm
+// 	VMINPD m128         xmm xmm
+// 	VMINPD ymm          ymm ymm
+// 	VMINPD m256         ymm ymm
+// 	VMINPD zmm          zmm zmm
+// 	VMINPD zmm          zmm k zmm
+func VMINPD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VMINPD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VMINPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VMINPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VMINPD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VMINPD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VMINPD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VMINPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VMINPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VMINPD: bad operands")
@@ -24966,43 +30813,79 @@ func VMINPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VMINPS xmm  xmm xmm
-// 	VMINPS m128 xmm xmm
-// 	VMINPS ymm  ymm ymm
-// 	VMINPS m256 ymm ymm
-func VMINPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VMINPS m512/m32bcst zmm zmm
+// 	VMINPS m512/m32bcst zmm k zmm
+// 	VMINPS xmm          xmm xmm
+// 	VMINPS m128         xmm xmm
+// 	VMINPS ymm          ymm ymm
+// 	VMINPS m256         ymm ymm
+// 	VMINPS zmm          zmm zmm
+// 	VMINPS zmm          zmm k zmm
+func VMINPS(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VMINPS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VMINPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VMINPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VMINPS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VMINPS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VMINPS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VMINPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VMINPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VMINPS: bad operands")
@@ -25012,25 +30895,61 @@ func VMINPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+// 	VMINSD m64 xmm xmm
+// 	VMINSD m64 xmm k xmm
 // 	VMINSD xmm xmm xmm
 // 	VMINSD m64 xmm xmm
-func VMINSD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
+// 	VMINSD xmm xmm xmm
+// 	VMINSD xmm xmm k xmm
+func VMINSD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VMINSD",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VMINSD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VMINSD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM64(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VMINSD",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VMINSD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VMINSD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VMINSD: bad operands")
@@ -25040,25 +30959,61 @@ func VMINSD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+// 	VMINSS m32 xmm xmm
+// 	VMINSS m32 xmm k xmm
 // 	VMINSS xmm xmm xmm
 // 	VMINSS m32 xmm xmm
-func VMINSS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
+// 	VMINSS xmm xmm xmm
+// 	VMINSS xmm xmm k xmm
+func VMINSS(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VMINSS",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VMINSS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VMINSS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM32(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VMINSS",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VMINSS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VMINSS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VMINSS: bad operands")
@@ -25068,60 +31023,114 @@ func VMINSS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+// 	VMOVAPD zmm  m512
+// 	VMOVAPD zmm  k m512
+// 	VMOVAPD zmm  zmm
+// 	VMOVAPD zmm  k zmm
+// 	VMOVAPD m512 zmm
+// 	VMOVAPD m512 k zmm
 // 	VMOVAPD xmm  xmm
 // 	VMOVAPD m128 xmm
 // 	VMOVAPD ymm  ymm
 // 	VMOVAPD m256 ymm
 // 	VMOVAPD xmm  m128
 // 	VMOVAPD ymm  m256
-func VMOVAPD(mxy, mxy1 operand.Op) (*intrep.Instruction, error) {
+func VMOVAPD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(mxy1):
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsM512(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VMOVAPD",
-			Operands: []operand.Op{mxy, mxy1},
-			Inputs:   []operand.Op{mxy},
-			Outputs:  []operand.Op{mxy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsM512(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVAPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVAPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVAPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsM512(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVAPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsM512(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVAPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVAPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(mxy1):
+	case len(ops) == 2 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VMOVAPD",
-			Operands: []operand.Op{mxy, mxy1},
-			Inputs:   []operand.Op{mxy},
-			Outputs:  []operand.Op{mxy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(mxy1):
+	case len(ops) == 2 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VMOVAPD",
-			Operands: []operand.Op{mxy, mxy1},
-			Inputs:   []operand.Op{mxy},
-			Outputs:  []operand.Op{mxy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(mxy1):
+	case len(ops) == 2 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VMOVAPD",
-			Operands: []operand.Op{mxy, mxy1},
-			Inputs:   []operand.Op{mxy},
-			Outputs:  []operand.Op{mxy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsXMM(mxy) && operand.IsM128(mxy1):
+	case len(ops) == 2 && operand.IsXMM(ops[0]) && operand.IsM128(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VMOVAPD",
-			Operands: []operand.Op{mxy, mxy1},
-			Inputs:   []operand.Op{mxy},
-			Outputs:  []operand.Op{mxy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsM256(mxy1):
+	case len(ops) == 2 && operand.IsYMM(ops[0]) && operand.IsM256(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VMOVAPD",
-			Operands: []operand.Op{mxy, mxy1},
-			Inputs:   []operand.Op{mxy},
-			Outputs:  []operand.Op{mxy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
 	}
@@ -25132,60 +31141,114 @@ func VMOVAPD(mxy, mxy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+// 	VMOVAPS zmm  m512
+// 	VMOVAPS zmm  k m512
+// 	VMOVAPS zmm  zmm
+// 	VMOVAPS zmm  k zmm
+// 	VMOVAPS m512 zmm
+// 	VMOVAPS m512 k zmm
 // 	VMOVAPS xmm  xmm
 // 	VMOVAPS m128 xmm
 // 	VMOVAPS ymm  ymm
 // 	VMOVAPS m256 ymm
 // 	VMOVAPS xmm  m128
 // 	VMOVAPS ymm  m256
-func VMOVAPS(mxy, mxy1 operand.Op) (*intrep.Instruction, error) {
+func VMOVAPS(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(mxy1):
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsM512(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VMOVAPS",
-			Operands: []operand.Op{mxy, mxy1},
-			Inputs:   []operand.Op{mxy},
-			Outputs:  []operand.Op{mxy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsM512(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVAPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVAPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVAPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsM512(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVAPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsM512(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVAPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVAPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(mxy1):
+	case len(ops) == 2 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VMOVAPS",
-			Operands: []operand.Op{mxy, mxy1},
-			Inputs:   []operand.Op{mxy},
-			Outputs:  []operand.Op{mxy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(mxy1):
+	case len(ops) == 2 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VMOVAPS",
-			Operands: []operand.Op{mxy, mxy1},
-			Inputs:   []operand.Op{mxy},
-			Outputs:  []operand.Op{mxy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(mxy1):
+	case len(ops) == 2 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VMOVAPS",
-			Operands: []operand.Op{mxy, mxy1},
-			Inputs:   []operand.Op{mxy},
-			Outputs:  []operand.Op{mxy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsXMM(mxy) && operand.IsM128(mxy1):
+	case len(ops) == 2 && operand.IsXMM(ops[0]) && operand.IsM128(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VMOVAPS",
-			Operands: []operand.Op{mxy, mxy1},
-			Inputs:   []operand.Op{mxy},
-			Outputs:  []operand.Op{mxy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsM256(mxy1):
+	case len(ops) == 2 && operand.IsYMM(ops[0]) && operand.IsM256(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VMOVAPS",
-			Operands: []operand.Op{mxy, mxy1},
-			Inputs:   []operand.Op{mxy},
-			Outputs:  []operand.Op{mxy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
 	}
@@ -25197,12 +31260,32 @@ func VMOVAPS(mxy, mxy1 operand.Op) (*intrep.Instruction, error) {
 // Forms:
 //
 // 	VMOVD xmm r32
+// 	VMOVD xmm r32
+// 	VMOVD r32 xmm
 // 	VMOVD r32 xmm
 // 	VMOVD m32 xmm
+// 	VMOVD m32 xmm
+// 	VMOVD xmm m32
 // 	VMOVD xmm m32
 func VMOVD(mrx, mrx1 operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsXMM(mrx) && operand.IsR32(mrx1):
+		return &intrep.Instruction{
+			Opcode:   "VMOVD",
+			Operands: []operand.Op{mrx, mrx1},
+			Inputs:   []operand.Op{mrx},
+			Outputs:  []operand.Op{mrx1},
+			ISA:      []string{"AVX"},
+		}, nil
+	case operand.IsXMM(mrx) && operand.IsR32(mrx1):
+		return &intrep.Instruction{
+			Opcode:   "VMOVD",
+			Operands: []operand.Op{mrx, mrx1},
+			Inputs:   []operand.Op{mrx},
+			Outputs:  []operand.Op{mrx1},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case operand.IsR32(mrx) && operand.IsXMM(mrx1):
 		return &intrep.Instruction{
 			Opcode:   "VMOVD",
 			Operands: []operand.Op{mrx, mrx1},
@@ -25216,9 +31299,25 @@ func VMOVD(mrx, mrx1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mrx, mrx1},
 			Inputs:   []operand.Op{mrx},
 			Outputs:  []operand.Op{mrx1},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case operand.IsM32(mrx) && operand.IsXMM(mrx1):
+		return &intrep.Instruction{
+			Opcode:   "VMOVD",
+			Operands: []operand.Op{mrx, mrx1},
+			Inputs:   []operand.Op{mrx},
+			Outputs:  []operand.Op{mrx1},
 			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsM32(mrx) && operand.IsXMM(mrx1):
+		return &intrep.Instruction{
+			Opcode:   "VMOVD",
+			Operands: []operand.Op{mrx, mrx1},
+			Inputs:   []operand.Op{mrx},
+			Outputs:  []operand.Op{mrx1},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case operand.IsXMM(mrx) && operand.IsM32(mrx1):
 		return &intrep.Instruction{
 			Opcode:   "VMOVD",
 			Operands: []operand.Op{mrx, mrx1},
@@ -25232,7 +31331,7 @@ func VMOVD(mrx, mrx1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mrx, mrx1},
 			Inputs:   []operand.Op{mrx},
 			Outputs:  []operand.Op{mrx1},
-			ISA:      []string{"AVX"},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VMOVD: bad operands")
@@ -25242,42 +31341,78 @@ func VMOVD(mrx, mrx1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+// 	VMOVDDUP zmm  zmm
+// 	VMOVDDUP zmm  k zmm
+// 	VMOVDDUP m512 zmm
+// 	VMOVDDUP m512 k zmm
 // 	VMOVDDUP xmm  xmm
 // 	VMOVDDUP m64  xmm
 // 	VMOVDDUP ymm  ymm
 // 	VMOVDDUP m256 ymm
-func VMOVDDUP(mxy, xy operand.Op) (*intrep.Instruction, error) {
+func VMOVDDUP(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy):
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VMOVDDUP",
-			Operands: []operand.Op{mxy, xy},
-			Inputs:   []operand.Op{mxy},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVDDUP",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsM512(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVDDUP",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsM512(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVDDUP",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVDDUP",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM64(mxy) && operand.IsXMM(xy):
+	case len(ops) == 2 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VMOVDDUP",
-			Operands: []operand.Op{mxy, xy},
-			Inputs:   []operand.Op{mxy},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy):
+	case len(ops) == 2 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VMOVDDUP",
-			Operands: []operand.Op{mxy, xy},
-			Inputs:   []operand.Op{mxy},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy):
+	case len(ops) == 2 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VMOVDDUP",
-			Operands: []operand.Op{mxy, xy},
-			Inputs:   []operand.Op{mxy},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
 	}
@@ -25348,6 +31483,134 @@ func VMOVDQA(mxy, mxy1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMOVDQA: bad operands")
 }
 
+// VMOVDQA32: Move Aligned Doubleword Values.
+//
+// Forms:
+//
+// 	VMOVDQA32 zmm  m512
+// 	VMOVDQA32 zmm  k m512
+// 	VMOVDQA32 zmm  zmm
+// 	VMOVDQA32 zmm  k zmm
+// 	VMOVDQA32 m512 zmm
+// 	VMOVDQA32 m512 k zmm
+func VMOVDQA32(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsM512(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVDQA32",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsM512(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVDQA32",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVDQA32",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVDQA32",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsM512(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVDQA32",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsM512(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVDQA32",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VMOVDQA32: bad operands")
+}
+
+// VMOVDQA64: Move Aligned Quadword Values.
+//
+// Forms:
+//
+// 	VMOVDQA64 zmm  m512
+// 	VMOVDQA64 zmm  k m512
+// 	VMOVDQA64 zmm  zmm
+// 	VMOVDQA64 zmm  k zmm
+// 	VMOVDQA64 m512 zmm
+// 	VMOVDQA64 m512 k zmm
+func VMOVDQA64(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsM512(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVDQA64",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsM512(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVDQA64",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVDQA64",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVDQA64",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsM512(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVDQA64",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsM512(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVDQA64",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VMOVDQA64: bad operands")
+}
+
 // VMOVDQU: Move Unaligned Double Quadword.
 //
 // Forms:
@@ -25412,10 +31675,139 @@ func VMOVDQU(mxy, mxy1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMOVDQU: bad operands")
 }
 
+// VMOVDQU32: Move Unaligned Doubleword Values.
+//
+// Forms:
+//
+// 	VMOVDQU32 zmm  m512
+// 	VMOVDQU32 zmm  k m512
+// 	VMOVDQU32 zmm  zmm
+// 	VMOVDQU32 zmm  k zmm
+// 	VMOVDQU32 m512 zmm
+// 	VMOVDQU32 m512 k zmm
+func VMOVDQU32(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsM512(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVDQU32",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsM512(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVDQU32",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVDQU32",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVDQU32",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsM512(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVDQU32",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsM512(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVDQU32",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VMOVDQU32: bad operands")
+}
+
+// VMOVDQU64: Move Unaligned Quadword Values.
+//
+// Forms:
+//
+// 	VMOVDQU64 zmm  m512
+// 	VMOVDQU64 zmm  k m512
+// 	VMOVDQU64 zmm  zmm
+// 	VMOVDQU64 zmm  k zmm
+// 	VMOVDQU64 m512 zmm
+// 	VMOVDQU64 m512 k zmm
+func VMOVDQU64(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsM512(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVDQU64",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsM512(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVDQU64",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVDQU64",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVDQU64",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsM512(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVDQU64",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsM512(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVDQU64",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VMOVDQU64: bad operands")
+}
+
 // VMOVHLPS: Move Packed Single-Precision Floating-Point Values High to Low.
 //
 // Forms:
 //
+// 	VMOVHLPS xmm xmm xmm
 // 	VMOVHLPS xmm xmm xmm
 func VMOVHLPS(x, x1, x2 operand.Op) (*intrep.Instruction, error) {
 	switch {
@@ -25427,6 +31819,14 @@ func VMOVHLPS(x, x1, x2 operand.Op) (*intrep.Instruction, error) {
 			Outputs:  []operand.Op{x2},
 			ISA:      []string{"AVX"},
 		}, nil
+	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsXMM(x2):
+		return &intrep.Instruction{
+			Opcode:   "VMOVHLPS",
+			Operands: []operand.Op{x, x1, x2},
+			Inputs:   []operand.Op{x, x1},
+			Outputs:  []operand.Op{x2},
+			ISA:      []string{"AVX512F"},
+		}, nil
 	}
 	return nil, errors.New("VMOVHLPS: bad operands")
 }
@@ -25436,6 +31836,8 @@ func VMOVHLPS(x, x1, x2 operand.Op) (*intrep.Instruction, error) {
 // Forms:
 //
 // 	VMOVHPD xmm m64
+// 	VMOVHPD xmm m64
+// 	VMOVHPD m64 xmm xmm
 // 	VMOVHPD m64 xmm xmm
 func VMOVHPD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
@@ -25447,6 +31849,14 @@ func VMOVHPD(ops ...operand.Op) (*intrep.Instruction, error) {
 			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
+	case len(ops) == 2 && operand.IsXMM(ops[0]) && operand.IsM64(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVHPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
 	case len(ops) == 3 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VMOVHPD",
@@ -25454,6 +31864,14 @@ func VMOVHPD(ops ...operand.Op) (*intrep.Instruction, error) {
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
+		}, nil
+	case len(ops) == 3 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVHPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VMOVHPD: bad operands")
@@ -25464,6 +31882,8 @@ func VMOVHPD(ops ...operand.Op) (*intrep.Instruction, error) {
 // Forms:
 //
 // 	VMOVHPS xmm m64
+// 	VMOVHPS xmm m64
+// 	VMOVHPS m64 xmm xmm
 // 	VMOVHPS m64 xmm xmm
 func VMOVHPS(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
@@ -25475,6 +31895,14 @@ func VMOVHPS(ops ...operand.Op) (*intrep.Instruction, error) {
 			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
+	case len(ops) == 2 && operand.IsXMM(ops[0]) && operand.IsM64(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVHPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
 	case len(ops) == 3 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VMOVHPS",
@@ -25482,6 +31910,14 @@ func VMOVHPS(ops ...operand.Op) (*intrep.Instruction, error) {
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
+		}, nil
+	case len(ops) == 3 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVHPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VMOVHPS: bad operands")
@@ -25491,6 +31927,7 @@ func VMOVHPS(ops ...operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+// 	VMOVLHPS xmm xmm xmm
 // 	VMOVLHPS xmm xmm xmm
 func VMOVLHPS(x, x1, x2 operand.Op) (*intrep.Instruction, error) {
 	switch {
@@ -25502,6 +31939,14 @@ func VMOVLHPS(x, x1, x2 operand.Op) (*intrep.Instruction, error) {
 			Outputs:  []operand.Op{x2},
 			ISA:      []string{"AVX"},
 		}, nil
+	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsXMM(x2):
+		return &intrep.Instruction{
+			Opcode:   "VMOVLHPS",
+			Operands: []operand.Op{x, x1, x2},
+			Inputs:   []operand.Op{x, x1},
+			Outputs:  []operand.Op{x2},
+			ISA:      []string{"AVX512F"},
+		}, nil
 	}
 	return nil, errors.New("VMOVLHPS: bad operands")
 }
@@ -25511,6 +31956,8 @@ func VMOVLHPS(x, x1, x2 operand.Op) (*intrep.Instruction, error) {
 // Forms:
 //
 // 	VMOVLPD xmm m64
+// 	VMOVLPD xmm m64
+// 	VMOVLPD m64 xmm xmm
 // 	VMOVLPD m64 xmm xmm
 func VMOVLPD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
@@ -25522,6 +31969,14 @@ func VMOVLPD(ops ...operand.Op) (*intrep.Instruction, error) {
 			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
+	case len(ops) == 2 && operand.IsXMM(ops[0]) && operand.IsM64(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVLPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
 	case len(ops) == 3 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VMOVLPD",
@@ -25529,6 +31984,14 @@ func VMOVLPD(ops ...operand.Op) (*intrep.Instruction, error) {
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
+		}, nil
+	case len(ops) == 3 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVLPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VMOVLPD: bad operands")
@@ -25539,6 +32002,8 @@ func VMOVLPD(ops ...operand.Op) (*intrep.Instruction, error) {
 // Forms:
 //
 // 	VMOVLPS xmm m64
+// 	VMOVLPS xmm m64
+// 	VMOVLPS m64 xmm xmm
 // 	VMOVLPS m64 xmm xmm
 func VMOVLPS(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
@@ -25550,6 +32015,14 @@ func VMOVLPS(ops ...operand.Op) (*intrep.Instruction, error) {
 			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
+	case len(ops) == 2 && operand.IsXMM(ops[0]) && operand.IsM64(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVLPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
 	case len(ops) == 3 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VMOVLPS",
@@ -25557,6 +32030,14 @@ func VMOVLPS(ops ...operand.Op) (*intrep.Instruction, error) {
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
+		}, nil
+	case len(ops) == 3 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVLPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VMOVLPS: bad operands")
@@ -25624,23 +32105,32 @@ func VMOVMSKPS(xy, r operand.Op) (*intrep.Instruction, error) {
 //
 // 	VMOVNTDQ xmm m128
 // 	VMOVNTDQ ymm m256
-func VMOVNTDQ(xy, m operand.Op) (*intrep.Instruction, error) {
+// 	VMOVNTDQ zmm m512
+func VMOVNTDQ(xyz, m operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(xy) && operand.IsM128(m):
+	case operand.IsXMM(xyz) && operand.IsM128(m):
 		return &intrep.Instruction{
 			Opcode:   "VMOVNTDQ",
-			Operands: []operand.Op{xy, m},
-			Inputs:   []operand.Op{xy},
+			Operands: []operand.Op{xyz, m},
+			Inputs:   []operand.Op{xyz},
 			Outputs:  []operand.Op{m},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsYMM(xy) && operand.IsM256(m):
+	case operand.IsYMM(xyz) && operand.IsM256(m):
 		return &intrep.Instruction{
 			Opcode:   "VMOVNTDQ",
-			Operands: []operand.Op{xy, m},
-			Inputs:   []operand.Op{xy},
+			Operands: []operand.Op{xyz, m},
+			Inputs:   []operand.Op{xyz},
 			Outputs:  []operand.Op{m},
 			ISA:      []string{"AVX"},
+		}, nil
+	case operand.IsZMM(xyz) && operand.IsM512(m):
+		return &intrep.Instruction{
+			Opcode:   "VMOVNTDQ",
+			Operands: []operand.Op{xyz, m},
+			Inputs:   []operand.Op{xyz},
+			Outputs:  []operand.Op{m},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VMOVNTDQ: bad operands")
@@ -25652,23 +32142,32 @@ func VMOVNTDQ(xy, m operand.Op) (*intrep.Instruction, error) {
 //
 // 	VMOVNTDQA m128 xmm
 // 	VMOVNTDQA m256 ymm
-func VMOVNTDQA(m, xy operand.Op) (*intrep.Instruction, error) {
+// 	VMOVNTDQA m512 zmm
+func VMOVNTDQA(m, xyz operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsM128(m) && operand.IsXMM(xy):
+	case operand.IsM128(m) && operand.IsXMM(xyz):
 		return &intrep.Instruction{
 			Opcode:   "VMOVNTDQA",
-			Operands: []operand.Op{m, xy},
+			Operands: []operand.Op{m, xyz},
 			Inputs:   []operand.Op{m},
-			Outputs:  []operand.Op{xy},
+			Outputs:  []operand.Op{xyz},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM256(m) && operand.IsYMM(xy):
+	case operand.IsM256(m) && operand.IsYMM(xyz):
 		return &intrep.Instruction{
 			Opcode:   "VMOVNTDQA",
-			Operands: []operand.Op{m, xy},
+			Operands: []operand.Op{m, xyz},
 			Inputs:   []operand.Op{m},
-			Outputs:  []operand.Op{xy},
+			Outputs:  []operand.Op{xyz},
 			ISA:      []string{"AVX2"},
+		}, nil
+	case operand.IsM512(m) && operand.IsZMM(xyz):
+		return &intrep.Instruction{
+			Opcode:   "VMOVNTDQA",
+			Operands: []operand.Op{m, xyz},
+			Inputs:   []operand.Op{m},
+			Outputs:  []operand.Op{xyz},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VMOVNTDQA: bad operands")
@@ -25680,23 +32179,32 @@ func VMOVNTDQA(m, xy operand.Op) (*intrep.Instruction, error) {
 //
 // 	VMOVNTPD xmm m128
 // 	VMOVNTPD ymm m256
-func VMOVNTPD(xy, m operand.Op) (*intrep.Instruction, error) {
+// 	VMOVNTPD zmm m512
+func VMOVNTPD(xyz, m operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(xy) && operand.IsM128(m):
+	case operand.IsXMM(xyz) && operand.IsM128(m):
 		return &intrep.Instruction{
 			Opcode:   "VMOVNTPD",
-			Operands: []operand.Op{xy, m},
-			Inputs:   []operand.Op{xy},
+			Operands: []operand.Op{xyz, m},
+			Inputs:   []operand.Op{xyz},
 			Outputs:  []operand.Op{m},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsYMM(xy) && operand.IsM256(m):
+	case operand.IsYMM(xyz) && operand.IsM256(m):
 		return &intrep.Instruction{
 			Opcode:   "VMOVNTPD",
-			Operands: []operand.Op{xy, m},
-			Inputs:   []operand.Op{xy},
+			Operands: []operand.Op{xyz, m},
+			Inputs:   []operand.Op{xyz},
 			Outputs:  []operand.Op{m},
 			ISA:      []string{"AVX"},
+		}, nil
+	case operand.IsZMM(xyz) && operand.IsM512(m):
+		return &intrep.Instruction{
+			Opcode:   "VMOVNTPD",
+			Operands: []operand.Op{xyz, m},
+			Inputs:   []operand.Op{xyz},
+			Outputs:  []operand.Op{m},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VMOVNTPD: bad operands")
@@ -25708,23 +32216,32 @@ func VMOVNTPD(xy, m operand.Op) (*intrep.Instruction, error) {
 //
 // 	VMOVNTPS xmm m128
 // 	VMOVNTPS ymm m256
-func VMOVNTPS(xy, m operand.Op) (*intrep.Instruction, error) {
+// 	VMOVNTPS zmm m512
+func VMOVNTPS(xyz, m operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(xy) && operand.IsM128(m):
+	case operand.IsXMM(xyz) && operand.IsM128(m):
 		return &intrep.Instruction{
 			Opcode:   "VMOVNTPS",
-			Operands: []operand.Op{xy, m},
-			Inputs:   []operand.Op{xy},
+			Operands: []operand.Op{xyz, m},
+			Inputs:   []operand.Op{xyz},
 			Outputs:  []operand.Op{m},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsYMM(xy) && operand.IsM256(m):
+	case operand.IsYMM(xyz) && operand.IsM256(m):
 		return &intrep.Instruction{
 			Opcode:   "VMOVNTPS",
-			Operands: []operand.Op{xy, m},
-			Inputs:   []operand.Op{xy},
+			Operands: []operand.Op{xyz, m},
+			Inputs:   []operand.Op{xyz},
 			Outputs:  []operand.Op{m},
 			ISA:      []string{"AVX"},
+		}, nil
+	case operand.IsZMM(xyz) && operand.IsM512(m):
+		return &intrep.Instruction{
+			Opcode:   "VMOVNTPS",
+			Operands: []operand.Op{xyz, m},
+			Inputs:   []operand.Op{xyz},
+			Outputs:  []operand.Op{m},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VMOVNTPS: bad operands")
@@ -25735,13 +32252,34 @@ func VMOVNTPS(xy, m operand.Op) (*intrep.Instruction, error) {
 // Forms:
 //
 // 	VMOVQ xmm r64
+// 	VMOVQ xmm r64
+// 	VMOVQ r64 xmm
 // 	VMOVQ r64 xmm
 // 	VMOVQ xmm xmm
+// 	VMOVQ xmm xmm
 // 	VMOVQ m64 xmm
+// 	VMOVQ m64 xmm
+// 	VMOVQ xmm m64
 // 	VMOVQ xmm m64
 func VMOVQ(mrx, mrx1 operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsXMM(mrx) && operand.IsR64(mrx1):
+		return &intrep.Instruction{
+			Opcode:   "VMOVQ",
+			Operands: []operand.Op{mrx, mrx1},
+			Inputs:   []operand.Op{mrx},
+			Outputs:  []operand.Op{mrx1},
+			ISA:      []string{"AVX"},
+		}, nil
+	case operand.IsXMM(mrx) && operand.IsR64(mrx1):
+		return &intrep.Instruction{
+			Opcode:   "VMOVQ",
+			Operands: []operand.Op{mrx, mrx1},
+			Inputs:   []operand.Op{mrx},
+			Outputs:  []operand.Op{mrx1},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case operand.IsR64(mrx) && operand.IsXMM(mrx1):
 		return &intrep.Instruction{
 			Opcode:   "VMOVQ",
 			Operands: []operand.Op{mrx, mrx1},
@@ -25755,9 +32293,25 @@ func VMOVQ(mrx, mrx1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mrx, mrx1},
 			Inputs:   []operand.Op{mrx},
 			Outputs:  []operand.Op{mrx1},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case operand.IsXMM(mrx) && operand.IsXMM(mrx1):
+		return &intrep.Instruction{
+			Opcode:   "VMOVQ",
+			Operands: []operand.Op{mrx, mrx1},
+			Inputs:   []operand.Op{mrx},
+			Outputs:  []operand.Op{mrx1},
 			ISA:      []string{"AVX"},
 		}, nil
 	case operand.IsXMM(mrx) && operand.IsXMM(mrx1):
+		return &intrep.Instruction{
+			Opcode:   "VMOVQ",
+			Operands: []operand.Op{mrx, mrx1},
+			Inputs:   []operand.Op{mrx},
+			Outputs:  []operand.Op{mrx1},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case operand.IsM64(mrx) && operand.IsXMM(mrx1):
 		return &intrep.Instruction{
 			Opcode:   "VMOVQ",
 			Operands: []operand.Op{mrx, mrx1},
@@ -25771,7 +32325,7 @@ func VMOVQ(mrx, mrx1 operand.Op) (*intrep.Instruction, error) {
 			Operands: []operand.Op{mrx, mrx1},
 			Inputs:   []operand.Op{mrx},
 			Outputs:  []operand.Op{mrx1},
-			ISA:      []string{"AVX"},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	case operand.IsXMM(mrx) && operand.IsM64(mrx1):
 		return &intrep.Instruction{
@@ -25781,6 +32335,14 @@ func VMOVQ(mrx, mrx1 operand.Op) (*intrep.Instruction, error) {
 			Outputs:  []operand.Op{mrx1},
 			ISA:      []string{"AVX"},
 		}, nil
+	case operand.IsXMM(mrx) && operand.IsM64(mrx1):
+		return &intrep.Instruction{
+			Opcode:   "VMOVQ",
+			Operands: []operand.Op{mrx, mrx1},
+			Inputs:   []operand.Op{mrx},
+			Outputs:  []operand.Op{mrx1},
+			ISA:      []string{"AVX512F"},
+		}, nil
 	}
 	return nil, errors.New("VMOVQ: bad operands")
 }
@@ -25789,11 +32351,49 @@ func VMOVQ(mrx, mrx1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+// 	VMOVSD xmm m64
+// 	VMOVSD xmm k m64
+// 	VMOVSD m64 xmm
+// 	VMOVSD m64 k xmm
 // 	VMOVSD m64 xmm
 // 	VMOVSD xmm m64
 // 	VMOVSD xmm xmm xmm
+// 	VMOVSD xmm xmm k xmm
+// 	VMOVSD xmm xmm xmm
 func VMOVSD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
+	case len(ops) == 2 && operand.IsXMM(ops[0]) && operand.IsM64(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVSD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsK(ops[1]) && operand.IsM64(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVSD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVSD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsM64(ops[0]) && operand.IsK(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVSD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
 	case len(ops) == 2 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VMOVSD",
@@ -25816,6 +32416,22 @@ func VMOVSD(ops ...operand.Op) (*intrep.Instruction, error) {
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVSD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVSD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
 	}
@@ -25826,42 +32442,78 @@ func VMOVSD(ops ...operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+// 	VMOVSHDUP zmm  zmm
+// 	VMOVSHDUP zmm  k zmm
+// 	VMOVSHDUP m512 zmm
+// 	VMOVSHDUP m512 k zmm
 // 	VMOVSHDUP xmm  xmm
 // 	VMOVSHDUP m128 xmm
 // 	VMOVSHDUP ymm  ymm
 // 	VMOVSHDUP m256 ymm
-func VMOVSHDUP(mxy, xy operand.Op) (*intrep.Instruction, error) {
+func VMOVSHDUP(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy):
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VMOVSHDUP",
-			Operands: []operand.Op{mxy, xy},
-			Inputs:   []operand.Op{mxy},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVSHDUP",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsM512(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVSHDUP",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsM512(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVSHDUP",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVSHDUP",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy):
+	case len(ops) == 2 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VMOVSHDUP",
-			Operands: []operand.Op{mxy, xy},
-			Inputs:   []operand.Op{mxy},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy):
+	case len(ops) == 2 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VMOVSHDUP",
-			Operands: []operand.Op{mxy, xy},
-			Inputs:   []operand.Op{mxy},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy):
+	case len(ops) == 2 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VMOVSHDUP",
-			Operands: []operand.Op{mxy, xy},
-			Inputs:   []operand.Op{mxy},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
 	}
@@ -25872,42 +32524,78 @@ func VMOVSHDUP(mxy, xy operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+// 	VMOVSLDUP zmm  zmm
+// 	VMOVSLDUP zmm  k zmm
+// 	VMOVSLDUP m512 zmm
+// 	VMOVSLDUP m512 k zmm
 // 	VMOVSLDUP xmm  xmm
 // 	VMOVSLDUP m128 xmm
 // 	VMOVSLDUP ymm  ymm
 // 	VMOVSLDUP m256 ymm
-func VMOVSLDUP(mxy, xy operand.Op) (*intrep.Instruction, error) {
+func VMOVSLDUP(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy):
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VMOVSLDUP",
-			Operands: []operand.Op{mxy, xy},
-			Inputs:   []operand.Op{mxy},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVSLDUP",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsM512(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVSLDUP",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsM512(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVSLDUP",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVSLDUP",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy):
+	case len(ops) == 2 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VMOVSLDUP",
-			Operands: []operand.Op{mxy, xy},
-			Inputs:   []operand.Op{mxy},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy):
+	case len(ops) == 2 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VMOVSLDUP",
-			Operands: []operand.Op{mxy, xy},
-			Inputs:   []operand.Op{mxy},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy):
+	case len(ops) == 2 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VMOVSLDUP",
-			Operands: []operand.Op{mxy, xy},
-			Inputs:   []operand.Op{mxy},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
 	}
@@ -25918,11 +32606,49 @@ func VMOVSLDUP(mxy, xy operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+// 	VMOVSS xmm m32
+// 	VMOVSS xmm k m32
+// 	VMOVSS m32 xmm
+// 	VMOVSS m32 k xmm
 // 	VMOVSS m32 xmm
 // 	VMOVSS xmm m32
 // 	VMOVSS xmm xmm xmm
+// 	VMOVSS xmm xmm k xmm
+// 	VMOVSS xmm xmm xmm
 func VMOVSS(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
+	case len(ops) == 2 && operand.IsXMM(ops[0]) && operand.IsM32(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVSS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsK(ops[1]) && operand.IsM32(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVSS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVSS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsM32(ops[0]) && operand.IsK(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVSS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
 	case len(ops) == 2 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VMOVSS",
@@ -25945,6 +32671,22 @@ func VMOVSS(ops ...operand.Op) (*intrep.Instruction, error) {
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVSS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVSS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
 	}
@@ -25955,60 +32697,114 @@ func VMOVSS(ops ...operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+// 	VMOVUPD zmm  m512
+// 	VMOVUPD zmm  k m512
+// 	VMOVUPD zmm  zmm
+// 	VMOVUPD zmm  k zmm
+// 	VMOVUPD m512 zmm
+// 	VMOVUPD m512 k zmm
 // 	VMOVUPD xmm  xmm
 // 	VMOVUPD m128 xmm
 // 	VMOVUPD ymm  ymm
 // 	VMOVUPD m256 ymm
 // 	VMOVUPD xmm  m128
 // 	VMOVUPD ymm  m256
-func VMOVUPD(mxy, mxy1 operand.Op) (*intrep.Instruction, error) {
+func VMOVUPD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(mxy1):
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsM512(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VMOVUPD",
-			Operands: []operand.Op{mxy, mxy1},
-			Inputs:   []operand.Op{mxy},
-			Outputs:  []operand.Op{mxy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsM512(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVUPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVUPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVUPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsM512(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVUPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsM512(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVUPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVUPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(mxy1):
+	case len(ops) == 2 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VMOVUPD",
-			Operands: []operand.Op{mxy, mxy1},
-			Inputs:   []operand.Op{mxy},
-			Outputs:  []operand.Op{mxy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(mxy1):
+	case len(ops) == 2 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VMOVUPD",
-			Operands: []operand.Op{mxy, mxy1},
-			Inputs:   []operand.Op{mxy},
-			Outputs:  []operand.Op{mxy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(mxy1):
+	case len(ops) == 2 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VMOVUPD",
-			Operands: []operand.Op{mxy, mxy1},
-			Inputs:   []operand.Op{mxy},
-			Outputs:  []operand.Op{mxy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsXMM(mxy) && operand.IsM128(mxy1):
+	case len(ops) == 2 && operand.IsXMM(ops[0]) && operand.IsM128(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VMOVUPD",
-			Operands: []operand.Op{mxy, mxy1},
-			Inputs:   []operand.Op{mxy},
-			Outputs:  []operand.Op{mxy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsM256(mxy1):
+	case len(ops) == 2 && operand.IsYMM(ops[0]) && operand.IsM256(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VMOVUPD",
-			Operands: []operand.Op{mxy, mxy1},
-			Inputs:   []operand.Op{mxy},
-			Outputs:  []operand.Op{mxy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
 	}
@@ -26019,60 +32815,114 @@ func VMOVUPD(mxy, mxy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+// 	VMOVUPS zmm  m512
+// 	VMOVUPS zmm  k m512
+// 	VMOVUPS zmm  zmm
+// 	VMOVUPS zmm  k zmm
+// 	VMOVUPS m512 zmm
+// 	VMOVUPS m512 k zmm
 // 	VMOVUPS xmm  xmm
 // 	VMOVUPS m128 xmm
 // 	VMOVUPS ymm  ymm
 // 	VMOVUPS m256 ymm
 // 	VMOVUPS xmm  m128
 // 	VMOVUPS ymm  m256
-func VMOVUPS(mxy, mxy1 operand.Op) (*intrep.Instruction, error) {
+func VMOVUPS(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(mxy1):
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsM512(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VMOVUPS",
-			Operands: []operand.Op{mxy, mxy1},
-			Inputs:   []operand.Op{mxy},
-			Outputs:  []operand.Op{mxy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsM512(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVUPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVUPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVUPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsM512(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVUPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsM512(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVUPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VMOVUPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(mxy1):
+	case len(ops) == 2 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VMOVUPS",
-			Operands: []operand.Op{mxy, mxy1},
-			Inputs:   []operand.Op{mxy},
-			Outputs:  []operand.Op{mxy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(mxy1):
+	case len(ops) == 2 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VMOVUPS",
-			Operands: []operand.Op{mxy, mxy1},
-			Inputs:   []operand.Op{mxy},
-			Outputs:  []operand.Op{mxy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(mxy1):
+	case len(ops) == 2 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VMOVUPS",
-			Operands: []operand.Op{mxy, mxy1},
-			Inputs:   []operand.Op{mxy},
-			Outputs:  []operand.Op{mxy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsXMM(mxy) && operand.IsM128(mxy1):
+	case len(ops) == 2 && operand.IsXMM(ops[0]) && operand.IsM128(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VMOVUPS",
-			Operands: []operand.Op{mxy, mxy1},
-			Inputs:   []operand.Op{mxy},
-			Outputs:  []operand.Op{mxy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsM256(mxy1):
+	case len(ops) == 2 && operand.IsYMM(ops[0]) && operand.IsM256(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VMOVUPS",
-			Operands: []operand.Op{mxy, mxy1},
-			Inputs:   []operand.Op{mxy},
-			Outputs:  []operand.Op{mxy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
 	}
@@ -26129,43 +32979,79 @@ func VMPSADBW(i, mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VMULPD xmm  xmm xmm
-// 	VMULPD m128 xmm xmm
-// 	VMULPD ymm  ymm ymm
-// 	VMULPD m256 ymm ymm
-func VMULPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VMULPD m512/m64bcst zmm zmm
+// 	VMULPD m512/m64bcst zmm k zmm
+// 	VMULPD xmm          xmm xmm
+// 	VMULPD m128         xmm xmm
+// 	VMULPD ymm          ymm ymm
+// 	VMULPD m256         ymm ymm
+// 	VMULPD zmm          zmm zmm
+// 	VMULPD zmm          zmm k zmm
+func VMULPD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VMULPD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VMULPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VMULPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VMULPD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VMULPD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VMULPD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VMULPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VMULPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VMULPD: bad operands")
@@ -26175,43 +33061,79 @@ func VMULPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VMULPS xmm  xmm xmm
-// 	VMULPS m128 xmm xmm
-// 	VMULPS ymm  ymm ymm
-// 	VMULPS m256 ymm ymm
-func VMULPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VMULPS m512/m32bcst zmm zmm
+// 	VMULPS m512/m32bcst zmm k zmm
+// 	VMULPS xmm          xmm xmm
+// 	VMULPS m128         xmm xmm
+// 	VMULPS ymm          ymm ymm
+// 	VMULPS m256         ymm ymm
+// 	VMULPS zmm          zmm zmm
+// 	VMULPS zmm          zmm k zmm
+func VMULPS(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VMULPS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VMULPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VMULPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VMULPS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VMULPS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VMULPS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VMULPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VMULPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VMULPS: bad operands")
@@ -26221,25 +33143,61 @@ func VMULPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+// 	VMULSD m64 xmm xmm
+// 	VMULSD m64 xmm k xmm
 // 	VMULSD xmm xmm xmm
 // 	VMULSD m64 xmm xmm
-func VMULSD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
+// 	VMULSD xmm xmm xmm
+// 	VMULSD xmm xmm k xmm
+func VMULSD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VMULSD",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VMULSD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VMULSD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM64(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VMULSD",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VMULSD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VMULSD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VMULSD: bad operands")
@@ -26249,25 +33207,61 @@ func VMULSD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+// 	VMULSS m32 xmm xmm
+// 	VMULSS m32 xmm k xmm
 // 	VMULSS xmm xmm xmm
 // 	VMULSS m32 xmm xmm
-func VMULSS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
+// 	VMULSS xmm xmm xmm
+// 	VMULSS xmm xmm k xmm
+func VMULSS(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VMULSS",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VMULSS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VMULSS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM32(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VMULSS",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VMULSS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VMULSS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VMULSS: bad operands")
@@ -26415,46 +33409,128 @@ func VPABSB(mxy, xy operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VPABSD xmm  xmm
-// 	VPABSD m128 xmm
-// 	VPABSD ymm  ymm
-// 	VPABSD m256 ymm
-func VPABSD(mxy, xy operand.Op) (*intrep.Instruction, error) {
+// 	VPABSD m512/m32bcst zmm
+// 	VPABSD m512/m32bcst k zmm
+// 	VPABSD zmm          zmm
+// 	VPABSD zmm          k zmm
+// 	VPABSD xmm          xmm
+// 	VPABSD m128         xmm
+// 	VPABSD ymm          ymm
+// 	VPABSD m256         ymm
+func VPABSD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy):
+	case len(ops) == 2 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VPABSD",
-			Operands: []operand.Op{mxy, xy},
-			Inputs:   []operand.Op{mxy},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPABSD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPABSD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPABSD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPABSD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy):
+	case len(ops) == 2 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VPABSD",
-			Operands: []operand.Op{mxy, xy},
-			Inputs:   []operand.Op{mxy},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy):
+	case len(ops) == 2 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VPABSD",
-			Operands: []operand.Op{mxy, xy},
-			Inputs:   []operand.Op{mxy},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX2"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy):
+	case len(ops) == 2 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VPABSD",
-			Operands: []operand.Op{mxy, xy},
-			Inputs:   []operand.Op{mxy},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPABSD: bad operands")
+}
+
+// VPABSQ: Packed Absolute Value of Quadword Integers.
+//
+// Forms:
+//
+// 	VPABSQ m512/m64bcst zmm
+// 	VPABSQ m512/m64bcst k zmm
+// 	VPABSQ zmm          zmm
+// 	VPABSQ zmm          k zmm
+func VPABSQ(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 2 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPABSQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPABSQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPABSQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPABSQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VPABSQ: bad operands")
 }
 
 // VPABSW: Packed Absolute Value of Word Integers.
@@ -26737,42 +33813,78 @@ func VPADDB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VPADDD xmm  xmm xmm
-// 	VPADDD m128 xmm xmm
-// 	VPADDD ymm  ymm ymm
-// 	VPADDD m256 ymm ymm
-func VPADDD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VPADDD m512/m32bcst zmm zmm
+// 	VPADDD m512/m32bcst zmm k zmm
+// 	VPADDD zmm          zmm zmm
+// 	VPADDD zmm          zmm k zmm
+// 	VPADDD xmm          xmm xmm
+// 	VPADDD m128         xmm xmm
+// 	VPADDD ymm          ymm ymm
+// 	VPADDD m256         ymm ymm
+func VPADDD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPADDD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPADDD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPADDD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPADDD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPADDD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPADDD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPADDD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPADDD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
 	}
@@ -26783,42 +33895,78 @@ func VPADDD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VPADDQ xmm  xmm xmm
-// 	VPADDQ m128 xmm xmm
-// 	VPADDQ ymm  ymm ymm
-// 	VPADDQ m256 ymm ymm
-func VPADDQ(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VPADDQ m512/m64bcst zmm zmm
+// 	VPADDQ m512/m64bcst zmm k zmm
+// 	VPADDQ zmm          zmm zmm
+// 	VPADDQ zmm          zmm k zmm
+// 	VPADDQ xmm          xmm xmm
+// 	VPADDQ m128         xmm xmm
+// 	VPADDQ ymm          ymm ymm
+// 	VPADDQ m256         ymm ymm
+func VPADDQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPADDQ",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPADDQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPADDQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPADDQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPADDQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPADDQ",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPADDQ",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPADDQ",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
 	}
@@ -27147,6 +34295,52 @@ func VPAND(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPAND: bad operands")
 }
 
+// VPANDD: Bitwise Logical AND of Packed Doubleword Integers.
+//
+// Forms:
+//
+// 	VPANDD m512/m32bcst zmm zmm
+// 	VPANDD m512/m32bcst zmm k zmm
+// 	VPANDD zmm          zmm zmm
+// 	VPANDD zmm          zmm k zmm
+func VPANDD(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPANDD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPANDD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPANDD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPANDD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VPANDD: bad operands")
+}
+
 // VPANDN: Packed Bitwise Logical AND NOT.
 //
 // Forms:
@@ -27193,6 +34387,144 @@ func VPANDN(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 		}, nil
 	}
 	return nil, errors.New("VPANDN: bad operands")
+}
+
+// VPANDND: Bitwise Logical AND NOT of Packed Doubleword Integers.
+//
+// Forms:
+//
+// 	VPANDND m512/m32bcst zmm zmm
+// 	VPANDND m512/m32bcst zmm k zmm
+// 	VPANDND zmm          zmm zmm
+// 	VPANDND zmm          zmm k zmm
+func VPANDND(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPANDND",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPANDND",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPANDND",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPANDND",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VPANDND: bad operands")
+}
+
+// VPANDNQ: Bitwise Logical AND NOT of Packed Quadword Integers.
+//
+// Forms:
+//
+// 	VPANDNQ m512/m64bcst zmm zmm
+// 	VPANDNQ m512/m64bcst zmm k zmm
+// 	VPANDNQ zmm          zmm zmm
+// 	VPANDNQ zmm          zmm k zmm
+func VPANDNQ(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPANDNQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPANDNQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPANDNQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPANDNQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VPANDNQ: bad operands")
+}
+
+// VPANDQ: Bitwise Logical AND of Packed Quadword Integers.
+//
+// Forms:
+//
+// 	VPANDQ m512/m64bcst zmm zmm
+// 	VPANDQ m512/m64bcst zmm k zmm
+// 	VPANDQ zmm          zmm zmm
+// 	VPANDQ zmm          zmm k zmm
+func VPANDQ(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPANDQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPANDQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPANDQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPANDQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VPANDQ: bad operands")
 }
 
 // VPAVGB: Average Packed Byte Integers.
@@ -27331,6 +34663,98 @@ func VPBLENDD(i, mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 		}, nil
 	}
 	return nil, errors.New("VPBLENDD: bad operands")
+}
+
+// VPBLENDMD: Blend Doubleword Vectors Using an OpMask Control.
+//
+// Forms:
+//
+// 	VPBLENDMD m512/m32bcst zmm zmm
+// 	VPBLENDMD m512/m32bcst zmm k zmm
+// 	VPBLENDMD zmm          zmm zmm
+// 	VPBLENDMD zmm          zmm k zmm
+func VPBLENDMD(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPBLENDMD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPBLENDMD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPBLENDMD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPBLENDMD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VPBLENDMD: bad operands")
+}
+
+// VPBLENDMQ: Blend Quadword Vectors Using an OpMask Control.
+//
+// Forms:
+//
+// 	VPBLENDMQ m512/m64bcst zmm zmm
+// 	VPBLENDMQ m512/m64bcst zmm k zmm
+// 	VPBLENDMQ zmm          zmm zmm
+// 	VPBLENDMQ zmm          zmm k zmm
+func VPBLENDMQ(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPBLENDMQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPBLENDMQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPBLENDMQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPBLENDMQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VPBLENDMQ: bad operands")
 }
 
 // VPBLENDVB: Variable Blend Packed Bytes.
@@ -27475,42 +34899,96 @@ func VPBROADCASTB(mx, xy operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+// 	VPBROADCASTD r32 zmm
+// 	VPBROADCASTD r32 k zmm
+// 	VPBROADCASTD xmm zmm
+// 	VPBROADCASTD xmm k zmm
+// 	VPBROADCASTD m32 zmm
+// 	VPBROADCASTD m32 k zmm
 // 	VPBROADCASTD xmm xmm
 // 	VPBROADCASTD m32 xmm
 // 	VPBROADCASTD xmm ymm
 // 	VPBROADCASTD m32 ymm
-func VPBROADCASTD(mx, xy operand.Op) (*intrep.Instruction, error) {
+func VPBROADCASTD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mx) && operand.IsXMM(xy):
+	case len(ops) == 2 && operand.IsR32(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VPBROADCASTD",
-			Operands: []operand.Op{mx, xy},
-			Inputs:   []operand.Op{mx},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsR32(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPBROADCASTD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsXMM(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPBROADCASTD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPBROADCASTD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsM32(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPBROADCASTD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsM32(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPBROADCASTD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPBROADCASTD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX2"},
 		}, nil
-	case operand.IsM32(mx) && operand.IsXMM(xy):
+	case len(ops) == 2 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VPBROADCASTD",
-			Operands: []operand.Op{mx, xy},
-			Inputs:   []operand.Op{mx},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX2"},
 		}, nil
-	case operand.IsXMM(mx) && operand.IsYMM(xy):
+	case len(ops) == 2 && operand.IsXMM(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VPBROADCASTD",
-			Operands: []operand.Op{mx, xy},
-			Inputs:   []operand.Op{mx},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX2"},
 		}, nil
-	case operand.IsM32(mx) && operand.IsYMM(xy):
+	case len(ops) == 2 && operand.IsM32(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VPBROADCASTD",
-			Operands: []operand.Op{mx, xy},
-			Inputs:   []operand.Op{mx},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX2"},
 		}, nil
 	}
@@ -27521,42 +34999,96 @@ func VPBROADCASTD(mx, xy operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+// 	VPBROADCASTQ r64 zmm
+// 	VPBROADCASTQ r64 k zmm
+// 	VPBROADCASTQ xmm zmm
+// 	VPBROADCASTQ xmm k zmm
+// 	VPBROADCASTQ m64 zmm
+// 	VPBROADCASTQ m64 k zmm
 // 	VPBROADCASTQ xmm xmm
 // 	VPBROADCASTQ m64 xmm
 // 	VPBROADCASTQ xmm ymm
 // 	VPBROADCASTQ m64 ymm
-func VPBROADCASTQ(mx, xy operand.Op) (*intrep.Instruction, error) {
+func VPBROADCASTQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mx) && operand.IsXMM(xy):
+	case len(ops) == 2 && operand.IsR64(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VPBROADCASTQ",
-			Operands: []operand.Op{mx, xy},
-			Inputs:   []operand.Op{mx},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsR64(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPBROADCASTQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsXMM(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPBROADCASTQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPBROADCASTQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsM64(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPBROADCASTQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsM64(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPBROADCASTQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPBROADCASTQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX2"},
 		}, nil
-	case operand.IsM64(mx) && operand.IsXMM(xy):
+	case len(ops) == 2 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VPBROADCASTQ",
-			Operands: []operand.Op{mx, xy},
-			Inputs:   []operand.Op{mx},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX2"},
 		}, nil
-	case operand.IsXMM(mx) && operand.IsYMM(xy):
+	case len(ops) == 2 && operand.IsXMM(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VPBROADCASTQ",
-			Operands: []operand.Op{mx, xy},
-			Inputs:   []operand.Op{mx},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX2"},
 		}, nil
-	case operand.IsM64(mx) && operand.IsYMM(xy):
+	case len(ops) == 2 && operand.IsM64(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VPBROADCASTQ",
-			Operands: []operand.Op{mx, xy},
-			Inputs:   []operand.Op{mx},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX2"},
 		}, nil
 	}
@@ -27637,6 +35169,52 @@ func VPCLMULQDQ(i, mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPCLMULQDQ: bad operands")
 }
 
+// VPCMPD: Compare Packed Signed Doubleword Values.
+//
+// Forms:
+//
+// 	VPCMPD imm8 m512/m32bcst zmm k
+// 	VPCMPD imm8 m512/m32bcst zmm k k
+// 	VPCMPD imm8 zmm          zmm k
+// 	VPCMPD imm8 zmm          zmm k k
+func VPCMPD(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM512M32BCST(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPCMPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsM512M32BCST(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]) && operand.IsK(ops[4]):
+		return &intrep.Instruction{
+			Opcode:   "VPCMPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[4]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPCMPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]) && operand.IsK(ops[4]):
+		return &intrep.Instruction{
+			Opcode:   "VPCMPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[4]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VPCMPD: bad operands")
+}
+
 // VPCMPEQB: Compare Packed Byte Data for Equality.
 //
 // Forms:
@@ -27689,44 +35267,82 @@ func VPCMPEQB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VPCMPEQD xmm  xmm xmm
-// 	VPCMPEQD m128 xmm xmm
-// 	VPCMPEQD ymm  ymm ymm
-// 	VPCMPEQD m256 ymm ymm
-func VPCMPEQD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VPCMPEQD m512/m32bcst zmm k
+// 	VPCMPEQD m512/m32bcst zmm k k
+// 	VPCMPEQD zmm          zmm k
+// 	VPCMPEQD zmm          zmm k k
+// 	VPCMPEQD xmm          xmm xmm
+// 	VPCMPEQD m128         xmm xmm
+// 	VPCMPEQD ymm          ymm ymm
+// 	VPCMPEQD m256         ymm ymm
+func VPCMPEQD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPCMPEQD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsK(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPCMPEQD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]):
 		return &intrep.Instruction{
 			Opcode:           "VPCMPEQD",
-			Operands:         []operand.Op{mxy, xy, xy1},
-			Inputs:           []operand.Op{mxy, xy},
-			Outputs:          []operand.Op{xy1},
+			Operands:         ops,
+			Inputs:           []operand.Op{ops[0], ops[1]},
+			Outputs:          []operand.Op{ops[2]},
+			ISA:              []string{"AVX512F"},
+			CancellingInputs: true,
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsK(ops[3]):
+		return &intrep.Instruction{
+			Opcode:           "VPCMPEQD",
+			Operands:         ops,
+			Inputs:           []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:          []operand.Op{ops[3]},
+			ISA:              []string{"AVX512F"},
+			CancellingInputs: true,
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:           "VPCMPEQD",
+			Operands:         ops,
+			Inputs:           []operand.Op{ops[0], ops[1]},
+			Outputs:          []operand.Op{ops[2]},
 			ISA:              []string{"AVX"},
 			CancellingInputs: true,
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPCMPEQD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:           "VPCMPEQD",
-			Operands:         []operand.Op{mxy, xy, xy1},
-			Inputs:           []operand.Op{mxy, xy},
-			Outputs:          []operand.Op{xy1},
+			Operands:         ops,
+			Inputs:           []operand.Op{ops[0], ops[1]},
+			Outputs:          []operand.Op{ops[2]},
 			ISA:              []string{"AVX2"},
 			CancellingInputs: true,
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPCMPEQD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
 	}
@@ -27737,44 +35353,82 @@ func VPCMPEQD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VPCMPEQQ xmm  xmm xmm
-// 	VPCMPEQQ m128 xmm xmm
-// 	VPCMPEQQ ymm  ymm ymm
-// 	VPCMPEQQ m256 ymm ymm
-func VPCMPEQQ(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VPCMPEQQ m512/m64bcst zmm k
+// 	VPCMPEQQ m512/m64bcst zmm k k
+// 	VPCMPEQQ zmm          zmm k
+// 	VPCMPEQQ zmm          zmm k k
+// 	VPCMPEQQ xmm          xmm xmm
+// 	VPCMPEQQ m128         xmm xmm
+// 	VPCMPEQQ ymm          ymm ymm
+// 	VPCMPEQQ m256         ymm ymm
+func VPCMPEQQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPCMPEQQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsK(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPCMPEQQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]):
 		return &intrep.Instruction{
 			Opcode:           "VPCMPEQQ",
-			Operands:         []operand.Op{mxy, xy, xy1},
-			Inputs:           []operand.Op{mxy, xy},
-			Outputs:          []operand.Op{xy1},
+			Operands:         ops,
+			Inputs:           []operand.Op{ops[0], ops[1]},
+			Outputs:          []operand.Op{ops[2]},
+			ISA:              []string{"AVX512F"},
+			CancellingInputs: true,
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsK(ops[3]):
+		return &intrep.Instruction{
+			Opcode:           "VPCMPEQQ",
+			Operands:         ops,
+			Inputs:           []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:          []operand.Op{ops[3]},
+			ISA:              []string{"AVX512F"},
+			CancellingInputs: true,
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:           "VPCMPEQQ",
+			Operands:         ops,
+			Inputs:           []operand.Op{ops[0], ops[1]},
+			Outputs:          []operand.Op{ops[2]},
 			ISA:              []string{"AVX"},
 			CancellingInputs: true,
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPCMPEQQ",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:           "VPCMPEQQ",
-			Operands:         []operand.Op{mxy, xy, xy1},
-			Inputs:           []operand.Op{mxy, xy},
-			Outputs:          []operand.Op{xy1},
+			Operands:         ops,
+			Inputs:           []operand.Op{ops[0], ops[1]},
+			Outputs:          []operand.Op{ops[2]},
 			ISA:              []string{"AVX2"},
 			CancellingInputs: true,
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPCMPEQQ",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
 	}
@@ -27937,44 +35591,82 @@ func VPCMPGTB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VPCMPGTD xmm  xmm xmm
-// 	VPCMPGTD m128 xmm xmm
-// 	VPCMPGTD ymm  ymm ymm
-// 	VPCMPGTD m256 ymm ymm
-func VPCMPGTD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VPCMPGTD m512/m32bcst zmm k
+// 	VPCMPGTD m512/m32bcst zmm k k
+// 	VPCMPGTD zmm          zmm k
+// 	VPCMPGTD zmm          zmm k k
+// 	VPCMPGTD xmm          xmm xmm
+// 	VPCMPGTD m128         xmm xmm
+// 	VPCMPGTD ymm          ymm ymm
+// 	VPCMPGTD m256         ymm ymm
+func VPCMPGTD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPCMPGTD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsK(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPCMPGTD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]):
 		return &intrep.Instruction{
 			Opcode:           "VPCMPGTD",
-			Operands:         []operand.Op{mxy, xy, xy1},
-			Inputs:           []operand.Op{mxy, xy},
-			Outputs:          []operand.Op{xy1},
+			Operands:         ops,
+			Inputs:           []operand.Op{ops[0], ops[1]},
+			Outputs:          []operand.Op{ops[2]},
+			ISA:              []string{"AVX512F"},
+			CancellingInputs: true,
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsK(ops[3]):
+		return &intrep.Instruction{
+			Opcode:           "VPCMPGTD",
+			Operands:         ops,
+			Inputs:           []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:          []operand.Op{ops[3]},
+			ISA:              []string{"AVX512F"},
+			CancellingInputs: true,
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:           "VPCMPGTD",
+			Operands:         ops,
+			Inputs:           []operand.Op{ops[0], ops[1]},
+			Outputs:          []operand.Op{ops[2]},
 			ISA:              []string{"AVX"},
 			CancellingInputs: true,
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPCMPGTD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:           "VPCMPGTD",
-			Operands:         []operand.Op{mxy, xy, xy1},
-			Inputs:           []operand.Op{mxy, xy},
-			Outputs:          []operand.Op{xy1},
+			Operands:         ops,
+			Inputs:           []operand.Op{ops[0], ops[1]},
+			Outputs:          []operand.Op{ops[2]},
 			ISA:              []string{"AVX2"},
 			CancellingInputs: true,
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPCMPGTD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
 	}
@@ -27985,44 +35677,82 @@ func VPCMPGTD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VPCMPGTQ xmm  xmm xmm
-// 	VPCMPGTQ m128 xmm xmm
-// 	VPCMPGTQ ymm  ymm ymm
-// 	VPCMPGTQ m256 ymm ymm
-func VPCMPGTQ(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VPCMPGTQ m512/m64bcst zmm k
+// 	VPCMPGTQ m512/m64bcst zmm k k
+// 	VPCMPGTQ zmm          zmm k
+// 	VPCMPGTQ zmm          zmm k k
+// 	VPCMPGTQ xmm          xmm xmm
+// 	VPCMPGTQ m128         xmm xmm
+// 	VPCMPGTQ ymm          ymm ymm
+// 	VPCMPGTQ m256         ymm ymm
+func VPCMPGTQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPCMPGTQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsK(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPCMPGTQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]):
 		return &intrep.Instruction{
 			Opcode:           "VPCMPGTQ",
-			Operands:         []operand.Op{mxy, xy, xy1},
-			Inputs:           []operand.Op{mxy, xy},
-			Outputs:          []operand.Op{xy1},
+			Operands:         ops,
+			Inputs:           []operand.Op{ops[0], ops[1]},
+			Outputs:          []operand.Op{ops[2]},
+			ISA:              []string{"AVX512F"},
+			CancellingInputs: true,
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsK(ops[3]):
+		return &intrep.Instruction{
+			Opcode:           "VPCMPGTQ",
+			Operands:         ops,
+			Inputs:           []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:          []operand.Op{ops[3]},
+			ISA:              []string{"AVX512F"},
+			CancellingInputs: true,
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:           "VPCMPGTQ",
+			Operands:         ops,
+			Inputs:           []operand.Op{ops[0], ops[1]},
+			Outputs:          []operand.Op{ops[2]},
 			ISA:              []string{"AVX"},
 			CancellingInputs: true,
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPCMPGTQ",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:           "VPCMPGTQ",
-			Operands:         []operand.Op{mxy, xy, xy1},
-			Inputs:           []operand.Op{mxy, xy},
-			Outputs:          []operand.Op{xy1},
+			Operands:         ops,
+			Inputs:           []operand.Op{ops[0], ops[1]},
+			Outputs:          []operand.Op{ops[2]},
 			ISA:              []string{"AVX2"},
 			CancellingInputs: true,
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPCMPGTQ",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
 	}
@@ -28133,6 +35863,236 @@ func VPCMPISTRM(i, mx, x operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPCMPISTRM: bad operands")
 }
 
+// VPCMPQ: Compare Packed Signed Quadword Values.
+//
+// Forms:
+//
+// 	VPCMPQ imm8 m512/m64bcst zmm k
+// 	VPCMPQ imm8 m512/m64bcst zmm k k
+// 	VPCMPQ imm8 zmm          zmm k
+// 	VPCMPQ imm8 zmm          zmm k k
+func VPCMPQ(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPCMPQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]) && operand.IsK(ops[4]):
+		return &intrep.Instruction{
+			Opcode:   "VPCMPQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[4]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPCMPQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]) && operand.IsK(ops[4]):
+		return &intrep.Instruction{
+			Opcode:   "VPCMPQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[4]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VPCMPQ: bad operands")
+}
+
+// VPCMPUD: Compare Packed Unsigned Doubleword Values.
+//
+// Forms:
+//
+// 	VPCMPUD imm8 m512/m32bcst zmm k
+// 	VPCMPUD imm8 m512/m32bcst zmm k k
+// 	VPCMPUD imm8 zmm          zmm k
+// 	VPCMPUD imm8 zmm          zmm k k
+func VPCMPUD(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM512M32BCST(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPCMPUD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsM512M32BCST(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]) && operand.IsK(ops[4]):
+		return &intrep.Instruction{
+			Opcode:   "VPCMPUD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[4]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPCMPUD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]) && operand.IsK(ops[4]):
+		return &intrep.Instruction{
+			Opcode:   "VPCMPUD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[4]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VPCMPUD: bad operands")
+}
+
+// VPCMPUQ: Compare Packed Unsigned Quadword Values.
+//
+// Forms:
+//
+// 	VPCMPUQ imm8 m512/m64bcst zmm k
+// 	VPCMPUQ imm8 m512/m64bcst zmm k k
+// 	VPCMPUQ imm8 zmm          zmm k
+// 	VPCMPUQ imm8 zmm          zmm k k
+func VPCMPUQ(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPCMPUQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]) && operand.IsK(ops[4]):
+		return &intrep.Instruction{
+			Opcode:   "VPCMPUQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[4]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPCMPUQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]) && operand.IsK(ops[4]):
+		return &intrep.Instruction{
+			Opcode:   "VPCMPUQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[4]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VPCMPUQ: bad operands")
+}
+
+// VPCOMPRESSD: Store Sparse Packed Doubleword Integer Values into Dense Memory/Register.
+//
+// Forms:
+//
+// 	VPCOMPRESSD zmm zmm
+// 	VPCOMPRESSD zmm k zmm
+// 	VPCOMPRESSD zmm m512
+// 	VPCOMPRESSD zmm k m512
+func VPCOMPRESSD(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPCOMPRESSD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPCOMPRESSD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsM512(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPCOMPRESSD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsM512(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPCOMPRESSD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VPCOMPRESSD: bad operands")
+}
+
+// VPCOMPRESSQ: Store Sparse Packed Quadword Integer Values into Dense Memory/Register.
+//
+// Forms:
+//
+// 	VPCOMPRESSQ zmm zmm
+// 	VPCOMPRESSQ zmm k zmm
+// 	VPCOMPRESSQ zmm m512
+// 	VPCOMPRESSQ zmm k m512
+func VPCOMPRESSQ(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPCOMPRESSQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPCOMPRESSQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsM512(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPCOMPRESSQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsM512(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPCOMPRESSQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VPCOMPRESSQ: bad operands")
+}
+
 // VPERM2F128: Permute Floating-Point Values.
 //
 // Forms:
@@ -28193,106 +36153,398 @@ func VPERM2I128(i, my, y, y1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VPERMD ymm  ymm ymm
-// 	VPERMD m256 ymm ymm
-func VPERMD(my, y, y1 operand.Op) (*intrep.Instruction, error) {
+// 	VPERMD m512/m32bcst zmm zmm
+// 	VPERMD m512/m32bcst zmm k zmm
+// 	VPERMD zmm          zmm zmm
+// 	VPERMD zmm          zmm k zmm
+// 	VPERMD ymm          ymm ymm
+// 	VPERMD m256         ymm ymm
+func VPERMD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsYMM(my) && operand.IsYMM(y) && operand.IsYMM(y1):
+	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPERMD",
-			Operands: []operand.Op{my, y, y1},
-			Inputs:   []operand.Op{my, y},
-			Outputs:  []operand.Op{y1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPERMD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPERMD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPERMD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPERMD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
-	case operand.IsM256(my) && operand.IsYMM(y) && operand.IsYMM(y1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPERMD",
-			Operands: []operand.Op{my, y, y1},
-			Inputs:   []operand.Op{my, y},
-			Outputs:  []operand.Op{y1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPERMD: bad operands")
 }
 
+// VPERMI2D: Full Permute of Doublewords From Two Tables Overwriting the Index.
+//
+// Forms:
+//
+// 	VPERMI2D m512/m32bcst zmm zmm
+// 	VPERMI2D m512/m32bcst zmm k zmm
+// 	VPERMI2D zmm          zmm zmm
+// 	VPERMI2D zmm          zmm k zmm
+func VPERMI2D(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPERMI2D",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPERMI2D",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPERMI2D",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPERMI2D",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VPERMI2D: bad operands")
+}
+
+// VPERMI2PD: Full Permute of Double-Precision Floating-Point Values From Two Tables Overwriting the Index.
+//
+// Forms:
+//
+// 	VPERMI2PD m512/m64bcst zmm zmm
+// 	VPERMI2PD m512/m64bcst zmm k zmm
+// 	VPERMI2PD zmm          zmm zmm
+// 	VPERMI2PD zmm          zmm k zmm
+func VPERMI2PD(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPERMI2PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPERMI2PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPERMI2PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPERMI2PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VPERMI2PD: bad operands")
+}
+
+// VPERMI2PS: Full Permute of Single-Precision Floating-Point Values From Two Tables Overwriting the Index.
+//
+// Forms:
+//
+// 	VPERMI2PS m512/m32bcst zmm zmm
+// 	VPERMI2PS m512/m32bcst zmm k zmm
+// 	VPERMI2PS zmm          zmm zmm
+// 	VPERMI2PS zmm          zmm k zmm
+func VPERMI2PS(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPERMI2PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPERMI2PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPERMI2PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPERMI2PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VPERMI2PS: bad operands")
+}
+
+// VPERMI2Q: Full Permute of Quadwords From Two Tables Overwriting the Index.
+//
+// Forms:
+//
+// 	VPERMI2Q m512/m64bcst zmm zmm
+// 	VPERMI2Q m512/m64bcst zmm k zmm
+// 	VPERMI2Q zmm          zmm zmm
+// 	VPERMI2Q zmm          zmm k zmm
+func VPERMI2Q(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPERMI2Q",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPERMI2Q",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPERMI2Q",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPERMI2Q",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VPERMI2Q: bad operands")
+}
+
 // VPERMILPD: Permute Double-Precision Floating-Point Values.
 //
 // Forms:
 //
-// 	VPERMILPD imm8 xmm  xmm
-// 	VPERMILPD xmm  xmm  xmm
-// 	VPERMILPD m128 xmm  xmm
-// 	VPERMILPD imm8 m128 xmm
-// 	VPERMILPD imm8 ymm  ymm
-// 	VPERMILPD ymm  ymm  ymm
-// 	VPERMILPD m256 ymm  ymm
-// 	VPERMILPD imm8 m256 ymm
-func VPERMILPD(imxy, mxy, xy operand.Op) (*intrep.Instruction, error) {
+// 	VPERMILPD imm8         m512/m64bcst zmm
+// 	VPERMILPD imm8         m512/m64bcst k zmm
+// 	VPERMILPD m512/m64bcst zmm          zmm
+// 	VPERMILPD m512/m64bcst zmm          k zmm
+// 	VPERMILPD imm8         zmm          zmm
+// 	VPERMILPD imm8         zmm          k zmm
+// 	VPERMILPD zmm          zmm          zmm
+// 	VPERMILPD zmm          zmm          k zmm
+// 	VPERMILPD imm8         xmm          xmm
+// 	VPERMILPD xmm          xmm          xmm
+// 	VPERMILPD m128         xmm          xmm
+// 	VPERMILPD imm8         m128         xmm
+// 	VPERMILPD imm8         ymm          ymm
+// 	VPERMILPD ymm          ymm          ymm
+// 	VPERMILPD m256         ymm          ymm
+// 	VPERMILPD imm8         m256         ymm
+func VPERMILPD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsIMM8(imxy) && operand.IsXMM(mxy) && operand.IsXMM(xy):
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPERMILPD",
-			Operands: []operand.Op{imxy, mxy, xy},
-			Inputs:   []operand.Op{mxy},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPERMILPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPERMILPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPERMILPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPERMILPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPERMILPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPERMILPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPERMILPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPERMILPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsXMM(imxy) && operand.IsXMM(mxy) && operand.IsXMM(xy):
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPERMILPD",
-			Operands: []operand.Op{imxy, mxy, xy},
-			Inputs:   []operand.Op{imxy, mxy},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM128(imxy) && operand.IsXMM(mxy) && operand.IsXMM(xy):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPERMILPD",
-			Operands: []operand.Op{imxy, mxy, xy},
-			Inputs:   []operand.Op{imxy, mxy},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsIMM8(imxy) && operand.IsM128(mxy) && operand.IsXMM(xy):
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsM128(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPERMILPD",
-			Operands: []operand.Op{imxy, mxy, xy},
-			Inputs:   []operand.Op{mxy},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsIMM8(imxy) && operand.IsYMM(mxy) && operand.IsYMM(xy):
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPERMILPD",
-			Operands: []operand.Op{imxy, mxy, xy},
-			Inputs:   []operand.Op{mxy},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsYMM(imxy) && operand.IsYMM(mxy) && operand.IsYMM(xy):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPERMILPD",
-			Operands: []operand.Op{imxy, mxy, xy},
-			Inputs:   []operand.Op{imxy, mxy},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM256(imxy) && operand.IsYMM(mxy) && operand.IsYMM(xy):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPERMILPD",
-			Operands: []operand.Op{imxy, mxy, xy},
-			Inputs:   []operand.Op{imxy, mxy},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsIMM8(imxy) && operand.IsM256(mxy) && operand.IsYMM(xy):
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsM256(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPERMILPD",
-			Operands: []operand.Op{imxy, mxy, xy},
-			Inputs:   []operand.Op{mxy},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
 	}
@@ -28303,78 +36555,150 @@ func VPERMILPD(imxy, mxy, xy operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VPERMILPS imm8 xmm  xmm
-// 	VPERMILPS xmm  xmm  xmm
-// 	VPERMILPS m128 xmm  xmm
-// 	VPERMILPS imm8 m128 xmm
-// 	VPERMILPS imm8 ymm  ymm
-// 	VPERMILPS ymm  ymm  ymm
-// 	VPERMILPS m256 ymm  ymm
-// 	VPERMILPS imm8 m256 ymm
-func VPERMILPS(imxy, mxy, xy operand.Op) (*intrep.Instruction, error) {
+// 	VPERMILPS imm8         m512/m32bcst zmm
+// 	VPERMILPS imm8         m512/m32bcst k zmm
+// 	VPERMILPS m512/m32bcst zmm          zmm
+// 	VPERMILPS m512/m32bcst zmm          k zmm
+// 	VPERMILPS imm8         zmm          zmm
+// 	VPERMILPS imm8         zmm          k zmm
+// 	VPERMILPS zmm          zmm          zmm
+// 	VPERMILPS zmm          zmm          k zmm
+// 	VPERMILPS imm8         xmm          xmm
+// 	VPERMILPS xmm          xmm          xmm
+// 	VPERMILPS m128         xmm          xmm
+// 	VPERMILPS imm8         m128         xmm
+// 	VPERMILPS imm8         ymm          ymm
+// 	VPERMILPS ymm          ymm          ymm
+// 	VPERMILPS m256         ymm          ymm
+// 	VPERMILPS imm8         m256         ymm
+func VPERMILPS(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsIMM8(imxy) && operand.IsXMM(mxy) && operand.IsXMM(xy):
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsM512M32BCST(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPERMILPS",
-			Operands: []operand.Op{imxy, mxy, xy},
-			Inputs:   []operand.Op{mxy},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM512M32BCST(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPERMILPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPERMILPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPERMILPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPERMILPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPERMILPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPERMILPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPERMILPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPERMILPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsXMM(imxy) && operand.IsXMM(mxy) && operand.IsXMM(xy):
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPERMILPS",
-			Operands: []operand.Op{imxy, mxy, xy},
-			Inputs:   []operand.Op{imxy, mxy},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM128(imxy) && operand.IsXMM(mxy) && operand.IsXMM(xy):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPERMILPS",
-			Operands: []operand.Op{imxy, mxy, xy},
-			Inputs:   []operand.Op{imxy, mxy},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsIMM8(imxy) && operand.IsM128(mxy) && operand.IsXMM(xy):
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsM128(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPERMILPS",
-			Operands: []operand.Op{imxy, mxy, xy},
-			Inputs:   []operand.Op{mxy},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsIMM8(imxy) && operand.IsYMM(mxy) && operand.IsYMM(xy):
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPERMILPS",
-			Operands: []operand.Op{imxy, mxy, xy},
-			Inputs:   []operand.Op{mxy},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsYMM(imxy) && operand.IsYMM(mxy) && operand.IsYMM(xy):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPERMILPS",
-			Operands: []operand.Op{imxy, mxy, xy},
-			Inputs:   []operand.Op{imxy, mxy},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM256(imxy) && operand.IsYMM(mxy) && operand.IsYMM(xy):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPERMILPS",
-			Operands: []operand.Op{imxy, mxy, xy},
-			Inputs:   []operand.Op{imxy, mxy},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsIMM8(imxy) && operand.IsM256(mxy) && operand.IsYMM(xy):
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsM256(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPERMILPS",
-			Operands: []operand.Op{imxy, mxy, xy},
-			Inputs:   []operand.Op{mxy},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
 	}
@@ -28385,24 +36709,96 @@ func VPERMILPS(imxy, mxy, xy operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VPERMPD imm8 ymm  ymm
-// 	VPERMPD imm8 m256 ymm
-func VPERMPD(i, my, y operand.Op) (*intrep.Instruction, error) {
+// 	VPERMPD imm8         m512/m64bcst zmm
+// 	VPERMPD imm8         m512/m64bcst k zmm
+// 	VPERMPD m512/m64bcst zmm          zmm
+// 	VPERMPD m512/m64bcst zmm          k zmm
+// 	VPERMPD imm8         zmm          zmm
+// 	VPERMPD imm8         zmm          k zmm
+// 	VPERMPD zmm          zmm          zmm
+// 	VPERMPD zmm          zmm          k zmm
+// 	VPERMPD imm8         ymm          ymm
+// 	VPERMPD imm8         m256         ymm
+func VPERMPD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsIMM8(i) && operand.IsYMM(my) && operand.IsYMM(y):
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPERMPD",
-			Operands: []operand.Op{i, my, y},
-			Inputs:   []operand.Op{my},
-			Outputs:  []operand.Op{y},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPERMPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPERMPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPERMPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPERMPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPERMPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPERMPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPERMPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPERMPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
-	case operand.IsIMM8(i) && operand.IsM256(my) && operand.IsYMM(y):
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsM256(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPERMPD",
-			Operands: []operand.Op{i, my, y},
-			Inputs:   []operand.Op{my},
-			Outputs:  []operand.Op{y},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
 	}
@@ -28413,24 +36809,60 @@ func VPERMPD(i, my, y operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VPERMPS ymm  ymm ymm
-// 	VPERMPS m256 ymm ymm
-func VPERMPS(my, y, y1 operand.Op) (*intrep.Instruction, error) {
+// 	VPERMPS m512/m32bcst zmm zmm
+// 	VPERMPS m512/m32bcst zmm k zmm
+// 	VPERMPS zmm          zmm zmm
+// 	VPERMPS zmm          zmm k zmm
+// 	VPERMPS ymm          ymm ymm
+// 	VPERMPS m256         ymm ymm
+func VPERMPS(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsYMM(my) && operand.IsYMM(y) && operand.IsYMM(y1):
+	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPERMPS",
-			Operands: []operand.Op{my, y, y1},
-			Inputs:   []operand.Op{my, y},
-			Outputs:  []operand.Op{y1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPERMPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPERMPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPERMPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPERMPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
-	case operand.IsM256(my) && operand.IsYMM(y) && operand.IsYMM(y1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPERMPS",
-			Operands: []operand.Op{my, y, y1},
-			Inputs:   []operand.Op{my, y},
-			Outputs:  []operand.Op{y1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
 	}
@@ -28441,28 +36873,376 @@ func VPERMPS(my, y, y1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VPERMQ imm8 ymm  ymm
-// 	VPERMQ imm8 m256 ymm
-func VPERMQ(i, my, y operand.Op) (*intrep.Instruction, error) {
+// 	VPERMQ imm8         m512/m64bcst zmm
+// 	VPERMQ imm8         m512/m64bcst k zmm
+// 	VPERMQ m512/m64bcst zmm          zmm
+// 	VPERMQ m512/m64bcst zmm          k zmm
+// 	VPERMQ imm8         zmm          zmm
+// 	VPERMQ imm8         zmm          k zmm
+// 	VPERMQ zmm          zmm          zmm
+// 	VPERMQ zmm          zmm          k zmm
+// 	VPERMQ imm8         ymm          ymm
+// 	VPERMQ imm8         m256         ymm
+func VPERMQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsIMM8(i) && operand.IsYMM(my) && operand.IsYMM(y):
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPERMQ",
-			Operands: []operand.Op{i, my, y},
-			Inputs:   []operand.Op{my},
-			Outputs:  []operand.Op{y},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPERMQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPERMQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPERMQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPERMQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPERMQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPERMQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPERMQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPERMQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
-	case operand.IsIMM8(i) && operand.IsM256(my) && operand.IsYMM(y):
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsM256(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPERMQ",
-			Operands: []operand.Op{i, my, y},
-			Inputs:   []operand.Op{my},
-			Outputs:  []operand.Op{y},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPERMQ: bad operands")
+}
+
+// VPERMT2D: Full Permute of Doublewords From Two Tables Overwriting a Table.
+//
+// Forms:
+//
+// 	VPERMT2D m512/m32bcst zmm zmm
+// 	VPERMT2D m512/m32bcst zmm k zmm
+// 	VPERMT2D zmm          zmm zmm
+// 	VPERMT2D zmm          zmm k zmm
+func VPERMT2D(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPERMT2D",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPERMT2D",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPERMT2D",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPERMT2D",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VPERMT2D: bad operands")
+}
+
+// VPERMT2PD: Full Permute of Double-Precision Floating-Point Values From Two Tables Overwriting a Table.
+//
+// Forms:
+//
+// 	VPERMT2PD m512/m64bcst zmm zmm
+// 	VPERMT2PD m512/m64bcst zmm k zmm
+// 	VPERMT2PD zmm          zmm zmm
+// 	VPERMT2PD zmm          zmm k zmm
+func VPERMT2PD(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPERMT2PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPERMT2PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPERMT2PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPERMT2PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VPERMT2PD: bad operands")
+}
+
+// VPERMT2PS: Full Permute of Single-Precision Floating-Point Values From Two Tables Overwriting a Table.
+//
+// Forms:
+//
+// 	VPERMT2PS m512/m32bcst zmm zmm
+// 	VPERMT2PS m512/m32bcst zmm k zmm
+// 	VPERMT2PS zmm          zmm zmm
+// 	VPERMT2PS zmm          zmm k zmm
+func VPERMT2PS(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPERMT2PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPERMT2PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPERMT2PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPERMT2PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VPERMT2PS: bad operands")
+}
+
+// VPERMT2Q: Full Permute of Quadwords From Two Tables Overwriting a Table.
+//
+// Forms:
+//
+// 	VPERMT2Q m512/m64bcst zmm zmm
+// 	VPERMT2Q m512/m64bcst zmm k zmm
+// 	VPERMT2Q zmm          zmm zmm
+// 	VPERMT2Q zmm          zmm k zmm
+func VPERMT2Q(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPERMT2Q",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPERMT2Q",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPERMT2Q",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPERMT2Q",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VPERMT2Q: bad operands")
+}
+
+// VPEXPANDD: Load Sparse Packed Doubleword Integer Values from Dense Memory/Register.
+//
+// Forms:
+//
+// 	VPEXPANDD zmm  zmm
+// 	VPEXPANDD zmm  k zmm
+// 	VPEXPANDD m512 zmm
+// 	VPEXPANDD m512 k zmm
+func VPEXPANDD(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPEXPANDD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPEXPANDD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsM512(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPEXPANDD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsM512(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPEXPANDD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VPEXPANDD: bad operands")
+}
+
+// VPEXPANDQ: Load Sparse Packed Quadword Integer Values from Dense Memory/Register.
+//
+// Forms:
+//
+// 	VPEXPANDQ zmm  zmm
+// 	VPEXPANDQ zmm  k zmm
+// 	VPEXPANDQ m512 zmm
+// 	VPEXPANDQ m512 k zmm
+func VPEXPANDQ(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPEXPANDQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPEXPANDQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsM512(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPEXPANDQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsM512(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPEXPANDQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VPEXPANDQ: bad operands")
 }
 
 // VPEXTRB: Extract Byte.
@@ -28581,24 +37361,33 @@ func VPEXTRW(i, x, mr operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VPGATHERDD xmm vm32x xmm
-// 	VPGATHERDD ymm vm32y ymm
-func VPGATHERDD(xy, v, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VPGATHERDD vm32z k     zmm
+// 	VPGATHERDD xmm   vm32x xmm
+// 	VPGATHERDD ymm   vm32y ymm
+func VPGATHERDD(vxy, kv, xyz operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(xy) && operand.IsVM32X(v) && operand.IsXMM(xy1):
+	case operand.IsVM32Z(vxy) && operand.IsK(kv) && operand.IsZMM(xyz):
 		return &intrep.Instruction{
 			Opcode:   "VPGATHERDD",
-			Operands: []operand.Op{xy, v, xy1},
-			Inputs:   []operand.Op{xy, v, xy1},
-			Outputs:  []operand.Op{xy, xy1},
+			Operands: []operand.Op{vxy, kv, xyz},
+			Inputs:   []operand.Op{vxy, kv, xyz},
+			Outputs:  []operand.Op{xyz},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case operand.IsXMM(vxy) && operand.IsVM32X(kv) && operand.IsXMM(xyz):
+		return &intrep.Instruction{
+			Opcode:   "VPGATHERDD",
+			Operands: []operand.Op{vxy, kv, xyz},
+			Inputs:   []operand.Op{vxy, kv, xyz},
+			Outputs:  []operand.Op{vxy, xyz},
 			ISA:      []string{"AVX2"},
 		}, nil
-	case operand.IsYMM(xy) && operand.IsVM32Y(v) && operand.IsYMM(xy1):
+	case operand.IsYMM(vxy) && operand.IsVM32Y(kv) && operand.IsYMM(xyz):
 		return &intrep.Instruction{
 			Opcode:   "VPGATHERDD",
-			Operands: []operand.Op{xy, v, xy1},
-			Inputs:   []operand.Op{xy, v, xy1},
-			Outputs:  []operand.Op{xy, xy1},
+			Operands: []operand.Op{vxy, kv, xyz},
+			Inputs:   []operand.Op{vxy, kv, xyz},
+			Outputs:  []operand.Op{vxy, xyz},
 			ISA:      []string{"AVX2"},
 		}, nil
 	}
@@ -28609,24 +37398,33 @@ func VPGATHERDD(xy, v, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VPGATHERDQ xmm vm32x xmm
-// 	VPGATHERDQ ymm vm32x ymm
-func VPGATHERDQ(xy, v, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VPGATHERDQ vm32y k     zmm
+// 	VPGATHERDQ xmm   vm32x xmm
+// 	VPGATHERDQ ymm   vm32x ymm
+func VPGATHERDQ(vxy, kv, xyz operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(xy) && operand.IsVM32X(v) && operand.IsXMM(xy1):
+	case operand.IsVM32Y(vxy) && operand.IsK(kv) && operand.IsZMM(xyz):
 		return &intrep.Instruction{
 			Opcode:   "VPGATHERDQ",
-			Operands: []operand.Op{xy, v, xy1},
-			Inputs:   []operand.Op{xy, v, xy1},
-			Outputs:  []operand.Op{xy, xy1},
+			Operands: []operand.Op{vxy, kv, xyz},
+			Inputs:   []operand.Op{vxy, kv, xyz},
+			Outputs:  []operand.Op{xyz},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case operand.IsXMM(vxy) && operand.IsVM32X(kv) && operand.IsXMM(xyz):
+		return &intrep.Instruction{
+			Opcode:   "VPGATHERDQ",
+			Operands: []operand.Op{vxy, kv, xyz},
+			Inputs:   []operand.Op{vxy, kv, xyz},
+			Outputs:  []operand.Op{vxy, xyz},
 			ISA:      []string{"AVX2"},
 		}, nil
-	case operand.IsYMM(xy) && operand.IsVM32X(v) && operand.IsYMM(xy1):
+	case operand.IsYMM(vxy) && operand.IsVM32X(kv) && operand.IsYMM(xyz):
 		return &intrep.Instruction{
 			Opcode:   "VPGATHERDQ",
-			Operands: []operand.Op{xy, v, xy1},
-			Inputs:   []operand.Op{xy, v, xy1},
-			Outputs:  []operand.Op{xy, xy1},
+			Operands: []operand.Op{vxy, kv, xyz},
+			Inputs:   []operand.Op{vxy, kv, xyz},
+			Outputs:  []operand.Op{vxy, xyz},
 			ISA:      []string{"AVX2"},
 		}, nil
 	}
@@ -28637,24 +37435,33 @@ func VPGATHERDQ(xy, v, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VPGATHERQD xmm vm64x xmm
-// 	VPGATHERQD xmm vm64y xmm
-func VPGATHERQD(x, v, x1 operand.Op) (*intrep.Instruction, error) {
+// 	VPGATHERQD vm64z k     ymm
+// 	VPGATHERQD xmm   vm64x xmm
+// 	VPGATHERQD xmm   vm64y xmm
+func VPGATHERQD(vx, kv, xy operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(x) && operand.IsVM64X(v) && operand.IsXMM(x1):
+	case operand.IsVM64Z(vx) && operand.IsK(kv) && operand.IsYMM(xy):
 		return &intrep.Instruction{
 			Opcode:   "VPGATHERQD",
-			Operands: []operand.Op{x, v, x1},
-			Inputs:   []operand.Op{x, v, x1},
-			Outputs:  []operand.Op{x, x1},
+			Operands: []operand.Op{vx, kv, xy},
+			Inputs:   []operand.Op{vx, kv, xy},
+			Outputs:  []operand.Op{xy},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case operand.IsXMM(vx) && operand.IsVM64X(kv) && operand.IsXMM(xy):
+		return &intrep.Instruction{
+			Opcode:   "VPGATHERQD",
+			Operands: []operand.Op{vx, kv, xy},
+			Inputs:   []operand.Op{vx, kv, xy},
+			Outputs:  []operand.Op{vx, xy},
 			ISA:      []string{"AVX2"},
 		}, nil
-	case operand.IsXMM(x) && operand.IsVM64Y(v) && operand.IsXMM(x1):
+	case operand.IsXMM(vx) && operand.IsVM64Y(kv) && operand.IsXMM(xy):
 		return &intrep.Instruction{
 			Opcode:   "VPGATHERQD",
-			Operands: []operand.Op{x, v, x1},
-			Inputs:   []operand.Op{x, v, x1},
-			Outputs:  []operand.Op{x, x1},
+			Operands: []operand.Op{vx, kv, xy},
+			Inputs:   []operand.Op{vx, kv, xy},
+			Outputs:  []operand.Op{vx, xy},
 			ISA:      []string{"AVX2"},
 		}, nil
 	}
@@ -28665,24 +37472,33 @@ func VPGATHERQD(x, v, x1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VPGATHERQQ xmm vm64x xmm
-// 	VPGATHERQQ ymm vm64y ymm
-func VPGATHERQQ(xy, v, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VPGATHERQQ vm64z k     zmm
+// 	VPGATHERQQ xmm   vm64x xmm
+// 	VPGATHERQQ ymm   vm64y ymm
+func VPGATHERQQ(vxy, kv, xyz operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(xy) && operand.IsVM64X(v) && operand.IsXMM(xy1):
+	case operand.IsVM64Z(vxy) && operand.IsK(kv) && operand.IsZMM(xyz):
 		return &intrep.Instruction{
 			Opcode:   "VPGATHERQQ",
-			Operands: []operand.Op{xy, v, xy1},
-			Inputs:   []operand.Op{xy, v, xy1},
-			Outputs:  []operand.Op{xy, xy1},
+			Operands: []operand.Op{vxy, kv, xyz},
+			Inputs:   []operand.Op{vxy, kv, xyz},
+			Outputs:  []operand.Op{xyz},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case operand.IsXMM(vxy) && operand.IsVM64X(kv) && operand.IsXMM(xyz):
+		return &intrep.Instruction{
+			Opcode:   "VPGATHERQQ",
+			Operands: []operand.Op{vxy, kv, xyz},
+			Inputs:   []operand.Op{vxy, kv, xyz},
+			Outputs:  []operand.Op{vxy, xyz},
 			ISA:      []string{"AVX2"},
 		}, nil
-	case operand.IsYMM(xy) && operand.IsVM64Y(v) && operand.IsYMM(xy1):
+	case operand.IsYMM(vxy) && operand.IsVM64Y(kv) && operand.IsYMM(xyz):
 		return &intrep.Instruction{
 			Opcode:   "VPGATHERQQ",
-			Operands: []operand.Op{xy, v, xy1},
-			Inputs:   []operand.Op{xy, v, xy1},
-			Outputs:  []operand.Op{xy, xy1},
+			Operands: []operand.Op{vxy, kv, xyz},
+			Inputs:   []operand.Op{vxy, kv, xyz},
+			Outputs:  []operand.Op{vxy, xyz},
 			ISA:      []string{"AVX2"},
 		}, nil
 	}
@@ -29345,46 +38161,128 @@ func VPMAXSB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VPMAXSD xmm  xmm xmm
-// 	VPMAXSD m128 xmm xmm
-// 	VPMAXSD ymm  ymm ymm
-// 	VPMAXSD m256 ymm ymm
-func VPMAXSD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VPMAXSD m512/m32bcst zmm zmm
+// 	VPMAXSD m512/m32bcst zmm k zmm
+// 	VPMAXSD zmm          zmm zmm
+// 	VPMAXSD zmm          zmm k zmm
+// 	VPMAXSD xmm          xmm xmm
+// 	VPMAXSD m128         xmm xmm
+// 	VPMAXSD ymm          ymm ymm
+// 	VPMAXSD m256         ymm ymm
+func VPMAXSD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPMAXSD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPMAXSD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPMAXSD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPMAXSD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPMAXSD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPMAXSD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPMAXSD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPMAXSD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPMAXSD: bad operands")
+}
+
+// VPMAXSQ: Maximum of Packed Signed Quadword Integers.
+//
+// Forms:
+//
+// 	VPMAXSQ m512/m64bcst zmm zmm
+// 	VPMAXSQ m512/m64bcst zmm k zmm
+// 	VPMAXSQ zmm          zmm zmm
+// 	VPMAXSQ zmm          zmm k zmm
+func VPMAXSQ(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPMAXSQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPMAXSQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPMAXSQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPMAXSQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VPMAXSQ: bad operands")
 }
 
 // VPMAXSW: Maximum of Packed Signed Word Integers.
@@ -29483,46 +38381,128 @@ func VPMAXUB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VPMAXUD xmm  xmm xmm
-// 	VPMAXUD m128 xmm xmm
-// 	VPMAXUD ymm  ymm ymm
-// 	VPMAXUD m256 ymm ymm
-func VPMAXUD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VPMAXUD m512/m32bcst zmm zmm
+// 	VPMAXUD m512/m32bcst zmm k zmm
+// 	VPMAXUD zmm          zmm zmm
+// 	VPMAXUD zmm          zmm k zmm
+// 	VPMAXUD xmm          xmm xmm
+// 	VPMAXUD m128         xmm xmm
+// 	VPMAXUD ymm          ymm ymm
+// 	VPMAXUD m256         ymm ymm
+func VPMAXUD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPMAXUD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPMAXUD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPMAXUD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPMAXUD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPMAXUD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPMAXUD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPMAXUD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPMAXUD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPMAXUD: bad operands")
+}
+
+// VPMAXUQ: Maximum of Packed Unsigned Quadword Integers.
+//
+// Forms:
+//
+// 	VPMAXUQ m512/m64bcst zmm zmm
+// 	VPMAXUQ m512/m64bcst zmm k zmm
+// 	VPMAXUQ zmm          zmm zmm
+// 	VPMAXUQ zmm          zmm k zmm
+func VPMAXUQ(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPMAXUQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPMAXUQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPMAXUQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPMAXUQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VPMAXUQ: bad operands")
 }
 
 // VPMAXUW: Maximum of Packed Unsigned Word Integers.
@@ -29621,46 +38601,128 @@ func VPMINSB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VPMINSD xmm  xmm xmm
-// 	VPMINSD m128 xmm xmm
-// 	VPMINSD ymm  ymm ymm
-// 	VPMINSD m256 ymm ymm
-func VPMINSD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VPMINSD m512/m32bcst zmm zmm
+// 	VPMINSD m512/m32bcst zmm k zmm
+// 	VPMINSD zmm          zmm zmm
+// 	VPMINSD zmm          zmm k zmm
+// 	VPMINSD xmm          xmm xmm
+// 	VPMINSD m128         xmm xmm
+// 	VPMINSD ymm          ymm ymm
+// 	VPMINSD m256         ymm ymm
+func VPMINSD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPMINSD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPMINSD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPMINSD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPMINSD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPMINSD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPMINSD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPMINSD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPMINSD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPMINSD: bad operands")
+}
+
+// VPMINSQ: Minimum of Packed Signed Quadword Integers.
+//
+// Forms:
+//
+// 	VPMINSQ m512/m64bcst zmm zmm
+// 	VPMINSQ m512/m64bcst zmm k zmm
+// 	VPMINSQ zmm          zmm zmm
+// 	VPMINSQ zmm          zmm k zmm
+func VPMINSQ(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPMINSQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPMINSQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPMINSQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPMINSQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VPMINSQ: bad operands")
 }
 
 // VPMINSW: Minimum of Packed Signed Word Integers.
@@ -29759,46 +38821,128 @@ func VPMINUB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VPMINUD xmm  xmm xmm
-// 	VPMINUD m128 xmm xmm
-// 	VPMINUD ymm  ymm ymm
-// 	VPMINUD m256 ymm ymm
-func VPMINUD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VPMINUD m512/m32bcst zmm zmm
+// 	VPMINUD m512/m32bcst zmm k zmm
+// 	VPMINUD zmm          zmm zmm
+// 	VPMINUD zmm          zmm k zmm
+// 	VPMINUD xmm          xmm xmm
+// 	VPMINUD m128         xmm xmm
+// 	VPMINUD ymm          ymm ymm
+// 	VPMINUD m256         ymm ymm
+func VPMINUD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPMINUD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPMINUD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPMINUD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPMINUD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPMINUD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPMINUD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPMINUD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPMINUD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPMINUD: bad operands")
+}
+
+// VPMINUQ: Minimum of Packed Unsigned Quadword Integers.
+//
+// Forms:
+//
+// 	VPMINUQ m512/m64bcst zmm zmm
+// 	VPMINUQ m512/m64bcst zmm k zmm
+// 	VPMINUQ zmm          zmm zmm
+// 	VPMINUQ zmm          zmm k zmm
+func VPMINUQ(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPMINUQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPMINUQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPMINUQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPMINUQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VPMINUQ: bad operands")
 }
 
 // VPMINUW: Minimum of Packed Unsigned Word Integers.
@@ -29847,6 +38991,98 @@ func VPMINUW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPMINUW: bad operands")
 }
 
+// VPMOVDB: Down Convert Packed Doubleword Values to Byte Values with Truncation.
+//
+// Forms:
+//
+// 	VPMOVDB zmm xmm
+// 	VPMOVDB zmm k xmm
+// 	VPMOVDB zmm m128
+// 	VPMOVDB zmm k m128
+func VPMOVDB(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsXMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVDB",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVDB",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsM128(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVDB",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsM128(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVDB",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VPMOVDB: bad operands")
+}
+
+// VPMOVDW: Down Convert Packed Doubleword Values to Word Values with Truncation.
+//
+// Forms:
+//
+// 	VPMOVDW zmm ymm
+// 	VPMOVDW zmm k ymm
+// 	VPMOVDW zmm m256
+// 	VPMOVDW zmm k m256
+func VPMOVDW(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsYMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVDW",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsYMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVDW",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsM256(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVDW",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsM256(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVDW",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VPMOVDW: bad operands")
+}
+
 // VPMOVMSKB: Move Byte Mask.
 //
 // Forms:
@@ -29875,46 +39111,450 @@ func VPMOVMSKB(xy, r operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPMOVMSKB: bad operands")
 }
 
+// VPMOVQB: Down Convert Packed Quadword Values to Byte Values with Truncation.
+//
+// Forms:
+//
+// 	VPMOVQB zmm xmm
+// 	VPMOVQB zmm k xmm
+// 	VPMOVQB zmm m64
+// 	VPMOVQB zmm k m64
+func VPMOVQB(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsXMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVQB",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVQB",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsM64(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVQB",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsM64(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVQB",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VPMOVQB: bad operands")
+}
+
+// VPMOVQD: Down Convert Packed Quadword Values to Doubleword Values with Truncation.
+//
+// Forms:
+//
+// 	VPMOVQD zmm ymm
+// 	VPMOVQD zmm k ymm
+// 	VPMOVQD zmm m256
+// 	VPMOVQD zmm k m256
+func VPMOVQD(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsYMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVQD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsYMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVQD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsM256(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVQD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsM256(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVQD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VPMOVQD: bad operands")
+}
+
+// VPMOVQW: Down Convert Packed Quadword Values to Word Values with Truncation.
+//
+// Forms:
+//
+// 	VPMOVQW zmm xmm
+// 	VPMOVQW zmm k xmm
+// 	VPMOVQW zmm m128
+// 	VPMOVQW zmm k m128
+func VPMOVQW(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsXMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVQW",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVQW",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsM128(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVQW",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsM128(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVQW",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VPMOVQW: bad operands")
+}
+
+// VPMOVSDB: Down Convert Packed Doubleword Values to Byte Values with Signed Saturation.
+//
+// Forms:
+//
+// 	VPMOVSDB zmm xmm
+// 	VPMOVSDB zmm k xmm
+// 	VPMOVSDB zmm m128
+// 	VPMOVSDB zmm k m128
+func VPMOVSDB(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsXMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVSDB",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVSDB",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsM128(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVSDB",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsM128(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVSDB",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VPMOVSDB: bad operands")
+}
+
+// VPMOVSDW: Down Convert Packed Doubleword Values to Word Values with Signed Saturation.
+//
+// Forms:
+//
+// 	VPMOVSDW zmm ymm
+// 	VPMOVSDW zmm k ymm
+// 	VPMOVSDW zmm m256
+// 	VPMOVSDW zmm k m256
+func VPMOVSDW(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsYMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVSDW",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsYMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVSDW",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsM256(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVSDW",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsM256(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVSDW",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VPMOVSDW: bad operands")
+}
+
+// VPMOVSQB: Down Convert Packed Quadword Values to Byte Values with Signed Saturation.
+//
+// Forms:
+//
+// 	VPMOVSQB zmm xmm
+// 	VPMOVSQB zmm k xmm
+// 	VPMOVSQB zmm m64
+// 	VPMOVSQB zmm k m64
+func VPMOVSQB(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsXMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVSQB",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVSQB",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsM64(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVSQB",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsM64(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVSQB",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VPMOVSQB: bad operands")
+}
+
+// VPMOVSQD: Down Convert Packed Quadword Values to Doubleword Values with Signed Saturation.
+//
+// Forms:
+//
+// 	VPMOVSQD zmm ymm
+// 	VPMOVSQD zmm k ymm
+// 	VPMOVSQD zmm m256
+// 	VPMOVSQD zmm k m256
+func VPMOVSQD(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsYMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVSQD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsYMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVSQD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsM256(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVSQD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsM256(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVSQD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VPMOVSQD: bad operands")
+}
+
+// VPMOVSQW: Down Convert Packed Quadword Values to Word Values with Signed Saturation.
+//
+// Forms:
+//
+// 	VPMOVSQW zmm xmm
+// 	VPMOVSQW zmm k xmm
+// 	VPMOVSQW zmm m128
+// 	VPMOVSQW zmm k m128
+func VPMOVSQW(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsXMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVSQW",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVSQW",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsM128(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVSQW",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsM128(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVSQW",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VPMOVSQW: bad operands")
+}
+
 // VPMOVSXBD: Move Packed Byte Integers to Doubleword Integers with Sign Extension.
 //
 // Forms:
 //
-// 	VPMOVSXBD xmm xmm
-// 	VPMOVSXBD m32 xmm
-// 	VPMOVSXBD xmm ymm
-// 	VPMOVSXBD m64 ymm
-func VPMOVSXBD(mx, xy operand.Op) (*intrep.Instruction, error) {
+// 	VPMOVSXBD xmm  zmm
+// 	VPMOVSXBD xmm  k zmm
+// 	VPMOVSXBD m128 zmm
+// 	VPMOVSXBD m128 k zmm
+// 	VPMOVSXBD xmm  xmm
+// 	VPMOVSXBD m32  xmm
+// 	VPMOVSXBD xmm  ymm
+// 	VPMOVSXBD m64  ymm
+func VPMOVSXBD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mx) && operand.IsXMM(xy):
+	case len(ops) == 2 && operand.IsXMM(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVSXBD",
-			Operands: []operand.Op{mx, xy},
-			Inputs:   []operand.Op{mx},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVSXBD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsM128(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVSXBD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVSXBD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVSXBD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM32(mx) && operand.IsXMM(xy):
+	case len(ops) == 2 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVSXBD",
-			Operands: []operand.Op{mx, xy},
-			Inputs:   []operand.Op{mx},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsXMM(mx) && operand.IsYMM(xy):
+	case len(ops) == 2 && operand.IsXMM(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVSXBD",
-			Operands: []operand.Op{mx, xy},
-			Inputs:   []operand.Op{mx},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX2"},
 		}, nil
-	case operand.IsM64(mx) && operand.IsYMM(xy):
+	case len(ops) == 2 && operand.IsM64(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVSXBD",
-			Operands: []operand.Op{mx, xy},
-			Inputs:   []operand.Op{mx},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX2"},
 		}, nil
 	}
@@ -29925,42 +39565,78 @@ func VPMOVSXBD(mx, xy operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+// 	VPMOVSXBQ xmm zmm
+// 	VPMOVSXBQ xmm k zmm
+// 	VPMOVSXBQ m64 zmm
+// 	VPMOVSXBQ m64 k zmm
 // 	VPMOVSXBQ xmm xmm
 // 	VPMOVSXBQ m16 xmm
 // 	VPMOVSXBQ xmm ymm
 // 	VPMOVSXBQ m32 ymm
-func VPMOVSXBQ(mx, xy operand.Op) (*intrep.Instruction, error) {
+func VPMOVSXBQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mx) && operand.IsXMM(xy):
+	case len(ops) == 2 && operand.IsXMM(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVSXBQ",
-			Operands: []operand.Op{mx, xy},
-			Inputs:   []operand.Op{mx},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVSXBQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsM64(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVSXBQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsM64(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVSXBQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVSXBQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM16(mx) && operand.IsXMM(xy):
+	case len(ops) == 2 && operand.IsM16(ops[0]) && operand.IsXMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVSXBQ",
-			Operands: []operand.Op{mx, xy},
-			Inputs:   []operand.Op{mx},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsXMM(mx) && operand.IsYMM(xy):
+	case len(ops) == 2 && operand.IsXMM(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVSXBQ",
-			Operands: []operand.Op{mx, xy},
-			Inputs:   []operand.Op{mx},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX2"},
 		}, nil
-	case operand.IsM32(mx) && operand.IsYMM(xy):
+	case len(ops) == 2 && operand.IsM32(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVSXBQ",
-			Operands: []operand.Op{mx, xy},
-			Inputs:   []operand.Op{mx},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX2"},
 		}, nil
 	}
@@ -30017,42 +39693,78 @@ func VPMOVSXBW(mx, xy operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+// 	VPMOVSXDQ ymm  zmm
+// 	VPMOVSXDQ ymm  k zmm
+// 	VPMOVSXDQ m256 zmm
+// 	VPMOVSXDQ m256 k zmm
 // 	VPMOVSXDQ xmm  xmm
 // 	VPMOVSXDQ m64  xmm
 // 	VPMOVSXDQ xmm  ymm
 // 	VPMOVSXDQ m128 ymm
-func VPMOVSXDQ(mx, xy operand.Op) (*intrep.Instruction, error) {
+func VPMOVSXDQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mx) && operand.IsXMM(xy):
+	case len(ops) == 2 && operand.IsYMM(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVSXDQ",
-			Operands: []operand.Op{mx, xy},
-			Inputs:   []operand.Op{mx},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVSXDQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsM256(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVSXDQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVSXDQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVSXDQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM64(mx) && operand.IsXMM(xy):
+	case len(ops) == 2 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVSXDQ",
-			Operands: []operand.Op{mx, xy},
-			Inputs:   []operand.Op{mx},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsXMM(mx) && operand.IsYMM(xy):
+	case len(ops) == 2 && operand.IsXMM(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVSXDQ",
-			Operands: []operand.Op{mx, xy},
-			Inputs:   []operand.Op{mx},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX2"},
 		}, nil
-	case operand.IsM128(mx) && operand.IsYMM(xy):
+	case len(ops) == 2 && operand.IsM128(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVSXDQ",
-			Operands: []operand.Op{mx, xy},
-			Inputs:   []operand.Op{mx},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX2"},
 		}, nil
 	}
@@ -30063,42 +39775,78 @@ func VPMOVSXDQ(mx, xy operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+// 	VPMOVSXWD ymm  zmm
+// 	VPMOVSXWD ymm  k zmm
+// 	VPMOVSXWD m256 zmm
+// 	VPMOVSXWD m256 k zmm
 // 	VPMOVSXWD xmm  xmm
 // 	VPMOVSXWD m64  xmm
 // 	VPMOVSXWD xmm  ymm
 // 	VPMOVSXWD m128 ymm
-func VPMOVSXWD(mx, xy operand.Op) (*intrep.Instruction, error) {
+func VPMOVSXWD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mx) && operand.IsXMM(xy):
+	case len(ops) == 2 && operand.IsYMM(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVSXWD",
-			Operands: []operand.Op{mx, xy},
-			Inputs:   []operand.Op{mx},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVSXWD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsM256(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVSXWD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVSXWD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVSXWD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM64(mx) && operand.IsXMM(xy):
+	case len(ops) == 2 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVSXWD",
-			Operands: []operand.Op{mx, xy},
-			Inputs:   []operand.Op{mx},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsXMM(mx) && operand.IsYMM(xy):
+	case len(ops) == 2 && operand.IsXMM(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVSXWD",
-			Operands: []operand.Op{mx, xy},
-			Inputs:   []operand.Op{mx},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX2"},
 		}, nil
-	case operand.IsM128(mx) && operand.IsYMM(xy):
+	case len(ops) == 2 && operand.IsM128(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVSXWD",
-			Operands: []operand.Op{mx, xy},
-			Inputs:   []operand.Op{mx},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX2"},
 		}, nil
 	}
@@ -30109,88 +39857,390 @@ func VPMOVSXWD(mx, xy operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VPMOVSXWQ xmm xmm
-// 	VPMOVSXWQ m32 xmm
-// 	VPMOVSXWQ xmm ymm
-// 	VPMOVSXWQ m64 ymm
-func VPMOVSXWQ(mx, xy operand.Op) (*intrep.Instruction, error) {
+// 	VPMOVSXWQ xmm  zmm
+// 	VPMOVSXWQ xmm  k zmm
+// 	VPMOVSXWQ m128 zmm
+// 	VPMOVSXWQ m128 k zmm
+// 	VPMOVSXWQ xmm  xmm
+// 	VPMOVSXWQ m32  xmm
+// 	VPMOVSXWQ xmm  ymm
+// 	VPMOVSXWQ m64  ymm
+func VPMOVSXWQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mx) && operand.IsXMM(xy):
+	case len(ops) == 2 && operand.IsXMM(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVSXWQ",
-			Operands: []operand.Op{mx, xy},
-			Inputs:   []operand.Op{mx},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVSXWQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsM128(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVSXWQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVSXWQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVSXWQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM32(mx) && operand.IsXMM(xy):
+	case len(ops) == 2 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVSXWQ",
-			Operands: []operand.Op{mx, xy},
-			Inputs:   []operand.Op{mx},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsXMM(mx) && operand.IsYMM(xy):
+	case len(ops) == 2 && operand.IsXMM(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVSXWQ",
-			Operands: []operand.Op{mx, xy},
-			Inputs:   []operand.Op{mx},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX2"},
 		}, nil
-	case operand.IsM64(mx) && operand.IsYMM(xy):
+	case len(ops) == 2 && operand.IsM64(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVSXWQ",
-			Operands: []operand.Op{mx, xy},
-			Inputs:   []operand.Op{mx},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPMOVSXWQ: bad operands")
 }
 
+// VPMOVUSDB: Down Convert Packed Doubleword Values to Byte Values with Unsigned Saturation.
+//
+// Forms:
+//
+// 	VPMOVUSDB zmm xmm
+// 	VPMOVUSDB zmm k xmm
+// 	VPMOVUSDB zmm m128
+// 	VPMOVUSDB zmm k m128
+func VPMOVUSDB(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsXMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVUSDB",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVUSDB",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsM128(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVUSDB",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsM128(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVUSDB",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VPMOVUSDB: bad operands")
+}
+
+// VPMOVUSDW: Down Convert Packed Doubleword Values to Word Values with Unsigned Saturation.
+//
+// Forms:
+//
+// 	VPMOVUSDW zmm ymm
+// 	VPMOVUSDW zmm k ymm
+// 	VPMOVUSDW zmm m256
+// 	VPMOVUSDW zmm k m256
+func VPMOVUSDW(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsYMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVUSDW",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsYMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVUSDW",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsM256(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVUSDW",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsM256(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVUSDW",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VPMOVUSDW: bad operands")
+}
+
+// VPMOVUSQB: Down Convert Packed Quadword Values to Byte Values with Unsigned Saturation.
+//
+// Forms:
+//
+// 	VPMOVUSQB zmm xmm
+// 	VPMOVUSQB zmm k xmm
+// 	VPMOVUSQB zmm m64
+// 	VPMOVUSQB zmm k m64
+func VPMOVUSQB(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsXMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVUSQB",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVUSQB",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsM64(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVUSQB",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsM64(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVUSQB",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VPMOVUSQB: bad operands")
+}
+
+// VPMOVUSQD: Down Convert Packed Quadword Values to Doubleword Values with Unsigned Saturation.
+//
+// Forms:
+//
+// 	VPMOVUSQD zmm ymm
+// 	VPMOVUSQD zmm k ymm
+// 	VPMOVUSQD zmm m256
+// 	VPMOVUSQD zmm k m256
+func VPMOVUSQD(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsYMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVUSQD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsYMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVUSQD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsM256(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVUSQD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsM256(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVUSQD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VPMOVUSQD: bad operands")
+}
+
+// VPMOVUSQW: Down Convert Packed Quadword Values to Word Values with Unsigned Saturation.
+//
+// Forms:
+//
+// 	VPMOVUSQW zmm xmm
+// 	VPMOVUSQW zmm k xmm
+// 	VPMOVUSQW zmm m128
+// 	VPMOVUSQW zmm k m128
+func VPMOVUSQW(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsXMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVUSQW",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVUSQW",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsM128(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVUSQW",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsM128(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVUSQW",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VPMOVUSQW: bad operands")
+}
+
 // VPMOVZXBD: Move Packed Byte Integers to Doubleword Integers with Zero Extension.
 //
 // Forms:
 //
-// 	VPMOVZXBD xmm xmm
-// 	VPMOVZXBD m32 xmm
-// 	VPMOVZXBD xmm ymm
-// 	VPMOVZXBD m64 ymm
-func VPMOVZXBD(mx, xy operand.Op) (*intrep.Instruction, error) {
+// 	VPMOVZXBD xmm  zmm
+// 	VPMOVZXBD xmm  k zmm
+// 	VPMOVZXBD m128 zmm
+// 	VPMOVZXBD m128 k zmm
+// 	VPMOVZXBD xmm  xmm
+// 	VPMOVZXBD m32  xmm
+// 	VPMOVZXBD xmm  ymm
+// 	VPMOVZXBD m64  ymm
+func VPMOVZXBD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mx) && operand.IsXMM(xy):
+	case len(ops) == 2 && operand.IsXMM(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVZXBD",
-			Operands: []operand.Op{mx, xy},
-			Inputs:   []operand.Op{mx},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVZXBD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsM128(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVZXBD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVZXBD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVZXBD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM32(mx) && operand.IsXMM(xy):
+	case len(ops) == 2 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVZXBD",
-			Operands: []operand.Op{mx, xy},
-			Inputs:   []operand.Op{mx},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsXMM(mx) && operand.IsYMM(xy):
+	case len(ops) == 2 && operand.IsXMM(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVZXBD",
-			Operands: []operand.Op{mx, xy},
-			Inputs:   []operand.Op{mx},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX2"},
 		}, nil
-	case operand.IsM64(mx) && operand.IsYMM(xy):
+	case len(ops) == 2 && operand.IsM64(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVZXBD",
-			Operands: []operand.Op{mx, xy},
-			Inputs:   []operand.Op{mx},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX2"},
 		}, nil
 	}
@@ -30201,42 +40251,78 @@ func VPMOVZXBD(mx, xy operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+// 	VPMOVZXBQ xmm zmm
+// 	VPMOVZXBQ xmm k zmm
+// 	VPMOVZXBQ m64 zmm
+// 	VPMOVZXBQ m64 k zmm
 // 	VPMOVZXBQ xmm xmm
 // 	VPMOVZXBQ m16 xmm
 // 	VPMOVZXBQ xmm ymm
 // 	VPMOVZXBQ m32 ymm
-func VPMOVZXBQ(mx, xy operand.Op) (*intrep.Instruction, error) {
+func VPMOVZXBQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mx) && operand.IsXMM(xy):
+	case len(ops) == 2 && operand.IsXMM(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVZXBQ",
-			Operands: []operand.Op{mx, xy},
-			Inputs:   []operand.Op{mx},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVZXBQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsM64(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVZXBQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsM64(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVZXBQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVZXBQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM16(mx) && operand.IsXMM(xy):
+	case len(ops) == 2 && operand.IsM16(ops[0]) && operand.IsXMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVZXBQ",
-			Operands: []operand.Op{mx, xy},
-			Inputs:   []operand.Op{mx},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsXMM(mx) && operand.IsYMM(xy):
+	case len(ops) == 2 && operand.IsXMM(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVZXBQ",
-			Operands: []operand.Op{mx, xy},
-			Inputs:   []operand.Op{mx},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX2"},
 		}, nil
-	case operand.IsM32(mx) && operand.IsYMM(xy):
+	case len(ops) == 2 && operand.IsM32(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVZXBQ",
-			Operands: []operand.Op{mx, xy},
-			Inputs:   []operand.Op{mx},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX2"},
 		}, nil
 	}
@@ -30293,42 +40379,78 @@ func VPMOVZXBW(mx, xy operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+// 	VPMOVZXDQ ymm  zmm
+// 	VPMOVZXDQ ymm  k zmm
+// 	VPMOVZXDQ m256 zmm
+// 	VPMOVZXDQ m256 k zmm
 // 	VPMOVZXDQ xmm  xmm
 // 	VPMOVZXDQ m64  xmm
 // 	VPMOVZXDQ xmm  ymm
 // 	VPMOVZXDQ m128 ymm
-func VPMOVZXDQ(mx, xy operand.Op) (*intrep.Instruction, error) {
+func VPMOVZXDQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mx) && operand.IsXMM(xy):
+	case len(ops) == 2 && operand.IsYMM(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVZXDQ",
-			Operands: []operand.Op{mx, xy},
-			Inputs:   []operand.Op{mx},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVZXDQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsM256(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVZXDQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVZXDQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVZXDQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM64(mx) && operand.IsXMM(xy):
+	case len(ops) == 2 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVZXDQ",
-			Operands: []operand.Op{mx, xy},
-			Inputs:   []operand.Op{mx},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsXMM(mx) && operand.IsYMM(xy):
+	case len(ops) == 2 && operand.IsXMM(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVZXDQ",
-			Operands: []operand.Op{mx, xy},
-			Inputs:   []operand.Op{mx},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX2"},
 		}, nil
-	case operand.IsM128(mx) && operand.IsYMM(xy):
+	case len(ops) == 2 && operand.IsM128(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVZXDQ",
-			Operands: []operand.Op{mx, xy},
-			Inputs:   []operand.Op{mx},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX2"},
 		}, nil
 	}
@@ -30339,42 +40461,78 @@ func VPMOVZXDQ(mx, xy operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+// 	VPMOVZXWD ymm  zmm
+// 	VPMOVZXWD ymm  k zmm
+// 	VPMOVZXWD m256 zmm
+// 	VPMOVZXWD m256 k zmm
 // 	VPMOVZXWD xmm  xmm
 // 	VPMOVZXWD m64  xmm
 // 	VPMOVZXWD xmm  ymm
 // 	VPMOVZXWD m128 ymm
-func VPMOVZXWD(mx, xy operand.Op) (*intrep.Instruction, error) {
+func VPMOVZXWD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mx) && operand.IsXMM(xy):
+	case len(ops) == 2 && operand.IsYMM(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVZXWD",
-			Operands: []operand.Op{mx, xy},
-			Inputs:   []operand.Op{mx},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVZXWD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsM256(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVZXWD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVZXWD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVZXWD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM64(mx) && operand.IsXMM(xy):
+	case len(ops) == 2 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVZXWD",
-			Operands: []operand.Op{mx, xy},
-			Inputs:   []operand.Op{mx},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsXMM(mx) && operand.IsYMM(xy):
+	case len(ops) == 2 && operand.IsXMM(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVZXWD",
-			Operands: []operand.Op{mx, xy},
-			Inputs:   []operand.Op{mx},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX2"},
 		}, nil
-	case operand.IsM128(mx) && operand.IsYMM(xy):
+	case len(ops) == 2 && operand.IsM128(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVZXWD",
-			Operands: []operand.Op{mx, xy},
-			Inputs:   []operand.Op{mx},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX2"},
 		}, nil
 	}
@@ -30385,42 +40543,78 @@ func VPMOVZXWD(mx, xy operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VPMOVZXWQ xmm xmm
-// 	VPMOVZXWQ m32 xmm
-// 	VPMOVZXWQ xmm ymm
-// 	VPMOVZXWQ m64 ymm
-func VPMOVZXWQ(mx, xy operand.Op) (*intrep.Instruction, error) {
+// 	VPMOVZXWQ xmm  zmm
+// 	VPMOVZXWQ xmm  k zmm
+// 	VPMOVZXWQ m128 zmm
+// 	VPMOVZXWQ m128 k zmm
+// 	VPMOVZXWQ xmm  xmm
+// 	VPMOVZXWQ m32  xmm
+// 	VPMOVZXWQ xmm  ymm
+// 	VPMOVZXWQ m64  ymm
+func VPMOVZXWQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mx) && operand.IsXMM(xy):
+	case len(ops) == 2 && operand.IsXMM(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVZXWQ",
-			Operands: []operand.Op{mx, xy},
-			Inputs:   []operand.Op{mx},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVZXWQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsM128(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVZXWQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVZXWQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPMOVZXWQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM32(mx) && operand.IsXMM(xy):
+	case len(ops) == 2 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVZXWQ",
-			Operands: []operand.Op{mx, xy},
-			Inputs:   []operand.Op{mx},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsXMM(mx) && operand.IsYMM(xy):
+	case len(ops) == 2 && operand.IsXMM(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVZXWQ",
-			Operands: []operand.Op{mx, xy},
-			Inputs:   []operand.Op{mx},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX2"},
 		}, nil
-	case operand.IsM64(mx) && operand.IsYMM(xy):
+	case len(ops) == 2 && operand.IsM64(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVZXWQ",
-			Operands: []operand.Op{mx, xy},
-			Inputs:   []operand.Op{mx},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX2"},
 		}, nil
 	}
@@ -30431,42 +40625,78 @@ func VPMOVZXWQ(mx, xy operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VPMULDQ xmm  xmm xmm
-// 	VPMULDQ m128 xmm xmm
-// 	VPMULDQ ymm  ymm ymm
-// 	VPMULDQ m256 ymm ymm
-func VPMULDQ(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VPMULDQ m512/m64bcst zmm zmm
+// 	VPMULDQ m512/m64bcst zmm k zmm
+// 	VPMULDQ zmm          zmm zmm
+// 	VPMULDQ zmm          zmm k zmm
+// 	VPMULDQ xmm          xmm xmm
+// 	VPMULDQ m128         xmm xmm
+// 	VPMULDQ ymm          ymm ymm
+// 	VPMULDQ m256         ymm ymm
+func VPMULDQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPMULDQ",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPMULDQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPMULDQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPMULDQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPMULDQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPMULDQ",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPMULDQ",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPMULDQ",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
 	}
@@ -30615,42 +40845,78 @@ func VPMULHW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VPMULLD xmm  xmm xmm
-// 	VPMULLD m128 xmm xmm
-// 	VPMULLD ymm  ymm ymm
-// 	VPMULLD m256 ymm ymm
-func VPMULLD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VPMULLD m512/m32bcst zmm zmm
+// 	VPMULLD m512/m32bcst zmm k zmm
+// 	VPMULLD zmm          zmm zmm
+// 	VPMULLD zmm          zmm k zmm
+// 	VPMULLD xmm          xmm xmm
+// 	VPMULLD m128         xmm xmm
+// 	VPMULLD ymm          ymm ymm
+// 	VPMULLD m256         ymm ymm
+func VPMULLD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPMULLD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPMULLD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPMULLD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPMULLD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPMULLD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPMULLD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPMULLD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPMULLD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
 	}
@@ -30707,42 +40973,78 @@ func VPMULLW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VPMULUDQ xmm  xmm xmm
-// 	VPMULUDQ m128 xmm xmm
-// 	VPMULUDQ ymm  ymm ymm
-// 	VPMULUDQ m256 ymm ymm
-func VPMULUDQ(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VPMULUDQ m512/m64bcst zmm zmm
+// 	VPMULUDQ m512/m64bcst zmm k zmm
+// 	VPMULUDQ zmm          zmm zmm
+// 	VPMULUDQ zmm          zmm k zmm
+// 	VPMULUDQ xmm          xmm xmm
+// 	VPMULUDQ m128         xmm xmm
+// 	VPMULUDQ ymm          ymm ymm
+// 	VPMULUDQ m256         ymm ymm
+func VPMULUDQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPMULUDQ",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPMULUDQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPMULUDQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPMULUDQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPMULUDQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPMULUDQ",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPMULUDQ",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPMULUDQ",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
 	}
@@ -30795,6 +41097,466 @@ func VPOR(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPOR: bad operands")
 }
 
+// VPORD: Bitwise Logical OR of Packed Doubleword Integers.
+//
+// Forms:
+//
+// 	VPORD m512/m32bcst zmm zmm
+// 	VPORD m512/m32bcst zmm k zmm
+// 	VPORD zmm          zmm zmm
+// 	VPORD zmm          zmm k zmm
+func VPORD(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPORD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPORD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPORD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPORD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VPORD: bad operands")
+}
+
+// VPORQ: Bitwise Logical OR of Packed Quadword Integers.
+//
+// Forms:
+//
+// 	VPORQ m512/m64bcst zmm zmm
+// 	VPORQ m512/m64bcst zmm k zmm
+// 	VPORQ zmm          zmm zmm
+// 	VPORQ zmm          zmm k zmm
+func VPORQ(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPORQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPORQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPORQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPORQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VPORQ: bad operands")
+}
+
+// VPROLD: Rotate Packed Doubleword Left.
+//
+// Forms:
+//
+// 	VPROLD imm8 m512/m32bcst zmm
+// 	VPROLD imm8 m512/m32bcst k zmm
+// 	VPROLD imm8 zmm          zmm
+// 	VPROLD imm8 zmm          k zmm
+func VPROLD(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsM512M32BCST(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPROLD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM512M32BCST(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPROLD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPROLD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPROLD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VPROLD: bad operands")
+}
+
+// VPROLQ: Rotate Packed Quadword Left.
+//
+// Forms:
+//
+// 	VPROLQ imm8 m512/m64bcst zmm
+// 	VPROLQ imm8 m512/m64bcst k zmm
+// 	VPROLQ imm8 zmm          zmm
+// 	VPROLQ imm8 zmm          k zmm
+func VPROLQ(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPROLQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPROLQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPROLQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPROLQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VPROLQ: bad operands")
+}
+
+// VPROLVD: Variable Rotate Packed Doubleword Left.
+//
+// Forms:
+//
+// 	VPROLVD m512/m32bcst zmm zmm
+// 	VPROLVD m512/m32bcst zmm k zmm
+// 	VPROLVD zmm          zmm zmm
+// 	VPROLVD zmm          zmm k zmm
+func VPROLVD(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPROLVD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPROLVD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPROLVD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPROLVD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VPROLVD: bad operands")
+}
+
+// VPROLVQ: Variable Rotate Packed Quadword Left.
+//
+// Forms:
+//
+// 	VPROLVQ m512/m64bcst zmm zmm
+// 	VPROLVQ m512/m64bcst zmm k zmm
+// 	VPROLVQ zmm          zmm zmm
+// 	VPROLVQ zmm          zmm k zmm
+func VPROLVQ(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPROLVQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPROLVQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPROLVQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPROLVQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VPROLVQ: bad operands")
+}
+
+// VPRORD: Rotate Packed Doubleword Right.
+//
+// Forms:
+//
+// 	VPRORD imm8 m512/m32bcst zmm
+// 	VPRORD imm8 m512/m32bcst k zmm
+// 	VPRORD imm8 zmm          zmm
+// 	VPRORD imm8 zmm          k zmm
+func VPRORD(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsM512M32BCST(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPRORD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM512M32BCST(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPRORD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPRORD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPRORD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VPRORD: bad operands")
+}
+
+// VPRORQ: Rotate Packed Quadword Right.
+//
+// Forms:
+//
+// 	VPRORQ imm8 m512/m64bcst zmm
+// 	VPRORQ imm8 m512/m64bcst k zmm
+// 	VPRORQ imm8 zmm          zmm
+// 	VPRORQ imm8 zmm          k zmm
+func VPRORQ(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPRORQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPRORQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPRORQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPRORQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VPRORQ: bad operands")
+}
+
+// VPRORVD: Variable Rotate Packed Doubleword Right.
+//
+// Forms:
+//
+// 	VPRORVD m512/m32bcst zmm zmm
+// 	VPRORVD m512/m32bcst zmm k zmm
+// 	VPRORVD zmm          zmm zmm
+// 	VPRORVD zmm          zmm k zmm
+func VPRORVD(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPRORVD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPRORVD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPRORVD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPRORVD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VPRORVD: bad operands")
+}
+
+// VPRORVQ: Variable Rotate Packed Quadword Right.
+//
+// Forms:
+//
+// 	VPRORVQ m512/m64bcst zmm zmm
+// 	VPRORVQ m512/m64bcst zmm k zmm
+// 	VPRORVQ zmm          zmm zmm
+// 	VPRORVQ zmm          zmm k zmm
+func VPRORVQ(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPRORVQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPRORVQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPRORVQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPRORVQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VPRORVQ: bad operands")
+}
+
 // VPSADBW: Compute Sum of Absolute Differences.
 //
 // Forms:
@@ -30841,6 +41603,82 @@ func VPSADBW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 		}, nil
 	}
 	return nil, errors.New("VPSADBW: bad operands")
+}
+
+// VPSCATTERDD: Scatter Packed Doubleword Values with Signed Doubleword Indices.
+//
+// Forms:
+//
+// 	VPSCATTERDD zmm k vm32z
+func VPSCATTERDD(z, k, v operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case operand.IsZMM(z) && operand.IsK(k) && operand.IsVM32Z(v):
+		return &intrep.Instruction{
+			Opcode:   "VPSCATTERDD",
+			Operands: []operand.Op{z, k, v},
+			Inputs:   []operand.Op{z, k},
+			Outputs:  []operand.Op{v},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VPSCATTERDD: bad operands")
+}
+
+// VPSCATTERDQ: Scatter Packed Quadword Values with Signed Doubleword Indices.
+//
+// Forms:
+//
+// 	VPSCATTERDQ zmm k vm32y
+func VPSCATTERDQ(z, k, v operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case operand.IsZMM(z) && operand.IsK(k) && operand.IsVM32Y(v):
+		return &intrep.Instruction{
+			Opcode:   "VPSCATTERDQ",
+			Operands: []operand.Op{z, k, v},
+			Inputs:   []operand.Op{z, k},
+			Outputs:  []operand.Op{v},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VPSCATTERDQ: bad operands")
+}
+
+// VPSCATTERQD: Scatter Packed Doubleword Values with Signed Quadword Indices.
+//
+// Forms:
+//
+// 	VPSCATTERQD ymm k vm64z
+func VPSCATTERQD(y, k, v operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case operand.IsYMM(y) && operand.IsK(k) && operand.IsVM64Z(v):
+		return &intrep.Instruction{
+			Opcode:   "VPSCATTERQD",
+			Operands: []operand.Op{y, k, v},
+			Inputs:   []operand.Op{y, k},
+			Outputs:  []operand.Op{v},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VPSCATTERQD: bad operands")
+}
+
+// VPSCATTERQQ: Scatter Packed Quadword Values with Signed Quadword Indices.
+//
+// Forms:
+//
+// 	VPSCATTERQQ zmm k vm64z
+func VPSCATTERQQ(z, k, v operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case operand.IsZMM(z) && operand.IsK(k) && operand.IsVM64Z(v):
+		return &intrep.Instruction{
+			Opcode:   "VPSCATTERQQ",
+			Operands: []operand.Op{z, k, v},
+			Inputs:   []operand.Op{z, k},
+			Outputs:  []operand.Op{v},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VPSCATTERQQ: bad operands")
 }
 
 // VPSHUFB: Packed Shuffle Bytes.
@@ -30893,42 +41731,78 @@ func VPSHUFB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VPSHUFD imm8 xmm  xmm
-// 	VPSHUFD imm8 m128 xmm
-// 	VPSHUFD imm8 ymm  ymm
-// 	VPSHUFD imm8 m256 ymm
-func VPSHUFD(i, mxy, xy operand.Op) (*intrep.Instruction, error) {
+// 	VPSHUFD imm8 m512/m32bcst zmm
+// 	VPSHUFD imm8 m512/m32bcst k zmm
+// 	VPSHUFD imm8 zmm          zmm
+// 	VPSHUFD imm8 zmm          k zmm
+// 	VPSHUFD imm8 xmm          xmm
+// 	VPSHUFD imm8 m128         xmm
+// 	VPSHUFD imm8 ymm          ymm
+// 	VPSHUFD imm8 m256         ymm
+func VPSHUFD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsIMM8(i) && operand.IsXMM(mxy) && operand.IsXMM(xy):
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsM512M32BCST(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPSHUFD",
-			Operands: []operand.Op{i, mxy, xy},
-			Inputs:   []operand.Op{mxy},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM512M32BCST(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPSHUFD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPSHUFD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPSHUFD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPSHUFD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsIMM8(i) && operand.IsM128(mxy) && operand.IsXMM(xy):
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsM128(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPSHUFD",
-			Operands: []operand.Op{i, mxy, xy},
-			Inputs:   []operand.Op{mxy},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsIMM8(i) && operand.IsYMM(mxy) && operand.IsYMM(xy):
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPSHUFD",
-			Operands: []operand.Op{i, mxy, xy},
-			Inputs:   []operand.Op{mxy},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
-	case operand.IsIMM8(i) && operand.IsM256(mxy) && operand.IsYMM(xy):
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsM256(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPSHUFD",
-			Operands: []operand.Op{i, mxy, xy},
-			Inputs:   []operand.Op{mxy},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
 	}
@@ -31169,60 +42043,132 @@ func VPSIGNW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VPSLLD imm8 xmm xmm
-// 	VPSLLD xmm  xmm xmm
-// 	VPSLLD m128 xmm xmm
-// 	VPSLLD imm8 ymm ymm
-// 	VPSLLD xmm  ymm ymm
-// 	VPSLLD m128 ymm ymm
-func VPSLLD(imx, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VPSLLD imm8 m512/m32bcst zmm
+// 	VPSLLD imm8 m512/m32bcst k zmm
+// 	VPSLLD imm8 zmm          zmm
+// 	VPSLLD imm8 zmm          k zmm
+// 	VPSLLD xmm  zmm          zmm
+// 	VPSLLD xmm  zmm          k zmm
+// 	VPSLLD m128 zmm          zmm
+// 	VPSLLD m128 zmm          k zmm
+// 	VPSLLD imm8 xmm          xmm
+// 	VPSLLD xmm  xmm          xmm
+// 	VPSLLD m128 xmm          xmm
+// 	VPSLLD imm8 ymm          ymm
+// 	VPSLLD xmm  ymm          ymm
+// 	VPSLLD m128 ymm          ymm
+func VPSLLD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsIMM8(imx) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsM512M32BCST(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPSLLD",
-			Operands: []operand.Op{imx, xy, xy1},
-			Inputs:   []operand.Op{xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM512M32BCST(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPSLLD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPSLLD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPSLLD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPSLLD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPSLLD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPSLLD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM128(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPSLLD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPSLLD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsXMM(imx) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPSLLD",
-			Operands: []operand.Op{imx, xy, xy1},
-			Inputs:   []operand.Op{imx, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM128(imx) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPSLLD",
-			Operands: []operand.Op{imx, xy, xy1},
-			Inputs:   []operand.Op{imx, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsIMM8(imx) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPSLLD",
-			Operands: []operand.Op{imx, xy, xy1},
-			Inputs:   []operand.Op{xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
-	case operand.IsXMM(imx) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPSLLD",
-			Operands: []operand.Op{imx, xy, xy1},
-			Inputs:   []operand.Op{imx, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
-	case operand.IsM128(imx) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPSLLD",
-			Operands: []operand.Op{imx, xy, xy1},
-			Inputs:   []operand.Op{imx, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
 	}
@@ -31261,60 +42207,132 @@ func VPSLLDQ(i, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VPSLLQ imm8 xmm xmm
-// 	VPSLLQ xmm  xmm xmm
-// 	VPSLLQ m128 xmm xmm
-// 	VPSLLQ imm8 ymm ymm
-// 	VPSLLQ xmm  ymm ymm
-// 	VPSLLQ m128 ymm ymm
-func VPSLLQ(imx, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VPSLLQ imm8 m512/m64bcst zmm
+// 	VPSLLQ imm8 m512/m64bcst k zmm
+// 	VPSLLQ imm8 zmm          zmm
+// 	VPSLLQ imm8 zmm          k zmm
+// 	VPSLLQ xmm  zmm          zmm
+// 	VPSLLQ xmm  zmm          k zmm
+// 	VPSLLQ m128 zmm          zmm
+// 	VPSLLQ m128 zmm          k zmm
+// 	VPSLLQ imm8 xmm          xmm
+// 	VPSLLQ xmm  xmm          xmm
+// 	VPSLLQ m128 xmm          xmm
+// 	VPSLLQ imm8 ymm          ymm
+// 	VPSLLQ xmm  ymm          ymm
+// 	VPSLLQ m128 ymm          ymm
+func VPSLLQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsIMM8(imx) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPSLLQ",
-			Operands: []operand.Op{imx, xy, xy1},
-			Inputs:   []operand.Op{xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPSLLQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPSLLQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPSLLQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPSLLQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPSLLQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPSLLQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM128(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPSLLQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPSLLQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsXMM(imx) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPSLLQ",
-			Operands: []operand.Op{imx, xy, xy1},
-			Inputs:   []operand.Op{imx, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM128(imx) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPSLLQ",
-			Operands: []operand.Op{imx, xy, xy1},
-			Inputs:   []operand.Op{imx, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsIMM8(imx) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPSLLQ",
-			Operands: []operand.Op{imx, xy, xy1},
-			Inputs:   []operand.Op{xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
-	case operand.IsXMM(imx) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPSLLQ",
-			Operands: []operand.Op{imx, xy, xy1},
-			Inputs:   []operand.Op{imx, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
-	case operand.IsM128(imx) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPSLLQ",
-			Operands: []operand.Op{imx, xy, xy1},
-			Inputs:   []operand.Op{imx, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
 	}
@@ -31325,42 +42343,78 @@ func VPSLLQ(imx, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VPSLLVD xmm  xmm xmm
-// 	VPSLLVD m128 xmm xmm
-// 	VPSLLVD ymm  ymm ymm
-// 	VPSLLVD m256 ymm ymm
-func VPSLLVD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VPSLLVD m512/m32bcst zmm zmm
+// 	VPSLLVD m512/m32bcst zmm k zmm
+// 	VPSLLVD zmm          zmm zmm
+// 	VPSLLVD zmm          zmm k zmm
+// 	VPSLLVD xmm          xmm xmm
+// 	VPSLLVD m128         xmm xmm
+// 	VPSLLVD ymm          ymm ymm
+// 	VPSLLVD m256         ymm ymm
+func VPSLLVD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPSLLVD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPSLLVD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPSLLVD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPSLLVD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPSLLVD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPSLLVD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPSLLVD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPSLLVD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
 	}
@@ -31371,42 +42425,78 @@ func VPSLLVD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VPSLLVQ xmm  xmm xmm
-// 	VPSLLVQ m128 xmm xmm
-// 	VPSLLVQ ymm  ymm ymm
-// 	VPSLLVQ m256 ymm ymm
-func VPSLLVQ(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VPSLLVQ m512/m64bcst zmm zmm
+// 	VPSLLVQ m512/m64bcst zmm k zmm
+// 	VPSLLVQ zmm          zmm zmm
+// 	VPSLLVQ zmm          zmm k zmm
+// 	VPSLLVQ xmm          xmm xmm
+// 	VPSLLVQ m128         xmm xmm
+// 	VPSLLVQ ymm          ymm ymm
+// 	VPSLLVQ m256         ymm ymm
+func VPSLLVQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPSLLVQ",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPSLLVQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPSLLVQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPSLLVQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPSLLVQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPSLLVQ",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPSLLVQ",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPSLLVQ",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
 	}
@@ -31481,110 +42571,346 @@ func VPSLLW(imx, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VPSRAD imm8 xmm xmm
-// 	VPSRAD xmm  xmm xmm
-// 	VPSRAD m128 xmm xmm
-// 	VPSRAD imm8 ymm ymm
-// 	VPSRAD xmm  ymm ymm
-// 	VPSRAD m128 ymm ymm
-func VPSRAD(imx, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VPSRAD imm8 m512/m32bcst zmm
+// 	VPSRAD imm8 m512/m32bcst k zmm
+// 	VPSRAD imm8 zmm          zmm
+// 	VPSRAD imm8 zmm          k zmm
+// 	VPSRAD xmm  zmm          zmm
+// 	VPSRAD xmm  zmm          k zmm
+// 	VPSRAD m128 zmm          zmm
+// 	VPSRAD m128 zmm          k zmm
+// 	VPSRAD imm8 xmm          xmm
+// 	VPSRAD xmm  xmm          xmm
+// 	VPSRAD m128 xmm          xmm
+// 	VPSRAD imm8 ymm          ymm
+// 	VPSRAD xmm  ymm          ymm
+// 	VPSRAD m128 ymm          ymm
+func VPSRAD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsIMM8(imx) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsM512M32BCST(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPSRAD",
-			Operands: []operand.Op{imx, xy, xy1},
-			Inputs:   []operand.Op{xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM512M32BCST(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPSRAD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPSRAD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPSRAD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPSRAD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPSRAD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPSRAD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM128(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPSRAD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPSRAD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsXMM(imx) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPSRAD",
-			Operands: []operand.Op{imx, xy, xy1},
-			Inputs:   []operand.Op{imx, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM128(imx) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPSRAD",
-			Operands: []operand.Op{imx, xy, xy1},
-			Inputs:   []operand.Op{imx, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsIMM8(imx) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPSRAD",
-			Operands: []operand.Op{imx, xy, xy1},
-			Inputs:   []operand.Op{xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
-	case operand.IsXMM(imx) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPSRAD",
-			Operands: []operand.Op{imx, xy, xy1},
-			Inputs:   []operand.Op{imx, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
-	case operand.IsM128(imx) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPSRAD",
-			Operands: []operand.Op{imx, xy, xy1},
-			Inputs:   []operand.Op{imx, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPSRAD: bad operands")
 }
 
+// VPSRAQ: Shift Packed Quadword Data Right Arithmetic.
+//
+// Forms:
+//
+// 	VPSRAQ imm8 m512/m64bcst zmm
+// 	VPSRAQ imm8 m512/m64bcst k zmm
+// 	VPSRAQ imm8 zmm          zmm
+// 	VPSRAQ imm8 zmm          k zmm
+// 	VPSRAQ xmm  zmm          zmm
+// 	VPSRAQ xmm  zmm          k zmm
+// 	VPSRAQ m128 zmm          zmm
+// 	VPSRAQ m128 zmm          k zmm
+func VPSRAQ(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPSRAQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPSRAQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPSRAQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPSRAQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPSRAQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPSRAQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPSRAQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM128(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPSRAQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VPSRAQ: bad operands")
+}
+
 // VPSRAVD: Variable Shift Packed Doubleword Data Right Arithmetic.
 //
 // Forms:
 //
-// 	VPSRAVD xmm  xmm xmm
-// 	VPSRAVD m128 xmm xmm
-// 	VPSRAVD ymm  ymm ymm
-// 	VPSRAVD m256 ymm ymm
-func VPSRAVD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VPSRAVD m512/m32bcst zmm zmm
+// 	VPSRAVD m512/m32bcst zmm k zmm
+// 	VPSRAVD zmm          zmm zmm
+// 	VPSRAVD zmm          zmm k zmm
+// 	VPSRAVD xmm          xmm xmm
+// 	VPSRAVD m128         xmm xmm
+// 	VPSRAVD ymm          ymm ymm
+// 	VPSRAVD m256         ymm ymm
+func VPSRAVD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPSRAVD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPSRAVD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPSRAVD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPSRAVD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPSRAVD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPSRAVD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPSRAVD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPSRAVD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
 	}
 	return nil, errors.New("VPSRAVD: bad operands")
+}
+
+// VPSRAVQ: Variable Shift Packed Quadword Data Right Arithmetic.
+//
+// Forms:
+//
+// 	VPSRAVQ m512/m64bcst zmm zmm
+// 	VPSRAVQ m512/m64bcst zmm k zmm
+// 	VPSRAVQ zmm          zmm zmm
+// 	VPSRAVQ zmm          zmm k zmm
+func VPSRAVQ(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPSRAVQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPSRAVQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPSRAVQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPSRAVQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VPSRAVQ: bad operands")
 }
 
 // VPSRAW: Shift Packed Word Data Right Arithmetic.
@@ -31655,60 +42981,132 @@ func VPSRAW(imx, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VPSRLD imm8 xmm xmm
-// 	VPSRLD xmm  xmm xmm
-// 	VPSRLD m128 xmm xmm
-// 	VPSRLD imm8 ymm ymm
-// 	VPSRLD xmm  ymm ymm
-// 	VPSRLD m128 ymm ymm
-func VPSRLD(imx, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VPSRLD imm8 m512/m32bcst zmm
+// 	VPSRLD imm8 m512/m32bcst k zmm
+// 	VPSRLD imm8 zmm          zmm
+// 	VPSRLD imm8 zmm          k zmm
+// 	VPSRLD xmm  zmm          zmm
+// 	VPSRLD xmm  zmm          k zmm
+// 	VPSRLD m128 zmm          zmm
+// 	VPSRLD m128 zmm          k zmm
+// 	VPSRLD imm8 xmm          xmm
+// 	VPSRLD xmm  xmm          xmm
+// 	VPSRLD m128 xmm          xmm
+// 	VPSRLD imm8 ymm          ymm
+// 	VPSRLD xmm  ymm          ymm
+// 	VPSRLD m128 ymm          ymm
+func VPSRLD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsIMM8(imx) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsM512M32BCST(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPSRLD",
-			Operands: []operand.Op{imx, xy, xy1},
-			Inputs:   []operand.Op{xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM512M32BCST(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPSRLD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPSRLD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPSRLD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPSRLD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPSRLD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPSRLD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM128(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPSRLD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPSRLD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsXMM(imx) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPSRLD",
-			Operands: []operand.Op{imx, xy, xy1},
-			Inputs:   []operand.Op{imx, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM128(imx) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPSRLD",
-			Operands: []operand.Op{imx, xy, xy1},
-			Inputs:   []operand.Op{imx, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsIMM8(imx) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPSRLD",
-			Operands: []operand.Op{imx, xy, xy1},
-			Inputs:   []operand.Op{xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
-	case operand.IsXMM(imx) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPSRLD",
-			Operands: []operand.Op{imx, xy, xy1},
-			Inputs:   []operand.Op{imx, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
-	case operand.IsM128(imx) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPSRLD",
-			Operands: []operand.Op{imx, xy, xy1},
-			Inputs:   []operand.Op{imx, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
 	}
@@ -31747,60 +43145,132 @@ func VPSRLDQ(i, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VPSRLQ imm8 xmm xmm
-// 	VPSRLQ xmm  xmm xmm
-// 	VPSRLQ m128 xmm xmm
-// 	VPSRLQ imm8 ymm ymm
-// 	VPSRLQ xmm  ymm ymm
-// 	VPSRLQ m128 ymm ymm
-func VPSRLQ(imx, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VPSRLQ imm8 m512/m64bcst zmm
+// 	VPSRLQ imm8 m512/m64bcst k zmm
+// 	VPSRLQ imm8 zmm          zmm
+// 	VPSRLQ imm8 zmm          k zmm
+// 	VPSRLQ xmm  zmm          zmm
+// 	VPSRLQ xmm  zmm          k zmm
+// 	VPSRLQ m128 zmm          zmm
+// 	VPSRLQ m128 zmm          k zmm
+// 	VPSRLQ imm8 xmm          xmm
+// 	VPSRLQ xmm  xmm          xmm
+// 	VPSRLQ m128 xmm          xmm
+// 	VPSRLQ imm8 ymm          ymm
+// 	VPSRLQ xmm  ymm          ymm
+// 	VPSRLQ m128 ymm          ymm
+func VPSRLQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsIMM8(imx) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPSRLQ",
-			Operands: []operand.Op{imx, xy, xy1},
-			Inputs:   []operand.Op{xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPSRLQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPSRLQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPSRLQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPSRLQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPSRLQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPSRLQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM128(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPSRLQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPSRLQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsXMM(imx) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPSRLQ",
-			Operands: []operand.Op{imx, xy, xy1},
-			Inputs:   []operand.Op{imx, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM128(imx) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPSRLQ",
-			Operands: []operand.Op{imx, xy, xy1},
-			Inputs:   []operand.Op{imx, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsIMM8(imx) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPSRLQ",
-			Operands: []operand.Op{imx, xy, xy1},
-			Inputs:   []operand.Op{xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
-	case operand.IsXMM(imx) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPSRLQ",
-			Operands: []operand.Op{imx, xy, xy1},
-			Inputs:   []operand.Op{imx, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
-	case operand.IsM128(imx) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPSRLQ",
-			Operands: []operand.Op{imx, xy, xy1},
-			Inputs:   []operand.Op{imx, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
 	}
@@ -31811,42 +43281,78 @@ func VPSRLQ(imx, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VPSRLVD xmm  xmm xmm
-// 	VPSRLVD m128 xmm xmm
-// 	VPSRLVD ymm  ymm ymm
-// 	VPSRLVD m256 ymm ymm
-func VPSRLVD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VPSRLVD m512/m32bcst zmm zmm
+// 	VPSRLVD m512/m32bcst zmm k zmm
+// 	VPSRLVD zmm          zmm zmm
+// 	VPSRLVD zmm          zmm k zmm
+// 	VPSRLVD xmm          xmm xmm
+// 	VPSRLVD m128         xmm xmm
+// 	VPSRLVD ymm          ymm ymm
+// 	VPSRLVD m256         ymm ymm
+func VPSRLVD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPSRLVD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPSRLVD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPSRLVD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPSRLVD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPSRLVD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPSRLVD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPSRLVD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPSRLVD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
 	}
@@ -31857,42 +43363,78 @@ func VPSRLVD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VPSRLVQ xmm  xmm xmm
-// 	VPSRLVQ m128 xmm xmm
-// 	VPSRLVQ ymm  ymm ymm
-// 	VPSRLVQ m256 ymm ymm
-func VPSRLVQ(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VPSRLVQ m512/m64bcst zmm zmm
+// 	VPSRLVQ m512/m64bcst zmm k zmm
+// 	VPSRLVQ zmm          zmm zmm
+// 	VPSRLVQ zmm          zmm k zmm
+// 	VPSRLVQ xmm          xmm xmm
+// 	VPSRLVQ m128         xmm xmm
+// 	VPSRLVQ ymm          ymm ymm
+// 	VPSRLVQ m256         ymm ymm
+func VPSRLVQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPSRLVQ",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPSRLVQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPSRLVQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPSRLVQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPSRLVQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPSRLVQ",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPSRLVQ",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPSRLVQ",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
 	}
@@ -32015,44 +43557,82 @@ func VPSUBB(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VPSUBD xmm  xmm xmm
-// 	VPSUBD m128 xmm xmm
-// 	VPSUBD ymm  ymm ymm
-// 	VPSUBD m256 ymm ymm
-func VPSUBD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VPSUBD m512/m32bcst zmm zmm
+// 	VPSUBD m512/m32bcst zmm k zmm
+// 	VPSUBD zmm          zmm zmm
+// 	VPSUBD zmm          zmm k zmm
+// 	VPSUBD xmm          xmm xmm
+// 	VPSUBD m128         xmm xmm
+// 	VPSUBD ymm          ymm ymm
+// 	VPSUBD m256         ymm ymm
+func VPSUBD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPSUBD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPSUBD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:           "VPSUBD",
-			Operands:         []operand.Op{mxy, xy, xy1},
-			Inputs:           []operand.Op{mxy, xy},
-			Outputs:          []operand.Op{xy1},
+			Operands:         ops,
+			Inputs:           []operand.Op{ops[0], ops[1]},
+			Outputs:          []operand.Op{ops[2]},
+			ISA:              []string{"AVX512F"},
+			CancellingInputs: true,
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:           "VPSUBD",
+			Operands:         ops,
+			Inputs:           []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:          []operand.Op{ops[3]},
+			ISA:              []string{"AVX512F"},
+			CancellingInputs: true,
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:           "VPSUBD",
+			Operands:         ops,
+			Inputs:           []operand.Op{ops[0], ops[1]},
+			Outputs:          []operand.Op{ops[2]},
 			ISA:              []string{"AVX"},
 			CancellingInputs: true,
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPSUBD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:           "VPSUBD",
-			Operands:         []operand.Op{mxy, xy, xy1},
-			Inputs:           []operand.Op{mxy, xy},
-			Outputs:          []operand.Op{xy1},
+			Operands:         ops,
+			Inputs:           []operand.Op{ops[0], ops[1]},
+			Outputs:          []operand.Op{ops[2]},
 			ISA:              []string{"AVX2"},
 			CancellingInputs: true,
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPSUBD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
 	}
@@ -32063,44 +43643,82 @@ func VPSUBD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VPSUBQ xmm  xmm xmm
-// 	VPSUBQ m128 xmm xmm
-// 	VPSUBQ ymm  ymm ymm
-// 	VPSUBQ m256 ymm ymm
-func VPSUBQ(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VPSUBQ m512/m64bcst zmm zmm
+// 	VPSUBQ m512/m64bcst zmm k zmm
+// 	VPSUBQ zmm          zmm zmm
+// 	VPSUBQ zmm          zmm k zmm
+// 	VPSUBQ xmm          xmm xmm
+// 	VPSUBQ m128         xmm xmm
+// 	VPSUBQ ymm          ymm ymm
+// 	VPSUBQ m256         ymm ymm
+func VPSUBQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPSUBQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPSUBQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:           "VPSUBQ",
-			Operands:         []operand.Op{mxy, xy, xy1},
-			Inputs:           []operand.Op{mxy, xy},
-			Outputs:          []operand.Op{xy1},
+			Operands:         ops,
+			Inputs:           []operand.Op{ops[0], ops[1]},
+			Outputs:          []operand.Op{ops[2]},
+			ISA:              []string{"AVX512F"},
+			CancellingInputs: true,
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:           "VPSUBQ",
+			Operands:         ops,
+			Inputs:           []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:          []operand.Op{ops[3]},
+			ISA:              []string{"AVX512F"},
+			CancellingInputs: true,
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:           "VPSUBQ",
+			Operands:         ops,
+			Inputs:           []operand.Op{ops[0], ops[1]},
+			Outputs:          []operand.Op{ops[2]},
 			ISA:              []string{"AVX"},
 			CancellingInputs: true,
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPSUBQ",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:           "VPSUBQ",
-			Operands:         []operand.Op{mxy, xy, xy1},
-			Inputs:           []operand.Op{mxy, xy},
-			Outputs:          []operand.Op{xy1},
+			Operands:         ops,
+			Inputs:           []operand.Op{ops[0], ops[1]},
+			Outputs:          []operand.Op{ops[2]},
 			ISA:              []string{"AVX2"},
 			CancellingInputs: true,
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPSUBQ",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
 	}
@@ -32347,6 +43965,98 @@ func VPSUBW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPSUBW: bad operands")
 }
 
+// VPTERNLOGD: Bitwise Ternary Logical Operation on Doubleword Values.
+//
+// Forms:
+//
+// 	VPTERNLOGD imm8 m512/m32bcst zmm zmm
+// 	VPTERNLOGD imm8 m512/m32bcst zmm k zmm
+// 	VPTERNLOGD imm8 zmm          zmm zmm
+// 	VPTERNLOGD imm8 zmm          zmm k zmm
+func VPTERNLOGD(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM512M32BCST(ops[1]) && operand.IsZMM(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPTERNLOGD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsM512M32BCST(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]) && operand.IsZMM(ops[4]):
+		return &intrep.Instruction{
+			Opcode:   "VPTERNLOGD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3], ops[4]},
+			Outputs:  []operand.Op{ops[4]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPTERNLOGD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]) && operand.IsZMM(ops[4]):
+		return &intrep.Instruction{
+			Opcode:   "VPTERNLOGD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3], ops[4]},
+			Outputs:  []operand.Op{ops[4]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VPTERNLOGD: bad operands")
+}
+
+// VPTERNLOGQ: Bitwise Ternary Logical Operation on Quadword Values.
+//
+// Forms:
+//
+// 	VPTERNLOGQ imm8 m512/m64bcst zmm zmm
+// 	VPTERNLOGQ imm8 m512/m64bcst zmm k zmm
+// 	VPTERNLOGQ imm8 zmm          zmm zmm
+// 	VPTERNLOGQ imm8 zmm          zmm k zmm
+func VPTERNLOGQ(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsZMM(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPTERNLOGQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]) && operand.IsZMM(ops[4]):
+		return &intrep.Instruction{
+			Opcode:   "VPTERNLOGQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3], ops[4]},
+			Outputs:  []operand.Op{ops[4]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPTERNLOGQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]) && operand.IsZMM(ops[4]):
+		return &intrep.Instruction{
+			Opcode:   "VPTERNLOGQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3], ops[4]},
+			Outputs:  []operand.Op{ops[4]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VPTERNLOGQ: bad operands")
+}
+
 // VPTEST: Packed Logical Compare.
 //
 // Forms:
@@ -32391,6 +44101,190 @@ func VPTEST(mxy, xy operand.Op) (*intrep.Instruction, error) {
 		}, nil
 	}
 	return nil, errors.New("VPTEST: bad operands")
+}
+
+// VPTESTMD: Logical AND of Packed Doubleword Integer Values and Set Mask.
+//
+// Forms:
+//
+// 	VPTESTMD m512/m32bcst zmm k
+// 	VPTESTMD m512/m32bcst zmm k k
+// 	VPTESTMD zmm          zmm k
+// 	VPTESTMD zmm          zmm k k
+func VPTESTMD(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPTESTMD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsK(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPTESTMD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPTESTMD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsK(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPTESTMD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VPTESTMD: bad operands")
+}
+
+// VPTESTMQ: Logical AND of Packed Quadword Integer Values and Set Mask.
+//
+// Forms:
+//
+// 	VPTESTMQ m512/m64bcst zmm k
+// 	VPTESTMQ m512/m64bcst zmm k k
+// 	VPTESTMQ zmm          zmm k
+// 	VPTESTMQ zmm          zmm k k
+func VPTESTMQ(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPTESTMQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsK(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPTESTMQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPTESTMQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsK(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPTESTMQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VPTESTMQ: bad operands")
+}
+
+// VPTESTNMD: Logical NAND of Packed Doubleword Integer Values and Set Mask.
+//
+// Forms:
+//
+// 	VPTESTNMD m512/m32bcst zmm k
+// 	VPTESTNMD m512/m32bcst zmm k k
+// 	VPTESTNMD zmm          zmm k
+// 	VPTESTNMD zmm          zmm k k
+func VPTESTNMD(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPTESTNMD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsK(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPTESTNMD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPTESTNMD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsK(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPTESTNMD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VPTESTNMD: bad operands")
+}
+
+// VPTESTNMQ: Logical NAND of Packed Quadword Integer Values and Set Mask.
+//
+// Forms:
+//
+// 	VPTESTNMQ m512/m64bcst zmm k
+// 	VPTESTNMQ m512/m64bcst zmm k k
+// 	VPTESTNMQ zmm          zmm k
+// 	VPTESTNMQ zmm          zmm k k
+func VPTESTNMQ(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPTESTNMQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsK(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPTESTNMQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPTESTNMQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsK(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPTESTNMQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VPTESTNMQ: bad operands")
 }
 
 // VPUNPCKHBW: Unpack and Interleave High-Order Bytes into Words.
@@ -32443,42 +44337,78 @@ func VPUNPCKHBW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VPUNPCKHDQ xmm  xmm xmm
-// 	VPUNPCKHDQ m128 xmm xmm
-// 	VPUNPCKHDQ ymm  ymm ymm
-// 	VPUNPCKHDQ m256 ymm ymm
-func VPUNPCKHDQ(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VPUNPCKHDQ m512/m32bcst zmm zmm
+// 	VPUNPCKHDQ m512/m32bcst zmm k zmm
+// 	VPUNPCKHDQ zmm          zmm zmm
+// 	VPUNPCKHDQ zmm          zmm k zmm
+// 	VPUNPCKHDQ xmm          xmm xmm
+// 	VPUNPCKHDQ m128         xmm xmm
+// 	VPUNPCKHDQ ymm          ymm ymm
+// 	VPUNPCKHDQ m256         ymm ymm
+func VPUNPCKHDQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPUNPCKHDQ",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPUNPCKHDQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPUNPCKHDQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPUNPCKHDQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPUNPCKHDQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPUNPCKHDQ",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPUNPCKHDQ",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPUNPCKHDQ",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
 	}
@@ -32489,42 +44419,78 @@ func VPUNPCKHDQ(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VPUNPCKHQDQ xmm  xmm xmm
-// 	VPUNPCKHQDQ m128 xmm xmm
-// 	VPUNPCKHQDQ ymm  ymm ymm
-// 	VPUNPCKHQDQ m256 ymm ymm
-func VPUNPCKHQDQ(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VPUNPCKHQDQ m512/m64bcst zmm zmm
+// 	VPUNPCKHQDQ m512/m64bcst zmm k zmm
+// 	VPUNPCKHQDQ zmm          zmm zmm
+// 	VPUNPCKHQDQ zmm          zmm k zmm
+// 	VPUNPCKHQDQ xmm          xmm xmm
+// 	VPUNPCKHQDQ m128         xmm xmm
+// 	VPUNPCKHQDQ ymm          ymm ymm
+// 	VPUNPCKHQDQ m256         ymm ymm
+func VPUNPCKHQDQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPUNPCKHQDQ",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPUNPCKHQDQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPUNPCKHQDQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPUNPCKHQDQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPUNPCKHQDQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPUNPCKHQDQ",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPUNPCKHQDQ",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPUNPCKHQDQ",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
 	}
@@ -32627,42 +44593,78 @@ func VPUNPCKLBW(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VPUNPCKLDQ xmm  xmm xmm
-// 	VPUNPCKLDQ m128 xmm xmm
-// 	VPUNPCKLDQ ymm  ymm ymm
-// 	VPUNPCKLDQ m256 ymm ymm
-func VPUNPCKLDQ(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VPUNPCKLDQ m512/m32bcst zmm zmm
+// 	VPUNPCKLDQ m512/m32bcst zmm k zmm
+// 	VPUNPCKLDQ zmm          zmm zmm
+// 	VPUNPCKLDQ zmm          zmm k zmm
+// 	VPUNPCKLDQ xmm          xmm xmm
+// 	VPUNPCKLDQ m128         xmm xmm
+// 	VPUNPCKLDQ ymm          ymm ymm
+// 	VPUNPCKLDQ m256         ymm ymm
+func VPUNPCKLDQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPUNPCKLDQ",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPUNPCKLDQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPUNPCKLDQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPUNPCKLDQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPUNPCKLDQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPUNPCKLDQ",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPUNPCKLDQ",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPUNPCKLDQ",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
 	}
@@ -32673,42 +44675,78 @@ func VPUNPCKLDQ(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VPUNPCKLQDQ xmm  xmm xmm
-// 	VPUNPCKLQDQ m128 xmm xmm
-// 	VPUNPCKLQDQ ymm  ymm ymm
-// 	VPUNPCKLQDQ m256 ymm ymm
-func VPUNPCKLQDQ(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VPUNPCKLQDQ m512/m64bcst zmm zmm
+// 	VPUNPCKLQDQ m512/m64bcst zmm k zmm
+// 	VPUNPCKLQDQ zmm          zmm zmm
+// 	VPUNPCKLQDQ zmm          zmm k zmm
+// 	VPUNPCKLQDQ xmm          xmm xmm
+// 	VPUNPCKLQDQ m128         xmm xmm
+// 	VPUNPCKLQDQ ymm          ymm ymm
+// 	VPUNPCKLQDQ m256         ymm ymm
+func VPUNPCKLQDQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPUNPCKLQDQ",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPUNPCKLQDQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPUNPCKLQDQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPUNPCKLQDQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPUNPCKLQDQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPUNPCKLQDQ",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPUNPCKLQDQ",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPUNPCKLQDQ",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX2"},
 		}, nil
 	}
@@ -32809,6 +44847,282 @@ func VPXOR(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPXOR: bad operands")
 }
 
+// VPXORD: Bitwise Logical Exclusive OR of Packed Doubleword Integers.
+//
+// Forms:
+//
+// 	VPXORD m512/m32bcst zmm zmm
+// 	VPXORD m512/m32bcst zmm k zmm
+// 	VPXORD zmm          zmm zmm
+// 	VPXORD zmm          zmm k zmm
+func VPXORD(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPXORD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPXORD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPXORD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPXORD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VPXORD: bad operands")
+}
+
+// VPXORQ: Bitwise Logical Exclusive OR of Packed Quadword Integers.
+//
+// Forms:
+//
+// 	VPXORQ m512/m64bcst zmm zmm
+// 	VPXORQ m512/m64bcst zmm k zmm
+// 	VPXORQ zmm          zmm zmm
+// 	VPXORQ zmm          zmm k zmm
+func VPXORQ(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPXORQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPXORQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPXORQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VPXORQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VPXORQ: bad operands")
+}
+
+// VRCP14PD: Compute Approximate Reciprocals of Packed Double-Precision Floating-Point Values.
+//
+// Forms:
+//
+// 	VRCP14PD m512/m64bcst zmm
+// 	VRCP14PD m512/m64bcst k zmm
+// 	VRCP14PD zmm          zmm
+// 	VRCP14PD zmm          k zmm
+func VRCP14PD(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 2 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VRCP14PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VRCP14PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VRCP14PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VRCP14PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VRCP14PD: bad operands")
+}
+
+// VRCP14PS: Compute Approximate Reciprocals of Packed Single-Precision Floating-Point Values.
+//
+// Forms:
+//
+// 	VRCP14PS m512/m32bcst zmm
+// 	VRCP14PS m512/m32bcst k zmm
+// 	VRCP14PS zmm          zmm
+// 	VRCP14PS zmm          k zmm
+func VRCP14PS(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 2 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VRCP14PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VRCP14PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VRCP14PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VRCP14PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VRCP14PS: bad operands")
+}
+
+// VRCP14SD: Compute Approximate Reciprocal of a Scalar Double-Precision Floating-Point Value.
+//
+// Forms:
+//
+// 	VRCP14SD xmm xmm xmm
+// 	VRCP14SD xmm xmm k xmm
+// 	VRCP14SD m64 xmm xmm
+// 	VRCP14SD m64 xmm k xmm
+func VRCP14SD(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VRCP14SD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VRCP14SD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VRCP14SD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VRCP14SD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VRCP14SD: bad operands")
+}
+
+// VRCP14SS: Compute Approximate Reciprocal of a Scalar Single-Precision Floating-Point Value.
+//
+// Forms:
+//
+// 	VRCP14SS xmm xmm xmm
+// 	VRCP14SS xmm xmm k xmm
+// 	VRCP14SS m32 xmm xmm
+// 	VRCP14SS m32 xmm k xmm
+func VRCP14SS(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VRCP14SS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VRCP14SS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VRCP14SS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VRCP14SS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VRCP14SS: bad operands")
+}
+
 // VRCPPS: Compute Approximate Reciprocals of Packed Single-Precision Floating-Point Values.
 //
 // Forms:
@@ -32881,6 +45195,190 @@ func VRCPSS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 		}, nil
 	}
 	return nil, errors.New("VRCPSS: bad operands")
+}
+
+// VRNDSCALEPD: Round Packed Double-Precision Floating-Point Values To Include A Given Number Of Fraction Bits.
+//
+// Forms:
+//
+// 	VRNDSCALEPD imm8 m512/m64bcst zmm
+// 	VRNDSCALEPD imm8 m512/m64bcst k zmm
+// 	VRNDSCALEPD imm8 zmm          zmm
+// 	VRNDSCALEPD imm8 zmm          k zmm
+func VRNDSCALEPD(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VRNDSCALEPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VRNDSCALEPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VRNDSCALEPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VRNDSCALEPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VRNDSCALEPD: bad operands")
+}
+
+// VRNDSCALEPS: Round Packed Single-Precision Floating-Point Values To Include A Given Number Of Fraction Bits.
+//
+// Forms:
+//
+// 	VRNDSCALEPS imm8 m512/m32bcst zmm
+// 	VRNDSCALEPS imm8 m512/m32bcst k zmm
+// 	VRNDSCALEPS imm8 zmm          zmm
+// 	VRNDSCALEPS imm8 zmm          k zmm
+func VRNDSCALEPS(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsM512M32BCST(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VRNDSCALEPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM512M32BCST(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VRNDSCALEPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VRNDSCALEPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VRNDSCALEPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VRNDSCALEPS: bad operands")
+}
+
+// VRNDSCALESD: Round Scalar Double-Precision Floating-Point Value To Include A Given Number Of Fraction Bits.
+//
+// Forms:
+//
+// 	VRNDSCALESD imm8 m64 xmm xmm
+// 	VRNDSCALESD imm8 m64 xmm k xmm
+// 	VRNDSCALESD imm8 xmm xmm xmm
+// 	VRNDSCALESD imm8 xmm xmm k xmm
+func VRNDSCALESD(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM64(ops[1]) && operand.IsXMM(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VRNDSCALESD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsM64(ops[1]) && operand.IsXMM(ops[2]) && operand.IsK(ops[3]) && operand.IsXMM(ops[4]):
+		return &intrep.Instruction{
+			Opcode:   "VRNDSCALESD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[4]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VRNDSCALESD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]) && operand.IsK(ops[3]) && operand.IsXMM(ops[4]):
+		return &intrep.Instruction{
+			Opcode:   "VRNDSCALESD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[4]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VRNDSCALESD: bad operands")
+}
+
+// VRNDSCALESS: Round Scalar Single-Precision Floating-Point Value To Include A Given Number Of Fraction Bits.
+//
+// Forms:
+//
+// 	VRNDSCALESS imm8 m32 xmm xmm
+// 	VRNDSCALESS imm8 m32 xmm k xmm
+// 	VRNDSCALESS imm8 xmm xmm xmm
+// 	VRNDSCALESS imm8 xmm xmm k xmm
+func VRNDSCALESS(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM32(ops[1]) && operand.IsXMM(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VRNDSCALESS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsM32(ops[1]) && operand.IsXMM(ops[2]) && operand.IsK(ops[3]) && operand.IsXMM(ops[4]):
+		return &intrep.Instruction{
+			Opcode:   "VRNDSCALESS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[4]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VRNDSCALESS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]) && operand.IsK(ops[3]) && operand.IsXMM(ops[4]):
+		return &intrep.Instruction{
+			Opcode:   "VRNDSCALESS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[4]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VRNDSCALESS: bad operands")
 }
 
 // VROUNDPD: Round Packed Double Precision Floating-Point Values.
@@ -33031,6 +45529,190 @@ func VROUNDSS(i, mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VROUNDSS: bad operands")
 }
 
+// VRSQRT14PD: Compute Approximate Reciprocals of Square Roots of Packed Double-Precision Floating-Point Values.
+//
+// Forms:
+//
+// 	VRSQRT14PD m512/m64bcst zmm
+// 	VRSQRT14PD m512/m64bcst k zmm
+// 	VRSQRT14PD zmm          zmm
+// 	VRSQRT14PD zmm          k zmm
+func VRSQRT14PD(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 2 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VRSQRT14PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VRSQRT14PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VRSQRT14PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VRSQRT14PD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VRSQRT14PD: bad operands")
+}
+
+// VRSQRT14PS: Compute Approximate Reciprocals of Square Roots of Packed Single-Precision Floating-Point Values.
+//
+// Forms:
+//
+// 	VRSQRT14PS m512/m32bcst zmm
+// 	VRSQRT14PS m512/m32bcst k zmm
+// 	VRSQRT14PS zmm          zmm
+// 	VRSQRT14PS zmm          k zmm
+func VRSQRT14PS(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 2 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VRSQRT14PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VRSQRT14PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VRSQRT14PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VRSQRT14PS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VRSQRT14PS: bad operands")
+}
+
+// VRSQRT14SD: Compute Approximate Reciprocal of a Square Root of a Scalar Double-Precision Floating-Point Value.
+//
+// Forms:
+//
+// 	VRSQRT14SD xmm xmm xmm
+// 	VRSQRT14SD xmm xmm k xmm
+// 	VRSQRT14SD m64 xmm xmm
+// 	VRSQRT14SD m64 xmm k xmm
+func VRSQRT14SD(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VRSQRT14SD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VRSQRT14SD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VRSQRT14SD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VRSQRT14SD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VRSQRT14SD: bad operands")
+}
+
+// VRSQRT14SS: Compute Approximate Reciprocal of a Square Root of a Scalar Single-Precision Floating-Point Value.
+//
+// Forms:
+//
+// 	VRSQRT14SS xmm xmm xmm
+// 	VRSQRT14SS xmm xmm k xmm
+// 	VRSQRT14SS m32 xmm xmm
+// 	VRSQRT14SS m32 xmm k xmm
+func VRSQRT14SS(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VRSQRT14SS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VRSQRT14SS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VRSQRT14SS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VRSQRT14SS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VRSQRT14SS: bad operands")
+}
+
 // VRSQRTPS: Compute Reciprocals of Square Roots of Packed Single-Precision Floating-Point Values.
 //
 // Forms:
@@ -33105,46 +45787,526 @@ func VRSQRTSS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VRSQRTSS: bad operands")
 }
 
+// VSCALEFPD: Scale Packed Double-Precision Floating-Point Values With Double-Precision Floating-Point Values.
+//
+// Forms:
+//
+// 	VSCALEFPD m512/m64bcst zmm zmm
+// 	VSCALEFPD m512/m64bcst zmm k zmm
+// 	VSCALEFPD zmm          zmm zmm
+// 	VSCALEFPD zmm          zmm k zmm
+func VSCALEFPD(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VSCALEFPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VSCALEFPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VSCALEFPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VSCALEFPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VSCALEFPD: bad operands")
+}
+
+// VSCALEFPS: Scale Packed Single-Precision Floating-Point Values With Single-Precision Floating-Point Values.
+//
+// Forms:
+//
+// 	VSCALEFPS m512/m32bcst zmm zmm
+// 	VSCALEFPS m512/m32bcst zmm k zmm
+// 	VSCALEFPS zmm          zmm zmm
+// 	VSCALEFPS zmm          zmm k zmm
+func VSCALEFPS(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VSCALEFPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VSCALEFPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VSCALEFPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VSCALEFPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VSCALEFPS: bad operands")
+}
+
+// VSCALEFSD: Scale Scalar Double-Precision Floating-Point Value With a Double-Precision Floating-Point Value.
+//
+// Forms:
+//
+// 	VSCALEFSD m64 xmm xmm
+// 	VSCALEFSD m64 xmm k xmm
+// 	VSCALEFSD xmm xmm xmm
+// 	VSCALEFSD xmm xmm k xmm
+func VSCALEFSD(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 3 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VSCALEFSD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VSCALEFSD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VSCALEFSD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VSCALEFSD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VSCALEFSD: bad operands")
+}
+
+// VSCALEFSS: Scale Scalar Single-Precision Floating-Point Value With a Single-Precision Floating-Point Value.
+//
+// Forms:
+//
+// 	VSCALEFSS m32 xmm xmm
+// 	VSCALEFSS m32 xmm k xmm
+// 	VSCALEFSS xmm xmm xmm
+// 	VSCALEFSS xmm xmm k xmm
+func VSCALEFSS(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 3 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VSCALEFSS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VSCALEFSS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VSCALEFSS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VSCALEFSS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VSCALEFSS: bad operands")
+}
+
+// VSCATTERDPD: Scatter Packed Double-Precision Floating-Point Values with Signed Doubleword Indices.
+//
+// Forms:
+//
+// 	VSCATTERDPD zmm k vm32y
+func VSCATTERDPD(z, k, v operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case operand.IsZMM(z) && operand.IsK(k) && operand.IsVM32Y(v):
+		return &intrep.Instruction{
+			Opcode:   "VSCATTERDPD",
+			Operands: []operand.Op{z, k, v},
+			Inputs:   []operand.Op{z, k},
+			Outputs:  []operand.Op{v},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VSCATTERDPD: bad operands")
+}
+
+// VSCATTERDPS: Scatter Packed Single-Precision Floating-Point Values with Signed Doubleword Indices.
+//
+// Forms:
+//
+// 	VSCATTERDPS zmm k vm32z
+func VSCATTERDPS(z, k, v operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case operand.IsZMM(z) && operand.IsK(k) && operand.IsVM32Z(v):
+		return &intrep.Instruction{
+			Opcode:   "VSCATTERDPS",
+			Operands: []operand.Op{z, k, v},
+			Inputs:   []operand.Op{z, k},
+			Outputs:  []operand.Op{v},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VSCATTERDPS: bad operands")
+}
+
+// VSCATTERQPD: Scatter Packed Double-Precision Floating-Point Values with Signed Quadword Indices.
+//
+// Forms:
+//
+// 	VSCATTERQPD zmm k vm64z
+func VSCATTERQPD(z, k, v operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case operand.IsZMM(z) && operand.IsK(k) && operand.IsVM64Z(v):
+		return &intrep.Instruction{
+			Opcode:   "VSCATTERQPD",
+			Operands: []operand.Op{z, k, v},
+			Inputs:   []operand.Op{z, k},
+			Outputs:  []operand.Op{v},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VSCATTERQPD: bad operands")
+}
+
+// VSCATTERQPS: Scatter Packed Single-Precision Floating-Point Values with Signed Quadword Indices.
+//
+// Forms:
+//
+// 	VSCATTERQPS ymm k vm64z
+func VSCATTERQPS(y, k, v operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case operand.IsYMM(y) && operand.IsK(k) && operand.IsVM64Z(v):
+		return &intrep.Instruction{
+			Opcode:   "VSCATTERQPS",
+			Operands: []operand.Op{y, k, v},
+			Inputs:   []operand.Op{y, k},
+			Outputs:  []operand.Op{v},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VSCATTERQPS: bad operands")
+}
+
+// VSHUFF32X4: Shuffle 128-Bit Packed Single-Precision Floating-Point Values.
+//
+// Forms:
+//
+// 	VSHUFF32X4 imm8 m512/m32bcst zmm zmm
+// 	VSHUFF32X4 imm8 m512/m32bcst zmm k zmm
+// 	VSHUFF32X4 imm8 zmm          zmm zmm
+// 	VSHUFF32X4 imm8 zmm          zmm k zmm
+func VSHUFF32X4(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM512M32BCST(ops[1]) && operand.IsZMM(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VSHUFF32X4",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsM512M32BCST(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]) && operand.IsZMM(ops[4]):
+		return &intrep.Instruction{
+			Opcode:   "VSHUFF32X4",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[4]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VSHUFF32X4",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]) && operand.IsZMM(ops[4]):
+		return &intrep.Instruction{
+			Opcode:   "VSHUFF32X4",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[4]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VSHUFF32X4: bad operands")
+}
+
+// VSHUFF64X2: Shuffle 128-Bit Packed Double-Precision Floating-Point Values.
+//
+// Forms:
+//
+// 	VSHUFF64X2 imm8 m512/m64bcst zmm zmm
+// 	VSHUFF64X2 imm8 m512/m64bcst zmm k zmm
+// 	VSHUFF64X2 imm8 zmm          zmm zmm
+// 	VSHUFF64X2 imm8 zmm          zmm k zmm
+func VSHUFF64X2(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsZMM(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VSHUFF64X2",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]) && operand.IsZMM(ops[4]):
+		return &intrep.Instruction{
+			Opcode:   "VSHUFF64X2",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[4]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VSHUFF64X2",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]) && operand.IsZMM(ops[4]):
+		return &intrep.Instruction{
+			Opcode:   "VSHUFF64X2",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[4]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VSHUFF64X2: bad operands")
+}
+
+// VSHUFI32X4: Shuffle 128-Bit Packed Doubleword Integer Values.
+//
+// Forms:
+//
+// 	VSHUFI32X4 imm8 m512/m32bcst zmm zmm
+// 	VSHUFI32X4 imm8 m512/m32bcst zmm k zmm
+// 	VSHUFI32X4 imm8 zmm          zmm zmm
+// 	VSHUFI32X4 imm8 zmm          zmm k zmm
+func VSHUFI32X4(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM512M32BCST(ops[1]) && operand.IsZMM(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VSHUFI32X4",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsM512M32BCST(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]) && operand.IsZMM(ops[4]):
+		return &intrep.Instruction{
+			Opcode:   "VSHUFI32X4",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[4]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VSHUFI32X4",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]) && operand.IsZMM(ops[4]):
+		return &intrep.Instruction{
+			Opcode:   "VSHUFI32X4",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[4]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VSHUFI32X4: bad operands")
+}
+
+// VSHUFI64X2: Shuffle 128-Bit Packed Quadword Integer Values.
+//
+// Forms:
+//
+// 	VSHUFI64X2 imm8 m512/m64bcst zmm zmm
+// 	VSHUFI64X2 imm8 m512/m64bcst zmm k zmm
+// 	VSHUFI64X2 imm8 zmm          zmm zmm
+// 	VSHUFI64X2 imm8 zmm          zmm k zmm
+func VSHUFI64X2(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsZMM(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VSHUFI64X2",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]) && operand.IsZMM(ops[4]):
+		return &intrep.Instruction{
+			Opcode:   "VSHUFI64X2",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[4]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VSHUFI64X2",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]) && operand.IsZMM(ops[4]):
+		return &intrep.Instruction{
+			Opcode:   "VSHUFI64X2",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[4]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	}
+	return nil, errors.New("VSHUFI64X2: bad operands")
+}
+
 // VSHUFPD: Shuffle Packed Double-Precision Floating-Point Values.
 //
 // Forms:
 //
-// 	VSHUFPD imm8 xmm  xmm xmm
-// 	VSHUFPD imm8 m128 xmm xmm
-// 	VSHUFPD imm8 ymm  ymm ymm
-// 	VSHUFPD imm8 m256 ymm ymm
-func VSHUFPD(i, mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VSHUFPD imm8 m512/m64bcst zmm zmm
+// 	VSHUFPD imm8 m512/m64bcst zmm k zmm
+// 	VSHUFPD imm8 zmm          zmm zmm
+// 	VSHUFPD imm8 zmm          zmm k zmm
+// 	VSHUFPD imm8 xmm          xmm xmm
+// 	VSHUFPD imm8 m128         xmm xmm
+// 	VSHUFPD imm8 ymm          ymm ymm
+// 	VSHUFPD imm8 m256         ymm ymm
+func VSHUFPD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsIMM8(i) && operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsZMM(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VSHUFPD",
-			Operands: []operand.Op{i, mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]) && operand.IsZMM(ops[4]):
+		return &intrep.Instruction{
+			Opcode:   "VSHUFPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[4]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VSHUFPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]) && operand.IsZMM(ops[4]):
+		return &intrep.Instruction{
+			Opcode:   "VSHUFPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[4]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VSHUFPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsIMM8(i) && operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM128(ops[1]) && operand.IsXMM(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VSHUFPD",
-			Operands: []operand.Op{i, mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsIMM8(i) && operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]) && operand.IsYMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VSHUFPD",
-			Operands: []operand.Op{i, mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsIMM8(i) && operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM256(ops[1]) && operand.IsYMM(ops[2]) && operand.IsYMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VSHUFPD",
-			Operands: []operand.Op{i, mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX"},
 		}, nil
 	}
@@ -33155,42 +46317,78 @@ func VSHUFPD(i, mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VSHUFPS imm8 xmm  xmm xmm
-// 	VSHUFPS imm8 m128 xmm xmm
-// 	VSHUFPS imm8 ymm  ymm ymm
-// 	VSHUFPS imm8 m256 ymm ymm
-func VSHUFPS(i, mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VSHUFPS imm8 m512/m32bcst zmm zmm
+// 	VSHUFPS imm8 m512/m32bcst zmm k zmm
+// 	VSHUFPS imm8 zmm          zmm zmm
+// 	VSHUFPS imm8 zmm          zmm k zmm
+// 	VSHUFPS imm8 xmm          xmm xmm
+// 	VSHUFPS imm8 m128         xmm xmm
+// 	VSHUFPS imm8 ymm          ymm ymm
+// 	VSHUFPS imm8 m256         ymm ymm
+func VSHUFPS(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsIMM8(i) && operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM512M32BCST(ops[1]) && operand.IsZMM(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VSHUFPS",
-			Operands: []operand.Op{i, mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsM512M32BCST(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]) && operand.IsZMM(ops[4]):
+		return &intrep.Instruction{
+			Opcode:   "VSHUFPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[4]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VSHUFPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]) && operand.IsZMM(ops[4]):
+		return &intrep.Instruction{
+			Opcode:   "VSHUFPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Outputs:  []operand.Op{ops[4]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VSHUFPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsIMM8(i) && operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM128(ops[1]) && operand.IsXMM(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VSHUFPS",
-			Operands: []operand.Op{i, mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsIMM8(i) && operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]) && operand.IsYMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VSHUFPS",
-			Operands: []operand.Op{i, mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsIMM8(i) && operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM256(ops[1]) && operand.IsYMM(ops[2]) && operand.IsYMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VSHUFPS",
-			Operands: []operand.Op{i, mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX"},
 		}, nil
 	}
@@ -33201,43 +46399,79 @@ func VSHUFPS(i, mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VSQRTPD xmm  xmm
-// 	VSQRTPD m128 xmm
-// 	VSQRTPD ymm  ymm
-// 	VSQRTPD m256 ymm
-func VSQRTPD(mxy, xy operand.Op) (*intrep.Instruction, error) {
+// 	VSQRTPD m512/m64bcst zmm
+// 	VSQRTPD m512/m64bcst k zmm
+// 	VSQRTPD xmm          xmm
+// 	VSQRTPD m128         xmm
+// 	VSQRTPD ymm          ymm
+// 	VSQRTPD m256         ymm
+// 	VSQRTPD zmm          zmm
+// 	VSQRTPD zmm          k zmm
+func VSQRTPD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy):
+	case len(ops) == 2 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VSQRTPD",
-			Operands: []operand.Op{mxy, xy},
-			Inputs:   []operand.Op{mxy},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VSQRTPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VSQRTPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy):
+	case len(ops) == 2 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VSQRTPD",
-			Operands: []operand.Op{mxy, xy},
-			Inputs:   []operand.Op{mxy},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy):
+	case len(ops) == 2 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VSQRTPD",
-			Operands: []operand.Op{mxy, xy},
-			Inputs:   []operand.Op{mxy},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy):
+	case len(ops) == 2 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VSQRTPD",
-			Operands: []operand.Op{mxy, xy},
-			Inputs:   []operand.Op{mxy},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
+		}, nil
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VSQRTPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VSQRTPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VSQRTPD: bad operands")
@@ -33247,43 +46481,79 @@ func VSQRTPD(mxy, xy operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VSQRTPS xmm  xmm
-// 	VSQRTPS m128 xmm
-// 	VSQRTPS ymm  ymm
-// 	VSQRTPS m256 ymm
-func VSQRTPS(mxy, xy operand.Op) (*intrep.Instruction, error) {
+// 	VSQRTPS m512/m32bcst zmm
+// 	VSQRTPS m512/m32bcst k zmm
+// 	VSQRTPS xmm          xmm
+// 	VSQRTPS m128         xmm
+// 	VSQRTPS ymm          ymm
+// 	VSQRTPS m256         ymm
+// 	VSQRTPS zmm          zmm
+// 	VSQRTPS zmm          k zmm
+func VSQRTPS(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy):
+	case len(ops) == 2 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VSQRTPS",
-			Operands: []operand.Op{mxy, xy},
-			Inputs:   []operand.Op{mxy},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VSQRTPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 2 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VSQRTPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy):
+	case len(ops) == 2 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VSQRTPS",
-			Operands: []operand.Op{mxy, xy},
-			Inputs:   []operand.Op{mxy},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy):
+	case len(ops) == 2 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VSQRTPS",
-			Operands: []operand.Op{mxy, xy},
-			Inputs:   []operand.Op{mxy},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy):
+	case len(ops) == 2 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VSQRTPS",
-			Operands: []operand.Op{mxy, xy},
-			Inputs:   []operand.Op{mxy},
-			Outputs:  []operand.Op{xy},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
 			ISA:      []string{"AVX"},
+		}, nil
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VSQRTPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VSQRTPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VSQRTPS: bad operands")
@@ -33293,25 +46563,61 @@ func VSQRTPS(mxy, xy operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+// 	VSQRTSD m64 xmm xmm
+// 	VSQRTSD m64 xmm k xmm
 // 	VSQRTSD xmm xmm xmm
 // 	VSQRTSD m64 xmm xmm
-func VSQRTSD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
+// 	VSQRTSD xmm xmm xmm
+// 	VSQRTSD xmm xmm k xmm
+func VSQRTSD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VSQRTSD",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VSQRTSD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VSQRTSD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM64(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VSQRTSD",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VSQRTSD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VSQRTSD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VSQRTSD: bad operands")
@@ -33321,25 +46627,61 @@ func VSQRTSD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+// 	VSQRTSS m32 xmm xmm
+// 	VSQRTSS m32 xmm k xmm
 // 	VSQRTSS xmm xmm xmm
 // 	VSQRTSS m32 xmm xmm
-func VSQRTSS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
+// 	VSQRTSS xmm xmm xmm
+// 	VSQRTSS xmm xmm k xmm
+func VSQRTSS(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VSQRTSS",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VSQRTSS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VSQRTSS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM32(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VSQRTSS",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VSQRTSS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VSQRTSS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VSQRTSS: bad operands")
@@ -33368,43 +46710,79 @@ func VSTMXCSR(m operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VSUBPD xmm  xmm xmm
-// 	VSUBPD m128 xmm xmm
-// 	VSUBPD ymm  ymm ymm
-// 	VSUBPD m256 ymm ymm
-func VSUBPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VSUBPD m512/m64bcst zmm zmm
+// 	VSUBPD m512/m64bcst zmm k zmm
+// 	VSUBPD xmm          xmm xmm
+// 	VSUBPD m128         xmm xmm
+// 	VSUBPD ymm          ymm ymm
+// 	VSUBPD m256         ymm ymm
+// 	VSUBPD zmm          zmm zmm
+// 	VSUBPD zmm          zmm k zmm
+func VSUBPD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VSUBPD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VSUBPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VSUBPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VSUBPD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VSUBPD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VSUBPD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VSUBPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VSUBPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VSUBPD: bad operands")
@@ -33414,43 +46792,79 @@ func VSUBPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VSUBPS xmm  xmm xmm
-// 	VSUBPS m128 xmm xmm
-// 	VSUBPS ymm  ymm ymm
-// 	VSUBPS m256 ymm ymm
-func VSUBPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VSUBPS m512/m32bcst zmm zmm
+// 	VSUBPS m512/m32bcst zmm k zmm
+// 	VSUBPS xmm          xmm xmm
+// 	VSUBPS m128         xmm xmm
+// 	VSUBPS ymm          ymm ymm
+// 	VSUBPS m256         ymm ymm
+// 	VSUBPS zmm          zmm zmm
+// 	VSUBPS zmm          zmm k zmm
+func VSUBPS(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VSUBPS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VSUBPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VSUBPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VSUBPS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VSUBPS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VSUBPS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VSUBPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VSUBPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VSUBPS: bad operands")
@@ -33460,25 +46874,61 @@ func VSUBPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+// 	VSUBSD m64 xmm xmm
+// 	VSUBSD m64 xmm k xmm
 // 	VSUBSD xmm xmm xmm
 // 	VSUBSD m64 xmm xmm
-func VSUBSD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
+// 	VSUBSD xmm xmm xmm
+// 	VSUBSD xmm xmm k xmm
+func VSUBSD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VSUBSD",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VSUBSD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VSUBSD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM64(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VSUBSD",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VSUBSD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VSUBSD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VSUBSD: bad operands")
@@ -33488,25 +46938,61 @@ func VSUBSD(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+// 	VSUBSS m32 xmm xmm
+// 	VSUBSS m32 xmm k xmm
 // 	VSUBSS xmm xmm xmm
 // 	VSUBSS m32 xmm xmm
-func VSUBSS(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
+// 	VSUBSS xmm xmm xmm
+// 	VSUBSS xmm xmm k xmm
+func VSUBSS(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VSUBSS",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VSUBSS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VSUBSS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM32(mx) && operand.IsXMM(x) && operand.IsXMM(x1):
+	case len(ops) == 3 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VSUBSS",
-			Operands: []operand.Op{mx, x, x1},
-			Inputs:   []operand.Op{mx, x},
-			Outputs:  []operand.Op{x1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VSUBSS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VSUBSS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
 		}, nil
 	}
 	return nil, errors.New("VSUBSS: bad operands")
@@ -33610,6 +47096,8 @@ func VTESTPS(mxy, xy operand.Op) (*intrep.Instruction, error) {
 //
 // 	VUCOMISD xmm xmm
 // 	VUCOMISD m64 xmm
+// 	VUCOMISD m64 xmm
+// 	VUCOMISD xmm xmm
 func VUCOMISD(mx, x operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsXMM(mx) && operand.IsXMM(x):
@@ -33628,6 +47116,22 @@ func VUCOMISD(mx, x operand.Op) (*intrep.Instruction, error) {
 			Outputs:  []operand.Op{},
 			ISA:      []string{"AVX"},
 		}, nil
+	case operand.IsM64(mx) && operand.IsXMM(x):
+		return &intrep.Instruction{
+			Opcode:   "VUCOMISD",
+			Operands: []operand.Op{mx, x},
+			Inputs:   []operand.Op{mx, x},
+			Outputs:  []operand.Op{},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case operand.IsXMM(mx) && operand.IsXMM(x):
+		return &intrep.Instruction{
+			Opcode:   "VUCOMISD",
+			Operands: []operand.Op{mx, x},
+			Inputs:   []operand.Op{mx, x},
+			Outputs:  []operand.Op{},
+			ISA:      []string{"AVX512F"},
+		}, nil
 	}
 	return nil, errors.New("VUCOMISD: bad operands")
 }
@@ -33638,6 +47142,8 @@ func VUCOMISD(mx, x operand.Op) (*intrep.Instruction, error) {
 //
 // 	VUCOMISS xmm xmm
 // 	VUCOMISS m32 xmm
+// 	VUCOMISS m32 xmm
+// 	VUCOMISS xmm xmm
 func VUCOMISS(mx, x operand.Op) (*intrep.Instruction, error) {
 	switch {
 	case operand.IsXMM(mx) && operand.IsXMM(x):
@@ -33656,6 +47162,22 @@ func VUCOMISS(mx, x operand.Op) (*intrep.Instruction, error) {
 			Outputs:  []operand.Op{},
 			ISA:      []string{"AVX"},
 		}, nil
+	case operand.IsM32(mx) && operand.IsXMM(x):
+		return &intrep.Instruction{
+			Opcode:   "VUCOMISS",
+			Operands: []operand.Op{mx, x},
+			Inputs:   []operand.Op{mx, x},
+			Outputs:  []operand.Op{},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case operand.IsXMM(mx) && operand.IsXMM(x):
+		return &intrep.Instruction{
+			Opcode:   "VUCOMISS",
+			Operands: []operand.Op{mx, x},
+			Inputs:   []operand.Op{mx, x},
+			Outputs:  []operand.Op{},
+			ISA:      []string{"AVX512F"},
+		}, nil
 	}
 	return nil, errors.New("VUCOMISS: bad operands")
 }
@@ -33664,42 +47186,78 @@ func VUCOMISS(mx, x operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VUNPCKHPD xmm  xmm xmm
-// 	VUNPCKHPD m128 xmm xmm
-// 	VUNPCKHPD ymm  ymm ymm
-// 	VUNPCKHPD m256 ymm ymm
-func VUNPCKHPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VUNPCKHPD m512/m64bcst zmm zmm
+// 	VUNPCKHPD m512/m64bcst zmm k zmm
+// 	VUNPCKHPD zmm          zmm zmm
+// 	VUNPCKHPD zmm          zmm k zmm
+// 	VUNPCKHPD xmm          xmm xmm
+// 	VUNPCKHPD m128         xmm xmm
+// 	VUNPCKHPD ymm          ymm ymm
+// 	VUNPCKHPD m256         ymm ymm
+func VUNPCKHPD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VUNPCKHPD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VUNPCKHPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VUNPCKHPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VUNPCKHPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VUNPCKHPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VUNPCKHPD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VUNPCKHPD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VUNPCKHPD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
 	}
@@ -33710,42 +47268,78 @@ func VUNPCKHPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VUNPCKHPS xmm  xmm xmm
-// 	VUNPCKHPS m128 xmm xmm
-// 	VUNPCKHPS ymm  ymm ymm
-// 	VUNPCKHPS m256 ymm ymm
-func VUNPCKHPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VUNPCKHPS m512/m32bcst zmm zmm
+// 	VUNPCKHPS m512/m32bcst zmm k zmm
+// 	VUNPCKHPS zmm          zmm zmm
+// 	VUNPCKHPS zmm          zmm k zmm
+// 	VUNPCKHPS xmm          xmm xmm
+// 	VUNPCKHPS m128         xmm xmm
+// 	VUNPCKHPS ymm          ymm ymm
+// 	VUNPCKHPS m256         ymm ymm
+func VUNPCKHPS(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VUNPCKHPS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VUNPCKHPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VUNPCKHPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VUNPCKHPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VUNPCKHPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VUNPCKHPS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VUNPCKHPS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VUNPCKHPS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
 	}
@@ -33756,42 +47350,78 @@ func VUNPCKHPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VUNPCKLPD xmm  xmm xmm
-// 	VUNPCKLPD m128 xmm xmm
-// 	VUNPCKLPD ymm  ymm ymm
-// 	VUNPCKLPD m256 ymm ymm
-func VUNPCKLPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VUNPCKLPD m512/m64bcst zmm zmm
+// 	VUNPCKLPD m512/m64bcst zmm k zmm
+// 	VUNPCKLPD zmm          zmm zmm
+// 	VUNPCKLPD zmm          zmm k zmm
+// 	VUNPCKLPD xmm          xmm xmm
+// 	VUNPCKLPD m128         xmm xmm
+// 	VUNPCKLPD ymm          ymm ymm
+// 	VUNPCKLPD m256         ymm ymm
+func VUNPCKLPD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VUNPCKLPD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VUNPCKLPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VUNPCKLPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VUNPCKLPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VUNPCKLPD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VUNPCKLPD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VUNPCKLPD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VUNPCKLPD",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
 	}
@@ -33802,42 +47432,78 @@ func VUNPCKLPD(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
-// 	VUNPCKLPS xmm  xmm xmm
-// 	VUNPCKLPS m128 xmm xmm
-// 	VUNPCKLPS ymm  ymm ymm
-// 	VUNPCKLPS m256 ymm ymm
-func VUNPCKLPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
+// 	VUNPCKLPS m512/m32bcst zmm zmm
+// 	VUNPCKLPS m512/m32bcst zmm k zmm
+// 	VUNPCKLPS zmm          zmm zmm
+// 	VUNPCKLPS zmm          zmm k zmm
+// 	VUNPCKLPS xmm          xmm xmm
+// 	VUNPCKLPS m128         xmm xmm
+// 	VUNPCKLPS ymm          ymm ymm
+// 	VUNPCKLPS m256         ymm ymm
+func VUNPCKLPS(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsXMM(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VUNPCKLPS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VUNPCKLPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VUNPCKLPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
+		return &intrep.Instruction{
+			Opcode:   "VUNPCKLPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[3]},
+			ISA:      []string{"AVX512F"},
+		}, nil
+	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VUNPCKLPS",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM128(mxy) && operand.IsXMM(xy) && operand.IsXMM(xy1):
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VUNPCKLPS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsYMM(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VUNPCKLPS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
-	case operand.IsM256(mxy) && operand.IsYMM(xy) && operand.IsYMM(xy1):
+	case len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VUNPCKLPS",
-			Operands: []operand.Op{mxy, xy, xy1},
-			Inputs:   []operand.Op{mxy, xy},
-			Outputs:  []operand.Op{xy1},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1]},
+			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX"},
 		}, nil
 	}
