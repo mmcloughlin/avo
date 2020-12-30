@@ -91,21 +91,29 @@ var validArgs = map[string][]string{
 	"xmm0": {"reg.X0"},
 	"xmm":  {"reg.X7"},
 	"ymm":  {"reg.Y15"},
+	"zmm":  {"reg.Z31"},
+	"k":    {"reg.K7"},
 
 	// Memory
-	"m":    {"operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}"},
-	"m8":   {"operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}"},
-	"m16":  {"operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}"},
-	"m32":  {"operand.Mem{Base: reg.EBX, Index: reg.ECX, Scale: 4}"},
-	"m64":  {"operand.Mem{Base: reg.RBX, Index: reg.RCX, Scale: 8}"},
-	"m128": {"operand.Mem{Base: reg.RBX, Index: reg.RCX, Scale: 8}"},
-	"m256": {"operand.Mem{Base: reg.RBX, Index: reg.RCX, Scale: 8}"},
+	"m":            {"operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}"},
+	"m8":           {"operand.Mem{Base: reg.BL, Index: reg.CH, Scale: 1}"},
+	"m16":          {"operand.Mem{Base: reg.BX, Index: reg.CX, Scale: 2}"},
+	"m32":          {"operand.Mem{Base: reg.EBX, Index: reg.ECX, Scale: 4}"},
+	"m64":          {"operand.Mem{Base: reg.RBX, Index: reg.RCX, Scale: 8}"},
+	"m128":         {"operand.Mem{Base: reg.RBX, Index: reg.RCX, Scale: 8}"},
+	"m256":         {"operand.Mem{Base: reg.RBX, Index: reg.RCX, Scale: 8}"},
+	"m256/m32bcst": {"operand.Mem{Base: reg.RBX, Index: reg.RCX, Scale: 8}"},
+	"m512":         {"operand.Mem{Base: reg.RBX, Index: reg.RCX, Scale: 8}"},
+	"m512/m32bcst": {"operand.Mem{Base: reg.RBX, Index: reg.RCX, Scale: 8}"},
+	"m512/m64bcst": {"operand.Mem{Base: reg.RBX, Index: reg.RCX, Scale: 8}"},
 
 	// Vector memory
 	"vm32x": {"operand.Mem{Base: reg.R13, Index: reg.X4, Scale: 1}"},
 	"vm64x": {"operand.Mem{Base: reg.R13, Index: reg.X8, Scale: 1}"},
 	"vm32y": {"operand.Mem{Base: reg.R13, Index: reg.Y4, Scale: 1}"},
 	"vm64y": {"operand.Mem{Base: reg.R13, Index: reg.Y8, Scale: 1}"},
+	"vm32z": {"operand.Mem{Base: reg.R13, Index: reg.Z4, Scale: 1}"},
+	"vm64z": {"operand.Mem{Base: reg.R13, Index: reg.Z8, Scale: 1}"},
 
 	// Relative
 	"rel8":  {"operand.Rel(math.MaxInt8)"},
