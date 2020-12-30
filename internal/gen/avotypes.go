@@ -18,5 +18,5 @@ func implicitRegister(t string) string {
 
 // checkername returns the name of the function that checks an operand of type t.
 func checkername(t string) string {
-	return "operand.Is" + strings.ToUpper(t)
+	return "operand.Is" + strings.ToUpper(strings.ReplaceAll(t, "/", ""))
 }
