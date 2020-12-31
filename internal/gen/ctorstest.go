@@ -31,22 +31,23 @@ func (c *ctorstest) Generate(is []inst.Instruction) ([]byte, error) {
 	c.Printf("\t\"%s/operand\"\n", api.Package)
 	c.Printf(")\n\n")
 
-	for _, i := range is {
-		c.instruction(i)
+	fns := api.InstructionsFunctions(is)
+	for _, fn := range fns {
+		c.function(fn)
 	}
 
 	return c.Result()
 }
 
-func (c *ctorstest) instruction(i inst.Instruction) {
-	c.Printf("func Test%sValidForms(t *testing.T) {", i.Opcode)
+func (c *ctorstest) function(fn *api.Function) {
+	c.Printf("func Test%sValidForms(t *testing.T) {", fn.Name())
 
-	for _, f := range i.Forms {
+	for _, f := range fn.Forms {
 		name := strings.Join(f.Signature(), "_")
 		c.Printf("t.Run(\"form=%s\", func(t *testing.T) {\n", name)
 
 		for _, args := range validFormArgs(f) {
-			c.Printf("if _, err := %s(%s)", i.Opcode, strings.Join(args, ", "))
+			c.Printf("if _, err := %s(%s)", fn.Name(), strings.Join(args, ", "))
 			c.Printf("; err != nil { t.Fatal(err) }\n")
 		}
 
