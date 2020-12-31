@@ -10,7 +10,7 @@ type Instruction struct {
 	Opcode  string // Golang assembly mnemonic
 	AliasOf string // Opcode of instruction that this is an alias for
 	Summary string // Description of the instruction
-	Forms   []Form // Accepted operand forms
+	Forms          // Accepted operand forms
 }
 
 // IsTerminal reports whether the instruction exits a function.
@@ -40,10 +40,13 @@ func (i Instruction) IsConditionalBranch() bool {
 	return i.IsBranch() && i.Opcode != "JMP"
 }
 
+// Forms is a collection of instruction forms.
+type Forms []Form
+
 // Arities returns the unique arities among the instruction forms.
-func (i Instruction) Arities() []int {
+func (fs Forms) Arities() []int {
 	s := map[int]bool{}
-	for _, f := range i.Forms {
+	for _, f := range fs {
 		s[f.Arity()] = true
 	}
 	a := make([]int, 0, len(s))
@@ -56,22 +59,22 @@ func (i Instruction) Arities() []int {
 
 // Arity is a convenience for returning the unique instruction arity when you
 // know it is not variadic. Panics for a variadic instruction.
-func (i Instruction) Arity() int {
-	if i.IsVariadic() {
+func (fs Forms) Arity() int {
+	if fs.IsVariadic() {
 		panic("variadic")
 	}
-	a := i.Arities()
+	a := fs.Arities()
 	return a[0]
 }
 
 // IsVariadic reports whether the instruction has more than one arity.
-func (i Instruction) IsVariadic() bool {
-	return len(i.Arities()) > 1
+func (fs Forms) IsVariadic() bool {
+	return len(fs.Arities()) > 1
 }
 
 // IsNiladic reports whether the instruction takes no operands.
-func (i Instruction) IsNiladic() bool {
-	a := i.Arities()
+func (fs Forms) IsNiladic() bool {
+	a := fs.Arities()
 	return len(a) == 1 && a[0] == 0
 }
 

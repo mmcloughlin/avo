@@ -1,14 +1,9 @@
 package api
 
 import (
-	"bytes"
 	"fmt"
-	"sort"
 	"strconv"
 	"strings"
-	"text/tabwriter"
-
-	"github.com/mmcloughlin/avo/internal/inst"
 )
 
 // Signature provides access to details about the signature of an instruction function.
@@ -50,73 +45,3 @@ func (n niladic) Arguments() string          { return "" }
 func (n niladic) ParameterName(i int) string { panic("niladic function has no parameters") }
 func (n niladic) ParameterSlice() string     { return "nil" }
 func (n niladic) Length() string             { return "0" }
-
-// Params generates the function parameters and a function.
-func Params(i inst.Instruction) Signature {
-	// Handle the case of forms with multiple arities.
-	switch {
-	case i.IsVariadic():
-		return variadic{name: "ops"}
-	case i.IsNiladic():
-		return niladic{}
-	}
-
-	// Generate nice-looking variable names.
-	n := i.Arity()
-	ops := make([]string, n)
-	count := map[string]int{}
-	for j := 0; j < n; j++ {
-		// Collect unique lowercase bytes from first characters of operand types.
-		s := map[byte]bool{}
-		for _, f := range i.Forms {
-			c := f.Operands[j].Type[0]
-			if 'a' <= c && c <= 'z' {
-				s[c] = true
-			}
-		}
-
-		// Operand name is the sorted bytes.
-		var b []byte
-		for c := range s {
-			b = append(b, c)
-		}
-		sort.Slice(b, func(i, j int) bool { return b[i] < b[j] })
-		name := string(b)
-
-		// Append a counter if we've seen it already.
-		m := count[name]
-		count[name]++
-		if m > 0 {
-			name += strconv.Itoa(m)
-		}
-		ops[j] = name
-	}
-
-	return argslist(ops)
-}
-
-// Doc generates the lines of the function comment.
-func Doc(i inst.Instruction) []string {
-	lines := []string{
-		fmt.Sprintf("%s: %s.", i.Opcode, i.Summary),
-		"",
-		"Forms:",
-		"",
-	}
-
-	// Write a table of instruction forms.
-	buf := bytes.NewBuffer(nil)
-	w := tabwriter.NewWriter(buf, 0, 0, 1, ' ', 0)
-	for _, f := range i.Forms {
-		row := i.Opcode + "\t" + strings.Join(f.Signature(), "\t") + "\n"
-		fmt.Fprint(w, row)
-	}
-	w.Flush()
-
-	tbl := strings.TrimSpace(buf.String())
-	for _, line := range strings.Split(tbl, "\n") {
-		lines = append(lines, "\t"+line)
-	}
-
-	return lines
-}
