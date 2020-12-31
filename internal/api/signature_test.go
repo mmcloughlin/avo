@@ -1,4 +1,4 @@
-package gen
+package api
 
 import (
 	"testing"
@@ -8,7 +8,7 @@ import (
 
 func TestParamsUniqueArgNames(t *testing.T) {
 	for _, i := range inst.Instructions {
-		s := params(i)
+		s := Params(i)
 		for _, n := range i.Arities() {
 			if n == 0 {
 				continue

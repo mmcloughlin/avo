@@ -3,6 +3,7 @@ package gen
 import (
 	"strings"
 
+	"github.com/mmcloughlin/avo/internal/api"
 	"github.com/mmcloughlin/avo/internal/prnt"
 	"github.com/mmcloughlin/avo/printer"
 
@@ -26,8 +27,8 @@ func (c *ctorstest) Generate(is []inst.Instruction) ([]byte, error) {
 	c.Printf("\t\"testing\"\n")
 	c.Printf("\t\"math\"\n")
 	c.NL()
-	c.Printf("\t\"%s/reg\"\n", pkg)
-	c.Printf("\t\"%s/operand\"\n", pkg)
+	c.Printf("\t\"%s/reg\"\n", api.Package)
+	c.Printf("\t\"%s/operand\"\n", api.Package)
 	c.Printf(")\n\n")
 
 	for _, i := range is {
