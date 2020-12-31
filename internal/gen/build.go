@@ -3,6 +3,7 @@ package gen
 import (
 	"fmt"
 
+	"github.com/mmcloughlin/avo/internal/api"
 	"github.com/mmcloughlin/avo/internal/inst"
 	"github.com/mmcloughlin/avo/internal/prnt"
 	"github.com/mmcloughlin/avo/printer"
@@ -26,8 +27,8 @@ func (b *build) Generate(is []inst.Instruction) ([]byte, error) {
 	b.Printf("package build\n\n")
 
 	b.Printf("import (\n")
-	b.Printf("\t\"%s/operand\"\n", pkg)
-	b.Printf("\t\"%s/x86\"\n", pkg)
+	b.Printf("\t\"%s/operand\"\n", api.Package)
+	b.Printf("\t\"%s/x86\"\n", api.Package)
 	b.Printf(")\n\n")
 
 	for _, i := range is {
@@ -38,8 +39,8 @@ func (b *build) Generate(is []inst.Instruction) ([]byte, error) {
 }
 
 func (b *build) instruction(i inst.Instruction) {
-	s := params(i)
-	d := doc(i)
+	s := api.Params(i)
+	d := api.Doc(i)
 
 	// Context method.
 	methoddoc := append([]string{}, d...)

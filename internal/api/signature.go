@@ -1,4 +1,4 @@
-package gen
+package api
 
 import (
 	"bytes"
@@ -11,8 +11,8 @@ import (
 	"github.com/mmcloughlin/avo/internal/inst"
 )
 
-// signature provides access to details about the signature of an instruction function.
-type signature interface {
+// Signature provides access to details about the signature of an instruction function.
+type Signature interface {
 	ParameterList() string
 	Arguments() string
 	ParameterName(int) string
@@ -23,11 +23,11 @@ type signature interface {
 // argslist is the signature for a function with the given named parameters.
 type argslist []string
 
-func (a argslist) ParameterList() string      { return strings.Join(a, ", ") + " " + operandType }
+func (a argslist) ParameterList() string      { return strings.Join(a, ", ") + " " + OperandType }
 func (a argslist) Arguments() string          { return strings.Join(a, ", ") }
 func (a argslist) ParameterName(i int) string { return a[i] }
 func (a argslist) ParameterSlice() string {
-	return fmt.Sprintf("[]%s{%s}", operandType, strings.Join(a, ", "))
+	return fmt.Sprintf("[]%s{%s}", OperandType, strings.Join(a, ", "))
 }
 func (a argslist) Length() string { return strconv.Itoa(len(a)) }
 
@@ -36,7 +36,7 @@ type variadic struct {
 	name string
 }
 
-func (v variadic) ParameterList() string      { return v.name + " ..." + operandType }
+func (v variadic) ParameterList() string      { return v.name + " ..." + OperandType }
 func (v variadic) Arguments() string          { return v.name + "..." }
 func (v variadic) ParameterName(i int) string { return fmt.Sprintf("%s[%d]", v.name, i) }
 func (v variadic) ParameterSlice() string     { return v.name }
@@ -51,8 +51,8 @@ func (n niladic) ParameterName(i int) string { panic("niladic function has no pa
 func (n niladic) ParameterSlice() string     { return "nil" }
 func (n niladic) Length() string             { return "0" }
 
-// params generates the function parameters and a function.
-func params(i inst.Instruction) signature {
+// Params generates the function parameters and a function.
+func Params(i inst.Instruction) Signature {
 	// Handle the case of forms with multiple arities.
 	switch {
 	case i.IsVariadic():
@@ -95,8 +95,8 @@ func params(i inst.Instruction) signature {
 	return argslist(ops)
 }
 
-// doc generates the lines of the function comment.
-func doc(i inst.Instruction) []string {
+// Doc generates the lines of the function comment.
+func Doc(i inst.Instruction) []string {
 	lines := []string{
 		fmt.Sprintf("%s: %s.", i.Opcode, i.Summary),
 		"",

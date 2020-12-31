@@ -1,6 +1,7 @@
 package gen
 
 import (
+	"github.com/mmcloughlin/avo/internal/api"
 	"github.com/mmcloughlin/avo/internal/inst"
 	"github.com/mmcloughlin/avo/internal/prnt"
 	"github.com/mmcloughlin/avo/printer"
@@ -109,7 +110,7 @@ func (g *godatatest) Generate(is []inst.Instruction) ([]byte, error) {
 
 		"%s/internal/inst"
 	)
-	`, pkg)
+	`, api.Package)
 
 	g.Printf("var raw = %#v\n\n", is)
 

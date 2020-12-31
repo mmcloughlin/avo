@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"strings"
 
+	"github.com/mmcloughlin/avo/internal/api"
 	"github.com/mmcloughlin/avo/internal/inst"
 	"github.com/mmcloughlin/avo/internal/prnt"
 	"github.com/mmcloughlin/avo/printer"
@@ -28,9 +29,9 @@ func (c *ctors) Generate(is []inst.Instruction) ([]byte, error) {
 	c.Printf("import (\n")
 	c.Printf("\t\"errors\"\n")
 	c.NL()
-	c.Printf("\tintrep \"%s/ir\"\n", pkg)
-	c.Printf("\t\"%s/reg\"\n", pkg)
-	c.Printf("\t\"%s/operand\"\n", pkg)
+	c.Printf("\tintrep \"%s/ir\"\n", api.Package)
+	c.Printf("\t\"%s/reg\"\n", api.Package)
+	c.Printf("\t\"%s/operand\"\n", api.Package)
 	c.Printf(")\n\n")
 
 	for _, i := range is {
@@ -41,16 +42,16 @@ func (c *ctors) Generate(is []inst.Instruction) ([]byte, error) {
 }
 
 func (c *ctors) instruction(i inst.Instruction) {
-	c.Comment(doc(i)...)
+	c.Comment(api.Doc(i)...)
 
-	s := params(i)
+	s := api.Params(i)
 
 	c.Printf("func %s(%s) (*intrep.Instruction, error) {\n", i.Opcode, s.ParameterList())
 	c.forms(i, s)
 	c.Printf("}\n\n")
 }
 
-func (c *ctors) forms(i inst.Instruction, s signature) {
+func (c *ctors) forms(i inst.Instruction, s api.Signature) {
 	if i.IsNiladic() {
 		if len(i.Forms) != 1 {
 			c.AddError(fmt.Errorf("%s breaks assumption that niladic instructions have one form", i.Opcode))
@@ -70,7 +71,7 @@ func (c *ctors) forms(i inst.Instruction, s signature) {
 		}
 
 		for j, op := range f.Operands {
-			checktype := fmt.Sprintf("%s(%s)", checkername(op.Type), s.ParameterName(j))
+			checktype := fmt.Sprintf("%s(%s)", api.CheckerName(op.Type), s.ParameterName(j))
 			conds = append(conds, checktype)
 		}
 
@@ -82,7 +83,7 @@ func (c *ctors) forms(i inst.Instruction, s signature) {
 	c.Printf("return nil, errors.New(\"%s: bad operands\")\n", i.Opcode)
 }
 
-func construct(i inst.Instruction, f inst.Form, s signature) string {
+func construct(i inst.Instruction, f inst.Form, s api.Signature) string {
 	buf := bytes.NewBuffer(nil)
 	fmt.Fprintf(buf, "intrep.Instruction{\n")
 	fmt.Fprintf(buf, "\tOpcode: %#v,\n", i.Opcode)
@@ -116,7 +117,7 @@ func construct(i inst.Instruction, f inst.Form, s signature) string {
 	return buf.String()
 }
 
-func operandsWithAction(f inst.Form, a inst.Action, s signature) string {
+func operandsWithAction(f inst.Form, a inst.Action, s api.Signature) string {
 	opexprs := []string{}
 	for i, op := range f.Operands {
 		if op.Action.Contains(a) {
@@ -125,8 +126,8 @@ func operandsWithAction(f inst.Form, a inst.Action, s signature) string {
 	}
 	for _, op := range f.ImplicitOperands {
 		if op.Action.Contains(a) {
-			opexprs = append(opexprs, implicitRegister(op.Register))
+			opexprs = append(opexprs, api.ImplicitRegister(op.Register))
 		}
 	}
-	return fmt.Sprintf("[]%s{%s}", operandType, strings.Join(opexprs, ", "))
+	return fmt.Sprintf("[]%s{%s}", api.OperandType, strings.Join(opexprs, ", "))
 }
