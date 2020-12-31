@@ -111,36 +111,28 @@ func (f *Function) Signature() Signature {
 // InstructionFunctions builds the list of all functions for a given
 // instruction.
 func InstructionFunctions(i inst.Instruction) []*Function {
-	// // One constructor for each possible suffix combination.
-	// bysuffix := map[string]*Function{}
-	// for _, f := range i.Forms {
-	// 	for _, suffixes := range f.SupportedSuffixes() {
-	// 		k := strings.Join(suffixes, ".")
-	// 		if _, ok := bysuffix[k]; !ok {
-	// 			bysuffix[k] = &Function{
-	// 				Instruction: i,
-	// 				Suffixes:    suffixes,
-	// 			}
-	// 		}
-	// 		bysuffix[k].Forms = append(bysuffix[k].Forms, f)
-	// 	}
-	// }
-
-	// // Convert to a sorted slice.
-	// var ctors []*Function
-	// for _, ctor := range bysuffix {
-	// 	ctors = append(ctors, ctor)
-	// }
-
-	// SortFunctions(ctors)
-
-	fns := []*Function{
-		{
-			Instruction: i,
-			Suffixes:    []string{},
-			Forms:       i.Forms,
-		},
+	// One function for each possible suffix combination.
+	bysuffix := map[string]*Function{}
+	for _, f := range i.Forms {
+		for _, suffixes := range f.SupportedSuffixes() {
+			k := strings.Join(suffixes, ".")
+			if _, ok := bysuffix[k]; !ok {
+				bysuffix[k] = &Function{
+					Instruction: i,
+					Suffixes:    suffixes,
+				}
+			}
+			bysuffix[k].Forms = append(bysuffix[k].Forms, f)
+		}
 	}
+
+	// Convert to a sorted slice.
+	var fns []*Function
+	for _, fn := range bysuffix {
+		fns = append(fns, fn)
+	}
+
+	SortFunctions(fns)
 
 	return fns
 }
@@ -149,8 +141,8 @@ func InstructionFunctions(i inst.Instruction) []*Function {
 func InstructionsFunctions(is []inst.Instruction) []*Function {
 	var all []*Function
 	for _, i := range is {
-		ctors := InstructionFunctions(i)
-		all = append(all, ctors...)
+		fns := InstructionFunctions(i)
+		all = append(all, fns...)
 	}
 
 	SortFunctions(all)
@@ -159,8 +151,8 @@ func InstructionsFunctions(is []inst.Instruction) []*Function {
 }
 
 // SortFunctions sorts a list of functions by name.
-func SortFunctions(ctors []*Function) {
-	sort.Slice(ctors, func(i, j int) bool {
-		return ctors[i].Name() < ctors[j].Name()
+func SortFunctions(fns []*Function) {
+	sort.Slice(fns, func(i, j int) bool {
+		return fns[i].Name() < fns[j].Name()
 	})
 }
