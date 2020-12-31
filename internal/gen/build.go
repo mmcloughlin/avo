@@ -31,23 +31,24 @@ func (b *build) Generate(is []inst.Instruction) ([]byte, error) {
 	b.Printf("\t\"%s/x86\"\n", api.Package)
 	b.Printf(")\n\n")
 
-	for _, i := range is {
-		b.instruction(i)
+	fns := api.InstructionsFunctions(is)
+	for _, fn := range fns {
+		b.function(fn)
 	}
 
 	return b.Result()
 }
 
-func (b *build) instruction(i inst.Instruction) {
-	s := api.Params(i)
-	d := api.Doc(i)
+func (b *build) function(fn *api.Function) {
+	s := fn.Signature()
+	d := fn.Doc()
 
 	// Context method.
 	methoddoc := append([]string{}, d...)
-	methoddoc = append(methoddoc, fmt.Sprintf("Construct and append a %s instruction to the active function.", i.Opcode))
+	methoddoc = append(methoddoc, fmt.Sprintf("Construct and append a %s instruction to the active function.", fn.Opcode()))
 	b.Comment(methoddoc...)
-	b.Printf("func (c *Context) %s(%s) {\n", i.Opcode, s.ParameterList())
-	b.Printf("if inst, err := x86.%s(%s); err == nil", i.Opcode, s.Arguments())
+	b.Printf("func (c *Context) %s(%s) {\n", fn.Name(), s.ParameterList())
+	b.Printf("if inst, err := x86.%s(%s); err == nil", fn.Name(), s.Arguments())
 	b.Printf(" { c.Instruction(inst) }")
 	b.Printf(" else { c.adderror(err) }\n")
 	b.Printf("}\n\n")
@@ -56,5 +57,5 @@ func (b *build) instruction(i inst.Instruction) {
 	globaldoc := append([]string{}, methoddoc...)
 	globaldoc = append(globaldoc, "Operates on the global context.")
 	b.Comment(globaldoc...)
-	b.Printf("func %s(%s) { ctx.%s(%s) }\n\n", i.Opcode, s.ParameterList(), i.Opcode, s.Arguments())
+	b.Printf("func %s(%s) { ctx.%s(%s) }\n\n", fn.Name(), s.ParameterList(), fn.Name(), s.Arguments())
 }

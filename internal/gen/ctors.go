@@ -34,38 +34,39 @@ func (c *ctors) Generate(is []inst.Instruction) ([]byte, error) {
 	c.Printf("\t\"%s/operand\"\n", api.Package)
 	c.Printf(")\n\n")
 
-	for _, i := range is {
-		c.instruction(i)
+	fns := api.InstructionsFunctions(is)
+	for _, fn := range fns {
+		c.function(fn)
 	}
 
 	return c.Result()
 }
 
-func (c *ctors) instruction(i inst.Instruction) {
-	c.Comment(api.Doc(i)...)
+func (c *ctors) function(fn *api.Function) {
+	c.Comment(fn.Doc()...)
 
-	s := api.Params(i)
+	s := fn.Signature()
 
-	c.Printf("func %s(%s) (*intrep.Instruction, error) {\n", i.Opcode, s.ParameterList())
-	c.forms(i, s)
+	c.Printf("func %s(%s) (*intrep.Instruction, error) {\n", fn.Name(), s.ParameterList())
+	c.forms(fn, s)
 	c.Printf("}\n\n")
 }
 
-func (c *ctors) forms(i inst.Instruction, s api.Signature) {
-	if i.IsNiladic() {
-		if len(i.Forms) != 1 {
-			c.AddError(fmt.Errorf("%s breaks assumption that niladic instructions have one form", i.Opcode))
+func (c *ctors) forms(fn *api.Function, s api.Signature) {
+	if fn.IsNiladic() {
+		if len(fn.Forms) != 1 {
+			c.AddError(fmt.Errorf("%s breaks assumption that niladic instructions have one form", fn.Name()))
 		}
-		c.Printf("return &%s, nil\n", construct(i, i.Forms[0], s))
+		c.Printf("return &%s, nil\n", construct(fn, fn.Forms[0], s))
 		return
 	}
 
 	c.Printf("switch {\n")
 
-	for _, f := range i.Forms {
+	for _, f := range fn.Forms {
 		var conds []string
 
-		if i.IsVariadic() {
+		if fn.IsVariadic() {
 			checklen := fmt.Sprintf("%s == %d", s.Length(), len(f.Operands))
 			conds = append(conds, checklen)
 		}
@@ -76,17 +77,17 @@ func (c *ctors) forms(i inst.Instruction, s api.Signature) {
 		}
 
 		c.Printf("case %s:\n", strings.Join(conds, " && "))
-		c.Printf("return &%s, nil\n", construct(i, f, s))
+		c.Printf("return &%s, nil\n", construct(fn, f, s))
 	}
 
 	c.Printf("}\n")
-	c.Printf("return nil, errors.New(\"%s: bad operands\")\n", i.Opcode)
+	c.Printf("return nil, errors.New(\"%s: bad operands\")\n", fn.Name())
 }
 
-func construct(i inst.Instruction, f inst.Form, s api.Signature) string {
+func construct(fn *api.Function, f inst.Form, s api.Signature) string {
 	buf := bytes.NewBuffer(nil)
 	fmt.Fprintf(buf, "intrep.Instruction{\n")
-	fmt.Fprintf(buf, "\tOpcode: %#v,\n", i.Opcode)
+	fmt.Fprintf(buf, "\tOpcode: %#v,\n", fn.Instruction.Opcode)
 	fmt.Fprintf(buf, "\tOperands: %s,\n", s.ParameterSlice())
 
 	// Input output.
@@ -99,13 +100,13 @@ func construct(i inst.Instruction, f inst.Form, s api.Signature) string {
 	}
 
 	// Branch variables.
-	if i.IsTerminal() {
+	if fn.Instruction.IsTerminal() {
 		fmt.Fprintf(buf, "\tIsTerminal: true,\n")
 	}
 
-	if i.IsBranch() {
+	if fn.Instruction.IsBranch() {
 		fmt.Fprintf(buf, "\tIsBranch: true,\n")
-		fmt.Fprintf(buf, "\tIsConditional: %#v,\n", i.IsConditionalBranch())
+		fmt.Fprintf(buf, "\tIsConditional: %#v,\n", fn.Instruction.IsConditionalBranch())
 	}
 
 	// Cancelling inputs.
