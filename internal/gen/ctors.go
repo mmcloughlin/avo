@@ -88,6 +88,9 @@ func construct(fn *api.Function, f inst.Form, s api.Signature) string {
 	buf := bytes.NewBuffer(nil)
 	fmt.Fprintf(buf, "intrep.Instruction{\n")
 	fmt.Fprintf(buf, "\tOpcode: %#v,\n", fn.Instruction.Opcode)
+	if len(fn.Suffixes) > 0 {
+		fmt.Fprintf(buf, "\tSuffixes: %#v,\n", fn.Suffixes)
+	}
 	fmt.Fprintf(buf, "\tOperands: %s,\n", s.ParameterSlice())
 
 	// Input output.

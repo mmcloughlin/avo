@@ -19916,6 +19916,7 @@ func VADDPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VADDPD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -19924,6 +19925,7 @@ func VADDPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VADDPD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -19943,6 +19945,7 @@ func VADDPD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VADDPD",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k},
 			Outputs:  []operand.Op{z1},
@@ -19963,6 +19966,7 @@ func VADDPD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VADDPD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -19971,6 +19975,7 @@ func VADDPD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VADDPD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -19990,6 +19995,7 @@ func VADDPD_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VADDPD",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k},
 			Outputs:  []operand.Op{z2},
@@ -20010,6 +20016,7 @@ func VADDPD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VADDPD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -20018,6 +20025,7 @@ func VADDPD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VADDPD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -20037,6 +20045,7 @@ func VADDPD_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VADDPD",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k},
 			Outputs:  []operand.Op{z2},
@@ -20057,6 +20066,7 @@ func VADDPD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VADDPD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -20065,6 +20075,7 @@ func VADDPD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VADDPD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -20084,6 +20095,7 @@ func VADDPD_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VADDPD",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k},
 			Outputs:  []operand.Op{z2},
@@ -20104,6 +20116,7 @@ func VADDPD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VADDPD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -20112,6 +20125,7 @@ func VADDPD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VADDPD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -20131,6 +20145,7 @@ func VADDPD_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VADDPD",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k},
 			Outputs:  []operand.Op{z2},
@@ -20151,6 +20166,7 @@ func VADDPD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VADDPD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -20159,6 +20175,7 @@ func VADDPD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VADDPD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -20261,6 +20278,7 @@ func VADDPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VADDPS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -20269,6 +20287,7 @@ func VADDPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VADDPS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -20288,6 +20307,7 @@ func VADDPS_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VADDPS",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k},
 			Outputs:  []operand.Op{z1},
@@ -20308,6 +20328,7 @@ func VADDPS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VADDPS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -20316,6 +20337,7 @@ func VADDPS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VADDPS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -20335,6 +20357,7 @@ func VADDPS_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VADDPS",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k},
 			Outputs:  []operand.Op{z2},
@@ -20355,6 +20378,7 @@ func VADDPS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VADDPS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -20363,6 +20387,7 @@ func VADDPS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VADDPS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -20382,6 +20407,7 @@ func VADDPS_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VADDPS",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k},
 			Outputs:  []operand.Op{z2},
@@ -20402,6 +20428,7 @@ func VADDPS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VADDPS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -20410,6 +20437,7 @@ func VADDPS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VADDPS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -20429,6 +20457,7 @@ func VADDPS_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VADDPS",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k},
 			Outputs:  []operand.Op{z2},
@@ -20449,6 +20478,7 @@ func VADDPS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VADDPS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -20457,6 +20487,7 @@ func VADDPS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VADDPS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -20476,6 +20507,7 @@ func VADDPS_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VADDPS",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k},
 			Outputs:  []operand.Op{z2},
@@ -20496,6 +20528,7 @@ func VADDPS_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VADDPS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -20504,6 +20537,7 @@ func VADDPS_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VADDPS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -20588,6 +20622,7 @@ func VADDSD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VADDSD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -20596,6 +20631,7 @@ func VADDSD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VADDSD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -20615,6 +20651,7 @@ func VADDSD_RD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VADDSD",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k},
 			Outputs:  []operand.Op{x2},
@@ -20635,6 +20672,7 @@ func VADDSD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VADDSD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -20643,6 +20681,7 @@ func VADDSD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VADDSD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -20662,6 +20701,7 @@ func VADDSD_RN_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VADDSD",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k},
 			Outputs:  []operand.Op{x2},
@@ -20682,6 +20722,7 @@ func VADDSD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VADDSD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -20690,6 +20731,7 @@ func VADDSD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VADDSD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -20709,6 +20751,7 @@ func VADDSD_RU_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VADDSD",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k},
 			Outputs:  []operand.Op{x2},
@@ -20729,6 +20772,7 @@ func VADDSD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VADDSD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -20737,6 +20781,7 @@ func VADDSD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VADDSD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -20756,6 +20801,7 @@ func VADDSD_RZ_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VADDSD",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k},
 			Outputs:  []operand.Op{x2},
@@ -20776,6 +20822,7 @@ func VADDSD_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM64(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VADDSD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k},
 			Outputs:  []operand.Op{x1},
@@ -20784,6 +20831,7 @@ func VADDSD_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VADDSD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k},
 			Outputs:  []operand.Op{x1},
@@ -20868,6 +20916,7 @@ func VADDSS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VADDSS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -20876,6 +20925,7 @@ func VADDSS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VADDSS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -20895,6 +20945,7 @@ func VADDSS_RD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VADDSS",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k},
 			Outputs:  []operand.Op{x2},
@@ -20915,6 +20966,7 @@ func VADDSS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VADDSS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -20923,6 +20975,7 @@ func VADDSS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VADDSS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -20942,6 +20995,7 @@ func VADDSS_RN_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VADDSS",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k},
 			Outputs:  []operand.Op{x2},
@@ -20962,6 +21016,7 @@ func VADDSS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VADDSS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -20970,6 +21025,7 @@ func VADDSS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VADDSS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -20989,6 +21045,7 @@ func VADDSS_RU_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VADDSS",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k},
 			Outputs:  []operand.Op{x2},
@@ -21009,6 +21066,7 @@ func VADDSS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VADDSS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -21017,6 +21075,7 @@ func VADDSS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VADDSS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -21036,6 +21095,7 @@ func VADDSS_RZ_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VADDSS",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k},
 			Outputs:  []operand.Op{x2},
@@ -21056,6 +21116,7 @@ func VADDSS_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM32(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VADDSS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k},
 			Outputs:  []operand.Op{x1},
@@ -21064,6 +21125,7 @@ func VADDSS_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VADDSS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k},
 			Outputs:  []operand.Op{x1},
@@ -21390,6 +21452,7 @@ func VALIGND_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM512M32BCST(ops[1]) && operand.IsZMM(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VALIGND",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -21398,6 +21461,7 @@ func VALIGND_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsM512M32BCST(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]) && operand.IsZMM(ops[4]):
 		return &intrep.Instruction{
 			Opcode:   "VALIGND",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[4]},
@@ -21417,6 +21481,7 @@ func VALIGND_BCST_Z(i, m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsM512M32BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VALIGND",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{i, m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k},
 			Outputs:  []operand.Op{z1},
@@ -21437,6 +21502,7 @@ func VALIGND_Z(i, mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsM512M32BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VALIGND",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{i, mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -21445,6 +21511,7 @@ func VALIGND_Z(i, mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VALIGND",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{i, mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -21511,6 +21578,7 @@ func VALIGNQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsZMM(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VALIGNQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -21519,6 +21587,7 @@ func VALIGNQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]) && operand.IsZMM(ops[4]):
 		return &intrep.Instruction{
 			Opcode:   "VALIGNQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[4]},
@@ -21538,6 +21607,7 @@ func VALIGNQ_BCST_Z(i, m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsM512M64BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VALIGNQ",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{i, m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k},
 			Outputs:  []operand.Op{z1},
@@ -21558,6 +21628,7 @@ func VALIGNQ_Z(i, mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsM512M64BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VALIGNQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{i, mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -21566,6 +21637,7 @@ func VALIGNQ_Z(i, mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VALIGNQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{i, mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -21820,6 +21892,7 @@ func VBLENDMPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VBLENDMPD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -21828,6 +21901,7 @@ func VBLENDMPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VBLENDMPD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -21847,6 +21921,7 @@ func VBLENDMPD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VBLENDMPD",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k},
 			Outputs:  []operand.Op{z1},
@@ -21867,6 +21942,7 @@ func VBLENDMPD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VBLENDMPD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -21875,6 +21951,7 @@ func VBLENDMPD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VBLENDMPD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -21941,6 +22018,7 @@ func VBLENDMPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VBLENDMPS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -21949,6 +22027,7 @@ func VBLENDMPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VBLENDMPS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -21968,6 +22047,7 @@ func VBLENDMPS_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VBLENDMPS",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k},
 			Outputs:  []operand.Op{z1},
@@ -21988,6 +22068,7 @@ func VBLENDMPS_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VBLENDMPS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -21996,6 +22077,7 @@ func VBLENDMPS_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VBLENDMPS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -22246,6 +22328,7 @@ func VBROADCASTF32X4_Z(m, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM128(m) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VBROADCASTF32X4",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{m, k, z},
 			Inputs:   []operand.Op{m, k},
 			Outputs:  []operand.Op{z},
@@ -22293,6 +22376,7 @@ func VBROADCASTF64X4_Z(m, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM256(m) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VBROADCASTF64X4",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{m, k, z},
 			Inputs:   []operand.Op{m, k},
 			Outputs:  []operand.Op{z},
@@ -22359,6 +22443,7 @@ func VBROADCASTI32X4_Z(m, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM128(m) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VBROADCASTI32X4",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{m, k, z},
 			Inputs:   []operand.Op{m, k},
 			Outputs:  []operand.Op{z},
@@ -22406,6 +22491,7 @@ func VBROADCASTI64X4_Z(m, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM256(m) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VBROADCASTI64X4",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{m, k, z},
 			Inputs:   []operand.Op{m, k},
 			Outputs:  []operand.Op{z},
@@ -22490,6 +22576,7 @@ func VBROADCASTSD_Z(mx, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(mx) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VBROADCASTSD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, k, z},
 			Inputs:   []operand.Op{mx, k},
 			Outputs:  []operand.Op{z},
@@ -22498,6 +22585,7 @@ func VBROADCASTSD_Z(mx, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM64(mx) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VBROADCASTSD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, k, z},
 			Inputs:   []operand.Op{mx, k},
 			Outputs:  []operand.Op{z},
@@ -22600,6 +22688,7 @@ func VBROADCASTSS_Z(mx, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(mx) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VBROADCASTSS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, k, z},
 			Inputs:   []operand.Op{mx, k},
 			Outputs:  []operand.Op{z},
@@ -22608,6 +22697,7 @@ func VBROADCASTSS_Z(mx, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM32(mx) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VBROADCASTSS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, k, z},
 			Inputs:   []operand.Op{mx, k},
 			Outputs:  []operand.Op{z},
@@ -22710,6 +22800,7 @@ func VCMPPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VCMPPD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -22718,6 +22809,7 @@ func VCMPPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]) && operand.IsK(ops[4]):
 		return &intrep.Instruction{
 			Opcode:   "VCMPPD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[4]},
@@ -22738,6 +22830,7 @@ func VCMPPD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VCMPPD",
+			Suffixes: []string{"SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -22746,6 +22839,7 @@ func VCMPPD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]) && operand.IsK(ops[4]):
 		return &intrep.Instruction{
 			Opcode:   "VCMPPD",
+			Suffixes: []string{"SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[4]},
@@ -22848,6 +22942,7 @@ func VCMPPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM512M32BCST(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VCMPPS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -22856,6 +22951,7 @@ func VCMPPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsM512M32BCST(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]) && operand.IsK(ops[4]):
 		return &intrep.Instruction{
 			Opcode:   "VCMPPS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[4]},
@@ -22876,6 +22972,7 @@ func VCMPPS_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VCMPPS",
+			Suffixes: []string{"SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -22884,6 +22981,7 @@ func VCMPPS_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]) && operand.IsK(ops[4]):
 		return &intrep.Instruction{
 			Opcode:   "VCMPPS",
+			Suffixes: []string{"SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[4]},
@@ -22968,6 +23066,7 @@ func VCMPSD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]) && operand.IsK(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VCMPSD",
+			Suffixes: []string{"SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -22976,6 +23075,7 @@ func VCMPSD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]) && operand.IsK(ops[3]) && operand.IsK(ops[4]):
 		return &intrep.Instruction{
 			Opcode:   "VCMPSD",
+			Suffixes: []string{"SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[4]},
@@ -23060,6 +23160,7 @@ func VCMPSS_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]) && operand.IsK(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VCMPSS",
+			Suffixes: []string{"SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -23068,6 +23169,7 @@ func VCMPSS_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]) && operand.IsK(ops[3]) && operand.IsK(ops[4]):
 		return &intrep.Instruction{
 			Opcode:   "VCMPSS",
+			Suffixes: []string{"SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[4]},
@@ -23133,6 +23235,7 @@ func VCOMISD_SAE(x, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VCOMISD",
+			Suffixes: []string{"SAE"},
 			Operands: []operand.Op{x, x1},
 			Inputs:   []operand.Op{x, x1},
 			Outputs:  []operand.Op{},
@@ -23198,6 +23301,7 @@ func VCOMISS_SAE(x, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VCOMISS",
+			Suffixes: []string{"SAE"},
 			Operands: []operand.Op{x, x1},
 			Inputs:   []operand.Op{x, x1},
 			Outputs:  []operand.Op{},
@@ -23264,6 +23368,7 @@ func VCOMPRESSPD_Z(z, k, mz operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(mz):
 		return &intrep.Instruction{
 			Opcode:   "VCOMPRESSPD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{z, k, mz},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{mz},
@@ -23272,6 +23377,7 @@ func VCOMPRESSPD_Z(z, k, mz operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsM512(mz):
 		return &intrep.Instruction{
 			Opcode:   "VCOMPRESSPD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{z, k, mz},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{mz},
@@ -23338,6 +23444,7 @@ func VCOMPRESSPS_Z(z, k, mz operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(mz):
 		return &intrep.Instruction{
 			Opcode:   "VCOMPRESSPS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{z, k, mz},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{mz},
@@ -23346,6 +23453,7 @@ func VCOMPRESSPS_Z(z, k, mz operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsM512(mz):
 		return &intrep.Instruction{
 			Opcode:   "VCOMPRESSPS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{z, k, mz},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{mz},
@@ -23448,6 +23556,7 @@ func VCVTDQ2PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 2 && operand.IsM256M32BCST(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTDQ2PD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
@@ -23456,6 +23565,7 @@ func VCVTDQ2PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM256M32BCST(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTDQ2PD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -23475,6 +23585,7 @@ func VCVTDQ2PD_BCST_Z(m, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM256M32BCST(m) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VCVTDQ2PD",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, k, z},
 			Inputs:   []operand.Op{m, k},
 			Outputs:  []operand.Op{z},
@@ -23495,6 +23606,7 @@ func VCVTDQ2PD_Z(my, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM256M32BCST(my) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VCVTDQ2PD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{my, k, z},
 			Inputs:   []operand.Op{my, k},
 			Outputs:  []operand.Op{z},
@@ -23503,6 +23615,7 @@ func VCVTDQ2PD_Z(my, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsYMM(my) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VCVTDQ2PD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{my, k, z},
 			Inputs:   []operand.Op{my, k},
 			Outputs:  []operand.Op{z},
@@ -23605,6 +23718,7 @@ func VCVTDQ2PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 2 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTDQ2PS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
@@ -23613,6 +23727,7 @@ func VCVTDQ2PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTDQ2PS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -23632,6 +23747,7 @@ func VCVTDQ2PS_BCST_Z(m, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(m) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VCVTDQ2PS",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, k, z},
 			Inputs:   []operand.Op{m, k},
 			Outputs:  []operand.Op{z},
@@ -23652,6 +23768,7 @@ func VCVTDQ2PS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTDQ2PS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
@@ -23660,6 +23777,7 @@ func VCVTDQ2PS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTDQ2PS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -23679,6 +23797,7 @@ func VCVTDQ2PS_RD_SAE_Z(z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VCVTDQ2PS",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{z, k, z1},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{z1},
@@ -23699,6 +23818,7 @@ func VCVTDQ2PS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTDQ2PS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
@@ -23707,6 +23827,7 @@ func VCVTDQ2PS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTDQ2PS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -23726,6 +23847,7 @@ func VCVTDQ2PS_RN_SAE_Z(z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VCVTDQ2PS",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{z, k, z1},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{z1},
@@ -23746,6 +23868,7 @@ func VCVTDQ2PS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTDQ2PS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
@@ -23754,6 +23877,7 @@ func VCVTDQ2PS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTDQ2PS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -23773,6 +23897,7 @@ func VCVTDQ2PS_RU_SAE_Z(z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VCVTDQ2PS",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{z, k, z1},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{z1},
@@ -23793,6 +23918,7 @@ func VCVTDQ2PS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTDQ2PS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
@@ -23801,6 +23927,7 @@ func VCVTDQ2PS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTDQ2PS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -23820,6 +23947,7 @@ func VCVTDQ2PS_RZ_SAE_Z(z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VCVTDQ2PS",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{z, k, z1},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{z1},
@@ -23840,6 +23968,7 @@ func VCVTDQ2PS_Z(mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VCVTDQ2PS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -23848,6 +23977,7 @@ func VCVTDQ2PS_Z(mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VCVTDQ2PS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -23970,6 +24100,7 @@ func VCVTPD2DQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 2 && operand.IsM512M64BCST(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPD2DQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
@@ -23978,6 +24109,7 @@ func VCVTPD2DQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsK(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPD2DQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -23997,6 +24129,7 @@ func VCVTPD2DQ_BCST_Z(m, k, y operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(m) && operand.IsK(k) && operand.IsYMM(y):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPD2DQ",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, k, y},
 			Inputs:   []operand.Op{m, k},
 			Outputs:  []operand.Op{y},
@@ -24017,6 +24150,7 @@ func VCVTPD2DQ_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPD2DQ",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
@@ -24025,6 +24159,7 @@ func VCVTPD2DQ_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPD2DQ",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -24044,6 +24179,7 @@ func VCVTPD2DQ_RD_SAE_Z(z, k, y operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsYMM(y):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPD2DQ",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{z, k, y},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{y},
@@ -24064,6 +24200,7 @@ func VCVTPD2DQ_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPD2DQ",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
@@ -24072,6 +24209,7 @@ func VCVTPD2DQ_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPD2DQ",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -24091,6 +24229,7 @@ func VCVTPD2DQ_RN_SAE_Z(z, k, y operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsYMM(y):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPD2DQ",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{z, k, y},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{y},
@@ -24111,6 +24250,7 @@ func VCVTPD2DQ_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPD2DQ",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
@@ -24119,6 +24259,7 @@ func VCVTPD2DQ_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPD2DQ",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -24138,6 +24279,7 @@ func VCVTPD2DQ_RU_SAE_Z(z, k, y operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsYMM(y):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPD2DQ",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{z, k, y},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{y},
@@ -24158,6 +24300,7 @@ func VCVTPD2DQ_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPD2DQ",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
@@ -24166,6 +24309,7 @@ func VCVTPD2DQ_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPD2DQ",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -24185,6 +24329,7 @@ func VCVTPD2DQ_RZ_SAE_Z(z, k, y operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsYMM(y):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPD2DQ",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{z, k, y},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{y},
@@ -24205,6 +24350,7 @@ func VCVTPD2DQ_Z(mz, k, y operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(mz) && operand.IsK(k) && operand.IsYMM(y):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPD2DQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, y},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{y},
@@ -24213,6 +24359,7 @@ func VCVTPD2DQ_Z(mz, k, y operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsK(k) && operand.IsYMM(y):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPD2DQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, y},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{y},
@@ -24335,6 +24482,7 @@ func VCVTPD2PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 2 && operand.IsM512M64BCST(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPD2PS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
@@ -24343,6 +24491,7 @@ func VCVTPD2PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsK(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPD2PS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -24362,6 +24511,7 @@ func VCVTPD2PS_BCST_Z(m, k, y operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(m) && operand.IsK(k) && operand.IsYMM(y):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPD2PS",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, k, y},
 			Inputs:   []operand.Op{m, k},
 			Outputs:  []operand.Op{y},
@@ -24382,6 +24532,7 @@ func VCVTPD2PS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPD2PS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
@@ -24390,6 +24541,7 @@ func VCVTPD2PS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPD2PS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -24409,6 +24561,7 @@ func VCVTPD2PS_RD_SAE_Z(z, k, y operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsYMM(y):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPD2PS",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{z, k, y},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{y},
@@ -24429,6 +24582,7 @@ func VCVTPD2PS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPD2PS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
@@ -24437,6 +24591,7 @@ func VCVTPD2PS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPD2PS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -24456,6 +24611,7 @@ func VCVTPD2PS_RN_SAE_Z(z, k, y operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsYMM(y):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPD2PS",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{z, k, y},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{y},
@@ -24476,6 +24632,7 @@ func VCVTPD2PS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPD2PS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
@@ -24484,6 +24641,7 @@ func VCVTPD2PS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPD2PS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -24503,6 +24661,7 @@ func VCVTPD2PS_RU_SAE_Z(z, k, y operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsYMM(y):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPD2PS",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{z, k, y},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{y},
@@ -24523,6 +24682,7 @@ func VCVTPD2PS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPD2PS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
@@ -24531,6 +24691,7 @@ func VCVTPD2PS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPD2PS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -24550,6 +24711,7 @@ func VCVTPD2PS_RZ_SAE_Z(z, k, y operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsYMM(y):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPD2PS",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{z, k, y},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{y},
@@ -24570,6 +24732,7 @@ func VCVTPD2PS_Z(mz, k, y operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(mz) && operand.IsK(k) && operand.IsYMM(y):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPD2PS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, y},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{y},
@@ -24578,6 +24741,7 @@ func VCVTPD2PS_Z(mz, k, y operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsK(k) && operand.IsYMM(y):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPD2PS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, y},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{y},
@@ -24644,6 +24808,7 @@ func VCVTPD2UDQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 2 && operand.IsM512M64BCST(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPD2UDQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
@@ -24652,6 +24817,7 @@ func VCVTPD2UDQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsK(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPD2UDQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -24671,6 +24837,7 @@ func VCVTPD2UDQ_BCST_Z(m, k, y operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(m) && operand.IsK(k) && operand.IsYMM(y):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPD2UDQ",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, k, y},
 			Inputs:   []operand.Op{m, k},
 			Outputs:  []operand.Op{y},
@@ -24691,6 +24858,7 @@ func VCVTPD2UDQ_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPD2UDQ",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
@@ -24699,6 +24867,7 @@ func VCVTPD2UDQ_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPD2UDQ",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -24718,6 +24887,7 @@ func VCVTPD2UDQ_RD_SAE_Z(z, k, y operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsYMM(y):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPD2UDQ",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{z, k, y},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{y},
@@ -24738,6 +24908,7 @@ func VCVTPD2UDQ_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPD2UDQ",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
@@ -24746,6 +24917,7 @@ func VCVTPD2UDQ_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPD2UDQ",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -24765,6 +24937,7 @@ func VCVTPD2UDQ_RN_SAE_Z(z, k, y operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsYMM(y):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPD2UDQ",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{z, k, y},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{y},
@@ -24785,6 +24958,7 @@ func VCVTPD2UDQ_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPD2UDQ",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
@@ -24793,6 +24967,7 @@ func VCVTPD2UDQ_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPD2UDQ",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -24812,6 +24987,7 @@ func VCVTPD2UDQ_RU_SAE_Z(z, k, y operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsYMM(y):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPD2UDQ",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{z, k, y},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{y},
@@ -24832,6 +25008,7 @@ func VCVTPD2UDQ_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPD2UDQ",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
@@ -24840,6 +25017,7 @@ func VCVTPD2UDQ_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPD2UDQ",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -24859,6 +25037,7 @@ func VCVTPD2UDQ_RZ_SAE_Z(z, k, y operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsYMM(y):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPD2UDQ",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{z, k, y},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{y},
@@ -24879,6 +25058,7 @@ func VCVTPD2UDQ_Z(mz, k, y operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(mz) && operand.IsK(k) && operand.IsYMM(y):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPD2UDQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, y},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{y},
@@ -24887,6 +25067,7 @@ func VCVTPD2UDQ_Z(mz, k, y operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsK(k) && operand.IsYMM(y):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPD2UDQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, y},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{y},
@@ -24989,6 +25170,7 @@ func VCVTPH2PS_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 2 && operand.IsYMM(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPH2PS",
+			Suffixes: []string{"SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
@@ -24997,6 +25179,7 @@ func VCVTPH2PS_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPH2PS",
+			Suffixes: []string{"SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -25016,6 +25199,7 @@ func VCVTPH2PS_SAE_Z(y, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsYMM(y) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPH2PS",
+			Suffixes: []string{"SAE", "Z"},
 			Operands: []operand.Op{y, k, z},
 			Inputs:   []operand.Op{y, k},
 			Outputs:  []operand.Op{z},
@@ -25036,6 +25220,7 @@ func VCVTPH2PS_Z(my, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM256(my) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPH2PS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{my, k, z},
 			Inputs:   []operand.Op{my, k},
 			Outputs:  []operand.Op{z},
@@ -25044,6 +25229,7 @@ func VCVTPH2PS_Z(my, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsYMM(my) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPH2PS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{my, k, z},
 			Inputs:   []operand.Op{my, k},
 			Outputs:  []operand.Op{z},
@@ -25146,6 +25332,7 @@ func VCVTPS2DQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 2 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPS2DQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
@@ -25154,6 +25341,7 @@ func VCVTPS2DQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPS2DQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -25173,6 +25361,7 @@ func VCVTPS2DQ_BCST_Z(m, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(m) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPS2DQ",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, k, z},
 			Inputs:   []operand.Op{m, k},
 			Outputs:  []operand.Op{z},
@@ -25193,6 +25382,7 @@ func VCVTPS2DQ_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPS2DQ",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
@@ -25201,6 +25391,7 @@ func VCVTPS2DQ_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPS2DQ",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -25220,6 +25411,7 @@ func VCVTPS2DQ_RD_SAE_Z(z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPS2DQ",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{z, k, z1},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{z1},
@@ -25240,6 +25432,7 @@ func VCVTPS2DQ_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPS2DQ",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
@@ -25248,6 +25441,7 @@ func VCVTPS2DQ_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPS2DQ",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -25267,6 +25461,7 @@ func VCVTPS2DQ_RN_SAE_Z(z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPS2DQ",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{z, k, z1},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{z1},
@@ -25287,6 +25482,7 @@ func VCVTPS2DQ_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPS2DQ",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
@@ -25295,6 +25491,7 @@ func VCVTPS2DQ_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPS2DQ",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -25314,6 +25511,7 @@ func VCVTPS2DQ_RU_SAE_Z(z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPS2DQ",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{z, k, z1},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{z1},
@@ -25334,6 +25532,7 @@ func VCVTPS2DQ_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPS2DQ",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
@@ -25342,6 +25541,7 @@ func VCVTPS2DQ_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPS2DQ",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -25361,6 +25561,7 @@ func VCVTPS2DQ_RZ_SAE_Z(z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPS2DQ",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{z, k, z1},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{z1},
@@ -25381,6 +25582,7 @@ func VCVTPS2DQ_Z(mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPS2DQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -25389,6 +25591,7 @@ func VCVTPS2DQ_Z(mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPS2DQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -25491,6 +25694,7 @@ func VCVTPS2PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 2 && operand.IsM256M32BCST(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPS2PD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
@@ -25499,6 +25703,7 @@ func VCVTPS2PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM256M32BCST(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPS2PD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -25518,6 +25723,7 @@ func VCVTPS2PD_BCST_Z(m, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM256M32BCST(m) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPS2PD",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, k, z},
 			Inputs:   []operand.Op{m, k},
 			Outputs:  []operand.Op{z},
@@ -25538,6 +25744,7 @@ func VCVTPS2PD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 2 && operand.IsYMM(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPS2PD",
+			Suffixes: []string{"SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
@@ -25546,6 +25753,7 @@ func VCVTPS2PD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPS2PD",
+			Suffixes: []string{"SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -25565,6 +25773,7 @@ func VCVTPS2PD_SAE_Z(y, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsYMM(y) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPS2PD",
+			Suffixes: []string{"SAE", "Z"},
 			Operands: []operand.Op{y, k, z},
 			Inputs:   []operand.Op{y, k},
 			Outputs:  []operand.Op{z},
@@ -25585,6 +25794,7 @@ func VCVTPS2PD_Z(my, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM256M32BCST(my) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPS2PD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{my, k, z},
 			Inputs:   []operand.Op{my, k},
 			Outputs:  []operand.Op{z},
@@ -25593,6 +25803,7 @@ func VCVTPS2PD_Z(my, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsYMM(my) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPS2PD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{my, k, z},
 			Inputs:   []operand.Op{my, k},
 			Outputs:  []operand.Op{z},
@@ -25695,6 +25906,7 @@ func VCVTPS2PH_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPS2PH",
+			Suffixes: []string{"SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -25703,6 +25915,7 @@ func VCVTPS2PH_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsYMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPS2PH",
+			Suffixes: []string{"SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -25722,6 +25935,7 @@ func VCVTPS2PH_SAE_Z(i, z, k, y operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsZMM(z) && operand.IsK(k) && operand.IsYMM(y):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPS2PH",
+			Suffixes: []string{"SAE", "Z"},
 			Operands: []operand.Op{i, z, k, y},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{y},
@@ -25742,6 +25956,7 @@ func VCVTPS2PH_Z(i, z, k, my operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsZMM(z) && operand.IsK(k) && operand.IsM256(my):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPS2PH",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{i, z, k, my},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{my},
@@ -25750,6 +25965,7 @@ func VCVTPS2PH_Z(i, z, k, my operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsZMM(z) && operand.IsK(k) && operand.IsYMM(my):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPS2PH",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{i, z, k, my},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{my},
@@ -25816,6 +26032,7 @@ func VCVTPS2UDQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 2 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPS2UDQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
@@ -25824,6 +26041,7 @@ func VCVTPS2UDQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPS2UDQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -25843,6 +26061,7 @@ func VCVTPS2UDQ_BCST_Z(m, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(m) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPS2UDQ",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, k, z},
 			Inputs:   []operand.Op{m, k},
 			Outputs:  []operand.Op{z},
@@ -25863,6 +26082,7 @@ func VCVTPS2UDQ_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPS2UDQ",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
@@ -25871,6 +26091,7 @@ func VCVTPS2UDQ_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPS2UDQ",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -25890,6 +26111,7 @@ func VCVTPS2UDQ_RD_SAE_Z(z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPS2UDQ",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{z, k, z1},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{z1},
@@ -25910,6 +26132,7 @@ func VCVTPS2UDQ_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPS2UDQ",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
@@ -25918,6 +26141,7 @@ func VCVTPS2UDQ_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPS2UDQ",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -25937,6 +26161,7 @@ func VCVTPS2UDQ_RN_SAE_Z(z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPS2UDQ",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{z, k, z1},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{z1},
@@ -25957,6 +26182,7 @@ func VCVTPS2UDQ_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPS2UDQ",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
@@ -25965,6 +26191,7 @@ func VCVTPS2UDQ_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPS2UDQ",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -25984,6 +26211,7 @@ func VCVTPS2UDQ_RU_SAE_Z(z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPS2UDQ",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{z, k, z1},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{z1},
@@ -26004,6 +26232,7 @@ func VCVTPS2UDQ_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPS2UDQ",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
@@ -26012,6 +26241,7 @@ func VCVTPS2UDQ_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPS2UDQ",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -26031,6 +26261,7 @@ func VCVTPS2UDQ_RZ_SAE_Z(z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPS2UDQ",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{z, k, z1},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{z1},
@@ -26051,6 +26282,7 @@ func VCVTPS2UDQ_Z(mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPS2UDQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -26059,6 +26291,7 @@ func VCVTPS2UDQ_Z(mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VCVTPS2UDQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -26170,6 +26403,7 @@ func VCVTSD2SIQ_RD_SAE(x, r operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsR64(r):
 		return &intrep.Instruction{
 			Opcode:   "VCVTSD2SIQ",
+			Suffixes: []string{"RD_SAE"},
 			Operands: []operand.Op{x, r},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{r},
@@ -26189,6 +26423,7 @@ func VCVTSD2SIQ_RN_SAE(x, r operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsR64(r):
 		return &intrep.Instruction{
 			Opcode:   "VCVTSD2SIQ",
+			Suffixes: []string{"RN_SAE"},
 			Operands: []operand.Op{x, r},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{r},
@@ -26208,6 +26443,7 @@ func VCVTSD2SIQ_RU_SAE(x, r operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsR64(r):
 		return &intrep.Instruction{
 			Opcode:   "VCVTSD2SIQ",
+			Suffixes: []string{"RU_SAE"},
 			Operands: []operand.Op{x, r},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{r},
@@ -26227,6 +26463,7 @@ func VCVTSD2SIQ_RZ_SAE(x, r operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsR64(r):
 		return &intrep.Instruction{
 			Opcode:   "VCVTSD2SIQ",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: []operand.Op{x, r},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{r},
@@ -26246,6 +26483,7 @@ func VCVTSD2SI_RD_SAE(x, r operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsR32(r):
 		return &intrep.Instruction{
 			Opcode:   "VCVTSD2SI",
+			Suffixes: []string{"RD_SAE"},
 			Operands: []operand.Op{x, r},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{r},
@@ -26265,6 +26503,7 @@ func VCVTSD2SI_RN_SAE(x, r operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsR32(r):
 		return &intrep.Instruction{
 			Opcode:   "VCVTSD2SI",
+			Suffixes: []string{"RN_SAE"},
 			Operands: []operand.Op{x, r},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{r},
@@ -26284,6 +26523,7 @@ func VCVTSD2SI_RU_SAE(x, r operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsR32(r):
 		return &intrep.Instruction{
 			Opcode:   "VCVTSD2SI",
+			Suffixes: []string{"RU_SAE"},
 			Operands: []operand.Op{x, r},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{r},
@@ -26303,6 +26543,7 @@ func VCVTSD2SI_RZ_SAE(x, r operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsR32(r):
 		return &intrep.Instruction{
 			Opcode:   "VCVTSD2SI",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: []operand.Op{x, r},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{r},
@@ -26387,6 +26628,7 @@ func VCVTSD2SS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTSD2SS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -26395,6 +26637,7 @@ func VCVTSD2SS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTSD2SS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -26414,6 +26657,7 @@ func VCVTSD2SS_RD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VCVTSD2SS",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k},
 			Outputs:  []operand.Op{x2},
@@ -26434,6 +26678,7 @@ func VCVTSD2SS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTSD2SS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -26442,6 +26687,7 @@ func VCVTSD2SS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTSD2SS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -26461,6 +26707,7 @@ func VCVTSD2SS_RN_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VCVTSD2SS",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k},
 			Outputs:  []operand.Op{x2},
@@ -26481,6 +26728,7 @@ func VCVTSD2SS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTSD2SS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -26489,6 +26737,7 @@ func VCVTSD2SS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTSD2SS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -26508,6 +26757,7 @@ func VCVTSD2SS_RU_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VCVTSD2SS",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k},
 			Outputs:  []operand.Op{x2},
@@ -26528,6 +26778,7 @@ func VCVTSD2SS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTSD2SS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -26536,6 +26787,7 @@ func VCVTSD2SS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTSD2SS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -26555,6 +26807,7 @@ func VCVTSD2SS_RZ_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VCVTSD2SS",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k},
 			Outputs:  []operand.Op{x2},
@@ -26575,6 +26828,7 @@ func VCVTSD2SS_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM64(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VCVTSD2SS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k},
 			Outputs:  []operand.Op{x1},
@@ -26583,6 +26837,7 @@ func VCVTSD2SS_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VCVTSD2SS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k},
 			Outputs:  []operand.Op{x1},
@@ -26630,6 +26885,7 @@ func VCVTSD2USIL_RD_SAE(x, r operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsR32(r):
 		return &intrep.Instruction{
 			Opcode:   "VCVTSD2USIL",
+			Suffixes: []string{"RD_SAE"},
 			Operands: []operand.Op{x, r},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{r},
@@ -26649,6 +26905,7 @@ func VCVTSD2USIL_RN_SAE(x, r operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsR32(r):
 		return &intrep.Instruction{
 			Opcode:   "VCVTSD2USIL",
+			Suffixes: []string{"RN_SAE"},
 			Operands: []operand.Op{x, r},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{r},
@@ -26668,6 +26925,7 @@ func VCVTSD2USIL_RU_SAE(x, r operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsR32(r):
 		return &intrep.Instruction{
 			Opcode:   "VCVTSD2USIL",
+			Suffixes: []string{"RU_SAE"},
 			Operands: []operand.Op{x, r},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{r},
@@ -26687,6 +26945,7 @@ func VCVTSD2USIL_RZ_SAE(x, r operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsR32(r):
 		return &intrep.Instruction{
 			Opcode:   "VCVTSD2USIL",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: []operand.Op{x, r},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{r},
@@ -26734,6 +26993,7 @@ func VCVTSD2USIQ_RD_SAE(x, r operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsR64(r):
 		return &intrep.Instruction{
 			Opcode:   "VCVTSD2USIQ",
+			Suffixes: []string{"RD_SAE"},
 			Operands: []operand.Op{x, r},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{r},
@@ -26753,6 +27013,7 @@ func VCVTSD2USIQ_RN_SAE(x, r operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsR64(r):
 		return &intrep.Instruction{
 			Opcode:   "VCVTSD2USIQ",
+			Suffixes: []string{"RN_SAE"},
 			Operands: []operand.Op{x, r},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{r},
@@ -26772,6 +27033,7 @@ func VCVTSD2USIQ_RU_SAE(x, r operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsR64(r):
 		return &intrep.Instruction{
 			Opcode:   "VCVTSD2USIQ",
+			Suffixes: []string{"RU_SAE"},
 			Operands: []operand.Op{x, r},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{r},
@@ -26791,6 +27053,7 @@ func VCVTSD2USIQ_RZ_SAE(x, r operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsR64(r):
 		return &intrep.Instruction{
 			Opcode:   "VCVTSD2USIQ",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: []operand.Op{x, r},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{r},
@@ -26902,6 +27165,7 @@ func VCVTSI2SDQ_RD_SAE(r, x, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsR64(r) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VCVTSI2SDQ",
+			Suffixes: []string{"RD_SAE"},
 			Operands: []operand.Op{r, x, x1},
 			Inputs:   []operand.Op{r, x},
 			Outputs:  []operand.Op{x1},
@@ -26921,6 +27185,7 @@ func VCVTSI2SDQ_RN_SAE(r, x, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsR64(r) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VCVTSI2SDQ",
+			Suffixes: []string{"RN_SAE"},
 			Operands: []operand.Op{r, x, x1},
 			Inputs:   []operand.Op{r, x},
 			Outputs:  []operand.Op{x1},
@@ -26940,6 +27205,7 @@ func VCVTSI2SDQ_RU_SAE(r, x, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsR64(r) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VCVTSI2SDQ",
+			Suffixes: []string{"RU_SAE"},
 			Operands: []operand.Op{r, x, x1},
 			Inputs:   []operand.Op{r, x},
 			Outputs:  []operand.Op{x1},
@@ -26959,6 +27225,7 @@ func VCVTSI2SDQ_RZ_SAE(r, x, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsR64(r) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VCVTSI2SDQ",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: []operand.Op{r, x, x1},
 			Inputs:   []operand.Op{r, x},
 			Outputs:  []operand.Op{x1},
@@ -27024,6 +27291,7 @@ func VCVTSI2SSL_RD_SAE(r, x, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsR32(r) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VCVTSI2SSL",
+			Suffixes: []string{"RD_SAE"},
 			Operands: []operand.Op{r, x, x1},
 			Inputs:   []operand.Op{r, x},
 			Outputs:  []operand.Op{x1},
@@ -27043,6 +27311,7 @@ func VCVTSI2SSL_RN_SAE(r, x, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsR32(r) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VCVTSI2SSL",
+			Suffixes: []string{"RN_SAE"},
 			Operands: []operand.Op{r, x, x1},
 			Inputs:   []operand.Op{r, x},
 			Outputs:  []operand.Op{x1},
@@ -27062,6 +27331,7 @@ func VCVTSI2SSL_RU_SAE(r, x, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsR32(r) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VCVTSI2SSL",
+			Suffixes: []string{"RU_SAE"},
 			Operands: []operand.Op{r, x, x1},
 			Inputs:   []operand.Op{r, x},
 			Outputs:  []operand.Op{x1},
@@ -27081,6 +27351,7 @@ func VCVTSI2SSL_RZ_SAE(r, x, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsR32(r) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VCVTSI2SSL",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: []operand.Op{r, x, x1},
 			Inputs:   []operand.Op{r, x},
 			Outputs:  []operand.Op{x1},
@@ -27146,6 +27417,7 @@ func VCVTSI2SSQ_RD_SAE(r, x, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsR64(r) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VCVTSI2SSQ",
+			Suffixes: []string{"RD_SAE"},
 			Operands: []operand.Op{r, x, x1},
 			Inputs:   []operand.Op{r, x},
 			Outputs:  []operand.Op{x1},
@@ -27165,6 +27437,7 @@ func VCVTSI2SSQ_RN_SAE(r, x, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsR64(r) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VCVTSI2SSQ",
+			Suffixes: []string{"RN_SAE"},
 			Operands: []operand.Op{r, x, x1},
 			Inputs:   []operand.Op{r, x},
 			Outputs:  []operand.Op{x1},
@@ -27184,6 +27457,7 @@ func VCVTSI2SSQ_RU_SAE(r, x, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsR64(r) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VCVTSI2SSQ",
+			Suffixes: []string{"RU_SAE"},
 			Operands: []operand.Op{r, x, x1},
 			Inputs:   []operand.Op{r, x},
 			Outputs:  []operand.Op{x1},
@@ -27203,6 +27477,7 @@ func VCVTSI2SSQ_RZ_SAE(r, x, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsR64(r) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VCVTSI2SSQ",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: []operand.Op{r, x, x1},
 			Inputs:   []operand.Op{r, x},
 			Outputs:  []operand.Op{x1},
@@ -27287,6 +27562,7 @@ func VCVTSS2SD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTSS2SD",
+			Suffixes: []string{"SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -27295,6 +27571,7 @@ func VCVTSS2SD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTSS2SD",
+			Suffixes: []string{"SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -27314,6 +27591,7 @@ func VCVTSS2SD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VCVTSS2SD",
+			Suffixes: []string{"SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k},
 			Outputs:  []operand.Op{x2},
@@ -27334,6 +27612,7 @@ func VCVTSS2SD_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM32(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VCVTSS2SD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k},
 			Outputs:  []operand.Op{x1},
@@ -27342,6 +27621,7 @@ func VCVTSS2SD_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VCVTSS2SD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k},
 			Outputs:  []operand.Op{x1},
@@ -27453,6 +27733,7 @@ func VCVTSS2SIQ_RD_SAE(x, r operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsR64(r):
 		return &intrep.Instruction{
 			Opcode:   "VCVTSS2SIQ",
+			Suffixes: []string{"RD_SAE"},
 			Operands: []operand.Op{x, r},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{r},
@@ -27472,6 +27753,7 @@ func VCVTSS2SIQ_RN_SAE(x, r operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsR64(r):
 		return &intrep.Instruction{
 			Opcode:   "VCVTSS2SIQ",
+			Suffixes: []string{"RN_SAE"},
 			Operands: []operand.Op{x, r},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{r},
@@ -27491,6 +27773,7 @@ func VCVTSS2SIQ_RU_SAE(x, r operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsR64(r):
 		return &intrep.Instruction{
 			Opcode:   "VCVTSS2SIQ",
+			Suffixes: []string{"RU_SAE"},
 			Operands: []operand.Op{x, r},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{r},
@@ -27510,6 +27793,7 @@ func VCVTSS2SIQ_RZ_SAE(x, r operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsR64(r):
 		return &intrep.Instruction{
 			Opcode:   "VCVTSS2SIQ",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: []operand.Op{x, r},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{r},
@@ -27529,6 +27813,7 @@ func VCVTSS2SI_RD_SAE(x, r operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsR32(r):
 		return &intrep.Instruction{
 			Opcode:   "VCVTSS2SI",
+			Suffixes: []string{"RD_SAE"},
 			Operands: []operand.Op{x, r},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{r},
@@ -27548,6 +27833,7 @@ func VCVTSS2SI_RN_SAE(x, r operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsR32(r):
 		return &intrep.Instruction{
 			Opcode:   "VCVTSS2SI",
+			Suffixes: []string{"RN_SAE"},
 			Operands: []operand.Op{x, r},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{r},
@@ -27567,6 +27853,7 @@ func VCVTSS2SI_RU_SAE(x, r operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsR32(r):
 		return &intrep.Instruction{
 			Opcode:   "VCVTSS2SI",
+			Suffixes: []string{"RU_SAE"},
 			Operands: []operand.Op{x, r},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{r},
@@ -27586,6 +27873,7 @@ func VCVTSS2SI_RZ_SAE(x, r operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsR32(r):
 		return &intrep.Instruction{
 			Opcode:   "VCVTSS2SI",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: []operand.Op{x, r},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{r},
@@ -27633,6 +27921,7 @@ func VCVTSS2USIL_RD_SAE(x, r operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsR32(r):
 		return &intrep.Instruction{
 			Opcode:   "VCVTSS2USIL",
+			Suffixes: []string{"RD_SAE"},
 			Operands: []operand.Op{x, r},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{r},
@@ -27652,6 +27941,7 @@ func VCVTSS2USIL_RN_SAE(x, r operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsR32(r):
 		return &intrep.Instruction{
 			Opcode:   "VCVTSS2USIL",
+			Suffixes: []string{"RN_SAE"},
 			Operands: []operand.Op{x, r},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{r},
@@ -27671,6 +27961,7 @@ func VCVTSS2USIL_RU_SAE(x, r operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsR32(r):
 		return &intrep.Instruction{
 			Opcode:   "VCVTSS2USIL",
+			Suffixes: []string{"RU_SAE"},
 			Operands: []operand.Op{x, r},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{r},
@@ -27690,6 +27981,7 @@ func VCVTSS2USIL_RZ_SAE(x, r operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsR32(r):
 		return &intrep.Instruction{
 			Opcode:   "VCVTSS2USIL",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: []operand.Op{x, r},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{r},
@@ -27737,6 +28029,7 @@ func VCVTSS2USIQ_RD_SAE(x, r operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsR64(r):
 		return &intrep.Instruction{
 			Opcode:   "VCVTSS2USIQ",
+			Suffixes: []string{"RD_SAE"},
 			Operands: []operand.Op{x, r},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{r},
@@ -27756,6 +28049,7 @@ func VCVTSS2USIQ_RN_SAE(x, r operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsR64(r):
 		return &intrep.Instruction{
 			Opcode:   "VCVTSS2USIQ",
+			Suffixes: []string{"RN_SAE"},
 			Operands: []operand.Op{x, r},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{r},
@@ -27775,6 +28069,7 @@ func VCVTSS2USIQ_RU_SAE(x, r operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsR64(r):
 		return &intrep.Instruction{
 			Opcode:   "VCVTSS2USIQ",
+			Suffixes: []string{"RU_SAE"},
 			Operands: []operand.Op{x, r},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{r},
@@ -27794,6 +28089,7 @@ func VCVTSS2USIQ_RZ_SAE(x, r operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsR64(r):
 		return &intrep.Instruction{
 			Opcode:   "VCVTSS2USIQ",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: []operand.Op{x, r},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{r},
@@ -27916,6 +28212,7 @@ func VCVTTPD2DQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 2 && operand.IsM512M64BCST(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTTPD2DQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
@@ -27924,6 +28221,7 @@ func VCVTTPD2DQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsK(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTTPD2DQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -27943,6 +28241,7 @@ func VCVTTPD2DQ_BCST_Z(m, k, y operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(m) && operand.IsK(k) && operand.IsYMM(y):
 		return &intrep.Instruction{
 			Opcode:   "VCVTTPD2DQ",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, k, y},
 			Inputs:   []operand.Op{m, k},
 			Outputs:  []operand.Op{y},
@@ -27963,6 +28262,7 @@ func VCVTTPD2DQ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTTPD2DQ",
+			Suffixes: []string{"SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
@@ -27971,6 +28271,7 @@ func VCVTTPD2DQ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTTPD2DQ",
+			Suffixes: []string{"SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -27990,6 +28291,7 @@ func VCVTTPD2DQ_SAE_Z(z, k, y operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsYMM(y):
 		return &intrep.Instruction{
 			Opcode:   "VCVTTPD2DQ",
+			Suffixes: []string{"SAE", "Z"},
 			Operands: []operand.Op{z, k, y},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{y},
@@ -28010,6 +28312,7 @@ func VCVTTPD2DQ_Z(mz, k, y operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(mz) && operand.IsK(k) && operand.IsYMM(y):
 		return &intrep.Instruction{
 			Opcode:   "VCVTTPD2DQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, y},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{y},
@@ -28018,6 +28321,7 @@ func VCVTTPD2DQ_Z(mz, k, y operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsK(k) && operand.IsYMM(y):
 		return &intrep.Instruction{
 			Opcode:   "VCVTTPD2DQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, y},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{y},
@@ -28084,6 +28388,7 @@ func VCVTTPD2UDQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 2 && operand.IsM512M64BCST(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTTPD2UDQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
@@ -28092,6 +28397,7 @@ func VCVTTPD2UDQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsK(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTTPD2UDQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -28111,6 +28417,7 @@ func VCVTTPD2UDQ_BCST_Z(m, k, y operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(m) && operand.IsK(k) && operand.IsYMM(y):
 		return &intrep.Instruction{
 			Opcode:   "VCVTTPD2UDQ",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, k, y},
 			Inputs:   []operand.Op{m, k},
 			Outputs:  []operand.Op{y},
@@ -28131,6 +28438,7 @@ func VCVTTPD2UDQ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsYMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTTPD2UDQ",
+			Suffixes: []string{"SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
@@ -28139,6 +28447,7 @@ func VCVTTPD2UDQ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsYMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTTPD2UDQ",
+			Suffixes: []string{"SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -28158,6 +28467,7 @@ func VCVTTPD2UDQ_SAE_Z(z, k, y operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsYMM(y):
 		return &intrep.Instruction{
 			Opcode:   "VCVTTPD2UDQ",
+			Suffixes: []string{"SAE", "Z"},
 			Operands: []operand.Op{z, k, y},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{y},
@@ -28178,6 +28488,7 @@ func VCVTTPD2UDQ_Z(mz, k, y operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(mz) && operand.IsK(k) && operand.IsYMM(y):
 		return &intrep.Instruction{
 			Opcode:   "VCVTTPD2UDQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, y},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{y},
@@ -28186,6 +28497,7 @@ func VCVTTPD2UDQ_Z(mz, k, y operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsK(k) && operand.IsYMM(y):
 		return &intrep.Instruction{
 			Opcode:   "VCVTTPD2UDQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, y},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{y},
@@ -28288,6 +28600,7 @@ func VCVTTPS2DQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 2 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTTPS2DQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
@@ -28296,6 +28609,7 @@ func VCVTTPS2DQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTTPS2DQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -28315,6 +28629,7 @@ func VCVTTPS2DQ_BCST_Z(m, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(m) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VCVTTPS2DQ",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, k, z},
 			Inputs:   []operand.Op{m, k},
 			Outputs:  []operand.Op{z},
@@ -28335,6 +28650,7 @@ func VCVTTPS2DQ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTTPS2DQ",
+			Suffixes: []string{"SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
@@ -28343,6 +28659,7 @@ func VCVTTPS2DQ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTTPS2DQ",
+			Suffixes: []string{"SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -28362,6 +28679,7 @@ func VCVTTPS2DQ_SAE_Z(z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VCVTTPS2DQ",
+			Suffixes: []string{"SAE", "Z"},
 			Operands: []operand.Op{z, k, z1},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{z1},
@@ -28382,6 +28700,7 @@ func VCVTTPS2DQ_Z(mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VCVTTPS2DQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -28390,6 +28709,7 @@ func VCVTTPS2DQ_Z(mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VCVTTPS2DQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -28456,6 +28776,7 @@ func VCVTTPS2UDQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 2 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTTPS2UDQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
@@ -28464,6 +28785,7 @@ func VCVTTPS2UDQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTTPS2UDQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -28483,6 +28805,7 @@ func VCVTTPS2UDQ_BCST_Z(m, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(m) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VCVTTPS2UDQ",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, k, z},
 			Inputs:   []operand.Op{m, k},
 			Outputs:  []operand.Op{z},
@@ -28503,6 +28826,7 @@ func VCVTTPS2UDQ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTTPS2UDQ",
+			Suffixes: []string{"SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
@@ -28511,6 +28835,7 @@ func VCVTTPS2UDQ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTTPS2UDQ",
+			Suffixes: []string{"SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -28530,6 +28855,7 @@ func VCVTTPS2UDQ_SAE_Z(z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VCVTTPS2UDQ",
+			Suffixes: []string{"SAE", "Z"},
 			Operands: []operand.Op{z, k, z1},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{z1},
@@ -28550,6 +28876,7 @@ func VCVTTPS2UDQ_Z(mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VCVTTPS2UDQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -28558,6 +28885,7 @@ func VCVTTPS2UDQ_Z(mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VCVTTPS2UDQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -28669,6 +28997,7 @@ func VCVTTSD2SIQ_SAE(x, r operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsR64(r):
 		return &intrep.Instruction{
 			Opcode:   "VCVTTSD2SIQ",
+			Suffixes: []string{"SAE"},
 			Operands: []operand.Op{x, r},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{r},
@@ -28688,6 +29017,7 @@ func VCVTTSD2SI_SAE(x, r operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsR32(r):
 		return &intrep.Instruction{
 			Opcode:   "VCVTTSD2SI",
+			Suffixes: []string{"SAE"},
 			Operands: []operand.Op{x, r},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{r},
@@ -28735,6 +29065,7 @@ func VCVTTSD2USIL_SAE(x, r operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsR32(r):
 		return &intrep.Instruction{
 			Opcode:   "VCVTTSD2USIL",
+			Suffixes: []string{"SAE"},
 			Operands: []operand.Op{x, r},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{r},
@@ -28782,6 +29113,7 @@ func VCVTTSD2USIQ_SAE(x, r operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsR64(r):
 		return &intrep.Instruction{
 			Opcode:   "VCVTTSD2USIQ",
+			Suffixes: []string{"SAE"},
 			Operands: []operand.Op{x, r},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{r},
@@ -28893,6 +29225,7 @@ func VCVTTSS2SIQ_SAE(x, r operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsR64(r):
 		return &intrep.Instruction{
 			Opcode:   "VCVTTSS2SIQ",
+			Suffixes: []string{"SAE"},
 			Operands: []operand.Op{x, r},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{r},
@@ -28912,6 +29245,7 @@ func VCVTTSS2SI_SAE(x, r operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsR32(r):
 		return &intrep.Instruction{
 			Opcode:   "VCVTTSS2SI",
+			Suffixes: []string{"SAE"},
 			Operands: []operand.Op{x, r},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{r},
@@ -28959,6 +29293,7 @@ func VCVTTSS2USIL_SAE(x, r operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsR32(r):
 		return &intrep.Instruction{
 			Opcode:   "VCVTTSS2USIL",
+			Suffixes: []string{"SAE"},
 			Operands: []operand.Op{x, r},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{r},
@@ -29006,6 +29341,7 @@ func VCVTTSS2USIQ_SAE(x, r operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsR64(r):
 		return &intrep.Instruction{
 			Opcode:   "VCVTTSS2USIQ",
+			Suffixes: []string{"SAE"},
 			Operands: []operand.Op{x, r},
 			Inputs:   []operand.Op{x},
 			Outputs:  []operand.Op{r},
@@ -29072,6 +29408,7 @@ func VCVTUDQ2PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 2 && operand.IsM256M32BCST(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTUDQ2PD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
@@ -29080,6 +29417,7 @@ func VCVTUDQ2PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM256M32BCST(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTUDQ2PD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -29099,6 +29437,7 @@ func VCVTUDQ2PD_BCST_Z(m, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM256M32BCST(m) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VCVTUDQ2PD",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, k, z},
 			Inputs:   []operand.Op{m, k},
 			Outputs:  []operand.Op{z},
@@ -29119,6 +29458,7 @@ func VCVTUDQ2PD_Z(my, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM256M32BCST(my) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VCVTUDQ2PD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{my, k, z},
 			Inputs:   []operand.Op{my, k},
 			Outputs:  []operand.Op{z},
@@ -29127,6 +29467,7 @@ func VCVTUDQ2PD_Z(my, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsYMM(my) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VCVTUDQ2PD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{my, k, z},
 			Inputs:   []operand.Op{my, k},
 			Outputs:  []operand.Op{z},
@@ -29193,6 +29534,7 @@ func VCVTUDQ2PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 2 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTUDQ2PS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
@@ -29201,6 +29543,7 @@ func VCVTUDQ2PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTUDQ2PS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -29220,6 +29563,7 @@ func VCVTUDQ2PS_BCST_Z(m, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(m) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VCVTUDQ2PS",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, k, z},
 			Inputs:   []operand.Op{m, k},
 			Outputs:  []operand.Op{z},
@@ -29240,6 +29584,7 @@ func VCVTUDQ2PS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTUDQ2PS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
@@ -29248,6 +29593,7 @@ func VCVTUDQ2PS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTUDQ2PS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -29267,6 +29613,7 @@ func VCVTUDQ2PS_RD_SAE_Z(z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VCVTUDQ2PS",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{z, k, z1},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{z1},
@@ -29287,6 +29634,7 @@ func VCVTUDQ2PS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTUDQ2PS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
@@ -29295,6 +29643,7 @@ func VCVTUDQ2PS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTUDQ2PS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -29314,6 +29663,7 @@ func VCVTUDQ2PS_RN_SAE_Z(z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VCVTUDQ2PS",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{z, k, z1},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{z1},
@@ -29334,6 +29684,7 @@ func VCVTUDQ2PS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTUDQ2PS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
@@ -29342,6 +29693,7 @@ func VCVTUDQ2PS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTUDQ2PS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -29361,6 +29713,7 @@ func VCVTUDQ2PS_RU_SAE_Z(z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VCVTUDQ2PS",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{z, k, z1},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{z1},
@@ -29381,6 +29734,7 @@ func VCVTUDQ2PS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTUDQ2PS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
@@ -29389,6 +29743,7 @@ func VCVTUDQ2PS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VCVTUDQ2PS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -29408,6 +29763,7 @@ func VCVTUDQ2PS_RZ_SAE_Z(z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VCVTUDQ2PS",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{z, k, z1},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{z1},
@@ -29428,6 +29784,7 @@ func VCVTUDQ2PS_Z(mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VCVTUDQ2PS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -29436,6 +29793,7 @@ func VCVTUDQ2PS_Z(mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VCVTUDQ2PS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -29511,6 +29869,7 @@ func VCVTUSI2SDQ_RD_SAE(r, x, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsR64(r) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VCVTUSI2SDQ",
+			Suffixes: []string{"RD_SAE"},
 			Operands: []operand.Op{r, x, x1},
 			Inputs:   []operand.Op{r, x},
 			Outputs:  []operand.Op{x1},
@@ -29530,6 +29889,7 @@ func VCVTUSI2SDQ_RN_SAE(r, x, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsR64(r) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VCVTUSI2SDQ",
+			Suffixes: []string{"RN_SAE"},
 			Operands: []operand.Op{r, x, x1},
 			Inputs:   []operand.Op{r, x},
 			Outputs:  []operand.Op{x1},
@@ -29549,6 +29909,7 @@ func VCVTUSI2SDQ_RU_SAE(r, x, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsR64(r) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VCVTUSI2SDQ",
+			Suffixes: []string{"RU_SAE"},
 			Operands: []operand.Op{r, x, x1},
 			Inputs:   []operand.Op{r, x},
 			Outputs:  []operand.Op{x1},
@@ -29568,6 +29929,7 @@ func VCVTUSI2SDQ_RZ_SAE(r, x, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsR64(r) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VCVTUSI2SDQ",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: []operand.Op{r, x, x1},
 			Inputs:   []operand.Op{r, x},
 			Outputs:  []operand.Op{x1},
@@ -29615,6 +29977,7 @@ func VCVTUSI2SSL_RD_SAE(r, x, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsR32(r) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VCVTUSI2SSL",
+			Suffixes: []string{"RD_SAE"},
 			Operands: []operand.Op{r, x, x1},
 			Inputs:   []operand.Op{r, x},
 			Outputs:  []operand.Op{x1},
@@ -29634,6 +29997,7 @@ func VCVTUSI2SSL_RN_SAE(r, x, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsR32(r) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VCVTUSI2SSL",
+			Suffixes: []string{"RN_SAE"},
 			Operands: []operand.Op{r, x, x1},
 			Inputs:   []operand.Op{r, x},
 			Outputs:  []operand.Op{x1},
@@ -29653,6 +30017,7 @@ func VCVTUSI2SSL_RU_SAE(r, x, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsR32(r) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VCVTUSI2SSL",
+			Suffixes: []string{"RU_SAE"},
 			Operands: []operand.Op{r, x, x1},
 			Inputs:   []operand.Op{r, x},
 			Outputs:  []operand.Op{x1},
@@ -29672,6 +30037,7 @@ func VCVTUSI2SSL_RZ_SAE(r, x, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsR32(r) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VCVTUSI2SSL",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: []operand.Op{r, x, x1},
 			Inputs:   []operand.Op{r, x},
 			Outputs:  []operand.Op{x1},
@@ -29719,6 +30085,7 @@ func VCVTUSI2SSQ_RD_SAE(r, x, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsR64(r) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VCVTUSI2SSQ",
+			Suffixes: []string{"RD_SAE"},
 			Operands: []operand.Op{r, x, x1},
 			Inputs:   []operand.Op{r, x},
 			Outputs:  []operand.Op{x1},
@@ -29738,6 +30105,7 @@ func VCVTUSI2SSQ_RN_SAE(r, x, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsR64(r) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VCVTUSI2SSQ",
+			Suffixes: []string{"RN_SAE"},
 			Operands: []operand.Op{r, x, x1},
 			Inputs:   []operand.Op{r, x},
 			Outputs:  []operand.Op{x1},
@@ -29757,6 +30125,7 @@ func VCVTUSI2SSQ_RU_SAE(r, x, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsR64(r) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VCVTUSI2SSQ",
+			Suffixes: []string{"RU_SAE"},
 			Operands: []operand.Op{r, x, x1},
 			Inputs:   []operand.Op{r, x},
 			Outputs:  []operand.Op{x1},
@@ -29776,6 +30145,7 @@ func VCVTUSI2SSQ_RZ_SAE(r, x, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsR64(r) && operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VCVTUSI2SSQ",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: []operand.Op{r, x, x1},
 			Inputs:   []operand.Op{r, x},
 			Outputs:  []operand.Op{x1},
@@ -29878,6 +30248,7 @@ func VDIVPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VDIVPD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -29886,6 +30257,7 @@ func VDIVPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VDIVPD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -29905,6 +30277,7 @@ func VDIVPD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VDIVPD",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k},
 			Outputs:  []operand.Op{z1},
@@ -29925,6 +30298,7 @@ func VDIVPD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VDIVPD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -29933,6 +30307,7 @@ func VDIVPD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VDIVPD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -29952,6 +30327,7 @@ func VDIVPD_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VDIVPD",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k},
 			Outputs:  []operand.Op{z2},
@@ -29972,6 +30348,7 @@ func VDIVPD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VDIVPD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -29980,6 +30357,7 @@ func VDIVPD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VDIVPD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -29999,6 +30377,7 @@ func VDIVPD_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VDIVPD",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k},
 			Outputs:  []operand.Op{z2},
@@ -30019,6 +30398,7 @@ func VDIVPD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VDIVPD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -30027,6 +30407,7 @@ func VDIVPD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VDIVPD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -30046,6 +30427,7 @@ func VDIVPD_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VDIVPD",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k},
 			Outputs:  []operand.Op{z2},
@@ -30066,6 +30448,7 @@ func VDIVPD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VDIVPD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -30074,6 +30457,7 @@ func VDIVPD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VDIVPD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -30093,6 +30477,7 @@ func VDIVPD_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VDIVPD",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k},
 			Outputs:  []operand.Op{z2},
@@ -30113,6 +30498,7 @@ func VDIVPD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VDIVPD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -30121,6 +30507,7 @@ func VDIVPD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VDIVPD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -30223,6 +30610,7 @@ func VDIVPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VDIVPS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -30231,6 +30619,7 @@ func VDIVPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VDIVPS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -30250,6 +30639,7 @@ func VDIVPS_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VDIVPS",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k},
 			Outputs:  []operand.Op{z1},
@@ -30270,6 +30660,7 @@ func VDIVPS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VDIVPS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -30278,6 +30669,7 @@ func VDIVPS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VDIVPS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -30297,6 +30689,7 @@ func VDIVPS_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VDIVPS",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k},
 			Outputs:  []operand.Op{z2},
@@ -30317,6 +30710,7 @@ func VDIVPS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VDIVPS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -30325,6 +30719,7 @@ func VDIVPS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VDIVPS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -30344,6 +30739,7 @@ func VDIVPS_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VDIVPS",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k},
 			Outputs:  []operand.Op{z2},
@@ -30364,6 +30760,7 @@ func VDIVPS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VDIVPS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -30372,6 +30769,7 @@ func VDIVPS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VDIVPS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -30391,6 +30789,7 @@ func VDIVPS_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VDIVPS",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k},
 			Outputs:  []operand.Op{z2},
@@ -30411,6 +30810,7 @@ func VDIVPS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VDIVPS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -30419,6 +30819,7 @@ func VDIVPS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VDIVPS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -30438,6 +30839,7 @@ func VDIVPS_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VDIVPS",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k},
 			Outputs:  []operand.Op{z2},
@@ -30458,6 +30860,7 @@ func VDIVPS_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VDIVPS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -30466,6 +30869,7 @@ func VDIVPS_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VDIVPS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -30550,6 +30954,7 @@ func VDIVSD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VDIVSD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -30558,6 +30963,7 @@ func VDIVSD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VDIVSD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -30577,6 +30983,7 @@ func VDIVSD_RD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VDIVSD",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k},
 			Outputs:  []operand.Op{x2},
@@ -30597,6 +31004,7 @@ func VDIVSD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VDIVSD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -30605,6 +31013,7 @@ func VDIVSD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VDIVSD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -30624,6 +31033,7 @@ func VDIVSD_RN_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VDIVSD",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k},
 			Outputs:  []operand.Op{x2},
@@ -30644,6 +31054,7 @@ func VDIVSD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VDIVSD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -30652,6 +31063,7 @@ func VDIVSD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VDIVSD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -30671,6 +31083,7 @@ func VDIVSD_RU_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VDIVSD",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k},
 			Outputs:  []operand.Op{x2},
@@ -30691,6 +31104,7 @@ func VDIVSD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VDIVSD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -30699,6 +31113,7 @@ func VDIVSD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VDIVSD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -30718,6 +31133,7 @@ func VDIVSD_RZ_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VDIVSD",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k},
 			Outputs:  []operand.Op{x2},
@@ -30738,6 +31154,7 @@ func VDIVSD_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM64(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VDIVSD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k},
 			Outputs:  []operand.Op{x1},
@@ -30746,6 +31163,7 @@ func VDIVSD_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VDIVSD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k},
 			Outputs:  []operand.Op{x1},
@@ -30830,6 +31248,7 @@ func VDIVSS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VDIVSS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -30838,6 +31257,7 @@ func VDIVSS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VDIVSS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -30857,6 +31277,7 @@ func VDIVSS_RD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VDIVSS",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k},
 			Outputs:  []operand.Op{x2},
@@ -30877,6 +31298,7 @@ func VDIVSS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VDIVSS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -30885,6 +31307,7 @@ func VDIVSS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VDIVSS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -30904,6 +31327,7 @@ func VDIVSS_RN_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VDIVSS",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k},
 			Outputs:  []operand.Op{x2},
@@ -30924,6 +31348,7 @@ func VDIVSS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VDIVSS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -30932,6 +31357,7 @@ func VDIVSS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VDIVSS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -30951,6 +31377,7 @@ func VDIVSS_RU_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VDIVSS",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k},
 			Outputs:  []operand.Op{x2},
@@ -30971,6 +31398,7 @@ func VDIVSS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VDIVSS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -30979,6 +31407,7 @@ func VDIVSS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VDIVSS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -30998,6 +31427,7 @@ func VDIVSS_RZ_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VDIVSS",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k},
 			Outputs:  []operand.Op{x2},
@@ -31018,6 +31448,7 @@ func VDIVSS_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM32(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VDIVSS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k},
 			Outputs:  []operand.Op{x1},
@@ -31026,6 +31457,7 @@ func VDIVSS_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VDIVSS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k},
 			Outputs:  []operand.Op{x1},
@@ -31166,6 +31598,7 @@ func VEXPANDPD_Z(mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VEXPANDPD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -31174,6 +31607,7 @@ func VEXPANDPD_Z(mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VEXPANDPD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -31240,6 +31674,7 @@ func VEXPANDPS_Z(mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VEXPANDPS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -31248,6 +31683,7 @@ func VEXPANDPS_Z(mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VEXPANDPS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -31342,6 +31778,7 @@ func VEXTRACTF32X4_Z(i, z, k, mx operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsZMM(z) && operand.IsK(k) && operand.IsXMM(mx):
 		return &intrep.Instruction{
 			Opcode:   "VEXTRACTF32X4",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{i, z, k, mx},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{mx},
@@ -31350,6 +31787,7 @@ func VEXTRACTF32X4_Z(i, z, k, mx operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsZMM(z) && operand.IsK(k) && operand.IsM128(mx):
 		return &intrep.Instruction{
 			Opcode:   "VEXTRACTF32X4",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{i, z, k, mx},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{mx},
@@ -31416,6 +31854,7 @@ func VEXTRACTF64X4_Z(i, z, k, my operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsZMM(z) && operand.IsK(k) && operand.IsYMM(my):
 		return &intrep.Instruction{
 			Opcode:   "VEXTRACTF64X4",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{i, z, k, my},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{my},
@@ -31424,6 +31863,7 @@ func VEXTRACTF64X4_Z(i, z, k, my operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsZMM(z) && operand.IsK(k) && operand.IsM256(my):
 		return &intrep.Instruction{
 			Opcode:   "VEXTRACTF64X4",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{i, z, k, my},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{my},
@@ -31518,6 +31958,7 @@ func VEXTRACTI32X4_Z(i, z, k, mx operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsZMM(z) && operand.IsK(k) && operand.IsXMM(mx):
 		return &intrep.Instruction{
 			Opcode:   "VEXTRACTI32X4",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{i, z, k, mx},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{mx},
@@ -31526,6 +31967,7 @@ func VEXTRACTI32X4_Z(i, z, k, mx operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsZMM(z) && operand.IsK(k) && operand.IsM128(mx):
 		return &intrep.Instruction{
 			Opcode:   "VEXTRACTI32X4",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{i, z, k, mx},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{mx},
@@ -31592,6 +32034,7 @@ func VEXTRACTI64X4_Z(i, z, k, my operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsZMM(z) && operand.IsK(k) && operand.IsYMM(my):
 		return &intrep.Instruction{
 			Opcode:   "VEXTRACTI64X4",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{i, z, k, my},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{my},
@@ -31600,6 +32043,7 @@ func VEXTRACTI64X4_Z(i, z, k, my operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsZMM(z) && operand.IsK(k) && operand.IsM256(my):
 		return &intrep.Instruction{
 			Opcode:   "VEXTRACTI64X4",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{i, z, k, my},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{my},
@@ -31712,6 +32156,7 @@ func VFIXUPIMMPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsZMM(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFIXUPIMMPD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -31720,6 +32165,7 @@ func VFIXUPIMMPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]) && operand.IsZMM(ops[4]):
 		return &intrep.Instruction{
 			Opcode:   "VFIXUPIMMPD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2], ops[3], ops[4]},
 			Outputs:  []operand.Op{ops[4]},
@@ -31739,6 +32185,7 @@ func VFIXUPIMMPD_BCST_Z(i, m, z, k, z1 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsIMM8(i) && operand.IsM512M64BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFIXUPIMMPD",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{i, m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -31759,6 +32206,7 @@ func VFIXUPIMMPD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFIXUPIMMPD",
+			Suffixes: []string{"SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -31767,6 +32215,7 @@ func VFIXUPIMMPD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]) && operand.IsZMM(ops[4]):
 		return &intrep.Instruction{
 			Opcode:   "VFIXUPIMMPD",
+			Suffixes: []string{"SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2], ops[3], ops[4]},
 			Outputs:  []operand.Op{ops[4]},
@@ -31786,6 +32235,7 @@ func VFIXUPIMMPD_SAE_Z(i, z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsIMM8(i) && operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFIXUPIMMPD",
+			Suffixes: []string{"SAE", "Z"},
 			Operands: []operand.Op{i, z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -31806,6 +32256,7 @@ func VFIXUPIMMPD_Z(i, mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsM512M64BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFIXUPIMMPD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{i, mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -31814,6 +32265,7 @@ func VFIXUPIMMPD_Z(i, mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFIXUPIMMPD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{i, mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -31880,6 +32332,7 @@ func VFIXUPIMMPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM512M32BCST(ops[1]) && operand.IsZMM(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFIXUPIMMPS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -31888,6 +32341,7 @@ func VFIXUPIMMPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsM512M32BCST(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]) && operand.IsZMM(ops[4]):
 		return &intrep.Instruction{
 			Opcode:   "VFIXUPIMMPS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2], ops[3], ops[4]},
 			Outputs:  []operand.Op{ops[4]},
@@ -31907,6 +32361,7 @@ func VFIXUPIMMPS_BCST_Z(i, m, z, k, z1 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsIMM8(i) && operand.IsM512M32BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFIXUPIMMPS",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{i, m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -31927,6 +32382,7 @@ func VFIXUPIMMPS_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFIXUPIMMPS",
+			Suffixes: []string{"SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -31935,6 +32391,7 @@ func VFIXUPIMMPS_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]) && operand.IsZMM(ops[4]):
 		return &intrep.Instruction{
 			Opcode:   "VFIXUPIMMPS",
+			Suffixes: []string{"SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2], ops[3], ops[4]},
 			Outputs:  []operand.Op{ops[4]},
@@ -31954,6 +32411,7 @@ func VFIXUPIMMPS_SAE_Z(i, z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsIMM8(i) && operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFIXUPIMMPS",
+			Suffixes: []string{"SAE", "Z"},
 			Operands: []operand.Op{i, z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -31974,6 +32432,7 @@ func VFIXUPIMMPS_Z(i, mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsM512M32BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFIXUPIMMPS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{i, mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -31982,6 +32441,7 @@ func VFIXUPIMMPS_Z(i, mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFIXUPIMMPS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{i, mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -32048,6 +32508,7 @@ func VFIXUPIMMSD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFIXUPIMMSD",
+			Suffixes: []string{"SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -32056,6 +32517,7 @@ func VFIXUPIMMSD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]) && operand.IsK(ops[3]) && operand.IsXMM(ops[4]):
 		return &intrep.Instruction{
 			Opcode:   "VFIXUPIMMSD",
+			Suffixes: []string{"SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2], ops[3], ops[4]},
 			Outputs:  []operand.Op{ops[4]},
@@ -32075,6 +32537,7 @@ func VFIXUPIMMSD_SAE_Z(i, x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsIMM8(i) && operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFIXUPIMMSD",
+			Suffixes: []string{"SAE", "Z"},
 			Operands: []operand.Op{i, x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -32095,6 +32558,7 @@ func VFIXUPIMMSD_Z(i, mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsM64(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VFIXUPIMMSD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{i, mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k, x1},
 			Outputs:  []operand.Op{x1},
@@ -32103,6 +32567,7 @@ func VFIXUPIMMSD_Z(i, mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VFIXUPIMMSD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{i, mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k, x1},
 			Outputs:  []operand.Op{x1},
@@ -32169,6 +32634,7 @@ func VFIXUPIMMSS_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFIXUPIMMSS",
+			Suffixes: []string{"SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -32177,6 +32643,7 @@ func VFIXUPIMMSS_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]) && operand.IsK(ops[3]) && operand.IsXMM(ops[4]):
 		return &intrep.Instruction{
 			Opcode:   "VFIXUPIMMSS",
+			Suffixes: []string{"SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2], ops[3], ops[4]},
 			Outputs:  []operand.Op{ops[4]},
@@ -32196,6 +32663,7 @@ func VFIXUPIMMSS_SAE_Z(i, x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsIMM8(i) && operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFIXUPIMMSS",
+			Suffixes: []string{"SAE", "Z"},
 			Operands: []operand.Op{i, x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -32216,6 +32684,7 @@ func VFIXUPIMMSS_Z(i, mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsM32(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VFIXUPIMMSS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{i, mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k, x1},
 			Outputs:  []operand.Op{x1},
@@ -32224,6 +32693,7 @@ func VFIXUPIMMSS_Z(i, mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VFIXUPIMMSS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{i, mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k, x1},
 			Outputs:  []operand.Op{x1},
@@ -32326,6 +32796,7 @@ func VFMADD132PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD132PD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -32334,6 +32805,7 @@ func VFMADD132PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD132PD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -32353,6 +32825,7 @@ func VFMADD132PD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD132PD",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -32373,6 +32846,7 @@ func VFMADD132PD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD132PD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -32381,6 +32855,7 @@ func VFMADD132PD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD132PD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -32400,6 +32875,7 @@ func VFMADD132PD_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD132PD",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -32420,6 +32896,7 @@ func VFMADD132PD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD132PD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -32428,6 +32905,7 @@ func VFMADD132PD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD132PD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -32447,6 +32925,7 @@ func VFMADD132PD_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD132PD",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -32467,6 +32946,7 @@ func VFMADD132PD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD132PD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -32475,6 +32955,7 @@ func VFMADD132PD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD132PD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -32494,6 +32975,7 @@ func VFMADD132PD_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD132PD",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -32514,6 +32996,7 @@ func VFMADD132PD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD132PD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -32522,6 +33005,7 @@ func VFMADD132PD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD132PD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -32541,6 +33025,7 @@ func VFMADD132PD_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD132PD",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -32561,6 +33046,7 @@ func VFMADD132PD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD132PD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -32569,6 +33055,7 @@ func VFMADD132PD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD132PD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -32671,6 +33158,7 @@ func VFMADD132PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD132PS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -32679,6 +33167,7 @@ func VFMADD132PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD132PS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -32698,6 +33187,7 @@ func VFMADD132PS_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD132PS",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -32718,6 +33208,7 @@ func VFMADD132PS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD132PS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -32726,6 +33217,7 @@ func VFMADD132PS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD132PS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -32745,6 +33237,7 @@ func VFMADD132PS_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD132PS",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -32765,6 +33258,7 @@ func VFMADD132PS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD132PS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -32773,6 +33267,7 @@ func VFMADD132PS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD132PS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -32792,6 +33287,7 @@ func VFMADD132PS_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD132PS",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -32812,6 +33308,7 @@ func VFMADD132PS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD132PS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -32820,6 +33317,7 @@ func VFMADD132PS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD132PS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -32839,6 +33337,7 @@ func VFMADD132PS_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD132PS",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -32859,6 +33358,7 @@ func VFMADD132PS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD132PS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -32867,6 +33367,7 @@ func VFMADD132PS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD132PS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -32886,6 +33387,7 @@ func VFMADD132PS_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD132PS",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -32906,6 +33408,7 @@ func VFMADD132PS_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD132PS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -32914,6 +33417,7 @@ func VFMADD132PS_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD132PS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -32998,6 +33502,7 @@ func VFMADD132SD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD132SD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -33006,6 +33511,7 @@ func VFMADD132SD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD132SD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -33025,6 +33531,7 @@ func VFMADD132SD_RD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD132SD",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -33045,6 +33552,7 @@ func VFMADD132SD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD132SD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -33053,6 +33561,7 @@ func VFMADD132SD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD132SD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -33072,6 +33581,7 @@ func VFMADD132SD_RN_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD132SD",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -33092,6 +33602,7 @@ func VFMADD132SD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD132SD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -33100,6 +33611,7 @@ func VFMADD132SD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD132SD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -33119,6 +33631,7 @@ func VFMADD132SD_RU_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD132SD",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -33139,6 +33652,7 @@ func VFMADD132SD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD132SD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -33147,6 +33661,7 @@ func VFMADD132SD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD132SD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -33166,6 +33681,7 @@ func VFMADD132SD_RZ_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD132SD",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -33186,6 +33702,7 @@ func VFMADD132SD_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM64(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD132SD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k, x1},
 			Outputs:  []operand.Op{x1},
@@ -33194,6 +33711,7 @@ func VFMADD132SD_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD132SD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k, x1},
 			Outputs:  []operand.Op{x1},
@@ -33278,6 +33796,7 @@ func VFMADD132SS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD132SS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -33286,6 +33805,7 @@ func VFMADD132SS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD132SS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -33305,6 +33825,7 @@ func VFMADD132SS_RD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD132SS",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -33325,6 +33846,7 @@ func VFMADD132SS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD132SS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -33333,6 +33855,7 @@ func VFMADD132SS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD132SS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -33352,6 +33875,7 @@ func VFMADD132SS_RN_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD132SS",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -33372,6 +33896,7 @@ func VFMADD132SS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD132SS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -33380,6 +33905,7 @@ func VFMADD132SS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD132SS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -33399,6 +33925,7 @@ func VFMADD132SS_RU_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD132SS",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -33419,6 +33946,7 @@ func VFMADD132SS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD132SS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -33427,6 +33955,7 @@ func VFMADD132SS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD132SS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -33446,6 +33975,7 @@ func VFMADD132SS_RZ_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD132SS",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -33466,6 +33996,7 @@ func VFMADD132SS_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM32(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD132SS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k, x1},
 			Outputs:  []operand.Op{x1},
@@ -33474,6 +34005,7 @@ func VFMADD132SS_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD132SS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k, x1},
 			Outputs:  []operand.Op{x1},
@@ -33576,6 +34108,7 @@ func VFMADD213PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD213PD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -33584,6 +34117,7 @@ func VFMADD213PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD213PD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -33603,6 +34137,7 @@ func VFMADD213PD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD213PD",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -33623,6 +34158,7 @@ func VFMADD213PD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD213PD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -33631,6 +34167,7 @@ func VFMADD213PD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD213PD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -33650,6 +34187,7 @@ func VFMADD213PD_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD213PD",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -33670,6 +34208,7 @@ func VFMADD213PD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD213PD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -33678,6 +34217,7 @@ func VFMADD213PD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD213PD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -33697,6 +34237,7 @@ func VFMADD213PD_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD213PD",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -33717,6 +34258,7 @@ func VFMADD213PD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD213PD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -33725,6 +34267,7 @@ func VFMADD213PD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD213PD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -33744,6 +34287,7 @@ func VFMADD213PD_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD213PD",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -33764,6 +34308,7 @@ func VFMADD213PD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD213PD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -33772,6 +34317,7 @@ func VFMADD213PD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD213PD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -33791,6 +34337,7 @@ func VFMADD213PD_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD213PD",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -33811,6 +34358,7 @@ func VFMADD213PD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD213PD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -33819,6 +34367,7 @@ func VFMADD213PD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD213PD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -33921,6 +34470,7 @@ func VFMADD213PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD213PS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -33929,6 +34479,7 @@ func VFMADD213PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD213PS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -33948,6 +34499,7 @@ func VFMADD213PS_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD213PS",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -33968,6 +34520,7 @@ func VFMADD213PS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD213PS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -33976,6 +34529,7 @@ func VFMADD213PS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD213PS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -33995,6 +34549,7 @@ func VFMADD213PS_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD213PS",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -34015,6 +34570,7 @@ func VFMADD213PS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD213PS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -34023,6 +34579,7 @@ func VFMADD213PS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD213PS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -34042,6 +34599,7 @@ func VFMADD213PS_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD213PS",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -34062,6 +34620,7 @@ func VFMADD213PS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD213PS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -34070,6 +34629,7 @@ func VFMADD213PS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD213PS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -34089,6 +34649,7 @@ func VFMADD213PS_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD213PS",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -34109,6 +34670,7 @@ func VFMADD213PS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD213PS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -34117,6 +34679,7 @@ func VFMADD213PS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD213PS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -34136,6 +34699,7 @@ func VFMADD213PS_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD213PS",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -34156,6 +34720,7 @@ func VFMADD213PS_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD213PS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -34164,6 +34729,7 @@ func VFMADD213PS_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD213PS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -34248,6 +34814,7 @@ func VFMADD213SD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD213SD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -34256,6 +34823,7 @@ func VFMADD213SD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD213SD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -34275,6 +34843,7 @@ func VFMADD213SD_RD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD213SD",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -34295,6 +34864,7 @@ func VFMADD213SD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD213SD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -34303,6 +34873,7 @@ func VFMADD213SD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD213SD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -34322,6 +34893,7 @@ func VFMADD213SD_RN_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD213SD",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -34342,6 +34914,7 @@ func VFMADD213SD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD213SD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -34350,6 +34923,7 @@ func VFMADD213SD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD213SD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -34369,6 +34943,7 @@ func VFMADD213SD_RU_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD213SD",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -34389,6 +34964,7 @@ func VFMADD213SD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD213SD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -34397,6 +34973,7 @@ func VFMADD213SD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD213SD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -34416,6 +34993,7 @@ func VFMADD213SD_RZ_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD213SD",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -34436,6 +35014,7 @@ func VFMADD213SD_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM64(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD213SD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k, x1},
 			Outputs:  []operand.Op{x1},
@@ -34444,6 +35023,7 @@ func VFMADD213SD_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD213SD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k, x1},
 			Outputs:  []operand.Op{x1},
@@ -34528,6 +35108,7 @@ func VFMADD213SS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD213SS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -34536,6 +35117,7 @@ func VFMADD213SS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD213SS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -34555,6 +35137,7 @@ func VFMADD213SS_RD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD213SS",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -34575,6 +35158,7 @@ func VFMADD213SS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD213SS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -34583,6 +35167,7 @@ func VFMADD213SS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD213SS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -34602,6 +35187,7 @@ func VFMADD213SS_RN_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD213SS",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -34622,6 +35208,7 @@ func VFMADD213SS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD213SS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -34630,6 +35217,7 @@ func VFMADD213SS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD213SS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -34649,6 +35237,7 @@ func VFMADD213SS_RU_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD213SS",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -34669,6 +35258,7 @@ func VFMADD213SS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD213SS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -34677,6 +35267,7 @@ func VFMADD213SS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD213SS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -34696,6 +35287,7 @@ func VFMADD213SS_RZ_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD213SS",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -34716,6 +35308,7 @@ func VFMADD213SS_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM32(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD213SS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k, x1},
 			Outputs:  []operand.Op{x1},
@@ -34724,6 +35317,7 @@ func VFMADD213SS_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD213SS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k, x1},
 			Outputs:  []operand.Op{x1},
@@ -34826,6 +35420,7 @@ func VFMADD231PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD231PD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -34834,6 +35429,7 @@ func VFMADD231PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD231PD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -34853,6 +35449,7 @@ func VFMADD231PD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD231PD",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -34873,6 +35470,7 @@ func VFMADD231PD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD231PD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -34881,6 +35479,7 @@ func VFMADD231PD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD231PD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -34900,6 +35499,7 @@ func VFMADD231PD_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD231PD",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -34920,6 +35520,7 @@ func VFMADD231PD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD231PD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -34928,6 +35529,7 @@ func VFMADD231PD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD231PD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -34947,6 +35549,7 @@ func VFMADD231PD_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD231PD",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -34967,6 +35570,7 @@ func VFMADD231PD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD231PD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -34975,6 +35579,7 @@ func VFMADD231PD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD231PD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -34994,6 +35599,7 @@ func VFMADD231PD_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD231PD",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -35014,6 +35620,7 @@ func VFMADD231PD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD231PD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -35022,6 +35629,7 @@ func VFMADD231PD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD231PD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -35041,6 +35649,7 @@ func VFMADD231PD_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD231PD",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -35061,6 +35670,7 @@ func VFMADD231PD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD231PD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -35069,6 +35679,7 @@ func VFMADD231PD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD231PD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -35171,6 +35782,7 @@ func VFMADD231PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD231PS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -35179,6 +35791,7 @@ func VFMADD231PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD231PS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -35198,6 +35811,7 @@ func VFMADD231PS_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD231PS",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -35218,6 +35832,7 @@ func VFMADD231PS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD231PS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -35226,6 +35841,7 @@ func VFMADD231PS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD231PS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -35245,6 +35861,7 @@ func VFMADD231PS_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD231PS",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -35265,6 +35882,7 @@ func VFMADD231PS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD231PS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -35273,6 +35891,7 @@ func VFMADD231PS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD231PS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -35292,6 +35911,7 @@ func VFMADD231PS_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD231PS",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -35312,6 +35932,7 @@ func VFMADD231PS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD231PS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -35320,6 +35941,7 @@ func VFMADD231PS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD231PS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -35339,6 +35961,7 @@ func VFMADD231PS_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD231PS",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -35359,6 +35982,7 @@ func VFMADD231PS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD231PS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -35367,6 +35991,7 @@ func VFMADD231PS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD231PS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -35386,6 +36011,7 @@ func VFMADD231PS_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD231PS",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -35406,6 +36032,7 @@ func VFMADD231PS_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD231PS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -35414,6 +36041,7 @@ func VFMADD231PS_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD231PS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -35498,6 +36126,7 @@ func VFMADD231SD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD231SD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -35506,6 +36135,7 @@ func VFMADD231SD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD231SD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -35525,6 +36155,7 @@ func VFMADD231SD_RD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD231SD",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -35545,6 +36176,7 @@ func VFMADD231SD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD231SD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -35553,6 +36185,7 @@ func VFMADD231SD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD231SD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -35572,6 +36205,7 @@ func VFMADD231SD_RN_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD231SD",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -35592,6 +36226,7 @@ func VFMADD231SD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD231SD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -35600,6 +36235,7 @@ func VFMADD231SD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD231SD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -35619,6 +36255,7 @@ func VFMADD231SD_RU_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD231SD",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -35639,6 +36276,7 @@ func VFMADD231SD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD231SD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -35647,6 +36285,7 @@ func VFMADD231SD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD231SD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -35666,6 +36305,7 @@ func VFMADD231SD_RZ_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD231SD",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -35686,6 +36326,7 @@ func VFMADD231SD_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM64(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD231SD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k, x1},
 			Outputs:  []operand.Op{x1},
@@ -35694,6 +36335,7 @@ func VFMADD231SD_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD231SD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k, x1},
 			Outputs:  []operand.Op{x1},
@@ -35778,6 +36420,7 @@ func VFMADD231SS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD231SS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -35786,6 +36429,7 @@ func VFMADD231SS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD231SS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -35805,6 +36449,7 @@ func VFMADD231SS_RD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD231SS",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -35825,6 +36470,7 @@ func VFMADD231SS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD231SS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -35833,6 +36479,7 @@ func VFMADD231SS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD231SS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -35852,6 +36499,7 @@ func VFMADD231SS_RN_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD231SS",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -35872,6 +36520,7 @@ func VFMADD231SS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD231SS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -35880,6 +36529,7 @@ func VFMADD231SS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD231SS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -35899,6 +36549,7 @@ func VFMADD231SS_RU_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD231SS",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -35919,6 +36570,7 @@ func VFMADD231SS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD231SS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -35927,6 +36579,7 @@ func VFMADD231SS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD231SS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -35946,6 +36599,7 @@ func VFMADD231SS_RZ_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD231SS",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -35966,6 +36620,7 @@ func VFMADD231SS_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM32(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD231SS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k, x1},
 			Outputs:  []operand.Op{x1},
@@ -35974,6 +36629,7 @@ func VFMADD231SS_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VFMADD231SS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k, x1},
 			Outputs:  []operand.Op{x1},
@@ -36076,6 +36732,7 @@ func VFMADDSUB132PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB132PD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -36084,6 +36741,7 @@ func VFMADDSUB132PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB132PD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -36103,6 +36761,7 @@ func VFMADDSUB132PD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsM512M64BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB132PD",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -36123,6 +36782,7 @@ func VFMADDSUB132PD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB132PD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -36131,6 +36791,7 @@ func VFMADDSUB132PD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB132PD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -36150,6 +36811,7 @@ func VFMADDSUB132PD_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB132PD",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -36170,6 +36832,7 @@ func VFMADDSUB132PD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB132PD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -36178,6 +36841,7 @@ func VFMADDSUB132PD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB132PD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -36197,6 +36861,7 @@ func VFMADDSUB132PD_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB132PD",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -36217,6 +36882,7 @@ func VFMADDSUB132PD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB132PD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -36225,6 +36891,7 @@ func VFMADDSUB132PD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB132PD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -36244,6 +36911,7 @@ func VFMADDSUB132PD_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB132PD",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -36264,6 +36932,7 @@ func VFMADDSUB132PD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB132PD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -36272,6 +36941,7 @@ func VFMADDSUB132PD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB132PD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -36291,6 +36961,7 @@ func VFMADDSUB132PD_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB132PD",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -36311,6 +36982,7 @@ func VFMADDSUB132PD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB132PD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -36319,6 +36991,7 @@ func VFMADDSUB132PD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB132PD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -36421,6 +37094,7 @@ func VFMADDSUB132PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB132PS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -36429,6 +37103,7 @@ func VFMADDSUB132PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB132PS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -36448,6 +37123,7 @@ func VFMADDSUB132PS_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsM512M32BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB132PS",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -36468,6 +37144,7 @@ func VFMADDSUB132PS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB132PS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -36476,6 +37153,7 @@ func VFMADDSUB132PS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB132PS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -36495,6 +37173,7 @@ func VFMADDSUB132PS_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB132PS",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -36515,6 +37194,7 @@ func VFMADDSUB132PS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB132PS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -36523,6 +37203,7 @@ func VFMADDSUB132PS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB132PS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -36542,6 +37223,7 @@ func VFMADDSUB132PS_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB132PS",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -36562,6 +37244,7 @@ func VFMADDSUB132PS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB132PS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -36570,6 +37253,7 @@ func VFMADDSUB132PS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB132PS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -36589,6 +37273,7 @@ func VFMADDSUB132PS_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB132PS",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -36609,6 +37294,7 @@ func VFMADDSUB132PS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB132PS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -36617,6 +37303,7 @@ func VFMADDSUB132PS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB132PS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -36636,6 +37323,7 @@ func VFMADDSUB132PS_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB132PS",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -36656,6 +37344,7 @@ func VFMADDSUB132PS_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB132PS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -36664,6 +37353,7 @@ func VFMADDSUB132PS_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB132PS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -36766,6 +37456,7 @@ func VFMADDSUB213PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB213PD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -36774,6 +37465,7 @@ func VFMADDSUB213PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB213PD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -36793,6 +37485,7 @@ func VFMADDSUB213PD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsM512M64BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB213PD",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -36813,6 +37506,7 @@ func VFMADDSUB213PD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB213PD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -36821,6 +37515,7 @@ func VFMADDSUB213PD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB213PD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -36840,6 +37535,7 @@ func VFMADDSUB213PD_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB213PD",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -36860,6 +37556,7 @@ func VFMADDSUB213PD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB213PD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -36868,6 +37565,7 @@ func VFMADDSUB213PD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB213PD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -36887,6 +37585,7 @@ func VFMADDSUB213PD_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB213PD",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -36907,6 +37606,7 @@ func VFMADDSUB213PD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB213PD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -36915,6 +37615,7 @@ func VFMADDSUB213PD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB213PD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -36934,6 +37635,7 @@ func VFMADDSUB213PD_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB213PD",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -36954,6 +37656,7 @@ func VFMADDSUB213PD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB213PD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -36962,6 +37665,7 @@ func VFMADDSUB213PD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB213PD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -36981,6 +37685,7 @@ func VFMADDSUB213PD_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB213PD",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -37001,6 +37706,7 @@ func VFMADDSUB213PD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB213PD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -37009,6 +37715,7 @@ func VFMADDSUB213PD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB213PD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -37111,6 +37818,7 @@ func VFMADDSUB213PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB213PS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -37119,6 +37827,7 @@ func VFMADDSUB213PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB213PS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -37138,6 +37847,7 @@ func VFMADDSUB213PS_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsM512M32BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB213PS",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -37158,6 +37868,7 @@ func VFMADDSUB213PS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB213PS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -37166,6 +37877,7 @@ func VFMADDSUB213PS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB213PS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -37185,6 +37897,7 @@ func VFMADDSUB213PS_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB213PS",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -37205,6 +37918,7 @@ func VFMADDSUB213PS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB213PS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -37213,6 +37927,7 @@ func VFMADDSUB213PS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB213PS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -37232,6 +37947,7 @@ func VFMADDSUB213PS_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB213PS",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -37252,6 +37968,7 @@ func VFMADDSUB213PS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB213PS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -37260,6 +37977,7 @@ func VFMADDSUB213PS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB213PS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -37279,6 +37997,7 @@ func VFMADDSUB213PS_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB213PS",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -37299,6 +38018,7 @@ func VFMADDSUB213PS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB213PS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -37307,6 +38027,7 @@ func VFMADDSUB213PS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB213PS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -37326,6 +38047,7 @@ func VFMADDSUB213PS_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB213PS",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -37346,6 +38068,7 @@ func VFMADDSUB213PS_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB213PS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -37354,6 +38077,7 @@ func VFMADDSUB213PS_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB213PS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -37456,6 +38180,7 @@ func VFMADDSUB231PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB231PD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -37464,6 +38189,7 @@ func VFMADDSUB231PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB231PD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -37483,6 +38209,7 @@ func VFMADDSUB231PD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsM512M64BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB231PD",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -37503,6 +38230,7 @@ func VFMADDSUB231PD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB231PD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -37511,6 +38239,7 @@ func VFMADDSUB231PD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB231PD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -37530,6 +38259,7 @@ func VFMADDSUB231PD_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB231PD",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -37550,6 +38280,7 @@ func VFMADDSUB231PD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB231PD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -37558,6 +38289,7 @@ func VFMADDSUB231PD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB231PD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -37577,6 +38309,7 @@ func VFMADDSUB231PD_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB231PD",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -37597,6 +38330,7 @@ func VFMADDSUB231PD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB231PD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -37605,6 +38339,7 @@ func VFMADDSUB231PD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB231PD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -37624,6 +38359,7 @@ func VFMADDSUB231PD_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB231PD",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -37644,6 +38380,7 @@ func VFMADDSUB231PD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB231PD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -37652,6 +38389,7 @@ func VFMADDSUB231PD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB231PD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -37671,6 +38409,7 @@ func VFMADDSUB231PD_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB231PD",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -37691,6 +38430,7 @@ func VFMADDSUB231PD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB231PD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -37699,6 +38439,7 @@ func VFMADDSUB231PD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB231PD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -37801,6 +38542,7 @@ func VFMADDSUB231PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB231PS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -37809,6 +38551,7 @@ func VFMADDSUB231PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB231PS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -37828,6 +38571,7 @@ func VFMADDSUB231PS_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsM512M32BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB231PS",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -37848,6 +38592,7 @@ func VFMADDSUB231PS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB231PS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -37856,6 +38601,7 @@ func VFMADDSUB231PS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB231PS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -37875,6 +38621,7 @@ func VFMADDSUB231PS_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB231PS",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -37895,6 +38642,7 @@ func VFMADDSUB231PS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB231PS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -37903,6 +38651,7 @@ func VFMADDSUB231PS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB231PS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -37922,6 +38671,7 @@ func VFMADDSUB231PS_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB231PS",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -37942,6 +38692,7 @@ func VFMADDSUB231PS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB231PS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -37950,6 +38701,7 @@ func VFMADDSUB231PS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB231PS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -37969,6 +38721,7 @@ func VFMADDSUB231PS_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB231PS",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -37989,6 +38742,7 @@ func VFMADDSUB231PS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB231PS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -37997,6 +38751,7 @@ func VFMADDSUB231PS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB231PS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -38016,6 +38771,7 @@ func VFMADDSUB231PS_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB231PS",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -38036,6 +38792,7 @@ func VFMADDSUB231PS_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB231PS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -38044,6 +38801,7 @@ func VFMADDSUB231PS_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFMADDSUB231PS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -38146,6 +38904,7 @@ func VFMSUB132PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB132PD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -38154,6 +38913,7 @@ func VFMSUB132PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB132PD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -38173,6 +38933,7 @@ func VFMSUB132PD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB132PD",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -38193,6 +38954,7 @@ func VFMSUB132PD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB132PD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -38201,6 +38963,7 @@ func VFMSUB132PD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB132PD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -38220,6 +38983,7 @@ func VFMSUB132PD_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB132PD",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -38240,6 +39004,7 @@ func VFMSUB132PD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB132PD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -38248,6 +39013,7 @@ func VFMSUB132PD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB132PD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -38267,6 +39033,7 @@ func VFMSUB132PD_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB132PD",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -38287,6 +39054,7 @@ func VFMSUB132PD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB132PD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -38295,6 +39063,7 @@ func VFMSUB132PD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB132PD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -38314,6 +39083,7 @@ func VFMSUB132PD_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB132PD",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -38334,6 +39104,7 @@ func VFMSUB132PD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB132PD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -38342,6 +39113,7 @@ func VFMSUB132PD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB132PD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -38361,6 +39133,7 @@ func VFMSUB132PD_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB132PD",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -38381,6 +39154,7 @@ func VFMSUB132PD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB132PD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -38389,6 +39163,7 @@ func VFMSUB132PD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB132PD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -38491,6 +39266,7 @@ func VFMSUB132PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB132PS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -38499,6 +39275,7 @@ func VFMSUB132PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB132PS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -38518,6 +39295,7 @@ func VFMSUB132PS_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB132PS",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -38538,6 +39316,7 @@ func VFMSUB132PS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB132PS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -38546,6 +39325,7 @@ func VFMSUB132PS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB132PS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -38565,6 +39345,7 @@ func VFMSUB132PS_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB132PS",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -38585,6 +39366,7 @@ func VFMSUB132PS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB132PS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -38593,6 +39375,7 @@ func VFMSUB132PS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB132PS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -38612,6 +39395,7 @@ func VFMSUB132PS_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB132PS",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -38632,6 +39416,7 @@ func VFMSUB132PS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB132PS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -38640,6 +39425,7 @@ func VFMSUB132PS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB132PS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -38659,6 +39445,7 @@ func VFMSUB132PS_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB132PS",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -38679,6 +39466,7 @@ func VFMSUB132PS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB132PS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -38687,6 +39475,7 @@ func VFMSUB132PS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB132PS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -38706,6 +39495,7 @@ func VFMSUB132PS_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB132PS",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -38726,6 +39516,7 @@ func VFMSUB132PS_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB132PS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -38734,6 +39525,7 @@ func VFMSUB132PS_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB132PS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -38818,6 +39610,7 @@ func VFMSUB132SD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB132SD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -38826,6 +39619,7 @@ func VFMSUB132SD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB132SD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -38845,6 +39639,7 @@ func VFMSUB132SD_RD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB132SD",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -38865,6 +39660,7 @@ func VFMSUB132SD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB132SD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -38873,6 +39669,7 @@ func VFMSUB132SD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB132SD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -38892,6 +39689,7 @@ func VFMSUB132SD_RN_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB132SD",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -38912,6 +39710,7 @@ func VFMSUB132SD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB132SD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -38920,6 +39719,7 @@ func VFMSUB132SD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB132SD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -38939,6 +39739,7 @@ func VFMSUB132SD_RU_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB132SD",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -38959,6 +39760,7 @@ func VFMSUB132SD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB132SD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -38967,6 +39769,7 @@ func VFMSUB132SD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB132SD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -38986,6 +39789,7 @@ func VFMSUB132SD_RZ_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB132SD",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -39006,6 +39810,7 @@ func VFMSUB132SD_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM64(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB132SD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k, x1},
 			Outputs:  []operand.Op{x1},
@@ -39014,6 +39819,7 @@ func VFMSUB132SD_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB132SD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k, x1},
 			Outputs:  []operand.Op{x1},
@@ -39098,6 +39904,7 @@ func VFMSUB132SS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB132SS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -39106,6 +39913,7 @@ func VFMSUB132SS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB132SS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -39125,6 +39933,7 @@ func VFMSUB132SS_RD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB132SS",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -39145,6 +39954,7 @@ func VFMSUB132SS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB132SS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -39153,6 +39963,7 @@ func VFMSUB132SS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB132SS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -39172,6 +39983,7 @@ func VFMSUB132SS_RN_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB132SS",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -39192,6 +40004,7 @@ func VFMSUB132SS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB132SS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -39200,6 +40013,7 @@ func VFMSUB132SS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB132SS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -39219,6 +40033,7 @@ func VFMSUB132SS_RU_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB132SS",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -39239,6 +40054,7 @@ func VFMSUB132SS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB132SS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -39247,6 +40063,7 @@ func VFMSUB132SS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB132SS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -39266,6 +40083,7 @@ func VFMSUB132SS_RZ_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB132SS",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -39286,6 +40104,7 @@ func VFMSUB132SS_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM32(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB132SS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k, x1},
 			Outputs:  []operand.Op{x1},
@@ -39294,6 +40113,7 @@ func VFMSUB132SS_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB132SS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k, x1},
 			Outputs:  []operand.Op{x1},
@@ -39396,6 +40216,7 @@ func VFMSUB213PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB213PD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -39404,6 +40225,7 @@ func VFMSUB213PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB213PD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -39423,6 +40245,7 @@ func VFMSUB213PD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB213PD",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -39443,6 +40266,7 @@ func VFMSUB213PD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB213PD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -39451,6 +40275,7 @@ func VFMSUB213PD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB213PD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -39470,6 +40295,7 @@ func VFMSUB213PD_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB213PD",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -39490,6 +40316,7 @@ func VFMSUB213PD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB213PD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -39498,6 +40325,7 @@ func VFMSUB213PD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB213PD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -39517,6 +40345,7 @@ func VFMSUB213PD_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB213PD",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -39537,6 +40366,7 @@ func VFMSUB213PD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB213PD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -39545,6 +40375,7 @@ func VFMSUB213PD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB213PD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -39564,6 +40395,7 @@ func VFMSUB213PD_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB213PD",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -39584,6 +40416,7 @@ func VFMSUB213PD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB213PD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -39592,6 +40425,7 @@ func VFMSUB213PD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB213PD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -39611,6 +40445,7 @@ func VFMSUB213PD_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB213PD",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -39631,6 +40466,7 @@ func VFMSUB213PD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB213PD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -39639,6 +40475,7 @@ func VFMSUB213PD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB213PD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -39741,6 +40578,7 @@ func VFMSUB213PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB213PS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -39749,6 +40587,7 @@ func VFMSUB213PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB213PS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -39768,6 +40607,7 @@ func VFMSUB213PS_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB213PS",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -39788,6 +40628,7 @@ func VFMSUB213PS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB213PS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -39796,6 +40637,7 @@ func VFMSUB213PS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB213PS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -39815,6 +40657,7 @@ func VFMSUB213PS_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB213PS",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -39835,6 +40678,7 @@ func VFMSUB213PS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB213PS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -39843,6 +40687,7 @@ func VFMSUB213PS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB213PS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -39862,6 +40707,7 @@ func VFMSUB213PS_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB213PS",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -39882,6 +40728,7 @@ func VFMSUB213PS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB213PS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -39890,6 +40737,7 @@ func VFMSUB213PS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB213PS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -39909,6 +40757,7 @@ func VFMSUB213PS_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB213PS",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -39929,6 +40778,7 @@ func VFMSUB213PS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB213PS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -39937,6 +40787,7 @@ func VFMSUB213PS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB213PS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -39956,6 +40807,7 @@ func VFMSUB213PS_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB213PS",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -39976,6 +40828,7 @@ func VFMSUB213PS_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB213PS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -39984,6 +40837,7 @@ func VFMSUB213PS_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB213PS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -40068,6 +40922,7 @@ func VFMSUB213SD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB213SD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -40076,6 +40931,7 @@ func VFMSUB213SD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB213SD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -40095,6 +40951,7 @@ func VFMSUB213SD_RD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB213SD",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -40115,6 +40972,7 @@ func VFMSUB213SD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB213SD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -40123,6 +40981,7 @@ func VFMSUB213SD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB213SD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -40142,6 +41001,7 @@ func VFMSUB213SD_RN_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB213SD",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -40162,6 +41022,7 @@ func VFMSUB213SD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB213SD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -40170,6 +41031,7 @@ func VFMSUB213SD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB213SD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -40189,6 +41051,7 @@ func VFMSUB213SD_RU_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB213SD",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -40209,6 +41072,7 @@ func VFMSUB213SD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB213SD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -40217,6 +41081,7 @@ func VFMSUB213SD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB213SD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -40236,6 +41101,7 @@ func VFMSUB213SD_RZ_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB213SD",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -40256,6 +41122,7 @@ func VFMSUB213SD_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM64(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB213SD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k, x1},
 			Outputs:  []operand.Op{x1},
@@ -40264,6 +41131,7 @@ func VFMSUB213SD_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB213SD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k, x1},
 			Outputs:  []operand.Op{x1},
@@ -40348,6 +41216,7 @@ func VFMSUB213SS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB213SS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -40356,6 +41225,7 @@ func VFMSUB213SS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB213SS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -40375,6 +41245,7 @@ func VFMSUB213SS_RD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB213SS",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -40395,6 +41266,7 @@ func VFMSUB213SS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB213SS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -40403,6 +41275,7 @@ func VFMSUB213SS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB213SS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -40422,6 +41295,7 @@ func VFMSUB213SS_RN_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB213SS",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -40442,6 +41316,7 @@ func VFMSUB213SS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB213SS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -40450,6 +41325,7 @@ func VFMSUB213SS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB213SS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -40469,6 +41345,7 @@ func VFMSUB213SS_RU_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB213SS",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -40489,6 +41366,7 @@ func VFMSUB213SS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB213SS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -40497,6 +41375,7 @@ func VFMSUB213SS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB213SS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -40516,6 +41395,7 @@ func VFMSUB213SS_RZ_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB213SS",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -40536,6 +41416,7 @@ func VFMSUB213SS_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM32(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB213SS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k, x1},
 			Outputs:  []operand.Op{x1},
@@ -40544,6 +41425,7 @@ func VFMSUB213SS_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB213SS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k, x1},
 			Outputs:  []operand.Op{x1},
@@ -40646,6 +41528,7 @@ func VFMSUB231PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB231PD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -40654,6 +41537,7 @@ func VFMSUB231PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB231PD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -40673,6 +41557,7 @@ func VFMSUB231PD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB231PD",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -40693,6 +41578,7 @@ func VFMSUB231PD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB231PD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -40701,6 +41587,7 @@ func VFMSUB231PD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB231PD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -40720,6 +41607,7 @@ func VFMSUB231PD_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB231PD",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -40740,6 +41628,7 @@ func VFMSUB231PD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB231PD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -40748,6 +41637,7 @@ func VFMSUB231PD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB231PD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -40767,6 +41657,7 @@ func VFMSUB231PD_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB231PD",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -40787,6 +41678,7 @@ func VFMSUB231PD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB231PD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -40795,6 +41687,7 @@ func VFMSUB231PD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB231PD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -40814,6 +41707,7 @@ func VFMSUB231PD_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB231PD",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -40834,6 +41728,7 @@ func VFMSUB231PD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB231PD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -40842,6 +41737,7 @@ func VFMSUB231PD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB231PD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -40861,6 +41757,7 @@ func VFMSUB231PD_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB231PD",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -40881,6 +41778,7 @@ func VFMSUB231PD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB231PD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -40889,6 +41787,7 @@ func VFMSUB231PD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB231PD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -40991,6 +41890,7 @@ func VFMSUB231PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB231PS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -40999,6 +41899,7 @@ func VFMSUB231PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB231PS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -41018,6 +41919,7 @@ func VFMSUB231PS_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB231PS",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -41038,6 +41940,7 @@ func VFMSUB231PS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB231PS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -41046,6 +41949,7 @@ func VFMSUB231PS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB231PS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -41065,6 +41969,7 @@ func VFMSUB231PS_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB231PS",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -41085,6 +41990,7 @@ func VFMSUB231PS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB231PS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -41093,6 +41999,7 @@ func VFMSUB231PS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB231PS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -41112,6 +42019,7 @@ func VFMSUB231PS_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB231PS",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -41132,6 +42040,7 @@ func VFMSUB231PS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB231PS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -41140,6 +42049,7 @@ func VFMSUB231PS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB231PS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -41159,6 +42069,7 @@ func VFMSUB231PS_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB231PS",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -41179,6 +42090,7 @@ func VFMSUB231PS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB231PS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -41187,6 +42099,7 @@ func VFMSUB231PS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB231PS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -41206,6 +42119,7 @@ func VFMSUB231PS_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB231PS",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -41226,6 +42140,7 @@ func VFMSUB231PS_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB231PS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -41234,6 +42149,7 @@ func VFMSUB231PS_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB231PS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -41318,6 +42234,7 @@ func VFMSUB231SD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB231SD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -41326,6 +42243,7 @@ func VFMSUB231SD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB231SD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -41345,6 +42263,7 @@ func VFMSUB231SD_RD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB231SD",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -41365,6 +42284,7 @@ func VFMSUB231SD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB231SD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -41373,6 +42293,7 @@ func VFMSUB231SD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB231SD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -41392,6 +42313,7 @@ func VFMSUB231SD_RN_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB231SD",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -41412,6 +42334,7 @@ func VFMSUB231SD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB231SD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -41420,6 +42343,7 @@ func VFMSUB231SD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB231SD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -41439,6 +42363,7 @@ func VFMSUB231SD_RU_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB231SD",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -41459,6 +42384,7 @@ func VFMSUB231SD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB231SD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -41467,6 +42393,7 @@ func VFMSUB231SD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB231SD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -41486,6 +42413,7 @@ func VFMSUB231SD_RZ_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB231SD",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -41506,6 +42434,7 @@ func VFMSUB231SD_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM64(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB231SD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k, x1},
 			Outputs:  []operand.Op{x1},
@@ -41514,6 +42443,7 @@ func VFMSUB231SD_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB231SD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k, x1},
 			Outputs:  []operand.Op{x1},
@@ -41598,6 +42528,7 @@ func VFMSUB231SS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB231SS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -41606,6 +42537,7 @@ func VFMSUB231SS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB231SS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -41625,6 +42557,7 @@ func VFMSUB231SS_RD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB231SS",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -41645,6 +42578,7 @@ func VFMSUB231SS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB231SS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -41653,6 +42587,7 @@ func VFMSUB231SS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB231SS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -41672,6 +42607,7 @@ func VFMSUB231SS_RN_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB231SS",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -41692,6 +42628,7 @@ func VFMSUB231SS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB231SS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -41700,6 +42637,7 @@ func VFMSUB231SS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB231SS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -41719,6 +42657,7 @@ func VFMSUB231SS_RU_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB231SS",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -41739,6 +42678,7 @@ func VFMSUB231SS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB231SS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -41747,6 +42687,7 @@ func VFMSUB231SS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB231SS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -41766,6 +42707,7 @@ func VFMSUB231SS_RZ_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB231SS",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -41786,6 +42728,7 @@ func VFMSUB231SS_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM32(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB231SS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k, x1},
 			Outputs:  []operand.Op{x1},
@@ -41794,6 +42737,7 @@ func VFMSUB231SS_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUB231SS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k, x1},
 			Outputs:  []operand.Op{x1},
@@ -41896,6 +42840,7 @@ func VFMSUBADD132PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD132PD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -41904,6 +42849,7 @@ func VFMSUBADD132PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD132PD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -41923,6 +42869,7 @@ func VFMSUBADD132PD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsM512M64BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD132PD",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -41943,6 +42890,7 @@ func VFMSUBADD132PD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD132PD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -41951,6 +42899,7 @@ func VFMSUBADD132PD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD132PD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -41970,6 +42919,7 @@ func VFMSUBADD132PD_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD132PD",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -41990,6 +42940,7 @@ func VFMSUBADD132PD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD132PD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -41998,6 +42949,7 @@ func VFMSUBADD132PD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD132PD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -42017,6 +42969,7 @@ func VFMSUBADD132PD_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD132PD",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -42037,6 +42990,7 @@ func VFMSUBADD132PD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD132PD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -42045,6 +42999,7 @@ func VFMSUBADD132PD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD132PD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -42064,6 +43019,7 @@ func VFMSUBADD132PD_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD132PD",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -42084,6 +43040,7 @@ func VFMSUBADD132PD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD132PD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -42092,6 +43049,7 @@ func VFMSUBADD132PD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD132PD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -42111,6 +43069,7 @@ func VFMSUBADD132PD_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD132PD",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -42131,6 +43090,7 @@ func VFMSUBADD132PD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD132PD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -42139,6 +43099,7 @@ func VFMSUBADD132PD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD132PD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -42241,6 +43202,7 @@ func VFMSUBADD132PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD132PS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -42249,6 +43211,7 @@ func VFMSUBADD132PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD132PS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -42268,6 +43231,7 @@ func VFMSUBADD132PS_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsM512M32BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD132PS",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -42288,6 +43252,7 @@ func VFMSUBADD132PS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD132PS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -42296,6 +43261,7 @@ func VFMSUBADD132PS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD132PS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -42315,6 +43281,7 @@ func VFMSUBADD132PS_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD132PS",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -42335,6 +43302,7 @@ func VFMSUBADD132PS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD132PS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -42343,6 +43311,7 @@ func VFMSUBADD132PS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD132PS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -42362,6 +43331,7 @@ func VFMSUBADD132PS_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD132PS",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -42382,6 +43352,7 @@ func VFMSUBADD132PS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD132PS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -42390,6 +43361,7 @@ func VFMSUBADD132PS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD132PS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -42409,6 +43381,7 @@ func VFMSUBADD132PS_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD132PS",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -42429,6 +43402,7 @@ func VFMSUBADD132PS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD132PS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -42437,6 +43411,7 @@ func VFMSUBADD132PS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD132PS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -42456,6 +43431,7 @@ func VFMSUBADD132PS_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD132PS",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -42476,6 +43452,7 @@ func VFMSUBADD132PS_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD132PS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -42484,6 +43461,7 @@ func VFMSUBADD132PS_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD132PS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -42586,6 +43564,7 @@ func VFMSUBADD213PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD213PD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -42594,6 +43573,7 @@ func VFMSUBADD213PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD213PD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -42613,6 +43593,7 @@ func VFMSUBADD213PD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsM512M64BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD213PD",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -42633,6 +43614,7 @@ func VFMSUBADD213PD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD213PD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -42641,6 +43623,7 @@ func VFMSUBADD213PD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD213PD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -42660,6 +43643,7 @@ func VFMSUBADD213PD_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD213PD",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -42680,6 +43664,7 @@ func VFMSUBADD213PD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD213PD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -42688,6 +43673,7 @@ func VFMSUBADD213PD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD213PD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -42707,6 +43693,7 @@ func VFMSUBADD213PD_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD213PD",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -42727,6 +43714,7 @@ func VFMSUBADD213PD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD213PD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -42735,6 +43723,7 @@ func VFMSUBADD213PD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD213PD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -42754,6 +43743,7 @@ func VFMSUBADD213PD_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD213PD",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -42774,6 +43764,7 @@ func VFMSUBADD213PD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD213PD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -42782,6 +43773,7 @@ func VFMSUBADD213PD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD213PD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -42801,6 +43793,7 @@ func VFMSUBADD213PD_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD213PD",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -42821,6 +43814,7 @@ func VFMSUBADD213PD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD213PD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -42829,6 +43823,7 @@ func VFMSUBADD213PD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD213PD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -42931,6 +43926,7 @@ func VFMSUBADD213PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD213PS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -42939,6 +43935,7 @@ func VFMSUBADD213PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD213PS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -42958,6 +43955,7 @@ func VFMSUBADD213PS_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsM512M32BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD213PS",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -42978,6 +43976,7 @@ func VFMSUBADD213PS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD213PS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -42986,6 +43985,7 @@ func VFMSUBADD213PS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD213PS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -43005,6 +44005,7 @@ func VFMSUBADD213PS_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD213PS",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -43025,6 +44026,7 @@ func VFMSUBADD213PS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD213PS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -43033,6 +44035,7 @@ func VFMSUBADD213PS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD213PS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -43052,6 +44055,7 @@ func VFMSUBADD213PS_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD213PS",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -43072,6 +44076,7 @@ func VFMSUBADD213PS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD213PS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -43080,6 +44085,7 @@ func VFMSUBADD213PS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD213PS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -43099,6 +44105,7 @@ func VFMSUBADD213PS_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD213PS",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -43119,6 +44126,7 @@ func VFMSUBADD213PS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD213PS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -43127,6 +44135,7 @@ func VFMSUBADD213PS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD213PS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -43146,6 +44155,7 @@ func VFMSUBADD213PS_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD213PS",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -43166,6 +44176,7 @@ func VFMSUBADD213PS_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD213PS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -43174,6 +44185,7 @@ func VFMSUBADD213PS_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD213PS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -43276,6 +44288,7 @@ func VFMSUBADD231PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD231PD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -43284,6 +44297,7 @@ func VFMSUBADD231PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD231PD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -43303,6 +44317,7 @@ func VFMSUBADD231PD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsM512M64BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD231PD",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -43323,6 +44338,7 @@ func VFMSUBADD231PD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD231PD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -43331,6 +44347,7 @@ func VFMSUBADD231PD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD231PD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -43350,6 +44367,7 @@ func VFMSUBADD231PD_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD231PD",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -43370,6 +44388,7 @@ func VFMSUBADD231PD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD231PD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -43378,6 +44397,7 @@ func VFMSUBADD231PD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD231PD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -43397,6 +44417,7 @@ func VFMSUBADD231PD_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD231PD",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -43417,6 +44438,7 @@ func VFMSUBADD231PD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD231PD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -43425,6 +44447,7 @@ func VFMSUBADD231PD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD231PD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -43444,6 +44467,7 @@ func VFMSUBADD231PD_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD231PD",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -43464,6 +44488,7 @@ func VFMSUBADD231PD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD231PD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -43472,6 +44497,7 @@ func VFMSUBADD231PD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD231PD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -43491,6 +44517,7 @@ func VFMSUBADD231PD_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD231PD",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -43511,6 +44538,7 @@ func VFMSUBADD231PD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD231PD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -43519,6 +44547,7 @@ func VFMSUBADD231PD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD231PD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -43621,6 +44650,7 @@ func VFMSUBADD231PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD231PS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -43629,6 +44659,7 @@ func VFMSUBADD231PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD231PS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -43648,6 +44679,7 @@ func VFMSUBADD231PS_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsM512M32BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD231PS",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -43668,6 +44700,7 @@ func VFMSUBADD231PS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD231PS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -43676,6 +44709,7 @@ func VFMSUBADD231PS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD231PS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -43695,6 +44729,7 @@ func VFMSUBADD231PS_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD231PS",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -43715,6 +44750,7 @@ func VFMSUBADD231PS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD231PS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -43723,6 +44759,7 @@ func VFMSUBADD231PS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD231PS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -43742,6 +44779,7 @@ func VFMSUBADD231PS_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD231PS",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -43762,6 +44800,7 @@ func VFMSUBADD231PS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD231PS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -43770,6 +44809,7 @@ func VFMSUBADD231PS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD231PS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -43789,6 +44829,7 @@ func VFMSUBADD231PS_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD231PS",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -43809,6 +44850,7 @@ func VFMSUBADD231PS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD231PS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -43817,6 +44859,7 @@ func VFMSUBADD231PS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD231PS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -43836,6 +44879,7 @@ func VFMSUBADD231PS_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD231PS",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -43856,6 +44900,7 @@ func VFMSUBADD231PS_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD231PS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -43864,6 +44909,7 @@ func VFMSUBADD231PS_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFMSUBADD231PS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -43966,6 +45012,7 @@ func VFNMADD132PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD132PD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -43974,6 +45021,7 @@ func VFNMADD132PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD132PD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -43993,6 +45041,7 @@ func VFNMADD132PD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD132PD",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -44013,6 +45062,7 @@ func VFNMADD132PD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD132PD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -44021,6 +45071,7 @@ func VFNMADD132PD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD132PD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -44040,6 +45091,7 @@ func VFNMADD132PD_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD132PD",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -44060,6 +45112,7 @@ func VFNMADD132PD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD132PD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -44068,6 +45121,7 @@ func VFNMADD132PD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD132PD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -44087,6 +45141,7 @@ func VFNMADD132PD_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD132PD",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -44107,6 +45162,7 @@ func VFNMADD132PD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD132PD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -44115,6 +45171,7 @@ func VFNMADD132PD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD132PD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -44134,6 +45191,7 @@ func VFNMADD132PD_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD132PD",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -44154,6 +45212,7 @@ func VFNMADD132PD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD132PD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -44162,6 +45221,7 @@ func VFNMADD132PD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD132PD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -44181,6 +45241,7 @@ func VFNMADD132PD_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD132PD",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -44201,6 +45262,7 @@ func VFNMADD132PD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD132PD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -44209,6 +45271,7 @@ func VFNMADD132PD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD132PD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -44311,6 +45374,7 @@ func VFNMADD132PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD132PS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -44319,6 +45383,7 @@ func VFNMADD132PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD132PS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -44338,6 +45403,7 @@ func VFNMADD132PS_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD132PS",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -44358,6 +45424,7 @@ func VFNMADD132PS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD132PS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -44366,6 +45433,7 @@ func VFNMADD132PS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD132PS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -44385,6 +45453,7 @@ func VFNMADD132PS_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD132PS",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -44405,6 +45474,7 @@ func VFNMADD132PS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD132PS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -44413,6 +45483,7 @@ func VFNMADD132PS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD132PS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -44432,6 +45503,7 @@ func VFNMADD132PS_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD132PS",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -44452,6 +45524,7 @@ func VFNMADD132PS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD132PS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -44460,6 +45533,7 @@ func VFNMADD132PS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD132PS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -44479,6 +45553,7 @@ func VFNMADD132PS_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD132PS",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -44499,6 +45574,7 @@ func VFNMADD132PS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD132PS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -44507,6 +45583,7 @@ func VFNMADD132PS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD132PS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -44526,6 +45603,7 @@ func VFNMADD132PS_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD132PS",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -44546,6 +45624,7 @@ func VFNMADD132PS_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD132PS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -44554,6 +45633,7 @@ func VFNMADD132PS_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD132PS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -44638,6 +45718,7 @@ func VFNMADD132SD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD132SD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -44646,6 +45727,7 @@ func VFNMADD132SD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD132SD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -44665,6 +45747,7 @@ func VFNMADD132SD_RD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD132SD",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -44685,6 +45768,7 @@ func VFNMADD132SD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD132SD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -44693,6 +45777,7 @@ func VFNMADD132SD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD132SD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -44712,6 +45797,7 @@ func VFNMADD132SD_RN_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD132SD",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -44732,6 +45818,7 @@ func VFNMADD132SD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD132SD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -44740,6 +45827,7 @@ func VFNMADD132SD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD132SD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -44759,6 +45847,7 @@ func VFNMADD132SD_RU_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD132SD",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -44779,6 +45868,7 @@ func VFNMADD132SD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD132SD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -44787,6 +45877,7 @@ func VFNMADD132SD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD132SD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -44806,6 +45897,7 @@ func VFNMADD132SD_RZ_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD132SD",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -44826,6 +45918,7 @@ func VFNMADD132SD_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM64(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD132SD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k, x1},
 			Outputs:  []operand.Op{x1},
@@ -44834,6 +45927,7 @@ func VFNMADD132SD_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD132SD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k, x1},
 			Outputs:  []operand.Op{x1},
@@ -44918,6 +46012,7 @@ func VFNMADD132SS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD132SS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -44926,6 +46021,7 @@ func VFNMADD132SS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD132SS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -44945,6 +46041,7 @@ func VFNMADD132SS_RD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD132SS",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -44965,6 +46062,7 @@ func VFNMADD132SS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD132SS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -44973,6 +46071,7 @@ func VFNMADD132SS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD132SS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -44992,6 +46091,7 @@ func VFNMADD132SS_RN_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD132SS",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -45012,6 +46112,7 @@ func VFNMADD132SS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD132SS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -45020,6 +46121,7 @@ func VFNMADD132SS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD132SS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -45039,6 +46141,7 @@ func VFNMADD132SS_RU_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD132SS",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -45059,6 +46162,7 @@ func VFNMADD132SS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD132SS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -45067,6 +46171,7 @@ func VFNMADD132SS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD132SS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -45086,6 +46191,7 @@ func VFNMADD132SS_RZ_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD132SS",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -45106,6 +46212,7 @@ func VFNMADD132SS_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM32(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD132SS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k, x1},
 			Outputs:  []operand.Op{x1},
@@ -45114,6 +46221,7 @@ func VFNMADD132SS_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD132SS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k, x1},
 			Outputs:  []operand.Op{x1},
@@ -45216,6 +46324,7 @@ func VFNMADD213PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD213PD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -45224,6 +46333,7 @@ func VFNMADD213PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD213PD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -45243,6 +46353,7 @@ func VFNMADD213PD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD213PD",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -45263,6 +46374,7 @@ func VFNMADD213PD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD213PD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -45271,6 +46383,7 @@ func VFNMADD213PD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD213PD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -45290,6 +46403,7 @@ func VFNMADD213PD_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD213PD",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -45310,6 +46424,7 @@ func VFNMADD213PD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD213PD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -45318,6 +46433,7 @@ func VFNMADD213PD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD213PD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -45337,6 +46453,7 @@ func VFNMADD213PD_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD213PD",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -45357,6 +46474,7 @@ func VFNMADD213PD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD213PD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -45365,6 +46483,7 @@ func VFNMADD213PD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD213PD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -45384,6 +46503,7 @@ func VFNMADD213PD_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD213PD",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -45404,6 +46524,7 @@ func VFNMADD213PD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD213PD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -45412,6 +46533,7 @@ func VFNMADD213PD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD213PD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -45431,6 +46553,7 @@ func VFNMADD213PD_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD213PD",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -45451,6 +46574,7 @@ func VFNMADD213PD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD213PD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -45459,6 +46583,7 @@ func VFNMADD213PD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD213PD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -45561,6 +46686,7 @@ func VFNMADD213PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD213PS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -45569,6 +46695,7 @@ func VFNMADD213PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD213PS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -45588,6 +46715,7 @@ func VFNMADD213PS_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD213PS",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -45608,6 +46736,7 @@ func VFNMADD213PS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD213PS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -45616,6 +46745,7 @@ func VFNMADD213PS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD213PS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -45635,6 +46765,7 @@ func VFNMADD213PS_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD213PS",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -45655,6 +46786,7 @@ func VFNMADD213PS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD213PS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -45663,6 +46795,7 @@ func VFNMADD213PS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD213PS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -45682,6 +46815,7 @@ func VFNMADD213PS_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD213PS",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -45702,6 +46836,7 @@ func VFNMADD213PS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD213PS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -45710,6 +46845,7 @@ func VFNMADD213PS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD213PS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -45729,6 +46865,7 @@ func VFNMADD213PS_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD213PS",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -45749,6 +46886,7 @@ func VFNMADD213PS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD213PS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -45757,6 +46895,7 @@ func VFNMADD213PS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD213PS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -45776,6 +46915,7 @@ func VFNMADD213PS_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD213PS",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -45796,6 +46936,7 @@ func VFNMADD213PS_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD213PS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -45804,6 +46945,7 @@ func VFNMADD213PS_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD213PS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -45888,6 +47030,7 @@ func VFNMADD213SD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD213SD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -45896,6 +47039,7 @@ func VFNMADD213SD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD213SD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -45915,6 +47059,7 @@ func VFNMADD213SD_RD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD213SD",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -45935,6 +47080,7 @@ func VFNMADD213SD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD213SD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -45943,6 +47089,7 @@ func VFNMADD213SD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD213SD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -45962,6 +47109,7 @@ func VFNMADD213SD_RN_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD213SD",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -45982,6 +47130,7 @@ func VFNMADD213SD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD213SD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -45990,6 +47139,7 @@ func VFNMADD213SD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD213SD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -46009,6 +47159,7 @@ func VFNMADD213SD_RU_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD213SD",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -46029,6 +47180,7 @@ func VFNMADD213SD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD213SD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -46037,6 +47189,7 @@ func VFNMADD213SD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD213SD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -46056,6 +47209,7 @@ func VFNMADD213SD_RZ_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD213SD",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -46076,6 +47230,7 @@ func VFNMADD213SD_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM64(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD213SD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k, x1},
 			Outputs:  []operand.Op{x1},
@@ -46084,6 +47239,7 @@ func VFNMADD213SD_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD213SD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k, x1},
 			Outputs:  []operand.Op{x1},
@@ -46168,6 +47324,7 @@ func VFNMADD213SS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD213SS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -46176,6 +47333,7 @@ func VFNMADD213SS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD213SS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -46195,6 +47353,7 @@ func VFNMADD213SS_RD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD213SS",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -46215,6 +47374,7 @@ func VFNMADD213SS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD213SS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -46223,6 +47383,7 @@ func VFNMADD213SS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD213SS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -46242,6 +47403,7 @@ func VFNMADD213SS_RN_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD213SS",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -46262,6 +47424,7 @@ func VFNMADD213SS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD213SS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -46270,6 +47433,7 @@ func VFNMADD213SS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD213SS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -46289,6 +47453,7 @@ func VFNMADD213SS_RU_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD213SS",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -46309,6 +47474,7 @@ func VFNMADD213SS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD213SS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -46317,6 +47483,7 @@ func VFNMADD213SS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD213SS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -46336,6 +47503,7 @@ func VFNMADD213SS_RZ_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD213SS",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -46356,6 +47524,7 @@ func VFNMADD213SS_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM32(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD213SS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k, x1},
 			Outputs:  []operand.Op{x1},
@@ -46364,6 +47533,7 @@ func VFNMADD213SS_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD213SS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k, x1},
 			Outputs:  []operand.Op{x1},
@@ -46466,6 +47636,7 @@ func VFNMADD231PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD231PD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -46474,6 +47645,7 @@ func VFNMADD231PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD231PD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -46493,6 +47665,7 @@ func VFNMADD231PD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD231PD",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -46513,6 +47686,7 @@ func VFNMADD231PD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD231PD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -46521,6 +47695,7 @@ func VFNMADD231PD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD231PD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -46540,6 +47715,7 @@ func VFNMADD231PD_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD231PD",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -46560,6 +47736,7 @@ func VFNMADD231PD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD231PD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -46568,6 +47745,7 @@ func VFNMADD231PD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD231PD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -46587,6 +47765,7 @@ func VFNMADD231PD_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD231PD",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -46607,6 +47786,7 @@ func VFNMADD231PD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD231PD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -46615,6 +47795,7 @@ func VFNMADD231PD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD231PD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -46634,6 +47815,7 @@ func VFNMADD231PD_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD231PD",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -46654,6 +47836,7 @@ func VFNMADD231PD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD231PD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -46662,6 +47845,7 @@ func VFNMADD231PD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD231PD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -46681,6 +47865,7 @@ func VFNMADD231PD_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD231PD",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -46701,6 +47886,7 @@ func VFNMADD231PD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD231PD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -46709,6 +47895,7 @@ func VFNMADD231PD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD231PD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -46811,6 +47998,7 @@ func VFNMADD231PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD231PS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -46819,6 +48007,7 @@ func VFNMADD231PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD231PS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -46838,6 +48027,7 @@ func VFNMADD231PS_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD231PS",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -46858,6 +48048,7 @@ func VFNMADD231PS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD231PS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -46866,6 +48057,7 @@ func VFNMADD231PS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD231PS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -46885,6 +48077,7 @@ func VFNMADD231PS_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD231PS",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -46905,6 +48098,7 @@ func VFNMADD231PS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD231PS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -46913,6 +48107,7 @@ func VFNMADD231PS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD231PS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -46932,6 +48127,7 @@ func VFNMADD231PS_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD231PS",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -46952,6 +48148,7 @@ func VFNMADD231PS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD231PS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -46960,6 +48157,7 @@ func VFNMADD231PS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD231PS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -46979,6 +48177,7 @@ func VFNMADD231PS_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD231PS",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -46999,6 +48198,7 @@ func VFNMADD231PS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD231PS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -47007,6 +48207,7 @@ func VFNMADD231PS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD231PS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -47026,6 +48227,7 @@ func VFNMADD231PS_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD231PS",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -47046,6 +48248,7 @@ func VFNMADD231PS_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD231PS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -47054,6 +48257,7 @@ func VFNMADD231PS_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD231PS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -47138,6 +48342,7 @@ func VFNMADD231SD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD231SD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -47146,6 +48351,7 @@ func VFNMADD231SD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD231SD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -47165,6 +48371,7 @@ func VFNMADD231SD_RD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD231SD",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -47185,6 +48392,7 @@ func VFNMADD231SD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD231SD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -47193,6 +48401,7 @@ func VFNMADD231SD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD231SD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -47212,6 +48421,7 @@ func VFNMADD231SD_RN_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD231SD",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -47232,6 +48442,7 @@ func VFNMADD231SD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD231SD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -47240,6 +48451,7 @@ func VFNMADD231SD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD231SD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -47259,6 +48471,7 @@ func VFNMADD231SD_RU_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD231SD",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -47279,6 +48492,7 @@ func VFNMADD231SD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD231SD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -47287,6 +48501,7 @@ func VFNMADD231SD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD231SD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -47306,6 +48521,7 @@ func VFNMADD231SD_RZ_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD231SD",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -47326,6 +48542,7 @@ func VFNMADD231SD_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM64(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD231SD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k, x1},
 			Outputs:  []operand.Op{x1},
@@ -47334,6 +48551,7 @@ func VFNMADD231SD_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD231SD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k, x1},
 			Outputs:  []operand.Op{x1},
@@ -47418,6 +48636,7 @@ func VFNMADD231SS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD231SS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -47426,6 +48645,7 @@ func VFNMADD231SS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD231SS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -47445,6 +48665,7 @@ func VFNMADD231SS_RD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD231SS",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -47465,6 +48686,7 @@ func VFNMADD231SS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD231SS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -47473,6 +48695,7 @@ func VFNMADD231SS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD231SS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -47492,6 +48715,7 @@ func VFNMADD231SS_RN_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD231SS",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -47512,6 +48736,7 @@ func VFNMADD231SS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD231SS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -47520,6 +48745,7 @@ func VFNMADD231SS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD231SS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -47539,6 +48765,7 @@ func VFNMADD231SS_RU_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD231SS",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -47559,6 +48786,7 @@ func VFNMADD231SS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD231SS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -47567,6 +48795,7 @@ func VFNMADD231SS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD231SS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -47586,6 +48815,7 @@ func VFNMADD231SS_RZ_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD231SS",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -47606,6 +48836,7 @@ func VFNMADD231SS_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM32(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD231SS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k, x1},
 			Outputs:  []operand.Op{x1},
@@ -47614,6 +48845,7 @@ func VFNMADD231SS_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VFNMADD231SS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k, x1},
 			Outputs:  []operand.Op{x1},
@@ -47716,6 +48948,7 @@ func VFNMSUB132PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB132PD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -47724,6 +48957,7 @@ func VFNMSUB132PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB132PD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -47743,6 +48977,7 @@ func VFNMSUB132PD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB132PD",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -47763,6 +48998,7 @@ func VFNMSUB132PD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB132PD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -47771,6 +49007,7 @@ func VFNMSUB132PD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB132PD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -47790,6 +49027,7 @@ func VFNMSUB132PD_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB132PD",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -47810,6 +49048,7 @@ func VFNMSUB132PD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB132PD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -47818,6 +49057,7 @@ func VFNMSUB132PD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB132PD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -47837,6 +49077,7 @@ func VFNMSUB132PD_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB132PD",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -47857,6 +49098,7 @@ func VFNMSUB132PD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB132PD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -47865,6 +49107,7 @@ func VFNMSUB132PD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB132PD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -47884,6 +49127,7 @@ func VFNMSUB132PD_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB132PD",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -47904,6 +49148,7 @@ func VFNMSUB132PD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB132PD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -47912,6 +49157,7 @@ func VFNMSUB132PD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB132PD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -47931,6 +49177,7 @@ func VFNMSUB132PD_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB132PD",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -47951,6 +49198,7 @@ func VFNMSUB132PD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB132PD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -47959,6 +49207,7 @@ func VFNMSUB132PD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB132PD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -48061,6 +49310,7 @@ func VFNMSUB132PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB132PS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -48069,6 +49319,7 @@ func VFNMSUB132PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB132PS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -48088,6 +49339,7 @@ func VFNMSUB132PS_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB132PS",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -48108,6 +49360,7 @@ func VFNMSUB132PS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB132PS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -48116,6 +49369,7 @@ func VFNMSUB132PS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB132PS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -48135,6 +49389,7 @@ func VFNMSUB132PS_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB132PS",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -48155,6 +49410,7 @@ func VFNMSUB132PS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB132PS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -48163,6 +49419,7 @@ func VFNMSUB132PS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB132PS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -48182,6 +49439,7 @@ func VFNMSUB132PS_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB132PS",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -48202,6 +49460,7 @@ func VFNMSUB132PS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB132PS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -48210,6 +49469,7 @@ func VFNMSUB132PS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB132PS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -48229,6 +49489,7 @@ func VFNMSUB132PS_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB132PS",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -48249,6 +49510,7 @@ func VFNMSUB132PS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB132PS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -48257,6 +49519,7 @@ func VFNMSUB132PS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB132PS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -48276,6 +49539,7 @@ func VFNMSUB132PS_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB132PS",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -48296,6 +49560,7 @@ func VFNMSUB132PS_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB132PS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -48304,6 +49569,7 @@ func VFNMSUB132PS_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB132PS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -48388,6 +49654,7 @@ func VFNMSUB132SD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB132SD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -48396,6 +49663,7 @@ func VFNMSUB132SD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB132SD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -48415,6 +49683,7 @@ func VFNMSUB132SD_RD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB132SD",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -48435,6 +49704,7 @@ func VFNMSUB132SD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB132SD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -48443,6 +49713,7 @@ func VFNMSUB132SD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB132SD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -48462,6 +49733,7 @@ func VFNMSUB132SD_RN_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB132SD",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -48482,6 +49754,7 @@ func VFNMSUB132SD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB132SD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -48490,6 +49763,7 @@ func VFNMSUB132SD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB132SD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -48509,6 +49783,7 @@ func VFNMSUB132SD_RU_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB132SD",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -48529,6 +49804,7 @@ func VFNMSUB132SD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB132SD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -48537,6 +49813,7 @@ func VFNMSUB132SD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB132SD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -48556,6 +49833,7 @@ func VFNMSUB132SD_RZ_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB132SD",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -48576,6 +49854,7 @@ func VFNMSUB132SD_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM64(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB132SD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k, x1},
 			Outputs:  []operand.Op{x1},
@@ -48584,6 +49863,7 @@ func VFNMSUB132SD_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB132SD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k, x1},
 			Outputs:  []operand.Op{x1},
@@ -48668,6 +49948,7 @@ func VFNMSUB132SS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB132SS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -48676,6 +49957,7 @@ func VFNMSUB132SS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB132SS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -48695,6 +49977,7 @@ func VFNMSUB132SS_RD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB132SS",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -48715,6 +49998,7 @@ func VFNMSUB132SS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB132SS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -48723,6 +50007,7 @@ func VFNMSUB132SS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB132SS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -48742,6 +50027,7 @@ func VFNMSUB132SS_RN_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB132SS",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -48762,6 +50048,7 @@ func VFNMSUB132SS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB132SS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -48770,6 +50057,7 @@ func VFNMSUB132SS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB132SS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -48789,6 +50077,7 @@ func VFNMSUB132SS_RU_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB132SS",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -48809,6 +50098,7 @@ func VFNMSUB132SS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB132SS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -48817,6 +50107,7 @@ func VFNMSUB132SS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB132SS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -48836,6 +50127,7 @@ func VFNMSUB132SS_RZ_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB132SS",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -48856,6 +50148,7 @@ func VFNMSUB132SS_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM32(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB132SS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k, x1},
 			Outputs:  []operand.Op{x1},
@@ -48864,6 +50157,7 @@ func VFNMSUB132SS_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB132SS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k, x1},
 			Outputs:  []operand.Op{x1},
@@ -48966,6 +50260,7 @@ func VFNMSUB213PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB213PD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -48974,6 +50269,7 @@ func VFNMSUB213PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB213PD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -48993,6 +50289,7 @@ func VFNMSUB213PD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB213PD",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -49013,6 +50310,7 @@ func VFNMSUB213PD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB213PD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -49021,6 +50319,7 @@ func VFNMSUB213PD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB213PD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -49040,6 +50339,7 @@ func VFNMSUB213PD_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB213PD",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -49060,6 +50360,7 @@ func VFNMSUB213PD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB213PD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -49068,6 +50369,7 @@ func VFNMSUB213PD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB213PD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -49087,6 +50389,7 @@ func VFNMSUB213PD_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB213PD",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -49107,6 +50410,7 @@ func VFNMSUB213PD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB213PD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -49115,6 +50419,7 @@ func VFNMSUB213PD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB213PD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -49134,6 +50439,7 @@ func VFNMSUB213PD_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB213PD",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -49154,6 +50460,7 @@ func VFNMSUB213PD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB213PD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -49162,6 +50469,7 @@ func VFNMSUB213PD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB213PD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -49181,6 +50489,7 @@ func VFNMSUB213PD_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB213PD",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -49201,6 +50510,7 @@ func VFNMSUB213PD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB213PD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -49209,6 +50519,7 @@ func VFNMSUB213PD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB213PD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -49311,6 +50622,7 @@ func VFNMSUB213PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB213PS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -49319,6 +50631,7 @@ func VFNMSUB213PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB213PS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -49338,6 +50651,7 @@ func VFNMSUB213PS_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB213PS",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -49358,6 +50672,7 @@ func VFNMSUB213PS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB213PS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -49366,6 +50681,7 @@ func VFNMSUB213PS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB213PS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -49385,6 +50701,7 @@ func VFNMSUB213PS_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB213PS",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -49405,6 +50722,7 @@ func VFNMSUB213PS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB213PS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -49413,6 +50731,7 @@ func VFNMSUB213PS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB213PS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -49432,6 +50751,7 @@ func VFNMSUB213PS_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB213PS",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -49452,6 +50772,7 @@ func VFNMSUB213PS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB213PS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -49460,6 +50781,7 @@ func VFNMSUB213PS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB213PS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -49479,6 +50801,7 @@ func VFNMSUB213PS_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB213PS",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -49499,6 +50822,7 @@ func VFNMSUB213PS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB213PS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -49507,6 +50831,7 @@ func VFNMSUB213PS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB213PS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -49526,6 +50851,7 @@ func VFNMSUB213PS_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB213PS",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -49546,6 +50872,7 @@ func VFNMSUB213PS_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB213PS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -49554,6 +50881,7 @@ func VFNMSUB213PS_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB213PS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -49638,6 +50966,7 @@ func VFNMSUB213SD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB213SD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -49646,6 +50975,7 @@ func VFNMSUB213SD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB213SD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -49665,6 +50995,7 @@ func VFNMSUB213SD_RD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB213SD",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -49685,6 +51016,7 @@ func VFNMSUB213SD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB213SD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -49693,6 +51025,7 @@ func VFNMSUB213SD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB213SD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -49712,6 +51045,7 @@ func VFNMSUB213SD_RN_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB213SD",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -49732,6 +51066,7 @@ func VFNMSUB213SD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB213SD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -49740,6 +51075,7 @@ func VFNMSUB213SD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB213SD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -49759,6 +51095,7 @@ func VFNMSUB213SD_RU_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB213SD",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -49779,6 +51116,7 @@ func VFNMSUB213SD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB213SD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -49787,6 +51125,7 @@ func VFNMSUB213SD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB213SD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -49806,6 +51145,7 @@ func VFNMSUB213SD_RZ_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB213SD",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -49826,6 +51166,7 @@ func VFNMSUB213SD_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM64(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB213SD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k, x1},
 			Outputs:  []operand.Op{x1},
@@ -49834,6 +51175,7 @@ func VFNMSUB213SD_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB213SD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k, x1},
 			Outputs:  []operand.Op{x1},
@@ -49918,6 +51260,7 @@ func VFNMSUB213SS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB213SS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -49926,6 +51269,7 @@ func VFNMSUB213SS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB213SS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -49945,6 +51289,7 @@ func VFNMSUB213SS_RD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB213SS",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -49965,6 +51310,7 @@ func VFNMSUB213SS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB213SS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -49973,6 +51319,7 @@ func VFNMSUB213SS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB213SS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -49992,6 +51339,7 @@ func VFNMSUB213SS_RN_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB213SS",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -50012,6 +51360,7 @@ func VFNMSUB213SS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB213SS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -50020,6 +51369,7 @@ func VFNMSUB213SS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB213SS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -50039,6 +51389,7 @@ func VFNMSUB213SS_RU_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB213SS",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -50059,6 +51410,7 @@ func VFNMSUB213SS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB213SS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -50067,6 +51419,7 @@ func VFNMSUB213SS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB213SS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -50086,6 +51439,7 @@ func VFNMSUB213SS_RZ_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB213SS",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -50106,6 +51460,7 @@ func VFNMSUB213SS_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM32(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB213SS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k, x1},
 			Outputs:  []operand.Op{x1},
@@ -50114,6 +51469,7 @@ func VFNMSUB213SS_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB213SS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k, x1},
 			Outputs:  []operand.Op{x1},
@@ -50216,6 +51572,7 @@ func VFNMSUB231PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB231PD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -50224,6 +51581,7 @@ func VFNMSUB231PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB231PD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -50243,6 +51601,7 @@ func VFNMSUB231PD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB231PD",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -50263,6 +51622,7 @@ func VFNMSUB231PD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB231PD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -50271,6 +51631,7 @@ func VFNMSUB231PD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB231PD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -50290,6 +51651,7 @@ func VFNMSUB231PD_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB231PD",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -50310,6 +51672,7 @@ func VFNMSUB231PD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB231PD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -50318,6 +51681,7 @@ func VFNMSUB231PD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB231PD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -50337,6 +51701,7 @@ func VFNMSUB231PD_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB231PD",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -50357,6 +51722,7 @@ func VFNMSUB231PD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB231PD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -50365,6 +51731,7 @@ func VFNMSUB231PD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB231PD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -50384,6 +51751,7 @@ func VFNMSUB231PD_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB231PD",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -50404,6 +51772,7 @@ func VFNMSUB231PD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB231PD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -50412,6 +51781,7 @@ func VFNMSUB231PD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB231PD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -50431,6 +51801,7 @@ func VFNMSUB231PD_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB231PD",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -50451,6 +51822,7 @@ func VFNMSUB231PD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB231PD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -50459,6 +51831,7 @@ func VFNMSUB231PD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB231PD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -50561,6 +51934,7 @@ func VFNMSUB231PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB231PS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -50569,6 +51943,7 @@ func VFNMSUB231PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB231PS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -50588,6 +51963,7 @@ func VFNMSUB231PS_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB231PS",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -50608,6 +51984,7 @@ func VFNMSUB231PS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB231PS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -50616,6 +51993,7 @@ func VFNMSUB231PS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB231PS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -50635,6 +52013,7 @@ func VFNMSUB231PS_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB231PS",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -50655,6 +52034,7 @@ func VFNMSUB231PS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB231PS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -50663,6 +52043,7 @@ func VFNMSUB231PS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB231PS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -50682,6 +52063,7 @@ func VFNMSUB231PS_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB231PS",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -50702,6 +52084,7 @@ func VFNMSUB231PS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB231PS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -50710,6 +52093,7 @@ func VFNMSUB231PS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB231PS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -50729,6 +52113,7 @@ func VFNMSUB231PS_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB231PS",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -50749,6 +52134,7 @@ func VFNMSUB231PS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB231PS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -50757,6 +52143,7 @@ func VFNMSUB231PS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB231PS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -50776,6 +52163,7 @@ func VFNMSUB231PS_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB231PS",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k, z2},
 			Outputs:  []operand.Op{z2},
@@ -50796,6 +52184,7 @@ func VFNMSUB231PS_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB231PS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -50804,6 +52193,7 @@ func VFNMSUB231PS_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB231PS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -50888,6 +52278,7 @@ func VFNMSUB231SD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB231SD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -50896,6 +52287,7 @@ func VFNMSUB231SD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB231SD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -50915,6 +52307,7 @@ func VFNMSUB231SD_RD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB231SD",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -50935,6 +52328,7 @@ func VFNMSUB231SD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB231SD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -50943,6 +52337,7 @@ func VFNMSUB231SD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB231SD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -50962,6 +52357,7 @@ func VFNMSUB231SD_RN_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB231SD",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -50982,6 +52378,7 @@ func VFNMSUB231SD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB231SD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -50990,6 +52387,7 @@ func VFNMSUB231SD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB231SD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -51009,6 +52407,7 @@ func VFNMSUB231SD_RU_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB231SD",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -51029,6 +52428,7 @@ func VFNMSUB231SD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB231SD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -51037,6 +52437,7 @@ func VFNMSUB231SD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB231SD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -51056,6 +52457,7 @@ func VFNMSUB231SD_RZ_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB231SD",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -51076,6 +52478,7 @@ func VFNMSUB231SD_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM64(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB231SD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k, x1},
 			Outputs:  []operand.Op{x1},
@@ -51084,6 +52487,7 @@ func VFNMSUB231SD_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB231SD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k, x1},
 			Outputs:  []operand.Op{x1},
@@ -51168,6 +52572,7 @@ func VFNMSUB231SS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB231SS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -51176,6 +52581,7 @@ func VFNMSUB231SS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB231SS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -51195,6 +52601,7 @@ func VFNMSUB231SS_RD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB231SS",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -51215,6 +52622,7 @@ func VFNMSUB231SS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB231SS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -51223,6 +52631,7 @@ func VFNMSUB231SS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB231SS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -51242,6 +52651,7 @@ func VFNMSUB231SS_RN_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB231SS",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -51262,6 +52672,7 @@ func VFNMSUB231SS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB231SS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -51270,6 +52681,7 @@ func VFNMSUB231SS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB231SS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -51289,6 +52701,7 @@ func VFNMSUB231SS_RU_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB231SS",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -51309,6 +52722,7 @@ func VFNMSUB231SS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB231SS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -51317,6 +52731,7 @@ func VFNMSUB231SS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB231SS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -51336,6 +52751,7 @@ func VFNMSUB231SS_RZ_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB231SS",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k, x2},
 			Outputs:  []operand.Op{x2},
@@ -51356,6 +52772,7 @@ func VFNMSUB231SS_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM32(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB231SS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k, x1},
 			Outputs:  []operand.Op{x1},
@@ -51364,6 +52781,7 @@ func VFNMSUB231SS_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VFNMSUB231SS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k, x1},
 			Outputs:  []operand.Op{x1},
@@ -51578,6 +52996,7 @@ func VGETEXPPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 2 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VGETEXPPD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
@@ -51586,6 +53005,7 @@ func VGETEXPPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VGETEXPPD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -51605,6 +53025,7 @@ func VGETEXPPD_BCST_Z(m, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(m) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VGETEXPPD",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, k, z},
 			Inputs:   []operand.Op{m, k},
 			Outputs:  []operand.Op{z},
@@ -51625,6 +53046,7 @@ func VGETEXPPD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VGETEXPPD",
+			Suffixes: []string{"SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
@@ -51633,6 +53055,7 @@ func VGETEXPPD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VGETEXPPD",
+			Suffixes: []string{"SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -51652,6 +53075,7 @@ func VGETEXPPD_SAE_Z(z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VGETEXPPD",
+			Suffixes: []string{"SAE", "Z"},
 			Operands: []operand.Op{z, k, z1},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{z1},
@@ -51672,6 +53096,7 @@ func VGETEXPPD_Z(mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VGETEXPPD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -51680,6 +53105,7 @@ func VGETEXPPD_Z(mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VGETEXPPD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -51746,6 +53172,7 @@ func VGETEXPPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 2 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VGETEXPPS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
@@ -51754,6 +53181,7 @@ func VGETEXPPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VGETEXPPS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -51773,6 +53201,7 @@ func VGETEXPPS_BCST_Z(m, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(m) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VGETEXPPS",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, k, z},
 			Inputs:   []operand.Op{m, k},
 			Outputs:  []operand.Op{z},
@@ -51793,6 +53222,7 @@ func VGETEXPPS_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VGETEXPPS",
+			Suffixes: []string{"SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
@@ -51801,6 +53231,7 @@ func VGETEXPPS_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VGETEXPPS",
+			Suffixes: []string{"SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -51820,6 +53251,7 @@ func VGETEXPPS_SAE_Z(z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VGETEXPPS",
+			Suffixes: []string{"SAE", "Z"},
 			Operands: []operand.Op{z, k, z1},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{z1},
@@ -51840,6 +53272,7 @@ func VGETEXPPS_Z(mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VGETEXPPS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -51848,6 +53281,7 @@ func VGETEXPPS_Z(mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VGETEXPPS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -51914,6 +53348,7 @@ func VGETEXPSD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VGETEXPSD",
+			Suffixes: []string{"SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -51922,6 +53357,7 @@ func VGETEXPSD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VGETEXPSD",
+			Suffixes: []string{"SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -51941,6 +53377,7 @@ func VGETEXPSD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VGETEXPSD",
+			Suffixes: []string{"SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k},
 			Outputs:  []operand.Op{x2},
@@ -51961,6 +53398,7 @@ func VGETEXPSD_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM64(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VGETEXPSD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k},
 			Outputs:  []operand.Op{x1},
@@ -51969,6 +53407,7 @@ func VGETEXPSD_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VGETEXPSD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k},
 			Outputs:  []operand.Op{x1},
@@ -52035,6 +53474,7 @@ func VGETEXPSS_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VGETEXPSS",
+			Suffixes: []string{"SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -52043,6 +53483,7 @@ func VGETEXPSS_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VGETEXPSS",
+			Suffixes: []string{"SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -52062,6 +53503,7 @@ func VGETEXPSS_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VGETEXPSS",
+			Suffixes: []string{"SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k},
 			Outputs:  []operand.Op{x2},
@@ -52082,6 +53524,7 @@ func VGETEXPSS_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM32(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VGETEXPSS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k},
 			Outputs:  []operand.Op{x1},
@@ -52090,6 +53533,7 @@ func VGETEXPSS_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VGETEXPSS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k},
 			Outputs:  []operand.Op{x1},
@@ -52156,6 +53600,7 @@ func VGETMANTPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VGETMANTPD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -52164,6 +53609,7 @@ func VGETMANTPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VGETMANTPD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -52183,6 +53629,7 @@ func VGETMANTPD_BCST_Z(i, m, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsM512M64BCST(m) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VGETMANTPD",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{i, m, k, z},
 			Inputs:   []operand.Op{m, k},
 			Outputs:  []operand.Op{z},
@@ -52203,6 +53650,7 @@ func VGETMANTPD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VGETMANTPD",
+			Suffixes: []string{"SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -52211,6 +53659,7 @@ func VGETMANTPD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VGETMANTPD",
+			Suffixes: []string{"SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -52230,6 +53679,7 @@ func VGETMANTPD_SAE_Z(i, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VGETMANTPD",
+			Suffixes: []string{"SAE", "Z"},
 			Operands: []operand.Op{i, z, k, z1},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{z1},
@@ -52250,6 +53700,7 @@ func VGETMANTPD_Z(i, mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsM512M64BCST(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VGETMANTPD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{i, mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -52258,6 +53709,7 @@ func VGETMANTPD_Z(i, mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VGETMANTPD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{i, mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -52324,6 +53776,7 @@ func VGETMANTPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsM512M32BCST(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VGETMANTPS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -52332,6 +53785,7 @@ func VGETMANTPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM512M32BCST(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VGETMANTPS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -52351,6 +53805,7 @@ func VGETMANTPS_BCST_Z(i, m, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsM512M32BCST(m) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VGETMANTPS",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{i, m, k, z},
 			Inputs:   []operand.Op{m, k},
 			Outputs:  []operand.Op{z},
@@ -52371,6 +53826,7 @@ func VGETMANTPS_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VGETMANTPS",
+			Suffixes: []string{"SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -52379,6 +53835,7 @@ func VGETMANTPS_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VGETMANTPS",
+			Suffixes: []string{"SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -52398,6 +53855,7 @@ func VGETMANTPS_SAE_Z(i, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VGETMANTPS",
+			Suffixes: []string{"SAE", "Z"},
 			Operands: []operand.Op{i, z, k, z1},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{z1},
@@ -52418,6 +53876,7 @@ func VGETMANTPS_Z(i, mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsM512M32BCST(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VGETMANTPS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{i, mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -52426,6 +53885,7 @@ func VGETMANTPS_Z(i, mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VGETMANTPS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{i, mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -52492,6 +53952,7 @@ func VGETMANTSD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VGETMANTSD",
+			Suffixes: []string{"SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -52500,6 +53961,7 @@ func VGETMANTSD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]) && operand.IsK(ops[3]) && operand.IsXMM(ops[4]):
 		return &intrep.Instruction{
 			Opcode:   "VGETMANTSD",
+			Suffixes: []string{"SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[4]},
@@ -52519,6 +53981,7 @@ func VGETMANTSD_SAE_Z(i, x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VGETMANTSD",
+			Suffixes: []string{"SAE", "Z"},
 			Operands: []operand.Op{i, x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k},
 			Outputs:  []operand.Op{x2},
@@ -52539,6 +54002,7 @@ func VGETMANTSD_Z(i, mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsM64(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VGETMANTSD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{i, mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k},
 			Outputs:  []operand.Op{x1},
@@ -52547,6 +54011,7 @@ func VGETMANTSD_Z(i, mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VGETMANTSD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{i, mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k},
 			Outputs:  []operand.Op{x1},
@@ -52613,6 +54078,7 @@ func VGETMANTSS_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VGETMANTSS",
+			Suffixes: []string{"SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -52621,6 +54087,7 @@ func VGETMANTSS_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]) && operand.IsK(ops[3]) && operand.IsXMM(ops[4]):
 		return &intrep.Instruction{
 			Opcode:   "VGETMANTSS",
+			Suffixes: []string{"SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[4]},
@@ -52640,6 +54107,7 @@ func VGETMANTSS_SAE_Z(i, x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VGETMANTSS",
+			Suffixes: []string{"SAE", "Z"},
 			Operands: []operand.Op{i, x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k},
 			Outputs:  []operand.Op{x2},
@@ -52660,6 +54128,7 @@ func VGETMANTSS_Z(i, mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsM32(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VGETMANTSS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{i, mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k},
 			Outputs:  []operand.Op{x1},
@@ -52668,6 +54137,7 @@ func VGETMANTSS_Z(i, mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VGETMANTSS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{i, mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k},
 			Outputs:  []operand.Op{x1},
@@ -52946,6 +54416,7 @@ func VINSERTF32X4_Z(i, mx, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsXMM(mx) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VINSERTF32X4",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{i, mx, z, k, z1},
 			Inputs:   []operand.Op{mx, z, k},
 			Outputs:  []operand.Op{z1},
@@ -52954,6 +54425,7 @@ func VINSERTF32X4_Z(i, mx, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsM128(mx) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VINSERTF32X4",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{i, mx, z, k, z1},
 			Inputs:   []operand.Op{mx, z, k},
 			Outputs:  []operand.Op{z1},
@@ -53020,6 +54492,7 @@ func VINSERTF64X4_Z(i, my, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsYMM(my) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VINSERTF64X4",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{i, my, z, k, z1},
 			Inputs:   []operand.Op{my, z, k},
 			Outputs:  []operand.Op{z1},
@@ -53028,6 +54501,7 @@ func VINSERTF64X4_Z(i, my, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsM256(my) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VINSERTF64X4",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{i, my, z, k, z1},
 			Inputs:   []operand.Op{my, z, k},
 			Outputs:  []operand.Op{z1},
@@ -53122,6 +54596,7 @@ func VINSERTI32X4_Z(i, mx, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsXMM(mx) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VINSERTI32X4",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{i, mx, z, k, z1},
 			Inputs:   []operand.Op{mx, z, k},
 			Outputs:  []operand.Op{z1},
@@ -53130,6 +54605,7 @@ func VINSERTI32X4_Z(i, mx, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsM128(mx) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VINSERTI32X4",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{i, mx, z, k, z1},
 			Inputs:   []operand.Op{mx, z, k},
 			Outputs:  []operand.Op{z1},
@@ -53196,6 +54672,7 @@ func VINSERTI64X4_Z(i, my, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsYMM(my) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VINSERTI64X4",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{i, my, z, k, z1},
 			Inputs:   []operand.Op{my, z, k},
 			Outputs:  []operand.Op{z1},
@@ -53204,6 +54681,7 @@ func VINSERTI64X4_Z(i, my, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsM256(my) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VINSERTI64X4",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{i, my, z, k, z1},
 			Inputs:   []operand.Op{my, z, k},
 			Outputs:  []operand.Op{z1},
@@ -53510,6 +54988,7 @@ func VMAXPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VMAXPD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -53518,6 +54997,7 @@ func VMAXPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VMAXPD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -53537,6 +55017,7 @@ func VMAXPD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VMAXPD",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k},
 			Outputs:  []operand.Op{z1},
@@ -53557,6 +55038,7 @@ func VMAXPD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VMAXPD",
+			Suffixes: []string{"SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -53565,6 +55047,7 @@ func VMAXPD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VMAXPD",
+			Suffixes: []string{"SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -53584,6 +55067,7 @@ func VMAXPD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VMAXPD",
+			Suffixes: []string{"SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k},
 			Outputs:  []operand.Op{z2},
@@ -53604,6 +55088,7 @@ func VMAXPD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VMAXPD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -53612,6 +55097,7 @@ func VMAXPD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VMAXPD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -53714,6 +55200,7 @@ func VMAXPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VMAXPS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -53722,6 +55209,7 @@ func VMAXPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VMAXPS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -53741,6 +55229,7 @@ func VMAXPS_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VMAXPS",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k},
 			Outputs:  []operand.Op{z1},
@@ -53761,6 +55250,7 @@ func VMAXPS_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VMAXPS",
+			Suffixes: []string{"SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -53769,6 +55259,7 @@ func VMAXPS_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VMAXPS",
+			Suffixes: []string{"SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -53788,6 +55279,7 @@ func VMAXPS_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VMAXPS",
+			Suffixes: []string{"SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k},
 			Outputs:  []operand.Op{z2},
@@ -53808,6 +55300,7 @@ func VMAXPS_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VMAXPS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -53816,6 +55309,7 @@ func VMAXPS_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VMAXPS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -53900,6 +55394,7 @@ func VMAXSD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VMAXSD",
+			Suffixes: []string{"SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -53908,6 +55403,7 @@ func VMAXSD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VMAXSD",
+			Suffixes: []string{"SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -53927,6 +55423,7 @@ func VMAXSD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VMAXSD",
+			Suffixes: []string{"SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k},
 			Outputs:  []operand.Op{x2},
@@ -53947,6 +55444,7 @@ func VMAXSD_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM64(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VMAXSD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k},
 			Outputs:  []operand.Op{x1},
@@ -53955,6 +55453,7 @@ func VMAXSD_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VMAXSD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k},
 			Outputs:  []operand.Op{x1},
@@ -54039,6 +55538,7 @@ func VMAXSS_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VMAXSS",
+			Suffixes: []string{"SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -54047,6 +55547,7 @@ func VMAXSS_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VMAXSS",
+			Suffixes: []string{"SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -54066,6 +55567,7 @@ func VMAXSS_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VMAXSS",
+			Suffixes: []string{"SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k},
 			Outputs:  []operand.Op{x2},
@@ -54086,6 +55588,7 @@ func VMAXSS_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM32(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VMAXSS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k},
 			Outputs:  []operand.Op{x1},
@@ -54094,6 +55597,7 @@ func VMAXSS_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VMAXSS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k},
 			Outputs:  []operand.Op{x1},
@@ -54196,6 +55700,7 @@ func VMINPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VMINPD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -54204,6 +55709,7 @@ func VMINPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VMINPD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -54223,6 +55729,7 @@ func VMINPD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VMINPD",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k},
 			Outputs:  []operand.Op{z1},
@@ -54243,6 +55750,7 @@ func VMINPD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VMINPD",
+			Suffixes: []string{"SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -54251,6 +55759,7 @@ func VMINPD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VMINPD",
+			Suffixes: []string{"SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -54270,6 +55779,7 @@ func VMINPD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VMINPD",
+			Suffixes: []string{"SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k},
 			Outputs:  []operand.Op{z2},
@@ -54290,6 +55800,7 @@ func VMINPD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VMINPD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -54298,6 +55809,7 @@ func VMINPD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VMINPD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -54400,6 +55912,7 @@ func VMINPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VMINPS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -54408,6 +55921,7 @@ func VMINPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VMINPS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -54427,6 +55941,7 @@ func VMINPS_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VMINPS",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k},
 			Outputs:  []operand.Op{z1},
@@ -54447,6 +55962,7 @@ func VMINPS_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VMINPS",
+			Suffixes: []string{"SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -54455,6 +55971,7 @@ func VMINPS_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VMINPS",
+			Suffixes: []string{"SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -54474,6 +55991,7 @@ func VMINPS_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VMINPS",
+			Suffixes: []string{"SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k},
 			Outputs:  []operand.Op{z2},
@@ -54494,6 +56012,7 @@ func VMINPS_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VMINPS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -54502,6 +56021,7 @@ func VMINPS_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VMINPS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -54586,6 +56106,7 @@ func VMINSD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VMINSD",
+			Suffixes: []string{"SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -54594,6 +56115,7 @@ func VMINSD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VMINSD",
+			Suffixes: []string{"SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -54613,6 +56135,7 @@ func VMINSD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VMINSD",
+			Suffixes: []string{"SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k},
 			Outputs:  []operand.Op{x2},
@@ -54633,6 +56156,7 @@ func VMINSD_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM64(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VMINSD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k},
 			Outputs:  []operand.Op{x1},
@@ -54641,6 +56165,7 @@ func VMINSD_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VMINSD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k},
 			Outputs:  []operand.Op{x1},
@@ -54725,6 +56250,7 @@ func VMINSS_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VMINSS",
+			Suffixes: []string{"SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -54733,6 +56259,7 @@ func VMINSS_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VMINSS",
+			Suffixes: []string{"SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -54752,6 +56279,7 @@ func VMINSS_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VMINSS",
+			Suffixes: []string{"SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k},
 			Outputs:  []operand.Op{x2},
@@ -54772,6 +56300,7 @@ func VMINSS_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM32(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VMINSS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k},
 			Outputs:  []operand.Op{x1},
@@ -54780,6 +56309,7 @@ func VMINSS_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VMINSS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k},
 			Outputs:  []operand.Op{x1},
@@ -54919,6 +56449,7 @@ func VMOVAPD_Z(mz, k, mz1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsK(k) && operand.IsM512(mz1):
 		return &intrep.Instruction{
 			Opcode:   "VMOVAPD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, mz1},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{mz1},
@@ -54927,6 +56458,7 @@ func VMOVAPD_Z(mz, k, mz1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(mz1):
 		return &intrep.Instruction{
 			Opcode:   "VMOVAPD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, mz1},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{mz1},
@@ -54935,6 +56467,7 @@ func VMOVAPD_Z(mz, k, mz1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512(mz) && operand.IsK(k) && operand.IsZMM(mz1):
 		return &intrep.Instruction{
 			Opcode:   "VMOVAPD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, mz1},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{mz1},
@@ -55074,6 +56607,7 @@ func VMOVAPS_Z(mz, k, mz1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsK(k) && operand.IsM512(mz1):
 		return &intrep.Instruction{
 			Opcode:   "VMOVAPS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, mz1},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{mz1},
@@ -55082,6 +56616,7 @@ func VMOVAPS_Z(mz, k, mz1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(mz1):
 		return &intrep.Instruction{
 			Opcode:   "VMOVAPS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, mz1},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{mz1},
@@ -55090,6 +56625,7 @@ func VMOVAPS_Z(mz, k, mz1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512(mz) && operand.IsK(k) && operand.IsZMM(mz1):
 		return &intrep.Instruction{
 			Opcode:   "VMOVAPS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, mz1},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{mz1},
@@ -55274,6 +56810,7 @@ func VMOVDDUP_Z(mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VMOVDDUP",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -55282,6 +56819,7 @@ func VMOVDDUP_Z(mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VMOVDDUP",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -55431,6 +56969,7 @@ func VMOVDQA32_Z(mz, k, mz1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsK(k) && operand.IsM512(mz1):
 		return &intrep.Instruction{
 			Opcode:   "VMOVDQA32",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, mz1},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{mz1},
@@ -55439,6 +56978,7 @@ func VMOVDQA32_Z(mz, k, mz1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(mz1):
 		return &intrep.Instruction{
 			Opcode:   "VMOVDQA32",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, mz1},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{mz1},
@@ -55447,6 +56987,7 @@ func VMOVDQA32_Z(mz, k, mz1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512(mz) && operand.IsK(k) && operand.IsZMM(mz1):
 		return &intrep.Instruction{
 			Opcode:   "VMOVDQA32",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, mz1},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{mz1},
@@ -55532,6 +57073,7 @@ func VMOVDQA64_Z(mz, k, mz1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsK(k) && operand.IsM512(mz1):
 		return &intrep.Instruction{
 			Opcode:   "VMOVDQA64",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, mz1},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{mz1},
@@ -55540,6 +57082,7 @@ func VMOVDQA64_Z(mz, k, mz1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(mz1):
 		return &intrep.Instruction{
 			Opcode:   "VMOVDQA64",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, mz1},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{mz1},
@@ -55548,6 +57091,7 @@ func VMOVDQA64_Z(mz, k, mz1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512(mz) && operand.IsK(k) && operand.IsZMM(mz1):
 		return &intrep.Instruction{
 			Opcode:   "VMOVDQA64",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, mz1},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{mz1},
@@ -55697,6 +57241,7 @@ func VMOVDQU32_Z(mz, k, mz1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsK(k) && operand.IsM512(mz1):
 		return &intrep.Instruction{
 			Opcode:   "VMOVDQU32",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, mz1},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{mz1},
@@ -55705,6 +57250,7 @@ func VMOVDQU32_Z(mz, k, mz1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(mz1):
 		return &intrep.Instruction{
 			Opcode:   "VMOVDQU32",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, mz1},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{mz1},
@@ -55713,6 +57259,7 @@ func VMOVDQU32_Z(mz, k, mz1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512(mz) && operand.IsK(k) && operand.IsZMM(mz1):
 		return &intrep.Instruction{
 			Opcode:   "VMOVDQU32",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, mz1},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{mz1},
@@ -55798,6 +57345,7 @@ func VMOVDQU64_Z(mz, k, mz1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsK(k) && operand.IsM512(mz1):
 		return &intrep.Instruction{
 			Opcode:   "VMOVDQU64",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, mz1},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{mz1},
@@ -55806,6 +57354,7 @@ func VMOVDQU64_Z(mz, k, mz1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(mz1):
 		return &intrep.Instruction{
 			Opcode:   "VMOVDQU64",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, mz1},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{mz1},
@@ -55814,6 +57363,7 @@ func VMOVDQU64_Z(mz, k, mz1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512(mz) && operand.IsK(k) && operand.IsZMM(mz1):
 		return &intrep.Instruction{
 			Opcode:   "VMOVDQU64",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, mz1},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{mz1},
@@ -56469,6 +58019,7 @@ func VMOVSD_Z(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM64(ops[0]) && operand.IsK(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VMOVSD",
+			Suffixes: []string{"Z"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -56477,6 +58028,7 @@ func VMOVSD_Z(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VMOVSD",
+			Suffixes: []string{"Z"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -56579,6 +58131,7 @@ func VMOVSHDUP_Z(mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VMOVSHDUP",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -56587,6 +58140,7 @@ func VMOVSHDUP_Z(mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VMOVSHDUP",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -56689,6 +58243,7 @@ func VMOVSLDUP_Z(mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VMOVSLDUP",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -56697,6 +58252,7 @@ func VMOVSLDUP_Z(mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VMOVSLDUP",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -56808,6 +58364,7 @@ func VMOVSS_Z(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM32(ops[0]) && operand.IsK(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VMOVSS",
+			Suffixes: []string{"Z"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -56816,6 +58373,7 @@ func VMOVSS_Z(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VMOVSS",
+			Suffixes: []string{"Z"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -56955,6 +58513,7 @@ func VMOVUPD_Z(mz, k, mz1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsK(k) && operand.IsM512(mz1):
 		return &intrep.Instruction{
 			Opcode:   "VMOVUPD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, mz1},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{mz1},
@@ -56963,6 +58522,7 @@ func VMOVUPD_Z(mz, k, mz1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(mz1):
 		return &intrep.Instruction{
 			Opcode:   "VMOVUPD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, mz1},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{mz1},
@@ -56971,6 +58531,7 @@ func VMOVUPD_Z(mz, k, mz1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512(mz) && operand.IsK(k) && operand.IsZMM(mz1):
 		return &intrep.Instruction{
 			Opcode:   "VMOVUPD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, mz1},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{mz1},
@@ -57110,6 +58671,7 @@ func VMOVUPS_Z(mz, k, mz1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsK(k) && operand.IsM512(mz1):
 		return &intrep.Instruction{
 			Opcode:   "VMOVUPS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, mz1},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{mz1},
@@ -57118,6 +58680,7 @@ func VMOVUPS_Z(mz, k, mz1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(mz1):
 		return &intrep.Instruction{
 			Opcode:   "VMOVUPS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, mz1},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{mz1},
@@ -57126,6 +58689,7 @@ func VMOVUPS_Z(mz, k, mz1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512(mz) && operand.IsK(k) && operand.IsZMM(mz1):
 		return &intrep.Instruction{
 			Opcode:   "VMOVUPS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, mz1},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{mz1},
@@ -57274,6 +58838,7 @@ func VMULPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VMULPD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -57282,6 +58847,7 @@ func VMULPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VMULPD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -57301,6 +58867,7 @@ func VMULPD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VMULPD",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k},
 			Outputs:  []operand.Op{z1},
@@ -57321,6 +58888,7 @@ func VMULPD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VMULPD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -57329,6 +58897,7 @@ func VMULPD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VMULPD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -57348,6 +58917,7 @@ func VMULPD_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VMULPD",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k},
 			Outputs:  []operand.Op{z2},
@@ -57368,6 +58938,7 @@ func VMULPD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VMULPD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -57376,6 +58947,7 @@ func VMULPD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VMULPD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -57395,6 +58967,7 @@ func VMULPD_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VMULPD",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k},
 			Outputs:  []operand.Op{z2},
@@ -57415,6 +58988,7 @@ func VMULPD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VMULPD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -57423,6 +58997,7 @@ func VMULPD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VMULPD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -57442,6 +59017,7 @@ func VMULPD_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VMULPD",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k},
 			Outputs:  []operand.Op{z2},
@@ -57462,6 +59038,7 @@ func VMULPD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VMULPD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -57470,6 +59047,7 @@ func VMULPD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VMULPD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -57489,6 +59067,7 @@ func VMULPD_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VMULPD",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k},
 			Outputs:  []operand.Op{z2},
@@ -57509,6 +59088,7 @@ func VMULPD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VMULPD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -57517,6 +59097,7 @@ func VMULPD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VMULPD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -57619,6 +59200,7 @@ func VMULPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VMULPS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -57627,6 +59209,7 @@ func VMULPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VMULPS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -57646,6 +59229,7 @@ func VMULPS_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VMULPS",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k},
 			Outputs:  []operand.Op{z1},
@@ -57666,6 +59250,7 @@ func VMULPS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VMULPS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -57674,6 +59259,7 @@ func VMULPS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VMULPS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -57693,6 +59279,7 @@ func VMULPS_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VMULPS",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k},
 			Outputs:  []operand.Op{z2},
@@ -57713,6 +59300,7 @@ func VMULPS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VMULPS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -57721,6 +59309,7 @@ func VMULPS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VMULPS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -57740,6 +59329,7 @@ func VMULPS_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VMULPS",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k},
 			Outputs:  []operand.Op{z2},
@@ -57760,6 +59350,7 @@ func VMULPS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VMULPS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -57768,6 +59359,7 @@ func VMULPS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VMULPS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -57787,6 +59379,7 @@ func VMULPS_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VMULPS",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k},
 			Outputs:  []operand.Op{z2},
@@ -57807,6 +59400,7 @@ func VMULPS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VMULPS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -57815,6 +59409,7 @@ func VMULPS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VMULPS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -57834,6 +59429,7 @@ func VMULPS_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VMULPS",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k},
 			Outputs:  []operand.Op{z2},
@@ -57854,6 +59450,7 @@ func VMULPS_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VMULPS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -57862,6 +59459,7 @@ func VMULPS_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VMULPS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -57946,6 +59544,7 @@ func VMULSD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VMULSD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -57954,6 +59553,7 @@ func VMULSD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VMULSD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -57973,6 +59573,7 @@ func VMULSD_RD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VMULSD",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k},
 			Outputs:  []operand.Op{x2},
@@ -57993,6 +59594,7 @@ func VMULSD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VMULSD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -58001,6 +59603,7 @@ func VMULSD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VMULSD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -58020,6 +59623,7 @@ func VMULSD_RN_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VMULSD",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k},
 			Outputs:  []operand.Op{x2},
@@ -58040,6 +59644,7 @@ func VMULSD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VMULSD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -58048,6 +59653,7 @@ func VMULSD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VMULSD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -58067,6 +59673,7 @@ func VMULSD_RU_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VMULSD",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k},
 			Outputs:  []operand.Op{x2},
@@ -58087,6 +59694,7 @@ func VMULSD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VMULSD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -58095,6 +59703,7 @@ func VMULSD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VMULSD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -58114,6 +59723,7 @@ func VMULSD_RZ_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VMULSD",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k},
 			Outputs:  []operand.Op{x2},
@@ -58134,6 +59744,7 @@ func VMULSD_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM64(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VMULSD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k},
 			Outputs:  []operand.Op{x1},
@@ -58142,6 +59753,7 @@ func VMULSD_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VMULSD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k},
 			Outputs:  []operand.Op{x1},
@@ -58226,6 +59838,7 @@ func VMULSS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VMULSS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -58234,6 +59847,7 @@ func VMULSS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VMULSS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -58253,6 +59867,7 @@ func VMULSS_RD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VMULSS",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k},
 			Outputs:  []operand.Op{x2},
@@ -58273,6 +59888,7 @@ func VMULSS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VMULSS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -58281,6 +59897,7 @@ func VMULSS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VMULSS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -58300,6 +59917,7 @@ func VMULSS_RN_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VMULSS",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k},
 			Outputs:  []operand.Op{x2},
@@ -58320,6 +59938,7 @@ func VMULSS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VMULSS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -58328,6 +59947,7 @@ func VMULSS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VMULSS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -58347,6 +59967,7 @@ func VMULSS_RU_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VMULSS",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k},
 			Outputs:  []operand.Op{x2},
@@ -58367,6 +59988,7 @@ func VMULSS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VMULSS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -58375,6 +59997,7 @@ func VMULSS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VMULSS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -58394,6 +60017,7 @@ func VMULSS_RZ_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VMULSS",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k},
 			Outputs:  []operand.Op{x2},
@@ -58414,6 +60038,7 @@ func VMULSS_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM32(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VMULSS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k},
 			Outputs:  []operand.Op{x1},
@@ -58422,6 +60047,7 @@ func VMULSS_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VMULSS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k},
 			Outputs:  []operand.Op{x1},
@@ -58662,6 +60288,7 @@ func VPABSD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 2 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VPABSD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
@@ -58670,6 +60297,7 @@ func VPABSD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPABSD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -58689,6 +60317,7 @@ func VPABSD_BCST_Z(m, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(m) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPABSD",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, k, z},
 			Inputs:   []operand.Op{m, k},
 			Outputs:  []operand.Op{z},
@@ -58709,6 +60338,7 @@ func VPABSD_Z(mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPABSD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -58717,6 +60347,7 @@ func VPABSD_Z(mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPABSD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -58783,6 +60414,7 @@ func VPABSQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 2 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VPABSQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
@@ -58791,6 +60423,7 @@ func VPABSQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPABSQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -58810,6 +60443,7 @@ func VPABSQ_BCST_Z(m, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(m) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPABSQ",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, k, z},
 			Inputs:   []operand.Op{m, k},
 			Outputs:  []operand.Op{z},
@@ -58830,6 +60464,7 @@ func VPABSQ_Z(mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPABSQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -58838,6 +60473,7 @@ func VPABSQ_Z(mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPABSQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -59216,6 +60852,7 @@ func VPADDD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPADDD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -59224,6 +60861,7 @@ func VPADDD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPADDD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -59243,6 +60881,7 @@ func VPADDD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPADDD",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k},
 			Outputs:  []operand.Op{z1},
@@ -59263,6 +60902,7 @@ func VPADDD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPADDD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -59271,6 +60911,7 @@ func VPADDD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPADDD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -59373,6 +61014,7 @@ func VPADDQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPADDQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -59381,6 +61023,7 @@ func VPADDQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPADDQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -59400,6 +61043,7 @@ func VPADDQ_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPADDQ",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k},
 			Outputs:  []operand.Op{z1},
@@ -59420,6 +61064,7 @@ func VPADDQ_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPADDQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -59428,6 +61073,7 @@ func VPADDQ_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPADDQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -59816,6 +61462,7 @@ func VPANDD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPANDD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -59824,6 +61471,7 @@ func VPANDD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPANDD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -59843,6 +61491,7 @@ func VPANDD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPANDD",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k},
 			Outputs:  []operand.Op{z1},
@@ -59863,6 +61512,7 @@ func VPANDD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPANDD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -59871,6 +61521,7 @@ func VPANDD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPANDD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -59985,6 +61636,7 @@ func VPANDND_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPANDND",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -59993,6 +61645,7 @@ func VPANDND_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPANDND",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -60012,6 +61665,7 @@ func VPANDND_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPANDND",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k},
 			Outputs:  []operand.Op{z1},
@@ -60032,6 +61686,7 @@ func VPANDND_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPANDND",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -60040,6 +61695,7 @@ func VPANDND_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPANDND",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -60106,6 +61762,7 @@ func VPANDNQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPANDNQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -60114,6 +61771,7 @@ func VPANDNQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPANDNQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -60133,6 +61791,7 @@ func VPANDNQ_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPANDNQ",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k},
 			Outputs:  []operand.Op{z1},
@@ -60153,6 +61812,7 @@ func VPANDNQ_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPANDNQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -60161,6 +61821,7 @@ func VPANDNQ_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPANDNQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -60227,6 +61888,7 @@ func VPANDQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPANDQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -60235,6 +61897,7 @@ func VPANDQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPANDQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -60254,6 +61917,7 @@ func VPANDQ_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPANDQ",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k},
 			Outputs:  []operand.Op{z1},
@@ -60274,6 +61938,7 @@ func VPANDQ_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPANDQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -60282,6 +61947,7 @@ func VPANDQ_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPANDQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -60486,6 +62152,7 @@ func VPBLENDMD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPBLENDMD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -60494,6 +62161,7 @@ func VPBLENDMD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPBLENDMD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -60513,6 +62181,7 @@ func VPBLENDMD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPBLENDMD",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k},
 			Outputs:  []operand.Op{z1},
@@ -60533,6 +62202,7 @@ func VPBLENDMD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPBLENDMD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -60541,6 +62211,7 @@ func VPBLENDMD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPBLENDMD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -60607,6 +62278,7 @@ func VPBLENDMQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPBLENDMQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -60615,6 +62287,7 @@ func VPBLENDMQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPBLENDMQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -60634,6 +62307,7 @@ func VPBLENDMQ_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPBLENDMQ",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k},
 			Outputs:  []operand.Op{z1},
@@ -60654,6 +62328,7 @@ func VPBLENDMQ_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPBLENDMQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -60662,6 +62337,7 @@ func VPBLENDMQ_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPBLENDMQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -60921,6 +62597,7 @@ func VPBROADCASTD_Z(mrx, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsR32(mrx) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPBROADCASTD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mrx, k, z},
 			Inputs:   []operand.Op{mrx, k},
 			Outputs:  []operand.Op{z},
@@ -60929,6 +62606,7 @@ func VPBROADCASTD_Z(mrx, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(mrx) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPBROADCASTD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mrx, k, z},
 			Inputs:   []operand.Op{mrx, k},
 			Outputs:  []operand.Op{z},
@@ -60937,6 +62615,7 @@ func VPBROADCASTD_Z(mrx, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM32(mrx) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPBROADCASTD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mrx, k, z},
 			Inputs:   []operand.Op{mrx, k},
 			Outputs:  []operand.Op{z},
@@ -61058,6 +62737,7 @@ func VPBROADCASTQ_Z(mrx, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsR64(mrx) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPBROADCASTQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mrx, k, z},
 			Inputs:   []operand.Op{mrx, k},
 			Outputs:  []operand.Op{z},
@@ -61066,6 +62746,7 @@ func VPBROADCASTQ_Z(mrx, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(mrx) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPBROADCASTQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mrx, k, z},
 			Inputs:   []operand.Op{mrx, k},
 			Outputs:  []operand.Op{z},
@@ -61074,6 +62755,7 @@ func VPBROADCASTQ_Z(mrx, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM64(mrx) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPBROADCASTQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mrx, k, z},
 			Inputs:   []operand.Op{mrx, k},
 			Outputs:  []operand.Op{z},
@@ -61214,6 +62896,7 @@ func VPCMPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM512M32BCST(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPCMPD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -61222,6 +62905,7 @@ func VPCMPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsM512M32BCST(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]) && operand.IsK(ops[4]):
 		return &intrep.Instruction{
 			Opcode:   "VPCMPD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[4]},
@@ -61376,6 +63060,7 @@ func VPCMPEQD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPCMPEQD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -61384,6 +63069,7 @@ func VPCMPEQD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsK(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPCMPEQD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -61490,6 +63176,7 @@ func VPCMPEQQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPCMPEQQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -61498,6 +63185,7 @@ func VPCMPEQQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsK(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPCMPEQQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -61756,6 +63444,7 @@ func VPCMPGTD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPCMPGTD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -61764,6 +63453,7 @@ func VPCMPGTD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsK(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPCMPGTD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -61870,6 +63560,7 @@ func VPCMPGTQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPCMPGTQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -61878,6 +63569,7 @@ func VPCMPGTQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsK(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPCMPGTQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -62048,6 +63740,7 @@ func VPCMPQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPCMPQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -62056,6 +63749,7 @@ func VPCMPQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]) && operand.IsK(ops[4]):
 		return &intrep.Instruction{
 			Opcode:   "VPCMPQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[4]},
@@ -62122,6 +63816,7 @@ func VPCMPUD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM512M32BCST(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPCMPUD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -62130,6 +63825,7 @@ func VPCMPUD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsM512M32BCST(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]) && operand.IsK(ops[4]):
 		return &intrep.Instruction{
 			Opcode:   "VPCMPUD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[4]},
@@ -62196,6 +63892,7 @@ func VPCMPUQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPCMPUQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -62204,6 +63901,7 @@ func VPCMPUQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]) && operand.IsK(ops[4]):
 		return &intrep.Instruction{
 			Opcode:   "VPCMPUQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[4]},
@@ -62270,6 +63968,7 @@ func VPCOMPRESSD_Z(z, k, mz operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(mz):
 		return &intrep.Instruction{
 			Opcode:   "VPCOMPRESSD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{z, k, mz},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{mz},
@@ -62278,6 +63977,7 @@ func VPCOMPRESSD_Z(z, k, mz operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsM512(mz):
 		return &intrep.Instruction{
 			Opcode:   "VPCOMPRESSD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{z, k, mz},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{mz},
@@ -62344,6 +64044,7 @@ func VPCOMPRESSQ_Z(z, k, mz operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(mz):
 		return &intrep.Instruction{
 			Opcode:   "VPCOMPRESSQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{z, k, mz},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{mz},
@@ -62352,6 +64053,7 @@ func VPCOMPRESSQ_Z(z, k, mz operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsM512(mz):
 		return &intrep.Instruction{
 			Opcode:   "VPCOMPRESSQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{z, k, mz},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{mz},
@@ -62492,6 +64194,7 @@ func VPERMD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPERMD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -62500,6 +64203,7 @@ func VPERMD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPERMD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -62519,6 +64223,7 @@ func VPERMD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPERMD",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k},
 			Outputs:  []operand.Op{z1},
@@ -62539,6 +64244,7 @@ func VPERMD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPERMD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -62547,6 +64253,7 @@ func VPERMD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPERMD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -62613,6 +64320,7 @@ func VPERMI2D_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPERMI2D",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -62621,6 +64329,7 @@ func VPERMI2D_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPERMI2D",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -62640,6 +64349,7 @@ func VPERMI2D_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPERMI2D",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -62660,6 +64370,7 @@ func VPERMI2D_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPERMI2D",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -62668,6 +64379,7 @@ func VPERMI2D_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPERMI2D",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -62734,6 +64446,7 @@ func VPERMI2PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPERMI2PD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -62742,6 +64455,7 @@ func VPERMI2PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPERMI2PD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -62761,6 +64475,7 @@ func VPERMI2PD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPERMI2PD",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -62781,6 +64496,7 @@ func VPERMI2PD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPERMI2PD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -62789,6 +64505,7 @@ func VPERMI2PD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPERMI2PD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -62855,6 +64572,7 @@ func VPERMI2PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPERMI2PS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -62863,6 +64581,7 @@ func VPERMI2PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPERMI2PS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -62882,6 +64601,7 @@ func VPERMI2PS_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPERMI2PS",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -62902,6 +64622,7 @@ func VPERMI2PS_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPERMI2PS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -62910,6 +64631,7 @@ func VPERMI2PS_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPERMI2PS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -62976,6 +64698,7 @@ func VPERMI2Q_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPERMI2Q",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -62984,6 +64707,7 @@ func VPERMI2Q_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPERMI2Q",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -63003,6 +64727,7 @@ func VPERMI2Q_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPERMI2Q",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -63023,6 +64748,7 @@ func VPERMI2Q_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPERMI2Q",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -63031,6 +64757,7 @@ func VPERMI2Q_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPERMI2Q",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -63207,6 +64934,7 @@ func VPERMILPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPERMILPD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -63215,6 +64943,7 @@ func VPERMILPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPERMILPD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -63223,6 +64952,7 @@ func VPERMILPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPERMILPD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -63231,6 +64961,7 @@ func VPERMILPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPERMILPD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -63251,6 +64982,7 @@ func VPERMILPD_BCST_Z(im, mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(im) && operand.IsM512M64BCST(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPERMILPD",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{im, mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -63259,6 +64991,7 @@ func VPERMILPD_BCST_Z(im, mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(im) && operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPERMILPD",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{im, mz, k, z},
 			Inputs:   []operand.Op{im, mz, k},
 			Outputs:  []operand.Op{z},
@@ -63281,6 +65014,7 @@ func VPERMILPD_Z(imz, mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(imz) && operand.IsM512M64BCST(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPERMILPD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{imz, mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -63289,6 +65023,7 @@ func VPERMILPD_Z(imz, mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(imz) && operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPERMILPD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{imz, mz, k, z},
 			Inputs:   []operand.Op{imz, mz, k},
 			Outputs:  []operand.Op{z},
@@ -63297,6 +65032,7 @@ func VPERMILPD_Z(imz, mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(imz) && operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPERMILPD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{imz, mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -63305,6 +65041,7 @@ func VPERMILPD_Z(imz, mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(imz) && operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPERMILPD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{imz, mz, k, z},
 			Inputs:   []operand.Op{imz, mz, k},
 			Outputs:  []operand.Op{z},
@@ -63481,6 +65218,7 @@ func VPERMILPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsM512M32BCST(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPERMILPS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -63489,6 +65227,7 @@ func VPERMILPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM512M32BCST(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPERMILPS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -63497,6 +65236,7 @@ func VPERMILPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPERMILPS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -63505,6 +65245,7 @@ func VPERMILPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPERMILPS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -63525,6 +65266,7 @@ func VPERMILPS_BCST_Z(im, mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(im) && operand.IsM512M32BCST(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPERMILPS",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{im, mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -63533,6 +65275,7 @@ func VPERMILPS_BCST_Z(im, mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(im) && operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPERMILPS",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{im, mz, k, z},
 			Inputs:   []operand.Op{im, mz, k},
 			Outputs:  []operand.Op{z},
@@ -63555,6 +65298,7 @@ func VPERMILPS_Z(imz, mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(imz) && operand.IsM512M32BCST(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPERMILPS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{imz, mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -63563,6 +65307,7 @@ func VPERMILPS_Z(imz, mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(imz) && operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPERMILPS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{imz, mz, k, z},
 			Inputs:   []operand.Op{imz, mz, k},
 			Outputs:  []operand.Op{z},
@@ -63571,6 +65316,7 @@ func VPERMILPS_Z(imz, mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(imz) && operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPERMILPS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{imz, mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -63579,6 +65325,7 @@ func VPERMILPS_Z(imz, mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(imz) && operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPERMILPS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{imz, mz, k, z},
 			Inputs:   []operand.Op{imz, mz, k},
 			Outputs:  []operand.Op{z},
@@ -63701,6 +65448,7 @@ func VPERMPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPERMPD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -63709,6 +65457,7 @@ func VPERMPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPERMPD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -63717,6 +65466,7 @@ func VPERMPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPERMPD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -63725,6 +65475,7 @@ func VPERMPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPERMPD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -63745,6 +65496,7 @@ func VPERMPD_BCST_Z(im, mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(im) && operand.IsM512M64BCST(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPERMPD",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{im, mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -63753,6 +65505,7 @@ func VPERMPD_BCST_Z(im, mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(im) && operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPERMPD",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{im, mz, k, z},
 			Inputs:   []operand.Op{im, mz, k},
 			Outputs:  []operand.Op{z},
@@ -63775,6 +65528,7 @@ func VPERMPD_Z(imz, mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(imz) && operand.IsM512M64BCST(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPERMPD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{imz, mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -63783,6 +65537,7 @@ func VPERMPD_Z(imz, mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(imz) && operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPERMPD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{imz, mz, k, z},
 			Inputs:   []operand.Op{imz, mz, k},
 			Outputs:  []operand.Op{z},
@@ -63791,6 +65546,7 @@ func VPERMPD_Z(imz, mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(imz) && operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPERMPD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{imz, mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -63799,6 +65555,7 @@ func VPERMPD_Z(imz, mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(imz) && operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPERMPD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{imz, mz, k, z},
 			Inputs:   []operand.Op{imz, mz, k},
 			Outputs:  []operand.Op{z},
@@ -63883,6 +65640,7 @@ func VPERMPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPERMPS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -63891,6 +65649,7 @@ func VPERMPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPERMPS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -63910,6 +65669,7 @@ func VPERMPS_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPERMPS",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k},
 			Outputs:  []operand.Op{z1},
@@ -63930,6 +65690,7 @@ func VPERMPS_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPERMPS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -63938,6 +65699,7 @@ func VPERMPS_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPERMPS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -64060,6 +65822,7 @@ func VPERMQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPERMQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -64068,6 +65831,7 @@ func VPERMQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPERMQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -64076,6 +65840,7 @@ func VPERMQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPERMQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -64084,6 +65849,7 @@ func VPERMQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPERMQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -64104,6 +65870,7 @@ func VPERMQ_BCST_Z(im, mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(im) && operand.IsM512M64BCST(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPERMQ",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{im, mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -64112,6 +65879,7 @@ func VPERMQ_BCST_Z(im, mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(im) && operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPERMQ",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{im, mz, k, z},
 			Inputs:   []operand.Op{im, mz, k},
 			Outputs:  []operand.Op{z},
@@ -64134,6 +65902,7 @@ func VPERMQ_Z(imz, mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(imz) && operand.IsM512M64BCST(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPERMQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{imz, mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -64142,6 +65911,7 @@ func VPERMQ_Z(imz, mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(imz) && operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPERMQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{imz, mz, k, z},
 			Inputs:   []operand.Op{imz, mz, k},
 			Outputs:  []operand.Op{z},
@@ -64150,6 +65920,7 @@ func VPERMQ_Z(imz, mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(imz) && operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPERMQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{imz, mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -64158,6 +65929,7 @@ func VPERMQ_Z(imz, mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(imz) && operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPERMQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{imz, mz, k, z},
 			Inputs:   []operand.Op{imz, mz, k},
 			Outputs:  []operand.Op{z},
@@ -64224,6 +65996,7 @@ func VPERMT2D_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPERMT2D",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -64232,6 +66005,7 @@ func VPERMT2D_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPERMT2D",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -64251,6 +66025,7 @@ func VPERMT2D_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPERMT2D",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -64271,6 +66046,7 @@ func VPERMT2D_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPERMT2D",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -64279,6 +66055,7 @@ func VPERMT2D_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPERMT2D",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -64345,6 +66122,7 @@ func VPERMT2PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPERMT2PD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -64353,6 +66131,7 @@ func VPERMT2PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPERMT2PD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -64372,6 +66151,7 @@ func VPERMT2PD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPERMT2PD",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -64392,6 +66172,7 @@ func VPERMT2PD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPERMT2PD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -64400,6 +66181,7 @@ func VPERMT2PD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPERMT2PD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -64466,6 +66248,7 @@ func VPERMT2PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPERMT2PS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -64474,6 +66257,7 @@ func VPERMT2PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPERMT2PS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -64493,6 +66277,7 @@ func VPERMT2PS_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPERMT2PS",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -64513,6 +66298,7 @@ func VPERMT2PS_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPERMT2PS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -64521,6 +66307,7 @@ func VPERMT2PS_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPERMT2PS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -64587,6 +66374,7 @@ func VPERMT2Q_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPERMT2Q",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
@@ -64595,6 +66383,7 @@ func VPERMT2Q_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPERMT2Q",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -64614,6 +66403,7 @@ func VPERMT2Q_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPERMT2Q",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -64634,6 +66424,7 @@ func VPERMT2Q_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPERMT2Q",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -64642,6 +66433,7 @@ func VPERMT2Q_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPERMT2Q",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -64708,6 +66500,7 @@ func VPEXPANDD_Z(mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPEXPANDD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -64716,6 +66509,7 @@ func VPEXPANDD_Z(mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPEXPANDD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -64782,6 +66576,7 @@ func VPEXPANDQ_Z(mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPEXPANDQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -64790,6 +66585,7 @@ func VPEXPANDQ_Z(mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPEXPANDQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -65804,6 +67600,7 @@ func VPMAXSD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPMAXSD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -65812,6 +67609,7 @@ func VPMAXSD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPMAXSD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -65831,6 +67629,7 @@ func VPMAXSD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPMAXSD",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k},
 			Outputs:  []operand.Op{z1},
@@ -65851,6 +67650,7 @@ func VPMAXSD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPMAXSD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -65859,6 +67659,7 @@ func VPMAXSD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPMAXSD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -65925,6 +67726,7 @@ func VPMAXSQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPMAXSQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -65933,6 +67735,7 @@ func VPMAXSQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPMAXSQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -65952,6 +67755,7 @@ func VPMAXSQ_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPMAXSQ",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k},
 			Outputs:  []operand.Op{z1},
@@ -65972,6 +67776,7 @@ func VPMAXSQ_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPMAXSQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -65980,6 +67785,7 @@ func VPMAXSQ_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPMAXSQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -66174,6 +67980,7 @@ func VPMAXUD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPMAXUD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -66182,6 +67989,7 @@ func VPMAXUD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPMAXUD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -66201,6 +68009,7 @@ func VPMAXUD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPMAXUD",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k},
 			Outputs:  []operand.Op{z1},
@@ -66221,6 +68030,7 @@ func VPMAXUD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPMAXUD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -66229,6 +68039,7 @@ func VPMAXUD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPMAXUD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -66295,6 +68106,7 @@ func VPMAXUQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPMAXUQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -66303,6 +68115,7 @@ func VPMAXUQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPMAXUQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -66322,6 +68135,7 @@ func VPMAXUQ_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPMAXUQ",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k},
 			Outputs:  []operand.Op{z1},
@@ -66342,6 +68156,7 @@ func VPMAXUQ_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPMAXUQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -66350,6 +68165,7 @@ func VPMAXUQ_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPMAXUQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -66544,6 +68360,7 @@ func VPMINSD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPMINSD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -66552,6 +68369,7 @@ func VPMINSD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPMINSD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -66571,6 +68389,7 @@ func VPMINSD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPMINSD",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k},
 			Outputs:  []operand.Op{z1},
@@ -66591,6 +68410,7 @@ func VPMINSD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPMINSD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -66599,6 +68419,7 @@ func VPMINSD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPMINSD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -66665,6 +68486,7 @@ func VPMINSQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPMINSQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -66673,6 +68495,7 @@ func VPMINSQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPMINSQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -66692,6 +68515,7 @@ func VPMINSQ_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPMINSQ",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k},
 			Outputs:  []operand.Op{z1},
@@ -66712,6 +68536,7 @@ func VPMINSQ_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPMINSQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -66720,6 +68545,7 @@ func VPMINSQ_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPMINSQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -66914,6 +68740,7 @@ func VPMINUD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPMINUD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -66922,6 +68749,7 @@ func VPMINUD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPMINUD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -66941,6 +68769,7 @@ func VPMINUD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPMINUD",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k},
 			Outputs:  []operand.Op{z1},
@@ -66961,6 +68790,7 @@ func VPMINUD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPMINUD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -66969,6 +68799,7 @@ func VPMINUD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPMINUD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -67035,6 +68866,7 @@ func VPMINUQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPMINUQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -67043,6 +68875,7 @@ func VPMINUQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPMINUQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -67062,6 +68895,7 @@ func VPMINUQ_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPMINUQ",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k},
 			Outputs:  []operand.Op{z1},
@@ -67082,6 +68916,7 @@ func VPMINUQ_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPMINUQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -67090,6 +68925,7 @@ func VPMINUQ_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPMINUQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -67202,6 +69038,7 @@ func VPMOVDB_Z(z, k, mx operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsXMM(mx):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVDB",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{z, k, mx},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{mx},
@@ -67210,6 +69047,7 @@ func VPMOVDB_Z(z, k, mx operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsM128(mx):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVDB",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{z, k, mx},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{mx},
@@ -67276,6 +69114,7 @@ func VPMOVDW_Z(z, k, my operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsYMM(my):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVDW",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{z, k, my},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{my},
@@ -67284,6 +69123,7 @@ func VPMOVDW_Z(z, k, my operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsM256(my):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVDW",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{z, k, my},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{my},
@@ -67378,6 +69218,7 @@ func VPMOVQB_Z(z, k, mx operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsXMM(mx):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVQB",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{z, k, mx},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{mx},
@@ -67386,6 +69227,7 @@ func VPMOVQB_Z(z, k, mx operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsM64(mx):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVQB",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{z, k, mx},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{mx},
@@ -67452,6 +69294,7 @@ func VPMOVQD_Z(z, k, my operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsYMM(my):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVQD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{z, k, my},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{my},
@@ -67460,6 +69303,7 @@ func VPMOVQD_Z(z, k, my operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsM256(my):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVQD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{z, k, my},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{my},
@@ -67526,6 +69370,7 @@ func VPMOVQW_Z(z, k, mx operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsXMM(mx):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVQW",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{z, k, mx},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{mx},
@@ -67534,6 +69379,7 @@ func VPMOVQW_Z(z, k, mx operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsM128(mx):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVQW",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{z, k, mx},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{mx},
@@ -67600,6 +69446,7 @@ func VPMOVSDB_Z(z, k, mx operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsXMM(mx):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVSDB",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{z, k, mx},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{mx},
@@ -67608,6 +69455,7 @@ func VPMOVSDB_Z(z, k, mx operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsM128(mx):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVSDB",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{z, k, mx},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{mx},
@@ -67674,6 +69522,7 @@ func VPMOVSDW_Z(z, k, my operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsYMM(my):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVSDW",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{z, k, my},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{my},
@@ -67682,6 +69531,7 @@ func VPMOVSDW_Z(z, k, my operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsM256(my):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVSDW",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{z, k, my},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{my},
@@ -67748,6 +69598,7 @@ func VPMOVSQB_Z(z, k, mx operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsXMM(mx):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVSQB",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{z, k, mx},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{mx},
@@ -67756,6 +69607,7 @@ func VPMOVSQB_Z(z, k, mx operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsM64(mx):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVSQB",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{z, k, mx},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{mx},
@@ -67822,6 +69674,7 @@ func VPMOVSQD_Z(z, k, my operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsYMM(my):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVSQD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{z, k, my},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{my},
@@ -67830,6 +69683,7 @@ func VPMOVSQD_Z(z, k, my operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsM256(my):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVSQD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{z, k, my},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{my},
@@ -67896,6 +69750,7 @@ func VPMOVSQW_Z(z, k, mx operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsXMM(mx):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVSQW",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{z, k, mx},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{mx},
@@ -67904,6 +69759,7 @@ func VPMOVSQW_Z(z, k, mx operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsM128(mx):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVSQW",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{z, k, mx},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{mx},
@@ -68006,6 +69862,7 @@ func VPMOVSXBD_Z(mx, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(mx) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVSXBD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, k, z},
 			Inputs:   []operand.Op{mx, k},
 			Outputs:  []operand.Op{z},
@@ -68014,6 +69871,7 @@ func VPMOVSXBD_Z(mx, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM128(mx) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVSXBD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, k, z},
 			Inputs:   []operand.Op{mx, k},
 			Outputs:  []operand.Op{z},
@@ -68116,6 +69974,7 @@ func VPMOVSXBQ_Z(mx, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(mx) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVSXBQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, k, z},
 			Inputs:   []operand.Op{mx, k},
 			Outputs:  []operand.Op{z},
@@ -68124,6 +69983,7 @@ func VPMOVSXBQ_Z(mx, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM64(mx) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVSXBQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, k, z},
 			Inputs:   []operand.Op{mx, k},
 			Outputs:  []operand.Op{z},
@@ -68272,6 +70132,7 @@ func VPMOVSXDQ_Z(my, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsYMM(my) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVSXDQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{my, k, z},
 			Inputs:   []operand.Op{my, k},
 			Outputs:  []operand.Op{z},
@@ -68280,6 +70141,7 @@ func VPMOVSXDQ_Z(my, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM256(my) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVSXDQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{my, k, z},
 			Inputs:   []operand.Op{my, k},
 			Outputs:  []operand.Op{z},
@@ -68382,6 +70244,7 @@ func VPMOVSXWD_Z(my, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsYMM(my) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVSXWD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{my, k, z},
 			Inputs:   []operand.Op{my, k},
 			Outputs:  []operand.Op{z},
@@ -68390,6 +70253,7 @@ func VPMOVSXWD_Z(my, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM256(my) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVSXWD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{my, k, z},
 			Inputs:   []operand.Op{my, k},
 			Outputs:  []operand.Op{z},
@@ -68492,6 +70356,7 @@ func VPMOVSXWQ_Z(mx, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(mx) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVSXWQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, k, z},
 			Inputs:   []operand.Op{mx, k},
 			Outputs:  []operand.Op{z},
@@ -68500,6 +70365,7 @@ func VPMOVSXWQ_Z(mx, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM128(mx) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVSXWQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, k, z},
 			Inputs:   []operand.Op{mx, k},
 			Outputs:  []operand.Op{z},
@@ -68566,6 +70432,7 @@ func VPMOVUSDB_Z(z, k, mx operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsXMM(mx):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVUSDB",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{z, k, mx},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{mx},
@@ -68574,6 +70441,7 @@ func VPMOVUSDB_Z(z, k, mx operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsM128(mx):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVUSDB",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{z, k, mx},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{mx},
@@ -68640,6 +70508,7 @@ func VPMOVUSDW_Z(z, k, my operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsYMM(my):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVUSDW",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{z, k, my},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{my},
@@ -68648,6 +70517,7 @@ func VPMOVUSDW_Z(z, k, my operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsM256(my):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVUSDW",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{z, k, my},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{my},
@@ -68714,6 +70584,7 @@ func VPMOVUSQB_Z(z, k, mx operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsXMM(mx):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVUSQB",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{z, k, mx},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{mx},
@@ -68722,6 +70593,7 @@ func VPMOVUSQB_Z(z, k, mx operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsM64(mx):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVUSQB",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{z, k, mx},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{mx},
@@ -68788,6 +70660,7 @@ func VPMOVUSQD_Z(z, k, my operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsYMM(my):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVUSQD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{z, k, my},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{my},
@@ -68796,6 +70669,7 @@ func VPMOVUSQD_Z(z, k, my operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsM256(my):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVUSQD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{z, k, my},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{my},
@@ -68862,6 +70736,7 @@ func VPMOVUSQW_Z(z, k, mx operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsXMM(mx):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVUSQW",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{z, k, mx},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{mx},
@@ -68870,6 +70745,7 @@ func VPMOVUSQW_Z(z, k, mx operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsM128(mx):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVUSQW",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{z, k, mx},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{mx},
@@ -68972,6 +70848,7 @@ func VPMOVZXBD_Z(mx, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(mx) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVZXBD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, k, z},
 			Inputs:   []operand.Op{mx, k},
 			Outputs:  []operand.Op{z},
@@ -68980,6 +70857,7 @@ func VPMOVZXBD_Z(mx, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM128(mx) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVZXBD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, k, z},
 			Inputs:   []operand.Op{mx, k},
 			Outputs:  []operand.Op{z},
@@ -69082,6 +70960,7 @@ func VPMOVZXBQ_Z(mx, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(mx) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVZXBQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, k, z},
 			Inputs:   []operand.Op{mx, k},
 			Outputs:  []operand.Op{z},
@@ -69090,6 +70969,7 @@ func VPMOVZXBQ_Z(mx, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM64(mx) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVZXBQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, k, z},
 			Inputs:   []operand.Op{mx, k},
 			Outputs:  []operand.Op{z},
@@ -69238,6 +71118,7 @@ func VPMOVZXDQ_Z(my, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsYMM(my) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVZXDQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{my, k, z},
 			Inputs:   []operand.Op{my, k},
 			Outputs:  []operand.Op{z},
@@ -69246,6 +71127,7 @@ func VPMOVZXDQ_Z(my, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM256(my) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVZXDQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{my, k, z},
 			Inputs:   []operand.Op{my, k},
 			Outputs:  []operand.Op{z},
@@ -69348,6 +71230,7 @@ func VPMOVZXWD_Z(my, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsYMM(my) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVZXWD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{my, k, z},
 			Inputs:   []operand.Op{my, k},
 			Outputs:  []operand.Op{z},
@@ -69356,6 +71239,7 @@ func VPMOVZXWD_Z(my, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM256(my) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVZXWD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{my, k, z},
 			Inputs:   []operand.Op{my, k},
 			Outputs:  []operand.Op{z},
@@ -69458,6 +71342,7 @@ func VPMOVZXWQ_Z(mx, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(mx) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVZXWQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, k, z},
 			Inputs:   []operand.Op{mx, k},
 			Outputs:  []operand.Op{z},
@@ -69466,6 +71351,7 @@ func VPMOVZXWQ_Z(mx, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM128(mx) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPMOVZXWQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, k, z},
 			Inputs:   []operand.Op{mx, k},
 			Outputs:  []operand.Op{z},
@@ -69568,6 +71454,7 @@ func VPMULDQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPMULDQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -69576,6 +71463,7 @@ func VPMULDQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPMULDQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -69595,6 +71483,7 @@ func VPMULDQ_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPMULDQ",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k},
 			Outputs:  []operand.Op{z1},
@@ -69615,6 +71504,7 @@ func VPMULDQ_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPMULDQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -69623,6 +71513,7 @@ func VPMULDQ_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPMULDQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -69863,6 +71754,7 @@ func VPMULLD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPMULLD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -69871,6 +71763,7 @@ func VPMULLD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPMULLD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -69890,6 +71783,7 @@ func VPMULLD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPMULLD",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k},
 			Outputs:  []operand.Op{z1},
@@ -69910,6 +71804,7 @@ func VPMULLD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPMULLD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -69918,6 +71813,7 @@ func VPMULLD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPMULLD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -70066,6 +71962,7 @@ func VPMULUDQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPMULUDQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -70074,6 +71971,7 @@ func VPMULUDQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPMULUDQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -70093,6 +71991,7 @@ func VPMULUDQ_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPMULUDQ",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k},
 			Outputs:  []operand.Op{z1},
@@ -70113,6 +72012,7 @@ func VPMULUDQ_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPMULUDQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -70121,6 +72021,7 @@ func VPMULUDQ_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPMULUDQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -70233,6 +72134,7 @@ func VPORD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPORD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -70241,6 +72143,7 @@ func VPORD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPORD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -70260,6 +72163,7 @@ func VPORD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPORD",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k},
 			Outputs:  []operand.Op{z1},
@@ -70280,6 +72184,7 @@ func VPORD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPORD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -70288,6 +72193,7 @@ func VPORD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPORD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -70354,6 +72260,7 @@ func VPORQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPORQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -70362,6 +72269,7 @@ func VPORQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPORQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -70381,6 +72289,7 @@ func VPORQ_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPORQ",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k},
 			Outputs:  []operand.Op{z1},
@@ -70401,6 +72310,7 @@ func VPORQ_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPORQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -70409,6 +72319,7 @@ func VPORQ_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPORQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -70475,6 +72386,7 @@ func VPROLD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsM512M32BCST(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPROLD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -70483,6 +72395,7 @@ func VPROLD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM512M32BCST(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPROLD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -70502,6 +72415,7 @@ func VPROLD_BCST_Z(i, m, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsM512M32BCST(m) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPROLD",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{i, m, k, z},
 			Inputs:   []operand.Op{m, k},
 			Outputs:  []operand.Op{z},
@@ -70522,6 +72436,7 @@ func VPROLD_Z(i, mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsM512M32BCST(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPROLD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{i, mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -70530,6 +72445,7 @@ func VPROLD_Z(i, mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPROLD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{i, mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -70596,6 +72512,7 @@ func VPROLQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPROLQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -70604,6 +72521,7 @@ func VPROLQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPROLQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -70623,6 +72541,7 @@ func VPROLQ_BCST_Z(i, m, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsM512M64BCST(m) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPROLQ",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{i, m, k, z},
 			Inputs:   []operand.Op{m, k},
 			Outputs:  []operand.Op{z},
@@ -70643,6 +72562,7 @@ func VPROLQ_Z(i, mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsM512M64BCST(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPROLQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{i, mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -70651,6 +72571,7 @@ func VPROLQ_Z(i, mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPROLQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{i, mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -70717,6 +72638,7 @@ func VPROLVD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPROLVD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -70725,6 +72647,7 @@ func VPROLVD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPROLVD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -70744,6 +72667,7 @@ func VPROLVD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPROLVD",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k},
 			Outputs:  []operand.Op{z1},
@@ -70764,6 +72688,7 @@ func VPROLVD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPROLVD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -70772,6 +72697,7 @@ func VPROLVD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPROLVD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -70838,6 +72764,7 @@ func VPROLVQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPROLVQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -70846,6 +72773,7 @@ func VPROLVQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPROLVQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -70865,6 +72793,7 @@ func VPROLVQ_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPROLVQ",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k},
 			Outputs:  []operand.Op{z1},
@@ -70885,6 +72814,7 @@ func VPROLVQ_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPROLVQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -70893,6 +72823,7 @@ func VPROLVQ_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPROLVQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -70959,6 +72890,7 @@ func VPRORD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsM512M32BCST(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPRORD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -70967,6 +72899,7 @@ func VPRORD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM512M32BCST(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPRORD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -70986,6 +72919,7 @@ func VPRORD_BCST_Z(i, m, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsM512M32BCST(m) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPRORD",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{i, m, k, z},
 			Inputs:   []operand.Op{m, k},
 			Outputs:  []operand.Op{z},
@@ -71006,6 +72940,7 @@ func VPRORD_Z(i, mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsM512M32BCST(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPRORD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{i, mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -71014,6 +72949,7 @@ func VPRORD_Z(i, mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPRORD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{i, mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -71080,6 +73016,7 @@ func VPRORQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPRORQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -71088,6 +73025,7 @@ func VPRORQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPRORQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -71107,6 +73045,7 @@ func VPRORQ_BCST_Z(i, m, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsM512M64BCST(m) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPRORQ",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{i, m, k, z},
 			Inputs:   []operand.Op{m, k},
 			Outputs:  []operand.Op{z},
@@ -71127,6 +73066,7 @@ func VPRORQ_Z(i, mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsM512M64BCST(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPRORQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{i, mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -71135,6 +73075,7 @@ func VPRORQ_Z(i, mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPRORQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{i, mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -71201,6 +73142,7 @@ func VPRORVD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPRORVD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -71209,6 +73151,7 @@ func VPRORVD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPRORVD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -71228,6 +73171,7 @@ func VPRORVD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPRORVD",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k},
 			Outputs:  []operand.Op{z1},
@@ -71248,6 +73192,7 @@ func VPRORVD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPRORVD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -71256,6 +73201,7 @@ func VPRORVD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPRORVD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -71322,6 +73268,7 @@ func VPRORVQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPRORVQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -71330,6 +73277,7 @@ func VPRORVQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPRORVQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -71349,6 +73297,7 @@ func VPRORVQ_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPRORVQ",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k},
 			Outputs:  []operand.Op{z1},
@@ -71369,6 +73318,7 @@ func VPRORVQ_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPRORVQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -71377,6 +73327,7 @@ func VPRORVQ_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPRORVQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -71649,6 +73600,7 @@ func VPSHUFD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsM512M32BCST(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPSHUFD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -71657,6 +73609,7 @@ func VPSHUFD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM512M32BCST(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPSHUFD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -71676,6 +73629,7 @@ func VPSHUFD_BCST_Z(i, m, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsM512M32BCST(m) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPSHUFD",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{i, m, k, z},
 			Inputs:   []operand.Op{m, k},
 			Outputs:  []operand.Op{z},
@@ -71696,6 +73650,7 @@ func VPSHUFD_Z(i, mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsM512M32BCST(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPSHUFD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{i, mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -71704,6 +73659,7 @@ func VPSHUFD_Z(i, mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPSHUFD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{i, mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -72118,6 +74074,7 @@ func VPSLLD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsM512M32BCST(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPSLLD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -72126,6 +74083,7 @@ func VPSLLD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM512M32BCST(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPSLLD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -72145,6 +74103,7 @@ func VPSLLD_BCST_Z(i, m, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsM512M32BCST(m) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPSLLD",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{i, m, k, z},
 			Inputs:   []operand.Op{m, k},
 			Outputs:  []operand.Op{z},
@@ -72167,6 +74126,7 @@ func VPSLLD_Z(imx, mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(imx) && operand.IsM512M32BCST(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPSLLD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{imx, mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -72175,6 +74135,7 @@ func VPSLLD_Z(imx, mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(imx) && operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPSLLD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{imx, mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -72183,6 +74144,7 @@ func VPSLLD_Z(imx, mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(imx) && operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPSLLD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{imx, mz, k, z},
 			Inputs:   []operand.Op{imx, mz, k},
 			Outputs:  []operand.Op{z},
@@ -72191,6 +74153,7 @@ func VPSLLD_Z(imx, mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM128(imx) && operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPSLLD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{imx, mz, k, z},
 			Inputs:   []operand.Op{imx, mz, k},
 			Outputs:  []operand.Op{z},
@@ -72347,6 +74310,7 @@ func VPSLLQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPSLLQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -72355,6 +74319,7 @@ func VPSLLQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPSLLQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -72374,6 +74339,7 @@ func VPSLLQ_BCST_Z(i, m, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsM512M64BCST(m) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPSLLQ",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{i, m, k, z},
 			Inputs:   []operand.Op{m, k},
 			Outputs:  []operand.Op{z},
@@ -72396,6 +74362,7 @@ func VPSLLQ_Z(imx, mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(imx) && operand.IsM512M64BCST(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPSLLQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{imx, mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -72404,6 +74371,7 @@ func VPSLLQ_Z(imx, mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(imx) && operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPSLLQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{imx, mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -72412,6 +74380,7 @@ func VPSLLQ_Z(imx, mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(imx) && operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPSLLQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{imx, mz, k, z},
 			Inputs:   []operand.Op{imx, mz, k},
 			Outputs:  []operand.Op{z},
@@ -72420,6 +74389,7 @@ func VPSLLQ_Z(imx, mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM128(imx) && operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPSLLQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{imx, mz, k, z},
 			Inputs:   []operand.Op{imx, mz, k},
 			Outputs:  []operand.Op{z},
@@ -72522,6 +74492,7 @@ func VPSLLVD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPSLLVD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -72530,6 +74501,7 @@ func VPSLLVD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPSLLVD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -72549,6 +74521,7 @@ func VPSLLVD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPSLLVD",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k},
 			Outputs:  []operand.Op{z1},
@@ -72569,6 +74542,7 @@ func VPSLLVD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPSLLVD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -72577,6 +74551,7 @@ func VPSLLVD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPSLLVD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -72679,6 +74654,7 @@ func VPSLLVQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPSLLVQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -72687,6 +74663,7 @@ func VPSLLVQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPSLLVQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -72706,6 +74683,7 @@ func VPSLLVQ_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPSLLVQ",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k},
 			Outputs:  []operand.Op{z1},
@@ -72726,6 +74704,7 @@ func VPSLLVQ_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPSLLVQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -72734,6 +74713,7 @@ func VPSLLVQ_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPSLLVQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -72954,6 +74934,7 @@ func VPSRAD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsM512M32BCST(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPSRAD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -72962,6 +74943,7 @@ func VPSRAD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM512M32BCST(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPSRAD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -72981,6 +74963,7 @@ func VPSRAD_BCST_Z(i, m, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsM512M32BCST(m) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPSRAD",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{i, m, k, z},
 			Inputs:   []operand.Op{m, k},
 			Outputs:  []operand.Op{z},
@@ -73003,6 +74986,7 @@ func VPSRAD_Z(imx, mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(imx) && operand.IsM512M32BCST(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPSRAD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{imx, mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -73011,6 +74995,7 @@ func VPSRAD_Z(imx, mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(imx) && operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPSRAD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{imx, mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -73019,6 +75004,7 @@ func VPSRAD_Z(imx, mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(imx) && operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPSRAD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{imx, mz, k, z},
 			Inputs:   []operand.Op{imx, mz, k},
 			Outputs:  []operand.Op{z},
@@ -73027,6 +75013,7 @@ func VPSRAD_Z(imx, mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM128(imx) && operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPSRAD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{imx, mz, k, z},
 			Inputs:   []operand.Op{imx, mz, k},
 			Outputs:  []operand.Op{z},
@@ -73129,6 +75116,7 @@ func VPSRAQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPSRAQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -73137,6 +75125,7 @@ func VPSRAQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPSRAQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -73156,6 +75145,7 @@ func VPSRAQ_BCST_Z(i, m, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsM512M64BCST(m) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPSRAQ",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{i, m, k, z},
 			Inputs:   []operand.Op{m, k},
 			Outputs:  []operand.Op{z},
@@ -73178,6 +75168,7 @@ func VPSRAQ_Z(imx, mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(imx) && operand.IsM512M64BCST(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPSRAQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{imx, mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -73186,6 +75177,7 @@ func VPSRAQ_Z(imx, mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(imx) && operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPSRAQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{imx, mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -73194,6 +75186,7 @@ func VPSRAQ_Z(imx, mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(imx) && operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPSRAQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{imx, mz, k, z},
 			Inputs:   []operand.Op{imx, mz, k},
 			Outputs:  []operand.Op{z},
@@ -73202,6 +75195,7 @@ func VPSRAQ_Z(imx, mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM128(imx) && operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPSRAQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{imx, mz, k, z},
 			Inputs:   []operand.Op{imx, mz, k},
 			Outputs:  []operand.Op{z},
@@ -73304,6 +75298,7 @@ func VPSRAVD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPSRAVD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -73312,6 +75307,7 @@ func VPSRAVD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPSRAVD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -73331,6 +75327,7 @@ func VPSRAVD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPSRAVD",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k},
 			Outputs:  []operand.Op{z1},
@@ -73351,6 +75348,7 @@ func VPSRAVD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPSRAVD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -73359,6 +75357,7 @@ func VPSRAVD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPSRAVD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -73425,6 +75424,7 @@ func VPSRAVQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPSRAVQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -73433,6 +75433,7 @@ func VPSRAVQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPSRAVQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -73452,6 +75453,7 @@ func VPSRAVQ_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPSRAVQ",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k},
 			Outputs:  []operand.Op{z1},
@@ -73472,6 +75474,7 @@ func VPSRAVQ_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPSRAVQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -73480,6 +75483,7 @@ func VPSRAVQ_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPSRAVQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -73728,6 +75732,7 @@ func VPSRLD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsM512M32BCST(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPSRLD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -73736,6 +75741,7 @@ func VPSRLD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM512M32BCST(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPSRLD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -73755,6 +75761,7 @@ func VPSRLD_BCST_Z(i, m, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsM512M32BCST(m) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPSRLD",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{i, m, k, z},
 			Inputs:   []operand.Op{m, k},
 			Outputs:  []operand.Op{z},
@@ -73777,6 +75784,7 @@ func VPSRLD_Z(imx, mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(imx) && operand.IsM512M32BCST(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPSRLD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{imx, mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -73785,6 +75793,7 @@ func VPSRLD_Z(imx, mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(imx) && operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPSRLD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{imx, mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -73793,6 +75802,7 @@ func VPSRLD_Z(imx, mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(imx) && operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPSRLD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{imx, mz, k, z},
 			Inputs:   []operand.Op{imx, mz, k},
 			Outputs:  []operand.Op{z},
@@ -73801,6 +75811,7 @@ func VPSRLD_Z(imx, mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM128(imx) && operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPSRLD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{imx, mz, k, z},
 			Inputs:   []operand.Op{imx, mz, k},
 			Outputs:  []operand.Op{z},
@@ -73957,6 +75968,7 @@ func VPSRLQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPSRLQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -73965,6 +75977,7 @@ func VPSRLQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPSRLQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -73984,6 +75997,7 @@ func VPSRLQ_BCST_Z(i, m, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsM512M64BCST(m) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPSRLQ",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{i, m, k, z},
 			Inputs:   []operand.Op{m, k},
 			Outputs:  []operand.Op{z},
@@ -74006,6 +76020,7 @@ func VPSRLQ_Z(imx, mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(imx) && operand.IsM512M64BCST(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPSRLQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{imx, mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -74014,6 +76029,7 @@ func VPSRLQ_Z(imx, mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(imx) && operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPSRLQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{imx, mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -74022,6 +76038,7 @@ func VPSRLQ_Z(imx, mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(imx) && operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPSRLQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{imx, mz, k, z},
 			Inputs:   []operand.Op{imx, mz, k},
 			Outputs:  []operand.Op{z},
@@ -74030,6 +76047,7 @@ func VPSRLQ_Z(imx, mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM128(imx) && operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VPSRLQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{imx, mz, k, z},
 			Inputs:   []operand.Op{imx, mz, k},
 			Outputs:  []operand.Op{z},
@@ -74132,6 +76150,7 @@ func VPSRLVD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPSRLVD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -74140,6 +76159,7 @@ func VPSRLVD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPSRLVD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -74159,6 +76179,7 @@ func VPSRLVD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPSRLVD",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k},
 			Outputs:  []operand.Op{z1},
@@ -74179,6 +76200,7 @@ func VPSRLVD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPSRLVD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -74187,6 +76209,7 @@ func VPSRLVD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPSRLVD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -74289,6 +76312,7 @@ func VPSRLVQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPSRLVQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -74297,6 +76321,7 @@ func VPSRLVQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPSRLVQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -74316,6 +76341,7 @@ func VPSRLVQ_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPSRLVQ",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k},
 			Outputs:  []operand.Op{z1},
@@ -74336,6 +76362,7 @@ func VPSRLVQ_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPSRLVQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -74344,6 +76371,7 @@ func VPSRLVQ_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPSRLVQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -74562,6 +76590,7 @@ func VPSUBD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPSUBD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -74570,6 +76599,7 @@ func VPSUBD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPSUBD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -74589,6 +76619,7 @@ func VPSUBD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPSUBD",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k},
 			Outputs:  []operand.Op{z1},
@@ -74609,6 +76640,7 @@ func VPSUBD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPSUBD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -74617,6 +76649,7 @@ func VPSUBD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:           "VPSUBD",
+			Suffixes:         []string{"Z"},
 			Operands:         []operand.Op{mz, z, k, z1},
 			Inputs:           []operand.Op{mz, z, k},
 			Outputs:          []operand.Op{z1},
@@ -74724,6 +76757,7 @@ func VPSUBQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPSUBQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -74732,6 +76766,7 @@ func VPSUBQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPSUBQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -74751,6 +76786,7 @@ func VPSUBQ_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPSUBQ",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k},
 			Outputs:  []operand.Op{z1},
@@ -74771,6 +76807,7 @@ func VPSUBQ_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPSUBQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -74779,6 +76816,7 @@ func VPSUBQ_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:           "VPSUBQ",
+			Suffixes:         []string{"Z"},
 			Operands:         []operand.Op{mz, z, k, z1},
 			Inputs:           []operand.Op{mz, z, k},
 			Outputs:          []operand.Op{z1},
@@ -75086,6 +77124,7 @@ func VPTERNLOGD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM512M32BCST(ops[1]) && operand.IsZMM(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPTERNLOGD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -75094,6 +77133,7 @@ func VPTERNLOGD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsM512M32BCST(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]) && operand.IsZMM(ops[4]):
 		return &intrep.Instruction{
 			Opcode:   "VPTERNLOGD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2], ops[3], ops[4]},
 			Outputs:  []operand.Op{ops[4]},
@@ -75113,6 +77153,7 @@ func VPTERNLOGD_BCST_Z(i, m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsM512M32BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPTERNLOGD",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{i, m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -75133,6 +77174,7 @@ func VPTERNLOGD_Z(i, mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsM512M32BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPTERNLOGD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{i, mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -75141,6 +77183,7 @@ func VPTERNLOGD_Z(i, mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPTERNLOGD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{i, mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -75207,6 +77250,7 @@ func VPTERNLOGQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsZMM(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPTERNLOGQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
@@ -75215,6 +77259,7 @@ func VPTERNLOGQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]) && operand.IsZMM(ops[4]):
 		return &intrep.Instruction{
 			Opcode:   "VPTERNLOGQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2], ops[3], ops[4]},
 			Outputs:  []operand.Op{ops[4]},
@@ -75234,6 +77279,7 @@ func VPTERNLOGQ_BCST_Z(i, m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsM512M64BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPTERNLOGQ",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{i, m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -75254,6 +77300,7 @@ func VPTERNLOGQ_Z(i, mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsM512M64BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPTERNLOGQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{i, mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -75262,6 +77309,7 @@ func VPTERNLOGQ_Z(i, mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPTERNLOGQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{i, mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k, z1},
 			Outputs:  []operand.Op{z1},
@@ -75374,6 +77422,7 @@ func VPTESTMD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPTESTMD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -75382,6 +77431,7 @@ func VPTESTMD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsK(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPTESTMD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -75448,6 +77498,7 @@ func VPTESTMQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPTESTMQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -75456,6 +77507,7 @@ func VPTESTMQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsK(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPTESTMQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -75522,6 +77574,7 @@ func VPTESTNMD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPTESTNMD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -75530,6 +77583,7 @@ func VPTESTNMD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsK(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPTESTNMD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -75596,6 +77650,7 @@ func VPTESTNMQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPTESTNMQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -75604,6 +77659,7 @@ func VPTESTNMQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsK(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPTESTNMQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -75752,6 +77808,7 @@ func VPUNPCKHDQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPUNPCKHDQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -75760,6 +77817,7 @@ func VPUNPCKHDQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPUNPCKHDQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -75779,6 +77837,7 @@ func VPUNPCKHDQ_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPUNPCKHDQ",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k},
 			Outputs:  []operand.Op{z1},
@@ -75799,6 +77858,7 @@ func VPUNPCKHDQ_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPUNPCKHDQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -75807,6 +77867,7 @@ func VPUNPCKHDQ_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPUNPCKHDQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -75909,6 +77970,7 @@ func VPUNPCKHQDQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPUNPCKHQDQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -75917,6 +77979,7 @@ func VPUNPCKHQDQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPUNPCKHQDQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -75936,6 +77999,7 @@ func VPUNPCKHQDQ_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPUNPCKHQDQ",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k},
 			Outputs:  []operand.Op{z1},
@@ -75956,6 +78020,7 @@ func VPUNPCKHQDQ_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPUNPCKHQDQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -75964,6 +78029,7 @@ func VPUNPCKHQDQ_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPUNPCKHQDQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -76158,6 +78224,7 @@ func VPUNPCKLDQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPUNPCKLDQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -76166,6 +78233,7 @@ func VPUNPCKLDQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPUNPCKLDQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -76185,6 +78253,7 @@ func VPUNPCKLDQ_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPUNPCKLDQ",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k},
 			Outputs:  []operand.Op{z1},
@@ -76205,6 +78274,7 @@ func VPUNPCKLDQ_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPUNPCKLDQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -76213,6 +78283,7 @@ func VPUNPCKLDQ_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPUNPCKLDQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -76315,6 +78386,7 @@ func VPUNPCKLQDQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPUNPCKLQDQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -76323,6 +78395,7 @@ func VPUNPCKLQDQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPUNPCKLQDQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -76342,6 +78415,7 @@ func VPUNPCKLQDQ_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPUNPCKLQDQ",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k},
 			Outputs:  []operand.Op{z1},
@@ -76362,6 +78436,7 @@ func VPUNPCKLQDQ_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPUNPCKLQDQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -76370,6 +78445,7 @@ func VPUNPCKLQDQ_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPUNPCKLQDQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -76530,6 +78606,7 @@ func VPXORD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPXORD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -76538,6 +78615,7 @@ func VPXORD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPXORD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -76557,6 +78635,7 @@ func VPXORD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPXORD",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k},
 			Outputs:  []operand.Op{z1},
@@ -76577,6 +78656,7 @@ func VPXORD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPXORD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -76585,6 +78665,7 @@ func VPXORD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPXORD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -76651,6 +78732,7 @@ func VPXORQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPXORQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -76659,6 +78741,7 @@ func VPXORQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VPXORQ",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -76678,6 +78761,7 @@ func VPXORQ_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPXORQ",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k},
 			Outputs:  []operand.Op{z1},
@@ -76698,6 +78782,7 @@ func VPXORQ_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPXORQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -76706,6 +78791,7 @@ func VPXORQ_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VPXORQ",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -76772,6 +78858,7 @@ func VRCP14PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 2 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VRCP14PD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
@@ -76780,6 +78867,7 @@ func VRCP14PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VRCP14PD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -76799,6 +78887,7 @@ func VRCP14PD_BCST_Z(m, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(m) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VRCP14PD",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, k, z},
 			Inputs:   []operand.Op{m, k},
 			Outputs:  []operand.Op{z},
@@ -76819,6 +78908,7 @@ func VRCP14PD_Z(mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VRCP14PD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -76827,6 +78917,7 @@ func VRCP14PD_Z(mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VRCP14PD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -76893,6 +78984,7 @@ func VRCP14PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 2 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VRCP14PS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
@@ -76901,6 +78993,7 @@ func VRCP14PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VRCP14PS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -76920,6 +79013,7 @@ func VRCP14PS_BCST_Z(m, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(m) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VRCP14PS",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, k, z},
 			Inputs:   []operand.Op{m, k},
 			Outputs:  []operand.Op{z},
@@ -76940,6 +79034,7 @@ func VRCP14PS_Z(mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VRCP14PS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -76948,6 +79043,7 @@ func VRCP14PS_Z(mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VRCP14PS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -77014,6 +79110,7 @@ func VRCP14SD_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VRCP14SD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k},
 			Outputs:  []operand.Op{x1},
@@ -77022,6 +79119,7 @@ func VRCP14SD_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM64(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VRCP14SD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k},
 			Outputs:  []operand.Op{x1},
@@ -77088,6 +79186,7 @@ func VRCP14SS_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VRCP14SS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k},
 			Outputs:  []operand.Op{x1},
@@ -77096,6 +79195,7 @@ func VRCP14SS_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM32(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VRCP14SS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k},
 			Outputs:  []operand.Op{x1},
@@ -77236,6 +79336,7 @@ func VRNDSCALEPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VRNDSCALEPD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -77244,6 +79345,7 @@ func VRNDSCALEPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VRNDSCALEPD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -77263,6 +79365,7 @@ func VRNDSCALEPD_BCST_Z(i, m, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsM512M64BCST(m) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VRNDSCALEPD",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{i, m, k, z},
 			Inputs:   []operand.Op{m, k},
 			Outputs:  []operand.Op{z},
@@ -77283,6 +79386,7 @@ func VRNDSCALEPD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VRNDSCALEPD",
+			Suffixes: []string{"SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -77291,6 +79395,7 @@ func VRNDSCALEPD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VRNDSCALEPD",
+			Suffixes: []string{"SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -77310,6 +79415,7 @@ func VRNDSCALEPD_SAE_Z(i, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VRNDSCALEPD",
+			Suffixes: []string{"SAE", "Z"},
 			Operands: []operand.Op{i, z, k, z1},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{z1},
@@ -77330,6 +79436,7 @@ func VRNDSCALEPD_Z(i, mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsM512M64BCST(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VRNDSCALEPD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{i, mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -77338,6 +79445,7 @@ func VRNDSCALEPD_Z(i, mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VRNDSCALEPD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{i, mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -77404,6 +79512,7 @@ func VRNDSCALEPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsM512M32BCST(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VRNDSCALEPS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -77412,6 +79521,7 @@ func VRNDSCALEPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM512M32BCST(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VRNDSCALEPS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -77431,6 +79541,7 @@ func VRNDSCALEPS_BCST_Z(i, m, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsM512M32BCST(m) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VRNDSCALEPS",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{i, m, k, z},
 			Inputs:   []operand.Op{m, k},
 			Outputs:  []operand.Op{z},
@@ -77451,6 +79562,7 @@ func VRNDSCALEPS_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VRNDSCALEPS",
+			Suffixes: []string{"SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -77459,6 +79571,7 @@ func VRNDSCALEPS_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VRNDSCALEPS",
+			Suffixes: []string{"SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -77478,6 +79591,7 @@ func VRNDSCALEPS_SAE_Z(i, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VRNDSCALEPS",
+			Suffixes: []string{"SAE", "Z"},
 			Operands: []operand.Op{i, z, k, z1},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{z1},
@@ -77498,6 +79612,7 @@ func VRNDSCALEPS_Z(i, mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsM512M32BCST(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VRNDSCALEPS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{i, mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -77506,6 +79621,7 @@ func VRNDSCALEPS_Z(i, mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VRNDSCALEPS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{i, mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -77572,6 +79688,7 @@ func VRNDSCALESD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VRNDSCALESD",
+			Suffixes: []string{"SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -77580,6 +79697,7 @@ func VRNDSCALESD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]) && operand.IsK(ops[3]) && operand.IsXMM(ops[4]):
 		return &intrep.Instruction{
 			Opcode:   "VRNDSCALESD",
+			Suffixes: []string{"SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[4]},
@@ -77599,6 +79717,7 @@ func VRNDSCALESD_SAE_Z(i, x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsIMM8(i) && operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VRNDSCALESD",
+			Suffixes: []string{"SAE", "Z"},
 			Operands: []operand.Op{i, x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k},
 			Outputs:  []operand.Op{x2},
@@ -77619,6 +79738,7 @@ func VRNDSCALESD_Z(i, mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsM64(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VRNDSCALESD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{i, mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k},
 			Outputs:  []operand.Op{x1},
@@ -77627,6 +79747,7 @@ func VRNDSCALESD_Z(i, mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VRNDSCALESD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{i, mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k},
 			Outputs:  []operand.Op{x1},
@@ -77693,6 +79814,7 @@ func VRNDSCALESS_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VRNDSCALESS",
+			Suffixes: []string{"SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -77701,6 +79823,7 @@ func VRNDSCALESS_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]) && operand.IsK(ops[3]) && operand.IsXMM(ops[4]):
 		return &intrep.Instruction{
 			Opcode:   "VRNDSCALESS",
+			Suffixes: []string{"SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[4]},
@@ -77720,6 +79843,7 @@ func VRNDSCALESS_SAE_Z(i, x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	case operand.IsIMM8(i) && operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VRNDSCALESS",
+			Suffixes: []string{"SAE", "Z"},
 			Operands: []operand.Op{i, x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k},
 			Outputs:  []operand.Op{x2},
@@ -77740,6 +79864,7 @@ func VRNDSCALESS_Z(i, mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsM32(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VRNDSCALESS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{i, mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k},
 			Outputs:  []operand.Op{x1},
@@ -77748,6 +79873,7 @@ func VRNDSCALESS_Z(i, mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VRNDSCALESS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{i, mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k},
 			Outputs:  []operand.Op{x1},
@@ -77962,6 +80088,7 @@ func VRSQRT14PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 2 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VRSQRT14PD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
@@ -77970,6 +80097,7 @@ func VRSQRT14PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VRSQRT14PD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -77989,6 +80117,7 @@ func VRSQRT14PD_BCST_Z(m, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(m) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VRSQRT14PD",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, k, z},
 			Inputs:   []operand.Op{m, k},
 			Outputs:  []operand.Op{z},
@@ -78009,6 +80138,7 @@ func VRSQRT14PD_Z(mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VRSQRT14PD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -78017,6 +80147,7 @@ func VRSQRT14PD_Z(mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VRSQRT14PD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -78083,6 +80214,7 @@ func VRSQRT14PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 2 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VRSQRT14PS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
@@ -78091,6 +80223,7 @@ func VRSQRT14PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VRSQRT14PS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -78110,6 +80243,7 @@ func VRSQRT14PS_BCST_Z(m, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(m) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VRSQRT14PS",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, k, z},
 			Inputs:   []operand.Op{m, k},
 			Outputs:  []operand.Op{z},
@@ -78130,6 +80264,7 @@ func VRSQRT14PS_Z(mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VRSQRT14PS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -78138,6 +80273,7 @@ func VRSQRT14PS_Z(mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VRSQRT14PS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -78204,6 +80340,7 @@ func VRSQRT14SD_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VRSQRT14SD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k},
 			Outputs:  []operand.Op{x1},
@@ -78212,6 +80349,7 @@ func VRSQRT14SD_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM64(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VRSQRT14SD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k},
 			Outputs:  []operand.Op{x1},
@@ -78278,6 +80416,7 @@ func VRSQRT14SS_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VRSQRT14SS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k},
 			Outputs:  []operand.Op{x1},
@@ -78286,6 +80425,7 @@ func VRSQRT14SS_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM32(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VRSQRT14SS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k},
 			Outputs:  []operand.Op{x1},
@@ -78426,6 +80566,7 @@ func VSCALEFPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VSCALEFPD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -78434,6 +80575,7 @@ func VSCALEFPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VSCALEFPD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -78453,6 +80595,7 @@ func VSCALEFPD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VSCALEFPD",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k},
 			Outputs:  []operand.Op{z1},
@@ -78473,6 +80616,7 @@ func VSCALEFPD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VSCALEFPD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -78481,6 +80625,7 @@ func VSCALEFPD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VSCALEFPD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -78500,6 +80645,7 @@ func VSCALEFPD_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VSCALEFPD",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k},
 			Outputs:  []operand.Op{z2},
@@ -78520,6 +80666,7 @@ func VSCALEFPD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VSCALEFPD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -78528,6 +80675,7 @@ func VSCALEFPD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VSCALEFPD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -78547,6 +80695,7 @@ func VSCALEFPD_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VSCALEFPD",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k},
 			Outputs:  []operand.Op{z2},
@@ -78567,6 +80716,7 @@ func VSCALEFPD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VSCALEFPD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -78575,6 +80725,7 @@ func VSCALEFPD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VSCALEFPD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -78594,6 +80745,7 @@ func VSCALEFPD_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VSCALEFPD",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k},
 			Outputs:  []operand.Op{z2},
@@ -78614,6 +80766,7 @@ func VSCALEFPD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VSCALEFPD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -78622,6 +80775,7 @@ func VSCALEFPD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VSCALEFPD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -78641,6 +80795,7 @@ func VSCALEFPD_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VSCALEFPD",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k},
 			Outputs:  []operand.Op{z2},
@@ -78661,6 +80816,7 @@ func VSCALEFPD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VSCALEFPD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -78669,6 +80825,7 @@ func VSCALEFPD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VSCALEFPD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -78735,6 +80892,7 @@ func VSCALEFPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VSCALEFPS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -78743,6 +80901,7 @@ func VSCALEFPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VSCALEFPS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -78762,6 +80921,7 @@ func VSCALEFPS_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VSCALEFPS",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k},
 			Outputs:  []operand.Op{z1},
@@ -78782,6 +80942,7 @@ func VSCALEFPS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VSCALEFPS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -78790,6 +80951,7 @@ func VSCALEFPS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VSCALEFPS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -78809,6 +80971,7 @@ func VSCALEFPS_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VSCALEFPS",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k},
 			Outputs:  []operand.Op{z2},
@@ -78829,6 +80992,7 @@ func VSCALEFPS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VSCALEFPS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -78837,6 +81001,7 @@ func VSCALEFPS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VSCALEFPS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -78856,6 +81021,7 @@ func VSCALEFPS_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VSCALEFPS",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k},
 			Outputs:  []operand.Op{z2},
@@ -78876,6 +81042,7 @@ func VSCALEFPS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VSCALEFPS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -78884,6 +81051,7 @@ func VSCALEFPS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VSCALEFPS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -78903,6 +81071,7 @@ func VSCALEFPS_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VSCALEFPS",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k},
 			Outputs:  []operand.Op{z2},
@@ -78923,6 +81092,7 @@ func VSCALEFPS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VSCALEFPS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -78931,6 +81101,7 @@ func VSCALEFPS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VSCALEFPS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -78950,6 +81121,7 @@ func VSCALEFPS_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VSCALEFPS",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k},
 			Outputs:  []operand.Op{z2},
@@ -78970,6 +81142,7 @@ func VSCALEFPS_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VSCALEFPS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -78978,6 +81151,7 @@ func VSCALEFPS_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VSCALEFPS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -79044,6 +81218,7 @@ func VSCALEFSD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VSCALEFSD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -79052,6 +81227,7 @@ func VSCALEFSD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VSCALEFSD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -79071,6 +81247,7 @@ func VSCALEFSD_RD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VSCALEFSD",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k},
 			Outputs:  []operand.Op{x2},
@@ -79091,6 +81268,7 @@ func VSCALEFSD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VSCALEFSD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -79099,6 +81277,7 @@ func VSCALEFSD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VSCALEFSD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -79118,6 +81297,7 @@ func VSCALEFSD_RN_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VSCALEFSD",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k},
 			Outputs:  []operand.Op{x2},
@@ -79138,6 +81318,7 @@ func VSCALEFSD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VSCALEFSD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -79146,6 +81327,7 @@ func VSCALEFSD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VSCALEFSD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -79165,6 +81347,7 @@ func VSCALEFSD_RU_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VSCALEFSD",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k},
 			Outputs:  []operand.Op{x2},
@@ -79185,6 +81368,7 @@ func VSCALEFSD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VSCALEFSD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -79193,6 +81377,7 @@ func VSCALEFSD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VSCALEFSD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -79212,6 +81397,7 @@ func VSCALEFSD_RZ_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VSCALEFSD",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k},
 			Outputs:  []operand.Op{x2},
@@ -79232,6 +81418,7 @@ func VSCALEFSD_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM64(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VSCALEFSD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k},
 			Outputs:  []operand.Op{x1},
@@ -79240,6 +81427,7 @@ func VSCALEFSD_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VSCALEFSD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k},
 			Outputs:  []operand.Op{x1},
@@ -79306,6 +81494,7 @@ func VSCALEFSS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VSCALEFSS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -79314,6 +81503,7 @@ func VSCALEFSS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VSCALEFSS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -79333,6 +81523,7 @@ func VSCALEFSS_RD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VSCALEFSS",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k},
 			Outputs:  []operand.Op{x2},
@@ -79353,6 +81544,7 @@ func VSCALEFSS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VSCALEFSS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -79361,6 +81553,7 @@ func VSCALEFSS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VSCALEFSS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -79380,6 +81573,7 @@ func VSCALEFSS_RN_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VSCALEFSS",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k},
 			Outputs:  []operand.Op{x2},
@@ -79400,6 +81594,7 @@ func VSCALEFSS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VSCALEFSS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -79408,6 +81603,7 @@ func VSCALEFSS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VSCALEFSS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -79427,6 +81623,7 @@ func VSCALEFSS_RU_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VSCALEFSS",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k},
 			Outputs:  []operand.Op{x2},
@@ -79447,6 +81644,7 @@ func VSCALEFSS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VSCALEFSS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -79455,6 +81653,7 @@ func VSCALEFSS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VSCALEFSS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -79474,6 +81673,7 @@ func VSCALEFSS_RZ_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VSCALEFSS",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k},
 			Outputs:  []operand.Op{x2},
@@ -79494,6 +81694,7 @@ func VSCALEFSS_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM32(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VSCALEFSS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k},
 			Outputs:  []operand.Op{x1},
@@ -79502,6 +81703,7 @@ func VSCALEFSS_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VSCALEFSS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k},
 			Outputs:  []operand.Op{x1},
@@ -79644,6 +81846,7 @@ func VSHUFF32X4_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM512M32BCST(ops[1]) && operand.IsZMM(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VSHUFF32X4",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -79652,6 +81855,7 @@ func VSHUFF32X4_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsM512M32BCST(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]) && operand.IsZMM(ops[4]):
 		return &intrep.Instruction{
 			Opcode:   "VSHUFF32X4",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[4]},
@@ -79671,6 +81875,7 @@ func VSHUFF32X4_BCST_Z(i, m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsM512M32BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VSHUFF32X4",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{i, m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k},
 			Outputs:  []operand.Op{z1},
@@ -79691,6 +81896,7 @@ func VSHUFF32X4_Z(i, mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsM512M32BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VSHUFF32X4",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{i, mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -79699,6 +81905,7 @@ func VSHUFF32X4_Z(i, mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VSHUFF32X4",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{i, mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -79765,6 +81972,7 @@ func VSHUFF64X2_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsZMM(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VSHUFF64X2",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -79773,6 +81981,7 @@ func VSHUFF64X2_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]) && operand.IsZMM(ops[4]):
 		return &intrep.Instruction{
 			Opcode:   "VSHUFF64X2",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[4]},
@@ -79792,6 +82001,7 @@ func VSHUFF64X2_BCST_Z(i, m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsM512M64BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VSHUFF64X2",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{i, m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k},
 			Outputs:  []operand.Op{z1},
@@ -79812,6 +82022,7 @@ func VSHUFF64X2_Z(i, mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsM512M64BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VSHUFF64X2",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{i, mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -79820,6 +82031,7 @@ func VSHUFF64X2_Z(i, mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VSHUFF64X2",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{i, mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -79886,6 +82098,7 @@ func VSHUFI32X4_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM512M32BCST(ops[1]) && operand.IsZMM(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VSHUFI32X4",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -79894,6 +82107,7 @@ func VSHUFI32X4_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsM512M32BCST(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]) && operand.IsZMM(ops[4]):
 		return &intrep.Instruction{
 			Opcode:   "VSHUFI32X4",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[4]},
@@ -79913,6 +82127,7 @@ func VSHUFI32X4_BCST_Z(i, m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsM512M32BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VSHUFI32X4",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{i, m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k},
 			Outputs:  []operand.Op{z1},
@@ -79933,6 +82148,7 @@ func VSHUFI32X4_Z(i, mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsM512M32BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VSHUFI32X4",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{i, mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -79941,6 +82157,7 @@ func VSHUFI32X4_Z(i, mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VSHUFI32X4",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{i, mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -80007,6 +82224,7 @@ func VSHUFI64X2_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsZMM(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VSHUFI64X2",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -80015,6 +82233,7 @@ func VSHUFI64X2_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]) && operand.IsZMM(ops[4]):
 		return &intrep.Instruction{
 			Opcode:   "VSHUFI64X2",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[4]},
@@ -80034,6 +82253,7 @@ func VSHUFI64X2_BCST_Z(i, m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsM512M64BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VSHUFI64X2",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{i, m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k},
 			Outputs:  []operand.Op{z1},
@@ -80054,6 +82274,7 @@ func VSHUFI64X2_Z(i, mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsM512M64BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VSHUFI64X2",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{i, mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -80062,6 +82283,7 @@ func VSHUFI64X2_Z(i, mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VSHUFI64X2",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{i, mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -80164,6 +82386,7 @@ func VSHUFPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsZMM(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VSHUFPD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -80172,6 +82395,7 @@ func VSHUFPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsM512M64BCST(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]) && operand.IsZMM(ops[4]):
 		return &intrep.Instruction{
 			Opcode:   "VSHUFPD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[4]},
@@ -80191,6 +82415,7 @@ func VSHUFPD_BCST_Z(i, m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsM512M64BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VSHUFPD",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{i, m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k},
 			Outputs:  []operand.Op{z1},
@@ -80211,6 +82436,7 @@ func VSHUFPD_Z(i, mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsM512M64BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VSHUFPD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{i, mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -80219,6 +82445,7 @@ func VSHUFPD_Z(i, mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VSHUFPD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{i, mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -80321,6 +82548,7 @@ func VSHUFPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsIMM8(ops[0]) && operand.IsM512M32BCST(ops[1]) && operand.IsZMM(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VSHUFPS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -80329,6 +82557,7 @@ func VSHUFPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 5 && operand.IsIMM8(ops[0]) && operand.IsM512M32BCST(ops[1]) && operand.IsZMM(ops[2]) && operand.IsK(ops[3]) && operand.IsZMM(ops[4]):
 		return &intrep.Instruction{
 			Opcode:   "VSHUFPS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[4]},
@@ -80348,6 +82577,7 @@ func VSHUFPS_BCST_Z(i, m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsM512M32BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VSHUFPS",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{i, m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k},
 			Outputs:  []operand.Op{z1},
@@ -80368,6 +82598,7 @@ func VSHUFPS_Z(i, mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsM512M32BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VSHUFPS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{i, mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -80376,6 +82607,7 @@ func VSHUFPS_Z(i, mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsIMM8(i) && operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VSHUFPS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{i, mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -80478,6 +82710,7 @@ func VSQRTPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 2 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VSQRTPD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
@@ -80486,6 +82719,7 @@ func VSQRTPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VSQRTPD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -80505,6 +82739,7 @@ func VSQRTPD_BCST_Z(m, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(m) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VSQRTPD",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, k, z},
 			Inputs:   []operand.Op{m, k},
 			Outputs:  []operand.Op{z},
@@ -80525,6 +82760,7 @@ func VSQRTPD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VSQRTPD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
@@ -80533,6 +82769,7 @@ func VSQRTPD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VSQRTPD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -80552,6 +82789,7 @@ func VSQRTPD_RD_SAE_Z(z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VSQRTPD",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{z, k, z1},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{z1},
@@ -80572,6 +82810,7 @@ func VSQRTPD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VSQRTPD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
@@ -80580,6 +82819,7 @@ func VSQRTPD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VSQRTPD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -80599,6 +82839,7 @@ func VSQRTPD_RN_SAE_Z(z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VSQRTPD",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{z, k, z1},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{z1},
@@ -80619,6 +82860,7 @@ func VSQRTPD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VSQRTPD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
@@ -80627,6 +82869,7 @@ func VSQRTPD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VSQRTPD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -80646,6 +82889,7 @@ func VSQRTPD_RU_SAE_Z(z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VSQRTPD",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{z, k, z1},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{z1},
@@ -80666,6 +82910,7 @@ func VSQRTPD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VSQRTPD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
@@ -80674,6 +82919,7 @@ func VSQRTPD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VSQRTPD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -80693,6 +82939,7 @@ func VSQRTPD_RZ_SAE_Z(z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VSQRTPD",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{z, k, z1},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{z1},
@@ -80713,6 +82960,7 @@ func VSQRTPD_Z(mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VSQRTPD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -80721,6 +82969,7 @@ func VSQRTPD_Z(mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VSQRTPD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -80823,6 +83072,7 @@ func VSQRTPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 2 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VSQRTPS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
@@ -80831,6 +83081,7 @@ func VSQRTPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VSQRTPS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -80850,6 +83101,7 @@ func VSQRTPS_BCST_Z(m, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(m) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VSQRTPS",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, k, z},
 			Inputs:   []operand.Op{m, k},
 			Outputs:  []operand.Op{z},
@@ -80870,6 +83122,7 @@ func VSQRTPS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VSQRTPS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
@@ -80878,6 +83131,7 @@ func VSQRTPS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VSQRTPS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -80897,6 +83151,7 @@ func VSQRTPS_RD_SAE_Z(z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VSQRTPS",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{z, k, z1},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{z1},
@@ -80917,6 +83172,7 @@ func VSQRTPS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VSQRTPS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
@@ -80925,6 +83181,7 @@ func VSQRTPS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VSQRTPS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -80944,6 +83201,7 @@ func VSQRTPS_RN_SAE_Z(z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VSQRTPS",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{z, k, z1},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{z1},
@@ -80964,6 +83222,7 @@ func VSQRTPS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VSQRTPS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
@@ -80972,6 +83231,7 @@ func VSQRTPS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VSQRTPS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -80991,6 +83251,7 @@ func VSQRTPS_RU_SAE_Z(z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VSQRTPS",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{z, k, z1},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{z1},
@@ -81011,6 +83272,7 @@ func VSQRTPS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
 			Opcode:   "VSQRTPS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0]},
 			Outputs:  []operand.Op{ops[1]},
@@ -81019,6 +83281,7 @@ func VSQRTPS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VSQRTPS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -81038,6 +83301,7 @@ func VSQRTPS_RZ_SAE_Z(z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VSQRTPS",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{z, k, z1},
 			Inputs:   []operand.Op{z, k},
 			Outputs:  []operand.Op{z1},
@@ -81058,6 +83322,7 @@ func VSQRTPS_Z(mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VSQRTPS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -81066,6 +83331,7 @@ func VSQRTPS_Z(mz, k, z operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(z):
 		return &intrep.Instruction{
 			Opcode:   "VSQRTPS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, k, z},
 			Inputs:   []operand.Op{mz, k},
 			Outputs:  []operand.Op{z},
@@ -81150,6 +83416,7 @@ func VSQRTSD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VSQRTSD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -81158,6 +83425,7 @@ func VSQRTSD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VSQRTSD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -81177,6 +83445,7 @@ func VSQRTSD_RD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VSQRTSD",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k},
 			Outputs:  []operand.Op{x2},
@@ -81197,6 +83466,7 @@ func VSQRTSD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VSQRTSD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -81205,6 +83475,7 @@ func VSQRTSD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VSQRTSD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -81224,6 +83495,7 @@ func VSQRTSD_RN_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VSQRTSD",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k},
 			Outputs:  []operand.Op{x2},
@@ -81244,6 +83516,7 @@ func VSQRTSD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VSQRTSD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -81252,6 +83525,7 @@ func VSQRTSD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VSQRTSD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -81271,6 +83545,7 @@ func VSQRTSD_RU_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VSQRTSD",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k},
 			Outputs:  []operand.Op{x2},
@@ -81291,6 +83566,7 @@ func VSQRTSD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VSQRTSD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -81299,6 +83575,7 @@ func VSQRTSD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VSQRTSD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -81318,6 +83595,7 @@ func VSQRTSD_RZ_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VSQRTSD",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k},
 			Outputs:  []operand.Op{x2},
@@ -81338,6 +83616,7 @@ func VSQRTSD_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM64(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VSQRTSD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k},
 			Outputs:  []operand.Op{x1},
@@ -81346,6 +83625,7 @@ func VSQRTSD_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VSQRTSD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k},
 			Outputs:  []operand.Op{x1},
@@ -81430,6 +83710,7 @@ func VSQRTSS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VSQRTSS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -81438,6 +83719,7 @@ func VSQRTSS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VSQRTSS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -81457,6 +83739,7 @@ func VSQRTSS_RD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VSQRTSS",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k},
 			Outputs:  []operand.Op{x2},
@@ -81477,6 +83760,7 @@ func VSQRTSS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VSQRTSS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -81485,6 +83769,7 @@ func VSQRTSS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VSQRTSS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -81504,6 +83789,7 @@ func VSQRTSS_RN_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VSQRTSS",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k},
 			Outputs:  []operand.Op{x2},
@@ -81524,6 +83810,7 @@ func VSQRTSS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VSQRTSS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -81532,6 +83819,7 @@ func VSQRTSS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VSQRTSS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -81551,6 +83839,7 @@ func VSQRTSS_RU_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VSQRTSS",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k},
 			Outputs:  []operand.Op{x2},
@@ -81571,6 +83860,7 @@ func VSQRTSS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VSQRTSS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -81579,6 +83869,7 @@ func VSQRTSS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VSQRTSS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -81598,6 +83889,7 @@ func VSQRTSS_RZ_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VSQRTSS",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k},
 			Outputs:  []operand.Op{x2},
@@ -81618,6 +83910,7 @@ func VSQRTSS_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM32(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VSQRTSS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k},
 			Outputs:  []operand.Op{x1},
@@ -81626,6 +83919,7 @@ func VSQRTSS_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VSQRTSS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k},
 			Outputs:  []operand.Op{x1},
@@ -81747,6 +84041,7 @@ func VSUBPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VSUBPD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -81755,6 +84050,7 @@ func VSUBPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VSUBPD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -81774,6 +84070,7 @@ func VSUBPD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VSUBPD",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k},
 			Outputs:  []operand.Op{z1},
@@ -81794,6 +84091,7 @@ func VSUBPD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VSUBPD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -81802,6 +84100,7 @@ func VSUBPD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VSUBPD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -81821,6 +84120,7 @@ func VSUBPD_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VSUBPD",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k},
 			Outputs:  []operand.Op{z2},
@@ -81841,6 +84141,7 @@ func VSUBPD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VSUBPD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -81849,6 +84150,7 @@ func VSUBPD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VSUBPD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -81868,6 +84170,7 @@ func VSUBPD_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VSUBPD",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k},
 			Outputs:  []operand.Op{z2},
@@ -81888,6 +84191,7 @@ func VSUBPD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VSUBPD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -81896,6 +84200,7 @@ func VSUBPD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VSUBPD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -81915,6 +84220,7 @@ func VSUBPD_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VSUBPD",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k},
 			Outputs:  []operand.Op{z2},
@@ -81935,6 +84241,7 @@ func VSUBPD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VSUBPD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -81943,6 +84250,7 @@ func VSUBPD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VSUBPD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -81962,6 +84270,7 @@ func VSUBPD_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VSUBPD",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k},
 			Outputs:  []operand.Op{z2},
@@ -81982,6 +84291,7 @@ func VSUBPD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VSUBPD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -81990,6 +84300,7 @@ func VSUBPD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VSUBPD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -82092,6 +84403,7 @@ func VSUBPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VSUBPS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -82100,6 +84412,7 @@ func VSUBPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VSUBPS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -82119,6 +84432,7 @@ func VSUBPS_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VSUBPS",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k},
 			Outputs:  []operand.Op{z1},
@@ -82139,6 +84453,7 @@ func VSUBPS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VSUBPS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -82147,6 +84462,7 @@ func VSUBPS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VSUBPS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -82166,6 +84482,7 @@ func VSUBPS_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VSUBPS",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k},
 			Outputs:  []operand.Op{z2},
@@ -82186,6 +84503,7 @@ func VSUBPS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VSUBPS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -82194,6 +84512,7 @@ func VSUBPS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VSUBPS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -82213,6 +84532,7 @@ func VSUBPS_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VSUBPS",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k},
 			Outputs:  []operand.Op{z2},
@@ -82233,6 +84553,7 @@ func VSUBPS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VSUBPS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -82241,6 +84562,7 @@ func VSUBPS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VSUBPS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -82260,6 +84582,7 @@ func VSUBPS_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VSUBPS",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k},
 			Outputs:  []operand.Op{z2},
@@ -82280,6 +84603,7 @@ func VSUBPS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VSUBPS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -82288,6 +84612,7 @@ func VSUBPS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VSUBPS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -82307,6 +84632,7 @@ func VSUBPS_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(z) && operand.IsZMM(z1) && operand.IsK(k) && operand.IsZMM(z2):
 		return &intrep.Instruction{
 			Opcode:   "VSUBPS",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{z, z1, k, z2},
 			Inputs:   []operand.Op{z, z1, k},
 			Outputs:  []operand.Op{z2},
@@ -82327,6 +84653,7 @@ func VSUBPS_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VSUBPS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -82335,6 +84662,7 @@ func VSUBPS_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VSUBPS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -82419,6 +84747,7 @@ func VSUBSD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VSUBSD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -82427,6 +84756,7 @@ func VSUBSD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VSUBSD",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -82446,6 +84776,7 @@ func VSUBSD_RD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VSUBSD",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k},
 			Outputs:  []operand.Op{x2},
@@ -82466,6 +84797,7 @@ func VSUBSD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VSUBSD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -82474,6 +84806,7 @@ func VSUBSD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VSUBSD",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -82493,6 +84826,7 @@ func VSUBSD_RN_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VSUBSD",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k},
 			Outputs:  []operand.Op{x2},
@@ -82513,6 +84847,7 @@ func VSUBSD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VSUBSD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -82521,6 +84856,7 @@ func VSUBSD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VSUBSD",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -82540,6 +84876,7 @@ func VSUBSD_RU_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VSUBSD",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k},
 			Outputs:  []operand.Op{x2},
@@ -82560,6 +84897,7 @@ func VSUBSD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VSUBSD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -82568,6 +84906,7 @@ func VSUBSD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VSUBSD",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -82587,6 +84926,7 @@ func VSUBSD_RZ_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VSUBSD",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k},
 			Outputs:  []operand.Op{x2},
@@ -82607,6 +84947,7 @@ func VSUBSD_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM64(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VSUBSD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k},
 			Outputs:  []operand.Op{x1},
@@ -82615,6 +84956,7 @@ func VSUBSD_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VSUBSD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k},
 			Outputs:  []operand.Op{x1},
@@ -82699,6 +85041,7 @@ func VSUBSS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VSUBSS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -82707,6 +85050,7 @@ func VSUBSS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VSUBSS",
+			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -82726,6 +85070,7 @@ func VSUBSS_RD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VSUBSS",
+			Suffixes: []string{"RD_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k},
 			Outputs:  []operand.Op{x2},
@@ -82746,6 +85091,7 @@ func VSUBSS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VSUBSS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -82754,6 +85100,7 @@ func VSUBSS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VSUBSS",
+			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -82773,6 +85120,7 @@ func VSUBSS_RN_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VSUBSS",
+			Suffixes: []string{"RN_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k},
 			Outputs:  []operand.Op{x2},
@@ -82793,6 +85141,7 @@ func VSUBSS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VSUBSS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -82801,6 +85150,7 @@ func VSUBSS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VSUBSS",
+			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -82820,6 +85170,7 @@ func VSUBSS_RU_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VSUBSS",
+			Suffixes: []string{"RU_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k},
 			Outputs:  []operand.Op{x2},
@@ -82840,6 +85191,7 @@ func VSUBSS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsXMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VSUBSS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -82848,6 +85200,7 @@ func VSUBSS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]) && operand.IsK(ops[2]) && operand.IsXMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VSUBSS",
+			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -82867,6 +85220,7 @@ func VSUBSS_RZ_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsXMM(x1) && operand.IsK(k) && operand.IsXMM(x2):
 		return &intrep.Instruction{
 			Opcode:   "VSUBSS",
+			Suffixes: []string{"RZ_SAE", "Z"},
 			Operands: []operand.Op{x, x1, k, x2},
 			Inputs:   []operand.Op{x, x1, k},
 			Outputs:  []operand.Op{x2},
@@ -82887,6 +85241,7 @@ func VSUBSS_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM32(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VSUBSS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k},
 			Outputs:  []operand.Op{x1},
@@ -82895,6 +85250,7 @@ func VSUBSS_Z(mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(mx) && operand.IsXMM(x) && operand.IsK(k) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VSUBSS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mx, x, k, x1},
 			Inputs:   []operand.Op{mx, x, k},
 			Outputs:  []operand.Op{x1},
@@ -83052,6 +85408,7 @@ func VUCOMISD_SAE(x, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VUCOMISD",
+			Suffixes: []string{"SAE"},
 			Operands: []operand.Op{x, x1},
 			Inputs:   []operand.Op{x, x1},
 			Outputs:  []operand.Op{},
@@ -83117,6 +85474,7 @@ func VUCOMISS_SAE(x, x1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsXMM(x) && operand.IsXMM(x1):
 		return &intrep.Instruction{
 			Opcode:   "VUCOMISS",
+			Suffixes: []string{"SAE"},
 			Operands: []operand.Op{x, x1},
 			Inputs:   []operand.Op{x, x1},
 			Outputs:  []operand.Op{},
@@ -83219,6 +85577,7 @@ func VUNPCKHPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VUNPCKHPD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -83227,6 +85586,7 @@ func VUNPCKHPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VUNPCKHPD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -83246,6 +85606,7 @@ func VUNPCKHPD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VUNPCKHPD",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k},
 			Outputs:  []operand.Op{z1},
@@ -83266,6 +85627,7 @@ func VUNPCKHPD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VUNPCKHPD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -83274,6 +85636,7 @@ func VUNPCKHPD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VUNPCKHPD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -83376,6 +85739,7 @@ func VUNPCKHPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VUNPCKHPS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -83384,6 +85748,7 @@ func VUNPCKHPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VUNPCKHPS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -83403,6 +85768,7 @@ func VUNPCKHPS_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VUNPCKHPS",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k},
 			Outputs:  []operand.Op{z1},
@@ -83423,6 +85789,7 @@ func VUNPCKHPS_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VUNPCKHPS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -83431,6 +85798,7 @@ func VUNPCKHPS_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VUNPCKHPS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -83533,6 +85901,7 @@ func VUNPCKLPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VUNPCKLPD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -83541,6 +85910,7 @@ func VUNPCKLPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VUNPCKLPD",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -83560,6 +85930,7 @@ func VUNPCKLPD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VUNPCKLPD",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k},
 			Outputs:  []operand.Op{z1},
@@ -83580,6 +85951,7 @@ func VUNPCKLPD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M64BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VUNPCKLPD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -83588,6 +85960,7 @@ func VUNPCKLPD_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VUNPCKLPD",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -83690,6 +86063,7 @@ func VUNPCKLPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VUNPCKLPS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1]},
 			Outputs:  []operand.Op{ops[2]},
@@ -83698,6 +86072,7 @@ func VUNPCKLPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	case len(ops) == 4 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]) && operand.IsK(ops[2]) && operand.IsZMM(ops[3]):
 		return &intrep.Instruction{
 			Opcode:   "VUNPCKLPS",
+			Suffixes: []string{"BCST"},
 			Operands: ops,
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[3]},
@@ -83717,6 +86092,7 @@ func VUNPCKLPS_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(m) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VUNPCKLPS",
+			Suffixes: []string{"BCST", "Z"},
 			Operands: []operand.Op{m, z, k, z1},
 			Inputs:   []operand.Op{m, z, k},
 			Outputs:  []operand.Op{z1},
@@ -83737,6 +86113,7 @@ func VUNPCKLPS_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsM512M32BCST(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VUNPCKLPS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
@@ -83745,6 +86122,7 @@ func VUNPCKLPS_Z(mz, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	case operand.IsZMM(mz) && operand.IsZMM(z) && operand.IsK(k) && operand.IsZMM(z1):
 		return &intrep.Instruction{
 			Opcode:   "VUNPCKLPS",
+			Suffixes: []string{"Z"},
 			Operands: []operand.Op{mz, z, k, z1},
 			Inputs:   []operand.Op{mz, z, k},
 			Outputs:  []operand.Op{z1},
