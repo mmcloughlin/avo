@@ -14,15 +14,13 @@ import (
 // when masking in AVX-512. In merge masking, some of the bits of the output
 // register will be preserved, so the register is live coming into the
 // instruction. Zeroing mode removes any input dependency.
-
-// 1. Initialize accumulator.
-// 2. Create temporary Z registers. Initialize them.
-// 3. Initialize a mask register.
-// 4. Write to each Z register in zeroing mode.
-// 5. Add it into the accumulator.
+//
+// This synthetic test sets up a situation where we allocate multiple temporary
+// registers. Allocation is only feasible if the liveness pass correctly
+// identifies that they are not all live at once.
 
 func main() {
-	const n = 10
+	const n = 32
 
 	TEXT("Zeroing", NOSPLIT, "func(out *[8]uint64)")
 	Doc("Zeroing computes the sum 1+2+...+" + strconv.Itoa(n) + " in 8 lanes of 512-bit register.")
@@ -49,26 +47,25 @@ func main() {
 	}
 
 	// Prepare a mask register set to all ones.
+	Comment("Prepare mask register.")
 	k := K()
 	KXNORW(k, k, k)
 
 	// Prepare an increment register set to 1 in each lane.
+	Comment("Prepare constant registers.")
 	one := GP64()
 	MOVQ(U64(1), one)
 	ones := ZMM()
 	VPBROADCASTQ(one, ones)
 
-	//
 	zero := ZMM()
 	VPXORD(zero, zero, zero)
 
 	last := zero
 	for i := 0; i < n; i++ {
 		Commentf("Summand %d.", i+1)
-
 		VPADDD_Z(last, ones, k, z[i])
 		VPADDD(s, z[i], s)
-
 		last = z[i]
 	}
 

@@ -2,5 +2,5 @@
 
 package zeroing
 
-// Zeroing computes the sum 1+2+...+10 in 8 lanes of 512-bit register.
+// Zeroing computes the sum 1+2+...+32 in 8 lanes of 512-bit register.
 func Zeroing(out *[8]uint64)
