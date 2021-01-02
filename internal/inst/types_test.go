@@ -8,11 +8,11 @@ import (
 func TestFormSupportedSuffixes(t *testing.T) {
 	cases := []struct {
 		Form   Form
-		Expect [][]string
+		Expect []Suffixes
 	}{
 		{
 			Form: Form{},
-			Expect: [][]string{
+			Expect: []Suffixes{
 				{},
 			},
 		},
@@ -20,37 +20,37 @@ func TestFormSupportedSuffixes(t *testing.T) {
 			Form: Form{
 				Broadcast: true,
 			},
-			Expect: [][]string{
+			Expect: []Suffixes{
 				{},
-				{"BCST"},
+				{BCST},
 			},
 		},
 		{
 			Form: Form{
 				EmbeddedRounding: true,
 			},
-			Expect: [][]string{
+			Expect: []Suffixes{
 				{},
-				{"RN_SAE"},
-				{"RZ_SAE"},
-				{"RD_SAE"},
-				{"RU_SAE"},
+				{RN_SAE},
+				{RZ_SAE},
+				{RD_SAE},
+				{RU_SAE},
 			},
 		},
 		{
 			Form: Form{
 				SuppressAllExceptions: true,
 			},
-			Expect: [][]string{
+			Expect: []Suffixes{
 				{},
-				{"SAE"},
+				{SAE},
 			},
 		},
 		{
 			Form: Form{
 				Zeroing: true,
 			},
-			Expect: [][]string{
+			Expect: []Suffixes{
 				{},
 				{"Z"},
 			},
@@ -60,17 +60,17 @@ func TestFormSupportedSuffixes(t *testing.T) {
 				EmbeddedRounding: true,
 				Zeroing:          true,
 			},
-			Expect: [][]string{
+			Expect: []Suffixes{
 				{},
-				{"RN_SAE"},
-				{"RZ_SAE"},
-				{"RD_SAE"},
-				{"RU_SAE"},
-				{"Z"},
-				{"RN_SAE", "Z"},
-				{"RZ_SAE", "Z"},
-				{"RD_SAE", "Z"},
-				{"RU_SAE", "Z"},
+				{RN_SAE},
+				{RZ_SAE},
+				{RD_SAE},
+				{RU_SAE},
+				{Z},
+				{RN_SAE, Z},
+				{RZ_SAE, Z},
+				{RD_SAE, Z},
+				{RU_SAE, Z},
 			},
 		},
 	}

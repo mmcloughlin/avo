@@ -143,16 +143,16 @@ func (f Form) Clone() Form {
 
 // SupportedSuffixes returns the list of all possible suffix combinations
 // supported by this instruction form.
-func (f Form) SupportedSuffixes() [][]string {
-	suffixes := [][]string{
+func (f Form) SupportedSuffixes() []Suffixes {
+	suffixes := []Suffixes{
 		{},
 	}
 
-	add := func(ss ...string) {
-		var exts [][]string
+	add := func(ss ...Suffix) {
+		var exts []Suffixes
 		for _, s := range ss {
 			for _, suffix := range suffixes {
-				ext := append([]string(nil), suffix...)
+				ext := append(Suffixes(nil), suffix...)
 				ext = append(ext, s)
 				exts = append(exts, ext)
 			}
@@ -161,22 +161,84 @@ func (f Form) SupportedSuffixes() [][]string {
 	}
 
 	if f.Broadcast {
-		add("BCST")
+		add(BCST)
 	}
 
 	if f.EmbeddedRounding {
-		add("RN_SAE", "RZ_SAE", "RD_SAE", "RU_SAE")
+		add(RN_SAE, RZ_SAE, RD_SAE, RU_SAE)
 	}
 
 	if f.SuppressAllExceptions {
-		add("SAE")
+		add(SAE)
 	}
 
 	if f.Zeroing {
-		add("Z")
+		add(Z)
 	}
 
 	return suffixes
+}
+
+// Suffix is an opcode suffix.
+type Suffix string
+
+// Supported opcode suffixes in x86 assembly.
+const (
+	BCST   Suffix = "BCST"
+	RN_SAE Suffix = "RN_SAE"
+	RZ_SAE Suffix = "RZ_SAE"
+	RD_SAE Suffix = "RD_SAE"
+	RU_SAE Suffix = "RU_SAE"
+	SAE    Suffix = "SAE"
+	Z      Suffix = "Z"
+)
+
+func (s Suffix) String() string {
+	return string(s)
+}
+
+// Summary of the opcode suffix, for documentation purposes.
+func (s Suffix) Summary() string {
+	return suffixsummary[s]
+}
+
+var suffixsummary = map[Suffix]string{
+	BCST:   "Broadcast",
+	RN_SAE: "Round Towards Nearest",
+	RZ_SAE: "Round Towards Zero",
+	RD_SAE: "Round Towards Negative Infinity",
+	RU_SAE: "Round Towards Positive Infinity",
+	SAE:    "Suppress All Exceptions",
+	Z:      "Zeroing Masking",
+}
+
+// Suffixes is a list of opcode suffixes.
+type Suffixes []Suffix
+
+// String returns the dot-separated suffixes.
+func (s Suffixes) String() string { return s.Join(".") }
+
+// Join suffixes with the given separator.
+func (s Suffixes) Join(sep string) string {
+	return strings.Join(s.Strings(), sep)
+}
+
+// Strings returns the suffixes as strings.
+func (s Suffixes) Strings() []string {
+	var ss []string
+	for _, suffix := range s {
+		ss = append(ss, suffix.String())
+	}
+	return ss
+}
+
+// Summaries returns all the suffix summaries.
+func (s Suffixes) Summaries() []string {
+	var summaries []string
+	for _, suffix := range s {
+		summaries = append(summaries, suffix.Summary())
+	}
+	return summaries
 }
 
 // Operand is an operand to an instruction, describing the expected type and read/write action.

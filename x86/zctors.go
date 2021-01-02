@@ -19905,7 +19905,7 @@ func VADDPD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VADDPD: bad operands")
 }
 
-// VADDPD_BCST: Add Packed Double-Precision Floating-Point Values.
+// VADDPD_BCST: Add Packed Double-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -19935,7 +19935,7 @@ func VADDPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VADDPD_BCST: bad operands")
 }
 
-// VADDPD_BCST_Z: Add Packed Double-Precision Floating-Point Values.
+// VADDPD_BCST_Z: Add Packed Double-Precision Floating-Point Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -19955,7 +19955,7 @@ func VADDPD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VADDPD_BCST_Z: bad operands")
 }
 
-// VADDPD_RD_SAE: Add Packed Double-Precision Floating-Point Values.
+// VADDPD_RD_SAE: Add Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -19985,7 +19985,7 @@ func VADDPD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VADDPD_RD_SAE: bad operands")
 }
 
-// VADDPD_RD_SAE_Z: Add Packed Double-Precision Floating-Point Values.
+// VADDPD_RD_SAE_Z: Add Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -20005,7 +20005,7 @@ func VADDPD_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VADDPD_RD_SAE_Z: bad operands")
 }
 
-// VADDPD_RN_SAE: Add Packed Double-Precision Floating-Point Values.
+// VADDPD_RN_SAE: Add Packed Double-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -20035,7 +20035,7 @@ func VADDPD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VADDPD_RN_SAE: bad operands")
 }
 
-// VADDPD_RN_SAE_Z: Add Packed Double-Precision Floating-Point Values.
+// VADDPD_RN_SAE_Z: Add Packed Double-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -20055,7 +20055,7 @@ func VADDPD_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VADDPD_RN_SAE_Z: bad operands")
 }
 
-// VADDPD_RU_SAE: Add Packed Double-Precision Floating-Point Values.
+// VADDPD_RU_SAE: Add Packed Double-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -20085,7 +20085,7 @@ func VADDPD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VADDPD_RU_SAE: bad operands")
 }
 
-// VADDPD_RU_SAE_Z: Add Packed Double-Precision Floating-Point Values.
+// VADDPD_RU_SAE_Z: Add Packed Double-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -20105,7 +20105,7 @@ func VADDPD_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VADDPD_RU_SAE_Z: bad operands")
 }
 
-// VADDPD_RZ_SAE: Add Packed Double-Precision Floating-Point Values.
+// VADDPD_RZ_SAE: Add Packed Double-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -20135,7 +20135,7 @@ func VADDPD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VADDPD_RZ_SAE: bad operands")
 }
 
-// VADDPD_RZ_SAE_Z: Add Packed Double-Precision Floating-Point Values.
+// VADDPD_RZ_SAE_Z: Add Packed Double-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -20155,7 +20155,7 @@ func VADDPD_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VADDPD_RZ_SAE_Z: bad operands")
 }
 
-// VADDPD_Z: Add Packed Double-Precision Floating-Point Values.
+// VADDPD_Z: Add Packed Double-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -20267,7 +20267,7 @@ func VADDPS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VADDPS: bad operands")
 }
 
-// VADDPS_BCST: Add Packed Single-Precision Floating-Point Values.
+// VADDPS_BCST: Add Packed Single-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -20297,7 +20297,7 @@ func VADDPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VADDPS_BCST: bad operands")
 }
 
-// VADDPS_BCST_Z: Add Packed Single-Precision Floating-Point Values.
+// VADDPS_BCST_Z: Add Packed Single-Precision Floating-Point Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -20317,7 +20317,7 @@ func VADDPS_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VADDPS_BCST_Z: bad operands")
 }
 
-// VADDPS_RD_SAE: Add Packed Single-Precision Floating-Point Values.
+// VADDPS_RD_SAE: Add Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -20347,7 +20347,7 @@ func VADDPS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VADDPS_RD_SAE: bad operands")
 }
 
-// VADDPS_RD_SAE_Z: Add Packed Single-Precision Floating-Point Values.
+// VADDPS_RD_SAE_Z: Add Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -20367,7 +20367,7 @@ func VADDPS_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VADDPS_RD_SAE_Z: bad operands")
 }
 
-// VADDPS_RN_SAE: Add Packed Single-Precision Floating-Point Values.
+// VADDPS_RN_SAE: Add Packed Single-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -20397,7 +20397,7 @@ func VADDPS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VADDPS_RN_SAE: bad operands")
 }
 
-// VADDPS_RN_SAE_Z: Add Packed Single-Precision Floating-Point Values.
+// VADDPS_RN_SAE_Z: Add Packed Single-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -20417,7 +20417,7 @@ func VADDPS_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VADDPS_RN_SAE_Z: bad operands")
 }
 
-// VADDPS_RU_SAE: Add Packed Single-Precision Floating-Point Values.
+// VADDPS_RU_SAE: Add Packed Single-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -20447,7 +20447,7 @@ func VADDPS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VADDPS_RU_SAE: bad operands")
 }
 
-// VADDPS_RU_SAE_Z: Add Packed Single-Precision Floating-Point Values.
+// VADDPS_RU_SAE_Z: Add Packed Single-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -20467,7 +20467,7 @@ func VADDPS_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VADDPS_RU_SAE_Z: bad operands")
 }
 
-// VADDPS_RZ_SAE: Add Packed Single-Precision Floating-Point Values.
+// VADDPS_RZ_SAE: Add Packed Single-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -20497,7 +20497,7 @@ func VADDPS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VADDPS_RZ_SAE: bad operands")
 }
 
-// VADDPS_RZ_SAE_Z: Add Packed Single-Precision Floating-Point Values.
+// VADDPS_RZ_SAE_Z: Add Packed Single-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -20517,7 +20517,7 @@ func VADDPS_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VADDPS_RZ_SAE_Z: bad operands")
 }
 
-// VADDPS_Z: Add Packed Single-Precision Floating-Point Values.
+// VADDPS_Z: Add Packed Single-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -20611,7 +20611,7 @@ func VADDSD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VADDSD: bad operands")
 }
 
-// VADDSD_RD_SAE: Add Scalar Double-Precision Floating-Point Values.
+// VADDSD_RD_SAE: Add Scalar Double-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -20641,7 +20641,7 @@ func VADDSD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VADDSD_RD_SAE: bad operands")
 }
 
-// VADDSD_RD_SAE_Z: Add Scalar Double-Precision Floating-Point Values.
+// VADDSD_RD_SAE_Z: Add Scalar Double-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -20661,7 +20661,7 @@ func VADDSD_RD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VADDSD_RD_SAE_Z: bad operands")
 }
 
-// VADDSD_RN_SAE: Add Scalar Double-Precision Floating-Point Values.
+// VADDSD_RN_SAE: Add Scalar Double-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -20691,7 +20691,7 @@ func VADDSD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VADDSD_RN_SAE: bad operands")
 }
 
-// VADDSD_RN_SAE_Z: Add Scalar Double-Precision Floating-Point Values.
+// VADDSD_RN_SAE_Z: Add Scalar Double-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -20711,7 +20711,7 @@ func VADDSD_RN_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VADDSD_RN_SAE_Z: bad operands")
 }
 
-// VADDSD_RU_SAE: Add Scalar Double-Precision Floating-Point Values.
+// VADDSD_RU_SAE: Add Scalar Double-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -20741,7 +20741,7 @@ func VADDSD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VADDSD_RU_SAE: bad operands")
 }
 
-// VADDSD_RU_SAE_Z: Add Scalar Double-Precision Floating-Point Values.
+// VADDSD_RU_SAE_Z: Add Scalar Double-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -20761,7 +20761,7 @@ func VADDSD_RU_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VADDSD_RU_SAE_Z: bad operands")
 }
 
-// VADDSD_RZ_SAE: Add Scalar Double-Precision Floating-Point Values.
+// VADDSD_RZ_SAE: Add Scalar Double-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -20791,7 +20791,7 @@ func VADDSD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VADDSD_RZ_SAE: bad operands")
 }
 
-// VADDSD_RZ_SAE_Z: Add Scalar Double-Precision Floating-Point Values.
+// VADDSD_RZ_SAE_Z: Add Scalar Double-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -20811,7 +20811,7 @@ func VADDSD_RZ_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VADDSD_RZ_SAE_Z: bad operands")
 }
 
-// VADDSD_Z: Add Scalar Double-Precision Floating-Point Values.
+// VADDSD_Z: Add Scalar Double-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -20905,7 +20905,7 @@ func VADDSS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VADDSS: bad operands")
 }
 
-// VADDSS_RD_SAE: Add Scalar Single-Precision Floating-Point Values.
+// VADDSS_RD_SAE: Add Scalar Single-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -20935,7 +20935,7 @@ func VADDSS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VADDSS_RD_SAE: bad operands")
 }
 
-// VADDSS_RD_SAE_Z: Add Scalar Single-Precision Floating-Point Values.
+// VADDSS_RD_SAE_Z: Add Scalar Single-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -20955,7 +20955,7 @@ func VADDSS_RD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VADDSS_RD_SAE_Z: bad operands")
 }
 
-// VADDSS_RN_SAE: Add Scalar Single-Precision Floating-Point Values.
+// VADDSS_RN_SAE: Add Scalar Single-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -20985,7 +20985,7 @@ func VADDSS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VADDSS_RN_SAE: bad operands")
 }
 
-// VADDSS_RN_SAE_Z: Add Scalar Single-Precision Floating-Point Values.
+// VADDSS_RN_SAE_Z: Add Scalar Single-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -21005,7 +21005,7 @@ func VADDSS_RN_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VADDSS_RN_SAE_Z: bad operands")
 }
 
-// VADDSS_RU_SAE: Add Scalar Single-Precision Floating-Point Values.
+// VADDSS_RU_SAE: Add Scalar Single-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -21035,7 +21035,7 @@ func VADDSS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VADDSS_RU_SAE: bad operands")
 }
 
-// VADDSS_RU_SAE_Z: Add Scalar Single-Precision Floating-Point Values.
+// VADDSS_RU_SAE_Z: Add Scalar Single-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -21055,7 +21055,7 @@ func VADDSS_RU_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VADDSS_RU_SAE_Z: bad operands")
 }
 
-// VADDSS_RZ_SAE: Add Scalar Single-Precision Floating-Point Values.
+// VADDSS_RZ_SAE: Add Scalar Single-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -21085,7 +21085,7 @@ func VADDSS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VADDSS_RZ_SAE: bad operands")
 }
 
-// VADDSS_RZ_SAE_Z: Add Scalar Single-Precision Floating-Point Values.
+// VADDSS_RZ_SAE_Z: Add Scalar Single-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -21105,7 +21105,7 @@ func VADDSS_RZ_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VADDSS_RZ_SAE_Z: bad operands")
 }
 
-// VADDSS_Z: Add Scalar Single-Precision Floating-Point Values.
+// VADDSS_Z: Add Scalar Single-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -21441,7 +21441,7 @@ func VALIGND(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VALIGND: bad operands")
 }
 
-// VALIGND_BCST: Align Doubleword Vectors.
+// VALIGND_BCST: Align Doubleword Vectors (Broadcast).
 //
 // Forms:
 //
@@ -21471,7 +21471,7 @@ func VALIGND_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VALIGND_BCST: bad operands")
 }
 
-// VALIGND_BCST_Z: Align Doubleword Vectors.
+// VALIGND_BCST_Z: Align Doubleword Vectors (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -21491,7 +21491,7 @@ func VALIGND_BCST_Z(i, m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VALIGND_BCST_Z: bad operands")
 }
 
-// VALIGND_Z: Align Doubleword Vectors.
+// VALIGND_Z: Align Doubleword Vectors (Zeroing Masking).
 //
 // Forms:
 //
@@ -21567,7 +21567,7 @@ func VALIGNQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VALIGNQ: bad operands")
 }
 
-// VALIGNQ_BCST: Align Quadword Vectors.
+// VALIGNQ_BCST: Align Quadword Vectors (Broadcast).
 //
 // Forms:
 //
@@ -21597,7 +21597,7 @@ func VALIGNQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VALIGNQ_BCST: bad operands")
 }
 
-// VALIGNQ_BCST_Z: Align Quadword Vectors.
+// VALIGNQ_BCST_Z: Align Quadword Vectors (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -21617,7 +21617,7 @@ func VALIGNQ_BCST_Z(i, m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VALIGNQ_BCST_Z: bad operands")
 }
 
-// VALIGNQ_Z: Align Quadword Vectors.
+// VALIGNQ_Z: Align Quadword Vectors (Zeroing Masking).
 //
 // Forms:
 //
@@ -21881,7 +21881,7 @@ func VBLENDMPD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VBLENDMPD: bad operands")
 }
 
-// VBLENDMPD_BCST: Blend Packed Double-Precision Floating-Point Vectors Using an OpMask Control.
+// VBLENDMPD_BCST: Blend Packed Double-Precision Floating-Point Vectors Using an OpMask Control (Broadcast).
 //
 // Forms:
 //
@@ -21911,7 +21911,7 @@ func VBLENDMPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VBLENDMPD_BCST: bad operands")
 }
 
-// VBLENDMPD_BCST_Z: Blend Packed Double-Precision Floating-Point Vectors Using an OpMask Control.
+// VBLENDMPD_BCST_Z: Blend Packed Double-Precision Floating-Point Vectors Using an OpMask Control (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -21931,7 +21931,7 @@ func VBLENDMPD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VBLENDMPD_BCST_Z: bad operands")
 }
 
-// VBLENDMPD_Z: Blend Packed Double-Precision Floating-Point Vectors Using an OpMask Control.
+// VBLENDMPD_Z: Blend Packed Double-Precision Floating-Point Vectors Using an OpMask Control (Zeroing Masking).
 //
 // Forms:
 //
@@ -22007,7 +22007,7 @@ func VBLENDMPS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VBLENDMPS: bad operands")
 }
 
-// VBLENDMPS_BCST: Blend Packed Single-Precision Floating-Point Vectors Using an OpMask Control.
+// VBLENDMPS_BCST: Blend Packed Single-Precision Floating-Point Vectors Using an OpMask Control (Broadcast).
 //
 // Forms:
 //
@@ -22037,7 +22037,7 @@ func VBLENDMPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VBLENDMPS_BCST: bad operands")
 }
 
-// VBLENDMPS_BCST_Z: Blend Packed Single-Precision Floating-Point Vectors Using an OpMask Control.
+// VBLENDMPS_BCST_Z: Blend Packed Single-Precision Floating-Point Vectors Using an OpMask Control (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -22057,7 +22057,7 @@ func VBLENDMPS_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VBLENDMPS_BCST_Z: bad operands")
 }
 
-// VBLENDMPS_Z: Blend Packed Single-Precision Floating-Point Vectors Using an OpMask Control.
+// VBLENDMPS_Z: Blend Packed Single-Precision Floating-Point Vectors Using an OpMask Control (Zeroing Masking).
 //
 // Forms:
 //
@@ -22318,7 +22318,7 @@ func VBROADCASTF32X4(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VBROADCASTF32X4: bad operands")
 }
 
-// VBROADCASTF32X4_Z: Broadcast Four Single-Precision Floating-Point Elements.
+// VBROADCASTF32X4_Z: Broadcast Four Single-Precision Floating-Point Elements (Zeroing Masking).
 //
 // Forms:
 //
@@ -22366,7 +22366,7 @@ func VBROADCASTF64X4(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VBROADCASTF64X4: bad operands")
 }
 
-// VBROADCASTF64X4_Z: Broadcast Four Double-Precision Floating-Point Elements.
+// VBROADCASTF64X4_Z: Broadcast Four Double-Precision Floating-Point Elements (Zeroing Masking).
 //
 // Forms:
 //
@@ -22433,7 +22433,7 @@ func VBROADCASTI32X4(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VBROADCASTI32X4: bad operands")
 }
 
-// VBROADCASTI32X4_Z: Broadcast Four Doubleword Elements.
+// VBROADCASTI32X4_Z: Broadcast Four Doubleword Elements (Zeroing Masking).
 //
 // Forms:
 //
@@ -22481,7 +22481,7 @@ func VBROADCASTI64X4(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VBROADCASTI64X4: bad operands")
 }
 
-// VBROADCASTI64X4_Z: Broadcast Four Quadword Elements.
+// VBROADCASTI64X4_Z: Broadcast Four Quadword Elements (Zeroing Masking).
 //
 // Forms:
 //
@@ -22565,7 +22565,7 @@ func VBROADCASTSD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VBROADCASTSD: bad operands")
 }
 
-// VBROADCASTSD_Z: Broadcast Double-Precision Floating-Point Element.
+// VBROADCASTSD_Z: Broadcast Double-Precision Floating-Point Element (Zeroing Masking).
 //
 // Forms:
 //
@@ -22677,7 +22677,7 @@ func VBROADCASTSS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VBROADCASTSS: bad operands")
 }
 
-// VBROADCASTSS_Z: Broadcast Single-Precision Floating-Point Element.
+// VBROADCASTSS_Z: Broadcast Single-Precision Floating-Point Element (Zeroing Masking).
 //
 // Forms:
 //
@@ -22789,7 +22789,7 @@ func VCMPPD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCMPPD: bad operands")
 }
 
-// VCMPPD_BCST: Compare Packed Double-Precision Floating-Point Values.
+// VCMPPD_BCST: Compare Packed Double-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -22819,7 +22819,7 @@ func VCMPPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCMPPD_BCST: bad operands")
 }
 
-// VCMPPD_SAE: Compare Packed Double-Precision Floating-Point Values.
+// VCMPPD_SAE: Compare Packed Double-Precision Floating-Point Values (Suppress All Exceptions).
 //
 // Forms:
 //
@@ -22931,7 +22931,7 @@ func VCMPPS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCMPPS: bad operands")
 }
 
-// VCMPPS_BCST: Compare Packed Single-Precision Floating-Point Values.
+// VCMPPS_BCST: Compare Packed Single-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -22961,7 +22961,7 @@ func VCMPPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCMPPS_BCST: bad operands")
 }
 
-// VCMPPS_SAE: Compare Packed Single-Precision Floating-Point Values.
+// VCMPPS_SAE: Compare Packed Single-Precision Floating-Point Values (Suppress All Exceptions).
 //
 // Forms:
 //
@@ -23055,7 +23055,7 @@ func VCMPSD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCMPSD: bad operands")
 }
 
-// VCMPSD_SAE: Compare Scalar Double-Precision Floating-Point Values.
+// VCMPSD_SAE: Compare Scalar Double-Precision Floating-Point Values (Suppress All Exceptions).
 //
 // Forms:
 //
@@ -23149,7 +23149,7 @@ func VCMPSS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCMPSS: bad operands")
 }
 
-// VCMPSS_SAE: Compare Scalar Single-Precision Floating-Point Values.
+// VCMPSS_SAE: Compare Scalar Single-Precision Floating-Point Values (Suppress All Exceptions).
 //
 // Forms:
 //
@@ -23225,7 +23225,7 @@ func VCOMISD(mx, x operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCOMISD: bad operands")
 }
 
-// VCOMISD_SAE: Compare Scalar Ordered Double-Precision Floating-Point Values and Set EFLAGS.
+// VCOMISD_SAE: Compare Scalar Ordered Double-Precision Floating-Point Values and Set EFLAGS (Suppress All Exceptions).
 //
 // Forms:
 //
@@ -23291,7 +23291,7 @@ func VCOMISS(mx, x operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCOMISS: bad operands")
 }
 
-// VCOMISS_SAE: Compare Scalar Ordered Single-Precision Floating-Point Values and Set EFLAGS.
+// VCOMISS_SAE: Compare Scalar Ordered Single-Precision Floating-Point Values and Set EFLAGS (Suppress All Exceptions).
 //
 // Forms:
 //
@@ -23357,7 +23357,7 @@ func VCOMPRESSPD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCOMPRESSPD: bad operands")
 }
 
-// VCOMPRESSPD_Z: Store Sparse Packed Double-Precision Floating-Point Values into Dense Memory/Register.
+// VCOMPRESSPD_Z: Store Sparse Packed Double-Precision Floating-Point Values into Dense Memory/Register (Zeroing Masking).
 //
 // Forms:
 //
@@ -23433,7 +23433,7 @@ func VCOMPRESSPS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCOMPRESSPS: bad operands")
 }
 
-// VCOMPRESSPS_Z: Store Sparse Packed Single-Precision Floating-Point Values into Dense Memory/Register.
+// VCOMPRESSPS_Z: Store Sparse Packed Single-Precision Floating-Point Values into Dense Memory/Register (Zeroing Masking).
 //
 // Forms:
 //
@@ -23545,7 +23545,7 @@ func VCVTDQ2PD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTDQ2PD: bad operands")
 }
 
-// VCVTDQ2PD_BCST: Convert Packed Dword Integers to Packed Double-Precision FP Values.
+// VCVTDQ2PD_BCST: Convert Packed Dword Integers to Packed Double-Precision FP Values (Broadcast).
 //
 // Forms:
 //
@@ -23575,7 +23575,7 @@ func VCVTDQ2PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTDQ2PD_BCST: bad operands")
 }
 
-// VCVTDQ2PD_BCST_Z: Convert Packed Dword Integers to Packed Double-Precision FP Values.
+// VCVTDQ2PD_BCST_Z: Convert Packed Dword Integers to Packed Double-Precision FP Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -23595,7 +23595,7 @@ func VCVTDQ2PD_BCST_Z(m, k, z operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTDQ2PD_BCST_Z: bad operands")
 }
 
-// VCVTDQ2PD_Z: Convert Packed Dword Integers to Packed Double-Precision FP Values.
+// VCVTDQ2PD_Z: Convert Packed Dword Integers to Packed Double-Precision FP Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -23707,7 +23707,7 @@ func VCVTDQ2PS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTDQ2PS: bad operands")
 }
 
-// VCVTDQ2PS_BCST: Convert Packed Dword Integers to Packed Single-Precision FP Values.
+// VCVTDQ2PS_BCST: Convert Packed Dword Integers to Packed Single-Precision FP Values (Broadcast).
 //
 // Forms:
 //
@@ -23737,7 +23737,7 @@ func VCVTDQ2PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTDQ2PS_BCST: bad operands")
 }
 
-// VCVTDQ2PS_BCST_Z: Convert Packed Dword Integers to Packed Single-Precision FP Values.
+// VCVTDQ2PS_BCST_Z: Convert Packed Dword Integers to Packed Single-Precision FP Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -23757,7 +23757,7 @@ func VCVTDQ2PS_BCST_Z(m, k, z operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTDQ2PS_BCST_Z: bad operands")
 }
 
-// VCVTDQ2PS_RD_SAE: Convert Packed Dword Integers to Packed Single-Precision FP Values.
+// VCVTDQ2PS_RD_SAE: Convert Packed Dword Integers to Packed Single-Precision FP Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -23787,7 +23787,7 @@ func VCVTDQ2PS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTDQ2PS_RD_SAE: bad operands")
 }
 
-// VCVTDQ2PS_RD_SAE_Z: Convert Packed Dword Integers to Packed Single-Precision FP Values.
+// VCVTDQ2PS_RD_SAE_Z: Convert Packed Dword Integers to Packed Single-Precision FP Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -23807,7 +23807,7 @@ func VCVTDQ2PS_RD_SAE_Z(z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTDQ2PS_RD_SAE_Z: bad operands")
 }
 
-// VCVTDQ2PS_RN_SAE: Convert Packed Dword Integers to Packed Single-Precision FP Values.
+// VCVTDQ2PS_RN_SAE: Convert Packed Dword Integers to Packed Single-Precision FP Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -23837,7 +23837,7 @@ func VCVTDQ2PS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTDQ2PS_RN_SAE: bad operands")
 }
 
-// VCVTDQ2PS_RN_SAE_Z: Convert Packed Dword Integers to Packed Single-Precision FP Values.
+// VCVTDQ2PS_RN_SAE_Z: Convert Packed Dword Integers to Packed Single-Precision FP Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -23857,7 +23857,7 @@ func VCVTDQ2PS_RN_SAE_Z(z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTDQ2PS_RN_SAE_Z: bad operands")
 }
 
-// VCVTDQ2PS_RU_SAE: Convert Packed Dword Integers to Packed Single-Precision FP Values.
+// VCVTDQ2PS_RU_SAE: Convert Packed Dword Integers to Packed Single-Precision FP Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -23887,7 +23887,7 @@ func VCVTDQ2PS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTDQ2PS_RU_SAE: bad operands")
 }
 
-// VCVTDQ2PS_RU_SAE_Z: Convert Packed Dword Integers to Packed Single-Precision FP Values.
+// VCVTDQ2PS_RU_SAE_Z: Convert Packed Dword Integers to Packed Single-Precision FP Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -23907,7 +23907,7 @@ func VCVTDQ2PS_RU_SAE_Z(z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTDQ2PS_RU_SAE_Z: bad operands")
 }
 
-// VCVTDQ2PS_RZ_SAE: Convert Packed Dword Integers to Packed Single-Precision FP Values.
+// VCVTDQ2PS_RZ_SAE: Convert Packed Dword Integers to Packed Single-Precision FP Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -23937,7 +23937,7 @@ func VCVTDQ2PS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTDQ2PS_RZ_SAE: bad operands")
 }
 
-// VCVTDQ2PS_RZ_SAE_Z: Convert Packed Dword Integers to Packed Single-Precision FP Values.
+// VCVTDQ2PS_RZ_SAE_Z: Convert Packed Dword Integers to Packed Single-Precision FP Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -23957,7 +23957,7 @@ func VCVTDQ2PS_RZ_SAE_Z(z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTDQ2PS_RZ_SAE_Z: bad operands")
 }
 
-// VCVTDQ2PS_Z: Convert Packed Dword Integers to Packed Single-Precision FP Values.
+// VCVTDQ2PS_Z: Convert Packed Dword Integers to Packed Single-Precision FP Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -24089,7 +24089,7 @@ func VCVTPD2DQY(my, x operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTPD2DQY: bad operands")
 }
 
-// VCVTPD2DQ_BCST: Convert Packed Double-Precision FP Values to Packed Dword Integers.
+// VCVTPD2DQ_BCST: Convert Packed Double-Precision FP Values to Packed Dword Integers (Broadcast).
 //
 // Forms:
 //
@@ -24119,7 +24119,7 @@ func VCVTPD2DQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTPD2DQ_BCST: bad operands")
 }
 
-// VCVTPD2DQ_BCST_Z: Convert Packed Double-Precision FP Values to Packed Dword Integers.
+// VCVTPD2DQ_BCST_Z: Convert Packed Double-Precision FP Values to Packed Dword Integers (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -24139,7 +24139,7 @@ func VCVTPD2DQ_BCST_Z(m, k, y operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTPD2DQ_BCST_Z: bad operands")
 }
 
-// VCVTPD2DQ_RD_SAE: Convert Packed Double-Precision FP Values to Packed Dword Integers.
+// VCVTPD2DQ_RD_SAE: Convert Packed Double-Precision FP Values to Packed Dword Integers (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -24169,7 +24169,7 @@ func VCVTPD2DQ_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTPD2DQ_RD_SAE: bad operands")
 }
 
-// VCVTPD2DQ_RD_SAE_Z: Convert Packed Double-Precision FP Values to Packed Dword Integers.
+// VCVTPD2DQ_RD_SAE_Z: Convert Packed Double-Precision FP Values to Packed Dword Integers (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -24189,7 +24189,7 @@ func VCVTPD2DQ_RD_SAE_Z(z, k, y operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTPD2DQ_RD_SAE_Z: bad operands")
 }
 
-// VCVTPD2DQ_RN_SAE: Convert Packed Double-Precision FP Values to Packed Dword Integers.
+// VCVTPD2DQ_RN_SAE: Convert Packed Double-Precision FP Values to Packed Dword Integers (Round Towards Nearest).
 //
 // Forms:
 //
@@ -24219,7 +24219,7 @@ func VCVTPD2DQ_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTPD2DQ_RN_SAE: bad operands")
 }
 
-// VCVTPD2DQ_RN_SAE_Z: Convert Packed Double-Precision FP Values to Packed Dword Integers.
+// VCVTPD2DQ_RN_SAE_Z: Convert Packed Double-Precision FP Values to Packed Dword Integers (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -24239,7 +24239,7 @@ func VCVTPD2DQ_RN_SAE_Z(z, k, y operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTPD2DQ_RN_SAE_Z: bad operands")
 }
 
-// VCVTPD2DQ_RU_SAE: Convert Packed Double-Precision FP Values to Packed Dword Integers.
+// VCVTPD2DQ_RU_SAE: Convert Packed Double-Precision FP Values to Packed Dword Integers (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -24269,7 +24269,7 @@ func VCVTPD2DQ_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTPD2DQ_RU_SAE: bad operands")
 }
 
-// VCVTPD2DQ_RU_SAE_Z: Convert Packed Double-Precision FP Values to Packed Dword Integers.
+// VCVTPD2DQ_RU_SAE_Z: Convert Packed Double-Precision FP Values to Packed Dword Integers (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -24289,7 +24289,7 @@ func VCVTPD2DQ_RU_SAE_Z(z, k, y operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTPD2DQ_RU_SAE_Z: bad operands")
 }
 
-// VCVTPD2DQ_RZ_SAE: Convert Packed Double-Precision FP Values to Packed Dword Integers.
+// VCVTPD2DQ_RZ_SAE: Convert Packed Double-Precision FP Values to Packed Dword Integers (Round Towards Zero).
 //
 // Forms:
 //
@@ -24319,7 +24319,7 @@ func VCVTPD2DQ_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTPD2DQ_RZ_SAE: bad operands")
 }
 
-// VCVTPD2DQ_RZ_SAE_Z: Convert Packed Double-Precision FP Values to Packed Dword Integers.
+// VCVTPD2DQ_RZ_SAE_Z: Convert Packed Double-Precision FP Values to Packed Dword Integers (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -24339,7 +24339,7 @@ func VCVTPD2DQ_RZ_SAE_Z(z, k, y operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTPD2DQ_RZ_SAE_Z: bad operands")
 }
 
-// VCVTPD2DQ_Z: Convert Packed Double-Precision FP Values to Packed Dword Integers.
+// VCVTPD2DQ_Z: Convert Packed Double-Precision FP Values to Packed Dword Integers (Zeroing Masking).
 //
 // Forms:
 //
@@ -24471,7 +24471,7 @@ func VCVTPD2PSY(my, x operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTPD2PSY: bad operands")
 }
 
-// VCVTPD2PS_BCST: Convert Packed Double-Precision FP Values to Packed Single-Precision FP Values.
+// VCVTPD2PS_BCST: Convert Packed Double-Precision FP Values to Packed Single-Precision FP Values (Broadcast).
 //
 // Forms:
 //
@@ -24501,7 +24501,7 @@ func VCVTPD2PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTPD2PS_BCST: bad operands")
 }
 
-// VCVTPD2PS_BCST_Z: Convert Packed Double-Precision FP Values to Packed Single-Precision FP Values.
+// VCVTPD2PS_BCST_Z: Convert Packed Double-Precision FP Values to Packed Single-Precision FP Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -24521,7 +24521,7 @@ func VCVTPD2PS_BCST_Z(m, k, y operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTPD2PS_BCST_Z: bad operands")
 }
 
-// VCVTPD2PS_RD_SAE: Convert Packed Double-Precision FP Values to Packed Single-Precision FP Values.
+// VCVTPD2PS_RD_SAE: Convert Packed Double-Precision FP Values to Packed Single-Precision FP Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -24551,7 +24551,7 @@ func VCVTPD2PS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTPD2PS_RD_SAE: bad operands")
 }
 
-// VCVTPD2PS_RD_SAE_Z: Convert Packed Double-Precision FP Values to Packed Single-Precision FP Values.
+// VCVTPD2PS_RD_SAE_Z: Convert Packed Double-Precision FP Values to Packed Single-Precision FP Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -24571,7 +24571,7 @@ func VCVTPD2PS_RD_SAE_Z(z, k, y operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTPD2PS_RD_SAE_Z: bad operands")
 }
 
-// VCVTPD2PS_RN_SAE: Convert Packed Double-Precision FP Values to Packed Single-Precision FP Values.
+// VCVTPD2PS_RN_SAE: Convert Packed Double-Precision FP Values to Packed Single-Precision FP Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -24601,7 +24601,7 @@ func VCVTPD2PS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTPD2PS_RN_SAE: bad operands")
 }
 
-// VCVTPD2PS_RN_SAE_Z: Convert Packed Double-Precision FP Values to Packed Single-Precision FP Values.
+// VCVTPD2PS_RN_SAE_Z: Convert Packed Double-Precision FP Values to Packed Single-Precision FP Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -24621,7 +24621,7 @@ func VCVTPD2PS_RN_SAE_Z(z, k, y operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTPD2PS_RN_SAE_Z: bad operands")
 }
 
-// VCVTPD2PS_RU_SAE: Convert Packed Double-Precision FP Values to Packed Single-Precision FP Values.
+// VCVTPD2PS_RU_SAE: Convert Packed Double-Precision FP Values to Packed Single-Precision FP Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -24651,7 +24651,7 @@ func VCVTPD2PS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTPD2PS_RU_SAE: bad operands")
 }
 
-// VCVTPD2PS_RU_SAE_Z: Convert Packed Double-Precision FP Values to Packed Single-Precision FP Values.
+// VCVTPD2PS_RU_SAE_Z: Convert Packed Double-Precision FP Values to Packed Single-Precision FP Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -24671,7 +24671,7 @@ func VCVTPD2PS_RU_SAE_Z(z, k, y operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTPD2PS_RU_SAE_Z: bad operands")
 }
 
-// VCVTPD2PS_RZ_SAE: Convert Packed Double-Precision FP Values to Packed Single-Precision FP Values.
+// VCVTPD2PS_RZ_SAE: Convert Packed Double-Precision FP Values to Packed Single-Precision FP Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -24701,7 +24701,7 @@ func VCVTPD2PS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTPD2PS_RZ_SAE: bad operands")
 }
 
-// VCVTPD2PS_RZ_SAE_Z: Convert Packed Double-Precision FP Values to Packed Single-Precision FP Values.
+// VCVTPD2PS_RZ_SAE_Z: Convert Packed Double-Precision FP Values to Packed Single-Precision FP Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -24721,7 +24721,7 @@ func VCVTPD2PS_RZ_SAE_Z(z, k, y operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTPD2PS_RZ_SAE_Z: bad operands")
 }
 
-// VCVTPD2PS_Z: Convert Packed Double-Precision FP Values to Packed Single-Precision FP Values.
+// VCVTPD2PS_Z: Convert Packed Double-Precision FP Values to Packed Single-Precision FP Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -24797,7 +24797,7 @@ func VCVTPD2UDQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTPD2UDQ: bad operands")
 }
 
-// VCVTPD2UDQ_BCST: Convert Packed Double-Precision Floating-Point Values to Packed Unsigned Doubleword Integers.
+// VCVTPD2UDQ_BCST: Convert Packed Double-Precision Floating-Point Values to Packed Unsigned Doubleword Integers (Broadcast).
 //
 // Forms:
 //
@@ -24827,7 +24827,7 @@ func VCVTPD2UDQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTPD2UDQ_BCST: bad operands")
 }
 
-// VCVTPD2UDQ_BCST_Z: Convert Packed Double-Precision Floating-Point Values to Packed Unsigned Doubleword Integers.
+// VCVTPD2UDQ_BCST_Z: Convert Packed Double-Precision Floating-Point Values to Packed Unsigned Doubleword Integers (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -24847,7 +24847,7 @@ func VCVTPD2UDQ_BCST_Z(m, k, y operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTPD2UDQ_BCST_Z: bad operands")
 }
 
-// VCVTPD2UDQ_RD_SAE: Convert Packed Double-Precision Floating-Point Values to Packed Unsigned Doubleword Integers.
+// VCVTPD2UDQ_RD_SAE: Convert Packed Double-Precision Floating-Point Values to Packed Unsigned Doubleword Integers (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -24877,7 +24877,7 @@ func VCVTPD2UDQ_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTPD2UDQ_RD_SAE: bad operands")
 }
 
-// VCVTPD2UDQ_RD_SAE_Z: Convert Packed Double-Precision Floating-Point Values to Packed Unsigned Doubleword Integers.
+// VCVTPD2UDQ_RD_SAE_Z: Convert Packed Double-Precision Floating-Point Values to Packed Unsigned Doubleword Integers (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -24897,7 +24897,7 @@ func VCVTPD2UDQ_RD_SAE_Z(z, k, y operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTPD2UDQ_RD_SAE_Z: bad operands")
 }
 
-// VCVTPD2UDQ_RN_SAE: Convert Packed Double-Precision Floating-Point Values to Packed Unsigned Doubleword Integers.
+// VCVTPD2UDQ_RN_SAE: Convert Packed Double-Precision Floating-Point Values to Packed Unsigned Doubleword Integers (Round Towards Nearest).
 //
 // Forms:
 //
@@ -24927,7 +24927,7 @@ func VCVTPD2UDQ_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTPD2UDQ_RN_SAE: bad operands")
 }
 
-// VCVTPD2UDQ_RN_SAE_Z: Convert Packed Double-Precision Floating-Point Values to Packed Unsigned Doubleword Integers.
+// VCVTPD2UDQ_RN_SAE_Z: Convert Packed Double-Precision Floating-Point Values to Packed Unsigned Doubleword Integers (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -24947,7 +24947,7 @@ func VCVTPD2UDQ_RN_SAE_Z(z, k, y operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTPD2UDQ_RN_SAE_Z: bad operands")
 }
 
-// VCVTPD2UDQ_RU_SAE: Convert Packed Double-Precision Floating-Point Values to Packed Unsigned Doubleword Integers.
+// VCVTPD2UDQ_RU_SAE: Convert Packed Double-Precision Floating-Point Values to Packed Unsigned Doubleword Integers (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -24977,7 +24977,7 @@ func VCVTPD2UDQ_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTPD2UDQ_RU_SAE: bad operands")
 }
 
-// VCVTPD2UDQ_RU_SAE_Z: Convert Packed Double-Precision Floating-Point Values to Packed Unsigned Doubleword Integers.
+// VCVTPD2UDQ_RU_SAE_Z: Convert Packed Double-Precision Floating-Point Values to Packed Unsigned Doubleword Integers (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -24997,7 +24997,7 @@ func VCVTPD2UDQ_RU_SAE_Z(z, k, y operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTPD2UDQ_RU_SAE_Z: bad operands")
 }
 
-// VCVTPD2UDQ_RZ_SAE: Convert Packed Double-Precision Floating-Point Values to Packed Unsigned Doubleword Integers.
+// VCVTPD2UDQ_RZ_SAE: Convert Packed Double-Precision Floating-Point Values to Packed Unsigned Doubleword Integers (Round Towards Zero).
 //
 // Forms:
 //
@@ -25027,7 +25027,7 @@ func VCVTPD2UDQ_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTPD2UDQ_RZ_SAE: bad operands")
 }
 
-// VCVTPD2UDQ_RZ_SAE_Z: Convert Packed Double-Precision Floating-Point Values to Packed Unsigned Doubleword Integers.
+// VCVTPD2UDQ_RZ_SAE_Z: Convert Packed Double-Precision Floating-Point Values to Packed Unsigned Doubleword Integers (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -25047,7 +25047,7 @@ func VCVTPD2UDQ_RZ_SAE_Z(z, k, y operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTPD2UDQ_RZ_SAE_Z: bad operands")
 }
 
-// VCVTPD2UDQ_Z: Convert Packed Double-Precision Floating-Point Values to Packed Unsigned Doubleword Integers.
+// VCVTPD2UDQ_Z: Convert Packed Double-Precision Floating-Point Values to Packed Unsigned Doubleword Integers (Zeroing Masking).
 //
 // Forms:
 //
@@ -25159,7 +25159,7 @@ func VCVTPH2PS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTPH2PS: bad operands")
 }
 
-// VCVTPH2PS_SAE: Convert Half-Precision FP Values to Single-Precision FP Values.
+// VCVTPH2PS_SAE: Convert Half-Precision FP Values to Single-Precision FP Values (Suppress All Exceptions).
 //
 // Forms:
 //
@@ -25189,7 +25189,7 @@ func VCVTPH2PS_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTPH2PS_SAE: bad operands")
 }
 
-// VCVTPH2PS_SAE_Z: Convert Half-Precision FP Values to Single-Precision FP Values.
+// VCVTPH2PS_SAE_Z: Convert Half-Precision FP Values to Single-Precision FP Values (Suppress All Exceptions, Zeroing Masking).
 //
 // Forms:
 //
@@ -25209,7 +25209,7 @@ func VCVTPH2PS_SAE_Z(y, k, z operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTPH2PS_SAE_Z: bad operands")
 }
 
-// VCVTPH2PS_Z: Convert Half-Precision FP Values to Single-Precision FP Values.
+// VCVTPH2PS_Z: Convert Half-Precision FP Values to Single-Precision FP Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -25321,7 +25321,7 @@ func VCVTPS2DQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTPS2DQ: bad operands")
 }
 
-// VCVTPS2DQ_BCST: Convert Packed Single-Precision FP Values to Packed Dword Integers.
+// VCVTPS2DQ_BCST: Convert Packed Single-Precision FP Values to Packed Dword Integers (Broadcast).
 //
 // Forms:
 //
@@ -25351,7 +25351,7 @@ func VCVTPS2DQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTPS2DQ_BCST: bad operands")
 }
 
-// VCVTPS2DQ_BCST_Z: Convert Packed Single-Precision FP Values to Packed Dword Integers.
+// VCVTPS2DQ_BCST_Z: Convert Packed Single-Precision FP Values to Packed Dword Integers (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -25371,7 +25371,7 @@ func VCVTPS2DQ_BCST_Z(m, k, z operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTPS2DQ_BCST_Z: bad operands")
 }
 
-// VCVTPS2DQ_RD_SAE: Convert Packed Single-Precision FP Values to Packed Dword Integers.
+// VCVTPS2DQ_RD_SAE: Convert Packed Single-Precision FP Values to Packed Dword Integers (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -25401,7 +25401,7 @@ func VCVTPS2DQ_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTPS2DQ_RD_SAE: bad operands")
 }
 
-// VCVTPS2DQ_RD_SAE_Z: Convert Packed Single-Precision FP Values to Packed Dword Integers.
+// VCVTPS2DQ_RD_SAE_Z: Convert Packed Single-Precision FP Values to Packed Dword Integers (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -25421,7 +25421,7 @@ func VCVTPS2DQ_RD_SAE_Z(z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTPS2DQ_RD_SAE_Z: bad operands")
 }
 
-// VCVTPS2DQ_RN_SAE: Convert Packed Single-Precision FP Values to Packed Dword Integers.
+// VCVTPS2DQ_RN_SAE: Convert Packed Single-Precision FP Values to Packed Dword Integers (Round Towards Nearest).
 //
 // Forms:
 //
@@ -25451,7 +25451,7 @@ func VCVTPS2DQ_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTPS2DQ_RN_SAE: bad operands")
 }
 
-// VCVTPS2DQ_RN_SAE_Z: Convert Packed Single-Precision FP Values to Packed Dword Integers.
+// VCVTPS2DQ_RN_SAE_Z: Convert Packed Single-Precision FP Values to Packed Dword Integers (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -25471,7 +25471,7 @@ func VCVTPS2DQ_RN_SAE_Z(z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTPS2DQ_RN_SAE_Z: bad operands")
 }
 
-// VCVTPS2DQ_RU_SAE: Convert Packed Single-Precision FP Values to Packed Dword Integers.
+// VCVTPS2DQ_RU_SAE: Convert Packed Single-Precision FP Values to Packed Dword Integers (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -25501,7 +25501,7 @@ func VCVTPS2DQ_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTPS2DQ_RU_SAE: bad operands")
 }
 
-// VCVTPS2DQ_RU_SAE_Z: Convert Packed Single-Precision FP Values to Packed Dword Integers.
+// VCVTPS2DQ_RU_SAE_Z: Convert Packed Single-Precision FP Values to Packed Dword Integers (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -25521,7 +25521,7 @@ func VCVTPS2DQ_RU_SAE_Z(z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTPS2DQ_RU_SAE_Z: bad operands")
 }
 
-// VCVTPS2DQ_RZ_SAE: Convert Packed Single-Precision FP Values to Packed Dword Integers.
+// VCVTPS2DQ_RZ_SAE: Convert Packed Single-Precision FP Values to Packed Dword Integers (Round Towards Zero).
 //
 // Forms:
 //
@@ -25551,7 +25551,7 @@ func VCVTPS2DQ_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTPS2DQ_RZ_SAE: bad operands")
 }
 
-// VCVTPS2DQ_RZ_SAE_Z: Convert Packed Single-Precision FP Values to Packed Dword Integers.
+// VCVTPS2DQ_RZ_SAE_Z: Convert Packed Single-Precision FP Values to Packed Dword Integers (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -25571,7 +25571,7 @@ func VCVTPS2DQ_RZ_SAE_Z(z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTPS2DQ_RZ_SAE_Z: bad operands")
 }
 
-// VCVTPS2DQ_Z: Convert Packed Single-Precision FP Values to Packed Dword Integers.
+// VCVTPS2DQ_Z: Convert Packed Single-Precision FP Values to Packed Dword Integers (Zeroing Masking).
 //
 // Forms:
 //
@@ -25683,7 +25683,7 @@ func VCVTPS2PD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTPS2PD: bad operands")
 }
 
-// VCVTPS2PD_BCST: Convert Packed Single-Precision FP Values to Packed Double-Precision FP Values.
+// VCVTPS2PD_BCST: Convert Packed Single-Precision FP Values to Packed Double-Precision FP Values (Broadcast).
 //
 // Forms:
 //
@@ -25713,7 +25713,7 @@ func VCVTPS2PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTPS2PD_BCST: bad operands")
 }
 
-// VCVTPS2PD_BCST_Z: Convert Packed Single-Precision FP Values to Packed Double-Precision FP Values.
+// VCVTPS2PD_BCST_Z: Convert Packed Single-Precision FP Values to Packed Double-Precision FP Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -25733,7 +25733,7 @@ func VCVTPS2PD_BCST_Z(m, k, z operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTPS2PD_BCST_Z: bad operands")
 }
 
-// VCVTPS2PD_SAE: Convert Packed Single-Precision FP Values to Packed Double-Precision FP Values.
+// VCVTPS2PD_SAE: Convert Packed Single-Precision FP Values to Packed Double-Precision FP Values (Suppress All Exceptions).
 //
 // Forms:
 //
@@ -25763,7 +25763,7 @@ func VCVTPS2PD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTPS2PD_SAE: bad operands")
 }
 
-// VCVTPS2PD_SAE_Z: Convert Packed Single-Precision FP Values to Packed Double-Precision FP Values.
+// VCVTPS2PD_SAE_Z: Convert Packed Single-Precision FP Values to Packed Double-Precision FP Values (Suppress All Exceptions, Zeroing Masking).
 //
 // Forms:
 //
@@ -25783,7 +25783,7 @@ func VCVTPS2PD_SAE_Z(y, k, z operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTPS2PD_SAE_Z: bad operands")
 }
 
-// VCVTPS2PD_Z: Convert Packed Single-Precision FP Values to Packed Double-Precision FP Values.
+// VCVTPS2PD_Z: Convert Packed Single-Precision FP Values to Packed Double-Precision FP Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -25895,7 +25895,7 @@ func VCVTPS2PH(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTPS2PH: bad operands")
 }
 
-// VCVTPS2PH_SAE: Convert Single-Precision FP value to Half-Precision FP value.
+// VCVTPS2PH_SAE: Convert Single-Precision FP value to Half-Precision FP value (Suppress All Exceptions).
 //
 // Forms:
 //
@@ -25925,7 +25925,7 @@ func VCVTPS2PH_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTPS2PH_SAE: bad operands")
 }
 
-// VCVTPS2PH_SAE_Z: Convert Single-Precision FP value to Half-Precision FP value.
+// VCVTPS2PH_SAE_Z: Convert Single-Precision FP value to Half-Precision FP value (Suppress All Exceptions, Zeroing Masking).
 //
 // Forms:
 //
@@ -25945,7 +25945,7 @@ func VCVTPS2PH_SAE_Z(i, z, k, y operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTPS2PH_SAE_Z: bad operands")
 }
 
-// VCVTPS2PH_Z: Convert Single-Precision FP value to Half-Precision FP value.
+// VCVTPS2PH_Z: Convert Single-Precision FP value to Half-Precision FP value (Zeroing Masking).
 //
 // Forms:
 //
@@ -26021,7 +26021,7 @@ func VCVTPS2UDQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTPS2UDQ: bad operands")
 }
 
-// VCVTPS2UDQ_BCST: Convert Packed Single-Precision Floating-Point Values to Packed Unsigned Doubleword Integer Values.
+// VCVTPS2UDQ_BCST: Convert Packed Single-Precision Floating-Point Values to Packed Unsigned Doubleword Integer Values (Broadcast).
 //
 // Forms:
 //
@@ -26051,7 +26051,7 @@ func VCVTPS2UDQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTPS2UDQ_BCST: bad operands")
 }
 
-// VCVTPS2UDQ_BCST_Z: Convert Packed Single-Precision Floating-Point Values to Packed Unsigned Doubleword Integer Values.
+// VCVTPS2UDQ_BCST_Z: Convert Packed Single-Precision Floating-Point Values to Packed Unsigned Doubleword Integer Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -26071,7 +26071,7 @@ func VCVTPS2UDQ_BCST_Z(m, k, z operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTPS2UDQ_BCST_Z: bad operands")
 }
 
-// VCVTPS2UDQ_RD_SAE: Convert Packed Single-Precision Floating-Point Values to Packed Unsigned Doubleword Integer Values.
+// VCVTPS2UDQ_RD_SAE: Convert Packed Single-Precision Floating-Point Values to Packed Unsigned Doubleword Integer Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -26101,7 +26101,7 @@ func VCVTPS2UDQ_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTPS2UDQ_RD_SAE: bad operands")
 }
 
-// VCVTPS2UDQ_RD_SAE_Z: Convert Packed Single-Precision Floating-Point Values to Packed Unsigned Doubleword Integer Values.
+// VCVTPS2UDQ_RD_SAE_Z: Convert Packed Single-Precision Floating-Point Values to Packed Unsigned Doubleword Integer Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -26121,7 +26121,7 @@ func VCVTPS2UDQ_RD_SAE_Z(z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTPS2UDQ_RD_SAE_Z: bad operands")
 }
 
-// VCVTPS2UDQ_RN_SAE: Convert Packed Single-Precision Floating-Point Values to Packed Unsigned Doubleword Integer Values.
+// VCVTPS2UDQ_RN_SAE: Convert Packed Single-Precision Floating-Point Values to Packed Unsigned Doubleword Integer Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -26151,7 +26151,7 @@ func VCVTPS2UDQ_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTPS2UDQ_RN_SAE: bad operands")
 }
 
-// VCVTPS2UDQ_RN_SAE_Z: Convert Packed Single-Precision Floating-Point Values to Packed Unsigned Doubleword Integer Values.
+// VCVTPS2UDQ_RN_SAE_Z: Convert Packed Single-Precision Floating-Point Values to Packed Unsigned Doubleword Integer Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -26171,7 +26171,7 @@ func VCVTPS2UDQ_RN_SAE_Z(z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTPS2UDQ_RN_SAE_Z: bad operands")
 }
 
-// VCVTPS2UDQ_RU_SAE: Convert Packed Single-Precision Floating-Point Values to Packed Unsigned Doubleword Integer Values.
+// VCVTPS2UDQ_RU_SAE: Convert Packed Single-Precision Floating-Point Values to Packed Unsigned Doubleword Integer Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -26201,7 +26201,7 @@ func VCVTPS2UDQ_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTPS2UDQ_RU_SAE: bad operands")
 }
 
-// VCVTPS2UDQ_RU_SAE_Z: Convert Packed Single-Precision Floating-Point Values to Packed Unsigned Doubleword Integer Values.
+// VCVTPS2UDQ_RU_SAE_Z: Convert Packed Single-Precision Floating-Point Values to Packed Unsigned Doubleword Integer Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -26221,7 +26221,7 @@ func VCVTPS2UDQ_RU_SAE_Z(z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTPS2UDQ_RU_SAE_Z: bad operands")
 }
 
-// VCVTPS2UDQ_RZ_SAE: Convert Packed Single-Precision Floating-Point Values to Packed Unsigned Doubleword Integer Values.
+// VCVTPS2UDQ_RZ_SAE: Convert Packed Single-Precision Floating-Point Values to Packed Unsigned Doubleword Integer Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -26251,7 +26251,7 @@ func VCVTPS2UDQ_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTPS2UDQ_RZ_SAE: bad operands")
 }
 
-// VCVTPS2UDQ_RZ_SAE_Z: Convert Packed Single-Precision Floating-Point Values to Packed Unsigned Doubleword Integer Values.
+// VCVTPS2UDQ_RZ_SAE_Z: Convert Packed Single-Precision Floating-Point Values to Packed Unsigned Doubleword Integer Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -26271,7 +26271,7 @@ func VCVTPS2UDQ_RZ_SAE_Z(z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTPS2UDQ_RZ_SAE_Z: bad operands")
 }
 
-// VCVTPS2UDQ_Z: Convert Packed Single-Precision Floating-Point Values to Packed Unsigned Doubleword Integer Values.
+// VCVTPS2UDQ_Z: Convert Packed Single-Precision Floating-Point Values to Packed Unsigned Doubleword Integer Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -26393,7 +26393,7 @@ func VCVTSD2SIQ(mx, r operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTSD2SIQ: bad operands")
 }
 
-// VCVTSD2SIQ_RD_SAE: Convert Scalar Double-Precision FP Value to Integer.
+// VCVTSD2SIQ_RD_SAE: Convert Scalar Double-Precision FP Value to Integer (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -26413,7 +26413,7 @@ func VCVTSD2SIQ_RD_SAE(x, r operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTSD2SIQ_RD_SAE: bad operands")
 }
 
-// VCVTSD2SIQ_RN_SAE: Convert Scalar Double-Precision FP Value to Integer.
+// VCVTSD2SIQ_RN_SAE: Convert Scalar Double-Precision FP Value to Integer (Round Towards Nearest).
 //
 // Forms:
 //
@@ -26433,7 +26433,7 @@ func VCVTSD2SIQ_RN_SAE(x, r operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTSD2SIQ_RN_SAE: bad operands")
 }
 
-// VCVTSD2SIQ_RU_SAE: Convert Scalar Double-Precision FP Value to Integer.
+// VCVTSD2SIQ_RU_SAE: Convert Scalar Double-Precision FP Value to Integer (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -26453,7 +26453,7 @@ func VCVTSD2SIQ_RU_SAE(x, r operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTSD2SIQ_RU_SAE: bad operands")
 }
 
-// VCVTSD2SIQ_RZ_SAE: Convert Scalar Double-Precision FP Value to Integer.
+// VCVTSD2SIQ_RZ_SAE: Convert Scalar Double-Precision FP Value to Integer (Round Towards Zero).
 //
 // Forms:
 //
@@ -26473,7 +26473,7 @@ func VCVTSD2SIQ_RZ_SAE(x, r operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTSD2SIQ_RZ_SAE: bad operands")
 }
 
-// VCVTSD2SI_RD_SAE: Convert Scalar Double-Precision FP Value to Integer.
+// VCVTSD2SI_RD_SAE: Convert Scalar Double-Precision FP Value to Integer (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -26493,7 +26493,7 @@ func VCVTSD2SI_RD_SAE(x, r operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTSD2SI_RD_SAE: bad operands")
 }
 
-// VCVTSD2SI_RN_SAE: Convert Scalar Double-Precision FP Value to Integer.
+// VCVTSD2SI_RN_SAE: Convert Scalar Double-Precision FP Value to Integer (Round Towards Nearest).
 //
 // Forms:
 //
@@ -26513,7 +26513,7 @@ func VCVTSD2SI_RN_SAE(x, r operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTSD2SI_RN_SAE: bad operands")
 }
 
-// VCVTSD2SI_RU_SAE: Convert Scalar Double-Precision FP Value to Integer.
+// VCVTSD2SI_RU_SAE: Convert Scalar Double-Precision FP Value to Integer (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -26533,7 +26533,7 @@ func VCVTSD2SI_RU_SAE(x, r operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTSD2SI_RU_SAE: bad operands")
 }
 
-// VCVTSD2SI_RZ_SAE: Convert Scalar Double-Precision FP Value to Integer.
+// VCVTSD2SI_RZ_SAE: Convert Scalar Double-Precision FP Value to Integer (Round Towards Zero).
 //
 // Forms:
 //
@@ -26617,7 +26617,7 @@ func VCVTSD2SS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTSD2SS: bad operands")
 }
 
-// VCVTSD2SS_RD_SAE: Convert Scalar Double-Precision FP Value to Scalar Single-Precision FP Value.
+// VCVTSD2SS_RD_SAE: Convert Scalar Double-Precision FP Value to Scalar Single-Precision FP Value (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -26647,7 +26647,7 @@ func VCVTSD2SS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTSD2SS_RD_SAE: bad operands")
 }
 
-// VCVTSD2SS_RD_SAE_Z: Convert Scalar Double-Precision FP Value to Scalar Single-Precision FP Value.
+// VCVTSD2SS_RD_SAE_Z: Convert Scalar Double-Precision FP Value to Scalar Single-Precision FP Value (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -26667,7 +26667,7 @@ func VCVTSD2SS_RD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTSD2SS_RD_SAE_Z: bad operands")
 }
 
-// VCVTSD2SS_RN_SAE: Convert Scalar Double-Precision FP Value to Scalar Single-Precision FP Value.
+// VCVTSD2SS_RN_SAE: Convert Scalar Double-Precision FP Value to Scalar Single-Precision FP Value (Round Towards Nearest).
 //
 // Forms:
 //
@@ -26697,7 +26697,7 @@ func VCVTSD2SS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTSD2SS_RN_SAE: bad operands")
 }
 
-// VCVTSD2SS_RN_SAE_Z: Convert Scalar Double-Precision FP Value to Scalar Single-Precision FP Value.
+// VCVTSD2SS_RN_SAE_Z: Convert Scalar Double-Precision FP Value to Scalar Single-Precision FP Value (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -26717,7 +26717,7 @@ func VCVTSD2SS_RN_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTSD2SS_RN_SAE_Z: bad operands")
 }
 
-// VCVTSD2SS_RU_SAE: Convert Scalar Double-Precision FP Value to Scalar Single-Precision FP Value.
+// VCVTSD2SS_RU_SAE: Convert Scalar Double-Precision FP Value to Scalar Single-Precision FP Value (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -26747,7 +26747,7 @@ func VCVTSD2SS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTSD2SS_RU_SAE: bad operands")
 }
 
-// VCVTSD2SS_RU_SAE_Z: Convert Scalar Double-Precision FP Value to Scalar Single-Precision FP Value.
+// VCVTSD2SS_RU_SAE_Z: Convert Scalar Double-Precision FP Value to Scalar Single-Precision FP Value (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -26767,7 +26767,7 @@ func VCVTSD2SS_RU_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTSD2SS_RU_SAE_Z: bad operands")
 }
 
-// VCVTSD2SS_RZ_SAE: Convert Scalar Double-Precision FP Value to Scalar Single-Precision FP Value.
+// VCVTSD2SS_RZ_SAE: Convert Scalar Double-Precision FP Value to Scalar Single-Precision FP Value (Round Towards Zero).
 //
 // Forms:
 //
@@ -26797,7 +26797,7 @@ func VCVTSD2SS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTSD2SS_RZ_SAE: bad operands")
 }
 
-// VCVTSD2SS_RZ_SAE_Z: Convert Scalar Double-Precision FP Value to Scalar Single-Precision FP Value.
+// VCVTSD2SS_RZ_SAE_Z: Convert Scalar Double-Precision FP Value to Scalar Single-Precision FP Value (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -26817,7 +26817,7 @@ func VCVTSD2SS_RZ_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTSD2SS_RZ_SAE_Z: bad operands")
 }
 
-// VCVTSD2SS_Z: Convert Scalar Double-Precision FP Value to Scalar Single-Precision FP Value.
+// VCVTSD2SS_Z: Convert Scalar Double-Precision FP Value to Scalar Single-Precision FP Value (Zeroing Masking).
 //
 // Forms:
 //
@@ -26875,7 +26875,7 @@ func VCVTSD2USIL(mx, r operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTSD2USIL: bad operands")
 }
 
-// VCVTSD2USIL_RD_SAE: Convert Scalar Double-Precision Floating-Point Value to Unsigned Doubleword Integer.
+// VCVTSD2USIL_RD_SAE: Convert Scalar Double-Precision Floating-Point Value to Unsigned Doubleword Integer (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -26895,7 +26895,7 @@ func VCVTSD2USIL_RD_SAE(x, r operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTSD2USIL_RD_SAE: bad operands")
 }
 
-// VCVTSD2USIL_RN_SAE: Convert Scalar Double-Precision Floating-Point Value to Unsigned Doubleword Integer.
+// VCVTSD2USIL_RN_SAE: Convert Scalar Double-Precision Floating-Point Value to Unsigned Doubleword Integer (Round Towards Nearest).
 //
 // Forms:
 //
@@ -26915,7 +26915,7 @@ func VCVTSD2USIL_RN_SAE(x, r operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTSD2USIL_RN_SAE: bad operands")
 }
 
-// VCVTSD2USIL_RU_SAE: Convert Scalar Double-Precision Floating-Point Value to Unsigned Doubleword Integer.
+// VCVTSD2USIL_RU_SAE: Convert Scalar Double-Precision Floating-Point Value to Unsigned Doubleword Integer (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -26935,7 +26935,7 @@ func VCVTSD2USIL_RU_SAE(x, r operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTSD2USIL_RU_SAE: bad operands")
 }
 
-// VCVTSD2USIL_RZ_SAE: Convert Scalar Double-Precision Floating-Point Value to Unsigned Doubleword Integer.
+// VCVTSD2USIL_RZ_SAE: Convert Scalar Double-Precision Floating-Point Value to Unsigned Doubleword Integer (Round Towards Zero).
 //
 // Forms:
 //
@@ -26983,7 +26983,7 @@ func VCVTSD2USIQ(mx, r operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTSD2USIQ: bad operands")
 }
 
-// VCVTSD2USIQ_RD_SAE: Convert Scalar Double-Precision Floating-Point Value to Unsigned Doubleword Integer.
+// VCVTSD2USIQ_RD_SAE: Convert Scalar Double-Precision Floating-Point Value to Unsigned Doubleword Integer (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -27003,7 +27003,7 @@ func VCVTSD2USIQ_RD_SAE(x, r operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTSD2USIQ_RD_SAE: bad operands")
 }
 
-// VCVTSD2USIQ_RN_SAE: Convert Scalar Double-Precision Floating-Point Value to Unsigned Doubleword Integer.
+// VCVTSD2USIQ_RN_SAE: Convert Scalar Double-Precision Floating-Point Value to Unsigned Doubleword Integer (Round Towards Nearest).
 //
 // Forms:
 //
@@ -27023,7 +27023,7 @@ func VCVTSD2USIQ_RN_SAE(x, r operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTSD2USIQ_RN_SAE: bad operands")
 }
 
-// VCVTSD2USIQ_RU_SAE: Convert Scalar Double-Precision Floating-Point Value to Unsigned Doubleword Integer.
+// VCVTSD2USIQ_RU_SAE: Convert Scalar Double-Precision Floating-Point Value to Unsigned Doubleword Integer (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -27043,7 +27043,7 @@ func VCVTSD2USIQ_RU_SAE(x, r operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTSD2USIQ_RU_SAE: bad operands")
 }
 
-// VCVTSD2USIQ_RZ_SAE: Convert Scalar Double-Precision Floating-Point Value to Unsigned Doubleword Integer.
+// VCVTSD2USIQ_RZ_SAE: Convert Scalar Double-Precision Floating-Point Value to Unsigned Doubleword Integer (Round Towards Zero).
 //
 // Forms:
 //
@@ -27155,7 +27155,7 @@ func VCVTSI2SDQ(mr, x, x1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTSI2SDQ: bad operands")
 }
 
-// VCVTSI2SDQ_RD_SAE: Convert Dword Integer to Scalar Double-Precision FP Value.
+// VCVTSI2SDQ_RD_SAE: Convert Dword Integer to Scalar Double-Precision FP Value (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -27175,7 +27175,7 @@ func VCVTSI2SDQ_RD_SAE(r, x, x1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTSI2SDQ_RD_SAE: bad operands")
 }
 
-// VCVTSI2SDQ_RN_SAE: Convert Dword Integer to Scalar Double-Precision FP Value.
+// VCVTSI2SDQ_RN_SAE: Convert Dword Integer to Scalar Double-Precision FP Value (Round Towards Nearest).
 //
 // Forms:
 //
@@ -27195,7 +27195,7 @@ func VCVTSI2SDQ_RN_SAE(r, x, x1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTSI2SDQ_RN_SAE: bad operands")
 }
 
-// VCVTSI2SDQ_RU_SAE: Convert Dword Integer to Scalar Double-Precision FP Value.
+// VCVTSI2SDQ_RU_SAE: Convert Dword Integer to Scalar Double-Precision FP Value (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -27215,7 +27215,7 @@ func VCVTSI2SDQ_RU_SAE(r, x, x1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTSI2SDQ_RU_SAE: bad operands")
 }
 
-// VCVTSI2SDQ_RZ_SAE: Convert Dword Integer to Scalar Double-Precision FP Value.
+// VCVTSI2SDQ_RZ_SAE: Convert Dword Integer to Scalar Double-Precision FP Value (Round Towards Zero).
 //
 // Forms:
 //
@@ -27281,7 +27281,7 @@ func VCVTSI2SSL(mr, x, x1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTSI2SSL: bad operands")
 }
 
-// VCVTSI2SSL_RD_SAE: Convert Dword Integer to Scalar Single-Precision FP Value.
+// VCVTSI2SSL_RD_SAE: Convert Dword Integer to Scalar Single-Precision FP Value (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -27301,7 +27301,7 @@ func VCVTSI2SSL_RD_SAE(r, x, x1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTSI2SSL_RD_SAE: bad operands")
 }
 
-// VCVTSI2SSL_RN_SAE: Convert Dword Integer to Scalar Single-Precision FP Value.
+// VCVTSI2SSL_RN_SAE: Convert Dword Integer to Scalar Single-Precision FP Value (Round Towards Nearest).
 //
 // Forms:
 //
@@ -27321,7 +27321,7 @@ func VCVTSI2SSL_RN_SAE(r, x, x1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTSI2SSL_RN_SAE: bad operands")
 }
 
-// VCVTSI2SSL_RU_SAE: Convert Dword Integer to Scalar Single-Precision FP Value.
+// VCVTSI2SSL_RU_SAE: Convert Dword Integer to Scalar Single-Precision FP Value (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -27341,7 +27341,7 @@ func VCVTSI2SSL_RU_SAE(r, x, x1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTSI2SSL_RU_SAE: bad operands")
 }
 
-// VCVTSI2SSL_RZ_SAE: Convert Dword Integer to Scalar Single-Precision FP Value.
+// VCVTSI2SSL_RZ_SAE: Convert Dword Integer to Scalar Single-Precision FP Value (Round Towards Zero).
 //
 // Forms:
 //
@@ -27407,7 +27407,7 @@ func VCVTSI2SSQ(mr, x, x1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTSI2SSQ: bad operands")
 }
 
-// VCVTSI2SSQ_RD_SAE: Convert Dword Integer to Scalar Single-Precision FP Value.
+// VCVTSI2SSQ_RD_SAE: Convert Dword Integer to Scalar Single-Precision FP Value (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -27427,7 +27427,7 @@ func VCVTSI2SSQ_RD_SAE(r, x, x1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTSI2SSQ_RD_SAE: bad operands")
 }
 
-// VCVTSI2SSQ_RN_SAE: Convert Dword Integer to Scalar Single-Precision FP Value.
+// VCVTSI2SSQ_RN_SAE: Convert Dword Integer to Scalar Single-Precision FP Value (Round Towards Nearest).
 //
 // Forms:
 //
@@ -27447,7 +27447,7 @@ func VCVTSI2SSQ_RN_SAE(r, x, x1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTSI2SSQ_RN_SAE: bad operands")
 }
 
-// VCVTSI2SSQ_RU_SAE: Convert Dword Integer to Scalar Single-Precision FP Value.
+// VCVTSI2SSQ_RU_SAE: Convert Dword Integer to Scalar Single-Precision FP Value (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -27467,7 +27467,7 @@ func VCVTSI2SSQ_RU_SAE(r, x, x1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTSI2SSQ_RU_SAE: bad operands")
 }
 
-// VCVTSI2SSQ_RZ_SAE: Convert Dword Integer to Scalar Single-Precision FP Value.
+// VCVTSI2SSQ_RZ_SAE: Convert Dword Integer to Scalar Single-Precision FP Value (Round Towards Zero).
 //
 // Forms:
 //
@@ -27551,7 +27551,7 @@ func VCVTSS2SD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTSS2SD: bad operands")
 }
 
-// VCVTSS2SD_SAE: Convert Scalar Single-Precision FP Value to Scalar Double-Precision FP Value.
+// VCVTSS2SD_SAE: Convert Scalar Single-Precision FP Value to Scalar Double-Precision FP Value (Suppress All Exceptions).
 //
 // Forms:
 //
@@ -27581,7 +27581,7 @@ func VCVTSS2SD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTSS2SD_SAE: bad operands")
 }
 
-// VCVTSS2SD_SAE_Z: Convert Scalar Single-Precision FP Value to Scalar Double-Precision FP Value.
+// VCVTSS2SD_SAE_Z: Convert Scalar Single-Precision FP Value to Scalar Double-Precision FP Value (Suppress All Exceptions, Zeroing Masking).
 //
 // Forms:
 //
@@ -27601,7 +27601,7 @@ func VCVTSS2SD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTSS2SD_SAE_Z: bad operands")
 }
 
-// VCVTSS2SD_Z: Convert Scalar Single-Precision FP Value to Scalar Double-Precision FP Value.
+// VCVTSS2SD_Z: Convert Scalar Single-Precision FP Value to Scalar Double-Precision FP Value (Zeroing Masking).
 //
 // Forms:
 //
@@ -27723,7 +27723,7 @@ func VCVTSS2SIQ(mx, r operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTSS2SIQ: bad operands")
 }
 
-// VCVTSS2SIQ_RD_SAE: Convert Scalar Single-Precision FP Value to Dword Integer.
+// VCVTSS2SIQ_RD_SAE: Convert Scalar Single-Precision FP Value to Dword Integer (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -27743,7 +27743,7 @@ func VCVTSS2SIQ_RD_SAE(x, r operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTSS2SIQ_RD_SAE: bad operands")
 }
 
-// VCVTSS2SIQ_RN_SAE: Convert Scalar Single-Precision FP Value to Dword Integer.
+// VCVTSS2SIQ_RN_SAE: Convert Scalar Single-Precision FP Value to Dword Integer (Round Towards Nearest).
 //
 // Forms:
 //
@@ -27763,7 +27763,7 @@ func VCVTSS2SIQ_RN_SAE(x, r operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTSS2SIQ_RN_SAE: bad operands")
 }
 
-// VCVTSS2SIQ_RU_SAE: Convert Scalar Single-Precision FP Value to Dword Integer.
+// VCVTSS2SIQ_RU_SAE: Convert Scalar Single-Precision FP Value to Dword Integer (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -27783,7 +27783,7 @@ func VCVTSS2SIQ_RU_SAE(x, r operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTSS2SIQ_RU_SAE: bad operands")
 }
 
-// VCVTSS2SIQ_RZ_SAE: Convert Scalar Single-Precision FP Value to Dword Integer.
+// VCVTSS2SIQ_RZ_SAE: Convert Scalar Single-Precision FP Value to Dword Integer (Round Towards Zero).
 //
 // Forms:
 //
@@ -27803,7 +27803,7 @@ func VCVTSS2SIQ_RZ_SAE(x, r operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTSS2SIQ_RZ_SAE: bad operands")
 }
 
-// VCVTSS2SI_RD_SAE: Convert Scalar Single-Precision FP Value to Dword Integer.
+// VCVTSS2SI_RD_SAE: Convert Scalar Single-Precision FP Value to Dword Integer (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -27823,7 +27823,7 @@ func VCVTSS2SI_RD_SAE(x, r operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTSS2SI_RD_SAE: bad operands")
 }
 
-// VCVTSS2SI_RN_SAE: Convert Scalar Single-Precision FP Value to Dword Integer.
+// VCVTSS2SI_RN_SAE: Convert Scalar Single-Precision FP Value to Dword Integer (Round Towards Nearest).
 //
 // Forms:
 //
@@ -27843,7 +27843,7 @@ func VCVTSS2SI_RN_SAE(x, r operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTSS2SI_RN_SAE: bad operands")
 }
 
-// VCVTSS2SI_RU_SAE: Convert Scalar Single-Precision FP Value to Dword Integer.
+// VCVTSS2SI_RU_SAE: Convert Scalar Single-Precision FP Value to Dword Integer (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -27863,7 +27863,7 @@ func VCVTSS2SI_RU_SAE(x, r operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTSS2SI_RU_SAE: bad operands")
 }
 
-// VCVTSS2SI_RZ_SAE: Convert Scalar Single-Precision FP Value to Dword Integer.
+// VCVTSS2SI_RZ_SAE: Convert Scalar Single-Precision FP Value to Dword Integer (Round Towards Zero).
 //
 // Forms:
 //
@@ -27911,7 +27911,7 @@ func VCVTSS2USIL(mx, r operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTSS2USIL: bad operands")
 }
 
-// VCVTSS2USIL_RD_SAE: Convert Scalar Single-Precision Floating-Point Value to Unsigned Doubleword Integer.
+// VCVTSS2USIL_RD_SAE: Convert Scalar Single-Precision Floating-Point Value to Unsigned Doubleword Integer (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -27931,7 +27931,7 @@ func VCVTSS2USIL_RD_SAE(x, r operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTSS2USIL_RD_SAE: bad operands")
 }
 
-// VCVTSS2USIL_RN_SAE: Convert Scalar Single-Precision Floating-Point Value to Unsigned Doubleword Integer.
+// VCVTSS2USIL_RN_SAE: Convert Scalar Single-Precision Floating-Point Value to Unsigned Doubleword Integer (Round Towards Nearest).
 //
 // Forms:
 //
@@ -27951,7 +27951,7 @@ func VCVTSS2USIL_RN_SAE(x, r operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTSS2USIL_RN_SAE: bad operands")
 }
 
-// VCVTSS2USIL_RU_SAE: Convert Scalar Single-Precision Floating-Point Value to Unsigned Doubleword Integer.
+// VCVTSS2USIL_RU_SAE: Convert Scalar Single-Precision Floating-Point Value to Unsigned Doubleword Integer (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -27971,7 +27971,7 @@ func VCVTSS2USIL_RU_SAE(x, r operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTSS2USIL_RU_SAE: bad operands")
 }
 
-// VCVTSS2USIL_RZ_SAE: Convert Scalar Single-Precision Floating-Point Value to Unsigned Doubleword Integer.
+// VCVTSS2USIL_RZ_SAE: Convert Scalar Single-Precision Floating-Point Value to Unsigned Doubleword Integer (Round Towards Zero).
 //
 // Forms:
 //
@@ -28019,7 +28019,7 @@ func VCVTSS2USIQ(mx, r operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTSS2USIQ: bad operands")
 }
 
-// VCVTSS2USIQ_RD_SAE: Convert Scalar Single-Precision Floating-Point Value to Unsigned Doubleword Integer.
+// VCVTSS2USIQ_RD_SAE: Convert Scalar Single-Precision Floating-Point Value to Unsigned Doubleword Integer (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -28039,7 +28039,7 @@ func VCVTSS2USIQ_RD_SAE(x, r operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTSS2USIQ_RD_SAE: bad operands")
 }
 
-// VCVTSS2USIQ_RN_SAE: Convert Scalar Single-Precision Floating-Point Value to Unsigned Doubleword Integer.
+// VCVTSS2USIQ_RN_SAE: Convert Scalar Single-Precision Floating-Point Value to Unsigned Doubleword Integer (Round Towards Nearest).
 //
 // Forms:
 //
@@ -28059,7 +28059,7 @@ func VCVTSS2USIQ_RN_SAE(x, r operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTSS2USIQ_RN_SAE: bad operands")
 }
 
-// VCVTSS2USIQ_RU_SAE: Convert Scalar Single-Precision Floating-Point Value to Unsigned Doubleword Integer.
+// VCVTSS2USIQ_RU_SAE: Convert Scalar Single-Precision Floating-Point Value to Unsigned Doubleword Integer (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -28079,7 +28079,7 @@ func VCVTSS2USIQ_RU_SAE(x, r operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTSS2USIQ_RU_SAE: bad operands")
 }
 
-// VCVTSS2USIQ_RZ_SAE: Convert Scalar Single-Precision Floating-Point Value to Unsigned Doubleword Integer.
+// VCVTSS2USIQ_RZ_SAE: Convert Scalar Single-Precision Floating-Point Value to Unsigned Doubleword Integer (Round Towards Zero).
 //
 // Forms:
 //
@@ -28201,7 +28201,7 @@ func VCVTTPD2DQY(my, x operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTTPD2DQY: bad operands")
 }
 
-// VCVTTPD2DQ_BCST: Convert with Truncation Packed Double-Precision FP Values to Packed Dword Integers.
+// VCVTTPD2DQ_BCST: Convert with Truncation Packed Double-Precision FP Values to Packed Dword Integers (Broadcast).
 //
 // Forms:
 //
@@ -28231,7 +28231,7 @@ func VCVTTPD2DQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTTPD2DQ_BCST: bad operands")
 }
 
-// VCVTTPD2DQ_BCST_Z: Convert with Truncation Packed Double-Precision FP Values to Packed Dword Integers.
+// VCVTTPD2DQ_BCST_Z: Convert with Truncation Packed Double-Precision FP Values to Packed Dword Integers (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -28251,7 +28251,7 @@ func VCVTTPD2DQ_BCST_Z(m, k, y operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTTPD2DQ_BCST_Z: bad operands")
 }
 
-// VCVTTPD2DQ_SAE: Convert with Truncation Packed Double-Precision FP Values to Packed Dword Integers.
+// VCVTTPD2DQ_SAE: Convert with Truncation Packed Double-Precision FP Values to Packed Dword Integers (Suppress All Exceptions).
 //
 // Forms:
 //
@@ -28281,7 +28281,7 @@ func VCVTTPD2DQ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTTPD2DQ_SAE: bad operands")
 }
 
-// VCVTTPD2DQ_SAE_Z: Convert with Truncation Packed Double-Precision FP Values to Packed Dword Integers.
+// VCVTTPD2DQ_SAE_Z: Convert with Truncation Packed Double-Precision FP Values to Packed Dword Integers (Suppress All Exceptions, Zeroing Masking).
 //
 // Forms:
 //
@@ -28301,7 +28301,7 @@ func VCVTTPD2DQ_SAE_Z(z, k, y operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTTPD2DQ_SAE_Z: bad operands")
 }
 
-// VCVTTPD2DQ_Z: Convert with Truncation Packed Double-Precision FP Values to Packed Dword Integers.
+// VCVTTPD2DQ_Z: Convert with Truncation Packed Double-Precision FP Values to Packed Dword Integers (Zeroing Masking).
 //
 // Forms:
 //
@@ -28377,7 +28377,7 @@ func VCVTTPD2UDQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTTPD2UDQ: bad operands")
 }
 
-// VCVTTPD2UDQ_BCST: Convert with Truncation Packed Double-Precision Floating-Point Values to Packed Unsigned Doubleword Integers.
+// VCVTTPD2UDQ_BCST: Convert with Truncation Packed Double-Precision Floating-Point Values to Packed Unsigned Doubleword Integers (Broadcast).
 //
 // Forms:
 //
@@ -28407,7 +28407,7 @@ func VCVTTPD2UDQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTTPD2UDQ_BCST: bad operands")
 }
 
-// VCVTTPD2UDQ_BCST_Z: Convert with Truncation Packed Double-Precision Floating-Point Values to Packed Unsigned Doubleword Integers.
+// VCVTTPD2UDQ_BCST_Z: Convert with Truncation Packed Double-Precision Floating-Point Values to Packed Unsigned Doubleword Integers (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -28427,7 +28427,7 @@ func VCVTTPD2UDQ_BCST_Z(m, k, y operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTTPD2UDQ_BCST_Z: bad operands")
 }
 
-// VCVTTPD2UDQ_SAE: Convert with Truncation Packed Double-Precision Floating-Point Values to Packed Unsigned Doubleword Integers.
+// VCVTTPD2UDQ_SAE: Convert with Truncation Packed Double-Precision Floating-Point Values to Packed Unsigned Doubleword Integers (Suppress All Exceptions).
 //
 // Forms:
 //
@@ -28457,7 +28457,7 @@ func VCVTTPD2UDQ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTTPD2UDQ_SAE: bad operands")
 }
 
-// VCVTTPD2UDQ_SAE_Z: Convert with Truncation Packed Double-Precision Floating-Point Values to Packed Unsigned Doubleword Integers.
+// VCVTTPD2UDQ_SAE_Z: Convert with Truncation Packed Double-Precision Floating-Point Values to Packed Unsigned Doubleword Integers (Suppress All Exceptions, Zeroing Masking).
 //
 // Forms:
 //
@@ -28477,7 +28477,7 @@ func VCVTTPD2UDQ_SAE_Z(z, k, y operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTTPD2UDQ_SAE_Z: bad operands")
 }
 
-// VCVTTPD2UDQ_Z: Convert with Truncation Packed Double-Precision Floating-Point Values to Packed Unsigned Doubleword Integers.
+// VCVTTPD2UDQ_Z: Convert with Truncation Packed Double-Precision Floating-Point Values to Packed Unsigned Doubleword Integers (Zeroing Masking).
 //
 // Forms:
 //
@@ -28589,7 +28589,7 @@ func VCVTTPS2DQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTTPS2DQ: bad operands")
 }
 
-// VCVTTPS2DQ_BCST: Convert with Truncation Packed Single-Precision FP Values to Packed Dword Integers.
+// VCVTTPS2DQ_BCST: Convert with Truncation Packed Single-Precision FP Values to Packed Dword Integers (Broadcast).
 //
 // Forms:
 //
@@ -28619,7 +28619,7 @@ func VCVTTPS2DQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTTPS2DQ_BCST: bad operands")
 }
 
-// VCVTTPS2DQ_BCST_Z: Convert with Truncation Packed Single-Precision FP Values to Packed Dword Integers.
+// VCVTTPS2DQ_BCST_Z: Convert with Truncation Packed Single-Precision FP Values to Packed Dword Integers (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -28639,7 +28639,7 @@ func VCVTTPS2DQ_BCST_Z(m, k, z operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTTPS2DQ_BCST_Z: bad operands")
 }
 
-// VCVTTPS2DQ_SAE: Convert with Truncation Packed Single-Precision FP Values to Packed Dword Integers.
+// VCVTTPS2DQ_SAE: Convert with Truncation Packed Single-Precision FP Values to Packed Dword Integers (Suppress All Exceptions).
 //
 // Forms:
 //
@@ -28669,7 +28669,7 @@ func VCVTTPS2DQ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTTPS2DQ_SAE: bad operands")
 }
 
-// VCVTTPS2DQ_SAE_Z: Convert with Truncation Packed Single-Precision FP Values to Packed Dword Integers.
+// VCVTTPS2DQ_SAE_Z: Convert with Truncation Packed Single-Precision FP Values to Packed Dword Integers (Suppress All Exceptions, Zeroing Masking).
 //
 // Forms:
 //
@@ -28689,7 +28689,7 @@ func VCVTTPS2DQ_SAE_Z(z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTTPS2DQ_SAE_Z: bad operands")
 }
 
-// VCVTTPS2DQ_Z: Convert with Truncation Packed Single-Precision FP Values to Packed Dword Integers.
+// VCVTTPS2DQ_Z: Convert with Truncation Packed Single-Precision FP Values to Packed Dword Integers (Zeroing Masking).
 //
 // Forms:
 //
@@ -28765,7 +28765,7 @@ func VCVTTPS2UDQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTTPS2UDQ: bad operands")
 }
 
-// VCVTTPS2UDQ_BCST: Convert with Truncation Packed Single-Precision Floating-Point Values to Packed Unsigned Doubleword Integer Values.
+// VCVTTPS2UDQ_BCST: Convert with Truncation Packed Single-Precision Floating-Point Values to Packed Unsigned Doubleword Integer Values (Broadcast).
 //
 // Forms:
 //
@@ -28795,7 +28795,7 @@ func VCVTTPS2UDQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTTPS2UDQ_BCST: bad operands")
 }
 
-// VCVTTPS2UDQ_BCST_Z: Convert with Truncation Packed Single-Precision Floating-Point Values to Packed Unsigned Doubleword Integer Values.
+// VCVTTPS2UDQ_BCST_Z: Convert with Truncation Packed Single-Precision Floating-Point Values to Packed Unsigned Doubleword Integer Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -28815,7 +28815,7 @@ func VCVTTPS2UDQ_BCST_Z(m, k, z operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTTPS2UDQ_BCST_Z: bad operands")
 }
 
-// VCVTTPS2UDQ_SAE: Convert with Truncation Packed Single-Precision Floating-Point Values to Packed Unsigned Doubleword Integer Values.
+// VCVTTPS2UDQ_SAE: Convert with Truncation Packed Single-Precision Floating-Point Values to Packed Unsigned Doubleword Integer Values (Suppress All Exceptions).
 //
 // Forms:
 //
@@ -28845,7 +28845,7 @@ func VCVTTPS2UDQ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTTPS2UDQ_SAE: bad operands")
 }
 
-// VCVTTPS2UDQ_SAE_Z: Convert with Truncation Packed Single-Precision Floating-Point Values to Packed Unsigned Doubleword Integer Values.
+// VCVTTPS2UDQ_SAE_Z: Convert with Truncation Packed Single-Precision Floating-Point Values to Packed Unsigned Doubleword Integer Values (Suppress All Exceptions, Zeroing Masking).
 //
 // Forms:
 //
@@ -28865,7 +28865,7 @@ func VCVTTPS2UDQ_SAE_Z(z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTTPS2UDQ_SAE_Z: bad operands")
 }
 
-// VCVTTPS2UDQ_Z: Convert with Truncation Packed Single-Precision Floating-Point Values to Packed Unsigned Doubleword Integer Values.
+// VCVTTPS2UDQ_Z: Convert with Truncation Packed Single-Precision Floating-Point Values to Packed Unsigned Doubleword Integer Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -28987,7 +28987,7 @@ func VCVTTSD2SIQ(mx, r operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTTSD2SIQ: bad operands")
 }
 
-// VCVTTSD2SIQ_SAE: Convert with Truncation Scalar Double-Precision FP Value to Signed Integer.
+// VCVTTSD2SIQ_SAE: Convert with Truncation Scalar Double-Precision FP Value to Signed Integer (Suppress All Exceptions).
 //
 // Forms:
 //
@@ -29007,7 +29007,7 @@ func VCVTTSD2SIQ_SAE(x, r operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTTSD2SIQ_SAE: bad operands")
 }
 
-// VCVTTSD2SI_SAE: Convert with Truncation Scalar Double-Precision FP Value to Signed Integer.
+// VCVTTSD2SI_SAE: Convert with Truncation Scalar Double-Precision FP Value to Signed Integer (Suppress All Exceptions).
 //
 // Forms:
 //
@@ -29055,7 +29055,7 @@ func VCVTTSD2USIL(mx, r operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTTSD2USIL: bad operands")
 }
 
-// VCVTTSD2USIL_SAE: Convert with Truncation Scalar Double-Precision Floating-Point Value to Unsigned Integer.
+// VCVTTSD2USIL_SAE: Convert with Truncation Scalar Double-Precision Floating-Point Value to Unsigned Integer (Suppress All Exceptions).
 //
 // Forms:
 //
@@ -29103,7 +29103,7 @@ func VCVTTSD2USIQ(mx, r operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTTSD2USIQ: bad operands")
 }
 
-// VCVTTSD2USIQ_SAE: Convert with Truncation Scalar Double-Precision Floating-Point Value to Unsigned Integer.
+// VCVTTSD2USIQ_SAE: Convert with Truncation Scalar Double-Precision Floating-Point Value to Unsigned Integer (Suppress All Exceptions).
 //
 // Forms:
 //
@@ -29215,7 +29215,7 @@ func VCVTTSS2SIQ(mx, r operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTTSS2SIQ: bad operands")
 }
 
-// VCVTTSS2SIQ_SAE: Convert with Truncation Scalar Single-Precision FP Value to Dword Integer.
+// VCVTTSS2SIQ_SAE: Convert with Truncation Scalar Single-Precision FP Value to Dword Integer (Suppress All Exceptions).
 //
 // Forms:
 //
@@ -29235,7 +29235,7 @@ func VCVTTSS2SIQ_SAE(x, r operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTTSS2SIQ_SAE: bad operands")
 }
 
-// VCVTTSS2SI_SAE: Convert with Truncation Scalar Single-Precision FP Value to Dword Integer.
+// VCVTTSS2SI_SAE: Convert with Truncation Scalar Single-Precision FP Value to Dword Integer (Suppress All Exceptions).
 //
 // Forms:
 //
@@ -29283,7 +29283,7 @@ func VCVTTSS2USIL(mx, r operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTTSS2USIL: bad operands")
 }
 
-// VCVTTSS2USIL_SAE: Convert with Truncation Scalar Single-Precision Floating-Point Value to Unsigned Integer.
+// VCVTTSS2USIL_SAE: Convert with Truncation Scalar Single-Precision Floating-Point Value to Unsigned Integer (Suppress All Exceptions).
 //
 // Forms:
 //
@@ -29331,7 +29331,7 @@ func VCVTTSS2USIQ(mx, r operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTTSS2USIQ: bad operands")
 }
 
-// VCVTTSS2USIQ_SAE: Convert with Truncation Scalar Single-Precision Floating-Point Value to Unsigned Integer.
+// VCVTTSS2USIQ_SAE: Convert with Truncation Scalar Single-Precision Floating-Point Value to Unsigned Integer (Suppress All Exceptions).
 //
 // Forms:
 //
@@ -29397,7 +29397,7 @@ func VCVTUDQ2PD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTUDQ2PD: bad operands")
 }
 
-// VCVTUDQ2PD_BCST: Convert Packed Unsigned Doubleword Integers to Packed Double-Precision Floating-Point Values.
+// VCVTUDQ2PD_BCST: Convert Packed Unsigned Doubleword Integers to Packed Double-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -29427,7 +29427,7 @@ func VCVTUDQ2PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTUDQ2PD_BCST: bad operands")
 }
 
-// VCVTUDQ2PD_BCST_Z: Convert Packed Unsigned Doubleword Integers to Packed Double-Precision Floating-Point Values.
+// VCVTUDQ2PD_BCST_Z: Convert Packed Unsigned Doubleword Integers to Packed Double-Precision Floating-Point Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -29447,7 +29447,7 @@ func VCVTUDQ2PD_BCST_Z(m, k, z operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTUDQ2PD_BCST_Z: bad operands")
 }
 
-// VCVTUDQ2PD_Z: Convert Packed Unsigned Doubleword Integers to Packed Double-Precision Floating-Point Values.
+// VCVTUDQ2PD_Z: Convert Packed Unsigned Doubleword Integers to Packed Double-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -29523,7 +29523,7 @@ func VCVTUDQ2PS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTUDQ2PS: bad operands")
 }
 
-// VCVTUDQ2PS_BCST: Convert Packed Unsigned Doubleword Integers to Packed Single-Precision Floating-Point Values.
+// VCVTUDQ2PS_BCST: Convert Packed Unsigned Doubleword Integers to Packed Single-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -29553,7 +29553,7 @@ func VCVTUDQ2PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTUDQ2PS_BCST: bad operands")
 }
 
-// VCVTUDQ2PS_BCST_Z: Convert Packed Unsigned Doubleword Integers to Packed Single-Precision Floating-Point Values.
+// VCVTUDQ2PS_BCST_Z: Convert Packed Unsigned Doubleword Integers to Packed Single-Precision Floating-Point Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -29573,7 +29573,7 @@ func VCVTUDQ2PS_BCST_Z(m, k, z operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTUDQ2PS_BCST_Z: bad operands")
 }
 
-// VCVTUDQ2PS_RD_SAE: Convert Packed Unsigned Doubleword Integers to Packed Single-Precision Floating-Point Values.
+// VCVTUDQ2PS_RD_SAE: Convert Packed Unsigned Doubleword Integers to Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -29603,7 +29603,7 @@ func VCVTUDQ2PS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTUDQ2PS_RD_SAE: bad operands")
 }
 
-// VCVTUDQ2PS_RD_SAE_Z: Convert Packed Unsigned Doubleword Integers to Packed Single-Precision Floating-Point Values.
+// VCVTUDQ2PS_RD_SAE_Z: Convert Packed Unsigned Doubleword Integers to Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -29623,7 +29623,7 @@ func VCVTUDQ2PS_RD_SAE_Z(z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTUDQ2PS_RD_SAE_Z: bad operands")
 }
 
-// VCVTUDQ2PS_RN_SAE: Convert Packed Unsigned Doubleword Integers to Packed Single-Precision Floating-Point Values.
+// VCVTUDQ2PS_RN_SAE: Convert Packed Unsigned Doubleword Integers to Packed Single-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -29653,7 +29653,7 @@ func VCVTUDQ2PS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTUDQ2PS_RN_SAE: bad operands")
 }
 
-// VCVTUDQ2PS_RN_SAE_Z: Convert Packed Unsigned Doubleword Integers to Packed Single-Precision Floating-Point Values.
+// VCVTUDQ2PS_RN_SAE_Z: Convert Packed Unsigned Doubleword Integers to Packed Single-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -29673,7 +29673,7 @@ func VCVTUDQ2PS_RN_SAE_Z(z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTUDQ2PS_RN_SAE_Z: bad operands")
 }
 
-// VCVTUDQ2PS_RU_SAE: Convert Packed Unsigned Doubleword Integers to Packed Single-Precision Floating-Point Values.
+// VCVTUDQ2PS_RU_SAE: Convert Packed Unsigned Doubleword Integers to Packed Single-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -29703,7 +29703,7 @@ func VCVTUDQ2PS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTUDQ2PS_RU_SAE: bad operands")
 }
 
-// VCVTUDQ2PS_RU_SAE_Z: Convert Packed Unsigned Doubleword Integers to Packed Single-Precision Floating-Point Values.
+// VCVTUDQ2PS_RU_SAE_Z: Convert Packed Unsigned Doubleword Integers to Packed Single-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -29723,7 +29723,7 @@ func VCVTUDQ2PS_RU_SAE_Z(z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTUDQ2PS_RU_SAE_Z: bad operands")
 }
 
-// VCVTUDQ2PS_RZ_SAE: Convert Packed Unsigned Doubleword Integers to Packed Single-Precision Floating-Point Values.
+// VCVTUDQ2PS_RZ_SAE: Convert Packed Unsigned Doubleword Integers to Packed Single-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -29753,7 +29753,7 @@ func VCVTUDQ2PS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTUDQ2PS_RZ_SAE: bad operands")
 }
 
-// VCVTUDQ2PS_RZ_SAE_Z: Convert Packed Unsigned Doubleword Integers to Packed Single-Precision Floating-Point Values.
+// VCVTUDQ2PS_RZ_SAE_Z: Convert Packed Unsigned Doubleword Integers to Packed Single-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -29773,7 +29773,7 @@ func VCVTUDQ2PS_RZ_SAE_Z(z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTUDQ2PS_RZ_SAE_Z: bad operands")
 }
 
-// VCVTUDQ2PS_Z: Convert Packed Unsigned Doubleword Integers to Packed Single-Precision Floating-Point Values.
+// VCVTUDQ2PS_Z: Convert Packed Unsigned Doubleword Integers to Packed Single-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -29859,7 +29859,7 @@ func VCVTUSI2SDQ(mr, x, x1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTUSI2SDQ: bad operands")
 }
 
-// VCVTUSI2SDQ_RD_SAE: Convert Unsigned Integer to Scalar Double-Precision Floating-Point Value.
+// VCVTUSI2SDQ_RD_SAE: Convert Unsigned Integer to Scalar Double-Precision Floating-Point Value (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -29879,7 +29879,7 @@ func VCVTUSI2SDQ_RD_SAE(r, x, x1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTUSI2SDQ_RD_SAE: bad operands")
 }
 
-// VCVTUSI2SDQ_RN_SAE: Convert Unsigned Integer to Scalar Double-Precision Floating-Point Value.
+// VCVTUSI2SDQ_RN_SAE: Convert Unsigned Integer to Scalar Double-Precision Floating-Point Value (Round Towards Nearest).
 //
 // Forms:
 //
@@ -29899,7 +29899,7 @@ func VCVTUSI2SDQ_RN_SAE(r, x, x1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTUSI2SDQ_RN_SAE: bad operands")
 }
 
-// VCVTUSI2SDQ_RU_SAE: Convert Unsigned Integer to Scalar Double-Precision Floating-Point Value.
+// VCVTUSI2SDQ_RU_SAE: Convert Unsigned Integer to Scalar Double-Precision Floating-Point Value (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -29919,7 +29919,7 @@ func VCVTUSI2SDQ_RU_SAE(r, x, x1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTUSI2SDQ_RU_SAE: bad operands")
 }
 
-// VCVTUSI2SDQ_RZ_SAE: Convert Unsigned Integer to Scalar Double-Precision Floating-Point Value.
+// VCVTUSI2SDQ_RZ_SAE: Convert Unsigned Integer to Scalar Double-Precision Floating-Point Value (Round Towards Zero).
 //
 // Forms:
 //
@@ -29967,7 +29967,7 @@ func VCVTUSI2SSL(mr, x, x1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTUSI2SSL: bad operands")
 }
 
-// VCVTUSI2SSL_RD_SAE: Convert Unsigned Integer to Scalar Single-Precision Floating-Point Value.
+// VCVTUSI2SSL_RD_SAE: Convert Unsigned Integer to Scalar Single-Precision Floating-Point Value (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -29987,7 +29987,7 @@ func VCVTUSI2SSL_RD_SAE(r, x, x1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTUSI2SSL_RD_SAE: bad operands")
 }
 
-// VCVTUSI2SSL_RN_SAE: Convert Unsigned Integer to Scalar Single-Precision Floating-Point Value.
+// VCVTUSI2SSL_RN_SAE: Convert Unsigned Integer to Scalar Single-Precision Floating-Point Value (Round Towards Nearest).
 //
 // Forms:
 //
@@ -30007,7 +30007,7 @@ func VCVTUSI2SSL_RN_SAE(r, x, x1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTUSI2SSL_RN_SAE: bad operands")
 }
 
-// VCVTUSI2SSL_RU_SAE: Convert Unsigned Integer to Scalar Single-Precision Floating-Point Value.
+// VCVTUSI2SSL_RU_SAE: Convert Unsigned Integer to Scalar Single-Precision Floating-Point Value (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -30027,7 +30027,7 @@ func VCVTUSI2SSL_RU_SAE(r, x, x1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTUSI2SSL_RU_SAE: bad operands")
 }
 
-// VCVTUSI2SSL_RZ_SAE: Convert Unsigned Integer to Scalar Single-Precision Floating-Point Value.
+// VCVTUSI2SSL_RZ_SAE: Convert Unsigned Integer to Scalar Single-Precision Floating-Point Value (Round Towards Zero).
 //
 // Forms:
 //
@@ -30075,7 +30075,7 @@ func VCVTUSI2SSQ(mr, x, x1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTUSI2SSQ: bad operands")
 }
 
-// VCVTUSI2SSQ_RD_SAE: Convert Unsigned Integer to Scalar Single-Precision Floating-Point Value.
+// VCVTUSI2SSQ_RD_SAE: Convert Unsigned Integer to Scalar Single-Precision Floating-Point Value (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -30095,7 +30095,7 @@ func VCVTUSI2SSQ_RD_SAE(r, x, x1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTUSI2SSQ_RD_SAE: bad operands")
 }
 
-// VCVTUSI2SSQ_RN_SAE: Convert Unsigned Integer to Scalar Single-Precision Floating-Point Value.
+// VCVTUSI2SSQ_RN_SAE: Convert Unsigned Integer to Scalar Single-Precision Floating-Point Value (Round Towards Nearest).
 //
 // Forms:
 //
@@ -30115,7 +30115,7 @@ func VCVTUSI2SSQ_RN_SAE(r, x, x1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTUSI2SSQ_RN_SAE: bad operands")
 }
 
-// VCVTUSI2SSQ_RU_SAE: Convert Unsigned Integer to Scalar Single-Precision Floating-Point Value.
+// VCVTUSI2SSQ_RU_SAE: Convert Unsigned Integer to Scalar Single-Precision Floating-Point Value (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -30135,7 +30135,7 @@ func VCVTUSI2SSQ_RU_SAE(r, x, x1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VCVTUSI2SSQ_RU_SAE: bad operands")
 }
 
-// VCVTUSI2SSQ_RZ_SAE: Convert Unsigned Integer to Scalar Single-Precision Floating-Point Value.
+// VCVTUSI2SSQ_RZ_SAE: Convert Unsigned Integer to Scalar Single-Precision Floating-Point Value (Round Towards Zero).
 //
 // Forms:
 //
@@ -30237,7 +30237,7 @@ func VDIVPD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VDIVPD: bad operands")
 }
 
-// VDIVPD_BCST: Divide Packed Double-Precision Floating-Point Values.
+// VDIVPD_BCST: Divide Packed Double-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -30267,7 +30267,7 @@ func VDIVPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VDIVPD_BCST: bad operands")
 }
 
-// VDIVPD_BCST_Z: Divide Packed Double-Precision Floating-Point Values.
+// VDIVPD_BCST_Z: Divide Packed Double-Precision Floating-Point Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -30287,7 +30287,7 @@ func VDIVPD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VDIVPD_BCST_Z: bad operands")
 }
 
-// VDIVPD_RD_SAE: Divide Packed Double-Precision Floating-Point Values.
+// VDIVPD_RD_SAE: Divide Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -30317,7 +30317,7 @@ func VDIVPD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VDIVPD_RD_SAE: bad operands")
 }
 
-// VDIVPD_RD_SAE_Z: Divide Packed Double-Precision Floating-Point Values.
+// VDIVPD_RD_SAE_Z: Divide Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -30337,7 +30337,7 @@ func VDIVPD_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VDIVPD_RD_SAE_Z: bad operands")
 }
 
-// VDIVPD_RN_SAE: Divide Packed Double-Precision Floating-Point Values.
+// VDIVPD_RN_SAE: Divide Packed Double-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -30367,7 +30367,7 @@ func VDIVPD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VDIVPD_RN_SAE: bad operands")
 }
 
-// VDIVPD_RN_SAE_Z: Divide Packed Double-Precision Floating-Point Values.
+// VDIVPD_RN_SAE_Z: Divide Packed Double-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -30387,7 +30387,7 @@ func VDIVPD_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VDIVPD_RN_SAE_Z: bad operands")
 }
 
-// VDIVPD_RU_SAE: Divide Packed Double-Precision Floating-Point Values.
+// VDIVPD_RU_SAE: Divide Packed Double-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -30417,7 +30417,7 @@ func VDIVPD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VDIVPD_RU_SAE: bad operands")
 }
 
-// VDIVPD_RU_SAE_Z: Divide Packed Double-Precision Floating-Point Values.
+// VDIVPD_RU_SAE_Z: Divide Packed Double-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -30437,7 +30437,7 @@ func VDIVPD_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VDIVPD_RU_SAE_Z: bad operands")
 }
 
-// VDIVPD_RZ_SAE: Divide Packed Double-Precision Floating-Point Values.
+// VDIVPD_RZ_SAE: Divide Packed Double-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -30467,7 +30467,7 @@ func VDIVPD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VDIVPD_RZ_SAE: bad operands")
 }
 
-// VDIVPD_RZ_SAE_Z: Divide Packed Double-Precision Floating-Point Values.
+// VDIVPD_RZ_SAE_Z: Divide Packed Double-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -30487,7 +30487,7 @@ func VDIVPD_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VDIVPD_RZ_SAE_Z: bad operands")
 }
 
-// VDIVPD_Z: Divide Packed Double-Precision Floating-Point Values.
+// VDIVPD_Z: Divide Packed Double-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -30599,7 +30599,7 @@ func VDIVPS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VDIVPS: bad operands")
 }
 
-// VDIVPS_BCST: Divide Packed Single-Precision Floating-Point Values.
+// VDIVPS_BCST: Divide Packed Single-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -30629,7 +30629,7 @@ func VDIVPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VDIVPS_BCST: bad operands")
 }
 
-// VDIVPS_BCST_Z: Divide Packed Single-Precision Floating-Point Values.
+// VDIVPS_BCST_Z: Divide Packed Single-Precision Floating-Point Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -30649,7 +30649,7 @@ func VDIVPS_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VDIVPS_BCST_Z: bad operands")
 }
 
-// VDIVPS_RD_SAE: Divide Packed Single-Precision Floating-Point Values.
+// VDIVPS_RD_SAE: Divide Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -30679,7 +30679,7 @@ func VDIVPS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VDIVPS_RD_SAE: bad operands")
 }
 
-// VDIVPS_RD_SAE_Z: Divide Packed Single-Precision Floating-Point Values.
+// VDIVPS_RD_SAE_Z: Divide Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -30699,7 +30699,7 @@ func VDIVPS_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VDIVPS_RD_SAE_Z: bad operands")
 }
 
-// VDIVPS_RN_SAE: Divide Packed Single-Precision Floating-Point Values.
+// VDIVPS_RN_SAE: Divide Packed Single-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -30729,7 +30729,7 @@ func VDIVPS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VDIVPS_RN_SAE: bad operands")
 }
 
-// VDIVPS_RN_SAE_Z: Divide Packed Single-Precision Floating-Point Values.
+// VDIVPS_RN_SAE_Z: Divide Packed Single-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -30749,7 +30749,7 @@ func VDIVPS_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VDIVPS_RN_SAE_Z: bad operands")
 }
 
-// VDIVPS_RU_SAE: Divide Packed Single-Precision Floating-Point Values.
+// VDIVPS_RU_SAE: Divide Packed Single-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -30779,7 +30779,7 @@ func VDIVPS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VDIVPS_RU_SAE: bad operands")
 }
 
-// VDIVPS_RU_SAE_Z: Divide Packed Single-Precision Floating-Point Values.
+// VDIVPS_RU_SAE_Z: Divide Packed Single-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -30799,7 +30799,7 @@ func VDIVPS_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VDIVPS_RU_SAE_Z: bad operands")
 }
 
-// VDIVPS_RZ_SAE: Divide Packed Single-Precision Floating-Point Values.
+// VDIVPS_RZ_SAE: Divide Packed Single-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -30829,7 +30829,7 @@ func VDIVPS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VDIVPS_RZ_SAE: bad operands")
 }
 
-// VDIVPS_RZ_SAE_Z: Divide Packed Single-Precision Floating-Point Values.
+// VDIVPS_RZ_SAE_Z: Divide Packed Single-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -30849,7 +30849,7 @@ func VDIVPS_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VDIVPS_RZ_SAE_Z: bad operands")
 }
 
-// VDIVPS_Z: Divide Packed Single-Precision Floating-Point Values.
+// VDIVPS_Z: Divide Packed Single-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -30943,7 +30943,7 @@ func VDIVSD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VDIVSD: bad operands")
 }
 
-// VDIVSD_RD_SAE: Divide Scalar Double-Precision Floating-Point Values.
+// VDIVSD_RD_SAE: Divide Scalar Double-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -30973,7 +30973,7 @@ func VDIVSD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VDIVSD_RD_SAE: bad operands")
 }
 
-// VDIVSD_RD_SAE_Z: Divide Scalar Double-Precision Floating-Point Values.
+// VDIVSD_RD_SAE_Z: Divide Scalar Double-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -30993,7 +30993,7 @@ func VDIVSD_RD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VDIVSD_RD_SAE_Z: bad operands")
 }
 
-// VDIVSD_RN_SAE: Divide Scalar Double-Precision Floating-Point Values.
+// VDIVSD_RN_SAE: Divide Scalar Double-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -31023,7 +31023,7 @@ func VDIVSD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VDIVSD_RN_SAE: bad operands")
 }
 
-// VDIVSD_RN_SAE_Z: Divide Scalar Double-Precision Floating-Point Values.
+// VDIVSD_RN_SAE_Z: Divide Scalar Double-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -31043,7 +31043,7 @@ func VDIVSD_RN_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VDIVSD_RN_SAE_Z: bad operands")
 }
 
-// VDIVSD_RU_SAE: Divide Scalar Double-Precision Floating-Point Values.
+// VDIVSD_RU_SAE: Divide Scalar Double-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -31073,7 +31073,7 @@ func VDIVSD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VDIVSD_RU_SAE: bad operands")
 }
 
-// VDIVSD_RU_SAE_Z: Divide Scalar Double-Precision Floating-Point Values.
+// VDIVSD_RU_SAE_Z: Divide Scalar Double-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -31093,7 +31093,7 @@ func VDIVSD_RU_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VDIVSD_RU_SAE_Z: bad operands")
 }
 
-// VDIVSD_RZ_SAE: Divide Scalar Double-Precision Floating-Point Values.
+// VDIVSD_RZ_SAE: Divide Scalar Double-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -31123,7 +31123,7 @@ func VDIVSD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VDIVSD_RZ_SAE: bad operands")
 }
 
-// VDIVSD_RZ_SAE_Z: Divide Scalar Double-Precision Floating-Point Values.
+// VDIVSD_RZ_SAE_Z: Divide Scalar Double-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -31143,7 +31143,7 @@ func VDIVSD_RZ_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VDIVSD_RZ_SAE_Z: bad operands")
 }
 
-// VDIVSD_Z: Divide Scalar Double-Precision Floating-Point Values.
+// VDIVSD_Z: Divide Scalar Double-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -31237,7 +31237,7 @@ func VDIVSS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VDIVSS: bad operands")
 }
 
-// VDIVSS_RD_SAE: Divide Scalar Single-Precision Floating-Point Values.
+// VDIVSS_RD_SAE: Divide Scalar Single-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -31267,7 +31267,7 @@ func VDIVSS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VDIVSS_RD_SAE: bad operands")
 }
 
-// VDIVSS_RD_SAE_Z: Divide Scalar Single-Precision Floating-Point Values.
+// VDIVSS_RD_SAE_Z: Divide Scalar Single-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -31287,7 +31287,7 @@ func VDIVSS_RD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VDIVSS_RD_SAE_Z: bad operands")
 }
 
-// VDIVSS_RN_SAE: Divide Scalar Single-Precision Floating-Point Values.
+// VDIVSS_RN_SAE: Divide Scalar Single-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -31317,7 +31317,7 @@ func VDIVSS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VDIVSS_RN_SAE: bad operands")
 }
 
-// VDIVSS_RN_SAE_Z: Divide Scalar Single-Precision Floating-Point Values.
+// VDIVSS_RN_SAE_Z: Divide Scalar Single-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -31337,7 +31337,7 @@ func VDIVSS_RN_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VDIVSS_RN_SAE_Z: bad operands")
 }
 
-// VDIVSS_RU_SAE: Divide Scalar Single-Precision Floating-Point Values.
+// VDIVSS_RU_SAE: Divide Scalar Single-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -31367,7 +31367,7 @@ func VDIVSS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VDIVSS_RU_SAE: bad operands")
 }
 
-// VDIVSS_RU_SAE_Z: Divide Scalar Single-Precision Floating-Point Values.
+// VDIVSS_RU_SAE_Z: Divide Scalar Single-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -31387,7 +31387,7 @@ func VDIVSS_RU_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VDIVSS_RU_SAE_Z: bad operands")
 }
 
-// VDIVSS_RZ_SAE: Divide Scalar Single-Precision Floating-Point Values.
+// VDIVSS_RZ_SAE: Divide Scalar Single-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -31417,7 +31417,7 @@ func VDIVSS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VDIVSS_RZ_SAE: bad operands")
 }
 
-// VDIVSS_RZ_SAE_Z: Divide Scalar Single-Precision Floating-Point Values.
+// VDIVSS_RZ_SAE_Z: Divide Scalar Single-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -31437,7 +31437,7 @@ func VDIVSS_RZ_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VDIVSS_RZ_SAE_Z: bad operands")
 }
 
-// VDIVSS_Z: Divide Scalar Single-Precision Floating-Point Values.
+// VDIVSS_Z: Divide Scalar Single-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -31587,7 +31587,7 @@ func VEXPANDPD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VEXPANDPD: bad operands")
 }
 
-// VEXPANDPD_Z: Load Sparse Packed Double-Precision Floating-Point Values from Dense Memory.
+// VEXPANDPD_Z: Load Sparse Packed Double-Precision Floating-Point Values from Dense Memory (Zeroing Masking).
 //
 // Forms:
 //
@@ -31663,7 +31663,7 @@ func VEXPANDPS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VEXPANDPS: bad operands")
 }
 
-// VEXPANDPS_Z: Load Sparse Packed Single-Precision Floating-Point Values from Dense Memory.
+// VEXPANDPS_Z: Load Sparse Packed Single-Precision Floating-Point Values from Dense Memory (Zeroing Masking).
 //
 // Forms:
 //
@@ -31767,7 +31767,7 @@ func VEXTRACTF32X4(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VEXTRACTF32X4: bad operands")
 }
 
-// VEXTRACTF32X4_Z: Extract 128 Bits of Packed Single-Precision Floating-Point Values.
+// VEXTRACTF32X4_Z: Extract 128 Bits of Packed Single-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -31843,7 +31843,7 @@ func VEXTRACTF64X4(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VEXTRACTF64X4: bad operands")
 }
 
-// VEXTRACTF64X4_Z: Extract 256 Bits of Packed Double-Precision Floating-Point Values.
+// VEXTRACTF64X4_Z: Extract 256 Bits of Packed Double-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -31947,7 +31947,7 @@ func VEXTRACTI32X4(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VEXTRACTI32X4: bad operands")
 }
 
-// VEXTRACTI32X4_Z: Extract 128 Bits of Packed Doubleword Integer Values.
+// VEXTRACTI32X4_Z: Extract 128 Bits of Packed Doubleword Integer Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -32023,7 +32023,7 @@ func VEXTRACTI64X4(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VEXTRACTI64X4: bad operands")
 }
 
-// VEXTRACTI64X4_Z: Extract 256 Bits of Packed Quadword Integer Values.
+// VEXTRACTI64X4_Z: Extract 256 Bits of Packed Quadword Integer Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -32145,7 +32145,7 @@ func VFIXUPIMMPD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFIXUPIMMPD: bad operands")
 }
 
-// VFIXUPIMMPD_BCST: Fix Up Special Packed Double-Precision Floating-Point Values.
+// VFIXUPIMMPD_BCST: Fix Up Special Packed Double-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -32175,7 +32175,7 @@ func VFIXUPIMMPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFIXUPIMMPD_BCST: bad operands")
 }
 
-// VFIXUPIMMPD_BCST_Z: Fix Up Special Packed Double-Precision Floating-Point Values.
+// VFIXUPIMMPD_BCST_Z: Fix Up Special Packed Double-Precision Floating-Point Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -32195,7 +32195,7 @@ func VFIXUPIMMPD_BCST_Z(i, m, z, k, z1 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFIXUPIMMPD_BCST_Z: bad operands")
 }
 
-// VFIXUPIMMPD_SAE: Fix Up Special Packed Double-Precision Floating-Point Values.
+// VFIXUPIMMPD_SAE: Fix Up Special Packed Double-Precision Floating-Point Values (Suppress All Exceptions).
 //
 // Forms:
 //
@@ -32225,7 +32225,7 @@ func VFIXUPIMMPD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFIXUPIMMPD_SAE: bad operands")
 }
 
-// VFIXUPIMMPD_SAE_Z: Fix Up Special Packed Double-Precision Floating-Point Values.
+// VFIXUPIMMPD_SAE_Z: Fix Up Special Packed Double-Precision Floating-Point Values (Suppress All Exceptions, Zeroing Masking).
 //
 // Forms:
 //
@@ -32245,7 +32245,7 @@ func VFIXUPIMMPD_SAE_Z(i, z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFIXUPIMMPD_SAE_Z: bad operands")
 }
 
-// VFIXUPIMMPD_Z: Fix Up Special Packed Double-Precision Floating-Point Values.
+// VFIXUPIMMPD_Z: Fix Up Special Packed Double-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -32321,7 +32321,7 @@ func VFIXUPIMMPS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFIXUPIMMPS: bad operands")
 }
 
-// VFIXUPIMMPS_BCST: Fix Up Special Packed Single-Precision Floating-Point Values.
+// VFIXUPIMMPS_BCST: Fix Up Special Packed Single-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -32351,7 +32351,7 @@ func VFIXUPIMMPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFIXUPIMMPS_BCST: bad operands")
 }
 
-// VFIXUPIMMPS_BCST_Z: Fix Up Special Packed Single-Precision Floating-Point Values.
+// VFIXUPIMMPS_BCST_Z: Fix Up Special Packed Single-Precision Floating-Point Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -32371,7 +32371,7 @@ func VFIXUPIMMPS_BCST_Z(i, m, z, k, z1 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFIXUPIMMPS_BCST_Z: bad operands")
 }
 
-// VFIXUPIMMPS_SAE: Fix Up Special Packed Single-Precision Floating-Point Values.
+// VFIXUPIMMPS_SAE: Fix Up Special Packed Single-Precision Floating-Point Values (Suppress All Exceptions).
 //
 // Forms:
 //
@@ -32401,7 +32401,7 @@ func VFIXUPIMMPS_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFIXUPIMMPS_SAE: bad operands")
 }
 
-// VFIXUPIMMPS_SAE_Z: Fix Up Special Packed Single-Precision Floating-Point Values.
+// VFIXUPIMMPS_SAE_Z: Fix Up Special Packed Single-Precision Floating-Point Values (Suppress All Exceptions, Zeroing Masking).
 //
 // Forms:
 //
@@ -32421,7 +32421,7 @@ func VFIXUPIMMPS_SAE_Z(i, z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFIXUPIMMPS_SAE_Z: bad operands")
 }
 
-// VFIXUPIMMPS_Z: Fix Up Special Packed Single-Precision Floating-Point Values.
+// VFIXUPIMMPS_Z: Fix Up Special Packed Single-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -32497,7 +32497,7 @@ func VFIXUPIMMSD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFIXUPIMMSD: bad operands")
 }
 
-// VFIXUPIMMSD_SAE: Fix Up Special Scalar Double-Precision Floating-Point Value.
+// VFIXUPIMMSD_SAE: Fix Up Special Scalar Double-Precision Floating-Point Value (Suppress All Exceptions).
 //
 // Forms:
 //
@@ -32527,7 +32527,7 @@ func VFIXUPIMMSD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFIXUPIMMSD_SAE: bad operands")
 }
 
-// VFIXUPIMMSD_SAE_Z: Fix Up Special Scalar Double-Precision Floating-Point Value.
+// VFIXUPIMMSD_SAE_Z: Fix Up Special Scalar Double-Precision Floating-Point Value (Suppress All Exceptions, Zeroing Masking).
 //
 // Forms:
 //
@@ -32547,7 +32547,7 @@ func VFIXUPIMMSD_SAE_Z(i, x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFIXUPIMMSD_SAE_Z: bad operands")
 }
 
-// VFIXUPIMMSD_Z: Fix Up Special Scalar Double-Precision Floating-Point Value.
+// VFIXUPIMMSD_Z: Fix Up Special Scalar Double-Precision Floating-Point Value (Zeroing Masking).
 //
 // Forms:
 //
@@ -32623,7 +32623,7 @@ func VFIXUPIMMSS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFIXUPIMMSS: bad operands")
 }
 
-// VFIXUPIMMSS_SAE: Fix Up Special Scalar Single-Precision Floating-Point Value.
+// VFIXUPIMMSS_SAE: Fix Up Special Scalar Single-Precision Floating-Point Value (Suppress All Exceptions).
 //
 // Forms:
 //
@@ -32653,7 +32653,7 @@ func VFIXUPIMMSS_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFIXUPIMMSS_SAE: bad operands")
 }
 
-// VFIXUPIMMSS_SAE_Z: Fix Up Special Scalar Single-Precision Floating-Point Value.
+// VFIXUPIMMSS_SAE_Z: Fix Up Special Scalar Single-Precision Floating-Point Value (Suppress All Exceptions, Zeroing Masking).
 //
 // Forms:
 //
@@ -32673,7 +32673,7 @@ func VFIXUPIMMSS_SAE_Z(i, x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFIXUPIMMSS_SAE_Z: bad operands")
 }
 
-// VFIXUPIMMSS_Z: Fix Up Special Scalar Single-Precision Floating-Point Value.
+// VFIXUPIMMSS_Z: Fix Up Special Scalar Single-Precision Floating-Point Value (Zeroing Masking).
 //
 // Forms:
 //
@@ -32785,7 +32785,7 @@ func VFMADD132PD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADD132PD: bad operands")
 }
 
-// VFMADD132PD_BCST: Fused Multiply-Add of Packed Double-Precision Floating-Point Values.
+// VFMADD132PD_BCST: Fused Multiply-Add of Packed Double-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -32815,7 +32815,7 @@ func VFMADD132PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADD132PD_BCST: bad operands")
 }
 
-// VFMADD132PD_BCST_Z: Fused Multiply-Add of Packed Double-Precision Floating-Point Values.
+// VFMADD132PD_BCST_Z: Fused Multiply-Add of Packed Double-Precision Floating-Point Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -32835,7 +32835,7 @@ func VFMADD132PD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADD132PD_BCST_Z: bad operands")
 }
 
-// VFMADD132PD_RD_SAE: Fused Multiply-Add of Packed Double-Precision Floating-Point Values.
+// VFMADD132PD_RD_SAE: Fused Multiply-Add of Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -32865,7 +32865,7 @@ func VFMADD132PD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADD132PD_RD_SAE: bad operands")
 }
 
-// VFMADD132PD_RD_SAE_Z: Fused Multiply-Add of Packed Double-Precision Floating-Point Values.
+// VFMADD132PD_RD_SAE_Z: Fused Multiply-Add of Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -32885,7 +32885,7 @@ func VFMADD132PD_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMADD132PD_RD_SAE_Z: bad operands")
 }
 
-// VFMADD132PD_RN_SAE: Fused Multiply-Add of Packed Double-Precision Floating-Point Values.
+// VFMADD132PD_RN_SAE: Fused Multiply-Add of Packed Double-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -32915,7 +32915,7 @@ func VFMADD132PD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADD132PD_RN_SAE: bad operands")
 }
 
-// VFMADD132PD_RN_SAE_Z: Fused Multiply-Add of Packed Double-Precision Floating-Point Values.
+// VFMADD132PD_RN_SAE_Z: Fused Multiply-Add of Packed Double-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -32935,7 +32935,7 @@ func VFMADD132PD_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMADD132PD_RN_SAE_Z: bad operands")
 }
 
-// VFMADD132PD_RU_SAE: Fused Multiply-Add of Packed Double-Precision Floating-Point Values.
+// VFMADD132PD_RU_SAE: Fused Multiply-Add of Packed Double-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -32965,7 +32965,7 @@ func VFMADD132PD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADD132PD_RU_SAE: bad operands")
 }
 
-// VFMADD132PD_RU_SAE_Z: Fused Multiply-Add of Packed Double-Precision Floating-Point Values.
+// VFMADD132PD_RU_SAE_Z: Fused Multiply-Add of Packed Double-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -32985,7 +32985,7 @@ func VFMADD132PD_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMADD132PD_RU_SAE_Z: bad operands")
 }
 
-// VFMADD132PD_RZ_SAE: Fused Multiply-Add of Packed Double-Precision Floating-Point Values.
+// VFMADD132PD_RZ_SAE: Fused Multiply-Add of Packed Double-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -33015,7 +33015,7 @@ func VFMADD132PD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADD132PD_RZ_SAE: bad operands")
 }
 
-// VFMADD132PD_RZ_SAE_Z: Fused Multiply-Add of Packed Double-Precision Floating-Point Values.
+// VFMADD132PD_RZ_SAE_Z: Fused Multiply-Add of Packed Double-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -33035,7 +33035,7 @@ func VFMADD132PD_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMADD132PD_RZ_SAE_Z: bad operands")
 }
 
-// VFMADD132PD_Z: Fused Multiply-Add of Packed Double-Precision Floating-Point Values.
+// VFMADD132PD_Z: Fused Multiply-Add of Packed Double-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -33147,7 +33147,7 @@ func VFMADD132PS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADD132PS: bad operands")
 }
 
-// VFMADD132PS_BCST: Fused Multiply-Add of Packed Single-Precision Floating-Point Values.
+// VFMADD132PS_BCST: Fused Multiply-Add of Packed Single-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -33177,7 +33177,7 @@ func VFMADD132PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADD132PS_BCST: bad operands")
 }
 
-// VFMADD132PS_BCST_Z: Fused Multiply-Add of Packed Single-Precision Floating-Point Values.
+// VFMADD132PS_BCST_Z: Fused Multiply-Add of Packed Single-Precision Floating-Point Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -33197,7 +33197,7 @@ func VFMADD132PS_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADD132PS_BCST_Z: bad operands")
 }
 
-// VFMADD132PS_RD_SAE: Fused Multiply-Add of Packed Single-Precision Floating-Point Values.
+// VFMADD132PS_RD_SAE: Fused Multiply-Add of Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -33227,7 +33227,7 @@ func VFMADD132PS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADD132PS_RD_SAE: bad operands")
 }
 
-// VFMADD132PS_RD_SAE_Z: Fused Multiply-Add of Packed Single-Precision Floating-Point Values.
+// VFMADD132PS_RD_SAE_Z: Fused Multiply-Add of Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -33247,7 +33247,7 @@ func VFMADD132PS_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMADD132PS_RD_SAE_Z: bad operands")
 }
 
-// VFMADD132PS_RN_SAE: Fused Multiply-Add of Packed Single-Precision Floating-Point Values.
+// VFMADD132PS_RN_SAE: Fused Multiply-Add of Packed Single-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -33277,7 +33277,7 @@ func VFMADD132PS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADD132PS_RN_SAE: bad operands")
 }
 
-// VFMADD132PS_RN_SAE_Z: Fused Multiply-Add of Packed Single-Precision Floating-Point Values.
+// VFMADD132PS_RN_SAE_Z: Fused Multiply-Add of Packed Single-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -33297,7 +33297,7 @@ func VFMADD132PS_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMADD132PS_RN_SAE_Z: bad operands")
 }
 
-// VFMADD132PS_RU_SAE: Fused Multiply-Add of Packed Single-Precision Floating-Point Values.
+// VFMADD132PS_RU_SAE: Fused Multiply-Add of Packed Single-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -33327,7 +33327,7 @@ func VFMADD132PS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADD132PS_RU_SAE: bad operands")
 }
 
-// VFMADD132PS_RU_SAE_Z: Fused Multiply-Add of Packed Single-Precision Floating-Point Values.
+// VFMADD132PS_RU_SAE_Z: Fused Multiply-Add of Packed Single-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -33347,7 +33347,7 @@ func VFMADD132PS_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMADD132PS_RU_SAE_Z: bad operands")
 }
 
-// VFMADD132PS_RZ_SAE: Fused Multiply-Add of Packed Single-Precision Floating-Point Values.
+// VFMADD132PS_RZ_SAE: Fused Multiply-Add of Packed Single-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -33377,7 +33377,7 @@ func VFMADD132PS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADD132PS_RZ_SAE: bad operands")
 }
 
-// VFMADD132PS_RZ_SAE_Z: Fused Multiply-Add of Packed Single-Precision Floating-Point Values.
+// VFMADD132PS_RZ_SAE_Z: Fused Multiply-Add of Packed Single-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -33397,7 +33397,7 @@ func VFMADD132PS_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMADD132PS_RZ_SAE_Z: bad operands")
 }
 
-// VFMADD132PS_Z: Fused Multiply-Add of Packed Single-Precision Floating-Point Values.
+// VFMADD132PS_Z: Fused Multiply-Add of Packed Single-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -33491,7 +33491,7 @@ func VFMADD132SD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADD132SD: bad operands")
 }
 
-// VFMADD132SD_RD_SAE: Fused Multiply-Add of Scalar Double-Precision Floating-Point Values.
+// VFMADD132SD_RD_SAE: Fused Multiply-Add of Scalar Double-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -33521,7 +33521,7 @@ func VFMADD132SD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADD132SD_RD_SAE: bad operands")
 }
 
-// VFMADD132SD_RD_SAE_Z: Fused Multiply-Add of Scalar Double-Precision Floating-Point Values.
+// VFMADD132SD_RD_SAE_Z: Fused Multiply-Add of Scalar Double-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -33541,7 +33541,7 @@ func VFMADD132SD_RD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMADD132SD_RD_SAE_Z: bad operands")
 }
 
-// VFMADD132SD_RN_SAE: Fused Multiply-Add of Scalar Double-Precision Floating-Point Values.
+// VFMADD132SD_RN_SAE: Fused Multiply-Add of Scalar Double-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -33571,7 +33571,7 @@ func VFMADD132SD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADD132SD_RN_SAE: bad operands")
 }
 
-// VFMADD132SD_RN_SAE_Z: Fused Multiply-Add of Scalar Double-Precision Floating-Point Values.
+// VFMADD132SD_RN_SAE_Z: Fused Multiply-Add of Scalar Double-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -33591,7 +33591,7 @@ func VFMADD132SD_RN_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMADD132SD_RN_SAE_Z: bad operands")
 }
 
-// VFMADD132SD_RU_SAE: Fused Multiply-Add of Scalar Double-Precision Floating-Point Values.
+// VFMADD132SD_RU_SAE: Fused Multiply-Add of Scalar Double-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -33621,7 +33621,7 @@ func VFMADD132SD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADD132SD_RU_SAE: bad operands")
 }
 
-// VFMADD132SD_RU_SAE_Z: Fused Multiply-Add of Scalar Double-Precision Floating-Point Values.
+// VFMADD132SD_RU_SAE_Z: Fused Multiply-Add of Scalar Double-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -33641,7 +33641,7 @@ func VFMADD132SD_RU_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMADD132SD_RU_SAE_Z: bad operands")
 }
 
-// VFMADD132SD_RZ_SAE: Fused Multiply-Add of Scalar Double-Precision Floating-Point Values.
+// VFMADD132SD_RZ_SAE: Fused Multiply-Add of Scalar Double-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -33671,7 +33671,7 @@ func VFMADD132SD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADD132SD_RZ_SAE: bad operands")
 }
 
-// VFMADD132SD_RZ_SAE_Z: Fused Multiply-Add of Scalar Double-Precision Floating-Point Values.
+// VFMADD132SD_RZ_SAE_Z: Fused Multiply-Add of Scalar Double-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -33691,7 +33691,7 @@ func VFMADD132SD_RZ_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMADD132SD_RZ_SAE_Z: bad operands")
 }
 
-// VFMADD132SD_Z: Fused Multiply-Add of Scalar Double-Precision Floating-Point Values.
+// VFMADD132SD_Z: Fused Multiply-Add of Scalar Double-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -33785,7 +33785,7 @@ func VFMADD132SS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADD132SS: bad operands")
 }
 
-// VFMADD132SS_RD_SAE: Fused Multiply-Add of Scalar Single-Precision Floating-Point Values.
+// VFMADD132SS_RD_SAE: Fused Multiply-Add of Scalar Single-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -33815,7 +33815,7 @@ func VFMADD132SS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADD132SS_RD_SAE: bad operands")
 }
 
-// VFMADD132SS_RD_SAE_Z: Fused Multiply-Add of Scalar Single-Precision Floating-Point Values.
+// VFMADD132SS_RD_SAE_Z: Fused Multiply-Add of Scalar Single-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -33835,7 +33835,7 @@ func VFMADD132SS_RD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMADD132SS_RD_SAE_Z: bad operands")
 }
 
-// VFMADD132SS_RN_SAE: Fused Multiply-Add of Scalar Single-Precision Floating-Point Values.
+// VFMADD132SS_RN_SAE: Fused Multiply-Add of Scalar Single-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -33865,7 +33865,7 @@ func VFMADD132SS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADD132SS_RN_SAE: bad operands")
 }
 
-// VFMADD132SS_RN_SAE_Z: Fused Multiply-Add of Scalar Single-Precision Floating-Point Values.
+// VFMADD132SS_RN_SAE_Z: Fused Multiply-Add of Scalar Single-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -33885,7 +33885,7 @@ func VFMADD132SS_RN_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMADD132SS_RN_SAE_Z: bad operands")
 }
 
-// VFMADD132SS_RU_SAE: Fused Multiply-Add of Scalar Single-Precision Floating-Point Values.
+// VFMADD132SS_RU_SAE: Fused Multiply-Add of Scalar Single-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -33915,7 +33915,7 @@ func VFMADD132SS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADD132SS_RU_SAE: bad operands")
 }
 
-// VFMADD132SS_RU_SAE_Z: Fused Multiply-Add of Scalar Single-Precision Floating-Point Values.
+// VFMADD132SS_RU_SAE_Z: Fused Multiply-Add of Scalar Single-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -33935,7 +33935,7 @@ func VFMADD132SS_RU_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMADD132SS_RU_SAE_Z: bad operands")
 }
 
-// VFMADD132SS_RZ_SAE: Fused Multiply-Add of Scalar Single-Precision Floating-Point Values.
+// VFMADD132SS_RZ_SAE: Fused Multiply-Add of Scalar Single-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -33965,7 +33965,7 @@ func VFMADD132SS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADD132SS_RZ_SAE: bad operands")
 }
 
-// VFMADD132SS_RZ_SAE_Z: Fused Multiply-Add of Scalar Single-Precision Floating-Point Values.
+// VFMADD132SS_RZ_SAE_Z: Fused Multiply-Add of Scalar Single-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -33985,7 +33985,7 @@ func VFMADD132SS_RZ_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMADD132SS_RZ_SAE_Z: bad operands")
 }
 
-// VFMADD132SS_Z: Fused Multiply-Add of Scalar Single-Precision Floating-Point Values.
+// VFMADD132SS_Z: Fused Multiply-Add of Scalar Single-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -34097,7 +34097,7 @@ func VFMADD213PD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADD213PD: bad operands")
 }
 
-// VFMADD213PD_BCST: Fused Multiply-Add of Packed Double-Precision Floating-Point Values.
+// VFMADD213PD_BCST: Fused Multiply-Add of Packed Double-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -34127,7 +34127,7 @@ func VFMADD213PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADD213PD_BCST: bad operands")
 }
 
-// VFMADD213PD_BCST_Z: Fused Multiply-Add of Packed Double-Precision Floating-Point Values.
+// VFMADD213PD_BCST_Z: Fused Multiply-Add of Packed Double-Precision Floating-Point Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -34147,7 +34147,7 @@ func VFMADD213PD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADD213PD_BCST_Z: bad operands")
 }
 
-// VFMADD213PD_RD_SAE: Fused Multiply-Add of Packed Double-Precision Floating-Point Values.
+// VFMADD213PD_RD_SAE: Fused Multiply-Add of Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -34177,7 +34177,7 @@ func VFMADD213PD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADD213PD_RD_SAE: bad operands")
 }
 
-// VFMADD213PD_RD_SAE_Z: Fused Multiply-Add of Packed Double-Precision Floating-Point Values.
+// VFMADD213PD_RD_SAE_Z: Fused Multiply-Add of Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -34197,7 +34197,7 @@ func VFMADD213PD_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMADD213PD_RD_SAE_Z: bad operands")
 }
 
-// VFMADD213PD_RN_SAE: Fused Multiply-Add of Packed Double-Precision Floating-Point Values.
+// VFMADD213PD_RN_SAE: Fused Multiply-Add of Packed Double-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -34227,7 +34227,7 @@ func VFMADD213PD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADD213PD_RN_SAE: bad operands")
 }
 
-// VFMADD213PD_RN_SAE_Z: Fused Multiply-Add of Packed Double-Precision Floating-Point Values.
+// VFMADD213PD_RN_SAE_Z: Fused Multiply-Add of Packed Double-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -34247,7 +34247,7 @@ func VFMADD213PD_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMADD213PD_RN_SAE_Z: bad operands")
 }
 
-// VFMADD213PD_RU_SAE: Fused Multiply-Add of Packed Double-Precision Floating-Point Values.
+// VFMADD213PD_RU_SAE: Fused Multiply-Add of Packed Double-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -34277,7 +34277,7 @@ func VFMADD213PD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADD213PD_RU_SAE: bad operands")
 }
 
-// VFMADD213PD_RU_SAE_Z: Fused Multiply-Add of Packed Double-Precision Floating-Point Values.
+// VFMADD213PD_RU_SAE_Z: Fused Multiply-Add of Packed Double-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -34297,7 +34297,7 @@ func VFMADD213PD_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMADD213PD_RU_SAE_Z: bad operands")
 }
 
-// VFMADD213PD_RZ_SAE: Fused Multiply-Add of Packed Double-Precision Floating-Point Values.
+// VFMADD213PD_RZ_SAE: Fused Multiply-Add of Packed Double-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -34327,7 +34327,7 @@ func VFMADD213PD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADD213PD_RZ_SAE: bad operands")
 }
 
-// VFMADD213PD_RZ_SAE_Z: Fused Multiply-Add of Packed Double-Precision Floating-Point Values.
+// VFMADD213PD_RZ_SAE_Z: Fused Multiply-Add of Packed Double-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -34347,7 +34347,7 @@ func VFMADD213PD_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMADD213PD_RZ_SAE_Z: bad operands")
 }
 
-// VFMADD213PD_Z: Fused Multiply-Add of Packed Double-Precision Floating-Point Values.
+// VFMADD213PD_Z: Fused Multiply-Add of Packed Double-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -34459,7 +34459,7 @@ func VFMADD213PS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADD213PS: bad operands")
 }
 
-// VFMADD213PS_BCST: Fused Multiply-Add of Packed Single-Precision Floating-Point Values.
+// VFMADD213PS_BCST: Fused Multiply-Add of Packed Single-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -34489,7 +34489,7 @@ func VFMADD213PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADD213PS_BCST: bad operands")
 }
 
-// VFMADD213PS_BCST_Z: Fused Multiply-Add of Packed Single-Precision Floating-Point Values.
+// VFMADD213PS_BCST_Z: Fused Multiply-Add of Packed Single-Precision Floating-Point Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -34509,7 +34509,7 @@ func VFMADD213PS_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADD213PS_BCST_Z: bad operands")
 }
 
-// VFMADD213PS_RD_SAE: Fused Multiply-Add of Packed Single-Precision Floating-Point Values.
+// VFMADD213PS_RD_SAE: Fused Multiply-Add of Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -34539,7 +34539,7 @@ func VFMADD213PS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADD213PS_RD_SAE: bad operands")
 }
 
-// VFMADD213PS_RD_SAE_Z: Fused Multiply-Add of Packed Single-Precision Floating-Point Values.
+// VFMADD213PS_RD_SAE_Z: Fused Multiply-Add of Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -34559,7 +34559,7 @@ func VFMADD213PS_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMADD213PS_RD_SAE_Z: bad operands")
 }
 
-// VFMADD213PS_RN_SAE: Fused Multiply-Add of Packed Single-Precision Floating-Point Values.
+// VFMADD213PS_RN_SAE: Fused Multiply-Add of Packed Single-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -34589,7 +34589,7 @@ func VFMADD213PS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADD213PS_RN_SAE: bad operands")
 }
 
-// VFMADD213PS_RN_SAE_Z: Fused Multiply-Add of Packed Single-Precision Floating-Point Values.
+// VFMADD213PS_RN_SAE_Z: Fused Multiply-Add of Packed Single-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -34609,7 +34609,7 @@ func VFMADD213PS_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMADD213PS_RN_SAE_Z: bad operands")
 }
 
-// VFMADD213PS_RU_SAE: Fused Multiply-Add of Packed Single-Precision Floating-Point Values.
+// VFMADD213PS_RU_SAE: Fused Multiply-Add of Packed Single-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -34639,7 +34639,7 @@ func VFMADD213PS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADD213PS_RU_SAE: bad operands")
 }
 
-// VFMADD213PS_RU_SAE_Z: Fused Multiply-Add of Packed Single-Precision Floating-Point Values.
+// VFMADD213PS_RU_SAE_Z: Fused Multiply-Add of Packed Single-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -34659,7 +34659,7 @@ func VFMADD213PS_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMADD213PS_RU_SAE_Z: bad operands")
 }
 
-// VFMADD213PS_RZ_SAE: Fused Multiply-Add of Packed Single-Precision Floating-Point Values.
+// VFMADD213PS_RZ_SAE: Fused Multiply-Add of Packed Single-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -34689,7 +34689,7 @@ func VFMADD213PS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADD213PS_RZ_SAE: bad operands")
 }
 
-// VFMADD213PS_RZ_SAE_Z: Fused Multiply-Add of Packed Single-Precision Floating-Point Values.
+// VFMADD213PS_RZ_SAE_Z: Fused Multiply-Add of Packed Single-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -34709,7 +34709,7 @@ func VFMADD213PS_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMADD213PS_RZ_SAE_Z: bad operands")
 }
 
-// VFMADD213PS_Z: Fused Multiply-Add of Packed Single-Precision Floating-Point Values.
+// VFMADD213PS_Z: Fused Multiply-Add of Packed Single-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -34803,7 +34803,7 @@ func VFMADD213SD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADD213SD: bad operands")
 }
 
-// VFMADD213SD_RD_SAE: Fused Multiply-Add of Scalar Double-Precision Floating-Point Values.
+// VFMADD213SD_RD_SAE: Fused Multiply-Add of Scalar Double-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -34833,7 +34833,7 @@ func VFMADD213SD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADD213SD_RD_SAE: bad operands")
 }
 
-// VFMADD213SD_RD_SAE_Z: Fused Multiply-Add of Scalar Double-Precision Floating-Point Values.
+// VFMADD213SD_RD_SAE_Z: Fused Multiply-Add of Scalar Double-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -34853,7 +34853,7 @@ func VFMADD213SD_RD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMADD213SD_RD_SAE_Z: bad operands")
 }
 
-// VFMADD213SD_RN_SAE: Fused Multiply-Add of Scalar Double-Precision Floating-Point Values.
+// VFMADD213SD_RN_SAE: Fused Multiply-Add of Scalar Double-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -34883,7 +34883,7 @@ func VFMADD213SD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADD213SD_RN_SAE: bad operands")
 }
 
-// VFMADD213SD_RN_SAE_Z: Fused Multiply-Add of Scalar Double-Precision Floating-Point Values.
+// VFMADD213SD_RN_SAE_Z: Fused Multiply-Add of Scalar Double-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -34903,7 +34903,7 @@ func VFMADD213SD_RN_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMADD213SD_RN_SAE_Z: bad operands")
 }
 
-// VFMADD213SD_RU_SAE: Fused Multiply-Add of Scalar Double-Precision Floating-Point Values.
+// VFMADD213SD_RU_SAE: Fused Multiply-Add of Scalar Double-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -34933,7 +34933,7 @@ func VFMADD213SD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADD213SD_RU_SAE: bad operands")
 }
 
-// VFMADD213SD_RU_SAE_Z: Fused Multiply-Add of Scalar Double-Precision Floating-Point Values.
+// VFMADD213SD_RU_SAE_Z: Fused Multiply-Add of Scalar Double-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -34953,7 +34953,7 @@ func VFMADD213SD_RU_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMADD213SD_RU_SAE_Z: bad operands")
 }
 
-// VFMADD213SD_RZ_SAE: Fused Multiply-Add of Scalar Double-Precision Floating-Point Values.
+// VFMADD213SD_RZ_SAE: Fused Multiply-Add of Scalar Double-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -34983,7 +34983,7 @@ func VFMADD213SD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADD213SD_RZ_SAE: bad operands")
 }
 
-// VFMADD213SD_RZ_SAE_Z: Fused Multiply-Add of Scalar Double-Precision Floating-Point Values.
+// VFMADD213SD_RZ_SAE_Z: Fused Multiply-Add of Scalar Double-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -35003,7 +35003,7 @@ func VFMADD213SD_RZ_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMADD213SD_RZ_SAE_Z: bad operands")
 }
 
-// VFMADD213SD_Z: Fused Multiply-Add of Scalar Double-Precision Floating-Point Values.
+// VFMADD213SD_Z: Fused Multiply-Add of Scalar Double-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -35097,7 +35097,7 @@ func VFMADD213SS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADD213SS: bad operands")
 }
 
-// VFMADD213SS_RD_SAE: Fused Multiply-Add of Scalar Single-Precision Floating-Point Values.
+// VFMADD213SS_RD_SAE: Fused Multiply-Add of Scalar Single-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -35127,7 +35127,7 @@ func VFMADD213SS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADD213SS_RD_SAE: bad operands")
 }
 
-// VFMADD213SS_RD_SAE_Z: Fused Multiply-Add of Scalar Single-Precision Floating-Point Values.
+// VFMADD213SS_RD_SAE_Z: Fused Multiply-Add of Scalar Single-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -35147,7 +35147,7 @@ func VFMADD213SS_RD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMADD213SS_RD_SAE_Z: bad operands")
 }
 
-// VFMADD213SS_RN_SAE: Fused Multiply-Add of Scalar Single-Precision Floating-Point Values.
+// VFMADD213SS_RN_SAE: Fused Multiply-Add of Scalar Single-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -35177,7 +35177,7 @@ func VFMADD213SS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADD213SS_RN_SAE: bad operands")
 }
 
-// VFMADD213SS_RN_SAE_Z: Fused Multiply-Add of Scalar Single-Precision Floating-Point Values.
+// VFMADD213SS_RN_SAE_Z: Fused Multiply-Add of Scalar Single-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -35197,7 +35197,7 @@ func VFMADD213SS_RN_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMADD213SS_RN_SAE_Z: bad operands")
 }
 
-// VFMADD213SS_RU_SAE: Fused Multiply-Add of Scalar Single-Precision Floating-Point Values.
+// VFMADD213SS_RU_SAE: Fused Multiply-Add of Scalar Single-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -35227,7 +35227,7 @@ func VFMADD213SS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADD213SS_RU_SAE: bad operands")
 }
 
-// VFMADD213SS_RU_SAE_Z: Fused Multiply-Add of Scalar Single-Precision Floating-Point Values.
+// VFMADD213SS_RU_SAE_Z: Fused Multiply-Add of Scalar Single-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -35247,7 +35247,7 @@ func VFMADD213SS_RU_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMADD213SS_RU_SAE_Z: bad operands")
 }
 
-// VFMADD213SS_RZ_SAE: Fused Multiply-Add of Scalar Single-Precision Floating-Point Values.
+// VFMADD213SS_RZ_SAE: Fused Multiply-Add of Scalar Single-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -35277,7 +35277,7 @@ func VFMADD213SS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADD213SS_RZ_SAE: bad operands")
 }
 
-// VFMADD213SS_RZ_SAE_Z: Fused Multiply-Add of Scalar Single-Precision Floating-Point Values.
+// VFMADD213SS_RZ_SAE_Z: Fused Multiply-Add of Scalar Single-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -35297,7 +35297,7 @@ func VFMADD213SS_RZ_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMADD213SS_RZ_SAE_Z: bad operands")
 }
 
-// VFMADD213SS_Z: Fused Multiply-Add of Scalar Single-Precision Floating-Point Values.
+// VFMADD213SS_Z: Fused Multiply-Add of Scalar Single-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -35409,7 +35409,7 @@ func VFMADD231PD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADD231PD: bad operands")
 }
 
-// VFMADD231PD_BCST: Fused Multiply-Add of Packed Double-Precision Floating-Point Values.
+// VFMADD231PD_BCST: Fused Multiply-Add of Packed Double-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -35439,7 +35439,7 @@ func VFMADD231PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADD231PD_BCST: bad operands")
 }
 
-// VFMADD231PD_BCST_Z: Fused Multiply-Add of Packed Double-Precision Floating-Point Values.
+// VFMADD231PD_BCST_Z: Fused Multiply-Add of Packed Double-Precision Floating-Point Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -35459,7 +35459,7 @@ func VFMADD231PD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADD231PD_BCST_Z: bad operands")
 }
 
-// VFMADD231PD_RD_SAE: Fused Multiply-Add of Packed Double-Precision Floating-Point Values.
+// VFMADD231PD_RD_SAE: Fused Multiply-Add of Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -35489,7 +35489,7 @@ func VFMADD231PD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADD231PD_RD_SAE: bad operands")
 }
 
-// VFMADD231PD_RD_SAE_Z: Fused Multiply-Add of Packed Double-Precision Floating-Point Values.
+// VFMADD231PD_RD_SAE_Z: Fused Multiply-Add of Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -35509,7 +35509,7 @@ func VFMADD231PD_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMADD231PD_RD_SAE_Z: bad operands")
 }
 
-// VFMADD231PD_RN_SAE: Fused Multiply-Add of Packed Double-Precision Floating-Point Values.
+// VFMADD231PD_RN_SAE: Fused Multiply-Add of Packed Double-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -35539,7 +35539,7 @@ func VFMADD231PD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADD231PD_RN_SAE: bad operands")
 }
 
-// VFMADD231PD_RN_SAE_Z: Fused Multiply-Add of Packed Double-Precision Floating-Point Values.
+// VFMADD231PD_RN_SAE_Z: Fused Multiply-Add of Packed Double-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -35559,7 +35559,7 @@ func VFMADD231PD_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMADD231PD_RN_SAE_Z: bad operands")
 }
 
-// VFMADD231PD_RU_SAE: Fused Multiply-Add of Packed Double-Precision Floating-Point Values.
+// VFMADD231PD_RU_SAE: Fused Multiply-Add of Packed Double-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -35589,7 +35589,7 @@ func VFMADD231PD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADD231PD_RU_SAE: bad operands")
 }
 
-// VFMADD231PD_RU_SAE_Z: Fused Multiply-Add of Packed Double-Precision Floating-Point Values.
+// VFMADD231PD_RU_SAE_Z: Fused Multiply-Add of Packed Double-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -35609,7 +35609,7 @@ func VFMADD231PD_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMADD231PD_RU_SAE_Z: bad operands")
 }
 
-// VFMADD231PD_RZ_SAE: Fused Multiply-Add of Packed Double-Precision Floating-Point Values.
+// VFMADD231PD_RZ_SAE: Fused Multiply-Add of Packed Double-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -35639,7 +35639,7 @@ func VFMADD231PD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADD231PD_RZ_SAE: bad operands")
 }
 
-// VFMADD231PD_RZ_SAE_Z: Fused Multiply-Add of Packed Double-Precision Floating-Point Values.
+// VFMADD231PD_RZ_SAE_Z: Fused Multiply-Add of Packed Double-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -35659,7 +35659,7 @@ func VFMADD231PD_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMADD231PD_RZ_SAE_Z: bad operands")
 }
 
-// VFMADD231PD_Z: Fused Multiply-Add of Packed Double-Precision Floating-Point Values.
+// VFMADD231PD_Z: Fused Multiply-Add of Packed Double-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -35771,7 +35771,7 @@ func VFMADD231PS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADD231PS: bad operands")
 }
 
-// VFMADD231PS_BCST: Fused Multiply-Add of Packed Single-Precision Floating-Point Values.
+// VFMADD231PS_BCST: Fused Multiply-Add of Packed Single-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -35801,7 +35801,7 @@ func VFMADD231PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADD231PS_BCST: bad operands")
 }
 
-// VFMADD231PS_BCST_Z: Fused Multiply-Add of Packed Single-Precision Floating-Point Values.
+// VFMADD231PS_BCST_Z: Fused Multiply-Add of Packed Single-Precision Floating-Point Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -35821,7 +35821,7 @@ func VFMADD231PS_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADD231PS_BCST_Z: bad operands")
 }
 
-// VFMADD231PS_RD_SAE: Fused Multiply-Add of Packed Single-Precision Floating-Point Values.
+// VFMADD231PS_RD_SAE: Fused Multiply-Add of Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -35851,7 +35851,7 @@ func VFMADD231PS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADD231PS_RD_SAE: bad operands")
 }
 
-// VFMADD231PS_RD_SAE_Z: Fused Multiply-Add of Packed Single-Precision Floating-Point Values.
+// VFMADD231PS_RD_SAE_Z: Fused Multiply-Add of Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -35871,7 +35871,7 @@ func VFMADD231PS_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMADD231PS_RD_SAE_Z: bad operands")
 }
 
-// VFMADD231PS_RN_SAE: Fused Multiply-Add of Packed Single-Precision Floating-Point Values.
+// VFMADD231PS_RN_SAE: Fused Multiply-Add of Packed Single-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -35901,7 +35901,7 @@ func VFMADD231PS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADD231PS_RN_SAE: bad operands")
 }
 
-// VFMADD231PS_RN_SAE_Z: Fused Multiply-Add of Packed Single-Precision Floating-Point Values.
+// VFMADD231PS_RN_SAE_Z: Fused Multiply-Add of Packed Single-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -35921,7 +35921,7 @@ func VFMADD231PS_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMADD231PS_RN_SAE_Z: bad operands")
 }
 
-// VFMADD231PS_RU_SAE: Fused Multiply-Add of Packed Single-Precision Floating-Point Values.
+// VFMADD231PS_RU_SAE: Fused Multiply-Add of Packed Single-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -35951,7 +35951,7 @@ func VFMADD231PS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADD231PS_RU_SAE: bad operands")
 }
 
-// VFMADD231PS_RU_SAE_Z: Fused Multiply-Add of Packed Single-Precision Floating-Point Values.
+// VFMADD231PS_RU_SAE_Z: Fused Multiply-Add of Packed Single-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -35971,7 +35971,7 @@ func VFMADD231PS_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMADD231PS_RU_SAE_Z: bad operands")
 }
 
-// VFMADD231PS_RZ_SAE: Fused Multiply-Add of Packed Single-Precision Floating-Point Values.
+// VFMADD231PS_RZ_SAE: Fused Multiply-Add of Packed Single-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -36001,7 +36001,7 @@ func VFMADD231PS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADD231PS_RZ_SAE: bad operands")
 }
 
-// VFMADD231PS_RZ_SAE_Z: Fused Multiply-Add of Packed Single-Precision Floating-Point Values.
+// VFMADD231PS_RZ_SAE_Z: Fused Multiply-Add of Packed Single-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -36021,7 +36021,7 @@ func VFMADD231PS_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMADD231PS_RZ_SAE_Z: bad operands")
 }
 
-// VFMADD231PS_Z: Fused Multiply-Add of Packed Single-Precision Floating-Point Values.
+// VFMADD231PS_Z: Fused Multiply-Add of Packed Single-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -36115,7 +36115,7 @@ func VFMADD231SD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADD231SD: bad operands")
 }
 
-// VFMADD231SD_RD_SAE: Fused Multiply-Add of Scalar Double-Precision Floating-Point Values.
+// VFMADD231SD_RD_SAE: Fused Multiply-Add of Scalar Double-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -36145,7 +36145,7 @@ func VFMADD231SD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADD231SD_RD_SAE: bad operands")
 }
 
-// VFMADD231SD_RD_SAE_Z: Fused Multiply-Add of Scalar Double-Precision Floating-Point Values.
+// VFMADD231SD_RD_SAE_Z: Fused Multiply-Add of Scalar Double-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -36165,7 +36165,7 @@ func VFMADD231SD_RD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMADD231SD_RD_SAE_Z: bad operands")
 }
 
-// VFMADD231SD_RN_SAE: Fused Multiply-Add of Scalar Double-Precision Floating-Point Values.
+// VFMADD231SD_RN_SAE: Fused Multiply-Add of Scalar Double-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -36195,7 +36195,7 @@ func VFMADD231SD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADD231SD_RN_SAE: bad operands")
 }
 
-// VFMADD231SD_RN_SAE_Z: Fused Multiply-Add of Scalar Double-Precision Floating-Point Values.
+// VFMADD231SD_RN_SAE_Z: Fused Multiply-Add of Scalar Double-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -36215,7 +36215,7 @@ func VFMADD231SD_RN_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMADD231SD_RN_SAE_Z: bad operands")
 }
 
-// VFMADD231SD_RU_SAE: Fused Multiply-Add of Scalar Double-Precision Floating-Point Values.
+// VFMADD231SD_RU_SAE: Fused Multiply-Add of Scalar Double-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -36245,7 +36245,7 @@ func VFMADD231SD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADD231SD_RU_SAE: bad operands")
 }
 
-// VFMADD231SD_RU_SAE_Z: Fused Multiply-Add of Scalar Double-Precision Floating-Point Values.
+// VFMADD231SD_RU_SAE_Z: Fused Multiply-Add of Scalar Double-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -36265,7 +36265,7 @@ func VFMADD231SD_RU_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMADD231SD_RU_SAE_Z: bad operands")
 }
 
-// VFMADD231SD_RZ_SAE: Fused Multiply-Add of Scalar Double-Precision Floating-Point Values.
+// VFMADD231SD_RZ_SAE: Fused Multiply-Add of Scalar Double-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -36295,7 +36295,7 @@ func VFMADD231SD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADD231SD_RZ_SAE: bad operands")
 }
 
-// VFMADD231SD_RZ_SAE_Z: Fused Multiply-Add of Scalar Double-Precision Floating-Point Values.
+// VFMADD231SD_RZ_SAE_Z: Fused Multiply-Add of Scalar Double-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -36315,7 +36315,7 @@ func VFMADD231SD_RZ_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMADD231SD_RZ_SAE_Z: bad operands")
 }
 
-// VFMADD231SD_Z: Fused Multiply-Add of Scalar Double-Precision Floating-Point Values.
+// VFMADD231SD_Z: Fused Multiply-Add of Scalar Double-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -36409,7 +36409,7 @@ func VFMADD231SS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADD231SS: bad operands")
 }
 
-// VFMADD231SS_RD_SAE: Fused Multiply-Add of Scalar Single-Precision Floating-Point Values.
+// VFMADD231SS_RD_SAE: Fused Multiply-Add of Scalar Single-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -36439,7 +36439,7 @@ func VFMADD231SS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADD231SS_RD_SAE: bad operands")
 }
 
-// VFMADD231SS_RD_SAE_Z: Fused Multiply-Add of Scalar Single-Precision Floating-Point Values.
+// VFMADD231SS_RD_SAE_Z: Fused Multiply-Add of Scalar Single-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -36459,7 +36459,7 @@ func VFMADD231SS_RD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMADD231SS_RD_SAE_Z: bad operands")
 }
 
-// VFMADD231SS_RN_SAE: Fused Multiply-Add of Scalar Single-Precision Floating-Point Values.
+// VFMADD231SS_RN_SAE: Fused Multiply-Add of Scalar Single-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -36489,7 +36489,7 @@ func VFMADD231SS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADD231SS_RN_SAE: bad operands")
 }
 
-// VFMADD231SS_RN_SAE_Z: Fused Multiply-Add of Scalar Single-Precision Floating-Point Values.
+// VFMADD231SS_RN_SAE_Z: Fused Multiply-Add of Scalar Single-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -36509,7 +36509,7 @@ func VFMADD231SS_RN_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMADD231SS_RN_SAE_Z: bad operands")
 }
 
-// VFMADD231SS_RU_SAE: Fused Multiply-Add of Scalar Single-Precision Floating-Point Values.
+// VFMADD231SS_RU_SAE: Fused Multiply-Add of Scalar Single-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -36539,7 +36539,7 @@ func VFMADD231SS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADD231SS_RU_SAE: bad operands")
 }
 
-// VFMADD231SS_RU_SAE_Z: Fused Multiply-Add of Scalar Single-Precision Floating-Point Values.
+// VFMADD231SS_RU_SAE_Z: Fused Multiply-Add of Scalar Single-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -36559,7 +36559,7 @@ func VFMADD231SS_RU_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMADD231SS_RU_SAE_Z: bad operands")
 }
 
-// VFMADD231SS_RZ_SAE: Fused Multiply-Add of Scalar Single-Precision Floating-Point Values.
+// VFMADD231SS_RZ_SAE: Fused Multiply-Add of Scalar Single-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -36589,7 +36589,7 @@ func VFMADD231SS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADD231SS_RZ_SAE: bad operands")
 }
 
-// VFMADD231SS_RZ_SAE_Z: Fused Multiply-Add of Scalar Single-Precision Floating-Point Values.
+// VFMADD231SS_RZ_SAE_Z: Fused Multiply-Add of Scalar Single-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -36609,7 +36609,7 @@ func VFMADD231SS_RZ_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMADD231SS_RZ_SAE_Z: bad operands")
 }
 
-// VFMADD231SS_Z: Fused Multiply-Add of Scalar Single-Precision Floating-Point Values.
+// VFMADD231SS_Z: Fused Multiply-Add of Scalar Single-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -36721,7 +36721,7 @@ func VFMADDSUB132PD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADDSUB132PD: bad operands")
 }
 
-// VFMADDSUB132PD_BCST: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values.
+// VFMADDSUB132PD_BCST: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -36751,7 +36751,7 @@ func VFMADDSUB132PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADDSUB132PD_BCST: bad operands")
 }
 
-// VFMADDSUB132PD_BCST_Z: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values.
+// VFMADDSUB132PD_BCST_Z: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -36771,7 +36771,7 @@ func VFMADDSUB132PD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMADDSUB132PD_BCST_Z: bad operands")
 }
 
-// VFMADDSUB132PD_RD_SAE: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values.
+// VFMADDSUB132PD_RD_SAE: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -36801,7 +36801,7 @@ func VFMADDSUB132PD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADDSUB132PD_RD_SAE: bad operands")
 }
 
-// VFMADDSUB132PD_RD_SAE_Z: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values.
+// VFMADDSUB132PD_RD_SAE_Z: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -36821,7 +36821,7 @@ func VFMADDSUB132PD_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	return nil, errors.New("VFMADDSUB132PD_RD_SAE_Z: bad operands")
 }
 
-// VFMADDSUB132PD_RN_SAE: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values.
+// VFMADDSUB132PD_RN_SAE: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -36851,7 +36851,7 @@ func VFMADDSUB132PD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADDSUB132PD_RN_SAE: bad operands")
 }
 
-// VFMADDSUB132PD_RN_SAE_Z: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values.
+// VFMADDSUB132PD_RN_SAE_Z: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -36871,7 +36871,7 @@ func VFMADDSUB132PD_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	return nil, errors.New("VFMADDSUB132PD_RN_SAE_Z: bad operands")
 }
 
-// VFMADDSUB132PD_RU_SAE: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values.
+// VFMADDSUB132PD_RU_SAE: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -36901,7 +36901,7 @@ func VFMADDSUB132PD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADDSUB132PD_RU_SAE: bad operands")
 }
 
-// VFMADDSUB132PD_RU_SAE_Z: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values.
+// VFMADDSUB132PD_RU_SAE_Z: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -36921,7 +36921,7 @@ func VFMADDSUB132PD_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	return nil, errors.New("VFMADDSUB132PD_RU_SAE_Z: bad operands")
 }
 
-// VFMADDSUB132PD_RZ_SAE: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values.
+// VFMADDSUB132PD_RZ_SAE: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -36951,7 +36951,7 @@ func VFMADDSUB132PD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADDSUB132PD_RZ_SAE: bad operands")
 }
 
-// VFMADDSUB132PD_RZ_SAE_Z: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values.
+// VFMADDSUB132PD_RZ_SAE_Z: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -36971,7 +36971,7 @@ func VFMADDSUB132PD_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	return nil, errors.New("VFMADDSUB132PD_RZ_SAE_Z: bad operands")
 }
 
-// VFMADDSUB132PD_Z: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values.
+// VFMADDSUB132PD_Z: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -37083,7 +37083,7 @@ func VFMADDSUB132PS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADDSUB132PS: bad operands")
 }
 
-// VFMADDSUB132PS_BCST: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values.
+// VFMADDSUB132PS_BCST: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -37113,7 +37113,7 @@ func VFMADDSUB132PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADDSUB132PS_BCST: bad operands")
 }
 
-// VFMADDSUB132PS_BCST_Z: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values.
+// VFMADDSUB132PS_BCST_Z: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -37133,7 +37133,7 @@ func VFMADDSUB132PS_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMADDSUB132PS_BCST_Z: bad operands")
 }
 
-// VFMADDSUB132PS_RD_SAE: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values.
+// VFMADDSUB132PS_RD_SAE: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -37163,7 +37163,7 @@ func VFMADDSUB132PS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADDSUB132PS_RD_SAE: bad operands")
 }
 
-// VFMADDSUB132PS_RD_SAE_Z: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values.
+// VFMADDSUB132PS_RD_SAE_Z: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -37183,7 +37183,7 @@ func VFMADDSUB132PS_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	return nil, errors.New("VFMADDSUB132PS_RD_SAE_Z: bad operands")
 }
 
-// VFMADDSUB132PS_RN_SAE: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values.
+// VFMADDSUB132PS_RN_SAE: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -37213,7 +37213,7 @@ func VFMADDSUB132PS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADDSUB132PS_RN_SAE: bad operands")
 }
 
-// VFMADDSUB132PS_RN_SAE_Z: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values.
+// VFMADDSUB132PS_RN_SAE_Z: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -37233,7 +37233,7 @@ func VFMADDSUB132PS_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	return nil, errors.New("VFMADDSUB132PS_RN_SAE_Z: bad operands")
 }
 
-// VFMADDSUB132PS_RU_SAE: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values.
+// VFMADDSUB132PS_RU_SAE: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -37263,7 +37263,7 @@ func VFMADDSUB132PS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADDSUB132PS_RU_SAE: bad operands")
 }
 
-// VFMADDSUB132PS_RU_SAE_Z: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values.
+// VFMADDSUB132PS_RU_SAE_Z: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -37283,7 +37283,7 @@ func VFMADDSUB132PS_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	return nil, errors.New("VFMADDSUB132PS_RU_SAE_Z: bad operands")
 }
 
-// VFMADDSUB132PS_RZ_SAE: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values.
+// VFMADDSUB132PS_RZ_SAE: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -37313,7 +37313,7 @@ func VFMADDSUB132PS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADDSUB132PS_RZ_SAE: bad operands")
 }
 
-// VFMADDSUB132PS_RZ_SAE_Z: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values.
+// VFMADDSUB132PS_RZ_SAE_Z: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -37333,7 +37333,7 @@ func VFMADDSUB132PS_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	return nil, errors.New("VFMADDSUB132PS_RZ_SAE_Z: bad operands")
 }
 
-// VFMADDSUB132PS_Z: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values.
+// VFMADDSUB132PS_Z: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -37445,7 +37445,7 @@ func VFMADDSUB213PD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADDSUB213PD: bad operands")
 }
 
-// VFMADDSUB213PD_BCST: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values.
+// VFMADDSUB213PD_BCST: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -37475,7 +37475,7 @@ func VFMADDSUB213PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADDSUB213PD_BCST: bad operands")
 }
 
-// VFMADDSUB213PD_BCST_Z: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values.
+// VFMADDSUB213PD_BCST_Z: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -37495,7 +37495,7 @@ func VFMADDSUB213PD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMADDSUB213PD_BCST_Z: bad operands")
 }
 
-// VFMADDSUB213PD_RD_SAE: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values.
+// VFMADDSUB213PD_RD_SAE: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -37525,7 +37525,7 @@ func VFMADDSUB213PD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADDSUB213PD_RD_SAE: bad operands")
 }
 
-// VFMADDSUB213PD_RD_SAE_Z: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values.
+// VFMADDSUB213PD_RD_SAE_Z: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -37545,7 +37545,7 @@ func VFMADDSUB213PD_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	return nil, errors.New("VFMADDSUB213PD_RD_SAE_Z: bad operands")
 }
 
-// VFMADDSUB213PD_RN_SAE: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values.
+// VFMADDSUB213PD_RN_SAE: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -37575,7 +37575,7 @@ func VFMADDSUB213PD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADDSUB213PD_RN_SAE: bad operands")
 }
 
-// VFMADDSUB213PD_RN_SAE_Z: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values.
+// VFMADDSUB213PD_RN_SAE_Z: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -37595,7 +37595,7 @@ func VFMADDSUB213PD_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	return nil, errors.New("VFMADDSUB213PD_RN_SAE_Z: bad operands")
 }
 
-// VFMADDSUB213PD_RU_SAE: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values.
+// VFMADDSUB213PD_RU_SAE: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -37625,7 +37625,7 @@ func VFMADDSUB213PD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADDSUB213PD_RU_SAE: bad operands")
 }
 
-// VFMADDSUB213PD_RU_SAE_Z: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values.
+// VFMADDSUB213PD_RU_SAE_Z: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -37645,7 +37645,7 @@ func VFMADDSUB213PD_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	return nil, errors.New("VFMADDSUB213PD_RU_SAE_Z: bad operands")
 }
 
-// VFMADDSUB213PD_RZ_SAE: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values.
+// VFMADDSUB213PD_RZ_SAE: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -37675,7 +37675,7 @@ func VFMADDSUB213PD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADDSUB213PD_RZ_SAE: bad operands")
 }
 
-// VFMADDSUB213PD_RZ_SAE_Z: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values.
+// VFMADDSUB213PD_RZ_SAE_Z: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -37695,7 +37695,7 @@ func VFMADDSUB213PD_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	return nil, errors.New("VFMADDSUB213PD_RZ_SAE_Z: bad operands")
 }
 
-// VFMADDSUB213PD_Z: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values.
+// VFMADDSUB213PD_Z: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -37807,7 +37807,7 @@ func VFMADDSUB213PS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADDSUB213PS: bad operands")
 }
 
-// VFMADDSUB213PS_BCST: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values.
+// VFMADDSUB213PS_BCST: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -37837,7 +37837,7 @@ func VFMADDSUB213PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADDSUB213PS_BCST: bad operands")
 }
 
-// VFMADDSUB213PS_BCST_Z: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values.
+// VFMADDSUB213PS_BCST_Z: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -37857,7 +37857,7 @@ func VFMADDSUB213PS_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMADDSUB213PS_BCST_Z: bad operands")
 }
 
-// VFMADDSUB213PS_RD_SAE: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values.
+// VFMADDSUB213PS_RD_SAE: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -37887,7 +37887,7 @@ func VFMADDSUB213PS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADDSUB213PS_RD_SAE: bad operands")
 }
 
-// VFMADDSUB213PS_RD_SAE_Z: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values.
+// VFMADDSUB213PS_RD_SAE_Z: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -37907,7 +37907,7 @@ func VFMADDSUB213PS_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	return nil, errors.New("VFMADDSUB213PS_RD_SAE_Z: bad operands")
 }
 
-// VFMADDSUB213PS_RN_SAE: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values.
+// VFMADDSUB213PS_RN_SAE: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -37937,7 +37937,7 @@ func VFMADDSUB213PS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADDSUB213PS_RN_SAE: bad operands")
 }
 
-// VFMADDSUB213PS_RN_SAE_Z: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values.
+// VFMADDSUB213PS_RN_SAE_Z: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -37957,7 +37957,7 @@ func VFMADDSUB213PS_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	return nil, errors.New("VFMADDSUB213PS_RN_SAE_Z: bad operands")
 }
 
-// VFMADDSUB213PS_RU_SAE: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values.
+// VFMADDSUB213PS_RU_SAE: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -37987,7 +37987,7 @@ func VFMADDSUB213PS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADDSUB213PS_RU_SAE: bad operands")
 }
 
-// VFMADDSUB213PS_RU_SAE_Z: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values.
+// VFMADDSUB213PS_RU_SAE_Z: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -38007,7 +38007,7 @@ func VFMADDSUB213PS_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	return nil, errors.New("VFMADDSUB213PS_RU_SAE_Z: bad operands")
 }
 
-// VFMADDSUB213PS_RZ_SAE: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values.
+// VFMADDSUB213PS_RZ_SAE: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -38037,7 +38037,7 @@ func VFMADDSUB213PS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADDSUB213PS_RZ_SAE: bad operands")
 }
 
-// VFMADDSUB213PS_RZ_SAE_Z: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values.
+// VFMADDSUB213PS_RZ_SAE_Z: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -38057,7 +38057,7 @@ func VFMADDSUB213PS_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	return nil, errors.New("VFMADDSUB213PS_RZ_SAE_Z: bad operands")
 }
 
-// VFMADDSUB213PS_Z: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values.
+// VFMADDSUB213PS_Z: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -38169,7 +38169,7 @@ func VFMADDSUB231PD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADDSUB231PD: bad operands")
 }
 
-// VFMADDSUB231PD_BCST: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values.
+// VFMADDSUB231PD_BCST: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -38199,7 +38199,7 @@ func VFMADDSUB231PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADDSUB231PD_BCST: bad operands")
 }
 
-// VFMADDSUB231PD_BCST_Z: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values.
+// VFMADDSUB231PD_BCST_Z: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -38219,7 +38219,7 @@ func VFMADDSUB231PD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMADDSUB231PD_BCST_Z: bad operands")
 }
 
-// VFMADDSUB231PD_RD_SAE: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values.
+// VFMADDSUB231PD_RD_SAE: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -38249,7 +38249,7 @@ func VFMADDSUB231PD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADDSUB231PD_RD_SAE: bad operands")
 }
 
-// VFMADDSUB231PD_RD_SAE_Z: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values.
+// VFMADDSUB231PD_RD_SAE_Z: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -38269,7 +38269,7 @@ func VFMADDSUB231PD_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	return nil, errors.New("VFMADDSUB231PD_RD_SAE_Z: bad operands")
 }
 
-// VFMADDSUB231PD_RN_SAE: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values.
+// VFMADDSUB231PD_RN_SAE: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -38299,7 +38299,7 @@ func VFMADDSUB231PD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADDSUB231PD_RN_SAE: bad operands")
 }
 
-// VFMADDSUB231PD_RN_SAE_Z: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values.
+// VFMADDSUB231PD_RN_SAE_Z: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -38319,7 +38319,7 @@ func VFMADDSUB231PD_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	return nil, errors.New("VFMADDSUB231PD_RN_SAE_Z: bad operands")
 }
 
-// VFMADDSUB231PD_RU_SAE: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values.
+// VFMADDSUB231PD_RU_SAE: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -38349,7 +38349,7 @@ func VFMADDSUB231PD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADDSUB231PD_RU_SAE: bad operands")
 }
 
-// VFMADDSUB231PD_RU_SAE_Z: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values.
+// VFMADDSUB231PD_RU_SAE_Z: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -38369,7 +38369,7 @@ func VFMADDSUB231PD_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	return nil, errors.New("VFMADDSUB231PD_RU_SAE_Z: bad operands")
 }
 
-// VFMADDSUB231PD_RZ_SAE: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values.
+// VFMADDSUB231PD_RZ_SAE: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -38399,7 +38399,7 @@ func VFMADDSUB231PD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADDSUB231PD_RZ_SAE: bad operands")
 }
 
-// VFMADDSUB231PD_RZ_SAE_Z: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values.
+// VFMADDSUB231PD_RZ_SAE_Z: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -38419,7 +38419,7 @@ func VFMADDSUB231PD_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	return nil, errors.New("VFMADDSUB231PD_RZ_SAE_Z: bad operands")
 }
 
-// VFMADDSUB231PD_Z: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values.
+// VFMADDSUB231PD_Z: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -38531,7 +38531,7 @@ func VFMADDSUB231PS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADDSUB231PS: bad operands")
 }
 
-// VFMADDSUB231PS_BCST: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values.
+// VFMADDSUB231PS_BCST: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -38561,7 +38561,7 @@ func VFMADDSUB231PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADDSUB231PS_BCST: bad operands")
 }
 
-// VFMADDSUB231PS_BCST_Z: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values.
+// VFMADDSUB231PS_BCST_Z: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -38581,7 +38581,7 @@ func VFMADDSUB231PS_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMADDSUB231PS_BCST_Z: bad operands")
 }
 
-// VFMADDSUB231PS_RD_SAE: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values.
+// VFMADDSUB231PS_RD_SAE: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -38611,7 +38611,7 @@ func VFMADDSUB231PS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADDSUB231PS_RD_SAE: bad operands")
 }
 
-// VFMADDSUB231PS_RD_SAE_Z: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values.
+// VFMADDSUB231PS_RD_SAE_Z: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -38631,7 +38631,7 @@ func VFMADDSUB231PS_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	return nil, errors.New("VFMADDSUB231PS_RD_SAE_Z: bad operands")
 }
 
-// VFMADDSUB231PS_RN_SAE: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values.
+// VFMADDSUB231PS_RN_SAE: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -38661,7 +38661,7 @@ func VFMADDSUB231PS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADDSUB231PS_RN_SAE: bad operands")
 }
 
-// VFMADDSUB231PS_RN_SAE_Z: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values.
+// VFMADDSUB231PS_RN_SAE_Z: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -38681,7 +38681,7 @@ func VFMADDSUB231PS_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	return nil, errors.New("VFMADDSUB231PS_RN_SAE_Z: bad operands")
 }
 
-// VFMADDSUB231PS_RU_SAE: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values.
+// VFMADDSUB231PS_RU_SAE: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -38711,7 +38711,7 @@ func VFMADDSUB231PS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADDSUB231PS_RU_SAE: bad operands")
 }
 
-// VFMADDSUB231PS_RU_SAE_Z: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values.
+// VFMADDSUB231PS_RU_SAE_Z: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -38731,7 +38731,7 @@ func VFMADDSUB231PS_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	return nil, errors.New("VFMADDSUB231PS_RU_SAE_Z: bad operands")
 }
 
-// VFMADDSUB231PS_RZ_SAE: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values.
+// VFMADDSUB231PS_RZ_SAE: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -38761,7 +38761,7 @@ func VFMADDSUB231PS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMADDSUB231PS_RZ_SAE: bad operands")
 }
 
-// VFMADDSUB231PS_RZ_SAE_Z: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values.
+// VFMADDSUB231PS_RZ_SAE_Z: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -38781,7 +38781,7 @@ func VFMADDSUB231PS_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	return nil, errors.New("VFMADDSUB231PS_RZ_SAE_Z: bad operands")
 }
 
-// VFMADDSUB231PS_Z: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values.
+// VFMADDSUB231PS_Z: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -38893,7 +38893,7 @@ func VFMSUB132PD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUB132PD: bad operands")
 }
 
-// VFMSUB132PD_BCST: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values.
+// VFMSUB132PD_BCST: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -38923,7 +38923,7 @@ func VFMSUB132PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUB132PD_BCST: bad operands")
 }
 
-// VFMSUB132PD_BCST_Z: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values.
+// VFMSUB132PD_BCST_Z: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -38943,7 +38943,7 @@ func VFMSUB132PD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUB132PD_BCST_Z: bad operands")
 }
 
-// VFMSUB132PD_RD_SAE: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values.
+// VFMSUB132PD_RD_SAE: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -38973,7 +38973,7 @@ func VFMSUB132PD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUB132PD_RD_SAE: bad operands")
 }
 
-// VFMSUB132PD_RD_SAE_Z: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values.
+// VFMSUB132PD_RD_SAE_Z: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -38993,7 +38993,7 @@ func VFMSUB132PD_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMSUB132PD_RD_SAE_Z: bad operands")
 }
 
-// VFMSUB132PD_RN_SAE: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values.
+// VFMSUB132PD_RN_SAE: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -39023,7 +39023,7 @@ func VFMSUB132PD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUB132PD_RN_SAE: bad operands")
 }
 
-// VFMSUB132PD_RN_SAE_Z: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values.
+// VFMSUB132PD_RN_SAE_Z: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -39043,7 +39043,7 @@ func VFMSUB132PD_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMSUB132PD_RN_SAE_Z: bad operands")
 }
 
-// VFMSUB132PD_RU_SAE: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values.
+// VFMSUB132PD_RU_SAE: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -39073,7 +39073,7 @@ func VFMSUB132PD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUB132PD_RU_SAE: bad operands")
 }
 
-// VFMSUB132PD_RU_SAE_Z: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values.
+// VFMSUB132PD_RU_SAE_Z: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -39093,7 +39093,7 @@ func VFMSUB132PD_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMSUB132PD_RU_SAE_Z: bad operands")
 }
 
-// VFMSUB132PD_RZ_SAE: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values.
+// VFMSUB132PD_RZ_SAE: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -39123,7 +39123,7 @@ func VFMSUB132PD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUB132PD_RZ_SAE: bad operands")
 }
 
-// VFMSUB132PD_RZ_SAE_Z: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values.
+// VFMSUB132PD_RZ_SAE_Z: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -39143,7 +39143,7 @@ func VFMSUB132PD_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMSUB132PD_RZ_SAE_Z: bad operands")
 }
 
-// VFMSUB132PD_Z: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values.
+// VFMSUB132PD_Z: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -39255,7 +39255,7 @@ func VFMSUB132PS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUB132PS: bad operands")
 }
 
-// VFMSUB132PS_BCST: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values.
+// VFMSUB132PS_BCST: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -39285,7 +39285,7 @@ func VFMSUB132PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUB132PS_BCST: bad operands")
 }
 
-// VFMSUB132PS_BCST_Z: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values.
+// VFMSUB132PS_BCST_Z: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -39305,7 +39305,7 @@ func VFMSUB132PS_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUB132PS_BCST_Z: bad operands")
 }
 
-// VFMSUB132PS_RD_SAE: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values.
+// VFMSUB132PS_RD_SAE: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -39335,7 +39335,7 @@ func VFMSUB132PS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUB132PS_RD_SAE: bad operands")
 }
 
-// VFMSUB132PS_RD_SAE_Z: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values.
+// VFMSUB132PS_RD_SAE_Z: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -39355,7 +39355,7 @@ func VFMSUB132PS_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMSUB132PS_RD_SAE_Z: bad operands")
 }
 
-// VFMSUB132PS_RN_SAE: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values.
+// VFMSUB132PS_RN_SAE: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -39385,7 +39385,7 @@ func VFMSUB132PS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUB132PS_RN_SAE: bad operands")
 }
 
-// VFMSUB132PS_RN_SAE_Z: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values.
+// VFMSUB132PS_RN_SAE_Z: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -39405,7 +39405,7 @@ func VFMSUB132PS_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMSUB132PS_RN_SAE_Z: bad operands")
 }
 
-// VFMSUB132PS_RU_SAE: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values.
+// VFMSUB132PS_RU_SAE: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -39435,7 +39435,7 @@ func VFMSUB132PS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUB132PS_RU_SAE: bad operands")
 }
 
-// VFMSUB132PS_RU_SAE_Z: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values.
+// VFMSUB132PS_RU_SAE_Z: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -39455,7 +39455,7 @@ func VFMSUB132PS_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMSUB132PS_RU_SAE_Z: bad operands")
 }
 
-// VFMSUB132PS_RZ_SAE: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values.
+// VFMSUB132PS_RZ_SAE: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -39485,7 +39485,7 @@ func VFMSUB132PS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUB132PS_RZ_SAE: bad operands")
 }
 
-// VFMSUB132PS_RZ_SAE_Z: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values.
+// VFMSUB132PS_RZ_SAE_Z: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -39505,7 +39505,7 @@ func VFMSUB132PS_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMSUB132PS_RZ_SAE_Z: bad operands")
 }
 
-// VFMSUB132PS_Z: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values.
+// VFMSUB132PS_Z: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -39599,7 +39599,7 @@ func VFMSUB132SD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUB132SD: bad operands")
 }
 
-// VFMSUB132SD_RD_SAE: Fused Multiply-Subtract of Scalar Double-Precision Floating-Point Values.
+// VFMSUB132SD_RD_SAE: Fused Multiply-Subtract of Scalar Double-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -39629,7 +39629,7 @@ func VFMSUB132SD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUB132SD_RD_SAE: bad operands")
 }
 
-// VFMSUB132SD_RD_SAE_Z: Fused Multiply-Subtract of Scalar Double-Precision Floating-Point Values.
+// VFMSUB132SD_RD_SAE_Z: Fused Multiply-Subtract of Scalar Double-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -39649,7 +39649,7 @@ func VFMSUB132SD_RD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMSUB132SD_RD_SAE_Z: bad operands")
 }
 
-// VFMSUB132SD_RN_SAE: Fused Multiply-Subtract of Scalar Double-Precision Floating-Point Values.
+// VFMSUB132SD_RN_SAE: Fused Multiply-Subtract of Scalar Double-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -39679,7 +39679,7 @@ func VFMSUB132SD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUB132SD_RN_SAE: bad operands")
 }
 
-// VFMSUB132SD_RN_SAE_Z: Fused Multiply-Subtract of Scalar Double-Precision Floating-Point Values.
+// VFMSUB132SD_RN_SAE_Z: Fused Multiply-Subtract of Scalar Double-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -39699,7 +39699,7 @@ func VFMSUB132SD_RN_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMSUB132SD_RN_SAE_Z: bad operands")
 }
 
-// VFMSUB132SD_RU_SAE: Fused Multiply-Subtract of Scalar Double-Precision Floating-Point Values.
+// VFMSUB132SD_RU_SAE: Fused Multiply-Subtract of Scalar Double-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -39729,7 +39729,7 @@ func VFMSUB132SD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUB132SD_RU_SAE: bad operands")
 }
 
-// VFMSUB132SD_RU_SAE_Z: Fused Multiply-Subtract of Scalar Double-Precision Floating-Point Values.
+// VFMSUB132SD_RU_SAE_Z: Fused Multiply-Subtract of Scalar Double-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -39749,7 +39749,7 @@ func VFMSUB132SD_RU_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMSUB132SD_RU_SAE_Z: bad operands")
 }
 
-// VFMSUB132SD_RZ_SAE: Fused Multiply-Subtract of Scalar Double-Precision Floating-Point Values.
+// VFMSUB132SD_RZ_SAE: Fused Multiply-Subtract of Scalar Double-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -39779,7 +39779,7 @@ func VFMSUB132SD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUB132SD_RZ_SAE: bad operands")
 }
 
-// VFMSUB132SD_RZ_SAE_Z: Fused Multiply-Subtract of Scalar Double-Precision Floating-Point Values.
+// VFMSUB132SD_RZ_SAE_Z: Fused Multiply-Subtract of Scalar Double-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -39799,7 +39799,7 @@ func VFMSUB132SD_RZ_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMSUB132SD_RZ_SAE_Z: bad operands")
 }
 
-// VFMSUB132SD_Z: Fused Multiply-Subtract of Scalar Double-Precision Floating-Point Values.
+// VFMSUB132SD_Z: Fused Multiply-Subtract of Scalar Double-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -39893,7 +39893,7 @@ func VFMSUB132SS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUB132SS: bad operands")
 }
 
-// VFMSUB132SS_RD_SAE: Fused Multiply-Subtract of Scalar Single-Precision Floating-Point Values.
+// VFMSUB132SS_RD_SAE: Fused Multiply-Subtract of Scalar Single-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -39923,7 +39923,7 @@ func VFMSUB132SS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUB132SS_RD_SAE: bad operands")
 }
 
-// VFMSUB132SS_RD_SAE_Z: Fused Multiply-Subtract of Scalar Single-Precision Floating-Point Values.
+// VFMSUB132SS_RD_SAE_Z: Fused Multiply-Subtract of Scalar Single-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -39943,7 +39943,7 @@ func VFMSUB132SS_RD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMSUB132SS_RD_SAE_Z: bad operands")
 }
 
-// VFMSUB132SS_RN_SAE: Fused Multiply-Subtract of Scalar Single-Precision Floating-Point Values.
+// VFMSUB132SS_RN_SAE: Fused Multiply-Subtract of Scalar Single-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -39973,7 +39973,7 @@ func VFMSUB132SS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUB132SS_RN_SAE: bad operands")
 }
 
-// VFMSUB132SS_RN_SAE_Z: Fused Multiply-Subtract of Scalar Single-Precision Floating-Point Values.
+// VFMSUB132SS_RN_SAE_Z: Fused Multiply-Subtract of Scalar Single-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -39993,7 +39993,7 @@ func VFMSUB132SS_RN_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMSUB132SS_RN_SAE_Z: bad operands")
 }
 
-// VFMSUB132SS_RU_SAE: Fused Multiply-Subtract of Scalar Single-Precision Floating-Point Values.
+// VFMSUB132SS_RU_SAE: Fused Multiply-Subtract of Scalar Single-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -40023,7 +40023,7 @@ func VFMSUB132SS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUB132SS_RU_SAE: bad operands")
 }
 
-// VFMSUB132SS_RU_SAE_Z: Fused Multiply-Subtract of Scalar Single-Precision Floating-Point Values.
+// VFMSUB132SS_RU_SAE_Z: Fused Multiply-Subtract of Scalar Single-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -40043,7 +40043,7 @@ func VFMSUB132SS_RU_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMSUB132SS_RU_SAE_Z: bad operands")
 }
 
-// VFMSUB132SS_RZ_SAE: Fused Multiply-Subtract of Scalar Single-Precision Floating-Point Values.
+// VFMSUB132SS_RZ_SAE: Fused Multiply-Subtract of Scalar Single-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -40073,7 +40073,7 @@ func VFMSUB132SS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUB132SS_RZ_SAE: bad operands")
 }
 
-// VFMSUB132SS_RZ_SAE_Z: Fused Multiply-Subtract of Scalar Single-Precision Floating-Point Values.
+// VFMSUB132SS_RZ_SAE_Z: Fused Multiply-Subtract of Scalar Single-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -40093,7 +40093,7 @@ func VFMSUB132SS_RZ_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMSUB132SS_RZ_SAE_Z: bad operands")
 }
 
-// VFMSUB132SS_Z: Fused Multiply-Subtract of Scalar Single-Precision Floating-Point Values.
+// VFMSUB132SS_Z: Fused Multiply-Subtract of Scalar Single-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -40205,7 +40205,7 @@ func VFMSUB213PD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUB213PD: bad operands")
 }
 
-// VFMSUB213PD_BCST: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values.
+// VFMSUB213PD_BCST: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -40235,7 +40235,7 @@ func VFMSUB213PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUB213PD_BCST: bad operands")
 }
 
-// VFMSUB213PD_BCST_Z: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values.
+// VFMSUB213PD_BCST_Z: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -40255,7 +40255,7 @@ func VFMSUB213PD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUB213PD_BCST_Z: bad operands")
 }
 
-// VFMSUB213PD_RD_SAE: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values.
+// VFMSUB213PD_RD_SAE: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -40285,7 +40285,7 @@ func VFMSUB213PD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUB213PD_RD_SAE: bad operands")
 }
 
-// VFMSUB213PD_RD_SAE_Z: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values.
+// VFMSUB213PD_RD_SAE_Z: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -40305,7 +40305,7 @@ func VFMSUB213PD_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMSUB213PD_RD_SAE_Z: bad operands")
 }
 
-// VFMSUB213PD_RN_SAE: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values.
+// VFMSUB213PD_RN_SAE: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -40335,7 +40335,7 @@ func VFMSUB213PD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUB213PD_RN_SAE: bad operands")
 }
 
-// VFMSUB213PD_RN_SAE_Z: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values.
+// VFMSUB213PD_RN_SAE_Z: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -40355,7 +40355,7 @@ func VFMSUB213PD_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMSUB213PD_RN_SAE_Z: bad operands")
 }
 
-// VFMSUB213PD_RU_SAE: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values.
+// VFMSUB213PD_RU_SAE: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -40385,7 +40385,7 @@ func VFMSUB213PD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUB213PD_RU_SAE: bad operands")
 }
 
-// VFMSUB213PD_RU_SAE_Z: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values.
+// VFMSUB213PD_RU_SAE_Z: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -40405,7 +40405,7 @@ func VFMSUB213PD_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMSUB213PD_RU_SAE_Z: bad operands")
 }
 
-// VFMSUB213PD_RZ_SAE: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values.
+// VFMSUB213PD_RZ_SAE: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -40435,7 +40435,7 @@ func VFMSUB213PD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUB213PD_RZ_SAE: bad operands")
 }
 
-// VFMSUB213PD_RZ_SAE_Z: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values.
+// VFMSUB213PD_RZ_SAE_Z: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -40455,7 +40455,7 @@ func VFMSUB213PD_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMSUB213PD_RZ_SAE_Z: bad operands")
 }
 
-// VFMSUB213PD_Z: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values.
+// VFMSUB213PD_Z: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -40567,7 +40567,7 @@ func VFMSUB213PS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUB213PS: bad operands")
 }
 
-// VFMSUB213PS_BCST: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values.
+// VFMSUB213PS_BCST: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -40597,7 +40597,7 @@ func VFMSUB213PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUB213PS_BCST: bad operands")
 }
 
-// VFMSUB213PS_BCST_Z: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values.
+// VFMSUB213PS_BCST_Z: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -40617,7 +40617,7 @@ func VFMSUB213PS_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUB213PS_BCST_Z: bad operands")
 }
 
-// VFMSUB213PS_RD_SAE: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values.
+// VFMSUB213PS_RD_SAE: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -40647,7 +40647,7 @@ func VFMSUB213PS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUB213PS_RD_SAE: bad operands")
 }
 
-// VFMSUB213PS_RD_SAE_Z: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values.
+// VFMSUB213PS_RD_SAE_Z: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -40667,7 +40667,7 @@ func VFMSUB213PS_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMSUB213PS_RD_SAE_Z: bad operands")
 }
 
-// VFMSUB213PS_RN_SAE: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values.
+// VFMSUB213PS_RN_SAE: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -40697,7 +40697,7 @@ func VFMSUB213PS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUB213PS_RN_SAE: bad operands")
 }
 
-// VFMSUB213PS_RN_SAE_Z: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values.
+// VFMSUB213PS_RN_SAE_Z: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -40717,7 +40717,7 @@ func VFMSUB213PS_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMSUB213PS_RN_SAE_Z: bad operands")
 }
 
-// VFMSUB213PS_RU_SAE: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values.
+// VFMSUB213PS_RU_SAE: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -40747,7 +40747,7 @@ func VFMSUB213PS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUB213PS_RU_SAE: bad operands")
 }
 
-// VFMSUB213PS_RU_SAE_Z: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values.
+// VFMSUB213PS_RU_SAE_Z: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -40767,7 +40767,7 @@ func VFMSUB213PS_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMSUB213PS_RU_SAE_Z: bad operands")
 }
 
-// VFMSUB213PS_RZ_SAE: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values.
+// VFMSUB213PS_RZ_SAE: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -40797,7 +40797,7 @@ func VFMSUB213PS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUB213PS_RZ_SAE: bad operands")
 }
 
-// VFMSUB213PS_RZ_SAE_Z: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values.
+// VFMSUB213PS_RZ_SAE_Z: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -40817,7 +40817,7 @@ func VFMSUB213PS_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMSUB213PS_RZ_SAE_Z: bad operands")
 }
 
-// VFMSUB213PS_Z: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values.
+// VFMSUB213PS_Z: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -40911,7 +40911,7 @@ func VFMSUB213SD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUB213SD: bad operands")
 }
 
-// VFMSUB213SD_RD_SAE: Fused Multiply-Subtract of Scalar Double-Precision Floating-Point Values.
+// VFMSUB213SD_RD_SAE: Fused Multiply-Subtract of Scalar Double-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -40941,7 +40941,7 @@ func VFMSUB213SD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUB213SD_RD_SAE: bad operands")
 }
 
-// VFMSUB213SD_RD_SAE_Z: Fused Multiply-Subtract of Scalar Double-Precision Floating-Point Values.
+// VFMSUB213SD_RD_SAE_Z: Fused Multiply-Subtract of Scalar Double-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -40961,7 +40961,7 @@ func VFMSUB213SD_RD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMSUB213SD_RD_SAE_Z: bad operands")
 }
 
-// VFMSUB213SD_RN_SAE: Fused Multiply-Subtract of Scalar Double-Precision Floating-Point Values.
+// VFMSUB213SD_RN_SAE: Fused Multiply-Subtract of Scalar Double-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -40991,7 +40991,7 @@ func VFMSUB213SD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUB213SD_RN_SAE: bad operands")
 }
 
-// VFMSUB213SD_RN_SAE_Z: Fused Multiply-Subtract of Scalar Double-Precision Floating-Point Values.
+// VFMSUB213SD_RN_SAE_Z: Fused Multiply-Subtract of Scalar Double-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -41011,7 +41011,7 @@ func VFMSUB213SD_RN_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMSUB213SD_RN_SAE_Z: bad operands")
 }
 
-// VFMSUB213SD_RU_SAE: Fused Multiply-Subtract of Scalar Double-Precision Floating-Point Values.
+// VFMSUB213SD_RU_SAE: Fused Multiply-Subtract of Scalar Double-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -41041,7 +41041,7 @@ func VFMSUB213SD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUB213SD_RU_SAE: bad operands")
 }
 
-// VFMSUB213SD_RU_SAE_Z: Fused Multiply-Subtract of Scalar Double-Precision Floating-Point Values.
+// VFMSUB213SD_RU_SAE_Z: Fused Multiply-Subtract of Scalar Double-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -41061,7 +41061,7 @@ func VFMSUB213SD_RU_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMSUB213SD_RU_SAE_Z: bad operands")
 }
 
-// VFMSUB213SD_RZ_SAE: Fused Multiply-Subtract of Scalar Double-Precision Floating-Point Values.
+// VFMSUB213SD_RZ_SAE: Fused Multiply-Subtract of Scalar Double-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -41091,7 +41091,7 @@ func VFMSUB213SD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUB213SD_RZ_SAE: bad operands")
 }
 
-// VFMSUB213SD_RZ_SAE_Z: Fused Multiply-Subtract of Scalar Double-Precision Floating-Point Values.
+// VFMSUB213SD_RZ_SAE_Z: Fused Multiply-Subtract of Scalar Double-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -41111,7 +41111,7 @@ func VFMSUB213SD_RZ_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMSUB213SD_RZ_SAE_Z: bad operands")
 }
 
-// VFMSUB213SD_Z: Fused Multiply-Subtract of Scalar Double-Precision Floating-Point Values.
+// VFMSUB213SD_Z: Fused Multiply-Subtract of Scalar Double-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -41205,7 +41205,7 @@ func VFMSUB213SS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUB213SS: bad operands")
 }
 
-// VFMSUB213SS_RD_SAE: Fused Multiply-Subtract of Scalar Single-Precision Floating-Point Values.
+// VFMSUB213SS_RD_SAE: Fused Multiply-Subtract of Scalar Single-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -41235,7 +41235,7 @@ func VFMSUB213SS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUB213SS_RD_SAE: bad operands")
 }
 
-// VFMSUB213SS_RD_SAE_Z: Fused Multiply-Subtract of Scalar Single-Precision Floating-Point Values.
+// VFMSUB213SS_RD_SAE_Z: Fused Multiply-Subtract of Scalar Single-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -41255,7 +41255,7 @@ func VFMSUB213SS_RD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMSUB213SS_RD_SAE_Z: bad operands")
 }
 
-// VFMSUB213SS_RN_SAE: Fused Multiply-Subtract of Scalar Single-Precision Floating-Point Values.
+// VFMSUB213SS_RN_SAE: Fused Multiply-Subtract of Scalar Single-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -41285,7 +41285,7 @@ func VFMSUB213SS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUB213SS_RN_SAE: bad operands")
 }
 
-// VFMSUB213SS_RN_SAE_Z: Fused Multiply-Subtract of Scalar Single-Precision Floating-Point Values.
+// VFMSUB213SS_RN_SAE_Z: Fused Multiply-Subtract of Scalar Single-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -41305,7 +41305,7 @@ func VFMSUB213SS_RN_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMSUB213SS_RN_SAE_Z: bad operands")
 }
 
-// VFMSUB213SS_RU_SAE: Fused Multiply-Subtract of Scalar Single-Precision Floating-Point Values.
+// VFMSUB213SS_RU_SAE: Fused Multiply-Subtract of Scalar Single-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -41335,7 +41335,7 @@ func VFMSUB213SS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUB213SS_RU_SAE: bad operands")
 }
 
-// VFMSUB213SS_RU_SAE_Z: Fused Multiply-Subtract of Scalar Single-Precision Floating-Point Values.
+// VFMSUB213SS_RU_SAE_Z: Fused Multiply-Subtract of Scalar Single-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -41355,7 +41355,7 @@ func VFMSUB213SS_RU_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMSUB213SS_RU_SAE_Z: bad operands")
 }
 
-// VFMSUB213SS_RZ_SAE: Fused Multiply-Subtract of Scalar Single-Precision Floating-Point Values.
+// VFMSUB213SS_RZ_SAE: Fused Multiply-Subtract of Scalar Single-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -41385,7 +41385,7 @@ func VFMSUB213SS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUB213SS_RZ_SAE: bad operands")
 }
 
-// VFMSUB213SS_RZ_SAE_Z: Fused Multiply-Subtract of Scalar Single-Precision Floating-Point Values.
+// VFMSUB213SS_RZ_SAE_Z: Fused Multiply-Subtract of Scalar Single-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -41405,7 +41405,7 @@ func VFMSUB213SS_RZ_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMSUB213SS_RZ_SAE_Z: bad operands")
 }
 
-// VFMSUB213SS_Z: Fused Multiply-Subtract of Scalar Single-Precision Floating-Point Values.
+// VFMSUB213SS_Z: Fused Multiply-Subtract of Scalar Single-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -41517,7 +41517,7 @@ func VFMSUB231PD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUB231PD: bad operands")
 }
 
-// VFMSUB231PD_BCST: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values.
+// VFMSUB231PD_BCST: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -41547,7 +41547,7 @@ func VFMSUB231PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUB231PD_BCST: bad operands")
 }
 
-// VFMSUB231PD_BCST_Z: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values.
+// VFMSUB231PD_BCST_Z: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -41567,7 +41567,7 @@ func VFMSUB231PD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUB231PD_BCST_Z: bad operands")
 }
 
-// VFMSUB231PD_RD_SAE: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values.
+// VFMSUB231PD_RD_SAE: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -41597,7 +41597,7 @@ func VFMSUB231PD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUB231PD_RD_SAE: bad operands")
 }
 
-// VFMSUB231PD_RD_SAE_Z: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values.
+// VFMSUB231PD_RD_SAE_Z: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -41617,7 +41617,7 @@ func VFMSUB231PD_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMSUB231PD_RD_SAE_Z: bad operands")
 }
 
-// VFMSUB231PD_RN_SAE: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values.
+// VFMSUB231PD_RN_SAE: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -41647,7 +41647,7 @@ func VFMSUB231PD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUB231PD_RN_SAE: bad operands")
 }
 
-// VFMSUB231PD_RN_SAE_Z: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values.
+// VFMSUB231PD_RN_SAE_Z: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -41667,7 +41667,7 @@ func VFMSUB231PD_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMSUB231PD_RN_SAE_Z: bad operands")
 }
 
-// VFMSUB231PD_RU_SAE: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values.
+// VFMSUB231PD_RU_SAE: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -41697,7 +41697,7 @@ func VFMSUB231PD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUB231PD_RU_SAE: bad operands")
 }
 
-// VFMSUB231PD_RU_SAE_Z: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values.
+// VFMSUB231PD_RU_SAE_Z: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -41717,7 +41717,7 @@ func VFMSUB231PD_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMSUB231PD_RU_SAE_Z: bad operands")
 }
 
-// VFMSUB231PD_RZ_SAE: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values.
+// VFMSUB231PD_RZ_SAE: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -41747,7 +41747,7 @@ func VFMSUB231PD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUB231PD_RZ_SAE: bad operands")
 }
 
-// VFMSUB231PD_RZ_SAE_Z: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values.
+// VFMSUB231PD_RZ_SAE_Z: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -41767,7 +41767,7 @@ func VFMSUB231PD_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMSUB231PD_RZ_SAE_Z: bad operands")
 }
 
-// VFMSUB231PD_Z: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values.
+// VFMSUB231PD_Z: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -41879,7 +41879,7 @@ func VFMSUB231PS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUB231PS: bad operands")
 }
 
-// VFMSUB231PS_BCST: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values.
+// VFMSUB231PS_BCST: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -41909,7 +41909,7 @@ func VFMSUB231PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUB231PS_BCST: bad operands")
 }
 
-// VFMSUB231PS_BCST_Z: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values.
+// VFMSUB231PS_BCST_Z: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -41929,7 +41929,7 @@ func VFMSUB231PS_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUB231PS_BCST_Z: bad operands")
 }
 
-// VFMSUB231PS_RD_SAE: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values.
+// VFMSUB231PS_RD_SAE: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -41959,7 +41959,7 @@ func VFMSUB231PS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUB231PS_RD_SAE: bad operands")
 }
 
-// VFMSUB231PS_RD_SAE_Z: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values.
+// VFMSUB231PS_RD_SAE_Z: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -41979,7 +41979,7 @@ func VFMSUB231PS_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMSUB231PS_RD_SAE_Z: bad operands")
 }
 
-// VFMSUB231PS_RN_SAE: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values.
+// VFMSUB231PS_RN_SAE: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -42009,7 +42009,7 @@ func VFMSUB231PS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUB231PS_RN_SAE: bad operands")
 }
 
-// VFMSUB231PS_RN_SAE_Z: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values.
+// VFMSUB231PS_RN_SAE_Z: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -42029,7 +42029,7 @@ func VFMSUB231PS_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMSUB231PS_RN_SAE_Z: bad operands")
 }
 
-// VFMSUB231PS_RU_SAE: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values.
+// VFMSUB231PS_RU_SAE: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -42059,7 +42059,7 @@ func VFMSUB231PS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUB231PS_RU_SAE: bad operands")
 }
 
-// VFMSUB231PS_RU_SAE_Z: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values.
+// VFMSUB231PS_RU_SAE_Z: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -42079,7 +42079,7 @@ func VFMSUB231PS_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMSUB231PS_RU_SAE_Z: bad operands")
 }
 
-// VFMSUB231PS_RZ_SAE: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values.
+// VFMSUB231PS_RZ_SAE: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -42109,7 +42109,7 @@ func VFMSUB231PS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUB231PS_RZ_SAE: bad operands")
 }
 
-// VFMSUB231PS_RZ_SAE_Z: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values.
+// VFMSUB231PS_RZ_SAE_Z: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -42129,7 +42129,7 @@ func VFMSUB231PS_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMSUB231PS_RZ_SAE_Z: bad operands")
 }
 
-// VFMSUB231PS_Z: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values.
+// VFMSUB231PS_Z: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -42223,7 +42223,7 @@ func VFMSUB231SD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUB231SD: bad operands")
 }
 
-// VFMSUB231SD_RD_SAE: Fused Multiply-Subtract of Scalar Double-Precision Floating-Point Values.
+// VFMSUB231SD_RD_SAE: Fused Multiply-Subtract of Scalar Double-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -42253,7 +42253,7 @@ func VFMSUB231SD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUB231SD_RD_SAE: bad operands")
 }
 
-// VFMSUB231SD_RD_SAE_Z: Fused Multiply-Subtract of Scalar Double-Precision Floating-Point Values.
+// VFMSUB231SD_RD_SAE_Z: Fused Multiply-Subtract of Scalar Double-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -42273,7 +42273,7 @@ func VFMSUB231SD_RD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMSUB231SD_RD_SAE_Z: bad operands")
 }
 
-// VFMSUB231SD_RN_SAE: Fused Multiply-Subtract of Scalar Double-Precision Floating-Point Values.
+// VFMSUB231SD_RN_SAE: Fused Multiply-Subtract of Scalar Double-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -42303,7 +42303,7 @@ func VFMSUB231SD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUB231SD_RN_SAE: bad operands")
 }
 
-// VFMSUB231SD_RN_SAE_Z: Fused Multiply-Subtract of Scalar Double-Precision Floating-Point Values.
+// VFMSUB231SD_RN_SAE_Z: Fused Multiply-Subtract of Scalar Double-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -42323,7 +42323,7 @@ func VFMSUB231SD_RN_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMSUB231SD_RN_SAE_Z: bad operands")
 }
 
-// VFMSUB231SD_RU_SAE: Fused Multiply-Subtract of Scalar Double-Precision Floating-Point Values.
+// VFMSUB231SD_RU_SAE: Fused Multiply-Subtract of Scalar Double-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -42353,7 +42353,7 @@ func VFMSUB231SD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUB231SD_RU_SAE: bad operands")
 }
 
-// VFMSUB231SD_RU_SAE_Z: Fused Multiply-Subtract of Scalar Double-Precision Floating-Point Values.
+// VFMSUB231SD_RU_SAE_Z: Fused Multiply-Subtract of Scalar Double-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -42373,7 +42373,7 @@ func VFMSUB231SD_RU_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMSUB231SD_RU_SAE_Z: bad operands")
 }
 
-// VFMSUB231SD_RZ_SAE: Fused Multiply-Subtract of Scalar Double-Precision Floating-Point Values.
+// VFMSUB231SD_RZ_SAE: Fused Multiply-Subtract of Scalar Double-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -42403,7 +42403,7 @@ func VFMSUB231SD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUB231SD_RZ_SAE: bad operands")
 }
 
-// VFMSUB231SD_RZ_SAE_Z: Fused Multiply-Subtract of Scalar Double-Precision Floating-Point Values.
+// VFMSUB231SD_RZ_SAE_Z: Fused Multiply-Subtract of Scalar Double-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -42423,7 +42423,7 @@ func VFMSUB231SD_RZ_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMSUB231SD_RZ_SAE_Z: bad operands")
 }
 
-// VFMSUB231SD_Z: Fused Multiply-Subtract of Scalar Double-Precision Floating-Point Values.
+// VFMSUB231SD_Z: Fused Multiply-Subtract of Scalar Double-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -42517,7 +42517,7 @@ func VFMSUB231SS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUB231SS: bad operands")
 }
 
-// VFMSUB231SS_RD_SAE: Fused Multiply-Subtract of Scalar Single-Precision Floating-Point Values.
+// VFMSUB231SS_RD_SAE: Fused Multiply-Subtract of Scalar Single-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -42547,7 +42547,7 @@ func VFMSUB231SS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUB231SS_RD_SAE: bad operands")
 }
 
-// VFMSUB231SS_RD_SAE_Z: Fused Multiply-Subtract of Scalar Single-Precision Floating-Point Values.
+// VFMSUB231SS_RD_SAE_Z: Fused Multiply-Subtract of Scalar Single-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -42567,7 +42567,7 @@ func VFMSUB231SS_RD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMSUB231SS_RD_SAE_Z: bad operands")
 }
 
-// VFMSUB231SS_RN_SAE: Fused Multiply-Subtract of Scalar Single-Precision Floating-Point Values.
+// VFMSUB231SS_RN_SAE: Fused Multiply-Subtract of Scalar Single-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -42597,7 +42597,7 @@ func VFMSUB231SS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUB231SS_RN_SAE: bad operands")
 }
 
-// VFMSUB231SS_RN_SAE_Z: Fused Multiply-Subtract of Scalar Single-Precision Floating-Point Values.
+// VFMSUB231SS_RN_SAE_Z: Fused Multiply-Subtract of Scalar Single-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -42617,7 +42617,7 @@ func VFMSUB231SS_RN_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMSUB231SS_RN_SAE_Z: bad operands")
 }
 
-// VFMSUB231SS_RU_SAE: Fused Multiply-Subtract of Scalar Single-Precision Floating-Point Values.
+// VFMSUB231SS_RU_SAE: Fused Multiply-Subtract of Scalar Single-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -42647,7 +42647,7 @@ func VFMSUB231SS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUB231SS_RU_SAE: bad operands")
 }
 
-// VFMSUB231SS_RU_SAE_Z: Fused Multiply-Subtract of Scalar Single-Precision Floating-Point Values.
+// VFMSUB231SS_RU_SAE_Z: Fused Multiply-Subtract of Scalar Single-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -42667,7 +42667,7 @@ func VFMSUB231SS_RU_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMSUB231SS_RU_SAE_Z: bad operands")
 }
 
-// VFMSUB231SS_RZ_SAE: Fused Multiply-Subtract of Scalar Single-Precision Floating-Point Values.
+// VFMSUB231SS_RZ_SAE: Fused Multiply-Subtract of Scalar Single-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -42697,7 +42697,7 @@ func VFMSUB231SS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUB231SS_RZ_SAE: bad operands")
 }
 
-// VFMSUB231SS_RZ_SAE_Z: Fused Multiply-Subtract of Scalar Single-Precision Floating-Point Values.
+// VFMSUB231SS_RZ_SAE_Z: Fused Multiply-Subtract of Scalar Single-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -42717,7 +42717,7 @@ func VFMSUB231SS_RZ_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMSUB231SS_RZ_SAE_Z: bad operands")
 }
 
-// VFMSUB231SS_Z: Fused Multiply-Subtract of Scalar Single-Precision Floating-Point Values.
+// VFMSUB231SS_Z: Fused Multiply-Subtract of Scalar Single-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -42829,7 +42829,7 @@ func VFMSUBADD132PD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUBADD132PD: bad operands")
 }
 
-// VFMSUBADD132PD_BCST: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values.
+// VFMSUBADD132PD_BCST: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -42859,7 +42859,7 @@ func VFMSUBADD132PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUBADD132PD_BCST: bad operands")
 }
 
-// VFMSUBADD132PD_BCST_Z: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values.
+// VFMSUBADD132PD_BCST_Z: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -42879,7 +42879,7 @@ func VFMSUBADD132PD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMSUBADD132PD_BCST_Z: bad operands")
 }
 
-// VFMSUBADD132PD_RD_SAE: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values.
+// VFMSUBADD132PD_RD_SAE: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -42909,7 +42909,7 @@ func VFMSUBADD132PD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUBADD132PD_RD_SAE: bad operands")
 }
 
-// VFMSUBADD132PD_RD_SAE_Z: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values.
+// VFMSUBADD132PD_RD_SAE_Z: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -42929,7 +42929,7 @@ func VFMSUBADD132PD_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	return nil, errors.New("VFMSUBADD132PD_RD_SAE_Z: bad operands")
 }
 
-// VFMSUBADD132PD_RN_SAE: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values.
+// VFMSUBADD132PD_RN_SAE: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -42959,7 +42959,7 @@ func VFMSUBADD132PD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUBADD132PD_RN_SAE: bad operands")
 }
 
-// VFMSUBADD132PD_RN_SAE_Z: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values.
+// VFMSUBADD132PD_RN_SAE_Z: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -42979,7 +42979,7 @@ func VFMSUBADD132PD_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	return nil, errors.New("VFMSUBADD132PD_RN_SAE_Z: bad operands")
 }
 
-// VFMSUBADD132PD_RU_SAE: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values.
+// VFMSUBADD132PD_RU_SAE: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -43009,7 +43009,7 @@ func VFMSUBADD132PD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUBADD132PD_RU_SAE: bad operands")
 }
 
-// VFMSUBADD132PD_RU_SAE_Z: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values.
+// VFMSUBADD132PD_RU_SAE_Z: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -43029,7 +43029,7 @@ func VFMSUBADD132PD_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	return nil, errors.New("VFMSUBADD132PD_RU_SAE_Z: bad operands")
 }
 
-// VFMSUBADD132PD_RZ_SAE: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values.
+// VFMSUBADD132PD_RZ_SAE: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -43059,7 +43059,7 @@ func VFMSUBADD132PD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUBADD132PD_RZ_SAE: bad operands")
 }
 
-// VFMSUBADD132PD_RZ_SAE_Z: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values.
+// VFMSUBADD132PD_RZ_SAE_Z: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -43079,7 +43079,7 @@ func VFMSUBADD132PD_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	return nil, errors.New("VFMSUBADD132PD_RZ_SAE_Z: bad operands")
 }
 
-// VFMSUBADD132PD_Z: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values.
+// VFMSUBADD132PD_Z: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -43191,7 +43191,7 @@ func VFMSUBADD132PS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUBADD132PS: bad operands")
 }
 
-// VFMSUBADD132PS_BCST: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values.
+// VFMSUBADD132PS_BCST: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -43221,7 +43221,7 @@ func VFMSUBADD132PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUBADD132PS_BCST: bad operands")
 }
 
-// VFMSUBADD132PS_BCST_Z: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values.
+// VFMSUBADD132PS_BCST_Z: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -43241,7 +43241,7 @@ func VFMSUBADD132PS_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMSUBADD132PS_BCST_Z: bad operands")
 }
 
-// VFMSUBADD132PS_RD_SAE: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values.
+// VFMSUBADD132PS_RD_SAE: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -43271,7 +43271,7 @@ func VFMSUBADD132PS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUBADD132PS_RD_SAE: bad operands")
 }
 
-// VFMSUBADD132PS_RD_SAE_Z: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values.
+// VFMSUBADD132PS_RD_SAE_Z: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -43291,7 +43291,7 @@ func VFMSUBADD132PS_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	return nil, errors.New("VFMSUBADD132PS_RD_SAE_Z: bad operands")
 }
 
-// VFMSUBADD132PS_RN_SAE: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values.
+// VFMSUBADD132PS_RN_SAE: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -43321,7 +43321,7 @@ func VFMSUBADD132PS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUBADD132PS_RN_SAE: bad operands")
 }
 
-// VFMSUBADD132PS_RN_SAE_Z: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values.
+// VFMSUBADD132PS_RN_SAE_Z: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -43341,7 +43341,7 @@ func VFMSUBADD132PS_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	return nil, errors.New("VFMSUBADD132PS_RN_SAE_Z: bad operands")
 }
 
-// VFMSUBADD132PS_RU_SAE: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values.
+// VFMSUBADD132PS_RU_SAE: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -43371,7 +43371,7 @@ func VFMSUBADD132PS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUBADD132PS_RU_SAE: bad operands")
 }
 
-// VFMSUBADD132PS_RU_SAE_Z: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values.
+// VFMSUBADD132PS_RU_SAE_Z: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -43391,7 +43391,7 @@ func VFMSUBADD132PS_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	return nil, errors.New("VFMSUBADD132PS_RU_SAE_Z: bad operands")
 }
 
-// VFMSUBADD132PS_RZ_SAE: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values.
+// VFMSUBADD132PS_RZ_SAE: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -43421,7 +43421,7 @@ func VFMSUBADD132PS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUBADD132PS_RZ_SAE: bad operands")
 }
 
-// VFMSUBADD132PS_RZ_SAE_Z: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values.
+// VFMSUBADD132PS_RZ_SAE_Z: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -43441,7 +43441,7 @@ func VFMSUBADD132PS_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	return nil, errors.New("VFMSUBADD132PS_RZ_SAE_Z: bad operands")
 }
 
-// VFMSUBADD132PS_Z: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values.
+// VFMSUBADD132PS_Z: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -43553,7 +43553,7 @@ func VFMSUBADD213PD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUBADD213PD: bad operands")
 }
 
-// VFMSUBADD213PD_BCST: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values.
+// VFMSUBADD213PD_BCST: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -43583,7 +43583,7 @@ func VFMSUBADD213PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUBADD213PD_BCST: bad operands")
 }
 
-// VFMSUBADD213PD_BCST_Z: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values.
+// VFMSUBADD213PD_BCST_Z: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -43603,7 +43603,7 @@ func VFMSUBADD213PD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMSUBADD213PD_BCST_Z: bad operands")
 }
 
-// VFMSUBADD213PD_RD_SAE: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values.
+// VFMSUBADD213PD_RD_SAE: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -43633,7 +43633,7 @@ func VFMSUBADD213PD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUBADD213PD_RD_SAE: bad operands")
 }
 
-// VFMSUBADD213PD_RD_SAE_Z: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values.
+// VFMSUBADD213PD_RD_SAE_Z: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -43653,7 +43653,7 @@ func VFMSUBADD213PD_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	return nil, errors.New("VFMSUBADD213PD_RD_SAE_Z: bad operands")
 }
 
-// VFMSUBADD213PD_RN_SAE: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values.
+// VFMSUBADD213PD_RN_SAE: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -43683,7 +43683,7 @@ func VFMSUBADD213PD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUBADD213PD_RN_SAE: bad operands")
 }
 
-// VFMSUBADD213PD_RN_SAE_Z: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values.
+// VFMSUBADD213PD_RN_SAE_Z: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -43703,7 +43703,7 @@ func VFMSUBADD213PD_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	return nil, errors.New("VFMSUBADD213PD_RN_SAE_Z: bad operands")
 }
 
-// VFMSUBADD213PD_RU_SAE: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values.
+// VFMSUBADD213PD_RU_SAE: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -43733,7 +43733,7 @@ func VFMSUBADD213PD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUBADD213PD_RU_SAE: bad operands")
 }
 
-// VFMSUBADD213PD_RU_SAE_Z: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values.
+// VFMSUBADD213PD_RU_SAE_Z: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -43753,7 +43753,7 @@ func VFMSUBADD213PD_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	return nil, errors.New("VFMSUBADD213PD_RU_SAE_Z: bad operands")
 }
 
-// VFMSUBADD213PD_RZ_SAE: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values.
+// VFMSUBADD213PD_RZ_SAE: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -43783,7 +43783,7 @@ func VFMSUBADD213PD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUBADD213PD_RZ_SAE: bad operands")
 }
 
-// VFMSUBADD213PD_RZ_SAE_Z: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values.
+// VFMSUBADD213PD_RZ_SAE_Z: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -43803,7 +43803,7 @@ func VFMSUBADD213PD_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	return nil, errors.New("VFMSUBADD213PD_RZ_SAE_Z: bad operands")
 }
 
-// VFMSUBADD213PD_Z: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values.
+// VFMSUBADD213PD_Z: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -43915,7 +43915,7 @@ func VFMSUBADD213PS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUBADD213PS: bad operands")
 }
 
-// VFMSUBADD213PS_BCST: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values.
+// VFMSUBADD213PS_BCST: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -43945,7 +43945,7 @@ func VFMSUBADD213PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUBADD213PS_BCST: bad operands")
 }
 
-// VFMSUBADD213PS_BCST_Z: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values.
+// VFMSUBADD213PS_BCST_Z: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -43965,7 +43965,7 @@ func VFMSUBADD213PS_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMSUBADD213PS_BCST_Z: bad operands")
 }
 
-// VFMSUBADD213PS_RD_SAE: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values.
+// VFMSUBADD213PS_RD_SAE: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -43995,7 +43995,7 @@ func VFMSUBADD213PS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUBADD213PS_RD_SAE: bad operands")
 }
 
-// VFMSUBADD213PS_RD_SAE_Z: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values.
+// VFMSUBADD213PS_RD_SAE_Z: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -44015,7 +44015,7 @@ func VFMSUBADD213PS_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	return nil, errors.New("VFMSUBADD213PS_RD_SAE_Z: bad operands")
 }
 
-// VFMSUBADD213PS_RN_SAE: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values.
+// VFMSUBADD213PS_RN_SAE: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -44045,7 +44045,7 @@ func VFMSUBADD213PS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUBADD213PS_RN_SAE: bad operands")
 }
 
-// VFMSUBADD213PS_RN_SAE_Z: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values.
+// VFMSUBADD213PS_RN_SAE_Z: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -44065,7 +44065,7 @@ func VFMSUBADD213PS_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	return nil, errors.New("VFMSUBADD213PS_RN_SAE_Z: bad operands")
 }
 
-// VFMSUBADD213PS_RU_SAE: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values.
+// VFMSUBADD213PS_RU_SAE: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -44095,7 +44095,7 @@ func VFMSUBADD213PS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUBADD213PS_RU_SAE: bad operands")
 }
 
-// VFMSUBADD213PS_RU_SAE_Z: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values.
+// VFMSUBADD213PS_RU_SAE_Z: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -44115,7 +44115,7 @@ func VFMSUBADD213PS_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	return nil, errors.New("VFMSUBADD213PS_RU_SAE_Z: bad operands")
 }
 
-// VFMSUBADD213PS_RZ_SAE: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values.
+// VFMSUBADD213PS_RZ_SAE: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -44145,7 +44145,7 @@ func VFMSUBADD213PS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUBADD213PS_RZ_SAE: bad operands")
 }
 
-// VFMSUBADD213PS_RZ_SAE_Z: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values.
+// VFMSUBADD213PS_RZ_SAE_Z: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -44165,7 +44165,7 @@ func VFMSUBADD213PS_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	return nil, errors.New("VFMSUBADD213PS_RZ_SAE_Z: bad operands")
 }
 
-// VFMSUBADD213PS_Z: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values.
+// VFMSUBADD213PS_Z: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -44277,7 +44277,7 @@ func VFMSUBADD231PD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUBADD231PD: bad operands")
 }
 
-// VFMSUBADD231PD_BCST: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values.
+// VFMSUBADD231PD_BCST: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -44307,7 +44307,7 @@ func VFMSUBADD231PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUBADD231PD_BCST: bad operands")
 }
 
-// VFMSUBADD231PD_BCST_Z: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values.
+// VFMSUBADD231PD_BCST_Z: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -44327,7 +44327,7 @@ func VFMSUBADD231PD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMSUBADD231PD_BCST_Z: bad operands")
 }
 
-// VFMSUBADD231PD_RD_SAE: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values.
+// VFMSUBADD231PD_RD_SAE: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -44357,7 +44357,7 @@ func VFMSUBADD231PD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUBADD231PD_RD_SAE: bad operands")
 }
 
-// VFMSUBADD231PD_RD_SAE_Z: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values.
+// VFMSUBADD231PD_RD_SAE_Z: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -44377,7 +44377,7 @@ func VFMSUBADD231PD_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	return nil, errors.New("VFMSUBADD231PD_RD_SAE_Z: bad operands")
 }
 
-// VFMSUBADD231PD_RN_SAE: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values.
+// VFMSUBADD231PD_RN_SAE: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -44407,7 +44407,7 @@ func VFMSUBADD231PD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUBADD231PD_RN_SAE: bad operands")
 }
 
-// VFMSUBADD231PD_RN_SAE_Z: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values.
+// VFMSUBADD231PD_RN_SAE_Z: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -44427,7 +44427,7 @@ func VFMSUBADD231PD_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	return nil, errors.New("VFMSUBADD231PD_RN_SAE_Z: bad operands")
 }
 
-// VFMSUBADD231PD_RU_SAE: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values.
+// VFMSUBADD231PD_RU_SAE: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -44457,7 +44457,7 @@ func VFMSUBADD231PD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUBADD231PD_RU_SAE: bad operands")
 }
 
-// VFMSUBADD231PD_RU_SAE_Z: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values.
+// VFMSUBADD231PD_RU_SAE_Z: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -44477,7 +44477,7 @@ func VFMSUBADD231PD_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	return nil, errors.New("VFMSUBADD231PD_RU_SAE_Z: bad operands")
 }
 
-// VFMSUBADD231PD_RZ_SAE: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values.
+// VFMSUBADD231PD_RZ_SAE: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -44507,7 +44507,7 @@ func VFMSUBADD231PD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUBADD231PD_RZ_SAE: bad operands")
 }
 
-// VFMSUBADD231PD_RZ_SAE_Z: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values.
+// VFMSUBADD231PD_RZ_SAE_Z: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -44527,7 +44527,7 @@ func VFMSUBADD231PD_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	return nil, errors.New("VFMSUBADD231PD_RZ_SAE_Z: bad operands")
 }
 
-// VFMSUBADD231PD_Z: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values.
+// VFMSUBADD231PD_Z: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -44639,7 +44639,7 @@ func VFMSUBADD231PS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUBADD231PS: bad operands")
 }
 
-// VFMSUBADD231PS_BCST: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values.
+// VFMSUBADD231PS_BCST: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -44669,7 +44669,7 @@ func VFMSUBADD231PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUBADD231PS_BCST: bad operands")
 }
 
-// VFMSUBADD231PS_BCST_Z: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values.
+// VFMSUBADD231PS_BCST_Z: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -44689,7 +44689,7 @@ func VFMSUBADD231PS_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VFMSUBADD231PS_BCST_Z: bad operands")
 }
 
-// VFMSUBADD231PS_RD_SAE: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values.
+// VFMSUBADD231PS_RD_SAE: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -44719,7 +44719,7 @@ func VFMSUBADD231PS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUBADD231PS_RD_SAE: bad operands")
 }
 
-// VFMSUBADD231PS_RD_SAE_Z: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values.
+// VFMSUBADD231PS_RD_SAE_Z: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -44739,7 +44739,7 @@ func VFMSUBADD231PS_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	return nil, errors.New("VFMSUBADD231PS_RD_SAE_Z: bad operands")
 }
 
-// VFMSUBADD231PS_RN_SAE: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values.
+// VFMSUBADD231PS_RN_SAE: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -44769,7 +44769,7 @@ func VFMSUBADD231PS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUBADD231PS_RN_SAE: bad operands")
 }
 
-// VFMSUBADD231PS_RN_SAE_Z: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values.
+// VFMSUBADD231PS_RN_SAE_Z: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -44789,7 +44789,7 @@ func VFMSUBADD231PS_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	return nil, errors.New("VFMSUBADD231PS_RN_SAE_Z: bad operands")
 }
 
-// VFMSUBADD231PS_RU_SAE: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values.
+// VFMSUBADD231PS_RU_SAE: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -44819,7 +44819,7 @@ func VFMSUBADD231PS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUBADD231PS_RU_SAE: bad operands")
 }
 
-// VFMSUBADD231PS_RU_SAE_Z: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values.
+// VFMSUBADD231PS_RU_SAE_Z: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -44839,7 +44839,7 @@ func VFMSUBADD231PS_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	return nil, errors.New("VFMSUBADD231PS_RU_SAE_Z: bad operands")
 }
 
-// VFMSUBADD231PS_RZ_SAE: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values.
+// VFMSUBADD231PS_RZ_SAE: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -44869,7 +44869,7 @@ func VFMSUBADD231PS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFMSUBADD231PS_RZ_SAE: bad operands")
 }
 
-// VFMSUBADD231PS_RZ_SAE_Z: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values.
+// VFMSUBADD231PS_RZ_SAE_Z: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -44889,7 +44889,7 @@ func VFMSUBADD231PS_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, erro
 	return nil, errors.New("VFMSUBADD231PS_RZ_SAE_Z: bad operands")
 }
 
-// VFMSUBADD231PS_Z: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values.
+// VFMSUBADD231PS_Z: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -45001,7 +45001,7 @@ func VFNMADD132PD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMADD132PD: bad operands")
 }
 
-// VFNMADD132PD_BCST: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values.
+// VFNMADD132PD_BCST: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -45031,7 +45031,7 @@ func VFNMADD132PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMADD132PD_BCST: bad operands")
 }
 
-// VFNMADD132PD_BCST_Z: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values.
+// VFNMADD132PD_BCST_Z: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -45051,7 +45051,7 @@ func VFNMADD132PD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMADD132PD_BCST_Z: bad operands")
 }
 
-// VFNMADD132PD_RD_SAE: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values.
+// VFNMADD132PD_RD_SAE: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -45081,7 +45081,7 @@ func VFNMADD132PD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMADD132PD_RD_SAE: bad operands")
 }
 
-// VFNMADD132PD_RD_SAE_Z: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values.
+// VFNMADD132PD_RD_SAE_Z: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -45101,7 +45101,7 @@ func VFNMADD132PD_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMADD132PD_RD_SAE_Z: bad operands")
 }
 
-// VFNMADD132PD_RN_SAE: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values.
+// VFNMADD132PD_RN_SAE: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -45131,7 +45131,7 @@ func VFNMADD132PD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMADD132PD_RN_SAE: bad operands")
 }
 
-// VFNMADD132PD_RN_SAE_Z: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values.
+// VFNMADD132PD_RN_SAE_Z: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -45151,7 +45151,7 @@ func VFNMADD132PD_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMADD132PD_RN_SAE_Z: bad operands")
 }
 
-// VFNMADD132PD_RU_SAE: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values.
+// VFNMADD132PD_RU_SAE: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -45181,7 +45181,7 @@ func VFNMADD132PD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMADD132PD_RU_SAE: bad operands")
 }
 
-// VFNMADD132PD_RU_SAE_Z: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values.
+// VFNMADD132PD_RU_SAE_Z: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -45201,7 +45201,7 @@ func VFNMADD132PD_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMADD132PD_RU_SAE_Z: bad operands")
 }
 
-// VFNMADD132PD_RZ_SAE: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values.
+// VFNMADD132PD_RZ_SAE: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -45231,7 +45231,7 @@ func VFNMADD132PD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMADD132PD_RZ_SAE: bad operands")
 }
 
-// VFNMADD132PD_RZ_SAE_Z: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values.
+// VFNMADD132PD_RZ_SAE_Z: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -45251,7 +45251,7 @@ func VFNMADD132PD_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMADD132PD_RZ_SAE_Z: bad operands")
 }
 
-// VFNMADD132PD_Z: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values.
+// VFNMADD132PD_Z: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -45363,7 +45363,7 @@ func VFNMADD132PS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMADD132PS: bad operands")
 }
 
-// VFNMADD132PS_BCST: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values.
+// VFNMADD132PS_BCST: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -45393,7 +45393,7 @@ func VFNMADD132PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMADD132PS_BCST: bad operands")
 }
 
-// VFNMADD132PS_BCST_Z: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values.
+// VFNMADD132PS_BCST_Z: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -45413,7 +45413,7 @@ func VFNMADD132PS_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMADD132PS_BCST_Z: bad operands")
 }
 
-// VFNMADD132PS_RD_SAE: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values.
+// VFNMADD132PS_RD_SAE: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -45443,7 +45443,7 @@ func VFNMADD132PS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMADD132PS_RD_SAE: bad operands")
 }
 
-// VFNMADD132PS_RD_SAE_Z: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values.
+// VFNMADD132PS_RD_SAE_Z: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -45463,7 +45463,7 @@ func VFNMADD132PS_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMADD132PS_RD_SAE_Z: bad operands")
 }
 
-// VFNMADD132PS_RN_SAE: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values.
+// VFNMADD132PS_RN_SAE: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -45493,7 +45493,7 @@ func VFNMADD132PS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMADD132PS_RN_SAE: bad operands")
 }
 
-// VFNMADD132PS_RN_SAE_Z: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values.
+// VFNMADD132PS_RN_SAE_Z: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -45513,7 +45513,7 @@ func VFNMADD132PS_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMADD132PS_RN_SAE_Z: bad operands")
 }
 
-// VFNMADD132PS_RU_SAE: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values.
+// VFNMADD132PS_RU_SAE: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -45543,7 +45543,7 @@ func VFNMADD132PS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMADD132PS_RU_SAE: bad operands")
 }
 
-// VFNMADD132PS_RU_SAE_Z: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values.
+// VFNMADD132PS_RU_SAE_Z: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -45563,7 +45563,7 @@ func VFNMADD132PS_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMADD132PS_RU_SAE_Z: bad operands")
 }
 
-// VFNMADD132PS_RZ_SAE: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values.
+// VFNMADD132PS_RZ_SAE: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -45593,7 +45593,7 @@ func VFNMADD132PS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMADD132PS_RZ_SAE: bad operands")
 }
 
-// VFNMADD132PS_RZ_SAE_Z: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values.
+// VFNMADD132PS_RZ_SAE_Z: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -45613,7 +45613,7 @@ func VFNMADD132PS_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMADD132PS_RZ_SAE_Z: bad operands")
 }
 
-// VFNMADD132PS_Z: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values.
+// VFNMADD132PS_Z: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -45707,7 +45707,7 @@ func VFNMADD132SD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMADD132SD: bad operands")
 }
 
-// VFNMADD132SD_RD_SAE: Fused Negative Multiply-Add of Scalar Double-Precision Floating-Point Values.
+// VFNMADD132SD_RD_SAE: Fused Negative Multiply-Add of Scalar Double-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -45737,7 +45737,7 @@ func VFNMADD132SD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMADD132SD_RD_SAE: bad operands")
 }
 
-// VFNMADD132SD_RD_SAE_Z: Fused Negative Multiply-Add of Scalar Double-Precision Floating-Point Values.
+// VFNMADD132SD_RD_SAE_Z: Fused Negative Multiply-Add of Scalar Double-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -45757,7 +45757,7 @@ func VFNMADD132SD_RD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMADD132SD_RD_SAE_Z: bad operands")
 }
 
-// VFNMADD132SD_RN_SAE: Fused Negative Multiply-Add of Scalar Double-Precision Floating-Point Values.
+// VFNMADD132SD_RN_SAE: Fused Negative Multiply-Add of Scalar Double-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -45787,7 +45787,7 @@ func VFNMADD132SD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMADD132SD_RN_SAE: bad operands")
 }
 
-// VFNMADD132SD_RN_SAE_Z: Fused Negative Multiply-Add of Scalar Double-Precision Floating-Point Values.
+// VFNMADD132SD_RN_SAE_Z: Fused Negative Multiply-Add of Scalar Double-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -45807,7 +45807,7 @@ func VFNMADD132SD_RN_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMADD132SD_RN_SAE_Z: bad operands")
 }
 
-// VFNMADD132SD_RU_SAE: Fused Negative Multiply-Add of Scalar Double-Precision Floating-Point Values.
+// VFNMADD132SD_RU_SAE: Fused Negative Multiply-Add of Scalar Double-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -45837,7 +45837,7 @@ func VFNMADD132SD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMADD132SD_RU_SAE: bad operands")
 }
 
-// VFNMADD132SD_RU_SAE_Z: Fused Negative Multiply-Add of Scalar Double-Precision Floating-Point Values.
+// VFNMADD132SD_RU_SAE_Z: Fused Negative Multiply-Add of Scalar Double-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -45857,7 +45857,7 @@ func VFNMADD132SD_RU_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMADD132SD_RU_SAE_Z: bad operands")
 }
 
-// VFNMADD132SD_RZ_SAE: Fused Negative Multiply-Add of Scalar Double-Precision Floating-Point Values.
+// VFNMADD132SD_RZ_SAE: Fused Negative Multiply-Add of Scalar Double-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -45887,7 +45887,7 @@ func VFNMADD132SD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMADD132SD_RZ_SAE: bad operands")
 }
 
-// VFNMADD132SD_RZ_SAE_Z: Fused Negative Multiply-Add of Scalar Double-Precision Floating-Point Values.
+// VFNMADD132SD_RZ_SAE_Z: Fused Negative Multiply-Add of Scalar Double-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -45907,7 +45907,7 @@ func VFNMADD132SD_RZ_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMADD132SD_RZ_SAE_Z: bad operands")
 }
 
-// VFNMADD132SD_Z: Fused Negative Multiply-Add of Scalar Double-Precision Floating-Point Values.
+// VFNMADD132SD_Z: Fused Negative Multiply-Add of Scalar Double-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -46001,7 +46001,7 @@ func VFNMADD132SS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMADD132SS: bad operands")
 }
 
-// VFNMADD132SS_RD_SAE: Fused Negative Multiply-Add of Scalar Single-Precision Floating-Point Values.
+// VFNMADD132SS_RD_SAE: Fused Negative Multiply-Add of Scalar Single-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -46031,7 +46031,7 @@ func VFNMADD132SS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMADD132SS_RD_SAE: bad operands")
 }
 
-// VFNMADD132SS_RD_SAE_Z: Fused Negative Multiply-Add of Scalar Single-Precision Floating-Point Values.
+// VFNMADD132SS_RD_SAE_Z: Fused Negative Multiply-Add of Scalar Single-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -46051,7 +46051,7 @@ func VFNMADD132SS_RD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMADD132SS_RD_SAE_Z: bad operands")
 }
 
-// VFNMADD132SS_RN_SAE: Fused Negative Multiply-Add of Scalar Single-Precision Floating-Point Values.
+// VFNMADD132SS_RN_SAE: Fused Negative Multiply-Add of Scalar Single-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -46081,7 +46081,7 @@ func VFNMADD132SS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMADD132SS_RN_SAE: bad operands")
 }
 
-// VFNMADD132SS_RN_SAE_Z: Fused Negative Multiply-Add of Scalar Single-Precision Floating-Point Values.
+// VFNMADD132SS_RN_SAE_Z: Fused Negative Multiply-Add of Scalar Single-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -46101,7 +46101,7 @@ func VFNMADD132SS_RN_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMADD132SS_RN_SAE_Z: bad operands")
 }
 
-// VFNMADD132SS_RU_SAE: Fused Negative Multiply-Add of Scalar Single-Precision Floating-Point Values.
+// VFNMADD132SS_RU_SAE: Fused Negative Multiply-Add of Scalar Single-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -46131,7 +46131,7 @@ func VFNMADD132SS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMADD132SS_RU_SAE: bad operands")
 }
 
-// VFNMADD132SS_RU_SAE_Z: Fused Negative Multiply-Add of Scalar Single-Precision Floating-Point Values.
+// VFNMADD132SS_RU_SAE_Z: Fused Negative Multiply-Add of Scalar Single-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -46151,7 +46151,7 @@ func VFNMADD132SS_RU_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMADD132SS_RU_SAE_Z: bad operands")
 }
 
-// VFNMADD132SS_RZ_SAE: Fused Negative Multiply-Add of Scalar Single-Precision Floating-Point Values.
+// VFNMADD132SS_RZ_SAE: Fused Negative Multiply-Add of Scalar Single-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -46181,7 +46181,7 @@ func VFNMADD132SS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMADD132SS_RZ_SAE: bad operands")
 }
 
-// VFNMADD132SS_RZ_SAE_Z: Fused Negative Multiply-Add of Scalar Single-Precision Floating-Point Values.
+// VFNMADD132SS_RZ_SAE_Z: Fused Negative Multiply-Add of Scalar Single-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -46201,7 +46201,7 @@ func VFNMADD132SS_RZ_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMADD132SS_RZ_SAE_Z: bad operands")
 }
 
-// VFNMADD132SS_Z: Fused Negative Multiply-Add of Scalar Single-Precision Floating-Point Values.
+// VFNMADD132SS_Z: Fused Negative Multiply-Add of Scalar Single-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -46313,7 +46313,7 @@ func VFNMADD213PD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMADD213PD: bad operands")
 }
 
-// VFNMADD213PD_BCST: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values.
+// VFNMADD213PD_BCST: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -46343,7 +46343,7 @@ func VFNMADD213PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMADD213PD_BCST: bad operands")
 }
 
-// VFNMADD213PD_BCST_Z: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values.
+// VFNMADD213PD_BCST_Z: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -46363,7 +46363,7 @@ func VFNMADD213PD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMADD213PD_BCST_Z: bad operands")
 }
 
-// VFNMADD213PD_RD_SAE: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values.
+// VFNMADD213PD_RD_SAE: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -46393,7 +46393,7 @@ func VFNMADD213PD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMADD213PD_RD_SAE: bad operands")
 }
 
-// VFNMADD213PD_RD_SAE_Z: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values.
+// VFNMADD213PD_RD_SAE_Z: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -46413,7 +46413,7 @@ func VFNMADD213PD_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMADD213PD_RD_SAE_Z: bad operands")
 }
 
-// VFNMADD213PD_RN_SAE: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values.
+// VFNMADD213PD_RN_SAE: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -46443,7 +46443,7 @@ func VFNMADD213PD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMADD213PD_RN_SAE: bad operands")
 }
 
-// VFNMADD213PD_RN_SAE_Z: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values.
+// VFNMADD213PD_RN_SAE_Z: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -46463,7 +46463,7 @@ func VFNMADD213PD_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMADD213PD_RN_SAE_Z: bad operands")
 }
 
-// VFNMADD213PD_RU_SAE: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values.
+// VFNMADD213PD_RU_SAE: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -46493,7 +46493,7 @@ func VFNMADD213PD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMADD213PD_RU_SAE: bad operands")
 }
 
-// VFNMADD213PD_RU_SAE_Z: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values.
+// VFNMADD213PD_RU_SAE_Z: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -46513,7 +46513,7 @@ func VFNMADD213PD_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMADD213PD_RU_SAE_Z: bad operands")
 }
 
-// VFNMADD213PD_RZ_SAE: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values.
+// VFNMADD213PD_RZ_SAE: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -46543,7 +46543,7 @@ func VFNMADD213PD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMADD213PD_RZ_SAE: bad operands")
 }
 
-// VFNMADD213PD_RZ_SAE_Z: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values.
+// VFNMADD213PD_RZ_SAE_Z: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -46563,7 +46563,7 @@ func VFNMADD213PD_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMADD213PD_RZ_SAE_Z: bad operands")
 }
 
-// VFNMADD213PD_Z: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values.
+// VFNMADD213PD_Z: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -46675,7 +46675,7 @@ func VFNMADD213PS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMADD213PS: bad operands")
 }
 
-// VFNMADD213PS_BCST: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values.
+// VFNMADD213PS_BCST: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -46705,7 +46705,7 @@ func VFNMADD213PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMADD213PS_BCST: bad operands")
 }
 
-// VFNMADD213PS_BCST_Z: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values.
+// VFNMADD213PS_BCST_Z: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -46725,7 +46725,7 @@ func VFNMADD213PS_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMADD213PS_BCST_Z: bad operands")
 }
 
-// VFNMADD213PS_RD_SAE: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values.
+// VFNMADD213PS_RD_SAE: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -46755,7 +46755,7 @@ func VFNMADD213PS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMADD213PS_RD_SAE: bad operands")
 }
 
-// VFNMADD213PS_RD_SAE_Z: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values.
+// VFNMADD213PS_RD_SAE_Z: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -46775,7 +46775,7 @@ func VFNMADD213PS_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMADD213PS_RD_SAE_Z: bad operands")
 }
 
-// VFNMADD213PS_RN_SAE: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values.
+// VFNMADD213PS_RN_SAE: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -46805,7 +46805,7 @@ func VFNMADD213PS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMADD213PS_RN_SAE: bad operands")
 }
 
-// VFNMADD213PS_RN_SAE_Z: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values.
+// VFNMADD213PS_RN_SAE_Z: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -46825,7 +46825,7 @@ func VFNMADD213PS_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMADD213PS_RN_SAE_Z: bad operands")
 }
 
-// VFNMADD213PS_RU_SAE: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values.
+// VFNMADD213PS_RU_SAE: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -46855,7 +46855,7 @@ func VFNMADD213PS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMADD213PS_RU_SAE: bad operands")
 }
 
-// VFNMADD213PS_RU_SAE_Z: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values.
+// VFNMADD213PS_RU_SAE_Z: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -46875,7 +46875,7 @@ func VFNMADD213PS_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMADD213PS_RU_SAE_Z: bad operands")
 }
 
-// VFNMADD213PS_RZ_SAE: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values.
+// VFNMADD213PS_RZ_SAE: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -46905,7 +46905,7 @@ func VFNMADD213PS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMADD213PS_RZ_SAE: bad operands")
 }
 
-// VFNMADD213PS_RZ_SAE_Z: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values.
+// VFNMADD213PS_RZ_SAE_Z: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -46925,7 +46925,7 @@ func VFNMADD213PS_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMADD213PS_RZ_SAE_Z: bad operands")
 }
 
-// VFNMADD213PS_Z: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values.
+// VFNMADD213PS_Z: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -47019,7 +47019,7 @@ func VFNMADD213SD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMADD213SD: bad operands")
 }
 
-// VFNMADD213SD_RD_SAE: Fused Negative Multiply-Add of Scalar Double-Precision Floating-Point Values.
+// VFNMADD213SD_RD_SAE: Fused Negative Multiply-Add of Scalar Double-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -47049,7 +47049,7 @@ func VFNMADD213SD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMADD213SD_RD_SAE: bad operands")
 }
 
-// VFNMADD213SD_RD_SAE_Z: Fused Negative Multiply-Add of Scalar Double-Precision Floating-Point Values.
+// VFNMADD213SD_RD_SAE_Z: Fused Negative Multiply-Add of Scalar Double-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -47069,7 +47069,7 @@ func VFNMADD213SD_RD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMADD213SD_RD_SAE_Z: bad operands")
 }
 
-// VFNMADD213SD_RN_SAE: Fused Negative Multiply-Add of Scalar Double-Precision Floating-Point Values.
+// VFNMADD213SD_RN_SAE: Fused Negative Multiply-Add of Scalar Double-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -47099,7 +47099,7 @@ func VFNMADD213SD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMADD213SD_RN_SAE: bad operands")
 }
 
-// VFNMADD213SD_RN_SAE_Z: Fused Negative Multiply-Add of Scalar Double-Precision Floating-Point Values.
+// VFNMADD213SD_RN_SAE_Z: Fused Negative Multiply-Add of Scalar Double-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -47119,7 +47119,7 @@ func VFNMADD213SD_RN_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMADD213SD_RN_SAE_Z: bad operands")
 }
 
-// VFNMADD213SD_RU_SAE: Fused Negative Multiply-Add of Scalar Double-Precision Floating-Point Values.
+// VFNMADD213SD_RU_SAE: Fused Negative Multiply-Add of Scalar Double-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -47149,7 +47149,7 @@ func VFNMADD213SD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMADD213SD_RU_SAE: bad operands")
 }
 
-// VFNMADD213SD_RU_SAE_Z: Fused Negative Multiply-Add of Scalar Double-Precision Floating-Point Values.
+// VFNMADD213SD_RU_SAE_Z: Fused Negative Multiply-Add of Scalar Double-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -47169,7 +47169,7 @@ func VFNMADD213SD_RU_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMADD213SD_RU_SAE_Z: bad operands")
 }
 
-// VFNMADD213SD_RZ_SAE: Fused Negative Multiply-Add of Scalar Double-Precision Floating-Point Values.
+// VFNMADD213SD_RZ_SAE: Fused Negative Multiply-Add of Scalar Double-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -47199,7 +47199,7 @@ func VFNMADD213SD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMADD213SD_RZ_SAE: bad operands")
 }
 
-// VFNMADD213SD_RZ_SAE_Z: Fused Negative Multiply-Add of Scalar Double-Precision Floating-Point Values.
+// VFNMADD213SD_RZ_SAE_Z: Fused Negative Multiply-Add of Scalar Double-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -47219,7 +47219,7 @@ func VFNMADD213SD_RZ_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMADD213SD_RZ_SAE_Z: bad operands")
 }
 
-// VFNMADD213SD_Z: Fused Negative Multiply-Add of Scalar Double-Precision Floating-Point Values.
+// VFNMADD213SD_Z: Fused Negative Multiply-Add of Scalar Double-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -47313,7 +47313,7 @@ func VFNMADD213SS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMADD213SS: bad operands")
 }
 
-// VFNMADD213SS_RD_SAE: Fused Negative Multiply-Add of Scalar Single-Precision Floating-Point Values.
+// VFNMADD213SS_RD_SAE: Fused Negative Multiply-Add of Scalar Single-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -47343,7 +47343,7 @@ func VFNMADD213SS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMADD213SS_RD_SAE: bad operands")
 }
 
-// VFNMADD213SS_RD_SAE_Z: Fused Negative Multiply-Add of Scalar Single-Precision Floating-Point Values.
+// VFNMADD213SS_RD_SAE_Z: Fused Negative Multiply-Add of Scalar Single-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -47363,7 +47363,7 @@ func VFNMADD213SS_RD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMADD213SS_RD_SAE_Z: bad operands")
 }
 
-// VFNMADD213SS_RN_SAE: Fused Negative Multiply-Add of Scalar Single-Precision Floating-Point Values.
+// VFNMADD213SS_RN_SAE: Fused Negative Multiply-Add of Scalar Single-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -47393,7 +47393,7 @@ func VFNMADD213SS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMADD213SS_RN_SAE: bad operands")
 }
 
-// VFNMADD213SS_RN_SAE_Z: Fused Negative Multiply-Add of Scalar Single-Precision Floating-Point Values.
+// VFNMADD213SS_RN_SAE_Z: Fused Negative Multiply-Add of Scalar Single-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -47413,7 +47413,7 @@ func VFNMADD213SS_RN_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMADD213SS_RN_SAE_Z: bad operands")
 }
 
-// VFNMADD213SS_RU_SAE: Fused Negative Multiply-Add of Scalar Single-Precision Floating-Point Values.
+// VFNMADD213SS_RU_SAE: Fused Negative Multiply-Add of Scalar Single-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -47443,7 +47443,7 @@ func VFNMADD213SS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMADD213SS_RU_SAE: bad operands")
 }
 
-// VFNMADD213SS_RU_SAE_Z: Fused Negative Multiply-Add of Scalar Single-Precision Floating-Point Values.
+// VFNMADD213SS_RU_SAE_Z: Fused Negative Multiply-Add of Scalar Single-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -47463,7 +47463,7 @@ func VFNMADD213SS_RU_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMADD213SS_RU_SAE_Z: bad operands")
 }
 
-// VFNMADD213SS_RZ_SAE: Fused Negative Multiply-Add of Scalar Single-Precision Floating-Point Values.
+// VFNMADD213SS_RZ_SAE: Fused Negative Multiply-Add of Scalar Single-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -47493,7 +47493,7 @@ func VFNMADD213SS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMADD213SS_RZ_SAE: bad operands")
 }
 
-// VFNMADD213SS_RZ_SAE_Z: Fused Negative Multiply-Add of Scalar Single-Precision Floating-Point Values.
+// VFNMADD213SS_RZ_SAE_Z: Fused Negative Multiply-Add of Scalar Single-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -47513,7 +47513,7 @@ func VFNMADD213SS_RZ_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMADD213SS_RZ_SAE_Z: bad operands")
 }
 
-// VFNMADD213SS_Z: Fused Negative Multiply-Add of Scalar Single-Precision Floating-Point Values.
+// VFNMADD213SS_Z: Fused Negative Multiply-Add of Scalar Single-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -47625,7 +47625,7 @@ func VFNMADD231PD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMADD231PD: bad operands")
 }
 
-// VFNMADD231PD_BCST: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values.
+// VFNMADD231PD_BCST: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -47655,7 +47655,7 @@ func VFNMADD231PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMADD231PD_BCST: bad operands")
 }
 
-// VFNMADD231PD_BCST_Z: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values.
+// VFNMADD231PD_BCST_Z: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -47675,7 +47675,7 @@ func VFNMADD231PD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMADD231PD_BCST_Z: bad operands")
 }
 
-// VFNMADD231PD_RD_SAE: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values.
+// VFNMADD231PD_RD_SAE: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -47705,7 +47705,7 @@ func VFNMADD231PD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMADD231PD_RD_SAE: bad operands")
 }
 
-// VFNMADD231PD_RD_SAE_Z: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values.
+// VFNMADD231PD_RD_SAE_Z: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -47725,7 +47725,7 @@ func VFNMADD231PD_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMADD231PD_RD_SAE_Z: bad operands")
 }
 
-// VFNMADD231PD_RN_SAE: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values.
+// VFNMADD231PD_RN_SAE: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -47755,7 +47755,7 @@ func VFNMADD231PD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMADD231PD_RN_SAE: bad operands")
 }
 
-// VFNMADD231PD_RN_SAE_Z: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values.
+// VFNMADD231PD_RN_SAE_Z: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -47775,7 +47775,7 @@ func VFNMADD231PD_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMADD231PD_RN_SAE_Z: bad operands")
 }
 
-// VFNMADD231PD_RU_SAE: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values.
+// VFNMADD231PD_RU_SAE: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -47805,7 +47805,7 @@ func VFNMADD231PD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMADD231PD_RU_SAE: bad operands")
 }
 
-// VFNMADD231PD_RU_SAE_Z: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values.
+// VFNMADD231PD_RU_SAE_Z: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -47825,7 +47825,7 @@ func VFNMADD231PD_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMADD231PD_RU_SAE_Z: bad operands")
 }
 
-// VFNMADD231PD_RZ_SAE: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values.
+// VFNMADD231PD_RZ_SAE: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -47855,7 +47855,7 @@ func VFNMADD231PD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMADD231PD_RZ_SAE: bad operands")
 }
 
-// VFNMADD231PD_RZ_SAE_Z: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values.
+// VFNMADD231PD_RZ_SAE_Z: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -47875,7 +47875,7 @@ func VFNMADD231PD_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMADD231PD_RZ_SAE_Z: bad operands")
 }
 
-// VFNMADD231PD_Z: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values.
+// VFNMADD231PD_Z: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -47987,7 +47987,7 @@ func VFNMADD231PS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMADD231PS: bad operands")
 }
 
-// VFNMADD231PS_BCST: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values.
+// VFNMADD231PS_BCST: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -48017,7 +48017,7 @@ func VFNMADD231PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMADD231PS_BCST: bad operands")
 }
 
-// VFNMADD231PS_BCST_Z: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values.
+// VFNMADD231PS_BCST_Z: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -48037,7 +48037,7 @@ func VFNMADD231PS_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMADD231PS_BCST_Z: bad operands")
 }
 
-// VFNMADD231PS_RD_SAE: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values.
+// VFNMADD231PS_RD_SAE: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -48067,7 +48067,7 @@ func VFNMADD231PS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMADD231PS_RD_SAE: bad operands")
 }
 
-// VFNMADD231PS_RD_SAE_Z: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values.
+// VFNMADD231PS_RD_SAE_Z: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -48087,7 +48087,7 @@ func VFNMADD231PS_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMADD231PS_RD_SAE_Z: bad operands")
 }
 
-// VFNMADD231PS_RN_SAE: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values.
+// VFNMADD231PS_RN_SAE: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -48117,7 +48117,7 @@ func VFNMADD231PS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMADD231PS_RN_SAE: bad operands")
 }
 
-// VFNMADD231PS_RN_SAE_Z: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values.
+// VFNMADD231PS_RN_SAE_Z: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -48137,7 +48137,7 @@ func VFNMADD231PS_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMADD231PS_RN_SAE_Z: bad operands")
 }
 
-// VFNMADD231PS_RU_SAE: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values.
+// VFNMADD231PS_RU_SAE: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -48167,7 +48167,7 @@ func VFNMADD231PS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMADD231PS_RU_SAE: bad operands")
 }
 
-// VFNMADD231PS_RU_SAE_Z: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values.
+// VFNMADD231PS_RU_SAE_Z: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -48187,7 +48187,7 @@ func VFNMADD231PS_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMADD231PS_RU_SAE_Z: bad operands")
 }
 
-// VFNMADD231PS_RZ_SAE: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values.
+// VFNMADD231PS_RZ_SAE: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -48217,7 +48217,7 @@ func VFNMADD231PS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMADD231PS_RZ_SAE: bad operands")
 }
 
-// VFNMADD231PS_RZ_SAE_Z: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values.
+// VFNMADD231PS_RZ_SAE_Z: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -48237,7 +48237,7 @@ func VFNMADD231PS_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMADD231PS_RZ_SAE_Z: bad operands")
 }
 
-// VFNMADD231PS_Z: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values.
+// VFNMADD231PS_Z: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -48331,7 +48331,7 @@ func VFNMADD231SD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMADD231SD: bad operands")
 }
 
-// VFNMADD231SD_RD_SAE: Fused Negative Multiply-Add of Scalar Double-Precision Floating-Point Values.
+// VFNMADD231SD_RD_SAE: Fused Negative Multiply-Add of Scalar Double-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -48361,7 +48361,7 @@ func VFNMADD231SD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMADD231SD_RD_SAE: bad operands")
 }
 
-// VFNMADD231SD_RD_SAE_Z: Fused Negative Multiply-Add of Scalar Double-Precision Floating-Point Values.
+// VFNMADD231SD_RD_SAE_Z: Fused Negative Multiply-Add of Scalar Double-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -48381,7 +48381,7 @@ func VFNMADD231SD_RD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMADD231SD_RD_SAE_Z: bad operands")
 }
 
-// VFNMADD231SD_RN_SAE: Fused Negative Multiply-Add of Scalar Double-Precision Floating-Point Values.
+// VFNMADD231SD_RN_SAE: Fused Negative Multiply-Add of Scalar Double-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -48411,7 +48411,7 @@ func VFNMADD231SD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMADD231SD_RN_SAE: bad operands")
 }
 
-// VFNMADD231SD_RN_SAE_Z: Fused Negative Multiply-Add of Scalar Double-Precision Floating-Point Values.
+// VFNMADD231SD_RN_SAE_Z: Fused Negative Multiply-Add of Scalar Double-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -48431,7 +48431,7 @@ func VFNMADD231SD_RN_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMADD231SD_RN_SAE_Z: bad operands")
 }
 
-// VFNMADD231SD_RU_SAE: Fused Negative Multiply-Add of Scalar Double-Precision Floating-Point Values.
+// VFNMADD231SD_RU_SAE: Fused Negative Multiply-Add of Scalar Double-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -48461,7 +48461,7 @@ func VFNMADD231SD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMADD231SD_RU_SAE: bad operands")
 }
 
-// VFNMADD231SD_RU_SAE_Z: Fused Negative Multiply-Add of Scalar Double-Precision Floating-Point Values.
+// VFNMADD231SD_RU_SAE_Z: Fused Negative Multiply-Add of Scalar Double-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -48481,7 +48481,7 @@ func VFNMADD231SD_RU_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMADD231SD_RU_SAE_Z: bad operands")
 }
 
-// VFNMADD231SD_RZ_SAE: Fused Negative Multiply-Add of Scalar Double-Precision Floating-Point Values.
+// VFNMADD231SD_RZ_SAE: Fused Negative Multiply-Add of Scalar Double-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -48511,7 +48511,7 @@ func VFNMADD231SD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMADD231SD_RZ_SAE: bad operands")
 }
 
-// VFNMADD231SD_RZ_SAE_Z: Fused Negative Multiply-Add of Scalar Double-Precision Floating-Point Values.
+// VFNMADD231SD_RZ_SAE_Z: Fused Negative Multiply-Add of Scalar Double-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -48531,7 +48531,7 @@ func VFNMADD231SD_RZ_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMADD231SD_RZ_SAE_Z: bad operands")
 }
 
-// VFNMADD231SD_Z: Fused Negative Multiply-Add of Scalar Double-Precision Floating-Point Values.
+// VFNMADD231SD_Z: Fused Negative Multiply-Add of Scalar Double-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -48625,7 +48625,7 @@ func VFNMADD231SS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMADD231SS: bad operands")
 }
 
-// VFNMADD231SS_RD_SAE: Fused Negative Multiply-Add of Scalar Single-Precision Floating-Point Values.
+// VFNMADD231SS_RD_SAE: Fused Negative Multiply-Add of Scalar Single-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -48655,7 +48655,7 @@ func VFNMADD231SS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMADD231SS_RD_SAE: bad operands")
 }
 
-// VFNMADD231SS_RD_SAE_Z: Fused Negative Multiply-Add of Scalar Single-Precision Floating-Point Values.
+// VFNMADD231SS_RD_SAE_Z: Fused Negative Multiply-Add of Scalar Single-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -48675,7 +48675,7 @@ func VFNMADD231SS_RD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMADD231SS_RD_SAE_Z: bad operands")
 }
 
-// VFNMADD231SS_RN_SAE: Fused Negative Multiply-Add of Scalar Single-Precision Floating-Point Values.
+// VFNMADD231SS_RN_SAE: Fused Negative Multiply-Add of Scalar Single-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -48705,7 +48705,7 @@ func VFNMADD231SS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMADD231SS_RN_SAE: bad operands")
 }
 
-// VFNMADD231SS_RN_SAE_Z: Fused Negative Multiply-Add of Scalar Single-Precision Floating-Point Values.
+// VFNMADD231SS_RN_SAE_Z: Fused Negative Multiply-Add of Scalar Single-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -48725,7 +48725,7 @@ func VFNMADD231SS_RN_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMADD231SS_RN_SAE_Z: bad operands")
 }
 
-// VFNMADD231SS_RU_SAE: Fused Negative Multiply-Add of Scalar Single-Precision Floating-Point Values.
+// VFNMADD231SS_RU_SAE: Fused Negative Multiply-Add of Scalar Single-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -48755,7 +48755,7 @@ func VFNMADD231SS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMADD231SS_RU_SAE: bad operands")
 }
 
-// VFNMADD231SS_RU_SAE_Z: Fused Negative Multiply-Add of Scalar Single-Precision Floating-Point Values.
+// VFNMADD231SS_RU_SAE_Z: Fused Negative Multiply-Add of Scalar Single-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -48775,7 +48775,7 @@ func VFNMADD231SS_RU_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMADD231SS_RU_SAE_Z: bad operands")
 }
 
-// VFNMADD231SS_RZ_SAE: Fused Negative Multiply-Add of Scalar Single-Precision Floating-Point Values.
+// VFNMADD231SS_RZ_SAE: Fused Negative Multiply-Add of Scalar Single-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -48805,7 +48805,7 @@ func VFNMADD231SS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMADD231SS_RZ_SAE: bad operands")
 }
 
-// VFNMADD231SS_RZ_SAE_Z: Fused Negative Multiply-Add of Scalar Single-Precision Floating-Point Values.
+// VFNMADD231SS_RZ_SAE_Z: Fused Negative Multiply-Add of Scalar Single-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -48825,7 +48825,7 @@ func VFNMADD231SS_RZ_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMADD231SS_RZ_SAE_Z: bad operands")
 }
 
-// VFNMADD231SS_Z: Fused Negative Multiply-Add of Scalar Single-Precision Floating-Point Values.
+// VFNMADD231SS_Z: Fused Negative Multiply-Add of Scalar Single-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -48937,7 +48937,7 @@ func VFNMSUB132PD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMSUB132PD: bad operands")
 }
 
-// VFNMSUB132PD_BCST: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values.
+// VFNMSUB132PD_BCST: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -48967,7 +48967,7 @@ func VFNMSUB132PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMSUB132PD_BCST: bad operands")
 }
 
-// VFNMSUB132PD_BCST_Z: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values.
+// VFNMSUB132PD_BCST_Z: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -48987,7 +48987,7 @@ func VFNMSUB132PD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMSUB132PD_BCST_Z: bad operands")
 }
 
-// VFNMSUB132PD_RD_SAE: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values.
+// VFNMSUB132PD_RD_SAE: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -49017,7 +49017,7 @@ func VFNMSUB132PD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMSUB132PD_RD_SAE: bad operands")
 }
 
-// VFNMSUB132PD_RD_SAE_Z: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values.
+// VFNMSUB132PD_RD_SAE_Z: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -49037,7 +49037,7 @@ func VFNMSUB132PD_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMSUB132PD_RD_SAE_Z: bad operands")
 }
 
-// VFNMSUB132PD_RN_SAE: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values.
+// VFNMSUB132PD_RN_SAE: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -49067,7 +49067,7 @@ func VFNMSUB132PD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMSUB132PD_RN_SAE: bad operands")
 }
 
-// VFNMSUB132PD_RN_SAE_Z: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values.
+// VFNMSUB132PD_RN_SAE_Z: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -49087,7 +49087,7 @@ func VFNMSUB132PD_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMSUB132PD_RN_SAE_Z: bad operands")
 }
 
-// VFNMSUB132PD_RU_SAE: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values.
+// VFNMSUB132PD_RU_SAE: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -49117,7 +49117,7 @@ func VFNMSUB132PD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMSUB132PD_RU_SAE: bad operands")
 }
 
-// VFNMSUB132PD_RU_SAE_Z: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values.
+// VFNMSUB132PD_RU_SAE_Z: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -49137,7 +49137,7 @@ func VFNMSUB132PD_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMSUB132PD_RU_SAE_Z: bad operands")
 }
 
-// VFNMSUB132PD_RZ_SAE: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values.
+// VFNMSUB132PD_RZ_SAE: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -49167,7 +49167,7 @@ func VFNMSUB132PD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMSUB132PD_RZ_SAE: bad operands")
 }
 
-// VFNMSUB132PD_RZ_SAE_Z: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values.
+// VFNMSUB132PD_RZ_SAE_Z: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -49187,7 +49187,7 @@ func VFNMSUB132PD_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMSUB132PD_RZ_SAE_Z: bad operands")
 }
 
-// VFNMSUB132PD_Z: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values.
+// VFNMSUB132PD_Z: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -49299,7 +49299,7 @@ func VFNMSUB132PS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMSUB132PS: bad operands")
 }
 
-// VFNMSUB132PS_BCST: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values.
+// VFNMSUB132PS_BCST: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -49329,7 +49329,7 @@ func VFNMSUB132PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMSUB132PS_BCST: bad operands")
 }
 
-// VFNMSUB132PS_BCST_Z: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values.
+// VFNMSUB132PS_BCST_Z: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -49349,7 +49349,7 @@ func VFNMSUB132PS_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMSUB132PS_BCST_Z: bad operands")
 }
 
-// VFNMSUB132PS_RD_SAE: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values.
+// VFNMSUB132PS_RD_SAE: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -49379,7 +49379,7 @@ func VFNMSUB132PS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMSUB132PS_RD_SAE: bad operands")
 }
 
-// VFNMSUB132PS_RD_SAE_Z: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values.
+// VFNMSUB132PS_RD_SAE_Z: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -49399,7 +49399,7 @@ func VFNMSUB132PS_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMSUB132PS_RD_SAE_Z: bad operands")
 }
 
-// VFNMSUB132PS_RN_SAE: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values.
+// VFNMSUB132PS_RN_SAE: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -49429,7 +49429,7 @@ func VFNMSUB132PS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMSUB132PS_RN_SAE: bad operands")
 }
 
-// VFNMSUB132PS_RN_SAE_Z: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values.
+// VFNMSUB132PS_RN_SAE_Z: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -49449,7 +49449,7 @@ func VFNMSUB132PS_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMSUB132PS_RN_SAE_Z: bad operands")
 }
 
-// VFNMSUB132PS_RU_SAE: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values.
+// VFNMSUB132PS_RU_SAE: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -49479,7 +49479,7 @@ func VFNMSUB132PS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMSUB132PS_RU_SAE: bad operands")
 }
 
-// VFNMSUB132PS_RU_SAE_Z: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values.
+// VFNMSUB132PS_RU_SAE_Z: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -49499,7 +49499,7 @@ func VFNMSUB132PS_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMSUB132PS_RU_SAE_Z: bad operands")
 }
 
-// VFNMSUB132PS_RZ_SAE: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values.
+// VFNMSUB132PS_RZ_SAE: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -49529,7 +49529,7 @@ func VFNMSUB132PS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMSUB132PS_RZ_SAE: bad operands")
 }
 
-// VFNMSUB132PS_RZ_SAE_Z: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values.
+// VFNMSUB132PS_RZ_SAE_Z: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -49549,7 +49549,7 @@ func VFNMSUB132PS_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMSUB132PS_RZ_SAE_Z: bad operands")
 }
 
-// VFNMSUB132PS_Z: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values.
+// VFNMSUB132PS_Z: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -49643,7 +49643,7 @@ func VFNMSUB132SD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMSUB132SD: bad operands")
 }
 
-// VFNMSUB132SD_RD_SAE: Fused Negative Multiply-Subtract of Scalar Double-Precision Floating-Point Values.
+// VFNMSUB132SD_RD_SAE: Fused Negative Multiply-Subtract of Scalar Double-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -49673,7 +49673,7 @@ func VFNMSUB132SD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMSUB132SD_RD_SAE: bad operands")
 }
 
-// VFNMSUB132SD_RD_SAE_Z: Fused Negative Multiply-Subtract of Scalar Double-Precision Floating-Point Values.
+// VFNMSUB132SD_RD_SAE_Z: Fused Negative Multiply-Subtract of Scalar Double-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -49693,7 +49693,7 @@ func VFNMSUB132SD_RD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMSUB132SD_RD_SAE_Z: bad operands")
 }
 
-// VFNMSUB132SD_RN_SAE: Fused Negative Multiply-Subtract of Scalar Double-Precision Floating-Point Values.
+// VFNMSUB132SD_RN_SAE: Fused Negative Multiply-Subtract of Scalar Double-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -49723,7 +49723,7 @@ func VFNMSUB132SD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMSUB132SD_RN_SAE: bad operands")
 }
 
-// VFNMSUB132SD_RN_SAE_Z: Fused Negative Multiply-Subtract of Scalar Double-Precision Floating-Point Values.
+// VFNMSUB132SD_RN_SAE_Z: Fused Negative Multiply-Subtract of Scalar Double-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -49743,7 +49743,7 @@ func VFNMSUB132SD_RN_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMSUB132SD_RN_SAE_Z: bad operands")
 }
 
-// VFNMSUB132SD_RU_SAE: Fused Negative Multiply-Subtract of Scalar Double-Precision Floating-Point Values.
+// VFNMSUB132SD_RU_SAE: Fused Negative Multiply-Subtract of Scalar Double-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -49773,7 +49773,7 @@ func VFNMSUB132SD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMSUB132SD_RU_SAE: bad operands")
 }
 
-// VFNMSUB132SD_RU_SAE_Z: Fused Negative Multiply-Subtract of Scalar Double-Precision Floating-Point Values.
+// VFNMSUB132SD_RU_SAE_Z: Fused Negative Multiply-Subtract of Scalar Double-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -49793,7 +49793,7 @@ func VFNMSUB132SD_RU_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMSUB132SD_RU_SAE_Z: bad operands")
 }
 
-// VFNMSUB132SD_RZ_SAE: Fused Negative Multiply-Subtract of Scalar Double-Precision Floating-Point Values.
+// VFNMSUB132SD_RZ_SAE: Fused Negative Multiply-Subtract of Scalar Double-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -49823,7 +49823,7 @@ func VFNMSUB132SD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMSUB132SD_RZ_SAE: bad operands")
 }
 
-// VFNMSUB132SD_RZ_SAE_Z: Fused Negative Multiply-Subtract of Scalar Double-Precision Floating-Point Values.
+// VFNMSUB132SD_RZ_SAE_Z: Fused Negative Multiply-Subtract of Scalar Double-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -49843,7 +49843,7 @@ func VFNMSUB132SD_RZ_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMSUB132SD_RZ_SAE_Z: bad operands")
 }
 
-// VFNMSUB132SD_Z: Fused Negative Multiply-Subtract of Scalar Double-Precision Floating-Point Values.
+// VFNMSUB132SD_Z: Fused Negative Multiply-Subtract of Scalar Double-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -49937,7 +49937,7 @@ func VFNMSUB132SS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMSUB132SS: bad operands")
 }
 
-// VFNMSUB132SS_RD_SAE: Fused Negative Multiply-Subtract of Scalar Single-Precision Floating-Point Values.
+// VFNMSUB132SS_RD_SAE: Fused Negative Multiply-Subtract of Scalar Single-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -49967,7 +49967,7 @@ func VFNMSUB132SS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMSUB132SS_RD_SAE: bad operands")
 }
 
-// VFNMSUB132SS_RD_SAE_Z: Fused Negative Multiply-Subtract of Scalar Single-Precision Floating-Point Values.
+// VFNMSUB132SS_RD_SAE_Z: Fused Negative Multiply-Subtract of Scalar Single-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -49987,7 +49987,7 @@ func VFNMSUB132SS_RD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMSUB132SS_RD_SAE_Z: bad operands")
 }
 
-// VFNMSUB132SS_RN_SAE: Fused Negative Multiply-Subtract of Scalar Single-Precision Floating-Point Values.
+// VFNMSUB132SS_RN_SAE: Fused Negative Multiply-Subtract of Scalar Single-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -50017,7 +50017,7 @@ func VFNMSUB132SS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMSUB132SS_RN_SAE: bad operands")
 }
 
-// VFNMSUB132SS_RN_SAE_Z: Fused Negative Multiply-Subtract of Scalar Single-Precision Floating-Point Values.
+// VFNMSUB132SS_RN_SAE_Z: Fused Negative Multiply-Subtract of Scalar Single-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -50037,7 +50037,7 @@ func VFNMSUB132SS_RN_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMSUB132SS_RN_SAE_Z: bad operands")
 }
 
-// VFNMSUB132SS_RU_SAE: Fused Negative Multiply-Subtract of Scalar Single-Precision Floating-Point Values.
+// VFNMSUB132SS_RU_SAE: Fused Negative Multiply-Subtract of Scalar Single-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -50067,7 +50067,7 @@ func VFNMSUB132SS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMSUB132SS_RU_SAE: bad operands")
 }
 
-// VFNMSUB132SS_RU_SAE_Z: Fused Negative Multiply-Subtract of Scalar Single-Precision Floating-Point Values.
+// VFNMSUB132SS_RU_SAE_Z: Fused Negative Multiply-Subtract of Scalar Single-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -50087,7 +50087,7 @@ func VFNMSUB132SS_RU_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMSUB132SS_RU_SAE_Z: bad operands")
 }
 
-// VFNMSUB132SS_RZ_SAE: Fused Negative Multiply-Subtract of Scalar Single-Precision Floating-Point Values.
+// VFNMSUB132SS_RZ_SAE: Fused Negative Multiply-Subtract of Scalar Single-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -50117,7 +50117,7 @@ func VFNMSUB132SS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMSUB132SS_RZ_SAE: bad operands")
 }
 
-// VFNMSUB132SS_RZ_SAE_Z: Fused Negative Multiply-Subtract of Scalar Single-Precision Floating-Point Values.
+// VFNMSUB132SS_RZ_SAE_Z: Fused Negative Multiply-Subtract of Scalar Single-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -50137,7 +50137,7 @@ func VFNMSUB132SS_RZ_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMSUB132SS_RZ_SAE_Z: bad operands")
 }
 
-// VFNMSUB132SS_Z: Fused Negative Multiply-Subtract of Scalar Single-Precision Floating-Point Values.
+// VFNMSUB132SS_Z: Fused Negative Multiply-Subtract of Scalar Single-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -50249,7 +50249,7 @@ func VFNMSUB213PD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMSUB213PD: bad operands")
 }
 
-// VFNMSUB213PD_BCST: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values.
+// VFNMSUB213PD_BCST: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -50279,7 +50279,7 @@ func VFNMSUB213PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMSUB213PD_BCST: bad operands")
 }
 
-// VFNMSUB213PD_BCST_Z: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values.
+// VFNMSUB213PD_BCST_Z: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -50299,7 +50299,7 @@ func VFNMSUB213PD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMSUB213PD_BCST_Z: bad operands")
 }
 
-// VFNMSUB213PD_RD_SAE: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values.
+// VFNMSUB213PD_RD_SAE: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -50329,7 +50329,7 @@ func VFNMSUB213PD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMSUB213PD_RD_SAE: bad operands")
 }
 
-// VFNMSUB213PD_RD_SAE_Z: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values.
+// VFNMSUB213PD_RD_SAE_Z: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -50349,7 +50349,7 @@ func VFNMSUB213PD_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMSUB213PD_RD_SAE_Z: bad operands")
 }
 
-// VFNMSUB213PD_RN_SAE: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values.
+// VFNMSUB213PD_RN_SAE: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -50379,7 +50379,7 @@ func VFNMSUB213PD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMSUB213PD_RN_SAE: bad operands")
 }
 
-// VFNMSUB213PD_RN_SAE_Z: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values.
+// VFNMSUB213PD_RN_SAE_Z: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -50399,7 +50399,7 @@ func VFNMSUB213PD_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMSUB213PD_RN_SAE_Z: bad operands")
 }
 
-// VFNMSUB213PD_RU_SAE: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values.
+// VFNMSUB213PD_RU_SAE: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -50429,7 +50429,7 @@ func VFNMSUB213PD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMSUB213PD_RU_SAE: bad operands")
 }
 
-// VFNMSUB213PD_RU_SAE_Z: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values.
+// VFNMSUB213PD_RU_SAE_Z: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -50449,7 +50449,7 @@ func VFNMSUB213PD_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMSUB213PD_RU_SAE_Z: bad operands")
 }
 
-// VFNMSUB213PD_RZ_SAE: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values.
+// VFNMSUB213PD_RZ_SAE: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -50479,7 +50479,7 @@ func VFNMSUB213PD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMSUB213PD_RZ_SAE: bad operands")
 }
 
-// VFNMSUB213PD_RZ_SAE_Z: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values.
+// VFNMSUB213PD_RZ_SAE_Z: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -50499,7 +50499,7 @@ func VFNMSUB213PD_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMSUB213PD_RZ_SAE_Z: bad operands")
 }
 
-// VFNMSUB213PD_Z: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values.
+// VFNMSUB213PD_Z: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -50611,7 +50611,7 @@ func VFNMSUB213PS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMSUB213PS: bad operands")
 }
 
-// VFNMSUB213PS_BCST: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values.
+// VFNMSUB213PS_BCST: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -50641,7 +50641,7 @@ func VFNMSUB213PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMSUB213PS_BCST: bad operands")
 }
 
-// VFNMSUB213PS_BCST_Z: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values.
+// VFNMSUB213PS_BCST_Z: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -50661,7 +50661,7 @@ func VFNMSUB213PS_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMSUB213PS_BCST_Z: bad operands")
 }
 
-// VFNMSUB213PS_RD_SAE: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values.
+// VFNMSUB213PS_RD_SAE: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -50691,7 +50691,7 @@ func VFNMSUB213PS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMSUB213PS_RD_SAE: bad operands")
 }
 
-// VFNMSUB213PS_RD_SAE_Z: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values.
+// VFNMSUB213PS_RD_SAE_Z: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -50711,7 +50711,7 @@ func VFNMSUB213PS_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMSUB213PS_RD_SAE_Z: bad operands")
 }
 
-// VFNMSUB213PS_RN_SAE: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values.
+// VFNMSUB213PS_RN_SAE: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -50741,7 +50741,7 @@ func VFNMSUB213PS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMSUB213PS_RN_SAE: bad operands")
 }
 
-// VFNMSUB213PS_RN_SAE_Z: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values.
+// VFNMSUB213PS_RN_SAE_Z: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -50761,7 +50761,7 @@ func VFNMSUB213PS_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMSUB213PS_RN_SAE_Z: bad operands")
 }
 
-// VFNMSUB213PS_RU_SAE: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values.
+// VFNMSUB213PS_RU_SAE: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -50791,7 +50791,7 @@ func VFNMSUB213PS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMSUB213PS_RU_SAE: bad operands")
 }
 
-// VFNMSUB213PS_RU_SAE_Z: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values.
+// VFNMSUB213PS_RU_SAE_Z: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -50811,7 +50811,7 @@ func VFNMSUB213PS_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMSUB213PS_RU_SAE_Z: bad operands")
 }
 
-// VFNMSUB213PS_RZ_SAE: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values.
+// VFNMSUB213PS_RZ_SAE: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -50841,7 +50841,7 @@ func VFNMSUB213PS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMSUB213PS_RZ_SAE: bad operands")
 }
 
-// VFNMSUB213PS_RZ_SAE_Z: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values.
+// VFNMSUB213PS_RZ_SAE_Z: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -50861,7 +50861,7 @@ func VFNMSUB213PS_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMSUB213PS_RZ_SAE_Z: bad operands")
 }
 
-// VFNMSUB213PS_Z: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values.
+// VFNMSUB213PS_Z: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -50955,7 +50955,7 @@ func VFNMSUB213SD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMSUB213SD: bad operands")
 }
 
-// VFNMSUB213SD_RD_SAE: Fused Negative Multiply-Subtract of Scalar Double-Precision Floating-Point Values.
+// VFNMSUB213SD_RD_SAE: Fused Negative Multiply-Subtract of Scalar Double-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -50985,7 +50985,7 @@ func VFNMSUB213SD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMSUB213SD_RD_SAE: bad operands")
 }
 
-// VFNMSUB213SD_RD_SAE_Z: Fused Negative Multiply-Subtract of Scalar Double-Precision Floating-Point Values.
+// VFNMSUB213SD_RD_SAE_Z: Fused Negative Multiply-Subtract of Scalar Double-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -51005,7 +51005,7 @@ func VFNMSUB213SD_RD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMSUB213SD_RD_SAE_Z: bad operands")
 }
 
-// VFNMSUB213SD_RN_SAE: Fused Negative Multiply-Subtract of Scalar Double-Precision Floating-Point Values.
+// VFNMSUB213SD_RN_SAE: Fused Negative Multiply-Subtract of Scalar Double-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -51035,7 +51035,7 @@ func VFNMSUB213SD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMSUB213SD_RN_SAE: bad operands")
 }
 
-// VFNMSUB213SD_RN_SAE_Z: Fused Negative Multiply-Subtract of Scalar Double-Precision Floating-Point Values.
+// VFNMSUB213SD_RN_SAE_Z: Fused Negative Multiply-Subtract of Scalar Double-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -51055,7 +51055,7 @@ func VFNMSUB213SD_RN_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMSUB213SD_RN_SAE_Z: bad operands")
 }
 
-// VFNMSUB213SD_RU_SAE: Fused Negative Multiply-Subtract of Scalar Double-Precision Floating-Point Values.
+// VFNMSUB213SD_RU_SAE: Fused Negative Multiply-Subtract of Scalar Double-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -51085,7 +51085,7 @@ func VFNMSUB213SD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMSUB213SD_RU_SAE: bad operands")
 }
 
-// VFNMSUB213SD_RU_SAE_Z: Fused Negative Multiply-Subtract of Scalar Double-Precision Floating-Point Values.
+// VFNMSUB213SD_RU_SAE_Z: Fused Negative Multiply-Subtract of Scalar Double-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -51105,7 +51105,7 @@ func VFNMSUB213SD_RU_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMSUB213SD_RU_SAE_Z: bad operands")
 }
 
-// VFNMSUB213SD_RZ_SAE: Fused Negative Multiply-Subtract of Scalar Double-Precision Floating-Point Values.
+// VFNMSUB213SD_RZ_SAE: Fused Negative Multiply-Subtract of Scalar Double-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -51135,7 +51135,7 @@ func VFNMSUB213SD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMSUB213SD_RZ_SAE: bad operands")
 }
 
-// VFNMSUB213SD_RZ_SAE_Z: Fused Negative Multiply-Subtract of Scalar Double-Precision Floating-Point Values.
+// VFNMSUB213SD_RZ_SAE_Z: Fused Negative Multiply-Subtract of Scalar Double-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -51155,7 +51155,7 @@ func VFNMSUB213SD_RZ_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMSUB213SD_RZ_SAE_Z: bad operands")
 }
 
-// VFNMSUB213SD_Z: Fused Negative Multiply-Subtract of Scalar Double-Precision Floating-Point Values.
+// VFNMSUB213SD_Z: Fused Negative Multiply-Subtract of Scalar Double-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -51249,7 +51249,7 @@ func VFNMSUB213SS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMSUB213SS: bad operands")
 }
 
-// VFNMSUB213SS_RD_SAE: Fused Negative Multiply-Subtract of Scalar Single-Precision Floating-Point Values.
+// VFNMSUB213SS_RD_SAE: Fused Negative Multiply-Subtract of Scalar Single-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -51279,7 +51279,7 @@ func VFNMSUB213SS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMSUB213SS_RD_SAE: bad operands")
 }
 
-// VFNMSUB213SS_RD_SAE_Z: Fused Negative Multiply-Subtract of Scalar Single-Precision Floating-Point Values.
+// VFNMSUB213SS_RD_SAE_Z: Fused Negative Multiply-Subtract of Scalar Single-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -51299,7 +51299,7 @@ func VFNMSUB213SS_RD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMSUB213SS_RD_SAE_Z: bad operands")
 }
 
-// VFNMSUB213SS_RN_SAE: Fused Negative Multiply-Subtract of Scalar Single-Precision Floating-Point Values.
+// VFNMSUB213SS_RN_SAE: Fused Negative Multiply-Subtract of Scalar Single-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -51329,7 +51329,7 @@ func VFNMSUB213SS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMSUB213SS_RN_SAE: bad operands")
 }
 
-// VFNMSUB213SS_RN_SAE_Z: Fused Negative Multiply-Subtract of Scalar Single-Precision Floating-Point Values.
+// VFNMSUB213SS_RN_SAE_Z: Fused Negative Multiply-Subtract of Scalar Single-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -51349,7 +51349,7 @@ func VFNMSUB213SS_RN_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMSUB213SS_RN_SAE_Z: bad operands")
 }
 
-// VFNMSUB213SS_RU_SAE: Fused Negative Multiply-Subtract of Scalar Single-Precision Floating-Point Values.
+// VFNMSUB213SS_RU_SAE: Fused Negative Multiply-Subtract of Scalar Single-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -51379,7 +51379,7 @@ func VFNMSUB213SS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMSUB213SS_RU_SAE: bad operands")
 }
 
-// VFNMSUB213SS_RU_SAE_Z: Fused Negative Multiply-Subtract of Scalar Single-Precision Floating-Point Values.
+// VFNMSUB213SS_RU_SAE_Z: Fused Negative Multiply-Subtract of Scalar Single-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -51399,7 +51399,7 @@ func VFNMSUB213SS_RU_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMSUB213SS_RU_SAE_Z: bad operands")
 }
 
-// VFNMSUB213SS_RZ_SAE: Fused Negative Multiply-Subtract of Scalar Single-Precision Floating-Point Values.
+// VFNMSUB213SS_RZ_SAE: Fused Negative Multiply-Subtract of Scalar Single-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -51429,7 +51429,7 @@ func VFNMSUB213SS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMSUB213SS_RZ_SAE: bad operands")
 }
 
-// VFNMSUB213SS_RZ_SAE_Z: Fused Negative Multiply-Subtract of Scalar Single-Precision Floating-Point Values.
+// VFNMSUB213SS_RZ_SAE_Z: Fused Negative Multiply-Subtract of Scalar Single-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -51449,7 +51449,7 @@ func VFNMSUB213SS_RZ_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMSUB213SS_RZ_SAE_Z: bad operands")
 }
 
-// VFNMSUB213SS_Z: Fused Negative Multiply-Subtract of Scalar Single-Precision Floating-Point Values.
+// VFNMSUB213SS_Z: Fused Negative Multiply-Subtract of Scalar Single-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -51561,7 +51561,7 @@ func VFNMSUB231PD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMSUB231PD: bad operands")
 }
 
-// VFNMSUB231PD_BCST: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values.
+// VFNMSUB231PD_BCST: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -51591,7 +51591,7 @@ func VFNMSUB231PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMSUB231PD_BCST: bad operands")
 }
 
-// VFNMSUB231PD_BCST_Z: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values.
+// VFNMSUB231PD_BCST_Z: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -51611,7 +51611,7 @@ func VFNMSUB231PD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMSUB231PD_BCST_Z: bad operands")
 }
 
-// VFNMSUB231PD_RD_SAE: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values.
+// VFNMSUB231PD_RD_SAE: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -51641,7 +51641,7 @@ func VFNMSUB231PD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMSUB231PD_RD_SAE: bad operands")
 }
 
-// VFNMSUB231PD_RD_SAE_Z: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values.
+// VFNMSUB231PD_RD_SAE_Z: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -51661,7 +51661,7 @@ func VFNMSUB231PD_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMSUB231PD_RD_SAE_Z: bad operands")
 }
 
-// VFNMSUB231PD_RN_SAE: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values.
+// VFNMSUB231PD_RN_SAE: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -51691,7 +51691,7 @@ func VFNMSUB231PD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMSUB231PD_RN_SAE: bad operands")
 }
 
-// VFNMSUB231PD_RN_SAE_Z: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values.
+// VFNMSUB231PD_RN_SAE_Z: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -51711,7 +51711,7 @@ func VFNMSUB231PD_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMSUB231PD_RN_SAE_Z: bad operands")
 }
 
-// VFNMSUB231PD_RU_SAE: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values.
+// VFNMSUB231PD_RU_SAE: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -51741,7 +51741,7 @@ func VFNMSUB231PD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMSUB231PD_RU_SAE: bad operands")
 }
 
-// VFNMSUB231PD_RU_SAE_Z: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values.
+// VFNMSUB231PD_RU_SAE_Z: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -51761,7 +51761,7 @@ func VFNMSUB231PD_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMSUB231PD_RU_SAE_Z: bad operands")
 }
 
-// VFNMSUB231PD_RZ_SAE: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values.
+// VFNMSUB231PD_RZ_SAE: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -51791,7 +51791,7 @@ func VFNMSUB231PD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMSUB231PD_RZ_SAE: bad operands")
 }
 
-// VFNMSUB231PD_RZ_SAE_Z: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values.
+// VFNMSUB231PD_RZ_SAE_Z: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -51811,7 +51811,7 @@ func VFNMSUB231PD_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMSUB231PD_RZ_SAE_Z: bad operands")
 }
 
-// VFNMSUB231PD_Z: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values.
+// VFNMSUB231PD_Z: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -51923,7 +51923,7 @@ func VFNMSUB231PS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMSUB231PS: bad operands")
 }
 
-// VFNMSUB231PS_BCST: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values.
+// VFNMSUB231PS_BCST: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -51953,7 +51953,7 @@ func VFNMSUB231PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMSUB231PS_BCST: bad operands")
 }
 
-// VFNMSUB231PS_BCST_Z: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values.
+// VFNMSUB231PS_BCST_Z: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -51973,7 +51973,7 @@ func VFNMSUB231PS_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMSUB231PS_BCST_Z: bad operands")
 }
 
-// VFNMSUB231PS_RD_SAE: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values.
+// VFNMSUB231PS_RD_SAE: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -52003,7 +52003,7 @@ func VFNMSUB231PS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMSUB231PS_RD_SAE: bad operands")
 }
 
-// VFNMSUB231PS_RD_SAE_Z: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values.
+// VFNMSUB231PS_RD_SAE_Z: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -52023,7 +52023,7 @@ func VFNMSUB231PS_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMSUB231PS_RD_SAE_Z: bad operands")
 }
 
-// VFNMSUB231PS_RN_SAE: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values.
+// VFNMSUB231PS_RN_SAE: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -52053,7 +52053,7 @@ func VFNMSUB231PS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMSUB231PS_RN_SAE: bad operands")
 }
 
-// VFNMSUB231PS_RN_SAE_Z: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values.
+// VFNMSUB231PS_RN_SAE_Z: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -52073,7 +52073,7 @@ func VFNMSUB231PS_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMSUB231PS_RN_SAE_Z: bad operands")
 }
 
-// VFNMSUB231PS_RU_SAE: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values.
+// VFNMSUB231PS_RU_SAE: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -52103,7 +52103,7 @@ func VFNMSUB231PS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMSUB231PS_RU_SAE: bad operands")
 }
 
-// VFNMSUB231PS_RU_SAE_Z: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values.
+// VFNMSUB231PS_RU_SAE_Z: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -52123,7 +52123,7 @@ func VFNMSUB231PS_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMSUB231PS_RU_SAE_Z: bad operands")
 }
 
-// VFNMSUB231PS_RZ_SAE: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values.
+// VFNMSUB231PS_RZ_SAE: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -52153,7 +52153,7 @@ func VFNMSUB231PS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMSUB231PS_RZ_SAE: bad operands")
 }
 
-// VFNMSUB231PS_RZ_SAE_Z: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values.
+// VFNMSUB231PS_RZ_SAE_Z: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -52173,7 +52173,7 @@ func VFNMSUB231PS_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMSUB231PS_RZ_SAE_Z: bad operands")
 }
 
-// VFNMSUB231PS_Z: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values.
+// VFNMSUB231PS_Z: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -52267,7 +52267,7 @@ func VFNMSUB231SD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMSUB231SD: bad operands")
 }
 
-// VFNMSUB231SD_RD_SAE: Fused Negative Multiply-Subtract of Scalar Double-Precision Floating-Point Values.
+// VFNMSUB231SD_RD_SAE: Fused Negative Multiply-Subtract of Scalar Double-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -52297,7 +52297,7 @@ func VFNMSUB231SD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMSUB231SD_RD_SAE: bad operands")
 }
 
-// VFNMSUB231SD_RD_SAE_Z: Fused Negative Multiply-Subtract of Scalar Double-Precision Floating-Point Values.
+// VFNMSUB231SD_RD_SAE_Z: Fused Negative Multiply-Subtract of Scalar Double-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -52317,7 +52317,7 @@ func VFNMSUB231SD_RD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMSUB231SD_RD_SAE_Z: bad operands")
 }
 
-// VFNMSUB231SD_RN_SAE: Fused Negative Multiply-Subtract of Scalar Double-Precision Floating-Point Values.
+// VFNMSUB231SD_RN_SAE: Fused Negative Multiply-Subtract of Scalar Double-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -52347,7 +52347,7 @@ func VFNMSUB231SD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMSUB231SD_RN_SAE: bad operands")
 }
 
-// VFNMSUB231SD_RN_SAE_Z: Fused Negative Multiply-Subtract of Scalar Double-Precision Floating-Point Values.
+// VFNMSUB231SD_RN_SAE_Z: Fused Negative Multiply-Subtract of Scalar Double-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -52367,7 +52367,7 @@ func VFNMSUB231SD_RN_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMSUB231SD_RN_SAE_Z: bad operands")
 }
 
-// VFNMSUB231SD_RU_SAE: Fused Negative Multiply-Subtract of Scalar Double-Precision Floating-Point Values.
+// VFNMSUB231SD_RU_SAE: Fused Negative Multiply-Subtract of Scalar Double-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -52397,7 +52397,7 @@ func VFNMSUB231SD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMSUB231SD_RU_SAE: bad operands")
 }
 
-// VFNMSUB231SD_RU_SAE_Z: Fused Negative Multiply-Subtract of Scalar Double-Precision Floating-Point Values.
+// VFNMSUB231SD_RU_SAE_Z: Fused Negative Multiply-Subtract of Scalar Double-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -52417,7 +52417,7 @@ func VFNMSUB231SD_RU_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMSUB231SD_RU_SAE_Z: bad operands")
 }
 
-// VFNMSUB231SD_RZ_SAE: Fused Negative Multiply-Subtract of Scalar Double-Precision Floating-Point Values.
+// VFNMSUB231SD_RZ_SAE: Fused Negative Multiply-Subtract of Scalar Double-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -52447,7 +52447,7 @@ func VFNMSUB231SD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMSUB231SD_RZ_SAE: bad operands")
 }
 
-// VFNMSUB231SD_RZ_SAE_Z: Fused Negative Multiply-Subtract of Scalar Double-Precision Floating-Point Values.
+// VFNMSUB231SD_RZ_SAE_Z: Fused Negative Multiply-Subtract of Scalar Double-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -52467,7 +52467,7 @@ func VFNMSUB231SD_RZ_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMSUB231SD_RZ_SAE_Z: bad operands")
 }
 
-// VFNMSUB231SD_Z: Fused Negative Multiply-Subtract of Scalar Double-Precision Floating-Point Values.
+// VFNMSUB231SD_Z: Fused Negative Multiply-Subtract of Scalar Double-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -52561,7 +52561,7 @@ func VFNMSUB231SS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMSUB231SS: bad operands")
 }
 
-// VFNMSUB231SS_RD_SAE: Fused Negative Multiply-Subtract of Scalar Single-Precision Floating-Point Values.
+// VFNMSUB231SS_RD_SAE: Fused Negative Multiply-Subtract of Scalar Single-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -52591,7 +52591,7 @@ func VFNMSUB231SS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMSUB231SS_RD_SAE: bad operands")
 }
 
-// VFNMSUB231SS_RD_SAE_Z: Fused Negative Multiply-Subtract of Scalar Single-Precision Floating-Point Values.
+// VFNMSUB231SS_RD_SAE_Z: Fused Negative Multiply-Subtract of Scalar Single-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -52611,7 +52611,7 @@ func VFNMSUB231SS_RD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMSUB231SS_RD_SAE_Z: bad operands")
 }
 
-// VFNMSUB231SS_RN_SAE: Fused Negative Multiply-Subtract of Scalar Single-Precision Floating-Point Values.
+// VFNMSUB231SS_RN_SAE: Fused Negative Multiply-Subtract of Scalar Single-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -52641,7 +52641,7 @@ func VFNMSUB231SS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMSUB231SS_RN_SAE: bad operands")
 }
 
-// VFNMSUB231SS_RN_SAE_Z: Fused Negative Multiply-Subtract of Scalar Single-Precision Floating-Point Values.
+// VFNMSUB231SS_RN_SAE_Z: Fused Negative Multiply-Subtract of Scalar Single-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -52661,7 +52661,7 @@ func VFNMSUB231SS_RN_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMSUB231SS_RN_SAE_Z: bad operands")
 }
 
-// VFNMSUB231SS_RU_SAE: Fused Negative Multiply-Subtract of Scalar Single-Precision Floating-Point Values.
+// VFNMSUB231SS_RU_SAE: Fused Negative Multiply-Subtract of Scalar Single-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -52691,7 +52691,7 @@ func VFNMSUB231SS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMSUB231SS_RU_SAE: bad operands")
 }
 
-// VFNMSUB231SS_RU_SAE_Z: Fused Negative Multiply-Subtract of Scalar Single-Precision Floating-Point Values.
+// VFNMSUB231SS_RU_SAE_Z: Fused Negative Multiply-Subtract of Scalar Single-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -52711,7 +52711,7 @@ func VFNMSUB231SS_RU_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMSUB231SS_RU_SAE_Z: bad operands")
 }
 
-// VFNMSUB231SS_RZ_SAE: Fused Negative Multiply-Subtract of Scalar Single-Precision Floating-Point Values.
+// VFNMSUB231SS_RZ_SAE: Fused Negative Multiply-Subtract of Scalar Single-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -52741,7 +52741,7 @@ func VFNMSUB231SS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VFNMSUB231SS_RZ_SAE: bad operands")
 }
 
-// VFNMSUB231SS_RZ_SAE_Z: Fused Negative Multiply-Subtract of Scalar Single-Precision Floating-Point Values.
+// VFNMSUB231SS_RZ_SAE_Z: Fused Negative Multiply-Subtract of Scalar Single-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -52761,7 +52761,7 @@ func VFNMSUB231SS_RZ_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error)
 	return nil, errors.New("VFNMSUB231SS_RZ_SAE_Z: bad operands")
 }
 
-// VFNMSUB231SS_Z: Fused Negative Multiply-Subtract of Scalar Single-Precision Floating-Point Values.
+// VFNMSUB231SS_Z: Fused Negative Multiply-Subtract of Scalar Single-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -52985,7 +52985,7 @@ func VGETEXPPD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VGETEXPPD: bad operands")
 }
 
-// VGETEXPPD_BCST: Extract Exponents of Packed Double-Precision Floating-Point Values as Double-Precision Floating-Point Values.
+// VGETEXPPD_BCST: Extract Exponents of Packed Double-Precision Floating-Point Values as Double-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -53015,7 +53015,7 @@ func VGETEXPPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VGETEXPPD_BCST: bad operands")
 }
 
-// VGETEXPPD_BCST_Z: Extract Exponents of Packed Double-Precision Floating-Point Values as Double-Precision Floating-Point Values.
+// VGETEXPPD_BCST_Z: Extract Exponents of Packed Double-Precision Floating-Point Values as Double-Precision Floating-Point Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -53035,7 +53035,7 @@ func VGETEXPPD_BCST_Z(m, k, z operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VGETEXPPD_BCST_Z: bad operands")
 }
 
-// VGETEXPPD_SAE: Extract Exponents of Packed Double-Precision Floating-Point Values as Double-Precision Floating-Point Values.
+// VGETEXPPD_SAE: Extract Exponents of Packed Double-Precision Floating-Point Values as Double-Precision Floating-Point Values (Suppress All Exceptions).
 //
 // Forms:
 //
@@ -53065,7 +53065,7 @@ func VGETEXPPD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VGETEXPPD_SAE: bad operands")
 }
 
-// VGETEXPPD_SAE_Z: Extract Exponents of Packed Double-Precision Floating-Point Values as Double-Precision Floating-Point Values.
+// VGETEXPPD_SAE_Z: Extract Exponents of Packed Double-Precision Floating-Point Values as Double-Precision Floating-Point Values (Suppress All Exceptions, Zeroing Masking).
 //
 // Forms:
 //
@@ -53085,7 +53085,7 @@ func VGETEXPPD_SAE_Z(z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VGETEXPPD_SAE_Z: bad operands")
 }
 
-// VGETEXPPD_Z: Extract Exponents of Packed Double-Precision Floating-Point Values as Double-Precision Floating-Point Values.
+// VGETEXPPD_Z: Extract Exponents of Packed Double-Precision Floating-Point Values as Double-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -53161,7 +53161,7 @@ func VGETEXPPS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VGETEXPPS: bad operands")
 }
 
-// VGETEXPPS_BCST: Extract Exponents of Packed Single-Precision Floating-Point Values as Single-Precision Floating-Point Values.
+// VGETEXPPS_BCST: Extract Exponents of Packed Single-Precision Floating-Point Values as Single-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -53191,7 +53191,7 @@ func VGETEXPPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VGETEXPPS_BCST: bad operands")
 }
 
-// VGETEXPPS_BCST_Z: Extract Exponents of Packed Single-Precision Floating-Point Values as Single-Precision Floating-Point Values.
+// VGETEXPPS_BCST_Z: Extract Exponents of Packed Single-Precision Floating-Point Values as Single-Precision Floating-Point Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -53211,7 +53211,7 @@ func VGETEXPPS_BCST_Z(m, k, z operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VGETEXPPS_BCST_Z: bad operands")
 }
 
-// VGETEXPPS_SAE: Extract Exponents of Packed Single-Precision Floating-Point Values as Single-Precision Floating-Point Values.
+// VGETEXPPS_SAE: Extract Exponents of Packed Single-Precision Floating-Point Values as Single-Precision Floating-Point Values (Suppress All Exceptions).
 //
 // Forms:
 //
@@ -53241,7 +53241,7 @@ func VGETEXPPS_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VGETEXPPS_SAE: bad operands")
 }
 
-// VGETEXPPS_SAE_Z: Extract Exponents of Packed Single-Precision Floating-Point Values as Single-Precision Floating-Point Values.
+// VGETEXPPS_SAE_Z: Extract Exponents of Packed Single-Precision Floating-Point Values as Single-Precision Floating-Point Values (Suppress All Exceptions, Zeroing Masking).
 //
 // Forms:
 //
@@ -53261,7 +53261,7 @@ func VGETEXPPS_SAE_Z(z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VGETEXPPS_SAE_Z: bad operands")
 }
 
-// VGETEXPPS_Z: Extract Exponents of Packed Single-Precision Floating-Point Values as Single-Precision Floating-Point Values.
+// VGETEXPPS_Z: Extract Exponents of Packed Single-Precision Floating-Point Values as Single-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -53337,7 +53337,7 @@ func VGETEXPSD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VGETEXPSD: bad operands")
 }
 
-// VGETEXPSD_SAE: Extract Exponent of Scalar Double-Precision Floating-Point Value as Double-Precision Floating-Point Value.
+// VGETEXPSD_SAE: Extract Exponent of Scalar Double-Precision Floating-Point Value as Double-Precision Floating-Point Value (Suppress All Exceptions).
 //
 // Forms:
 //
@@ -53367,7 +53367,7 @@ func VGETEXPSD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VGETEXPSD_SAE: bad operands")
 }
 
-// VGETEXPSD_SAE_Z: Extract Exponent of Scalar Double-Precision Floating-Point Value as Double-Precision Floating-Point Value.
+// VGETEXPSD_SAE_Z: Extract Exponent of Scalar Double-Precision Floating-Point Value as Double-Precision Floating-Point Value (Suppress All Exceptions, Zeroing Masking).
 //
 // Forms:
 //
@@ -53387,7 +53387,7 @@ func VGETEXPSD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VGETEXPSD_SAE_Z: bad operands")
 }
 
-// VGETEXPSD_Z: Extract Exponent of Scalar Double-Precision Floating-Point Value as Double-Precision Floating-Point Value.
+// VGETEXPSD_Z: Extract Exponent of Scalar Double-Precision Floating-Point Value as Double-Precision Floating-Point Value (Zeroing Masking).
 //
 // Forms:
 //
@@ -53463,7 +53463,7 @@ func VGETEXPSS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VGETEXPSS: bad operands")
 }
 
-// VGETEXPSS_SAE: Extract Exponent of Scalar Single-Precision Floating-Point Value as Single-Precision Floating-Point Value.
+// VGETEXPSS_SAE: Extract Exponent of Scalar Single-Precision Floating-Point Value as Single-Precision Floating-Point Value (Suppress All Exceptions).
 //
 // Forms:
 //
@@ -53493,7 +53493,7 @@ func VGETEXPSS_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VGETEXPSS_SAE: bad operands")
 }
 
-// VGETEXPSS_SAE_Z: Extract Exponent of Scalar Single-Precision Floating-Point Value as Single-Precision Floating-Point Value.
+// VGETEXPSS_SAE_Z: Extract Exponent of Scalar Single-Precision Floating-Point Value as Single-Precision Floating-Point Value (Suppress All Exceptions, Zeroing Masking).
 //
 // Forms:
 //
@@ -53513,7 +53513,7 @@ func VGETEXPSS_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VGETEXPSS_SAE_Z: bad operands")
 }
 
-// VGETEXPSS_Z: Extract Exponent of Scalar Single-Precision Floating-Point Value as Single-Precision Floating-Point Value.
+// VGETEXPSS_Z: Extract Exponent of Scalar Single-Precision Floating-Point Value as Single-Precision Floating-Point Value (Zeroing Masking).
 //
 // Forms:
 //
@@ -53589,7 +53589,7 @@ func VGETMANTPD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VGETMANTPD: bad operands")
 }
 
-// VGETMANTPD_BCST: Extract Normalized Mantissas from Packed Double-Precision Floating-Point Values.
+// VGETMANTPD_BCST: Extract Normalized Mantissas from Packed Double-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -53619,7 +53619,7 @@ func VGETMANTPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VGETMANTPD_BCST: bad operands")
 }
 
-// VGETMANTPD_BCST_Z: Extract Normalized Mantissas from Packed Double-Precision Floating-Point Values.
+// VGETMANTPD_BCST_Z: Extract Normalized Mantissas from Packed Double-Precision Floating-Point Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -53639,7 +53639,7 @@ func VGETMANTPD_BCST_Z(i, m, k, z operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VGETMANTPD_BCST_Z: bad operands")
 }
 
-// VGETMANTPD_SAE: Extract Normalized Mantissas from Packed Double-Precision Floating-Point Values.
+// VGETMANTPD_SAE: Extract Normalized Mantissas from Packed Double-Precision Floating-Point Values (Suppress All Exceptions).
 //
 // Forms:
 //
@@ -53669,7 +53669,7 @@ func VGETMANTPD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VGETMANTPD_SAE: bad operands")
 }
 
-// VGETMANTPD_SAE_Z: Extract Normalized Mantissas from Packed Double-Precision Floating-Point Values.
+// VGETMANTPD_SAE_Z: Extract Normalized Mantissas from Packed Double-Precision Floating-Point Values (Suppress All Exceptions, Zeroing Masking).
 //
 // Forms:
 //
@@ -53689,7 +53689,7 @@ func VGETMANTPD_SAE_Z(i, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VGETMANTPD_SAE_Z: bad operands")
 }
 
-// VGETMANTPD_Z: Extract Normalized Mantissas from Packed Double-Precision Floating-Point Values.
+// VGETMANTPD_Z: Extract Normalized Mantissas from Packed Double-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -53765,7 +53765,7 @@ func VGETMANTPS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VGETMANTPS: bad operands")
 }
 
-// VGETMANTPS_BCST: Extract Normalized Mantissas from Packed Single-Precision Floating-Point Values.
+// VGETMANTPS_BCST: Extract Normalized Mantissas from Packed Single-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -53795,7 +53795,7 @@ func VGETMANTPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VGETMANTPS_BCST: bad operands")
 }
 
-// VGETMANTPS_BCST_Z: Extract Normalized Mantissas from Packed Single-Precision Floating-Point Values.
+// VGETMANTPS_BCST_Z: Extract Normalized Mantissas from Packed Single-Precision Floating-Point Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -53815,7 +53815,7 @@ func VGETMANTPS_BCST_Z(i, m, k, z operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VGETMANTPS_BCST_Z: bad operands")
 }
 
-// VGETMANTPS_SAE: Extract Normalized Mantissas from Packed Single-Precision Floating-Point Values.
+// VGETMANTPS_SAE: Extract Normalized Mantissas from Packed Single-Precision Floating-Point Values (Suppress All Exceptions).
 //
 // Forms:
 //
@@ -53845,7 +53845,7 @@ func VGETMANTPS_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VGETMANTPS_SAE: bad operands")
 }
 
-// VGETMANTPS_SAE_Z: Extract Normalized Mantissas from Packed Single-Precision Floating-Point Values.
+// VGETMANTPS_SAE_Z: Extract Normalized Mantissas from Packed Single-Precision Floating-Point Values (Suppress All Exceptions, Zeroing Masking).
 //
 // Forms:
 //
@@ -53865,7 +53865,7 @@ func VGETMANTPS_SAE_Z(i, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VGETMANTPS_SAE_Z: bad operands")
 }
 
-// VGETMANTPS_Z: Extract Normalized Mantissas from Packed Single-Precision Floating-Point Values.
+// VGETMANTPS_Z: Extract Normalized Mantissas from Packed Single-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -53941,7 +53941,7 @@ func VGETMANTSD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VGETMANTSD: bad operands")
 }
 
-// VGETMANTSD_SAE: Extract Normalized Mantissa from Scalar Double-Precision Floating-Point Value.
+// VGETMANTSD_SAE: Extract Normalized Mantissa from Scalar Double-Precision Floating-Point Value (Suppress All Exceptions).
 //
 // Forms:
 //
@@ -53971,7 +53971,7 @@ func VGETMANTSD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VGETMANTSD_SAE: bad operands")
 }
 
-// VGETMANTSD_SAE_Z: Extract Normalized Mantissa from Scalar Double-Precision Floating-Point Value.
+// VGETMANTSD_SAE_Z: Extract Normalized Mantissa from Scalar Double-Precision Floating-Point Value (Suppress All Exceptions, Zeroing Masking).
 //
 // Forms:
 //
@@ -53991,7 +53991,7 @@ func VGETMANTSD_SAE_Z(i, x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VGETMANTSD_SAE_Z: bad operands")
 }
 
-// VGETMANTSD_Z: Extract Normalized Mantissa from Scalar Double-Precision Floating-Point Value.
+// VGETMANTSD_Z: Extract Normalized Mantissa from Scalar Double-Precision Floating-Point Value (Zeroing Masking).
 //
 // Forms:
 //
@@ -54067,7 +54067,7 @@ func VGETMANTSS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VGETMANTSS: bad operands")
 }
 
-// VGETMANTSS_SAE: Extract Normalized Mantissa from Scalar Single-Precision Floating-Point Value.
+// VGETMANTSS_SAE: Extract Normalized Mantissa from Scalar Single-Precision Floating-Point Value (Suppress All Exceptions).
 //
 // Forms:
 //
@@ -54097,7 +54097,7 @@ func VGETMANTSS_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VGETMANTSS_SAE: bad operands")
 }
 
-// VGETMANTSS_SAE_Z: Extract Normalized Mantissa from Scalar Single-Precision Floating-Point Value.
+// VGETMANTSS_SAE_Z: Extract Normalized Mantissa from Scalar Single-Precision Floating-Point Value (Suppress All Exceptions, Zeroing Masking).
 //
 // Forms:
 //
@@ -54117,7 +54117,7 @@ func VGETMANTSS_SAE_Z(i, x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VGETMANTSS_SAE_Z: bad operands")
 }
 
-// VGETMANTSS_Z: Extract Normalized Mantissa from Scalar Single-Precision Floating-Point Value.
+// VGETMANTSS_Z: Extract Normalized Mantissa from Scalar Single-Precision Floating-Point Value (Zeroing Masking).
 //
 // Forms:
 //
@@ -54405,7 +54405,7 @@ func VINSERTF32X4(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VINSERTF32X4: bad operands")
 }
 
-// VINSERTF32X4_Z: Insert 128 Bits of Packed Single-Precision Floating-Point Values.
+// VINSERTF32X4_Z: Insert 128 Bits of Packed Single-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -54481,7 +54481,7 @@ func VINSERTF64X4(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VINSERTF64X4: bad operands")
 }
 
-// VINSERTF64X4_Z: Insert 256 Bits of Packed Double-Precision Floating-Point Values.
+// VINSERTF64X4_Z: Insert 256 Bits of Packed Double-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -54585,7 +54585,7 @@ func VINSERTI32X4(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VINSERTI32X4: bad operands")
 }
 
-// VINSERTI32X4_Z: Insert 128 Bits of Packed Doubleword Integer Values.
+// VINSERTI32X4_Z: Insert 128 Bits of Packed Doubleword Integer Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -54661,7 +54661,7 @@ func VINSERTI64X4(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VINSERTI64X4: bad operands")
 }
 
-// VINSERTI64X4_Z: Insert 256 Bits of Packed Quadword Integer Values.
+// VINSERTI64X4_Z: Insert 256 Bits of Packed Quadword Integer Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -54977,7 +54977,7 @@ func VMAXPD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMAXPD: bad operands")
 }
 
-// VMAXPD_BCST: Return Maximum Packed Double-Precision Floating-Point Values.
+// VMAXPD_BCST: Return Maximum Packed Double-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -55007,7 +55007,7 @@ func VMAXPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMAXPD_BCST: bad operands")
 }
 
-// VMAXPD_BCST_Z: Return Maximum Packed Double-Precision Floating-Point Values.
+// VMAXPD_BCST_Z: Return Maximum Packed Double-Precision Floating-Point Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -55027,7 +55027,7 @@ func VMAXPD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMAXPD_BCST_Z: bad operands")
 }
 
-// VMAXPD_SAE: Return Maximum Packed Double-Precision Floating-Point Values.
+// VMAXPD_SAE: Return Maximum Packed Double-Precision Floating-Point Values (Suppress All Exceptions).
 //
 // Forms:
 //
@@ -55057,7 +55057,7 @@ func VMAXPD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMAXPD_SAE: bad operands")
 }
 
-// VMAXPD_SAE_Z: Return Maximum Packed Double-Precision Floating-Point Values.
+// VMAXPD_SAE_Z: Return Maximum Packed Double-Precision Floating-Point Values (Suppress All Exceptions, Zeroing Masking).
 //
 // Forms:
 //
@@ -55077,7 +55077,7 @@ func VMAXPD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMAXPD_SAE_Z: bad operands")
 }
 
-// VMAXPD_Z: Return Maximum Packed Double-Precision Floating-Point Values.
+// VMAXPD_Z: Return Maximum Packed Double-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -55189,7 +55189,7 @@ func VMAXPS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMAXPS: bad operands")
 }
 
-// VMAXPS_BCST: Return Maximum Packed Single-Precision Floating-Point Values.
+// VMAXPS_BCST: Return Maximum Packed Single-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -55219,7 +55219,7 @@ func VMAXPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMAXPS_BCST: bad operands")
 }
 
-// VMAXPS_BCST_Z: Return Maximum Packed Single-Precision Floating-Point Values.
+// VMAXPS_BCST_Z: Return Maximum Packed Single-Precision Floating-Point Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -55239,7 +55239,7 @@ func VMAXPS_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMAXPS_BCST_Z: bad operands")
 }
 
-// VMAXPS_SAE: Return Maximum Packed Single-Precision Floating-Point Values.
+// VMAXPS_SAE: Return Maximum Packed Single-Precision Floating-Point Values (Suppress All Exceptions).
 //
 // Forms:
 //
@@ -55269,7 +55269,7 @@ func VMAXPS_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMAXPS_SAE: bad operands")
 }
 
-// VMAXPS_SAE_Z: Return Maximum Packed Single-Precision Floating-Point Values.
+// VMAXPS_SAE_Z: Return Maximum Packed Single-Precision Floating-Point Values (Suppress All Exceptions, Zeroing Masking).
 //
 // Forms:
 //
@@ -55289,7 +55289,7 @@ func VMAXPS_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMAXPS_SAE_Z: bad operands")
 }
 
-// VMAXPS_Z: Return Maximum Packed Single-Precision Floating-Point Values.
+// VMAXPS_Z: Return Maximum Packed Single-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -55383,7 +55383,7 @@ func VMAXSD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMAXSD: bad operands")
 }
 
-// VMAXSD_SAE: Return Maximum Scalar Double-Precision Floating-Point Value.
+// VMAXSD_SAE: Return Maximum Scalar Double-Precision Floating-Point Value (Suppress All Exceptions).
 //
 // Forms:
 //
@@ -55413,7 +55413,7 @@ func VMAXSD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMAXSD_SAE: bad operands")
 }
 
-// VMAXSD_SAE_Z: Return Maximum Scalar Double-Precision Floating-Point Value.
+// VMAXSD_SAE_Z: Return Maximum Scalar Double-Precision Floating-Point Value (Suppress All Exceptions, Zeroing Masking).
 //
 // Forms:
 //
@@ -55433,7 +55433,7 @@ func VMAXSD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMAXSD_SAE_Z: bad operands")
 }
 
-// VMAXSD_Z: Return Maximum Scalar Double-Precision Floating-Point Value.
+// VMAXSD_Z: Return Maximum Scalar Double-Precision Floating-Point Value (Zeroing Masking).
 //
 // Forms:
 //
@@ -55527,7 +55527,7 @@ func VMAXSS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMAXSS: bad operands")
 }
 
-// VMAXSS_SAE: Return Maximum Scalar Single-Precision Floating-Point Value.
+// VMAXSS_SAE: Return Maximum Scalar Single-Precision Floating-Point Value (Suppress All Exceptions).
 //
 // Forms:
 //
@@ -55557,7 +55557,7 @@ func VMAXSS_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMAXSS_SAE: bad operands")
 }
 
-// VMAXSS_SAE_Z: Return Maximum Scalar Single-Precision Floating-Point Value.
+// VMAXSS_SAE_Z: Return Maximum Scalar Single-Precision Floating-Point Value (Suppress All Exceptions, Zeroing Masking).
 //
 // Forms:
 //
@@ -55577,7 +55577,7 @@ func VMAXSS_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMAXSS_SAE_Z: bad operands")
 }
 
-// VMAXSS_Z: Return Maximum Scalar Single-Precision Floating-Point Value.
+// VMAXSS_Z: Return Maximum Scalar Single-Precision Floating-Point Value (Zeroing Masking).
 //
 // Forms:
 //
@@ -55689,7 +55689,7 @@ func VMINPD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMINPD: bad operands")
 }
 
-// VMINPD_BCST: Return Minimum Packed Double-Precision Floating-Point Values.
+// VMINPD_BCST: Return Minimum Packed Double-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -55719,7 +55719,7 @@ func VMINPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMINPD_BCST: bad operands")
 }
 
-// VMINPD_BCST_Z: Return Minimum Packed Double-Precision Floating-Point Values.
+// VMINPD_BCST_Z: Return Minimum Packed Double-Precision Floating-Point Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -55739,7 +55739,7 @@ func VMINPD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMINPD_BCST_Z: bad operands")
 }
 
-// VMINPD_SAE: Return Minimum Packed Double-Precision Floating-Point Values.
+// VMINPD_SAE: Return Minimum Packed Double-Precision Floating-Point Values (Suppress All Exceptions).
 //
 // Forms:
 //
@@ -55769,7 +55769,7 @@ func VMINPD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMINPD_SAE: bad operands")
 }
 
-// VMINPD_SAE_Z: Return Minimum Packed Double-Precision Floating-Point Values.
+// VMINPD_SAE_Z: Return Minimum Packed Double-Precision Floating-Point Values (Suppress All Exceptions, Zeroing Masking).
 //
 // Forms:
 //
@@ -55789,7 +55789,7 @@ func VMINPD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMINPD_SAE_Z: bad operands")
 }
 
-// VMINPD_Z: Return Minimum Packed Double-Precision Floating-Point Values.
+// VMINPD_Z: Return Minimum Packed Double-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -55901,7 +55901,7 @@ func VMINPS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMINPS: bad operands")
 }
 
-// VMINPS_BCST: Return Minimum Packed Single-Precision Floating-Point Values.
+// VMINPS_BCST: Return Minimum Packed Single-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -55931,7 +55931,7 @@ func VMINPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMINPS_BCST: bad operands")
 }
 
-// VMINPS_BCST_Z: Return Minimum Packed Single-Precision Floating-Point Values.
+// VMINPS_BCST_Z: Return Minimum Packed Single-Precision Floating-Point Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -55951,7 +55951,7 @@ func VMINPS_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMINPS_BCST_Z: bad operands")
 }
 
-// VMINPS_SAE: Return Minimum Packed Single-Precision Floating-Point Values.
+// VMINPS_SAE: Return Minimum Packed Single-Precision Floating-Point Values (Suppress All Exceptions).
 //
 // Forms:
 //
@@ -55981,7 +55981,7 @@ func VMINPS_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMINPS_SAE: bad operands")
 }
 
-// VMINPS_SAE_Z: Return Minimum Packed Single-Precision Floating-Point Values.
+// VMINPS_SAE_Z: Return Minimum Packed Single-Precision Floating-Point Values (Suppress All Exceptions, Zeroing Masking).
 //
 // Forms:
 //
@@ -56001,7 +56001,7 @@ func VMINPS_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMINPS_SAE_Z: bad operands")
 }
 
-// VMINPS_Z: Return Minimum Packed Single-Precision Floating-Point Values.
+// VMINPS_Z: Return Minimum Packed Single-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -56095,7 +56095,7 @@ func VMINSD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMINSD: bad operands")
 }
 
-// VMINSD_SAE: Return Minimum Scalar Double-Precision Floating-Point Value.
+// VMINSD_SAE: Return Minimum Scalar Double-Precision Floating-Point Value (Suppress All Exceptions).
 //
 // Forms:
 //
@@ -56125,7 +56125,7 @@ func VMINSD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMINSD_SAE: bad operands")
 }
 
-// VMINSD_SAE_Z: Return Minimum Scalar Double-Precision Floating-Point Value.
+// VMINSD_SAE_Z: Return Minimum Scalar Double-Precision Floating-Point Value (Suppress All Exceptions, Zeroing Masking).
 //
 // Forms:
 //
@@ -56145,7 +56145,7 @@ func VMINSD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMINSD_SAE_Z: bad operands")
 }
 
-// VMINSD_Z: Return Minimum Scalar Double-Precision Floating-Point Value.
+// VMINSD_Z: Return Minimum Scalar Double-Precision Floating-Point Value (Zeroing Masking).
 //
 // Forms:
 //
@@ -56239,7 +56239,7 @@ func VMINSS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMINSS: bad operands")
 }
 
-// VMINSS_SAE: Return Minimum Scalar Single-Precision Floating-Point Value.
+// VMINSS_SAE: Return Minimum Scalar Single-Precision Floating-Point Value (Suppress All Exceptions).
 //
 // Forms:
 //
@@ -56269,7 +56269,7 @@ func VMINSS_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMINSS_SAE: bad operands")
 }
 
-// VMINSS_SAE_Z: Return Minimum Scalar Single-Precision Floating-Point Value.
+// VMINSS_SAE_Z: Return Minimum Scalar Single-Precision Floating-Point Value (Suppress All Exceptions, Zeroing Masking).
 //
 // Forms:
 //
@@ -56289,7 +56289,7 @@ func VMINSS_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMINSS_SAE_Z: bad operands")
 }
 
-// VMINSS_Z: Return Minimum Scalar Single-Precision Floating-Point Value.
+// VMINSS_Z: Return Minimum Scalar Single-Precision Floating-Point Value (Zeroing Masking).
 //
 // Forms:
 //
@@ -56437,7 +56437,7 @@ func VMOVAPD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMOVAPD: bad operands")
 }
 
-// VMOVAPD_Z: Move Aligned Packed Double-Precision Floating-Point Values.
+// VMOVAPD_Z: Move Aligned Packed Double-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -56595,7 +56595,7 @@ func VMOVAPS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMOVAPS: bad operands")
 }
 
-// VMOVAPS_Z: Move Aligned Packed Single-Precision Floating-Point Values.
+// VMOVAPS_Z: Move Aligned Packed Single-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -56799,7 +56799,7 @@ func VMOVDDUP(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMOVDDUP: bad operands")
 }
 
-// VMOVDDUP_Z: Move One Double-FP and Duplicate.
+// VMOVDDUP_Z: Move One Double-FP and Duplicate (Zeroing Masking).
 //
 // Forms:
 //
@@ -56957,7 +56957,7 @@ func VMOVDQA32(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMOVDQA32: bad operands")
 }
 
-// VMOVDQA32_Z: Move Aligned Doubleword Values.
+// VMOVDQA32_Z: Move Aligned Doubleword Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -57061,7 +57061,7 @@ func VMOVDQA64(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMOVDQA64: bad operands")
 }
 
-// VMOVDQA64_Z: Move Aligned Quadword Values.
+// VMOVDQA64_Z: Move Aligned Quadword Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -57229,7 +57229,7 @@ func VMOVDQU32(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMOVDQU32: bad operands")
 }
 
-// VMOVDQU32_Z: Move Unaligned Doubleword Values.
+// VMOVDQU32_Z: Move Unaligned Doubleword Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -57333,7 +57333,7 @@ func VMOVDQU64(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMOVDQU64: bad operands")
 }
 
-// VMOVDQU64_Z: Move Unaligned Quadword Values.
+// VMOVDQU64_Z: Move Unaligned Quadword Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -58008,7 +58008,7 @@ func VMOVSD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMOVSD: bad operands")
 }
 
-// VMOVSD_Z: Move Scalar Double-Precision Floating-Point Value.
+// VMOVSD_Z: Move Scalar Double-Precision Floating-Point Value (Zeroing Masking).
 //
 // Forms:
 //
@@ -58120,7 +58120,7 @@ func VMOVSHDUP(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMOVSHDUP: bad operands")
 }
 
-// VMOVSHDUP_Z: Move Packed Single-FP High and Duplicate.
+// VMOVSHDUP_Z: Move Packed Single-FP High and Duplicate (Zeroing Masking).
 //
 // Forms:
 //
@@ -58232,7 +58232,7 @@ func VMOVSLDUP(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMOVSLDUP: bad operands")
 }
 
-// VMOVSLDUP_Z: Move Packed Single-FP Low and Duplicate.
+// VMOVSLDUP_Z: Move Packed Single-FP Low and Duplicate (Zeroing Masking).
 //
 // Forms:
 //
@@ -58353,7 +58353,7 @@ func VMOVSS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMOVSS: bad operands")
 }
 
-// VMOVSS_Z: Move Scalar Single-Precision Floating-Point Values.
+// VMOVSS_Z: Move Scalar Single-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -58501,7 +58501,7 @@ func VMOVUPD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMOVUPD: bad operands")
 }
 
-// VMOVUPD_Z: Move Unaligned Packed Double-Precision Floating-Point Values.
+// VMOVUPD_Z: Move Unaligned Packed Double-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -58659,7 +58659,7 @@ func VMOVUPS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMOVUPS: bad operands")
 }
 
-// VMOVUPS_Z: Move Unaligned Packed Single-Precision Floating-Point Values.
+// VMOVUPS_Z: Move Unaligned Packed Single-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -58827,7 +58827,7 @@ func VMULPD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMULPD: bad operands")
 }
 
-// VMULPD_BCST: Multiply Packed Double-Precision Floating-Point Values.
+// VMULPD_BCST: Multiply Packed Double-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -58857,7 +58857,7 @@ func VMULPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMULPD_BCST: bad operands")
 }
 
-// VMULPD_BCST_Z: Multiply Packed Double-Precision Floating-Point Values.
+// VMULPD_BCST_Z: Multiply Packed Double-Precision Floating-Point Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -58877,7 +58877,7 @@ func VMULPD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMULPD_BCST_Z: bad operands")
 }
 
-// VMULPD_RD_SAE: Multiply Packed Double-Precision Floating-Point Values.
+// VMULPD_RD_SAE: Multiply Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -58907,7 +58907,7 @@ func VMULPD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMULPD_RD_SAE: bad operands")
 }
 
-// VMULPD_RD_SAE_Z: Multiply Packed Double-Precision Floating-Point Values.
+// VMULPD_RD_SAE_Z: Multiply Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -58927,7 +58927,7 @@ func VMULPD_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMULPD_RD_SAE_Z: bad operands")
 }
 
-// VMULPD_RN_SAE: Multiply Packed Double-Precision Floating-Point Values.
+// VMULPD_RN_SAE: Multiply Packed Double-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -58957,7 +58957,7 @@ func VMULPD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMULPD_RN_SAE: bad operands")
 }
 
-// VMULPD_RN_SAE_Z: Multiply Packed Double-Precision Floating-Point Values.
+// VMULPD_RN_SAE_Z: Multiply Packed Double-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -58977,7 +58977,7 @@ func VMULPD_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMULPD_RN_SAE_Z: bad operands")
 }
 
-// VMULPD_RU_SAE: Multiply Packed Double-Precision Floating-Point Values.
+// VMULPD_RU_SAE: Multiply Packed Double-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -59007,7 +59007,7 @@ func VMULPD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMULPD_RU_SAE: bad operands")
 }
 
-// VMULPD_RU_SAE_Z: Multiply Packed Double-Precision Floating-Point Values.
+// VMULPD_RU_SAE_Z: Multiply Packed Double-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -59027,7 +59027,7 @@ func VMULPD_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMULPD_RU_SAE_Z: bad operands")
 }
 
-// VMULPD_RZ_SAE: Multiply Packed Double-Precision Floating-Point Values.
+// VMULPD_RZ_SAE: Multiply Packed Double-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -59057,7 +59057,7 @@ func VMULPD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMULPD_RZ_SAE: bad operands")
 }
 
-// VMULPD_RZ_SAE_Z: Multiply Packed Double-Precision Floating-Point Values.
+// VMULPD_RZ_SAE_Z: Multiply Packed Double-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -59077,7 +59077,7 @@ func VMULPD_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMULPD_RZ_SAE_Z: bad operands")
 }
 
-// VMULPD_Z: Multiply Packed Double-Precision Floating-Point Values.
+// VMULPD_Z: Multiply Packed Double-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -59189,7 +59189,7 @@ func VMULPS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMULPS: bad operands")
 }
 
-// VMULPS_BCST: Multiply Packed Single-Precision Floating-Point Values.
+// VMULPS_BCST: Multiply Packed Single-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -59219,7 +59219,7 @@ func VMULPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMULPS_BCST: bad operands")
 }
 
-// VMULPS_BCST_Z: Multiply Packed Single-Precision Floating-Point Values.
+// VMULPS_BCST_Z: Multiply Packed Single-Precision Floating-Point Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -59239,7 +59239,7 @@ func VMULPS_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMULPS_BCST_Z: bad operands")
 }
 
-// VMULPS_RD_SAE: Multiply Packed Single-Precision Floating-Point Values.
+// VMULPS_RD_SAE: Multiply Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -59269,7 +59269,7 @@ func VMULPS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMULPS_RD_SAE: bad operands")
 }
 
-// VMULPS_RD_SAE_Z: Multiply Packed Single-Precision Floating-Point Values.
+// VMULPS_RD_SAE_Z: Multiply Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -59289,7 +59289,7 @@ func VMULPS_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMULPS_RD_SAE_Z: bad operands")
 }
 
-// VMULPS_RN_SAE: Multiply Packed Single-Precision Floating-Point Values.
+// VMULPS_RN_SAE: Multiply Packed Single-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -59319,7 +59319,7 @@ func VMULPS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMULPS_RN_SAE: bad operands")
 }
 
-// VMULPS_RN_SAE_Z: Multiply Packed Single-Precision Floating-Point Values.
+// VMULPS_RN_SAE_Z: Multiply Packed Single-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -59339,7 +59339,7 @@ func VMULPS_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMULPS_RN_SAE_Z: bad operands")
 }
 
-// VMULPS_RU_SAE: Multiply Packed Single-Precision Floating-Point Values.
+// VMULPS_RU_SAE: Multiply Packed Single-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -59369,7 +59369,7 @@ func VMULPS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMULPS_RU_SAE: bad operands")
 }
 
-// VMULPS_RU_SAE_Z: Multiply Packed Single-Precision Floating-Point Values.
+// VMULPS_RU_SAE_Z: Multiply Packed Single-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -59389,7 +59389,7 @@ func VMULPS_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMULPS_RU_SAE_Z: bad operands")
 }
 
-// VMULPS_RZ_SAE: Multiply Packed Single-Precision Floating-Point Values.
+// VMULPS_RZ_SAE: Multiply Packed Single-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -59419,7 +59419,7 @@ func VMULPS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMULPS_RZ_SAE: bad operands")
 }
 
-// VMULPS_RZ_SAE_Z: Multiply Packed Single-Precision Floating-Point Values.
+// VMULPS_RZ_SAE_Z: Multiply Packed Single-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -59439,7 +59439,7 @@ func VMULPS_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMULPS_RZ_SAE_Z: bad operands")
 }
 
-// VMULPS_Z: Multiply Packed Single-Precision Floating-Point Values.
+// VMULPS_Z: Multiply Packed Single-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -59533,7 +59533,7 @@ func VMULSD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMULSD: bad operands")
 }
 
-// VMULSD_RD_SAE: Multiply Scalar Double-Precision Floating-Point Values.
+// VMULSD_RD_SAE: Multiply Scalar Double-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -59563,7 +59563,7 @@ func VMULSD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMULSD_RD_SAE: bad operands")
 }
 
-// VMULSD_RD_SAE_Z: Multiply Scalar Double-Precision Floating-Point Values.
+// VMULSD_RD_SAE_Z: Multiply Scalar Double-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -59583,7 +59583,7 @@ func VMULSD_RD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMULSD_RD_SAE_Z: bad operands")
 }
 
-// VMULSD_RN_SAE: Multiply Scalar Double-Precision Floating-Point Values.
+// VMULSD_RN_SAE: Multiply Scalar Double-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -59613,7 +59613,7 @@ func VMULSD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMULSD_RN_SAE: bad operands")
 }
 
-// VMULSD_RN_SAE_Z: Multiply Scalar Double-Precision Floating-Point Values.
+// VMULSD_RN_SAE_Z: Multiply Scalar Double-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -59633,7 +59633,7 @@ func VMULSD_RN_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMULSD_RN_SAE_Z: bad operands")
 }
 
-// VMULSD_RU_SAE: Multiply Scalar Double-Precision Floating-Point Values.
+// VMULSD_RU_SAE: Multiply Scalar Double-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -59663,7 +59663,7 @@ func VMULSD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMULSD_RU_SAE: bad operands")
 }
 
-// VMULSD_RU_SAE_Z: Multiply Scalar Double-Precision Floating-Point Values.
+// VMULSD_RU_SAE_Z: Multiply Scalar Double-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -59683,7 +59683,7 @@ func VMULSD_RU_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMULSD_RU_SAE_Z: bad operands")
 }
 
-// VMULSD_RZ_SAE: Multiply Scalar Double-Precision Floating-Point Values.
+// VMULSD_RZ_SAE: Multiply Scalar Double-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -59713,7 +59713,7 @@ func VMULSD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMULSD_RZ_SAE: bad operands")
 }
 
-// VMULSD_RZ_SAE_Z: Multiply Scalar Double-Precision Floating-Point Values.
+// VMULSD_RZ_SAE_Z: Multiply Scalar Double-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -59733,7 +59733,7 @@ func VMULSD_RZ_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMULSD_RZ_SAE_Z: bad operands")
 }
 
-// VMULSD_Z: Multiply Scalar Double-Precision Floating-Point Values.
+// VMULSD_Z: Multiply Scalar Double-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -59827,7 +59827,7 @@ func VMULSS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMULSS: bad operands")
 }
 
-// VMULSS_RD_SAE: Multiply Scalar Single-Precision Floating-Point Values.
+// VMULSS_RD_SAE: Multiply Scalar Single-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -59857,7 +59857,7 @@ func VMULSS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMULSS_RD_SAE: bad operands")
 }
 
-// VMULSS_RD_SAE_Z: Multiply Scalar Single-Precision Floating-Point Values.
+// VMULSS_RD_SAE_Z: Multiply Scalar Single-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -59877,7 +59877,7 @@ func VMULSS_RD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMULSS_RD_SAE_Z: bad operands")
 }
 
-// VMULSS_RN_SAE: Multiply Scalar Single-Precision Floating-Point Values.
+// VMULSS_RN_SAE: Multiply Scalar Single-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -59907,7 +59907,7 @@ func VMULSS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMULSS_RN_SAE: bad operands")
 }
 
-// VMULSS_RN_SAE_Z: Multiply Scalar Single-Precision Floating-Point Values.
+// VMULSS_RN_SAE_Z: Multiply Scalar Single-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -59927,7 +59927,7 @@ func VMULSS_RN_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMULSS_RN_SAE_Z: bad operands")
 }
 
-// VMULSS_RU_SAE: Multiply Scalar Single-Precision Floating-Point Values.
+// VMULSS_RU_SAE: Multiply Scalar Single-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -59957,7 +59957,7 @@ func VMULSS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMULSS_RU_SAE: bad operands")
 }
 
-// VMULSS_RU_SAE_Z: Multiply Scalar Single-Precision Floating-Point Values.
+// VMULSS_RU_SAE_Z: Multiply Scalar Single-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -59977,7 +59977,7 @@ func VMULSS_RU_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMULSS_RU_SAE_Z: bad operands")
 }
 
-// VMULSS_RZ_SAE: Multiply Scalar Single-Precision Floating-Point Values.
+// VMULSS_RZ_SAE: Multiply Scalar Single-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -60007,7 +60007,7 @@ func VMULSS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMULSS_RZ_SAE: bad operands")
 }
 
-// VMULSS_RZ_SAE_Z: Multiply Scalar Single-Precision Floating-Point Values.
+// VMULSS_RZ_SAE_Z: Multiply Scalar Single-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -60027,7 +60027,7 @@ func VMULSS_RZ_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VMULSS_RZ_SAE_Z: bad operands")
 }
 
-// VMULSS_Z: Multiply Scalar Single-Precision Floating-Point Values.
+// VMULSS_Z: Multiply Scalar Single-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -60277,7 +60277,7 @@ func VPABSD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPABSD: bad operands")
 }
 
-// VPABSD_BCST: Packed Absolute Value of Doubleword Integers.
+// VPABSD_BCST: Packed Absolute Value of Doubleword Integers (Broadcast).
 //
 // Forms:
 //
@@ -60307,7 +60307,7 @@ func VPABSD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPABSD_BCST: bad operands")
 }
 
-// VPABSD_BCST_Z: Packed Absolute Value of Doubleword Integers.
+// VPABSD_BCST_Z: Packed Absolute Value of Doubleword Integers (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -60327,7 +60327,7 @@ func VPABSD_BCST_Z(m, k, z operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPABSD_BCST_Z: bad operands")
 }
 
-// VPABSD_Z: Packed Absolute Value of Doubleword Integers.
+// VPABSD_Z: Packed Absolute Value of Doubleword Integers (Zeroing Masking).
 //
 // Forms:
 //
@@ -60403,7 +60403,7 @@ func VPABSQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPABSQ: bad operands")
 }
 
-// VPABSQ_BCST: Packed Absolute Value of Quadword Integers.
+// VPABSQ_BCST: Packed Absolute Value of Quadword Integers (Broadcast).
 //
 // Forms:
 //
@@ -60433,7 +60433,7 @@ func VPABSQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPABSQ_BCST: bad operands")
 }
 
-// VPABSQ_BCST_Z: Packed Absolute Value of Quadword Integers.
+// VPABSQ_BCST_Z: Packed Absolute Value of Quadword Integers (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -60453,7 +60453,7 @@ func VPABSQ_BCST_Z(m, k, z operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPABSQ_BCST_Z: bad operands")
 }
 
-// VPABSQ_Z: Packed Absolute Value of Quadword Integers.
+// VPABSQ_Z: Packed Absolute Value of Quadword Integers (Zeroing Masking).
 //
 // Forms:
 //
@@ -60841,7 +60841,7 @@ func VPADDD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPADDD: bad operands")
 }
 
-// VPADDD_BCST: Add Packed Doubleword Integers.
+// VPADDD_BCST: Add Packed Doubleword Integers (Broadcast).
 //
 // Forms:
 //
@@ -60871,7 +60871,7 @@ func VPADDD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPADDD_BCST: bad operands")
 }
 
-// VPADDD_BCST_Z: Add Packed Doubleword Integers.
+// VPADDD_BCST_Z: Add Packed Doubleword Integers (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -60891,7 +60891,7 @@ func VPADDD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPADDD_BCST_Z: bad operands")
 }
 
-// VPADDD_Z: Add Packed Doubleword Integers.
+// VPADDD_Z: Add Packed Doubleword Integers (Zeroing Masking).
 //
 // Forms:
 //
@@ -61003,7 +61003,7 @@ func VPADDQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPADDQ: bad operands")
 }
 
-// VPADDQ_BCST: Add Packed Quadword Integers.
+// VPADDQ_BCST: Add Packed Quadword Integers (Broadcast).
 //
 // Forms:
 //
@@ -61033,7 +61033,7 @@ func VPADDQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPADDQ_BCST: bad operands")
 }
 
-// VPADDQ_BCST_Z: Add Packed Quadword Integers.
+// VPADDQ_BCST_Z: Add Packed Quadword Integers (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -61053,7 +61053,7 @@ func VPADDQ_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPADDQ_BCST_Z: bad operands")
 }
 
-// VPADDQ_Z: Add Packed Quadword Integers.
+// VPADDQ_Z: Add Packed Quadword Integers (Zeroing Masking).
 //
 // Forms:
 //
@@ -61451,7 +61451,7 @@ func VPANDD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPANDD: bad operands")
 }
 
-// VPANDD_BCST: Bitwise Logical AND of Packed Doubleword Integers.
+// VPANDD_BCST: Bitwise Logical AND of Packed Doubleword Integers (Broadcast).
 //
 // Forms:
 //
@@ -61481,7 +61481,7 @@ func VPANDD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPANDD_BCST: bad operands")
 }
 
-// VPANDD_BCST_Z: Bitwise Logical AND of Packed Doubleword Integers.
+// VPANDD_BCST_Z: Bitwise Logical AND of Packed Doubleword Integers (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -61501,7 +61501,7 @@ func VPANDD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPANDD_BCST_Z: bad operands")
 }
 
-// VPANDD_Z: Bitwise Logical AND of Packed Doubleword Integers.
+// VPANDD_Z: Bitwise Logical AND of Packed Doubleword Integers (Zeroing Masking).
 //
 // Forms:
 //
@@ -61625,7 +61625,7 @@ func VPANDND(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPANDND: bad operands")
 }
 
-// VPANDND_BCST: Bitwise Logical AND NOT of Packed Doubleword Integers.
+// VPANDND_BCST: Bitwise Logical AND NOT of Packed Doubleword Integers (Broadcast).
 //
 // Forms:
 //
@@ -61655,7 +61655,7 @@ func VPANDND_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPANDND_BCST: bad operands")
 }
 
-// VPANDND_BCST_Z: Bitwise Logical AND NOT of Packed Doubleword Integers.
+// VPANDND_BCST_Z: Bitwise Logical AND NOT of Packed Doubleword Integers (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -61675,7 +61675,7 @@ func VPANDND_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPANDND_BCST_Z: bad operands")
 }
 
-// VPANDND_Z: Bitwise Logical AND NOT of Packed Doubleword Integers.
+// VPANDND_Z: Bitwise Logical AND NOT of Packed Doubleword Integers (Zeroing Masking).
 //
 // Forms:
 //
@@ -61751,7 +61751,7 @@ func VPANDNQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPANDNQ: bad operands")
 }
 
-// VPANDNQ_BCST: Bitwise Logical AND NOT of Packed Quadword Integers.
+// VPANDNQ_BCST: Bitwise Logical AND NOT of Packed Quadword Integers (Broadcast).
 //
 // Forms:
 //
@@ -61781,7 +61781,7 @@ func VPANDNQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPANDNQ_BCST: bad operands")
 }
 
-// VPANDNQ_BCST_Z: Bitwise Logical AND NOT of Packed Quadword Integers.
+// VPANDNQ_BCST_Z: Bitwise Logical AND NOT of Packed Quadword Integers (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -61801,7 +61801,7 @@ func VPANDNQ_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPANDNQ_BCST_Z: bad operands")
 }
 
-// VPANDNQ_Z: Bitwise Logical AND NOT of Packed Quadword Integers.
+// VPANDNQ_Z: Bitwise Logical AND NOT of Packed Quadword Integers (Zeroing Masking).
 //
 // Forms:
 //
@@ -61877,7 +61877,7 @@ func VPANDQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPANDQ: bad operands")
 }
 
-// VPANDQ_BCST: Bitwise Logical AND of Packed Quadword Integers.
+// VPANDQ_BCST: Bitwise Logical AND of Packed Quadword Integers (Broadcast).
 //
 // Forms:
 //
@@ -61907,7 +61907,7 @@ func VPANDQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPANDQ_BCST: bad operands")
 }
 
-// VPANDQ_BCST_Z: Bitwise Logical AND of Packed Quadword Integers.
+// VPANDQ_BCST_Z: Bitwise Logical AND of Packed Quadword Integers (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -61927,7 +61927,7 @@ func VPANDQ_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPANDQ_BCST_Z: bad operands")
 }
 
-// VPANDQ_Z: Bitwise Logical AND of Packed Quadword Integers.
+// VPANDQ_Z: Bitwise Logical AND of Packed Quadword Integers (Zeroing Masking).
 //
 // Forms:
 //
@@ -62141,7 +62141,7 @@ func VPBLENDMD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPBLENDMD: bad operands")
 }
 
-// VPBLENDMD_BCST: Blend Doubleword Vectors Using an OpMask Control.
+// VPBLENDMD_BCST: Blend Doubleword Vectors Using an OpMask Control (Broadcast).
 //
 // Forms:
 //
@@ -62171,7 +62171,7 @@ func VPBLENDMD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPBLENDMD_BCST: bad operands")
 }
 
-// VPBLENDMD_BCST_Z: Blend Doubleword Vectors Using an OpMask Control.
+// VPBLENDMD_BCST_Z: Blend Doubleword Vectors Using an OpMask Control (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -62191,7 +62191,7 @@ func VPBLENDMD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPBLENDMD_BCST_Z: bad operands")
 }
 
-// VPBLENDMD_Z: Blend Doubleword Vectors Using an OpMask Control.
+// VPBLENDMD_Z: Blend Doubleword Vectors Using an OpMask Control (Zeroing Masking).
 //
 // Forms:
 //
@@ -62267,7 +62267,7 @@ func VPBLENDMQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPBLENDMQ: bad operands")
 }
 
-// VPBLENDMQ_BCST: Blend Quadword Vectors Using an OpMask Control.
+// VPBLENDMQ_BCST: Blend Quadword Vectors Using an OpMask Control (Broadcast).
 //
 // Forms:
 //
@@ -62297,7 +62297,7 @@ func VPBLENDMQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPBLENDMQ_BCST: bad operands")
 }
 
-// VPBLENDMQ_BCST_Z: Blend Quadword Vectors Using an OpMask Control.
+// VPBLENDMQ_BCST_Z: Blend Quadword Vectors Using an OpMask Control (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -62317,7 +62317,7 @@ func VPBLENDMQ_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPBLENDMQ_BCST_Z: bad operands")
 }
 
-// VPBLENDMQ_Z: Blend Quadword Vectors Using an OpMask Control.
+// VPBLENDMQ_Z: Blend Quadword Vectors Using an OpMask Control (Zeroing Masking).
 //
 // Forms:
 //
@@ -62585,7 +62585,7 @@ func VPBROADCASTD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPBROADCASTD: bad operands")
 }
 
-// VPBROADCASTD_Z: Broadcast Doubleword Integer.
+// VPBROADCASTD_Z: Broadcast Doubleword Integer (Zeroing Masking).
 //
 // Forms:
 //
@@ -62725,7 +62725,7 @@ func VPBROADCASTQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPBROADCASTQ: bad operands")
 }
 
-// VPBROADCASTQ_Z: Broadcast Quadword Integer.
+// VPBROADCASTQ_Z: Broadcast Quadword Integer (Zeroing Masking).
 //
 // Forms:
 //
@@ -62885,7 +62885,7 @@ func VPCMPD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPCMPD: bad operands")
 }
 
-// VPCMPD_BCST: Compare Packed Signed Doubleword Values.
+// VPCMPD_BCST: Compare Packed Signed Doubleword Values (Broadcast).
 //
 // Forms:
 //
@@ -63049,7 +63049,7 @@ func VPCMPEQD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPCMPEQD: bad operands")
 }
 
-// VPCMPEQD_BCST: Compare Packed Doubleword Data for Equality.
+// VPCMPEQD_BCST: Compare Packed Doubleword Data for Equality (Broadcast).
 //
 // Forms:
 //
@@ -63165,7 +63165,7 @@ func VPCMPEQQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPCMPEQQ: bad operands")
 }
 
-// VPCMPEQQ_BCST: Compare Packed Quadword Data for Equality.
+// VPCMPEQQ_BCST: Compare Packed Quadword Data for Equality (Broadcast).
 //
 // Forms:
 //
@@ -63433,7 +63433,7 @@ func VPCMPGTD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPCMPGTD: bad operands")
 }
 
-// VPCMPGTD_BCST: Compare Packed Signed Doubleword Integers for Greater Than.
+// VPCMPGTD_BCST: Compare Packed Signed Doubleword Integers for Greater Than (Broadcast).
 //
 // Forms:
 //
@@ -63549,7 +63549,7 @@ func VPCMPGTQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPCMPGTQ: bad operands")
 }
 
-// VPCMPGTQ_BCST: Compare Packed Data for Greater Than.
+// VPCMPGTQ_BCST: Compare Packed Data for Greater Than (Broadcast).
 //
 // Forms:
 //
@@ -63729,7 +63729,7 @@ func VPCMPQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPCMPQ: bad operands")
 }
 
-// VPCMPQ_BCST: Compare Packed Signed Quadword Values.
+// VPCMPQ_BCST: Compare Packed Signed Quadword Values (Broadcast).
 //
 // Forms:
 //
@@ -63805,7 +63805,7 @@ func VPCMPUD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPCMPUD: bad operands")
 }
 
-// VPCMPUD_BCST: Compare Packed Unsigned Doubleword Values.
+// VPCMPUD_BCST: Compare Packed Unsigned Doubleword Values (Broadcast).
 //
 // Forms:
 //
@@ -63881,7 +63881,7 @@ func VPCMPUQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPCMPUQ: bad operands")
 }
 
-// VPCMPUQ_BCST: Compare Packed Unsigned Quadword Values.
+// VPCMPUQ_BCST: Compare Packed Unsigned Quadword Values (Broadcast).
 //
 // Forms:
 //
@@ -63957,7 +63957,7 @@ func VPCOMPRESSD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPCOMPRESSD: bad operands")
 }
 
-// VPCOMPRESSD_Z: Store Sparse Packed Doubleword Integer Values into Dense Memory/Register.
+// VPCOMPRESSD_Z: Store Sparse Packed Doubleword Integer Values into Dense Memory/Register (Zeroing Masking).
 //
 // Forms:
 //
@@ -64033,7 +64033,7 @@ func VPCOMPRESSQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPCOMPRESSQ: bad operands")
 }
 
-// VPCOMPRESSQ_Z: Store Sparse Packed Quadword Integer Values into Dense Memory/Register.
+// VPCOMPRESSQ_Z: Store Sparse Packed Quadword Integer Values into Dense Memory/Register (Zeroing Masking).
 //
 // Forms:
 //
@@ -64183,7 +64183,7 @@ func VPERMD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPERMD: bad operands")
 }
 
-// VPERMD_BCST: Permute Doubleword Integers.
+// VPERMD_BCST: Permute Doubleword Integers (Broadcast).
 //
 // Forms:
 //
@@ -64213,7 +64213,7 @@ func VPERMD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPERMD_BCST: bad operands")
 }
 
-// VPERMD_BCST_Z: Permute Doubleword Integers.
+// VPERMD_BCST_Z: Permute Doubleword Integers (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -64233,7 +64233,7 @@ func VPERMD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPERMD_BCST_Z: bad operands")
 }
 
-// VPERMD_Z: Permute Doubleword Integers.
+// VPERMD_Z: Permute Doubleword Integers (Zeroing Masking).
 //
 // Forms:
 //
@@ -64309,7 +64309,7 @@ func VPERMI2D(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPERMI2D: bad operands")
 }
 
-// VPERMI2D_BCST: Full Permute of Doublewords From Two Tables Overwriting the Index.
+// VPERMI2D_BCST: Full Permute of Doublewords From Two Tables Overwriting the Index (Broadcast).
 //
 // Forms:
 //
@@ -64339,7 +64339,7 @@ func VPERMI2D_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPERMI2D_BCST: bad operands")
 }
 
-// VPERMI2D_BCST_Z: Full Permute of Doublewords From Two Tables Overwriting the Index.
+// VPERMI2D_BCST_Z: Full Permute of Doublewords From Two Tables Overwriting the Index (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -64359,7 +64359,7 @@ func VPERMI2D_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPERMI2D_BCST_Z: bad operands")
 }
 
-// VPERMI2D_Z: Full Permute of Doublewords From Two Tables Overwriting the Index.
+// VPERMI2D_Z: Full Permute of Doublewords From Two Tables Overwriting the Index (Zeroing Masking).
 //
 // Forms:
 //
@@ -64435,7 +64435,7 @@ func VPERMI2PD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPERMI2PD: bad operands")
 }
 
-// VPERMI2PD_BCST: Full Permute of Double-Precision Floating-Point Values From Two Tables Overwriting the Index.
+// VPERMI2PD_BCST: Full Permute of Double-Precision Floating-Point Values From Two Tables Overwriting the Index (Broadcast).
 //
 // Forms:
 //
@@ -64465,7 +64465,7 @@ func VPERMI2PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPERMI2PD_BCST: bad operands")
 }
 
-// VPERMI2PD_BCST_Z: Full Permute of Double-Precision Floating-Point Values From Two Tables Overwriting the Index.
+// VPERMI2PD_BCST_Z: Full Permute of Double-Precision Floating-Point Values From Two Tables Overwriting the Index (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -64485,7 +64485,7 @@ func VPERMI2PD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPERMI2PD_BCST_Z: bad operands")
 }
 
-// VPERMI2PD_Z: Full Permute of Double-Precision Floating-Point Values From Two Tables Overwriting the Index.
+// VPERMI2PD_Z: Full Permute of Double-Precision Floating-Point Values From Two Tables Overwriting the Index (Zeroing Masking).
 //
 // Forms:
 //
@@ -64561,7 +64561,7 @@ func VPERMI2PS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPERMI2PS: bad operands")
 }
 
-// VPERMI2PS_BCST: Full Permute of Single-Precision Floating-Point Values From Two Tables Overwriting the Index.
+// VPERMI2PS_BCST: Full Permute of Single-Precision Floating-Point Values From Two Tables Overwriting the Index (Broadcast).
 //
 // Forms:
 //
@@ -64591,7 +64591,7 @@ func VPERMI2PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPERMI2PS_BCST: bad operands")
 }
 
-// VPERMI2PS_BCST_Z: Full Permute of Single-Precision Floating-Point Values From Two Tables Overwriting the Index.
+// VPERMI2PS_BCST_Z: Full Permute of Single-Precision Floating-Point Values From Two Tables Overwriting the Index (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -64611,7 +64611,7 @@ func VPERMI2PS_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPERMI2PS_BCST_Z: bad operands")
 }
 
-// VPERMI2PS_Z: Full Permute of Single-Precision Floating-Point Values From Two Tables Overwriting the Index.
+// VPERMI2PS_Z: Full Permute of Single-Precision Floating-Point Values From Two Tables Overwriting the Index (Zeroing Masking).
 //
 // Forms:
 //
@@ -64687,7 +64687,7 @@ func VPERMI2Q(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPERMI2Q: bad operands")
 }
 
-// VPERMI2Q_BCST: Full Permute of Quadwords From Two Tables Overwriting the Index.
+// VPERMI2Q_BCST: Full Permute of Quadwords From Two Tables Overwriting the Index (Broadcast).
 //
 // Forms:
 //
@@ -64717,7 +64717,7 @@ func VPERMI2Q_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPERMI2Q_BCST: bad operands")
 }
 
-// VPERMI2Q_BCST_Z: Full Permute of Quadwords From Two Tables Overwriting the Index.
+// VPERMI2Q_BCST_Z: Full Permute of Quadwords From Two Tables Overwriting the Index (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -64737,7 +64737,7 @@ func VPERMI2Q_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPERMI2Q_BCST_Z: bad operands")
 }
 
-// VPERMI2Q_Z: Full Permute of Quadwords From Two Tables Overwriting the Index.
+// VPERMI2Q_Z: Full Permute of Quadwords From Two Tables Overwriting the Index (Zeroing Masking).
 //
 // Forms:
 //
@@ -64921,7 +64921,7 @@ func VPERMILPD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPERMILPD: bad operands")
 }
 
-// VPERMILPD_BCST: Permute Double-Precision Floating-Point Values.
+// VPERMILPD_BCST: Permute Double-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -64971,7 +64971,7 @@ func VPERMILPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPERMILPD_BCST: bad operands")
 }
 
-// VPERMILPD_BCST_Z: Permute Double-Precision Floating-Point Values.
+// VPERMILPD_BCST_Z: Permute Double-Precision Floating-Point Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -65001,7 +65001,7 @@ func VPERMILPD_BCST_Z(im, mz, k, z operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPERMILPD_BCST_Z: bad operands")
 }
 
-// VPERMILPD_Z: Permute Double-Precision Floating-Point Values.
+// VPERMILPD_Z: Permute Double-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -65205,7 +65205,7 @@ func VPERMILPS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPERMILPS: bad operands")
 }
 
-// VPERMILPS_BCST: Permute Single-Precision Floating-Point Values.
+// VPERMILPS_BCST: Permute Single-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -65255,7 +65255,7 @@ func VPERMILPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPERMILPS_BCST: bad operands")
 }
 
-// VPERMILPS_BCST_Z: Permute Single-Precision Floating-Point Values.
+// VPERMILPS_BCST_Z: Permute Single-Precision Floating-Point Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -65285,7 +65285,7 @@ func VPERMILPS_BCST_Z(im, mz, k, z operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPERMILPS_BCST_Z: bad operands")
 }
 
-// VPERMILPS_Z: Permute Single-Precision Floating-Point Values.
+// VPERMILPS_Z: Permute Single-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -65435,7 +65435,7 @@ func VPERMPD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPERMPD: bad operands")
 }
 
-// VPERMPD_BCST: Permute Double-Precision Floating-Point Elements.
+// VPERMPD_BCST: Permute Double-Precision Floating-Point Elements (Broadcast).
 //
 // Forms:
 //
@@ -65485,7 +65485,7 @@ func VPERMPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPERMPD_BCST: bad operands")
 }
 
-// VPERMPD_BCST_Z: Permute Double-Precision Floating-Point Elements.
+// VPERMPD_BCST_Z: Permute Double-Precision Floating-Point Elements (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -65515,7 +65515,7 @@ func VPERMPD_BCST_Z(im, mz, k, z operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPERMPD_BCST_Z: bad operands")
 }
 
-// VPERMPD_Z: Permute Double-Precision Floating-Point Elements.
+// VPERMPD_Z: Permute Double-Precision Floating-Point Elements (Zeroing Masking).
 //
 // Forms:
 //
@@ -65629,7 +65629,7 @@ func VPERMPS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPERMPS: bad operands")
 }
 
-// VPERMPS_BCST: Permute Single-Precision Floating-Point Elements.
+// VPERMPS_BCST: Permute Single-Precision Floating-Point Elements (Broadcast).
 //
 // Forms:
 //
@@ -65659,7 +65659,7 @@ func VPERMPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPERMPS_BCST: bad operands")
 }
 
-// VPERMPS_BCST_Z: Permute Single-Precision Floating-Point Elements.
+// VPERMPS_BCST_Z: Permute Single-Precision Floating-Point Elements (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -65679,7 +65679,7 @@ func VPERMPS_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPERMPS_BCST_Z: bad operands")
 }
 
-// VPERMPS_Z: Permute Single-Precision Floating-Point Elements.
+// VPERMPS_Z: Permute Single-Precision Floating-Point Elements (Zeroing Masking).
 //
 // Forms:
 //
@@ -65809,7 +65809,7 @@ func VPERMQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPERMQ: bad operands")
 }
 
-// VPERMQ_BCST: Permute Quadword Integers.
+// VPERMQ_BCST: Permute Quadword Integers (Broadcast).
 //
 // Forms:
 //
@@ -65859,7 +65859,7 @@ func VPERMQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPERMQ_BCST: bad operands")
 }
 
-// VPERMQ_BCST_Z: Permute Quadword Integers.
+// VPERMQ_BCST_Z: Permute Quadword Integers (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -65889,7 +65889,7 @@ func VPERMQ_BCST_Z(im, mz, k, z operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPERMQ_BCST_Z: bad operands")
 }
 
-// VPERMQ_Z: Permute Quadword Integers.
+// VPERMQ_Z: Permute Quadword Integers (Zeroing Masking).
 //
 // Forms:
 //
@@ -65985,7 +65985,7 @@ func VPERMT2D(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPERMT2D: bad operands")
 }
 
-// VPERMT2D_BCST: Full Permute of Doublewords From Two Tables Overwriting a Table.
+// VPERMT2D_BCST: Full Permute of Doublewords From Two Tables Overwriting a Table (Broadcast).
 //
 // Forms:
 //
@@ -66015,7 +66015,7 @@ func VPERMT2D_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPERMT2D_BCST: bad operands")
 }
 
-// VPERMT2D_BCST_Z: Full Permute of Doublewords From Two Tables Overwriting a Table.
+// VPERMT2D_BCST_Z: Full Permute of Doublewords From Two Tables Overwriting a Table (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -66035,7 +66035,7 @@ func VPERMT2D_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPERMT2D_BCST_Z: bad operands")
 }
 
-// VPERMT2D_Z: Full Permute of Doublewords From Two Tables Overwriting a Table.
+// VPERMT2D_Z: Full Permute of Doublewords From Two Tables Overwriting a Table (Zeroing Masking).
 //
 // Forms:
 //
@@ -66111,7 +66111,7 @@ func VPERMT2PD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPERMT2PD: bad operands")
 }
 
-// VPERMT2PD_BCST: Full Permute of Double-Precision Floating-Point Values From Two Tables Overwriting a Table.
+// VPERMT2PD_BCST: Full Permute of Double-Precision Floating-Point Values From Two Tables Overwriting a Table (Broadcast).
 //
 // Forms:
 //
@@ -66141,7 +66141,7 @@ func VPERMT2PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPERMT2PD_BCST: bad operands")
 }
 
-// VPERMT2PD_BCST_Z: Full Permute of Double-Precision Floating-Point Values From Two Tables Overwriting a Table.
+// VPERMT2PD_BCST_Z: Full Permute of Double-Precision Floating-Point Values From Two Tables Overwriting a Table (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -66161,7 +66161,7 @@ func VPERMT2PD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPERMT2PD_BCST_Z: bad operands")
 }
 
-// VPERMT2PD_Z: Full Permute of Double-Precision Floating-Point Values From Two Tables Overwriting a Table.
+// VPERMT2PD_Z: Full Permute of Double-Precision Floating-Point Values From Two Tables Overwriting a Table (Zeroing Masking).
 //
 // Forms:
 //
@@ -66237,7 +66237,7 @@ func VPERMT2PS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPERMT2PS: bad operands")
 }
 
-// VPERMT2PS_BCST: Full Permute of Single-Precision Floating-Point Values From Two Tables Overwriting a Table.
+// VPERMT2PS_BCST: Full Permute of Single-Precision Floating-Point Values From Two Tables Overwriting a Table (Broadcast).
 //
 // Forms:
 //
@@ -66267,7 +66267,7 @@ func VPERMT2PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPERMT2PS_BCST: bad operands")
 }
 
-// VPERMT2PS_BCST_Z: Full Permute of Single-Precision Floating-Point Values From Two Tables Overwriting a Table.
+// VPERMT2PS_BCST_Z: Full Permute of Single-Precision Floating-Point Values From Two Tables Overwriting a Table (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -66287,7 +66287,7 @@ func VPERMT2PS_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPERMT2PS_BCST_Z: bad operands")
 }
 
-// VPERMT2PS_Z: Full Permute of Single-Precision Floating-Point Values From Two Tables Overwriting a Table.
+// VPERMT2PS_Z: Full Permute of Single-Precision Floating-Point Values From Two Tables Overwriting a Table (Zeroing Masking).
 //
 // Forms:
 //
@@ -66363,7 +66363,7 @@ func VPERMT2Q(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPERMT2Q: bad operands")
 }
 
-// VPERMT2Q_BCST: Full Permute of Quadwords From Two Tables Overwriting a Table.
+// VPERMT2Q_BCST: Full Permute of Quadwords From Two Tables Overwriting a Table (Broadcast).
 //
 // Forms:
 //
@@ -66393,7 +66393,7 @@ func VPERMT2Q_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPERMT2Q_BCST: bad operands")
 }
 
-// VPERMT2Q_BCST_Z: Full Permute of Quadwords From Two Tables Overwriting a Table.
+// VPERMT2Q_BCST_Z: Full Permute of Quadwords From Two Tables Overwriting a Table (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -66413,7 +66413,7 @@ func VPERMT2Q_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPERMT2Q_BCST_Z: bad operands")
 }
 
-// VPERMT2Q_Z: Full Permute of Quadwords From Two Tables Overwriting a Table.
+// VPERMT2Q_Z: Full Permute of Quadwords From Two Tables Overwriting a Table (Zeroing Masking).
 //
 // Forms:
 //
@@ -66489,7 +66489,7 @@ func VPEXPANDD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPEXPANDD: bad operands")
 }
 
-// VPEXPANDD_Z: Load Sparse Packed Doubleword Integer Values from Dense Memory/Register.
+// VPEXPANDD_Z: Load Sparse Packed Doubleword Integer Values from Dense Memory/Register (Zeroing Masking).
 //
 // Forms:
 //
@@ -66565,7 +66565,7 @@ func VPEXPANDQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPEXPANDQ: bad operands")
 }
 
-// VPEXPANDQ_Z: Load Sparse Packed Quadword Integer Values from Dense Memory/Register.
+// VPEXPANDQ_Z: Load Sparse Packed Quadword Integer Values from Dense Memory/Register (Zeroing Masking).
 //
 // Forms:
 //
@@ -67589,7 +67589,7 @@ func VPMAXSD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPMAXSD: bad operands")
 }
 
-// VPMAXSD_BCST: Maximum of Packed Signed Doubleword Integers.
+// VPMAXSD_BCST: Maximum of Packed Signed Doubleword Integers (Broadcast).
 //
 // Forms:
 //
@@ -67619,7 +67619,7 @@ func VPMAXSD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPMAXSD_BCST: bad operands")
 }
 
-// VPMAXSD_BCST_Z: Maximum of Packed Signed Doubleword Integers.
+// VPMAXSD_BCST_Z: Maximum of Packed Signed Doubleword Integers (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -67639,7 +67639,7 @@ func VPMAXSD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPMAXSD_BCST_Z: bad operands")
 }
 
-// VPMAXSD_Z: Maximum of Packed Signed Doubleword Integers.
+// VPMAXSD_Z: Maximum of Packed Signed Doubleword Integers (Zeroing Masking).
 //
 // Forms:
 //
@@ -67715,7 +67715,7 @@ func VPMAXSQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPMAXSQ: bad operands")
 }
 
-// VPMAXSQ_BCST: Maximum of Packed Signed Quadword Integers.
+// VPMAXSQ_BCST: Maximum of Packed Signed Quadword Integers (Broadcast).
 //
 // Forms:
 //
@@ -67745,7 +67745,7 @@ func VPMAXSQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPMAXSQ_BCST: bad operands")
 }
 
-// VPMAXSQ_BCST_Z: Maximum of Packed Signed Quadword Integers.
+// VPMAXSQ_BCST_Z: Maximum of Packed Signed Quadword Integers (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -67765,7 +67765,7 @@ func VPMAXSQ_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPMAXSQ_BCST_Z: bad operands")
 }
 
-// VPMAXSQ_Z: Maximum of Packed Signed Quadword Integers.
+// VPMAXSQ_Z: Maximum of Packed Signed Quadword Integers (Zeroing Masking).
 //
 // Forms:
 //
@@ -67969,7 +67969,7 @@ func VPMAXUD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPMAXUD: bad operands")
 }
 
-// VPMAXUD_BCST: Maximum of Packed Unsigned Doubleword Integers.
+// VPMAXUD_BCST: Maximum of Packed Unsigned Doubleword Integers (Broadcast).
 //
 // Forms:
 //
@@ -67999,7 +67999,7 @@ func VPMAXUD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPMAXUD_BCST: bad operands")
 }
 
-// VPMAXUD_BCST_Z: Maximum of Packed Unsigned Doubleword Integers.
+// VPMAXUD_BCST_Z: Maximum of Packed Unsigned Doubleword Integers (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -68019,7 +68019,7 @@ func VPMAXUD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPMAXUD_BCST_Z: bad operands")
 }
 
-// VPMAXUD_Z: Maximum of Packed Unsigned Doubleword Integers.
+// VPMAXUD_Z: Maximum of Packed Unsigned Doubleword Integers (Zeroing Masking).
 //
 // Forms:
 //
@@ -68095,7 +68095,7 @@ func VPMAXUQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPMAXUQ: bad operands")
 }
 
-// VPMAXUQ_BCST: Maximum of Packed Unsigned Quadword Integers.
+// VPMAXUQ_BCST: Maximum of Packed Unsigned Quadword Integers (Broadcast).
 //
 // Forms:
 //
@@ -68125,7 +68125,7 @@ func VPMAXUQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPMAXUQ_BCST: bad operands")
 }
 
-// VPMAXUQ_BCST_Z: Maximum of Packed Unsigned Quadword Integers.
+// VPMAXUQ_BCST_Z: Maximum of Packed Unsigned Quadword Integers (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -68145,7 +68145,7 @@ func VPMAXUQ_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPMAXUQ_BCST_Z: bad operands")
 }
 
-// VPMAXUQ_Z: Maximum of Packed Unsigned Quadword Integers.
+// VPMAXUQ_Z: Maximum of Packed Unsigned Quadword Integers (Zeroing Masking).
 //
 // Forms:
 //
@@ -68349,7 +68349,7 @@ func VPMINSD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPMINSD: bad operands")
 }
 
-// VPMINSD_BCST: Minimum of Packed Signed Doubleword Integers.
+// VPMINSD_BCST: Minimum of Packed Signed Doubleword Integers (Broadcast).
 //
 // Forms:
 //
@@ -68379,7 +68379,7 @@ func VPMINSD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPMINSD_BCST: bad operands")
 }
 
-// VPMINSD_BCST_Z: Minimum of Packed Signed Doubleword Integers.
+// VPMINSD_BCST_Z: Minimum of Packed Signed Doubleword Integers (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -68399,7 +68399,7 @@ func VPMINSD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPMINSD_BCST_Z: bad operands")
 }
 
-// VPMINSD_Z: Minimum of Packed Signed Doubleword Integers.
+// VPMINSD_Z: Minimum of Packed Signed Doubleword Integers (Zeroing Masking).
 //
 // Forms:
 //
@@ -68475,7 +68475,7 @@ func VPMINSQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPMINSQ: bad operands")
 }
 
-// VPMINSQ_BCST: Minimum of Packed Signed Quadword Integers.
+// VPMINSQ_BCST: Minimum of Packed Signed Quadword Integers (Broadcast).
 //
 // Forms:
 //
@@ -68505,7 +68505,7 @@ func VPMINSQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPMINSQ_BCST: bad operands")
 }
 
-// VPMINSQ_BCST_Z: Minimum of Packed Signed Quadword Integers.
+// VPMINSQ_BCST_Z: Minimum of Packed Signed Quadword Integers (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -68525,7 +68525,7 @@ func VPMINSQ_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPMINSQ_BCST_Z: bad operands")
 }
 
-// VPMINSQ_Z: Minimum of Packed Signed Quadword Integers.
+// VPMINSQ_Z: Minimum of Packed Signed Quadword Integers (Zeroing Masking).
 //
 // Forms:
 //
@@ -68729,7 +68729,7 @@ func VPMINUD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPMINUD: bad operands")
 }
 
-// VPMINUD_BCST: Minimum of Packed Unsigned Doubleword Integers.
+// VPMINUD_BCST: Minimum of Packed Unsigned Doubleword Integers (Broadcast).
 //
 // Forms:
 //
@@ -68759,7 +68759,7 @@ func VPMINUD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPMINUD_BCST: bad operands")
 }
 
-// VPMINUD_BCST_Z: Minimum of Packed Unsigned Doubleword Integers.
+// VPMINUD_BCST_Z: Minimum of Packed Unsigned Doubleword Integers (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -68779,7 +68779,7 @@ func VPMINUD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPMINUD_BCST_Z: bad operands")
 }
 
-// VPMINUD_Z: Minimum of Packed Unsigned Doubleword Integers.
+// VPMINUD_Z: Minimum of Packed Unsigned Doubleword Integers (Zeroing Masking).
 //
 // Forms:
 //
@@ -68855,7 +68855,7 @@ func VPMINUQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPMINUQ: bad operands")
 }
 
-// VPMINUQ_BCST: Minimum of Packed Unsigned Quadword Integers.
+// VPMINUQ_BCST: Minimum of Packed Unsigned Quadword Integers (Broadcast).
 //
 // Forms:
 //
@@ -68885,7 +68885,7 @@ func VPMINUQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPMINUQ_BCST: bad operands")
 }
 
-// VPMINUQ_BCST_Z: Minimum of Packed Unsigned Quadword Integers.
+// VPMINUQ_BCST_Z: Minimum of Packed Unsigned Quadword Integers (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -68905,7 +68905,7 @@ func VPMINUQ_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPMINUQ_BCST_Z: bad operands")
 }
 
-// VPMINUQ_Z: Minimum of Packed Unsigned Quadword Integers.
+// VPMINUQ_Z: Minimum of Packed Unsigned Quadword Integers (Zeroing Masking).
 //
 // Forms:
 //
@@ -69027,7 +69027,7 @@ func VPMOVDB(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPMOVDB: bad operands")
 }
 
-// VPMOVDB_Z: Down Convert Packed Doubleword Values to Byte Values with Truncation.
+// VPMOVDB_Z: Down Convert Packed Doubleword Values to Byte Values with Truncation (Zeroing Masking).
 //
 // Forms:
 //
@@ -69103,7 +69103,7 @@ func VPMOVDW(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPMOVDW: bad operands")
 }
 
-// VPMOVDW_Z: Down Convert Packed Doubleword Values to Word Values with Truncation.
+// VPMOVDW_Z: Down Convert Packed Doubleword Values to Word Values with Truncation (Zeroing Masking).
 //
 // Forms:
 //
@@ -69207,7 +69207,7 @@ func VPMOVQB(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPMOVQB: bad operands")
 }
 
-// VPMOVQB_Z: Down Convert Packed Quadword Values to Byte Values with Truncation.
+// VPMOVQB_Z: Down Convert Packed Quadword Values to Byte Values with Truncation (Zeroing Masking).
 //
 // Forms:
 //
@@ -69283,7 +69283,7 @@ func VPMOVQD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPMOVQD: bad operands")
 }
 
-// VPMOVQD_Z: Down Convert Packed Quadword Values to Doubleword Values with Truncation.
+// VPMOVQD_Z: Down Convert Packed Quadword Values to Doubleword Values with Truncation (Zeroing Masking).
 //
 // Forms:
 //
@@ -69359,7 +69359,7 @@ func VPMOVQW(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPMOVQW: bad operands")
 }
 
-// VPMOVQW_Z: Down Convert Packed Quadword Values to Word Values with Truncation.
+// VPMOVQW_Z: Down Convert Packed Quadword Values to Word Values with Truncation (Zeroing Masking).
 //
 // Forms:
 //
@@ -69435,7 +69435,7 @@ func VPMOVSDB(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPMOVSDB: bad operands")
 }
 
-// VPMOVSDB_Z: Down Convert Packed Doubleword Values to Byte Values with Signed Saturation.
+// VPMOVSDB_Z: Down Convert Packed Doubleword Values to Byte Values with Signed Saturation (Zeroing Masking).
 //
 // Forms:
 //
@@ -69511,7 +69511,7 @@ func VPMOVSDW(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPMOVSDW: bad operands")
 }
 
-// VPMOVSDW_Z: Down Convert Packed Doubleword Values to Word Values with Signed Saturation.
+// VPMOVSDW_Z: Down Convert Packed Doubleword Values to Word Values with Signed Saturation (Zeroing Masking).
 //
 // Forms:
 //
@@ -69587,7 +69587,7 @@ func VPMOVSQB(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPMOVSQB: bad operands")
 }
 
-// VPMOVSQB_Z: Down Convert Packed Quadword Values to Byte Values with Signed Saturation.
+// VPMOVSQB_Z: Down Convert Packed Quadword Values to Byte Values with Signed Saturation (Zeroing Masking).
 //
 // Forms:
 //
@@ -69663,7 +69663,7 @@ func VPMOVSQD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPMOVSQD: bad operands")
 }
 
-// VPMOVSQD_Z: Down Convert Packed Quadword Values to Doubleword Values with Signed Saturation.
+// VPMOVSQD_Z: Down Convert Packed Quadword Values to Doubleword Values with Signed Saturation (Zeroing Masking).
 //
 // Forms:
 //
@@ -69739,7 +69739,7 @@ func VPMOVSQW(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPMOVSQW: bad operands")
 }
 
-// VPMOVSQW_Z: Down Convert Packed Quadword Values to Word Values with Signed Saturation.
+// VPMOVSQW_Z: Down Convert Packed Quadword Values to Word Values with Signed Saturation (Zeroing Masking).
 //
 // Forms:
 //
@@ -69851,7 +69851,7 @@ func VPMOVSXBD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPMOVSXBD: bad operands")
 }
 
-// VPMOVSXBD_Z: Move Packed Byte Integers to Doubleword Integers with Sign Extension.
+// VPMOVSXBD_Z: Move Packed Byte Integers to Doubleword Integers with Sign Extension (Zeroing Masking).
 //
 // Forms:
 //
@@ -69963,7 +69963,7 @@ func VPMOVSXBQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPMOVSXBQ: bad operands")
 }
 
-// VPMOVSXBQ_Z: Move Packed Byte Integers to Quadword Integers with Sign Extension.
+// VPMOVSXBQ_Z: Move Packed Byte Integers to Quadword Integers with Sign Extension (Zeroing Masking).
 //
 // Forms:
 //
@@ -70121,7 +70121,7 @@ func VPMOVSXDQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPMOVSXDQ: bad operands")
 }
 
-// VPMOVSXDQ_Z: Move Packed Doubleword Integers to Quadword Integers with Sign Extension.
+// VPMOVSXDQ_Z: Move Packed Doubleword Integers to Quadword Integers with Sign Extension (Zeroing Masking).
 //
 // Forms:
 //
@@ -70233,7 +70233,7 @@ func VPMOVSXWD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPMOVSXWD: bad operands")
 }
 
-// VPMOVSXWD_Z: Move Packed Word Integers to Doubleword Integers with Sign Extension.
+// VPMOVSXWD_Z: Move Packed Word Integers to Doubleword Integers with Sign Extension (Zeroing Masking).
 //
 // Forms:
 //
@@ -70345,7 +70345,7 @@ func VPMOVSXWQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPMOVSXWQ: bad operands")
 }
 
-// VPMOVSXWQ_Z: Move Packed Word Integers to Quadword Integers with Sign Extension.
+// VPMOVSXWQ_Z: Move Packed Word Integers to Quadword Integers with Sign Extension (Zeroing Masking).
 //
 // Forms:
 //
@@ -70421,7 +70421,7 @@ func VPMOVUSDB(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPMOVUSDB: bad operands")
 }
 
-// VPMOVUSDB_Z: Down Convert Packed Doubleword Values to Byte Values with Unsigned Saturation.
+// VPMOVUSDB_Z: Down Convert Packed Doubleword Values to Byte Values with Unsigned Saturation (Zeroing Masking).
 //
 // Forms:
 //
@@ -70497,7 +70497,7 @@ func VPMOVUSDW(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPMOVUSDW: bad operands")
 }
 
-// VPMOVUSDW_Z: Down Convert Packed Doubleword Values to Word Values with Unsigned Saturation.
+// VPMOVUSDW_Z: Down Convert Packed Doubleword Values to Word Values with Unsigned Saturation (Zeroing Masking).
 //
 // Forms:
 //
@@ -70573,7 +70573,7 @@ func VPMOVUSQB(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPMOVUSQB: bad operands")
 }
 
-// VPMOVUSQB_Z: Down Convert Packed Quadword Values to Byte Values with Unsigned Saturation.
+// VPMOVUSQB_Z: Down Convert Packed Quadword Values to Byte Values with Unsigned Saturation (Zeroing Masking).
 //
 // Forms:
 //
@@ -70649,7 +70649,7 @@ func VPMOVUSQD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPMOVUSQD: bad operands")
 }
 
-// VPMOVUSQD_Z: Down Convert Packed Quadword Values to Doubleword Values with Unsigned Saturation.
+// VPMOVUSQD_Z: Down Convert Packed Quadword Values to Doubleword Values with Unsigned Saturation (Zeroing Masking).
 //
 // Forms:
 //
@@ -70725,7 +70725,7 @@ func VPMOVUSQW(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPMOVUSQW: bad operands")
 }
 
-// VPMOVUSQW_Z: Down Convert Packed Quadword Values to Word Values with Unsigned Saturation.
+// VPMOVUSQW_Z: Down Convert Packed Quadword Values to Word Values with Unsigned Saturation (Zeroing Masking).
 //
 // Forms:
 //
@@ -70837,7 +70837,7 @@ func VPMOVZXBD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPMOVZXBD: bad operands")
 }
 
-// VPMOVZXBD_Z: Move Packed Byte Integers to Doubleword Integers with Zero Extension.
+// VPMOVZXBD_Z: Move Packed Byte Integers to Doubleword Integers with Zero Extension (Zeroing Masking).
 //
 // Forms:
 //
@@ -70949,7 +70949,7 @@ func VPMOVZXBQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPMOVZXBQ: bad operands")
 }
 
-// VPMOVZXBQ_Z: Move Packed Byte Integers to Quadword Integers with Zero Extension.
+// VPMOVZXBQ_Z: Move Packed Byte Integers to Quadword Integers with Zero Extension (Zeroing Masking).
 //
 // Forms:
 //
@@ -71107,7 +71107,7 @@ func VPMOVZXDQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPMOVZXDQ: bad operands")
 }
 
-// VPMOVZXDQ_Z: Move Packed Doubleword Integers to Quadword Integers with Zero Extension.
+// VPMOVZXDQ_Z: Move Packed Doubleword Integers to Quadword Integers with Zero Extension (Zeroing Masking).
 //
 // Forms:
 //
@@ -71219,7 +71219,7 @@ func VPMOVZXWD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPMOVZXWD: bad operands")
 }
 
-// VPMOVZXWD_Z: Move Packed Word Integers to Doubleword Integers with Zero Extension.
+// VPMOVZXWD_Z: Move Packed Word Integers to Doubleword Integers with Zero Extension (Zeroing Masking).
 //
 // Forms:
 //
@@ -71331,7 +71331,7 @@ func VPMOVZXWQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPMOVZXWQ: bad operands")
 }
 
-// VPMOVZXWQ_Z: Move Packed Word Integers to Quadword Integers with Zero Extension.
+// VPMOVZXWQ_Z: Move Packed Word Integers to Quadword Integers with Zero Extension (Zeroing Masking).
 //
 // Forms:
 //
@@ -71443,7 +71443,7 @@ func VPMULDQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPMULDQ: bad operands")
 }
 
-// VPMULDQ_BCST: Multiply Packed Signed Doubleword Integers and Store Quadword Result.
+// VPMULDQ_BCST: Multiply Packed Signed Doubleword Integers and Store Quadword Result (Broadcast).
 //
 // Forms:
 //
@@ -71473,7 +71473,7 @@ func VPMULDQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPMULDQ_BCST: bad operands")
 }
 
-// VPMULDQ_BCST_Z: Multiply Packed Signed Doubleword Integers and Store Quadword Result.
+// VPMULDQ_BCST_Z: Multiply Packed Signed Doubleword Integers and Store Quadword Result (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -71493,7 +71493,7 @@ func VPMULDQ_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPMULDQ_BCST_Z: bad operands")
 }
 
-// VPMULDQ_Z: Multiply Packed Signed Doubleword Integers and Store Quadword Result.
+// VPMULDQ_Z: Multiply Packed Signed Doubleword Integers and Store Quadword Result (Zeroing Masking).
 //
 // Forms:
 //
@@ -71743,7 +71743,7 @@ func VPMULLD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPMULLD: bad operands")
 }
 
-// VPMULLD_BCST: Multiply Packed Signed Doubleword Integers and Store Low Result.
+// VPMULLD_BCST: Multiply Packed Signed Doubleword Integers and Store Low Result (Broadcast).
 //
 // Forms:
 //
@@ -71773,7 +71773,7 @@ func VPMULLD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPMULLD_BCST: bad operands")
 }
 
-// VPMULLD_BCST_Z: Multiply Packed Signed Doubleword Integers and Store Low Result.
+// VPMULLD_BCST_Z: Multiply Packed Signed Doubleword Integers and Store Low Result (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -71793,7 +71793,7 @@ func VPMULLD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPMULLD_BCST_Z: bad operands")
 }
 
-// VPMULLD_Z: Multiply Packed Signed Doubleword Integers and Store Low Result.
+// VPMULLD_Z: Multiply Packed Signed Doubleword Integers and Store Low Result (Zeroing Masking).
 //
 // Forms:
 //
@@ -71951,7 +71951,7 @@ func VPMULUDQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPMULUDQ: bad operands")
 }
 
-// VPMULUDQ_BCST: Multiply Packed Unsigned Doubleword Integers.
+// VPMULUDQ_BCST: Multiply Packed Unsigned Doubleword Integers (Broadcast).
 //
 // Forms:
 //
@@ -71981,7 +71981,7 @@ func VPMULUDQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPMULUDQ_BCST: bad operands")
 }
 
-// VPMULUDQ_BCST_Z: Multiply Packed Unsigned Doubleword Integers.
+// VPMULUDQ_BCST_Z: Multiply Packed Unsigned Doubleword Integers (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -72001,7 +72001,7 @@ func VPMULUDQ_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPMULUDQ_BCST_Z: bad operands")
 }
 
-// VPMULUDQ_Z: Multiply Packed Unsigned Doubleword Integers.
+// VPMULUDQ_Z: Multiply Packed Unsigned Doubleword Integers (Zeroing Masking).
 //
 // Forms:
 //
@@ -72123,7 +72123,7 @@ func VPORD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPORD: bad operands")
 }
 
-// VPORD_BCST: Bitwise Logical OR of Packed Doubleword Integers.
+// VPORD_BCST: Bitwise Logical OR of Packed Doubleword Integers (Broadcast).
 //
 // Forms:
 //
@@ -72153,7 +72153,7 @@ func VPORD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPORD_BCST: bad operands")
 }
 
-// VPORD_BCST_Z: Bitwise Logical OR of Packed Doubleword Integers.
+// VPORD_BCST_Z: Bitwise Logical OR of Packed Doubleword Integers (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -72173,7 +72173,7 @@ func VPORD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPORD_BCST_Z: bad operands")
 }
 
-// VPORD_Z: Bitwise Logical OR of Packed Doubleword Integers.
+// VPORD_Z: Bitwise Logical OR of Packed Doubleword Integers (Zeroing Masking).
 //
 // Forms:
 //
@@ -72249,7 +72249,7 @@ func VPORQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPORQ: bad operands")
 }
 
-// VPORQ_BCST: Bitwise Logical OR of Packed Quadword Integers.
+// VPORQ_BCST: Bitwise Logical OR of Packed Quadword Integers (Broadcast).
 //
 // Forms:
 //
@@ -72279,7 +72279,7 @@ func VPORQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPORQ_BCST: bad operands")
 }
 
-// VPORQ_BCST_Z: Bitwise Logical OR of Packed Quadword Integers.
+// VPORQ_BCST_Z: Bitwise Logical OR of Packed Quadword Integers (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -72299,7 +72299,7 @@ func VPORQ_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPORQ_BCST_Z: bad operands")
 }
 
-// VPORQ_Z: Bitwise Logical OR of Packed Quadword Integers.
+// VPORQ_Z: Bitwise Logical OR of Packed Quadword Integers (Zeroing Masking).
 //
 // Forms:
 //
@@ -72375,7 +72375,7 @@ func VPROLD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPROLD: bad operands")
 }
 
-// VPROLD_BCST: Rotate Packed Doubleword Left.
+// VPROLD_BCST: Rotate Packed Doubleword Left (Broadcast).
 //
 // Forms:
 //
@@ -72405,7 +72405,7 @@ func VPROLD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPROLD_BCST: bad operands")
 }
 
-// VPROLD_BCST_Z: Rotate Packed Doubleword Left.
+// VPROLD_BCST_Z: Rotate Packed Doubleword Left (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -72425,7 +72425,7 @@ func VPROLD_BCST_Z(i, m, k, z operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPROLD_BCST_Z: bad operands")
 }
 
-// VPROLD_Z: Rotate Packed Doubleword Left.
+// VPROLD_Z: Rotate Packed Doubleword Left (Zeroing Masking).
 //
 // Forms:
 //
@@ -72501,7 +72501,7 @@ func VPROLQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPROLQ: bad operands")
 }
 
-// VPROLQ_BCST: Rotate Packed Quadword Left.
+// VPROLQ_BCST: Rotate Packed Quadword Left (Broadcast).
 //
 // Forms:
 //
@@ -72531,7 +72531,7 @@ func VPROLQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPROLQ_BCST: bad operands")
 }
 
-// VPROLQ_BCST_Z: Rotate Packed Quadword Left.
+// VPROLQ_BCST_Z: Rotate Packed Quadword Left (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -72551,7 +72551,7 @@ func VPROLQ_BCST_Z(i, m, k, z operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPROLQ_BCST_Z: bad operands")
 }
 
-// VPROLQ_Z: Rotate Packed Quadword Left.
+// VPROLQ_Z: Rotate Packed Quadword Left (Zeroing Masking).
 //
 // Forms:
 //
@@ -72627,7 +72627,7 @@ func VPROLVD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPROLVD: bad operands")
 }
 
-// VPROLVD_BCST: Variable Rotate Packed Doubleword Left.
+// VPROLVD_BCST: Variable Rotate Packed Doubleword Left (Broadcast).
 //
 // Forms:
 //
@@ -72657,7 +72657,7 @@ func VPROLVD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPROLVD_BCST: bad operands")
 }
 
-// VPROLVD_BCST_Z: Variable Rotate Packed Doubleword Left.
+// VPROLVD_BCST_Z: Variable Rotate Packed Doubleword Left (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -72677,7 +72677,7 @@ func VPROLVD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPROLVD_BCST_Z: bad operands")
 }
 
-// VPROLVD_Z: Variable Rotate Packed Doubleword Left.
+// VPROLVD_Z: Variable Rotate Packed Doubleword Left (Zeroing Masking).
 //
 // Forms:
 //
@@ -72753,7 +72753,7 @@ func VPROLVQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPROLVQ: bad operands")
 }
 
-// VPROLVQ_BCST: Variable Rotate Packed Quadword Left.
+// VPROLVQ_BCST: Variable Rotate Packed Quadword Left (Broadcast).
 //
 // Forms:
 //
@@ -72783,7 +72783,7 @@ func VPROLVQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPROLVQ_BCST: bad operands")
 }
 
-// VPROLVQ_BCST_Z: Variable Rotate Packed Quadword Left.
+// VPROLVQ_BCST_Z: Variable Rotate Packed Quadword Left (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -72803,7 +72803,7 @@ func VPROLVQ_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPROLVQ_BCST_Z: bad operands")
 }
 
-// VPROLVQ_Z: Variable Rotate Packed Quadword Left.
+// VPROLVQ_Z: Variable Rotate Packed Quadword Left (Zeroing Masking).
 //
 // Forms:
 //
@@ -72879,7 +72879,7 @@ func VPRORD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPRORD: bad operands")
 }
 
-// VPRORD_BCST: Rotate Packed Doubleword Right.
+// VPRORD_BCST: Rotate Packed Doubleword Right (Broadcast).
 //
 // Forms:
 //
@@ -72909,7 +72909,7 @@ func VPRORD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPRORD_BCST: bad operands")
 }
 
-// VPRORD_BCST_Z: Rotate Packed Doubleword Right.
+// VPRORD_BCST_Z: Rotate Packed Doubleword Right (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -72929,7 +72929,7 @@ func VPRORD_BCST_Z(i, m, k, z operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPRORD_BCST_Z: bad operands")
 }
 
-// VPRORD_Z: Rotate Packed Doubleword Right.
+// VPRORD_Z: Rotate Packed Doubleword Right (Zeroing Masking).
 //
 // Forms:
 //
@@ -73005,7 +73005,7 @@ func VPRORQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPRORQ: bad operands")
 }
 
-// VPRORQ_BCST: Rotate Packed Quadword Right.
+// VPRORQ_BCST: Rotate Packed Quadword Right (Broadcast).
 //
 // Forms:
 //
@@ -73035,7 +73035,7 @@ func VPRORQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPRORQ_BCST: bad operands")
 }
 
-// VPRORQ_BCST_Z: Rotate Packed Quadword Right.
+// VPRORQ_BCST_Z: Rotate Packed Quadword Right (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -73055,7 +73055,7 @@ func VPRORQ_BCST_Z(i, m, k, z operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPRORQ_BCST_Z: bad operands")
 }
 
-// VPRORQ_Z: Rotate Packed Quadword Right.
+// VPRORQ_Z: Rotate Packed Quadword Right (Zeroing Masking).
 //
 // Forms:
 //
@@ -73131,7 +73131,7 @@ func VPRORVD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPRORVD: bad operands")
 }
 
-// VPRORVD_BCST: Variable Rotate Packed Doubleword Right.
+// VPRORVD_BCST: Variable Rotate Packed Doubleword Right (Broadcast).
 //
 // Forms:
 //
@@ -73161,7 +73161,7 @@ func VPRORVD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPRORVD_BCST: bad operands")
 }
 
-// VPRORVD_BCST_Z: Variable Rotate Packed Doubleword Right.
+// VPRORVD_BCST_Z: Variable Rotate Packed Doubleword Right (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -73181,7 +73181,7 @@ func VPRORVD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPRORVD_BCST_Z: bad operands")
 }
 
-// VPRORVD_Z: Variable Rotate Packed Doubleword Right.
+// VPRORVD_Z: Variable Rotate Packed Doubleword Right (Zeroing Masking).
 //
 // Forms:
 //
@@ -73257,7 +73257,7 @@ func VPRORVQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPRORVQ: bad operands")
 }
 
-// VPRORVQ_BCST: Variable Rotate Packed Quadword Right.
+// VPRORVQ_BCST: Variable Rotate Packed Quadword Right (Broadcast).
 //
 // Forms:
 //
@@ -73287,7 +73287,7 @@ func VPRORVQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPRORVQ_BCST: bad operands")
 }
 
-// VPRORVQ_BCST_Z: Variable Rotate Packed Quadword Right.
+// VPRORVQ_BCST_Z: Variable Rotate Packed Quadword Right (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -73307,7 +73307,7 @@ func VPRORVQ_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPRORVQ_BCST_Z: bad operands")
 }
 
-// VPRORVQ_Z: Variable Rotate Packed Quadword Right.
+// VPRORVQ_Z: Variable Rotate Packed Quadword Right (Zeroing Masking).
 //
 // Forms:
 //
@@ -73589,7 +73589,7 @@ func VPSHUFD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPSHUFD: bad operands")
 }
 
-// VPSHUFD_BCST: Shuffle Packed Doublewords.
+// VPSHUFD_BCST: Shuffle Packed Doublewords (Broadcast).
 //
 // Forms:
 //
@@ -73619,7 +73619,7 @@ func VPSHUFD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPSHUFD_BCST: bad operands")
 }
 
-// VPSHUFD_BCST_Z: Shuffle Packed Doublewords.
+// VPSHUFD_BCST_Z: Shuffle Packed Doublewords (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -73639,7 +73639,7 @@ func VPSHUFD_BCST_Z(i, m, k, z operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPSHUFD_BCST_Z: bad operands")
 }
 
-// VPSHUFD_Z: Shuffle Packed Doublewords.
+// VPSHUFD_Z: Shuffle Packed Doublewords (Zeroing Masking).
 //
 // Forms:
 //
@@ -74063,7 +74063,7 @@ func VPSLLDQ(i, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPSLLDQ: bad operands")
 }
 
-// VPSLLD_BCST: Shift Packed Doubleword Data Left Logical.
+// VPSLLD_BCST: Shift Packed Doubleword Data Left Logical (Broadcast).
 //
 // Forms:
 //
@@ -74093,7 +74093,7 @@ func VPSLLD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPSLLD_BCST: bad operands")
 }
 
-// VPSLLD_BCST_Z: Shift Packed Doubleword Data Left Logical.
+// VPSLLD_BCST_Z: Shift Packed Doubleword Data Left Logical (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -74113,7 +74113,7 @@ func VPSLLD_BCST_Z(i, m, k, z operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPSLLD_BCST_Z: bad operands")
 }
 
-// VPSLLD_Z: Shift Packed Doubleword Data Left Logical.
+// VPSLLD_Z: Shift Packed Doubleword Data Left Logical (Zeroing Masking).
 //
 // Forms:
 //
@@ -74299,7 +74299,7 @@ func VPSLLQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPSLLQ: bad operands")
 }
 
-// VPSLLQ_BCST: Shift Packed Quadword Data Left Logical.
+// VPSLLQ_BCST: Shift Packed Quadword Data Left Logical (Broadcast).
 //
 // Forms:
 //
@@ -74329,7 +74329,7 @@ func VPSLLQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPSLLQ_BCST: bad operands")
 }
 
-// VPSLLQ_BCST_Z: Shift Packed Quadword Data Left Logical.
+// VPSLLQ_BCST_Z: Shift Packed Quadword Data Left Logical (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -74349,7 +74349,7 @@ func VPSLLQ_BCST_Z(i, m, k, z operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPSLLQ_BCST_Z: bad operands")
 }
 
-// VPSLLQ_Z: Shift Packed Quadword Data Left Logical.
+// VPSLLQ_Z: Shift Packed Quadword Data Left Logical (Zeroing Masking).
 //
 // Forms:
 //
@@ -74481,7 +74481,7 @@ func VPSLLVD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPSLLVD: bad operands")
 }
 
-// VPSLLVD_BCST: Variable Shift Packed Doubleword Data Left Logical.
+// VPSLLVD_BCST: Variable Shift Packed Doubleword Data Left Logical (Broadcast).
 //
 // Forms:
 //
@@ -74511,7 +74511,7 @@ func VPSLLVD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPSLLVD_BCST: bad operands")
 }
 
-// VPSLLVD_BCST_Z: Variable Shift Packed Doubleword Data Left Logical.
+// VPSLLVD_BCST_Z: Variable Shift Packed Doubleword Data Left Logical (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -74531,7 +74531,7 @@ func VPSLLVD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPSLLVD_BCST_Z: bad operands")
 }
 
-// VPSLLVD_Z: Variable Shift Packed Doubleword Data Left Logical.
+// VPSLLVD_Z: Variable Shift Packed Doubleword Data Left Logical (Zeroing Masking).
 //
 // Forms:
 //
@@ -74643,7 +74643,7 @@ func VPSLLVQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPSLLVQ: bad operands")
 }
 
-// VPSLLVQ_BCST: Variable Shift Packed Quadword Data Left Logical.
+// VPSLLVQ_BCST: Variable Shift Packed Quadword Data Left Logical (Broadcast).
 //
 // Forms:
 //
@@ -74673,7 +74673,7 @@ func VPSLLVQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPSLLVQ_BCST: bad operands")
 }
 
-// VPSLLVQ_BCST_Z: Variable Shift Packed Quadword Data Left Logical.
+// VPSLLVQ_BCST_Z: Variable Shift Packed Quadword Data Left Logical (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -74693,7 +74693,7 @@ func VPSLLVQ_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPSLLVQ_BCST_Z: bad operands")
 }
 
-// VPSLLVQ_Z: Variable Shift Packed Quadword Data Left Logical.
+// VPSLLVQ_Z: Variable Shift Packed Quadword Data Left Logical (Zeroing Masking).
 //
 // Forms:
 //
@@ -74923,7 +74923,7 @@ func VPSRAD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPSRAD: bad operands")
 }
 
-// VPSRAD_BCST: Shift Packed Doubleword Data Right Arithmetic.
+// VPSRAD_BCST: Shift Packed Doubleword Data Right Arithmetic (Broadcast).
 //
 // Forms:
 //
@@ -74953,7 +74953,7 @@ func VPSRAD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPSRAD_BCST: bad operands")
 }
 
-// VPSRAD_BCST_Z: Shift Packed Doubleword Data Right Arithmetic.
+// VPSRAD_BCST_Z: Shift Packed Doubleword Data Right Arithmetic (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -74973,7 +74973,7 @@ func VPSRAD_BCST_Z(i, m, k, z operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPSRAD_BCST_Z: bad operands")
 }
 
-// VPSRAD_Z: Shift Packed Doubleword Data Right Arithmetic.
+// VPSRAD_Z: Shift Packed Doubleword Data Right Arithmetic (Zeroing Masking).
 //
 // Forms:
 //
@@ -75105,7 +75105,7 @@ func VPSRAQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPSRAQ: bad operands")
 }
 
-// VPSRAQ_BCST: Shift Packed Quadword Data Right Arithmetic.
+// VPSRAQ_BCST: Shift Packed Quadword Data Right Arithmetic (Broadcast).
 //
 // Forms:
 //
@@ -75135,7 +75135,7 @@ func VPSRAQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPSRAQ_BCST: bad operands")
 }
 
-// VPSRAQ_BCST_Z: Shift Packed Quadword Data Right Arithmetic.
+// VPSRAQ_BCST_Z: Shift Packed Quadword Data Right Arithmetic (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -75155,7 +75155,7 @@ func VPSRAQ_BCST_Z(i, m, k, z operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPSRAQ_BCST_Z: bad operands")
 }
 
-// VPSRAQ_Z: Shift Packed Quadword Data Right Arithmetic.
+// VPSRAQ_Z: Shift Packed Quadword Data Right Arithmetic (Zeroing Masking).
 //
 // Forms:
 //
@@ -75287,7 +75287,7 @@ func VPSRAVD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPSRAVD: bad operands")
 }
 
-// VPSRAVD_BCST: Variable Shift Packed Doubleword Data Right Arithmetic.
+// VPSRAVD_BCST: Variable Shift Packed Doubleword Data Right Arithmetic (Broadcast).
 //
 // Forms:
 //
@@ -75317,7 +75317,7 @@ func VPSRAVD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPSRAVD_BCST: bad operands")
 }
 
-// VPSRAVD_BCST_Z: Variable Shift Packed Doubleword Data Right Arithmetic.
+// VPSRAVD_BCST_Z: Variable Shift Packed Doubleword Data Right Arithmetic (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -75337,7 +75337,7 @@ func VPSRAVD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPSRAVD_BCST_Z: bad operands")
 }
 
-// VPSRAVD_Z: Variable Shift Packed Doubleword Data Right Arithmetic.
+// VPSRAVD_Z: Variable Shift Packed Doubleword Data Right Arithmetic (Zeroing Masking).
 //
 // Forms:
 //
@@ -75413,7 +75413,7 @@ func VPSRAVQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPSRAVQ: bad operands")
 }
 
-// VPSRAVQ_BCST: Variable Shift Packed Quadword Data Right Arithmetic.
+// VPSRAVQ_BCST: Variable Shift Packed Quadword Data Right Arithmetic (Broadcast).
 //
 // Forms:
 //
@@ -75443,7 +75443,7 @@ func VPSRAVQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPSRAVQ_BCST: bad operands")
 }
 
-// VPSRAVQ_BCST_Z: Variable Shift Packed Quadword Data Right Arithmetic.
+// VPSRAVQ_BCST_Z: Variable Shift Packed Quadword Data Right Arithmetic (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -75463,7 +75463,7 @@ func VPSRAVQ_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPSRAVQ_BCST_Z: bad operands")
 }
 
-// VPSRAVQ_Z: Variable Shift Packed Quadword Data Right Arithmetic.
+// VPSRAVQ_Z: Variable Shift Packed Quadword Data Right Arithmetic (Zeroing Masking).
 //
 // Forms:
 //
@@ -75721,7 +75721,7 @@ func VPSRLDQ(i, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPSRLDQ: bad operands")
 }
 
-// VPSRLD_BCST: Shift Packed Doubleword Data Right Logical.
+// VPSRLD_BCST: Shift Packed Doubleword Data Right Logical (Broadcast).
 //
 // Forms:
 //
@@ -75751,7 +75751,7 @@ func VPSRLD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPSRLD_BCST: bad operands")
 }
 
-// VPSRLD_BCST_Z: Shift Packed Doubleword Data Right Logical.
+// VPSRLD_BCST_Z: Shift Packed Doubleword Data Right Logical (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -75771,7 +75771,7 @@ func VPSRLD_BCST_Z(i, m, k, z operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPSRLD_BCST_Z: bad operands")
 }
 
-// VPSRLD_Z: Shift Packed Doubleword Data Right Logical.
+// VPSRLD_Z: Shift Packed Doubleword Data Right Logical (Zeroing Masking).
 //
 // Forms:
 //
@@ -75957,7 +75957,7 @@ func VPSRLQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPSRLQ: bad operands")
 }
 
-// VPSRLQ_BCST: Shift Packed Quadword Data Right Logical.
+// VPSRLQ_BCST: Shift Packed Quadword Data Right Logical (Broadcast).
 //
 // Forms:
 //
@@ -75987,7 +75987,7 @@ func VPSRLQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPSRLQ_BCST: bad operands")
 }
 
-// VPSRLQ_BCST_Z: Shift Packed Quadword Data Right Logical.
+// VPSRLQ_BCST_Z: Shift Packed Quadword Data Right Logical (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -76007,7 +76007,7 @@ func VPSRLQ_BCST_Z(i, m, k, z operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPSRLQ_BCST_Z: bad operands")
 }
 
-// VPSRLQ_Z: Shift Packed Quadword Data Right Logical.
+// VPSRLQ_Z: Shift Packed Quadword Data Right Logical (Zeroing Masking).
 //
 // Forms:
 //
@@ -76139,7 +76139,7 @@ func VPSRLVD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPSRLVD: bad operands")
 }
 
-// VPSRLVD_BCST: Variable Shift Packed Doubleword Data Right Logical.
+// VPSRLVD_BCST: Variable Shift Packed Doubleword Data Right Logical (Broadcast).
 //
 // Forms:
 //
@@ -76169,7 +76169,7 @@ func VPSRLVD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPSRLVD_BCST: bad operands")
 }
 
-// VPSRLVD_BCST_Z: Variable Shift Packed Doubleword Data Right Logical.
+// VPSRLVD_BCST_Z: Variable Shift Packed Doubleword Data Right Logical (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -76189,7 +76189,7 @@ func VPSRLVD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPSRLVD_BCST_Z: bad operands")
 }
 
-// VPSRLVD_Z: Variable Shift Packed Doubleword Data Right Logical.
+// VPSRLVD_Z: Variable Shift Packed Doubleword Data Right Logical (Zeroing Masking).
 //
 // Forms:
 //
@@ -76301,7 +76301,7 @@ func VPSRLVQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPSRLVQ: bad operands")
 }
 
-// VPSRLVQ_BCST: Variable Shift Packed Quadword Data Right Logical.
+// VPSRLVQ_BCST: Variable Shift Packed Quadword Data Right Logical (Broadcast).
 //
 // Forms:
 //
@@ -76331,7 +76331,7 @@ func VPSRLVQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPSRLVQ_BCST: bad operands")
 }
 
-// VPSRLVQ_BCST_Z: Variable Shift Packed Quadword Data Right Logical.
+// VPSRLVQ_BCST_Z: Variable Shift Packed Quadword Data Right Logical (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -76351,7 +76351,7 @@ func VPSRLVQ_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPSRLVQ_BCST_Z: bad operands")
 }
 
-// VPSRLVQ_Z: Variable Shift Packed Quadword Data Right Logical.
+// VPSRLVQ_Z: Variable Shift Packed Quadword Data Right Logical (Zeroing Masking).
 //
 // Forms:
 //
@@ -76579,7 +76579,7 @@ func VPSUBD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPSUBD: bad operands")
 }
 
-// VPSUBD_BCST: Subtract Packed Doubleword Integers.
+// VPSUBD_BCST: Subtract Packed Doubleword Integers (Broadcast).
 //
 // Forms:
 //
@@ -76609,7 +76609,7 @@ func VPSUBD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPSUBD_BCST: bad operands")
 }
 
-// VPSUBD_BCST_Z: Subtract Packed Doubleword Integers.
+// VPSUBD_BCST_Z: Subtract Packed Doubleword Integers (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -76629,7 +76629,7 @@ func VPSUBD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPSUBD_BCST_Z: bad operands")
 }
 
-// VPSUBD_Z: Subtract Packed Doubleword Integers.
+// VPSUBD_Z: Subtract Packed Doubleword Integers (Zeroing Masking).
 //
 // Forms:
 //
@@ -76746,7 +76746,7 @@ func VPSUBQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPSUBQ: bad operands")
 }
 
-// VPSUBQ_BCST: Subtract Packed Quadword Integers.
+// VPSUBQ_BCST: Subtract Packed Quadword Integers (Broadcast).
 //
 // Forms:
 //
@@ -76776,7 +76776,7 @@ func VPSUBQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPSUBQ_BCST: bad operands")
 }
 
-// VPSUBQ_BCST_Z: Subtract Packed Quadword Integers.
+// VPSUBQ_BCST_Z: Subtract Packed Quadword Integers (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -76796,7 +76796,7 @@ func VPSUBQ_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPSUBQ_BCST_Z: bad operands")
 }
 
-// VPSUBQ_Z: Subtract Packed Quadword Integers.
+// VPSUBQ_Z: Subtract Packed Quadword Integers (Zeroing Masking).
 //
 // Forms:
 //
@@ -77113,7 +77113,7 @@ func VPTERNLOGD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPTERNLOGD: bad operands")
 }
 
-// VPTERNLOGD_BCST: Bitwise Ternary Logical Operation on Doubleword Values.
+// VPTERNLOGD_BCST: Bitwise Ternary Logical Operation on Doubleword Values (Broadcast).
 //
 // Forms:
 //
@@ -77143,7 +77143,7 @@ func VPTERNLOGD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPTERNLOGD_BCST: bad operands")
 }
 
-// VPTERNLOGD_BCST_Z: Bitwise Ternary Logical Operation on Doubleword Values.
+// VPTERNLOGD_BCST_Z: Bitwise Ternary Logical Operation on Doubleword Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -77163,7 +77163,7 @@ func VPTERNLOGD_BCST_Z(i, m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPTERNLOGD_BCST_Z: bad operands")
 }
 
-// VPTERNLOGD_Z: Bitwise Ternary Logical Operation on Doubleword Values.
+// VPTERNLOGD_Z: Bitwise Ternary Logical Operation on Doubleword Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -77239,7 +77239,7 @@ func VPTERNLOGQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPTERNLOGQ: bad operands")
 }
 
-// VPTERNLOGQ_BCST: Bitwise Ternary Logical Operation on Quadword Values.
+// VPTERNLOGQ_BCST: Bitwise Ternary Logical Operation on Quadword Values (Broadcast).
 //
 // Forms:
 //
@@ -77269,7 +77269,7 @@ func VPTERNLOGQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPTERNLOGQ_BCST: bad operands")
 }
 
-// VPTERNLOGQ_BCST_Z: Bitwise Ternary Logical Operation on Quadword Values.
+// VPTERNLOGQ_BCST_Z: Bitwise Ternary Logical Operation on Quadword Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -77289,7 +77289,7 @@ func VPTERNLOGQ_BCST_Z(i, m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPTERNLOGQ_BCST_Z: bad operands")
 }
 
-// VPTERNLOGQ_Z: Bitwise Ternary Logical Operation on Quadword Values.
+// VPTERNLOGQ_Z: Bitwise Ternary Logical Operation on Quadword Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -77411,7 +77411,7 @@ func VPTESTMD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPTESTMD: bad operands")
 }
 
-// VPTESTMD_BCST: Logical AND of Packed Doubleword Integer Values and Set Mask.
+// VPTESTMD_BCST: Logical AND of Packed Doubleword Integer Values and Set Mask (Broadcast).
 //
 // Forms:
 //
@@ -77487,7 +77487,7 @@ func VPTESTMQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPTESTMQ: bad operands")
 }
 
-// VPTESTMQ_BCST: Logical AND of Packed Quadword Integer Values and Set Mask.
+// VPTESTMQ_BCST: Logical AND of Packed Quadword Integer Values and Set Mask (Broadcast).
 //
 // Forms:
 //
@@ -77563,7 +77563,7 @@ func VPTESTNMD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPTESTNMD: bad operands")
 }
 
-// VPTESTNMD_BCST: Logical NAND of Packed Doubleword Integer Values and Set Mask.
+// VPTESTNMD_BCST: Logical NAND of Packed Doubleword Integer Values and Set Mask (Broadcast).
 //
 // Forms:
 //
@@ -77639,7 +77639,7 @@ func VPTESTNMQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPTESTNMQ: bad operands")
 }
 
-// VPTESTNMQ_BCST: Logical NAND of Packed Quadword Integer Values and Set Mask.
+// VPTESTNMQ_BCST: Logical NAND of Packed Quadword Integer Values and Set Mask (Broadcast).
 //
 // Forms:
 //
@@ -77797,7 +77797,7 @@ func VPUNPCKHDQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPUNPCKHDQ: bad operands")
 }
 
-// VPUNPCKHDQ_BCST: Unpack and Interleave High-Order Doublewords into Quadwords.
+// VPUNPCKHDQ_BCST: Unpack and Interleave High-Order Doublewords into Quadwords (Broadcast).
 //
 // Forms:
 //
@@ -77827,7 +77827,7 @@ func VPUNPCKHDQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPUNPCKHDQ_BCST: bad operands")
 }
 
-// VPUNPCKHDQ_BCST_Z: Unpack and Interleave High-Order Doublewords into Quadwords.
+// VPUNPCKHDQ_BCST_Z: Unpack and Interleave High-Order Doublewords into Quadwords (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -77847,7 +77847,7 @@ func VPUNPCKHDQ_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPUNPCKHDQ_BCST_Z: bad operands")
 }
 
-// VPUNPCKHDQ_Z: Unpack and Interleave High-Order Doublewords into Quadwords.
+// VPUNPCKHDQ_Z: Unpack and Interleave High-Order Doublewords into Quadwords (Zeroing Masking).
 //
 // Forms:
 //
@@ -77959,7 +77959,7 @@ func VPUNPCKHQDQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPUNPCKHQDQ: bad operands")
 }
 
-// VPUNPCKHQDQ_BCST: Unpack and Interleave High-Order Quadwords into Double Quadwords.
+// VPUNPCKHQDQ_BCST: Unpack and Interleave High-Order Quadwords into Double Quadwords (Broadcast).
 //
 // Forms:
 //
@@ -77989,7 +77989,7 @@ func VPUNPCKHQDQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPUNPCKHQDQ_BCST: bad operands")
 }
 
-// VPUNPCKHQDQ_BCST_Z: Unpack and Interleave High-Order Quadwords into Double Quadwords.
+// VPUNPCKHQDQ_BCST_Z: Unpack and Interleave High-Order Quadwords into Double Quadwords (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -78009,7 +78009,7 @@ func VPUNPCKHQDQ_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPUNPCKHQDQ_BCST_Z: bad operands")
 }
 
-// VPUNPCKHQDQ_Z: Unpack and Interleave High-Order Quadwords into Double Quadwords.
+// VPUNPCKHQDQ_Z: Unpack and Interleave High-Order Quadwords into Double Quadwords (Zeroing Masking).
 //
 // Forms:
 //
@@ -78213,7 +78213,7 @@ func VPUNPCKLDQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPUNPCKLDQ: bad operands")
 }
 
-// VPUNPCKLDQ_BCST: Unpack and Interleave Low-Order Doublewords into Quadwords.
+// VPUNPCKLDQ_BCST: Unpack and Interleave Low-Order Doublewords into Quadwords (Broadcast).
 //
 // Forms:
 //
@@ -78243,7 +78243,7 @@ func VPUNPCKLDQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPUNPCKLDQ_BCST: bad operands")
 }
 
-// VPUNPCKLDQ_BCST_Z: Unpack and Interleave Low-Order Doublewords into Quadwords.
+// VPUNPCKLDQ_BCST_Z: Unpack and Interleave Low-Order Doublewords into Quadwords (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -78263,7 +78263,7 @@ func VPUNPCKLDQ_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPUNPCKLDQ_BCST_Z: bad operands")
 }
 
-// VPUNPCKLDQ_Z: Unpack and Interleave Low-Order Doublewords into Quadwords.
+// VPUNPCKLDQ_Z: Unpack and Interleave Low-Order Doublewords into Quadwords (Zeroing Masking).
 //
 // Forms:
 //
@@ -78375,7 +78375,7 @@ func VPUNPCKLQDQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPUNPCKLQDQ: bad operands")
 }
 
-// VPUNPCKLQDQ_BCST: Unpack and Interleave Low-Order Quadwords into Double Quadwords.
+// VPUNPCKLQDQ_BCST: Unpack and Interleave Low-Order Quadwords into Double Quadwords (Broadcast).
 //
 // Forms:
 //
@@ -78405,7 +78405,7 @@ func VPUNPCKLQDQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPUNPCKLQDQ_BCST: bad operands")
 }
 
-// VPUNPCKLQDQ_BCST_Z: Unpack and Interleave Low-Order Quadwords into Double Quadwords.
+// VPUNPCKLQDQ_BCST_Z: Unpack and Interleave Low-Order Quadwords into Double Quadwords (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -78425,7 +78425,7 @@ func VPUNPCKLQDQ_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPUNPCKLQDQ_BCST_Z: bad operands")
 }
 
-// VPUNPCKLQDQ_Z: Unpack and Interleave Low-Order Quadwords into Double Quadwords.
+// VPUNPCKLQDQ_Z: Unpack and Interleave Low-Order Quadwords into Double Quadwords (Zeroing Masking).
 //
 // Forms:
 //
@@ -78595,7 +78595,7 @@ func VPXORD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPXORD: bad operands")
 }
 
-// VPXORD_BCST: Bitwise Logical Exclusive OR of Packed Doubleword Integers.
+// VPXORD_BCST: Bitwise Logical Exclusive OR of Packed Doubleword Integers (Broadcast).
 //
 // Forms:
 //
@@ -78625,7 +78625,7 @@ func VPXORD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPXORD_BCST: bad operands")
 }
 
-// VPXORD_BCST_Z: Bitwise Logical Exclusive OR of Packed Doubleword Integers.
+// VPXORD_BCST_Z: Bitwise Logical Exclusive OR of Packed Doubleword Integers (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -78645,7 +78645,7 @@ func VPXORD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPXORD_BCST_Z: bad operands")
 }
 
-// VPXORD_Z: Bitwise Logical Exclusive OR of Packed Doubleword Integers.
+// VPXORD_Z: Bitwise Logical Exclusive OR of Packed Doubleword Integers (Zeroing Masking).
 //
 // Forms:
 //
@@ -78721,7 +78721,7 @@ func VPXORQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPXORQ: bad operands")
 }
 
-// VPXORQ_BCST: Bitwise Logical Exclusive OR of Packed Quadword Integers.
+// VPXORQ_BCST: Bitwise Logical Exclusive OR of Packed Quadword Integers (Broadcast).
 //
 // Forms:
 //
@@ -78751,7 +78751,7 @@ func VPXORQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPXORQ_BCST: bad operands")
 }
 
-// VPXORQ_BCST_Z: Bitwise Logical Exclusive OR of Packed Quadword Integers.
+// VPXORQ_BCST_Z: Bitwise Logical Exclusive OR of Packed Quadword Integers (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -78771,7 +78771,7 @@ func VPXORQ_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPXORQ_BCST_Z: bad operands")
 }
 
-// VPXORQ_Z: Bitwise Logical Exclusive OR of Packed Quadword Integers.
+// VPXORQ_Z: Bitwise Logical Exclusive OR of Packed Quadword Integers (Zeroing Masking).
 //
 // Forms:
 //
@@ -78847,7 +78847,7 @@ func VRCP14PD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VRCP14PD: bad operands")
 }
 
-// VRCP14PD_BCST: Compute Approximate Reciprocals of Packed Double-Precision Floating-Point Values.
+// VRCP14PD_BCST: Compute Approximate Reciprocals of Packed Double-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -78877,7 +78877,7 @@ func VRCP14PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VRCP14PD_BCST: bad operands")
 }
 
-// VRCP14PD_BCST_Z: Compute Approximate Reciprocals of Packed Double-Precision Floating-Point Values.
+// VRCP14PD_BCST_Z: Compute Approximate Reciprocals of Packed Double-Precision Floating-Point Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -78897,7 +78897,7 @@ func VRCP14PD_BCST_Z(m, k, z operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VRCP14PD_BCST_Z: bad operands")
 }
 
-// VRCP14PD_Z: Compute Approximate Reciprocals of Packed Double-Precision Floating-Point Values.
+// VRCP14PD_Z: Compute Approximate Reciprocals of Packed Double-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -78973,7 +78973,7 @@ func VRCP14PS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VRCP14PS: bad operands")
 }
 
-// VRCP14PS_BCST: Compute Approximate Reciprocals of Packed Single-Precision Floating-Point Values.
+// VRCP14PS_BCST: Compute Approximate Reciprocals of Packed Single-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -79003,7 +79003,7 @@ func VRCP14PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VRCP14PS_BCST: bad operands")
 }
 
-// VRCP14PS_BCST_Z: Compute Approximate Reciprocals of Packed Single-Precision Floating-Point Values.
+// VRCP14PS_BCST_Z: Compute Approximate Reciprocals of Packed Single-Precision Floating-Point Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -79023,7 +79023,7 @@ func VRCP14PS_BCST_Z(m, k, z operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VRCP14PS_BCST_Z: bad operands")
 }
 
-// VRCP14PS_Z: Compute Approximate Reciprocals of Packed Single-Precision Floating-Point Values.
+// VRCP14PS_Z: Compute Approximate Reciprocals of Packed Single-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -79099,7 +79099,7 @@ func VRCP14SD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VRCP14SD: bad operands")
 }
 
-// VRCP14SD_Z: Compute Approximate Reciprocal of a Scalar Double-Precision Floating-Point Value.
+// VRCP14SD_Z: Compute Approximate Reciprocal of a Scalar Double-Precision Floating-Point Value (Zeroing Masking).
 //
 // Forms:
 //
@@ -79175,7 +79175,7 @@ func VRCP14SS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VRCP14SS: bad operands")
 }
 
-// VRCP14SS_Z: Compute Approximate Reciprocal of a Scalar Single-Precision Floating-Point Value.
+// VRCP14SS_Z: Compute Approximate Reciprocal of a Scalar Single-Precision Floating-Point Value (Zeroing Masking).
 //
 // Forms:
 //
@@ -79325,7 +79325,7 @@ func VRNDSCALEPD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VRNDSCALEPD: bad operands")
 }
 
-// VRNDSCALEPD_BCST: Round Packed Double-Precision Floating-Point Values To Include A Given Number Of Fraction Bits.
+// VRNDSCALEPD_BCST: Round Packed Double-Precision Floating-Point Values To Include A Given Number Of Fraction Bits (Broadcast).
 //
 // Forms:
 //
@@ -79355,7 +79355,7 @@ func VRNDSCALEPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VRNDSCALEPD_BCST: bad operands")
 }
 
-// VRNDSCALEPD_BCST_Z: Round Packed Double-Precision Floating-Point Values To Include A Given Number Of Fraction Bits.
+// VRNDSCALEPD_BCST_Z: Round Packed Double-Precision Floating-Point Values To Include A Given Number Of Fraction Bits (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -79375,7 +79375,7 @@ func VRNDSCALEPD_BCST_Z(i, m, k, z operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VRNDSCALEPD_BCST_Z: bad operands")
 }
 
-// VRNDSCALEPD_SAE: Round Packed Double-Precision Floating-Point Values To Include A Given Number Of Fraction Bits.
+// VRNDSCALEPD_SAE: Round Packed Double-Precision Floating-Point Values To Include A Given Number Of Fraction Bits (Suppress All Exceptions).
 //
 // Forms:
 //
@@ -79405,7 +79405,7 @@ func VRNDSCALEPD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VRNDSCALEPD_SAE: bad operands")
 }
 
-// VRNDSCALEPD_SAE_Z: Round Packed Double-Precision Floating-Point Values To Include A Given Number Of Fraction Bits.
+// VRNDSCALEPD_SAE_Z: Round Packed Double-Precision Floating-Point Values To Include A Given Number Of Fraction Bits (Suppress All Exceptions, Zeroing Masking).
 //
 // Forms:
 //
@@ -79425,7 +79425,7 @@ func VRNDSCALEPD_SAE_Z(i, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VRNDSCALEPD_SAE_Z: bad operands")
 }
 
-// VRNDSCALEPD_Z: Round Packed Double-Precision Floating-Point Values To Include A Given Number Of Fraction Bits.
+// VRNDSCALEPD_Z: Round Packed Double-Precision Floating-Point Values To Include A Given Number Of Fraction Bits (Zeroing Masking).
 //
 // Forms:
 //
@@ -79501,7 +79501,7 @@ func VRNDSCALEPS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VRNDSCALEPS: bad operands")
 }
 
-// VRNDSCALEPS_BCST: Round Packed Single-Precision Floating-Point Values To Include A Given Number Of Fraction Bits.
+// VRNDSCALEPS_BCST: Round Packed Single-Precision Floating-Point Values To Include A Given Number Of Fraction Bits (Broadcast).
 //
 // Forms:
 //
@@ -79531,7 +79531,7 @@ func VRNDSCALEPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VRNDSCALEPS_BCST: bad operands")
 }
 
-// VRNDSCALEPS_BCST_Z: Round Packed Single-Precision Floating-Point Values To Include A Given Number Of Fraction Bits.
+// VRNDSCALEPS_BCST_Z: Round Packed Single-Precision Floating-Point Values To Include A Given Number Of Fraction Bits (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -79551,7 +79551,7 @@ func VRNDSCALEPS_BCST_Z(i, m, k, z operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VRNDSCALEPS_BCST_Z: bad operands")
 }
 
-// VRNDSCALEPS_SAE: Round Packed Single-Precision Floating-Point Values To Include A Given Number Of Fraction Bits.
+// VRNDSCALEPS_SAE: Round Packed Single-Precision Floating-Point Values To Include A Given Number Of Fraction Bits (Suppress All Exceptions).
 //
 // Forms:
 //
@@ -79581,7 +79581,7 @@ func VRNDSCALEPS_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VRNDSCALEPS_SAE: bad operands")
 }
 
-// VRNDSCALEPS_SAE_Z: Round Packed Single-Precision Floating-Point Values To Include A Given Number Of Fraction Bits.
+// VRNDSCALEPS_SAE_Z: Round Packed Single-Precision Floating-Point Values To Include A Given Number Of Fraction Bits (Suppress All Exceptions, Zeroing Masking).
 //
 // Forms:
 //
@@ -79601,7 +79601,7 @@ func VRNDSCALEPS_SAE_Z(i, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VRNDSCALEPS_SAE_Z: bad operands")
 }
 
-// VRNDSCALEPS_Z: Round Packed Single-Precision Floating-Point Values To Include A Given Number Of Fraction Bits.
+// VRNDSCALEPS_Z: Round Packed Single-Precision Floating-Point Values To Include A Given Number Of Fraction Bits (Zeroing Masking).
 //
 // Forms:
 //
@@ -79677,7 +79677,7 @@ func VRNDSCALESD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VRNDSCALESD: bad operands")
 }
 
-// VRNDSCALESD_SAE: Round Scalar Double-Precision Floating-Point Value To Include A Given Number Of Fraction Bits.
+// VRNDSCALESD_SAE: Round Scalar Double-Precision Floating-Point Value To Include A Given Number Of Fraction Bits (Suppress All Exceptions).
 //
 // Forms:
 //
@@ -79707,7 +79707,7 @@ func VRNDSCALESD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VRNDSCALESD_SAE: bad operands")
 }
 
-// VRNDSCALESD_SAE_Z: Round Scalar Double-Precision Floating-Point Value To Include A Given Number Of Fraction Bits.
+// VRNDSCALESD_SAE_Z: Round Scalar Double-Precision Floating-Point Value To Include A Given Number Of Fraction Bits (Suppress All Exceptions, Zeroing Masking).
 //
 // Forms:
 //
@@ -79727,7 +79727,7 @@ func VRNDSCALESD_SAE_Z(i, x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VRNDSCALESD_SAE_Z: bad operands")
 }
 
-// VRNDSCALESD_Z: Round Scalar Double-Precision Floating-Point Value To Include A Given Number Of Fraction Bits.
+// VRNDSCALESD_Z: Round Scalar Double-Precision Floating-Point Value To Include A Given Number Of Fraction Bits (Zeroing Masking).
 //
 // Forms:
 //
@@ -79803,7 +79803,7 @@ func VRNDSCALESS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VRNDSCALESS: bad operands")
 }
 
-// VRNDSCALESS_SAE: Round Scalar Single-Precision Floating-Point Value To Include A Given Number Of Fraction Bits.
+// VRNDSCALESS_SAE: Round Scalar Single-Precision Floating-Point Value To Include A Given Number Of Fraction Bits (Suppress All Exceptions).
 //
 // Forms:
 //
@@ -79833,7 +79833,7 @@ func VRNDSCALESS_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VRNDSCALESS_SAE: bad operands")
 }
 
-// VRNDSCALESS_SAE_Z: Round Scalar Single-Precision Floating-Point Value To Include A Given Number Of Fraction Bits.
+// VRNDSCALESS_SAE_Z: Round Scalar Single-Precision Floating-Point Value To Include A Given Number Of Fraction Bits (Suppress All Exceptions, Zeroing Masking).
 //
 // Forms:
 //
@@ -79853,7 +79853,7 @@ func VRNDSCALESS_SAE_Z(i, x, x1, k, x2 operand.Op) (*intrep.Instruction, error) 
 	return nil, errors.New("VRNDSCALESS_SAE_Z: bad operands")
 }
 
-// VRNDSCALESS_Z: Round Scalar Single-Precision Floating-Point Value To Include A Given Number Of Fraction Bits.
+// VRNDSCALESS_Z: Round Scalar Single-Precision Floating-Point Value To Include A Given Number Of Fraction Bits (Zeroing Masking).
 //
 // Forms:
 //
@@ -80077,7 +80077,7 @@ func VRSQRT14PD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VRSQRT14PD: bad operands")
 }
 
-// VRSQRT14PD_BCST: Compute Approximate Reciprocals of Square Roots of Packed Double-Precision Floating-Point Values.
+// VRSQRT14PD_BCST: Compute Approximate Reciprocals of Square Roots of Packed Double-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -80107,7 +80107,7 @@ func VRSQRT14PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VRSQRT14PD_BCST: bad operands")
 }
 
-// VRSQRT14PD_BCST_Z: Compute Approximate Reciprocals of Square Roots of Packed Double-Precision Floating-Point Values.
+// VRSQRT14PD_BCST_Z: Compute Approximate Reciprocals of Square Roots of Packed Double-Precision Floating-Point Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -80127,7 +80127,7 @@ func VRSQRT14PD_BCST_Z(m, k, z operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VRSQRT14PD_BCST_Z: bad operands")
 }
 
-// VRSQRT14PD_Z: Compute Approximate Reciprocals of Square Roots of Packed Double-Precision Floating-Point Values.
+// VRSQRT14PD_Z: Compute Approximate Reciprocals of Square Roots of Packed Double-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -80203,7 +80203,7 @@ func VRSQRT14PS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VRSQRT14PS: bad operands")
 }
 
-// VRSQRT14PS_BCST: Compute Approximate Reciprocals of Square Roots of Packed Single-Precision Floating-Point Values.
+// VRSQRT14PS_BCST: Compute Approximate Reciprocals of Square Roots of Packed Single-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -80233,7 +80233,7 @@ func VRSQRT14PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VRSQRT14PS_BCST: bad operands")
 }
 
-// VRSQRT14PS_BCST_Z: Compute Approximate Reciprocals of Square Roots of Packed Single-Precision Floating-Point Values.
+// VRSQRT14PS_BCST_Z: Compute Approximate Reciprocals of Square Roots of Packed Single-Precision Floating-Point Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -80253,7 +80253,7 @@ func VRSQRT14PS_BCST_Z(m, k, z operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VRSQRT14PS_BCST_Z: bad operands")
 }
 
-// VRSQRT14PS_Z: Compute Approximate Reciprocals of Square Roots of Packed Single-Precision Floating-Point Values.
+// VRSQRT14PS_Z: Compute Approximate Reciprocals of Square Roots of Packed Single-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -80329,7 +80329,7 @@ func VRSQRT14SD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VRSQRT14SD: bad operands")
 }
 
-// VRSQRT14SD_Z: Compute Approximate Reciprocal of a Square Root of a Scalar Double-Precision Floating-Point Value.
+// VRSQRT14SD_Z: Compute Approximate Reciprocal of a Square Root of a Scalar Double-Precision Floating-Point Value (Zeroing Masking).
 //
 // Forms:
 //
@@ -80405,7 +80405,7 @@ func VRSQRT14SS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VRSQRT14SS: bad operands")
 }
 
-// VRSQRT14SS_Z: Compute Approximate Reciprocal of a Square Root of a Scalar Single-Precision Floating-Point Value.
+// VRSQRT14SS_Z: Compute Approximate Reciprocal of a Square Root of a Scalar Single-Precision Floating-Point Value (Zeroing Masking).
 //
 // Forms:
 //
@@ -80555,7 +80555,7 @@ func VSCALEFPD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSCALEFPD: bad operands")
 }
 
-// VSCALEFPD_BCST: Scale Packed Double-Precision Floating-Point Values With Double-Precision Floating-Point Values.
+// VSCALEFPD_BCST: Scale Packed Double-Precision Floating-Point Values With Double-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -80585,7 +80585,7 @@ func VSCALEFPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSCALEFPD_BCST: bad operands")
 }
 
-// VSCALEFPD_BCST_Z: Scale Packed Double-Precision Floating-Point Values With Double-Precision Floating-Point Values.
+// VSCALEFPD_BCST_Z: Scale Packed Double-Precision Floating-Point Values With Double-Precision Floating-Point Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -80605,7 +80605,7 @@ func VSCALEFPD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSCALEFPD_BCST_Z: bad operands")
 }
 
-// VSCALEFPD_RD_SAE: Scale Packed Double-Precision Floating-Point Values With Double-Precision Floating-Point Values.
+// VSCALEFPD_RD_SAE: Scale Packed Double-Precision Floating-Point Values With Double-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -80635,7 +80635,7 @@ func VSCALEFPD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSCALEFPD_RD_SAE: bad operands")
 }
 
-// VSCALEFPD_RD_SAE_Z: Scale Packed Double-Precision Floating-Point Values With Double-Precision Floating-Point Values.
+// VSCALEFPD_RD_SAE_Z: Scale Packed Double-Precision Floating-Point Values With Double-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -80655,7 +80655,7 @@ func VSCALEFPD_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSCALEFPD_RD_SAE_Z: bad operands")
 }
 
-// VSCALEFPD_RN_SAE: Scale Packed Double-Precision Floating-Point Values With Double-Precision Floating-Point Values.
+// VSCALEFPD_RN_SAE: Scale Packed Double-Precision Floating-Point Values With Double-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -80685,7 +80685,7 @@ func VSCALEFPD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSCALEFPD_RN_SAE: bad operands")
 }
 
-// VSCALEFPD_RN_SAE_Z: Scale Packed Double-Precision Floating-Point Values With Double-Precision Floating-Point Values.
+// VSCALEFPD_RN_SAE_Z: Scale Packed Double-Precision Floating-Point Values With Double-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -80705,7 +80705,7 @@ func VSCALEFPD_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSCALEFPD_RN_SAE_Z: bad operands")
 }
 
-// VSCALEFPD_RU_SAE: Scale Packed Double-Precision Floating-Point Values With Double-Precision Floating-Point Values.
+// VSCALEFPD_RU_SAE: Scale Packed Double-Precision Floating-Point Values With Double-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -80735,7 +80735,7 @@ func VSCALEFPD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSCALEFPD_RU_SAE: bad operands")
 }
 
-// VSCALEFPD_RU_SAE_Z: Scale Packed Double-Precision Floating-Point Values With Double-Precision Floating-Point Values.
+// VSCALEFPD_RU_SAE_Z: Scale Packed Double-Precision Floating-Point Values With Double-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -80755,7 +80755,7 @@ func VSCALEFPD_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSCALEFPD_RU_SAE_Z: bad operands")
 }
 
-// VSCALEFPD_RZ_SAE: Scale Packed Double-Precision Floating-Point Values With Double-Precision Floating-Point Values.
+// VSCALEFPD_RZ_SAE: Scale Packed Double-Precision Floating-Point Values With Double-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -80785,7 +80785,7 @@ func VSCALEFPD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSCALEFPD_RZ_SAE: bad operands")
 }
 
-// VSCALEFPD_RZ_SAE_Z: Scale Packed Double-Precision Floating-Point Values With Double-Precision Floating-Point Values.
+// VSCALEFPD_RZ_SAE_Z: Scale Packed Double-Precision Floating-Point Values With Double-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -80805,7 +80805,7 @@ func VSCALEFPD_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSCALEFPD_RZ_SAE_Z: bad operands")
 }
 
-// VSCALEFPD_Z: Scale Packed Double-Precision Floating-Point Values With Double-Precision Floating-Point Values.
+// VSCALEFPD_Z: Scale Packed Double-Precision Floating-Point Values With Double-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -80881,7 +80881,7 @@ func VSCALEFPS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSCALEFPS: bad operands")
 }
 
-// VSCALEFPS_BCST: Scale Packed Single-Precision Floating-Point Values With Single-Precision Floating-Point Values.
+// VSCALEFPS_BCST: Scale Packed Single-Precision Floating-Point Values With Single-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -80911,7 +80911,7 @@ func VSCALEFPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSCALEFPS_BCST: bad operands")
 }
 
-// VSCALEFPS_BCST_Z: Scale Packed Single-Precision Floating-Point Values With Single-Precision Floating-Point Values.
+// VSCALEFPS_BCST_Z: Scale Packed Single-Precision Floating-Point Values With Single-Precision Floating-Point Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -80931,7 +80931,7 @@ func VSCALEFPS_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSCALEFPS_BCST_Z: bad operands")
 }
 
-// VSCALEFPS_RD_SAE: Scale Packed Single-Precision Floating-Point Values With Single-Precision Floating-Point Values.
+// VSCALEFPS_RD_SAE: Scale Packed Single-Precision Floating-Point Values With Single-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -80961,7 +80961,7 @@ func VSCALEFPS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSCALEFPS_RD_SAE: bad operands")
 }
 
-// VSCALEFPS_RD_SAE_Z: Scale Packed Single-Precision Floating-Point Values With Single-Precision Floating-Point Values.
+// VSCALEFPS_RD_SAE_Z: Scale Packed Single-Precision Floating-Point Values With Single-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -80981,7 +80981,7 @@ func VSCALEFPS_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSCALEFPS_RD_SAE_Z: bad operands")
 }
 
-// VSCALEFPS_RN_SAE: Scale Packed Single-Precision Floating-Point Values With Single-Precision Floating-Point Values.
+// VSCALEFPS_RN_SAE: Scale Packed Single-Precision Floating-Point Values With Single-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -81011,7 +81011,7 @@ func VSCALEFPS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSCALEFPS_RN_SAE: bad operands")
 }
 
-// VSCALEFPS_RN_SAE_Z: Scale Packed Single-Precision Floating-Point Values With Single-Precision Floating-Point Values.
+// VSCALEFPS_RN_SAE_Z: Scale Packed Single-Precision Floating-Point Values With Single-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -81031,7 +81031,7 @@ func VSCALEFPS_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSCALEFPS_RN_SAE_Z: bad operands")
 }
 
-// VSCALEFPS_RU_SAE: Scale Packed Single-Precision Floating-Point Values With Single-Precision Floating-Point Values.
+// VSCALEFPS_RU_SAE: Scale Packed Single-Precision Floating-Point Values With Single-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -81061,7 +81061,7 @@ func VSCALEFPS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSCALEFPS_RU_SAE: bad operands")
 }
 
-// VSCALEFPS_RU_SAE_Z: Scale Packed Single-Precision Floating-Point Values With Single-Precision Floating-Point Values.
+// VSCALEFPS_RU_SAE_Z: Scale Packed Single-Precision Floating-Point Values With Single-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -81081,7 +81081,7 @@ func VSCALEFPS_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSCALEFPS_RU_SAE_Z: bad operands")
 }
 
-// VSCALEFPS_RZ_SAE: Scale Packed Single-Precision Floating-Point Values With Single-Precision Floating-Point Values.
+// VSCALEFPS_RZ_SAE: Scale Packed Single-Precision Floating-Point Values With Single-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -81111,7 +81111,7 @@ func VSCALEFPS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSCALEFPS_RZ_SAE: bad operands")
 }
 
-// VSCALEFPS_RZ_SAE_Z: Scale Packed Single-Precision Floating-Point Values With Single-Precision Floating-Point Values.
+// VSCALEFPS_RZ_SAE_Z: Scale Packed Single-Precision Floating-Point Values With Single-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -81131,7 +81131,7 @@ func VSCALEFPS_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSCALEFPS_RZ_SAE_Z: bad operands")
 }
 
-// VSCALEFPS_Z: Scale Packed Single-Precision Floating-Point Values With Single-Precision Floating-Point Values.
+// VSCALEFPS_Z: Scale Packed Single-Precision Floating-Point Values With Single-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -81207,7 +81207,7 @@ func VSCALEFSD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSCALEFSD: bad operands")
 }
 
-// VSCALEFSD_RD_SAE: Scale Scalar Double-Precision Floating-Point Value With a Double-Precision Floating-Point Value.
+// VSCALEFSD_RD_SAE: Scale Scalar Double-Precision Floating-Point Value With a Double-Precision Floating-Point Value (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -81237,7 +81237,7 @@ func VSCALEFSD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSCALEFSD_RD_SAE: bad operands")
 }
 
-// VSCALEFSD_RD_SAE_Z: Scale Scalar Double-Precision Floating-Point Value With a Double-Precision Floating-Point Value.
+// VSCALEFSD_RD_SAE_Z: Scale Scalar Double-Precision Floating-Point Value With a Double-Precision Floating-Point Value (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -81257,7 +81257,7 @@ func VSCALEFSD_RD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSCALEFSD_RD_SAE_Z: bad operands")
 }
 
-// VSCALEFSD_RN_SAE: Scale Scalar Double-Precision Floating-Point Value With a Double-Precision Floating-Point Value.
+// VSCALEFSD_RN_SAE: Scale Scalar Double-Precision Floating-Point Value With a Double-Precision Floating-Point Value (Round Towards Nearest).
 //
 // Forms:
 //
@@ -81287,7 +81287,7 @@ func VSCALEFSD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSCALEFSD_RN_SAE: bad operands")
 }
 
-// VSCALEFSD_RN_SAE_Z: Scale Scalar Double-Precision Floating-Point Value With a Double-Precision Floating-Point Value.
+// VSCALEFSD_RN_SAE_Z: Scale Scalar Double-Precision Floating-Point Value With a Double-Precision Floating-Point Value (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -81307,7 +81307,7 @@ func VSCALEFSD_RN_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSCALEFSD_RN_SAE_Z: bad operands")
 }
 
-// VSCALEFSD_RU_SAE: Scale Scalar Double-Precision Floating-Point Value With a Double-Precision Floating-Point Value.
+// VSCALEFSD_RU_SAE: Scale Scalar Double-Precision Floating-Point Value With a Double-Precision Floating-Point Value (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -81337,7 +81337,7 @@ func VSCALEFSD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSCALEFSD_RU_SAE: bad operands")
 }
 
-// VSCALEFSD_RU_SAE_Z: Scale Scalar Double-Precision Floating-Point Value With a Double-Precision Floating-Point Value.
+// VSCALEFSD_RU_SAE_Z: Scale Scalar Double-Precision Floating-Point Value With a Double-Precision Floating-Point Value (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -81357,7 +81357,7 @@ func VSCALEFSD_RU_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSCALEFSD_RU_SAE_Z: bad operands")
 }
 
-// VSCALEFSD_RZ_SAE: Scale Scalar Double-Precision Floating-Point Value With a Double-Precision Floating-Point Value.
+// VSCALEFSD_RZ_SAE: Scale Scalar Double-Precision Floating-Point Value With a Double-Precision Floating-Point Value (Round Towards Zero).
 //
 // Forms:
 //
@@ -81387,7 +81387,7 @@ func VSCALEFSD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSCALEFSD_RZ_SAE: bad operands")
 }
 
-// VSCALEFSD_RZ_SAE_Z: Scale Scalar Double-Precision Floating-Point Value With a Double-Precision Floating-Point Value.
+// VSCALEFSD_RZ_SAE_Z: Scale Scalar Double-Precision Floating-Point Value With a Double-Precision Floating-Point Value (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -81407,7 +81407,7 @@ func VSCALEFSD_RZ_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSCALEFSD_RZ_SAE_Z: bad operands")
 }
 
-// VSCALEFSD_Z: Scale Scalar Double-Precision Floating-Point Value With a Double-Precision Floating-Point Value.
+// VSCALEFSD_Z: Scale Scalar Double-Precision Floating-Point Value With a Double-Precision Floating-Point Value (Zeroing Masking).
 //
 // Forms:
 //
@@ -81483,7 +81483,7 @@ func VSCALEFSS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSCALEFSS: bad operands")
 }
 
-// VSCALEFSS_RD_SAE: Scale Scalar Single-Precision Floating-Point Value With a Single-Precision Floating-Point Value.
+// VSCALEFSS_RD_SAE: Scale Scalar Single-Precision Floating-Point Value With a Single-Precision Floating-Point Value (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -81513,7 +81513,7 @@ func VSCALEFSS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSCALEFSS_RD_SAE: bad operands")
 }
 
-// VSCALEFSS_RD_SAE_Z: Scale Scalar Single-Precision Floating-Point Value With a Single-Precision Floating-Point Value.
+// VSCALEFSS_RD_SAE_Z: Scale Scalar Single-Precision Floating-Point Value With a Single-Precision Floating-Point Value (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -81533,7 +81533,7 @@ func VSCALEFSS_RD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSCALEFSS_RD_SAE_Z: bad operands")
 }
 
-// VSCALEFSS_RN_SAE: Scale Scalar Single-Precision Floating-Point Value With a Single-Precision Floating-Point Value.
+// VSCALEFSS_RN_SAE: Scale Scalar Single-Precision Floating-Point Value With a Single-Precision Floating-Point Value (Round Towards Nearest).
 //
 // Forms:
 //
@@ -81563,7 +81563,7 @@ func VSCALEFSS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSCALEFSS_RN_SAE: bad operands")
 }
 
-// VSCALEFSS_RN_SAE_Z: Scale Scalar Single-Precision Floating-Point Value With a Single-Precision Floating-Point Value.
+// VSCALEFSS_RN_SAE_Z: Scale Scalar Single-Precision Floating-Point Value With a Single-Precision Floating-Point Value (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -81583,7 +81583,7 @@ func VSCALEFSS_RN_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSCALEFSS_RN_SAE_Z: bad operands")
 }
 
-// VSCALEFSS_RU_SAE: Scale Scalar Single-Precision Floating-Point Value With a Single-Precision Floating-Point Value.
+// VSCALEFSS_RU_SAE: Scale Scalar Single-Precision Floating-Point Value With a Single-Precision Floating-Point Value (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -81613,7 +81613,7 @@ func VSCALEFSS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSCALEFSS_RU_SAE: bad operands")
 }
 
-// VSCALEFSS_RU_SAE_Z: Scale Scalar Single-Precision Floating-Point Value With a Single-Precision Floating-Point Value.
+// VSCALEFSS_RU_SAE_Z: Scale Scalar Single-Precision Floating-Point Value With a Single-Precision Floating-Point Value (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -81633,7 +81633,7 @@ func VSCALEFSS_RU_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSCALEFSS_RU_SAE_Z: bad operands")
 }
 
-// VSCALEFSS_RZ_SAE: Scale Scalar Single-Precision Floating-Point Value With a Single-Precision Floating-Point Value.
+// VSCALEFSS_RZ_SAE: Scale Scalar Single-Precision Floating-Point Value With a Single-Precision Floating-Point Value (Round Towards Zero).
 //
 // Forms:
 //
@@ -81663,7 +81663,7 @@ func VSCALEFSS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSCALEFSS_RZ_SAE: bad operands")
 }
 
-// VSCALEFSS_RZ_SAE_Z: Scale Scalar Single-Precision Floating-Point Value With a Single-Precision Floating-Point Value.
+// VSCALEFSS_RZ_SAE_Z: Scale Scalar Single-Precision Floating-Point Value With a Single-Precision Floating-Point Value (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -81683,7 +81683,7 @@ func VSCALEFSS_RZ_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSCALEFSS_RZ_SAE_Z: bad operands")
 }
 
-// VSCALEFSS_Z: Scale Scalar Single-Precision Floating-Point Value With a Single-Precision Floating-Point Value.
+// VSCALEFSS_Z: Scale Scalar Single-Precision Floating-Point Value With a Single-Precision Floating-Point Value (Zeroing Masking).
 //
 // Forms:
 //
@@ -81835,7 +81835,7 @@ func VSHUFF32X4(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSHUFF32X4: bad operands")
 }
 
-// VSHUFF32X4_BCST: Shuffle 128-Bit Packed Single-Precision Floating-Point Values.
+// VSHUFF32X4_BCST: Shuffle 128-Bit Packed Single-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -81865,7 +81865,7 @@ func VSHUFF32X4_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSHUFF32X4_BCST: bad operands")
 }
 
-// VSHUFF32X4_BCST_Z: Shuffle 128-Bit Packed Single-Precision Floating-Point Values.
+// VSHUFF32X4_BCST_Z: Shuffle 128-Bit Packed Single-Precision Floating-Point Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -81885,7 +81885,7 @@ func VSHUFF32X4_BCST_Z(i, m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSHUFF32X4_BCST_Z: bad operands")
 }
 
-// VSHUFF32X4_Z: Shuffle 128-Bit Packed Single-Precision Floating-Point Values.
+// VSHUFF32X4_Z: Shuffle 128-Bit Packed Single-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -81961,7 +81961,7 @@ func VSHUFF64X2(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSHUFF64X2: bad operands")
 }
 
-// VSHUFF64X2_BCST: Shuffle 128-Bit Packed Double-Precision Floating-Point Values.
+// VSHUFF64X2_BCST: Shuffle 128-Bit Packed Double-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -81991,7 +81991,7 @@ func VSHUFF64X2_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSHUFF64X2_BCST: bad operands")
 }
 
-// VSHUFF64X2_BCST_Z: Shuffle 128-Bit Packed Double-Precision Floating-Point Values.
+// VSHUFF64X2_BCST_Z: Shuffle 128-Bit Packed Double-Precision Floating-Point Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -82011,7 +82011,7 @@ func VSHUFF64X2_BCST_Z(i, m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSHUFF64X2_BCST_Z: bad operands")
 }
 
-// VSHUFF64X2_Z: Shuffle 128-Bit Packed Double-Precision Floating-Point Values.
+// VSHUFF64X2_Z: Shuffle 128-Bit Packed Double-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -82087,7 +82087,7 @@ func VSHUFI32X4(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSHUFI32X4: bad operands")
 }
 
-// VSHUFI32X4_BCST: Shuffle 128-Bit Packed Doubleword Integer Values.
+// VSHUFI32X4_BCST: Shuffle 128-Bit Packed Doubleword Integer Values (Broadcast).
 //
 // Forms:
 //
@@ -82117,7 +82117,7 @@ func VSHUFI32X4_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSHUFI32X4_BCST: bad operands")
 }
 
-// VSHUFI32X4_BCST_Z: Shuffle 128-Bit Packed Doubleword Integer Values.
+// VSHUFI32X4_BCST_Z: Shuffle 128-Bit Packed Doubleword Integer Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -82137,7 +82137,7 @@ func VSHUFI32X4_BCST_Z(i, m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSHUFI32X4_BCST_Z: bad operands")
 }
 
-// VSHUFI32X4_Z: Shuffle 128-Bit Packed Doubleword Integer Values.
+// VSHUFI32X4_Z: Shuffle 128-Bit Packed Doubleword Integer Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -82213,7 +82213,7 @@ func VSHUFI64X2(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSHUFI64X2: bad operands")
 }
 
-// VSHUFI64X2_BCST: Shuffle 128-Bit Packed Quadword Integer Values.
+// VSHUFI64X2_BCST: Shuffle 128-Bit Packed Quadword Integer Values (Broadcast).
 //
 // Forms:
 //
@@ -82243,7 +82243,7 @@ func VSHUFI64X2_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSHUFI64X2_BCST: bad operands")
 }
 
-// VSHUFI64X2_BCST_Z: Shuffle 128-Bit Packed Quadword Integer Values.
+// VSHUFI64X2_BCST_Z: Shuffle 128-Bit Packed Quadword Integer Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -82263,7 +82263,7 @@ func VSHUFI64X2_BCST_Z(i, m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSHUFI64X2_BCST_Z: bad operands")
 }
 
-// VSHUFI64X2_Z: Shuffle 128-Bit Packed Quadword Integer Values.
+// VSHUFI64X2_Z: Shuffle 128-Bit Packed Quadword Integer Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -82375,7 +82375,7 @@ func VSHUFPD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSHUFPD: bad operands")
 }
 
-// VSHUFPD_BCST: Shuffle Packed Double-Precision Floating-Point Values.
+// VSHUFPD_BCST: Shuffle Packed Double-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -82405,7 +82405,7 @@ func VSHUFPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSHUFPD_BCST: bad operands")
 }
 
-// VSHUFPD_BCST_Z: Shuffle Packed Double-Precision Floating-Point Values.
+// VSHUFPD_BCST_Z: Shuffle Packed Double-Precision Floating-Point Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -82425,7 +82425,7 @@ func VSHUFPD_BCST_Z(i, m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSHUFPD_BCST_Z: bad operands")
 }
 
-// VSHUFPD_Z: Shuffle Packed Double-Precision Floating-Point Values.
+// VSHUFPD_Z: Shuffle Packed Double-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -82537,7 +82537,7 @@ func VSHUFPS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSHUFPS: bad operands")
 }
 
-// VSHUFPS_BCST: Shuffle Packed Single-Precision Floating-Point Values.
+// VSHUFPS_BCST: Shuffle Packed Single-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -82567,7 +82567,7 @@ func VSHUFPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSHUFPS_BCST: bad operands")
 }
 
-// VSHUFPS_BCST_Z: Shuffle Packed Single-Precision Floating-Point Values.
+// VSHUFPS_BCST_Z: Shuffle Packed Single-Precision Floating-Point Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -82587,7 +82587,7 @@ func VSHUFPS_BCST_Z(i, m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSHUFPS_BCST_Z: bad operands")
 }
 
-// VSHUFPS_Z: Shuffle Packed Single-Precision Floating-Point Values.
+// VSHUFPS_Z: Shuffle Packed Single-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -82699,7 +82699,7 @@ func VSQRTPD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSQRTPD: bad operands")
 }
 
-// VSQRTPD_BCST: Compute Square Roots of Packed Double-Precision Floating-Point Values.
+// VSQRTPD_BCST: Compute Square Roots of Packed Double-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -82729,7 +82729,7 @@ func VSQRTPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSQRTPD_BCST: bad operands")
 }
 
-// VSQRTPD_BCST_Z: Compute Square Roots of Packed Double-Precision Floating-Point Values.
+// VSQRTPD_BCST_Z: Compute Square Roots of Packed Double-Precision Floating-Point Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -82749,7 +82749,7 @@ func VSQRTPD_BCST_Z(m, k, z operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSQRTPD_BCST_Z: bad operands")
 }
 
-// VSQRTPD_RD_SAE: Compute Square Roots of Packed Double-Precision Floating-Point Values.
+// VSQRTPD_RD_SAE: Compute Square Roots of Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -82779,7 +82779,7 @@ func VSQRTPD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSQRTPD_RD_SAE: bad operands")
 }
 
-// VSQRTPD_RD_SAE_Z: Compute Square Roots of Packed Double-Precision Floating-Point Values.
+// VSQRTPD_RD_SAE_Z: Compute Square Roots of Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -82799,7 +82799,7 @@ func VSQRTPD_RD_SAE_Z(z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSQRTPD_RD_SAE_Z: bad operands")
 }
 
-// VSQRTPD_RN_SAE: Compute Square Roots of Packed Double-Precision Floating-Point Values.
+// VSQRTPD_RN_SAE: Compute Square Roots of Packed Double-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -82829,7 +82829,7 @@ func VSQRTPD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSQRTPD_RN_SAE: bad operands")
 }
 
-// VSQRTPD_RN_SAE_Z: Compute Square Roots of Packed Double-Precision Floating-Point Values.
+// VSQRTPD_RN_SAE_Z: Compute Square Roots of Packed Double-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -82849,7 +82849,7 @@ func VSQRTPD_RN_SAE_Z(z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSQRTPD_RN_SAE_Z: bad operands")
 }
 
-// VSQRTPD_RU_SAE: Compute Square Roots of Packed Double-Precision Floating-Point Values.
+// VSQRTPD_RU_SAE: Compute Square Roots of Packed Double-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -82879,7 +82879,7 @@ func VSQRTPD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSQRTPD_RU_SAE: bad operands")
 }
 
-// VSQRTPD_RU_SAE_Z: Compute Square Roots of Packed Double-Precision Floating-Point Values.
+// VSQRTPD_RU_SAE_Z: Compute Square Roots of Packed Double-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -82899,7 +82899,7 @@ func VSQRTPD_RU_SAE_Z(z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSQRTPD_RU_SAE_Z: bad operands")
 }
 
-// VSQRTPD_RZ_SAE: Compute Square Roots of Packed Double-Precision Floating-Point Values.
+// VSQRTPD_RZ_SAE: Compute Square Roots of Packed Double-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -82929,7 +82929,7 @@ func VSQRTPD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSQRTPD_RZ_SAE: bad operands")
 }
 
-// VSQRTPD_RZ_SAE_Z: Compute Square Roots of Packed Double-Precision Floating-Point Values.
+// VSQRTPD_RZ_SAE_Z: Compute Square Roots of Packed Double-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -82949,7 +82949,7 @@ func VSQRTPD_RZ_SAE_Z(z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSQRTPD_RZ_SAE_Z: bad operands")
 }
 
-// VSQRTPD_Z: Compute Square Roots of Packed Double-Precision Floating-Point Values.
+// VSQRTPD_Z: Compute Square Roots of Packed Double-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -83061,7 +83061,7 @@ func VSQRTPS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSQRTPS: bad operands")
 }
 
-// VSQRTPS_BCST: Compute Square Roots of Packed Single-Precision Floating-Point Values.
+// VSQRTPS_BCST: Compute Square Roots of Packed Single-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -83091,7 +83091,7 @@ func VSQRTPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSQRTPS_BCST: bad operands")
 }
 
-// VSQRTPS_BCST_Z: Compute Square Roots of Packed Single-Precision Floating-Point Values.
+// VSQRTPS_BCST_Z: Compute Square Roots of Packed Single-Precision Floating-Point Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -83111,7 +83111,7 @@ func VSQRTPS_BCST_Z(m, k, z operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSQRTPS_BCST_Z: bad operands")
 }
 
-// VSQRTPS_RD_SAE: Compute Square Roots of Packed Single-Precision Floating-Point Values.
+// VSQRTPS_RD_SAE: Compute Square Roots of Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -83141,7 +83141,7 @@ func VSQRTPS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSQRTPS_RD_SAE: bad operands")
 }
 
-// VSQRTPS_RD_SAE_Z: Compute Square Roots of Packed Single-Precision Floating-Point Values.
+// VSQRTPS_RD_SAE_Z: Compute Square Roots of Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -83161,7 +83161,7 @@ func VSQRTPS_RD_SAE_Z(z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSQRTPS_RD_SAE_Z: bad operands")
 }
 
-// VSQRTPS_RN_SAE: Compute Square Roots of Packed Single-Precision Floating-Point Values.
+// VSQRTPS_RN_SAE: Compute Square Roots of Packed Single-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -83191,7 +83191,7 @@ func VSQRTPS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSQRTPS_RN_SAE: bad operands")
 }
 
-// VSQRTPS_RN_SAE_Z: Compute Square Roots of Packed Single-Precision Floating-Point Values.
+// VSQRTPS_RN_SAE_Z: Compute Square Roots of Packed Single-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -83211,7 +83211,7 @@ func VSQRTPS_RN_SAE_Z(z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSQRTPS_RN_SAE_Z: bad operands")
 }
 
-// VSQRTPS_RU_SAE: Compute Square Roots of Packed Single-Precision Floating-Point Values.
+// VSQRTPS_RU_SAE: Compute Square Roots of Packed Single-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -83241,7 +83241,7 @@ func VSQRTPS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSQRTPS_RU_SAE: bad operands")
 }
 
-// VSQRTPS_RU_SAE_Z: Compute Square Roots of Packed Single-Precision Floating-Point Values.
+// VSQRTPS_RU_SAE_Z: Compute Square Roots of Packed Single-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -83261,7 +83261,7 @@ func VSQRTPS_RU_SAE_Z(z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSQRTPS_RU_SAE_Z: bad operands")
 }
 
-// VSQRTPS_RZ_SAE: Compute Square Roots of Packed Single-Precision Floating-Point Values.
+// VSQRTPS_RZ_SAE: Compute Square Roots of Packed Single-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -83291,7 +83291,7 @@ func VSQRTPS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSQRTPS_RZ_SAE: bad operands")
 }
 
-// VSQRTPS_RZ_SAE_Z: Compute Square Roots of Packed Single-Precision Floating-Point Values.
+// VSQRTPS_RZ_SAE_Z: Compute Square Roots of Packed Single-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -83311,7 +83311,7 @@ func VSQRTPS_RZ_SAE_Z(z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSQRTPS_RZ_SAE_Z: bad operands")
 }
 
-// VSQRTPS_Z: Compute Square Roots of Packed Single-Precision Floating-Point Values.
+// VSQRTPS_Z: Compute Square Roots of Packed Single-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -83405,7 +83405,7 @@ func VSQRTSD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSQRTSD: bad operands")
 }
 
-// VSQRTSD_RD_SAE: Compute Square Root of Scalar Double-Precision Floating-Point Value.
+// VSQRTSD_RD_SAE: Compute Square Root of Scalar Double-Precision Floating-Point Value (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -83435,7 +83435,7 @@ func VSQRTSD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSQRTSD_RD_SAE: bad operands")
 }
 
-// VSQRTSD_RD_SAE_Z: Compute Square Root of Scalar Double-Precision Floating-Point Value.
+// VSQRTSD_RD_SAE_Z: Compute Square Root of Scalar Double-Precision Floating-Point Value (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -83455,7 +83455,7 @@ func VSQRTSD_RD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSQRTSD_RD_SAE_Z: bad operands")
 }
 
-// VSQRTSD_RN_SAE: Compute Square Root of Scalar Double-Precision Floating-Point Value.
+// VSQRTSD_RN_SAE: Compute Square Root of Scalar Double-Precision Floating-Point Value (Round Towards Nearest).
 //
 // Forms:
 //
@@ -83485,7 +83485,7 @@ func VSQRTSD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSQRTSD_RN_SAE: bad operands")
 }
 
-// VSQRTSD_RN_SAE_Z: Compute Square Root of Scalar Double-Precision Floating-Point Value.
+// VSQRTSD_RN_SAE_Z: Compute Square Root of Scalar Double-Precision Floating-Point Value (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -83505,7 +83505,7 @@ func VSQRTSD_RN_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSQRTSD_RN_SAE_Z: bad operands")
 }
 
-// VSQRTSD_RU_SAE: Compute Square Root of Scalar Double-Precision Floating-Point Value.
+// VSQRTSD_RU_SAE: Compute Square Root of Scalar Double-Precision Floating-Point Value (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -83535,7 +83535,7 @@ func VSQRTSD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSQRTSD_RU_SAE: bad operands")
 }
 
-// VSQRTSD_RU_SAE_Z: Compute Square Root of Scalar Double-Precision Floating-Point Value.
+// VSQRTSD_RU_SAE_Z: Compute Square Root of Scalar Double-Precision Floating-Point Value (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -83555,7 +83555,7 @@ func VSQRTSD_RU_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSQRTSD_RU_SAE_Z: bad operands")
 }
 
-// VSQRTSD_RZ_SAE: Compute Square Root of Scalar Double-Precision Floating-Point Value.
+// VSQRTSD_RZ_SAE: Compute Square Root of Scalar Double-Precision Floating-Point Value (Round Towards Zero).
 //
 // Forms:
 //
@@ -83585,7 +83585,7 @@ func VSQRTSD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSQRTSD_RZ_SAE: bad operands")
 }
 
-// VSQRTSD_RZ_SAE_Z: Compute Square Root of Scalar Double-Precision Floating-Point Value.
+// VSQRTSD_RZ_SAE_Z: Compute Square Root of Scalar Double-Precision Floating-Point Value (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -83605,7 +83605,7 @@ func VSQRTSD_RZ_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSQRTSD_RZ_SAE_Z: bad operands")
 }
 
-// VSQRTSD_Z: Compute Square Root of Scalar Double-Precision Floating-Point Value.
+// VSQRTSD_Z: Compute Square Root of Scalar Double-Precision Floating-Point Value (Zeroing Masking).
 //
 // Forms:
 //
@@ -83699,7 +83699,7 @@ func VSQRTSS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSQRTSS: bad operands")
 }
 
-// VSQRTSS_RD_SAE: Compute Square Root of Scalar Single-Precision Floating-Point Value.
+// VSQRTSS_RD_SAE: Compute Square Root of Scalar Single-Precision Floating-Point Value (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -83729,7 +83729,7 @@ func VSQRTSS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSQRTSS_RD_SAE: bad operands")
 }
 
-// VSQRTSS_RD_SAE_Z: Compute Square Root of Scalar Single-Precision Floating-Point Value.
+// VSQRTSS_RD_SAE_Z: Compute Square Root of Scalar Single-Precision Floating-Point Value (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -83749,7 +83749,7 @@ func VSQRTSS_RD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSQRTSS_RD_SAE_Z: bad operands")
 }
 
-// VSQRTSS_RN_SAE: Compute Square Root of Scalar Single-Precision Floating-Point Value.
+// VSQRTSS_RN_SAE: Compute Square Root of Scalar Single-Precision Floating-Point Value (Round Towards Nearest).
 //
 // Forms:
 //
@@ -83779,7 +83779,7 @@ func VSQRTSS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSQRTSS_RN_SAE: bad operands")
 }
 
-// VSQRTSS_RN_SAE_Z: Compute Square Root of Scalar Single-Precision Floating-Point Value.
+// VSQRTSS_RN_SAE_Z: Compute Square Root of Scalar Single-Precision Floating-Point Value (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -83799,7 +83799,7 @@ func VSQRTSS_RN_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSQRTSS_RN_SAE_Z: bad operands")
 }
 
-// VSQRTSS_RU_SAE: Compute Square Root of Scalar Single-Precision Floating-Point Value.
+// VSQRTSS_RU_SAE: Compute Square Root of Scalar Single-Precision Floating-Point Value (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -83829,7 +83829,7 @@ func VSQRTSS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSQRTSS_RU_SAE: bad operands")
 }
 
-// VSQRTSS_RU_SAE_Z: Compute Square Root of Scalar Single-Precision Floating-Point Value.
+// VSQRTSS_RU_SAE_Z: Compute Square Root of Scalar Single-Precision Floating-Point Value (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -83849,7 +83849,7 @@ func VSQRTSS_RU_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSQRTSS_RU_SAE_Z: bad operands")
 }
 
-// VSQRTSS_RZ_SAE: Compute Square Root of Scalar Single-Precision Floating-Point Value.
+// VSQRTSS_RZ_SAE: Compute Square Root of Scalar Single-Precision Floating-Point Value (Round Towards Zero).
 //
 // Forms:
 //
@@ -83879,7 +83879,7 @@ func VSQRTSS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSQRTSS_RZ_SAE: bad operands")
 }
 
-// VSQRTSS_RZ_SAE_Z: Compute Square Root of Scalar Single-Precision Floating-Point Value.
+// VSQRTSS_RZ_SAE_Z: Compute Square Root of Scalar Single-Precision Floating-Point Value (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -83899,7 +83899,7 @@ func VSQRTSS_RZ_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSQRTSS_RZ_SAE_Z: bad operands")
 }
 
-// VSQRTSS_Z: Compute Square Root of Scalar Single-Precision Floating-Point Value.
+// VSQRTSS_Z: Compute Square Root of Scalar Single-Precision Floating-Point Value (Zeroing Masking).
 //
 // Forms:
 //
@@ -84030,7 +84030,7 @@ func VSUBPD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSUBPD: bad operands")
 }
 
-// VSUBPD_BCST: Subtract Packed Double-Precision Floating-Point Values.
+// VSUBPD_BCST: Subtract Packed Double-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -84060,7 +84060,7 @@ func VSUBPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSUBPD_BCST: bad operands")
 }
 
-// VSUBPD_BCST_Z: Subtract Packed Double-Precision Floating-Point Values.
+// VSUBPD_BCST_Z: Subtract Packed Double-Precision Floating-Point Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -84080,7 +84080,7 @@ func VSUBPD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSUBPD_BCST_Z: bad operands")
 }
 
-// VSUBPD_RD_SAE: Subtract Packed Double-Precision Floating-Point Values.
+// VSUBPD_RD_SAE: Subtract Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -84110,7 +84110,7 @@ func VSUBPD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSUBPD_RD_SAE: bad operands")
 }
 
-// VSUBPD_RD_SAE_Z: Subtract Packed Double-Precision Floating-Point Values.
+// VSUBPD_RD_SAE_Z: Subtract Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -84130,7 +84130,7 @@ func VSUBPD_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSUBPD_RD_SAE_Z: bad operands")
 }
 
-// VSUBPD_RN_SAE: Subtract Packed Double-Precision Floating-Point Values.
+// VSUBPD_RN_SAE: Subtract Packed Double-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -84160,7 +84160,7 @@ func VSUBPD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSUBPD_RN_SAE: bad operands")
 }
 
-// VSUBPD_RN_SAE_Z: Subtract Packed Double-Precision Floating-Point Values.
+// VSUBPD_RN_SAE_Z: Subtract Packed Double-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -84180,7 +84180,7 @@ func VSUBPD_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSUBPD_RN_SAE_Z: bad operands")
 }
 
-// VSUBPD_RU_SAE: Subtract Packed Double-Precision Floating-Point Values.
+// VSUBPD_RU_SAE: Subtract Packed Double-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -84210,7 +84210,7 @@ func VSUBPD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSUBPD_RU_SAE: bad operands")
 }
 
-// VSUBPD_RU_SAE_Z: Subtract Packed Double-Precision Floating-Point Values.
+// VSUBPD_RU_SAE_Z: Subtract Packed Double-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -84230,7 +84230,7 @@ func VSUBPD_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSUBPD_RU_SAE_Z: bad operands")
 }
 
-// VSUBPD_RZ_SAE: Subtract Packed Double-Precision Floating-Point Values.
+// VSUBPD_RZ_SAE: Subtract Packed Double-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -84260,7 +84260,7 @@ func VSUBPD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSUBPD_RZ_SAE: bad operands")
 }
 
-// VSUBPD_RZ_SAE_Z: Subtract Packed Double-Precision Floating-Point Values.
+// VSUBPD_RZ_SAE_Z: Subtract Packed Double-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -84280,7 +84280,7 @@ func VSUBPD_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSUBPD_RZ_SAE_Z: bad operands")
 }
 
-// VSUBPD_Z: Subtract Packed Double-Precision Floating-Point Values.
+// VSUBPD_Z: Subtract Packed Double-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -84392,7 +84392,7 @@ func VSUBPS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSUBPS: bad operands")
 }
 
-// VSUBPS_BCST: Subtract Packed Single-Precision Floating-Point Values.
+// VSUBPS_BCST: Subtract Packed Single-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -84422,7 +84422,7 @@ func VSUBPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSUBPS_BCST: bad operands")
 }
 
-// VSUBPS_BCST_Z: Subtract Packed Single-Precision Floating-Point Values.
+// VSUBPS_BCST_Z: Subtract Packed Single-Precision Floating-Point Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -84442,7 +84442,7 @@ func VSUBPS_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSUBPS_BCST_Z: bad operands")
 }
 
-// VSUBPS_RD_SAE: Subtract Packed Single-Precision Floating-Point Values.
+// VSUBPS_RD_SAE: Subtract Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -84472,7 +84472,7 @@ func VSUBPS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSUBPS_RD_SAE: bad operands")
 }
 
-// VSUBPS_RD_SAE_Z: Subtract Packed Single-Precision Floating-Point Values.
+// VSUBPS_RD_SAE_Z: Subtract Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -84492,7 +84492,7 @@ func VSUBPS_RD_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSUBPS_RD_SAE_Z: bad operands")
 }
 
-// VSUBPS_RN_SAE: Subtract Packed Single-Precision Floating-Point Values.
+// VSUBPS_RN_SAE: Subtract Packed Single-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -84522,7 +84522,7 @@ func VSUBPS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSUBPS_RN_SAE: bad operands")
 }
 
-// VSUBPS_RN_SAE_Z: Subtract Packed Single-Precision Floating-Point Values.
+// VSUBPS_RN_SAE_Z: Subtract Packed Single-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -84542,7 +84542,7 @@ func VSUBPS_RN_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSUBPS_RN_SAE_Z: bad operands")
 }
 
-// VSUBPS_RU_SAE: Subtract Packed Single-Precision Floating-Point Values.
+// VSUBPS_RU_SAE: Subtract Packed Single-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -84572,7 +84572,7 @@ func VSUBPS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSUBPS_RU_SAE: bad operands")
 }
 
-// VSUBPS_RU_SAE_Z: Subtract Packed Single-Precision Floating-Point Values.
+// VSUBPS_RU_SAE_Z: Subtract Packed Single-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -84592,7 +84592,7 @@ func VSUBPS_RU_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSUBPS_RU_SAE_Z: bad operands")
 }
 
-// VSUBPS_RZ_SAE: Subtract Packed Single-Precision Floating-Point Values.
+// VSUBPS_RZ_SAE: Subtract Packed Single-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -84622,7 +84622,7 @@ func VSUBPS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSUBPS_RZ_SAE: bad operands")
 }
 
-// VSUBPS_RZ_SAE_Z: Subtract Packed Single-Precision Floating-Point Values.
+// VSUBPS_RZ_SAE_Z: Subtract Packed Single-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -84642,7 +84642,7 @@ func VSUBPS_RZ_SAE_Z(z, z1, k, z2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSUBPS_RZ_SAE_Z: bad operands")
 }
 
-// VSUBPS_Z: Subtract Packed Single-Precision Floating-Point Values.
+// VSUBPS_Z: Subtract Packed Single-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -84736,7 +84736,7 @@ func VSUBSD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSUBSD: bad operands")
 }
 
-// VSUBSD_RD_SAE: Subtract Scalar Double-Precision Floating-Point Values.
+// VSUBSD_RD_SAE: Subtract Scalar Double-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -84766,7 +84766,7 @@ func VSUBSD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSUBSD_RD_SAE: bad operands")
 }
 
-// VSUBSD_RD_SAE_Z: Subtract Scalar Double-Precision Floating-Point Values.
+// VSUBSD_RD_SAE_Z: Subtract Scalar Double-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -84786,7 +84786,7 @@ func VSUBSD_RD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSUBSD_RD_SAE_Z: bad operands")
 }
 
-// VSUBSD_RN_SAE: Subtract Scalar Double-Precision Floating-Point Values.
+// VSUBSD_RN_SAE: Subtract Scalar Double-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -84816,7 +84816,7 @@ func VSUBSD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSUBSD_RN_SAE: bad operands")
 }
 
-// VSUBSD_RN_SAE_Z: Subtract Scalar Double-Precision Floating-Point Values.
+// VSUBSD_RN_SAE_Z: Subtract Scalar Double-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -84836,7 +84836,7 @@ func VSUBSD_RN_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSUBSD_RN_SAE_Z: bad operands")
 }
 
-// VSUBSD_RU_SAE: Subtract Scalar Double-Precision Floating-Point Values.
+// VSUBSD_RU_SAE: Subtract Scalar Double-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -84866,7 +84866,7 @@ func VSUBSD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSUBSD_RU_SAE: bad operands")
 }
 
-// VSUBSD_RU_SAE_Z: Subtract Scalar Double-Precision Floating-Point Values.
+// VSUBSD_RU_SAE_Z: Subtract Scalar Double-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -84886,7 +84886,7 @@ func VSUBSD_RU_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSUBSD_RU_SAE_Z: bad operands")
 }
 
-// VSUBSD_RZ_SAE: Subtract Scalar Double-Precision Floating-Point Values.
+// VSUBSD_RZ_SAE: Subtract Scalar Double-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -84916,7 +84916,7 @@ func VSUBSD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSUBSD_RZ_SAE: bad operands")
 }
 
-// VSUBSD_RZ_SAE_Z: Subtract Scalar Double-Precision Floating-Point Values.
+// VSUBSD_RZ_SAE_Z: Subtract Scalar Double-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -84936,7 +84936,7 @@ func VSUBSD_RZ_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSUBSD_RZ_SAE_Z: bad operands")
 }
 
-// VSUBSD_Z: Subtract Scalar Double-Precision Floating-Point Values.
+// VSUBSD_Z: Subtract Scalar Double-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -85030,7 +85030,7 @@ func VSUBSS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSUBSS: bad operands")
 }
 
-// VSUBSS_RD_SAE: Subtract Scalar Single-Precision Floating-Point Values.
+// VSUBSS_RD_SAE: Subtract Scalar Single-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
 // Forms:
 //
@@ -85060,7 +85060,7 @@ func VSUBSS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSUBSS_RD_SAE: bad operands")
 }
 
-// VSUBSS_RD_SAE_Z: Subtract Scalar Single-Precision Floating-Point Values.
+// VSUBSS_RD_SAE_Z: Subtract Scalar Single-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -85080,7 +85080,7 @@ func VSUBSS_RD_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSUBSS_RD_SAE_Z: bad operands")
 }
 
-// VSUBSS_RN_SAE: Subtract Scalar Single-Precision Floating-Point Values.
+// VSUBSS_RN_SAE: Subtract Scalar Single-Precision Floating-Point Values (Round Towards Nearest).
 //
 // Forms:
 //
@@ -85110,7 +85110,7 @@ func VSUBSS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSUBSS_RN_SAE: bad operands")
 }
 
-// VSUBSS_RN_SAE_Z: Subtract Scalar Single-Precision Floating-Point Values.
+// VSUBSS_RN_SAE_Z: Subtract Scalar Single-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
 //
 // Forms:
 //
@@ -85130,7 +85130,7 @@ func VSUBSS_RN_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSUBSS_RN_SAE_Z: bad operands")
 }
 
-// VSUBSS_RU_SAE: Subtract Scalar Single-Precision Floating-Point Values.
+// VSUBSS_RU_SAE: Subtract Scalar Single-Precision Floating-Point Values (Round Towards Positive Infinity).
 //
 // Forms:
 //
@@ -85160,7 +85160,7 @@ func VSUBSS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSUBSS_RU_SAE: bad operands")
 }
 
-// VSUBSS_RU_SAE_Z: Subtract Scalar Single-Precision Floating-Point Values.
+// VSUBSS_RU_SAE_Z: Subtract Scalar Single-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
 //
 // Forms:
 //
@@ -85180,7 +85180,7 @@ func VSUBSS_RU_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSUBSS_RU_SAE_Z: bad operands")
 }
 
-// VSUBSS_RZ_SAE: Subtract Scalar Single-Precision Floating-Point Values.
+// VSUBSS_RZ_SAE: Subtract Scalar Single-Precision Floating-Point Values (Round Towards Zero).
 //
 // Forms:
 //
@@ -85210,7 +85210,7 @@ func VSUBSS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSUBSS_RZ_SAE: bad operands")
 }
 
-// VSUBSS_RZ_SAE_Z: Subtract Scalar Single-Precision Floating-Point Values.
+// VSUBSS_RZ_SAE_Z: Subtract Scalar Single-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
 //
 // Forms:
 //
@@ -85230,7 +85230,7 @@ func VSUBSS_RZ_SAE_Z(x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VSUBSS_RZ_SAE_Z: bad operands")
 }
 
-// VSUBSS_Z: Subtract Scalar Single-Precision Floating-Point Values.
+// VSUBSS_Z: Subtract Scalar Single-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -85398,7 +85398,7 @@ func VUCOMISD(mx, x operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VUCOMISD: bad operands")
 }
 
-// VUCOMISD_SAE: Unordered Compare Scalar Double-Precision Floating-Point Values and Set EFLAGS.
+// VUCOMISD_SAE: Unordered Compare Scalar Double-Precision Floating-Point Values and Set EFLAGS (Suppress All Exceptions).
 //
 // Forms:
 //
@@ -85464,7 +85464,7 @@ func VUCOMISS(mx, x operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VUCOMISS: bad operands")
 }
 
-// VUCOMISS_SAE: Unordered Compare Scalar Single-Precision Floating-Point Values and Set EFLAGS.
+// VUCOMISS_SAE: Unordered Compare Scalar Single-Precision Floating-Point Values and Set EFLAGS (Suppress All Exceptions).
 //
 // Forms:
 //
@@ -85566,7 +85566,7 @@ func VUNPCKHPD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VUNPCKHPD: bad operands")
 }
 
-// VUNPCKHPD_BCST: Unpack and Interleave High Packed Double-Precision Floating-Point Values.
+// VUNPCKHPD_BCST: Unpack and Interleave High Packed Double-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -85596,7 +85596,7 @@ func VUNPCKHPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VUNPCKHPD_BCST: bad operands")
 }
 
-// VUNPCKHPD_BCST_Z: Unpack and Interleave High Packed Double-Precision Floating-Point Values.
+// VUNPCKHPD_BCST_Z: Unpack and Interleave High Packed Double-Precision Floating-Point Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -85616,7 +85616,7 @@ func VUNPCKHPD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VUNPCKHPD_BCST_Z: bad operands")
 }
 
-// VUNPCKHPD_Z: Unpack and Interleave High Packed Double-Precision Floating-Point Values.
+// VUNPCKHPD_Z: Unpack and Interleave High Packed Double-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -85728,7 +85728,7 @@ func VUNPCKHPS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VUNPCKHPS: bad operands")
 }
 
-// VUNPCKHPS_BCST: Unpack and Interleave High Packed Single-Precision Floating-Point Values.
+// VUNPCKHPS_BCST: Unpack and Interleave High Packed Single-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -85758,7 +85758,7 @@ func VUNPCKHPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VUNPCKHPS_BCST: bad operands")
 }
 
-// VUNPCKHPS_BCST_Z: Unpack and Interleave High Packed Single-Precision Floating-Point Values.
+// VUNPCKHPS_BCST_Z: Unpack and Interleave High Packed Single-Precision Floating-Point Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -85778,7 +85778,7 @@ func VUNPCKHPS_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VUNPCKHPS_BCST_Z: bad operands")
 }
 
-// VUNPCKHPS_Z: Unpack and Interleave High Packed Single-Precision Floating-Point Values.
+// VUNPCKHPS_Z: Unpack and Interleave High Packed Single-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -85890,7 +85890,7 @@ func VUNPCKLPD(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VUNPCKLPD: bad operands")
 }
 
-// VUNPCKLPD_BCST: Unpack and Interleave Low Packed Double-Precision Floating-Point Values.
+// VUNPCKLPD_BCST: Unpack and Interleave Low Packed Double-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -85920,7 +85920,7 @@ func VUNPCKLPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VUNPCKLPD_BCST: bad operands")
 }
 
-// VUNPCKLPD_BCST_Z: Unpack and Interleave Low Packed Double-Precision Floating-Point Values.
+// VUNPCKLPD_BCST_Z: Unpack and Interleave Low Packed Double-Precision Floating-Point Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -85940,7 +85940,7 @@ func VUNPCKLPD_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VUNPCKLPD_BCST_Z: bad operands")
 }
 
-// VUNPCKLPD_Z: Unpack and Interleave Low Packed Double-Precision Floating-Point Values.
+// VUNPCKLPD_Z: Unpack and Interleave Low Packed Double-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
@@ -86052,7 +86052,7 @@ func VUNPCKLPS(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VUNPCKLPS: bad operands")
 }
 
-// VUNPCKLPS_BCST: Unpack and Interleave Low Packed Single-Precision Floating-Point Values.
+// VUNPCKLPS_BCST: Unpack and Interleave Low Packed Single-Precision Floating-Point Values (Broadcast).
 //
 // Forms:
 //
@@ -86082,7 +86082,7 @@ func VUNPCKLPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VUNPCKLPS_BCST: bad operands")
 }
 
-// VUNPCKLPS_BCST_Z: Unpack and Interleave Low Packed Single-Precision Floating-Point Values.
+// VUNPCKLPS_BCST_Z: Unpack and Interleave Low Packed Single-Precision Floating-Point Values (Broadcast, Zeroing Masking).
 //
 // Forms:
 //
@@ -86102,7 +86102,7 @@ func VUNPCKLPS_BCST_Z(m, z, k, z1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VUNPCKLPS_BCST_Z: bad operands")
 }
 
-// VUNPCKLPS_Z: Unpack and Interleave Low Packed Single-Precision Floating-Point Values.
+// VUNPCKLPS_Z: Unpack and Interleave Low Packed Single-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
