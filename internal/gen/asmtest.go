@@ -153,12 +153,12 @@ func (a asmtest) arg(t string, i int) string {
 		// <xs:enumeration value="m256{k}{z}" />
 		"m512": "512(AX)(CX*2)", // <xs:enumeration value="m512" />
 		// <xs:enumeration value="m512{k}{z}" />
-		// <xs:enumeration value="m64/m32bcst" />
-		// <xs:enumeration value="m128/m32bcst" />
+		"m64/m32bcst":  "64(AX)(R8*2)",  // <xs:enumeration value="m64/m32bcst" />
+		"m128/m32bcst": "128(AX)(R8*2)", // <xs:enumeration value="m128/m32bcst" />
 		"m256/m32bcst": "256(AX)(R8*2)", // <xs:enumeration value="m256/m32bcst" />
 		"m512/m32bcst": "512(AX)(R8*2)", // <xs:enumeration value="m512/m32bcst" />
-		// <xs:enumeration value="m128/m64bcst" />
-		// <xs:enumeration value="m256/m64bcst" />
+		"m128/m64bcst": "128(AX)(R9*2)", // <xs:enumeration value="m128/m64bcst" />
+		"m256/m64bcst": "256(AX)(R9*2)", // <xs:enumeration value="m256/m64bcst" />
 		"m512/m64bcst": "512(AX)(R9*2)", // <xs:enumeration value="m512/m64bcst" />
 		"vm32x":        "32(X14*8)",     // <xs:enumeration value="vm32x" />
 		// <xs:enumeration value="vm32x{k}" />
