@@ -27708,6 +27708,32 @@ var Instructions = []Instruction{
 		},
 	},
 	{
+		Opcode:  "VPBROADCASTMB2Q",
+		Summary: "Broadcast Low Byte of Mask Register to Packed Quadword Values",
+		Forms: []Form{
+			{
+				ISA: []string{"AVX512CD"},
+				Operands: []Operand{
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+			},
+		},
+	},
+	{
+		Opcode:  "VPBROADCASTMW2D",
+		Summary: "Broadcast Low Word of Mask Register to Packed Doubleword Values",
+		Forms: []Form{
+			{
+				ISA: []string{"AVX512CD"},
+				Operands: []Operand{
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+			},
+		},
+	},
+	{
 		Opcode:  "VPBROADCASTQ",
 		Summary: "Broadcast Quadword Integer",
 		Forms: []Form{
@@ -28694,6 +28720,86 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "m512", Action: 0x6},
+				},
+				Zeroing: true,
+			},
+		},
+	},
+	{
+		Opcode:  "VPCONFLICTD",
+		Summary: "Detect Conflicts Within a Vector of Packed Doubleword Values into Dense Memory/Register",
+		Forms: []Form{
+			{
+				ISA: []string{"AVX512CD"},
+				Operands: []Operand{
+					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				Broadcast: true,
+			},
+			{
+				ISA: []string{"AVX512CD"},
+				Operands: []Operand{
+					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x6},
+				},
+				Zeroing:   true,
+				Broadcast: true,
+			},
+			{
+				ISA: []string{"AVX512CD"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+			},
+			{
+				ISA: []string{"AVX512CD"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x6},
+				},
+				Zeroing: true,
+			},
+		},
+	},
+	{
+		Opcode:  "VPCONFLICTQ",
+		Summary: "Detect Conflicts Within a Vector of Packed Quadword Values into Dense Memory/Register",
+		Forms: []Form{
+			{
+				ISA: []string{"AVX512CD"},
+				Operands: []Operand{
+					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				Broadcast: true,
+			},
+			{
+				ISA: []string{"AVX512CD"},
+				Operands: []Operand{
+					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x6},
+				},
+				Zeroing:   true,
+				Broadcast: true,
+			},
+			{
+				ISA: []string{"AVX512CD"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+			},
+			{
+				ISA: []string{"AVX512CD"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x6},
 				},
 				Zeroing: true,
 			},
@@ -30338,6 +30444,86 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
+			},
+		},
+	},
+	{
+		Opcode:  "VPLZCNTD",
+		Summary: "Count the Number of Leading Zero Bits for Packed Doubleword Values",
+		Forms: []Form{
+			{
+				ISA: []string{"AVX512CD"},
+				Operands: []Operand{
+					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				Broadcast: true,
+			},
+			{
+				ISA: []string{"AVX512CD"},
+				Operands: []Operand{
+					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x6},
+				},
+				Zeroing:   true,
+				Broadcast: true,
+			},
+			{
+				ISA: []string{"AVX512CD"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+			},
+			{
+				ISA: []string{"AVX512CD"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x6},
+				},
+				Zeroing: true,
+			},
+		},
+	},
+	{
+		Opcode:  "VPLZCNTQ",
+		Summary: "Count the Number of Leading Zero Bits for Packed Quadword Values",
+		Forms: []Form{
+			{
+				ISA: []string{"AVX512CD"},
+				Operands: []Operand{
+					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				Broadcast: true,
+			},
+			{
+				ISA: []string{"AVX512CD"},
+				Operands: []Operand{
+					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x6},
+				},
+				Zeroing:   true,
+				Broadcast: true,
+			},
+			{
+				ISA: []string{"AVX512CD"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+			},
+			{
+				ISA: []string{"AVX512CD"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x6},
+				},
+				Zeroing: true,
 			},
 		},
 	},
