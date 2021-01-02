@@ -184,6 +184,12 @@ func IsM64(op Op) bool {
 	return IsMSize(op, 8)
 }
 
+// IsM64M32BCST returns true if op is a 64-bit or 32-bit broadcast memory operand.
+func IsM64M32BCST(op Op) bool {
+	// TODO(mbm): should "m64/m32bcst" be the same as "m64"?
+	return IsM64(op)
+}
+
 // IsMSize returns true if op is a memory operand using general-purpose address
 // registers of the given size in bytes.
 func IsMSize(op Op, n uint) bool {
@@ -202,6 +208,18 @@ func IsMReg(op Op) bool {
 func IsM128(op Op) bool {
 	// TODO(mbm): should "m128" be the same as "m64"?
 	return IsM64(op)
+}
+
+// IsM128M32BCST returns true if op is a 128-bit or 32-bit broadcast memory operand.
+func IsM128M32BCST(op Op) bool {
+	// TODO(mbm): should "m128/m32bcst" be the same as "m128"?
+	return IsM128(op)
+}
+
+// IsM128M64BCST returns true if op is a 128-bit or 64-bit broadcast memory operand.
+func IsM128M64BCST(op Op) bool {
+	// TODO(mbm): should "m128/m64bcst" be the same as "m128"?
+	return IsM128(op)
 }
 
 // IsM256 returns true if op is a 256-bit memory operand.

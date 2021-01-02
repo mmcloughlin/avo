@@ -16133,6 +16133,14 @@ func UNPCKLPS(mx, x operand.Op) { ctx.UNPCKLPS(mx, x) }
 //
 // Forms:
 //
+// 	VADDPD m128/m64bcst xmm xmm
+// 	VADDPD m128/m64bcst xmm k xmm
+// 	VADDPD xmm          xmm xmm
+// 	VADDPD xmm          xmm k xmm
+// 	VADDPD m256/m64bcst ymm ymm
+// 	VADDPD m256/m64bcst ymm k ymm
+// 	VADDPD ymm          ymm ymm
+// 	VADDPD ymm          ymm k ymm
 // 	VADDPD m512/m64bcst zmm zmm
 // 	VADDPD m512/m64bcst zmm k zmm
 // 	VADDPD xmm          xmm xmm
@@ -16154,6 +16162,14 @@ func (c *Context) VADDPD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VADDPD m128/m64bcst xmm xmm
+// 	VADDPD m128/m64bcst xmm k xmm
+// 	VADDPD xmm          xmm xmm
+// 	VADDPD xmm          xmm k xmm
+// 	VADDPD m256/m64bcst ymm ymm
+// 	VADDPD m256/m64bcst ymm k ymm
+// 	VADDPD ymm          ymm ymm
+// 	VADDPD ymm          ymm k ymm
 // 	VADDPD m512/m64bcst zmm zmm
 // 	VADDPD m512/m64bcst zmm k zmm
 // 	VADDPD xmm          xmm xmm
@@ -16170,6 +16186,10 @@ func VADDPD(ops ...operand.Op) { ctx.VADDPD(ops...) }
 //
 // Forms:
 //
+// 	VADDPD.BCST m128/m64bcst xmm xmm
+// 	VADDPD.BCST m128/m64bcst xmm k xmm
+// 	VADDPD.BCST m256/m64bcst ymm ymm
+// 	VADDPD.BCST m256/m64bcst ymm k ymm
 // 	VADDPD.BCST m512/m64bcst zmm zmm
 // 	VADDPD.BCST m512/m64bcst zmm k zmm
 // Construct and append a VADDPD.BCST instruction to the active function.
@@ -16185,6 +16205,10 @@ func (c *Context) VADDPD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VADDPD.BCST m128/m64bcst xmm xmm
+// 	VADDPD.BCST m128/m64bcst xmm k xmm
+// 	VADDPD.BCST m256/m64bcst ymm ymm
+// 	VADDPD.BCST m256/m64bcst ymm k ymm
 // 	VADDPD.BCST m512/m64bcst zmm zmm
 // 	VADDPD.BCST m512/m64bcst zmm k zmm
 // Construct and append a VADDPD.BCST instruction to the active function.
@@ -16195,10 +16219,12 @@ func VADDPD_BCST(ops ...operand.Op) { ctx.VADDPD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VADDPD.BCST.Z m128/m64bcst xmm k xmm
+// 	VADDPD.BCST.Z m256/m64bcst ymm k ymm
 // 	VADDPD.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VADDPD.BCST.Z instruction to the active function.
-func (c *Context) VADDPD_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VADDPD_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VADDPD_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VADDPD_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -16209,10 +16235,12 @@ func (c *Context) VADDPD_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VADDPD.BCST.Z m128/m64bcst xmm k xmm
+// 	VADDPD.BCST.Z m256/m64bcst ymm k ymm
 // 	VADDPD.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VADDPD.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VADDPD_BCST_Z(m, z, k, z1 operand.Op) { ctx.VADDPD_BCST_Z(m, z, k, z1) }
+func VADDPD_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VADDPD_BCST_Z(m, xyz, k, xyz1) }
 
 // VADDPD_RD_SAE: Add Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
@@ -16410,11 +16438,15 @@ func VADDPD_RZ_SAE_Z(z, z1, k, z2 operand.Op) { ctx.VADDPD_RZ_SAE_Z(z, z1, k, z2
 //
 // Forms:
 //
+// 	VADDPD.Z m128/m64bcst xmm k xmm
+// 	VADDPD.Z xmm          xmm k xmm
+// 	VADDPD.Z m256/m64bcst ymm k ymm
+// 	VADDPD.Z ymm          ymm k ymm
 // 	VADDPD.Z m512/m64bcst zmm k zmm
 // 	VADDPD.Z zmm          zmm k zmm
 // Construct and append a VADDPD.Z instruction to the active function.
-func (c *Context) VADDPD_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VADDPD_Z(mz, z, k, z1); err == nil {
+func (c *Context) VADDPD_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VADDPD_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -16425,16 +16457,28 @@ func (c *Context) VADDPD_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VADDPD.Z m128/m64bcst xmm k xmm
+// 	VADDPD.Z xmm          xmm k xmm
+// 	VADDPD.Z m256/m64bcst ymm k ymm
+// 	VADDPD.Z ymm          ymm k ymm
 // 	VADDPD.Z m512/m64bcst zmm k zmm
 // 	VADDPD.Z zmm          zmm k zmm
 // Construct and append a VADDPD.Z instruction to the active function.
 // Operates on the global context.
-func VADDPD_Z(mz, z, k, z1 operand.Op) { ctx.VADDPD_Z(mz, z, k, z1) }
+func VADDPD_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VADDPD_Z(mxyz, xyz, k, xyz1) }
 
 // VADDPS: Add Packed Single-Precision Floating-Point Values.
 //
 // Forms:
 //
+// 	VADDPS m128/m32bcst xmm xmm
+// 	VADDPS m128/m32bcst xmm k xmm
+// 	VADDPS xmm          xmm xmm
+// 	VADDPS xmm          xmm k xmm
+// 	VADDPS m256/m32bcst ymm ymm
+// 	VADDPS m256/m32bcst ymm k ymm
+// 	VADDPS ymm          ymm ymm
+// 	VADDPS ymm          ymm k ymm
 // 	VADDPS m512/m32bcst zmm zmm
 // 	VADDPS m512/m32bcst zmm k zmm
 // 	VADDPS xmm          xmm xmm
@@ -16456,6 +16500,14 @@ func (c *Context) VADDPS(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VADDPS m128/m32bcst xmm xmm
+// 	VADDPS m128/m32bcst xmm k xmm
+// 	VADDPS xmm          xmm xmm
+// 	VADDPS xmm          xmm k xmm
+// 	VADDPS m256/m32bcst ymm ymm
+// 	VADDPS m256/m32bcst ymm k ymm
+// 	VADDPS ymm          ymm ymm
+// 	VADDPS ymm          ymm k ymm
 // 	VADDPS m512/m32bcst zmm zmm
 // 	VADDPS m512/m32bcst zmm k zmm
 // 	VADDPS xmm          xmm xmm
@@ -16472,6 +16524,10 @@ func VADDPS(ops ...operand.Op) { ctx.VADDPS(ops...) }
 //
 // Forms:
 //
+// 	VADDPS.BCST m128/m32bcst xmm xmm
+// 	VADDPS.BCST m128/m32bcst xmm k xmm
+// 	VADDPS.BCST m256/m32bcst ymm ymm
+// 	VADDPS.BCST m256/m32bcst ymm k ymm
 // 	VADDPS.BCST m512/m32bcst zmm zmm
 // 	VADDPS.BCST m512/m32bcst zmm k zmm
 // Construct and append a VADDPS.BCST instruction to the active function.
@@ -16487,6 +16543,10 @@ func (c *Context) VADDPS_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VADDPS.BCST m128/m32bcst xmm xmm
+// 	VADDPS.BCST m128/m32bcst xmm k xmm
+// 	VADDPS.BCST m256/m32bcst ymm ymm
+// 	VADDPS.BCST m256/m32bcst ymm k ymm
 // 	VADDPS.BCST m512/m32bcst zmm zmm
 // 	VADDPS.BCST m512/m32bcst zmm k zmm
 // Construct and append a VADDPS.BCST instruction to the active function.
@@ -16497,10 +16557,12 @@ func VADDPS_BCST(ops ...operand.Op) { ctx.VADDPS_BCST(ops...) }
 //
 // Forms:
 //
+// 	VADDPS.BCST.Z m128/m32bcst xmm k xmm
+// 	VADDPS.BCST.Z m256/m32bcst ymm k ymm
 // 	VADDPS.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VADDPS.BCST.Z instruction to the active function.
-func (c *Context) VADDPS_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VADDPS_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VADDPS_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VADDPS_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -16511,10 +16573,12 @@ func (c *Context) VADDPS_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VADDPS.BCST.Z m128/m32bcst xmm k xmm
+// 	VADDPS.BCST.Z m256/m32bcst ymm k ymm
 // 	VADDPS.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VADDPS.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VADDPS_BCST_Z(m, z, k, z1 operand.Op) { ctx.VADDPS_BCST_Z(m, z, k, z1) }
+func VADDPS_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VADDPS_BCST_Z(m, xyz, k, xyz1) }
 
 // VADDPS_RD_SAE: Add Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
@@ -16712,11 +16776,15 @@ func VADDPS_RZ_SAE_Z(z, z1, k, z2 operand.Op) { ctx.VADDPS_RZ_SAE_Z(z, z1, k, z2
 //
 // Forms:
 //
+// 	VADDPS.Z m128/m32bcst xmm k xmm
+// 	VADDPS.Z xmm          xmm k xmm
+// 	VADDPS.Z m256/m32bcst ymm k ymm
+// 	VADDPS.Z ymm          ymm k ymm
 // 	VADDPS.Z m512/m32bcst zmm k zmm
 // 	VADDPS.Z zmm          zmm k zmm
 // Construct and append a VADDPS.Z instruction to the active function.
-func (c *Context) VADDPS_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VADDPS_Z(mz, z, k, z1); err == nil {
+func (c *Context) VADDPS_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VADDPS_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -16727,11 +16795,15 @@ func (c *Context) VADDPS_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VADDPS.Z m128/m32bcst xmm k xmm
+// 	VADDPS.Z xmm          xmm k xmm
+// 	VADDPS.Z m256/m32bcst ymm k ymm
+// 	VADDPS.Z ymm          ymm k ymm
 // 	VADDPS.Z m512/m32bcst zmm k zmm
 // 	VADDPS.Z zmm          zmm k zmm
 // Construct and append a VADDPS.Z instruction to the active function.
 // Operates on the global context.
-func VADDPS_Z(mz, z, k, z1 operand.Op) { ctx.VADDPS_Z(mz, z, k, z1) }
+func VADDPS_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VADDPS_Z(mxyz, xyz, k, xyz1) }
 
 // VADDSD: Add Scalar Double-Precision Floating-Point Values.
 //
@@ -17445,6 +17517,14 @@ func VAESKEYGENASSIST(i, mx, x operand.Op) { ctx.VAESKEYGENASSIST(i, mx, x) }
 //
 // Forms:
 //
+// 	VALIGND imm8 m128/m32bcst xmm xmm
+// 	VALIGND imm8 m128/m32bcst xmm k xmm
+// 	VALIGND imm8 xmm          xmm xmm
+// 	VALIGND imm8 xmm          xmm k xmm
+// 	VALIGND imm8 m256/m32bcst ymm ymm
+// 	VALIGND imm8 m256/m32bcst ymm k ymm
+// 	VALIGND imm8 ymm          ymm ymm
+// 	VALIGND imm8 ymm          ymm k ymm
 // 	VALIGND imm8 m512/m32bcst zmm zmm
 // 	VALIGND imm8 m512/m32bcst zmm k zmm
 // 	VALIGND imm8 zmm          zmm zmm
@@ -17462,6 +17542,14 @@ func (c *Context) VALIGND(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VALIGND imm8 m128/m32bcst xmm xmm
+// 	VALIGND imm8 m128/m32bcst xmm k xmm
+// 	VALIGND imm8 xmm          xmm xmm
+// 	VALIGND imm8 xmm          xmm k xmm
+// 	VALIGND imm8 m256/m32bcst ymm ymm
+// 	VALIGND imm8 m256/m32bcst ymm k ymm
+// 	VALIGND imm8 ymm          ymm ymm
+// 	VALIGND imm8 ymm          ymm k ymm
 // 	VALIGND imm8 m512/m32bcst zmm zmm
 // 	VALIGND imm8 m512/m32bcst zmm k zmm
 // 	VALIGND imm8 zmm          zmm zmm
@@ -17474,6 +17562,10 @@ func VALIGND(ops ...operand.Op) { ctx.VALIGND(ops...) }
 //
 // Forms:
 //
+// 	VALIGND.BCST imm8 m128/m32bcst xmm xmm
+// 	VALIGND.BCST imm8 m128/m32bcst xmm k xmm
+// 	VALIGND.BCST imm8 m256/m32bcst ymm ymm
+// 	VALIGND.BCST imm8 m256/m32bcst ymm k ymm
 // 	VALIGND.BCST imm8 m512/m32bcst zmm zmm
 // 	VALIGND.BCST imm8 m512/m32bcst zmm k zmm
 // Construct and append a VALIGND.BCST instruction to the active function.
@@ -17489,6 +17581,10 @@ func (c *Context) VALIGND_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VALIGND.BCST imm8 m128/m32bcst xmm xmm
+// 	VALIGND.BCST imm8 m128/m32bcst xmm k xmm
+// 	VALIGND.BCST imm8 m256/m32bcst ymm ymm
+// 	VALIGND.BCST imm8 m256/m32bcst ymm k ymm
 // 	VALIGND.BCST imm8 m512/m32bcst zmm zmm
 // 	VALIGND.BCST imm8 m512/m32bcst zmm k zmm
 // Construct and append a VALIGND.BCST instruction to the active function.
@@ -17499,10 +17595,12 @@ func VALIGND_BCST(ops ...operand.Op) { ctx.VALIGND_BCST(ops...) }
 //
 // Forms:
 //
+// 	VALIGND.BCST.Z imm8 m128/m32bcst xmm k xmm
+// 	VALIGND.BCST.Z imm8 m256/m32bcst ymm k ymm
 // 	VALIGND.BCST.Z imm8 m512/m32bcst zmm k zmm
 // Construct and append a VALIGND.BCST.Z instruction to the active function.
-func (c *Context) VALIGND_BCST_Z(i, m, z, k, z1 operand.Op) {
-	if inst, err := x86.VALIGND_BCST_Z(i, m, z, k, z1); err == nil {
+func (c *Context) VALIGND_BCST_Z(i, m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VALIGND_BCST_Z(i, m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -17513,20 +17611,26 @@ func (c *Context) VALIGND_BCST_Z(i, m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VALIGND.BCST.Z imm8 m128/m32bcst xmm k xmm
+// 	VALIGND.BCST.Z imm8 m256/m32bcst ymm k ymm
 // 	VALIGND.BCST.Z imm8 m512/m32bcst zmm k zmm
 // Construct and append a VALIGND.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VALIGND_BCST_Z(i, m, z, k, z1 operand.Op) { ctx.VALIGND_BCST_Z(i, m, z, k, z1) }
+func VALIGND_BCST_Z(i, m, xyz, k, xyz1 operand.Op) { ctx.VALIGND_BCST_Z(i, m, xyz, k, xyz1) }
 
 // VALIGND_Z: Align Doubleword Vectors (Zeroing Masking).
 //
 // Forms:
 //
+// 	VALIGND.Z imm8 m128/m32bcst xmm k xmm
+// 	VALIGND.Z imm8 xmm          xmm k xmm
+// 	VALIGND.Z imm8 m256/m32bcst ymm k ymm
+// 	VALIGND.Z imm8 ymm          ymm k ymm
 // 	VALIGND.Z imm8 m512/m32bcst zmm k zmm
 // 	VALIGND.Z imm8 zmm          zmm k zmm
 // Construct and append a VALIGND.Z instruction to the active function.
-func (c *Context) VALIGND_Z(i, mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VALIGND_Z(i, mz, z, k, z1); err == nil {
+func (c *Context) VALIGND_Z(i, mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VALIGND_Z(i, mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -17537,16 +17641,28 @@ func (c *Context) VALIGND_Z(i, mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VALIGND.Z imm8 m128/m32bcst xmm k xmm
+// 	VALIGND.Z imm8 xmm          xmm k xmm
+// 	VALIGND.Z imm8 m256/m32bcst ymm k ymm
+// 	VALIGND.Z imm8 ymm          ymm k ymm
 // 	VALIGND.Z imm8 m512/m32bcst zmm k zmm
 // 	VALIGND.Z imm8 zmm          zmm k zmm
 // Construct and append a VALIGND.Z instruction to the active function.
 // Operates on the global context.
-func VALIGND_Z(i, mz, z, k, z1 operand.Op) { ctx.VALIGND_Z(i, mz, z, k, z1) }
+func VALIGND_Z(i, mxyz, xyz, k, xyz1 operand.Op) { ctx.VALIGND_Z(i, mxyz, xyz, k, xyz1) }
 
 // VALIGNQ: Align Quadword Vectors.
 //
 // Forms:
 //
+// 	VALIGNQ imm8 m128/m64bcst xmm xmm
+// 	VALIGNQ imm8 m128/m64bcst xmm k xmm
+// 	VALIGNQ imm8 xmm          xmm xmm
+// 	VALIGNQ imm8 xmm          xmm k xmm
+// 	VALIGNQ imm8 m256/m64bcst ymm ymm
+// 	VALIGNQ imm8 m256/m64bcst ymm k ymm
+// 	VALIGNQ imm8 ymm          ymm ymm
+// 	VALIGNQ imm8 ymm          ymm k ymm
 // 	VALIGNQ imm8 m512/m64bcst zmm zmm
 // 	VALIGNQ imm8 m512/m64bcst zmm k zmm
 // 	VALIGNQ imm8 zmm          zmm zmm
@@ -17564,6 +17680,14 @@ func (c *Context) VALIGNQ(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VALIGNQ imm8 m128/m64bcst xmm xmm
+// 	VALIGNQ imm8 m128/m64bcst xmm k xmm
+// 	VALIGNQ imm8 xmm          xmm xmm
+// 	VALIGNQ imm8 xmm          xmm k xmm
+// 	VALIGNQ imm8 m256/m64bcst ymm ymm
+// 	VALIGNQ imm8 m256/m64bcst ymm k ymm
+// 	VALIGNQ imm8 ymm          ymm ymm
+// 	VALIGNQ imm8 ymm          ymm k ymm
 // 	VALIGNQ imm8 m512/m64bcst zmm zmm
 // 	VALIGNQ imm8 m512/m64bcst zmm k zmm
 // 	VALIGNQ imm8 zmm          zmm zmm
@@ -17576,6 +17700,10 @@ func VALIGNQ(ops ...operand.Op) { ctx.VALIGNQ(ops...) }
 //
 // Forms:
 //
+// 	VALIGNQ.BCST imm8 m128/m64bcst xmm xmm
+// 	VALIGNQ.BCST imm8 m128/m64bcst xmm k xmm
+// 	VALIGNQ.BCST imm8 m256/m64bcst ymm ymm
+// 	VALIGNQ.BCST imm8 m256/m64bcst ymm k ymm
 // 	VALIGNQ.BCST imm8 m512/m64bcst zmm zmm
 // 	VALIGNQ.BCST imm8 m512/m64bcst zmm k zmm
 // Construct and append a VALIGNQ.BCST instruction to the active function.
@@ -17591,6 +17719,10 @@ func (c *Context) VALIGNQ_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VALIGNQ.BCST imm8 m128/m64bcst xmm xmm
+// 	VALIGNQ.BCST imm8 m128/m64bcst xmm k xmm
+// 	VALIGNQ.BCST imm8 m256/m64bcst ymm ymm
+// 	VALIGNQ.BCST imm8 m256/m64bcst ymm k ymm
 // 	VALIGNQ.BCST imm8 m512/m64bcst zmm zmm
 // 	VALIGNQ.BCST imm8 m512/m64bcst zmm k zmm
 // Construct and append a VALIGNQ.BCST instruction to the active function.
@@ -17601,10 +17733,12 @@ func VALIGNQ_BCST(ops ...operand.Op) { ctx.VALIGNQ_BCST(ops...) }
 //
 // Forms:
 //
+// 	VALIGNQ.BCST.Z imm8 m128/m64bcst xmm k xmm
+// 	VALIGNQ.BCST.Z imm8 m256/m64bcst ymm k ymm
 // 	VALIGNQ.BCST.Z imm8 m512/m64bcst zmm k zmm
 // Construct and append a VALIGNQ.BCST.Z instruction to the active function.
-func (c *Context) VALIGNQ_BCST_Z(i, m, z, k, z1 operand.Op) {
-	if inst, err := x86.VALIGNQ_BCST_Z(i, m, z, k, z1); err == nil {
+func (c *Context) VALIGNQ_BCST_Z(i, m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VALIGNQ_BCST_Z(i, m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -17615,20 +17749,26 @@ func (c *Context) VALIGNQ_BCST_Z(i, m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VALIGNQ.BCST.Z imm8 m128/m64bcst xmm k xmm
+// 	VALIGNQ.BCST.Z imm8 m256/m64bcst ymm k ymm
 // 	VALIGNQ.BCST.Z imm8 m512/m64bcst zmm k zmm
 // Construct and append a VALIGNQ.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VALIGNQ_BCST_Z(i, m, z, k, z1 operand.Op) { ctx.VALIGNQ_BCST_Z(i, m, z, k, z1) }
+func VALIGNQ_BCST_Z(i, m, xyz, k, xyz1 operand.Op) { ctx.VALIGNQ_BCST_Z(i, m, xyz, k, xyz1) }
 
 // VALIGNQ_Z: Align Quadword Vectors (Zeroing Masking).
 //
 // Forms:
 //
+// 	VALIGNQ.Z imm8 m128/m64bcst xmm k xmm
+// 	VALIGNQ.Z imm8 xmm          xmm k xmm
+// 	VALIGNQ.Z imm8 m256/m64bcst ymm k ymm
+// 	VALIGNQ.Z imm8 ymm          ymm k ymm
 // 	VALIGNQ.Z imm8 m512/m64bcst zmm k zmm
 // 	VALIGNQ.Z imm8 zmm          zmm k zmm
 // Construct and append a VALIGNQ.Z instruction to the active function.
-func (c *Context) VALIGNQ_Z(i, mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VALIGNQ_Z(i, mz, z, k, z1); err == nil {
+func (c *Context) VALIGNQ_Z(i, mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VALIGNQ_Z(i, mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -17639,11 +17779,15 @@ func (c *Context) VALIGNQ_Z(i, mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VALIGNQ.Z imm8 m128/m64bcst xmm k xmm
+// 	VALIGNQ.Z imm8 xmm          xmm k xmm
+// 	VALIGNQ.Z imm8 m256/m64bcst ymm k ymm
+// 	VALIGNQ.Z imm8 ymm          ymm k ymm
 // 	VALIGNQ.Z imm8 m512/m64bcst zmm k zmm
 // 	VALIGNQ.Z imm8 zmm          zmm k zmm
 // Construct and append a VALIGNQ.Z instruction to the active function.
 // Operates on the global context.
-func VALIGNQ_Z(i, mz, z, k, z1 operand.Op) { ctx.VALIGNQ_Z(i, mz, z, k, z1) }
+func VALIGNQ_Z(i, mxyz, xyz, k, xyz1 operand.Op) { ctx.VALIGNQ_Z(i, mxyz, xyz, k, xyz1) }
 
 // VANDNPD: Bitwise Logical AND NOT of Packed Double-Precision Floating-Point Values.
 //
@@ -17765,6 +17909,14 @@ func VANDPS(mxy, xy, xy1 operand.Op) { ctx.VANDPS(mxy, xy, xy1) }
 //
 // Forms:
 //
+// 	VBLENDMPD m128/m64bcst xmm xmm
+// 	VBLENDMPD m128/m64bcst xmm k xmm
+// 	VBLENDMPD xmm          xmm xmm
+// 	VBLENDMPD xmm          xmm k xmm
+// 	VBLENDMPD m256/m64bcst ymm ymm
+// 	VBLENDMPD m256/m64bcst ymm k ymm
+// 	VBLENDMPD ymm          ymm ymm
+// 	VBLENDMPD ymm          ymm k ymm
 // 	VBLENDMPD m512/m64bcst zmm zmm
 // 	VBLENDMPD m512/m64bcst zmm k zmm
 // 	VBLENDMPD zmm          zmm zmm
@@ -17782,6 +17934,14 @@ func (c *Context) VBLENDMPD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VBLENDMPD m128/m64bcst xmm xmm
+// 	VBLENDMPD m128/m64bcst xmm k xmm
+// 	VBLENDMPD xmm          xmm xmm
+// 	VBLENDMPD xmm          xmm k xmm
+// 	VBLENDMPD m256/m64bcst ymm ymm
+// 	VBLENDMPD m256/m64bcst ymm k ymm
+// 	VBLENDMPD ymm          ymm ymm
+// 	VBLENDMPD ymm          ymm k ymm
 // 	VBLENDMPD m512/m64bcst zmm zmm
 // 	VBLENDMPD m512/m64bcst zmm k zmm
 // 	VBLENDMPD zmm          zmm zmm
@@ -17794,6 +17954,10 @@ func VBLENDMPD(ops ...operand.Op) { ctx.VBLENDMPD(ops...) }
 //
 // Forms:
 //
+// 	VBLENDMPD.BCST m128/m64bcst xmm xmm
+// 	VBLENDMPD.BCST m128/m64bcst xmm k xmm
+// 	VBLENDMPD.BCST m256/m64bcst ymm ymm
+// 	VBLENDMPD.BCST m256/m64bcst ymm k ymm
 // 	VBLENDMPD.BCST m512/m64bcst zmm zmm
 // 	VBLENDMPD.BCST m512/m64bcst zmm k zmm
 // Construct and append a VBLENDMPD.BCST instruction to the active function.
@@ -17809,6 +17973,10 @@ func (c *Context) VBLENDMPD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VBLENDMPD.BCST m128/m64bcst xmm xmm
+// 	VBLENDMPD.BCST m128/m64bcst xmm k xmm
+// 	VBLENDMPD.BCST m256/m64bcst ymm ymm
+// 	VBLENDMPD.BCST m256/m64bcst ymm k ymm
 // 	VBLENDMPD.BCST m512/m64bcst zmm zmm
 // 	VBLENDMPD.BCST m512/m64bcst zmm k zmm
 // Construct and append a VBLENDMPD.BCST instruction to the active function.
@@ -17819,10 +17987,12 @@ func VBLENDMPD_BCST(ops ...operand.Op) { ctx.VBLENDMPD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VBLENDMPD.BCST.Z m128/m64bcst xmm k xmm
+// 	VBLENDMPD.BCST.Z m256/m64bcst ymm k ymm
 // 	VBLENDMPD.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VBLENDMPD.BCST.Z instruction to the active function.
-func (c *Context) VBLENDMPD_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VBLENDMPD_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VBLENDMPD_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VBLENDMPD_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -17833,20 +18003,26 @@ func (c *Context) VBLENDMPD_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VBLENDMPD.BCST.Z m128/m64bcst xmm k xmm
+// 	VBLENDMPD.BCST.Z m256/m64bcst ymm k ymm
 // 	VBLENDMPD.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VBLENDMPD.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VBLENDMPD_BCST_Z(m, z, k, z1 operand.Op) { ctx.VBLENDMPD_BCST_Z(m, z, k, z1) }
+func VBLENDMPD_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VBLENDMPD_BCST_Z(m, xyz, k, xyz1) }
 
 // VBLENDMPD_Z: Blend Packed Double-Precision Floating-Point Vectors Using an OpMask Control (Zeroing Masking).
 //
 // Forms:
 //
+// 	VBLENDMPD.Z m128/m64bcst xmm k xmm
+// 	VBLENDMPD.Z xmm          xmm k xmm
+// 	VBLENDMPD.Z m256/m64bcst ymm k ymm
+// 	VBLENDMPD.Z ymm          ymm k ymm
 // 	VBLENDMPD.Z m512/m64bcst zmm k zmm
 // 	VBLENDMPD.Z zmm          zmm k zmm
 // Construct and append a VBLENDMPD.Z instruction to the active function.
-func (c *Context) VBLENDMPD_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VBLENDMPD_Z(mz, z, k, z1); err == nil {
+func (c *Context) VBLENDMPD_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VBLENDMPD_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -17857,16 +18033,28 @@ func (c *Context) VBLENDMPD_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VBLENDMPD.Z m128/m64bcst xmm k xmm
+// 	VBLENDMPD.Z xmm          xmm k xmm
+// 	VBLENDMPD.Z m256/m64bcst ymm k ymm
+// 	VBLENDMPD.Z ymm          ymm k ymm
 // 	VBLENDMPD.Z m512/m64bcst zmm k zmm
 // 	VBLENDMPD.Z zmm          zmm k zmm
 // Construct and append a VBLENDMPD.Z instruction to the active function.
 // Operates on the global context.
-func VBLENDMPD_Z(mz, z, k, z1 operand.Op) { ctx.VBLENDMPD_Z(mz, z, k, z1) }
+func VBLENDMPD_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VBLENDMPD_Z(mxyz, xyz, k, xyz1) }
 
 // VBLENDMPS: Blend Packed Single-Precision Floating-Point Vectors Using an OpMask Control.
 //
 // Forms:
 //
+// 	VBLENDMPS m128/m32bcst xmm xmm
+// 	VBLENDMPS m128/m32bcst xmm k xmm
+// 	VBLENDMPS xmm          xmm xmm
+// 	VBLENDMPS xmm          xmm k xmm
+// 	VBLENDMPS m256/m32bcst ymm ymm
+// 	VBLENDMPS m256/m32bcst ymm k ymm
+// 	VBLENDMPS ymm          ymm ymm
+// 	VBLENDMPS ymm          ymm k ymm
 // 	VBLENDMPS m512/m32bcst zmm zmm
 // 	VBLENDMPS m512/m32bcst zmm k zmm
 // 	VBLENDMPS zmm          zmm zmm
@@ -17884,6 +18072,14 @@ func (c *Context) VBLENDMPS(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VBLENDMPS m128/m32bcst xmm xmm
+// 	VBLENDMPS m128/m32bcst xmm k xmm
+// 	VBLENDMPS xmm          xmm xmm
+// 	VBLENDMPS xmm          xmm k xmm
+// 	VBLENDMPS m256/m32bcst ymm ymm
+// 	VBLENDMPS m256/m32bcst ymm k ymm
+// 	VBLENDMPS ymm          ymm ymm
+// 	VBLENDMPS ymm          ymm k ymm
 // 	VBLENDMPS m512/m32bcst zmm zmm
 // 	VBLENDMPS m512/m32bcst zmm k zmm
 // 	VBLENDMPS zmm          zmm zmm
@@ -17896,6 +18092,10 @@ func VBLENDMPS(ops ...operand.Op) { ctx.VBLENDMPS(ops...) }
 //
 // Forms:
 //
+// 	VBLENDMPS.BCST m128/m32bcst xmm xmm
+// 	VBLENDMPS.BCST m128/m32bcst xmm k xmm
+// 	VBLENDMPS.BCST m256/m32bcst ymm ymm
+// 	VBLENDMPS.BCST m256/m32bcst ymm k ymm
 // 	VBLENDMPS.BCST m512/m32bcst zmm zmm
 // 	VBLENDMPS.BCST m512/m32bcst zmm k zmm
 // Construct and append a VBLENDMPS.BCST instruction to the active function.
@@ -17911,6 +18111,10 @@ func (c *Context) VBLENDMPS_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VBLENDMPS.BCST m128/m32bcst xmm xmm
+// 	VBLENDMPS.BCST m128/m32bcst xmm k xmm
+// 	VBLENDMPS.BCST m256/m32bcst ymm ymm
+// 	VBLENDMPS.BCST m256/m32bcst ymm k ymm
 // 	VBLENDMPS.BCST m512/m32bcst zmm zmm
 // 	VBLENDMPS.BCST m512/m32bcst zmm k zmm
 // Construct and append a VBLENDMPS.BCST instruction to the active function.
@@ -17921,10 +18125,12 @@ func VBLENDMPS_BCST(ops ...operand.Op) { ctx.VBLENDMPS_BCST(ops...) }
 //
 // Forms:
 //
+// 	VBLENDMPS.BCST.Z m128/m32bcst xmm k xmm
+// 	VBLENDMPS.BCST.Z m256/m32bcst ymm k ymm
 // 	VBLENDMPS.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VBLENDMPS.BCST.Z instruction to the active function.
-func (c *Context) VBLENDMPS_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VBLENDMPS_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VBLENDMPS_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VBLENDMPS_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -17935,20 +18141,26 @@ func (c *Context) VBLENDMPS_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VBLENDMPS.BCST.Z m128/m32bcst xmm k xmm
+// 	VBLENDMPS.BCST.Z m256/m32bcst ymm k ymm
 // 	VBLENDMPS.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VBLENDMPS.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VBLENDMPS_BCST_Z(m, z, k, z1 operand.Op) { ctx.VBLENDMPS_BCST_Z(m, z, k, z1) }
+func VBLENDMPS_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VBLENDMPS_BCST_Z(m, xyz, k, xyz1) }
 
 // VBLENDMPS_Z: Blend Packed Single-Precision Floating-Point Vectors Using an OpMask Control (Zeroing Masking).
 //
 // Forms:
 //
+// 	VBLENDMPS.Z m128/m32bcst xmm k xmm
+// 	VBLENDMPS.Z xmm          xmm k xmm
+// 	VBLENDMPS.Z m256/m32bcst ymm k ymm
+// 	VBLENDMPS.Z ymm          ymm k ymm
 // 	VBLENDMPS.Z m512/m32bcst zmm k zmm
 // 	VBLENDMPS.Z zmm          zmm k zmm
 // Construct and append a VBLENDMPS.Z instruction to the active function.
-func (c *Context) VBLENDMPS_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VBLENDMPS_Z(mz, z, k, z1); err == nil {
+func (c *Context) VBLENDMPS_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VBLENDMPS_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -17959,11 +18171,15 @@ func (c *Context) VBLENDMPS_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VBLENDMPS.Z m128/m32bcst xmm k xmm
+// 	VBLENDMPS.Z xmm          xmm k xmm
+// 	VBLENDMPS.Z m256/m32bcst ymm k ymm
+// 	VBLENDMPS.Z ymm          ymm k ymm
 // 	VBLENDMPS.Z m512/m32bcst zmm k zmm
 // 	VBLENDMPS.Z zmm          zmm k zmm
 // Construct and append a VBLENDMPS.Z instruction to the active function.
 // Operates on the global context.
-func VBLENDMPS_Z(mz, z, k, z1 operand.Op) { ctx.VBLENDMPS_Z(mz, z, k, z1) }
+func VBLENDMPS_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VBLENDMPS_Z(mxyz, xyz, k, xyz1) }
 
 // VBLENDPD: Blend Packed Double Precision Floating-Point Values.
 //
@@ -18108,6 +18324,8 @@ func VBROADCASTF128(m, y operand.Op) { ctx.VBROADCASTF128(m, y) }
 //
 // Forms:
 //
+// 	VBROADCASTF32X4 m128 ymm
+// 	VBROADCASTF32X4 m128 k ymm
 // 	VBROADCASTF32X4 m128 zmm
 // 	VBROADCASTF32X4 m128 k zmm
 // Construct and append a VBROADCASTF32X4 instruction to the active function.
@@ -18123,6 +18341,8 @@ func (c *Context) VBROADCASTF32X4(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VBROADCASTF32X4 m128 ymm
+// 	VBROADCASTF32X4 m128 k ymm
 // 	VBROADCASTF32X4 m128 zmm
 // 	VBROADCASTF32X4 m128 k zmm
 // Construct and append a VBROADCASTF32X4 instruction to the active function.
@@ -18133,10 +18353,11 @@ func VBROADCASTF32X4(ops ...operand.Op) { ctx.VBROADCASTF32X4(ops...) }
 //
 // Forms:
 //
+// 	VBROADCASTF32X4.Z m128 k ymm
 // 	VBROADCASTF32X4.Z m128 k zmm
 // Construct and append a VBROADCASTF32X4.Z instruction to the active function.
-func (c *Context) VBROADCASTF32X4_Z(m, k, z operand.Op) {
-	if inst, err := x86.VBROADCASTF32X4_Z(m, k, z); err == nil {
+func (c *Context) VBROADCASTF32X4_Z(m, k, yz operand.Op) {
+	if inst, err := x86.VBROADCASTF32X4_Z(m, k, yz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -18147,10 +18368,11 @@ func (c *Context) VBROADCASTF32X4_Z(m, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VBROADCASTF32X4.Z m128 k ymm
 // 	VBROADCASTF32X4.Z m128 k zmm
 // Construct and append a VBROADCASTF32X4.Z instruction to the active function.
 // Operates on the global context.
-func VBROADCASTF32X4_Z(m, k, z operand.Op) { ctx.VBROADCASTF32X4_Z(m, k, z) }
+func VBROADCASTF32X4_Z(m, k, yz operand.Op) { ctx.VBROADCASTF32X4_Z(m, k, yz) }
 
 // VBROADCASTF64X4: Broadcast Four Double-Precision Floating-Point Elements.
 //
@@ -18227,6 +18449,8 @@ func VBROADCASTI128(m, y operand.Op) { ctx.VBROADCASTI128(m, y) }
 //
 // Forms:
 //
+// 	VBROADCASTI32X4 m128 ymm
+// 	VBROADCASTI32X4 m128 k ymm
 // 	VBROADCASTI32X4 m128 zmm
 // 	VBROADCASTI32X4 m128 k zmm
 // Construct and append a VBROADCASTI32X4 instruction to the active function.
@@ -18242,6 +18466,8 @@ func (c *Context) VBROADCASTI32X4(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VBROADCASTI32X4 m128 ymm
+// 	VBROADCASTI32X4 m128 k ymm
 // 	VBROADCASTI32X4 m128 zmm
 // 	VBROADCASTI32X4 m128 k zmm
 // Construct and append a VBROADCASTI32X4 instruction to the active function.
@@ -18252,10 +18478,11 @@ func VBROADCASTI32X4(ops ...operand.Op) { ctx.VBROADCASTI32X4(ops...) }
 //
 // Forms:
 //
+// 	VBROADCASTI32X4.Z m128 k ymm
 // 	VBROADCASTI32X4.Z m128 k zmm
 // Construct and append a VBROADCASTI32X4.Z instruction to the active function.
-func (c *Context) VBROADCASTI32X4_Z(m, k, z operand.Op) {
-	if inst, err := x86.VBROADCASTI32X4_Z(m, k, z); err == nil {
+func (c *Context) VBROADCASTI32X4_Z(m, k, yz operand.Op) {
+	if inst, err := x86.VBROADCASTI32X4_Z(m, k, yz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -18266,10 +18493,11 @@ func (c *Context) VBROADCASTI32X4_Z(m, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VBROADCASTI32X4.Z m128 k ymm
 // 	VBROADCASTI32X4.Z m128 k zmm
 // Construct and append a VBROADCASTI32X4.Z instruction to the active function.
 // Operates on the global context.
-func VBROADCASTI32X4_Z(m, k, z operand.Op) { ctx.VBROADCASTI32X4_Z(m, k, z) }
+func VBROADCASTI32X4_Z(m, k, yz operand.Op) { ctx.VBROADCASTI32X4_Z(m, k, yz) }
 
 // VBROADCASTI64X4: Broadcast Four Quadword Elements.
 //
@@ -18323,8 +18551,12 @@ func VBROADCASTI64X4_Z(m, k, z operand.Op) { ctx.VBROADCASTI64X4_Z(m, k, z) }
 //
 // Forms:
 //
+// 	VBROADCASTSD xmm ymm
+// 	VBROADCASTSD xmm k ymm
 // 	VBROADCASTSD xmm zmm
 // 	VBROADCASTSD xmm k zmm
+// 	VBROADCASTSD m64 ymm
+// 	VBROADCASTSD m64 k ymm
 // 	VBROADCASTSD m64 zmm
 // 	VBROADCASTSD m64 k zmm
 // 	VBROADCASTSD xmm ymm
@@ -18342,8 +18574,12 @@ func (c *Context) VBROADCASTSD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VBROADCASTSD xmm ymm
+// 	VBROADCASTSD xmm k ymm
 // 	VBROADCASTSD xmm zmm
 // 	VBROADCASTSD xmm k zmm
+// 	VBROADCASTSD m64 ymm
+// 	VBROADCASTSD m64 k ymm
 // 	VBROADCASTSD m64 zmm
 // 	VBROADCASTSD m64 k zmm
 // 	VBROADCASTSD xmm ymm
@@ -18356,11 +18592,13 @@ func VBROADCASTSD(ops ...operand.Op) { ctx.VBROADCASTSD(ops...) }
 //
 // Forms:
 //
+// 	VBROADCASTSD.Z xmm k ymm
 // 	VBROADCASTSD.Z xmm k zmm
+// 	VBROADCASTSD.Z m64 k ymm
 // 	VBROADCASTSD.Z m64 k zmm
 // Construct and append a VBROADCASTSD.Z instruction to the active function.
-func (c *Context) VBROADCASTSD_Z(mx, k, z operand.Op) {
-	if inst, err := x86.VBROADCASTSD_Z(mx, k, z); err == nil {
+func (c *Context) VBROADCASTSD_Z(mx, k, yz operand.Op) {
+	if inst, err := x86.VBROADCASTSD_Z(mx, k, yz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -18371,18 +18609,24 @@ func (c *Context) VBROADCASTSD_Z(mx, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VBROADCASTSD.Z xmm k ymm
 // 	VBROADCASTSD.Z xmm k zmm
+// 	VBROADCASTSD.Z m64 k ymm
 // 	VBROADCASTSD.Z m64 k zmm
 // Construct and append a VBROADCASTSD.Z instruction to the active function.
 // Operates on the global context.
-func VBROADCASTSD_Z(mx, k, z operand.Op) { ctx.VBROADCASTSD_Z(mx, k, z) }
+func VBROADCASTSD_Z(mx, k, yz operand.Op) { ctx.VBROADCASTSD_Z(mx, k, yz) }
 
 // VBROADCASTSS: Broadcast Single-Precision Floating-Point Element.
 //
 // Forms:
 //
+// 	VBROADCASTSS xmm ymm
+// 	VBROADCASTSS xmm k ymm
 // 	VBROADCASTSS xmm zmm
 // 	VBROADCASTSS xmm k zmm
+// 	VBROADCASTSS m32 ymm
+// 	VBROADCASTSS m32 k ymm
 // 	VBROADCASTSS m32 zmm
 // 	VBROADCASTSS m32 k zmm
 // 	VBROADCASTSS xmm xmm
@@ -18402,8 +18646,12 @@ func (c *Context) VBROADCASTSS(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VBROADCASTSS xmm ymm
+// 	VBROADCASTSS xmm k ymm
 // 	VBROADCASTSS xmm zmm
 // 	VBROADCASTSS xmm k zmm
+// 	VBROADCASTSS m32 ymm
+// 	VBROADCASTSS m32 k ymm
 // 	VBROADCASTSS m32 zmm
 // 	VBROADCASTSS m32 k zmm
 // 	VBROADCASTSS xmm xmm
@@ -18418,11 +18666,13 @@ func VBROADCASTSS(ops ...operand.Op) { ctx.VBROADCASTSS(ops...) }
 //
 // Forms:
 //
+// 	VBROADCASTSS.Z xmm k ymm
 // 	VBROADCASTSS.Z xmm k zmm
+// 	VBROADCASTSS.Z m32 k ymm
 // 	VBROADCASTSS.Z m32 k zmm
 // Construct and append a VBROADCASTSS.Z instruction to the active function.
-func (c *Context) VBROADCASTSS_Z(mx, k, z operand.Op) {
-	if inst, err := x86.VBROADCASTSS_Z(mx, k, z); err == nil {
+func (c *Context) VBROADCASTSS_Z(mx, k, yz operand.Op) {
+	if inst, err := x86.VBROADCASTSS_Z(mx, k, yz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -18433,16 +18683,26 @@ func (c *Context) VBROADCASTSS_Z(mx, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VBROADCASTSS.Z xmm k ymm
 // 	VBROADCASTSS.Z xmm k zmm
+// 	VBROADCASTSS.Z m32 k ymm
 // 	VBROADCASTSS.Z m32 k zmm
 // Construct and append a VBROADCASTSS.Z instruction to the active function.
 // Operates on the global context.
-func VBROADCASTSS_Z(mx, k, z operand.Op) { ctx.VBROADCASTSS_Z(mx, k, z) }
+func VBROADCASTSS_Z(mx, k, yz operand.Op) { ctx.VBROADCASTSS_Z(mx, k, yz) }
 
 // VCMPPD: Compare Packed Double-Precision Floating-Point Values.
 //
 // Forms:
 //
+// 	VCMPPD imm8 m128/m64bcst xmm k
+// 	VCMPPD imm8 m128/m64bcst xmm k k
+// 	VCMPPD imm8 xmm          xmm k
+// 	VCMPPD imm8 xmm          xmm k k
+// 	VCMPPD imm8 m256/m64bcst ymm k
+// 	VCMPPD imm8 m256/m64bcst ymm k k
+// 	VCMPPD imm8 ymm          ymm k
+// 	VCMPPD imm8 ymm          ymm k k
 // 	VCMPPD imm8 m512/m64bcst zmm k
 // 	VCMPPD imm8 m512/m64bcst zmm k k
 // 	VCMPPD imm8 xmm          xmm xmm
@@ -18464,6 +18724,14 @@ func (c *Context) VCMPPD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VCMPPD imm8 m128/m64bcst xmm k
+// 	VCMPPD imm8 m128/m64bcst xmm k k
+// 	VCMPPD imm8 xmm          xmm k
+// 	VCMPPD imm8 xmm          xmm k k
+// 	VCMPPD imm8 m256/m64bcst ymm k
+// 	VCMPPD imm8 m256/m64bcst ymm k k
+// 	VCMPPD imm8 ymm          ymm k
+// 	VCMPPD imm8 ymm          ymm k k
 // 	VCMPPD imm8 m512/m64bcst zmm k
 // 	VCMPPD imm8 m512/m64bcst zmm k k
 // 	VCMPPD imm8 xmm          xmm xmm
@@ -18480,6 +18748,10 @@ func VCMPPD(ops ...operand.Op) { ctx.VCMPPD(ops...) }
 //
 // Forms:
 //
+// 	VCMPPD.BCST imm8 m128/m64bcst xmm k
+// 	VCMPPD.BCST imm8 m128/m64bcst xmm k k
+// 	VCMPPD.BCST imm8 m256/m64bcst ymm k
+// 	VCMPPD.BCST imm8 m256/m64bcst ymm k k
 // 	VCMPPD.BCST imm8 m512/m64bcst zmm k
 // 	VCMPPD.BCST imm8 m512/m64bcst zmm k k
 // Construct and append a VCMPPD.BCST instruction to the active function.
@@ -18495,6 +18767,10 @@ func (c *Context) VCMPPD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VCMPPD.BCST imm8 m128/m64bcst xmm k
+// 	VCMPPD.BCST imm8 m128/m64bcst xmm k k
+// 	VCMPPD.BCST imm8 m256/m64bcst ymm k
+// 	VCMPPD.BCST imm8 m256/m64bcst ymm k k
 // 	VCMPPD.BCST imm8 m512/m64bcst zmm k
 // 	VCMPPD.BCST imm8 m512/m64bcst zmm k k
 // Construct and append a VCMPPD.BCST instruction to the active function.
@@ -18530,6 +18806,14 @@ func VCMPPD_SAE(ops ...operand.Op) { ctx.VCMPPD_SAE(ops...) }
 //
 // Forms:
 //
+// 	VCMPPS imm8 m128/m32bcst xmm k
+// 	VCMPPS imm8 m128/m32bcst xmm k k
+// 	VCMPPS imm8 xmm          xmm k
+// 	VCMPPS imm8 xmm          xmm k k
+// 	VCMPPS imm8 m256/m32bcst ymm k
+// 	VCMPPS imm8 m256/m32bcst ymm k k
+// 	VCMPPS imm8 ymm          ymm k
+// 	VCMPPS imm8 ymm          ymm k k
 // 	VCMPPS imm8 m512/m32bcst zmm k
 // 	VCMPPS imm8 m512/m32bcst zmm k k
 // 	VCMPPS imm8 xmm          xmm xmm
@@ -18551,6 +18835,14 @@ func (c *Context) VCMPPS(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VCMPPS imm8 m128/m32bcst xmm k
+// 	VCMPPS imm8 m128/m32bcst xmm k k
+// 	VCMPPS imm8 xmm          xmm k
+// 	VCMPPS imm8 xmm          xmm k k
+// 	VCMPPS imm8 m256/m32bcst ymm k
+// 	VCMPPS imm8 m256/m32bcst ymm k k
+// 	VCMPPS imm8 ymm          ymm k
+// 	VCMPPS imm8 ymm          ymm k k
 // 	VCMPPS imm8 m512/m32bcst zmm k
 // 	VCMPPS imm8 m512/m32bcst zmm k k
 // 	VCMPPS imm8 xmm          xmm xmm
@@ -18567,6 +18859,10 @@ func VCMPPS(ops ...operand.Op) { ctx.VCMPPS(ops...) }
 //
 // Forms:
 //
+// 	VCMPPS.BCST imm8 m128/m32bcst xmm k
+// 	VCMPPS.BCST imm8 m128/m32bcst xmm k k
+// 	VCMPPS.BCST imm8 m256/m32bcst ymm k
+// 	VCMPPS.BCST imm8 m256/m32bcst ymm k k
 // 	VCMPPS.BCST imm8 m512/m32bcst zmm k
 // 	VCMPPS.BCST imm8 m512/m32bcst zmm k k
 // Construct and append a VCMPPS.BCST instruction to the active function.
@@ -18582,6 +18878,10 @@ func (c *Context) VCMPPS_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VCMPPS.BCST imm8 m128/m32bcst xmm k
+// 	VCMPPS.BCST imm8 m128/m32bcst xmm k k
+// 	VCMPPS.BCST imm8 m256/m32bcst ymm k
+// 	VCMPPS.BCST imm8 m256/m32bcst ymm k k
 // 	VCMPPS.BCST imm8 m512/m32bcst zmm k
 // 	VCMPPS.BCST imm8 m512/m32bcst zmm k k
 // Construct and append a VCMPPS.BCST instruction to the active function.
@@ -18837,6 +19137,14 @@ func VCOMISS_SAE(x, x1 operand.Op) { ctx.VCOMISS_SAE(x, x1) }
 //
 // Forms:
 //
+// 	VCOMPRESSPD xmm xmm
+// 	VCOMPRESSPD xmm k xmm
+// 	VCOMPRESSPD xmm m128
+// 	VCOMPRESSPD xmm k m128
+// 	VCOMPRESSPD ymm ymm
+// 	VCOMPRESSPD ymm k ymm
+// 	VCOMPRESSPD ymm m256
+// 	VCOMPRESSPD ymm k m256
 // 	VCOMPRESSPD zmm zmm
 // 	VCOMPRESSPD zmm k zmm
 // 	VCOMPRESSPD zmm m512
@@ -18854,6 +19162,14 @@ func (c *Context) VCOMPRESSPD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VCOMPRESSPD xmm xmm
+// 	VCOMPRESSPD xmm k xmm
+// 	VCOMPRESSPD xmm m128
+// 	VCOMPRESSPD xmm k m128
+// 	VCOMPRESSPD ymm ymm
+// 	VCOMPRESSPD ymm k ymm
+// 	VCOMPRESSPD ymm m256
+// 	VCOMPRESSPD ymm k m256
 // 	VCOMPRESSPD zmm zmm
 // 	VCOMPRESSPD zmm k zmm
 // 	VCOMPRESSPD zmm m512
@@ -18866,11 +19182,15 @@ func VCOMPRESSPD(ops ...operand.Op) { ctx.VCOMPRESSPD(ops...) }
 //
 // Forms:
 //
+// 	VCOMPRESSPD.Z xmm k xmm
+// 	VCOMPRESSPD.Z xmm k m128
+// 	VCOMPRESSPD.Z ymm k ymm
+// 	VCOMPRESSPD.Z ymm k m256
 // 	VCOMPRESSPD.Z zmm k zmm
 // 	VCOMPRESSPD.Z zmm k m512
 // Construct and append a VCOMPRESSPD.Z instruction to the active function.
-func (c *Context) VCOMPRESSPD_Z(z, k, mz operand.Op) {
-	if inst, err := x86.VCOMPRESSPD_Z(z, k, mz); err == nil {
+func (c *Context) VCOMPRESSPD_Z(xyz, k, mxyz operand.Op) {
+	if inst, err := x86.VCOMPRESSPD_Z(xyz, k, mxyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -18881,16 +19201,28 @@ func (c *Context) VCOMPRESSPD_Z(z, k, mz operand.Op) {
 //
 // Forms:
 //
+// 	VCOMPRESSPD.Z xmm k xmm
+// 	VCOMPRESSPD.Z xmm k m128
+// 	VCOMPRESSPD.Z ymm k ymm
+// 	VCOMPRESSPD.Z ymm k m256
 // 	VCOMPRESSPD.Z zmm k zmm
 // 	VCOMPRESSPD.Z zmm k m512
 // Construct and append a VCOMPRESSPD.Z instruction to the active function.
 // Operates on the global context.
-func VCOMPRESSPD_Z(z, k, mz operand.Op) { ctx.VCOMPRESSPD_Z(z, k, mz) }
+func VCOMPRESSPD_Z(xyz, k, mxyz operand.Op) { ctx.VCOMPRESSPD_Z(xyz, k, mxyz) }
 
 // VCOMPRESSPS: Store Sparse Packed Single-Precision Floating-Point Values into Dense Memory/Register.
 //
 // Forms:
 //
+// 	VCOMPRESSPS xmm xmm
+// 	VCOMPRESSPS xmm k xmm
+// 	VCOMPRESSPS xmm m128
+// 	VCOMPRESSPS xmm k m128
+// 	VCOMPRESSPS ymm ymm
+// 	VCOMPRESSPS ymm k ymm
+// 	VCOMPRESSPS ymm m256
+// 	VCOMPRESSPS ymm k m256
 // 	VCOMPRESSPS zmm zmm
 // 	VCOMPRESSPS zmm k zmm
 // 	VCOMPRESSPS zmm m512
@@ -18908,6 +19240,14 @@ func (c *Context) VCOMPRESSPS(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VCOMPRESSPS xmm xmm
+// 	VCOMPRESSPS xmm k xmm
+// 	VCOMPRESSPS xmm m128
+// 	VCOMPRESSPS xmm k m128
+// 	VCOMPRESSPS ymm ymm
+// 	VCOMPRESSPS ymm k ymm
+// 	VCOMPRESSPS ymm m256
+// 	VCOMPRESSPS ymm k m256
 // 	VCOMPRESSPS zmm zmm
 // 	VCOMPRESSPS zmm k zmm
 // 	VCOMPRESSPS zmm m512
@@ -18920,11 +19260,15 @@ func VCOMPRESSPS(ops ...operand.Op) { ctx.VCOMPRESSPS(ops...) }
 //
 // Forms:
 //
+// 	VCOMPRESSPS.Z xmm k xmm
+// 	VCOMPRESSPS.Z xmm k m128
+// 	VCOMPRESSPS.Z ymm k ymm
+// 	VCOMPRESSPS.Z ymm k m256
 // 	VCOMPRESSPS.Z zmm k zmm
 // 	VCOMPRESSPS.Z zmm k m512
 // Construct and append a VCOMPRESSPS.Z instruction to the active function.
-func (c *Context) VCOMPRESSPS_Z(z, k, mz operand.Op) {
-	if inst, err := x86.VCOMPRESSPS_Z(z, k, mz); err == nil {
+func (c *Context) VCOMPRESSPS_Z(xyz, k, mxyz operand.Op) {
+	if inst, err := x86.VCOMPRESSPS_Z(xyz, k, mxyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -18935,18 +19279,30 @@ func (c *Context) VCOMPRESSPS_Z(z, k, mz operand.Op) {
 //
 // Forms:
 //
+// 	VCOMPRESSPS.Z xmm k xmm
+// 	VCOMPRESSPS.Z xmm k m128
+// 	VCOMPRESSPS.Z ymm k ymm
+// 	VCOMPRESSPS.Z ymm k m256
 // 	VCOMPRESSPS.Z zmm k zmm
 // 	VCOMPRESSPS.Z zmm k m512
 // Construct and append a VCOMPRESSPS.Z instruction to the active function.
 // Operates on the global context.
-func VCOMPRESSPS_Z(z, k, mz operand.Op) { ctx.VCOMPRESSPS_Z(z, k, mz) }
+func VCOMPRESSPS_Z(xyz, k, mxyz operand.Op) { ctx.VCOMPRESSPS_Z(xyz, k, mxyz) }
 
 // VCVTDQ2PD: Convert Packed Dword Integers to Packed Double-Precision FP Values.
 //
 // Forms:
 //
+// 	VCVTDQ2PD m64/m32bcst  xmm
+// 	VCVTDQ2PD m64/m32bcst  k xmm
+// 	VCVTDQ2PD m128/m32bcst ymm
+// 	VCVTDQ2PD m128/m32bcst k ymm
 // 	VCVTDQ2PD m256/m32bcst zmm
 // 	VCVTDQ2PD m256/m32bcst k zmm
+// 	VCVTDQ2PD xmm          xmm
+// 	VCVTDQ2PD xmm          k xmm
+// 	VCVTDQ2PD xmm          ymm
+// 	VCVTDQ2PD xmm          k ymm
 // 	VCVTDQ2PD ymm          zmm
 // 	VCVTDQ2PD ymm          k zmm
 // 	VCVTDQ2PD xmm          xmm
@@ -18966,8 +19322,16 @@ func (c *Context) VCVTDQ2PD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VCVTDQ2PD m64/m32bcst  xmm
+// 	VCVTDQ2PD m64/m32bcst  k xmm
+// 	VCVTDQ2PD m128/m32bcst ymm
+// 	VCVTDQ2PD m128/m32bcst k ymm
 // 	VCVTDQ2PD m256/m32bcst zmm
 // 	VCVTDQ2PD m256/m32bcst k zmm
+// 	VCVTDQ2PD xmm          xmm
+// 	VCVTDQ2PD xmm          k xmm
+// 	VCVTDQ2PD xmm          ymm
+// 	VCVTDQ2PD xmm          k ymm
 // 	VCVTDQ2PD ymm          zmm
 // 	VCVTDQ2PD ymm          k zmm
 // 	VCVTDQ2PD xmm          xmm
@@ -18982,6 +19346,10 @@ func VCVTDQ2PD(ops ...operand.Op) { ctx.VCVTDQ2PD(ops...) }
 //
 // Forms:
 //
+// 	VCVTDQ2PD.BCST m64/m32bcst  xmm
+// 	VCVTDQ2PD.BCST m64/m32bcst  k xmm
+// 	VCVTDQ2PD.BCST m128/m32bcst ymm
+// 	VCVTDQ2PD.BCST m128/m32bcst k ymm
 // 	VCVTDQ2PD.BCST m256/m32bcst zmm
 // 	VCVTDQ2PD.BCST m256/m32bcst k zmm
 // Construct and append a VCVTDQ2PD.BCST instruction to the active function.
@@ -18997,6 +19365,10 @@ func (c *Context) VCVTDQ2PD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VCVTDQ2PD.BCST m64/m32bcst  xmm
+// 	VCVTDQ2PD.BCST m64/m32bcst  k xmm
+// 	VCVTDQ2PD.BCST m128/m32bcst ymm
+// 	VCVTDQ2PD.BCST m128/m32bcst k ymm
 // 	VCVTDQ2PD.BCST m256/m32bcst zmm
 // 	VCVTDQ2PD.BCST m256/m32bcst k zmm
 // Construct and append a VCVTDQ2PD.BCST instruction to the active function.
@@ -19007,10 +19379,12 @@ func VCVTDQ2PD_BCST(ops ...operand.Op) { ctx.VCVTDQ2PD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VCVTDQ2PD.BCST.Z m64/m32bcst  k xmm
+// 	VCVTDQ2PD.BCST.Z m128/m32bcst k ymm
 // 	VCVTDQ2PD.BCST.Z m256/m32bcst k zmm
 // Construct and append a VCVTDQ2PD.BCST.Z instruction to the active function.
-func (c *Context) VCVTDQ2PD_BCST_Z(m, k, z operand.Op) {
-	if inst, err := x86.VCVTDQ2PD_BCST_Z(m, k, z); err == nil {
+func (c *Context) VCVTDQ2PD_BCST_Z(m, k, xyz operand.Op) {
+	if inst, err := x86.VCVTDQ2PD_BCST_Z(m, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -19021,20 +19395,26 @@ func (c *Context) VCVTDQ2PD_BCST_Z(m, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VCVTDQ2PD.BCST.Z m64/m32bcst  k xmm
+// 	VCVTDQ2PD.BCST.Z m128/m32bcst k ymm
 // 	VCVTDQ2PD.BCST.Z m256/m32bcst k zmm
 // Construct and append a VCVTDQ2PD.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VCVTDQ2PD_BCST_Z(m, k, z operand.Op) { ctx.VCVTDQ2PD_BCST_Z(m, k, z) }
+func VCVTDQ2PD_BCST_Z(m, k, xyz operand.Op) { ctx.VCVTDQ2PD_BCST_Z(m, k, xyz) }
 
 // VCVTDQ2PD_Z: Convert Packed Dword Integers to Packed Double-Precision FP Values (Zeroing Masking).
 //
 // Forms:
 //
+// 	VCVTDQ2PD.Z m64/m32bcst  k xmm
+// 	VCVTDQ2PD.Z m128/m32bcst k ymm
 // 	VCVTDQ2PD.Z m256/m32bcst k zmm
+// 	VCVTDQ2PD.Z xmm          k xmm
+// 	VCVTDQ2PD.Z xmm          k ymm
 // 	VCVTDQ2PD.Z ymm          k zmm
 // Construct and append a VCVTDQ2PD.Z instruction to the active function.
-func (c *Context) VCVTDQ2PD_Z(my, k, z operand.Op) {
-	if inst, err := x86.VCVTDQ2PD_Z(my, k, z); err == nil {
+func (c *Context) VCVTDQ2PD_Z(mxy, k, xyz operand.Op) {
+	if inst, err := x86.VCVTDQ2PD_Z(mxy, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -19045,18 +19425,30 @@ func (c *Context) VCVTDQ2PD_Z(my, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VCVTDQ2PD.Z m64/m32bcst  k xmm
+// 	VCVTDQ2PD.Z m128/m32bcst k ymm
 // 	VCVTDQ2PD.Z m256/m32bcst k zmm
+// 	VCVTDQ2PD.Z xmm          k xmm
+// 	VCVTDQ2PD.Z xmm          k ymm
 // 	VCVTDQ2PD.Z ymm          k zmm
 // Construct and append a VCVTDQ2PD.Z instruction to the active function.
 // Operates on the global context.
-func VCVTDQ2PD_Z(my, k, z operand.Op) { ctx.VCVTDQ2PD_Z(my, k, z) }
+func VCVTDQ2PD_Z(mxy, k, xyz operand.Op) { ctx.VCVTDQ2PD_Z(mxy, k, xyz) }
 
 // VCVTDQ2PS: Convert Packed Dword Integers to Packed Single-Precision FP Values.
 //
 // Forms:
 //
+// 	VCVTDQ2PS m128/m32bcst xmm
+// 	VCVTDQ2PS m128/m32bcst k xmm
+// 	VCVTDQ2PS m256/m32bcst ymm
+// 	VCVTDQ2PS m256/m32bcst k ymm
 // 	VCVTDQ2PS m512/m32bcst zmm
 // 	VCVTDQ2PS m512/m32bcst k zmm
+// 	VCVTDQ2PS xmm          xmm
+// 	VCVTDQ2PS xmm          k xmm
+// 	VCVTDQ2PS ymm          ymm
+// 	VCVTDQ2PS ymm          k ymm
 // 	VCVTDQ2PS xmm          xmm
 // 	VCVTDQ2PS m128         xmm
 // 	VCVTDQ2PS ymm          ymm
@@ -19076,8 +19468,16 @@ func (c *Context) VCVTDQ2PS(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VCVTDQ2PS m128/m32bcst xmm
+// 	VCVTDQ2PS m128/m32bcst k xmm
+// 	VCVTDQ2PS m256/m32bcst ymm
+// 	VCVTDQ2PS m256/m32bcst k ymm
 // 	VCVTDQ2PS m512/m32bcst zmm
 // 	VCVTDQ2PS m512/m32bcst k zmm
+// 	VCVTDQ2PS xmm          xmm
+// 	VCVTDQ2PS xmm          k xmm
+// 	VCVTDQ2PS ymm          ymm
+// 	VCVTDQ2PS ymm          k ymm
 // 	VCVTDQ2PS xmm          xmm
 // 	VCVTDQ2PS m128         xmm
 // 	VCVTDQ2PS ymm          ymm
@@ -19092,6 +19492,10 @@ func VCVTDQ2PS(ops ...operand.Op) { ctx.VCVTDQ2PS(ops...) }
 //
 // Forms:
 //
+// 	VCVTDQ2PS.BCST m128/m32bcst xmm
+// 	VCVTDQ2PS.BCST m128/m32bcst k xmm
+// 	VCVTDQ2PS.BCST m256/m32bcst ymm
+// 	VCVTDQ2PS.BCST m256/m32bcst k ymm
 // 	VCVTDQ2PS.BCST m512/m32bcst zmm
 // 	VCVTDQ2PS.BCST m512/m32bcst k zmm
 // Construct and append a VCVTDQ2PS.BCST instruction to the active function.
@@ -19107,6 +19511,10 @@ func (c *Context) VCVTDQ2PS_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VCVTDQ2PS.BCST m128/m32bcst xmm
+// 	VCVTDQ2PS.BCST m128/m32bcst k xmm
+// 	VCVTDQ2PS.BCST m256/m32bcst ymm
+// 	VCVTDQ2PS.BCST m256/m32bcst k ymm
 // 	VCVTDQ2PS.BCST m512/m32bcst zmm
 // 	VCVTDQ2PS.BCST m512/m32bcst k zmm
 // Construct and append a VCVTDQ2PS.BCST instruction to the active function.
@@ -19117,10 +19525,12 @@ func VCVTDQ2PS_BCST(ops ...operand.Op) { ctx.VCVTDQ2PS_BCST(ops...) }
 //
 // Forms:
 //
+// 	VCVTDQ2PS.BCST.Z m128/m32bcst k xmm
+// 	VCVTDQ2PS.BCST.Z m256/m32bcst k ymm
 // 	VCVTDQ2PS.BCST.Z m512/m32bcst k zmm
 // Construct and append a VCVTDQ2PS.BCST.Z instruction to the active function.
-func (c *Context) VCVTDQ2PS_BCST_Z(m, k, z operand.Op) {
-	if inst, err := x86.VCVTDQ2PS_BCST_Z(m, k, z); err == nil {
+func (c *Context) VCVTDQ2PS_BCST_Z(m, k, xyz operand.Op) {
+	if inst, err := x86.VCVTDQ2PS_BCST_Z(m, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -19131,10 +19541,12 @@ func (c *Context) VCVTDQ2PS_BCST_Z(m, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VCVTDQ2PS.BCST.Z m128/m32bcst k xmm
+// 	VCVTDQ2PS.BCST.Z m256/m32bcst k ymm
 // 	VCVTDQ2PS.BCST.Z m512/m32bcst k zmm
 // Construct and append a VCVTDQ2PS.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VCVTDQ2PS_BCST_Z(m, k, z operand.Op) { ctx.VCVTDQ2PS_BCST_Z(m, k, z) }
+func VCVTDQ2PS_BCST_Z(m, k, xyz operand.Op) { ctx.VCVTDQ2PS_BCST_Z(m, k, xyz) }
 
 // VCVTDQ2PS_RD_SAE: Convert Packed Dword Integers to Packed Single-Precision FP Values (Round Towards Negative Infinity).
 //
@@ -19332,11 +19744,15 @@ func VCVTDQ2PS_RZ_SAE_Z(z, k, z1 operand.Op) { ctx.VCVTDQ2PS_RZ_SAE_Z(z, k, z1) 
 //
 // Forms:
 //
+// 	VCVTDQ2PS.Z m128/m32bcst k xmm
+// 	VCVTDQ2PS.Z m256/m32bcst k ymm
 // 	VCVTDQ2PS.Z m512/m32bcst k zmm
+// 	VCVTDQ2PS.Z xmm          k xmm
+// 	VCVTDQ2PS.Z ymm          k ymm
 // 	VCVTDQ2PS.Z zmm          k zmm
 // Construct and append a VCVTDQ2PS.Z instruction to the active function.
-func (c *Context) VCVTDQ2PS_Z(mz, k, z operand.Op) {
-	if inst, err := x86.VCVTDQ2PS_Z(mz, k, z); err == nil {
+func (c *Context) VCVTDQ2PS_Z(mxyz, k, xyz operand.Op) {
+	if inst, err := x86.VCVTDQ2PS_Z(mxyz, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -19347,11 +19763,15 @@ func (c *Context) VCVTDQ2PS_Z(mz, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VCVTDQ2PS.Z m128/m32bcst k xmm
+// 	VCVTDQ2PS.Z m256/m32bcst k ymm
 // 	VCVTDQ2PS.Z m512/m32bcst k zmm
+// 	VCVTDQ2PS.Z xmm          k xmm
+// 	VCVTDQ2PS.Z ymm          k ymm
 // 	VCVTDQ2PS.Z zmm          k zmm
 // Construct and append a VCVTDQ2PS.Z instruction to the active function.
 // Operates on the global context.
-func VCVTDQ2PS_Z(mz, k, z operand.Op) { ctx.VCVTDQ2PS_Z(mz, k, z) }
+func VCVTDQ2PS_Z(mxyz, k, xyz operand.Op) { ctx.VCVTDQ2PS_Z(mxyz, k, xyz) }
 
 // VCVTPD2DQ: Convert Packed Double-Precision FP Values to Packed Dword Integers.
 //
@@ -19386,11 +19806,15 @@ func VCVTPD2DQ(ops ...operand.Op) { ctx.VCVTPD2DQ(ops...) }
 //
 // Forms:
 //
-// 	VCVTPD2DQX xmm  xmm
-// 	VCVTPD2DQX m128 xmm
+// 	VCVTPD2DQX m128/m64bcst xmm
+// 	VCVTPD2DQX m128/m64bcst k xmm
+// 	VCVTPD2DQX xmm          xmm
+// 	VCVTPD2DQX xmm          k xmm
+// 	VCVTPD2DQX xmm          xmm
+// 	VCVTPD2DQX m128         xmm
 // Construct and append a VCVTPD2DQX instruction to the active function.
-func (c *Context) VCVTPD2DQX(mx, x operand.Op) {
-	if inst, err := x86.VCVTPD2DQX(mx, x); err == nil {
+func (c *Context) VCVTPD2DQX(ops ...operand.Op) {
+	if inst, err := x86.VCVTPD2DQX(ops...); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -19401,21 +19825,102 @@ func (c *Context) VCVTPD2DQX(mx, x operand.Op) {
 //
 // Forms:
 //
-// 	VCVTPD2DQX xmm  xmm
-// 	VCVTPD2DQX m128 xmm
+// 	VCVTPD2DQX m128/m64bcst xmm
+// 	VCVTPD2DQX m128/m64bcst k xmm
+// 	VCVTPD2DQX xmm          xmm
+// 	VCVTPD2DQX xmm          k xmm
+// 	VCVTPD2DQX xmm          xmm
+// 	VCVTPD2DQX m128         xmm
 // Construct and append a VCVTPD2DQX instruction to the active function.
 // Operates on the global context.
-func VCVTPD2DQX(mx, x operand.Op) { ctx.VCVTPD2DQX(mx, x) }
+func VCVTPD2DQX(ops ...operand.Op) { ctx.VCVTPD2DQX(ops...) }
+
+// VCVTPD2DQX_BCST: Convert Packed Double-Precision FP Values to Packed Dword Integers (Broadcast).
+//
+// Forms:
+//
+// 	VCVTPD2DQX.BCST m128/m64bcst xmm
+// 	VCVTPD2DQX.BCST m128/m64bcst k xmm
+// Construct and append a VCVTPD2DQX.BCST instruction to the active function.
+func (c *Context) VCVTPD2DQX_BCST(ops ...operand.Op) {
+	if inst, err := x86.VCVTPD2DQX_BCST(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTPD2DQX_BCST: Convert Packed Double-Precision FP Values to Packed Dword Integers (Broadcast).
+//
+// Forms:
+//
+// 	VCVTPD2DQX.BCST m128/m64bcst xmm
+// 	VCVTPD2DQX.BCST m128/m64bcst k xmm
+// Construct and append a VCVTPD2DQX.BCST instruction to the active function.
+// Operates on the global context.
+func VCVTPD2DQX_BCST(ops ...operand.Op) { ctx.VCVTPD2DQX_BCST(ops...) }
+
+// VCVTPD2DQX_BCST_Z: Convert Packed Double-Precision FP Values to Packed Dword Integers (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTPD2DQX.BCST.Z m128/m64bcst k xmm
+// Construct and append a VCVTPD2DQX.BCST.Z instruction to the active function.
+func (c *Context) VCVTPD2DQX_BCST_Z(m, k, x operand.Op) {
+	if inst, err := x86.VCVTPD2DQX_BCST_Z(m, k, x); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTPD2DQX_BCST_Z: Convert Packed Double-Precision FP Values to Packed Dword Integers (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTPD2DQX.BCST.Z m128/m64bcst k xmm
+// Construct and append a VCVTPD2DQX.BCST.Z instruction to the active function.
+// Operates on the global context.
+func VCVTPD2DQX_BCST_Z(m, k, x operand.Op) { ctx.VCVTPD2DQX_BCST_Z(m, k, x) }
+
+// VCVTPD2DQX_Z: Convert Packed Double-Precision FP Values to Packed Dword Integers (Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTPD2DQX.Z m128/m64bcst k xmm
+// 	VCVTPD2DQX.Z xmm          k xmm
+// Construct and append a VCVTPD2DQX.Z instruction to the active function.
+func (c *Context) VCVTPD2DQX_Z(mx, k, x operand.Op) {
+	if inst, err := x86.VCVTPD2DQX_Z(mx, k, x); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTPD2DQX_Z: Convert Packed Double-Precision FP Values to Packed Dword Integers (Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTPD2DQX.Z m128/m64bcst k xmm
+// 	VCVTPD2DQX.Z xmm          k xmm
+// Construct and append a VCVTPD2DQX.Z instruction to the active function.
+// Operates on the global context.
+func VCVTPD2DQX_Z(mx, k, x operand.Op) { ctx.VCVTPD2DQX_Z(mx, k, x) }
 
 // VCVTPD2DQY: Convert Packed Double-Precision FP Values to Packed Dword Integers.
 //
 // Forms:
 //
-// 	VCVTPD2DQY ymm  xmm
-// 	VCVTPD2DQY m256 xmm
+// 	VCVTPD2DQY m256/m64bcst xmm
+// 	VCVTPD2DQY m256/m64bcst k xmm
+// 	VCVTPD2DQY ymm          xmm
+// 	VCVTPD2DQY ymm          k xmm
+// 	VCVTPD2DQY ymm          xmm
+// 	VCVTPD2DQY m256         xmm
 // Construct and append a VCVTPD2DQY instruction to the active function.
-func (c *Context) VCVTPD2DQY(my, x operand.Op) {
-	if inst, err := x86.VCVTPD2DQY(my, x); err == nil {
+func (c *Context) VCVTPD2DQY(ops ...operand.Op) {
+	if inst, err := x86.VCVTPD2DQY(ops...); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -19426,11 +19931,88 @@ func (c *Context) VCVTPD2DQY(my, x operand.Op) {
 //
 // Forms:
 //
-// 	VCVTPD2DQY ymm  xmm
-// 	VCVTPD2DQY m256 xmm
+// 	VCVTPD2DQY m256/m64bcst xmm
+// 	VCVTPD2DQY m256/m64bcst k xmm
+// 	VCVTPD2DQY ymm          xmm
+// 	VCVTPD2DQY ymm          k xmm
+// 	VCVTPD2DQY ymm          xmm
+// 	VCVTPD2DQY m256         xmm
 // Construct and append a VCVTPD2DQY instruction to the active function.
 // Operates on the global context.
-func VCVTPD2DQY(my, x operand.Op) { ctx.VCVTPD2DQY(my, x) }
+func VCVTPD2DQY(ops ...operand.Op) { ctx.VCVTPD2DQY(ops...) }
+
+// VCVTPD2DQY_BCST: Convert Packed Double-Precision FP Values to Packed Dword Integers (Broadcast).
+//
+// Forms:
+//
+// 	VCVTPD2DQY.BCST m256/m64bcst xmm
+// 	VCVTPD2DQY.BCST m256/m64bcst k xmm
+// Construct and append a VCVTPD2DQY.BCST instruction to the active function.
+func (c *Context) VCVTPD2DQY_BCST(ops ...operand.Op) {
+	if inst, err := x86.VCVTPD2DQY_BCST(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTPD2DQY_BCST: Convert Packed Double-Precision FP Values to Packed Dword Integers (Broadcast).
+//
+// Forms:
+//
+// 	VCVTPD2DQY.BCST m256/m64bcst xmm
+// 	VCVTPD2DQY.BCST m256/m64bcst k xmm
+// Construct and append a VCVTPD2DQY.BCST instruction to the active function.
+// Operates on the global context.
+func VCVTPD2DQY_BCST(ops ...operand.Op) { ctx.VCVTPD2DQY_BCST(ops...) }
+
+// VCVTPD2DQY_BCST_Z: Convert Packed Double-Precision FP Values to Packed Dword Integers (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTPD2DQY.BCST.Z m256/m64bcst k xmm
+// Construct and append a VCVTPD2DQY.BCST.Z instruction to the active function.
+func (c *Context) VCVTPD2DQY_BCST_Z(m, k, x operand.Op) {
+	if inst, err := x86.VCVTPD2DQY_BCST_Z(m, k, x); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTPD2DQY_BCST_Z: Convert Packed Double-Precision FP Values to Packed Dword Integers (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTPD2DQY.BCST.Z m256/m64bcst k xmm
+// Construct and append a VCVTPD2DQY.BCST.Z instruction to the active function.
+// Operates on the global context.
+func VCVTPD2DQY_BCST_Z(m, k, x operand.Op) { ctx.VCVTPD2DQY_BCST_Z(m, k, x) }
+
+// VCVTPD2DQY_Z: Convert Packed Double-Precision FP Values to Packed Dword Integers (Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTPD2DQY.Z m256/m64bcst k xmm
+// 	VCVTPD2DQY.Z ymm          k xmm
+// Construct and append a VCVTPD2DQY.Z instruction to the active function.
+func (c *Context) VCVTPD2DQY_Z(my, k, x operand.Op) {
+	if inst, err := x86.VCVTPD2DQY_Z(my, k, x); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTPD2DQY_Z: Convert Packed Double-Precision FP Values to Packed Dword Integers (Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTPD2DQY.Z m256/m64bcst k xmm
+// 	VCVTPD2DQY.Z ymm          k xmm
+// Construct and append a VCVTPD2DQY.Z instruction to the active function.
+// Operates on the global context.
+func VCVTPD2DQY_Z(my, k, x operand.Op) { ctx.VCVTPD2DQY_Z(my, k, x) }
 
 // VCVTPD2DQ_BCST: Convert Packed Double-Precision FP Values to Packed Dword Integers (Broadcast).
 //
@@ -19730,11 +20312,15 @@ func VCVTPD2PS(ops ...operand.Op) { ctx.VCVTPD2PS(ops...) }
 //
 // Forms:
 //
-// 	VCVTPD2PSX xmm  xmm
-// 	VCVTPD2PSX m128 xmm
+// 	VCVTPD2PSX m128/m64bcst xmm
+// 	VCVTPD2PSX m128/m64bcst k xmm
+// 	VCVTPD2PSX xmm          xmm
+// 	VCVTPD2PSX xmm          k xmm
+// 	VCVTPD2PSX xmm          xmm
+// 	VCVTPD2PSX m128         xmm
 // Construct and append a VCVTPD2PSX instruction to the active function.
-func (c *Context) VCVTPD2PSX(mx, x operand.Op) {
-	if inst, err := x86.VCVTPD2PSX(mx, x); err == nil {
+func (c *Context) VCVTPD2PSX(ops ...operand.Op) {
+	if inst, err := x86.VCVTPD2PSX(ops...); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -19745,21 +20331,102 @@ func (c *Context) VCVTPD2PSX(mx, x operand.Op) {
 //
 // Forms:
 //
-// 	VCVTPD2PSX xmm  xmm
-// 	VCVTPD2PSX m128 xmm
+// 	VCVTPD2PSX m128/m64bcst xmm
+// 	VCVTPD2PSX m128/m64bcst k xmm
+// 	VCVTPD2PSX xmm          xmm
+// 	VCVTPD2PSX xmm          k xmm
+// 	VCVTPD2PSX xmm          xmm
+// 	VCVTPD2PSX m128         xmm
 // Construct and append a VCVTPD2PSX instruction to the active function.
 // Operates on the global context.
-func VCVTPD2PSX(mx, x operand.Op) { ctx.VCVTPD2PSX(mx, x) }
+func VCVTPD2PSX(ops ...operand.Op) { ctx.VCVTPD2PSX(ops...) }
+
+// VCVTPD2PSX_BCST: Convert Packed Double-Precision FP Values to Packed Single-Precision FP Values (Broadcast).
+//
+// Forms:
+//
+// 	VCVTPD2PSX.BCST m128/m64bcst xmm
+// 	VCVTPD2PSX.BCST m128/m64bcst k xmm
+// Construct and append a VCVTPD2PSX.BCST instruction to the active function.
+func (c *Context) VCVTPD2PSX_BCST(ops ...operand.Op) {
+	if inst, err := x86.VCVTPD2PSX_BCST(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTPD2PSX_BCST: Convert Packed Double-Precision FP Values to Packed Single-Precision FP Values (Broadcast).
+//
+// Forms:
+//
+// 	VCVTPD2PSX.BCST m128/m64bcst xmm
+// 	VCVTPD2PSX.BCST m128/m64bcst k xmm
+// Construct and append a VCVTPD2PSX.BCST instruction to the active function.
+// Operates on the global context.
+func VCVTPD2PSX_BCST(ops ...operand.Op) { ctx.VCVTPD2PSX_BCST(ops...) }
+
+// VCVTPD2PSX_BCST_Z: Convert Packed Double-Precision FP Values to Packed Single-Precision FP Values (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTPD2PSX.BCST.Z m128/m64bcst k xmm
+// Construct and append a VCVTPD2PSX.BCST.Z instruction to the active function.
+func (c *Context) VCVTPD2PSX_BCST_Z(m, k, x operand.Op) {
+	if inst, err := x86.VCVTPD2PSX_BCST_Z(m, k, x); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTPD2PSX_BCST_Z: Convert Packed Double-Precision FP Values to Packed Single-Precision FP Values (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTPD2PSX.BCST.Z m128/m64bcst k xmm
+// Construct and append a VCVTPD2PSX.BCST.Z instruction to the active function.
+// Operates on the global context.
+func VCVTPD2PSX_BCST_Z(m, k, x operand.Op) { ctx.VCVTPD2PSX_BCST_Z(m, k, x) }
+
+// VCVTPD2PSX_Z: Convert Packed Double-Precision FP Values to Packed Single-Precision FP Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTPD2PSX.Z m128/m64bcst k xmm
+// 	VCVTPD2PSX.Z xmm          k xmm
+// Construct and append a VCVTPD2PSX.Z instruction to the active function.
+func (c *Context) VCVTPD2PSX_Z(mx, k, x operand.Op) {
+	if inst, err := x86.VCVTPD2PSX_Z(mx, k, x); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTPD2PSX_Z: Convert Packed Double-Precision FP Values to Packed Single-Precision FP Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTPD2PSX.Z m128/m64bcst k xmm
+// 	VCVTPD2PSX.Z xmm          k xmm
+// Construct and append a VCVTPD2PSX.Z instruction to the active function.
+// Operates on the global context.
+func VCVTPD2PSX_Z(mx, k, x operand.Op) { ctx.VCVTPD2PSX_Z(mx, k, x) }
 
 // VCVTPD2PSY: Convert Packed Double-Precision FP Values to Packed Single-Precision FP Values.
 //
 // Forms:
 //
-// 	VCVTPD2PSY ymm  xmm
-// 	VCVTPD2PSY m256 xmm
+// 	VCVTPD2PSY m256/m64bcst xmm
+// 	VCVTPD2PSY m256/m64bcst k xmm
+// 	VCVTPD2PSY ymm          xmm
+// 	VCVTPD2PSY ymm          k xmm
+// 	VCVTPD2PSY ymm          xmm
+// 	VCVTPD2PSY m256         xmm
 // Construct and append a VCVTPD2PSY instruction to the active function.
-func (c *Context) VCVTPD2PSY(my, x operand.Op) {
-	if inst, err := x86.VCVTPD2PSY(my, x); err == nil {
+func (c *Context) VCVTPD2PSY(ops ...operand.Op) {
+	if inst, err := x86.VCVTPD2PSY(ops...); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -19770,11 +20437,88 @@ func (c *Context) VCVTPD2PSY(my, x operand.Op) {
 //
 // Forms:
 //
-// 	VCVTPD2PSY ymm  xmm
-// 	VCVTPD2PSY m256 xmm
+// 	VCVTPD2PSY m256/m64bcst xmm
+// 	VCVTPD2PSY m256/m64bcst k xmm
+// 	VCVTPD2PSY ymm          xmm
+// 	VCVTPD2PSY ymm          k xmm
+// 	VCVTPD2PSY ymm          xmm
+// 	VCVTPD2PSY m256         xmm
 // Construct and append a VCVTPD2PSY instruction to the active function.
 // Operates on the global context.
-func VCVTPD2PSY(my, x operand.Op) { ctx.VCVTPD2PSY(my, x) }
+func VCVTPD2PSY(ops ...operand.Op) { ctx.VCVTPD2PSY(ops...) }
+
+// VCVTPD2PSY_BCST: Convert Packed Double-Precision FP Values to Packed Single-Precision FP Values (Broadcast).
+//
+// Forms:
+//
+// 	VCVTPD2PSY.BCST m256/m64bcst xmm
+// 	VCVTPD2PSY.BCST m256/m64bcst k xmm
+// Construct and append a VCVTPD2PSY.BCST instruction to the active function.
+func (c *Context) VCVTPD2PSY_BCST(ops ...operand.Op) {
+	if inst, err := x86.VCVTPD2PSY_BCST(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTPD2PSY_BCST: Convert Packed Double-Precision FP Values to Packed Single-Precision FP Values (Broadcast).
+//
+// Forms:
+//
+// 	VCVTPD2PSY.BCST m256/m64bcst xmm
+// 	VCVTPD2PSY.BCST m256/m64bcst k xmm
+// Construct and append a VCVTPD2PSY.BCST instruction to the active function.
+// Operates on the global context.
+func VCVTPD2PSY_BCST(ops ...operand.Op) { ctx.VCVTPD2PSY_BCST(ops...) }
+
+// VCVTPD2PSY_BCST_Z: Convert Packed Double-Precision FP Values to Packed Single-Precision FP Values (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTPD2PSY.BCST.Z m256/m64bcst k xmm
+// Construct and append a VCVTPD2PSY.BCST.Z instruction to the active function.
+func (c *Context) VCVTPD2PSY_BCST_Z(m, k, x operand.Op) {
+	if inst, err := x86.VCVTPD2PSY_BCST_Z(m, k, x); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTPD2PSY_BCST_Z: Convert Packed Double-Precision FP Values to Packed Single-Precision FP Values (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTPD2PSY.BCST.Z m256/m64bcst k xmm
+// Construct and append a VCVTPD2PSY.BCST.Z instruction to the active function.
+// Operates on the global context.
+func VCVTPD2PSY_BCST_Z(m, k, x operand.Op) { ctx.VCVTPD2PSY_BCST_Z(m, k, x) }
+
+// VCVTPD2PSY_Z: Convert Packed Double-Precision FP Values to Packed Single-Precision FP Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTPD2PSY.Z m256/m64bcst k xmm
+// 	VCVTPD2PSY.Z ymm          k xmm
+// Construct and append a VCVTPD2PSY.Z instruction to the active function.
+func (c *Context) VCVTPD2PSY_Z(my, k, x operand.Op) {
+	if inst, err := x86.VCVTPD2PSY_Z(my, k, x); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTPD2PSY_Z: Convert Packed Double-Precision FP Values to Packed Single-Precision FP Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTPD2PSY.Z m256/m64bcst k xmm
+// 	VCVTPD2PSY.Z ymm          k xmm
+// Construct and append a VCVTPD2PSY.Z instruction to the active function.
+// Operates on the global context.
+func VCVTPD2PSY_Z(my, k, x operand.Op) { ctx.VCVTPD2PSY_Z(my, k, x) }
 
 // VCVTPD2PS_BCST: Convert Packed Double-Precision FP Values to Packed Single-Precision FP Values (Broadcast).
 //
@@ -20070,6 +20814,210 @@ func (c *Context) VCVTPD2UDQ(ops ...operand.Op) {
 // Operates on the global context.
 func VCVTPD2UDQ(ops ...operand.Op) { ctx.VCVTPD2UDQ(ops...) }
 
+// VCVTPD2UDQX: Convert Packed Double-Precision Floating-Point Values to Packed Unsigned Doubleword Integers.
+//
+// Forms:
+//
+// 	VCVTPD2UDQX m128/m64bcst xmm
+// 	VCVTPD2UDQX m128/m64bcst k xmm
+// 	VCVTPD2UDQX xmm          xmm
+// 	VCVTPD2UDQX xmm          k xmm
+// Construct and append a VCVTPD2UDQX instruction to the active function.
+func (c *Context) VCVTPD2UDQX(ops ...operand.Op) {
+	if inst, err := x86.VCVTPD2UDQX(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTPD2UDQX: Convert Packed Double-Precision Floating-Point Values to Packed Unsigned Doubleword Integers.
+//
+// Forms:
+//
+// 	VCVTPD2UDQX m128/m64bcst xmm
+// 	VCVTPD2UDQX m128/m64bcst k xmm
+// 	VCVTPD2UDQX xmm          xmm
+// 	VCVTPD2UDQX xmm          k xmm
+// Construct and append a VCVTPD2UDQX instruction to the active function.
+// Operates on the global context.
+func VCVTPD2UDQX(ops ...operand.Op) { ctx.VCVTPD2UDQX(ops...) }
+
+// VCVTPD2UDQX_BCST: Convert Packed Double-Precision Floating-Point Values to Packed Unsigned Doubleword Integers (Broadcast).
+//
+// Forms:
+//
+// 	VCVTPD2UDQX.BCST m128/m64bcst xmm
+// 	VCVTPD2UDQX.BCST m128/m64bcst k xmm
+// Construct and append a VCVTPD2UDQX.BCST instruction to the active function.
+func (c *Context) VCVTPD2UDQX_BCST(ops ...operand.Op) {
+	if inst, err := x86.VCVTPD2UDQX_BCST(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTPD2UDQX_BCST: Convert Packed Double-Precision Floating-Point Values to Packed Unsigned Doubleword Integers (Broadcast).
+//
+// Forms:
+//
+// 	VCVTPD2UDQX.BCST m128/m64bcst xmm
+// 	VCVTPD2UDQX.BCST m128/m64bcst k xmm
+// Construct and append a VCVTPD2UDQX.BCST instruction to the active function.
+// Operates on the global context.
+func VCVTPD2UDQX_BCST(ops ...operand.Op) { ctx.VCVTPD2UDQX_BCST(ops...) }
+
+// VCVTPD2UDQX_BCST_Z: Convert Packed Double-Precision Floating-Point Values to Packed Unsigned Doubleword Integers (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTPD2UDQX.BCST.Z m128/m64bcst k xmm
+// Construct and append a VCVTPD2UDQX.BCST.Z instruction to the active function.
+func (c *Context) VCVTPD2UDQX_BCST_Z(m, k, x operand.Op) {
+	if inst, err := x86.VCVTPD2UDQX_BCST_Z(m, k, x); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTPD2UDQX_BCST_Z: Convert Packed Double-Precision Floating-Point Values to Packed Unsigned Doubleword Integers (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTPD2UDQX.BCST.Z m128/m64bcst k xmm
+// Construct and append a VCVTPD2UDQX.BCST.Z instruction to the active function.
+// Operates on the global context.
+func VCVTPD2UDQX_BCST_Z(m, k, x operand.Op) { ctx.VCVTPD2UDQX_BCST_Z(m, k, x) }
+
+// VCVTPD2UDQX_Z: Convert Packed Double-Precision Floating-Point Values to Packed Unsigned Doubleword Integers (Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTPD2UDQX.Z m128/m64bcst k xmm
+// 	VCVTPD2UDQX.Z xmm          k xmm
+// Construct and append a VCVTPD2UDQX.Z instruction to the active function.
+func (c *Context) VCVTPD2UDQX_Z(mx, k, x operand.Op) {
+	if inst, err := x86.VCVTPD2UDQX_Z(mx, k, x); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTPD2UDQX_Z: Convert Packed Double-Precision Floating-Point Values to Packed Unsigned Doubleword Integers (Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTPD2UDQX.Z m128/m64bcst k xmm
+// 	VCVTPD2UDQX.Z xmm          k xmm
+// Construct and append a VCVTPD2UDQX.Z instruction to the active function.
+// Operates on the global context.
+func VCVTPD2UDQX_Z(mx, k, x operand.Op) { ctx.VCVTPD2UDQX_Z(mx, k, x) }
+
+// VCVTPD2UDQY: Convert Packed Double-Precision Floating-Point Values to Packed Unsigned Doubleword Integers.
+//
+// Forms:
+//
+// 	VCVTPD2UDQY m256/m64bcst xmm
+// 	VCVTPD2UDQY m256/m64bcst k xmm
+// 	VCVTPD2UDQY ymm          xmm
+// 	VCVTPD2UDQY ymm          k xmm
+// Construct and append a VCVTPD2UDQY instruction to the active function.
+func (c *Context) VCVTPD2UDQY(ops ...operand.Op) {
+	if inst, err := x86.VCVTPD2UDQY(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTPD2UDQY: Convert Packed Double-Precision Floating-Point Values to Packed Unsigned Doubleword Integers.
+//
+// Forms:
+//
+// 	VCVTPD2UDQY m256/m64bcst xmm
+// 	VCVTPD2UDQY m256/m64bcst k xmm
+// 	VCVTPD2UDQY ymm          xmm
+// 	VCVTPD2UDQY ymm          k xmm
+// Construct and append a VCVTPD2UDQY instruction to the active function.
+// Operates on the global context.
+func VCVTPD2UDQY(ops ...operand.Op) { ctx.VCVTPD2UDQY(ops...) }
+
+// VCVTPD2UDQY_BCST: Convert Packed Double-Precision Floating-Point Values to Packed Unsigned Doubleword Integers (Broadcast).
+//
+// Forms:
+//
+// 	VCVTPD2UDQY.BCST m256/m64bcst xmm
+// 	VCVTPD2UDQY.BCST m256/m64bcst k xmm
+// Construct and append a VCVTPD2UDQY.BCST instruction to the active function.
+func (c *Context) VCVTPD2UDQY_BCST(ops ...operand.Op) {
+	if inst, err := x86.VCVTPD2UDQY_BCST(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTPD2UDQY_BCST: Convert Packed Double-Precision Floating-Point Values to Packed Unsigned Doubleword Integers (Broadcast).
+//
+// Forms:
+//
+// 	VCVTPD2UDQY.BCST m256/m64bcst xmm
+// 	VCVTPD2UDQY.BCST m256/m64bcst k xmm
+// Construct and append a VCVTPD2UDQY.BCST instruction to the active function.
+// Operates on the global context.
+func VCVTPD2UDQY_BCST(ops ...operand.Op) { ctx.VCVTPD2UDQY_BCST(ops...) }
+
+// VCVTPD2UDQY_BCST_Z: Convert Packed Double-Precision Floating-Point Values to Packed Unsigned Doubleword Integers (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTPD2UDQY.BCST.Z m256/m64bcst k xmm
+// Construct and append a VCVTPD2UDQY.BCST.Z instruction to the active function.
+func (c *Context) VCVTPD2UDQY_BCST_Z(m, k, x operand.Op) {
+	if inst, err := x86.VCVTPD2UDQY_BCST_Z(m, k, x); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTPD2UDQY_BCST_Z: Convert Packed Double-Precision Floating-Point Values to Packed Unsigned Doubleword Integers (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTPD2UDQY.BCST.Z m256/m64bcst k xmm
+// Construct and append a VCVTPD2UDQY.BCST.Z instruction to the active function.
+// Operates on the global context.
+func VCVTPD2UDQY_BCST_Z(m, k, x operand.Op) { ctx.VCVTPD2UDQY_BCST_Z(m, k, x) }
+
+// VCVTPD2UDQY_Z: Convert Packed Double-Precision Floating-Point Values to Packed Unsigned Doubleword Integers (Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTPD2UDQY.Z m256/m64bcst k xmm
+// 	VCVTPD2UDQY.Z ymm          k xmm
+// Construct and append a VCVTPD2UDQY.Z instruction to the active function.
+func (c *Context) VCVTPD2UDQY_Z(my, k, x operand.Op) {
+	if inst, err := x86.VCVTPD2UDQY_Z(my, k, x); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTPD2UDQY_Z: Convert Packed Double-Precision Floating-Point Values to Packed Unsigned Doubleword Integers (Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTPD2UDQY.Z m256/m64bcst k xmm
+// 	VCVTPD2UDQY.Z ymm          k xmm
+// Construct and append a VCVTPD2UDQY.Z instruction to the active function.
+// Operates on the global context.
+func VCVTPD2UDQY_Z(my, k, x operand.Op) { ctx.VCVTPD2UDQY_Z(my, k, x) }
+
 // VCVTPD2UDQ_BCST: Convert Packed Double-Precision Floating-Point Values to Packed Unsigned Doubleword Integers (Broadcast).
 //
 // Forms:
@@ -20339,6 +21287,14 @@ func VCVTPD2UDQ_Z(mz, k, y operand.Op) { ctx.VCVTPD2UDQ_Z(mz, k, y) }
 //
 // Forms:
 //
+// 	VCVTPH2PS xmm  xmm
+// 	VCVTPH2PS xmm  k xmm
+// 	VCVTPH2PS xmm  ymm
+// 	VCVTPH2PS xmm  k ymm
+// 	VCVTPH2PS m64  xmm
+// 	VCVTPH2PS m64  k xmm
+// 	VCVTPH2PS m128 ymm
+// 	VCVTPH2PS m128 k ymm
 // 	VCVTPH2PS m256 zmm
 // 	VCVTPH2PS m256 k zmm
 // 	VCVTPH2PS xmm  xmm
@@ -20360,6 +21316,14 @@ func (c *Context) VCVTPH2PS(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VCVTPH2PS xmm  xmm
+// 	VCVTPH2PS xmm  k xmm
+// 	VCVTPH2PS xmm  ymm
+// 	VCVTPH2PS xmm  k ymm
+// 	VCVTPH2PS m64  xmm
+// 	VCVTPH2PS m64  k xmm
+// 	VCVTPH2PS m128 ymm
+// 	VCVTPH2PS m128 k ymm
 // 	VCVTPH2PS m256 zmm
 // 	VCVTPH2PS m256 k zmm
 // 	VCVTPH2PS xmm  xmm
@@ -20424,11 +21388,15 @@ func VCVTPH2PS_SAE_Z(y, k, z operand.Op) { ctx.VCVTPH2PS_SAE_Z(y, k, z) }
 //
 // Forms:
 //
+// 	VCVTPH2PS.Z xmm  k xmm
+// 	VCVTPH2PS.Z xmm  k ymm
+// 	VCVTPH2PS.Z m64  k xmm
+// 	VCVTPH2PS.Z m128 k ymm
 // 	VCVTPH2PS.Z m256 k zmm
 // 	VCVTPH2PS.Z ymm  k zmm
 // Construct and append a VCVTPH2PS.Z instruction to the active function.
-func (c *Context) VCVTPH2PS_Z(my, k, z operand.Op) {
-	if inst, err := x86.VCVTPH2PS_Z(my, k, z); err == nil {
+func (c *Context) VCVTPH2PS_Z(mxy, k, xyz operand.Op) {
+	if inst, err := x86.VCVTPH2PS_Z(mxy, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -20439,18 +21407,30 @@ func (c *Context) VCVTPH2PS_Z(my, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VCVTPH2PS.Z xmm  k xmm
+// 	VCVTPH2PS.Z xmm  k ymm
+// 	VCVTPH2PS.Z m64  k xmm
+// 	VCVTPH2PS.Z m128 k ymm
 // 	VCVTPH2PS.Z m256 k zmm
 // 	VCVTPH2PS.Z ymm  k zmm
 // Construct and append a VCVTPH2PS.Z instruction to the active function.
 // Operates on the global context.
-func VCVTPH2PS_Z(my, k, z operand.Op) { ctx.VCVTPH2PS_Z(my, k, z) }
+func VCVTPH2PS_Z(mxy, k, xyz operand.Op) { ctx.VCVTPH2PS_Z(mxy, k, xyz) }
 
 // VCVTPS2DQ: Convert Packed Single-Precision FP Values to Packed Dword Integers.
 //
 // Forms:
 //
+// 	VCVTPS2DQ m128/m32bcst xmm
+// 	VCVTPS2DQ m128/m32bcst k xmm
+// 	VCVTPS2DQ m256/m32bcst ymm
+// 	VCVTPS2DQ m256/m32bcst k ymm
 // 	VCVTPS2DQ m512/m32bcst zmm
 // 	VCVTPS2DQ m512/m32bcst k zmm
+// 	VCVTPS2DQ xmm          xmm
+// 	VCVTPS2DQ xmm          k xmm
+// 	VCVTPS2DQ ymm          ymm
+// 	VCVTPS2DQ ymm          k ymm
 // 	VCVTPS2DQ xmm          xmm
 // 	VCVTPS2DQ m128         xmm
 // 	VCVTPS2DQ ymm          ymm
@@ -20470,8 +21450,16 @@ func (c *Context) VCVTPS2DQ(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VCVTPS2DQ m128/m32bcst xmm
+// 	VCVTPS2DQ m128/m32bcst k xmm
+// 	VCVTPS2DQ m256/m32bcst ymm
+// 	VCVTPS2DQ m256/m32bcst k ymm
 // 	VCVTPS2DQ m512/m32bcst zmm
 // 	VCVTPS2DQ m512/m32bcst k zmm
+// 	VCVTPS2DQ xmm          xmm
+// 	VCVTPS2DQ xmm          k xmm
+// 	VCVTPS2DQ ymm          ymm
+// 	VCVTPS2DQ ymm          k ymm
 // 	VCVTPS2DQ xmm          xmm
 // 	VCVTPS2DQ m128         xmm
 // 	VCVTPS2DQ ymm          ymm
@@ -20486,6 +21474,10 @@ func VCVTPS2DQ(ops ...operand.Op) { ctx.VCVTPS2DQ(ops...) }
 //
 // Forms:
 //
+// 	VCVTPS2DQ.BCST m128/m32bcst xmm
+// 	VCVTPS2DQ.BCST m128/m32bcst k xmm
+// 	VCVTPS2DQ.BCST m256/m32bcst ymm
+// 	VCVTPS2DQ.BCST m256/m32bcst k ymm
 // 	VCVTPS2DQ.BCST m512/m32bcst zmm
 // 	VCVTPS2DQ.BCST m512/m32bcst k zmm
 // Construct and append a VCVTPS2DQ.BCST instruction to the active function.
@@ -20501,6 +21493,10 @@ func (c *Context) VCVTPS2DQ_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VCVTPS2DQ.BCST m128/m32bcst xmm
+// 	VCVTPS2DQ.BCST m128/m32bcst k xmm
+// 	VCVTPS2DQ.BCST m256/m32bcst ymm
+// 	VCVTPS2DQ.BCST m256/m32bcst k ymm
 // 	VCVTPS2DQ.BCST m512/m32bcst zmm
 // 	VCVTPS2DQ.BCST m512/m32bcst k zmm
 // Construct and append a VCVTPS2DQ.BCST instruction to the active function.
@@ -20511,10 +21507,12 @@ func VCVTPS2DQ_BCST(ops ...operand.Op) { ctx.VCVTPS2DQ_BCST(ops...) }
 //
 // Forms:
 //
+// 	VCVTPS2DQ.BCST.Z m128/m32bcst k xmm
+// 	VCVTPS2DQ.BCST.Z m256/m32bcst k ymm
 // 	VCVTPS2DQ.BCST.Z m512/m32bcst k zmm
 // Construct and append a VCVTPS2DQ.BCST.Z instruction to the active function.
-func (c *Context) VCVTPS2DQ_BCST_Z(m, k, z operand.Op) {
-	if inst, err := x86.VCVTPS2DQ_BCST_Z(m, k, z); err == nil {
+func (c *Context) VCVTPS2DQ_BCST_Z(m, k, xyz operand.Op) {
+	if inst, err := x86.VCVTPS2DQ_BCST_Z(m, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -20525,10 +21523,12 @@ func (c *Context) VCVTPS2DQ_BCST_Z(m, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VCVTPS2DQ.BCST.Z m128/m32bcst k xmm
+// 	VCVTPS2DQ.BCST.Z m256/m32bcst k ymm
 // 	VCVTPS2DQ.BCST.Z m512/m32bcst k zmm
 // Construct and append a VCVTPS2DQ.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VCVTPS2DQ_BCST_Z(m, k, z operand.Op) { ctx.VCVTPS2DQ_BCST_Z(m, k, z) }
+func VCVTPS2DQ_BCST_Z(m, k, xyz operand.Op) { ctx.VCVTPS2DQ_BCST_Z(m, k, xyz) }
 
 // VCVTPS2DQ_RD_SAE: Convert Packed Single-Precision FP Values to Packed Dword Integers (Round Towards Negative Infinity).
 //
@@ -20726,11 +21726,15 @@ func VCVTPS2DQ_RZ_SAE_Z(z, k, z1 operand.Op) { ctx.VCVTPS2DQ_RZ_SAE_Z(z, k, z1) 
 //
 // Forms:
 //
+// 	VCVTPS2DQ.Z m128/m32bcst k xmm
+// 	VCVTPS2DQ.Z m256/m32bcst k ymm
 // 	VCVTPS2DQ.Z m512/m32bcst k zmm
+// 	VCVTPS2DQ.Z xmm          k xmm
+// 	VCVTPS2DQ.Z ymm          k ymm
 // 	VCVTPS2DQ.Z zmm          k zmm
 // Construct and append a VCVTPS2DQ.Z instruction to the active function.
-func (c *Context) VCVTPS2DQ_Z(mz, k, z operand.Op) {
-	if inst, err := x86.VCVTPS2DQ_Z(mz, k, z); err == nil {
+func (c *Context) VCVTPS2DQ_Z(mxyz, k, xyz operand.Op) {
+	if inst, err := x86.VCVTPS2DQ_Z(mxyz, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -20741,18 +21745,30 @@ func (c *Context) VCVTPS2DQ_Z(mz, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VCVTPS2DQ.Z m128/m32bcst k xmm
+// 	VCVTPS2DQ.Z m256/m32bcst k ymm
 // 	VCVTPS2DQ.Z m512/m32bcst k zmm
+// 	VCVTPS2DQ.Z xmm          k xmm
+// 	VCVTPS2DQ.Z ymm          k ymm
 // 	VCVTPS2DQ.Z zmm          k zmm
 // Construct and append a VCVTPS2DQ.Z instruction to the active function.
 // Operates on the global context.
-func VCVTPS2DQ_Z(mz, k, z operand.Op) { ctx.VCVTPS2DQ_Z(mz, k, z) }
+func VCVTPS2DQ_Z(mxyz, k, xyz operand.Op) { ctx.VCVTPS2DQ_Z(mxyz, k, xyz) }
 
 // VCVTPS2PD: Convert Packed Single-Precision FP Values to Packed Double-Precision FP Values.
 //
 // Forms:
 //
+// 	VCVTPS2PD m64/m32bcst  xmm
+// 	VCVTPS2PD m64/m32bcst  k xmm
+// 	VCVTPS2PD m128/m32bcst ymm
+// 	VCVTPS2PD m128/m32bcst k ymm
 // 	VCVTPS2PD m256/m32bcst zmm
 // 	VCVTPS2PD m256/m32bcst k zmm
+// 	VCVTPS2PD xmm          xmm
+// 	VCVTPS2PD xmm          k xmm
+// 	VCVTPS2PD xmm          ymm
+// 	VCVTPS2PD xmm          k ymm
 // 	VCVTPS2PD xmm          xmm
 // 	VCVTPS2PD m64          xmm
 // 	VCVTPS2PD xmm          ymm
@@ -20772,8 +21788,16 @@ func (c *Context) VCVTPS2PD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VCVTPS2PD m64/m32bcst  xmm
+// 	VCVTPS2PD m64/m32bcst  k xmm
+// 	VCVTPS2PD m128/m32bcst ymm
+// 	VCVTPS2PD m128/m32bcst k ymm
 // 	VCVTPS2PD m256/m32bcst zmm
 // 	VCVTPS2PD m256/m32bcst k zmm
+// 	VCVTPS2PD xmm          xmm
+// 	VCVTPS2PD xmm          k xmm
+// 	VCVTPS2PD xmm          ymm
+// 	VCVTPS2PD xmm          k ymm
 // 	VCVTPS2PD xmm          xmm
 // 	VCVTPS2PD m64          xmm
 // 	VCVTPS2PD xmm          ymm
@@ -20788,6 +21812,10 @@ func VCVTPS2PD(ops ...operand.Op) { ctx.VCVTPS2PD(ops...) }
 //
 // Forms:
 //
+// 	VCVTPS2PD.BCST m64/m32bcst  xmm
+// 	VCVTPS2PD.BCST m64/m32bcst  k xmm
+// 	VCVTPS2PD.BCST m128/m32bcst ymm
+// 	VCVTPS2PD.BCST m128/m32bcst k ymm
 // 	VCVTPS2PD.BCST m256/m32bcst zmm
 // 	VCVTPS2PD.BCST m256/m32bcst k zmm
 // Construct and append a VCVTPS2PD.BCST instruction to the active function.
@@ -20803,6 +21831,10 @@ func (c *Context) VCVTPS2PD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VCVTPS2PD.BCST m64/m32bcst  xmm
+// 	VCVTPS2PD.BCST m64/m32bcst  k xmm
+// 	VCVTPS2PD.BCST m128/m32bcst ymm
+// 	VCVTPS2PD.BCST m128/m32bcst k ymm
 // 	VCVTPS2PD.BCST m256/m32bcst zmm
 // 	VCVTPS2PD.BCST m256/m32bcst k zmm
 // Construct and append a VCVTPS2PD.BCST instruction to the active function.
@@ -20813,10 +21845,12 @@ func VCVTPS2PD_BCST(ops ...operand.Op) { ctx.VCVTPS2PD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VCVTPS2PD.BCST.Z m64/m32bcst  k xmm
+// 	VCVTPS2PD.BCST.Z m128/m32bcst k ymm
 // 	VCVTPS2PD.BCST.Z m256/m32bcst k zmm
 // Construct and append a VCVTPS2PD.BCST.Z instruction to the active function.
-func (c *Context) VCVTPS2PD_BCST_Z(m, k, z operand.Op) {
-	if inst, err := x86.VCVTPS2PD_BCST_Z(m, k, z); err == nil {
+func (c *Context) VCVTPS2PD_BCST_Z(m, k, xyz operand.Op) {
+	if inst, err := x86.VCVTPS2PD_BCST_Z(m, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -20827,10 +21861,12 @@ func (c *Context) VCVTPS2PD_BCST_Z(m, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VCVTPS2PD.BCST.Z m64/m32bcst  k xmm
+// 	VCVTPS2PD.BCST.Z m128/m32bcst k ymm
 // 	VCVTPS2PD.BCST.Z m256/m32bcst k zmm
 // Construct and append a VCVTPS2PD.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VCVTPS2PD_BCST_Z(m, k, z operand.Op) { ctx.VCVTPS2PD_BCST_Z(m, k, z) }
+func VCVTPS2PD_BCST_Z(m, k, xyz operand.Op) { ctx.VCVTPS2PD_BCST_Z(m, k, xyz) }
 
 // VCVTPS2PD_SAE: Convert Packed Single-Precision FP Values to Packed Double-Precision FP Values (Suppress All Exceptions).
 //
@@ -20884,11 +21920,15 @@ func VCVTPS2PD_SAE_Z(y, k, z operand.Op) { ctx.VCVTPS2PD_SAE_Z(y, k, z) }
 //
 // Forms:
 //
+// 	VCVTPS2PD.Z m64/m32bcst  k xmm
+// 	VCVTPS2PD.Z m128/m32bcst k ymm
 // 	VCVTPS2PD.Z m256/m32bcst k zmm
+// 	VCVTPS2PD.Z xmm          k xmm
+// 	VCVTPS2PD.Z xmm          k ymm
 // 	VCVTPS2PD.Z ymm          k zmm
 // Construct and append a VCVTPS2PD.Z instruction to the active function.
-func (c *Context) VCVTPS2PD_Z(my, k, z operand.Op) {
-	if inst, err := x86.VCVTPS2PD_Z(my, k, z); err == nil {
+func (c *Context) VCVTPS2PD_Z(mxy, k, xyz operand.Op) {
+	if inst, err := x86.VCVTPS2PD_Z(mxy, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -20899,16 +21939,28 @@ func (c *Context) VCVTPS2PD_Z(my, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VCVTPS2PD.Z m64/m32bcst  k xmm
+// 	VCVTPS2PD.Z m128/m32bcst k ymm
 // 	VCVTPS2PD.Z m256/m32bcst k zmm
+// 	VCVTPS2PD.Z xmm          k xmm
+// 	VCVTPS2PD.Z xmm          k ymm
 // 	VCVTPS2PD.Z ymm          k zmm
 // Construct and append a VCVTPS2PD.Z instruction to the active function.
 // Operates on the global context.
-func VCVTPS2PD_Z(my, k, z operand.Op) { ctx.VCVTPS2PD_Z(my, k, z) }
+func VCVTPS2PD_Z(mxy, k, xyz operand.Op) { ctx.VCVTPS2PD_Z(mxy, k, xyz) }
 
 // VCVTPS2PH: Convert Single-Precision FP value to Half-Precision FP value.
 //
 // Forms:
 //
+// 	VCVTPS2PH imm8 xmm xmm
+// 	VCVTPS2PH imm8 xmm k xmm
+// 	VCVTPS2PH imm8 xmm m64
+// 	VCVTPS2PH imm8 xmm k m64
+// 	VCVTPS2PH imm8 ymm xmm
+// 	VCVTPS2PH imm8 ymm k xmm
+// 	VCVTPS2PH imm8 ymm m128
+// 	VCVTPS2PH imm8 ymm k m128
 // 	VCVTPS2PH imm8 zmm m256
 // 	VCVTPS2PH imm8 zmm k m256
 // 	VCVTPS2PH imm8 xmm xmm
@@ -20930,6 +21982,14 @@ func (c *Context) VCVTPS2PH(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VCVTPS2PH imm8 xmm xmm
+// 	VCVTPS2PH imm8 xmm k xmm
+// 	VCVTPS2PH imm8 xmm m64
+// 	VCVTPS2PH imm8 xmm k m64
+// 	VCVTPS2PH imm8 ymm xmm
+// 	VCVTPS2PH imm8 ymm k xmm
+// 	VCVTPS2PH imm8 ymm m128
+// 	VCVTPS2PH imm8 ymm k m128
 // 	VCVTPS2PH imm8 zmm m256
 // 	VCVTPS2PH imm8 zmm k m256
 // 	VCVTPS2PH imm8 xmm xmm
@@ -20994,11 +22054,15 @@ func VCVTPS2PH_SAE_Z(i, z, k, y operand.Op) { ctx.VCVTPS2PH_SAE_Z(i, z, k, y) }
 //
 // Forms:
 //
+// 	VCVTPS2PH.Z imm8 xmm k xmm
+// 	VCVTPS2PH.Z imm8 xmm k m64
+// 	VCVTPS2PH.Z imm8 ymm k xmm
+// 	VCVTPS2PH.Z imm8 ymm k m128
 // 	VCVTPS2PH.Z imm8 zmm k m256
 // 	VCVTPS2PH.Z imm8 zmm k ymm
 // Construct and append a VCVTPS2PH.Z instruction to the active function.
-func (c *Context) VCVTPS2PH_Z(i, z, k, my operand.Op) {
-	if inst, err := x86.VCVTPS2PH_Z(i, z, k, my); err == nil {
+func (c *Context) VCVTPS2PH_Z(i, xyz, k, mxy operand.Op) {
+	if inst, err := x86.VCVTPS2PH_Z(i, xyz, k, mxy); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -21009,18 +22073,30 @@ func (c *Context) VCVTPS2PH_Z(i, z, k, my operand.Op) {
 //
 // Forms:
 //
+// 	VCVTPS2PH.Z imm8 xmm k xmm
+// 	VCVTPS2PH.Z imm8 xmm k m64
+// 	VCVTPS2PH.Z imm8 ymm k xmm
+// 	VCVTPS2PH.Z imm8 ymm k m128
 // 	VCVTPS2PH.Z imm8 zmm k m256
 // 	VCVTPS2PH.Z imm8 zmm k ymm
 // Construct and append a VCVTPS2PH.Z instruction to the active function.
 // Operates on the global context.
-func VCVTPS2PH_Z(i, z, k, my operand.Op) { ctx.VCVTPS2PH_Z(i, z, k, my) }
+func VCVTPS2PH_Z(i, xyz, k, mxy operand.Op) { ctx.VCVTPS2PH_Z(i, xyz, k, mxy) }
 
 // VCVTPS2UDQ: Convert Packed Single-Precision Floating-Point Values to Packed Unsigned Doubleword Integer Values.
 //
 // Forms:
 //
+// 	VCVTPS2UDQ m128/m32bcst xmm
+// 	VCVTPS2UDQ m128/m32bcst k xmm
+// 	VCVTPS2UDQ m256/m32bcst ymm
+// 	VCVTPS2UDQ m256/m32bcst k ymm
 // 	VCVTPS2UDQ m512/m32bcst zmm
 // 	VCVTPS2UDQ m512/m32bcst k zmm
+// 	VCVTPS2UDQ xmm          xmm
+// 	VCVTPS2UDQ xmm          k xmm
+// 	VCVTPS2UDQ ymm          ymm
+// 	VCVTPS2UDQ ymm          k ymm
 // 	VCVTPS2UDQ zmm          zmm
 // 	VCVTPS2UDQ zmm          k zmm
 // Construct and append a VCVTPS2UDQ instruction to the active function.
@@ -21036,8 +22112,16 @@ func (c *Context) VCVTPS2UDQ(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VCVTPS2UDQ m128/m32bcst xmm
+// 	VCVTPS2UDQ m128/m32bcst k xmm
+// 	VCVTPS2UDQ m256/m32bcst ymm
+// 	VCVTPS2UDQ m256/m32bcst k ymm
 // 	VCVTPS2UDQ m512/m32bcst zmm
 // 	VCVTPS2UDQ m512/m32bcst k zmm
+// 	VCVTPS2UDQ xmm          xmm
+// 	VCVTPS2UDQ xmm          k xmm
+// 	VCVTPS2UDQ ymm          ymm
+// 	VCVTPS2UDQ ymm          k ymm
 // 	VCVTPS2UDQ zmm          zmm
 // 	VCVTPS2UDQ zmm          k zmm
 // Construct and append a VCVTPS2UDQ instruction to the active function.
@@ -21048,6 +22132,10 @@ func VCVTPS2UDQ(ops ...operand.Op) { ctx.VCVTPS2UDQ(ops...) }
 //
 // Forms:
 //
+// 	VCVTPS2UDQ.BCST m128/m32bcst xmm
+// 	VCVTPS2UDQ.BCST m128/m32bcst k xmm
+// 	VCVTPS2UDQ.BCST m256/m32bcst ymm
+// 	VCVTPS2UDQ.BCST m256/m32bcst k ymm
 // 	VCVTPS2UDQ.BCST m512/m32bcst zmm
 // 	VCVTPS2UDQ.BCST m512/m32bcst k zmm
 // Construct and append a VCVTPS2UDQ.BCST instruction to the active function.
@@ -21063,6 +22151,10 @@ func (c *Context) VCVTPS2UDQ_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VCVTPS2UDQ.BCST m128/m32bcst xmm
+// 	VCVTPS2UDQ.BCST m128/m32bcst k xmm
+// 	VCVTPS2UDQ.BCST m256/m32bcst ymm
+// 	VCVTPS2UDQ.BCST m256/m32bcst k ymm
 // 	VCVTPS2UDQ.BCST m512/m32bcst zmm
 // 	VCVTPS2UDQ.BCST m512/m32bcst k zmm
 // Construct and append a VCVTPS2UDQ.BCST instruction to the active function.
@@ -21073,10 +22165,12 @@ func VCVTPS2UDQ_BCST(ops ...operand.Op) { ctx.VCVTPS2UDQ_BCST(ops...) }
 //
 // Forms:
 //
+// 	VCVTPS2UDQ.BCST.Z m128/m32bcst k xmm
+// 	VCVTPS2UDQ.BCST.Z m256/m32bcst k ymm
 // 	VCVTPS2UDQ.BCST.Z m512/m32bcst k zmm
 // Construct and append a VCVTPS2UDQ.BCST.Z instruction to the active function.
-func (c *Context) VCVTPS2UDQ_BCST_Z(m, k, z operand.Op) {
-	if inst, err := x86.VCVTPS2UDQ_BCST_Z(m, k, z); err == nil {
+func (c *Context) VCVTPS2UDQ_BCST_Z(m, k, xyz operand.Op) {
+	if inst, err := x86.VCVTPS2UDQ_BCST_Z(m, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -21087,10 +22181,12 @@ func (c *Context) VCVTPS2UDQ_BCST_Z(m, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VCVTPS2UDQ.BCST.Z m128/m32bcst k xmm
+// 	VCVTPS2UDQ.BCST.Z m256/m32bcst k ymm
 // 	VCVTPS2UDQ.BCST.Z m512/m32bcst k zmm
 // Construct and append a VCVTPS2UDQ.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VCVTPS2UDQ_BCST_Z(m, k, z operand.Op) { ctx.VCVTPS2UDQ_BCST_Z(m, k, z) }
+func VCVTPS2UDQ_BCST_Z(m, k, xyz operand.Op) { ctx.VCVTPS2UDQ_BCST_Z(m, k, xyz) }
 
 // VCVTPS2UDQ_RD_SAE: Convert Packed Single-Precision Floating-Point Values to Packed Unsigned Doubleword Integer Values (Round Towards Negative Infinity).
 //
@@ -21288,11 +22384,15 @@ func VCVTPS2UDQ_RZ_SAE_Z(z, k, z1 operand.Op) { ctx.VCVTPS2UDQ_RZ_SAE_Z(z, k, z1
 //
 // Forms:
 //
+// 	VCVTPS2UDQ.Z m128/m32bcst k xmm
+// 	VCVTPS2UDQ.Z m256/m32bcst k ymm
 // 	VCVTPS2UDQ.Z m512/m32bcst k zmm
+// 	VCVTPS2UDQ.Z xmm          k xmm
+// 	VCVTPS2UDQ.Z ymm          k ymm
 // 	VCVTPS2UDQ.Z zmm          k zmm
 // Construct and append a VCVTPS2UDQ.Z instruction to the active function.
-func (c *Context) VCVTPS2UDQ_Z(mz, k, z operand.Op) {
-	if inst, err := x86.VCVTPS2UDQ_Z(mz, k, z); err == nil {
+func (c *Context) VCVTPS2UDQ_Z(mxyz, k, xyz operand.Op) {
+	if inst, err := x86.VCVTPS2UDQ_Z(mxyz, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -21303,11 +22403,15 @@ func (c *Context) VCVTPS2UDQ_Z(mz, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VCVTPS2UDQ.Z m128/m32bcst k xmm
+// 	VCVTPS2UDQ.Z m256/m32bcst k ymm
 // 	VCVTPS2UDQ.Z m512/m32bcst k zmm
+// 	VCVTPS2UDQ.Z xmm          k xmm
+// 	VCVTPS2UDQ.Z ymm          k ymm
 // 	VCVTPS2UDQ.Z zmm          k zmm
 // Construct and append a VCVTPS2UDQ.Z instruction to the active function.
 // Operates on the global context.
-func VCVTPS2UDQ_Z(mz, k, z operand.Op) { ctx.VCVTPS2UDQ_Z(mz, k, z) }
+func VCVTPS2UDQ_Z(mxyz, k, xyz operand.Op) { ctx.VCVTPS2UDQ_Z(mxyz, k, xyz) }
 
 // VCVTSD2SI: Convert Scalar Double-Precision FP Value to Integer.
 //
@@ -23042,11 +24146,15 @@ func VCVTTPD2DQ(ops ...operand.Op) { ctx.VCVTTPD2DQ(ops...) }
 //
 // Forms:
 //
-// 	VCVTTPD2DQX xmm  xmm
-// 	VCVTTPD2DQX m128 xmm
+// 	VCVTTPD2DQX m128/m64bcst xmm
+// 	VCVTTPD2DQX m128/m64bcst k xmm
+// 	VCVTTPD2DQX xmm          xmm
+// 	VCVTTPD2DQX xmm          k xmm
+// 	VCVTTPD2DQX xmm          xmm
+// 	VCVTTPD2DQX m128         xmm
 // Construct and append a VCVTTPD2DQX instruction to the active function.
-func (c *Context) VCVTTPD2DQX(mx, x operand.Op) {
-	if inst, err := x86.VCVTTPD2DQX(mx, x); err == nil {
+func (c *Context) VCVTTPD2DQX(ops ...operand.Op) {
+	if inst, err := x86.VCVTTPD2DQX(ops...); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -23057,21 +24165,102 @@ func (c *Context) VCVTTPD2DQX(mx, x operand.Op) {
 //
 // Forms:
 //
-// 	VCVTTPD2DQX xmm  xmm
-// 	VCVTTPD2DQX m128 xmm
+// 	VCVTTPD2DQX m128/m64bcst xmm
+// 	VCVTTPD2DQX m128/m64bcst k xmm
+// 	VCVTTPD2DQX xmm          xmm
+// 	VCVTTPD2DQX xmm          k xmm
+// 	VCVTTPD2DQX xmm          xmm
+// 	VCVTTPD2DQX m128         xmm
 // Construct and append a VCVTTPD2DQX instruction to the active function.
 // Operates on the global context.
-func VCVTTPD2DQX(mx, x operand.Op) { ctx.VCVTTPD2DQX(mx, x) }
+func VCVTTPD2DQX(ops ...operand.Op) { ctx.VCVTTPD2DQX(ops...) }
+
+// VCVTTPD2DQX_BCST: Convert with Truncation Packed Double-Precision FP Values to Packed Dword Integers (Broadcast).
+//
+// Forms:
+//
+// 	VCVTTPD2DQX.BCST m128/m64bcst xmm
+// 	VCVTTPD2DQX.BCST m128/m64bcst k xmm
+// Construct and append a VCVTTPD2DQX.BCST instruction to the active function.
+func (c *Context) VCVTTPD2DQX_BCST(ops ...operand.Op) {
+	if inst, err := x86.VCVTTPD2DQX_BCST(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTTPD2DQX_BCST: Convert with Truncation Packed Double-Precision FP Values to Packed Dword Integers (Broadcast).
+//
+// Forms:
+//
+// 	VCVTTPD2DQX.BCST m128/m64bcst xmm
+// 	VCVTTPD2DQX.BCST m128/m64bcst k xmm
+// Construct and append a VCVTTPD2DQX.BCST instruction to the active function.
+// Operates on the global context.
+func VCVTTPD2DQX_BCST(ops ...operand.Op) { ctx.VCVTTPD2DQX_BCST(ops...) }
+
+// VCVTTPD2DQX_BCST_Z: Convert with Truncation Packed Double-Precision FP Values to Packed Dword Integers (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTTPD2DQX.BCST.Z m128/m64bcst k xmm
+// Construct and append a VCVTTPD2DQX.BCST.Z instruction to the active function.
+func (c *Context) VCVTTPD2DQX_BCST_Z(m, k, x operand.Op) {
+	if inst, err := x86.VCVTTPD2DQX_BCST_Z(m, k, x); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTTPD2DQX_BCST_Z: Convert with Truncation Packed Double-Precision FP Values to Packed Dword Integers (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTTPD2DQX.BCST.Z m128/m64bcst k xmm
+// Construct and append a VCVTTPD2DQX.BCST.Z instruction to the active function.
+// Operates on the global context.
+func VCVTTPD2DQX_BCST_Z(m, k, x operand.Op) { ctx.VCVTTPD2DQX_BCST_Z(m, k, x) }
+
+// VCVTTPD2DQX_Z: Convert with Truncation Packed Double-Precision FP Values to Packed Dword Integers (Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTTPD2DQX.Z m128/m64bcst k xmm
+// 	VCVTTPD2DQX.Z xmm          k xmm
+// Construct and append a VCVTTPD2DQX.Z instruction to the active function.
+func (c *Context) VCVTTPD2DQX_Z(mx, k, x operand.Op) {
+	if inst, err := x86.VCVTTPD2DQX_Z(mx, k, x); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTTPD2DQX_Z: Convert with Truncation Packed Double-Precision FP Values to Packed Dword Integers (Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTTPD2DQX.Z m128/m64bcst k xmm
+// 	VCVTTPD2DQX.Z xmm          k xmm
+// Construct and append a VCVTTPD2DQX.Z instruction to the active function.
+// Operates on the global context.
+func VCVTTPD2DQX_Z(mx, k, x operand.Op) { ctx.VCVTTPD2DQX_Z(mx, k, x) }
 
 // VCVTTPD2DQY: Convert with Truncation Packed Double-Precision FP Values to Packed Dword Integers.
 //
 // Forms:
 //
-// 	VCVTTPD2DQY ymm  xmm
-// 	VCVTTPD2DQY m256 xmm
+// 	VCVTTPD2DQY m256/m64bcst xmm
+// 	VCVTTPD2DQY m256/m64bcst k xmm
+// 	VCVTTPD2DQY ymm          xmm
+// 	VCVTTPD2DQY ymm          k xmm
+// 	VCVTTPD2DQY ymm          xmm
+// 	VCVTTPD2DQY m256         xmm
 // Construct and append a VCVTTPD2DQY instruction to the active function.
-func (c *Context) VCVTTPD2DQY(my, x operand.Op) {
-	if inst, err := x86.VCVTTPD2DQY(my, x); err == nil {
+func (c *Context) VCVTTPD2DQY(ops ...operand.Op) {
+	if inst, err := x86.VCVTTPD2DQY(ops...); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -23082,11 +24271,88 @@ func (c *Context) VCVTTPD2DQY(my, x operand.Op) {
 //
 // Forms:
 //
-// 	VCVTTPD2DQY ymm  xmm
-// 	VCVTTPD2DQY m256 xmm
+// 	VCVTTPD2DQY m256/m64bcst xmm
+// 	VCVTTPD2DQY m256/m64bcst k xmm
+// 	VCVTTPD2DQY ymm          xmm
+// 	VCVTTPD2DQY ymm          k xmm
+// 	VCVTTPD2DQY ymm          xmm
+// 	VCVTTPD2DQY m256         xmm
 // Construct and append a VCVTTPD2DQY instruction to the active function.
 // Operates on the global context.
-func VCVTTPD2DQY(my, x operand.Op) { ctx.VCVTTPD2DQY(my, x) }
+func VCVTTPD2DQY(ops ...operand.Op) { ctx.VCVTTPD2DQY(ops...) }
+
+// VCVTTPD2DQY_BCST: Convert with Truncation Packed Double-Precision FP Values to Packed Dword Integers (Broadcast).
+//
+// Forms:
+//
+// 	VCVTTPD2DQY.BCST m256/m64bcst xmm
+// 	VCVTTPD2DQY.BCST m256/m64bcst k xmm
+// Construct and append a VCVTTPD2DQY.BCST instruction to the active function.
+func (c *Context) VCVTTPD2DQY_BCST(ops ...operand.Op) {
+	if inst, err := x86.VCVTTPD2DQY_BCST(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTTPD2DQY_BCST: Convert with Truncation Packed Double-Precision FP Values to Packed Dword Integers (Broadcast).
+//
+// Forms:
+//
+// 	VCVTTPD2DQY.BCST m256/m64bcst xmm
+// 	VCVTTPD2DQY.BCST m256/m64bcst k xmm
+// Construct and append a VCVTTPD2DQY.BCST instruction to the active function.
+// Operates on the global context.
+func VCVTTPD2DQY_BCST(ops ...operand.Op) { ctx.VCVTTPD2DQY_BCST(ops...) }
+
+// VCVTTPD2DQY_BCST_Z: Convert with Truncation Packed Double-Precision FP Values to Packed Dword Integers (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTTPD2DQY.BCST.Z m256/m64bcst k xmm
+// Construct and append a VCVTTPD2DQY.BCST.Z instruction to the active function.
+func (c *Context) VCVTTPD2DQY_BCST_Z(m, k, x operand.Op) {
+	if inst, err := x86.VCVTTPD2DQY_BCST_Z(m, k, x); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTTPD2DQY_BCST_Z: Convert with Truncation Packed Double-Precision FP Values to Packed Dword Integers (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTTPD2DQY.BCST.Z m256/m64bcst k xmm
+// Construct and append a VCVTTPD2DQY.BCST.Z instruction to the active function.
+// Operates on the global context.
+func VCVTTPD2DQY_BCST_Z(m, k, x operand.Op) { ctx.VCVTTPD2DQY_BCST_Z(m, k, x) }
+
+// VCVTTPD2DQY_Z: Convert with Truncation Packed Double-Precision FP Values to Packed Dword Integers (Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTTPD2DQY.Z m256/m64bcst k xmm
+// 	VCVTTPD2DQY.Z ymm          k xmm
+// Construct and append a VCVTTPD2DQY.Z instruction to the active function.
+func (c *Context) VCVTTPD2DQY_Z(my, k, x operand.Op) {
+	if inst, err := x86.VCVTTPD2DQY_Z(my, k, x); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTTPD2DQY_Z: Convert with Truncation Packed Double-Precision FP Values to Packed Dword Integers (Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTTPD2DQY.Z m256/m64bcst k xmm
+// 	VCVTTPD2DQY.Z ymm          k xmm
+// Construct and append a VCVTTPD2DQY.Z instruction to the active function.
+// Operates on the global context.
+func VCVTTPD2DQY_Z(my, k, x operand.Op) { ctx.VCVTTPD2DQY_Z(my, k, x) }
 
 // VCVTTPD2DQ_BCST: Convert with Truncation Packed Double-Precision FP Values to Packed Dword Integers (Broadcast).
 //
@@ -23238,6 +24504,210 @@ func (c *Context) VCVTTPD2UDQ(ops ...operand.Op) {
 // Operates on the global context.
 func VCVTTPD2UDQ(ops ...operand.Op) { ctx.VCVTTPD2UDQ(ops...) }
 
+// VCVTTPD2UDQX: Convert with Truncation Packed Double-Precision Floating-Point Values to Packed Unsigned Doubleword Integers.
+//
+// Forms:
+//
+// 	VCVTTPD2UDQX m128/m64bcst xmm
+// 	VCVTTPD2UDQX m128/m64bcst k xmm
+// 	VCVTTPD2UDQX xmm          xmm
+// 	VCVTTPD2UDQX xmm          k xmm
+// Construct and append a VCVTTPD2UDQX instruction to the active function.
+func (c *Context) VCVTTPD2UDQX(ops ...operand.Op) {
+	if inst, err := x86.VCVTTPD2UDQX(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTTPD2UDQX: Convert with Truncation Packed Double-Precision Floating-Point Values to Packed Unsigned Doubleword Integers.
+//
+// Forms:
+//
+// 	VCVTTPD2UDQX m128/m64bcst xmm
+// 	VCVTTPD2UDQX m128/m64bcst k xmm
+// 	VCVTTPD2UDQX xmm          xmm
+// 	VCVTTPD2UDQX xmm          k xmm
+// Construct and append a VCVTTPD2UDQX instruction to the active function.
+// Operates on the global context.
+func VCVTTPD2UDQX(ops ...operand.Op) { ctx.VCVTTPD2UDQX(ops...) }
+
+// VCVTTPD2UDQX_BCST: Convert with Truncation Packed Double-Precision Floating-Point Values to Packed Unsigned Doubleword Integers (Broadcast).
+//
+// Forms:
+//
+// 	VCVTTPD2UDQX.BCST m128/m64bcst xmm
+// 	VCVTTPD2UDQX.BCST m128/m64bcst k xmm
+// Construct and append a VCVTTPD2UDQX.BCST instruction to the active function.
+func (c *Context) VCVTTPD2UDQX_BCST(ops ...operand.Op) {
+	if inst, err := x86.VCVTTPD2UDQX_BCST(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTTPD2UDQX_BCST: Convert with Truncation Packed Double-Precision Floating-Point Values to Packed Unsigned Doubleword Integers (Broadcast).
+//
+// Forms:
+//
+// 	VCVTTPD2UDQX.BCST m128/m64bcst xmm
+// 	VCVTTPD2UDQX.BCST m128/m64bcst k xmm
+// Construct and append a VCVTTPD2UDQX.BCST instruction to the active function.
+// Operates on the global context.
+func VCVTTPD2UDQX_BCST(ops ...operand.Op) { ctx.VCVTTPD2UDQX_BCST(ops...) }
+
+// VCVTTPD2UDQX_BCST_Z: Convert with Truncation Packed Double-Precision Floating-Point Values to Packed Unsigned Doubleword Integers (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTTPD2UDQX.BCST.Z m128/m64bcst k xmm
+// Construct and append a VCVTTPD2UDQX.BCST.Z instruction to the active function.
+func (c *Context) VCVTTPD2UDQX_BCST_Z(m, k, x operand.Op) {
+	if inst, err := x86.VCVTTPD2UDQX_BCST_Z(m, k, x); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTTPD2UDQX_BCST_Z: Convert with Truncation Packed Double-Precision Floating-Point Values to Packed Unsigned Doubleword Integers (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTTPD2UDQX.BCST.Z m128/m64bcst k xmm
+// Construct and append a VCVTTPD2UDQX.BCST.Z instruction to the active function.
+// Operates on the global context.
+func VCVTTPD2UDQX_BCST_Z(m, k, x operand.Op) { ctx.VCVTTPD2UDQX_BCST_Z(m, k, x) }
+
+// VCVTTPD2UDQX_Z: Convert with Truncation Packed Double-Precision Floating-Point Values to Packed Unsigned Doubleword Integers (Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTTPD2UDQX.Z m128/m64bcst k xmm
+// 	VCVTTPD2UDQX.Z xmm          k xmm
+// Construct and append a VCVTTPD2UDQX.Z instruction to the active function.
+func (c *Context) VCVTTPD2UDQX_Z(mx, k, x operand.Op) {
+	if inst, err := x86.VCVTTPD2UDQX_Z(mx, k, x); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTTPD2UDQX_Z: Convert with Truncation Packed Double-Precision Floating-Point Values to Packed Unsigned Doubleword Integers (Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTTPD2UDQX.Z m128/m64bcst k xmm
+// 	VCVTTPD2UDQX.Z xmm          k xmm
+// Construct and append a VCVTTPD2UDQX.Z instruction to the active function.
+// Operates on the global context.
+func VCVTTPD2UDQX_Z(mx, k, x operand.Op) { ctx.VCVTTPD2UDQX_Z(mx, k, x) }
+
+// VCVTTPD2UDQY: Convert with Truncation Packed Double-Precision Floating-Point Values to Packed Unsigned Doubleword Integers.
+//
+// Forms:
+//
+// 	VCVTTPD2UDQY m256/m64bcst xmm
+// 	VCVTTPD2UDQY m256/m64bcst k xmm
+// 	VCVTTPD2UDQY ymm          xmm
+// 	VCVTTPD2UDQY ymm          k xmm
+// Construct and append a VCVTTPD2UDQY instruction to the active function.
+func (c *Context) VCVTTPD2UDQY(ops ...operand.Op) {
+	if inst, err := x86.VCVTTPD2UDQY(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTTPD2UDQY: Convert with Truncation Packed Double-Precision Floating-Point Values to Packed Unsigned Doubleword Integers.
+//
+// Forms:
+//
+// 	VCVTTPD2UDQY m256/m64bcst xmm
+// 	VCVTTPD2UDQY m256/m64bcst k xmm
+// 	VCVTTPD2UDQY ymm          xmm
+// 	VCVTTPD2UDQY ymm          k xmm
+// Construct and append a VCVTTPD2UDQY instruction to the active function.
+// Operates on the global context.
+func VCVTTPD2UDQY(ops ...operand.Op) { ctx.VCVTTPD2UDQY(ops...) }
+
+// VCVTTPD2UDQY_BCST: Convert with Truncation Packed Double-Precision Floating-Point Values to Packed Unsigned Doubleword Integers (Broadcast).
+//
+// Forms:
+//
+// 	VCVTTPD2UDQY.BCST m256/m64bcst xmm
+// 	VCVTTPD2UDQY.BCST m256/m64bcst k xmm
+// Construct and append a VCVTTPD2UDQY.BCST instruction to the active function.
+func (c *Context) VCVTTPD2UDQY_BCST(ops ...operand.Op) {
+	if inst, err := x86.VCVTTPD2UDQY_BCST(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTTPD2UDQY_BCST: Convert with Truncation Packed Double-Precision Floating-Point Values to Packed Unsigned Doubleword Integers (Broadcast).
+//
+// Forms:
+//
+// 	VCVTTPD2UDQY.BCST m256/m64bcst xmm
+// 	VCVTTPD2UDQY.BCST m256/m64bcst k xmm
+// Construct and append a VCVTTPD2UDQY.BCST instruction to the active function.
+// Operates on the global context.
+func VCVTTPD2UDQY_BCST(ops ...operand.Op) { ctx.VCVTTPD2UDQY_BCST(ops...) }
+
+// VCVTTPD2UDQY_BCST_Z: Convert with Truncation Packed Double-Precision Floating-Point Values to Packed Unsigned Doubleword Integers (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTTPD2UDQY.BCST.Z m256/m64bcst k xmm
+// Construct and append a VCVTTPD2UDQY.BCST.Z instruction to the active function.
+func (c *Context) VCVTTPD2UDQY_BCST_Z(m, k, x operand.Op) {
+	if inst, err := x86.VCVTTPD2UDQY_BCST_Z(m, k, x); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTTPD2UDQY_BCST_Z: Convert with Truncation Packed Double-Precision Floating-Point Values to Packed Unsigned Doubleword Integers (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTTPD2UDQY.BCST.Z m256/m64bcst k xmm
+// Construct and append a VCVTTPD2UDQY.BCST.Z instruction to the active function.
+// Operates on the global context.
+func VCVTTPD2UDQY_BCST_Z(m, k, x operand.Op) { ctx.VCVTTPD2UDQY_BCST_Z(m, k, x) }
+
+// VCVTTPD2UDQY_Z: Convert with Truncation Packed Double-Precision Floating-Point Values to Packed Unsigned Doubleword Integers (Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTTPD2UDQY.Z m256/m64bcst k xmm
+// 	VCVTTPD2UDQY.Z ymm          k xmm
+// Construct and append a VCVTTPD2UDQY.Z instruction to the active function.
+func (c *Context) VCVTTPD2UDQY_Z(my, k, x operand.Op) {
+	if inst, err := x86.VCVTTPD2UDQY_Z(my, k, x); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTTPD2UDQY_Z: Convert with Truncation Packed Double-Precision Floating-Point Values to Packed Unsigned Doubleword Integers (Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTTPD2UDQY.Z m256/m64bcst k xmm
+// 	VCVTTPD2UDQY.Z ymm          k xmm
+// Construct and append a VCVTTPD2UDQY.Z instruction to the active function.
+// Operates on the global context.
+func VCVTTPD2UDQY_Z(my, k, x operand.Op) { ctx.VCVTTPD2UDQY_Z(my, k, x) }
+
 // VCVTTPD2UDQ_BCST: Convert with Truncation Packed Double-Precision Floating-Point Values to Packed Unsigned Doubleword Integers (Broadcast).
 //
 // Forms:
@@ -23363,8 +24833,16 @@ func VCVTTPD2UDQ_Z(mz, k, y operand.Op) { ctx.VCVTTPD2UDQ_Z(mz, k, y) }
 //
 // Forms:
 //
+// 	VCVTTPS2DQ m128/m32bcst xmm
+// 	VCVTTPS2DQ m128/m32bcst k xmm
+// 	VCVTTPS2DQ m256/m32bcst ymm
+// 	VCVTTPS2DQ m256/m32bcst k ymm
 // 	VCVTTPS2DQ m512/m32bcst zmm
 // 	VCVTTPS2DQ m512/m32bcst k zmm
+// 	VCVTTPS2DQ xmm          xmm
+// 	VCVTTPS2DQ xmm          k xmm
+// 	VCVTTPS2DQ ymm          ymm
+// 	VCVTTPS2DQ ymm          k ymm
 // 	VCVTTPS2DQ xmm          xmm
 // 	VCVTTPS2DQ m128         xmm
 // 	VCVTTPS2DQ ymm          ymm
@@ -23384,8 +24862,16 @@ func (c *Context) VCVTTPS2DQ(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VCVTTPS2DQ m128/m32bcst xmm
+// 	VCVTTPS2DQ m128/m32bcst k xmm
+// 	VCVTTPS2DQ m256/m32bcst ymm
+// 	VCVTTPS2DQ m256/m32bcst k ymm
 // 	VCVTTPS2DQ m512/m32bcst zmm
 // 	VCVTTPS2DQ m512/m32bcst k zmm
+// 	VCVTTPS2DQ xmm          xmm
+// 	VCVTTPS2DQ xmm          k xmm
+// 	VCVTTPS2DQ ymm          ymm
+// 	VCVTTPS2DQ ymm          k ymm
 // 	VCVTTPS2DQ xmm          xmm
 // 	VCVTTPS2DQ m128         xmm
 // 	VCVTTPS2DQ ymm          ymm
@@ -23400,6 +24886,10 @@ func VCVTTPS2DQ(ops ...operand.Op) { ctx.VCVTTPS2DQ(ops...) }
 //
 // Forms:
 //
+// 	VCVTTPS2DQ.BCST m128/m32bcst xmm
+// 	VCVTTPS2DQ.BCST m128/m32bcst k xmm
+// 	VCVTTPS2DQ.BCST m256/m32bcst ymm
+// 	VCVTTPS2DQ.BCST m256/m32bcst k ymm
 // 	VCVTTPS2DQ.BCST m512/m32bcst zmm
 // 	VCVTTPS2DQ.BCST m512/m32bcst k zmm
 // Construct and append a VCVTTPS2DQ.BCST instruction to the active function.
@@ -23415,6 +24905,10 @@ func (c *Context) VCVTTPS2DQ_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VCVTTPS2DQ.BCST m128/m32bcst xmm
+// 	VCVTTPS2DQ.BCST m128/m32bcst k xmm
+// 	VCVTTPS2DQ.BCST m256/m32bcst ymm
+// 	VCVTTPS2DQ.BCST m256/m32bcst k ymm
 // 	VCVTTPS2DQ.BCST m512/m32bcst zmm
 // 	VCVTTPS2DQ.BCST m512/m32bcst k zmm
 // Construct and append a VCVTTPS2DQ.BCST instruction to the active function.
@@ -23425,10 +24919,12 @@ func VCVTTPS2DQ_BCST(ops ...operand.Op) { ctx.VCVTTPS2DQ_BCST(ops...) }
 //
 // Forms:
 //
+// 	VCVTTPS2DQ.BCST.Z m128/m32bcst k xmm
+// 	VCVTTPS2DQ.BCST.Z m256/m32bcst k ymm
 // 	VCVTTPS2DQ.BCST.Z m512/m32bcst k zmm
 // Construct and append a VCVTTPS2DQ.BCST.Z instruction to the active function.
-func (c *Context) VCVTTPS2DQ_BCST_Z(m, k, z operand.Op) {
-	if inst, err := x86.VCVTTPS2DQ_BCST_Z(m, k, z); err == nil {
+func (c *Context) VCVTTPS2DQ_BCST_Z(m, k, xyz operand.Op) {
+	if inst, err := x86.VCVTTPS2DQ_BCST_Z(m, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -23439,10 +24935,12 @@ func (c *Context) VCVTTPS2DQ_BCST_Z(m, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VCVTTPS2DQ.BCST.Z m128/m32bcst k xmm
+// 	VCVTTPS2DQ.BCST.Z m256/m32bcst k ymm
 // 	VCVTTPS2DQ.BCST.Z m512/m32bcst k zmm
 // Construct and append a VCVTTPS2DQ.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VCVTTPS2DQ_BCST_Z(m, k, z operand.Op) { ctx.VCVTTPS2DQ_BCST_Z(m, k, z) }
+func VCVTTPS2DQ_BCST_Z(m, k, xyz operand.Op) { ctx.VCVTTPS2DQ_BCST_Z(m, k, xyz) }
 
 // VCVTTPS2DQ_SAE: Convert with Truncation Packed Single-Precision FP Values to Packed Dword Integers (Suppress All Exceptions).
 //
@@ -23496,11 +24994,15 @@ func VCVTTPS2DQ_SAE_Z(z, k, z1 operand.Op) { ctx.VCVTTPS2DQ_SAE_Z(z, k, z1) }
 //
 // Forms:
 //
+// 	VCVTTPS2DQ.Z m128/m32bcst k xmm
+// 	VCVTTPS2DQ.Z m256/m32bcst k ymm
 // 	VCVTTPS2DQ.Z m512/m32bcst k zmm
+// 	VCVTTPS2DQ.Z xmm          k xmm
+// 	VCVTTPS2DQ.Z ymm          k ymm
 // 	VCVTTPS2DQ.Z zmm          k zmm
 // Construct and append a VCVTTPS2DQ.Z instruction to the active function.
-func (c *Context) VCVTTPS2DQ_Z(mz, k, z operand.Op) {
-	if inst, err := x86.VCVTTPS2DQ_Z(mz, k, z); err == nil {
+func (c *Context) VCVTTPS2DQ_Z(mxyz, k, xyz operand.Op) {
+	if inst, err := x86.VCVTTPS2DQ_Z(mxyz, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -23511,18 +25013,30 @@ func (c *Context) VCVTTPS2DQ_Z(mz, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VCVTTPS2DQ.Z m128/m32bcst k xmm
+// 	VCVTTPS2DQ.Z m256/m32bcst k ymm
 // 	VCVTTPS2DQ.Z m512/m32bcst k zmm
+// 	VCVTTPS2DQ.Z xmm          k xmm
+// 	VCVTTPS2DQ.Z ymm          k ymm
 // 	VCVTTPS2DQ.Z zmm          k zmm
 // Construct and append a VCVTTPS2DQ.Z instruction to the active function.
 // Operates on the global context.
-func VCVTTPS2DQ_Z(mz, k, z operand.Op) { ctx.VCVTTPS2DQ_Z(mz, k, z) }
+func VCVTTPS2DQ_Z(mxyz, k, xyz operand.Op) { ctx.VCVTTPS2DQ_Z(mxyz, k, xyz) }
 
 // VCVTTPS2UDQ: Convert with Truncation Packed Single-Precision Floating-Point Values to Packed Unsigned Doubleword Integer Values.
 //
 // Forms:
 //
+// 	VCVTTPS2UDQ m128/m32bcst xmm
+// 	VCVTTPS2UDQ m128/m32bcst k xmm
+// 	VCVTTPS2UDQ m256/m32bcst ymm
+// 	VCVTTPS2UDQ m256/m32bcst k ymm
 // 	VCVTTPS2UDQ m512/m32bcst zmm
 // 	VCVTTPS2UDQ m512/m32bcst k zmm
+// 	VCVTTPS2UDQ xmm          xmm
+// 	VCVTTPS2UDQ xmm          k xmm
+// 	VCVTTPS2UDQ ymm          ymm
+// 	VCVTTPS2UDQ ymm          k ymm
 // 	VCVTTPS2UDQ zmm          zmm
 // 	VCVTTPS2UDQ zmm          k zmm
 // Construct and append a VCVTTPS2UDQ instruction to the active function.
@@ -23538,8 +25052,16 @@ func (c *Context) VCVTTPS2UDQ(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VCVTTPS2UDQ m128/m32bcst xmm
+// 	VCVTTPS2UDQ m128/m32bcst k xmm
+// 	VCVTTPS2UDQ m256/m32bcst ymm
+// 	VCVTTPS2UDQ m256/m32bcst k ymm
 // 	VCVTTPS2UDQ m512/m32bcst zmm
 // 	VCVTTPS2UDQ m512/m32bcst k zmm
+// 	VCVTTPS2UDQ xmm          xmm
+// 	VCVTTPS2UDQ xmm          k xmm
+// 	VCVTTPS2UDQ ymm          ymm
+// 	VCVTTPS2UDQ ymm          k ymm
 // 	VCVTTPS2UDQ zmm          zmm
 // 	VCVTTPS2UDQ zmm          k zmm
 // Construct and append a VCVTTPS2UDQ instruction to the active function.
@@ -23550,6 +25072,10 @@ func VCVTTPS2UDQ(ops ...operand.Op) { ctx.VCVTTPS2UDQ(ops...) }
 //
 // Forms:
 //
+// 	VCVTTPS2UDQ.BCST m128/m32bcst xmm
+// 	VCVTTPS2UDQ.BCST m128/m32bcst k xmm
+// 	VCVTTPS2UDQ.BCST m256/m32bcst ymm
+// 	VCVTTPS2UDQ.BCST m256/m32bcst k ymm
 // 	VCVTTPS2UDQ.BCST m512/m32bcst zmm
 // 	VCVTTPS2UDQ.BCST m512/m32bcst k zmm
 // Construct and append a VCVTTPS2UDQ.BCST instruction to the active function.
@@ -23565,6 +25091,10 @@ func (c *Context) VCVTTPS2UDQ_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VCVTTPS2UDQ.BCST m128/m32bcst xmm
+// 	VCVTTPS2UDQ.BCST m128/m32bcst k xmm
+// 	VCVTTPS2UDQ.BCST m256/m32bcst ymm
+// 	VCVTTPS2UDQ.BCST m256/m32bcst k ymm
 // 	VCVTTPS2UDQ.BCST m512/m32bcst zmm
 // 	VCVTTPS2UDQ.BCST m512/m32bcst k zmm
 // Construct and append a VCVTTPS2UDQ.BCST instruction to the active function.
@@ -23575,10 +25105,12 @@ func VCVTTPS2UDQ_BCST(ops ...operand.Op) { ctx.VCVTTPS2UDQ_BCST(ops...) }
 //
 // Forms:
 //
+// 	VCVTTPS2UDQ.BCST.Z m128/m32bcst k xmm
+// 	VCVTTPS2UDQ.BCST.Z m256/m32bcst k ymm
 // 	VCVTTPS2UDQ.BCST.Z m512/m32bcst k zmm
 // Construct and append a VCVTTPS2UDQ.BCST.Z instruction to the active function.
-func (c *Context) VCVTTPS2UDQ_BCST_Z(m, k, z operand.Op) {
-	if inst, err := x86.VCVTTPS2UDQ_BCST_Z(m, k, z); err == nil {
+func (c *Context) VCVTTPS2UDQ_BCST_Z(m, k, xyz operand.Op) {
+	if inst, err := x86.VCVTTPS2UDQ_BCST_Z(m, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -23589,10 +25121,12 @@ func (c *Context) VCVTTPS2UDQ_BCST_Z(m, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VCVTTPS2UDQ.BCST.Z m128/m32bcst k xmm
+// 	VCVTTPS2UDQ.BCST.Z m256/m32bcst k ymm
 // 	VCVTTPS2UDQ.BCST.Z m512/m32bcst k zmm
 // Construct and append a VCVTTPS2UDQ.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VCVTTPS2UDQ_BCST_Z(m, k, z operand.Op) { ctx.VCVTTPS2UDQ_BCST_Z(m, k, z) }
+func VCVTTPS2UDQ_BCST_Z(m, k, xyz operand.Op) { ctx.VCVTTPS2UDQ_BCST_Z(m, k, xyz) }
 
 // VCVTTPS2UDQ_SAE: Convert with Truncation Packed Single-Precision Floating-Point Values to Packed Unsigned Doubleword Integer Values (Suppress All Exceptions).
 //
@@ -23646,11 +25180,15 @@ func VCVTTPS2UDQ_SAE_Z(z, k, z1 operand.Op) { ctx.VCVTTPS2UDQ_SAE_Z(z, k, z1) }
 //
 // Forms:
 //
+// 	VCVTTPS2UDQ.Z m128/m32bcst k xmm
+// 	VCVTTPS2UDQ.Z m256/m32bcst k ymm
 // 	VCVTTPS2UDQ.Z m512/m32bcst k zmm
+// 	VCVTTPS2UDQ.Z xmm          k xmm
+// 	VCVTTPS2UDQ.Z ymm          k ymm
 // 	VCVTTPS2UDQ.Z zmm          k zmm
 // Construct and append a VCVTTPS2UDQ.Z instruction to the active function.
-func (c *Context) VCVTTPS2UDQ_Z(mz, k, z operand.Op) {
-	if inst, err := x86.VCVTTPS2UDQ_Z(mz, k, z); err == nil {
+func (c *Context) VCVTTPS2UDQ_Z(mxyz, k, xyz operand.Op) {
+	if inst, err := x86.VCVTTPS2UDQ_Z(mxyz, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -23661,11 +25199,15 @@ func (c *Context) VCVTTPS2UDQ_Z(mz, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VCVTTPS2UDQ.Z m128/m32bcst k xmm
+// 	VCVTTPS2UDQ.Z m256/m32bcst k ymm
 // 	VCVTTPS2UDQ.Z m512/m32bcst k zmm
+// 	VCVTTPS2UDQ.Z xmm          k xmm
+// 	VCVTTPS2UDQ.Z ymm          k ymm
 // 	VCVTTPS2UDQ.Z zmm          k zmm
 // Construct and append a VCVTTPS2UDQ.Z instruction to the active function.
 // Operates on the global context.
-func VCVTTPS2UDQ_Z(mz, k, z operand.Op) { ctx.VCVTTPS2UDQ_Z(mz, k, z) }
+func VCVTTPS2UDQ_Z(mxyz, k, xyz operand.Op) { ctx.VCVTTPS2UDQ_Z(mxyz, k, xyz) }
 
 // VCVTTSD2SI: Convert with Truncation Scalar Double-Precision FP Value to Signed Integer.
 //
@@ -24071,8 +25613,16 @@ func VCVTTSS2USIQ_SAE(x, r operand.Op) { ctx.VCVTTSS2USIQ_SAE(x, r) }
 //
 // Forms:
 //
+// 	VCVTUDQ2PD m64/m32bcst  xmm
+// 	VCVTUDQ2PD m64/m32bcst  k xmm
+// 	VCVTUDQ2PD m128/m32bcst ymm
+// 	VCVTUDQ2PD m128/m32bcst k ymm
 // 	VCVTUDQ2PD m256/m32bcst zmm
 // 	VCVTUDQ2PD m256/m32bcst k zmm
+// 	VCVTUDQ2PD xmm          xmm
+// 	VCVTUDQ2PD xmm          k xmm
+// 	VCVTUDQ2PD xmm          ymm
+// 	VCVTUDQ2PD xmm          k ymm
 // 	VCVTUDQ2PD ymm          zmm
 // 	VCVTUDQ2PD ymm          k zmm
 // Construct and append a VCVTUDQ2PD instruction to the active function.
@@ -24088,8 +25638,16 @@ func (c *Context) VCVTUDQ2PD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VCVTUDQ2PD m64/m32bcst  xmm
+// 	VCVTUDQ2PD m64/m32bcst  k xmm
+// 	VCVTUDQ2PD m128/m32bcst ymm
+// 	VCVTUDQ2PD m128/m32bcst k ymm
 // 	VCVTUDQ2PD m256/m32bcst zmm
 // 	VCVTUDQ2PD m256/m32bcst k zmm
+// 	VCVTUDQ2PD xmm          xmm
+// 	VCVTUDQ2PD xmm          k xmm
+// 	VCVTUDQ2PD xmm          ymm
+// 	VCVTUDQ2PD xmm          k ymm
 // 	VCVTUDQ2PD ymm          zmm
 // 	VCVTUDQ2PD ymm          k zmm
 // Construct and append a VCVTUDQ2PD instruction to the active function.
@@ -24100,6 +25658,10 @@ func VCVTUDQ2PD(ops ...operand.Op) { ctx.VCVTUDQ2PD(ops...) }
 //
 // Forms:
 //
+// 	VCVTUDQ2PD.BCST m64/m32bcst  xmm
+// 	VCVTUDQ2PD.BCST m64/m32bcst  k xmm
+// 	VCVTUDQ2PD.BCST m128/m32bcst ymm
+// 	VCVTUDQ2PD.BCST m128/m32bcst k ymm
 // 	VCVTUDQ2PD.BCST m256/m32bcst zmm
 // 	VCVTUDQ2PD.BCST m256/m32bcst k zmm
 // Construct and append a VCVTUDQ2PD.BCST instruction to the active function.
@@ -24115,6 +25677,10 @@ func (c *Context) VCVTUDQ2PD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VCVTUDQ2PD.BCST m64/m32bcst  xmm
+// 	VCVTUDQ2PD.BCST m64/m32bcst  k xmm
+// 	VCVTUDQ2PD.BCST m128/m32bcst ymm
+// 	VCVTUDQ2PD.BCST m128/m32bcst k ymm
 // 	VCVTUDQ2PD.BCST m256/m32bcst zmm
 // 	VCVTUDQ2PD.BCST m256/m32bcst k zmm
 // Construct and append a VCVTUDQ2PD.BCST instruction to the active function.
@@ -24125,10 +25691,12 @@ func VCVTUDQ2PD_BCST(ops ...operand.Op) { ctx.VCVTUDQ2PD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VCVTUDQ2PD.BCST.Z m64/m32bcst  k xmm
+// 	VCVTUDQ2PD.BCST.Z m128/m32bcst k ymm
 // 	VCVTUDQ2PD.BCST.Z m256/m32bcst k zmm
 // Construct and append a VCVTUDQ2PD.BCST.Z instruction to the active function.
-func (c *Context) VCVTUDQ2PD_BCST_Z(m, k, z operand.Op) {
-	if inst, err := x86.VCVTUDQ2PD_BCST_Z(m, k, z); err == nil {
+func (c *Context) VCVTUDQ2PD_BCST_Z(m, k, xyz operand.Op) {
+	if inst, err := x86.VCVTUDQ2PD_BCST_Z(m, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -24139,20 +25707,26 @@ func (c *Context) VCVTUDQ2PD_BCST_Z(m, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VCVTUDQ2PD.BCST.Z m64/m32bcst  k xmm
+// 	VCVTUDQ2PD.BCST.Z m128/m32bcst k ymm
 // 	VCVTUDQ2PD.BCST.Z m256/m32bcst k zmm
 // Construct and append a VCVTUDQ2PD.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VCVTUDQ2PD_BCST_Z(m, k, z operand.Op) { ctx.VCVTUDQ2PD_BCST_Z(m, k, z) }
+func VCVTUDQ2PD_BCST_Z(m, k, xyz operand.Op) { ctx.VCVTUDQ2PD_BCST_Z(m, k, xyz) }
 
 // VCVTUDQ2PD_Z: Convert Packed Unsigned Doubleword Integers to Packed Double-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
+// 	VCVTUDQ2PD.Z m64/m32bcst  k xmm
+// 	VCVTUDQ2PD.Z m128/m32bcst k ymm
 // 	VCVTUDQ2PD.Z m256/m32bcst k zmm
+// 	VCVTUDQ2PD.Z xmm          k xmm
+// 	VCVTUDQ2PD.Z xmm          k ymm
 // 	VCVTUDQ2PD.Z ymm          k zmm
 // Construct and append a VCVTUDQ2PD.Z instruction to the active function.
-func (c *Context) VCVTUDQ2PD_Z(my, k, z operand.Op) {
-	if inst, err := x86.VCVTUDQ2PD_Z(my, k, z); err == nil {
+func (c *Context) VCVTUDQ2PD_Z(mxy, k, xyz operand.Op) {
+	if inst, err := x86.VCVTUDQ2PD_Z(mxy, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -24163,18 +25737,30 @@ func (c *Context) VCVTUDQ2PD_Z(my, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VCVTUDQ2PD.Z m64/m32bcst  k xmm
+// 	VCVTUDQ2PD.Z m128/m32bcst k ymm
 // 	VCVTUDQ2PD.Z m256/m32bcst k zmm
+// 	VCVTUDQ2PD.Z xmm          k xmm
+// 	VCVTUDQ2PD.Z xmm          k ymm
 // 	VCVTUDQ2PD.Z ymm          k zmm
 // Construct and append a VCVTUDQ2PD.Z instruction to the active function.
 // Operates on the global context.
-func VCVTUDQ2PD_Z(my, k, z operand.Op) { ctx.VCVTUDQ2PD_Z(my, k, z) }
+func VCVTUDQ2PD_Z(mxy, k, xyz operand.Op) { ctx.VCVTUDQ2PD_Z(mxy, k, xyz) }
 
 // VCVTUDQ2PS: Convert Packed Unsigned Doubleword Integers to Packed Single-Precision Floating-Point Values.
 //
 // Forms:
 //
+// 	VCVTUDQ2PS m128/m32bcst xmm
+// 	VCVTUDQ2PS m128/m32bcst k xmm
+// 	VCVTUDQ2PS m256/m32bcst ymm
+// 	VCVTUDQ2PS m256/m32bcst k ymm
 // 	VCVTUDQ2PS m512/m32bcst zmm
 // 	VCVTUDQ2PS m512/m32bcst k zmm
+// 	VCVTUDQ2PS xmm          xmm
+// 	VCVTUDQ2PS xmm          k xmm
+// 	VCVTUDQ2PS ymm          ymm
+// 	VCVTUDQ2PS ymm          k ymm
 // 	VCVTUDQ2PS zmm          zmm
 // 	VCVTUDQ2PS zmm          k zmm
 // Construct and append a VCVTUDQ2PS instruction to the active function.
@@ -24190,8 +25776,16 @@ func (c *Context) VCVTUDQ2PS(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VCVTUDQ2PS m128/m32bcst xmm
+// 	VCVTUDQ2PS m128/m32bcst k xmm
+// 	VCVTUDQ2PS m256/m32bcst ymm
+// 	VCVTUDQ2PS m256/m32bcst k ymm
 // 	VCVTUDQ2PS m512/m32bcst zmm
 // 	VCVTUDQ2PS m512/m32bcst k zmm
+// 	VCVTUDQ2PS xmm          xmm
+// 	VCVTUDQ2PS xmm          k xmm
+// 	VCVTUDQ2PS ymm          ymm
+// 	VCVTUDQ2PS ymm          k ymm
 // 	VCVTUDQ2PS zmm          zmm
 // 	VCVTUDQ2PS zmm          k zmm
 // Construct and append a VCVTUDQ2PS instruction to the active function.
@@ -24202,6 +25796,10 @@ func VCVTUDQ2PS(ops ...operand.Op) { ctx.VCVTUDQ2PS(ops...) }
 //
 // Forms:
 //
+// 	VCVTUDQ2PS.BCST m128/m32bcst xmm
+// 	VCVTUDQ2PS.BCST m128/m32bcst k xmm
+// 	VCVTUDQ2PS.BCST m256/m32bcst ymm
+// 	VCVTUDQ2PS.BCST m256/m32bcst k ymm
 // 	VCVTUDQ2PS.BCST m512/m32bcst zmm
 // 	VCVTUDQ2PS.BCST m512/m32bcst k zmm
 // Construct and append a VCVTUDQ2PS.BCST instruction to the active function.
@@ -24217,6 +25815,10 @@ func (c *Context) VCVTUDQ2PS_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VCVTUDQ2PS.BCST m128/m32bcst xmm
+// 	VCVTUDQ2PS.BCST m128/m32bcst k xmm
+// 	VCVTUDQ2PS.BCST m256/m32bcst ymm
+// 	VCVTUDQ2PS.BCST m256/m32bcst k ymm
 // 	VCVTUDQ2PS.BCST m512/m32bcst zmm
 // 	VCVTUDQ2PS.BCST m512/m32bcst k zmm
 // Construct and append a VCVTUDQ2PS.BCST instruction to the active function.
@@ -24227,10 +25829,12 @@ func VCVTUDQ2PS_BCST(ops ...operand.Op) { ctx.VCVTUDQ2PS_BCST(ops...) }
 //
 // Forms:
 //
+// 	VCVTUDQ2PS.BCST.Z m128/m32bcst k xmm
+// 	VCVTUDQ2PS.BCST.Z m256/m32bcst k ymm
 // 	VCVTUDQ2PS.BCST.Z m512/m32bcst k zmm
 // Construct and append a VCVTUDQ2PS.BCST.Z instruction to the active function.
-func (c *Context) VCVTUDQ2PS_BCST_Z(m, k, z operand.Op) {
-	if inst, err := x86.VCVTUDQ2PS_BCST_Z(m, k, z); err == nil {
+func (c *Context) VCVTUDQ2PS_BCST_Z(m, k, xyz operand.Op) {
+	if inst, err := x86.VCVTUDQ2PS_BCST_Z(m, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -24241,10 +25845,12 @@ func (c *Context) VCVTUDQ2PS_BCST_Z(m, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VCVTUDQ2PS.BCST.Z m128/m32bcst k xmm
+// 	VCVTUDQ2PS.BCST.Z m256/m32bcst k ymm
 // 	VCVTUDQ2PS.BCST.Z m512/m32bcst k zmm
 // Construct and append a VCVTUDQ2PS.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VCVTUDQ2PS_BCST_Z(m, k, z operand.Op) { ctx.VCVTUDQ2PS_BCST_Z(m, k, z) }
+func VCVTUDQ2PS_BCST_Z(m, k, xyz operand.Op) { ctx.VCVTUDQ2PS_BCST_Z(m, k, xyz) }
 
 // VCVTUDQ2PS_RD_SAE: Convert Packed Unsigned Doubleword Integers to Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
@@ -24442,11 +26048,15 @@ func VCVTUDQ2PS_RZ_SAE_Z(z, k, z1 operand.Op) { ctx.VCVTUDQ2PS_RZ_SAE_Z(z, k, z1
 //
 // Forms:
 //
+// 	VCVTUDQ2PS.Z m128/m32bcst k xmm
+// 	VCVTUDQ2PS.Z m256/m32bcst k ymm
 // 	VCVTUDQ2PS.Z m512/m32bcst k zmm
+// 	VCVTUDQ2PS.Z xmm          k xmm
+// 	VCVTUDQ2PS.Z ymm          k ymm
 // 	VCVTUDQ2PS.Z zmm          k zmm
 // Construct and append a VCVTUDQ2PS.Z instruction to the active function.
-func (c *Context) VCVTUDQ2PS_Z(mz, k, z operand.Op) {
-	if inst, err := x86.VCVTUDQ2PS_Z(mz, k, z); err == nil {
+func (c *Context) VCVTUDQ2PS_Z(mxyz, k, xyz operand.Op) {
+	if inst, err := x86.VCVTUDQ2PS_Z(mxyz, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -24457,11 +26067,15 @@ func (c *Context) VCVTUDQ2PS_Z(mz, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VCVTUDQ2PS.Z m128/m32bcst k xmm
+// 	VCVTUDQ2PS.Z m256/m32bcst k ymm
 // 	VCVTUDQ2PS.Z m512/m32bcst k zmm
+// 	VCVTUDQ2PS.Z xmm          k xmm
+// 	VCVTUDQ2PS.Z ymm          k ymm
 // 	VCVTUDQ2PS.Z zmm          k zmm
 // Construct and append a VCVTUDQ2PS.Z instruction to the active function.
 // Operates on the global context.
-func VCVTUDQ2PS_Z(mz, k, z operand.Op) { ctx.VCVTUDQ2PS_Z(mz, k, z) }
+func VCVTUDQ2PS_Z(mxyz, k, xyz operand.Op) { ctx.VCVTUDQ2PS_Z(mxyz, k, xyz) }
 
 // VCVTUSI2SDL: Convert Unsigned Integer to Scalar Double-Precision Floating-Point Value.
 //
@@ -24843,6 +26457,14 @@ func VCVTUSI2SSQ_RZ_SAE(r, x, x1 operand.Op) { ctx.VCVTUSI2SSQ_RZ_SAE(r, x, x1) 
 //
 // Forms:
 //
+// 	VDIVPD m128/m64bcst xmm xmm
+// 	VDIVPD m128/m64bcst xmm k xmm
+// 	VDIVPD xmm          xmm xmm
+// 	VDIVPD xmm          xmm k xmm
+// 	VDIVPD m256/m64bcst ymm ymm
+// 	VDIVPD m256/m64bcst ymm k ymm
+// 	VDIVPD ymm          ymm ymm
+// 	VDIVPD ymm          ymm k ymm
 // 	VDIVPD m512/m64bcst zmm zmm
 // 	VDIVPD m512/m64bcst zmm k zmm
 // 	VDIVPD xmm          xmm xmm
@@ -24864,6 +26486,14 @@ func (c *Context) VDIVPD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VDIVPD m128/m64bcst xmm xmm
+// 	VDIVPD m128/m64bcst xmm k xmm
+// 	VDIVPD xmm          xmm xmm
+// 	VDIVPD xmm          xmm k xmm
+// 	VDIVPD m256/m64bcst ymm ymm
+// 	VDIVPD m256/m64bcst ymm k ymm
+// 	VDIVPD ymm          ymm ymm
+// 	VDIVPD ymm          ymm k ymm
 // 	VDIVPD m512/m64bcst zmm zmm
 // 	VDIVPD m512/m64bcst zmm k zmm
 // 	VDIVPD xmm          xmm xmm
@@ -24880,6 +26510,10 @@ func VDIVPD(ops ...operand.Op) { ctx.VDIVPD(ops...) }
 //
 // Forms:
 //
+// 	VDIVPD.BCST m128/m64bcst xmm xmm
+// 	VDIVPD.BCST m128/m64bcst xmm k xmm
+// 	VDIVPD.BCST m256/m64bcst ymm ymm
+// 	VDIVPD.BCST m256/m64bcst ymm k ymm
 // 	VDIVPD.BCST m512/m64bcst zmm zmm
 // 	VDIVPD.BCST m512/m64bcst zmm k zmm
 // Construct and append a VDIVPD.BCST instruction to the active function.
@@ -24895,6 +26529,10 @@ func (c *Context) VDIVPD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VDIVPD.BCST m128/m64bcst xmm xmm
+// 	VDIVPD.BCST m128/m64bcst xmm k xmm
+// 	VDIVPD.BCST m256/m64bcst ymm ymm
+// 	VDIVPD.BCST m256/m64bcst ymm k ymm
 // 	VDIVPD.BCST m512/m64bcst zmm zmm
 // 	VDIVPD.BCST m512/m64bcst zmm k zmm
 // Construct and append a VDIVPD.BCST instruction to the active function.
@@ -24905,10 +26543,12 @@ func VDIVPD_BCST(ops ...operand.Op) { ctx.VDIVPD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VDIVPD.BCST.Z m128/m64bcst xmm k xmm
+// 	VDIVPD.BCST.Z m256/m64bcst ymm k ymm
 // 	VDIVPD.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VDIVPD.BCST.Z instruction to the active function.
-func (c *Context) VDIVPD_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VDIVPD_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VDIVPD_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VDIVPD_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -24919,10 +26559,12 @@ func (c *Context) VDIVPD_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VDIVPD.BCST.Z m128/m64bcst xmm k xmm
+// 	VDIVPD.BCST.Z m256/m64bcst ymm k ymm
 // 	VDIVPD.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VDIVPD.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VDIVPD_BCST_Z(m, z, k, z1 operand.Op) { ctx.VDIVPD_BCST_Z(m, z, k, z1) }
+func VDIVPD_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VDIVPD_BCST_Z(m, xyz, k, xyz1) }
 
 // VDIVPD_RD_SAE: Divide Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
@@ -25120,11 +26762,15 @@ func VDIVPD_RZ_SAE_Z(z, z1, k, z2 operand.Op) { ctx.VDIVPD_RZ_SAE_Z(z, z1, k, z2
 //
 // Forms:
 //
+// 	VDIVPD.Z m128/m64bcst xmm k xmm
+// 	VDIVPD.Z xmm          xmm k xmm
+// 	VDIVPD.Z m256/m64bcst ymm k ymm
+// 	VDIVPD.Z ymm          ymm k ymm
 // 	VDIVPD.Z m512/m64bcst zmm k zmm
 // 	VDIVPD.Z zmm          zmm k zmm
 // Construct and append a VDIVPD.Z instruction to the active function.
-func (c *Context) VDIVPD_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VDIVPD_Z(mz, z, k, z1); err == nil {
+func (c *Context) VDIVPD_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VDIVPD_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -25135,16 +26781,28 @@ func (c *Context) VDIVPD_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VDIVPD.Z m128/m64bcst xmm k xmm
+// 	VDIVPD.Z xmm          xmm k xmm
+// 	VDIVPD.Z m256/m64bcst ymm k ymm
+// 	VDIVPD.Z ymm          ymm k ymm
 // 	VDIVPD.Z m512/m64bcst zmm k zmm
 // 	VDIVPD.Z zmm          zmm k zmm
 // Construct and append a VDIVPD.Z instruction to the active function.
 // Operates on the global context.
-func VDIVPD_Z(mz, z, k, z1 operand.Op) { ctx.VDIVPD_Z(mz, z, k, z1) }
+func VDIVPD_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VDIVPD_Z(mxyz, xyz, k, xyz1) }
 
 // VDIVPS: Divide Packed Single-Precision Floating-Point Values.
 //
 // Forms:
 //
+// 	VDIVPS m128/m32bcst xmm xmm
+// 	VDIVPS m128/m32bcst xmm k xmm
+// 	VDIVPS xmm          xmm xmm
+// 	VDIVPS xmm          xmm k xmm
+// 	VDIVPS m256/m32bcst ymm ymm
+// 	VDIVPS m256/m32bcst ymm k ymm
+// 	VDIVPS ymm          ymm ymm
+// 	VDIVPS ymm          ymm k ymm
 // 	VDIVPS m512/m32bcst zmm zmm
 // 	VDIVPS m512/m32bcst zmm k zmm
 // 	VDIVPS xmm          xmm xmm
@@ -25166,6 +26824,14 @@ func (c *Context) VDIVPS(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VDIVPS m128/m32bcst xmm xmm
+// 	VDIVPS m128/m32bcst xmm k xmm
+// 	VDIVPS xmm          xmm xmm
+// 	VDIVPS xmm          xmm k xmm
+// 	VDIVPS m256/m32bcst ymm ymm
+// 	VDIVPS m256/m32bcst ymm k ymm
+// 	VDIVPS ymm          ymm ymm
+// 	VDIVPS ymm          ymm k ymm
 // 	VDIVPS m512/m32bcst zmm zmm
 // 	VDIVPS m512/m32bcst zmm k zmm
 // 	VDIVPS xmm          xmm xmm
@@ -25182,6 +26848,10 @@ func VDIVPS(ops ...operand.Op) { ctx.VDIVPS(ops...) }
 //
 // Forms:
 //
+// 	VDIVPS.BCST m128/m32bcst xmm xmm
+// 	VDIVPS.BCST m128/m32bcst xmm k xmm
+// 	VDIVPS.BCST m256/m32bcst ymm ymm
+// 	VDIVPS.BCST m256/m32bcst ymm k ymm
 // 	VDIVPS.BCST m512/m32bcst zmm zmm
 // 	VDIVPS.BCST m512/m32bcst zmm k zmm
 // Construct and append a VDIVPS.BCST instruction to the active function.
@@ -25197,6 +26867,10 @@ func (c *Context) VDIVPS_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VDIVPS.BCST m128/m32bcst xmm xmm
+// 	VDIVPS.BCST m128/m32bcst xmm k xmm
+// 	VDIVPS.BCST m256/m32bcst ymm ymm
+// 	VDIVPS.BCST m256/m32bcst ymm k ymm
 // 	VDIVPS.BCST m512/m32bcst zmm zmm
 // 	VDIVPS.BCST m512/m32bcst zmm k zmm
 // Construct and append a VDIVPS.BCST instruction to the active function.
@@ -25207,10 +26881,12 @@ func VDIVPS_BCST(ops ...operand.Op) { ctx.VDIVPS_BCST(ops...) }
 //
 // Forms:
 //
+// 	VDIVPS.BCST.Z m128/m32bcst xmm k xmm
+// 	VDIVPS.BCST.Z m256/m32bcst ymm k ymm
 // 	VDIVPS.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VDIVPS.BCST.Z instruction to the active function.
-func (c *Context) VDIVPS_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VDIVPS_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VDIVPS_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VDIVPS_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -25221,10 +26897,12 @@ func (c *Context) VDIVPS_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VDIVPS.BCST.Z m128/m32bcst xmm k xmm
+// 	VDIVPS.BCST.Z m256/m32bcst ymm k ymm
 // 	VDIVPS.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VDIVPS.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VDIVPS_BCST_Z(m, z, k, z1 operand.Op) { ctx.VDIVPS_BCST_Z(m, z, k, z1) }
+func VDIVPS_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VDIVPS_BCST_Z(m, xyz, k, xyz1) }
 
 // VDIVPS_RD_SAE: Divide Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
@@ -25422,11 +27100,15 @@ func VDIVPS_RZ_SAE_Z(z, z1, k, z2 operand.Op) { ctx.VDIVPS_RZ_SAE_Z(z, z1, k, z2
 //
 // Forms:
 //
+// 	VDIVPS.Z m128/m32bcst xmm k xmm
+// 	VDIVPS.Z xmm          xmm k xmm
+// 	VDIVPS.Z m256/m32bcst ymm k ymm
+// 	VDIVPS.Z ymm          ymm k ymm
 // 	VDIVPS.Z m512/m32bcst zmm k zmm
 // 	VDIVPS.Z zmm          zmm k zmm
 // Construct and append a VDIVPS.Z instruction to the active function.
-func (c *Context) VDIVPS_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VDIVPS_Z(mz, z, k, z1); err == nil {
+func (c *Context) VDIVPS_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VDIVPS_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -25437,11 +27119,15 @@ func (c *Context) VDIVPS_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VDIVPS.Z m128/m32bcst xmm k xmm
+// 	VDIVPS.Z xmm          xmm k xmm
+// 	VDIVPS.Z m256/m32bcst ymm k ymm
+// 	VDIVPS.Z ymm          ymm k ymm
 // 	VDIVPS.Z m512/m32bcst zmm k zmm
 // 	VDIVPS.Z zmm          zmm k zmm
 // Construct and append a VDIVPS.Z instruction to the active function.
 // Operates on the global context.
-func VDIVPS_Z(mz, z, k, z1 operand.Op) { ctx.VDIVPS_Z(mz, z, k, z1) }
+func VDIVPS_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VDIVPS_Z(mxyz, xyz, k, xyz1) }
 
 // VDIVSD: Divide Scalar Double-Precision Floating-Point Values.
 //
@@ -26001,8 +27687,16 @@ func VDPPS(i, mxy, xy, xy1 operand.Op) { ctx.VDPPS(i, mxy, xy, xy1) }
 //
 // Forms:
 //
+// 	VEXPANDPD xmm  xmm
+// 	VEXPANDPD xmm  k xmm
+// 	VEXPANDPD ymm  ymm
+// 	VEXPANDPD ymm  k ymm
 // 	VEXPANDPD zmm  zmm
 // 	VEXPANDPD zmm  k zmm
+// 	VEXPANDPD m128 xmm
+// 	VEXPANDPD m128 k xmm
+// 	VEXPANDPD m256 ymm
+// 	VEXPANDPD m256 k ymm
 // 	VEXPANDPD m512 zmm
 // 	VEXPANDPD m512 k zmm
 // Construct and append a VEXPANDPD instruction to the active function.
@@ -26018,8 +27712,16 @@ func (c *Context) VEXPANDPD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VEXPANDPD xmm  xmm
+// 	VEXPANDPD xmm  k xmm
+// 	VEXPANDPD ymm  ymm
+// 	VEXPANDPD ymm  k ymm
 // 	VEXPANDPD zmm  zmm
 // 	VEXPANDPD zmm  k zmm
+// 	VEXPANDPD m128 xmm
+// 	VEXPANDPD m128 k xmm
+// 	VEXPANDPD m256 ymm
+// 	VEXPANDPD m256 k ymm
 // 	VEXPANDPD m512 zmm
 // 	VEXPANDPD m512 k zmm
 // Construct and append a VEXPANDPD instruction to the active function.
@@ -26030,11 +27732,15 @@ func VEXPANDPD(ops ...operand.Op) { ctx.VEXPANDPD(ops...) }
 //
 // Forms:
 //
+// 	VEXPANDPD.Z xmm  k xmm
+// 	VEXPANDPD.Z ymm  k ymm
 // 	VEXPANDPD.Z zmm  k zmm
+// 	VEXPANDPD.Z m128 k xmm
+// 	VEXPANDPD.Z m256 k ymm
 // 	VEXPANDPD.Z m512 k zmm
 // Construct and append a VEXPANDPD.Z instruction to the active function.
-func (c *Context) VEXPANDPD_Z(mz, k, z operand.Op) {
-	if inst, err := x86.VEXPANDPD_Z(mz, k, z); err == nil {
+func (c *Context) VEXPANDPD_Z(mxyz, k, xyz operand.Op) {
+	if inst, err := x86.VEXPANDPD_Z(mxyz, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -26045,18 +27751,30 @@ func (c *Context) VEXPANDPD_Z(mz, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VEXPANDPD.Z xmm  k xmm
+// 	VEXPANDPD.Z ymm  k ymm
 // 	VEXPANDPD.Z zmm  k zmm
+// 	VEXPANDPD.Z m128 k xmm
+// 	VEXPANDPD.Z m256 k ymm
 // 	VEXPANDPD.Z m512 k zmm
 // Construct and append a VEXPANDPD.Z instruction to the active function.
 // Operates on the global context.
-func VEXPANDPD_Z(mz, k, z operand.Op) { ctx.VEXPANDPD_Z(mz, k, z) }
+func VEXPANDPD_Z(mxyz, k, xyz operand.Op) { ctx.VEXPANDPD_Z(mxyz, k, xyz) }
 
 // VEXPANDPS: Load Sparse Packed Single-Precision Floating-Point Values from Dense Memory.
 //
 // Forms:
 //
+// 	VEXPANDPS xmm  xmm
+// 	VEXPANDPS xmm  k xmm
+// 	VEXPANDPS ymm  ymm
+// 	VEXPANDPS ymm  k ymm
 // 	VEXPANDPS zmm  zmm
 // 	VEXPANDPS zmm  k zmm
+// 	VEXPANDPS m128 xmm
+// 	VEXPANDPS m128 k xmm
+// 	VEXPANDPS m256 ymm
+// 	VEXPANDPS m256 k ymm
 // 	VEXPANDPS m512 zmm
 // 	VEXPANDPS m512 k zmm
 // Construct and append a VEXPANDPS instruction to the active function.
@@ -26072,8 +27790,16 @@ func (c *Context) VEXPANDPS(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VEXPANDPS xmm  xmm
+// 	VEXPANDPS xmm  k xmm
+// 	VEXPANDPS ymm  ymm
+// 	VEXPANDPS ymm  k ymm
 // 	VEXPANDPS zmm  zmm
 // 	VEXPANDPS zmm  k zmm
+// 	VEXPANDPS m128 xmm
+// 	VEXPANDPS m128 k xmm
+// 	VEXPANDPS m256 ymm
+// 	VEXPANDPS m256 k ymm
 // 	VEXPANDPS m512 zmm
 // 	VEXPANDPS m512 k zmm
 // Construct and append a VEXPANDPS instruction to the active function.
@@ -26084,11 +27810,15 @@ func VEXPANDPS(ops ...operand.Op) { ctx.VEXPANDPS(ops...) }
 //
 // Forms:
 //
+// 	VEXPANDPS.Z xmm  k xmm
+// 	VEXPANDPS.Z ymm  k ymm
 // 	VEXPANDPS.Z zmm  k zmm
+// 	VEXPANDPS.Z m128 k xmm
+// 	VEXPANDPS.Z m256 k ymm
 // 	VEXPANDPS.Z m512 k zmm
 // Construct and append a VEXPANDPS.Z instruction to the active function.
-func (c *Context) VEXPANDPS_Z(mz, k, z operand.Op) {
-	if inst, err := x86.VEXPANDPS_Z(mz, k, z); err == nil {
+func (c *Context) VEXPANDPS_Z(mxyz, k, xyz operand.Op) {
+	if inst, err := x86.VEXPANDPS_Z(mxyz, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -26099,11 +27829,15 @@ func (c *Context) VEXPANDPS_Z(mz, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VEXPANDPS.Z xmm  k xmm
+// 	VEXPANDPS.Z ymm  k ymm
 // 	VEXPANDPS.Z zmm  k zmm
+// 	VEXPANDPS.Z m128 k xmm
+// 	VEXPANDPS.Z m256 k ymm
 // 	VEXPANDPS.Z m512 k zmm
 // Construct and append a VEXPANDPS.Z instruction to the active function.
 // Operates on the global context.
-func VEXPANDPS_Z(mz, k, z operand.Op) { ctx.VEXPANDPS_Z(mz, k, z) }
+func VEXPANDPS_Z(mxyz, k, xyz operand.Op) { ctx.VEXPANDPS_Z(mxyz, k, xyz) }
 
 // VEXTRACTF128: Extract Packed Floating-Point Values.
 //
@@ -26134,6 +27868,10 @@ func VEXTRACTF128(i, y, mx operand.Op) { ctx.VEXTRACTF128(i, y, mx) }
 //
 // Forms:
 //
+// 	VEXTRACTF32X4 imm8 ymm xmm
+// 	VEXTRACTF32X4 imm8 ymm k xmm
+// 	VEXTRACTF32X4 imm8 ymm m128
+// 	VEXTRACTF32X4 imm8 ymm k m128
 // 	VEXTRACTF32X4 imm8 zmm xmm
 // 	VEXTRACTF32X4 imm8 zmm k xmm
 // 	VEXTRACTF32X4 imm8 zmm m128
@@ -26151,6 +27889,10 @@ func (c *Context) VEXTRACTF32X4(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VEXTRACTF32X4 imm8 ymm xmm
+// 	VEXTRACTF32X4 imm8 ymm k xmm
+// 	VEXTRACTF32X4 imm8 ymm m128
+// 	VEXTRACTF32X4 imm8 ymm k m128
 // 	VEXTRACTF32X4 imm8 zmm xmm
 // 	VEXTRACTF32X4 imm8 zmm k xmm
 // 	VEXTRACTF32X4 imm8 zmm m128
@@ -26163,11 +27905,13 @@ func VEXTRACTF32X4(ops ...operand.Op) { ctx.VEXTRACTF32X4(ops...) }
 //
 // Forms:
 //
+// 	VEXTRACTF32X4.Z imm8 ymm k xmm
+// 	VEXTRACTF32X4.Z imm8 ymm k m128
 // 	VEXTRACTF32X4.Z imm8 zmm k xmm
 // 	VEXTRACTF32X4.Z imm8 zmm k m128
 // Construct and append a VEXTRACTF32X4.Z instruction to the active function.
-func (c *Context) VEXTRACTF32X4_Z(i, z, k, mx operand.Op) {
-	if inst, err := x86.VEXTRACTF32X4_Z(i, z, k, mx); err == nil {
+func (c *Context) VEXTRACTF32X4_Z(i, yz, k, mx operand.Op) {
+	if inst, err := x86.VEXTRACTF32X4_Z(i, yz, k, mx); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -26178,11 +27922,13 @@ func (c *Context) VEXTRACTF32X4_Z(i, z, k, mx operand.Op) {
 //
 // Forms:
 //
+// 	VEXTRACTF32X4.Z imm8 ymm k xmm
+// 	VEXTRACTF32X4.Z imm8 ymm k m128
 // 	VEXTRACTF32X4.Z imm8 zmm k xmm
 // 	VEXTRACTF32X4.Z imm8 zmm k m128
 // Construct and append a VEXTRACTF32X4.Z instruction to the active function.
 // Operates on the global context.
-func VEXTRACTF32X4_Z(i, z, k, mx operand.Op) { ctx.VEXTRACTF32X4_Z(i, z, k, mx) }
+func VEXTRACTF32X4_Z(i, yz, k, mx operand.Op) { ctx.VEXTRACTF32X4_Z(i, yz, k, mx) }
 
 // VEXTRACTF64X4: Extract 256 Bits of Packed Double-Precision Floating-Point Values.
 //
@@ -26267,6 +28013,10 @@ func VEXTRACTI128(i, y, mx operand.Op) { ctx.VEXTRACTI128(i, y, mx) }
 //
 // Forms:
 //
+// 	VEXTRACTI32X4 imm8 ymm xmm
+// 	VEXTRACTI32X4 imm8 ymm k xmm
+// 	VEXTRACTI32X4 imm8 ymm m128
+// 	VEXTRACTI32X4 imm8 ymm k m128
 // 	VEXTRACTI32X4 imm8 zmm xmm
 // 	VEXTRACTI32X4 imm8 zmm k xmm
 // 	VEXTRACTI32X4 imm8 zmm m128
@@ -26284,6 +28034,10 @@ func (c *Context) VEXTRACTI32X4(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VEXTRACTI32X4 imm8 ymm xmm
+// 	VEXTRACTI32X4 imm8 ymm k xmm
+// 	VEXTRACTI32X4 imm8 ymm m128
+// 	VEXTRACTI32X4 imm8 ymm k m128
 // 	VEXTRACTI32X4 imm8 zmm xmm
 // 	VEXTRACTI32X4 imm8 zmm k xmm
 // 	VEXTRACTI32X4 imm8 zmm m128
@@ -26296,11 +28050,13 @@ func VEXTRACTI32X4(ops ...operand.Op) { ctx.VEXTRACTI32X4(ops...) }
 //
 // Forms:
 //
+// 	VEXTRACTI32X4.Z imm8 ymm k xmm
+// 	VEXTRACTI32X4.Z imm8 ymm k m128
 // 	VEXTRACTI32X4.Z imm8 zmm k xmm
 // 	VEXTRACTI32X4.Z imm8 zmm k m128
 // Construct and append a VEXTRACTI32X4.Z instruction to the active function.
-func (c *Context) VEXTRACTI32X4_Z(i, z, k, mx operand.Op) {
-	if inst, err := x86.VEXTRACTI32X4_Z(i, z, k, mx); err == nil {
+func (c *Context) VEXTRACTI32X4_Z(i, yz, k, mx operand.Op) {
+	if inst, err := x86.VEXTRACTI32X4_Z(i, yz, k, mx); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -26311,11 +28067,13 @@ func (c *Context) VEXTRACTI32X4_Z(i, z, k, mx operand.Op) {
 //
 // Forms:
 //
+// 	VEXTRACTI32X4.Z imm8 ymm k xmm
+// 	VEXTRACTI32X4.Z imm8 ymm k m128
 // 	VEXTRACTI32X4.Z imm8 zmm k xmm
 // 	VEXTRACTI32X4.Z imm8 zmm k m128
 // Construct and append a VEXTRACTI32X4.Z instruction to the active function.
 // Operates on the global context.
-func VEXTRACTI32X4_Z(i, z, k, mx operand.Op) { ctx.VEXTRACTI32X4_Z(i, z, k, mx) }
+func VEXTRACTI32X4_Z(i, yz, k, mx operand.Op) { ctx.VEXTRACTI32X4_Z(i, yz, k, mx) }
 
 // VEXTRACTI64X4: Extract 256 Bits of Packed Quadword Integer Values.
 //
@@ -26404,6 +28162,14 @@ func VEXTRACTPS(i, x, mr operand.Op) { ctx.VEXTRACTPS(i, x, mr) }
 //
 // Forms:
 //
+// 	VFIXUPIMMPD imm8 m128/m64bcst xmm xmm
+// 	VFIXUPIMMPD imm8 m128/m64bcst xmm k xmm
+// 	VFIXUPIMMPD imm8 xmm          xmm xmm
+// 	VFIXUPIMMPD imm8 xmm          xmm k xmm
+// 	VFIXUPIMMPD imm8 m256/m64bcst ymm ymm
+// 	VFIXUPIMMPD imm8 m256/m64bcst ymm k ymm
+// 	VFIXUPIMMPD imm8 ymm          ymm ymm
+// 	VFIXUPIMMPD imm8 ymm          ymm k ymm
 // 	VFIXUPIMMPD imm8 m512/m64bcst zmm zmm
 // 	VFIXUPIMMPD imm8 m512/m64bcst zmm k zmm
 // 	VFIXUPIMMPD imm8 zmm          zmm zmm
@@ -26421,6 +28187,14 @@ func (c *Context) VFIXUPIMMPD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFIXUPIMMPD imm8 m128/m64bcst xmm xmm
+// 	VFIXUPIMMPD imm8 m128/m64bcst xmm k xmm
+// 	VFIXUPIMMPD imm8 xmm          xmm xmm
+// 	VFIXUPIMMPD imm8 xmm          xmm k xmm
+// 	VFIXUPIMMPD imm8 m256/m64bcst ymm ymm
+// 	VFIXUPIMMPD imm8 m256/m64bcst ymm k ymm
+// 	VFIXUPIMMPD imm8 ymm          ymm ymm
+// 	VFIXUPIMMPD imm8 ymm          ymm k ymm
 // 	VFIXUPIMMPD imm8 m512/m64bcst zmm zmm
 // 	VFIXUPIMMPD imm8 m512/m64bcst zmm k zmm
 // 	VFIXUPIMMPD imm8 zmm          zmm zmm
@@ -26433,6 +28207,10 @@ func VFIXUPIMMPD(ops ...operand.Op) { ctx.VFIXUPIMMPD(ops...) }
 //
 // Forms:
 //
+// 	VFIXUPIMMPD.BCST imm8 m128/m64bcst xmm xmm
+// 	VFIXUPIMMPD.BCST imm8 m128/m64bcst xmm k xmm
+// 	VFIXUPIMMPD.BCST imm8 m256/m64bcst ymm ymm
+// 	VFIXUPIMMPD.BCST imm8 m256/m64bcst ymm k ymm
 // 	VFIXUPIMMPD.BCST imm8 m512/m64bcst zmm zmm
 // 	VFIXUPIMMPD.BCST imm8 m512/m64bcst zmm k zmm
 // Construct and append a VFIXUPIMMPD.BCST instruction to the active function.
@@ -26448,6 +28226,10 @@ func (c *Context) VFIXUPIMMPD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFIXUPIMMPD.BCST imm8 m128/m64bcst xmm xmm
+// 	VFIXUPIMMPD.BCST imm8 m128/m64bcst xmm k xmm
+// 	VFIXUPIMMPD.BCST imm8 m256/m64bcst ymm ymm
+// 	VFIXUPIMMPD.BCST imm8 m256/m64bcst ymm k ymm
 // 	VFIXUPIMMPD.BCST imm8 m512/m64bcst zmm zmm
 // 	VFIXUPIMMPD.BCST imm8 m512/m64bcst zmm k zmm
 // Construct and append a VFIXUPIMMPD.BCST instruction to the active function.
@@ -26458,10 +28240,12 @@ func VFIXUPIMMPD_BCST(ops ...operand.Op) { ctx.VFIXUPIMMPD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VFIXUPIMMPD.BCST.Z imm8 m128/m64bcst xmm k xmm
+// 	VFIXUPIMMPD.BCST.Z imm8 m256/m64bcst ymm k ymm
 // 	VFIXUPIMMPD.BCST.Z imm8 m512/m64bcst zmm k zmm
 // Construct and append a VFIXUPIMMPD.BCST.Z instruction to the active function.
-func (c *Context) VFIXUPIMMPD_BCST_Z(i, m, z, k, z1 operand.Op) {
-	if inst, err := x86.VFIXUPIMMPD_BCST_Z(i, m, z, k, z1); err == nil {
+func (c *Context) VFIXUPIMMPD_BCST_Z(i, m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFIXUPIMMPD_BCST_Z(i, m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -26472,10 +28256,12 @@ func (c *Context) VFIXUPIMMPD_BCST_Z(i, m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFIXUPIMMPD.BCST.Z imm8 m128/m64bcst xmm k xmm
+// 	VFIXUPIMMPD.BCST.Z imm8 m256/m64bcst ymm k ymm
 // 	VFIXUPIMMPD.BCST.Z imm8 m512/m64bcst zmm k zmm
 // Construct and append a VFIXUPIMMPD.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VFIXUPIMMPD_BCST_Z(i, m, z, k, z1 operand.Op) { ctx.VFIXUPIMMPD_BCST_Z(i, m, z, k, z1) }
+func VFIXUPIMMPD_BCST_Z(i, m, xyz, k, xyz1 operand.Op) { ctx.VFIXUPIMMPD_BCST_Z(i, m, xyz, k, xyz1) }
 
 // VFIXUPIMMPD_SAE: Fix Up Special Packed Double-Precision Floating-Point Values (Suppress All Exceptions).
 //
@@ -26529,11 +28315,15 @@ func VFIXUPIMMPD_SAE_Z(i, z, z1, k, z2 operand.Op) { ctx.VFIXUPIMMPD_SAE_Z(i, z,
 //
 // Forms:
 //
+// 	VFIXUPIMMPD.Z imm8 m128/m64bcst xmm k xmm
+// 	VFIXUPIMMPD.Z imm8 xmm          xmm k xmm
+// 	VFIXUPIMMPD.Z imm8 m256/m64bcst ymm k ymm
+// 	VFIXUPIMMPD.Z imm8 ymm          ymm k ymm
 // 	VFIXUPIMMPD.Z imm8 m512/m64bcst zmm k zmm
 // 	VFIXUPIMMPD.Z imm8 zmm          zmm k zmm
 // Construct and append a VFIXUPIMMPD.Z instruction to the active function.
-func (c *Context) VFIXUPIMMPD_Z(i, mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VFIXUPIMMPD_Z(i, mz, z, k, z1); err == nil {
+func (c *Context) VFIXUPIMMPD_Z(i, mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFIXUPIMMPD_Z(i, mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -26544,16 +28334,28 @@ func (c *Context) VFIXUPIMMPD_Z(i, mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFIXUPIMMPD.Z imm8 m128/m64bcst xmm k xmm
+// 	VFIXUPIMMPD.Z imm8 xmm          xmm k xmm
+// 	VFIXUPIMMPD.Z imm8 m256/m64bcst ymm k ymm
+// 	VFIXUPIMMPD.Z imm8 ymm          ymm k ymm
 // 	VFIXUPIMMPD.Z imm8 m512/m64bcst zmm k zmm
 // 	VFIXUPIMMPD.Z imm8 zmm          zmm k zmm
 // Construct and append a VFIXUPIMMPD.Z instruction to the active function.
 // Operates on the global context.
-func VFIXUPIMMPD_Z(i, mz, z, k, z1 operand.Op) { ctx.VFIXUPIMMPD_Z(i, mz, z, k, z1) }
+func VFIXUPIMMPD_Z(i, mxyz, xyz, k, xyz1 operand.Op) { ctx.VFIXUPIMMPD_Z(i, mxyz, xyz, k, xyz1) }
 
 // VFIXUPIMMPS: Fix Up Special Packed Single-Precision Floating-Point Values.
 //
 // Forms:
 //
+// 	VFIXUPIMMPS imm8 m128/m32bcst xmm xmm
+// 	VFIXUPIMMPS imm8 m128/m32bcst xmm k xmm
+// 	VFIXUPIMMPS imm8 xmm          xmm xmm
+// 	VFIXUPIMMPS imm8 xmm          xmm k xmm
+// 	VFIXUPIMMPS imm8 m256/m32bcst ymm ymm
+// 	VFIXUPIMMPS imm8 m256/m32bcst ymm k ymm
+// 	VFIXUPIMMPS imm8 ymm          ymm ymm
+// 	VFIXUPIMMPS imm8 ymm          ymm k ymm
 // 	VFIXUPIMMPS imm8 m512/m32bcst zmm zmm
 // 	VFIXUPIMMPS imm8 m512/m32bcst zmm k zmm
 // 	VFIXUPIMMPS imm8 zmm          zmm zmm
@@ -26571,6 +28373,14 @@ func (c *Context) VFIXUPIMMPS(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFIXUPIMMPS imm8 m128/m32bcst xmm xmm
+// 	VFIXUPIMMPS imm8 m128/m32bcst xmm k xmm
+// 	VFIXUPIMMPS imm8 xmm          xmm xmm
+// 	VFIXUPIMMPS imm8 xmm          xmm k xmm
+// 	VFIXUPIMMPS imm8 m256/m32bcst ymm ymm
+// 	VFIXUPIMMPS imm8 m256/m32bcst ymm k ymm
+// 	VFIXUPIMMPS imm8 ymm          ymm ymm
+// 	VFIXUPIMMPS imm8 ymm          ymm k ymm
 // 	VFIXUPIMMPS imm8 m512/m32bcst zmm zmm
 // 	VFIXUPIMMPS imm8 m512/m32bcst zmm k zmm
 // 	VFIXUPIMMPS imm8 zmm          zmm zmm
@@ -26583,6 +28393,10 @@ func VFIXUPIMMPS(ops ...operand.Op) { ctx.VFIXUPIMMPS(ops...) }
 //
 // Forms:
 //
+// 	VFIXUPIMMPS.BCST imm8 m128/m32bcst xmm xmm
+// 	VFIXUPIMMPS.BCST imm8 m128/m32bcst xmm k xmm
+// 	VFIXUPIMMPS.BCST imm8 m256/m32bcst ymm ymm
+// 	VFIXUPIMMPS.BCST imm8 m256/m32bcst ymm k ymm
 // 	VFIXUPIMMPS.BCST imm8 m512/m32bcst zmm zmm
 // 	VFIXUPIMMPS.BCST imm8 m512/m32bcst zmm k zmm
 // Construct and append a VFIXUPIMMPS.BCST instruction to the active function.
@@ -26598,6 +28412,10 @@ func (c *Context) VFIXUPIMMPS_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFIXUPIMMPS.BCST imm8 m128/m32bcst xmm xmm
+// 	VFIXUPIMMPS.BCST imm8 m128/m32bcst xmm k xmm
+// 	VFIXUPIMMPS.BCST imm8 m256/m32bcst ymm ymm
+// 	VFIXUPIMMPS.BCST imm8 m256/m32bcst ymm k ymm
 // 	VFIXUPIMMPS.BCST imm8 m512/m32bcst zmm zmm
 // 	VFIXUPIMMPS.BCST imm8 m512/m32bcst zmm k zmm
 // Construct and append a VFIXUPIMMPS.BCST instruction to the active function.
@@ -26608,10 +28426,12 @@ func VFIXUPIMMPS_BCST(ops ...operand.Op) { ctx.VFIXUPIMMPS_BCST(ops...) }
 //
 // Forms:
 //
+// 	VFIXUPIMMPS.BCST.Z imm8 m128/m32bcst xmm k xmm
+// 	VFIXUPIMMPS.BCST.Z imm8 m256/m32bcst ymm k ymm
 // 	VFIXUPIMMPS.BCST.Z imm8 m512/m32bcst zmm k zmm
 // Construct and append a VFIXUPIMMPS.BCST.Z instruction to the active function.
-func (c *Context) VFIXUPIMMPS_BCST_Z(i, m, z, k, z1 operand.Op) {
-	if inst, err := x86.VFIXUPIMMPS_BCST_Z(i, m, z, k, z1); err == nil {
+func (c *Context) VFIXUPIMMPS_BCST_Z(i, m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFIXUPIMMPS_BCST_Z(i, m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -26622,10 +28442,12 @@ func (c *Context) VFIXUPIMMPS_BCST_Z(i, m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFIXUPIMMPS.BCST.Z imm8 m128/m32bcst xmm k xmm
+// 	VFIXUPIMMPS.BCST.Z imm8 m256/m32bcst ymm k ymm
 // 	VFIXUPIMMPS.BCST.Z imm8 m512/m32bcst zmm k zmm
 // Construct and append a VFIXUPIMMPS.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VFIXUPIMMPS_BCST_Z(i, m, z, k, z1 operand.Op) { ctx.VFIXUPIMMPS_BCST_Z(i, m, z, k, z1) }
+func VFIXUPIMMPS_BCST_Z(i, m, xyz, k, xyz1 operand.Op) { ctx.VFIXUPIMMPS_BCST_Z(i, m, xyz, k, xyz1) }
 
 // VFIXUPIMMPS_SAE: Fix Up Special Packed Single-Precision Floating-Point Values (Suppress All Exceptions).
 //
@@ -26679,11 +28501,15 @@ func VFIXUPIMMPS_SAE_Z(i, z, z1, k, z2 operand.Op) { ctx.VFIXUPIMMPS_SAE_Z(i, z,
 //
 // Forms:
 //
+// 	VFIXUPIMMPS.Z imm8 m128/m32bcst xmm k xmm
+// 	VFIXUPIMMPS.Z imm8 xmm          xmm k xmm
+// 	VFIXUPIMMPS.Z imm8 m256/m32bcst ymm k ymm
+// 	VFIXUPIMMPS.Z imm8 ymm          ymm k ymm
 // 	VFIXUPIMMPS.Z imm8 m512/m32bcst zmm k zmm
 // 	VFIXUPIMMPS.Z imm8 zmm          zmm k zmm
 // Construct and append a VFIXUPIMMPS.Z instruction to the active function.
-func (c *Context) VFIXUPIMMPS_Z(i, mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VFIXUPIMMPS_Z(i, mz, z, k, z1); err == nil {
+func (c *Context) VFIXUPIMMPS_Z(i, mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFIXUPIMMPS_Z(i, mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -26694,11 +28520,15 @@ func (c *Context) VFIXUPIMMPS_Z(i, mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFIXUPIMMPS.Z imm8 m128/m32bcst xmm k xmm
+// 	VFIXUPIMMPS.Z imm8 xmm          xmm k xmm
+// 	VFIXUPIMMPS.Z imm8 m256/m32bcst ymm k ymm
+// 	VFIXUPIMMPS.Z imm8 ymm          ymm k ymm
 // 	VFIXUPIMMPS.Z imm8 m512/m32bcst zmm k zmm
 // 	VFIXUPIMMPS.Z imm8 zmm          zmm k zmm
 // Construct and append a VFIXUPIMMPS.Z instruction to the active function.
 // Operates on the global context.
-func VFIXUPIMMPS_Z(i, mz, z, k, z1 operand.Op) { ctx.VFIXUPIMMPS_Z(i, mz, z, k, z1) }
+func VFIXUPIMMPS_Z(i, mxyz, xyz, k, xyz1 operand.Op) { ctx.VFIXUPIMMPS_Z(i, mxyz, xyz, k, xyz1) }
 
 // VFIXUPIMMSD: Fix Up Special Scalar Double-Precision Floating-Point Value.
 //
@@ -26908,6 +28738,14 @@ func VFIXUPIMMSS_Z(i, mx, x, k, x1 operand.Op) { ctx.VFIXUPIMMSS_Z(i, mx, x, k, 
 //
 // Forms:
 //
+// 	VFMADD132PD m128/m64bcst xmm xmm
+// 	VFMADD132PD m128/m64bcst xmm k xmm
+// 	VFMADD132PD xmm          xmm xmm
+// 	VFMADD132PD xmm          xmm k xmm
+// 	VFMADD132PD m256/m64bcst ymm ymm
+// 	VFMADD132PD m256/m64bcst ymm k ymm
+// 	VFMADD132PD ymm          ymm ymm
+// 	VFMADD132PD ymm          ymm k ymm
 // 	VFMADD132PD m512/m64bcst zmm zmm
 // 	VFMADD132PD m512/m64bcst zmm k zmm
 // 	VFMADD132PD xmm          xmm xmm
@@ -26929,6 +28767,14 @@ func (c *Context) VFMADD132PD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFMADD132PD m128/m64bcst xmm xmm
+// 	VFMADD132PD m128/m64bcst xmm k xmm
+// 	VFMADD132PD xmm          xmm xmm
+// 	VFMADD132PD xmm          xmm k xmm
+// 	VFMADD132PD m256/m64bcst ymm ymm
+// 	VFMADD132PD m256/m64bcst ymm k ymm
+// 	VFMADD132PD ymm          ymm ymm
+// 	VFMADD132PD ymm          ymm k ymm
 // 	VFMADD132PD m512/m64bcst zmm zmm
 // 	VFMADD132PD m512/m64bcst zmm k zmm
 // 	VFMADD132PD xmm          xmm xmm
@@ -26945,6 +28791,10 @@ func VFMADD132PD(ops ...operand.Op) { ctx.VFMADD132PD(ops...) }
 //
 // Forms:
 //
+// 	VFMADD132PD.BCST m128/m64bcst xmm xmm
+// 	VFMADD132PD.BCST m128/m64bcst xmm k xmm
+// 	VFMADD132PD.BCST m256/m64bcst ymm ymm
+// 	VFMADD132PD.BCST m256/m64bcst ymm k ymm
 // 	VFMADD132PD.BCST m512/m64bcst zmm zmm
 // 	VFMADD132PD.BCST m512/m64bcst zmm k zmm
 // Construct and append a VFMADD132PD.BCST instruction to the active function.
@@ -26960,6 +28810,10 @@ func (c *Context) VFMADD132PD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFMADD132PD.BCST m128/m64bcst xmm xmm
+// 	VFMADD132PD.BCST m128/m64bcst xmm k xmm
+// 	VFMADD132PD.BCST m256/m64bcst ymm ymm
+// 	VFMADD132PD.BCST m256/m64bcst ymm k ymm
 // 	VFMADD132PD.BCST m512/m64bcst zmm zmm
 // 	VFMADD132PD.BCST m512/m64bcst zmm k zmm
 // Construct and append a VFMADD132PD.BCST instruction to the active function.
@@ -26970,10 +28824,12 @@ func VFMADD132PD_BCST(ops ...operand.Op) { ctx.VFMADD132PD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VFMADD132PD.BCST.Z m128/m64bcst xmm k xmm
+// 	VFMADD132PD.BCST.Z m256/m64bcst ymm k ymm
 // 	VFMADD132PD.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VFMADD132PD.BCST.Z instruction to the active function.
-func (c *Context) VFMADD132PD_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VFMADD132PD_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VFMADD132PD_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFMADD132PD_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -26984,10 +28840,12 @@ func (c *Context) VFMADD132PD_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFMADD132PD.BCST.Z m128/m64bcst xmm k xmm
+// 	VFMADD132PD.BCST.Z m256/m64bcst ymm k ymm
 // 	VFMADD132PD.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VFMADD132PD.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VFMADD132PD_BCST_Z(m, z, k, z1 operand.Op) { ctx.VFMADD132PD_BCST_Z(m, z, k, z1) }
+func VFMADD132PD_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VFMADD132PD_BCST_Z(m, xyz, k, xyz1) }
 
 // VFMADD132PD_RD_SAE: Fused Multiply-Add of Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
@@ -27185,11 +29043,15 @@ func VFMADD132PD_RZ_SAE_Z(z, z1, k, z2 operand.Op) { ctx.VFMADD132PD_RZ_SAE_Z(z,
 //
 // Forms:
 //
+// 	VFMADD132PD.Z m128/m64bcst xmm k xmm
+// 	VFMADD132PD.Z xmm          xmm k xmm
+// 	VFMADD132PD.Z m256/m64bcst ymm k ymm
+// 	VFMADD132PD.Z ymm          ymm k ymm
 // 	VFMADD132PD.Z m512/m64bcst zmm k zmm
 // 	VFMADD132PD.Z zmm          zmm k zmm
 // Construct and append a VFMADD132PD.Z instruction to the active function.
-func (c *Context) VFMADD132PD_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VFMADD132PD_Z(mz, z, k, z1); err == nil {
+func (c *Context) VFMADD132PD_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFMADD132PD_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -27200,16 +29062,28 @@ func (c *Context) VFMADD132PD_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFMADD132PD.Z m128/m64bcst xmm k xmm
+// 	VFMADD132PD.Z xmm          xmm k xmm
+// 	VFMADD132PD.Z m256/m64bcst ymm k ymm
+// 	VFMADD132PD.Z ymm          ymm k ymm
 // 	VFMADD132PD.Z m512/m64bcst zmm k zmm
 // 	VFMADD132PD.Z zmm          zmm k zmm
 // Construct and append a VFMADD132PD.Z instruction to the active function.
 // Operates on the global context.
-func VFMADD132PD_Z(mz, z, k, z1 operand.Op) { ctx.VFMADD132PD_Z(mz, z, k, z1) }
+func VFMADD132PD_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VFMADD132PD_Z(mxyz, xyz, k, xyz1) }
 
 // VFMADD132PS: Fused Multiply-Add of Packed Single-Precision Floating-Point Values.
 //
 // Forms:
 //
+// 	VFMADD132PS m128/m32bcst xmm xmm
+// 	VFMADD132PS m128/m32bcst xmm k xmm
+// 	VFMADD132PS xmm          xmm xmm
+// 	VFMADD132PS xmm          xmm k xmm
+// 	VFMADD132PS m256/m32bcst ymm ymm
+// 	VFMADD132PS m256/m32bcst ymm k ymm
+// 	VFMADD132PS ymm          ymm ymm
+// 	VFMADD132PS ymm          ymm k ymm
 // 	VFMADD132PS m512/m32bcst zmm zmm
 // 	VFMADD132PS m512/m32bcst zmm k zmm
 // 	VFMADD132PS xmm          xmm xmm
@@ -27231,6 +29105,14 @@ func (c *Context) VFMADD132PS(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFMADD132PS m128/m32bcst xmm xmm
+// 	VFMADD132PS m128/m32bcst xmm k xmm
+// 	VFMADD132PS xmm          xmm xmm
+// 	VFMADD132PS xmm          xmm k xmm
+// 	VFMADD132PS m256/m32bcst ymm ymm
+// 	VFMADD132PS m256/m32bcst ymm k ymm
+// 	VFMADD132PS ymm          ymm ymm
+// 	VFMADD132PS ymm          ymm k ymm
 // 	VFMADD132PS m512/m32bcst zmm zmm
 // 	VFMADD132PS m512/m32bcst zmm k zmm
 // 	VFMADD132PS xmm          xmm xmm
@@ -27247,6 +29129,10 @@ func VFMADD132PS(ops ...operand.Op) { ctx.VFMADD132PS(ops...) }
 //
 // Forms:
 //
+// 	VFMADD132PS.BCST m128/m32bcst xmm xmm
+// 	VFMADD132PS.BCST m128/m32bcst xmm k xmm
+// 	VFMADD132PS.BCST m256/m32bcst ymm ymm
+// 	VFMADD132PS.BCST m256/m32bcst ymm k ymm
 // 	VFMADD132PS.BCST m512/m32bcst zmm zmm
 // 	VFMADD132PS.BCST m512/m32bcst zmm k zmm
 // Construct and append a VFMADD132PS.BCST instruction to the active function.
@@ -27262,6 +29148,10 @@ func (c *Context) VFMADD132PS_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFMADD132PS.BCST m128/m32bcst xmm xmm
+// 	VFMADD132PS.BCST m128/m32bcst xmm k xmm
+// 	VFMADD132PS.BCST m256/m32bcst ymm ymm
+// 	VFMADD132PS.BCST m256/m32bcst ymm k ymm
 // 	VFMADD132PS.BCST m512/m32bcst zmm zmm
 // 	VFMADD132PS.BCST m512/m32bcst zmm k zmm
 // Construct and append a VFMADD132PS.BCST instruction to the active function.
@@ -27272,10 +29162,12 @@ func VFMADD132PS_BCST(ops ...operand.Op) { ctx.VFMADD132PS_BCST(ops...) }
 //
 // Forms:
 //
+// 	VFMADD132PS.BCST.Z m128/m32bcst xmm k xmm
+// 	VFMADD132PS.BCST.Z m256/m32bcst ymm k ymm
 // 	VFMADD132PS.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VFMADD132PS.BCST.Z instruction to the active function.
-func (c *Context) VFMADD132PS_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VFMADD132PS_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VFMADD132PS_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFMADD132PS_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -27286,10 +29178,12 @@ func (c *Context) VFMADD132PS_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFMADD132PS.BCST.Z m128/m32bcst xmm k xmm
+// 	VFMADD132PS.BCST.Z m256/m32bcst ymm k ymm
 // 	VFMADD132PS.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VFMADD132PS.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VFMADD132PS_BCST_Z(m, z, k, z1 operand.Op) { ctx.VFMADD132PS_BCST_Z(m, z, k, z1) }
+func VFMADD132PS_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VFMADD132PS_BCST_Z(m, xyz, k, xyz1) }
 
 // VFMADD132PS_RD_SAE: Fused Multiply-Add of Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
@@ -27487,11 +29381,15 @@ func VFMADD132PS_RZ_SAE_Z(z, z1, k, z2 operand.Op) { ctx.VFMADD132PS_RZ_SAE_Z(z,
 //
 // Forms:
 //
+// 	VFMADD132PS.Z m128/m32bcst xmm k xmm
+// 	VFMADD132PS.Z xmm          xmm k xmm
+// 	VFMADD132PS.Z m256/m32bcst ymm k ymm
+// 	VFMADD132PS.Z ymm          ymm k ymm
 // 	VFMADD132PS.Z m512/m32bcst zmm k zmm
 // 	VFMADD132PS.Z zmm          zmm k zmm
 // Construct and append a VFMADD132PS.Z instruction to the active function.
-func (c *Context) VFMADD132PS_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VFMADD132PS_Z(mz, z, k, z1); err == nil {
+func (c *Context) VFMADD132PS_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFMADD132PS_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -27502,11 +29400,15 @@ func (c *Context) VFMADD132PS_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFMADD132PS.Z m128/m32bcst xmm k xmm
+// 	VFMADD132PS.Z xmm          xmm k xmm
+// 	VFMADD132PS.Z m256/m32bcst ymm k ymm
+// 	VFMADD132PS.Z ymm          ymm k ymm
 // 	VFMADD132PS.Z m512/m32bcst zmm k zmm
 // 	VFMADD132PS.Z zmm          zmm k zmm
 // Construct and append a VFMADD132PS.Z instruction to the active function.
 // Operates on the global context.
-func VFMADD132PS_Z(mz, z, k, z1 operand.Op) { ctx.VFMADD132PS_Z(mz, z, k, z1) }
+func VFMADD132PS_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VFMADD132PS_Z(mxyz, xyz, k, xyz1) }
 
 // VFMADD132SD: Fused Multiply-Add of Scalar Double-Precision Floating-Point Values.
 //
@@ -28012,6 +29914,14 @@ func VFMADD132SS_Z(mx, x, k, x1 operand.Op) { ctx.VFMADD132SS_Z(mx, x, k, x1) }
 //
 // Forms:
 //
+// 	VFMADD213PD m128/m64bcst xmm xmm
+// 	VFMADD213PD m128/m64bcst xmm k xmm
+// 	VFMADD213PD xmm          xmm xmm
+// 	VFMADD213PD xmm          xmm k xmm
+// 	VFMADD213PD m256/m64bcst ymm ymm
+// 	VFMADD213PD m256/m64bcst ymm k ymm
+// 	VFMADD213PD ymm          ymm ymm
+// 	VFMADD213PD ymm          ymm k ymm
 // 	VFMADD213PD m512/m64bcst zmm zmm
 // 	VFMADD213PD m512/m64bcst zmm k zmm
 // 	VFMADD213PD xmm          xmm xmm
@@ -28033,6 +29943,14 @@ func (c *Context) VFMADD213PD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFMADD213PD m128/m64bcst xmm xmm
+// 	VFMADD213PD m128/m64bcst xmm k xmm
+// 	VFMADD213PD xmm          xmm xmm
+// 	VFMADD213PD xmm          xmm k xmm
+// 	VFMADD213PD m256/m64bcst ymm ymm
+// 	VFMADD213PD m256/m64bcst ymm k ymm
+// 	VFMADD213PD ymm          ymm ymm
+// 	VFMADD213PD ymm          ymm k ymm
 // 	VFMADD213PD m512/m64bcst zmm zmm
 // 	VFMADD213PD m512/m64bcst zmm k zmm
 // 	VFMADD213PD xmm          xmm xmm
@@ -28049,6 +29967,10 @@ func VFMADD213PD(ops ...operand.Op) { ctx.VFMADD213PD(ops...) }
 //
 // Forms:
 //
+// 	VFMADD213PD.BCST m128/m64bcst xmm xmm
+// 	VFMADD213PD.BCST m128/m64bcst xmm k xmm
+// 	VFMADD213PD.BCST m256/m64bcst ymm ymm
+// 	VFMADD213PD.BCST m256/m64bcst ymm k ymm
 // 	VFMADD213PD.BCST m512/m64bcst zmm zmm
 // 	VFMADD213PD.BCST m512/m64bcst zmm k zmm
 // Construct and append a VFMADD213PD.BCST instruction to the active function.
@@ -28064,6 +29986,10 @@ func (c *Context) VFMADD213PD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFMADD213PD.BCST m128/m64bcst xmm xmm
+// 	VFMADD213PD.BCST m128/m64bcst xmm k xmm
+// 	VFMADD213PD.BCST m256/m64bcst ymm ymm
+// 	VFMADD213PD.BCST m256/m64bcst ymm k ymm
 // 	VFMADD213PD.BCST m512/m64bcst zmm zmm
 // 	VFMADD213PD.BCST m512/m64bcst zmm k zmm
 // Construct and append a VFMADD213PD.BCST instruction to the active function.
@@ -28074,10 +30000,12 @@ func VFMADD213PD_BCST(ops ...operand.Op) { ctx.VFMADD213PD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VFMADD213PD.BCST.Z m128/m64bcst xmm k xmm
+// 	VFMADD213PD.BCST.Z m256/m64bcst ymm k ymm
 // 	VFMADD213PD.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VFMADD213PD.BCST.Z instruction to the active function.
-func (c *Context) VFMADD213PD_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VFMADD213PD_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VFMADD213PD_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFMADD213PD_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -28088,10 +30016,12 @@ func (c *Context) VFMADD213PD_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFMADD213PD.BCST.Z m128/m64bcst xmm k xmm
+// 	VFMADD213PD.BCST.Z m256/m64bcst ymm k ymm
 // 	VFMADD213PD.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VFMADD213PD.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VFMADD213PD_BCST_Z(m, z, k, z1 operand.Op) { ctx.VFMADD213PD_BCST_Z(m, z, k, z1) }
+func VFMADD213PD_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VFMADD213PD_BCST_Z(m, xyz, k, xyz1) }
 
 // VFMADD213PD_RD_SAE: Fused Multiply-Add of Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
@@ -28289,11 +30219,15 @@ func VFMADD213PD_RZ_SAE_Z(z, z1, k, z2 operand.Op) { ctx.VFMADD213PD_RZ_SAE_Z(z,
 //
 // Forms:
 //
+// 	VFMADD213PD.Z m128/m64bcst xmm k xmm
+// 	VFMADD213PD.Z xmm          xmm k xmm
+// 	VFMADD213PD.Z m256/m64bcst ymm k ymm
+// 	VFMADD213PD.Z ymm          ymm k ymm
 // 	VFMADD213PD.Z m512/m64bcst zmm k zmm
 // 	VFMADD213PD.Z zmm          zmm k zmm
 // Construct and append a VFMADD213PD.Z instruction to the active function.
-func (c *Context) VFMADD213PD_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VFMADD213PD_Z(mz, z, k, z1); err == nil {
+func (c *Context) VFMADD213PD_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFMADD213PD_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -28304,16 +30238,28 @@ func (c *Context) VFMADD213PD_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFMADD213PD.Z m128/m64bcst xmm k xmm
+// 	VFMADD213PD.Z xmm          xmm k xmm
+// 	VFMADD213PD.Z m256/m64bcst ymm k ymm
+// 	VFMADD213PD.Z ymm          ymm k ymm
 // 	VFMADD213PD.Z m512/m64bcst zmm k zmm
 // 	VFMADD213PD.Z zmm          zmm k zmm
 // Construct and append a VFMADD213PD.Z instruction to the active function.
 // Operates on the global context.
-func VFMADD213PD_Z(mz, z, k, z1 operand.Op) { ctx.VFMADD213PD_Z(mz, z, k, z1) }
+func VFMADD213PD_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VFMADD213PD_Z(mxyz, xyz, k, xyz1) }
 
 // VFMADD213PS: Fused Multiply-Add of Packed Single-Precision Floating-Point Values.
 //
 // Forms:
 //
+// 	VFMADD213PS m128/m32bcst xmm xmm
+// 	VFMADD213PS m128/m32bcst xmm k xmm
+// 	VFMADD213PS xmm          xmm xmm
+// 	VFMADD213PS xmm          xmm k xmm
+// 	VFMADD213PS m256/m32bcst ymm ymm
+// 	VFMADD213PS m256/m32bcst ymm k ymm
+// 	VFMADD213PS ymm          ymm ymm
+// 	VFMADD213PS ymm          ymm k ymm
 // 	VFMADD213PS m512/m32bcst zmm zmm
 // 	VFMADD213PS m512/m32bcst zmm k zmm
 // 	VFMADD213PS xmm          xmm xmm
@@ -28335,6 +30281,14 @@ func (c *Context) VFMADD213PS(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFMADD213PS m128/m32bcst xmm xmm
+// 	VFMADD213PS m128/m32bcst xmm k xmm
+// 	VFMADD213PS xmm          xmm xmm
+// 	VFMADD213PS xmm          xmm k xmm
+// 	VFMADD213PS m256/m32bcst ymm ymm
+// 	VFMADD213PS m256/m32bcst ymm k ymm
+// 	VFMADD213PS ymm          ymm ymm
+// 	VFMADD213PS ymm          ymm k ymm
 // 	VFMADD213PS m512/m32bcst zmm zmm
 // 	VFMADD213PS m512/m32bcst zmm k zmm
 // 	VFMADD213PS xmm          xmm xmm
@@ -28351,6 +30305,10 @@ func VFMADD213PS(ops ...operand.Op) { ctx.VFMADD213PS(ops...) }
 //
 // Forms:
 //
+// 	VFMADD213PS.BCST m128/m32bcst xmm xmm
+// 	VFMADD213PS.BCST m128/m32bcst xmm k xmm
+// 	VFMADD213PS.BCST m256/m32bcst ymm ymm
+// 	VFMADD213PS.BCST m256/m32bcst ymm k ymm
 // 	VFMADD213PS.BCST m512/m32bcst zmm zmm
 // 	VFMADD213PS.BCST m512/m32bcst zmm k zmm
 // Construct and append a VFMADD213PS.BCST instruction to the active function.
@@ -28366,6 +30324,10 @@ func (c *Context) VFMADD213PS_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFMADD213PS.BCST m128/m32bcst xmm xmm
+// 	VFMADD213PS.BCST m128/m32bcst xmm k xmm
+// 	VFMADD213PS.BCST m256/m32bcst ymm ymm
+// 	VFMADD213PS.BCST m256/m32bcst ymm k ymm
 // 	VFMADD213PS.BCST m512/m32bcst zmm zmm
 // 	VFMADD213PS.BCST m512/m32bcst zmm k zmm
 // Construct and append a VFMADD213PS.BCST instruction to the active function.
@@ -28376,10 +30338,12 @@ func VFMADD213PS_BCST(ops ...operand.Op) { ctx.VFMADD213PS_BCST(ops...) }
 //
 // Forms:
 //
+// 	VFMADD213PS.BCST.Z m128/m32bcst xmm k xmm
+// 	VFMADD213PS.BCST.Z m256/m32bcst ymm k ymm
 // 	VFMADD213PS.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VFMADD213PS.BCST.Z instruction to the active function.
-func (c *Context) VFMADD213PS_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VFMADD213PS_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VFMADD213PS_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFMADD213PS_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -28390,10 +30354,12 @@ func (c *Context) VFMADD213PS_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFMADD213PS.BCST.Z m128/m32bcst xmm k xmm
+// 	VFMADD213PS.BCST.Z m256/m32bcst ymm k ymm
 // 	VFMADD213PS.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VFMADD213PS.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VFMADD213PS_BCST_Z(m, z, k, z1 operand.Op) { ctx.VFMADD213PS_BCST_Z(m, z, k, z1) }
+func VFMADD213PS_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VFMADD213PS_BCST_Z(m, xyz, k, xyz1) }
 
 // VFMADD213PS_RD_SAE: Fused Multiply-Add of Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
@@ -28591,11 +30557,15 @@ func VFMADD213PS_RZ_SAE_Z(z, z1, k, z2 operand.Op) { ctx.VFMADD213PS_RZ_SAE_Z(z,
 //
 // Forms:
 //
+// 	VFMADD213PS.Z m128/m32bcst xmm k xmm
+// 	VFMADD213PS.Z xmm          xmm k xmm
+// 	VFMADD213PS.Z m256/m32bcst ymm k ymm
+// 	VFMADD213PS.Z ymm          ymm k ymm
 // 	VFMADD213PS.Z m512/m32bcst zmm k zmm
 // 	VFMADD213PS.Z zmm          zmm k zmm
 // Construct and append a VFMADD213PS.Z instruction to the active function.
-func (c *Context) VFMADD213PS_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VFMADD213PS_Z(mz, z, k, z1); err == nil {
+func (c *Context) VFMADD213PS_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFMADD213PS_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -28606,11 +30576,15 @@ func (c *Context) VFMADD213PS_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFMADD213PS.Z m128/m32bcst xmm k xmm
+// 	VFMADD213PS.Z xmm          xmm k xmm
+// 	VFMADD213PS.Z m256/m32bcst ymm k ymm
+// 	VFMADD213PS.Z ymm          ymm k ymm
 // 	VFMADD213PS.Z m512/m32bcst zmm k zmm
 // 	VFMADD213PS.Z zmm          zmm k zmm
 // Construct and append a VFMADD213PS.Z instruction to the active function.
 // Operates on the global context.
-func VFMADD213PS_Z(mz, z, k, z1 operand.Op) { ctx.VFMADD213PS_Z(mz, z, k, z1) }
+func VFMADD213PS_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VFMADD213PS_Z(mxyz, xyz, k, xyz1) }
 
 // VFMADD213SD: Fused Multiply-Add of Scalar Double-Precision Floating-Point Values.
 //
@@ -29116,6 +31090,14 @@ func VFMADD213SS_Z(mx, x, k, x1 operand.Op) { ctx.VFMADD213SS_Z(mx, x, k, x1) }
 //
 // Forms:
 //
+// 	VFMADD231PD m128/m64bcst xmm xmm
+// 	VFMADD231PD m128/m64bcst xmm k xmm
+// 	VFMADD231PD xmm          xmm xmm
+// 	VFMADD231PD xmm          xmm k xmm
+// 	VFMADD231PD m256/m64bcst ymm ymm
+// 	VFMADD231PD m256/m64bcst ymm k ymm
+// 	VFMADD231PD ymm          ymm ymm
+// 	VFMADD231PD ymm          ymm k ymm
 // 	VFMADD231PD m512/m64bcst zmm zmm
 // 	VFMADD231PD m512/m64bcst zmm k zmm
 // 	VFMADD231PD xmm          xmm xmm
@@ -29137,6 +31119,14 @@ func (c *Context) VFMADD231PD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFMADD231PD m128/m64bcst xmm xmm
+// 	VFMADD231PD m128/m64bcst xmm k xmm
+// 	VFMADD231PD xmm          xmm xmm
+// 	VFMADD231PD xmm          xmm k xmm
+// 	VFMADD231PD m256/m64bcst ymm ymm
+// 	VFMADD231PD m256/m64bcst ymm k ymm
+// 	VFMADD231PD ymm          ymm ymm
+// 	VFMADD231PD ymm          ymm k ymm
 // 	VFMADD231PD m512/m64bcst zmm zmm
 // 	VFMADD231PD m512/m64bcst zmm k zmm
 // 	VFMADD231PD xmm          xmm xmm
@@ -29153,6 +31143,10 @@ func VFMADD231PD(ops ...operand.Op) { ctx.VFMADD231PD(ops...) }
 //
 // Forms:
 //
+// 	VFMADD231PD.BCST m128/m64bcst xmm xmm
+// 	VFMADD231PD.BCST m128/m64bcst xmm k xmm
+// 	VFMADD231PD.BCST m256/m64bcst ymm ymm
+// 	VFMADD231PD.BCST m256/m64bcst ymm k ymm
 // 	VFMADD231PD.BCST m512/m64bcst zmm zmm
 // 	VFMADD231PD.BCST m512/m64bcst zmm k zmm
 // Construct and append a VFMADD231PD.BCST instruction to the active function.
@@ -29168,6 +31162,10 @@ func (c *Context) VFMADD231PD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFMADD231PD.BCST m128/m64bcst xmm xmm
+// 	VFMADD231PD.BCST m128/m64bcst xmm k xmm
+// 	VFMADD231PD.BCST m256/m64bcst ymm ymm
+// 	VFMADD231PD.BCST m256/m64bcst ymm k ymm
 // 	VFMADD231PD.BCST m512/m64bcst zmm zmm
 // 	VFMADD231PD.BCST m512/m64bcst zmm k zmm
 // Construct and append a VFMADD231PD.BCST instruction to the active function.
@@ -29178,10 +31176,12 @@ func VFMADD231PD_BCST(ops ...operand.Op) { ctx.VFMADD231PD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VFMADD231PD.BCST.Z m128/m64bcst xmm k xmm
+// 	VFMADD231PD.BCST.Z m256/m64bcst ymm k ymm
 // 	VFMADD231PD.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VFMADD231PD.BCST.Z instruction to the active function.
-func (c *Context) VFMADD231PD_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VFMADD231PD_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VFMADD231PD_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFMADD231PD_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -29192,10 +31192,12 @@ func (c *Context) VFMADD231PD_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFMADD231PD.BCST.Z m128/m64bcst xmm k xmm
+// 	VFMADD231PD.BCST.Z m256/m64bcst ymm k ymm
 // 	VFMADD231PD.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VFMADD231PD.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VFMADD231PD_BCST_Z(m, z, k, z1 operand.Op) { ctx.VFMADD231PD_BCST_Z(m, z, k, z1) }
+func VFMADD231PD_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VFMADD231PD_BCST_Z(m, xyz, k, xyz1) }
 
 // VFMADD231PD_RD_SAE: Fused Multiply-Add of Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
@@ -29393,11 +31395,15 @@ func VFMADD231PD_RZ_SAE_Z(z, z1, k, z2 operand.Op) { ctx.VFMADD231PD_RZ_SAE_Z(z,
 //
 // Forms:
 //
+// 	VFMADD231PD.Z m128/m64bcst xmm k xmm
+// 	VFMADD231PD.Z xmm          xmm k xmm
+// 	VFMADD231PD.Z m256/m64bcst ymm k ymm
+// 	VFMADD231PD.Z ymm          ymm k ymm
 // 	VFMADD231PD.Z m512/m64bcst zmm k zmm
 // 	VFMADD231PD.Z zmm          zmm k zmm
 // Construct and append a VFMADD231PD.Z instruction to the active function.
-func (c *Context) VFMADD231PD_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VFMADD231PD_Z(mz, z, k, z1); err == nil {
+func (c *Context) VFMADD231PD_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFMADD231PD_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -29408,16 +31414,28 @@ func (c *Context) VFMADD231PD_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFMADD231PD.Z m128/m64bcst xmm k xmm
+// 	VFMADD231PD.Z xmm          xmm k xmm
+// 	VFMADD231PD.Z m256/m64bcst ymm k ymm
+// 	VFMADD231PD.Z ymm          ymm k ymm
 // 	VFMADD231PD.Z m512/m64bcst zmm k zmm
 // 	VFMADD231PD.Z zmm          zmm k zmm
 // Construct and append a VFMADD231PD.Z instruction to the active function.
 // Operates on the global context.
-func VFMADD231PD_Z(mz, z, k, z1 operand.Op) { ctx.VFMADD231PD_Z(mz, z, k, z1) }
+func VFMADD231PD_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VFMADD231PD_Z(mxyz, xyz, k, xyz1) }
 
 // VFMADD231PS: Fused Multiply-Add of Packed Single-Precision Floating-Point Values.
 //
 // Forms:
 //
+// 	VFMADD231PS m128/m32bcst xmm xmm
+// 	VFMADD231PS m128/m32bcst xmm k xmm
+// 	VFMADD231PS xmm          xmm xmm
+// 	VFMADD231PS xmm          xmm k xmm
+// 	VFMADD231PS m256/m32bcst ymm ymm
+// 	VFMADD231PS m256/m32bcst ymm k ymm
+// 	VFMADD231PS ymm          ymm ymm
+// 	VFMADD231PS ymm          ymm k ymm
 // 	VFMADD231PS m512/m32bcst zmm zmm
 // 	VFMADD231PS m512/m32bcst zmm k zmm
 // 	VFMADD231PS xmm          xmm xmm
@@ -29439,6 +31457,14 @@ func (c *Context) VFMADD231PS(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFMADD231PS m128/m32bcst xmm xmm
+// 	VFMADD231PS m128/m32bcst xmm k xmm
+// 	VFMADD231PS xmm          xmm xmm
+// 	VFMADD231PS xmm          xmm k xmm
+// 	VFMADD231PS m256/m32bcst ymm ymm
+// 	VFMADD231PS m256/m32bcst ymm k ymm
+// 	VFMADD231PS ymm          ymm ymm
+// 	VFMADD231PS ymm          ymm k ymm
 // 	VFMADD231PS m512/m32bcst zmm zmm
 // 	VFMADD231PS m512/m32bcst zmm k zmm
 // 	VFMADD231PS xmm          xmm xmm
@@ -29455,6 +31481,10 @@ func VFMADD231PS(ops ...operand.Op) { ctx.VFMADD231PS(ops...) }
 //
 // Forms:
 //
+// 	VFMADD231PS.BCST m128/m32bcst xmm xmm
+// 	VFMADD231PS.BCST m128/m32bcst xmm k xmm
+// 	VFMADD231PS.BCST m256/m32bcst ymm ymm
+// 	VFMADD231PS.BCST m256/m32bcst ymm k ymm
 // 	VFMADD231PS.BCST m512/m32bcst zmm zmm
 // 	VFMADD231PS.BCST m512/m32bcst zmm k zmm
 // Construct and append a VFMADD231PS.BCST instruction to the active function.
@@ -29470,6 +31500,10 @@ func (c *Context) VFMADD231PS_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFMADD231PS.BCST m128/m32bcst xmm xmm
+// 	VFMADD231PS.BCST m128/m32bcst xmm k xmm
+// 	VFMADD231PS.BCST m256/m32bcst ymm ymm
+// 	VFMADD231PS.BCST m256/m32bcst ymm k ymm
 // 	VFMADD231PS.BCST m512/m32bcst zmm zmm
 // 	VFMADD231PS.BCST m512/m32bcst zmm k zmm
 // Construct and append a VFMADD231PS.BCST instruction to the active function.
@@ -29480,10 +31514,12 @@ func VFMADD231PS_BCST(ops ...operand.Op) { ctx.VFMADD231PS_BCST(ops...) }
 //
 // Forms:
 //
+// 	VFMADD231PS.BCST.Z m128/m32bcst xmm k xmm
+// 	VFMADD231PS.BCST.Z m256/m32bcst ymm k ymm
 // 	VFMADD231PS.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VFMADD231PS.BCST.Z instruction to the active function.
-func (c *Context) VFMADD231PS_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VFMADD231PS_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VFMADD231PS_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFMADD231PS_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -29494,10 +31530,12 @@ func (c *Context) VFMADD231PS_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFMADD231PS.BCST.Z m128/m32bcst xmm k xmm
+// 	VFMADD231PS.BCST.Z m256/m32bcst ymm k ymm
 // 	VFMADD231PS.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VFMADD231PS.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VFMADD231PS_BCST_Z(m, z, k, z1 operand.Op) { ctx.VFMADD231PS_BCST_Z(m, z, k, z1) }
+func VFMADD231PS_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VFMADD231PS_BCST_Z(m, xyz, k, xyz1) }
 
 // VFMADD231PS_RD_SAE: Fused Multiply-Add of Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
@@ -29695,11 +31733,15 @@ func VFMADD231PS_RZ_SAE_Z(z, z1, k, z2 operand.Op) { ctx.VFMADD231PS_RZ_SAE_Z(z,
 //
 // Forms:
 //
+// 	VFMADD231PS.Z m128/m32bcst xmm k xmm
+// 	VFMADD231PS.Z xmm          xmm k xmm
+// 	VFMADD231PS.Z m256/m32bcst ymm k ymm
+// 	VFMADD231PS.Z ymm          ymm k ymm
 // 	VFMADD231PS.Z m512/m32bcst zmm k zmm
 // 	VFMADD231PS.Z zmm          zmm k zmm
 // Construct and append a VFMADD231PS.Z instruction to the active function.
-func (c *Context) VFMADD231PS_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VFMADD231PS_Z(mz, z, k, z1); err == nil {
+func (c *Context) VFMADD231PS_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFMADD231PS_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -29710,11 +31752,15 @@ func (c *Context) VFMADD231PS_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFMADD231PS.Z m128/m32bcst xmm k xmm
+// 	VFMADD231PS.Z xmm          xmm k xmm
+// 	VFMADD231PS.Z m256/m32bcst ymm k ymm
+// 	VFMADD231PS.Z ymm          ymm k ymm
 // 	VFMADD231PS.Z m512/m32bcst zmm k zmm
 // 	VFMADD231PS.Z zmm          zmm k zmm
 // Construct and append a VFMADD231PS.Z instruction to the active function.
 // Operates on the global context.
-func VFMADD231PS_Z(mz, z, k, z1 operand.Op) { ctx.VFMADD231PS_Z(mz, z, k, z1) }
+func VFMADD231PS_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VFMADD231PS_Z(mxyz, xyz, k, xyz1) }
 
 // VFMADD231SD: Fused Multiply-Add of Scalar Double-Precision Floating-Point Values.
 //
@@ -30220,6 +32266,14 @@ func VFMADD231SS_Z(mx, x, k, x1 operand.Op) { ctx.VFMADD231SS_Z(mx, x, k, x1) }
 //
 // Forms:
 //
+// 	VFMADDSUB132PD m128/m64bcst xmm xmm
+// 	VFMADDSUB132PD m128/m64bcst xmm k xmm
+// 	VFMADDSUB132PD xmm          xmm xmm
+// 	VFMADDSUB132PD xmm          xmm k xmm
+// 	VFMADDSUB132PD m256/m64bcst ymm ymm
+// 	VFMADDSUB132PD m256/m64bcst ymm k ymm
+// 	VFMADDSUB132PD ymm          ymm ymm
+// 	VFMADDSUB132PD ymm          ymm k ymm
 // 	VFMADDSUB132PD m512/m64bcst zmm zmm
 // 	VFMADDSUB132PD m512/m64bcst zmm k zmm
 // 	VFMADDSUB132PD xmm          xmm xmm
@@ -30241,6 +32295,14 @@ func (c *Context) VFMADDSUB132PD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFMADDSUB132PD m128/m64bcst xmm xmm
+// 	VFMADDSUB132PD m128/m64bcst xmm k xmm
+// 	VFMADDSUB132PD xmm          xmm xmm
+// 	VFMADDSUB132PD xmm          xmm k xmm
+// 	VFMADDSUB132PD m256/m64bcst ymm ymm
+// 	VFMADDSUB132PD m256/m64bcst ymm k ymm
+// 	VFMADDSUB132PD ymm          ymm ymm
+// 	VFMADDSUB132PD ymm          ymm k ymm
 // 	VFMADDSUB132PD m512/m64bcst zmm zmm
 // 	VFMADDSUB132PD m512/m64bcst zmm k zmm
 // 	VFMADDSUB132PD xmm          xmm xmm
@@ -30257,6 +32319,10 @@ func VFMADDSUB132PD(ops ...operand.Op) { ctx.VFMADDSUB132PD(ops...) }
 //
 // Forms:
 //
+// 	VFMADDSUB132PD.BCST m128/m64bcst xmm xmm
+// 	VFMADDSUB132PD.BCST m128/m64bcst xmm k xmm
+// 	VFMADDSUB132PD.BCST m256/m64bcst ymm ymm
+// 	VFMADDSUB132PD.BCST m256/m64bcst ymm k ymm
 // 	VFMADDSUB132PD.BCST m512/m64bcst zmm zmm
 // 	VFMADDSUB132PD.BCST m512/m64bcst zmm k zmm
 // Construct and append a VFMADDSUB132PD.BCST instruction to the active function.
@@ -30272,6 +32338,10 @@ func (c *Context) VFMADDSUB132PD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFMADDSUB132PD.BCST m128/m64bcst xmm xmm
+// 	VFMADDSUB132PD.BCST m128/m64bcst xmm k xmm
+// 	VFMADDSUB132PD.BCST m256/m64bcst ymm ymm
+// 	VFMADDSUB132PD.BCST m256/m64bcst ymm k ymm
 // 	VFMADDSUB132PD.BCST m512/m64bcst zmm zmm
 // 	VFMADDSUB132PD.BCST m512/m64bcst zmm k zmm
 // Construct and append a VFMADDSUB132PD.BCST instruction to the active function.
@@ -30282,10 +32352,12 @@ func VFMADDSUB132PD_BCST(ops ...operand.Op) { ctx.VFMADDSUB132PD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VFMADDSUB132PD.BCST.Z m128/m64bcst xmm k xmm
+// 	VFMADDSUB132PD.BCST.Z m256/m64bcst ymm k ymm
 // 	VFMADDSUB132PD.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VFMADDSUB132PD.BCST.Z instruction to the active function.
-func (c *Context) VFMADDSUB132PD_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VFMADDSUB132PD_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VFMADDSUB132PD_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFMADDSUB132PD_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -30296,10 +32368,12 @@ func (c *Context) VFMADDSUB132PD_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFMADDSUB132PD.BCST.Z m128/m64bcst xmm k xmm
+// 	VFMADDSUB132PD.BCST.Z m256/m64bcst ymm k ymm
 // 	VFMADDSUB132PD.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VFMADDSUB132PD.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VFMADDSUB132PD_BCST_Z(m, z, k, z1 operand.Op) { ctx.VFMADDSUB132PD_BCST_Z(m, z, k, z1) }
+func VFMADDSUB132PD_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VFMADDSUB132PD_BCST_Z(m, xyz, k, xyz1) }
 
 // VFMADDSUB132PD_RD_SAE: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
@@ -30497,11 +32571,15 @@ func VFMADDSUB132PD_RZ_SAE_Z(z, z1, k, z2 operand.Op) { ctx.VFMADDSUB132PD_RZ_SA
 //
 // Forms:
 //
+// 	VFMADDSUB132PD.Z m128/m64bcst xmm k xmm
+// 	VFMADDSUB132PD.Z xmm          xmm k xmm
+// 	VFMADDSUB132PD.Z m256/m64bcst ymm k ymm
+// 	VFMADDSUB132PD.Z ymm          ymm k ymm
 // 	VFMADDSUB132PD.Z m512/m64bcst zmm k zmm
 // 	VFMADDSUB132PD.Z zmm          zmm k zmm
 // Construct and append a VFMADDSUB132PD.Z instruction to the active function.
-func (c *Context) VFMADDSUB132PD_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VFMADDSUB132PD_Z(mz, z, k, z1); err == nil {
+func (c *Context) VFMADDSUB132PD_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFMADDSUB132PD_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -30512,16 +32590,28 @@ func (c *Context) VFMADDSUB132PD_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFMADDSUB132PD.Z m128/m64bcst xmm k xmm
+// 	VFMADDSUB132PD.Z xmm          xmm k xmm
+// 	VFMADDSUB132PD.Z m256/m64bcst ymm k ymm
+// 	VFMADDSUB132PD.Z ymm          ymm k ymm
 // 	VFMADDSUB132PD.Z m512/m64bcst zmm k zmm
 // 	VFMADDSUB132PD.Z zmm          zmm k zmm
 // Construct and append a VFMADDSUB132PD.Z instruction to the active function.
 // Operates on the global context.
-func VFMADDSUB132PD_Z(mz, z, k, z1 operand.Op) { ctx.VFMADDSUB132PD_Z(mz, z, k, z1) }
+func VFMADDSUB132PD_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VFMADDSUB132PD_Z(mxyz, xyz, k, xyz1) }
 
 // VFMADDSUB132PS: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values.
 //
 // Forms:
 //
+// 	VFMADDSUB132PS m128/m32bcst xmm xmm
+// 	VFMADDSUB132PS m128/m32bcst xmm k xmm
+// 	VFMADDSUB132PS xmm          xmm xmm
+// 	VFMADDSUB132PS xmm          xmm k xmm
+// 	VFMADDSUB132PS m256/m32bcst ymm ymm
+// 	VFMADDSUB132PS m256/m32bcst ymm k ymm
+// 	VFMADDSUB132PS ymm          ymm ymm
+// 	VFMADDSUB132PS ymm          ymm k ymm
 // 	VFMADDSUB132PS m512/m32bcst zmm zmm
 // 	VFMADDSUB132PS m512/m32bcst zmm k zmm
 // 	VFMADDSUB132PS xmm          xmm xmm
@@ -30543,6 +32633,14 @@ func (c *Context) VFMADDSUB132PS(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFMADDSUB132PS m128/m32bcst xmm xmm
+// 	VFMADDSUB132PS m128/m32bcst xmm k xmm
+// 	VFMADDSUB132PS xmm          xmm xmm
+// 	VFMADDSUB132PS xmm          xmm k xmm
+// 	VFMADDSUB132PS m256/m32bcst ymm ymm
+// 	VFMADDSUB132PS m256/m32bcst ymm k ymm
+// 	VFMADDSUB132PS ymm          ymm ymm
+// 	VFMADDSUB132PS ymm          ymm k ymm
 // 	VFMADDSUB132PS m512/m32bcst zmm zmm
 // 	VFMADDSUB132PS m512/m32bcst zmm k zmm
 // 	VFMADDSUB132PS xmm          xmm xmm
@@ -30559,6 +32657,10 @@ func VFMADDSUB132PS(ops ...operand.Op) { ctx.VFMADDSUB132PS(ops...) }
 //
 // Forms:
 //
+// 	VFMADDSUB132PS.BCST m128/m32bcst xmm xmm
+// 	VFMADDSUB132PS.BCST m128/m32bcst xmm k xmm
+// 	VFMADDSUB132PS.BCST m256/m32bcst ymm ymm
+// 	VFMADDSUB132PS.BCST m256/m32bcst ymm k ymm
 // 	VFMADDSUB132PS.BCST m512/m32bcst zmm zmm
 // 	VFMADDSUB132PS.BCST m512/m32bcst zmm k zmm
 // Construct and append a VFMADDSUB132PS.BCST instruction to the active function.
@@ -30574,6 +32676,10 @@ func (c *Context) VFMADDSUB132PS_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFMADDSUB132PS.BCST m128/m32bcst xmm xmm
+// 	VFMADDSUB132PS.BCST m128/m32bcst xmm k xmm
+// 	VFMADDSUB132PS.BCST m256/m32bcst ymm ymm
+// 	VFMADDSUB132PS.BCST m256/m32bcst ymm k ymm
 // 	VFMADDSUB132PS.BCST m512/m32bcst zmm zmm
 // 	VFMADDSUB132PS.BCST m512/m32bcst zmm k zmm
 // Construct and append a VFMADDSUB132PS.BCST instruction to the active function.
@@ -30584,10 +32690,12 @@ func VFMADDSUB132PS_BCST(ops ...operand.Op) { ctx.VFMADDSUB132PS_BCST(ops...) }
 //
 // Forms:
 //
+// 	VFMADDSUB132PS.BCST.Z m128/m32bcst xmm k xmm
+// 	VFMADDSUB132PS.BCST.Z m256/m32bcst ymm k ymm
 // 	VFMADDSUB132PS.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VFMADDSUB132PS.BCST.Z instruction to the active function.
-func (c *Context) VFMADDSUB132PS_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VFMADDSUB132PS_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VFMADDSUB132PS_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFMADDSUB132PS_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -30598,10 +32706,12 @@ func (c *Context) VFMADDSUB132PS_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFMADDSUB132PS.BCST.Z m128/m32bcst xmm k xmm
+// 	VFMADDSUB132PS.BCST.Z m256/m32bcst ymm k ymm
 // 	VFMADDSUB132PS.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VFMADDSUB132PS.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VFMADDSUB132PS_BCST_Z(m, z, k, z1 operand.Op) { ctx.VFMADDSUB132PS_BCST_Z(m, z, k, z1) }
+func VFMADDSUB132PS_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VFMADDSUB132PS_BCST_Z(m, xyz, k, xyz1) }
 
 // VFMADDSUB132PS_RD_SAE: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
@@ -30799,11 +32909,15 @@ func VFMADDSUB132PS_RZ_SAE_Z(z, z1, k, z2 operand.Op) { ctx.VFMADDSUB132PS_RZ_SA
 //
 // Forms:
 //
+// 	VFMADDSUB132PS.Z m128/m32bcst xmm k xmm
+// 	VFMADDSUB132PS.Z xmm          xmm k xmm
+// 	VFMADDSUB132PS.Z m256/m32bcst ymm k ymm
+// 	VFMADDSUB132PS.Z ymm          ymm k ymm
 // 	VFMADDSUB132PS.Z m512/m32bcst zmm k zmm
 // 	VFMADDSUB132PS.Z zmm          zmm k zmm
 // Construct and append a VFMADDSUB132PS.Z instruction to the active function.
-func (c *Context) VFMADDSUB132PS_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VFMADDSUB132PS_Z(mz, z, k, z1); err == nil {
+func (c *Context) VFMADDSUB132PS_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFMADDSUB132PS_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -30814,16 +32928,28 @@ func (c *Context) VFMADDSUB132PS_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFMADDSUB132PS.Z m128/m32bcst xmm k xmm
+// 	VFMADDSUB132PS.Z xmm          xmm k xmm
+// 	VFMADDSUB132PS.Z m256/m32bcst ymm k ymm
+// 	VFMADDSUB132PS.Z ymm          ymm k ymm
 // 	VFMADDSUB132PS.Z m512/m32bcst zmm k zmm
 // 	VFMADDSUB132PS.Z zmm          zmm k zmm
 // Construct and append a VFMADDSUB132PS.Z instruction to the active function.
 // Operates on the global context.
-func VFMADDSUB132PS_Z(mz, z, k, z1 operand.Op) { ctx.VFMADDSUB132PS_Z(mz, z, k, z1) }
+func VFMADDSUB132PS_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VFMADDSUB132PS_Z(mxyz, xyz, k, xyz1) }
 
 // VFMADDSUB213PD: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values.
 //
 // Forms:
 //
+// 	VFMADDSUB213PD m128/m64bcst xmm xmm
+// 	VFMADDSUB213PD m128/m64bcst xmm k xmm
+// 	VFMADDSUB213PD xmm          xmm xmm
+// 	VFMADDSUB213PD xmm          xmm k xmm
+// 	VFMADDSUB213PD m256/m64bcst ymm ymm
+// 	VFMADDSUB213PD m256/m64bcst ymm k ymm
+// 	VFMADDSUB213PD ymm          ymm ymm
+// 	VFMADDSUB213PD ymm          ymm k ymm
 // 	VFMADDSUB213PD m512/m64bcst zmm zmm
 // 	VFMADDSUB213PD m512/m64bcst zmm k zmm
 // 	VFMADDSUB213PD xmm          xmm xmm
@@ -30845,6 +32971,14 @@ func (c *Context) VFMADDSUB213PD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFMADDSUB213PD m128/m64bcst xmm xmm
+// 	VFMADDSUB213PD m128/m64bcst xmm k xmm
+// 	VFMADDSUB213PD xmm          xmm xmm
+// 	VFMADDSUB213PD xmm          xmm k xmm
+// 	VFMADDSUB213PD m256/m64bcst ymm ymm
+// 	VFMADDSUB213PD m256/m64bcst ymm k ymm
+// 	VFMADDSUB213PD ymm          ymm ymm
+// 	VFMADDSUB213PD ymm          ymm k ymm
 // 	VFMADDSUB213PD m512/m64bcst zmm zmm
 // 	VFMADDSUB213PD m512/m64bcst zmm k zmm
 // 	VFMADDSUB213PD xmm          xmm xmm
@@ -30861,6 +32995,10 @@ func VFMADDSUB213PD(ops ...operand.Op) { ctx.VFMADDSUB213PD(ops...) }
 //
 // Forms:
 //
+// 	VFMADDSUB213PD.BCST m128/m64bcst xmm xmm
+// 	VFMADDSUB213PD.BCST m128/m64bcst xmm k xmm
+// 	VFMADDSUB213PD.BCST m256/m64bcst ymm ymm
+// 	VFMADDSUB213PD.BCST m256/m64bcst ymm k ymm
 // 	VFMADDSUB213PD.BCST m512/m64bcst zmm zmm
 // 	VFMADDSUB213PD.BCST m512/m64bcst zmm k zmm
 // Construct and append a VFMADDSUB213PD.BCST instruction to the active function.
@@ -30876,6 +33014,10 @@ func (c *Context) VFMADDSUB213PD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFMADDSUB213PD.BCST m128/m64bcst xmm xmm
+// 	VFMADDSUB213PD.BCST m128/m64bcst xmm k xmm
+// 	VFMADDSUB213PD.BCST m256/m64bcst ymm ymm
+// 	VFMADDSUB213PD.BCST m256/m64bcst ymm k ymm
 // 	VFMADDSUB213PD.BCST m512/m64bcst zmm zmm
 // 	VFMADDSUB213PD.BCST m512/m64bcst zmm k zmm
 // Construct and append a VFMADDSUB213PD.BCST instruction to the active function.
@@ -30886,10 +33028,12 @@ func VFMADDSUB213PD_BCST(ops ...operand.Op) { ctx.VFMADDSUB213PD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VFMADDSUB213PD.BCST.Z m128/m64bcst xmm k xmm
+// 	VFMADDSUB213PD.BCST.Z m256/m64bcst ymm k ymm
 // 	VFMADDSUB213PD.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VFMADDSUB213PD.BCST.Z instruction to the active function.
-func (c *Context) VFMADDSUB213PD_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VFMADDSUB213PD_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VFMADDSUB213PD_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFMADDSUB213PD_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -30900,10 +33044,12 @@ func (c *Context) VFMADDSUB213PD_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFMADDSUB213PD.BCST.Z m128/m64bcst xmm k xmm
+// 	VFMADDSUB213PD.BCST.Z m256/m64bcst ymm k ymm
 // 	VFMADDSUB213PD.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VFMADDSUB213PD.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VFMADDSUB213PD_BCST_Z(m, z, k, z1 operand.Op) { ctx.VFMADDSUB213PD_BCST_Z(m, z, k, z1) }
+func VFMADDSUB213PD_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VFMADDSUB213PD_BCST_Z(m, xyz, k, xyz1) }
 
 // VFMADDSUB213PD_RD_SAE: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
@@ -31101,11 +33247,15 @@ func VFMADDSUB213PD_RZ_SAE_Z(z, z1, k, z2 operand.Op) { ctx.VFMADDSUB213PD_RZ_SA
 //
 // Forms:
 //
+// 	VFMADDSUB213PD.Z m128/m64bcst xmm k xmm
+// 	VFMADDSUB213PD.Z xmm          xmm k xmm
+// 	VFMADDSUB213PD.Z m256/m64bcst ymm k ymm
+// 	VFMADDSUB213PD.Z ymm          ymm k ymm
 // 	VFMADDSUB213PD.Z m512/m64bcst zmm k zmm
 // 	VFMADDSUB213PD.Z zmm          zmm k zmm
 // Construct and append a VFMADDSUB213PD.Z instruction to the active function.
-func (c *Context) VFMADDSUB213PD_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VFMADDSUB213PD_Z(mz, z, k, z1); err == nil {
+func (c *Context) VFMADDSUB213PD_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFMADDSUB213PD_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -31116,16 +33266,28 @@ func (c *Context) VFMADDSUB213PD_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFMADDSUB213PD.Z m128/m64bcst xmm k xmm
+// 	VFMADDSUB213PD.Z xmm          xmm k xmm
+// 	VFMADDSUB213PD.Z m256/m64bcst ymm k ymm
+// 	VFMADDSUB213PD.Z ymm          ymm k ymm
 // 	VFMADDSUB213PD.Z m512/m64bcst zmm k zmm
 // 	VFMADDSUB213PD.Z zmm          zmm k zmm
 // Construct and append a VFMADDSUB213PD.Z instruction to the active function.
 // Operates on the global context.
-func VFMADDSUB213PD_Z(mz, z, k, z1 operand.Op) { ctx.VFMADDSUB213PD_Z(mz, z, k, z1) }
+func VFMADDSUB213PD_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VFMADDSUB213PD_Z(mxyz, xyz, k, xyz1) }
 
 // VFMADDSUB213PS: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values.
 //
 // Forms:
 //
+// 	VFMADDSUB213PS m128/m32bcst xmm xmm
+// 	VFMADDSUB213PS m128/m32bcst xmm k xmm
+// 	VFMADDSUB213PS xmm          xmm xmm
+// 	VFMADDSUB213PS xmm          xmm k xmm
+// 	VFMADDSUB213PS m256/m32bcst ymm ymm
+// 	VFMADDSUB213PS m256/m32bcst ymm k ymm
+// 	VFMADDSUB213PS ymm          ymm ymm
+// 	VFMADDSUB213PS ymm          ymm k ymm
 // 	VFMADDSUB213PS m512/m32bcst zmm zmm
 // 	VFMADDSUB213PS m512/m32bcst zmm k zmm
 // 	VFMADDSUB213PS xmm          xmm xmm
@@ -31147,6 +33309,14 @@ func (c *Context) VFMADDSUB213PS(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFMADDSUB213PS m128/m32bcst xmm xmm
+// 	VFMADDSUB213PS m128/m32bcst xmm k xmm
+// 	VFMADDSUB213PS xmm          xmm xmm
+// 	VFMADDSUB213PS xmm          xmm k xmm
+// 	VFMADDSUB213PS m256/m32bcst ymm ymm
+// 	VFMADDSUB213PS m256/m32bcst ymm k ymm
+// 	VFMADDSUB213PS ymm          ymm ymm
+// 	VFMADDSUB213PS ymm          ymm k ymm
 // 	VFMADDSUB213PS m512/m32bcst zmm zmm
 // 	VFMADDSUB213PS m512/m32bcst zmm k zmm
 // 	VFMADDSUB213PS xmm          xmm xmm
@@ -31163,6 +33333,10 @@ func VFMADDSUB213PS(ops ...operand.Op) { ctx.VFMADDSUB213PS(ops...) }
 //
 // Forms:
 //
+// 	VFMADDSUB213PS.BCST m128/m32bcst xmm xmm
+// 	VFMADDSUB213PS.BCST m128/m32bcst xmm k xmm
+// 	VFMADDSUB213PS.BCST m256/m32bcst ymm ymm
+// 	VFMADDSUB213PS.BCST m256/m32bcst ymm k ymm
 // 	VFMADDSUB213PS.BCST m512/m32bcst zmm zmm
 // 	VFMADDSUB213PS.BCST m512/m32bcst zmm k zmm
 // Construct and append a VFMADDSUB213PS.BCST instruction to the active function.
@@ -31178,6 +33352,10 @@ func (c *Context) VFMADDSUB213PS_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFMADDSUB213PS.BCST m128/m32bcst xmm xmm
+// 	VFMADDSUB213PS.BCST m128/m32bcst xmm k xmm
+// 	VFMADDSUB213PS.BCST m256/m32bcst ymm ymm
+// 	VFMADDSUB213PS.BCST m256/m32bcst ymm k ymm
 // 	VFMADDSUB213PS.BCST m512/m32bcst zmm zmm
 // 	VFMADDSUB213PS.BCST m512/m32bcst zmm k zmm
 // Construct and append a VFMADDSUB213PS.BCST instruction to the active function.
@@ -31188,10 +33366,12 @@ func VFMADDSUB213PS_BCST(ops ...operand.Op) { ctx.VFMADDSUB213PS_BCST(ops...) }
 //
 // Forms:
 //
+// 	VFMADDSUB213PS.BCST.Z m128/m32bcst xmm k xmm
+// 	VFMADDSUB213PS.BCST.Z m256/m32bcst ymm k ymm
 // 	VFMADDSUB213PS.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VFMADDSUB213PS.BCST.Z instruction to the active function.
-func (c *Context) VFMADDSUB213PS_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VFMADDSUB213PS_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VFMADDSUB213PS_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFMADDSUB213PS_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -31202,10 +33382,12 @@ func (c *Context) VFMADDSUB213PS_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFMADDSUB213PS.BCST.Z m128/m32bcst xmm k xmm
+// 	VFMADDSUB213PS.BCST.Z m256/m32bcst ymm k ymm
 // 	VFMADDSUB213PS.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VFMADDSUB213PS.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VFMADDSUB213PS_BCST_Z(m, z, k, z1 operand.Op) { ctx.VFMADDSUB213PS_BCST_Z(m, z, k, z1) }
+func VFMADDSUB213PS_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VFMADDSUB213PS_BCST_Z(m, xyz, k, xyz1) }
 
 // VFMADDSUB213PS_RD_SAE: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
@@ -31403,11 +33585,15 @@ func VFMADDSUB213PS_RZ_SAE_Z(z, z1, k, z2 operand.Op) { ctx.VFMADDSUB213PS_RZ_SA
 //
 // Forms:
 //
+// 	VFMADDSUB213PS.Z m128/m32bcst xmm k xmm
+// 	VFMADDSUB213PS.Z xmm          xmm k xmm
+// 	VFMADDSUB213PS.Z m256/m32bcst ymm k ymm
+// 	VFMADDSUB213PS.Z ymm          ymm k ymm
 // 	VFMADDSUB213PS.Z m512/m32bcst zmm k zmm
 // 	VFMADDSUB213PS.Z zmm          zmm k zmm
 // Construct and append a VFMADDSUB213PS.Z instruction to the active function.
-func (c *Context) VFMADDSUB213PS_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VFMADDSUB213PS_Z(mz, z, k, z1); err == nil {
+func (c *Context) VFMADDSUB213PS_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFMADDSUB213PS_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -31418,16 +33604,28 @@ func (c *Context) VFMADDSUB213PS_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFMADDSUB213PS.Z m128/m32bcst xmm k xmm
+// 	VFMADDSUB213PS.Z xmm          xmm k xmm
+// 	VFMADDSUB213PS.Z m256/m32bcst ymm k ymm
+// 	VFMADDSUB213PS.Z ymm          ymm k ymm
 // 	VFMADDSUB213PS.Z m512/m32bcst zmm k zmm
 // 	VFMADDSUB213PS.Z zmm          zmm k zmm
 // Construct and append a VFMADDSUB213PS.Z instruction to the active function.
 // Operates on the global context.
-func VFMADDSUB213PS_Z(mz, z, k, z1 operand.Op) { ctx.VFMADDSUB213PS_Z(mz, z, k, z1) }
+func VFMADDSUB213PS_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VFMADDSUB213PS_Z(mxyz, xyz, k, xyz1) }
 
 // VFMADDSUB231PD: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values.
 //
 // Forms:
 //
+// 	VFMADDSUB231PD m128/m64bcst xmm xmm
+// 	VFMADDSUB231PD m128/m64bcst xmm k xmm
+// 	VFMADDSUB231PD xmm          xmm xmm
+// 	VFMADDSUB231PD xmm          xmm k xmm
+// 	VFMADDSUB231PD m256/m64bcst ymm ymm
+// 	VFMADDSUB231PD m256/m64bcst ymm k ymm
+// 	VFMADDSUB231PD ymm          ymm ymm
+// 	VFMADDSUB231PD ymm          ymm k ymm
 // 	VFMADDSUB231PD m512/m64bcst zmm zmm
 // 	VFMADDSUB231PD m512/m64bcst zmm k zmm
 // 	VFMADDSUB231PD xmm          xmm xmm
@@ -31449,6 +33647,14 @@ func (c *Context) VFMADDSUB231PD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFMADDSUB231PD m128/m64bcst xmm xmm
+// 	VFMADDSUB231PD m128/m64bcst xmm k xmm
+// 	VFMADDSUB231PD xmm          xmm xmm
+// 	VFMADDSUB231PD xmm          xmm k xmm
+// 	VFMADDSUB231PD m256/m64bcst ymm ymm
+// 	VFMADDSUB231PD m256/m64bcst ymm k ymm
+// 	VFMADDSUB231PD ymm          ymm ymm
+// 	VFMADDSUB231PD ymm          ymm k ymm
 // 	VFMADDSUB231PD m512/m64bcst zmm zmm
 // 	VFMADDSUB231PD m512/m64bcst zmm k zmm
 // 	VFMADDSUB231PD xmm          xmm xmm
@@ -31465,6 +33671,10 @@ func VFMADDSUB231PD(ops ...operand.Op) { ctx.VFMADDSUB231PD(ops...) }
 //
 // Forms:
 //
+// 	VFMADDSUB231PD.BCST m128/m64bcst xmm xmm
+// 	VFMADDSUB231PD.BCST m128/m64bcst xmm k xmm
+// 	VFMADDSUB231PD.BCST m256/m64bcst ymm ymm
+// 	VFMADDSUB231PD.BCST m256/m64bcst ymm k ymm
 // 	VFMADDSUB231PD.BCST m512/m64bcst zmm zmm
 // 	VFMADDSUB231PD.BCST m512/m64bcst zmm k zmm
 // Construct and append a VFMADDSUB231PD.BCST instruction to the active function.
@@ -31480,6 +33690,10 @@ func (c *Context) VFMADDSUB231PD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFMADDSUB231PD.BCST m128/m64bcst xmm xmm
+// 	VFMADDSUB231PD.BCST m128/m64bcst xmm k xmm
+// 	VFMADDSUB231PD.BCST m256/m64bcst ymm ymm
+// 	VFMADDSUB231PD.BCST m256/m64bcst ymm k ymm
 // 	VFMADDSUB231PD.BCST m512/m64bcst zmm zmm
 // 	VFMADDSUB231PD.BCST m512/m64bcst zmm k zmm
 // Construct and append a VFMADDSUB231PD.BCST instruction to the active function.
@@ -31490,10 +33704,12 @@ func VFMADDSUB231PD_BCST(ops ...operand.Op) { ctx.VFMADDSUB231PD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VFMADDSUB231PD.BCST.Z m128/m64bcst xmm k xmm
+// 	VFMADDSUB231PD.BCST.Z m256/m64bcst ymm k ymm
 // 	VFMADDSUB231PD.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VFMADDSUB231PD.BCST.Z instruction to the active function.
-func (c *Context) VFMADDSUB231PD_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VFMADDSUB231PD_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VFMADDSUB231PD_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFMADDSUB231PD_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -31504,10 +33720,12 @@ func (c *Context) VFMADDSUB231PD_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFMADDSUB231PD.BCST.Z m128/m64bcst xmm k xmm
+// 	VFMADDSUB231PD.BCST.Z m256/m64bcst ymm k ymm
 // 	VFMADDSUB231PD.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VFMADDSUB231PD.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VFMADDSUB231PD_BCST_Z(m, z, k, z1 operand.Op) { ctx.VFMADDSUB231PD_BCST_Z(m, z, k, z1) }
+func VFMADDSUB231PD_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VFMADDSUB231PD_BCST_Z(m, xyz, k, xyz1) }
 
 // VFMADDSUB231PD_RD_SAE: Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
@@ -31705,11 +33923,15 @@ func VFMADDSUB231PD_RZ_SAE_Z(z, z1, k, z2 operand.Op) { ctx.VFMADDSUB231PD_RZ_SA
 //
 // Forms:
 //
+// 	VFMADDSUB231PD.Z m128/m64bcst xmm k xmm
+// 	VFMADDSUB231PD.Z xmm          xmm k xmm
+// 	VFMADDSUB231PD.Z m256/m64bcst ymm k ymm
+// 	VFMADDSUB231PD.Z ymm          ymm k ymm
 // 	VFMADDSUB231PD.Z m512/m64bcst zmm k zmm
 // 	VFMADDSUB231PD.Z zmm          zmm k zmm
 // Construct and append a VFMADDSUB231PD.Z instruction to the active function.
-func (c *Context) VFMADDSUB231PD_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VFMADDSUB231PD_Z(mz, z, k, z1); err == nil {
+func (c *Context) VFMADDSUB231PD_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFMADDSUB231PD_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -31720,16 +33942,28 @@ func (c *Context) VFMADDSUB231PD_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFMADDSUB231PD.Z m128/m64bcst xmm k xmm
+// 	VFMADDSUB231PD.Z xmm          xmm k xmm
+// 	VFMADDSUB231PD.Z m256/m64bcst ymm k ymm
+// 	VFMADDSUB231PD.Z ymm          ymm k ymm
 // 	VFMADDSUB231PD.Z m512/m64bcst zmm k zmm
 // 	VFMADDSUB231PD.Z zmm          zmm k zmm
 // Construct and append a VFMADDSUB231PD.Z instruction to the active function.
 // Operates on the global context.
-func VFMADDSUB231PD_Z(mz, z, k, z1 operand.Op) { ctx.VFMADDSUB231PD_Z(mz, z, k, z1) }
+func VFMADDSUB231PD_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VFMADDSUB231PD_Z(mxyz, xyz, k, xyz1) }
 
 // VFMADDSUB231PS: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values.
 //
 // Forms:
 //
+// 	VFMADDSUB231PS m128/m32bcst xmm xmm
+// 	VFMADDSUB231PS m128/m32bcst xmm k xmm
+// 	VFMADDSUB231PS xmm          xmm xmm
+// 	VFMADDSUB231PS xmm          xmm k xmm
+// 	VFMADDSUB231PS m256/m32bcst ymm ymm
+// 	VFMADDSUB231PS m256/m32bcst ymm k ymm
+// 	VFMADDSUB231PS ymm          ymm ymm
+// 	VFMADDSUB231PS ymm          ymm k ymm
 // 	VFMADDSUB231PS m512/m32bcst zmm zmm
 // 	VFMADDSUB231PS m512/m32bcst zmm k zmm
 // 	VFMADDSUB231PS xmm          xmm xmm
@@ -31751,6 +33985,14 @@ func (c *Context) VFMADDSUB231PS(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFMADDSUB231PS m128/m32bcst xmm xmm
+// 	VFMADDSUB231PS m128/m32bcst xmm k xmm
+// 	VFMADDSUB231PS xmm          xmm xmm
+// 	VFMADDSUB231PS xmm          xmm k xmm
+// 	VFMADDSUB231PS m256/m32bcst ymm ymm
+// 	VFMADDSUB231PS m256/m32bcst ymm k ymm
+// 	VFMADDSUB231PS ymm          ymm ymm
+// 	VFMADDSUB231PS ymm          ymm k ymm
 // 	VFMADDSUB231PS m512/m32bcst zmm zmm
 // 	VFMADDSUB231PS m512/m32bcst zmm k zmm
 // 	VFMADDSUB231PS xmm          xmm xmm
@@ -31767,6 +34009,10 @@ func VFMADDSUB231PS(ops ...operand.Op) { ctx.VFMADDSUB231PS(ops...) }
 //
 // Forms:
 //
+// 	VFMADDSUB231PS.BCST m128/m32bcst xmm xmm
+// 	VFMADDSUB231PS.BCST m128/m32bcst xmm k xmm
+// 	VFMADDSUB231PS.BCST m256/m32bcst ymm ymm
+// 	VFMADDSUB231PS.BCST m256/m32bcst ymm k ymm
 // 	VFMADDSUB231PS.BCST m512/m32bcst zmm zmm
 // 	VFMADDSUB231PS.BCST m512/m32bcst zmm k zmm
 // Construct and append a VFMADDSUB231PS.BCST instruction to the active function.
@@ -31782,6 +34028,10 @@ func (c *Context) VFMADDSUB231PS_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFMADDSUB231PS.BCST m128/m32bcst xmm xmm
+// 	VFMADDSUB231PS.BCST m128/m32bcst xmm k xmm
+// 	VFMADDSUB231PS.BCST m256/m32bcst ymm ymm
+// 	VFMADDSUB231PS.BCST m256/m32bcst ymm k ymm
 // 	VFMADDSUB231PS.BCST m512/m32bcst zmm zmm
 // 	VFMADDSUB231PS.BCST m512/m32bcst zmm k zmm
 // Construct and append a VFMADDSUB231PS.BCST instruction to the active function.
@@ -31792,10 +34042,12 @@ func VFMADDSUB231PS_BCST(ops ...operand.Op) { ctx.VFMADDSUB231PS_BCST(ops...) }
 //
 // Forms:
 //
+// 	VFMADDSUB231PS.BCST.Z m128/m32bcst xmm k xmm
+// 	VFMADDSUB231PS.BCST.Z m256/m32bcst ymm k ymm
 // 	VFMADDSUB231PS.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VFMADDSUB231PS.BCST.Z instruction to the active function.
-func (c *Context) VFMADDSUB231PS_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VFMADDSUB231PS_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VFMADDSUB231PS_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFMADDSUB231PS_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -31806,10 +34058,12 @@ func (c *Context) VFMADDSUB231PS_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFMADDSUB231PS.BCST.Z m128/m32bcst xmm k xmm
+// 	VFMADDSUB231PS.BCST.Z m256/m32bcst ymm k ymm
 // 	VFMADDSUB231PS.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VFMADDSUB231PS.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VFMADDSUB231PS_BCST_Z(m, z, k, z1 operand.Op) { ctx.VFMADDSUB231PS_BCST_Z(m, z, k, z1) }
+func VFMADDSUB231PS_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VFMADDSUB231PS_BCST_Z(m, xyz, k, xyz1) }
 
 // VFMADDSUB231PS_RD_SAE: Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
@@ -32007,11 +34261,15 @@ func VFMADDSUB231PS_RZ_SAE_Z(z, z1, k, z2 operand.Op) { ctx.VFMADDSUB231PS_RZ_SA
 //
 // Forms:
 //
+// 	VFMADDSUB231PS.Z m128/m32bcst xmm k xmm
+// 	VFMADDSUB231PS.Z xmm          xmm k xmm
+// 	VFMADDSUB231PS.Z m256/m32bcst ymm k ymm
+// 	VFMADDSUB231PS.Z ymm          ymm k ymm
 // 	VFMADDSUB231PS.Z m512/m32bcst zmm k zmm
 // 	VFMADDSUB231PS.Z zmm          zmm k zmm
 // Construct and append a VFMADDSUB231PS.Z instruction to the active function.
-func (c *Context) VFMADDSUB231PS_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VFMADDSUB231PS_Z(mz, z, k, z1); err == nil {
+func (c *Context) VFMADDSUB231PS_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFMADDSUB231PS_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -32022,16 +34280,28 @@ func (c *Context) VFMADDSUB231PS_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFMADDSUB231PS.Z m128/m32bcst xmm k xmm
+// 	VFMADDSUB231PS.Z xmm          xmm k xmm
+// 	VFMADDSUB231PS.Z m256/m32bcst ymm k ymm
+// 	VFMADDSUB231PS.Z ymm          ymm k ymm
 // 	VFMADDSUB231PS.Z m512/m32bcst zmm k zmm
 // 	VFMADDSUB231PS.Z zmm          zmm k zmm
 // Construct and append a VFMADDSUB231PS.Z instruction to the active function.
 // Operates on the global context.
-func VFMADDSUB231PS_Z(mz, z, k, z1 operand.Op) { ctx.VFMADDSUB231PS_Z(mz, z, k, z1) }
+func VFMADDSUB231PS_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VFMADDSUB231PS_Z(mxyz, xyz, k, xyz1) }
 
 // VFMSUB132PD: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values.
 //
 // Forms:
 //
+// 	VFMSUB132PD m128/m64bcst xmm xmm
+// 	VFMSUB132PD m128/m64bcst xmm k xmm
+// 	VFMSUB132PD xmm          xmm xmm
+// 	VFMSUB132PD xmm          xmm k xmm
+// 	VFMSUB132PD m256/m64bcst ymm ymm
+// 	VFMSUB132PD m256/m64bcst ymm k ymm
+// 	VFMSUB132PD ymm          ymm ymm
+// 	VFMSUB132PD ymm          ymm k ymm
 // 	VFMSUB132PD m512/m64bcst zmm zmm
 // 	VFMSUB132PD m512/m64bcst zmm k zmm
 // 	VFMSUB132PD xmm          xmm xmm
@@ -32053,6 +34323,14 @@ func (c *Context) VFMSUB132PD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFMSUB132PD m128/m64bcst xmm xmm
+// 	VFMSUB132PD m128/m64bcst xmm k xmm
+// 	VFMSUB132PD xmm          xmm xmm
+// 	VFMSUB132PD xmm          xmm k xmm
+// 	VFMSUB132PD m256/m64bcst ymm ymm
+// 	VFMSUB132PD m256/m64bcst ymm k ymm
+// 	VFMSUB132PD ymm          ymm ymm
+// 	VFMSUB132PD ymm          ymm k ymm
 // 	VFMSUB132PD m512/m64bcst zmm zmm
 // 	VFMSUB132PD m512/m64bcst zmm k zmm
 // 	VFMSUB132PD xmm          xmm xmm
@@ -32069,6 +34347,10 @@ func VFMSUB132PD(ops ...operand.Op) { ctx.VFMSUB132PD(ops...) }
 //
 // Forms:
 //
+// 	VFMSUB132PD.BCST m128/m64bcst xmm xmm
+// 	VFMSUB132PD.BCST m128/m64bcst xmm k xmm
+// 	VFMSUB132PD.BCST m256/m64bcst ymm ymm
+// 	VFMSUB132PD.BCST m256/m64bcst ymm k ymm
 // 	VFMSUB132PD.BCST m512/m64bcst zmm zmm
 // 	VFMSUB132PD.BCST m512/m64bcst zmm k zmm
 // Construct and append a VFMSUB132PD.BCST instruction to the active function.
@@ -32084,6 +34366,10 @@ func (c *Context) VFMSUB132PD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFMSUB132PD.BCST m128/m64bcst xmm xmm
+// 	VFMSUB132PD.BCST m128/m64bcst xmm k xmm
+// 	VFMSUB132PD.BCST m256/m64bcst ymm ymm
+// 	VFMSUB132PD.BCST m256/m64bcst ymm k ymm
 // 	VFMSUB132PD.BCST m512/m64bcst zmm zmm
 // 	VFMSUB132PD.BCST m512/m64bcst zmm k zmm
 // Construct and append a VFMSUB132PD.BCST instruction to the active function.
@@ -32094,10 +34380,12 @@ func VFMSUB132PD_BCST(ops ...operand.Op) { ctx.VFMSUB132PD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VFMSUB132PD.BCST.Z m128/m64bcst xmm k xmm
+// 	VFMSUB132PD.BCST.Z m256/m64bcst ymm k ymm
 // 	VFMSUB132PD.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VFMSUB132PD.BCST.Z instruction to the active function.
-func (c *Context) VFMSUB132PD_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VFMSUB132PD_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VFMSUB132PD_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFMSUB132PD_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -32108,10 +34396,12 @@ func (c *Context) VFMSUB132PD_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFMSUB132PD.BCST.Z m128/m64bcst xmm k xmm
+// 	VFMSUB132PD.BCST.Z m256/m64bcst ymm k ymm
 // 	VFMSUB132PD.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VFMSUB132PD.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VFMSUB132PD_BCST_Z(m, z, k, z1 operand.Op) { ctx.VFMSUB132PD_BCST_Z(m, z, k, z1) }
+func VFMSUB132PD_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VFMSUB132PD_BCST_Z(m, xyz, k, xyz1) }
 
 // VFMSUB132PD_RD_SAE: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
@@ -32309,11 +34599,15 @@ func VFMSUB132PD_RZ_SAE_Z(z, z1, k, z2 operand.Op) { ctx.VFMSUB132PD_RZ_SAE_Z(z,
 //
 // Forms:
 //
+// 	VFMSUB132PD.Z m128/m64bcst xmm k xmm
+// 	VFMSUB132PD.Z xmm          xmm k xmm
+// 	VFMSUB132PD.Z m256/m64bcst ymm k ymm
+// 	VFMSUB132PD.Z ymm          ymm k ymm
 // 	VFMSUB132PD.Z m512/m64bcst zmm k zmm
 // 	VFMSUB132PD.Z zmm          zmm k zmm
 // Construct and append a VFMSUB132PD.Z instruction to the active function.
-func (c *Context) VFMSUB132PD_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VFMSUB132PD_Z(mz, z, k, z1); err == nil {
+func (c *Context) VFMSUB132PD_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFMSUB132PD_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -32324,16 +34618,28 @@ func (c *Context) VFMSUB132PD_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFMSUB132PD.Z m128/m64bcst xmm k xmm
+// 	VFMSUB132PD.Z xmm          xmm k xmm
+// 	VFMSUB132PD.Z m256/m64bcst ymm k ymm
+// 	VFMSUB132PD.Z ymm          ymm k ymm
 // 	VFMSUB132PD.Z m512/m64bcst zmm k zmm
 // 	VFMSUB132PD.Z zmm          zmm k zmm
 // Construct and append a VFMSUB132PD.Z instruction to the active function.
 // Operates on the global context.
-func VFMSUB132PD_Z(mz, z, k, z1 operand.Op) { ctx.VFMSUB132PD_Z(mz, z, k, z1) }
+func VFMSUB132PD_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VFMSUB132PD_Z(mxyz, xyz, k, xyz1) }
 
 // VFMSUB132PS: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values.
 //
 // Forms:
 //
+// 	VFMSUB132PS m128/m32bcst xmm xmm
+// 	VFMSUB132PS m128/m32bcst xmm k xmm
+// 	VFMSUB132PS xmm          xmm xmm
+// 	VFMSUB132PS xmm          xmm k xmm
+// 	VFMSUB132PS m256/m32bcst ymm ymm
+// 	VFMSUB132PS m256/m32bcst ymm k ymm
+// 	VFMSUB132PS ymm          ymm ymm
+// 	VFMSUB132PS ymm          ymm k ymm
 // 	VFMSUB132PS m512/m32bcst zmm zmm
 // 	VFMSUB132PS m512/m32bcst zmm k zmm
 // 	VFMSUB132PS xmm          xmm xmm
@@ -32355,6 +34661,14 @@ func (c *Context) VFMSUB132PS(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFMSUB132PS m128/m32bcst xmm xmm
+// 	VFMSUB132PS m128/m32bcst xmm k xmm
+// 	VFMSUB132PS xmm          xmm xmm
+// 	VFMSUB132PS xmm          xmm k xmm
+// 	VFMSUB132PS m256/m32bcst ymm ymm
+// 	VFMSUB132PS m256/m32bcst ymm k ymm
+// 	VFMSUB132PS ymm          ymm ymm
+// 	VFMSUB132PS ymm          ymm k ymm
 // 	VFMSUB132PS m512/m32bcst zmm zmm
 // 	VFMSUB132PS m512/m32bcst zmm k zmm
 // 	VFMSUB132PS xmm          xmm xmm
@@ -32371,6 +34685,10 @@ func VFMSUB132PS(ops ...operand.Op) { ctx.VFMSUB132PS(ops...) }
 //
 // Forms:
 //
+// 	VFMSUB132PS.BCST m128/m32bcst xmm xmm
+// 	VFMSUB132PS.BCST m128/m32bcst xmm k xmm
+// 	VFMSUB132PS.BCST m256/m32bcst ymm ymm
+// 	VFMSUB132PS.BCST m256/m32bcst ymm k ymm
 // 	VFMSUB132PS.BCST m512/m32bcst zmm zmm
 // 	VFMSUB132PS.BCST m512/m32bcst zmm k zmm
 // Construct and append a VFMSUB132PS.BCST instruction to the active function.
@@ -32386,6 +34704,10 @@ func (c *Context) VFMSUB132PS_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFMSUB132PS.BCST m128/m32bcst xmm xmm
+// 	VFMSUB132PS.BCST m128/m32bcst xmm k xmm
+// 	VFMSUB132PS.BCST m256/m32bcst ymm ymm
+// 	VFMSUB132PS.BCST m256/m32bcst ymm k ymm
 // 	VFMSUB132PS.BCST m512/m32bcst zmm zmm
 // 	VFMSUB132PS.BCST m512/m32bcst zmm k zmm
 // Construct and append a VFMSUB132PS.BCST instruction to the active function.
@@ -32396,10 +34718,12 @@ func VFMSUB132PS_BCST(ops ...operand.Op) { ctx.VFMSUB132PS_BCST(ops...) }
 //
 // Forms:
 //
+// 	VFMSUB132PS.BCST.Z m128/m32bcst xmm k xmm
+// 	VFMSUB132PS.BCST.Z m256/m32bcst ymm k ymm
 // 	VFMSUB132PS.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VFMSUB132PS.BCST.Z instruction to the active function.
-func (c *Context) VFMSUB132PS_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VFMSUB132PS_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VFMSUB132PS_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFMSUB132PS_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -32410,10 +34734,12 @@ func (c *Context) VFMSUB132PS_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFMSUB132PS.BCST.Z m128/m32bcst xmm k xmm
+// 	VFMSUB132PS.BCST.Z m256/m32bcst ymm k ymm
 // 	VFMSUB132PS.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VFMSUB132PS.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VFMSUB132PS_BCST_Z(m, z, k, z1 operand.Op) { ctx.VFMSUB132PS_BCST_Z(m, z, k, z1) }
+func VFMSUB132PS_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VFMSUB132PS_BCST_Z(m, xyz, k, xyz1) }
 
 // VFMSUB132PS_RD_SAE: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
@@ -32611,11 +34937,15 @@ func VFMSUB132PS_RZ_SAE_Z(z, z1, k, z2 operand.Op) { ctx.VFMSUB132PS_RZ_SAE_Z(z,
 //
 // Forms:
 //
+// 	VFMSUB132PS.Z m128/m32bcst xmm k xmm
+// 	VFMSUB132PS.Z xmm          xmm k xmm
+// 	VFMSUB132PS.Z m256/m32bcst ymm k ymm
+// 	VFMSUB132PS.Z ymm          ymm k ymm
 // 	VFMSUB132PS.Z m512/m32bcst zmm k zmm
 // 	VFMSUB132PS.Z zmm          zmm k zmm
 // Construct and append a VFMSUB132PS.Z instruction to the active function.
-func (c *Context) VFMSUB132PS_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VFMSUB132PS_Z(mz, z, k, z1); err == nil {
+func (c *Context) VFMSUB132PS_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFMSUB132PS_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -32626,11 +34956,15 @@ func (c *Context) VFMSUB132PS_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFMSUB132PS.Z m128/m32bcst xmm k xmm
+// 	VFMSUB132PS.Z xmm          xmm k xmm
+// 	VFMSUB132PS.Z m256/m32bcst ymm k ymm
+// 	VFMSUB132PS.Z ymm          ymm k ymm
 // 	VFMSUB132PS.Z m512/m32bcst zmm k zmm
 // 	VFMSUB132PS.Z zmm          zmm k zmm
 // Construct and append a VFMSUB132PS.Z instruction to the active function.
 // Operates on the global context.
-func VFMSUB132PS_Z(mz, z, k, z1 operand.Op) { ctx.VFMSUB132PS_Z(mz, z, k, z1) }
+func VFMSUB132PS_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VFMSUB132PS_Z(mxyz, xyz, k, xyz1) }
 
 // VFMSUB132SD: Fused Multiply-Subtract of Scalar Double-Precision Floating-Point Values.
 //
@@ -33136,6 +35470,14 @@ func VFMSUB132SS_Z(mx, x, k, x1 operand.Op) { ctx.VFMSUB132SS_Z(mx, x, k, x1) }
 //
 // Forms:
 //
+// 	VFMSUB213PD m128/m64bcst xmm xmm
+// 	VFMSUB213PD m128/m64bcst xmm k xmm
+// 	VFMSUB213PD xmm          xmm xmm
+// 	VFMSUB213PD xmm          xmm k xmm
+// 	VFMSUB213PD m256/m64bcst ymm ymm
+// 	VFMSUB213PD m256/m64bcst ymm k ymm
+// 	VFMSUB213PD ymm          ymm ymm
+// 	VFMSUB213PD ymm          ymm k ymm
 // 	VFMSUB213PD m512/m64bcst zmm zmm
 // 	VFMSUB213PD m512/m64bcst zmm k zmm
 // 	VFMSUB213PD xmm          xmm xmm
@@ -33157,6 +35499,14 @@ func (c *Context) VFMSUB213PD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFMSUB213PD m128/m64bcst xmm xmm
+// 	VFMSUB213PD m128/m64bcst xmm k xmm
+// 	VFMSUB213PD xmm          xmm xmm
+// 	VFMSUB213PD xmm          xmm k xmm
+// 	VFMSUB213PD m256/m64bcst ymm ymm
+// 	VFMSUB213PD m256/m64bcst ymm k ymm
+// 	VFMSUB213PD ymm          ymm ymm
+// 	VFMSUB213PD ymm          ymm k ymm
 // 	VFMSUB213PD m512/m64bcst zmm zmm
 // 	VFMSUB213PD m512/m64bcst zmm k zmm
 // 	VFMSUB213PD xmm          xmm xmm
@@ -33173,6 +35523,10 @@ func VFMSUB213PD(ops ...operand.Op) { ctx.VFMSUB213PD(ops...) }
 //
 // Forms:
 //
+// 	VFMSUB213PD.BCST m128/m64bcst xmm xmm
+// 	VFMSUB213PD.BCST m128/m64bcst xmm k xmm
+// 	VFMSUB213PD.BCST m256/m64bcst ymm ymm
+// 	VFMSUB213PD.BCST m256/m64bcst ymm k ymm
 // 	VFMSUB213PD.BCST m512/m64bcst zmm zmm
 // 	VFMSUB213PD.BCST m512/m64bcst zmm k zmm
 // Construct and append a VFMSUB213PD.BCST instruction to the active function.
@@ -33188,6 +35542,10 @@ func (c *Context) VFMSUB213PD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFMSUB213PD.BCST m128/m64bcst xmm xmm
+// 	VFMSUB213PD.BCST m128/m64bcst xmm k xmm
+// 	VFMSUB213PD.BCST m256/m64bcst ymm ymm
+// 	VFMSUB213PD.BCST m256/m64bcst ymm k ymm
 // 	VFMSUB213PD.BCST m512/m64bcst zmm zmm
 // 	VFMSUB213PD.BCST m512/m64bcst zmm k zmm
 // Construct and append a VFMSUB213PD.BCST instruction to the active function.
@@ -33198,10 +35556,12 @@ func VFMSUB213PD_BCST(ops ...operand.Op) { ctx.VFMSUB213PD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VFMSUB213PD.BCST.Z m128/m64bcst xmm k xmm
+// 	VFMSUB213PD.BCST.Z m256/m64bcst ymm k ymm
 // 	VFMSUB213PD.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VFMSUB213PD.BCST.Z instruction to the active function.
-func (c *Context) VFMSUB213PD_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VFMSUB213PD_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VFMSUB213PD_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFMSUB213PD_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -33212,10 +35572,12 @@ func (c *Context) VFMSUB213PD_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFMSUB213PD.BCST.Z m128/m64bcst xmm k xmm
+// 	VFMSUB213PD.BCST.Z m256/m64bcst ymm k ymm
 // 	VFMSUB213PD.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VFMSUB213PD.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VFMSUB213PD_BCST_Z(m, z, k, z1 operand.Op) { ctx.VFMSUB213PD_BCST_Z(m, z, k, z1) }
+func VFMSUB213PD_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VFMSUB213PD_BCST_Z(m, xyz, k, xyz1) }
 
 // VFMSUB213PD_RD_SAE: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
@@ -33413,11 +35775,15 @@ func VFMSUB213PD_RZ_SAE_Z(z, z1, k, z2 operand.Op) { ctx.VFMSUB213PD_RZ_SAE_Z(z,
 //
 // Forms:
 //
+// 	VFMSUB213PD.Z m128/m64bcst xmm k xmm
+// 	VFMSUB213PD.Z xmm          xmm k xmm
+// 	VFMSUB213PD.Z m256/m64bcst ymm k ymm
+// 	VFMSUB213PD.Z ymm          ymm k ymm
 // 	VFMSUB213PD.Z m512/m64bcst zmm k zmm
 // 	VFMSUB213PD.Z zmm          zmm k zmm
 // Construct and append a VFMSUB213PD.Z instruction to the active function.
-func (c *Context) VFMSUB213PD_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VFMSUB213PD_Z(mz, z, k, z1); err == nil {
+func (c *Context) VFMSUB213PD_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFMSUB213PD_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -33428,16 +35794,28 @@ func (c *Context) VFMSUB213PD_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFMSUB213PD.Z m128/m64bcst xmm k xmm
+// 	VFMSUB213PD.Z xmm          xmm k xmm
+// 	VFMSUB213PD.Z m256/m64bcst ymm k ymm
+// 	VFMSUB213PD.Z ymm          ymm k ymm
 // 	VFMSUB213PD.Z m512/m64bcst zmm k zmm
 // 	VFMSUB213PD.Z zmm          zmm k zmm
 // Construct and append a VFMSUB213PD.Z instruction to the active function.
 // Operates on the global context.
-func VFMSUB213PD_Z(mz, z, k, z1 operand.Op) { ctx.VFMSUB213PD_Z(mz, z, k, z1) }
+func VFMSUB213PD_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VFMSUB213PD_Z(mxyz, xyz, k, xyz1) }
 
 // VFMSUB213PS: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values.
 //
 // Forms:
 //
+// 	VFMSUB213PS m128/m32bcst xmm xmm
+// 	VFMSUB213PS m128/m32bcst xmm k xmm
+// 	VFMSUB213PS xmm          xmm xmm
+// 	VFMSUB213PS xmm          xmm k xmm
+// 	VFMSUB213PS m256/m32bcst ymm ymm
+// 	VFMSUB213PS m256/m32bcst ymm k ymm
+// 	VFMSUB213PS ymm          ymm ymm
+// 	VFMSUB213PS ymm          ymm k ymm
 // 	VFMSUB213PS m512/m32bcst zmm zmm
 // 	VFMSUB213PS m512/m32bcst zmm k zmm
 // 	VFMSUB213PS xmm          xmm xmm
@@ -33459,6 +35837,14 @@ func (c *Context) VFMSUB213PS(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFMSUB213PS m128/m32bcst xmm xmm
+// 	VFMSUB213PS m128/m32bcst xmm k xmm
+// 	VFMSUB213PS xmm          xmm xmm
+// 	VFMSUB213PS xmm          xmm k xmm
+// 	VFMSUB213PS m256/m32bcst ymm ymm
+// 	VFMSUB213PS m256/m32bcst ymm k ymm
+// 	VFMSUB213PS ymm          ymm ymm
+// 	VFMSUB213PS ymm          ymm k ymm
 // 	VFMSUB213PS m512/m32bcst zmm zmm
 // 	VFMSUB213PS m512/m32bcst zmm k zmm
 // 	VFMSUB213PS xmm          xmm xmm
@@ -33475,6 +35861,10 @@ func VFMSUB213PS(ops ...operand.Op) { ctx.VFMSUB213PS(ops...) }
 //
 // Forms:
 //
+// 	VFMSUB213PS.BCST m128/m32bcst xmm xmm
+// 	VFMSUB213PS.BCST m128/m32bcst xmm k xmm
+// 	VFMSUB213PS.BCST m256/m32bcst ymm ymm
+// 	VFMSUB213PS.BCST m256/m32bcst ymm k ymm
 // 	VFMSUB213PS.BCST m512/m32bcst zmm zmm
 // 	VFMSUB213PS.BCST m512/m32bcst zmm k zmm
 // Construct and append a VFMSUB213PS.BCST instruction to the active function.
@@ -33490,6 +35880,10 @@ func (c *Context) VFMSUB213PS_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFMSUB213PS.BCST m128/m32bcst xmm xmm
+// 	VFMSUB213PS.BCST m128/m32bcst xmm k xmm
+// 	VFMSUB213PS.BCST m256/m32bcst ymm ymm
+// 	VFMSUB213PS.BCST m256/m32bcst ymm k ymm
 // 	VFMSUB213PS.BCST m512/m32bcst zmm zmm
 // 	VFMSUB213PS.BCST m512/m32bcst zmm k zmm
 // Construct and append a VFMSUB213PS.BCST instruction to the active function.
@@ -33500,10 +35894,12 @@ func VFMSUB213PS_BCST(ops ...operand.Op) { ctx.VFMSUB213PS_BCST(ops...) }
 //
 // Forms:
 //
+// 	VFMSUB213PS.BCST.Z m128/m32bcst xmm k xmm
+// 	VFMSUB213PS.BCST.Z m256/m32bcst ymm k ymm
 // 	VFMSUB213PS.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VFMSUB213PS.BCST.Z instruction to the active function.
-func (c *Context) VFMSUB213PS_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VFMSUB213PS_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VFMSUB213PS_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFMSUB213PS_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -33514,10 +35910,12 @@ func (c *Context) VFMSUB213PS_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFMSUB213PS.BCST.Z m128/m32bcst xmm k xmm
+// 	VFMSUB213PS.BCST.Z m256/m32bcst ymm k ymm
 // 	VFMSUB213PS.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VFMSUB213PS.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VFMSUB213PS_BCST_Z(m, z, k, z1 operand.Op) { ctx.VFMSUB213PS_BCST_Z(m, z, k, z1) }
+func VFMSUB213PS_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VFMSUB213PS_BCST_Z(m, xyz, k, xyz1) }
 
 // VFMSUB213PS_RD_SAE: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
@@ -33715,11 +36113,15 @@ func VFMSUB213PS_RZ_SAE_Z(z, z1, k, z2 operand.Op) { ctx.VFMSUB213PS_RZ_SAE_Z(z,
 //
 // Forms:
 //
+// 	VFMSUB213PS.Z m128/m32bcst xmm k xmm
+// 	VFMSUB213PS.Z xmm          xmm k xmm
+// 	VFMSUB213PS.Z m256/m32bcst ymm k ymm
+// 	VFMSUB213PS.Z ymm          ymm k ymm
 // 	VFMSUB213PS.Z m512/m32bcst zmm k zmm
 // 	VFMSUB213PS.Z zmm          zmm k zmm
 // Construct and append a VFMSUB213PS.Z instruction to the active function.
-func (c *Context) VFMSUB213PS_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VFMSUB213PS_Z(mz, z, k, z1); err == nil {
+func (c *Context) VFMSUB213PS_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFMSUB213PS_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -33730,11 +36132,15 @@ func (c *Context) VFMSUB213PS_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFMSUB213PS.Z m128/m32bcst xmm k xmm
+// 	VFMSUB213PS.Z xmm          xmm k xmm
+// 	VFMSUB213PS.Z m256/m32bcst ymm k ymm
+// 	VFMSUB213PS.Z ymm          ymm k ymm
 // 	VFMSUB213PS.Z m512/m32bcst zmm k zmm
 // 	VFMSUB213PS.Z zmm          zmm k zmm
 // Construct and append a VFMSUB213PS.Z instruction to the active function.
 // Operates on the global context.
-func VFMSUB213PS_Z(mz, z, k, z1 operand.Op) { ctx.VFMSUB213PS_Z(mz, z, k, z1) }
+func VFMSUB213PS_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VFMSUB213PS_Z(mxyz, xyz, k, xyz1) }
 
 // VFMSUB213SD: Fused Multiply-Subtract of Scalar Double-Precision Floating-Point Values.
 //
@@ -34240,6 +36646,14 @@ func VFMSUB213SS_Z(mx, x, k, x1 operand.Op) { ctx.VFMSUB213SS_Z(mx, x, k, x1) }
 //
 // Forms:
 //
+// 	VFMSUB231PD m128/m64bcst xmm xmm
+// 	VFMSUB231PD m128/m64bcst xmm k xmm
+// 	VFMSUB231PD xmm          xmm xmm
+// 	VFMSUB231PD xmm          xmm k xmm
+// 	VFMSUB231PD m256/m64bcst ymm ymm
+// 	VFMSUB231PD m256/m64bcst ymm k ymm
+// 	VFMSUB231PD ymm          ymm ymm
+// 	VFMSUB231PD ymm          ymm k ymm
 // 	VFMSUB231PD m512/m64bcst zmm zmm
 // 	VFMSUB231PD m512/m64bcst zmm k zmm
 // 	VFMSUB231PD xmm          xmm xmm
@@ -34261,6 +36675,14 @@ func (c *Context) VFMSUB231PD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFMSUB231PD m128/m64bcst xmm xmm
+// 	VFMSUB231PD m128/m64bcst xmm k xmm
+// 	VFMSUB231PD xmm          xmm xmm
+// 	VFMSUB231PD xmm          xmm k xmm
+// 	VFMSUB231PD m256/m64bcst ymm ymm
+// 	VFMSUB231PD m256/m64bcst ymm k ymm
+// 	VFMSUB231PD ymm          ymm ymm
+// 	VFMSUB231PD ymm          ymm k ymm
 // 	VFMSUB231PD m512/m64bcst zmm zmm
 // 	VFMSUB231PD m512/m64bcst zmm k zmm
 // 	VFMSUB231PD xmm          xmm xmm
@@ -34277,6 +36699,10 @@ func VFMSUB231PD(ops ...operand.Op) { ctx.VFMSUB231PD(ops...) }
 //
 // Forms:
 //
+// 	VFMSUB231PD.BCST m128/m64bcst xmm xmm
+// 	VFMSUB231PD.BCST m128/m64bcst xmm k xmm
+// 	VFMSUB231PD.BCST m256/m64bcst ymm ymm
+// 	VFMSUB231PD.BCST m256/m64bcst ymm k ymm
 // 	VFMSUB231PD.BCST m512/m64bcst zmm zmm
 // 	VFMSUB231PD.BCST m512/m64bcst zmm k zmm
 // Construct and append a VFMSUB231PD.BCST instruction to the active function.
@@ -34292,6 +36718,10 @@ func (c *Context) VFMSUB231PD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFMSUB231PD.BCST m128/m64bcst xmm xmm
+// 	VFMSUB231PD.BCST m128/m64bcst xmm k xmm
+// 	VFMSUB231PD.BCST m256/m64bcst ymm ymm
+// 	VFMSUB231PD.BCST m256/m64bcst ymm k ymm
 // 	VFMSUB231PD.BCST m512/m64bcst zmm zmm
 // 	VFMSUB231PD.BCST m512/m64bcst zmm k zmm
 // Construct and append a VFMSUB231PD.BCST instruction to the active function.
@@ -34302,10 +36732,12 @@ func VFMSUB231PD_BCST(ops ...operand.Op) { ctx.VFMSUB231PD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VFMSUB231PD.BCST.Z m128/m64bcst xmm k xmm
+// 	VFMSUB231PD.BCST.Z m256/m64bcst ymm k ymm
 // 	VFMSUB231PD.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VFMSUB231PD.BCST.Z instruction to the active function.
-func (c *Context) VFMSUB231PD_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VFMSUB231PD_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VFMSUB231PD_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFMSUB231PD_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -34316,10 +36748,12 @@ func (c *Context) VFMSUB231PD_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFMSUB231PD.BCST.Z m128/m64bcst xmm k xmm
+// 	VFMSUB231PD.BCST.Z m256/m64bcst ymm k ymm
 // 	VFMSUB231PD.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VFMSUB231PD.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VFMSUB231PD_BCST_Z(m, z, k, z1 operand.Op) { ctx.VFMSUB231PD_BCST_Z(m, z, k, z1) }
+func VFMSUB231PD_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VFMSUB231PD_BCST_Z(m, xyz, k, xyz1) }
 
 // VFMSUB231PD_RD_SAE: Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
@@ -34517,11 +36951,15 @@ func VFMSUB231PD_RZ_SAE_Z(z, z1, k, z2 operand.Op) { ctx.VFMSUB231PD_RZ_SAE_Z(z,
 //
 // Forms:
 //
+// 	VFMSUB231PD.Z m128/m64bcst xmm k xmm
+// 	VFMSUB231PD.Z xmm          xmm k xmm
+// 	VFMSUB231PD.Z m256/m64bcst ymm k ymm
+// 	VFMSUB231PD.Z ymm          ymm k ymm
 // 	VFMSUB231PD.Z m512/m64bcst zmm k zmm
 // 	VFMSUB231PD.Z zmm          zmm k zmm
 // Construct and append a VFMSUB231PD.Z instruction to the active function.
-func (c *Context) VFMSUB231PD_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VFMSUB231PD_Z(mz, z, k, z1); err == nil {
+func (c *Context) VFMSUB231PD_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFMSUB231PD_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -34532,16 +36970,28 @@ func (c *Context) VFMSUB231PD_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFMSUB231PD.Z m128/m64bcst xmm k xmm
+// 	VFMSUB231PD.Z xmm          xmm k xmm
+// 	VFMSUB231PD.Z m256/m64bcst ymm k ymm
+// 	VFMSUB231PD.Z ymm          ymm k ymm
 // 	VFMSUB231PD.Z m512/m64bcst zmm k zmm
 // 	VFMSUB231PD.Z zmm          zmm k zmm
 // Construct and append a VFMSUB231PD.Z instruction to the active function.
 // Operates on the global context.
-func VFMSUB231PD_Z(mz, z, k, z1 operand.Op) { ctx.VFMSUB231PD_Z(mz, z, k, z1) }
+func VFMSUB231PD_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VFMSUB231PD_Z(mxyz, xyz, k, xyz1) }
 
 // VFMSUB231PS: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values.
 //
 // Forms:
 //
+// 	VFMSUB231PS m128/m32bcst xmm xmm
+// 	VFMSUB231PS m128/m32bcst xmm k xmm
+// 	VFMSUB231PS xmm          xmm xmm
+// 	VFMSUB231PS xmm          xmm k xmm
+// 	VFMSUB231PS m256/m32bcst ymm ymm
+// 	VFMSUB231PS m256/m32bcst ymm k ymm
+// 	VFMSUB231PS ymm          ymm ymm
+// 	VFMSUB231PS ymm          ymm k ymm
 // 	VFMSUB231PS m512/m32bcst zmm zmm
 // 	VFMSUB231PS m512/m32bcst zmm k zmm
 // 	VFMSUB231PS xmm          xmm xmm
@@ -34563,6 +37013,14 @@ func (c *Context) VFMSUB231PS(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFMSUB231PS m128/m32bcst xmm xmm
+// 	VFMSUB231PS m128/m32bcst xmm k xmm
+// 	VFMSUB231PS xmm          xmm xmm
+// 	VFMSUB231PS xmm          xmm k xmm
+// 	VFMSUB231PS m256/m32bcst ymm ymm
+// 	VFMSUB231PS m256/m32bcst ymm k ymm
+// 	VFMSUB231PS ymm          ymm ymm
+// 	VFMSUB231PS ymm          ymm k ymm
 // 	VFMSUB231PS m512/m32bcst zmm zmm
 // 	VFMSUB231PS m512/m32bcst zmm k zmm
 // 	VFMSUB231PS xmm          xmm xmm
@@ -34579,6 +37037,10 @@ func VFMSUB231PS(ops ...operand.Op) { ctx.VFMSUB231PS(ops...) }
 //
 // Forms:
 //
+// 	VFMSUB231PS.BCST m128/m32bcst xmm xmm
+// 	VFMSUB231PS.BCST m128/m32bcst xmm k xmm
+// 	VFMSUB231PS.BCST m256/m32bcst ymm ymm
+// 	VFMSUB231PS.BCST m256/m32bcst ymm k ymm
 // 	VFMSUB231PS.BCST m512/m32bcst zmm zmm
 // 	VFMSUB231PS.BCST m512/m32bcst zmm k zmm
 // Construct and append a VFMSUB231PS.BCST instruction to the active function.
@@ -34594,6 +37056,10 @@ func (c *Context) VFMSUB231PS_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFMSUB231PS.BCST m128/m32bcst xmm xmm
+// 	VFMSUB231PS.BCST m128/m32bcst xmm k xmm
+// 	VFMSUB231PS.BCST m256/m32bcst ymm ymm
+// 	VFMSUB231PS.BCST m256/m32bcst ymm k ymm
 // 	VFMSUB231PS.BCST m512/m32bcst zmm zmm
 // 	VFMSUB231PS.BCST m512/m32bcst zmm k zmm
 // Construct and append a VFMSUB231PS.BCST instruction to the active function.
@@ -34604,10 +37070,12 @@ func VFMSUB231PS_BCST(ops ...operand.Op) { ctx.VFMSUB231PS_BCST(ops...) }
 //
 // Forms:
 //
+// 	VFMSUB231PS.BCST.Z m128/m32bcst xmm k xmm
+// 	VFMSUB231PS.BCST.Z m256/m32bcst ymm k ymm
 // 	VFMSUB231PS.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VFMSUB231PS.BCST.Z instruction to the active function.
-func (c *Context) VFMSUB231PS_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VFMSUB231PS_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VFMSUB231PS_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFMSUB231PS_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -34618,10 +37086,12 @@ func (c *Context) VFMSUB231PS_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFMSUB231PS.BCST.Z m128/m32bcst xmm k xmm
+// 	VFMSUB231PS.BCST.Z m256/m32bcst ymm k ymm
 // 	VFMSUB231PS.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VFMSUB231PS.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VFMSUB231PS_BCST_Z(m, z, k, z1 operand.Op) { ctx.VFMSUB231PS_BCST_Z(m, z, k, z1) }
+func VFMSUB231PS_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VFMSUB231PS_BCST_Z(m, xyz, k, xyz1) }
 
 // VFMSUB231PS_RD_SAE: Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
@@ -34819,11 +37289,15 @@ func VFMSUB231PS_RZ_SAE_Z(z, z1, k, z2 operand.Op) { ctx.VFMSUB231PS_RZ_SAE_Z(z,
 //
 // Forms:
 //
+// 	VFMSUB231PS.Z m128/m32bcst xmm k xmm
+// 	VFMSUB231PS.Z xmm          xmm k xmm
+// 	VFMSUB231PS.Z m256/m32bcst ymm k ymm
+// 	VFMSUB231PS.Z ymm          ymm k ymm
 // 	VFMSUB231PS.Z m512/m32bcst zmm k zmm
 // 	VFMSUB231PS.Z zmm          zmm k zmm
 // Construct and append a VFMSUB231PS.Z instruction to the active function.
-func (c *Context) VFMSUB231PS_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VFMSUB231PS_Z(mz, z, k, z1); err == nil {
+func (c *Context) VFMSUB231PS_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFMSUB231PS_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -34834,11 +37308,15 @@ func (c *Context) VFMSUB231PS_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFMSUB231PS.Z m128/m32bcst xmm k xmm
+// 	VFMSUB231PS.Z xmm          xmm k xmm
+// 	VFMSUB231PS.Z m256/m32bcst ymm k ymm
+// 	VFMSUB231PS.Z ymm          ymm k ymm
 // 	VFMSUB231PS.Z m512/m32bcst zmm k zmm
 // 	VFMSUB231PS.Z zmm          zmm k zmm
 // Construct and append a VFMSUB231PS.Z instruction to the active function.
 // Operates on the global context.
-func VFMSUB231PS_Z(mz, z, k, z1 operand.Op) { ctx.VFMSUB231PS_Z(mz, z, k, z1) }
+func VFMSUB231PS_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VFMSUB231PS_Z(mxyz, xyz, k, xyz1) }
 
 // VFMSUB231SD: Fused Multiply-Subtract of Scalar Double-Precision Floating-Point Values.
 //
@@ -35344,6 +37822,14 @@ func VFMSUB231SS_Z(mx, x, k, x1 operand.Op) { ctx.VFMSUB231SS_Z(mx, x, k, x1) }
 //
 // Forms:
 //
+// 	VFMSUBADD132PD m128/m64bcst xmm xmm
+// 	VFMSUBADD132PD m128/m64bcst xmm k xmm
+// 	VFMSUBADD132PD xmm          xmm xmm
+// 	VFMSUBADD132PD xmm          xmm k xmm
+// 	VFMSUBADD132PD m256/m64bcst ymm ymm
+// 	VFMSUBADD132PD m256/m64bcst ymm k ymm
+// 	VFMSUBADD132PD ymm          ymm ymm
+// 	VFMSUBADD132PD ymm          ymm k ymm
 // 	VFMSUBADD132PD m512/m64bcst zmm zmm
 // 	VFMSUBADD132PD m512/m64bcst zmm k zmm
 // 	VFMSUBADD132PD xmm          xmm xmm
@@ -35365,6 +37851,14 @@ func (c *Context) VFMSUBADD132PD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFMSUBADD132PD m128/m64bcst xmm xmm
+// 	VFMSUBADD132PD m128/m64bcst xmm k xmm
+// 	VFMSUBADD132PD xmm          xmm xmm
+// 	VFMSUBADD132PD xmm          xmm k xmm
+// 	VFMSUBADD132PD m256/m64bcst ymm ymm
+// 	VFMSUBADD132PD m256/m64bcst ymm k ymm
+// 	VFMSUBADD132PD ymm          ymm ymm
+// 	VFMSUBADD132PD ymm          ymm k ymm
 // 	VFMSUBADD132PD m512/m64bcst zmm zmm
 // 	VFMSUBADD132PD m512/m64bcst zmm k zmm
 // 	VFMSUBADD132PD xmm          xmm xmm
@@ -35381,6 +37875,10 @@ func VFMSUBADD132PD(ops ...operand.Op) { ctx.VFMSUBADD132PD(ops...) }
 //
 // Forms:
 //
+// 	VFMSUBADD132PD.BCST m128/m64bcst xmm xmm
+// 	VFMSUBADD132PD.BCST m128/m64bcst xmm k xmm
+// 	VFMSUBADD132PD.BCST m256/m64bcst ymm ymm
+// 	VFMSUBADD132PD.BCST m256/m64bcst ymm k ymm
 // 	VFMSUBADD132PD.BCST m512/m64bcst zmm zmm
 // 	VFMSUBADD132PD.BCST m512/m64bcst zmm k zmm
 // Construct and append a VFMSUBADD132PD.BCST instruction to the active function.
@@ -35396,6 +37894,10 @@ func (c *Context) VFMSUBADD132PD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFMSUBADD132PD.BCST m128/m64bcst xmm xmm
+// 	VFMSUBADD132PD.BCST m128/m64bcst xmm k xmm
+// 	VFMSUBADD132PD.BCST m256/m64bcst ymm ymm
+// 	VFMSUBADD132PD.BCST m256/m64bcst ymm k ymm
 // 	VFMSUBADD132PD.BCST m512/m64bcst zmm zmm
 // 	VFMSUBADD132PD.BCST m512/m64bcst zmm k zmm
 // Construct and append a VFMSUBADD132PD.BCST instruction to the active function.
@@ -35406,10 +37908,12 @@ func VFMSUBADD132PD_BCST(ops ...operand.Op) { ctx.VFMSUBADD132PD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VFMSUBADD132PD.BCST.Z m128/m64bcst xmm k xmm
+// 	VFMSUBADD132PD.BCST.Z m256/m64bcst ymm k ymm
 // 	VFMSUBADD132PD.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VFMSUBADD132PD.BCST.Z instruction to the active function.
-func (c *Context) VFMSUBADD132PD_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VFMSUBADD132PD_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VFMSUBADD132PD_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFMSUBADD132PD_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -35420,10 +37924,12 @@ func (c *Context) VFMSUBADD132PD_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFMSUBADD132PD.BCST.Z m128/m64bcst xmm k xmm
+// 	VFMSUBADD132PD.BCST.Z m256/m64bcst ymm k ymm
 // 	VFMSUBADD132PD.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VFMSUBADD132PD.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VFMSUBADD132PD_BCST_Z(m, z, k, z1 operand.Op) { ctx.VFMSUBADD132PD_BCST_Z(m, z, k, z1) }
+func VFMSUBADD132PD_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VFMSUBADD132PD_BCST_Z(m, xyz, k, xyz1) }
 
 // VFMSUBADD132PD_RD_SAE: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
@@ -35621,11 +38127,15 @@ func VFMSUBADD132PD_RZ_SAE_Z(z, z1, k, z2 operand.Op) { ctx.VFMSUBADD132PD_RZ_SA
 //
 // Forms:
 //
+// 	VFMSUBADD132PD.Z m128/m64bcst xmm k xmm
+// 	VFMSUBADD132PD.Z xmm          xmm k xmm
+// 	VFMSUBADD132PD.Z m256/m64bcst ymm k ymm
+// 	VFMSUBADD132PD.Z ymm          ymm k ymm
 // 	VFMSUBADD132PD.Z m512/m64bcst zmm k zmm
 // 	VFMSUBADD132PD.Z zmm          zmm k zmm
 // Construct and append a VFMSUBADD132PD.Z instruction to the active function.
-func (c *Context) VFMSUBADD132PD_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VFMSUBADD132PD_Z(mz, z, k, z1); err == nil {
+func (c *Context) VFMSUBADD132PD_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFMSUBADD132PD_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -35636,16 +38146,28 @@ func (c *Context) VFMSUBADD132PD_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFMSUBADD132PD.Z m128/m64bcst xmm k xmm
+// 	VFMSUBADD132PD.Z xmm          xmm k xmm
+// 	VFMSUBADD132PD.Z m256/m64bcst ymm k ymm
+// 	VFMSUBADD132PD.Z ymm          ymm k ymm
 // 	VFMSUBADD132PD.Z m512/m64bcst zmm k zmm
 // 	VFMSUBADD132PD.Z zmm          zmm k zmm
 // Construct and append a VFMSUBADD132PD.Z instruction to the active function.
 // Operates on the global context.
-func VFMSUBADD132PD_Z(mz, z, k, z1 operand.Op) { ctx.VFMSUBADD132PD_Z(mz, z, k, z1) }
+func VFMSUBADD132PD_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VFMSUBADD132PD_Z(mxyz, xyz, k, xyz1) }
 
 // VFMSUBADD132PS: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values.
 //
 // Forms:
 //
+// 	VFMSUBADD132PS m128/m32bcst xmm xmm
+// 	VFMSUBADD132PS m128/m32bcst xmm k xmm
+// 	VFMSUBADD132PS xmm          xmm xmm
+// 	VFMSUBADD132PS xmm          xmm k xmm
+// 	VFMSUBADD132PS m256/m32bcst ymm ymm
+// 	VFMSUBADD132PS m256/m32bcst ymm k ymm
+// 	VFMSUBADD132PS ymm          ymm ymm
+// 	VFMSUBADD132PS ymm          ymm k ymm
 // 	VFMSUBADD132PS m512/m32bcst zmm zmm
 // 	VFMSUBADD132PS m512/m32bcst zmm k zmm
 // 	VFMSUBADD132PS xmm          xmm xmm
@@ -35667,6 +38189,14 @@ func (c *Context) VFMSUBADD132PS(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFMSUBADD132PS m128/m32bcst xmm xmm
+// 	VFMSUBADD132PS m128/m32bcst xmm k xmm
+// 	VFMSUBADD132PS xmm          xmm xmm
+// 	VFMSUBADD132PS xmm          xmm k xmm
+// 	VFMSUBADD132PS m256/m32bcst ymm ymm
+// 	VFMSUBADD132PS m256/m32bcst ymm k ymm
+// 	VFMSUBADD132PS ymm          ymm ymm
+// 	VFMSUBADD132PS ymm          ymm k ymm
 // 	VFMSUBADD132PS m512/m32bcst zmm zmm
 // 	VFMSUBADD132PS m512/m32bcst zmm k zmm
 // 	VFMSUBADD132PS xmm          xmm xmm
@@ -35683,6 +38213,10 @@ func VFMSUBADD132PS(ops ...operand.Op) { ctx.VFMSUBADD132PS(ops...) }
 //
 // Forms:
 //
+// 	VFMSUBADD132PS.BCST m128/m32bcst xmm xmm
+// 	VFMSUBADD132PS.BCST m128/m32bcst xmm k xmm
+// 	VFMSUBADD132PS.BCST m256/m32bcst ymm ymm
+// 	VFMSUBADD132PS.BCST m256/m32bcst ymm k ymm
 // 	VFMSUBADD132PS.BCST m512/m32bcst zmm zmm
 // 	VFMSUBADD132PS.BCST m512/m32bcst zmm k zmm
 // Construct and append a VFMSUBADD132PS.BCST instruction to the active function.
@@ -35698,6 +38232,10 @@ func (c *Context) VFMSUBADD132PS_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFMSUBADD132PS.BCST m128/m32bcst xmm xmm
+// 	VFMSUBADD132PS.BCST m128/m32bcst xmm k xmm
+// 	VFMSUBADD132PS.BCST m256/m32bcst ymm ymm
+// 	VFMSUBADD132PS.BCST m256/m32bcst ymm k ymm
 // 	VFMSUBADD132PS.BCST m512/m32bcst zmm zmm
 // 	VFMSUBADD132PS.BCST m512/m32bcst zmm k zmm
 // Construct and append a VFMSUBADD132PS.BCST instruction to the active function.
@@ -35708,10 +38246,12 @@ func VFMSUBADD132PS_BCST(ops ...operand.Op) { ctx.VFMSUBADD132PS_BCST(ops...) }
 //
 // Forms:
 //
+// 	VFMSUBADD132PS.BCST.Z m128/m32bcst xmm k xmm
+// 	VFMSUBADD132PS.BCST.Z m256/m32bcst ymm k ymm
 // 	VFMSUBADD132PS.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VFMSUBADD132PS.BCST.Z instruction to the active function.
-func (c *Context) VFMSUBADD132PS_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VFMSUBADD132PS_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VFMSUBADD132PS_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFMSUBADD132PS_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -35722,10 +38262,12 @@ func (c *Context) VFMSUBADD132PS_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFMSUBADD132PS.BCST.Z m128/m32bcst xmm k xmm
+// 	VFMSUBADD132PS.BCST.Z m256/m32bcst ymm k ymm
 // 	VFMSUBADD132PS.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VFMSUBADD132PS.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VFMSUBADD132PS_BCST_Z(m, z, k, z1 operand.Op) { ctx.VFMSUBADD132PS_BCST_Z(m, z, k, z1) }
+func VFMSUBADD132PS_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VFMSUBADD132PS_BCST_Z(m, xyz, k, xyz1) }
 
 // VFMSUBADD132PS_RD_SAE: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
@@ -35923,11 +38465,15 @@ func VFMSUBADD132PS_RZ_SAE_Z(z, z1, k, z2 operand.Op) { ctx.VFMSUBADD132PS_RZ_SA
 //
 // Forms:
 //
+// 	VFMSUBADD132PS.Z m128/m32bcst xmm k xmm
+// 	VFMSUBADD132PS.Z xmm          xmm k xmm
+// 	VFMSUBADD132PS.Z m256/m32bcst ymm k ymm
+// 	VFMSUBADD132PS.Z ymm          ymm k ymm
 // 	VFMSUBADD132PS.Z m512/m32bcst zmm k zmm
 // 	VFMSUBADD132PS.Z zmm          zmm k zmm
 // Construct and append a VFMSUBADD132PS.Z instruction to the active function.
-func (c *Context) VFMSUBADD132PS_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VFMSUBADD132PS_Z(mz, z, k, z1); err == nil {
+func (c *Context) VFMSUBADD132PS_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFMSUBADD132PS_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -35938,16 +38484,28 @@ func (c *Context) VFMSUBADD132PS_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFMSUBADD132PS.Z m128/m32bcst xmm k xmm
+// 	VFMSUBADD132PS.Z xmm          xmm k xmm
+// 	VFMSUBADD132PS.Z m256/m32bcst ymm k ymm
+// 	VFMSUBADD132PS.Z ymm          ymm k ymm
 // 	VFMSUBADD132PS.Z m512/m32bcst zmm k zmm
 // 	VFMSUBADD132PS.Z zmm          zmm k zmm
 // Construct and append a VFMSUBADD132PS.Z instruction to the active function.
 // Operates on the global context.
-func VFMSUBADD132PS_Z(mz, z, k, z1 operand.Op) { ctx.VFMSUBADD132PS_Z(mz, z, k, z1) }
+func VFMSUBADD132PS_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VFMSUBADD132PS_Z(mxyz, xyz, k, xyz1) }
 
 // VFMSUBADD213PD: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values.
 //
 // Forms:
 //
+// 	VFMSUBADD213PD m128/m64bcst xmm xmm
+// 	VFMSUBADD213PD m128/m64bcst xmm k xmm
+// 	VFMSUBADD213PD xmm          xmm xmm
+// 	VFMSUBADD213PD xmm          xmm k xmm
+// 	VFMSUBADD213PD m256/m64bcst ymm ymm
+// 	VFMSUBADD213PD m256/m64bcst ymm k ymm
+// 	VFMSUBADD213PD ymm          ymm ymm
+// 	VFMSUBADD213PD ymm          ymm k ymm
 // 	VFMSUBADD213PD m512/m64bcst zmm zmm
 // 	VFMSUBADD213PD m512/m64bcst zmm k zmm
 // 	VFMSUBADD213PD xmm          xmm xmm
@@ -35969,6 +38527,14 @@ func (c *Context) VFMSUBADD213PD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFMSUBADD213PD m128/m64bcst xmm xmm
+// 	VFMSUBADD213PD m128/m64bcst xmm k xmm
+// 	VFMSUBADD213PD xmm          xmm xmm
+// 	VFMSUBADD213PD xmm          xmm k xmm
+// 	VFMSUBADD213PD m256/m64bcst ymm ymm
+// 	VFMSUBADD213PD m256/m64bcst ymm k ymm
+// 	VFMSUBADD213PD ymm          ymm ymm
+// 	VFMSUBADD213PD ymm          ymm k ymm
 // 	VFMSUBADD213PD m512/m64bcst zmm zmm
 // 	VFMSUBADD213PD m512/m64bcst zmm k zmm
 // 	VFMSUBADD213PD xmm          xmm xmm
@@ -35985,6 +38551,10 @@ func VFMSUBADD213PD(ops ...operand.Op) { ctx.VFMSUBADD213PD(ops...) }
 //
 // Forms:
 //
+// 	VFMSUBADD213PD.BCST m128/m64bcst xmm xmm
+// 	VFMSUBADD213PD.BCST m128/m64bcst xmm k xmm
+// 	VFMSUBADD213PD.BCST m256/m64bcst ymm ymm
+// 	VFMSUBADD213PD.BCST m256/m64bcst ymm k ymm
 // 	VFMSUBADD213PD.BCST m512/m64bcst zmm zmm
 // 	VFMSUBADD213PD.BCST m512/m64bcst zmm k zmm
 // Construct and append a VFMSUBADD213PD.BCST instruction to the active function.
@@ -36000,6 +38570,10 @@ func (c *Context) VFMSUBADD213PD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFMSUBADD213PD.BCST m128/m64bcst xmm xmm
+// 	VFMSUBADD213PD.BCST m128/m64bcst xmm k xmm
+// 	VFMSUBADD213PD.BCST m256/m64bcst ymm ymm
+// 	VFMSUBADD213PD.BCST m256/m64bcst ymm k ymm
 // 	VFMSUBADD213PD.BCST m512/m64bcst zmm zmm
 // 	VFMSUBADD213PD.BCST m512/m64bcst zmm k zmm
 // Construct and append a VFMSUBADD213PD.BCST instruction to the active function.
@@ -36010,10 +38584,12 @@ func VFMSUBADD213PD_BCST(ops ...operand.Op) { ctx.VFMSUBADD213PD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VFMSUBADD213PD.BCST.Z m128/m64bcst xmm k xmm
+// 	VFMSUBADD213PD.BCST.Z m256/m64bcst ymm k ymm
 // 	VFMSUBADD213PD.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VFMSUBADD213PD.BCST.Z instruction to the active function.
-func (c *Context) VFMSUBADD213PD_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VFMSUBADD213PD_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VFMSUBADD213PD_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFMSUBADD213PD_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -36024,10 +38600,12 @@ func (c *Context) VFMSUBADD213PD_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFMSUBADD213PD.BCST.Z m128/m64bcst xmm k xmm
+// 	VFMSUBADD213PD.BCST.Z m256/m64bcst ymm k ymm
 // 	VFMSUBADD213PD.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VFMSUBADD213PD.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VFMSUBADD213PD_BCST_Z(m, z, k, z1 operand.Op) { ctx.VFMSUBADD213PD_BCST_Z(m, z, k, z1) }
+func VFMSUBADD213PD_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VFMSUBADD213PD_BCST_Z(m, xyz, k, xyz1) }
 
 // VFMSUBADD213PD_RD_SAE: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
@@ -36225,11 +38803,15 @@ func VFMSUBADD213PD_RZ_SAE_Z(z, z1, k, z2 operand.Op) { ctx.VFMSUBADD213PD_RZ_SA
 //
 // Forms:
 //
+// 	VFMSUBADD213PD.Z m128/m64bcst xmm k xmm
+// 	VFMSUBADD213PD.Z xmm          xmm k xmm
+// 	VFMSUBADD213PD.Z m256/m64bcst ymm k ymm
+// 	VFMSUBADD213PD.Z ymm          ymm k ymm
 // 	VFMSUBADD213PD.Z m512/m64bcst zmm k zmm
 // 	VFMSUBADD213PD.Z zmm          zmm k zmm
 // Construct and append a VFMSUBADD213PD.Z instruction to the active function.
-func (c *Context) VFMSUBADD213PD_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VFMSUBADD213PD_Z(mz, z, k, z1); err == nil {
+func (c *Context) VFMSUBADD213PD_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFMSUBADD213PD_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -36240,16 +38822,28 @@ func (c *Context) VFMSUBADD213PD_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFMSUBADD213PD.Z m128/m64bcst xmm k xmm
+// 	VFMSUBADD213PD.Z xmm          xmm k xmm
+// 	VFMSUBADD213PD.Z m256/m64bcst ymm k ymm
+// 	VFMSUBADD213PD.Z ymm          ymm k ymm
 // 	VFMSUBADD213PD.Z m512/m64bcst zmm k zmm
 // 	VFMSUBADD213PD.Z zmm          zmm k zmm
 // Construct and append a VFMSUBADD213PD.Z instruction to the active function.
 // Operates on the global context.
-func VFMSUBADD213PD_Z(mz, z, k, z1 operand.Op) { ctx.VFMSUBADD213PD_Z(mz, z, k, z1) }
+func VFMSUBADD213PD_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VFMSUBADD213PD_Z(mxyz, xyz, k, xyz1) }
 
 // VFMSUBADD213PS: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values.
 //
 // Forms:
 //
+// 	VFMSUBADD213PS m128/m32bcst xmm xmm
+// 	VFMSUBADD213PS m128/m32bcst xmm k xmm
+// 	VFMSUBADD213PS xmm          xmm xmm
+// 	VFMSUBADD213PS xmm          xmm k xmm
+// 	VFMSUBADD213PS m256/m32bcst ymm ymm
+// 	VFMSUBADD213PS m256/m32bcst ymm k ymm
+// 	VFMSUBADD213PS ymm          ymm ymm
+// 	VFMSUBADD213PS ymm          ymm k ymm
 // 	VFMSUBADD213PS m512/m32bcst zmm zmm
 // 	VFMSUBADD213PS m512/m32bcst zmm k zmm
 // 	VFMSUBADD213PS xmm          xmm xmm
@@ -36271,6 +38865,14 @@ func (c *Context) VFMSUBADD213PS(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFMSUBADD213PS m128/m32bcst xmm xmm
+// 	VFMSUBADD213PS m128/m32bcst xmm k xmm
+// 	VFMSUBADD213PS xmm          xmm xmm
+// 	VFMSUBADD213PS xmm          xmm k xmm
+// 	VFMSUBADD213PS m256/m32bcst ymm ymm
+// 	VFMSUBADD213PS m256/m32bcst ymm k ymm
+// 	VFMSUBADD213PS ymm          ymm ymm
+// 	VFMSUBADD213PS ymm          ymm k ymm
 // 	VFMSUBADD213PS m512/m32bcst zmm zmm
 // 	VFMSUBADD213PS m512/m32bcst zmm k zmm
 // 	VFMSUBADD213PS xmm          xmm xmm
@@ -36287,6 +38889,10 @@ func VFMSUBADD213PS(ops ...operand.Op) { ctx.VFMSUBADD213PS(ops...) }
 //
 // Forms:
 //
+// 	VFMSUBADD213PS.BCST m128/m32bcst xmm xmm
+// 	VFMSUBADD213PS.BCST m128/m32bcst xmm k xmm
+// 	VFMSUBADD213PS.BCST m256/m32bcst ymm ymm
+// 	VFMSUBADD213PS.BCST m256/m32bcst ymm k ymm
 // 	VFMSUBADD213PS.BCST m512/m32bcst zmm zmm
 // 	VFMSUBADD213PS.BCST m512/m32bcst zmm k zmm
 // Construct and append a VFMSUBADD213PS.BCST instruction to the active function.
@@ -36302,6 +38908,10 @@ func (c *Context) VFMSUBADD213PS_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFMSUBADD213PS.BCST m128/m32bcst xmm xmm
+// 	VFMSUBADD213PS.BCST m128/m32bcst xmm k xmm
+// 	VFMSUBADD213PS.BCST m256/m32bcst ymm ymm
+// 	VFMSUBADD213PS.BCST m256/m32bcst ymm k ymm
 // 	VFMSUBADD213PS.BCST m512/m32bcst zmm zmm
 // 	VFMSUBADD213PS.BCST m512/m32bcst zmm k zmm
 // Construct and append a VFMSUBADD213PS.BCST instruction to the active function.
@@ -36312,10 +38922,12 @@ func VFMSUBADD213PS_BCST(ops ...operand.Op) { ctx.VFMSUBADD213PS_BCST(ops...) }
 //
 // Forms:
 //
+// 	VFMSUBADD213PS.BCST.Z m128/m32bcst xmm k xmm
+// 	VFMSUBADD213PS.BCST.Z m256/m32bcst ymm k ymm
 // 	VFMSUBADD213PS.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VFMSUBADD213PS.BCST.Z instruction to the active function.
-func (c *Context) VFMSUBADD213PS_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VFMSUBADD213PS_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VFMSUBADD213PS_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFMSUBADD213PS_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -36326,10 +38938,12 @@ func (c *Context) VFMSUBADD213PS_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFMSUBADD213PS.BCST.Z m128/m32bcst xmm k xmm
+// 	VFMSUBADD213PS.BCST.Z m256/m32bcst ymm k ymm
 // 	VFMSUBADD213PS.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VFMSUBADD213PS.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VFMSUBADD213PS_BCST_Z(m, z, k, z1 operand.Op) { ctx.VFMSUBADD213PS_BCST_Z(m, z, k, z1) }
+func VFMSUBADD213PS_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VFMSUBADD213PS_BCST_Z(m, xyz, k, xyz1) }
 
 // VFMSUBADD213PS_RD_SAE: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
@@ -36527,11 +39141,15 @@ func VFMSUBADD213PS_RZ_SAE_Z(z, z1, k, z2 operand.Op) { ctx.VFMSUBADD213PS_RZ_SA
 //
 // Forms:
 //
+// 	VFMSUBADD213PS.Z m128/m32bcst xmm k xmm
+// 	VFMSUBADD213PS.Z xmm          xmm k xmm
+// 	VFMSUBADD213PS.Z m256/m32bcst ymm k ymm
+// 	VFMSUBADD213PS.Z ymm          ymm k ymm
 // 	VFMSUBADD213PS.Z m512/m32bcst zmm k zmm
 // 	VFMSUBADD213PS.Z zmm          zmm k zmm
 // Construct and append a VFMSUBADD213PS.Z instruction to the active function.
-func (c *Context) VFMSUBADD213PS_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VFMSUBADD213PS_Z(mz, z, k, z1); err == nil {
+func (c *Context) VFMSUBADD213PS_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFMSUBADD213PS_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -36542,16 +39160,28 @@ func (c *Context) VFMSUBADD213PS_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFMSUBADD213PS.Z m128/m32bcst xmm k xmm
+// 	VFMSUBADD213PS.Z xmm          xmm k xmm
+// 	VFMSUBADD213PS.Z m256/m32bcst ymm k ymm
+// 	VFMSUBADD213PS.Z ymm          ymm k ymm
 // 	VFMSUBADD213PS.Z m512/m32bcst zmm k zmm
 // 	VFMSUBADD213PS.Z zmm          zmm k zmm
 // Construct and append a VFMSUBADD213PS.Z instruction to the active function.
 // Operates on the global context.
-func VFMSUBADD213PS_Z(mz, z, k, z1 operand.Op) { ctx.VFMSUBADD213PS_Z(mz, z, k, z1) }
+func VFMSUBADD213PS_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VFMSUBADD213PS_Z(mxyz, xyz, k, xyz1) }
 
 // VFMSUBADD231PD: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values.
 //
 // Forms:
 //
+// 	VFMSUBADD231PD m128/m64bcst xmm xmm
+// 	VFMSUBADD231PD m128/m64bcst xmm k xmm
+// 	VFMSUBADD231PD xmm          xmm xmm
+// 	VFMSUBADD231PD xmm          xmm k xmm
+// 	VFMSUBADD231PD m256/m64bcst ymm ymm
+// 	VFMSUBADD231PD m256/m64bcst ymm k ymm
+// 	VFMSUBADD231PD ymm          ymm ymm
+// 	VFMSUBADD231PD ymm          ymm k ymm
 // 	VFMSUBADD231PD m512/m64bcst zmm zmm
 // 	VFMSUBADD231PD m512/m64bcst zmm k zmm
 // 	VFMSUBADD231PD xmm          xmm xmm
@@ -36573,6 +39203,14 @@ func (c *Context) VFMSUBADD231PD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFMSUBADD231PD m128/m64bcst xmm xmm
+// 	VFMSUBADD231PD m128/m64bcst xmm k xmm
+// 	VFMSUBADD231PD xmm          xmm xmm
+// 	VFMSUBADD231PD xmm          xmm k xmm
+// 	VFMSUBADD231PD m256/m64bcst ymm ymm
+// 	VFMSUBADD231PD m256/m64bcst ymm k ymm
+// 	VFMSUBADD231PD ymm          ymm ymm
+// 	VFMSUBADD231PD ymm          ymm k ymm
 // 	VFMSUBADD231PD m512/m64bcst zmm zmm
 // 	VFMSUBADD231PD m512/m64bcst zmm k zmm
 // 	VFMSUBADD231PD xmm          xmm xmm
@@ -36589,6 +39227,10 @@ func VFMSUBADD231PD(ops ...operand.Op) { ctx.VFMSUBADD231PD(ops...) }
 //
 // Forms:
 //
+// 	VFMSUBADD231PD.BCST m128/m64bcst xmm xmm
+// 	VFMSUBADD231PD.BCST m128/m64bcst xmm k xmm
+// 	VFMSUBADD231PD.BCST m256/m64bcst ymm ymm
+// 	VFMSUBADD231PD.BCST m256/m64bcst ymm k ymm
 // 	VFMSUBADD231PD.BCST m512/m64bcst zmm zmm
 // 	VFMSUBADD231PD.BCST m512/m64bcst zmm k zmm
 // Construct and append a VFMSUBADD231PD.BCST instruction to the active function.
@@ -36604,6 +39246,10 @@ func (c *Context) VFMSUBADD231PD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFMSUBADD231PD.BCST m128/m64bcst xmm xmm
+// 	VFMSUBADD231PD.BCST m128/m64bcst xmm k xmm
+// 	VFMSUBADD231PD.BCST m256/m64bcst ymm ymm
+// 	VFMSUBADD231PD.BCST m256/m64bcst ymm k ymm
 // 	VFMSUBADD231PD.BCST m512/m64bcst zmm zmm
 // 	VFMSUBADD231PD.BCST m512/m64bcst zmm k zmm
 // Construct and append a VFMSUBADD231PD.BCST instruction to the active function.
@@ -36614,10 +39260,12 @@ func VFMSUBADD231PD_BCST(ops ...operand.Op) { ctx.VFMSUBADD231PD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VFMSUBADD231PD.BCST.Z m128/m64bcst xmm k xmm
+// 	VFMSUBADD231PD.BCST.Z m256/m64bcst ymm k ymm
 // 	VFMSUBADD231PD.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VFMSUBADD231PD.BCST.Z instruction to the active function.
-func (c *Context) VFMSUBADD231PD_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VFMSUBADD231PD_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VFMSUBADD231PD_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFMSUBADD231PD_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -36628,10 +39276,12 @@ func (c *Context) VFMSUBADD231PD_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFMSUBADD231PD.BCST.Z m128/m64bcst xmm k xmm
+// 	VFMSUBADD231PD.BCST.Z m256/m64bcst ymm k ymm
 // 	VFMSUBADD231PD.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VFMSUBADD231PD.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VFMSUBADD231PD_BCST_Z(m, z, k, z1 operand.Op) { ctx.VFMSUBADD231PD_BCST_Z(m, z, k, z1) }
+func VFMSUBADD231PD_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VFMSUBADD231PD_BCST_Z(m, xyz, k, xyz1) }
 
 // VFMSUBADD231PD_RD_SAE: Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
@@ -36829,11 +39479,15 @@ func VFMSUBADD231PD_RZ_SAE_Z(z, z1, k, z2 operand.Op) { ctx.VFMSUBADD231PD_RZ_SA
 //
 // Forms:
 //
+// 	VFMSUBADD231PD.Z m128/m64bcst xmm k xmm
+// 	VFMSUBADD231PD.Z xmm          xmm k xmm
+// 	VFMSUBADD231PD.Z m256/m64bcst ymm k ymm
+// 	VFMSUBADD231PD.Z ymm          ymm k ymm
 // 	VFMSUBADD231PD.Z m512/m64bcst zmm k zmm
 // 	VFMSUBADD231PD.Z zmm          zmm k zmm
 // Construct and append a VFMSUBADD231PD.Z instruction to the active function.
-func (c *Context) VFMSUBADD231PD_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VFMSUBADD231PD_Z(mz, z, k, z1); err == nil {
+func (c *Context) VFMSUBADD231PD_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFMSUBADD231PD_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -36844,16 +39498,28 @@ func (c *Context) VFMSUBADD231PD_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFMSUBADD231PD.Z m128/m64bcst xmm k xmm
+// 	VFMSUBADD231PD.Z xmm          xmm k xmm
+// 	VFMSUBADD231PD.Z m256/m64bcst ymm k ymm
+// 	VFMSUBADD231PD.Z ymm          ymm k ymm
 // 	VFMSUBADD231PD.Z m512/m64bcst zmm k zmm
 // 	VFMSUBADD231PD.Z zmm          zmm k zmm
 // Construct and append a VFMSUBADD231PD.Z instruction to the active function.
 // Operates on the global context.
-func VFMSUBADD231PD_Z(mz, z, k, z1 operand.Op) { ctx.VFMSUBADD231PD_Z(mz, z, k, z1) }
+func VFMSUBADD231PD_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VFMSUBADD231PD_Z(mxyz, xyz, k, xyz1) }
 
 // VFMSUBADD231PS: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values.
 //
 // Forms:
 //
+// 	VFMSUBADD231PS m128/m32bcst xmm xmm
+// 	VFMSUBADD231PS m128/m32bcst xmm k xmm
+// 	VFMSUBADD231PS xmm          xmm xmm
+// 	VFMSUBADD231PS xmm          xmm k xmm
+// 	VFMSUBADD231PS m256/m32bcst ymm ymm
+// 	VFMSUBADD231PS m256/m32bcst ymm k ymm
+// 	VFMSUBADD231PS ymm          ymm ymm
+// 	VFMSUBADD231PS ymm          ymm k ymm
 // 	VFMSUBADD231PS m512/m32bcst zmm zmm
 // 	VFMSUBADD231PS m512/m32bcst zmm k zmm
 // 	VFMSUBADD231PS xmm          xmm xmm
@@ -36875,6 +39541,14 @@ func (c *Context) VFMSUBADD231PS(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFMSUBADD231PS m128/m32bcst xmm xmm
+// 	VFMSUBADD231PS m128/m32bcst xmm k xmm
+// 	VFMSUBADD231PS xmm          xmm xmm
+// 	VFMSUBADD231PS xmm          xmm k xmm
+// 	VFMSUBADD231PS m256/m32bcst ymm ymm
+// 	VFMSUBADD231PS m256/m32bcst ymm k ymm
+// 	VFMSUBADD231PS ymm          ymm ymm
+// 	VFMSUBADD231PS ymm          ymm k ymm
 // 	VFMSUBADD231PS m512/m32bcst zmm zmm
 // 	VFMSUBADD231PS m512/m32bcst zmm k zmm
 // 	VFMSUBADD231PS xmm          xmm xmm
@@ -36891,6 +39565,10 @@ func VFMSUBADD231PS(ops ...operand.Op) { ctx.VFMSUBADD231PS(ops...) }
 //
 // Forms:
 //
+// 	VFMSUBADD231PS.BCST m128/m32bcst xmm xmm
+// 	VFMSUBADD231PS.BCST m128/m32bcst xmm k xmm
+// 	VFMSUBADD231PS.BCST m256/m32bcst ymm ymm
+// 	VFMSUBADD231PS.BCST m256/m32bcst ymm k ymm
 // 	VFMSUBADD231PS.BCST m512/m32bcst zmm zmm
 // 	VFMSUBADD231PS.BCST m512/m32bcst zmm k zmm
 // Construct and append a VFMSUBADD231PS.BCST instruction to the active function.
@@ -36906,6 +39584,10 @@ func (c *Context) VFMSUBADD231PS_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFMSUBADD231PS.BCST m128/m32bcst xmm xmm
+// 	VFMSUBADD231PS.BCST m128/m32bcst xmm k xmm
+// 	VFMSUBADD231PS.BCST m256/m32bcst ymm ymm
+// 	VFMSUBADD231PS.BCST m256/m32bcst ymm k ymm
 // 	VFMSUBADD231PS.BCST m512/m32bcst zmm zmm
 // 	VFMSUBADD231PS.BCST m512/m32bcst zmm k zmm
 // Construct and append a VFMSUBADD231PS.BCST instruction to the active function.
@@ -36916,10 +39598,12 @@ func VFMSUBADD231PS_BCST(ops ...operand.Op) { ctx.VFMSUBADD231PS_BCST(ops...) }
 //
 // Forms:
 //
+// 	VFMSUBADD231PS.BCST.Z m128/m32bcst xmm k xmm
+// 	VFMSUBADD231PS.BCST.Z m256/m32bcst ymm k ymm
 // 	VFMSUBADD231PS.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VFMSUBADD231PS.BCST.Z instruction to the active function.
-func (c *Context) VFMSUBADD231PS_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VFMSUBADD231PS_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VFMSUBADD231PS_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFMSUBADD231PS_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -36930,10 +39614,12 @@ func (c *Context) VFMSUBADD231PS_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFMSUBADD231PS.BCST.Z m128/m32bcst xmm k xmm
+// 	VFMSUBADD231PS.BCST.Z m256/m32bcst ymm k ymm
 // 	VFMSUBADD231PS.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VFMSUBADD231PS.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VFMSUBADD231PS_BCST_Z(m, z, k, z1 operand.Op) { ctx.VFMSUBADD231PS_BCST_Z(m, z, k, z1) }
+func VFMSUBADD231PS_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VFMSUBADD231PS_BCST_Z(m, xyz, k, xyz1) }
 
 // VFMSUBADD231PS_RD_SAE: Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
@@ -37131,11 +39817,15 @@ func VFMSUBADD231PS_RZ_SAE_Z(z, z1, k, z2 operand.Op) { ctx.VFMSUBADD231PS_RZ_SA
 //
 // Forms:
 //
+// 	VFMSUBADD231PS.Z m128/m32bcst xmm k xmm
+// 	VFMSUBADD231PS.Z xmm          xmm k xmm
+// 	VFMSUBADD231PS.Z m256/m32bcst ymm k ymm
+// 	VFMSUBADD231PS.Z ymm          ymm k ymm
 // 	VFMSUBADD231PS.Z m512/m32bcst zmm k zmm
 // 	VFMSUBADD231PS.Z zmm          zmm k zmm
 // Construct and append a VFMSUBADD231PS.Z instruction to the active function.
-func (c *Context) VFMSUBADD231PS_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VFMSUBADD231PS_Z(mz, z, k, z1); err == nil {
+func (c *Context) VFMSUBADD231PS_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFMSUBADD231PS_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -37146,16 +39836,28 @@ func (c *Context) VFMSUBADD231PS_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFMSUBADD231PS.Z m128/m32bcst xmm k xmm
+// 	VFMSUBADD231PS.Z xmm          xmm k xmm
+// 	VFMSUBADD231PS.Z m256/m32bcst ymm k ymm
+// 	VFMSUBADD231PS.Z ymm          ymm k ymm
 // 	VFMSUBADD231PS.Z m512/m32bcst zmm k zmm
 // 	VFMSUBADD231PS.Z zmm          zmm k zmm
 // Construct and append a VFMSUBADD231PS.Z instruction to the active function.
 // Operates on the global context.
-func VFMSUBADD231PS_Z(mz, z, k, z1 operand.Op) { ctx.VFMSUBADD231PS_Z(mz, z, k, z1) }
+func VFMSUBADD231PS_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VFMSUBADD231PS_Z(mxyz, xyz, k, xyz1) }
 
 // VFNMADD132PD: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values.
 //
 // Forms:
 //
+// 	VFNMADD132PD m128/m64bcst xmm xmm
+// 	VFNMADD132PD m128/m64bcst xmm k xmm
+// 	VFNMADD132PD xmm          xmm xmm
+// 	VFNMADD132PD xmm          xmm k xmm
+// 	VFNMADD132PD m256/m64bcst ymm ymm
+// 	VFNMADD132PD m256/m64bcst ymm k ymm
+// 	VFNMADD132PD ymm          ymm ymm
+// 	VFNMADD132PD ymm          ymm k ymm
 // 	VFNMADD132PD m512/m64bcst zmm zmm
 // 	VFNMADD132PD m512/m64bcst zmm k zmm
 // 	VFNMADD132PD xmm          xmm xmm
@@ -37177,6 +39879,14 @@ func (c *Context) VFNMADD132PD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFNMADD132PD m128/m64bcst xmm xmm
+// 	VFNMADD132PD m128/m64bcst xmm k xmm
+// 	VFNMADD132PD xmm          xmm xmm
+// 	VFNMADD132PD xmm          xmm k xmm
+// 	VFNMADD132PD m256/m64bcst ymm ymm
+// 	VFNMADD132PD m256/m64bcst ymm k ymm
+// 	VFNMADD132PD ymm          ymm ymm
+// 	VFNMADD132PD ymm          ymm k ymm
 // 	VFNMADD132PD m512/m64bcst zmm zmm
 // 	VFNMADD132PD m512/m64bcst zmm k zmm
 // 	VFNMADD132PD xmm          xmm xmm
@@ -37193,6 +39903,10 @@ func VFNMADD132PD(ops ...operand.Op) { ctx.VFNMADD132PD(ops...) }
 //
 // Forms:
 //
+// 	VFNMADD132PD.BCST m128/m64bcst xmm xmm
+// 	VFNMADD132PD.BCST m128/m64bcst xmm k xmm
+// 	VFNMADD132PD.BCST m256/m64bcst ymm ymm
+// 	VFNMADD132PD.BCST m256/m64bcst ymm k ymm
 // 	VFNMADD132PD.BCST m512/m64bcst zmm zmm
 // 	VFNMADD132PD.BCST m512/m64bcst zmm k zmm
 // Construct and append a VFNMADD132PD.BCST instruction to the active function.
@@ -37208,6 +39922,10 @@ func (c *Context) VFNMADD132PD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFNMADD132PD.BCST m128/m64bcst xmm xmm
+// 	VFNMADD132PD.BCST m128/m64bcst xmm k xmm
+// 	VFNMADD132PD.BCST m256/m64bcst ymm ymm
+// 	VFNMADD132PD.BCST m256/m64bcst ymm k ymm
 // 	VFNMADD132PD.BCST m512/m64bcst zmm zmm
 // 	VFNMADD132PD.BCST m512/m64bcst zmm k zmm
 // Construct and append a VFNMADD132PD.BCST instruction to the active function.
@@ -37218,10 +39936,12 @@ func VFNMADD132PD_BCST(ops ...operand.Op) { ctx.VFNMADD132PD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VFNMADD132PD.BCST.Z m128/m64bcst xmm k xmm
+// 	VFNMADD132PD.BCST.Z m256/m64bcst ymm k ymm
 // 	VFNMADD132PD.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VFNMADD132PD.BCST.Z instruction to the active function.
-func (c *Context) VFNMADD132PD_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VFNMADD132PD_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VFNMADD132PD_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFNMADD132PD_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -37232,10 +39952,12 @@ func (c *Context) VFNMADD132PD_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFNMADD132PD.BCST.Z m128/m64bcst xmm k xmm
+// 	VFNMADD132PD.BCST.Z m256/m64bcst ymm k ymm
 // 	VFNMADD132PD.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VFNMADD132PD.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VFNMADD132PD_BCST_Z(m, z, k, z1 operand.Op) { ctx.VFNMADD132PD_BCST_Z(m, z, k, z1) }
+func VFNMADD132PD_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VFNMADD132PD_BCST_Z(m, xyz, k, xyz1) }
 
 // VFNMADD132PD_RD_SAE: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
@@ -37433,11 +40155,15 @@ func VFNMADD132PD_RZ_SAE_Z(z, z1, k, z2 operand.Op) { ctx.VFNMADD132PD_RZ_SAE_Z(
 //
 // Forms:
 //
+// 	VFNMADD132PD.Z m128/m64bcst xmm k xmm
+// 	VFNMADD132PD.Z xmm          xmm k xmm
+// 	VFNMADD132PD.Z m256/m64bcst ymm k ymm
+// 	VFNMADD132PD.Z ymm          ymm k ymm
 // 	VFNMADD132PD.Z m512/m64bcst zmm k zmm
 // 	VFNMADD132PD.Z zmm          zmm k zmm
 // Construct and append a VFNMADD132PD.Z instruction to the active function.
-func (c *Context) VFNMADD132PD_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VFNMADD132PD_Z(mz, z, k, z1); err == nil {
+func (c *Context) VFNMADD132PD_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFNMADD132PD_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -37448,16 +40174,28 @@ func (c *Context) VFNMADD132PD_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFNMADD132PD.Z m128/m64bcst xmm k xmm
+// 	VFNMADD132PD.Z xmm          xmm k xmm
+// 	VFNMADD132PD.Z m256/m64bcst ymm k ymm
+// 	VFNMADD132PD.Z ymm          ymm k ymm
 // 	VFNMADD132PD.Z m512/m64bcst zmm k zmm
 // 	VFNMADD132PD.Z zmm          zmm k zmm
 // Construct and append a VFNMADD132PD.Z instruction to the active function.
 // Operates on the global context.
-func VFNMADD132PD_Z(mz, z, k, z1 operand.Op) { ctx.VFNMADD132PD_Z(mz, z, k, z1) }
+func VFNMADD132PD_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VFNMADD132PD_Z(mxyz, xyz, k, xyz1) }
 
 // VFNMADD132PS: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values.
 //
 // Forms:
 //
+// 	VFNMADD132PS m128/m32bcst xmm xmm
+// 	VFNMADD132PS m128/m32bcst xmm k xmm
+// 	VFNMADD132PS xmm          xmm xmm
+// 	VFNMADD132PS xmm          xmm k xmm
+// 	VFNMADD132PS m256/m32bcst ymm ymm
+// 	VFNMADD132PS m256/m32bcst ymm k ymm
+// 	VFNMADD132PS ymm          ymm ymm
+// 	VFNMADD132PS ymm          ymm k ymm
 // 	VFNMADD132PS m512/m32bcst zmm zmm
 // 	VFNMADD132PS m512/m32bcst zmm k zmm
 // 	VFNMADD132PS xmm          xmm xmm
@@ -37479,6 +40217,14 @@ func (c *Context) VFNMADD132PS(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFNMADD132PS m128/m32bcst xmm xmm
+// 	VFNMADD132PS m128/m32bcst xmm k xmm
+// 	VFNMADD132PS xmm          xmm xmm
+// 	VFNMADD132PS xmm          xmm k xmm
+// 	VFNMADD132PS m256/m32bcst ymm ymm
+// 	VFNMADD132PS m256/m32bcst ymm k ymm
+// 	VFNMADD132PS ymm          ymm ymm
+// 	VFNMADD132PS ymm          ymm k ymm
 // 	VFNMADD132PS m512/m32bcst zmm zmm
 // 	VFNMADD132PS m512/m32bcst zmm k zmm
 // 	VFNMADD132PS xmm          xmm xmm
@@ -37495,6 +40241,10 @@ func VFNMADD132PS(ops ...operand.Op) { ctx.VFNMADD132PS(ops...) }
 //
 // Forms:
 //
+// 	VFNMADD132PS.BCST m128/m32bcst xmm xmm
+// 	VFNMADD132PS.BCST m128/m32bcst xmm k xmm
+// 	VFNMADD132PS.BCST m256/m32bcst ymm ymm
+// 	VFNMADD132PS.BCST m256/m32bcst ymm k ymm
 // 	VFNMADD132PS.BCST m512/m32bcst zmm zmm
 // 	VFNMADD132PS.BCST m512/m32bcst zmm k zmm
 // Construct and append a VFNMADD132PS.BCST instruction to the active function.
@@ -37510,6 +40260,10 @@ func (c *Context) VFNMADD132PS_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFNMADD132PS.BCST m128/m32bcst xmm xmm
+// 	VFNMADD132PS.BCST m128/m32bcst xmm k xmm
+// 	VFNMADD132PS.BCST m256/m32bcst ymm ymm
+// 	VFNMADD132PS.BCST m256/m32bcst ymm k ymm
 // 	VFNMADD132PS.BCST m512/m32bcst zmm zmm
 // 	VFNMADD132PS.BCST m512/m32bcst zmm k zmm
 // Construct and append a VFNMADD132PS.BCST instruction to the active function.
@@ -37520,10 +40274,12 @@ func VFNMADD132PS_BCST(ops ...operand.Op) { ctx.VFNMADD132PS_BCST(ops...) }
 //
 // Forms:
 //
+// 	VFNMADD132PS.BCST.Z m128/m32bcst xmm k xmm
+// 	VFNMADD132PS.BCST.Z m256/m32bcst ymm k ymm
 // 	VFNMADD132PS.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VFNMADD132PS.BCST.Z instruction to the active function.
-func (c *Context) VFNMADD132PS_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VFNMADD132PS_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VFNMADD132PS_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFNMADD132PS_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -37534,10 +40290,12 @@ func (c *Context) VFNMADD132PS_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFNMADD132PS.BCST.Z m128/m32bcst xmm k xmm
+// 	VFNMADD132PS.BCST.Z m256/m32bcst ymm k ymm
 // 	VFNMADD132PS.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VFNMADD132PS.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VFNMADD132PS_BCST_Z(m, z, k, z1 operand.Op) { ctx.VFNMADD132PS_BCST_Z(m, z, k, z1) }
+func VFNMADD132PS_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VFNMADD132PS_BCST_Z(m, xyz, k, xyz1) }
 
 // VFNMADD132PS_RD_SAE: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
@@ -37735,11 +40493,15 @@ func VFNMADD132PS_RZ_SAE_Z(z, z1, k, z2 operand.Op) { ctx.VFNMADD132PS_RZ_SAE_Z(
 //
 // Forms:
 //
+// 	VFNMADD132PS.Z m128/m32bcst xmm k xmm
+// 	VFNMADD132PS.Z xmm          xmm k xmm
+// 	VFNMADD132PS.Z m256/m32bcst ymm k ymm
+// 	VFNMADD132PS.Z ymm          ymm k ymm
 // 	VFNMADD132PS.Z m512/m32bcst zmm k zmm
 // 	VFNMADD132PS.Z zmm          zmm k zmm
 // Construct and append a VFNMADD132PS.Z instruction to the active function.
-func (c *Context) VFNMADD132PS_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VFNMADD132PS_Z(mz, z, k, z1); err == nil {
+func (c *Context) VFNMADD132PS_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFNMADD132PS_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -37750,11 +40512,15 @@ func (c *Context) VFNMADD132PS_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFNMADD132PS.Z m128/m32bcst xmm k xmm
+// 	VFNMADD132PS.Z xmm          xmm k xmm
+// 	VFNMADD132PS.Z m256/m32bcst ymm k ymm
+// 	VFNMADD132PS.Z ymm          ymm k ymm
 // 	VFNMADD132PS.Z m512/m32bcst zmm k zmm
 // 	VFNMADD132PS.Z zmm          zmm k zmm
 // Construct and append a VFNMADD132PS.Z instruction to the active function.
 // Operates on the global context.
-func VFNMADD132PS_Z(mz, z, k, z1 operand.Op) { ctx.VFNMADD132PS_Z(mz, z, k, z1) }
+func VFNMADD132PS_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VFNMADD132PS_Z(mxyz, xyz, k, xyz1) }
 
 // VFNMADD132SD: Fused Negative Multiply-Add of Scalar Double-Precision Floating-Point Values.
 //
@@ -38260,6 +41026,14 @@ func VFNMADD132SS_Z(mx, x, k, x1 operand.Op) { ctx.VFNMADD132SS_Z(mx, x, k, x1) 
 //
 // Forms:
 //
+// 	VFNMADD213PD m128/m64bcst xmm xmm
+// 	VFNMADD213PD m128/m64bcst xmm k xmm
+// 	VFNMADD213PD xmm          xmm xmm
+// 	VFNMADD213PD xmm          xmm k xmm
+// 	VFNMADD213PD m256/m64bcst ymm ymm
+// 	VFNMADD213PD m256/m64bcst ymm k ymm
+// 	VFNMADD213PD ymm          ymm ymm
+// 	VFNMADD213PD ymm          ymm k ymm
 // 	VFNMADD213PD m512/m64bcst zmm zmm
 // 	VFNMADD213PD m512/m64bcst zmm k zmm
 // 	VFNMADD213PD xmm          xmm xmm
@@ -38281,6 +41055,14 @@ func (c *Context) VFNMADD213PD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFNMADD213PD m128/m64bcst xmm xmm
+// 	VFNMADD213PD m128/m64bcst xmm k xmm
+// 	VFNMADD213PD xmm          xmm xmm
+// 	VFNMADD213PD xmm          xmm k xmm
+// 	VFNMADD213PD m256/m64bcst ymm ymm
+// 	VFNMADD213PD m256/m64bcst ymm k ymm
+// 	VFNMADD213PD ymm          ymm ymm
+// 	VFNMADD213PD ymm          ymm k ymm
 // 	VFNMADD213PD m512/m64bcst zmm zmm
 // 	VFNMADD213PD m512/m64bcst zmm k zmm
 // 	VFNMADD213PD xmm          xmm xmm
@@ -38297,6 +41079,10 @@ func VFNMADD213PD(ops ...operand.Op) { ctx.VFNMADD213PD(ops...) }
 //
 // Forms:
 //
+// 	VFNMADD213PD.BCST m128/m64bcst xmm xmm
+// 	VFNMADD213PD.BCST m128/m64bcst xmm k xmm
+// 	VFNMADD213PD.BCST m256/m64bcst ymm ymm
+// 	VFNMADD213PD.BCST m256/m64bcst ymm k ymm
 // 	VFNMADD213PD.BCST m512/m64bcst zmm zmm
 // 	VFNMADD213PD.BCST m512/m64bcst zmm k zmm
 // Construct and append a VFNMADD213PD.BCST instruction to the active function.
@@ -38312,6 +41098,10 @@ func (c *Context) VFNMADD213PD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFNMADD213PD.BCST m128/m64bcst xmm xmm
+// 	VFNMADD213PD.BCST m128/m64bcst xmm k xmm
+// 	VFNMADD213PD.BCST m256/m64bcst ymm ymm
+// 	VFNMADD213PD.BCST m256/m64bcst ymm k ymm
 // 	VFNMADD213PD.BCST m512/m64bcst zmm zmm
 // 	VFNMADD213PD.BCST m512/m64bcst zmm k zmm
 // Construct and append a VFNMADD213PD.BCST instruction to the active function.
@@ -38322,10 +41112,12 @@ func VFNMADD213PD_BCST(ops ...operand.Op) { ctx.VFNMADD213PD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VFNMADD213PD.BCST.Z m128/m64bcst xmm k xmm
+// 	VFNMADD213PD.BCST.Z m256/m64bcst ymm k ymm
 // 	VFNMADD213PD.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VFNMADD213PD.BCST.Z instruction to the active function.
-func (c *Context) VFNMADD213PD_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VFNMADD213PD_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VFNMADD213PD_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFNMADD213PD_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -38336,10 +41128,12 @@ func (c *Context) VFNMADD213PD_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFNMADD213PD.BCST.Z m128/m64bcst xmm k xmm
+// 	VFNMADD213PD.BCST.Z m256/m64bcst ymm k ymm
 // 	VFNMADD213PD.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VFNMADD213PD.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VFNMADD213PD_BCST_Z(m, z, k, z1 operand.Op) { ctx.VFNMADD213PD_BCST_Z(m, z, k, z1) }
+func VFNMADD213PD_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VFNMADD213PD_BCST_Z(m, xyz, k, xyz1) }
 
 // VFNMADD213PD_RD_SAE: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
@@ -38537,11 +41331,15 @@ func VFNMADD213PD_RZ_SAE_Z(z, z1, k, z2 operand.Op) { ctx.VFNMADD213PD_RZ_SAE_Z(
 //
 // Forms:
 //
+// 	VFNMADD213PD.Z m128/m64bcst xmm k xmm
+// 	VFNMADD213PD.Z xmm          xmm k xmm
+// 	VFNMADD213PD.Z m256/m64bcst ymm k ymm
+// 	VFNMADD213PD.Z ymm          ymm k ymm
 // 	VFNMADD213PD.Z m512/m64bcst zmm k zmm
 // 	VFNMADD213PD.Z zmm          zmm k zmm
 // Construct and append a VFNMADD213PD.Z instruction to the active function.
-func (c *Context) VFNMADD213PD_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VFNMADD213PD_Z(mz, z, k, z1); err == nil {
+func (c *Context) VFNMADD213PD_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFNMADD213PD_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -38552,16 +41350,28 @@ func (c *Context) VFNMADD213PD_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFNMADD213PD.Z m128/m64bcst xmm k xmm
+// 	VFNMADD213PD.Z xmm          xmm k xmm
+// 	VFNMADD213PD.Z m256/m64bcst ymm k ymm
+// 	VFNMADD213PD.Z ymm          ymm k ymm
 // 	VFNMADD213PD.Z m512/m64bcst zmm k zmm
 // 	VFNMADD213PD.Z zmm          zmm k zmm
 // Construct and append a VFNMADD213PD.Z instruction to the active function.
 // Operates on the global context.
-func VFNMADD213PD_Z(mz, z, k, z1 operand.Op) { ctx.VFNMADD213PD_Z(mz, z, k, z1) }
+func VFNMADD213PD_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VFNMADD213PD_Z(mxyz, xyz, k, xyz1) }
 
 // VFNMADD213PS: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values.
 //
 // Forms:
 //
+// 	VFNMADD213PS m128/m32bcst xmm xmm
+// 	VFNMADD213PS m128/m32bcst xmm k xmm
+// 	VFNMADD213PS xmm          xmm xmm
+// 	VFNMADD213PS xmm          xmm k xmm
+// 	VFNMADD213PS m256/m32bcst ymm ymm
+// 	VFNMADD213PS m256/m32bcst ymm k ymm
+// 	VFNMADD213PS ymm          ymm ymm
+// 	VFNMADD213PS ymm          ymm k ymm
 // 	VFNMADD213PS m512/m32bcst zmm zmm
 // 	VFNMADD213PS m512/m32bcst zmm k zmm
 // 	VFNMADD213PS xmm          xmm xmm
@@ -38583,6 +41393,14 @@ func (c *Context) VFNMADD213PS(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFNMADD213PS m128/m32bcst xmm xmm
+// 	VFNMADD213PS m128/m32bcst xmm k xmm
+// 	VFNMADD213PS xmm          xmm xmm
+// 	VFNMADD213PS xmm          xmm k xmm
+// 	VFNMADD213PS m256/m32bcst ymm ymm
+// 	VFNMADD213PS m256/m32bcst ymm k ymm
+// 	VFNMADD213PS ymm          ymm ymm
+// 	VFNMADD213PS ymm          ymm k ymm
 // 	VFNMADD213PS m512/m32bcst zmm zmm
 // 	VFNMADD213PS m512/m32bcst zmm k zmm
 // 	VFNMADD213PS xmm          xmm xmm
@@ -38599,6 +41417,10 @@ func VFNMADD213PS(ops ...operand.Op) { ctx.VFNMADD213PS(ops...) }
 //
 // Forms:
 //
+// 	VFNMADD213PS.BCST m128/m32bcst xmm xmm
+// 	VFNMADD213PS.BCST m128/m32bcst xmm k xmm
+// 	VFNMADD213PS.BCST m256/m32bcst ymm ymm
+// 	VFNMADD213PS.BCST m256/m32bcst ymm k ymm
 // 	VFNMADD213PS.BCST m512/m32bcst zmm zmm
 // 	VFNMADD213PS.BCST m512/m32bcst zmm k zmm
 // Construct and append a VFNMADD213PS.BCST instruction to the active function.
@@ -38614,6 +41436,10 @@ func (c *Context) VFNMADD213PS_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFNMADD213PS.BCST m128/m32bcst xmm xmm
+// 	VFNMADD213PS.BCST m128/m32bcst xmm k xmm
+// 	VFNMADD213PS.BCST m256/m32bcst ymm ymm
+// 	VFNMADD213PS.BCST m256/m32bcst ymm k ymm
 // 	VFNMADD213PS.BCST m512/m32bcst zmm zmm
 // 	VFNMADD213PS.BCST m512/m32bcst zmm k zmm
 // Construct and append a VFNMADD213PS.BCST instruction to the active function.
@@ -38624,10 +41450,12 @@ func VFNMADD213PS_BCST(ops ...operand.Op) { ctx.VFNMADD213PS_BCST(ops...) }
 //
 // Forms:
 //
+// 	VFNMADD213PS.BCST.Z m128/m32bcst xmm k xmm
+// 	VFNMADD213PS.BCST.Z m256/m32bcst ymm k ymm
 // 	VFNMADD213PS.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VFNMADD213PS.BCST.Z instruction to the active function.
-func (c *Context) VFNMADD213PS_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VFNMADD213PS_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VFNMADD213PS_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFNMADD213PS_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -38638,10 +41466,12 @@ func (c *Context) VFNMADD213PS_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFNMADD213PS.BCST.Z m128/m32bcst xmm k xmm
+// 	VFNMADD213PS.BCST.Z m256/m32bcst ymm k ymm
 // 	VFNMADD213PS.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VFNMADD213PS.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VFNMADD213PS_BCST_Z(m, z, k, z1 operand.Op) { ctx.VFNMADD213PS_BCST_Z(m, z, k, z1) }
+func VFNMADD213PS_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VFNMADD213PS_BCST_Z(m, xyz, k, xyz1) }
 
 // VFNMADD213PS_RD_SAE: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
@@ -38839,11 +41669,15 @@ func VFNMADD213PS_RZ_SAE_Z(z, z1, k, z2 operand.Op) { ctx.VFNMADD213PS_RZ_SAE_Z(
 //
 // Forms:
 //
+// 	VFNMADD213PS.Z m128/m32bcst xmm k xmm
+// 	VFNMADD213PS.Z xmm          xmm k xmm
+// 	VFNMADD213PS.Z m256/m32bcst ymm k ymm
+// 	VFNMADD213PS.Z ymm          ymm k ymm
 // 	VFNMADD213PS.Z m512/m32bcst zmm k zmm
 // 	VFNMADD213PS.Z zmm          zmm k zmm
 // Construct and append a VFNMADD213PS.Z instruction to the active function.
-func (c *Context) VFNMADD213PS_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VFNMADD213PS_Z(mz, z, k, z1); err == nil {
+func (c *Context) VFNMADD213PS_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFNMADD213PS_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -38854,11 +41688,15 @@ func (c *Context) VFNMADD213PS_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFNMADD213PS.Z m128/m32bcst xmm k xmm
+// 	VFNMADD213PS.Z xmm          xmm k xmm
+// 	VFNMADD213PS.Z m256/m32bcst ymm k ymm
+// 	VFNMADD213PS.Z ymm          ymm k ymm
 // 	VFNMADD213PS.Z m512/m32bcst zmm k zmm
 // 	VFNMADD213PS.Z zmm          zmm k zmm
 // Construct and append a VFNMADD213PS.Z instruction to the active function.
 // Operates on the global context.
-func VFNMADD213PS_Z(mz, z, k, z1 operand.Op) { ctx.VFNMADD213PS_Z(mz, z, k, z1) }
+func VFNMADD213PS_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VFNMADD213PS_Z(mxyz, xyz, k, xyz1) }
 
 // VFNMADD213SD: Fused Negative Multiply-Add of Scalar Double-Precision Floating-Point Values.
 //
@@ -39364,6 +42202,14 @@ func VFNMADD213SS_Z(mx, x, k, x1 operand.Op) { ctx.VFNMADD213SS_Z(mx, x, k, x1) 
 //
 // Forms:
 //
+// 	VFNMADD231PD m128/m64bcst xmm xmm
+// 	VFNMADD231PD m128/m64bcst xmm k xmm
+// 	VFNMADD231PD xmm          xmm xmm
+// 	VFNMADD231PD xmm          xmm k xmm
+// 	VFNMADD231PD m256/m64bcst ymm ymm
+// 	VFNMADD231PD m256/m64bcst ymm k ymm
+// 	VFNMADD231PD ymm          ymm ymm
+// 	VFNMADD231PD ymm          ymm k ymm
 // 	VFNMADD231PD m512/m64bcst zmm zmm
 // 	VFNMADD231PD m512/m64bcst zmm k zmm
 // 	VFNMADD231PD xmm          xmm xmm
@@ -39385,6 +42231,14 @@ func (c *Context) VFNMADD231PD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFNMADD231PD m128/m64bcst xmm xmm
+// 	VFNMADD231PD m128/m64bcst xmm k xmm
+// 	VFNMADD231PD xmm          xmm xmm
+// 	VFNMADD231PD xmm          xmm k xmm
+// 	VFNMADD231PD m256/m64bcst ymm ymm
+// 	VFNMADD231PD m256/m64bcst ymm k ymm
+// 	VFNMADD231PD ymm          ymm ymm
+// 	VFNMADD231PD ymm          ymm k ymm
 // 	VFNMADD231PD m512/m64bcst zmm zmm
 // 	VFNMADD231PD m512/m64bcst zmm k zmm
 // 	VFNMADD231PD xmm          xmm xmm
@@ -39401,6 +42255,10 @@ func VFNMADD231PD(ops ...operand.Op) { ctx.VFNMADD231PD(ops...) }
 //
 // Forms:
 //
+// 	VFNMADD231PD.BCST m128/m64bcst xmm xmm
+// 	VFNMADD231PD.BCST m128/m64bcst xmm k xmm
+// 	VFNMADD231PD.BCST m256/m64bcst ymm ymm
+// 	VFNMADD231PD.BCST m256/m64bcst ymm k ymm
 // 	VFNMADD231PD.BCST m512/m64bcst zmm zmm
 // 	VFNMADD231PD.BCST m512/m64bcst zmm k zmm
 // Construct and append a VFNMADD231PD.BCST instruction to the active function.
@@ -39416,6 +42274,10 @@ func (c *Context) VFNMADD231PD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFNMADD231PD.BCST m128/m64bcst xmm xmm
+// 	VFNMADD231PD.BCST m128/m64bcst xmm k xmm
+// 	VFNMADD231PD.BCST m256/m64bcst ymm ymm
+// 	VFNMADD231PD.BCST m256/m64bcst ymm k ymm
 // 	VFNMADD231PD.BCST m512/m64bcst zmm zmm
 // 	VFNMADD231PD.BCST m512/m64bcst zmm k zmm
 // Construct and append a VFNMADD231PD.BCST instruction to the active function.
@@ -39426,10 +42288,12 @@ func VFNMADD231PD_BCST(ops ...operand.Op) { ctx.VFNMADD231PD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VFNMADD231PD.BCST.Z m128/m64bcst xmm k xmm
+// 	VFNMADD231PD.BCST.Z m256/m64bcst ymm k ymm
 // 	VFNMADD231PD.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VFNMADD231PD.BCST.Z instruction to the active function.
-func (c *Context) VFNMADD231PD_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VFNMADD231PD_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VFNMADD231PD_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFNMADD231PD_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -39440,10 +42304,12 @@ func (c *Context) VFNMADD231PD_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFNMADD231PD.BCST.Z m128/m64bcst xmm k xmm
+// 	VFNMADD231PD.BCST.Z m256/m64bcst ymm k ymm
 // 	VFNMADD231PD.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VFNMADD231PD.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VFNMADD231PD_BCST_Z(m, z, k, z1 operand.Op) { ctx.VFNMADD231PD_BCST_Z(m, z, k, z1) }
+func VFNMADD231PD_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VFNMADD231PD_BCST_Z(m, xyz, k, xyz1) }
 
 // VFNMADD231PD_RD_SAE: Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
@@ -39641,11 +42507,15 @@ func VFNMADD231PD_RZ_SAE_Z(z, z1, k, z2 operand.Op) { ctx.VFNMADD231PD_RZ_SAE_Z(
 //
 // Forms:
 //
+// 	VFNMADD231PD.Z m128/m64bcst xmm k xmm
+// 	VFNMADD231PD.Z xmm          xmm k xmm
+// 	VFNMADD231PD.Z m256/m64bcst ymm k ymm
+// 	VFNMADD231PD.Z ymm          ymm k ymm
 // 	VFNMADD231PD.Z m512/m64bcst zmm k zmm
 // 	VFNMADD231PD.Z zmm          zmm k zmm
 // Construct and append a VFNMADD231PD.Z instruction to the active function.
-func (c *Context) VFNMADD231PD_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VFNMADD231PD_Z(mz, z, k, z1); err == nil {
+func (c *Context) VFNMADD231PD_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFNMADD231PD_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -39656,16 +42526,28 @@ func (c *Context) VFNMADD231PD_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFNMADD231PD.Z m128/m64bcst xmm k xmm
+// 	VFNMADD231PD.Z xmm          xmm k xmm
+// 	VFNMADD231PD.Z m256/m64bcst ymm k ymm
+// 	VFNMADD231PD.Z ymm          ymm k ymm
 // 	VFNMADD231PD.Z m512/m64bcst zmm k zmm
 // 	VFNMADD231PD.Z zmm          zmm k zmm
 // Construct and append a VFNMADD231PD.Z instruction to the active function.
 // Operates on the global context.
-func VFNMADD231PD_Z(mz, z, k, z1 operand.Op) { ctx.VFNMADD231PD_Z(mz, z, k, z1) }
+func VFNMADD231PD_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VFNMADD231PD_Z(mxyz, xyz, k, xyz1) }
 
 // VFNMADD231PS: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values.
 //
 // Forms:
 //
+// 	VFNMADD231PS m128/m32bcst xmm xmm
+// 	VFNMADD231PS m128/m32bcst xmm k xmm
+// 	VFNMADD231PS xmm          xmm xmm
+// 	VFNMADD231PS xmm          xmm k xmm
+// 	VFNMADD231PS m256/m32bcst ymm ymm
+// 	VFNMADD231PS m256/m32bcst ymm k ymm
+// 	VFNMADD231PS ymm          ymm ymm
+// 	VFNMADD231PS ymm          ymm k ymm
 // 	VFNMADD231PS m512/m32bcst zmm zmm
 // 	VFNMADD231PS m512/m32bcst zmm k zmm
 // 	VFNMADD231PS xmm          xmm xmm
@@ -39687,6 +42569,14 @@ func (c *Context) VFNMADD231PS(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFNMADD231PS m128/m32bcst xmm xmm
+// 	VFNMADD231PS m128/m32bcst xmm k xmm
+// 	VFNMADD231PS xmm          xmm xmm
+// 	VFNMADD231PS xmm          xmm k xmm
+// 	VFNMADD231PS m256/m32bcst ymm ymm
+// 	VFNMADD231PS m256/m32bcst ymm k ymm
+// 	VFNMADD231PS ymm          ymm ymm
+// 	VFNMADD231PS ymm          ymm k ymm
 // 	VFNMADD231PS m512/m32bcst zmm zmm
 // 	VFNMADD231PS m512/m32bcst zmm k zmm
 // 	VFNMADD231PS xmm          xmm xmm
@@ -39703,6 +42593,10 @@ func VFNMADD231PS(ops ...operand.Op) { ctx.VFNMADD231PS(ops...) }
 //
 // Forms:
 //
+// 	VFNMADD231PS.BCST m128/m32bcst xmm xmm
+// 	VFNMADD231PS.BCST m128/m32bcst xmm k xmm
+// 	VFNMADD231PS.BCST m256/m32bcst ymm ymm
+// 	VFNMADD231PS.BCST m256/m32bcst ymm k ymm
 // 	VFNMADD231PS.BCST m512/m32bcst zmm zmm
 // 	VFNMADD231PS.BCST m512/m32bcst zmm k zmm
 // Construct and append a VFNMADD231PS.BCST instruction to the active function.
@@ -39718,6 +42612,10 @@ func (c *Context) VFNMADD231PS_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFNMADD231PS.BCST m128/m32bcst xmm xmm
+// 	VFNMADD231PS.BCST m128/m32bcst xmm k xmm
+// 	VFNMADD231PS.BCST m256/m32bcst ymm ymm
+// 	VFNMADD231PS.BCST m256/m32bcst ymm k ymm
 // 	VFNMADD231PS.BCST m512/m32bcst zmm zmm
 // 	VFNMADD231PS.BCST m512/m32bcst zmm k zmm
 // Construct and append a VFNMADD231PS.BCST instruction to the active function.
@@ -39728,10 +42626,12 @@ func VFNMADD231PS_BCST(ops ...operand.Op) { ctx.VFNMADD231PS_BCST(ops...) }
 //
 // Forms:
 //
+// 	VFNMADD231PS.BCST.Z m128/m32bcst xmm k xmm
+// 	VFNMADD231PS.BCST.Z m256/m32bcst ymm k ymm
 // 	VFNMADD231PS.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VFNMADD231PS.BCST.Z instruction to the active function.
-func (c *Context) VFNMADD231PS_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VFNMADD231PS_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VFNMADD231PS_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFNMADD231PS_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -39742,10 +42642,12 @@ func (c *Context) VFNMADD231PS_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFNMADD231PS.BCST.Z m128/m32bcst xmm k xmm
+// 	VFNMADD231PS.BCST.Z m256/m32bcst ymm k ymm
 // 	VFNMADD231PS.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VFNMADD231PS.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VFNMADD231PS_BCST_Z(m, z, k, z1 operand.Op) { ctx.VFNMADD231PS_BCST_Z(m, z, k, z1) }
+func VFNMADD231PS_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VFNMADD231PS_BCST_Z(m, xyz, k, xyz1) }
 
 // VFNMADD231PS_RD_SAE: Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
@@ -39943,11 +42845,15 @@ func VFNMADD231PS_RZ_SAE_Z(z, z1, k, z2 operand.Op) { ctx.VFNMADD231PS_RZ_SAE_Z(
 //
 // Forms:
 //
+// 	VFNMADD231PS.Z m128/m32bcst xmm k xmm
+// 	VFNMADD231PS.Z xmm          xmm k xmm
+// 	VFNMADD231PS.Z m256/m32bcst ymm k ymm
+// 	VFNMADD231PS.Z ymm          ymm k ymm
 // 	VFNMADD231PS.Z m512/m32bcst zmm k zmm
 // 	VFNMADD231PS.Z zmm          zmm k zmm
 // Construct and append a VFNMADD231PS.Z instruction to the active function.
-func (c *Context) VFNMADD231PS_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VFNMADD231PS_Z(mz, z, k, z1); err == nil {
+func (c *Context) VFNMADD231PS_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFNMADD231PS_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -39958,11 +42864,15 @@ func (c *Context) VFNMADD231PS_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFNMADD231PS.Z m128/m32bcst xmm k xmm
+// 	VFNMADD231PS.Z xmm          xmm k xmm
+// 	VFNMADD231PS.Z m256/m32bcst ymm k ymm
+// 	VFNMADD231PS.Z ymm          ymm k ymm
 // 	VFNMADD231PS.Z m512/m32bcst zmm k zmm
 // 	VFNMADD231PS.Z zmm          zmm k zmm
 // Construct and append a VFNMADD231PS.Z instruction to the active function.
 // Operates on the global context.
-func VFNMADD231PS_Z(mz, z, k, z1 operand.Op) { ctx.VFNMADD231PS_Z(mz, z, k, z1) }
+func VFNMADD231PS_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VFNMADD231PS_Z(mxyz, xyz, k, xyz1) }
 
 // VFNMADD231SD: Fused Negative Multiply-Add of Scalar Double-Precision Floating-Point Values.
 //
@@ -40468,6 +43378,14 @@ func VFNMADD231SS_Z(mx, x, k, x1 operand.Op) { ctx.VFNMADD231SS_Z(mx, x, k, x1) 
 //
 // Forms:
 //
+// 	VFNMSUB132PD m128/m64bcst xmm xmm
+// 	VFNMSUB132PD m128/m64bcst xmm k xmm
+// 	VFNMSUB132PD xmm          xmm xmm
+// 	VFNMSUB132PD xmm          xmm k xmm
+// 	VFNMSUB132PD m256/m64bcst ymm ymm
+// 	VFNMSUB132PD m256/m64bcst ymm k ymm
+// 	VFNMSUB132PD ymm          ymm ymm
+// 	VFNMSUB132PD ymm          ymm k ymm
 // 	VFNMSUB132PD m512/m64bcst zmm zmm
 // 	VFNMSUB132PD m512/m64bcst zmm k zmm
 // 	VFNMSUB132PD xmm          xmm xmm
@@ -40489,6 +43407,14 @@ func (c *Context) VFNMSUB132PD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFNMSUB132PD m128/m64bcst xmm xmm
+// 	VFNMSUB132PD m128/m64bcst xmm k xmm
+// 	VFNMSUB132PD xmm          xmm xmm
+// 	VFNMSUB132PD xmm          xmm k xmm
+// 	VFNMSUB132PD m256/m64bcst ymm ymm
+// 	VFNMSUB132PD m256/m64bcst ymm k ymm
+// 	VFNMSUB132PD ymm          ymm ymm
+// 	VFNMSUB132PD ymm          ymm k ymm
 // 	VFNMSUB132PD m512/m64bcst zmm zmm
 // 	VFNMSUB132PD m512/m64bcst zmm k zmm
 // 	VFNMSUB132PD xmm          xmm xmm
@@ -40505,6 +43431,10 @@ func VFNMSUB132PD(ops ...operand.Op) { ctx.VFNMSUB132PD(ops...) }
 //
 // Forms:
 //
+// 	VFNMSUB132PD.BCST m128/m64bcst xmm xmm
+// 	VFNMSUB132PD.BCST m128/m64bcst xmm k xmm
+// 	VFNMSUB132PD.BCST m256/m64bcst ymm ymm
+// 	VFNMSUB132PD.BCST m256/m64bcst ymm k ymm
 // 	VFNMSUB132PD.BCST m512/m64bcst zmm zmm
 // 	VFNMSUB132PD.BCST m512/m64bcst zmm k zmm
 // Construct and append a VFNMSUB132PD.BCST instruction to the active function.
@@ -40520,6 +43450,10 @@ func (c *Context) VFNMSUB132PD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFNMSUB132PD.BCST m128/m64bcst xmm xmm
+// 	VFNMSUB132PD.BCST m128/m64bcst xmm k xmm
+// 	VFNMSUB132PD.BCST m256/m64bcst ymm ymm
+// 	VFNMSUB132PD.BCST m256/m64bcst ymm k ymm
 // 	VFNMSUB132PD.BCST m512/m64bcst zmm zmm
 // 	VFNMSUB132PD.BCST m512/m64bcst zmm k zmm
 // Construct and append a VFNMSUB132PD.BCST instruction to the active function.
@@ -40530,10 +43464,12 @@ func VFNMSUB132PD_BCST(ops ...operand.Op) { ctx.VFNMSUB132PD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VFNMSUB132PD.BCST.Z m128/m64bcst xmm k xmm
+// 	VFNMSUB132PD.BCST.Z m256/m64bcst ymm k ymm
 // 	VFNMSUB132PD.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VFNMSUB132PD.BCST.Z instruction to the active function.
-func (c *Context) VFNMSUB132PD_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VFNMSUB132PD_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VFNMSUB132PD_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFNMSUB132PD_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -40544,10 +43480,12 @@ func (c *Context) VFNMSUB132PD_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFNMSUB132PD.BCST.Z m128/m64bcst xmm k xmm
+// 	VFNMSUB132PD.BCST.Z m256/m64bcst ymm k ymm
 // 	VFNMSUB132PD.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VFNMSUB132PD.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VFNMSUB132PD_BCST_Z(m, z, k, z1 operand.Op) { ctx.VFNMSUB132PD_BCST_Z(m, z, k, z1) }
+func VFNMSUB132PD_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VFNMSUB132PD_BCST_Z(m, xyz, k, xyz1) }
 
 // VFNMSUB132PD_RD_SAE: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
@@ -40745,11 +43683,15 @@ func VFNMSUB132PD_RZ_SAE_Z(z, z1, k, z2 operand.Op) { ctx.VFNMSUB132PD_RZ_SAE_Z(
 //
 // Forms:
 //
+// 	VFNMSUB132PD.Z m128/m64bcst xmm k xmm
+// 	VFNMSUB132PD.Z xmm          xmm k xmm
+// 	VFNMSUB132PD.Z m256/m64bcst ymm k ymm
+// 	VFNMSUB132PD.Z ymm          ymm k ymm
 // 	VFNMSUB132PD.Z m512/m64bcst zmm k zmm
 // 	VFNMSUB132PD.Z zmm          zmm k zmm
 // Construct and append a VFNMSUB132PD.Z instruction to the active function.
-func (c *Context) VFNMSUB132PD_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VFNMSUB132PD_Z(mz, z, k, z1); err == nil {
+func (c *Context) VFNMSUB132PD_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFNMSUB132PD_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -40760,16 +43702,28 @@ func (c *Context) VFNMSUB132PD_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFNMSUB132PD.Z m128/m64bcst xmm k xmm
+// 	VFNMSUB132PD.Z xmm          xmm k xmm
+// 	VFNMSUB132PD.Z m256/m64bcst ymm k ymm
+// 	VFNMSUB132PD.Z ymm          ymm k ymm
 // 	VFNMSUB132PD.Z m512/m64bcst zmm k zmm
 // 	VFNMSUB132PD.Z zmm          zmm k zmm
 // Construct and append a VFNMSUB132PD.Z instruction to the active function.
 // Operates on the global context.
-func VFNMSUB132PD_Z(mz, z, k, z1 operand.Op) { ctx.VFNMSUB132PD_Z(mz, z, k, z1) }
+func VFNMSUB132PD_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VFNMSUB132PD_Z(mxyz, xyz, k, xyz1) }
 
 // VFNMSUB132PS: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values.
 //
 // Forms:
 //
+// 	VFNMSUB132PS m128/m32bcst xmm xmm
+// 	VFNMSUB132PS m128/m32bcst xmm k xmm
+// 	VFNMSUB132PS xmm          xmm xmm
+// 	VFNMSUB132PS xmm          xmm k xmm
+// 	VFNMSUB132PS m256/m32bcst ymm ymm
+// 	VFNMSUB132PS m256/m32bcst ymm k ymm
+// 	VFNMSUB132PS ymm          ymm ymm
+// 	VFNMSUB132PS ymm          ymm k ymm
 // 	VFNMSUB132PS m512/m32bcst zmm zmm
 // 	VFNMSUB132PS m512/m32bcst zmm k zmm
 // 	VFNMSUB132PS xmm          xmm xmm
@@ -40791,6 +43745,14 @@ func (c *Context) VFNMSUB132PS(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFNMSUB132PS m128/m32bcst xmm xmm
+// 	VFNMSUB132PS m128/m32bcst xmm k xmm
+// 	VFNMSUB132PS xmm          xmm xmm
+// 	VFNMSUB132PS xmm          xmm k xmm
+// 	VFNMSUB132PS m256/m32bcst ymm ymm
+// 	VFNMSUB132PS m256/m32bcst ymm k ymm
+// 	VFNMSUB132PS ymm          ymm ymm
+// 	VFNMSUB132PS ymm          ymm k ymm
 // 	VFNMSUB132PS m512/m32bcst zmm zmm
 // 	VFNMSUB132PS m512/m32bcst zmm k zmm
 // 	VFNMSUB132PS xmm          xmm xmm
@@ -40807,6 +43769,10 @@ func VFNMSUB132PS(ops ...operand.Op) { ctx.VFNMSUB132PS(ops...) }
 //
 // Forms:
 //
+// 	VFNMSUB132PS.BCST m128/m32bcst xmm xmm
+// 	VFNMSUB132PS.BCST m128/m32bcst xmm k xmm
+// 	VFNMSUB132PS.BCST m256/m32bcst ymm ymm
+// 	VFNMSUB132PS.BCST m256/m32bcst ymm k ymm
 // 	VFNMSUB132PS.BCST m512/m32bcst zmm zmm
 // 	VFNMSUB132PS.BCST m512/m32bcst zmm k zmm
 // Construct and append a VFNMSUB132PS.BCST instruction to the active function.
@@ -40822,6 +43788,10 @@ func (c *Context) VFNMSUB132PS_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFNMSUB132PS.BCST m128/m32bcst xmm xmm
+// 	VFNMSUB132PS.BCST m128/m32bcst xmm k xmm
+// 	VFNMSUB132PS.BCST m256/m32bcst ymm ymm
+// 	VFNMSUB132PS.BCST m256/m32bcst ymm k ymm
 // 	VFNMSUB132PS.BCST m512/m32bcst zmm zmm
 // 	VFNMSUB132PS.BCST m512/m32bcst zmm k zmm
 // Construct and append a VFNMSUB132PS.BCST instruction to the active function.
@@ -40832,10 +43802,12 @@ func VFNMSUB132PS_BCST(ops ...operand.Op) { ctx.VFNMSUB132PS_BCST(ops...) }
 //
 // Forms:
 //
+// 	VFNMSUB132PS.BCST.Z m128/m32bcst xmm k xmm
+// 	VFNMSUB132PS.BCST.Z m256/m32bcst ymm k ymm
 // 	VFNMSUB132PS.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VFNMSUB132PS.BCST.Z instruction to the active function.
-func (c *Context) VFNMSUB132PS_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VFNMSUB132PS_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VFNMSUB132PS_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFNMSUB132PS_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -40846,10 +43818,12 @@ func (c *Context) VFNMSUB132PS_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFNMSUB132PS.BCST.Z m128/m32bcst xmm k xmm
+// 	VFNMSUB132PS.BCST.Z m256/m32bcst ymm k ymm
 // 	VFNMSUB132PS.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VFNMSUB132PS.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VFNMSUB132PS_BCST_Z(m, z, k, z1 operand.Op) { ctx.VFNMSUB132PS_BCST_Z(m, z, k, z1) }
+func VFNMSUB132PS_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VFNMSUB132PS_BCST_Z(m, xyz, k, xyz1) }
 
 // VFNMSUB132PS_RD_SAE: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
@@ -41047,11 +44021,15 @@ func VFNMSUB132PS_RZ_SAE_Z(z, z1, k, z2 operand.Op) { ctx.VFNMSUB132PS_RZ_SAE_Z(
 //
 // Forms:
 //
+// 	VFNMSUB132PS.Z m128/m32bcst xmm k xmm
+// 	VFNMSUB132PS.Z xmm          xmm k xmm
+// 	VFNMSUB132PS.Z m256/m32bcst ymm k ymm
+// 	VFNMSUB132PS.Z ymm          ymm k ymm
 // 	VFNMSUB132PS.Z m512/m32bcst zmm k zmm
 // 	VFNMSUB132PS.Z zmm          zmm k zmm
 // Construct and append a VFNMSUB132PS.Z instruction to the active function.
-func (c *Context) VFNMSUB132PS_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VFNMSUB132PS_Z(mz, z, k, z1); err == nil {
+func (c *Context) VFNMSUB132PS_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFNMSUB132PS_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -41062,11 +44040,15 @@ func (c *Context) VFNMSUB132PS_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFNMSUB132PS.Z m128/m32bcst xmm k xmm
+// 	VFNMSUB132PS.Z xmm          xmm k xmm
+// 	VFNMSUB132PS.Z m256/m32bcst ymm k ymm
+// 	VFNMSUB132PS.Z ymm          ymm k ymm
 // 	VFNMSUB132PS.Z m512/m32bcst zmm k zmm
 // 	VFNMSUB132PS.Z zmm          zmm k zmm
 // Construct and append a VFNMSUB132PS.Z instruction to the active function.
 // Operates on the global context.
-func VFNMSUB132PS_Z(mz, z, k, z1 operand.Op) { ctx.VFNMSUB132PS_Z(mz, z, k, z1) }
+func VFNMSUB132PS_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VFNMSUB132PS_Z(mxyz, xyz, k, xyz1) }
 
 // VFNMSUB132SD: Fused Negative Multiply-Subtract of Scalar Double-Precision Floating-Point Values.
 //
@@ -41572,6 +44554,14 @@ func VFNMSUB132SS_Z(mx, x, k, x1 operand.Op) { ctx.VFNMSUB132SS_Z(mx, x, k, x1) 
 //
 // Forms:
 //
+// 	VFNMSUB213PD m128/m64bcst xmm xmm
+// 	VFNMSUB213PD m128/m64bcst xmm k xmm
+// 	VFNMSUB213PD xmm          xmm xmm
+// 	VFNMSUB213PD xmm          xmm k xmm
+// 	VFNMSUB213PD m256/m64bcst ymm ymm
+// 	VFNMSUB213PD m256/m64bcst ymm k ymm
+// 	VFNMSUB213PD ymm          ymm ymm
+// 	VFNMSUB213PD ymm          ymm k ymm
 // 	VFNMSUB213PD m512/m64bcst zmm zmm
 // 	VFNMSUB213PD m512/m64bcst zmm k zmm
 // 	VFNMSUB213PD xmm          xmm xmm
@@ -41593,6 +44583,14 @@ func (c *Context) VFNMSUB213PD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFNMSUB213PD m128/m64bcst xmm xmm
+// 	VFNMSUB213PD m128/m64bcst xmm k xmm
+// 	VFNMSUB213PD xmm          xmm xmm
+// 	VFNMSUB213PD xmm          xmm k xmm
+// 	VFNMSUB213PD m256/m64bcst ymm ymm
+// 	VFNMSUB213PD m256/m64bcst ymm k ymm
+// 	VFNMSUB213PD ymm          ymm ymm
+// 	VFNMSUB213PD ymm          ymm k ymm
 // 	VFNMSUB213PD m512/m64bcst zmm zmm
 // 	VFNMSUB213PD m512/m64bcst zmm k zmm
 // 	VFNMSUB213PD xmm          xmm xmm
@@ -41609,6 +44607,10 @@ func VFNMSUB213PD(ops ...operand.Op) { ctx.VFNMSUB213PD(ops...) }
 //
 // Forms:
 //
+// 	VFNMSUB213PD.BCST m128/m64bcst xmm xmm
+// 	VFNMSUB213PD.BCST m128/m64bcst xmm k xmm
+// 	VFNMSUB213PD.BCST m256/m64bcst ymm ymm
+// 	VFNMSUB213PD.BCST m256/m64bcst ymm k ymm
 // 	VFNMSUB213PD.BCST m512/m64bcst zmm zmm
 // 	VFNMSUB213PD.BCST m512/m64bcst zmm k zmm
 // Construct and append a VFNMSUB213PD.BCST instruction to the active function.
@@ -41624,6 +44626,10 @@ func (c *Context) VFNMSUB213PD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFNMSUB213PD.BCST m128/m64bcst xmm xmm
+// 	VFNMSUB213PD.BCST m128/m64bcst xmm k xmm
+// 	VFNMSUB213PD.BCST m256/m64bcst ymm ymm
+// 	VFNMSUB213PD.BCST m256/m64bcst ymm k ymm
 // 	VFNMSUB213PD.BCST m512/m64bcst zmm zmm
 // 	VFNMSUB213PD.BCST m512/m64bcst zmm k zmm
 // Construct and append a VFNMSUB213PD.BCST instruction to the active function.
@@ -41634,10 +44640,12 @@ func VFNMSUB213PD_BCST(ops ...operand.Op) { ctx.VFNMSUB213PD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VFNMSUB213PD.BCST.Z m128/m64bcst xmm k xmm
+// 	VFNMSUB213PD.BCST.Z m256/m64bcst ymm k ymm
 // 	VFNMSUB213PD.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VFNMSUB213PD.BCST.Z instruction to the active function.
-func (c *Context) VFNMSUB213PD_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VFNMSUB213PD_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VFNMSUB213PD_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFNMSUB213PD_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -41648,10 +44656,12 @@ func (c *Context) VFNMSUB213PD_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFNMSUB213PD.BCST.Z m128/m64bcst xmm k xmm
+// 	VFNMSUB213PD.BCST.Z m256/m64bcst ymm k ymm
 // 	VFNMSUB213PD.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VFNMSUB213PD.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VFNMSUB213PD_BCST_Z(m, z, k, z1 operand.Op) { ctx.VFNMSUB213PD_BCST_Z(m, z, k, z1) }
+func VFNMSUB213PD_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VFNMSUB213PD_BCST_Z(m, xyz, k, xyz1) }
 
 // VFNMSUB213PD_RD_SAE: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
@@ -41849,11 +44859,15 @@ func VFNMSUB213PD_RZ_SAE_Z(z, z1, k, z2 operand.Op) { ctx.VFNMSUB213PD_RZ_SAE_Z(
 //
 // Forms:
 //
+// 	VFNMSUB213PD.Z m128/m64bcst xmm k xmm
+// 	VFNMSUB213PD.Z xmm          xmm k xmm
+// 	VFNMSUB213PD.Z m256/m64bcst ymm k ymm
+// 	VFNMSUB213PD.Z ymm          ymm k ymm
 // 	VFNMSUB213PD.Z m512/m64bcst zmm k zmm
 // 	VFNMSUB213PD.Z zmm          zmm k zmm
 // Construct and append a VFNMSUB213PD.Z instruction to the active function.
-func (c *Context) VFNMSUB213PD_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VFNMSUB213PD_Z(mz, z, k, z1); err == nil {
+func (c *Context) VFNMSUB213PD_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFNMSUB213PD_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -41864,16 +44878,28 @@ func (c *Context) VFNMSUB213PD_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFNMSUB213PD.Z m128/m64bcst xmm k xmm
+// 	VFNMSUB213PD.Z xmm          xmm k xmm
+// 	VFNMSUB213PD.Z m256/m64bcst ymm k ymm
+// 	VFNMSUB213PD.Z ymm          ymm k ymm
 // 	VFNMSUB213PD.Z m512/m64bcst zmm k zmm
 // 	VFNMSUB213PD.Z zmm          zmm k zmm
 // Construct and append a VFNMSUB213PD.Z instruction to the active function.
 // Operates on the global context.
-func VFNMSUB213PD_Z(mz, z, k, z1 operand.Op) { ctx.VFNMSUB213PD_Z(mz, z, k, z1) }
+func VFNMSUB213PD_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VFNMSUB213PD_Z(mxyz, xyz, k, xyz1) }
 
 // VFNMSUB213PS: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values.
 //
 // Forms:
 //
+// 	VFNMSUB213PS m128/m32bcst xmm xmm
+// 	VFNMSUB213PS m128/m32bcst xmm k xmm
+// 	VFNMSUB213PS xmm          xmm xmm
+// 	VFNMSUB213PS xmm          xmm k xmm
+// 	VFNMSUB213PS m256/m32bcst ymm ymm
+// 	VFNMSUB213PS m256/m32bcst ymm k ymm
+// 	VFNMSUB213PS ymm          ymm ymm
+// 	VFNMSUB213PS ymm          ymm k ymm
 // 	VFNMSUB213PS m512/m32bcst zmm zmm
 // 	VFNMSUB213PS m512/m32bcst zmm k zmm
 // 	VFNMSUB213PS xmm          xmm xmm
@@ -41895,6 +44921,14 @@ func (c *Context) VFNMSUB213PS(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFNMSUB213PS m128/m32bcst xmm xmm
+// 	VFNMSUB213PS m128/m32bcst xmm k xmm
+// 	VFNMSUB213PS xmm          xmm xmm
+// 	VFNMSUB213PS xmm          xmm k xmm
+// 	VFNMSUB213PS m256/m32bcst ymm ymm
+// 	VFNMSUB213PS m256/m32bcst ymm k ymm
+// 	VFNMSUB213PS ymm          ymm ymm
+// 	VFNMSUB213PS ymm          ymm k ymm
 // 	VFNMSUB213PS m512/m32bcst zmm zmm
 // 	VFNMSUB213PS m512/m32bcst zmm k zmm
 // 	VFNMSUB213PS xmm          xmm xmm
@@ -41911,6 +44945,10 @@ func VFNMSUB213PS(ops ...operand.Op) { ctx.VFNMSUB213PS(ops...) }
 //
 // Forms:
 //
+// 	VFNMSUB213PS.BCST m128/m32bcst xmm xmm
+// 	VFNMSUB213PS.BCST m128/m32bcst xmm k xmm
+// 	VFNMSUB213PS.BCST m256/m32bcst ymm ymm
+// 	VFNMSUB213PS.BCST m256/m32bcst ymm k ymm
 // 	VFNMSUB213PS.BCST m512/m32bcst zmm zmm
 // 	VFNMSUB213PS.BCST m512/m32bcst zmm k zmm
 // Construct and append a VFNMSUB213PS.BCST instruction to the active function.
@@ -41926,6 +44964,10 @@ func (c *Context) VFNMSUB213PS_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFNMSUB213PS.BCST m128/m32bcst xmm xmm
+// 	VFNMSUB213PS.BCST m128/m32bcst xmm k xmm
+// 	VFNMSUB213PS.BCST m256/m32bcst ymm ymm
+// 	VFNMSUB213PS.BCST m256/m32bcst ymm k ymm
 // 	VFNMSUB213PS.BCST m512/m32bcst zmm zmm
 // 	VFNMSUB213PS.BCST m512/m32bcst zmm k zmm
 // Construct and append a VFNMSUB213PS.BCST instruction to the active function.
@@ -41936,10 +44978,12 @@ func VFNMSUB213PS_BCST(ops ...operand.Op) { ctx.VFNMSUB213PS_BCST(ops...) }
 //
 // Forms:
 //
+// 	VFNMSUB213PS.BCST.Z m128/m32bcst xmm k xmm
+// 	VFNMSUB213PS.BCST.Z m256/m32bcst ymm k ymm
 // 	VFNMSUB213PS.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VFNMSUB213PS.BCST.Z instruction to the active function.
-func (c *Context) VFNMSUB213PS_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VFNMSUB213PS_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VFNMSUB213PS_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFNMSUB213PS_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -41950,10 +44994,12 @@ func (c *Context) VFNMSUB213PS_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFNMSUB213PS.BCST.Z m128/m32bcst xmm k xmm
+// 	VFNMSUB213PS.BCST.Z m256/m32bcst ymm k ymm
 // 	VFNMSUB213PS.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VFNMSUB213PS.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VFNMSUB213PS_BCST_Z(m, z, k, z1 operand.Op) { ctx.VFNMSUB213PS_BCST_Z(m, z, k, z1) }
+func VFNMSUB213PS_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VFNMSUB213PS_BCST_Z(m, xyz, k, xyz1) }
 
 // VFNMSUB213PS_RD_SAE: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
@@ -42151,11 +45197,15 @@ func VFNMSUB213PS_RZ_SAE_Z(z, z1, k, z2 operand.Op) { ctx.VFNMSUB213PS_RZ_SAE_Z(
 //
 // Forms:
 //
+// 	VFNMSUB213PS.Z m128/m32bcst xmm k xmm
+// 	VFNMSUB213PS.Z xmm          xmm k xmm
+// 	VFNMSUB213PS.Z m256/m32bcst ymm k ymm
+// 	VFNMSUB213PS.Z ymm          ymm k ymm
 // 	VFNMSUB213PS.Z m512/m32bcst zmm k zmm
 // 	VFNMSUB213PS.Z zmm          zmm k zmm
 // Construct and append a VFNMSUB213PS.Z instruction to the active function.
-func (c *Context) VFNMSUB213PS_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VFNMSUB213PS_Z(mz, z, k, z1); err == nil {
+func (c *Context) VFNMSUB213PS_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFNMSUB213PS_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -42166,11 +45216,15 @@ func (c *Context) VFNMSUB213PS_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFNMSUB213PS.Z m128/m32bcst xmm k xmm
+// 	VFNMSUB213PS.Z xmm          xmm k xmm
+// 	VFNMSUB213PS.Z m256/m32bcst ymm k ymm
+// 	VFNMSUB213PS.Z ymm          ymm k ymm
 // 	VFNMSUB213PS.Z m512/m32bcst zmm k zmm
 // 	VFNMSUB213PS.Z zmm          zmm k zmm
 // Construct and append a VFNMSUB213PS.Z instruction to the active function.
 // Operates on the global context.
-func VFNMSUB213PS_Z(mz, z, k, z1 operand.Op) { ctx.VFNMSUB213PS_Z(mz, z, k, z1) }
+func VFNMSUB213PS_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VFNMSUB213PS_Z(mxyz, xyz, k, xyz1) }
 
 // VFNMSUB213SD: Fused Negative Multiply-Subtract of Scalar Double-Precision Floating-Point Values.
 //
@@ -42676,6 +45730,14 @@ func VFNMSUB213SS_Z(mx, x, k, x1 operand.Op) { ctx.VFNMSUB213SS_Z(mx, x, k, x1) 
 //
 // Forms:
 //
+// 	VFNMSUB231PD m128/m64bcst xmm xmm
+// 	VFNMSUB231PD m128/m64bcst xmm k xmm
+// 	VFNMSUB231PD xmm          xmm xmm
+// 	VFNMSUB231PD xmm          xmm k xmm
+// 	VFNMSUB231PD m256/m64bcst ymm ymm
+// 	VFNMSUB231PD m256/m64bcst ymm k ymm
+// 	VFNMSUB231PD ymm          ymm ymm
+// 	VFNMSUB231PD ymm          ymm k ymm
 // 	VFNMSUB231PD m512/m64bcst zmm zmm
 // 	VFNMSUB231PD m512/m64bcst zmm k zmm
 // 	VFNMSUB231PD xmm          xmm xmm
@@ -42697,6 +45759,14 @@ func (c *Context) VFNMSUB231PD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFNMSUB231PD m128/m64bcst xmm xmm
+// 	VFNMSUB231PD m128/m64bcst xmm k xmm
+// 	VFNMSUB231PD xmm          xmm xmm
+// 	VFNMSUB231PD xmm          xmm k xmm
+// 	VFNMSUB231PD m256/m64bcst ymm ymm
+// 	VFNMSUB231PD m256/m64bcst ymm k ymm
+// 	VFNMSUB231PD ymm          ymm ymm
+// 	VFNMSUB231PD ymm          ymm k ymm
 // 	VFNMSUB231PD m512/m64bcst zmm zmm
 // 	VFNMSUB231PD m512/m64bcst zmm k zmm
 // 	VFNMSUB231PD xmm          xmm xmm
@@ -42713,6 +45783,10 @@ func VFNMSUB231PD(ops ...operand.Op) { ctx.VFNMSUB231PD(ops...) }
 //
 // Forms:
 //
+// 	VFNMSUB231PD.BCST m128/m64bcst xmm xmm
+// 	VFNMSUB231PD.BCST m128/m64bcst xmm k xmm
+// 	VFNMSUB231PD.BCST m256/m64bcst ymm ymm
+// 	VFNMSUB231PD.BCST m256/m64bcst ymm k ymm
 // 	VFNMSUB231PD.BCST m512/m64bcst zmm zmm
 // 	VFNMSUB231PD.BCST m512/m64bcst zmm k zmm
 // Construct and append a VFNMSUB231PD.BCST instruction to the active function.
@@ -42728,6 +45802,10 @@ func (c *Context) VFNMSUB231PD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFNMSUB231PD.BCST m128/m64bcst xmm xmm
+// 	VFNMSUB231PD.BCST m128/m64bcst xmm k xmm
+// 	VFNMSUB231PD.BCST m256/m64bcst ymm ymm
+// 	VFNMSUB231PD.BCST m256/m64bcst ymm k ymm
 // 	VFNMSUB231PD.BCST m512/m64bcst zmm zmm
 // 	VFNMSUB231PD.BCST m512/m64bcst zmm k zmm
 // Construct and append a VFNMSUB231PD.BCST instruction to the active function.
@@ -42738,10 +45816,12 @@ func VFNMSUB231PD_BCST(ops ...operand.Op) { ctx.VFNMSUB231PD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VFNMSUB231PD.BCST.Z m128/m64bcst xmm k xmm
+// 	VFNMSUB231PD.BCST.Z m256/m64bcst ymm k ymm
 // 	VFNMSUB231PD.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VFNMSUB231PD.BCST.Z instruction to the active function.
-func (c *Context) VFNMSUB231PD_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VFNMSUB231PD_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VFNMSUB231PD_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFNMSUB231PD_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -42752,10 +45832,12 @@ func (c *Context) VFNMSUB231PD_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFNMSUB231PD.BCST.Z m128/m64bcst xmm k xmm
+// 	VFNMSUB231PD.BCST.Z m256/m64bcst ymm k ymm
 // 	VFNMSUB231PD.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VFNMSUB231PD.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VFNMSUB231PD_BCST_Z(m, z, k, z1 operand.Op) { ctx.VFNMSUB231PD_BCST_Z(m, z, k, z1) }
+func VFNMSUB231PD_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VFNMSUB231PD_BCST_Z(m, xyz, k, xyz1) }
 
 // VFNMSUB231PD_RD_SAE: Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
@@ -42953,11 +46035,15 @@ func VFNMSUB231PD_RZ_SAE_Z(z, z1, k, z2 operand.Op) { ctx.VFNMSUB231PD_RZ_SAE_Z(
 //
 // Forms:
 //
+// 	VFNMSUB231PD.Z m128/m64bcst xmm k xmm
+// 	VFNMSUB231PD.Z xmm          xmm k xmm
+// 	VFNMSUB231PD.Z m256/m64bcst ymm k ymm
+// 	VFNMSUB231PD.Z ymm          ymm k ymm
 // 	VFNMSUB231PD.Z m512/m64bcst zmm k zmm
 // 	VFNMSUB231PD.Z zmm          zmm k zmm
 // Construct and append a VFNMSUB231PD.Z instruction to the active function.
-func (c *Context) VFNMSUB231PD_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VFNMSUB231PD_Z(mz, z, k, z1); err == nil {
+func (c *Context) VFNMSUB231PD_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFNMSUB231PD_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -42968,16 +46054,28 @@ func (c *Context) VFNMSUB231PD_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFNMSUB231PD.Z m128/m64bcst xmm k xmm
+// 	VFNMSUB231PD.Z xmm          xmm k xmm
+// 	VFNMSUB231PD.Z m256/m64bcst ymm k ymm
+// 	VFNMSUB231PD.Z ymm          ymm k ymm
 // 	VFNMSUB231PD.Z m512/m64bcst zmm k zmm
 // 	VFNMSUB231PD.Z zmm          zmm k zmm
 // Construct and append a VFNMSUB231PD.Z instruction to the active function.
 // Operates on the global context.
-func VFNMSUB231PD_Z(mz, z, k, z1 operand.Op) { ctx.VFNMSUB231PD_Z(mz, z, k, z1) }
+func VFNMSUB231PD_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VFNMSUB231PD_Z(mxyz, xyz, k, xyz1) }
 
 // VFNMSUB231PS: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values.
 //
 // Forms:
 //
+// 	VFNMSUB231PS m128/m32bcst xmm xmm
+// 	VFNMSUB231PS m128/m32bcst xmm k xmm
+// 	VFNMSUB231PS xmm          xmm xmm
+// 	VFNMSUB231PS xmm          xmm k xmm
+// 	VFNMSUB231PS m256/m32bcst ymm ymm
+// 	VFNMSUB231PS m256/m32bcst ymm k ymm
+// 	VFNMSUB231PS ymm          ymm ymm
+// 	VFNMSUB231PS ymm          ymm k ymm
 // 	VFNMSUB231PS m512/m32bcst zmm zmm
 // 	VFNMSUB231PS m512/m32bcst zmm k zmm
 // 	VFNMSUB231PS xmm          xmm xmm
@@ -42999,6 +46097,14 @@ func (c *Context) VFNMSUB231PS(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFNMSUB231PS m128/m32bcst xmm xmm
+// 	VFNMSUB231PS m128/m32bcst xmm k xmm
+// 	VFNMSUB231PS xmm          xmm xmm
+// 	VFNMSUB231PS xmm          xmm k xmm
+// 	VFNMSUB231PS m256/m32bcst ymm ymm
+// 	VFNMSUB231PS m256/m32bcst ymm k ymm
+// 	VFNMSUB231PS ymm          ymm ymm
+// 	VFNMSUB231PS ymm          ymm k ymm
 // 	VFNMSUB231PS m512/m32bcst zmm zmm
 // 	VFNMSUB231PS m512/m32bcst zmm k zmm
 // 	VFNMSUB231PS xmm          xmm xmm
@@ -43015,6 +46121,10 @@ func VFNMSUB231PS(ops ...operand.Op) { ctx.VFNMSUB231PS(ops...) }
 //
 // Forms:
 //
+// 	VFNMSUB231PS.BCST m128/m32bcst xmm xmm
+// 	VFNMSUB231PS.BCST m128/m32bcst xmm k xmm
+// 	VFNMSUB231PS.BCST m256/m32bcst ymm ymm
+// 	VFNMSUB231PS.BCST m256/m32bcst ymm k ymm
 // 	VFNMSUB231PS.BCST m512/m32bcst zmm zmm
 // 	VFNMSUB231PS.BCST m512/m32bcst zmm k zmm
 // Construct and append a VFNMSUB231PS.BCST instruction to the active function.
@@ -43030,6 +46140,10 @@ func (c *Context) VFNMSUB231PS_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VFNMSUB231PS.BCST m128/m32bcst xmm xmm
+// 	VFNMSUB231PS.BCST m128/m32bcst xmm k xmm
+// 	VFNMSUB231PS.BCST m256/m32bcst ymm ymm
+// 	VFNMSUB231PS.BCST m256/m32bcst ymm k ymm
 // 	VFNMSUB231PS.BCST m512/m32bcst zmm zmm
 // 	VFNMSUB231PS.BCST m512/m32bcst zmm k zmm
 // Construct and append a VFNMSUB231PS.BCST instruction to the active function.
@@ -43040,10 +46154,12 @@ func VFNMSUB231PS_BCST(ops ...operand.Op) { ctx.VFNMSUB231PS_BCST(ops...) }
 //
 // Forms:
 //
+// 	VFNMSUB231PS.BCST.Z m128/m32bcst xmm k xmm
+// 	VFNMSUB231PS.BCST.Z m256/m32bcst ymm k ymm
 // 	VFNMSUB231PS.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VFNMSUB231PS.BCST.Z instruction to the active function.
-func (c *Context) VFNMSUB231PS_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VFNMSUB231PS_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VFNMSUB231PS_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFNMSUB231PS_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -43054,10 +46170,12 @@ func (c *Context) VFNMSUB231PS_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFNMSUB231PS.BCST.Z m128/m32bcst xmm k xmm
+// 	VFNMSUB231PS.BCST.Z m256/m32bcst ymm k ymm
 // 	VFNMSUB231PS.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VFNMSUB231PS.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VFNMSUB231PS_BCST_Z(m, z, k, z1 operand.Op) { ctx.VFNMSUB231PS_BCST_Z(m, z, k, z1) }
+func VFNMSUB231PS_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VFNMSUB231PS_BCST_Z(m, xyz, k, xyz1) }
 
 // VFNMSUB231PS_RD_SAE: Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
@@ -43255,11 +46373,15 @@ func VFNMSUB231PS_RZ_SAE_Z(z, z1, k, z2 operand.Op) { ctx.VFNMSUB231PS_RZ_SAE_Z(
 //
 // Forms:
 //
+// 	VFNMSUB231PS.Z m128/m32bcst xmm k xmm
+// 	VFNMSUB231PS.Z xmm          xmm k xmm
+// 	VFNMSUB231PS.Z m256/m32bcst ymm k ymm
+// 	VFNMSUB231PS.Z ymm          ymm k ymm
 // 	VFNMSUB231PS.Z m512/m32bcst zmm k zmm
 // 	VFNMSUB231PS.Z zmm          zmm k zmm
 // Construct and append a VFNMSUB231PS.Z instruction to the active function.
-func (c *Context) VFNMSUB231PS_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VFNMSUB231PS_Z(mz, z, k, z1); err == nil {
+func (c *Context) VFNMSUB231PS_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VFNMSUB231PS_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -43270,11 +46392,15 @@ func (c *Context) VFNMSUB231PS_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VFNMSUB231PS.Z m128/m32bcst xmm k xmm
+// 	VFNMSUB231PS.Z xmm          xmm k xmm
+// 	VFNMSUB231PS.Z m256/m32bcst ymm k ymm
+// 	VFNMSUB231PS.Z ymm          ymm k ymm
 // 	VFNMSUB231PS.Z m512/m32bcst zmm k zmm
 // 	VFNMSUB231PS.Z zmm          zmm k zmm
 // Construct and append a VFNMSUB231PS.Z instruction to the active function.
 // Operates on the global context.
-func VFNMSUB231PS_Z(mz, z, k, z1 operand.Op) { ctx.VFNMSUB231PS_Z(mz, z, k, z1) }
+func VFNMSUB231PS_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VFNMSUB231PS_Z(mxyz, xyz, k, xyz1) }
 
 // VFNMSUB231SD: Fused Negative Multiply-Subtract of Scalar Double-Precision Floating-Point Values.
 //
@@ -43780,6 +46906,8 @@ func VFNMSUB231SS_Z(mx, x, k, x1 operand.Op) { ctx.VFNMSUB231SS_Z(mx, x, k, x1) 
 //
 // Forms:
 //
+// 	VGATHERDPD vm32x k     xmm
+// 	VGATHERDPD vm32x k     ymm
 // 	VGATHERDPD vm32y k     zmm
 // 	VGATHERDPD xmm   vm32x xmm
 // 	VGATHERDPD ymm   vm32x ymm
@@ -43796,6 +46924,8 @@ func (c *Context) VGATHERDPD(vxy, kv, xyz operand.Op) {
 //
 // Forms:
 //
+// 	VGATHERDPD vm32x k     xmm
+// 	VGATHERDPD vm32x k     ymm
 // 	VGATHERDPD vm32y k     zmm
 // 	VGATHERDPD xmm   vm32x xmm
 // 	VGATHERDPD ymm   vm32x ymm
@@ -43807,6 +46937,8 @@ func VGATHERDPD(vxy, kv, xyz operand.Op) { ctx.VGATHERDPD(vxy, kv, xyz) }
 //
 // Forms:
 //
+// 	VGATHERDPS vm32x k     xmm
+// 	VGATHERDPS vm32y k     ymm
 // 	VGATHERDPS vm32z k     zmm
 // 	VGATHERDPS xmm   vm32x xmm
 // 	VGATHERDPS ymm   vm32y ymm
@@ -43823,6 +46955,8 @@ func (c *Context) VGATHERDPS(vxy, kv, xyz operand.Op) {
 //
 // Forms:
 //
+// 	VGATHERDPS vm32x k     xmm
+// 	VGATHERDPS vm32y k     ymm
 // 	VGATHERDPS vm32z k     zmm
 // 	VGATHERDPS xmm   vm32x xmm
 // 	VGATHERDPS ymm   vm32y ymm
@@ -43834,6 +46968,8 @@ func VGATHERDPS(vxy, kv, xyz operand.Op) { ctx.VGATHERDPS(vxy, kv, xyz) }
 //
 // Forms:
 //
+// 	VGATHERQPD vm64x k     xmm
+// 	VGATHERQPD vm64y k     ymm
 // 	VGATHERQPD vm64z k     zmm
 // 	VGATHERQPD xmm   vm64x xmm
 // 	VGATHERQPD ymm   vm64y ymm
@@ -43850,6 +46986,8 @@ func (c *Context) VGATHERQPD(vxy, kv, xyz operand.Op) {
 //
 // Forms:
 //
+// 	VGATHERQPD vm64x k     xmm
+// 	VGATHERQPD vm64y k     ymm
 // 	VGATHERQPD vm64z k     zmm
 // 	VGATHERQPD xmm   vm64x xmm
 // 	VGATHERQPD ymm   vm64y ymm
@@ -43861,6 +46999,8 @@ func VGATHERQPD(vxy, kv, xyz operand.Op) { ctx.VGATHERQPD(vxy, kv, xyz) }
 //
 // Forms:
 //
+// 	VGATHERQPS vm64x k     xmm
+// 	VGATHERQPS vm64y k     xmm
 // 	VGATHERQPS vm64z k     ymm
 // 	VGATHERQPS xmm   vm64x xmm
 // 	VGATHERQPS xmm   vm64y xmm
@@ -43877,6 +47017,8 @@ func (c *Context) VGATHERQPS(vx, kv, xy operand.Op) {
 //
 // Forms:
 //
+// 	VGATHERQPS vm64x k     xmm
+// 	VGATHERQPS vm64y k     xmm
 // 	VGATHERQPS vm64z k     ymm
 // 	VGATHERQPS xmm   vm64x xmm
 // 	VGATHERQPS xmm   vm64y xmm
@@ -43888,8 +47030,16 @@ func VGATHERQPS(vx, kv, xy operand.Op) { ctx.VGATHERQPS(vx, kv, xy) }
 //
 // Forms:
 //
+// 	VGETEXPPD m128/m64bcst xmm
+// 	VGETEXPPD m128/m64bcst k xmm
+// 	VGETEXPPD m256/m64bcst ymm
+// 	VGETEXPPD m256/m64bcst k ymm
 // 	VGETEXPPD m512/m64bcst zmm
 // 	VGETEXPPD m512/m64bcst k zmm
+// 	VGETEXPPD xmm          xmm
+// 	VGETEXPPD xmm          k xmm
+// 	VGETEXPPD ymm          ymm
+// 	VGETEXPPD ymm          k ymm
 // 	VGETEXPPD zmm          zmm
 // 	VGETEXPPD zmm          k zmm
 // Construct and append a VGETEXPPD instruction to the active function.
@@ -43905,8 +47055,16 @@ func (c *Context) VGETEXPPD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VGETEXPPD m128/m64bcst xmm
+// 	VGETEXPPD m128/m64bcst k xmm
+// 	VGETEXPPD m256/m64bcst ymm
+// 	VGETEXPPD m256/m64bcst k ymm
 // 	VGETEXPPD m512/m64bcst zmm
 // 	VGETEXPPD m512/m64bcst k zmm
+// 	VGETEXPPD xmm          xmm
+// 	VGETEXPPD xmm          k xmm
+// 	VGETEXPPD ymm          ymm
+// 	VGETEXPPD ymm          k ymm
 // 	VGETEXPPD zmm          zmm
 // 	VGETEXPPD zmm          k zmm
 // Construct and append a VGETEXPPD instruction to the active function.
@@ -43917,6 +47075,10 @@ func VGETEXPPD(ops ...operand.Op) { ctx.VGETEXPPD(ops...) }
 //
 // Forms:
 //
+// 	VGETEXPPD.BCST m128/m64bcst xmm
+// 	VGETEXPPD.BCST m128/m64bcst k xmm
+// 	VGETEXPPD.BCST m256/m64bcst ymm
+// 	VGETEXPPD.BCST m256/m64bcst k ymm
 // 	VGETEXPPD.BCST m512/m64bcst zmm
 // 	VGETEXPPD.BCST m512/m64bcst k zmm
 // Construct and append a VGETEXPPD.BCST instruction to the active function.
@@ -43932,6 +47094,10 @@ func (c *Context) VGETEXPPD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VGETEXPPD.BCST m128/m64bcst xmm
+// 	VGETEXPPD.BCST m128/m64bcst k xmm
+// 	VGETEXPPD.BCST m256/m64bcst ymm
+// 	VGETEXPPD.BCST m256/m64bcst k ymm
 // 	VGETEXPPD.BCST m512/m64bcst zmm
 // 	VGETEXPPD.BCST m512/m64bcst k zmm
 // Construct and append a VGETEXPPD.BCST instruction to the active function.
@@ -43942,10 +47108,12 @@ func VGETEXPPD_BCST(ops ...operand.Op) { ctx.VGETEXPPD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VGETEXPPD.BCST.Z m128/m64bcst k xmm
+// 	VGETEXPPD.BCST.Z m256/m64bcst k ymm
 // 	VGETEXPPD.BCST.Z m512/m64bcst k zmm
 // Construct and append a VGETEXPPD.BCST.Z instruction to the active function.
-func (c *Context) VGETEXPPD_BCST_Z(m, k, z operand.Op) {
-	if inst, err := x86.VGETEXPPD_BCST_Z(m, k, z); err == nil {
+func (c *Context) VGETEXPPD_BCST_Z(m, k, xyz operand.Op) {
+	if inst, err := x86.VGETEXPPD_BCST_Z(m, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -43956,10 +47124,12 @@ func (c *Context) VGETEXPPD_BCST_Z(m, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VGETEXPPD.BCST.Z m128/m64bcst k xmm
+// 	VGETEXPPD.BCST.Z m256/m64bcst k ymm
 // 	VGETEXPPD.BCST.Z m512/m64bcst k zmm
 // Construct and append a VGETEXPPD.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VGETEXPPD_BCST_Z(m, k, z operand.Op) { ctx.VGETEXPPD_BCST_Z(m, k, z) }
+func VGETEXPPD_BCST_Z(m, k, xyz operand.Op) { ctx.VGETEXPPD_BCST_Z(m, k, xyz) }
 
 // VGETEXPPD_SAE: Extract Exponents of Packed Double-Precision Floating-Point Values as Double-Precision Floating-Point Values (Suppress All Exceptions).
 //
@@ -44013,11 +47183,15 @@ func VGETEXPPD_SAE_Z(z, k, z1 operand.Op) { ctx.VGETEXPPD_SAE_Z(z, k, z1) }
 //
 // Forms:
 //
+// 	VGETEXPPD.Z m128/m64bcst k xmm
+// 	VGETEXPPD.Z m256/m64bcst k ymm
 // 	VGETEXPPD.Z m512/m64bcst k zmm
+// 	VGETEXPPD.Z xmm          k xmm
+// 	VGETEXPPD.Z ymm          k ymm
 // 	VGETEXPPD.Z zmm          k zmm
 // Construct and append a VGETEXPPD.Z instruction to the active function.
-func (c *Context) VGETEXPPD_Z(mz, k, z operand.Op) {
-	if inst, err := x86.VGETEXPPD_Z(mz, k, z); err == nil {
+func (c *Context) VGETEXPPD_Z(mxyz, k, xyz operand.Op) {
+	if inst, err := x86.VGETEXPPD_Z(mxyz, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -44028,18 +47202,30 @@ func (c *Context) VGETEXPPD_Z(mz, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VGETEXPPD.Z m128/m64bcst k xmm
+// 	VGETEXPPD.Z m256/m64bcst k ymm
 // 	VGETEXPPD.Z m512/m64bcst k zmm
+// 	VGETEXPPD.Z xmm          k xmm
+// 	VGETEXPPD.Z ymm          k ymm
 // 	VGETEXPPD.Z zmm          k zmm
 // Construct and append a VGETEXPPD.Z instruction to the active function.
 // Operates on the global context.
-func VGETEXPPD_Z(mz, k, z operand.Op) { ctx.VGETEXPPD_Z(mz, k, z) }
+func VGETEXPPD_Z(mxyz, k, xyz operand.Op) { ctx.VGETEXPPD_Z(mxyz, k, xyz) }
 
 // VGETEXPPS: Extract Exponents of Packed Single-Precision Floating-Point Values as Single-Precision Floating-Point Values.
 //
 // Forms:
 //
+// 	VGETEXPPS m128/m32bcst xmm
+// 	VGETEXPPS m128/m32bcst k xmm
+// 	VGETEXPPS m256/m32bcst ymm
+// 	VGETEXPPS m256/m32bcst k ymm
 // 	VGETEXPPS m512/m32bcst zmm
 // 	VGETEXPPS m512/m32bcst k zmm
+// 	VGETEXPPS xmm          xmm
+// 	VGETEXPPS xmm          k xmm
+// 	VGETEXPPS ymm          ymm
+// 	VGETEXPPS ymm          k ymm
 // 	VGETEXPPS zmm          zmm
 // 	VGETEXPPS zmm          k zmm
 // Construct and append a VGETEXPPS instruction to the active function.
@@ -44055,8 +47241,16 @@ func (c *Context) VGETEXPPS(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VGETEXPPS m128/m32bcst xmm
+// 	VGETEXPPS m128/m32bcst k xmm
+// 	VGETEXPPS m256/m32bcst ymm
+// 	VGETEXPPS m256/m32bcst k ymm
 // 	VGETEXPPS m512/m32bcst zmm
 // 	VGETEXPPS m512/m32bcst k zmm
+// 	VGETEXPPS xmm          xmm
+// 	VGETEXPPS xmm          k xmm
+// 	VGETEXPPS ymm          ymm
+// 	VGETEXPPS ymm          k ymm
 // 	VGETEXPPS zmm          zmm
 // 	VGETEXPPS zmm          k zmm
 // Construct and append a VGETEXPPS instruction to the active function.
@@ -44067,6 +47261,10 @@ func VGETEXPPS(ops ...operand.Op) { ctx.VGETEXPPS(ops...) }
 //
 // Forms:
 //
+// 	VGETEXPPS.BCST m128/m32bcst xmm
+// 	VGETEXPPS.BCST m128/m32bcst k xmm
+// 	VGETEXPPS.BCST m256/m32bcst ymm
+// 	VGETEXPPS.BCST m256/m32bcst k ymm
 // 	VGETEXPPS.BCST m512/m32bcst zmm
 // 	VGETEXPPS.BCST m512/m32bcst k zmm
 // Construct and append a VGETEXPPS.BCST instruction to the active function.
@@ -44082,6 +47280,10 @@ func (c *Context) VGETEXPPS_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VGETEXPPS.BCST m128/m32bcst xmm
+// 	VGETEXPPS.BCST m128/m32bcst k xmm
+// 	VGETEXPPS.BCST m256/m32bcst ymm
+// 	VGETEXPPS.BCST m256/m32bcst k ymm
 // 	VGETEXPPS.BCST m512/m32bcst zmm
 // 	VGETEXPPS.BCST m512/m32bcst k zmm
 // Construct and append a VGETEXPPS.BCST instruction to the active function.
@@ -44092,10 +47294,12 @@ func VGETEXPPS_BCST(ops ...operand.Op) { ctx.VGETEXPPS_BCST(ops...) }
 //
 // Forms:
 //
+// 	VGETEXPPS.BCST.Z m128/m32bcst k xmm
+// 	VGETEXPPS.BCST.Z m256/m32bcst k ymm
 // 	VGETEXPPS.BCST.Z m512/m32bcst k zmm
 // Construct and append a VGETEXPPS.BCST.Z instruction to the active function.
-func (c *Context) VGETEXPPS_BCST_Z(m, k, z operand.Op) {
-	if inst, err := x86.VGETEXPPS_BCST_Z(m, k, z); err == nil {
+func (c *Context) VGETEXPPS_BCST_Z(m, k, xyz operand.Op) {
+	if inst, err := x86.VGETEXPPS_BCST_Z(m, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -44106,10 +47310,12 @@ func (c *Context) VGETEXPPS_BCST_Z(m, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VGETEXPPS.BCST.Z m128/m32bcst k xmm
+// 	VGETEXPPS.BCST.Z m256/m32bcst k ymm
 // 	VGETEXPPS.BCST.Z m512/m32bcst k zmm
 // Construct and append a VGETEXPPS.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VGETEXPPS_BCST_Z(m, k, z operand.Op) { ctx.VGETEXPPS_BCST_Z(m, k, z) }
+func VGETEXPPS_BCST_Z(m, k, xyz operand.Op) { ctx.VGETEXPPS_BCST_Z(m, k, xyz) }
 
 // VGETEXPPS_SAE: Extract Exponents of Packed Single-Precision Floating-Point Values as Single-Precision Floating-Point Values (Suppress All Exceptions).
 //
@@ -44163,11 +47369,15 @@ func VGETEXPPS_SAE_Z(z, k, z1 operand.Op) { ctx.VGETEXPPS_SAE_Z(z, k, z1) }
 //
 // Forms:
 //
+// 	VGETEXPPS.Z m128/m32bcst k xmm
+// 	VGETEXPPS.Z m256/m32bcst k ymm
 // 	VGETEXPPS.Z m512/m32bcst k zmm
+// 	VGETEXPPS.Z xmm          k xmm
+// 	VGETEXPPS.Z ymm          k ymm
 // 	VGETEXPPS.Z zmm          k zmm
 // Construct and append a VGETEXPPS.Z instruction to the active function.
-func (c *Context) VGETEXPPS_Z(mz, k, z operand.Op) {
-	if inst, err := x86.VGETEXPPS_Z(mz, k, z); err == nil {
+func (c *Context) VGETEXPPS_Z(mxyz, k, xyz operand.Op) {
+	if inst, err := x86.VGETEXPPS_Z(mxyz, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -44178,11 +47388,15 @@ func (c *Context) VGETEXPPS_Z(mz, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VGETEXPPS.Z m128/m32bcst k xmm
+// 	VGETEXPPS.Z m256/m32bcst k ymm
 // 	VGETEXPPS.Z m512/m32bcst k zmm
+// 	VGETEXPPS.Z xmm          k xmm
+// 	VGETEXPPS.Z ymm          k ymm
 // 	VGETEXPPS.Z zmm          k zmm
 // Construct and append a VGETEXPPS.Z instruction to the active function.
 // Operates on the global context.
-func VGETEXPPS_Z(mz, k, z operand.Op) { ctx.VGETEXPPS_Z(mz, k, z) }
+func VGETEXPPS_Z(mxyz, k, xyz operand.Op) { ctx.VGETEXPPS_Z(mxyz, k, xyz) }
 
 // VGETEXPSD: Extract Exponent of Scalar Double-Precision Floating-Point Value as Double-Precision Floating-Point Value.
 //
@@ -44392,8 +47606,16 @@ func VGETEXPSS_Z(mx, x, k, x1 operand.Op) { ctx.VGETEXPSS_Z(mx, x, k, x1) }
 //
 // Forms:
 //
+// 	VGETMANTPD imm8 m128/m64bcst xmm
+// 	VGETMANTPD imm8 m128/m64bcst k xmm
+// 	VGETMANTPD imm8 m256/m64bcst ymm
+// 	VGETMANTPD imm8 m256/m64bcst k ymm
 // 	VGETMANTPD imm8 m512/m64bcst zmm
 // 	VGETMANTPD imm8 m512/m64bcst k zmm
+// 	VGETMANTPD imm8 xmm          xmm
+// 	VGETMANTPD imm8 xmm          k xmm
+// 	VGETMANTPD imm8 ymm          ymm
+// 	VGETMANTPD imm8 ymm          k ymm
 // 	VGETMANTPD imm8 zmm          zmm
 // 	VGETMANTPD imm8 zmm          k zmm
 // Construct and append a VGETMANTPD instruction to the active function.
@@ -44409,8 +47631,16 @@ func (c *Context) VGETMANTPD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VGETMANTPD imm8 m128/m64bcst xmm
+// 	VGETMANTPD imm8 m128/m64bcst k xmm
+// 	VGETMANTPD imm8 m256/m64bcst ymm
+// 	VGETMANTPD imm8 m256/m64bcst k ymm
 // 	VGETMANTPD imm8 m512/m64bcst zmm
 // 	VGETMANTPD imm8 m512/m64bcst k zmm
+// 	VGETMANTPD imm8 xmm          xmm
+// 	VGETMANTPD imm8 xmm          k xmm
+// 	VGETMANTPD imm8 ymm          ymm
+// 	VGETMANTPD imm8 ymm          k ymm
 // 	VGETMANTPD imm8 zmm          zmm
 // 	VGETMANTPD imm8 zmm          k zmm
 // Construct and append a VGETMANTPD instruction to the active function.
@@ -44421,6 +47651,10 @@ func VGETMANTPD(ops ...operand.Op) { ctx.VGETMANTPD(ops...) }
 //
 // Forms:
 //
+// 	VGETMANTPD.BCST imm8 m128/m64bcst xmm
+// 	VGETMANTPD.BCST imm8 m128/m64bcst k xmm
+// 	VGETMANTPD.BCST imm8 m256/m64bcst ymm
+// 	VGETMANTPD.BCST imm8 m256/m64bcst k ymm
 // 	VGETMANTPD.BCST imm8 m512/m64bcst zmm
 // 	VGETMANTPD.BCST imm8 m512/m64bcst k zmm
 // Construct and append a VGETMANTPD.BCST instruction to the active function.
@@ -44436,6 +47670,10 @@ func (c *Context) VGETMANTPD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VGETMANTPD.BCST imm8 m128/m64bcst xmm
+// 	VGETMANTPD.BCST imm8 m128/m64bcst k xmm
+// 	VGETMANTPD.BCST imm8 m256/m64bcst ymm
+// 	VGETMANTPD.BCST imm8 m256/m64bcst k ymm
 // 	VGETMANTPD.BCST imm8 m512/m64bcst zmm
 // 	VGETMANTPD.BCST imm8 m512/m64bcst k zmm
 // Construct and append a VGETMANTPD.BCST instruction to the active function.
@@ -44446,10 +47684,12 @@ func VGETMANTPD_BCST(ops ...operand.Op) { ctx.VGETMANTPD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VGETMANTPD.BCST.Z imm8 m128/m64bcst k xmm
+// 	VGETMANTPD.BCST.Z imm8 m256/m64bcst k ymm
 // 	VGETMANTPD.BCST.Z imm8 m512/m64bcst k zmm
 // Construct and append a VGETMANTPD.BCST.Z instruction to the active function.
-func (c *Context) VGETMANTPD_BCST_Z(i, m, k, z operand.Op) {
-	if inst, err := x86.VGETMANTPD_BCST_Z(i, m, k, z); err == nil {
+func (c *Context) VGETMANTPD_BCST_Z(i, m, k, xyz operand.Op) {
+	if inst, err := x86.VGETMANTPD_BCST_Z(i, m, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -44460,10 +47700,12 @@ func (c *Context) VGETMANTPD_BCST_Z(i, m, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VGETMANTPD.BCST.Z imm8 m128/m64bcst k xmm
+// 	VGETMANTPD.BCST.Z imm8 m256/m64bcst k ymm
 // 	VGETMANTPD.BCST.Z imm8 m512/m64bcst k zmm
 // Construct and append a VGETMANTPD.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VGETMANTPD_BCST_Z(i, m, k, z operand.Op) { ctx.VGETMANTPD_BCST_Z(i, m, k, z) }
+func VGETMANTPD_BCST_Z(i, m, k, xyz operand.Op) { ctx.VGETMANTPD_BCST_Z(i, m, k, xyz) }
 
 // VGETMANTPD_SAE: Extract Normalized Mantissas from Packed Double-Precision Floating-Point Values (Suppress All Exceptions).
 //
@@ -44517,11 +47759,15 @@ func VGETMANTPD_SAE_Z(i, z, k, z1 operand.Op) { ctx.VGETMANTPD_SAE_Z(i, z, k, z1
 //
 // Forms:
 //
+// 	VGETMANTPD.Z imm8 m128/m64bcst k xmm
+// 	VGETMANTPD.Z imm8 m256/m64bcst k ymm
 // 	VGETMANTPD.Z imm8 m512/m64bcst k zmm
+// 	VGETMANTPD.Z imm8 xmm          k xmm
+// 	VGETMANTPD.Z imm8 ymm          k ymm
 // 	VGETMANTPD.Z imm8 zmm          k zmm
 // Construct and append a VGETMANTPD.Z instruction to the active function.
-func (c *Context) VGETMANTPD_Z(i, mz, k, z operand.Op) {
-	if inst, err := x86.VGETMANTPD_Z(i, mz, k, z); err == nil {
+func (c *Context) VGETMANTPD_Z(i, mxyz, k, xyz operand.Op) {
+	if inst, err := x86.VGETMANTPD_Z(i, mxyz, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -44532,18 +47778,30 @@ func (c *Context) VGETMANTPD_Z(i, mz, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VGETMANTPD.Z imm8 m128/m64bcst k xmm
+// 	VGETMANTPD.Z imm8 m256/m64bcst k ymm
 // 	VGETMANTPD.Z imm8 m512/m64bcst k zmm
+// 	VGETMANTPD.Z imm8 xmm          k xmm
+// 	VGETMANTPD.Z imm8 ymm          k ymm
 // 	VGETMANTPD.Z imm8 zmm          k zmm
 // Construct and append a VGETMANTPD.Z instruction to the active function.
 // Operates on the global context.
-func VGETMANTPD_Z(i, mz, k, z operand.Op) { ctx.VGETMANTPD_Z(i, mz, k, z) }
+func VGETMANTPD_Z(i, mxyz, k, xyz operand.Op) { ctx.VGETMANTPD_Z(i, mxyz, k, xyz) }
 
 // VGETMANTPS: Extract Normalized Mantissas from Packed Single-Precision Floating-Point Values.
 //
 // Forms:
 //
+// 	VGETMANTPS imm8 m128/m32bcst xmm
+// 	VGETMANTPS imm8 m128/m32bcst k xmm
+// 	VGETMANTPS imm8 m256/m32bcst ymm
+// 	VGETMANTPS imm8 m256/m32bcst k ymm
 // 	VGETMANTPS imm8 m512/m32bcst zmm
 // 	VGETMANTPS imm8 m512/m32bcst k zmm
+// 	VGETMANTPS imm8 xmm          xmm
+// 	VGETMANTPS imm8 xmm          k xmm
+// 	VGETMANTPS imm8 ymm          ymm
+// 	VGETMANTPS imm8 ymm          k ymm
 // 	VGETMANTPS imm8 zmm          zmm
 // 	VGETMANTPS imm8 zmm          k zmm
 // Construct and append a VGETMANTPS instruction to the active function.
@@ -44559,8 +47817,16 @@ func (c *Context) VGETMANTPS(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VGETMANTPS imm8 m128/m32bcst xmm
+// 	VGETMANTPS imm8 m128/m32bcst k xmm
+// 	VGETMANTPS imm8 m256/m32bcst ymm
+// 	VGETMANTPS imm8 m256/m32bcst k ymm
 // 	VGETMANTPS imm8 m512/m32bcst zmm
 // 	VGETMANTPS imm8 m512/m32bcst k zmm
+// 	VGETMANTPS imm8 xmm          xmm
+// 	VGETMANTPS imm8 xmm          k xmm
+// 	VGETMANTPS imm8 ymm          ymm
+// 	VGETMANTPS imm8 ymm          k ymm
 // 	VGETMANTPS imm8 zmm          zmm
 // 	VGETMANTPS imm8 zmm          k zmm
 // Construct and append a VGETMANTPS instruction to the active function.
@@ -44571,6 +47837,10 @@ func VGETMANTPS(ops ...operand.Op) { ctx.VGETMANTPS(ops...) }
 //
 // Forms:
 //
+// 	VGETMANTPS.BCST imm8 m128/m32bcst xmm
+// 	VGETMANTPS.BCST imm8 m128/m32bcst k xmm
+// 	VGETMANTPS.BCST imm8 m256/m32bcst ymm
+// 	VGETMANTPS.BCST imm8 m256/m32bcst k ymm
 // 	VGETMANTPS.BCST imm8 m512/m32bcst zmm
 // 	VGETMANTPS.BCST imm8 m512/m32bcst k zmm
 // Construct and append a VGETMANTPS.BCST instruction to the active function.
@@ -44586,6 +47856,10 @@ func (c *Context) VGETMANTPS_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VGETMANTPS.BCST imm8 m128/m32bcst xmm
+// 	VGETMANTPS.BCST imm8 m128/m32bcst k xmm
+// 	VGETMANTPS.BCST imm8 m256/m32bcst ymm
+// 	VGETMANTPS.BCST imm8 m256/m32bcst k ymm
 // 	VGETMANTPS.BCST imm8 m512/m32bcst zmm
 // 	VGETMANTPS.BCST imm8 m512/m32bcst k zmm
 // Construct and append a VGETMANTPS.BCST instruction to the active function.
@@ -44596,10 +47870,12 @@ func VGETMANTPS_BCST(ops ...operand.Op) { ctx.VGETMANTPS_BCST(ops...) }
 //
 // Forms:
 //
+// 	VGETMANTPS.BCST.Z imm8 m128/m32bcst k xmm
+// 	VGETMANTPS.BCST.Z imm8 m256/m32bcst k ymm
 // 	VGETMANTPS.BCST.Z imm8 m512/m32bcst k zmm
 // Construct and append a VGETMANTPS.BCST.Z instruction to the active function.
-func (c *Context) VGETMANTPS_BCST_Z(i, m, k, z operand.Op) {
-	if inst, err := x86.VGETMANTPS_BCST_Z(i, m, k, z); err == nil {
+func (c *Context) VGETMANTPS_BCST_Z(i, m, k, xyz operand.Op) {
+	if inst, err := x86.VGETMANTPS_BCST_Z(i, m, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -44610,10 +47886,12 @@ func (c *Context) VGETMANTPS_BCST_Z(i, m, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VGETMANTPS.BCST.Z imm8 m128/m32bcst k xmm
+// 	VGETMANTPS.BCST.Z imm8 m256/m32bcst k ymm
 // 	VGETMANTPS.BCST.Z imm8 m512/m32bcst k zmm
 // Construct and append a VGETMANTPS.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VGETMANTPS_BCST_Z(i, m, k, z operand.Op) { ctx.VGETMANTPS_BCST_Z(i, m, k, z) }
+func VGETMANTPS_BCST_Z(i, m, k, xyz operand.Op) { ctx.VGETMANTPS_BCST_Z(i, m, k, xyz) }
 
 // VGETMANTPS_SAE: Extract Normalized Mantissas from Packed Single-Precision Floating-Point Values (Suppress All Exceptions).
 //
@@ -44667,11 +47945,15 @@ func VGETMANTPS_SAE_Z(i, z, k, z1 operand.Op) { ctx.VGETMANTPS_SAE_Z(i, z, k, z1
 //
 // Forms:
 //
+// 	VGETMANTPS.Z imm8 m128/m32bcst k xmm
+// 	VGETMANTPS.Z imm8 m256/m32bcst k ymm
 // 	VGETMANTPS.Z imm8 m512/m32bcst k zmm
+// 	VGETMANTPS.Z imm8 xmm          k xmm
+// 	VGETMANTPS.Z imm8 ymm          k ymm
 // 	VGETMANTPS.Z imm8 zmm          k zmm
 // Construct and append a VGETMANTPS.Z instruction to the active function.
-func (c *Context) VGETMANTPS_Z(i, mz, k, z operand.Op) {
-	if inst, err := x86.VGETMANTPS_Z(i, mz, k, z); err == nil {
+func (c *Context) VGETMANTPS_Z(i, mxyz, k, xyz operand.Op) {
+	if inst, err := x86.VGETMANTPS_Z(i, mxyz, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -44682,11 +47964,15 @@ func (c *Context) VGETMANTPS_Z(i, mz, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VGETMANTPS.Z imm8 m128/m32bcst k xmm
+// 	VGETMANTPS.Z imm8 m256/m32bcst k ymm
 // 	VGETMANTPS.Z imm8 m512/m32bcst k zmm
+// 	VGETMANTPS.Z imm8 xmm          k xmm
+// 	VGETMANTPS.Z imm8 ymm          k ymm
 // 	VGETMANTPS.Z imm8 zmm          k zmm
 // Construct and append a VGETMANTPS.Z instruction to the active function.
 // Operates on the global context.
-func VGETMANTPS_Z(i, mz, k, z operand.Op) { ctx.VGETMANTPS_Z(i, mz, k, z) }
+func VGETMANTPS_Z(i, mxyz, k, xyz operand.Op) { ctx.VGETMANTPS_Z(i, mxyz, k, xyz) }
 
 // VGETMANTSD: Extract Normalized Mantissa from Scalar Double-Precision Floating-Point Value.
 //
@@ -45037,6 +48323,10 @@ func VINSERTF128(i, mx, y, y1 operand.Op) { ctx.VINSERTF128(i, mx, y, y1) }
 //
 // Forms:
 //
+// 	VINSERTF32X4 imm8 xmm  ymm ymm
+// 	VINSERTF32X4 imm8 xmm  ymm k ymm
+// 	VINSERTF32X4 imm8 m128 ymm ymm
+// 	VINSERTF32X4 imm8 m128 ymm k ymm
 // 	VINSERTF32X4 imm8 xmm  zmm zmm
 // 	VINSERTF32X4 imm8 xmm  zmm k zmm
 // 	VINSERTF32X4 imm8 m128 zmm zmm
@@ -45054,6 +48344,10 @@ func (c *Context) VINSERTF32X4(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VINSERTF32X4 imm8 xmm  ymm ymm
+// 	VINSERTF32X4 imm8 xmm  ymm k ymm
+// 	VINSERTF32X4 imm8 m128 ymm ymm
+// 	VINSERTF32X4 imm8 m128 ymm k ymm
 // 	VINSERTF32X4 imm8 xmm  zmm zmm
 // 	VINSERTF32X4 imm8 xmm  zmm k zmm
 // 	VINSERTF32X4 imm8 m128 zmm zmm
@@ -45066,11 +48360,13 @@ func VINSERTF32X4(ops ...operand.Op) { ctx.VINSERTF32X4(ops...) }
 //
 // Forms:
 //
+// 	VINSERTF32X4.Z imm8 xmm  ymm k ymm
+// 	VINSERTF32X4.Z imm8 m128 ymm k ymm
 // 	VINSERTF32X4.Z imm8 xmm  zmm k zmm
 // 	VINSERTF32X4.Z imm8 m128 zmm k zmm
 // Construct and append a VINSERTF32X4.Z instruction to the active function.
-func (c *Context) VINSERTF32X4_Z(i, mx, z, k, z1 operand.Op) {
-	if inst, err := x86.VINSERTF32X4_Z(i, mx, z, k, z1); err == nil {
+func (c *Context) VINSERTF32X4_Z(i, mx, yz, k, yz1 operand.Op) {
+	if inst, err := x86.VINSERTF32X4_Z(i, mx, yz, k, yz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -45081,11 +48377,13 @@ func (c *Context) VINSERTF32X4_Z(i, mx, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VINSERTF32X4.Z imm8 xmm  ymm k ymm
+// 	VINSERTF32X4.Z imm8 m128 ymm k ymm
 // 	VINSERTF32X4.Z imm8 xmm  zmm k zmm
 // 	VINSERTF32X4.Z imm8 m128 zmm k zmm
 // Construct and append a VINSERTF32X4.Z instruction to the active function.
 // Operates on the global context.
-func VINSERTF32X4_Z(i, mx, z, k, z1 operand.Op) { ctx.VINSERTF32X4_Z(i, mx, z, k, z1) }
+func VINSERTF32X4_Z(i, mx, yz, k, yz1 operand.Op) { ctx.VINSERTF32X4_Z(i, mx, yz, k, yz1) }
 
 // VINSERTF64X4: Insert 256 Bits of Packed Double-Precision Floating-Point Values.
 //
@@ -45170,6 +48468,10 @@ func VINSERTI128(i, mx, y, y1 operand.Op) { ctx.VINSERTI128(i, mx, y, y1) }
 //
 // Forms:
 //
+// 	VINSERTI32X4 imm8 xmm  ymm ymm
+// 	VINSERTI32X4 imm8 xmm  ymm k ymm
+// 	VINSERTI32X4 imm8 m128 ymm ymm
+// 	VINSERTI32X4 imm8 m128 ymm k ymm
 // 	VINSERTI32X4 imm8 xmm  zmm zmm
 // 	VINSERTI32X4 imm8 xmm  zmm k zmm
 // 	VINSERTI32X4 imm8 m128 zmm zmm
@@ -45187,6 +48489,10 @@ func (c *Context) VINSERTI32X4(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VINSERTI32X4 imm8 xmm  ymm ymm
+// 	VINSERTI32X4 imm8 xmm  ymm k ymm
+// 	VINSERTI32X4 imm8 m128 ymm ymm
+// 	VINSERTI32X4 imm8 m128 ymm k ymm
 // 	VINSERTI32X4 imm8 xmm  zmm zmm
 // 	VINSERTI32X4 imm8 xmm  zmm k zmm
 // 	VINSERTI32X4 imm8 m128 zmm zmm
@@ -45199,11 +48505,13 @@ func VINSERTI32X4(ops ...operand.Op) { ctx.VINSERTI32X4(ops...) }
 //
 // Forms:
 //
+// 	VINSERTI32X4.Z imm8 xmm  ymm k ymm
+// 	VINSERTI32X4.Z imm8 m128 ymm k ymm
 // 	VINSERTI32X4.Z imm8 xmm  zmm k zmm
 // 	VINSERTI32X4.Z imm8 m128 zmm k zmm
 // Construct and append a VINSERTI32X4.Z instruction to the active function.
-func (c *Context) VINSERTI32X4_Z(i, mx, z, k, z1 operand.Op) {
-	if inst, err := x86.VINSERTI32X4_Z(i, mx, z, k, z1); err == nil {
+func (c *Context) VINSERTI32X4_Z(i, mx, yz, k, yz1 operand.Op) {
+	if inst, err := x86.VINSERTI32X4_Z(i, mx, yz, k, yz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -45214,11 +48522,13 @@ func (c *Context) VINSERTI32X4_Z(i, mx, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VINSERTI32X4.Z imm8 xmm  ymm k ymm
+// 	VINSERTI32X4.Z imm8 m128 ymm k ymm
 // 	VINSERTI32X4.Z imm8 xmm  zmm k zmm
 // 	VINSERTI32X4.Z imm8 m128 zmm k zmm
 // Construct and append a VINSERTI32X4.Z instruction to the active function.
 // Operates on the global context.
-func VINSERTI32X4_Z(i, mx, z, k, z1 operand.Op) { ctx.VINSERTI32X4_Z(i, mx, z, k, z1) }
+func VINSERTI32X4_Z(i, mx, yz, k, yz1 operand.Op) { ctx.VINSERTI32X4_Z(i, mx, yz, k, yz1) }
 
 // VINSERTI64X4: Insert 256 Bits of Packed Quadword Integer Values.
 //
@@ -45436,6 +48746,14 @@ func VMASKMOVPS(mxy, xy, mxy1 operand.Op) { ctx.VMASKMOVPS(mxy, xy, mxy1) }
 //
 // Forms:
 //
+// 	VMAXPD m128/m64bcst xmm xmm
+// 	VMAXPD m128/m64bcst xmm k xmm
+// 	VMAXPD xmm          xmm xmm
+// 	VMAXPD xmm          xmm k xmm
+// 	VMAXPD m256/m64bcst ymm ymm
+// 	VMAXPD m256/m64bcst ymm k ymm
+// 	VMAXPD ymm          ymm ymm
+// 	VMAXPD ymm          ymm k ymm
 // 	VMAXPD m512/m64bcst zmm zmm
 // 	VMAXPD m512/m64bcst zmm k zmm
 // 	VMAXPD xmm          xmm xmm
@@ -45457,6 +48775,14 @@ func (c *Context) VMAXPD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VMAXPD m128/m64bcst xmm xmm
+// 	VMAXPD m128/m64bcst xmm k xmm
+// 	VMAXPD xmm          xmm xmm
+// 	VMAXPD xmm          xmm k xmm
+// 	VMAXPD m256/m64bcst ymm ymm
+// 	VMAXPD m256/m64bcst ymm k ymm
+// 	VMAXPD ymm          ymm ymm
+// 	VMAXPD ymm          ymm k ymm
 // 	VMAXPD m512/m64bcst zmm zmm
 // 	VMAXPD m512/m64bcst zmm k zmm
 // 	VMAXPD xmm          xmm xmm
@@ -45473,6 +48799,10 @@ func VMAXPD(ops ...operand.Op) { ctx.VMAXPD(ops...) }
 //
 // Forms:
 //
+// 	VMAXPD.BCST m128/m64bcst xmm xmm
+// 	VMAXPD.BCST m128/m64bcst xmm k xmm
+// 	VMAXPD.BCST m256/m64bcst ymm ymm
+// 	VMAXPD.BCST m256/m64bcst ymm k ymm
 // 	VMAXPD.BCST m512/m64bcst zmm zmm
 // 	VMAXPD.BCST m512/m64bcst zmm k zmm
 // Construct and append a VMAXPD.BCST instruction to the active function.
@@ -45488,6 +48818,10 @@ func (c *Context) VMAXPD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VMAXPD.BCST m128/m64bcst xmm xmm
+// 	VMAXPD.BCST m128/m64bcst xmm k xmm
+// 	VMAXPD.BCST m256/m64bcst ymm ymm
+// 	VMAXPD.BCST m256/m64bcst ymm k ymm
 // 	VMAXPD.BCST m512/m64bcst zmm zmm
 // 	VMAXPD.BCST m512/m64bcst zmm k zmm
 // Construct and append a VMAXPD.BCST instruction to the active function.
@@ -45498,10 +48832,12 @@ func VMAXPD_BCST(ops ...operand.Op) { ctx.VMAXPD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VMAXPD.BCST.Z m128/m64bcst xmm k xmm
+// 	VMAXPD.BCST.Z m256/m64bcst ymm k ymm
 // 	VMAXPD.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VMAXPD.BCST.Z instruction to the active function.
-func (c *Context) VMAXPD_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VMAXPD_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VMAXPD_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VMAXPD_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -45512,10 +48848,12 @@ func (c *Context) VMAXPD_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VMAXPD.BCST.Z m128/m64bcst xmm k xmm
+// 	VMAXPD.BCST.Z m256/m64bcst ymm k ymm
 // 	VMAXPD.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VMAXPD.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VMAXPD_BCST_Z(m, z, k, z1 operand.Op) { ctx.VMAXPD_BCST_Z(m, z, k, z1) }
+func VMAXPD_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VMAXPD_BCST_Z(m, xyz, k, xyz1) }
 
 // VMAXPD_SAE: Return Maximum Packed Double-Precision Floating-Point Values (Suppress All Exceptions).
 //
@@ -45569,11 +48907,15 @@ func VMAXPD_SAE_Z(z, z1, k, z2 operand.Op) { ctx.VMAXPD_SAE_Z(z, z1, k, z2) }
 //
 // Forms:
 //
+// 	VMAXPD.Z m128/m64bcst xmm k xmm
+// 	VMAXPD.Z xmm          xmm k xmm
+// 	VMAXPD.Z m256/m64bcst ymm k ymm
+// 	VMAXPD.Z ymm          ymm k ymm
 // 	VMAXPD.Z m512/m64bcst zmm k zmm
 // 	VMAXPD.Z zmm          zmm k zmm
 // Construct and append a VMAXPD.Z instruction to the active function.
-func (c *Context) VMAXPD_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VMAXPD_Z(mz, z, k, z1); err == nil {
+func (c *Context) VMAXPD_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VMAXPD_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -45584,16 +48926,28 @@ func (c *Context) VMAXPD_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VMAXPD.Z m128/m64bcst xmm k xmm
+// 	VMAXPD.Z xmm          xmm k xmm
+// 	VMAXPD.Z m256/m64bcst ymm k ymm
+// 	VMAXPD.Z ymm          ymm k ymm
 // 	VMAXPD.Z m512/m64bcst zmm k zmm
 // 	VMAXPD.Z zmm          zmm k zmm
 // Construct and append a VMAXPD.Z instruction to the active function.
 // Operates on the global context.
-func VMAXPD_Z(mz, z, k, z1 operand.Op) { ctx.VMAXPD_Z(mz, z, k, z1) }
+func VMAXPD_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VMAXPD_Z(mxyz, xyz, k, xyz1) }
 
 // VMAXPS: Return Maximum Packed Single-Precision Floating-Point Values.
 //
 // Forms:
 //
+// 	VMAXPS m128/m32bcst xmm xmm
+// 	VMAXPS m128/m32bcst xmm k xmm
+// 	VMAXPS xmm          xmm xmm
+// 	VMAXPS xmm          xmm k xmm
+// 	VMAXPS m256/m32bcst ymm ymm
+// 	VMAXPS m256/m32bcst ymm k ymm
+// 	VMAXPS ymm          ymm ymm
+// 	VMAXPS ymm          ymm k ymm
 // 	VMAXPS m512/m32bcst zmm zmm
 // 	VMAXPS m512/m32bcst zmm k zmm
 // 	VMAXPS xmm          xmm xmm
@@ -45615,6 +48969,14 @@ func (c *Context) VMAXPS(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VMAXPS m128/m32bcst xmm xmm
+// 	VMAXPS m128/m32bcst xmm k xmm
+// 	VMAXPS xmm          xmm xmm
+// 	VMAXPS xmm          xmm k xmm
+// 	VMAXPS m256/m32bcst ymm ymm
+// 	VMAXPS m256/m32bcst ymm k ymm
+// 	VMAXPS ymm          ymm ymm
+// 	VMAXPS ymm          ymm k ymm
 // 	VMAXPS m512/m32bcst zmm zmm
 // 	VMAXPS m512/m32bcst zmm k zmm
 // 	VMAXPS xmm          xmm xmm
@@ -45631,6 +48993,10 @@ func VMAXPS(ops ...operand.Op) { ctx.VMAXPS(ops...) }
 //
 // Forms:
 //
+// 	VMAXPS.BCST m128/m32bcst xmm xmm
+// 	VMAXPS.BCST m128/m32bcst xmm k xmm
+// 	VMAXPS.BCST m256/m32bcst ymm ymm
+// 	VMAXPS.BCST m256/m32bcst ymm k ymm
 // 	VMAXPS.BCST m512/m32bcst zmm zmm
 // 	VMAXPS.BCST m512/m32bcst zmm k zmm
 // Construct and append a VMAXPS.BCST instruction to the active function.
@@ -45646,6 +49012,10 @@ func (c *Context) VMAXPS_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VMAXPS.BCST m128/m32bcst xmm xmm
+// 	VMAXPS.BCST m128/m32bcst xmm k xmm
+// 	VMAXPS.BCST m256/m32bcst ymm ymm
+// 	VMAXPS.BCST m256/m32bcst ymm k ymm
 // 	VMAXPS.BCST m512/m32bcst zmm zmm
 // 	VMAXPS.BCST m512/m32bcst zmm k zmm
 // Construct and append a VMAXPS.BCST instruction to the active function.
@@ -45656,10 +49026,12 @@ func VMAXPS_BCST(ops ...operand.Op) { ctx.VMAXPS_BCST(ops...) }
 //
 // Forms:
 //
+// 	VMAXPS.BCST.Z m128/m32bcst xmm k xmm
+// 	VMAXPS.BCST.Z m256/m32bcst ymm k ymm
 // 	VMAXPS.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VMAXPS.BCST.Z instruction to the active function.
-func (c *Context) VMAXPS_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VMAXPS_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VMAXPS_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VMAXPS_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -45670,10 +49042,12 @@ func (c *Context) VMAXPS_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VMAXPS.BCST.Z m128/m32bcst xmm k xmm
+// 	VMAXPS.BCST.Z m256/m32bcst ymm k ymm
 // 	VMAXPS.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VMAXPS.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VMAXPS_BCST_Z(m, z, k, z1 operand.Op) { ctx.VMAXPS_BCST_Z(m, z, k, z1) }
+func VMAXPS_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VMAXPS_BCST_Z(m, xyz, k, xyz1) }
 
 // VMAXPS_SAE: Return Maximum Packed Single-Precision Floating-Point Values (Suppress All Exceptions).
 //
@@ -45727,11 +49101,15 @@ func VMAXPS_SAE_Z(z, z1, k, z2 operand.Op) { ctx.VMAXPS_SAE_Z(z, z1, k, z2) }
 //
 // Forms:
 //
+// 	VMAXPS.Z m128/m32bcst xmm k xmm
+// 	VMAXPS.Z xmm          xmm k xmm
+// 	VMAXPS.Z m256/m32bcst ymm k ymm
+// 	VMAXPS.Z ymm          ymm k ymm
 // 	VMAXPS.Z m512/m32bcst zmm k zmm
 // 	VMAXPS.Z zmm          zmm k zmm
 // Construct and append a VMAXPS.Z instruction to the active function.
-func (c *Context) VMAXPS_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VMAXPS_Z(mz, z, k, z1); err == nil {
+func (c *Context) VMAXPS_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VMAXPS_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -45742,11 +49120,15 @@ func (c *Context) VMAXPS_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VMAXPS.Z m128/m32bcst xmm k xmm
+// 	VMAXPS.Z xmm          xmm k xmm
+// 	VMAXPS.Z m256/m32bcst ymm k ymm
+// 	VMAXPS.Z ymm          ymm k ymm
 // 	VMAXPS.Z m512/m32bcst zmm k zmm
 // 	VMAXPS.Z zmm          zmm k zmm
 // Construct and append a VMAXPS.Z instruction to the active function.
 // Operates on the global context.
-func VMAXPS_Z(mz, z, k, z1 operand.Op) { ctx.VMAXPS_Z(mz, z, k, z1) }
+func VMAXPS_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VMAXPS_Z(mxyz, xyz, k, xyz1) }
 
 // VMAXSD: Return Maximum Scalar Double-Precision Floating-Point Value.
 //
@@ -45964,6 +49346,14 @@ func VMAXSS_Z(mx, x, k, x1 operand.Op) { ctx.VMAXSS_Z(mx, x, k, x1) }
 //
 // Forms:
 //
+// 	VMINPD m128/m64bcst xmm xmm
+// 	VMINPD m128/m64bcst xmm k xmm
+// 	VMINPD xmm          xmm xmm
+// 	VMINPD xmm          xmm k xmm
+// 	VMINPD m256/m64bcst ymm ymm
+// 	VMINPD m256/m64bcst ymm k ymm
+// 	VMINPD ymm          ymm ymm
+// 	VMINPD ymm          ymm k ymm
 // 	VMINPD m512/m64bcst zmm zmm
 // 	VMINPD m512/m64bcst zmm k zmm
 // 	VMINPD xmm          xmm xmm
@@ -45985,6 +49375,14 @@ func (c *Context) VMINPD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VMINPD m128/m64bcst xmm xmm
+// 	VMINPD m128/m64bcst xmm k xmm
+// 	VMINPD xmm          xmm xmm
+// 	VMINPD xmm          xmm k xmm
+// 	VMINPD m256/m64bcst ymm ymm
+// 	VMINPD m256/m64bcst ymm k ymm
+// 	VMINPD ymm          ymm ymm
+// 	VMINPD ymm          ymm k ymm
 // 	VMINPD m512/m64bcst zmm zmm
 // 	VMINPD m512/m64bcst zmm k zmm
 // 	VMINPD xmm          xmm xmm
@@ -46001,6 +49399,10 @@ func VMINPD(ops ...operand.Op) { ctx.VMINPD(ops...) }
 //
 // Forms:
 //
+// 	VMINPD.BCST m128/m64bcst xmm xmm
+// 	VMINPD.BCST m128/m64bcst xmm k xmm
+// 	VMINPD.BCST m256/m64bcst ymm ymm
+// 	VMINPD.BCST m256/m64bcst ymm k ymm
 // 	VMINPD.BCST m512/m64bcst zmm zmm
 // 	VMINPD.BCST m512/m64bcst zmm k zmm
 // Construct and append a VMINPD.BCST instruction to the active function.
@@ -46016,6 +49418,10 @@ func (c *Context) VMINPD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VMINPD.BCST m128/m64bcst xmm xmm
+// 	VMINPD.BCST m128/m64bcst xmm k xmm
+// 	VMINPD.BCST m256/m64bcst ymm ymm
+// 	VMINPD.BCST m256/m64bcst ymm k ymm
 // 	VMINPD.BCST m512/m64bcst zmm zmm
 // 	VMINPD.BCST m512/m64bcst zmm k zmm
 // Construct and append a VMINPD.BCST instruction to the active function.
@@ -46026,10 +49432,12 @@ func VMINPD_BCST(ops ...operand.Op) { ctx.VMINPD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VMINPD.BCST.Z m128/m64bcst xmm k xmm
+// 	VMINPD.BCST.Z m256/m64bcst ymm k ymm
 // 	VMINPD.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VMINPD.BCST.Z instruction to the active function.
-func (c *Context) VMINPD_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VMINPD_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VMINPD_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VMINPD_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -46040,10 +49448,12 @@ func (c *Context) VMINPD_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VMINPD.BCST.Z m128/m64bcst xmm k xmm
+// 	VMINPD.BCST.Z m256/m64bcst ymm k ymm
 // 	VMINPD.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VMINPD.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VMINPD_BCST_Z(m, z, k, z1 operand.Op) { ctx.VMINPD_BCST_Z(m, z, k, z1) }
+func VMINPD_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VMINPD_BCST_Z(m, xyz, k, xyz1) }
 
 // VMINPD_SAE: Return Minimum Packed Double-Precision Floating-Point Values (Suppress All Exceptions).
 //
@@ -46097,11 +49507,15 @@ func VMINPD_SAE_Z(z, z1, k, z2 operand.Op) { ctx.VMINPD_SAE_Z(z, z1, k, z2) }
 //
 // Forms:
 //
+// 	VMINPD.Z m128/m64bcst xmm k xmm
+// 	VMINPD.Z xmm          xmm k xmm
+// 	VMINPD.Z m256/m64bcst ymm k ymm
+// 	VMINPD.Z ymm          ymm k ymm
 // 	VMINPD.Z m512/m64bcst zmm k zmm
 // 	VMINPD.Z zmm          zmm k zmm
 // Construct and append a VMINPD.Z instruction to the active function.
-func (c *Context) VMINPD_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VMINPD_Z(mz, z, k, z1); err == nil {
+func (c *Context) VMINPD_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VMINPD_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -46112,16 +49526,28 @@ func (c *Context) VMINPD_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VMINPD.Z m128/m64bcst xmm k xmm
+// 	VMINPD.Z xmm          xmm k xmm
+// 	VMINPD.Z m256/m64bcst ymm k ymm
+// 	VMINPD.Z ymm          ymm k ymm
 // 	VMINPD.Z m512/m64bcst zmm k zmm
 // 	VMINPD.Z zmm          zmm k zmm
 // Construct and append a VMINPD.Z instruction to the active function.
 // Operates on the global context.
-func VMINPD_Z(mz, z, k, z1 operand.Op) { ctx.VMINPD_Z(mz, z, k, z1) }
+func VMINPD_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VMINPD_Z(mxyz, xyz, k, xyz1) }
 
 // VMINPS: Return Minimum Packed Single-Precision Floating-Point Values.
 //
 // Forms:
 //
+// 	VMINPS m128/m32bcst xmm xmm
+// 	VMINPS m128/m32bcst xmm k xmm
+// 	VMINPS xmm          xmm xmm
+// 	VMINPS xmm          xmm k xmm
+// 	VMINPS m256/m32bcst ymm ymm
+// 	VMINPS m256/m32bcst ymm k ymm
+// 	VMINPS ymm          ymm ymm
+// 	VMINPS ymm          ymm k ymm
 // 	VMINPS m512/m32bcst zmm zmm
 // 	VMINPS m512/m32bcst zmm k zmm
 // 	VMINPS xmm          xmm xmm
@@ -46143,6 +49569,14 @@ func (c *Context) VMINPS(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VMINPS m128/m32bcst xmm xmm
+// 	VMINPS m128/m32bcst xmm k xmm
+// 	VMINPS xmm          xmm xmm
+// 	VMINPS xmm          xmm k xmm
+// 	VMINPS m256/m32bcst ymm ymm
+// 	VMINPS m256/m32bcst ymm k ymm
+// 	VMINPS ymm          ymm ymm
+// 	VMINPS ymm          ymm k ymm
 // 	VMINPS m512/m32bcst zmm zmm
 // 	VMINPS m512/m32bcst zmm k zmm
 // 	VMINPS xmm          xmm xmm
@@ -46159,6 +49593,10 @@ func VMINPS(ops ...operand.Op) { ctx.VMINPS(ops...) }
 //
 // Forms:
 //
+// 	VMINPS.BCST m128/m32bcst xmm xmm
+// 	VMINPS.BCST m128/m32bcst xmm k xmm
+// 	VMINPS.BCST m256/m32bcst ymm ymm
+// 	VMINPS.BCST m256/m32bcst ymm k ymm
 // 	VMINPS.BCST m512/m32bcst zmm zmm
 // 	VMINPS.BCST m512/m32bcst zmm k zmm
 // Construct and append a VMINPS.BCST instruction to the active function.
@@ -46174,6 +49612,10 @@ func (c *Context) VMINPS_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VMINPS.BCST m128/m32bcst xmm xmm
+// 	VMINPS.BCST m128/m32bcst xmm k xmm
+// 	VMINPS.BCST m256/m32bcst ymm ymm
+// 	VMINPS.BCST m256/m32bcst ymm k ymm
 // 	VMINPS.BCST m512/m32bcst zmm zmm
 // 	VMINPS.BCST m512/m32bcst zmm k zmm
 // Construct and append a VMINPS.BCST instruction to the active function.
@@ -46184,10 +49626,12 @@ func VMINPS_BCST(ops ...operand.Op) { ctx.VMINPS_BCST(ops...) }
 //
 // Forms:
 //
+// 	VMINPS.BCST.Z m128/m32bcst xmm k xmm
+// 	VMINPS.BCST.Z m256/m32bcst ymm k ymm
 // 	VMINPS.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VMINPS.BCST.Z instruction to the active function.
-func (c *Context) VMINPS_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VMINPS_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VMINPS_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VMINPS_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -46198,10 +49642,12 @@ func (c *Context) VMINPS_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VMINPS.BCST.Z m128/m32bcst xmm k xmm
+// 	VMINPS.BCST.Z m256/m32bcst ymm k ymm
 // 	VMINPS.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VMINPS.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VMINPS_BCST_Z(m, z, k, z1 operand.Op) { ctx.VMINPS_BCST_Z(m, z, k, z1) }
+func VMINPS_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VMINPS_BCST_Z(m, xyz, k, xyz1) }
 
 // VMINPS_SAE: Return Minimum Packed Single-Precision Floating-Point Values (Suppress All Exceptions).
 //
@@ -46255,11 +49701,15 @@ func VMINPS_SAE_Z(z, z1, k, z2 operand.Op) { ctx.VMINPS_SAE_Z(z, z1, k, z2) }
 //
 // Forms:
 //
+// 	VMINPS.Z m128/m32bcst xmm k xmm
+// 	VMINPS.Z xmm          xmm k xmm
+// 	VMINPS.Z m256/m32bcst ymm k ymm
+// 	VMINPS.Z ymm          ymm k ymm
 // 	VMINPS.Z m512/m32bcst zmm k zmm
 // 	VMINPS.Z zmm          zmm k zmm
 // Construct and append a VMINPS.Z instruction to the active function.
-func (c *Context) VMINPS_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VMINPS_Z(mz, z, k, z1); err == nil {
+func (c *Context) VMINPS_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VMINPS_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -46270,11 +49720,15 @@ func (c *Context) VMINPS_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VMINPS.Z m128/m32bcst xmm k xmm
+// 	VMINPS.Z xmm          xmm k xmm
+// 	VMINPS.Z m256/m32bcst ymm k ymm
+// 	VMINPS.Z ymm          ymm k ymm
 // 	VMINPS.Z m512/m32bcst zmm k zmm
 // 	VMINPS.Z zmm          zmm k zmm
 // Construct and append a VMINPS.Z instruction to the active function.
 // Operates on the global context.
-func VMINPS_Z(mz, z, k, z1 operand.Op) { ctx.VMINPS_Z(mz, z, k, z1) }
+func VMINPS_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VMINPS_Z(mxyz, xyz, k, xyz1) }
 
 // VMINSD: Return Minimum Scalar Double-Precision Floating-Point Value.
 //
@@ -46492,10 +49946,22 @@ func VMINSS_Z(mx, x, k, x1 operand.Op) { ctx.VMINSS_Z(mx, x, k, x1) }
 //
 // Forms:
 //
+// 	VMOVAPD xmm  m128
+// 	VMOVAPD xmm  k m128
+// 	VMOVAPD xmm  xmm
+// 	VMOVAPD xmm  k xmm
+// 	VMOVAPD ymm  m256
+// 	VMOVAPD ymm  k m256
+// 	VMOVAPD ymm  ymm
+// 	VMOVAPD ymm  k ymm
 // 	VMOVAPD zmm  m512
 // 	VMOVAPD zmm  k m512
 // 	VMOVAPD zmm  zmm
 // 	VMOVAPD zmm  k zmm
+// 	VMOVAPD m128 xmm
+// 	VMOVAPD m128 k xmm
+// 	VMOVAPD m256 ymm
+// 	VMOVAPD m256 k ymm
 // 	VMOVAPD m512 zmm
 // 	VMOVAPD m512 k zmm
 // 	VMOVAPD xmm  xmm
@@ -46517,10 +49983,22 @@ func (c *Context) VMOVAPD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VMOVAPD xmm  m128
+// 	VMOVAPD xmm  k m128
+// 	VMOVAPD xmm  xmm
+// 	VMOVAPD xmm  k xmm
+// 	VMOVAPD ymm  m256
+// 	VMOVAPD ymm  k m256
+// 	VMOVAPD ymm  ymm
+// 	VMOVAPD ymm  k ymm
 // 	VMOVAPD zmm  m512
 // 	VMOVAPD zmm  k m512
 // 	VMOVAPD zmm  zmm
 // 	VMOVAPD zmm  k zmm
+// 	VMOVAPD m128 xmm
+// 	VMOVAPD m128 k xmm
+// 	VMOVAPD m256 ymm
+// 	VMOVAPD m256 k ymm
 // 	VMOVAPD m512 zmm
 // 	VMOVAPD m512 k zmm
 // 	VMOVAPD xmm  xmm
@@ -46537,12 +50015,18 @@ func VMOVAPD(ops ...operand.Op) { ctx.VMOVAPD(ops...) }
 //
 // Forms:
 //
+// 	VMOVAPD.Z xmm  k m128
+// 	VMOVAPD.Z xmm  k xmm
+// 	VMOVAPD.Z ymm  k m256
+// 	VMOVAPD.Z ymm  k ymm
 // 	VMOVAPD.Z zmm  k m512
 // 	VMOVAPD.Z zmm  k zmm
+// 	VMOVAPD.Z m128 k xmm
+// 	VMOVAPD.Z m256 k ymm
 // 	VMOVAPD.Z m512 k zmm
 // Construct and append a VMOVAPD.Z instruction to the active function.
-func (c *Context) VMOVAPD_Z(mz, k, mz1 operand.Op) {
-	if inst, err := x86.VMOVAPD_Z(mz, k, mz1); err == nil {
+func (c *Context) VMOVAPD_Z(mxyz, k, mxyz1 operand.Op) {
+	if inst, err := x86.VMOVAPD_Z(mxyz, k, mxyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -46553,21 +50037,39 @@ func (c *Context) VMOVAPD_Z(mz, k, mz1 operand.Op) {
 //
 // Forms:
 //
+// 	VMOVAPD.Z xmm  k m128
+// 	VMOVAPD.Z xmm  k xmm
+// 	VMOVAPD.Z ymm  k m256
+// 	VMOVAPD.Z ymm  k ymm
 // 	VMOVAPD.Z zmm  k m512
 // 	VMOVAPD.Z zmm  k zmm
+// 	VMOVAPD.Z m128 k xmm
+// 	VMOVAPD.Z m256 k ymm
 // 	VMOVAPD.Z m512 k zmm
 // Construct and append a VMOVAPD.Z instruction to the active function.
 // Operates on the global context.
-func VMOVAPD_Z(mz, k, mz1 operand.Op) { ctx.VMOVAPD_Z(mz, k, mz1) }
+func VMOVAPD_Z(mxyz, k, mxyz1 operand.Op) { ctx.VMOVAPD_Z(mxyz, k, mxyz1) }
 
 // VMOVAPS: Move Aligned Packed Single-Precision Floating-Point Values.
 //
 // Forms:
 //
+// 	VMOVAPS xmm  m128
+// 	VMOVAPS xmm  k m128
+// 	VMOVAPS xmm  xmm
+// 	VMOVAPS xmm  k xmm
+// 	VMOVAPS ymm  m256
+// 	VMOVAPS ymm  k m256
+// 	VMOVAPS ymm  ymm
+// 	VMOVAPS ymm  k ymm
 // 	VMOVAPS zmm  m512
 // 	VMOVAPS zmm  k m512
 // 	VMOVAPS zmm  zmm
 // 	VMOVAPS zmm  k zmm
+// 	VMOVAPS m128 xmm
+// 	VMOVAPS m128 k xmm
+// 	VMOVAPS m256 ymm
+// 	VMOVAPS m256 k ymm
 // 	VMOVAPS m512 zmm
 // 	VMOVAPS m512 k zmm
 // 	VMOVAPS xmm  xmm
@@ -46589,10 +50091,22 @@ func (c *Context) VMOVAPS(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VMOVAPS xmm  m128
+// 	VMOVAPS xmm  k m128
+// 	VMOVAPS xmm  xmm
+// 	VMOVAPS xmm  k xmm
+// 	VMOVAPS ymm  m256
+// 	VMOVAPS ymm  k m256
+// 	VMOVAPS ymm  ymm
+// 	VMOVAPS ymm  k ymm
 // 	VMOVAPS zmm  m512
 // 	VMOVAPS zmm  k m512
 // 	VMOVAPS zmm  zmm
 // 	VMOVAPS zmm  k zmm
+// 	VMOVAPS m128 xmm
+// 	VMOVAPS m128 k xmm
+// 	VMOVAPS m256 ymm
+// 	VMOVAPS m256 k ymm
 // 	VMOVAPS m512 zmm
 // 	VMOVAPS m512 k zmm
 // 	VMOVAPS xmm  xmm
@@ -46609,12 +50123,18 @@ func VMOVAPS(ops ...operand.Op) { ctx.VMOVAPS(ops...) }
 //
 // Forms:
 //
+// 	VMOVAPS.Z xmm  k m128
+// 	VMOVAPS.Z xmm  k xmm
+// 	VMOVAPS.Z ymm  k m256
+// 	VMOVAPS.Z ymm  k ymm
 // 	VMOVAPS.Z zmm  k m512
 // 	VMOVAPS.Z zmm  k zmm
+// 	VMOVAPS.Z m128 k xmm
+// 	VMOVAPS.Z m256 k ymm
 // 	VMOVAPS.Z m512 k zmm
 // Construct and append a VMOVAPS.Z instruction to the active function.
-func (c *Context) VMOVAPS_Z(mz, k, mz1 operand.Op) {
-	if inst, err := x86.VMOVAPS_Z(mz, k, mz1); err == nil {
+func (c *Context) VMOVAPS_Z(mxyz, k, mxyz1 operand.Op) {
+	if inst, err := x86.VMOVAPS_Z(mxyz, k, mxyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -46625,12 +50145,18 @@ func (c *Context) VMOVAPS_Z(mz, k, mz1 operand.Op) {
 //
 // Forms:
 //
+// 	VMOVAPS.Z xmm  k m128
+// 	VMOVAPS.Z xmm  k xmm
+// 	VMOVAPS.Z ymm  k m256
+// 	VMOVAPS.Z ymm  k ymm
 // 	VMOVAPS.Z zmm  k m512
 // 	VMOVAPS.Z zmm  k zmm
+// 	VMOVAPS.Z m128 k xmm
+// 	VMOVAPS.Z m256 k ymm
 // 	VMOVAPS.Z m512 k zmm
 // Construct and append a VMOVAPS.Z instruction to the active function.
 // Operates on the global context.
-func VMOVAPS_Z(mz, k, mz1 operand.Op) { ctx.VMOVAPS_Z(mz, k, mz1) }
+func VMOVAPS_Z(mxyz, k, mxyz1 operand.Op) { ctx.VMOVAPS_Z(mxyz, k, mxyz1) }
 
 // VMOVD: Move Doubleword.
 //
@@ -46673,8 +50199,16 @@ func VMOVD(mrx, mrx1 operand.Op) { ctx.VMOVD(mrx, mrx1) }
 //
 // Forms:
 //
+// 	VMOVDDUP xmm  xmm
+// 	VMOVDDUP xmm  k xmm
+// 	VMOVDDUP ymm  ymm
+// 	VMOVDDUP ymm  k ymm
 // 	VMOVDDUP zmm  zmm
 // 	VMOVDDUP zmm  k zmm
+// 	VMOVDDUP m64  xmm
+// 	VMOVDDUP m64  k xmm
+// 	VMOVDDUP m256 ymm
+// 	VMOVDDUP m256 k ymm
 // 	VMOVDDUP m512 zmm
 // 	VMOVDDUP m512 k zmm
 // 	VMOVDDUP xmm  xmm
@@ -46694,8 +50228,16 @@ func (c *Context) VMOVDDUP(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VMOVDDUP xmm  xmm
+// 	VMOVDDUP xmm  k xmm
+// 	VMOVDDUP ymm  ymm
+// 	VMOVDDUP ymm  k ymm
 // 	VMOVDDUP zmm  zmm
 // 	VMOVDDUP zmm  k zmm
+// 	VMOVDDUP m64  xmm
+// 	VMOVDDUP m64  k xmm
+// 	VMOVDDUP m256 ymm
+// 	VMOVDDUP m256 k ymm
 // 	VMOVDDUP m512 zmm
 // 	VMOVDDUP m512 k zmm
 // 	VMOVDDUP xmm  xmm
@@ -46710,11 +50252,15 @@ func VMOVDDUP(ops ...operand.Op) { ctx.VMOVDDUP(ops...) }
 //
 // Forms:
 //
+// 	VMOVDDUP.Z xmm  k xmm
+// 	VMOVDDUP.Z ymm  k ymm
 // 	VMOVDDUP.Z zmm  k zmm
+// 	VMOVDDUP.Z m64  k xmm
+// 	VMOVDDUP.Z m256 k ymm
 // 	VMOVDDUP.Z m512 k zmm
 // Construct and append a VMOVDDUP.Z instruction to the active function.
-func (c *Context) VMOVDDUP_Z(mz, k, z operand.Op) {
-	if inst, err := x86.VMOVDDUP_Z(mz, k, z); err == nil {
+func (c *Context) VMOVDDUP_Z(mxyz, k, xyz operand.Op) {
+	if inst, err := x86.VMOVDDUP_Z(mxyz, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -46725,11 +50271,15 @@ func (c *Context) VMOVDDUP_Z(mz, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VMOVDDUP.Z xmm  k xmm
+// 	VMOVDDUP.Z ymm  k ymm
 // 	VMOVDDUP.Z zmm  k zmm
+// 	VMOVDDUP.Z m64  k xmm
+// 	VMOVDDUP.Z m256 k ymm
 // 	VMOVDDUP.Z m512 k zmm
 // Construct and append a VMOVDDUP.Z instruction to the active function.
 // Operates on the global context.
-func VMOVDDUP_Z(mz, k, z operand.Op) { ctx.VMOVDDUP_Z(mz, k, z) }
+func VMOVDDUP_Z(mxyz, k, xyz operand.Op) { ctx.VMOVDDUP_Z(mxyz, k, xyz) }
 
 // VMOVDQA: Move Aligned Double Quadword.
 //
@@ -46768,10 +50318,22 @@ func VMOVDQA(mxy, mxy1 operand.Op) { ctx.VMOVDQA(mxy, mxy1) }
 //
 // Forms:
 //
+// 	VMOVDQA32 xmm  m128
+// 	VMOVDQA32 xmm  k m128
+// 	VMOVDQA32 xmm  xmm
+// 	VMOVDQA32 xmm  k xmm
+// 	VMOVDQA32 ymm  m256
+// 	VMOVDQA32 ymm  k m256
+// 	VMOVDQA32 ymm  ymm
+// 	VMOVDQA32 ymm  k ymm
 // 	VMOVDQA32 zmm  m512
 // 	VMOVDQA32 zmm  k m512
 // 	VMOVDQA32 zmm  zmm
 // 	VMOVDQA32 zmm  k zmm
+// 	VMOVDQA32 m128 xmm
+// 	VMOVDQA32 m128 k xmm
+// 	VMOVDQA32 m256 ymm
+// 	VMOVDQA32 m256 k ymm
 // 	VMOVDQA32 m512 zmm
 // 	VMOVDQA32 m512 k zmm
 // Construct and append a VMOVDQA32 instruction to the active function.
@@ -46787,10 +50349,22 @@ func (c *Context) VMOVDQA32(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VMOVDQA32 xmm  m128
+// 	VMOVDQA32 xmm  k m128
+// 	VMOVDQA32 xmm  xmm
+// 	VMOVDQA32 xmm  k xmm
+// 	VMOVDQA32 ymm  m256
+// 	VMOVDQA32 ymm  k m256
+// 	VMOVDQA32 ymm  ymm
+// 	VMOVDQA32 ymm  k ymm
 // 	VMOVDQA32 zmm  m512
 // 	VMOVDQA32 zmm  k m512
 // 	VMOVDQA32 zmm  zmm
 // 	VMOVDQA32 zmm  k zmm
+// 	VMOVDQA32 m128 xmm
+// 	VMOVDQA32 m128 k xmm
+// 	VMOVDQA32 m256 ymm
+// 	VMOVDQA32 m256 k ymm
 // 	VMOVDQA32 m512 zmm
 // 	VMOVDQA32 m512 k zmm
 // Construct and append a VMOVDQA32 instruction to the active function.
@@ -46801,12 +50375,18 @@ func VMOVDQA32(ops ...operand.Op) { ctx.VMOVDQA32(ops...) }
 //
 // Forms:
 //
+// 	VMOVDQA32.Z xmm  k m128
+// 	VMOVDQA32.Z xmm  k xmm
+// 	VMOVDQA32.Z ymm  k m256
+// 	VMOVDQA32.Z ymm  k ymm
 // 	VMOVDQA32.Z zmm  k m512
 // 	VMOVDQA32.Z zmm  k zmm
+// 	VMOVDQA32.Z m128 k xmm
+// 	VMOVDQA32.Z m256 k ymm
 // 	VMOVDQA32.Z m512 k zmm
 // Construct and append a VMOVDQA32.Z instruction to the active function.
-func (c *Context) VMOVDQA32_Z(mz, k, mz1 operand.Op) {
-	if inst, err := x86.VMOVDQA32_Z(mz, k, mz1); err == nil {
+func (c *Context) VMOVDQA32_Z(mxyz, k, mxyz1 operand.Op) {
+	if inst, err := x86.VMOVDQA32_Z(mxyz, k, mxyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -46817,21 +50397,39 @@ func (c *Context) VMOVDQA32_Z(mz, k, mz1 operand.Op) {
 //
 // Forms:
 //
+// 	VMOVDQA32.Z xmm  k m128
+// 	VMOVDQA32.Z xmm  k xmm
+// 	VMOVDQA32.Z ymm  k m256
+// 	VMOVDQA32.Z ymm  k ymm
 // 	VMOVDQA32.Z zmm  k m512
 // 	VMOVDQA32.Z zmm  k zmm
+// 	VMOVDQA32.Z m128 k xmm
+// 	VMOVDQA32.Z m256 k ymm
 // 	VMOVDQA32.Z m512 k zmm
 // Construct and append a VMOVDQA32.Z instruction to the active function.
 // Operates on the global context.
-func VMOVDQA32_Z(mz, k, mz1 operand.Op) { ctx.VMOVDQA32_Z(mz, k, mz1) }
+func VMOVDQA32_Z(mxyz, k, mxyz1 operand.Op) { ctx.VMOVDQA32_Z(mxyz, k, mxyz1) }
 
 // VMOVDQA64: Move Aligned Quadword Values.
 //
 // Forms:
 //
+// 	VMOVDQA64 xmm  m128
+// 	VMOVDQA64 xmm  k m128
+// 	VMOVDQA64 xmm  xmm
+// 	VMOVDQA64 xmm  k xmm
+// 	VMOVDQA64 ymm  m256
+// 	VMOVDQA64 ymm  k m256
+// 	VMOVDQA64 ymm  ymm
+// 	VMOVDQA64 ymm  k ymm
 // 	VMOVDQA64 zmm  m512
 // 	VMOVDQA64 zmm  k m512
 // 	VMOVDQA64 zmm  zmm
 // 	VMOVDQA64 zmm  k zmm
+// 	VMOVDQA64 m128 xmm
+// 	VMOVDQA64 m128 k xmm
+// 	VMOVDQA64 m256 ymm
+// 	VMOVDQA64 m256 k ymm
 // 	VMOVDQA64 m512 zmm
 // 	VMOVDQA64 m512 k zmm
 // Construct and append a VMOVDQA64 instruction to the active function.
@@ -46847,10 +50445,22 @@ func (c *Context) VMOVDQA64(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VMOVDQA64 xmm  m128
+// 	VMOVDQA64 xmm  k m128
+// 	VMOVDQA64 xmm  xmm
+// 	VMOVDQA64 xmm  k xmm
+// 	VMOVDQA64 ymm  m256
+// 	VMOVDQA64 ymm  k m256
+// 	VMOVDQA64 ymm  ymm
+// 	VMOVDQA64 ymm  k ymm
 // 	VMOVDQA64 zmm  m512
 // 	VMOVDQA64 zmm  k m512
 // 	VMOVDQA64 zmm  zmm
 // 	VMOVDQA64 zmm  k zmm
+// 	VMOVDQA64 m128 xmm
+// 	VMOVDQA64 m128 k xmm
+// 	VMOVDQA64 m256 ymm
+// 	VMOVDQA64 m256 k ymm
 // 	VMOVDQA64 m512 zmm
 // 	VMOVDQA64 m512 k zmm
 // Construct and append a VMOVDQA64 instruction to the active function.
@@ -46861,12 +50471,18 @@ func VMOVDQA64(ops ...operand.Op) { ctx.VMOVDQA64(ops...) }
 //
 // Forms:
 //
+// 	VMOVDQA64.Z xmm  k m128
+// 	VMOVDQA64.Z xmm  k xmm
+// 	VMOVDQA64.Z ymm  k m256
+// 	VMOVDQA64.Z ymm  k ymm
 // 	VMOVDQA64.Z zmm  k m512
 // 	VMOVDQA64.Z zmm  k zmm
+// 	VMOVDQA64.Z m128 k xmm
+// 	VMOVDQA64.Z m256 k ymm
 // 	VMOVDQA64.Z m512 k zmm
 // Construct and append a VMOVDQA64.Z instruction to the active function.
-func (c *Context) VMOVDQA64_Z(mz, k, mz1 operand.Op) {
-	if inst, err := x86.VMOVDQA64_Z(mz, k, mz1); err == nil {
+func (c *Context) VMOVDQA64_Z(mxyz, k, mxyz1 operand.Op) {
+	if inst, err := x86.VMOVDQA64_Z(mxyz, k, mxyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -46877,12 +50493,18 @@ func (c *Context) VMOVDQA64_Z(mz, k, mz1 operand.Op) {
 //
 // Forms:
 //
+// 	VMOVDQA64.Z xmm  k m128
+// 	VMOVDQA64.Z xmm  k xmm
+// 	VMOVDQA64.Z ymm  k m256
+// 	VMOVDQA64.Z ymm  k ymm
 // 	VMOVDQA64.Z zmm  k m512
 // 	VMOVDQA64.Z zmm  k zmm
+// 	VMOVDQA64.Z m128 k xmm
+// 	VMOVDQA64.Z m256 k ymm
 // 	VMOVDQA64.Z m512 k zmm
 // Construct and append a VMOVDQA64.Z instruction to the active function.
 // Operates on the global context.
-func VMOVDQA64_Z(mz, k, mz1 operand.Op) { ctx.VMOVDQA64_Z(mz, k, mz1) }
+func VMOVDQA64_Z(mxyz, k, mxyz1 operand.Op) { ctx.VMOVDQA64_Z(mxyz, k, mxyz1) }
 
 // VMOVDQU: Move Unaligned Double Quadword.
 //
@@ -46921,10 +50543,22 @@ func VMOVDQU(mxy, mxy1 operand.Op) { ctx.VMOVDQU(mxy, mxy1) }
 //
 // Forms:
 //
+// 	VMOVDQU32 xmm  m128
+// 	VMOVDQU32 xmm  k m128
+// 	VMOVDQU32 xmm  xmm
+// 	VMOVDQU32 xmm  k xmm
+// 	VMOVDQU32 ymm  m256
+// 	VMOVDQU32 ymm  k m256
+// 	VMOVDQU32 ymm  ymm
+// 	VMOVDQU32 ymm  k ymm
 // 	VMOVDQU32 zmm  m512
 // 	VMOVDQU32 zmm  k m512
 // 	VMOVDQU32 zmm  zmm
 // 	VMOVDQU32 zmm  k zmm
+// 	VMOVDQU32 m128 xmm
+// 	VMOVDQU32 m128 k xmm
+// 	VMOVDQU32 m256 ymm
+// 	VMOVDQU32 m256 k ymm
 // 	VMOVDQU32 m512 zmm
 // 	VMOVDQU32 m512 k zmm
 // Construct and append a VMOVDQU32 instruction to the active function.
@@ -46940,10 +50574,22 @@ func (c *Context) VMOVDQU32(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VMOVDQU32 xmm  m128
+// 	VMOVDQU32 xmm  k m128
+// 	VMOVDQU32 xmm  xmm
+// 	VMOVDQU32 xmm  k xmm
+// 	VMOVDQU32 ymm  m256
+// 	VMOVDQU32 ymm  k m256
+// 	VMOVDQU32 ymm  ymm
+// 	VMOVDQU32 ymm  k ymm
 // 	VMOVDQU32 zmm  m512
 // 	VMOVDQU32 zmm  k m512
 // 	VMOVDQU32 zmm  zmm
 // 	VMOVDQU32 zmm  k zmm
+// 	VMOVDQU32 m128 xmm
+// 	VMOVDQU32 m128 k xmm
+// 	VMOVDQU32 m256 ymm
+// 	VMOVDQU32 m256 k ymm
 // 	VMOVDQU32 m512 zmm
 // 	VMOVDQU32 m512 k zmm
 // Construct and append a VMOVDQU32 instruction to the active function.
@@ -46954,12 +50600,18 @@ func VMOVDQU32(ops ...operand.Op) { ctx.VMOVDQU32(ops...) }
 //
 // Forms:
 //
+// 	VMOVDQU32.Z xmm  k m128
+// 	VMOVDQU32.Z xmm  k xmm
+// 	VMOVDQU32.Z ymm  k m256
+// 	VMOVDQU32.Z ymm  k ymm
 // 	VMOVDQU32.Z zmm  k m512
 // 	VMOVDQU32.Z zmm  k zmm
+// 	VMOVDQU32.Z m128 k xmm
+// 	VMOVDQU32.Z m256 k ymm
 // 	VMOVDQU32.Z m512 k zmm
 // Construct and append a VMOVDQU32.Z instruction to the active function.
-func (c *Context) VMOVDQU32_Z(mz, k, mz1 operand.Op) {
-	if inst, err := x86.VMOVDQU32_Z(mz, k, mz1); err == nil {
+func (c *Context) VMOVDQU32_Z(mxyz, k, mxyz1 operand.Op) {
+	if inst, err := x86.VMOVDQU32_Z(mxyz, k, mxyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -46970,21 +50622,39 @@ func (c *Context) VMOVDQU32_Z(mz, k, mz1 operand.Op) {
 //
 // Forms:
 //
+// 	VMOVDQU32.Z xmm  k m128
+// 	VMOVDQU32.Z xmm  k xmm
+// 	VMOVDQU32.Z ymm  k m256
+// 	VMOVDQU32.Z ymm  k ymm
 // 	VMOVDQU32.Z zmm  k m512
 // 	VMOVDQU32.Z zmm  k zmm
+// 	VMOVDQU32.Z m128 k xmm
+// 	VMOVDQU32.Z m256 k ymm
 // 	VMOVDQU32.Z m512 k zmm
 // Construct and append a VMOVDQU32.Z instruction to the active function.
 // Operates on the global context.
-func VMOVDQU32_Z(mz, k, mz1 operand.Op) { ctx.VMOVDQU32_Z(mz, k, mz1) }
+func VMOVDQU32_Z(mxyz, k, mxyz1 operand.Op) { ctx.VMOVDQU32_Z(mxyz, k, mxyz1) }
 
 // VMOVDQU64: Move Unaligned Quadword Values.
 //
 // Forms:
 //
+// 	VMOVDQU64 xmm  m128
+// 	VMOVDQU64 xmm  k m128
+// 	VMOVDQU64 xmm  xmm
+// 	VMOVDQU64 xmm  k xmm
+// 	VMOVDQU64 ymm  m256
+// 	VMOVDQU64 ymm  k m256
+// 	VMOVDQU64 ymm  ymm
+// 	VMOVDQU64 ymm  k ymm
 // 	VMOVDQU64 zmm  m512
 // 	VMOVDQU64 zmm  k m512
 // 	VMOVDQU64 zmm  zmm
 // 	VMOVDQU64 zmm  k zmm
+// 	VMOVDQU64 m128 xmm
+// 	VMOVDQU64 m128 k xmm
+// 	VMOVDQU64 m256 ymm
+// 	VMOVDQU64 m256 k ymm
 // 	VMOVDQU64 m512 zmm
 // 	VMOVDQU64 m512 k zmm
 // Construct and append a VMOVDQU64 instruction to the active function.
@@ -47000,10 +50670,22 @@ func (c *Context) VMOVDQU64(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VMOVDQU64 xmm  m128
+// 	VMOVDQU64 xmm  k m128
+// 	VMOVDQU64 xmm  xmm
+// 	VMOVDQU64 xmm  k xmm
+// 	VMOVDQU64 ymm  m256
+// 	VMOVDQU64 ymm  k m256
+// 	VMOVDQU64 ymm  ymm
+// 	VMOVDQU64 ymm  k ymm
 // 	VMOVDQU64 zmm  m512
 // 	VMOVDQU64 zmm  k m512
 // 	VMOVDQU64 zmm  zmm
 // 	VMOVDQU64 zmm  k zmm
+// 	VMOVDQU64 m128 xmm
+// 	VMOVDQU64 m128 k xmm
+// 	VMOVDQU64 m256 ymm
+// 	VMOVDQU64 m256 k ymm
 // 	VMOVDQU64 m512 zmm
 // 	VMOVDQU64 m512 k zmm
 // Construct and append a VMOVDQU64 instruction to the active function.
@@ -47014,12 +50696,18 @@ func VMOVDQU64(ops ...operand.Op) { ctx.VMOVDQU64(ops...) }
 //
 // Forms:
 //
+// 	VMOVDQU64.Z xmm  k m128
+// 	VMOVDQU64.Z xmm  k xmm
+// 	VMOVDQU64.Z ymm  k m256
+// 	VMOVDQU64.Z ymm  k ymm
 // 	VMOVDQU64.Z zmm  k m512
 // 	VMOVDQU64.Z zmm  k zmm
+// 	VMOVDQU64.Z m128 k xmm
+// 	VMOVDQU64.Z m256 k ymm
 // 	VMOVDQU64.Z m512 k zmm
 // Construct and append a VMOVDQU64.Z instruction to the active function.
-func (c *Context) VMOVDQU64_Z(mz, k, mz1 operand.Op) {
-	if inst, err := x86.VMOVDQU64_Z(mz, k, mz1); err == nil {
+func (c *Context) VMOVDQU64_Z(mxyz, k, mxyz1 operand.Op) {
+	if inst, err := x86.VMOVDQU64_Z(mxyz, k, mxyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -47030,12 +50718,18 @@ func (c *Context) VMOVDQU64_Z(mz, k, mz1 operand.Op) {
 //
 // Forms:
 //
+// 	VMOVDQU64.Z xmm  k m128
+// 	VMOVDQU64.Z xmm  k xmm
+// 	VMOVDQU64.Z ymm  k m256
+// 	VMOVDQU64.Z ymm  k ymm
 // 	VMOVDQU64.Z zmm  k m512
 // 	VMOVDQU64.Z zmm  k zmm
+// 	VMOVDQU64.Z m128 k xmm
+// 	VMOVDQU64.Z m256 k ymm
 // 	VMOVDQU64.Z m512 k zmm
 // Construct and append a VMOVDQU64.Z instruction to the active function.
 // Operates on the global context.
-func VMOVDQU64_Z(mz, k, mz1 operand.Op) { ctx.VMOVDQU64_Z(mz, k, mz1) }
+func VMOVDQU64_Z(mxyz, k, mxyz1 operand.Op) { ctx.VMOVDQU64_Z(mxyz, k, mxyz1) }
 
 // VMOVHLPS: Move Packed Single-Precision Floating-Point Values High to Low.
 //
@@ -47258,6 +50952,8 @@ func VMOVMSKPS(xy, r operand.Op) { ctx.VMOVMSKPS(xy, r) }
 // Forms:
 //
 // 	VMOVNTDQ xmm m128
+// 	VMOVNTDQ xmm m128
+// 	VMOVNTDQ ymm m256
 // 	VMOVNTDQ ymm m256
 // 	VMOVNTDQ zmm m512
 // Construct and append a VMOVNTDQ instruction to the active function.
@@ -47274,6 +50970,8 @@ func (c *Context) VMOVNTDQ(xyz, m operand.Op) {
 // Forms:
 //
 // 	VMOVNTDQ xmm m128
+// 	VMOVNTDQ xmm m128
+// 	VMOVNTDQ ymm m256
 // 	VMOVNTDQ ymm m256
 // 	VMOVNTDQ zmm m512
 // Construct and append a VMOVNTDQ instruction to the active function.
@@ -47285,6 +50983,8 @@ func VMOVNTDQ(xyz, m operand.Op) { ctx.VMOVNTDQ(xyz, m) }
 // Forms:
 //
 // 	VMOVNTDQA m128 xmm
+// 	VMOVNTDQA m128 xmm
+// 	VMOVNTDQA m256 ymm
 // 	VMOVNTDQA m256 ymm
 // 	VMOVNTDQA m512 zmm
 // Construct and append a VMOVNTDQA instruction to the active function.
@@ -47301,6 +51001,8 @@ func (c *Context) VMOVNTDQA(m, xyz operand.Op) {
 // Forms:
 //
 // 	VMOVNTDQA m128 xmm
+// 	VMOVNTDQA m128 xmm
+// 	VMOVNTDQA m256 ymm
 // 	VMOVNTDQA m256 ymm
 // 	VMOVNTDQA m512 zmm
 // Construct and append a VMOVNTDQA instruction to the active function.
@@ -47312,6 +51014,8 @@ func VMOVNTDQA(m, xyz operand.Op) { ctx.VMOVNTDQA(m, xyz) }
 // Forms:
 //
 // 	VMOVNTPD xmm m128
+// 	VMOVNTPD xmm m128
+// 	VMOVNTPD ymm m256
 // 	VMOVNTPD ymm m256
 // 	VMOVNTPD zmm m512
 // Construct and append a VMOVNTPD instruction to the active function.
@@ -47328,6 +51032,8 @@ func (c *Context) VMOVNTPD(xyz, m operand.Op) {
 // Forms:
 //
 // 	VMOVNTPD xmm m128
+// 	VMOVNTPD xmm m128
+// 	VMOVNTPD ymm m256
 // 	VMOVNTPD ymm m256
 // 	VMOVNTPD zmm m512
 // Construct and append a VMOVNTPD instruction to the active function.
@@ -47339,6 +51045,8 @@ func VMOVNTPD(xyz, m operand.Op) { ctx.VMOVNTPD(xyz, m) }
 // Forms:
 //
 // 	VMOVNTPS xmm m128
+// 	VMOVNTPS xmm m128
+// 	VMOVNTPS ymm m256
 // 	VMOVNTPS ymm m256
 // 	VMOVNTPS zmm m512
 // Construct and append a VMOVNTPS instruction to the active function.
@@ -47355,6 +51063,8 @@ func (c *Context) VMOVNTPS(xyz, m operand.Op) {
 // Forms:
 //
 // 	VMOVNTPS xmm m128
+// 	VMOVNTPS xmm m128
+// 	VMOVNTPS ymm m256
 // 	VMOVNTPS ymm m256
 // 	VMOVNTPS zmm m512
 // Construct and append a VMOVNTPS instruction to the active function.
@@ -47470,8 +51180,16 @@ func VMOVSD_Z(ops ...operand.Op) { ctx.VMOVSD_Z(ops...) }
 //
 // Forms:
 //
+// 	VMOVSHDUP xmm  xmm
+// 	VMOVSHDUP xmm  k xmm
+// 	VMOVSHDUP ymm  ymm
+// 	VMOVSHDUP ymm  k ymm
 // 	VMOVSHDUP zmm  zmm
 // 	VMOVSHDUP zmm  k zmm
+// 	VMOVSHDUP m128 xmm
+// 	VMOVSHDUP m128 k xmm
+// 	VMOVSHDUP m256 ymm
+// 	VMOVSHDUP m256 k ymm
 // 	VMOVSHDUP m512 zmm
 // 	VMOVSHDUP m512 k zmm
 // 	VMOVSHDUP xmm  xmm
@@ -47491,8 +51209,16 @@ func (c *Context) VMOVSHDUP(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VMOVSHDUP xmm  xmm
+// 	VMOVSHDUP xmm  k xmm
+// 	VMOVSHDUP ymm  ymm
+// 	VMOVSHDUP ymm  k ymm
 // 	VMOVSHDUP zmm  zmm
 // 	VMOVSHDUP zmm  k zmm
+// 	VMOVSHDUP m128 xmm
+// 	VMOVSHDUP m128 k xmm
+// 	VMOVSHDUP m256 ymm
+// 	VMOVSHDUP m256 k ymm
 // 	VMOVSHDUP m512 zmm
 // 	VMOVSHDUP m512 k zmm
 // 	VMOVSHDUP xmm  xmm
@@ -47507,11 +51233,15 @@ func VMOVSHDUP(ops ...operand.Op) { ctx.VMOVSHDUP(ops...) }
 //
 // Forms:
 //
+// 	VMOVSHDUP.Z xmm  k xmm
+// 	VMOVSHDUP.Z ymm  k ymm
 // 	VMOVSHDUP.Z zmm  k zmm
+// 	VMOVSHDUP.Z m128 k xmm
+// 	VMOVSHDUP.Z m256 k ymm
 // 	VMOVSHDUP.Z m512 k zmm
 // Construct and append a VMOVSHDUP.Z instruction to the active function.
-func (c *Context) VMOVSHDUP_Z(mz, k, z operand.Op) {
-	if inst, err := x86.VMOVSHDUP_Z(mz, k, z); err == nil {
+func (c *Context) VMOVSHDUP_Z(mxyz, k, xyz operand.Op) {
+	if inst, err := x86.VMOVSHDUP_Z(mxyz, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -47522,18 +51252,30 @@ func (c *Context) VMOVSHDUP_Z(mz, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VMOVSHDUP.Z xmm  k xmm
+// 	VMOVSHDUP.Z ymm  k ymm
 // 	VMOVSHDUP.Z zmm  k zmm
+// 	VMOVSHDUP.Z m128 k xmm
+// 	VMOVSHDUP.Z m256 k ymm
 // 	VMOVSHDUP.Z m512 k zmm
 // Construct and append a VMOVSHDUP.Z instruction to the active function.
 // Operates on the global context.
-func VMOVSHDUP_Z(mz, k, z operand.Op) { ctx.VMOVSHDUP_Z(mz, k, z) }
+func VMOVSHDUP_Z(mxyz, k, xyz operand.Op) { ctx.VMOVSHDUP_Z(mxyz, k, xyz) }
 
 // VMOVSLDUP: Move Packed Single-FP Low and Duplicate.
 //
 // Forms:
 //
+// 	VMOVSLDUP xmm  xmm
+// 	VMOVSLDUP xmm  k xmm
+// 	VMOVSLDUP ymm  ymm
+// 	VMOVSLDUP ymm  k ymm
 // 	VMOVSLDUP zmm  zmm
 // 	VMOVSLDUP zmm  k zmm
+// 	VMOVSLDUP m128 xmm
+// 	VMOVSLDUP m128 k xmm
+// 	VMOVSLDUP m256 ymm
+// 	VMOVSLDUP m256 k ymm
 // 	VMOVSLDUP m512 zmm
 // 	VMOVSLDUP m512 k zmm
 // 	VMOVSLDUP xmm  xmm
@@ -47553,8 +51295,16 @@ func (c *Context) VMOVSLDUP(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VMOVSLDUP xmm  xmm
+// 	VMOVSLDUP xmm  k xmm
+// 	VMOVSLDUP ymm  ymm
+// 	VMOVSLDUP ymm  k ymm
 // 	VMOVSLDUP zmm  zmm
 // 	VMOVSLDUP zmm  k zmm
+// 	VMOVSLDUP m128 xmm
+// 	VMOVSLDUP m128 k xmm
+// 	VMOVSLDUP m256 ymm
+// 	VMOVSLDUP m256 k ymm
 // 	VMOVSLDUP m512 zmm
 // 	VMOVSLDUP m512 k zmm
 // 	VMOVSLDUP xmm  xmm
@@ -47569,11 +51319,15 @@ func VMOVSLDUP(ops ...operand.Op) { ctx.VMOVSLDUP(ops...) }
 //
 // Forms:
 //
+// 	VMOVSLDUP.Z xmm  k xmm
+// 	VMOVSLDUP.Z ymm  k ymm
 // 	VMOVSLDUP.Z zmm  k zmm
+// 	VMOVSLDUP.Z m128 k xmm
+// 	VMOVSLDUP.Z m256 k ymm
 // 	VMOVSLDUP.Z m512 k zmm
 // Construct and append a VMOVSLDUP.Z instruction to the active function.
-func (c *Context) VMOVSLDUP_Z(mz, k, z operand.Op) {
-	if inst, err := x86.VMOVSLDUP_Z(mz, k, z); err == nil {
+func (c *Context) VMOVSLDUP_Z(mxyz, k, xyz operand.Op) {
+	if inst, err := x86.VMOVSLDUP_Z(mxyz, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -47584,11 +51338,15 @@ func (c *Context) VMOVSLDUP_Z(mz, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VMOVSLDUP.Z xmm  k xmm
+// 	VMOVSLDUP.Z ymm  k ymm
 // 	VMOVSLDUP.Z zmm  k zmm
+// 	VMOVSLDUP.Z m128 k xmm
+// 	VMOVSLDUP.Z m256 k ymm
 // 	VMOVSLDUP.Z m512 k zmm
 // Construct and append a VMOVSLDUP.Z instruction to the active function.
 // Operates on the global context.
-func VMOVSLDUP_Z(mz, k, z operand.Op) { ctx.VMOVSLDUP_Z(mz, k, z) }
+func VMOVSLDUP_Z(mxyz, k, xyz operand.Op) { ctx.VMOVSLDUP_Z(mxyz, k, xyz) }
 
 // VMOVSS: Move Scalar Single-Precision Floating-Point Values.
 //
@@ -47658,10 +51416,22 @@ func VMOVSS_Z(ops ...operand.Op) { ctx.VMOVSS_Z(ops...) }
 //
 // Forms:
 //
+// 	VMOVUPD xmm  m128
+// 	VMOVUPD xmm  k m128
+// 	VMOVUPD xmm  xmm
+// 	VMOVUPD xmm  k xmm
+// 	VMOVUPD ymm  m256
+// 	VMOVUPD ymm  k m256
+// 	VMOVUPD ymm  ymm
+// 	VMOVUPD ymm  k ymm
 // 	VMOVUPD zmm  m512
 // 	VMOVUPD zmm  k m512
 // 	VMOVUPD zmm  zmm
 // 	VMOVUPD zmm  k zmm
+// 	VMOVUPD m128 xmm
+// 	VMOVUPD m128 k xmm
+// 	VMOVUPD m256 ymm
+// 	VMOVUPD m256 k ymm
 // 	VMOVUPD m512 zmm
 // 	VMOVUPD m512 k zmm
 // 	VMOVUPD xmm  xmm
@@ -47683,10 +51453,22 @@ func (c *Context) VMOVUPD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VMOVUPD xmm  m128
+// 	VMOVUPD xmm  k m128
+// 	VMOVUPD xmm  xmm
+// 	VMOVUPD xmm  k xmm
+// 	VMOVUPD ymm  m256
+// 	VMOVUPD ymm  k m256
+// 	VMOVUPD ymm  ymm
+// 	VMOVUPD ymm  k ymm
 // 	VMOVUPD zmm  m512
 // 	VMOVUPD zmm  k m512
 // 	VMOVUPD zmm  zmm
 // 	VMOVUPD zmm  k zmm
+// 	VMOVUPD m128 xmm
+// 	VMOVUPD m128 k xmm
+// 	VMOVUPD m256 ymm
+// 	VMOVUPD m256 k ymm
 // 	VMOVUPD m512 zmm
 // 	VMOVUPD m512 k zmm
 // 	VMOVUPD xmm  xmm
@@ -47703,12 +51485,18 @@ func VMOVUPD(ops ...operand.Op) { ctx.VMOVUPD(ops...) }
 //
 // Forms:
 //
+// 	VMOVUPD.Z xmm  k m128
+// 	VMOVUPD.Z xmm  k xmm
+// 	VMOVUPD.Z ymm  k m256
+// 	VMOVUPD.Z ymm  k ymm
 // 	VMOVUPD.Z zmm  k m512
 // 	VMOVUPD.Z zmm  k zmm
+// 	VMOVUPD.Z m128 k xmm
+// 	VMOVUPD.Z m256 k ymm
 // 	VMOVUPD.Z m512 k zmm
 // Construct and append a VMOVUPD.Z instruction to the active function.
-func (c *Context) VMOVUPD_Z(mz, k, mz1 operand.Op) {
-	if inst, err := x86.VMOVUPD_Z(mz, k, mz1); err == nil {
+func (c *Context) VMOVUPD_Z(mxyz, k, mxyz1 operand.Op) {
+	if inst, err := x86.VMOVUPD_Z(mxyz, k, mxyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -47719,21 +51507,39 @@ func (c *Context) VMOVUPD_Z(mz, k, mz1 operand.Op) {
 //
 // Forms:
 //
+// 	VMOVUPD.Z xmm  k m128
+// 	VMOVUPD.Z xmm  k xmm
+// 	VMOVUPD.Z ymm  k m256
+// 	VMOVUPD.Z ymm  k ymm
 // 	VMOVUPD.Z zmm  k m512
 // 	VMOVUPD.Z zmm  k zmm
+// 	VMOVUPD.Z m128 k xmm
+// 	VMOVUPD.Z m256 k ymm
 // 	VMOVUPD.Z m512 k zmm
 // Construct and append a VMOVUPD.Z instruction to the active function.
 // Operates on the global context.
-func VMOVUPD_Z(mz, k, mz1 operand.Op) { ctx.VMOVUPD_Z(mz, k, mz1) }
+func VMOVUPD_Z(mxyz, k, mxyz1 operand.Op) { ctx.VMOVUPD_Z(mxyz, k, mxyz1) }
 
 // VMOVUPS: Move Unaligned Packed Single-Precision Floating-Point Values.
 //
 // Forms:
 //
+// 	VMOVUPS xmm  m128
+// 	VMOVUPS xmm  k m128
+// 	VMOVUPS xmm  xmm
+// 	VMOVUPS xmm  k xmm
+// 	VMOVUPS ymm  m256
+// 	VMOVUPS ymm  k m256
+// 	VMOVUPS ymm  ymm
+// 	VMOVUPS ymm  k ymm
 // 	VMOVUPS zmm  m512
 // 	VMOVUPS zmm  k m512
 // 	VMOVUPS zmm  zmm
 // 	VMOVUPS zmm  k zmm
+// 	VMOVUPS m128 xmm
+// 	VMOVUPS m128 k xmm
+// 	VMOVUPS m256 ymm
+// 	VMOVUPS m256 k ymm
 // 	VMOVUPS m512 zmm
 // 	VMOVUPS m512 k zmm
 // 	VMOVUPS xmm  xmm
@@ -47755,10 +51561,22 @@ func (c *Context) VMOVUPS(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VMOVUPS xmm  m128
+// 	VMOVUPS xmm  k m128
+// 	VMOVUPS xmm  xmm
+// 	VMOVUPS xmm  k xmm
+// 	VMOVUPS ymm  m256
+// 	VMOVUPS ymm  k m256
+// 	VMOVUPS ymm  ymm
+// 	VMOVUPS ymm  k ymm
 // 	VMOVUPS zmm  m512
 // 	VMOVUPS zmm  k m512
 // 	VMOVUPS zmm  zmm
 // 	VMOVUPS zmm  k zmm
+// 	VMOVUPS m128 xmm
+// 	VMOVUPS m128 k xmm
+// 	VMOVUPS m256 ymm
+// 	VMOVUPS m256 k ymm
 // 	VMOVUPS m512 zmm
 // 	VMOVUPS m512 k zmm
 // 	VMOVUPS xmm  xmm
@@ -47775,12 +51593,18 @@ func VMOVUPS(ops ...operand.Op) { ctx.VMOVUPS(ops...) }
 //
 // Forms:
 //
+// 	VMOVUPS.Z xmm  k m128
+// 	VMOVUPS.Z xmm  k xmm
+// 	VMOVUPS.Z ymm  k m256
+// 	VMOVUPS.Z ymm  k ymm
 // 	VMOVUPS.Z zmm  k m512
 // 	VMOVUPS.Z zmm  k zmm
+// 	VMOVUPS.Z m128 k xmm
+// 	VMOVUPS.Z m256 k ymm
 // 	VMOVUPS.Z m512 k zmm
 // Construct and append a VMOVUPS.Z instruction to the active function.
-func (c *Context) VMOVUPS_Z(mz, k, mz1 operand.Op) {
-	if inst, err := x86.VMOVUPS_Z(mz, k, mz1); err == nil {
+func (c *Context) VMOVUPS_Z(mxyz, k, mxyz1 operand.Op) {
+	if inst, err := x86.VMOVUPS_Z(mxyz, k, mxyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -47791,12 +51615,18 @@ func (c *Context) VMOVUPS_Z(mz, k, mz1 operand.Op) {
 //
 // Forms:
 //
+// 	VMOVUPS.Z xmm  k m128
+// 	VMOVUPS.Z xmm  k xmm
+// 	VMOVUPS.Z ymm  k m256
+// 	VMOVUPS.Z ymm  k ymm
 // 	VMOVUPS.Z zmm  k m512
 // 	VMOVUPS.Z zmm  k zmm
+// 	VMOVUPS.Z m128 k xmm
+// 	VMOVUPS.Z m256 k ymm
 // 	VMOVUPS.Z m512 k zmm
 // Construct and append a VMOVUPS.Z instruction to the active function.
 // Operates on the global context.
-func VMOVUPS_Z(mz, k, mz1 operand.Op) { ctx.VMOVUPS_Z(mz, k, mz1) }
+func VMOVUPS_Z(mxyz, k, mxyz1 operand.Op) { ctx.VMOVUPS_Z(mxyz, k, mxyz1) }
 
 // VMPSADBW: Compute Multiple Packed Sums of Absolute Difference.
 //
@@ -47831,6 +51661,14 @@ func VMPSADBW(i, mxy, xy, xy1 operand.Op) { ctx.VMPSADBW(i, mxy, xy, xy1) }
 //
 // Forms:
 //
+// 	VMULPD m128/m64bcst xmm xmm
+// 	VMULPD m128/m64bcst xmm k xmm
+// 	VMULPD xmm          xmm xmm
+// 	VMULPD xmm          xmm k xmm
+// 	VMULPD m256/m64bcst ymm ymm
+// 	VMULPD m256/m64bcst ymm k ymm
+// 	VMULPD ymm          ymm ymm
+// 	VMULPD ymm          ymm k ymm
 // 	VMULPD m512/m64bcst zmm zmm
 // 	VMULPD m512/m64bcst zmm k zmm
 // 	VMULPD xmm          xmm xmm
@@ -47852,6 +51690,14 @@ func (c *Context) VMULPD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VMULPD m128/m64bcst xmm xmm
+// 	VMULPD m128/m64bcst xmm k xmm
+// 	VMULPD xmm          xmm xmm
+// 	VMULPD xmm          xmm k xmm
+// 	VMULPD m256/m64bcst ymm ymm
+// 	VMULPD m256/m64bcst ymm k ymm
+// 	VMULPD ymm          ymm ymm
+// 	VMULPD ymm          ymm k ymm
 // 	VMULPD m512/m64bcst zmm zmm
 // 	VMULPD m512/m64bcst zmm k zmm
 // 	VMULPD xmm          xmm xmm
@@ -47868,6 +51714,10 @@ func VMULPD(ops ...operand.Op) { ctx.VMULPD(ops...) }
 //
 // Forms:
 //
+// 	VMULPD.BCST m128/m64bcst xmm xmm
+// 	VMULPD.BCST m128/m64bcst xmm k xmm
+// 	VMULPD.BCST m256/m64bcst ymm ymm
+// 	VMULPD.BCST m256/m64bcst ymm k ymm
 // 	VMULPD.BCST m512/m64bcst zmm zmm
 // 	VMULPD.BCST m512/m64bcst zmm k zmm
 // Construct and append a VMULPD.BCST instruction to the active function.
@@ -47883,6 +51733,10 @@ func (c *Context) VMULPD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VMULPD.BCST m128/m64bcst xmm xmm
+// 	VMULPD.BCST m128/m64bcst xmm k xmm
+// 	VMULPD.BCST m256/m64bcst ymm ymm
+// 	VMULPD.BCST m256/m64bcst ymm k ymm
 // 	VMULPD.BCST m512/m64bcst zmm zmm
 // 	VMULPD.BCST m512/m64bcst zmm k zmm
 // Construct and append a VMULPD.BCST instruction to the active function.
@@ -47893,10 +51747,12 @@ func VMULPD_BCST(ops ...operand.Op) { ctx.VMULPD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VMULPD.BCST.Z m128/m64bcst xmm k xmm
+// 	VMULPD.BCST.Z m256/m64bcst ymm k ymm
 // 	VMULPD.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VMULPD.BCST.Z instruction to the active function.
-func (c *Context) VMULPD_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VMULPD_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VMULPD_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VMULPD_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -47907,10 +51763,12 @@ func (c *Context) VMULPD_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VMULPD.BCST.Z m128/m64bcst xmm k xmm
+// 	VMULPD.BCST.Z m256/m64bcst ymm k ymm
 // 	VMULPD.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VMULPD.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VMULPD_BCST_Z(m, z, k, z1 operand.Op) { ctx.VMULPD_BCST_Z(m, z, k, z1) }
+func VMULPD_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VMULPD_BCST_Z(m, xyz, k, xyz1) }
 
 // VMULPD_RD_SAE: Multiply Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
@@ -48108,11 +51966,15 @@ func VMULPD_RZ_SAE_Z(z, z1, k, z2 operand.Op) { ctx.VMULPD_RZ_SAE_Z(z, z1, k, z2
 //
 // Forms:
 //
+// 	VMULPD.Z m128/m64bcst xmm k xmm
+// 	VMULPD.Z xmm          xmm k xmm
+// 	VMULPD.Z m256/m64bcst ymm k ymm
+// 	VMULPD.Z ymm          ymm k ymm
 // 	VMULPD.Z m512/m64bcst zmm k zmm
 // 	VMULPD.Z zmm          zmm k zmm
 // Construct and append a VMULPD.Z instruction to the active function.
-func (c *Context) VMULPD_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VMULPD_Z(mz, z, k, z1); err == nil {
+func (c *Context) VMULPD_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VMULPD_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -48123,16 +51985,28 @@ func (c *Context) VMULPD_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VMULPD.Z m128/m64bcst xmm k xmm
+// 	VMULPD.Z xmm          xmm k xmm
+// 	VMULPD.Z m256/m64bcst ymm k ymm
+// 	VMULPD.Z ymm          ymm k ymm
 // 	VMULPD.Z m512/m64bcst zmm k zmm
 // 	VMULPD.Z zmm          zmm k zmm
 // Construct and append a VMULPD.Z instruction to the active function.
 // Operates on the global context.
-func VMULPD_Z(mz, z, k, z1 operand.Op) { ctx.VMULPD_Z(mz, z, k, z1) }
+func VMULPD_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VMULPD_Z(mxyz, xyz, k, xyz1) }
 
 // VMULPS: Multiply Packed Single-Precision Floating-Point Values.
 //
 // Forms:
 //
+// 	VMULPS m128/m32bcst xmm xmm
+// 	VMULPS m128/m32bcst xmm k xmm
+// 	VMULPS xmm          xmm xmm
+// 	VMULPS xmm          xmm k xmm
+// 	VMULPS m256/m32bcst ymm ymm
+// 	VMULPS m256/m32bcst ymm k ymm
+// 	VMULPS ymm          ymm ymm
+// 	VMULPS ymm          ymm k ymm
 // 	VMULPS m512/m32bcst zmm zmm
 // 	VMULPS m512/m32bcst zmm k zmm
 // 	VMULPS xmm          xmm xmm
@@ -48154,6 +52028,14 @@ func (c *Context) VMULPS(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VMULPS m128/m32bcst xmm xmm
+// 	VMULPS m128/m32bcst xmm k xmm
+// 	VMULPS xmm          xmm xmm
+// 	VMULPS xmm          xmm k xmm
+// 	VMULPS m256/m32bcst ymm ymm
+// 	VMULPS m256/m32bcst ymm k ymm
+// 	VMULPS ymm          ymm ymm
+// 	VMULPS ymm          ymm k ymm
 // 	VMULPS m512/m32bcst zmm zmm
 // 	VMULPS m512/m32bcst zmm k zmm
 // 	VMULPS xmm          xmm xmm
@@ -48170,6 +52052,10 @@ func VMULPS(ops ...operand.Op) { ctx.VMULPS(ops...) }
 //
 // Forms:
 //
+// 	VMULPS.BCST m128/m32bcst xmm xmm
+// 	VMULPS.BCST m128/m32bcst xmm k xmm
+// 	VMULPS.BCST m256/m32bcst ymm ymm
+// 	VMULPS.BCST m256/m32bcst ymm k ymm
 // 	VMULPS.BCST m512/m32bcst zmm zmm
 // 	VMULPS.BCST m512/m32bcst zmm k zmm
 // Construct and append a VMULPS.BCST instruction to the active function.
@@ -48185,6 +52071,10 @@ func (c *Context) VMULPS_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VMULPS.BCST m128/m32bcst xmm xmm
+// 	VMULPS.BCST m128/m32bcst xmm k xmm
+// 	VMULPS.BCST m256/m32bcst ymm ymm
+// 	VMULPS.BCST m256/m32bcst ymm k ymm
 // 	VMULPS.BCST m512/m32bcst zmm zmm
 // 	VMULPS.BCST m512/m32bcst zmm k zmm
 // Construct and append a VMULPS.BCST instruction to the active function.
@@ -48195,10 +52085,12 @@ func VMULPS_BCST(ops ...operand.Op) { ctx.VMULPS_BCST(ops...) }
 //
 // Forms:
 //
+// 	VMULPS.BCST.Z m128/m32bcst xmm k xmm
+// 	VMULPS.BCST.Z m256/m32bcst ymm k ymm
 // 	VMULPS.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VMULPS.BCST.Z instruction to the active function.
-func (c *Context) VMULPS_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VMULPS_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VMULPS_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VMULPS_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -48209,10 +52101,12 @@ func (c *Context) VMULPS_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VMULPS.BCST.Z m128/m32bcst xmm k xmm
+// 	VMULPS.BCST.Z m256/m32bcst ymm k ymm
 // 	VMULPS.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VMULPS.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VMULPS_BCST_Z(m, z, k, z1 operand.Op) { ctx.VMULPS_BCST_Z(m, z, k, z1) }
+func VMULPS_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VMULPS_BCST_Z(m, xyz, k, xyz1) }
 
 // VMULPS_RD_SAE: Multiply Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
@@ -48410,11 +52304,15 @@ func VMULPS_RZ_SAE_Z(z, z1, k, z2 operand.Op) { ctx.VMULPS_RZ_SAE_Z(z, z1, k, z2
 //
 // Forms:
 //
+// 	VMULPS.Z m128/m32bcst xmm k xmm
+// 	VMULPS.Z xmm          xmm k xmm
+// 	VMULPS.Z m256/m32bcst ymm k ymm
+// 	VMULPS.Z ymm          ymm k ymm
 // 	VMULPS.Z m512/m32bcst zmm k zmm
 // 	VMULPS.Z zmm          zmm k zmm
 // Construct and append a VMULPS.Z instruction to the active function.
-func (c *Context) VMULPS_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VMULPS_Z(mz, z, k, z1); err == nil {
+func (c *Context) VMULPS_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VMULPS_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -48425,11 +52323,15 @@ func (c *Context) VMULPS_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VMULPS.Z m128/m32bcst xmm k xmm
+// 	VMULPS.Z xmm          xmm k xmm
+// 	VMULPS.Z m256/m32bcst ymm k ymm
+// 	VMULPS.Z ymm          ymm k ymm
 // 	VMULPS.Z m512/m32bcst zmm k zmm
 // 	VMULPS.Z zmm          zmm k zmm
 // Construct and append a VMULPS.Z instruction to the active function.
 // Operates on the global context.
-func VMULPS_Z(mz, z, k, z1 operand.Op) { ctx.VMULPS_Z(mz, z, k, z1) }
+func VMULPS_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VMULPS_Z(mxyz, xyz, k, xyz1) }
 
 // VMULSD: Multiply Scalar Double-Precision Floating-Point Values.
 //
@@ -49022,8 +52924,16 @@ func VPABSB(mxy, xy operand.Op) { ctx.VPABSB(mxy, xy) }
 //
 // Forms:
 //
+// 	VPABSD m128/m32bcst xmm
+// 	VPABSD m128/m32bcst k xmm
+// 	VPABSD m256/m32bcst ymm
+// 	VPABSD m256/m32bcst k ymm
 // 	VPABSD m512/m32bcst zmm
 // 	VPABSD m512/m32bcst k zmm
+// 	VPABSD xmm          xmm
+// 	VPABSD xmm          k xmm
+// 	VPABSD ymm          ymm
+// 	VPABSD ymm          k ymm
 // 	VPABSD zmm          zmm
 // 	VPABSD zmm          k zmm
 // 	VPABSD xmm          xmm
@@ -49043,8 +52953,16 @@ func (c *Context) VPABSD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPABSD m128/m32bcst xmm
+// 	VPABSD m128/m32bcst k xmm
+// 	VPABSD m256/m32bcst ymm
+// 	VPABSD m256/m32bcst k ymm
 // 	VPABSD m512/m32bcst zmm
 // 	VPABSD m512/m32bcst k zmm
+// 	VPABSD xmm          xmm
+// 	VPABSD xmm          k xmm
+// 	VPABSD ymm          ymm
+// 	VPABSD ymm          k ymm
 // 	VPABSD zmm          zmm
 // 	VPABSD zmm          k zmm
 // 	VPABSD xmm          xmm
@@ -49059,6 +52977,10 @@ func VPABSD(ops ...operand.Op) { ctx.VPABSD(ops...) }
 //
 // Forms:
 //
+// 	VPABSD.BCST m128/m32bcst xmm
+// 	VPABSD.BCST m128/m32bcst k xmm
+// 	VPABSD.BCST m256/m32bcst ymm
+// 	VPABSD.BCST m256/m32bcst k ymm
 // 	VPABSD.BCST m512/m32bcst zmm
 // 	VPABSD.BCST m512/m32bcst k zmm
 // Construct and append a VPABSD.BCST instruction to the active function.
@@ -49074,6 +52996,10 @@ func (c *Context) VPABSD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPABSD.BCST m128/m32bcst xmm
+// 	VPABSD.BCST m128/m32bcst k xmm
+// 	VPABSD.BCST m256/m32bcst ymm
+// 	VPABSD.BCST m256/m32bcst k ymm
 // 	VPABSD.BCST m512/m32bcst zmm
 // 	VPABSD.BCST m512/m32bcst k zmm
 // Construct and append a VPABSD.BCST instruction to the active function.
@@ -49084,10 +53010,12 @@ func VPABSD_BCST(ops ...operand.Op) { ctx.VPABSD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPABSD.BCST.Z m128/m32bcst k xmm
+// 	VPABSD.BCST.Z m256/m32bcst k ymm
 // 	VPABSD.BCST.Z m512/m32bcst k zmm
 // Construct and append a VPABSD.BCST.Z instruction to the active function.
-func (c *Context) VPABSD_BCST_Z(m, k, z operand.Op) {
-	if inst, err := x86.VPABSD_BCST_Z(m, k, z); err == nil {
+func (c *Context) VPABSD_BCST_Z(m, k, xyz operand.Op) {
+	if inst, err := x86.VPABSD_BCST_Z(m, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -49098,20 +53026,26 @@ func (c *Context) VPABSD_BCST_Z(m, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VPABSD.BCST.Z m128/m32bcst k xmm
+// 	VPABSD.BCST.Z m256/m32bcst k ymm
 // 	VPABSD.BCST.Z m512/m32bcst k zmm
 // Construct and append a VPABSD.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VPABSD_BCST_Z(m, k, z operand.Op) { ctx.VPABSD_BCST_Z(m, k, z) }
+func VPABSD_BCST_Z(m, k, xyz operand.Op) { ctx.VPABSD_BCST_Z(m, k, xyz) }
 
 // VPABSD_Z: Packed Absolute Value of Doubleword Integers (Zeroing Masking).
 //
 // Forms:
 //
+// 	VPABSD.Z m128/m32bcst k xmm
+// 	VPABSD.Z m256/m32bcst k ymm
 // 	VPABSD.Z m512/m32bcst k zmm
+// 	VPABSD.Z xmm          k xmm
+// 	VPABSD.Z ymm          k ymm
 // 	VPABSD.Z zmm          k zmm
 // Construct and append a VPABSD.Z instruction to the active function.
-func (c *Context) VPABSD_Z(mz, k, z operand.Op) {
-	if inst, err := x86.VPABSD_Z(mz, k, z); err == nil {
+func (c *Context) VPABSD_Z(mxyz, k, xyz operand.Op) {
+	if inst, err := x86.VPABSD_Z(mxyz, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -49122,18 +53056,30 @@ func (c *Context) VPABSD_Z(mz, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VPABSD.Z m128/m32bcst k xmm
+// 	VPABSD.Z m256/m32bcst k ymm
 // 	VPABSD.Z m512/m32bcst k zmm
+// 	VPABSD.Z xmm          k xmm
+// 	VPABSD.Z ymm          k ymm
 // 	VPABSD.Z zmm          k zmm
 // Construct and append a VPABSD.Z instruction to the active function.
 // Operates on the global context.
-func VPABSD_Z(mz, k, z operand.Op) { ctx.VPABSD_Z(mz, k, z) }
+func VPABSD_Z(mxyz, k, xyz operand.Op) { ctx.VPABSD_Z(mxyz, k, xyz) }
 
 // VPABSQ: Packed Absolute Value of Quadword Integers.
 //
 // Forms:
 //
+// 	VPABSQ m128/m64bcst xmm
+// 	VPABSQ m128/m64bcst k xmm
+// 	VPABSQ m256/m64bcst ymm
+// 	VPABSQ m256/m64bcst k ymm
 // 	VPABSQ m512/m64bcst zmm
 // 	VPABSQ m512/m64bcst k zmm
+// 	VPABSQ xmm          xmm
+// 	VPABSQ xmm          k xmm
+// 	VPABSQ ymm          ymm
+// 	VPABSQ ymm          k ymm
 // 	VPABSQ zmm          zmm
 // 	VPABSQ zmm          k zmm
 // Construct and append a VPABSQ instruction to the active function.
@@ -49149,8 +53095,16 @@ func (c *Context) VPABSQ(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPABSQ m128/m64bcst xmm
+// 	VPABSQ m128/m64bcst k xmm
+// 	VPABSQ m256/m64bcst ymm
+// 	VPABSQ m256/m64bcst k ymm
 // 	VPABSQ m512/m64bcst zmm
 // 	VPABSQ m512/m64bcst k zmm
+// 	VPABSQ xmm          xmm
+// 	VPABSQ xmm          k xmm
+// 	VPABSQ ymm          ymm
+// 	VPABSQ ymm          k ymm
 // 	VPABSQ zmm          zmm
 // 	VPABSQ zmm          k zmm
 // Construct and append a VPABSQ instruction to the active function.
@@ -49161,6 +53115,10 @@ func VPABSQ(ops ...operand.Op) { ctx.VPABSQ(ops...) }
 //
 // Forms:
 //
+// 	VPABSQ.BCST m128/m64bcst xmm
+// 	VPABSQ.BCST m128/m64bcst k xmm
+// 	VPABSQ.BCST m256/m64bcst ymm
+// 	VPABSQ.BCST m256/m64bcst k ymm
 // 	VPABSQ.BCST m512/m64bcst zmm
 // 	VPABSQ.BCST m512/m64bcst k zmm
 // Construct and append a VPABSQ.BCST instruction to the active function.
@@ -49176,6 +53134,10 @@ func (c *Context) VPABSQ_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPABSQ.BCST m128/m64bcst xmm
+// 	VPABSQ.BCST m128/m64bcst k xmm
+// 	VPABSQ.BCST m256/m64bcst ymm
+// 	VPABSQ.BCST m256/m64bcst k ymm
 // 	VPABSQ.BCST m512/m64bcst zmm
 // 	VPABSQ.BCST m512/m64bcst k zmm
 // Construct and append a VPABSQ.BCST instruction to the active function.
@@ -49186,10 +53148,12 @@ func VPABSQ_BCST(ops ...operand.Op) { ctx.VPABSQ_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPABSQ.BCST.Z m128/m64bcst k xmm
+// 	VPABSQ.BCST.Z m256/m64bcst k ymm
 // 	VPABSQ.BCST.Z m512/m64bcst k zmm
 // Construct and append a VPABSQ.BCST.Z instruction to the active function.
-func (c *Context) VPABSQ_BCST_Z(m, k, z operand.Op) {
-	if inst, err := x86.VPABSQ_BCST_Z(m, k, z); err == nil {
+func (c *Context) VPABSQ_BCST_Z(m, k, xyz operand.Op) {
+	if inst, err := x86.VPABSQ_BCST_Z(m, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -49200,20 +53164,26 @@ func (c *Context) VPABSQ_BCST_Z(m, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VPABSQ.BCST.Z m128/m64bcst k xmm
+// 	VPABSQ.BCST.Z m256/m64bcst k ymm
 // 	VPABSQ.BCST.Z m512/m64bcst k zmm
 // Construct and append a VPABSQ.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VPABSQ_BCST_Z(m, k, z operand.Op) { ctx.VPABSQ_BCST_Z(m, k, z) }
+func VPABSQ_BCST_Z(m, k, xyz operand.Op) { ctx.VPABSQ_BCST_Z(m, k, xyz) }
 
 // VPABSQ_Z: Packed Absolute Value of Quadword Integers (Zeroing Masking).
 //
 // Forms:
 //
+// 	VPABSQ.Z m128/m64bcst k xmm
+// 	VPABSQ.Z m256/m64bcst k ymm
 // 	VPABSQ.Z m512/m64bcst k zmm
+// 	VPABSQ.Z xmm          k xmm
+// 	VPABSQ.Z ymm          k ymm
 // 	VPABSQ.Z zmm          k zmm
 // Construct and append a VPABSQ.Z instruction to the active function.
-func (c *Context) VPABSQ_Z(mz, k, z operand.Op) {
-	if inst, err := x86.VPABSQ_Z(mz, k, z); err == nil {
+func (c *Context) VPABSQ_Z(mxyz, k, xyz operand.Op) {
+	if inst, err := x86.VPABSQ_Z(mxyz, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -49224,11 +53194,15 @@ func (c *Context) VPABSQ_Z(mz, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VPABSQ.Z m128/m64bcst k xmm
+// 	VPABSQ.Z m256/m64bcst k ymm
 // 	VPABSQ.Z m512/m64bcst k zmm
+// 	VPABSQ.Z xmm          k xmm
+// 	VPABSQ.Z ymm          k ymm
 // 	VPABSQ.Z zmm          k zmm
 // Construct and append a VPABSQ.Z instruction to the active function.
 // Operates on the global context.
-func VPABSQ_Z(mz, k, z operand.Op) { ctx.VPABSQ_Z(mz, k, z) }
+func VPABSQ_Z(mxyz, k, xyz operand.Op) { ctx.VPABSQ_Z(mxyz, k, xyz) }
 
 // VPABSW: Packed Absolute Value of Word Integers.
 //
@@ -49408,6 +53382,14 @@ func VPADDB(mxy, xy, xy1 operand.Op) { ctx.VPADDB(mxy, xy, xy1) }
 //
 // Forms:
 //
+// 	VPADDD m128/m32bcst xmm xmm
+// 	VPADDD m128/m32bcst xmm k xmm
+// 	VPADDD xmm          xmm xmm
+// 	VPADDD xmm          xmm k xmm
+// 	VPADDD m256/m32bcst ymm ymm
+// 	VPADDD m256/m32bcst ymm k ymm
+// 	VPADDD ymm          ymm ymm
+// 	VPADDD ymm          ymm k ymm
 // 	VPADDD m512/m32bcst zmm zmm
 // 	VPADDD m512/m32bcst zmm k zmm
 // 	VPADDD zmm          zmm zmm
@@ -49429,6 +53411,14 @@ func (c *Context) VPADDD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPADDD m128/m32bcst xmm xmm
+// 	VPADDD m128/m32bcst xmm k xmm
+// 	VPADDD xmm          xmm xmm
+// 	VPADDD xmm          xmm k xmm
+// 	VPADDD m256/m32bcst ymm ymm
+// 	VPADDD m256/m32bcst ymm k ymm
+// 	VPADDD ymm          ymm ymm
+// 	VPADDD ymm          ymm k ymm
 // 	VPADDD m512/m32bcst zmm zmm
 // 	VPADDD m512/m32bcst zmm k zmm
 // 	VPADDD zmm          zmm zmm
@@ -49445,6 +53435,10 @@ func VPADDD(ops ...operand.Op) { ctx.VPADDD(ops...) }
 //
 // Forms:
 //
+// 	VPADDD.BCST m128/m32bcst xmm xmm
+// 	VPADDD.BCST m128/m32bcst xmm k xmm
+// 	VPADDD.BCST m256/m32bcst ymm ymm
+// 	VPADDD.BCST m256/m32bcst ymm k ymm
 // 	VPADDD.BCST m512/m32bcst zmm zmm
 // 	VPADDD.BCST m512/m32bcst zmm k zmm
 // Construct and append a VPADDD.BCST instruction to the active function.
@@ -49460,6 +53454,10 @@ func (c *Context) VPADDD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPADDD.BCST m128/m32bcst xmm xmm
+// 	VPADDD.BCST m128/m32bcst xmm k xmm
+// 	VPADDD.BCST m256/m32bcst ymm ymm
+// 	VPADDD.BCST m256/m32bcst ymm k ymm
 // 	VPADDD.BCST m512/m32bcst zmm zmm
 // 	VPADDD.BCST m512/m32bcst zmm k zmm
 // Construct and append a VPADDD.BCST instruction to the active function.
@@ -49470,10 +53468,12 @@ func VPADDD_BCST(ops ...operand.Op) { ctx.VPADDD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPADDD.BCST.Z m128/m32bcst xmm k xmm
+// 	VPADDD.BCST.Z m256/m32bcst ymm k ymm
 // 	VPADDD.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VPADDD.BCST.Z instruction to the active function.
-func (c *Context) VPADDD_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VPADDD_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VPADDD_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPADDD_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -49484,20 +53484,26 @@ func (c *Context) VPADDD_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPADDD.BCST.Z m128/m32bcst xmm k xmm
+// 	VPADDD.BCST.Z m256/m32bcst ymm k ymm
 // 	VPADDD.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VPADDD.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VPADDD_BCST_Z(m, z, k, z1 operand.Op) { ctx.VPADDD_BCST_Z(m, z, k, z1) }
+func VPADDD_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VPADDD_BCST_Z(m, xyz, k, xyz1) }
 
 // VPADDD_Z: Add Packed Doubleword Integers (Zeroing Masking).
 //
 // Forms:
 //
+// 	VPADDD.Z m128/m32bcst xmm k xmm
+// 	VPADDD.Z xmm          xmm k xmm
+// 	VPADDD.Z m256/m32bcst ymm k ymm
+// 	VPADDD.Z ymm          ymm k ymm
 // 	VPADDD.Z m512/m32bcst zmm k zmm
 // 	VPADDD.Z zmm          zmm k zmm
 // Construct and append a VPADDD.Z instruction to the active function.
-func (c *Context) VPADDD_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VPADDD_Z(mz, z, k, z1); err == nil {
+func (c *Context) VPADDD_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPADDD_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -49508,16 +53514,28 @@ func (c *Context) VPADDD_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPADDD.Z m128/m32bcst xmm k xmm
+// 	VPADDD.Z xmm          xmm k xmm
+// 	VPADDD.Z m256/m32bcst ymm k ymm
+// 	VPADDD.Z ymm          ymm k ymm
 // 	VPADDD.Z m512/m32bcst zmm k zmm
 // 	VPADDD.Z zmm          zmm k zmm
 // Construct and append a VPADDD.Z instruction to the active function.
 // Operates on the global context.
-func VPADDD_Z(mz, z, k, z1 operand.Op) { ctx.VPADDD_Z(mz, z, k, z1) }
+func VPADDD_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPADDD_Z(mxyz, xyz, k, xyz1) }
 
 // VPADDQ: Add Packed Quadword Integers.
 //
 // Forms:
 //
+// 	VPADDQ m128/m64bcst xmm xmm
+// 	VPADDQ m128/m64bcst xmm k xmm
+// 	VPADDQ xmm          xmm xmm
+// 	VPADDQ xmm          xmm k xmm
+// 	VPADDQ m256/m64bcst ymm ymm
+// 	VPADDQ m256/m64bcst ymm k ymm
+// 	VPADDQ ymm          ymm ymm
+// 	VPADDQ ymm          ymm k ymm
 // 	VPADDQ m512/m64bcst zmm zmm
 // 	VPADDQ m512/m64bcst zmm k zmm
 // 	VPADDQ zmm          zmm zmm
@@ -49539,6 +53557,14 @@ func (c *Context) VPADDQ(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPADDQ m128/m64bcst xmm xmm
+// 	VPADDQ m128/m64bcst xmm k xmm
+// 	VPADDQ xmm          xmm xmm
+// 	VPADDQ xmm          xmm k xmm
+// 	VPADDQ m256/m64bcst ymm ymm
+// 	VPADDQ m256/m64bcst ymm k ymm
+// 	VPADDQ ymm          ymm ymm
+// 	VPADDQ ymm          ymm k ymm
 // 	VPADDQ m512/m64bcst zmm zmm
 // 	VPADDQ m512/m64bcst zmm k zmm
 // 	VPADDQ zmm          zmm zmm
@@ -49555,6 +53581,10 @@ func VPADDQ(ops ...operand.Op) { ctx.VPADDQ(ops...) }
 //
 // Forms:
 //
+// 	VPADDQ.BCST m128/m64bcst xmm xmm
+// 	VPADDQ.BCST m128/m64bcst xmm k xmm
+// 	VPADDQ.BCST m256/m64bcst ymm ymm
+// 	VPADDQ.BCST m256/m64bcst ymm k ymm
 // 	VPADDQ.BCST m512/m64bcst zmm zmm
 // 	VPADDQ.BCST m512/m64bcst zmm k zmm
 // Construct and append a VPADDQ.BCST instruction to the active function.
@@ -49570,6 +53600,10 @@ func (c *Context) VPADDQ_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPADDQ.BCST m128/m64bcst xmm xmm
+// 	VPADDQ.BCST m128/m64bcst xmm k xmm
+// 	VPADDQ.BCST m256/m64bcst ymm ymm
+// 	VPADDQ.BCST m256/m64bcst ymm k ymm
 // 	VPADDQ.BCST m512/m64bcst zmm zmm
 // 	VPADDQ.BCST m512/m64bcst zmm k zmm
 // Construct and append a VPADDQ.BCST instruction to the active function.
@@ -49580,10 +53614,12 @@ func VPADDQ_BCST(ops ...operand.Op) { ctx.VPADDQ_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPADDQ.BCST.Z m128/m64bcst xmm k xmm
+// 	VPADDQ.BCST.Z m256/m64bcst ymm k ymm
 // 	VPADDQ.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VPADDQ.BCST.Z instruction to the active function.
-func (c *Context) VPADDQ_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VPADDQ_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VPADDQ_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPADDQ_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -49594,20 +53630,26 @@ func (c *Context) VPADDQ_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPADDQ.BCST.Z m128/m64bcst xmm k xmm
+// 	VPADDQ.BCST.Z m256/m64bcst ymm k ymm
 // 	VPADDQ.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VPADDQ.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VPADDQ_BCST_Z(m, z, k, z1 operand.Op) { ctx.VPADDQ_BCST_Z(m, z, k, z1) }
+func VPADDQ_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VPADDQ_BCST_Z(m, xyz, k, xyz1) }
 
 // VPADDQ_Z: Add Packed Quadword Integers (Zeroing Masking).
 //
 // Forms:
 //
+// 	VPADDQ.Z m128/m64bcst xmm k xmm
+// 	VPADDQ.Z xmm          xmm k xmm
+// 	VPADDQ.Z m256/m64bcst ymm k ymm
+// 	VPADDQ.Z ymm          ymm k ymm
 // 	VPADDQ.Z m512/m64bcst zmm k zmm
 // 	VPADDQ.Z zmm          zmm k zmm
 // Construct and append a VPADDQ.Z instruction to the active function.
-func (c *Context) VPADDQ_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VPADDQ_Z(mz, z, k, z1); err == nil {
+func (c *Context) VPADDQ_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPADDQ_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -49618,11 +53660,15 @@ func (c *Context) VPADDQ_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPADDQ.Z m128/m64bcst xmm k xmm
+// 	VPADDQ.Z xmm          xmm k xmm
+// 	VPADDQ.Z m256/m64bcst ymm k ymm
+// 	VPADDQ.Z ymm          ymm k ymm
 // 	VPADDQ.Z m512/m64bcst zmm k zmm
 // 	VPADDQ.Z zmm          zmm k zmm
 // Construct and append a VPADDQ.Z instruction to the active function.
 // Operates on the global context.
-func VPADDQ_Z(mz, z, k, z1 operand.Op) { ctx.VPADDQ_Z(mz, z, k, z1) }
+func VPADDQ_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPADDQ_Z(mxyz, xyz, k, xyz1) }
 
 // VPADDSB: Add Packed Signed Byte Integers with Signed Saturation.
 //
@@ -49831,6 +53877,14 @@ func VPAND(mxy, xy, xy1 operand.Op) { ctx.VPAND(mxy, xy, xy1) }
 //
 // Forms:
 //
+// 	VPANDD m128/m32bcst xmm xmm
+// 	VPANDD m128/m32bcst xmm k xmm
+// 	VPANDD xmm          xmm xmm
+// 	VPANDD xmm          xmm k xmm
+// 	VPANDD m256/m32bcst ymm ymm
+// 	VPANDD m256/m32bcst ymm k ymm
+// 	VPANDD ymm          ymm ymm
+// 	VPANDD ymm          ymm k ymm
 // 	VPANDD m512/m32bcst zmm zmm
 // 	VPANDD m512/m32bcst zmm k zmm
 // 	VPANDD zmm          zmm zmm
@@ -49848,6 +53902,14 @@ func (c *Context) VPANDD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPANDD m128/m32bcst xmm xmm
+// 	VPANDD m128/m32bcst xmm k xmm
+// 	VPANDD xmm          xmm xmm
+// 	VPANDD xmm          xmm k xmm
+// 	VPANDD m256/m32bcst ymm ymm
+// 	VPANDD m256/m32bcst ymm k ymm
+// 	VPANDD ymm          ymm ymm
+// 	VPANDD ymm          ymm k ymm
 // 	VPANDD m512/m32bcst zmm zmm
 // 	VPANDD m512/m32bcst zmm k zmm
 // 	VPANDD zmm          zmm zmm
@@ -49860,6 +53922,10 @@ func VPANDD(ops ...operand.Op) { ctx.VPANDD(ops...) }
 //
 // Forms:
 //
+// 	VPANDD.BCST m128/m32bcst xmm xmm
+// 	VPANDD.BCST m128/m32bcst xmm k xmm
+// 	VPANDD.BCST m256/m32bcst ymm ymm
+// 	VPANDD.BCST m256/m32bcst ymm k ymm
 // 	VPANDD.BCST m512/m32bcst zmm zmm
 // 	VPANDD.BCST m512/m32bcst zmm k zmm
 // Construct and append a VPANDD.BCST instruction to the active function.
@@ -49875,6 +53941,10 @@ func (c *Context) VPANDD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPANDD.BCST m128/m32bcst xmm xmm
+// 	VPANDD.BCST m128/m32bcst xmm k xmm
+// 	VPANDD.BCST m256/m32bcst ymm ymm
+// 	VPANDD.BCST m256/m32bcst ymm k ymm
 // 	VPANDD.BCST m512/m32bcst zmm zmm
 // 	VPANDD.BCST m512/m32bcst zmm k zmm
 // Construct and append a VPANDD.BCST instruction to the active function.
@@ -49885,10 +53955,12 @@ func VPANDD_BCST(ops ...operand.Op) { ctx.VPANDD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPANDD.BCST.Z m128/m32bcst xmm k xmm
+// 	VPANDD.BCST.Z m256/m32bcst ymm k ymm
 // 	VPANDD.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VPANDD.BCST.Z instruction to the active function.
-func (c *Context) VPANDD_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VPANDD_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VPANDD_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPANDD_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -49899,20 +53971,26 @@ func (c *Context) VPANDD_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPANDD.BCST.Z m128/m32bcst xmm k xmm
+// 	VPANDD.BCST.Z m256/m32bcst ymm k ymm
 // 	VPANDD.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VPANDD.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VPANDD_BCST_Z(m, z, k, z1 operand.Op) { ctx.VPANDD_BCST_Z(m, z, k, z1) }
+func VPANDD_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VPANDD_BCST_Z(m, xyz, k, xyz1) }
 
 // VPANDD_Z: Bitwise Logical AND of Packed Doubleword Integers (Zeroing Masking).
 //
 // Forms:
 //
+// 	VPANDD.Z m128/m32bcst xmm k xmm
+// 	VPANDD.Z xmm          xmm k xmm
+// 	VPANDD.Z m256/m32bcst ymm k ymm
+// 	VPANDD.Z ymm          ymm k ymm
 // 	VPANDD.Z m512/m32bcst zmm k zmm
 // 	VPANDD.Z zmm          zmm k zmm
 // Construct and append a VPANDD.Z instruction to the active function.
-func (c *Context) VPANDD_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VPANDD_Z(mz, z, k, z1); err == nil {
+func (c *Context) VPANDD_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPANDD_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -49923,11 +54001,15 @@ func (c *Context) VPANDD_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPANDD.Z m128/m32bcst xmm k xmm
+// 	VPANDD.Z xmm          xmm k xmm
+// 	VPANDD.Z m256/m32bcst ymm k ymm
+// 	VPANDD.Z ymm          ymm k ymm
 // 	VPANDD.Z m512/m32bcst zmm k zmm
 // 	VPANDD.Z zmm          zmm k zmm
 // Construct and append a VPANDD.Z instruction to the active function.
 // Operates on the global context.
-func VPANDD_Z(mz, z, k, z1 operand.Op) { ctx.VPANDD_Z(mz, z, k, z1) }
+func VPANDD_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPANDD_Z(mxyz, xyz, k, xyz1) }
 
 // VPANDN: Packed Bitwise Logical AND NOT.
 //
@@ -49962,6 +54044,14 @@ func VPANDN(mxy, xy, xy1 operand.Op) { ctx.VPANDN(mxy, xy, xy1) }
 //
 // Forms:
 //
+// 	VPANDND m128/m32bcst xmm xmm
+// 	VPANDND m128/m32bcst xmm k xmm
+// 	VPANDND xmm          xmm xmm
+// 	VPANDND xmm          xmm k xmm
+// 	VPANDND m256/m32bcst ymm ymm
+// 	VPANDND m256/m32bcst ymm k ymm
+// 	VPANDND ymm          ymm ymm
+// 	VPANDND ymm          ymm k ymm
 // 	VPANDND m512/m32bcst zmm zmm
 // 	VPANDND m512/m32bcst zmm k zmm
 // 	VPANDND zmm          zmm zmm
@@ -49979,6 +54069,14 @@ func (c *Context) VPANDND(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPANDND m128/m32bcst xmm xmm
+// 	VPANDND m128/m32bcst xmm k xmm
+// 	VPANDND xmm          xmm xmm
+// 	VPANDND xmm          xmm k xmm
+// 	VPANDND m256/m32bcst ymm ymm
+// 	VPANDND m256/m32bcst ymm k ymm
+// 	VPANDND ymm          ymm ymm
+// 	VPANDND ymm          ymm k ymm
 // 	VPANDND m512/m32bcst zmm zmm
 // 	VPANDND m512/m32bcst zmm k zmm
 // 	VPANDND zmm          zmm zmm
@@ -49991,6 +54089,10 @@ func VPANDND(ops ...operand.Op) { ctx.VPANDND(ops...) }
 //
 // Forms:
 //
+// 	VPANDND.BCST m128/m32bcst xmm xmm
+// 	VPANDND.BCST m128/m32bcst xmm k xmm
+// 	VPANDND.BCST m256/m32bcst ymm ymm
+// 	VPANDND.BCST m256/m32bcst ymm k ymm
 // 	VPANDND.BCST m512/m32bcst zmm zmm
 // 	VPANDND.BCST m512/m32bcst zmm k zmm
 // Construct and append a VPANDND.BCST instruction to the active function.
@@ -50006,6 +54108,10 @@ func (c *Context) VPANDND_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPANDND.BCST m128/m32bcst xmm xmm
+// 	VPANDND.BCST m128/m32bcst xmm k xmm
+// 	VPANDND.BCST m256/m32bcst ymm ymm
+// 	VPANDND.BCST m256/m32bcst ymm k ymm
 // 	VPANDND.BCST m512/m32bcst zmm zmm
 // 	VPANDND.BCST m512/m32bcst zmm k zmm
 // Construct and append a VPANDND.BCST instruction to the active function.
@@ -50016,10 +54122,12 @@ func VPANDND_BCST(ops ...operand.Op) { ctx.VPANDND_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPANDND.BCST.Z m128/m32bcst xmm k xmm
+// 	VPANDND.BCST.Z m256/m32bcst ymm k ymm
 // 	VPANDND.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VPANDND.BCST.Z instruction to the active function.
-func (c *Context) VPANDND_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VPANDND_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VPANDND_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPANDND_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -50030,20 +54138,26 @@ func (c *Context) VPANDND_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPANDND.BCST.Z m128/m32bcst xmm k xmm
+// 	VPANDND.BCST.Z m256/m32bcst ymm k ymm
 // 	VPANDND.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VPANDND.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VPANDND_BCST_Z(m, z, k, z1 operand.Op) { ctx.VPANDND_BCST_Z(m, z, k, z1) }
+func VPANDND_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VPANDND_BCST_Z(m, xyz, k, xyz1) }
 
 // VPANDND_Z: Bitwise Logical AND NOT of Packed Doubleword Integers (Zeroing Masking).
 //
 // Forms:
 //
+// 	VPANDND.Z m128/m32bcst xmm k xmm
+// 	VPANDND.Z xmm          xmm k xmm
+// 	VPANDND.Z m256/m32bcst ymm k ymm
+// 	VPANDND.Z ymm          ymm k ymm
 // 	VPANDND.Z m512/m32bcst zmm k zmm
 // 	VPANDND.Z zmm          zmm k zmm
 // Construct and append a VPANDND.Z instruction to the active function.
-func (c *Context) VPANDND_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VPANDND_Z(mz, z, k, z1); err == nil {
+func (c *Context) VPANDND_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPANDND_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -50054,16 +54168,28 @@ func (c *Context) VPANDND_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPANDND.Z m128/m32bcst xmm k xmm
+// 	VPANDND.Z xmm          xmm k xmm
+// 	VPANDND.Z m256/m32bcst ymm k ymm
+// 	VPANDND.Z ymm          ymm k ymm
 // 	VPANDND.Z m512/m32bcst zmm k zmm
 // 	VPANDND.Z zmm          zmm k zmm
 // Construct and append a VPANDND.Z instruction to the active function.
 // Operates on the global context.
-func VPANDND_Z(mz, z, k, z1 operand.Op) { ctx.VPANDND_Z(mz, z, k, z1) }
+func VPANDND_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPANDND_Z(mxyz, xyz, k, xyz1) }
 
 // VPANDNQ: Bitwise Logical AND NOT of Packed Quadword Integers.
 //
 // Forms:
 //
+// 	VPANDNQ m128/m64bcst xmm xmm
+// 	VPANDNQ m128/m64bcst xmm k xmm
+// 	VPANDNQ xmm          xmm xmm
+// 	VPANDNQ xmm          xmm k xmm
+// 	VPANDNQ m256/m64bcst ymm ymm
+// 	VPANDNQ m256/m64bcst ymm k ymm
+// 	VPANDNQ ymm          ymm ymm
+// 	VPANDNQ ymm          ymm k ymm
 // 	VPANDNQ m512/m64bcst zmm zmm
 // 	VPANDNQ m512/m64bcst zmm k zmm
 // 	VPANDNQ zmm          zmm zmm
@@ -50081,6 +54207,14 @@ func (c *Context) VPANDNQ(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPANDNQ m128/m64bcst xmm xmm
+// 	VPANDNQ m128/m64bcst xmm k xmm
+// 	VPANDNQ xmm          xmm xmm
+// 	VPANDNQ xmm          xmm k xmm
+// 	VPANDNQ m256/m64bcst ymm ymm
+// 	VPANDNQ m256/m64bcst ymm k ymm
+// 	VPANDNQ ymm          ymm ymm
+// 	VPANDNQ ymm          ymm k ymm
 // 	VPANDNQ m512/m64bcst zmm zmm
 // 	VPANDNQ m512/m64bcst zmm k zmm
 // 	VPANDNQ zmm          zmm zmm
@@ -50093,6 +54227,10 @@ func VPANDNQ(ops ...operand.Op) { ctx.VPANDNQ(ops...) }
 //
 // Forms:
 //
+// 	VPANDNQ.BCST m128/m64bcst xmm xmm
+// 	VPANDNQ.BCST m128/m64bcst xmm k xmm
+// 	VPANDNQ.BCST m256/m64bcst ymm ymm
+// 	VPANDNQ.BCST m256/m64bcst ymm k ymm
 // 	VPANDNQ.BCST m512/m64bcst zmm zmm
 // 	VPANDNQ.BCST m512/m64bcst zmm k zmm
 // Construct and append a VPANDNQ.BCST instruction to the active function.
@@ -50108,6 +54246,10 @@ func (c *Context) VPANDNQ_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPANDNQ.BCST m128/m64bcst xmm xmm
+// 	VPANDNQ.BCST m128/m64bcst xmm k xmm
+// 	VPANDNQ.BCST m256/m64bcst ymm ymm
+// 	VPANDNQ.BCST m256/m64bcst ymm k ymm
 // 	VPANDNQ.BCST m512/m64bcst zmm zmm
 // 	VPANDNQ.BCST m512/m64bcst zmm k zmm
 // Construct and append a VPANDNQ.BCST instruction to the active function.
@@ -50118,10 +54260,12 @@ func VPANDNQ_BCST(ops ...operand.Op) { ctx.VPANDNQ_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPANDNQ.BCST.Z m128/m64bcst xmm k xmm
+// 	VPANDNQ.BCST.Z m256/m64bcst ymm k ymm
 // 	VPANDNQ.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VPANDNQ.BCST.Z instruction to the active function.
-func (c *Context) VPANDNQ_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VPANDNQ_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VPANDNQ_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPANDNQ_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -50132,20 +54276,26 @@ func (c *Context) VPANDNQ_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPANDNQ.BCST.Z m128/m64bcst xmm k xmm
+// 	VPANDNQ.BCST.Z m256/m64bcst ymm k ymm
 // 	VPANDNQ.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VPANDNQ.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VPANDNQ_BCST_Z(m, z, k, z1 operand.Op) { ctx.VPANDNQ_BCST_Z(m, z, k, z1) }
+func VPANDNQ_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VPANDNQ_BCST_Z(m, xyz, k, xyz1) }
 
 // VPANDNQ_Z: Bitwise Logical AND NOT of Packed Quadword Integers (Zeroing Masking).
 //
 // Forms:
 //
+// 	VPANDNQ.Z m128/m64bcst xmm k xmm
+// 	VPANDNQ.Z xmm          xmm k xmm
+// 	VPANDNQ.Z m256/m64bcst ymm k ymm
+// 	VPANDNQ.Z ymm          ymm k ymm
 // 	VPANDNQ.Z m512/m64bcst zmm k zmm
 // 	VPANDNQ.Z zmm          zmm k zmm
 // Construct and append a VPANDNQ.Z instruction to the active function.
-func (c *Context) VPANDNQ_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VPANDNQ_Z(mz, z, k, z1); err == nil {
+func (c *Context) VPANDNQ_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPANDNQ_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -50156,16 +54306,28 @@ func (c *Context) VPANDNQ_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPANDNQ.Z m128/m64bcst xmm k xmm
+// 	VPANDNQ.Z xmm          xmm k xmm
+// 	VPANDNQ.Z m256/m64bcst ymm k ymm
+// 	VPANDNQ.Z ymm          ymm k ymm
 // 	VPANDNQ.Z m512/m64bcst zmm k zmm
 // 	VPANDNQ.Z zmm          zmm k zmm
 // Construct and append a VPANDNQ.Z instruction to the active function.
 // Operates on the global context.
-func VPANDNQ_Z(mz, z, k, z1 operand.Op) { ctx.VPANDNQ_Z(mz, z, k, z1) }
+func VPANDNQ_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPANDNQ_Z(mxyz, xyz, k, xyz1) }
 
 // VPANDQ: Bitwise Logical AND of Packed Quadword Integers.
 //
 // Forms:
 //
+// 	VPANDQ m128/m64bcst xmm xmm
+// 	VPANDQ m128/m64bcst xmm k xmm
+// 	VPANDQ xmm          xmm xmm
+// 	VPANDQ xmm          xmm k xmm
+// 	VPANDQ m256/m64bcst ymm ymm
+// 	VPANDQ m256/m64bcst ymm k ymm
+// 	VPANDQ ymm          ymm ymm
+// 	VPANDQ ymm          ymm k ymm
 // 	VPANDQ m512/m64bcst zmm zmm
 // 	VPANDQ m512/m64bcst zmm k zmm
 // 	VPANDQ zmm          zmm zmm
@@ -50183,6 +54345,14 @@ func (c *Context) VPANDQ(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPANDQ m128/m64bcst xmm xmm
+// 	VPANDQ m128/m64bcst xmm k xmm
+// 	VPANDQ xmm          xmm xmm
+// 	VPANDQ xmm          xmm k xmm
+// 	VPANDQ m256/m64bcst ymm ymm
+// 	VPANDQ m256/m64bcst ymm k ymm
+// 	VPANDQ ymm          ymm ymm
+// 	VPANDQ ymm          ymm k ymm
 // 	VPANDQ m512/m64bcst zmm zmm
 // 	VPANDQ m512/m64bcst zmm k zmm
 // 	VPANDQ zmm          zmm zmm
@@ -50195,6 +54365,10 @@ func VPANDQ(ops ...operand.Op) { ctx.VPANDQ(ops...) }
 //
 // Forms:
 //
+// 	VPANDQ.BCST m128/m64bcst xmm xmm
+// 	VPANDQ.BCST m128/m64bcst xmm k xmm
+// 	VPANDQ.BCST m256/m64bcst ymm ymm
+// 	VPANDQ.BCST m256/m64bcst ymm k ymm
 // 	VPANDQ.BCST m512/m64bcst zmm zmm
 // 	VPANDQ.BCST m512/m64bcst zmm k zmm
 // Construct and append a VPANDQ.BCST instruction to the active function.
@@ -50210,6 +54384,10 @@ func (c *Context) VPANDQ_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPANDQ.BCST m128/m64bcst xmm xmm
+// 	VPANDQ.BCST m128/m64bcst xmm k xmm
+// 	VPANDQ.BCST m256/m64bcst ymm ymm
+// 	VPANDQ.BCST m256/m64bcst ymm k ymm
 // 	VPANDQ.BCST m512/m64bcst zmm zmm
 // 	VPANDQ.BCST m512/m64bcst zmm k zmm
 // Construct and append a VPANDQ.BCST instruction to the active function.
@@ -50220,10 +54398,12 @@ func VPANDQ_BCST(ops ...operand.Op) { ctx.VPANDQ_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPANDQ.BCST.Z m128/m64bcst xmm k xmm
+// 	VPANDQ.BCST.Z m256/m64bcst ymm k ymm
 // 	VPANDQ.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VPANDQ.BCST.Z instruction to the active function.
-func (c *Context) VPANDQ_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VPANDQ_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VPANDQ_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPANDQ_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -50234,20 +54414,26 @@ func (c *Context) VPANDQ_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPANDQ.BCST.Z m128/m64bcst xmm k xmm
+// 	VPANDQ.BCST.Z m256/m64bcst ymm k ymm
 // 	VPANDQ.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VPANDQ.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VPANDQ_BCST_Z(m, z, k, z1 operand.Op) { ctx.VPANDQ_BCST_Z(m, z, k, z1) }
+func VPANDQ_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VPANDQ_BCST_Z(m, xyz, k, xyz1) }
 
 // VPANDQ_Z: Bitwise Logical AND of Packed Quadword Integers (Zeroing Masking).
 //
 // Forms:
 //
+// 	VPANDQ.Z m128/m64bcst xmm k xmm
+// 	VPANDQ.Z xmm          xmm k xmm
+// 	VPANDQ.Z m256/m64bcst ymm k ymm
+// 	VPANDQ.Z ymm          ymm k ymm
 // 	VPANDQ.Z m512/m64bcst zmm k zmm
 // 	VPANDQ.Z zmm          zmm k zmm
 // Construct and append a VPANDQ.Z instruction to the active function.
-func (c *Context) VPANDQ_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VPANDQ_Z(mz, z, k, z1); err == nil {
+func (c *Context) VPANDQ_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPANDQ_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -50258,11 +54444,15 @@ func (c *Context) VPANDQ_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPANDQ.Z m128/m64bcst xmm k xmm
+// 	VPANDQ.Z xmm          xmm k xmm
+// 	VPANDQ.Z m256/m64bcst ymm k ymm
+// 	VPANDQ.Z ymm          ymm k ymm
 // 	VPANDQ.Z m512/m64bcst zmm k zmm
 // 	VPANDQ.Z zmm          zmm k zmm
 // Construct and append a VPANDQ.Z instruction to the active function.
 // Operates on the global context.
-func VPANDQ_Z(mz, z, k, z1 operand.Op) { ctx.VPANDQ_Z(mz, z, k, z1) }
+func VPANDQ_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPANDQ_Z(mxyz, xyz, k, xyz1) }
 
 // VPAVGB: Average Packed Byte Integers.
 //
@@ -50355,6 +54545,14 @@ func VPBLENDD(i, mxy, xy, xy1 operand.Op) { ctx.VPBLENDD(i, mxy, xy, xy1) }
 //
 // Forms:
 //
+// 	VPBLENDMD m128/m32bcst xmm xmm
+// 	VPBLENDMD m128/m32bcst xmm k xmm
+// 	VPBLENDMD xmm          xmm xmm
+// 	VPBLENDMD xmm          xmm k xmm
+// 	VPBLENDMD m256/m32bcst ymm ymm
+// 	VPBLENDMD m256/m32bcst ymm k ymm
+// 	VPBLENDMD ymm          ymm ymm
+// 	VPBLENDMD ymm          ymm k ymm
 // 	VPBLENDMD m512/m32bcst zmm zmm
 // 	VPBLENDMD m512/m32bcst zmm k zmm
 // 	VPBLENDMD zmm          zmm zmm
@@ -50372,6 +54570,14 @@ func (c *Context) VPBLENDMD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPBLENDMD m128/m32bcst xmm xmm
+// 	VPBLENDMD m128/m32bcst xmm k xmm
+// 	VPBLENDMD xmm          xmm xmm
+// 	VPBLENDMD xmm          xmm k xmm
+// 	VPBLENDMD m256/m32bcst ymm ymm
+// 	VPBLENDMD m256/m32bcst ymm k ymm
+// 	VPBLENDMD ymm          ymm ymm
+// 	VPBLENDMD ymm          ymm k ymm
 // 	VPBLENDMD m512/m32bcst zmm zmm
 // 	VPBLENDMD m512/m32bcst zmm k zmm
 // 	VPBLENDMD zmm          zmm zmm
@@ -50384,6 +54590,10 @@ func VPBLENDMD(ops ...operand.Op) { ctx.VPBLENDMD(ops...) }
 //
 // Forms:
 //
+// 	VPBLENDMD.BCST m128/m32bcst xmm xmm
+// 	VPBLENDMD.BCST m128/m32bcst xmm k xmm
+// 	VPBLENDMD.BCST m256/m32bcst ymm ymm
+// 	VPBLENDMD.BCST m256/m32bcst ymm k ymm
 // 	VPBLENDMD.BCST m512/m32bcst zmm zmm
 // 	VPBLENDMD.BCST m512/m32bcst zmm k zmm
 // Construct and append a VPBLENDMD.BCST instruction to the active function.
@@ -50399,6 +54609,10 @@ func (c *Context) VPBLENDMD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPBLENDMD.BCST m128/m32bcst xmm xmm
+// 	VPBLENDMD.BCST m128/m32bcst xmm k xmm
+// 	VPBLENDMD.BCST m256/m32bcst ymm ymm
+// 	VPBLENDMD.BCST m256/m32bcst ymm k ymm
 // 	VPBLENDMD.BCST m512/m32bcst zmm zmm
 // 	VPBLENDMD.BCST m512/m32bcst zmm k zmm
 // Construct and append a VPBLENDMD.BCST instruction to the active function.
@@ -50409,10 +54623,12 @@ func VPBLENDMD_BCST(ops ...operand.Op) { ctx.VPBLENDMD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPBLENDMD.BCST.Z m128/m32bcst xmm k xmm
+// 	VPBLENDMD.BCST.Z m256/m32bcst ymm k ymm
 // 	VPBLENDMD.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VPBLENDMD.BCST.Z instruction to the active function.
-func (c *Context) VPBLENDMD_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VPBLENDMD_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VPBLENDMD_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPBLENDMD_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -50423,20 +54639,26 @@ func (c *Context) VPBLENDMD_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPBLENDMD.BCST.Z m128/m32bcst xmm k xmm
+// 	VPBLENDMD.BCST.Z m256/m32bcst ymm k ymm
 // 	VPBLENDMD.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VPBLENDMD.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VPBLENDMD_BCST_Z(m, z, k, z1 operand.Op) { ctx.VPBLENDMD_BCST_Z(m, z, k, z1) }
+func VPBLENDMD_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VPBLENDMD_BCST_Z(m, xyz, k, xyz1) }
 
 // VPBLENDMD_Z: Blend Doubleword Vectors Using an OpMask Control (Zeroing Masking).
 //
 // Forms:
 //
+// 	VPBLENDMD.Z m128/m32bcst xmm k xmm
+// 	VPBLENDMD.Z xmm          xmm k xmm
+// 	VPBLENDMD.Z m256/m32bcst ymm k ymm
+// 	VPBLENDMD.Z ymm          ymm k ymm
 // 	VPBLENDMD.Z m512/m32bcst zmm k zmm
 // 	VPBLENDMD.Z zmm          zmm k zmm
 // Construct and append a VPBLENDMD.Z instruction to the active function.
-func (c *Context) VPBLENDMD_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VPBLENDMD_Z(mz, z, k, z1); err == nil {
+func (c *Context) VPBLENDMD_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPBLENDMD_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -50447,16 +54669,28 @@ func (c *Context) VPBLENDMD_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPBLENDMD.Z m128/m32bcst xmm k xmm
+// 	VPBLENDMD.Z xmm          xmm k xmm
+// 	VPBLENDMD.Z m256/m32bcst ymm k ymm
+// 	VPBLENDMD.Z ymm          ymm k ymm
 // 	VPBLENDMD.Z m512/m32bcst zmm k zmm
 // 	VPBLENDMD.Z zmm          zmm k zmm
 // Construct and append a VPBLENDMD.Z instruction to the active function.
 // Operates on the global context.
-func VPBLENDMD_Z(mz, z, k, z1 operand.Op) { ctx.VPBLENDMD_Z(mz, z, k, z1) }
+func VPBLENDMD_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPBLENDMD_Z(mxyz, xyz, k, xyz1) }
 
 // VPBLENDMQ: Blend Quadword Vectors Using an OpMask Control.
 //
 // Forms:
 //
+// 	VPBLENDMQ m128/m64bcst xmm xmm
+// 	VPBLENDMQ m128/m64bcst xmm k xmm
+// 	VPBLENDMQ xmm          xmm xmm
+// 	VPBLENDMQ xmm          xmm k xmm
+// 	VPBLENDMQ m256/m64bcst ymm ymm
+// 	VPBLENDMQ m256/m64bcst ymm k ymm
+// 	VPBLENDMQ ymm          ymm ymm
+// 	VPBLENDMQ ymm          ymm k ymm
 // 	VPBLENDMQ m512/m64bcst zmm zmm
 // 	VPBLENDMQ m512/m64bcst zmm k zmm
 // 	VPBLENDMQ zmm          zmm zmm
@@ -50474,6 +54708,14 @@ func (c *Context) VPBLENDMQ(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPBLENDMQ m128/m64bcst xmm xmm
+// 	VPBLENDMQ m128/m64bcst xmm k xmm
+// 	VPBLENDMQ xmm          xmm xmm
+// 	VPBLENDMQ xmm          xmm k xmm
+// 	VPBLENDMQ m256/m64bcst ymm ymm
+// 	VPBLENDMQ m256/m64bcst ymm k ymm
+// 	VPBLENDMQ ymm          ymm ymm
+// 	VPBLENDMQ ymm          ymm k ymm
 // 	VPBLENDMQ m512/m64bcst zmm zmm
 // 	VPBLENDMQ m512/m64bcst zmm k zmm
 // 	VPBLENDMQ zmm          zmm zmm
@@ -50486,6 +54728,10 @@ func VPBLENDMQ(ops ...operand.Op) { ctx.VPBLENDMQ(ops...) }
 //
 // Forms:
 //
+// 	VPBLENDMQ.BCST m128/m64bcst xmm xmm
+// 	VPBLENDMQ.BCST m128/m64bcst xmm k xmm
+// 	VPBLENDMQ.BCST m256/m64bcst ymm ymm
+// 	VPBLENDMQ.BCST m256/m64bcst ymm k ymm
 // 	VPBLENDMQ.BCST m512/m64bcst zmm zmm
 // 	VPBLENDMQ.BCST m512/m64bcst zmm k zmm
 // Construct and append a VPBLENDMQ.BCST instruction to the active function.
@@ -50501,6 +54747,10 @@ func (c *Context) VPBLENDMQ_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPBLENDMQ.BCST m128/m64bcst xmm xmm
+// 	VPBLENDMQ.BCST m128/m64bcst xmm k xmm
+// 	VPBLENDMQ.BCST m256/m64bcst ymm ymm
+// 	VPBLENDMQ.BCST m256/m64bcst ymm k ymm
 // 	VPBLENDMQ.BCST m512/m64bcst zmm zmm
 // 	VPBLENDMQ.BCST m512/m64bcst zmm k zmm
 // Construct and append a VPBLENDMQ.BCST instruction to the active function.
@@ -50511,10 +54761,12 @@ func VPBLENDMQ_BCST(ops ...operand.Op) { ctx.VPBLENDMQ_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPBLENDMQ.BCST.Z m128/m64bcst xmm k xmm
+// 	VPBLENDMQ.BCST.Z m256/m64bcst ymm k ymm
 // 	VPBLENDMQ.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VPBLENDMQ.BCST.Z instruction to the active function.
-func (c *Context) VPBLENDMQ_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VPBLENDMQ_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VPBLENDMQ_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPBLENDMQ_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -50525,20 +54777,26 @@ func (c *Context) VPBLENDMQ_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPBLENDMQ.BCST.Z m128/m64bcst xmm k xmm
+// 	VPBLENDMQ.BCST.Z m256/m64bcst ymm k ymm
 // 	VPBLENDMQ.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VPBLENDMQ.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VPBLENDMQ_BCST_Z(m, z, k, z1 operand.Op) { ctx.VPBLENDMQ_BCST_Z(m, z, k, z1) }
+func VPBLENDMQ_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VPBLENDMQ_BCST_Z(m, xyz, k, xyz1) }
 
 // VPBLENDMQ_Z: Blend Quadword Vectors Using an OpMask Control (Zeroing Masking).
 //
 // Forms:
 //
+// 	VPBLENDMQ.Z m128/m64bcst xmm k xmm
+// 	VPBLENDMQ.Z xmm          xmm k xmm
+// 	VPBLENDMQ.Z m256/m64bcst ymm k ymm
+// 	VPBLENDMQ.Z ymm          ymm k ymm
 // 	VPBLENDMQ.Z m512/m64bcst zmm k zmm
 // 	VPBLENDMQ.Z zmm          zmm k zmm
 // Construct and append a VPBLENDMQ.Z instruction to the active function.
-func (c *Context) VPBLENDMQ_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VPBLENDMQ_Z(mz, z, k, z1); err == nil {
+func (c *Context) VPBLENDMQ_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPBLENDMQ_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -50549,11 +54807,15 @@ func (c *Context) VPBLENDMQ_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPBLENDMQ.Z m128/m64bcst xmm k xmm
+// 	VPBLENDMQ.Z xmm          xmm k xmm
+// 	VPBLENDMQ.Z m256/m64bcst ymm k ymm
+// 	VPBLENDMQ.Z ymm          ymm k ymm
 // 	VPBLENDMQ.Z m512/m64bcst zmm k zmm
 // 	VPBLENDMQ.Z zmm          zmm k zmm
 // Construct and append a VPBLENDMQ.Z instruction to the active function.
 // Operates on the global context.
-func VPBLENDMQ_Z(mz, z, k, z1 operand.Op) { ctx.VPBLENDMQ_Z(mz, z, k, z1) }
+func VPBLENDMQ_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPBLENDMQ_Z(mxyz, xyz, k, xyz1) }
 
 // VPBLENDVB: Variable Blend Packed Bytes.
 //
@@ -50646,10 +54908,22 @@ func VPBROADCASTB(mx, xy operand.Op) { ctx.VPBROADCASTB(mx, xy) }
 //
 // Forms:
 //
+// 	VPBROADCASTD r32 xmm
+// 	VPBROADCASTD r32 k xmm
+// 	VPBROADCASTD r32 ymm
+// 	VPBROADCASTD r32 k ymm
 // 	VPBROADCASTD r32 zmm
 // 	VPBROADCASTD r32 k zmm
+// 	VPBROADCASTD xmm xmm
+// 	VPBROADCASTD xmm k xmm
+// 	VPBROADCASTD xmm ymm
+// 	VPBROADCASTD xmm k ymm
 // 	VPBROADCASTD xmm zmm
 // 	VPBROADCASTD xmm k zmm
+// 	VPBROADCASTD m32 xmm
+// 	VPBROADCASTD m32 k xmm
+// 	VPBROADCASTD m32 ymm
+// 	VPBROADCASTD m32 k ymm
 // 	VPBROADCASTD m32 zmm
 // 	VPBROADCASTD m32 k zmm
 // 	VPBROADCASTD xmm xmm
@@ -50669,10 +54943,22 @@ func (c *Context) VPBROADCASTD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPBROADCASTD r32 xmm
+// 	VPBROADCASTD r32 k xmm
+// 	VPBROADCASTD r32 ymm
+// 	VPBROADCASTD r32 k ymm
 // 	VPBROADCASTD r32 zmm
 // 	VPBROADCASTD r32 k zmm
+// 	VPBROADCASTD xmm xmm
+// 	VPBROADCASTD xmm k xmm
+// 	VPBROADCASTD xmm ymm
+// 	VPBROADCASTD xmm k ymm
 // 	VPBROADCASTD xmm zmm
 // 	VPBROADCASTD xmm k zmm
+// 	VPBROADCASTD m32 xmm
+// 	VPBROADCASTD m32 k xmm
+// 	VPBROADCASTD m32 ymm
+// 	VPBROADCASTD m32 k ymm
 // 	VPBROADCASTD m32 zmm
 // 	VPBROADCASTD m32 k zmm
 // 	VPBROADCASTD xmm xmm
@@ -50687,12 +54973,18 @@ func VPBROADCASTD(ops ...operand.Op) { ctx.VPBROADCASTD(ops...) }
 //
 // Forms:
 //
+// 	VPBROADCASTD.Z r32 k xmm
+// 	VPBROADCASTD.Z r32 k ymm
 // 	VPBROADCASTD.Z r32 k zmm
+// 	VPBROADCASTD.Z xmm k xmm
+// 	VPBROADCASTD.Z xmm k ymm
 // 	VPBROADCASTD.Z xmm k zmm
+// 	VPBROADCASTD.Z m32 k xmm
+// 	VPBROADCASTD.Z m32 k ymm
 // 	VPBROADCASTD.Z m32 k zmm
 // Construct and append a VPBROADCASTD.Z instruction to the active function.
-func (c *Context) VPBROADCASTD_Z(mrx, k, z operand.Op) {
-	if inst, err := x86.VPBROADCASTD_Z(mrx, k, z); err == nil {
+func (c *Context) VPBROADCASTD_Z(mrx, k, xyz operand.Op) {
+	if inst, err := x86.VPBROADCASTD_Z(mrx, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -50703,21 +54995,29 @@ func (c *Context) VPBROADCASTD_Z(mrx, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VPBROADCASTD.Z r32 k xmm
+// 	VPBROADCASTD.Z r32 k ymm
 // 	VPBROADCASTD.Z r32 k zmm
+// 	VPBROADCASTD.Z xmm k xmm
+// 	VPBROADCASTD.Z xmm k ymm
 // 	VPBROADCASTD.Z xmm k zmm
+// 	VPBROADCASTD.Z m32 k xmm
+// 	VPBROADCASTD.Z m32 k ymm
 // 	VPBROADCASTD.Z m32 k zmm
 // Construct and append a VPBROADCASTD.Z instruction to the active function.
 // Operates on the global context.
-func VPBROADCASTD_Z(mrx, k, z operand.Op) { ctx.VPBROADCASTD_Z(mrx, k, z) }
+func VPBROADCASTD_Z(mrx, k, xyz operand.Op) { ctx.VPBROADCASTD_Z(mrx, k, xyz) }
 
 // VPBROADCASTMB2Q: Broadcast Low Byte of Mask Register to Packed Quadword Values.
 //
 // Forms:
 //
+// 	VPBROADCASTMB2Q k xmm
+// 	VPBROADCASTMB2Q k ymm
 // 	VPBROADCASTMB2Q k zmm
 // Construct and append a VPBROADCASTMB2Q instruction to the active function.
-func (c *Context) VPBROADCASTMB2Q(k, z operand.Op) {
-	if inst, err := x86.VPBROADCASTMB2Q(k, z); err == nil {
+func (c *Context) VPBROADCASTMB2Q(k, xyz operand.Op) {
+	if inst, err := x86.VPBROADCASTMB2Q(k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -50728,19 +55028,23 @@ func (c *Context) VPBROADCASTMB2Q(k, z operand.Op) {
 //
 // Forms:
 //
+// 	VPBROADCASTMB2Q k xmm
+// 	VPBROADCASTMB2Q k ymm
 // 	VPBROADCASTMB2Q k zmm
 // Construct and append a VPBROADCASTMB2Q instruction to the active function.
 // Operates on the global context.
-func VPBROADCASTMB2Q(k, z operand.Op) { ctx.VPBROADCASTMB2Q(k, z) }
+func VPBROADCASTMB2Q(k, xyz operand.Op) { ctx.VPBROADCASTMB2Q(k, xyz) }
 
 // VPBROADCASTMW2D: Broadcast Low Word of Mask Register to Packed Doubleword Values.
 //
 // Forms:
 //
+// 	VPBROADCASTMW2D k xmm
+// 	VPBROADCASTMW2D k ymm
 // 	VPBROADCASTMW2D k zmm
 // Construct and append a VPBROADCASTMW2D instruction to the active function.
-func (c *Context) VPBROADCASTMW2D(k, z operand.Op) {
-	if inst, err := x86.VPBROADCASTMW2D(k, z); err == nil {
+func (c *Context) VPBROADCASTMW2D(k, xyz operand.Op) {
+	if inst, err := x86.VPBROADCASTMW2D(k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -50751,19 +55055,33 @@ func (c *Context) VPBROADCASTMW2D(k, z operand.Op) {
 //
 // Forms:
 //
+// 	VPBROADCASTMW2D k xmm
+// 	VPBROADCASTMW2D k ymm
 // 	VPBROADCASTMW2D k zmm
 // Construct and append a VPBROADCASTMW2D instruction to the active function.
 // Operates on the global context.
-func VPBROADCASTMW2D(k, z operand.Op) { ctx.VPBROADCASTMW2D(k, z) }
+func VPBROADCASTMW2D(k, xyz operand.Op) { ctx.VPBROADCASTMW2D(k, xyz) }
 
 // VPBROADCASTQ: Broadcast Quadword Integer.
 //
 // Forms:
 //
+// 	VPBROADCASTQ r64 xmm
+// 	VPBROADCASTQ r64 k xmm
+// 	VPBROADCASTQ r64 ymm
+// 	VPBROADCASTQ r64 k ymm
 // 	VPBROADCASTQ r64 zmm
 // 	VPBROADCASTQ r64 k zmm
+// 	VPBROADCASTQ xmm xmm
+// 	VPBROADCASTQ xmm k xmm
+// 	VPBROADCASTQ xmm ymm
+// 	VPBROADCASTQ xmm k ymm
 // 	VPBROADCASTQ xmm zmm
 // 	VPBROADCASTQ xmm k zmm
+// 	VPBROADCASTQ m64 xmm
+// 	VPBROADCASTQ m64 k xmm
+// 	VPBROADCASTQ m64 ymm
+// 	VPBROADCASTQ m64 k ymm
 // 	VPBROADCASTQ m64 zmm
 // 	VPBROADCASTQ m64 k zmm
 // 	VPBROADCASTQ xmm xmm
@@ -50783,10 +55101,22 @@ func (c *Context) VPBROADCASTQ(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPBROADCASTQ r64 xmm
+// 	VPBROADCASTQ r64 k xmm
+// 	VPBROADCASTQ r64 ymm
+// 	VPBROADCASTQ r64 k ymm
 // 	VPBROADCASTQ r64 zmm
 // 	VPBROADCASTQ r64 k zmm
+// 	VPBROADCASTQ xmm xmm
+// 	VPBROADCASTQ xmm k xmm
+// 	VPBROADCASTQ xmm ymm
+// 	VPBROADCASTQ xmm k ymm
 // 	VPBROADCASTQ xmm zmm
 // 	VPBROADCASTQ xmm k zmm
+// 	VPBROADCASTQ m64 xmm
+// 	VPBROADCASTQ m64 k xmm
+// 	VPBROADCASTQ m64 ymm
+// 	VPBROADCASTQ m64 k ymm
 // 	VPBROADCASTQ m64 zmm
 // 	VPBROADCASTQ m64 k zmm
 // 	VPBROADCASTQ xmm xmm
@@ -50801,12 +55131,18 @@ func VPBROADCASTQ(ops ...operand.Op) { ctx.VPBROADCASTQ(ops...) }
 //
 // Forms:
 //
+// 	VPBROADCASTQ.Z r64 k xmm
+// 	VPBROADCASTQ.Z r64 k ymm
 // 	VPBROADCASTQ.Z r64 k zmm
+// 	VPBROADCASTQ.Z xmm k xmm
+// 	VPBROADCASTQ.Z xmm k ymm
 // 	VPBROADCASTQ.Z xmm k zmm
+// 	VPBROADCASTQ.Z m64 k xmm
+// 	VPBROADCASTQ.Z m64 k ymm
 // 	VPBROADCASTQ.Z m64 k zmm
 // Construct and append a VPBROADCASTQ.Z instruction to the active function.
-func (c *Context) VPBROADCASTQ_Z(mrx, k, z operand.Op) {
-	if inst, err := x86.VPBROADCASTQ_Z(mrx, k, z); err == nil {
+func (c *Context) VPBROADCASTQ_Z(mrx, k, xyz operand.Op) {
+	if inst, err := x86.VPBROADCASTQ_Z(mrx, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -50817,12 +55153,18 @@ func (c *Context) VPBROADCASTQ_Z(mrx, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VPBROADCASTQ.Z r64 k xmm
+// 	VPBROADCASTQ.Z r64 k ymm
 // 	VPBROADCASTQ.Z r64 k zmm
+// 	VPBROADCASTQ.Z xmm k xmm
+// 	VPBROADCASTQ.Z xmm k ymm
 // 	VPBROADCASTQ.Z xmm k zmm
+// 	VPBROADCASTQ.Z m64 k xmm
+// 	VPBROADCASTQ.Z m64 k ymm
 // 	VPBROADCASTQ.Z m64 k zmm
 // Construct and append a VPBROADCASTQ.Z instruction to the active function.
 // Operates on the global context.
-func VPBROADCASTQ_Z(mrx, k, z operand.Op) { ctx.VPBROADCASTQ_Z(mrx, k, z) }
+func VPBROADCASTQ_Z(mrx, k, xyz operand.Op) { ctx.VPBROADCASTQ_Z(mrx, k, xyz) }
 
 // VPBROADCASTW: Broadcast Word Integer.
 //
@@ -50882,6 +55224,14 @@ func VPCLMULQDQ(i, mx, x, x1 operand.Op) { ctx.VPCLMULQDQ(i, mx, x, x1) }
 //
 // Forms:
 //
+// 	VPCMPD imm8 m128/m32bcst xmm k
+// 	VPCMPD imm8 m128/m32bcst xmm k k
+// 	VPCMPD imm8 xmm          xmm k
+// 	VPCMPD imm8 xmm          xmm k k
+// 	VPCMPD imm8 m256/m32bcst ymm k
+// 	VPCMPD imm8 m256/m32bcst ymm k k
+// 	VPCMPD imm8 ymm          ymm k
+// 	VPCMPD imm8 ymm          ymm k k
 // 	VPCMPD imm8 m512/m32bcst zmm k
 // 	VPCMPD imm8 m512/m32bcst zmm k k
 // 	VPCMPD imm8 zmm          zmm k
@@ -50899,6 +55249,14 @@ func (c *Context) VPCMPD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPCMPD imm8 m128/m32bcst xmm k
+// 	VPCMPD imm8 m128/m32bcst xmm k k
+// 	VPCMPD imm8 xmm          xmm k
+// 	VPCMPD imm8 xmm          xmm k k
+// 	VPCMPD imm8 m256/m32bcst ymm k
+// 	VPCMPD imm8 m256/m32bcst ymm k k
+// 	VPCMPD imm8 ymm          ymm k
+// 	VPCMPD imm8 ymm          ymm k k
 // 	VPCMPD imm8 m512/m32bcst zmm k
 // 	VPCMPD imm8 m512/m32bcst zmm k k
 // 	VPCMPD imm8 zmm          zmm k
@@ -50911,6 +55269,10 @@ func VPCMPD(ops ...operand.Op) { ctx.VPCMPD(ops...) }
 //
 // Forms:
 //
+// 	VPCMPD.BCST imm8 m128/m32bcst xmm k
+// 	VPCMPD.BCST imm8 m128/m32bcst xmm k k
+// 	VPCMPD.BCST imm8 m256/m32bcst ymm k
+// 	VPCMPD.BCST imm8 m256/m32bcst ymm k k
 // 	VPCMPD.BCST imm8 m512/m32bcst zmm k
 // 	VPCMPD.BCST imm8 m512/m32bcst zmm k k
 // Construct and append a VPCMPD.BCST instruction to the active function.
@@ -50926,6 +55288,10 @@ func (c *Context) VPCMPD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPCMPD.BCST imm8 m128/m32bcst xmm k
+// 	VPCMPD.BCST imm8 m128/m32bcst xmm k k
+// 	VPCMPD.BCST imm8 m256/m32bcst ymm k
+// 	VPCMPD.BCST imm8 m256/m32bcst ymm k k
 // 	VPCMPD.BCST imm8 m512/m32bcst zmm k
 // 	VPCMPD.BCST imm8 m512/m32bcst zmm k k
 // Construct and append a VPCMPD.BCST instruction to the active function.
@@ -50965,6 +55331,14 @@ func VPCMPEQB(mxy, xy, xy1 operand.Op) { ctx.VPCMPEQB(mxy, xy, xy1) }
 //
 // Forms:
 //
+// 	VPCMPEQD m128/m32bcst xmm k
+// 	VPCMPEQD m128/m32bcst xmm k k
+// 	VPCMPEQD xmm          xmm k
+// 	VPCMPEQD xmm          xmm k k
+// 	VPCMPEQD m256/m32bcst ymm k
+// 	VPCMPEQD m256/m32bcst ymm k k
+// 	VPCMPEQD ymm          ymm k
+// 	VPCMPEQD ymm          ymm k k
 // 	VPCMPEQD m512/m32bcst zmm k
 // 	VPCMPEQD m512/m32bcst zmm k k
 // 	VPCMPEQD zmm          zmm k
@@ -50986,6 +55360,14 @@ func (c *Context) VPCMPEQD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPCMPEQD m128/m32bcst xmm k
+// 	VPCMPEQD m128/m32bcst xmm k k
+// 	VPCMPEQD xmm          xmm k
+// 	VPCMPEQD xmm          xmm k k
+// 	VPCMPEQD m256/m32bcst ymm k
+// 	VPCMPEQD m256/m32bcst ymm k k
+// 	VPCMPEQD ymm          ymm k
+// 	VPCMPEQD ymm          ymm k k
 // 	VPCMPEQD m512/m32bcst zmm k
 // 	VPCMPEQD m512/m32bcst zmm k k
 // 	VPCMPEQD zmm          zmm k
@@ -51002,6 +55384,10 @@ func VPCMPEQD(ops ...operand.Op) { ctx.VPCMPEQD(ops...) }
 //
 // Forms:
 //
+// 	VPCMPEQD.BCST m128/m32bcst xmm k
+// 	VPCMPEQD.BCST m128/m32bcst xmm k k
+// 	VPCMPEQD.BCST m256/m32bcst ymm k
+// 	VPCMPEQD.BCST m256/m32bcst ymm k k
 // 	VPCMPEQD.BCST m512/m32bcst zmm k
 // 	VPCMPEQD.BCST m512/m32bcst zmm k k
 // Construct and append a VPCMPEQD.BCST instruction to the active function.
@@ -51017,6 +55403,10 @@ func (c *Context) VPCMPEQD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPCMPEQD.BCST m128/m32bcst xmm k
+// 	VPCMPEQD.BCST m128/m32bcst xmm k k
+// 	VPCMPEQD.BCST m256/m32bcst ymm k
+// 	VPCMPEQD.BCST m256/m32bcst ymm k k
 // 	VPCMPEQD.BCST m512/m32bcst zmm k
 // 	VPCMPEQD.BCST m512/m32bcst zmm k k
 // Construct and append a VPCMPEQD.BCST instruction to the active function.
@@ -51027,6 +55417,14 @@ func VPCMPEQD_BCST(ops ...operand.Op) { ctx.VPCMPEQD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPCMPEQQ m128/m64bcst xmm k
+// 	VPCMPEQQ m128/m64bcst xmm k k
+// 	VPCMPEQQ xmm          xmm k
+// 	VPCMPEQQ xmm          xmm k k
+// 	VPCMPEQQ m256/m64bcst ymm k
+// 	VPCMPEQQ m256/m64bcst ymm k k
+// 	VPCMPEQQ ymm          ymm k
+// 	VPCMPEQQ ymm          ymm k k
 // 	VPCMPEQQ m512/m64bcst zmm k
 // 	VPCMPEQQ m512/m64bcst zmm k k
 // 	VPCMPEQQ zmm          zmm k
@@ -51048,6 +55446,14 @@ func (c *Context) VPCMPEQQ(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPCMPEQQ m128/m64bcst xmm k
+// 	VPCMPEQQ m128/m64bcst xmm k k
+// 	VPCMPEQQ xmm          xmm k
+// 	VPCMPEQQ xmm          xmm k k
+// 	VPCMPEQQ m256/m64bcst ymm k
+// 	VPCMPEQQ m256/m64bcst ymm k k
+// 	VPCMPEQQ ymm          ymm k
+// 	VPCMPEQQ ymm          ymm k k
 // 	VPCMPEQQ m512/m64bcst zmm k
 // 	VPCMPEQQ m512/m64bcst zmm k k
 // 	VPCMPEQQ zmm          zmm k
@@ -51064,6 +55470,10 @@ func VPCMPEQQ(ops ...operand.Op) { ctx.VPCMPEQQ(ops...) }
 //
 // Forms:
 //
+// 	VPCMPEQQ.BCST m128/m64bcst xmm k
+// 	VPCMPEQQ.BCST m128/m64bcst xmm k k
+// 	VPCMPEQQ.BCST m256/m64bcst ymm k
+// 	VPCMPEQQ.BCST m256/m64bcst ymm k k
 // 	VPCMPEQQ.BCST m512/m64bcst zmm k
 // 	VPCMPEQQ.BCST m512/m64bcst zmm k k
 // Construct and append a VPCMPEQQ.BCST instruction to the active function.
@@ -51079,6 +55489,10 @@ func (c *Context) VPCMPEQQ_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPCMPEQQ.BCST m128/m64bcst xmm k
+// 	VPCMPEQQ.BCST m128/m64bcst xmm k k
+// 	VPCMPEQQ.BCST m256/m64bcst ymm k
+// 	VPCMPEQQ.BCST m256/m64bcst ymm k k
 // 	VPCMPEQQ.BCST m512/m64bcst zmm k
 // 	VPCMPEQQ.BCST m512/m64bcst zmm k k
 // Construct and append a VPCMPEQQ.BCST instruction to the active function.
@@ -51197,6 +55611,14 @@ func VPCMPGTB(mxy, xy, xy1 operand.Op) { ctx.VPCMPGTB(mxy, xy, xy1) }
 //
 // Forms:
 //
+// 	VPCMPGTD m128/m32bcst xmm k
+// 	VPCMPGTD m128/m32bcst xmm k k
+// 	VPCMPGTD xmm          xmm k
+// 	VPCMPGTD xmm          xmm k k
+// 	VPCMPGTD m256/m32bcst ymm k
+// 	VPCMPGTD m256/m32bcst ymm k k
+// 	VPCMPGTD ymm          ymm k
+// 	VPCMPGTD ymm          ymm k k
 // 	VPCMPGTD m512/m32bcst zmm k
 // 	VPCMPGTD m512/m32bcst zmm k k
 // 	VPCMPGTD zmm          zmm k
@@ -51218,6 +55640,14 @@ func (c *Context) VPCMPGTD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPCMPGTD m128/m32bcst xmm k
+// 	VPCMPGTD m128/m32bcst xmm k k
+// 	VPCMPGTD xmm          xmm k
+// 	VPCMPGTD xmm          xmm k k
+// 	VPCMPGTD m256/m32bcst ymm k
+// 	VPCMPGTD m256/m32bcst ymm k k
+// 	VPCMPGTD ymm          ymm k
+// 	VPCMPGTD ymm          ymm k k
 // 	VPCMPGTD m512/m32bcst zmm k
 // 	VPCMPGTD m512/m32bcst zmm k k
 // 	VPCMPGTD zmm          zmm k
@@ -51234,6 +55664,10 @@ func VPCMPGTD(ops ...operand.Op) { ctx.VPCMPGTD(ops...) }
 //
 // Forms:
 //
+// 	VPCMPGTD.BCST m128/m32bcst xmm k
+// 	VPCMPGTD.BCST m128/m32bcst xmm k k
+// 	VPCMPGTD.BCST m256/m32bcst ymm k
+// 	VPCMPGTD.BCST m256/m32bcst ymm k k
 // 	VPCMPGTD.BCST m512/m32bcst zmm k
 // 	VPCMPGTD.BCST m512/m32bcst zmm k k
 // Construct and append a VPCMPGTD.BCST instruction to the active function.
@@ -51249,6 +55683,10 @@ func (c *Context) VPCMPGTD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPCMPGTD.BCST m128/m32bcst xmm k
+// 	VPCMPGTD.BCST m128/m32bcst xmm k k
+// 	VPCMPGTD.BCST m256/m32bcst ymm k
+// 	VPCMPGTD.BCST m256/m32bcst ymm k k
 // 	VPCMPGTD.BCST m512/m32bcst zmm k
 // 	VPCMPGTD.BCST m512/m32bcst zmm k k
 // Construct and append a VPCMPGTD.BCST instruction to the active function.
@@ -51259,6 +55697,14 @@ func VPCMPGTD_BCST(ops ...operand.Op) { ctx.VPCMPGTD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPCMPGTQ m128/m64bcst xmm k
+// 	VPCMPGTQ m128/m64bcst xmm k k
+// 	VPCMPGTQ xmm          xmm k
+// 	VPCMPGTQ xmm          xmm k k
+// 	VPCMPGTQ m256/m64bcst ymm k
+// 	VPCMPGTQ m256/m64bcst ymm k k
+// 	VPCMPGTQ ymm          ymm k
+// 	VPCMPGTQ ymm          ymm k k
 // 	VPCMPGTQ m512/m64bcst zmm k
 // 	VPCMPGTQ m512/m64bcst zmm k k
 // 	VPCMPGTQ zmm          zmm k
@@ -51280,6 +55726,14 @@ func (c *Context) VPCMPGTQ(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPCMPGTQ m128/m64bcst xmm k
+// 	VPCMPGTQ m128/m64bcst xmm k k
+// 	VPCMPGTQ xmm          xmm k
+// 	VPCMPGTQ xmm          xmm k k
+// 	VPCMPGTQ m256/m64bcst ymm k
+// 	VPCMPGTQ m256/m64bcst ymm k k
+// 	VPCMPGTQ ymm          ymm k
+// 	VPCMPGTQ ymm          ymm k k
 // 	VPCMPGTQ m512/m64bcst zmm k
 // 	VPCMPGTQ m512/m64bcst zmm k k
 // 	VPCMPGTQ zmm          zmm k
@@ -51296,6 +55750,10 @@ func VPCMPGTQ(ops ...operand.Op) { ctx.VPCMPGTQ(ops...) }
 //
 // Forms:
 //
+// 	VPCMPGTQ.BCST m128/m64bcst xmm k
+// 	VPCMPGTQ.BCST m128/m64bcst xmm k k
+// 	VPCMPGTQ.BCST m256/m64bcst ymm k
+// 	VPCMPGTQ.BCST m256/m64bcst ymm k k
 // 	VPCMPGTQ.BCST m512/m64bcst zmm k
 // 	VPCMPGTQ.BCST m512/m64bcst zmm k k
 // Construct and append a VPCMPGTQ.BCST instruction to the active function.
@@ -51311,6 +55769,10 @@ func (c *Context) VPCMPGTQ_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPCMPGTQ.BCST m128/m64bcst xmm k
+// 	VPCMPGTQ.BCST m128/m64bcst xmm k k
+// 	VPCMPGTQ.BCST m256/m64bcst ymm k
+// 	VPCMPGTQ.BCST m256/m64bcst ymm k k
 // 	VPCMPGTQ.BCST m512/m64bcst zmm k
 // 	VPCMPGTQ.BCST m512/m64bcst zmm k k
 // Construct and append a VPCMPGTQ.BCST instruction to the active function.
@@ -51400,6 +55862,14 @@ func VPCMPISTRM(i, mx, x operand.Op) { ctx.VPCMPISTRM(i, mx, x) }
 //
 // Forms:
 //
+// 	VPCMPQ imm8 m128/m64bcst xmm k
+// 	VPCMPQ imm8 m128/m64bcst xmm k k
+// 	VPCMPQ imm8 xmm          xmm k
+// 	VPCMPQ imm8 xmm          xmm k k
+// 	VPCMPQ imm8 m256/m64bcst ymm k
+// 	VPCMPQ imm8 m256/m64bcst ymm k k
+// 	VPCMPQ imm8 ymm          ymm k
+// 	VPCMPQ imm8 ymm          ymm k k
 // 	VPCMPQ imm8 m512/m64bcst zmm k
 // 	VPCMPQ imm8 m512/m64bcst zmm k k
 // 	VPCMPQ imm8 zmm          zmm k
@@ -51417,6 +55887,14 @@ func (c *Context) VPCMPQ(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPCMPQ imm8 m128/m64bcst xmm k
+// 	VPCMPQ imm8 m128/m64bcst xmm k k
+// 	VPCMPQ imm8 xmm          xmm k
+// 	VPCMPQ imm8 xmm          xmm k k
+// 	VPCMPQ imm8 m256/m64bcst ymm k
+// 	VPCMPQ imm8 m256/m64bcst ymm k k
+// 	VPCMPQ imm8 ymm          ymm k
+// 	VPCMPQ imm8 ymm          ymm k k
 // 	VPCMPQ imm8 m512/m64bcst zmm k
 // 	VPCMPQ imm8 m512/m64bcst zmm k k
 // 	VPCMPQ imm8 zmm          zmm k
@@ -51429,6 +55907,10 @@ func VPCMPQ(ops ...operand.Op) { ctx.VPCMPQ(ops...) }
 //
 // Forms:
 //
+// 	VPCMPQ.BCST imm8 m128/m64bcst xmm k
+// 	VPCMPQ.BCST imm8 m128/m64bcst xmm k k
+// 	VPCMPQ.BCST imm8 m256/m64bcst ymm k
+// 	VPCMPQ.BCST imm8 m256/m64bcst ymm k k
 // 	VPCMPQ.BCST imm8 m512/m64bcst zmm k
 // 	VPCMPQ.BCST imm8 m512/m64bcst zmm k k
 // Construct and append a VPCMPQ.BCST instruction to the active function.
@@ -51444,6 +55926,10 @@ func (c *Context) VPCMPQ_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPCMPQ.BCST imm8 m128/m64bcst xmm k
+// 	VPCMPQ.BCST imm8 m128/m64bcst xmm k k
+// 	VPCMPQ.BCST imm8 m256/m64bcst ymm k
+// 	VPCMPQ.BCST imm8 m256/m64bcst ymm k k
 // 	VPCMPQ.BCST imm8 m512/m64bcst zmm k
 // 	VPCMPQ.BCST imm8 m512/m64bcst zmm k k
 // Construct and append a VPCMPQ.BCST instruction to the active function.
@@ -51454,6 +55940,14 @@ func VPCMPQ_BCST(ops ...operand.Op) { ctx.VPCMPQ_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPCMPUD imm8 m128/m32bcst xmm k
+// 	VPCMPUD imm8 m128/m32bcst xmm k k
+// 	VPCMPUD imm8 xmm          xmm k
+// 	VPCMPUD imm8 xmm          xmm k k
+// 	VPCMPUD imm8 m256/m32bcst ymm k
+// 	VPCMPUD imm8 m256/m32bcst ymm k k
+// 	VPCMPUD imm8 ymm          ymm k
+// 	VPCMPUD imm8 ymm          ymm k k
 // 	VPCMPUD imm8 m512/m32bcst zmm k
 // 	VPCMPUD imm8 m512/m32bcst zmm k k
 // 	VPCMPUD imm8 zmm          zmm k
@@ -51471,6 +55965,14 @@ func (c *Context) VPCMPUD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPCMPUD imm8 m128/m32bcst xmm k
+// 	VPCMPUD imm8 m128/m32bcst xmm k k
+// 	VPCMPUD imm8 xmm          xmm k
+// 	VPCMPUD imm8 xmm          xmm k k
+// 	VPCMPUD imm8 m256/m32bcst ymm k
+// 	VPCMPUD imm8 m256/m32bcst ymm k k
+// 	VPCMPUD imm8 ymm          ymm k
+// 	VPCMPUD imm8 ymm          ymm k k
 // 	VPCMPUD imm8 m512/m32bcst zmm k
 // 	VPCMPUD imm8 m512/m32bcst zmm k k
 // 	VPCMPUD imm8 zmm          zmm k
@@ -51483,6 +55985,10 @@ func VPCMPUD(ops ...operand.Op) { ctx.VPCMPUD(ops...) }
 //
 // Forms:
 //
+// 	VPCMPUD.BCST imm8 m128/m32bcst xmm k
+// 	VPCMPUD.BCST imm8 m128/m32bcst xmm k k
+// 	VPCMPUD.BCST imm8 m256/m32bcst ymm k
+// 	VPCMPUD.BCST imm8 m256/m32bcst ymm k k
 // 	VPCMPUD.BCST imm8 m512/m32bcst zmm k
 // 	VPCMPUD.BCST imm8 m512/m32bcst zmm k k
 // Construct and append a VPCMPUD.BCST instruction to the active function.
@@ -51498,6 +56004,10 @@ func (c *Context) VPCMPUD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPCMPUD.BCST imm8 m128/m32bcst xmm k
+// 	VPCMPUD.BCST imm8 m128/m32bcst xmm k k
+// 	VPCMPUD.BCST imm8 m256/m32bcst ymm k
+// 	VPCMPUD.BCST imm8 m256/m32bcst ymm k k
 // 	VPCMPUD.BCST imm8 m512/m32bcst zmm k
 // 	VPCMPUD.BCST imm8 m512/m32bcst zmm k k
 // Construct and append a VPCMPUD.BCST instruction to the active function.
@@ -51508,6 +56018,14 @@ func VPCMPUD_BCST(ops ...operand.Op) { ctx.VPCMPUD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPCMPUQ imm8 m128/m64bcst xmm k
+// 	VPCMPUQ imm8 m128/m64bcst xmm k k
+// 	VPCMPUQ imm8 xmm          xmm k
+// 	VPCMPUQ imm8 xmm          xmm k k
+// 	VPCMPUQ imm8 m256/m64bcst ymm k
+// 	VPCMPUQ imm8 m256/m64bcst ymm k k
+// 	VPCMPUQ imm8 ymm          ymm k
+// 	VPCMPUQ imm8 ymm          ymm k k
 // 	VPCMPUQ imm8 m512/m64bcst zmm k
 // 	VPCMPUQ imm8 m512/m64bcst zmm k k
 // 	VPCMPUQ imm8 zmm          zmm k
@@ -51525,6 +56043,14 @@ func (c *Context) VPCMPUQ(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPCMPUQ imm8 m128/m64bcst xmm k
+// 	VPCMPUQ imm8 m128/m64bcst xmm k k
+// 	VPCMPUQ imm8 xmm          xmm k
+// 	VPCMPUQ imm8 xmm          xmm k k
+// 	VPCMPUQ imm8 m256/m64bcst ymm k
+// 	VPCMPUQ imm8 m256/m64bcst ymm k k
+// 	VPCMPUQ imm8 ymm          ymm k
+// 	VPCMPUQ imm8 ymm          ymm k k
 // 	VPCMPUQ imm8 m512/m64bcst zmm k
 // 	VPCMPUQ imm8 m512/m64bcst zmm k k
 // 	VPCMPUQ imm8 zmm          zmm k
@@ -51537,6 +56063,10 @@ func VPCMPUQ(ops ...operand.Op) { ctx.VPCMPUQ(ops...) }
 //
 // Forms:
 //
+// 	VPCMPUQ.BCST imm8 m128/m64bcst xmm k
+// 	VPCMPUQ.BCST imm8 m128/m64bcst xmm k k
+// 	VPCMPUQ.BCST imm8 m256/m64bcst ymm k
+// 	VPCMPUQ.BCST imm8 m256/m64bcst ymm k k
 // 	VPCMPUQ.BCST imm8 m512/m64bcst zmm k
 // 	VPCMPUQ.BCST imm8 m512/m64bcst zmm k k
 // Construct and append a VPCMPUQ.BCST instruction to the active function.
@@ -51552,6 +56082,10 @@ func (c *Context) VPCMPUQ_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPCMPUQ.BCST imm8 m128/m64bcst xmm k
+// 	VPCMPUQ.BCST imm8 m128/m64bcst xmm k k
+// 	VPCMPUQ.BCST imm8 m256/m64bcst ymm k
+// 	VPCMPUQ.BCST imm8 m256/m64bcst ymm k k
 // 	VPCMPUQ.BCST imm8 m512/m64bcst zmm k
 // 	VPCMPUQ.BCST imm8 m512/m64bcst zmm k k
 // Construct and append a VPCMPUQ.BCST instruction to the active function.
@@ -51562,6 +56096,14 @@ func VPCMPUQ_BCST(ops ...operand.Op) { ctx.VPCMPUQ_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPCOMPRESSD xmm xmm
+// 	VPCOMPRESSD xmm k xmm
+// 	VPCOMPRESSD xmm m128
+// 	VPCOMPRESSD xmm k m128
+// 	VPCOMPRESSD ymm ymm
+// 	VPCOMPRESSD ymm k ymm
+// 	VPCOMPRESSD ymm m256
+// 	VPCOMPRESSD ymm k m256
 // 	VPCOMPRESSD zmm zmm
 // 	VPCOMPRESSD zmm k zmm
 // 	VPCOMPRESSD zmm m512
@@ -51579,6 +56121,14 @@ func (c *Context) VPCOMPRESSD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPCOMPRESSD xmm xmm
+// 	VPCOMPRESSD xmm k xmm
+// 	VPCOMPRESSD xmm m128
+// 	VPCOMPRESSD xmm k m128
+// 	VPCOMPRESSD ymm ymm
+// 	VPCOMPRESSD ymm k ymm
+// 	VPCOMPRESSD ymm m256
+// 	VPCOMPRESSD ymm k m256
 // 	VPCOMPRESSD zmm zmm
 // 	VPCOMPRESSD zmm k zmm
 // 	VPCOMPRESSD zmm m512
@@ -51591,11 +56141,15 @@ func VPCOMPRESSD(ops ...operand.Op) { ctx.VPCOMPRESSD(ops...) }
 //
 // Forms:
 //
+// 	VPCOMPRESSD.Z xmm k xmm
+// 	VPCOMPRESSD.Z xmm k m128
+// 	VPCOMPRESSD.Z ymm k ymm
+// 	VPCOMPRESSD.Z ymm k m256
 // 	VPCOMPRESSD.Z zmm k zmm
 // 	VPCOMPRESSD.Z zmm k m512
 // Construct and append a VPCOMPRESSD.Z instruction to the active function.
-func (c *Context) VPCOMPRESSD_Z(z, k, mz operand.Op) {
-	if inst, err := x86.VPCOMPRESSD_Z(z, k, mz); err == nil {
+func (c *Context) VPCOMPRESSD_Z(xyz, k, mxyz operand.Op) {
+	if inst, err := x86.VPCOMPRESSD_Z(xyz, k, mxyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -51606,16 +56160,28 @@ func (c *Context) VPCOMPRESSD_Z(z, k, mz operand.Op) {
 //
 // Forms:
 //
+// 	VPCOMPRESSD.Z xmm k xmm
+// 	VPCOMPRESSD.Z xmm k m128
+// 	VPCOMPRESSD.Z ymm k ymm
+// 	VPCOMPRESSD.Z ymm k m256
 // 	VPCOMPRESSD.Z zmm k zmm
 // 	VPCOMPRESSD.Z zmm k m512
 // Construct and append a VPCOMPRESSD.Z instruction to the active function.
 // Operates on the global context.
-func VPCOMPRESSD_Z(z, k, mz operand.Op) { ctx.VPCOMPRESSD_Z(z, k, mz) }
+func VPCOMPRESSD_Z(xyz, k, mxyz operand.Op) { ctx.VPCOMPRESSD_Z(xyz, k, mxyz) }
 
 // VPCOMPRESSQ: Store Sparse Packed Quadword Integer Values into Dense Memory/Register.
 //
 // Forms:
 //
+// 	VPCOMPRESSQ xmm xmm
+// 	VPCOMPRESSQ xmm k xmm
+// 	VPCOMPRESSQ xmm m128
+// 	VPCOMPRESSQ xmm k m128
+// 	VPCOMPRESSQ ymm ymm
+// 	VPCOMPRESSQ ymm k ymm
+// 	VPCOMPRESSQ ymm m256
+// 	VPCOMPRESSQ ymm k m256
 // 	VPCOMPRESSQ zmm zmm
 // 	VPCOMPRESSQ zmm k zmm
 // 	VPCOMPRESSQ zmm m512
@@ -51633,6 +56199,14 @@ func (c *Context) VPCOMPRESSQ(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPCOMPRESSQ xmm xmm
+// 	VPCOMPRESSQ xmm k xmm
+// 	VPCOMPRESSQ xmm m128
+// 	VPCOMPRESSQ xmm k m128
+// 	VPCOMPRESSQ ymm ymm
+// 	VPCOMPRESSQ ymm k ymm
+// 	VPCOMPRESSQ ymm m256
+// 	VPCOMPRESSQ ymm k m256
 // 	VPCOMPRESSQ zmm zmm
 // 	VPCOMPRESSQ zmm k zmm
 // 	VPCOMPRESSQ zmm m512
@@ -51645,11 +56219,15 @@ func VPCOMPRESSQ(ops ...operand.Op) { ctx.VPCOMPRESSQ(ops...) }
 //
 // Forms:
 //
+// 	VPCOMPRESSQ.Z xmm k xmm
+// 	VPCOMPRESSQ.Z xmm k m128
+// 	VPCOMPRESSQ.Z ymm k ymm
+// 	VPCOMPRESSQ.Z ymm k m256
 // 	VPCOMPRESSQ.Z zmm k zmm
 // 	VPCOMPRESSQ.Z zmm k m512
 // Construct and append a VPCOMPRESSQ.Z instruction to the active function.
-func (c *Context) VPCOMPRESSQ_Z(z, k, mz operand.Op) {
-	if inst, err := x86.VPCOMPRESSQ_Z(z, k, mz); err == nil {
+func (c *Context) VPCOMPRESSQ_Z(xyz, k, mxyz operand.Op) {
+	if inst, err := x86.VPCOMPRESSQ_Z(xyz, k, mxyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -51660,18 +56238,30 @@ func (c *Context) VPCOMPRESSQ_Z(z, k, mz operand.Op) {
 //
 // Forms:
 //
+// 	VPCOMPRESSQ.Z xmm k xmm
+// 	VPCOMPRESSQ.Z xmm k m128
+// 	VPCOMPRESSQ.Z ymm k ymm
+// 	VPCOMPRESSQ.Z ymm k m256
 // 	VPCOMPRESSQ.Z zmm k zmm
 // 	VPCOMPRESSQ.Z zmm k m512
 // Construct and append a VPCOMPRESSQ.Z instruction to the active function.
 // Operates on the global context.
-func VPCOMPRESSQ_Z(z, k, mz operand.Op) { ctx.VPCOMPRESSQ_Z(z, k, mz) }
+func VPCOMPRESSQ_Z(xyz, k, mxyz operand.Op) { ctx.VPCOMPRESSQ_Z(xyz, k, mxyz) }
 
 // VPCONFLICTD: Detect Conflicts Within a Vector of Packed Doubleword Values into Dense Memory/Register.
 //
 // Forms:
 //
+// 	VPCONFLICTD m128/m32bcst xmm
+// 	VPCONFLICTD m128/m32bcst k xmm
+// 	VPCONFLICTD m256/m32bcst ymm
+// 	VPCONFLICTD m256/m32bcst k ymm
 // 	VPCONFLICTD m512/m32bcst zmm
 // 	VPCONFLICTD m512/m32bcst k zmm
+// 	VPCONFLICTD xmm          xmm
+// 	VPCONFLICTD xmm          k xmm
+// 	VPCONFLICTD ymm          ymm
+// 	VPCONFLICTD ymm          k ymm
 // 	VPCONFLICTD zmm          zmm
 // 	VPCONFLICTD zmm          k zmm
 // Construct and append a VPCONFLICTD instruction to the active function.
@@ -51687,8 +56277,16 @@ func (c *Context) VPCONFLICTD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPCONFLICTD m128/m32bcst xmm
+// 	VPCONFLICTD m128/m32bcst k xmm
+// 	VPCONFLICTD m256/m32bcst ymm
+// 	VPCONFLICTD m256/m32bcst k ymm
 // 	VPCONFLICTD m512/m32bcst zmm
 // 	VPCONFLICTD m512/m32bcst k zmm
+// 	VPCONFLICTD xmm          xmm
+// 	VPCONFLICTD xmm          k xmm
+// 	VPCONFLICTD ymm          ymm
+// 	VPCONFLICTD ymm          k ymm
 // 	VPCONFLICTD zmm          zmm
 // 	VPCONFLICTD zmm          k zmm
 // Construct and append a VPCONFLICTD instruction to the active function.
@@ -51699,6 +56297,10 @@ func VPCONFLICTD(ops ...operand.Op) { ctx.VPCONFLICTD(ops...) }
 //
 // Forms:
 //
+// 	VPCONFLICTD.BCST m128/m32bcst xmm
+// 	VPCONFLICTD.BCST m128/m32bcst k xmm
+// 	VPCONFLICTD.BCST m256/m32bcst ymm
+// 	VPCONFLICTD.BCST m256/m32bcst k ymm
 // 	VPCONFLICTD.BCST m512/m32bcst zmm
 // 	VPCONFLICTD.BCST m512/m32bcst k zmm
 // Construct and append a VPCONFLICTD.BCST instruction to the active function.
@@ -51714,6 +56316,10 @@ func (c *Context) VPCONFLICTD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPCONFLICTD.BCST m128/m32bcst xmm
+// 	VPCONFLICTD.BCST m128/m32bcst k xmm
+// 	VPCONFLICTD.BCST m256/m32bcst ymm
+// 	VPCONFLICTD.BCST m256/m32bcst k ymm
 // 	VPCONFLICTD.BCST m512/m32bcst zmm
 // 	VPCONFLICTD.BCST m512/m32bcst k zmm
 // Construct and append a VPCONFLICTD.BCST instruction to the active function.
@@ -51724,10 +56330,12 @@ func VPCONFLICTD_BCST(ops ...operand.Op) { ctx.VPCONFLICTD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPCONFLICTD.BCST.Z m128/m32bcst k xmm
+// 	VPCONFLICTD.BCST.Z m256/m32bcst k ymm
 // 	VPCONFLICTD.BCST.Z m512/m32bcst k zmm
 // Construct and append a VPCONFLICTD.BCST.Z instruction to the active function.
-func (c *Context) VPCONFLICTD_BCST_Z(m, k, z operand.Op) {
-	if inst, err := x86.VPCONFLICTD_BCST_Z(m, k, z); err == nil {
+func (c *Context) VPCONFLICTD_BCST_Z(m, k, xyz operand.Op) {
+	if inst, err := x86.VPCONFLICTD_BCST_Z(m, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -51738,20 +56346,26 @@ func (c *Context) VPCONFLICTD_BCST_Z(m, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VPCONFLICTD.BCST.Z m128/m32bcst k xmm
+// 	VPCONFLICTD.BCST.Z m256/m32bcst k ymm
 // 	VPCONFLICTD.BCST.Z m512/m32bcst k zmm
 // Construct and append a VPCONFLICTD.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VPCONFLICTD_BCST_Z(m, k, z operand.Op) { ctx.VPCONFLICTD_BCST_Z(m, k, z) }
+func VPCONFLICTD_BCST_Z(m, k, xyz operand.Op) { ctx.VPCONFLICTD_BCST_Z(m, k, xyz) }
 
 // VPCONFLICTD_Z: Detect Conflicts Within a Vector of Packed Doubleword Values into Dense Memory/Register (Zeroing Masking).
 //
 // Forms:
 //
+// 	VPCONFLICTD.Z m128/m32bcst k xmm
+// 	VPCONFLICTD.Z m256/m32bcst k ymm
 // 	VPCONFLICTD.Z m512/m32bcst k zmm
+// 	VPCONFLICTD.Z xmm          k xmm
+// 	VPCONFLICTD.Z ymm          k ymm
 // 	VPCONFLICTD.Z zmm          k zmm
 // Construct and append a VPCONFLICTD.Z instruction to the active function.
-func (c *Context) VPCONFLICTD_Z(mz, k, z operand.Op) {
-	if inst, err := x86.VPCONFLICTD_Z(mz, k, z); err == nil {
+func (c *Context) VPCONFLICTD_Z(mxyz, k, xyz operand.Op) {
+	if inst, err := x86.VPCONFLICTD_Z(mxyz, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -51762,18 +56376,30 @@ func (c *Context) VPCONFLICTD_Z(mz, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VPCONFLICTD.Z m128/m32bcst k xmm
+// 	VPCONFLICTD.Z m256/m32bcst k ymm
 // 	VPCONFLICTD.Z m512/m32bcst k zmm
+// 	VPCONFLICTD.Z xmm          k xmm
+// 	VPCONFLICTD.Z ymm          k ymm
 // 	VPCONFLICTD.Z zmm          k zmm
 // Construct and append a VPCONFLICTD.Z instruction to the active function.
 // Operates on the global context.
-func VPCONFLICTD_Z(mz, k, z operand.Op) { ctx.VPCONFLICTD_Z(mz, k, z) }
+func VPCONFLICTD_Z(mxyz, k, xyz operand.Op) { ctx.VPCONFLICTD_Z(mxyz, k, xyz) }
 
 // VPCONFLICTQ: Detect Conflicts Within a Vector of Packed Quadword Values into Dense Memory/Register.
 //
 // Forms:
 //
+// 	VPCONFLICTQ m128/m64bcst xmm
+// 	VPCONFLICTQ m128/m64bcst k xmm
+// 	VPCONFLICTQ m256/m64bcst ymm
+// 	VPCONFLICTQ m256/m64bcst k ymm
 // 	VPCONFLICTQ m512/m64bcst zmm
 // 	VPCONFLICTQ m512/m64bcst k zmm
+// 	VPCONFLICTQ xmm          xmm
+// 	VPCONFLICTQ xmm          k xmm
+// 	VPCONFLICTQ ymm          ymm
+// 	VPCONFLICTQ ymm          k ymm
 // 	VPCONFLICTQ zmm          zmm
 // 	VPCONFLICTQ zmm          k zmm
 // Construct and append a VPCONFLICTQ instruction to the active function.
@@ -51789,8 +56415,16 @@ func (c *Context) VPCONFLICTQ(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPCONFLICTQ m128/m64bcst xmm
+// 	VPCONFLICTQ m128/m64bcst k xmm
+// 	VPCONFLICTQ m256/m64bcst ymm
+// 	VPCONFLICTQ m256/m64bcst k ymm
 // 	VPCONFLICTQ m512/m64bcst zmm
 // 	VPCONFLICTQ m512/m64bcst k zmm
+// 	VPCONFLICTQ xmm          xmm
+// 	VPCONFLICTQ xmm          k xmm
+// 	VPCONFLICTQ ymm          ymm
+// 	VPCONFLICTQ ymm          k ymm
 // 	VPCONFLICTQ zmm          zmm
 // 	VPCONFLICTQ zmm          k zmm
 // Construct and append a VPCONFLICTQ instruction to the active function.
@@ -51801,6 +56435,10 @@ func VPCONFLICTQ(ops ...operand.Op) { ctx.VPCONFLICTQ(ops...) }
 //
 // Forms:
 //
+// 	VPCONFLICTQ.BCST m128/m64bcst xmm
+// 	VPCONFLICTQ.BCST m128/m64bcst k xmm
+// 	VPCONFLICTQ.BCST m256/m64bcst ymm
+// 	VPCONFLICTQ.BCST m256/m64bcst k ymm
 // 	VPCONFLICTQ.BCST m512/m64bcst zmm
 // 	VPCONFLICTQ.BCST m512/m64bcst k zmm
 // Construct and append a VPCONFLICTQ.BCST instruction to the active function.
@@ -51816,6 +56454,10 @@ func (c *Context) VPCONFLICTQ_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPCONFLICTQ.BCST m128/m64bcst xmm
+// 	VPCONFLICTQ.BCST m128/m64bcst k xmm
+// 	VPCONFLICTQ.BCST m256/m64bcst ymm
+// 	VPCONFLICTQ.BCST m256/m64bcst k ymm
 // 	VPCONFLICTQ.BCST m512/m64bcst zmm
 // 	VPCONFLICTQ.BCST m512/m64bcst k zmm
 // Construct and append a VPCONFLICTQ.BCST instruction to the active function.
@@ -51826,10 +56468,12 @@ func VPCONFLICTQ_BCST(ops ...operand.Op) { ctx.VPCONFLICTQ_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPCONFLICTQ.BCST.Z m128/m64bcst k xmm
+// 	VPCONFLICTQ.BCST.Z m256/m64bcst k ymm
 // 	VPCONFLICTQ.BCST.Z m512/m64bcst k zmm
 // Construct and append a VPCONFLICTQ.BCST.Z instruction to the active function.
-func (c *Context) VPCONFLICTQ_BCST_Z(m, k, z operand.Op) {
-	if inst, err := x86.VPCONFLICTQ_BCST_Z(m, k, z); err == nil {
+func (c *Context) VPCONFLICTQ_BCST_Z(m, k, xyz operand.Op) {
+	if inst, err := x86.VPCONFLICTQ_BCST_Z(m, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -51840,20 +56484,26 @@ func (c *Context) VPCONFLICTQ_BCST_Z(m, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VPCONFLICTQ.BCST.Z m128/m64bcst k xmm
+// 	VPCONFLICTQ.BCST.Z m256/m64bcst k ymm
 // 	VPCONFLICTQ.BCST.Z m512/m64bcst k zmm
 // Construct and append a VPCONFLICTQ.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VPCONFLICTQ_BCST_Z(m, k, z operand.Op) { ctx.VPCONFLICTQ_BCST_Z(m, k, z) }
+func VPCONFLICTQ_BCST_Z(m, k, xyz operand.Op) { ctx.VPCONFLICTQ_BCST_Z(m, k, xyz) }
 
 // VPCONFLICTQ_Z: Detect Conflicts Within a Vector of Packed Quadword Values into Dense Memory/Register (Zeroing Masking).
 //
 // Forms:
 //
+// 	VPCONFLICTQ.Z m128/m64bcst k xmm
+// 	VPCONFLICTQ.Z m256/m64bcst k ymm
 // 	VPCONFLICTQ.Z m512/m64bcst k zmm
+// 	VPCONFLICTQ.Z xmm          k xmm
+// 	VPCONFLICTQ.Z ymm          k ymm
 // 	VPCONFLICTQ.Z zmm          k zmm
 // Construct and append a VPCONFLICTQ.Z instruction to the active function.
-func (c *Context) VPCONFLICTQ_Z(mz, k, z operand.Op) {
-	if inst, err := x86.VPCONFLICTQ_Z(mz, k, z); err == nil {
+func (c *Context) VPCONFLICTQ_Z(mxyz, k, xyz operand.Op) {
+	if inst, err := x86.VPCONFLICTQ_Z(mxyz, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -51864,11 +56514,15 @@ func (c *Context) VPCONFLICTQ_Z(mz, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VPCONFLICTQ.Z m128/m64bcst k xmm
+// 	VPCONFLICTQ.Z m256/m64bcst k ymm
 // 	VPCONFLICTQ.Z m512/m64bcst k zmm
+// 	VPCONFLICTQ.Z xmm          k xmm
+// 	VPCONFLICTQ.Z ymm          k ymm
 // 	VPCONFLICTQ.Z zmm          k zmm
 // Construct and append a VPCONFLICTQ.Z instruction to the active function.
 // Operates on the global context.
-func VPCONFLICTQ_Z(mz, k, z operand.Op) { ctx.VPCONFLICTQ_Z(mz, k, z) }
+func VPCONFLICTQ_Z(mxyz, k, xyz operand.Op) { ctx.VPCONFLICTQ_Z(mxyz, k, xyz) }
 
 // VPERM2F128: Permute Floating-Point Values.
 //
@@ -51924,6 +56578,10 @@ func VPERM2I128(i, my, y, y1 operand.Op) { ctx.VPERM2I128(i, my, y, y1) }
 //
 // Forms:
 //
+// 	VPERMD m256/m32bcst ymm ymm
+// 	VPERMD m256/m32bcst ymm k ymm
+// 	VPERMD ymm          ymm ymm
+// 	VPERMD ymm          ymm k ymm
 // 	VPERMD m512/m32bcst zmm zmm
 // 	VPERMD m512/m32bcst zmm k zmm
 // 	VPERMD zmm          zmm zmm
@@ -51943,6 +56601,10 @@ func (c *Context) VPERMD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPERMD m256/m32bcst ymm ymm
+// 	VPERMD m256/m32bcst ymm k ymm
+// 	VPERMD ymm          ymm ymm
+// 	VPERMD ymm          ymm k ymm
 // 	VPERMD m512/m32bcst zmm zmm
 // 	VPERMD m512/m32bcst zmm k zmm
 // 	VPERMD zmm          zmm zmm
@@ -51957,6 +56619,8 @@ func VPERMD(ops ...operand.Op) { ctx.VPERMD(ops...) }
 //
 // Forms:
 //
+// 	VPERMD.BCST m256/m32bcst ymm ymm
+// 	VPERMD.BCST m256/m32bcst ymm k ymm
 // 	VPERMD.BCST m512/m32bcst zmm zmm
 // 	VPERMD.BCST m512/m32bcst zmm k zmm
 // Construct and append a VPERMD.BCST instruction to the active function.
@@ -51972,6 +56636,8 @@ func (c *Context) VPERMD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPERMD.BCST m256/m32bcst ymm ymm
+// 	VPERMD.BCST m256/m32bcst ymm k ymm
 // 	VPERMD.BCST m512/m32bcst zmm zmm
 // 	VPERMD.BCST m512/m32bcst zmm k zmm
 // Construct and append a VPERMD.BCST instruction to the active function.
@@ -51982,10 +56648,11 @@ func VPERMD_BCST(ops ...operand.Op) { ctx.VPERMD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPERMD.BCST.Z m256/m32bcst ymm k ymm
 // 	VPERMD.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VPERMD.BCST.Z instruction to the active function.
-func (c *Context) VPERMD_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VPERMD_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VPERMD_BCST_Z(m, yz, k, yz1 operand.Op) {
+	if inst, err := x86.VPERMD_BCST_Z(m, yz, k, yz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -51996,20 +56663,23 @@ func (c *Context) VPERMD_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPERMD.BCST.Z m256/m32bcst ymm k ymm
 // 	VPERMD.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VPERMD.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VPERMD_BCST_Z(m, z, k, z1 operand.Op) { ctx.VPERMD_BCST_Z(m, z, k, z1) }
+func VPERMD_BCST_Z(m, yz, k, yz1 operand.Op) { ctx.VPERMD_BCST_Z(m, yz, k, yz1) }
 
 // VPERMD_Z: Permute Doubleword Integers (Zeroing Masking).
 //
 // Forms:
 //
+// 	VPERMD.Z m256/m32bcst ymm k ymm
+// 	VPERMD.Z ymm          ymm k ymm
 // 	VPERMD.Z m512/m32bcst zmm k zmm
 // 	VPERMD.Z zmm          zmm k zmm
 // Construct and append a VPERMD.Z instruction to the active function.
-func (c *Context) VPERMD_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VPERMD_Z(mz, z, k, z1); err == nil {
+func (c *Context) VPERMD_Z(myz, yz, k, yz1 operand.Op) {
+	if inst, err := x86.VPERMD_Z(myz, yz, k, yz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -52020,16 +56690,26 @@ func (c *Context) VPERMD_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPERMD.Z m256/m32bcst ymm k ymm
+// 	VPERMD.Z ymm          ymm k ymm
 // 	VPERMD.Z m512/m32bcst zmm k zmm
 // 	VPERMD.Z zmm          zmm k zmm
 // Construct and append a VPERMD.Z instruction to the active function.
 // Operates on the global context.
-func VPERMD_Z(mz, z, k, z1 operand.Op) { ctx.VPERMD_Z(mz, z, k, z1) }
+func VPERMD_Z(myz, yz, k, yz1 operand.Op) { ctx.VPERMD_Z(myz, yz, k, yz1) }
 
 // VPERMI2D: Full Permute of Doublewords From Two Tables Overwriting the Index.
 //
 // Forms:
 //
+// 	VPERMI2D m128/m32bcst xmm xmm
+// 	VPERMI2D m128/m32bcst xmm k xmm
+// 	VPERMI2D xmm          xmm xmm
+// 	VPERMI2D xmm          xmm k xmm
+// 	VPERMI2D m256/m32bcst ymm ymm
+// 	VPERMI2D m256/m32bcst ymm k ymm
+// 	VPERMI2D ymm          ymm ymm
+// 	VPERMI2D ymm          ymm k ymm
 // 	VPERMI2D m512/m32bcst zmm zmm
 // 	VPERMI2D m512/m32bcst zmm k zmm
 // 	VPERMI2D zmm          zmm zmm
@@ -52047,6 +56727,14 @@ func (c *Context) VPERMI2D(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPERMI2D m128/m32bcst xmm xmm
+// 	VPERMI2D m128/m32bcst xmm k xmm
+// 	VPERMI2D xmm          xmm xmm
+// 	VPERMI2D xmm          xmm k xmm
+// 	VPERMI2D m256/m32bcst ymm ymm
+// 	VPERMI2D m256/m32bcst ymm k ymm
+// 	VPERMI2D ymm          ymm ymm
+// 	VPERMI2D ymm          ymm k ymm
 // 	VPERMI2D m512/m32bcst zmm zmm
 // 	VPERMI2D m512/m32bcst zmm k zmm
 // 	VPERMI2D zmm          zmm zmm
@@ -52059,6 +56747,10 @@ func VPERMI2D(ops ...operand.Op) { ctx.VPERMI2D(ops...) }
 //
 // Forms:
 //
+// 	VPERMI2D.BCST m128/m32bcst xmm xmm
+// 	VPERMI2D.BCST m128/m32bcst xmm k xmm
+// 	VPERMI2D.BCST m256/m32bcst ymm ymm
+// 	VPERMI2D.BCST m256/m32bcst ymm k ymm
 // 	VPERMI2D.BCST m512/m32bcst zmm zmm
 // 	VPERMI2D.BCST m512/m32bcst zmm k zmm
 // Construct and append a VPERMI2D.BCST instruction to the active function.
@@ -52074,6 +56766,10 @@ func (c *Context) VPERMI2D_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPERMI2D.BCST m128/m32bcst xmm xmm
+// 	VPERMI2D.BCST m128/m32bcst xmm k xmm
+// 	VPERMI2D.BCST m256/m32bcst ymm ymm
+// 	VPERMI2D.BCST m256/m32bcst ymm k ymm
 // 	VPERMI2D.BCST m512/m32bcst zmm zmm
 // 	VPERMI2D.BCST m512/m32bcst zmm k zmm
 // Construct and append a VPERMI2D.BCST instruction to the active function.
@@ -52084,10 +56780,12 @@ func VPERMI2D_BCST(ops ...operand.Op) { ctx.VPERMI2D_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPERMI2D.BCST.Z m128/m32bcst xmm k xmm
+// 	VPERMI2D.BCST.Z m256/m32bcst ymm k ymm
 // 	VPERMI2D.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VPERMI2D.BCST.Z instruction to the active function.
-func (c *Context) VPERMI2D_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VPERMI2D_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VPERMI2D_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPERMI2D_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -52098,20 +56796,26 @@ func (c *Context) VPERMI2D_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPERMI2D.BCST.Z m128/m32bcst xmm k xmm
+// 	VPERMI2D.BCST.Z m256/m32bcst ymm k ymm
 // 	VPERMI2D.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VPERMI2D.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VPERMI2D_BCST_Z(m, z, k, z1 operand.Op) { ctx.VPERMI2D_BCST_Z(m, z, k, z1) }
+func VPERMI2D_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VPERMI2D_BCST_Z(m, xyz, k, xyz1) }
 
 // VPERMI2D_Z: Full Permute of Doublewords From Two Tables Overwriting the Index (Zeroing Masking).
 //
 // Forms:
 //
+// 	VPERMI2D.Z m128/m32bcst xmm k xmm
+// 	VPERMI2D.Z xmm          xmm k xmm
+// 	VPERMI2D.Z m256/m32bcst ymm k ymm
+// 	VPERMI2D.Z ymm          ymm k ymm
 // 	VPERMI2D.Z m512/m32bcst zmm k zmm
 // 	VPERMI2D.Z zmm          zmm k zmm
 // Construct and append a VPERMI2D.Z instruction to the active function.
-func (c *Context) VPERMI2D_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VPERMI2D_Z(mz, z, k, z1); err == nil {
+func (c *Context) VPERMI2D_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPERMI2D_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -52122,16 +56826,28 @@ func (c *Context) VPERMI2D_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPERMI2D.Z m128/m32bcst xmm k xmm
+// 	VPERMI2D.Z xmm          xmm k xmm
+// 	VPERMI2D.Z m256/m32bcst ymm k ymm
+// 	VPERMI2D.Z ymm          ymm k ymm
 // 	VPERMI2D.Z m512/m32bcst zmm k zmm
 // 	VPERMI2D.Z zmm          zmm k zmm
 // Construct and append a VPERMI2D.Z instruction to the active function.
 // Operates on the global context.
-func VPERMI2D_Z(mz, z, k, z1 operand.Op) { ctx.VPERMI2D_Z(mz, z, k, z1) }
+func VPERMI2D_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPERMI2D_Z(mxyz, xyz, k, xyz1) }
 
 // VPERMI2PD: Full Permute of Double-Precision Floating-Point Values From Two Tables Overwriting the Index.
 //
 // Forms:
 //
+// 	VPERMI2PD m128/m64bcst xmm xmm
+// 	VPERMI2PD m128/m64bcst xmm k xmm
+// 	VPERMI2PD xmm          xmm xmm
+// 	VPERMI2PD xmm          xmm k xmm
+// 	VPERMI2PD m256/m64bcst ymm ymm
+// 	VPERMI2PD m256/m64bcst ymm k ymm
+// 	VPERMI2PD ymm          ymm ymm
+// 	VPERMI2PD ymm          ymm k ymm
 // 	VPERMI2PD m512/m64bcst zmm zmm
 // 	VPERMI2PD m512/m64bcst zmm k zmm
 // 	VPERMI2PD zmm          zmm zmm
@@ -52149,6 +56865,14 @@ func (c *Context) VPERMI2PD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPERMI2PD m128/m64bcst xmm xmm
+// 	VPERMI2PD m128/m64bcst xmm k xmm
+// 	VPERMI2PD xmm          xmm xmm
+// 	VPERMI2PD xmm          xmm k xmm
+// 	VPERMI2PD m256/m64bcst ymm ymm
+// 	VPERMI2PD m256/m64bcst ymm k ymm
+// 	VPERMI2PD ymm          ymm ymm
+// 	VPERMI2PD ymm          ymm k ymm
 // 	VPERMI2PD m512/m64bcst zmm zmm
 // 	VPERMI2PD m512/m64bcst zmm k zmm
 // 	VPERMI2PD zmm          zmm zmm
@@ -52161,6 +56885,10 @@ func VPERMI2PD(ops ...operand.Op) { ctx.VPERMI2PD(ops...) }
 //
 // Forms:
 //
+// 	VPERMI2PD.BCST m128/m64bcst xmm xmm
+// 	VPERMI2PD.BCST m128/m64bcst xmm k xmm
+// 	VPERMI2PD.BCST m256/m64bcst ymm ymm
+// 	VPERMI2PD.BCST m256/m64bcst ymm k ymm
 // 	VPERMI2PD.BCST m512/m64bcst zmm zmm
 // 	VPERMI2PD.BCST m512/m64bcst zmm k zmm
 // Construct and append a VPERMI2PD.BCST instruction to the active function.
@@ -52176,6 +56904,10 @@ func (c *Context) VPERMI2PD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPERMI2PD.BCST m128/m64bcst xmm xmm
+// 	VPERMI2PD.BCST m128/m64bcst xmm k xmm
+// 	VPERMI2PD.BCST m256/m64bcst ymm ymm
+// 	VPERMI2PD.BCST m256/m64bcst ymm k ymm
 // 	VPERMI2PD.BCST m512/m64bcst zmm zmm
 // 	VPERMI2PD.BCST m512/m64bcst zmm k zmm
 // Construct and append a VPERMI2PD.BCST instruction to the active function.
@@ -52186,10 +56918,12 @@ func VPERMI2PD_BCST(ops ...operand.Op) { ctx.VPERMI2PD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPERMI2PD.BCST.Z m128/m64bcst xmm k xmm
+// 	VPERMI2PD.BCST.Z m256/m64bcst ymm k ymm
 // 	VPERMI2PD.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VPERMI2PD.BCST.Z instruction to the active function.
-func (c *Context) VPERMI2PD_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VPERMI2PD_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VPERMI2PD_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPERMI2PD_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -52200,20 +56934,26 @@ func (c *Context) VPERMI2PD_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPERMI2PD.BCST.Z m128/m64bcst xmm k xmm
+// 	VPERMI2PD.BCST.Z m256/m64bcst ymm k ymm
 // 	VPERMI2PD.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VPERMI2PD.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VPERMI2PD_BCST_Z(m, z, k, z1 operand.Op) { ctx.VPERMI2PD_BCST_Z(m, z, k, z1) }
+func VPERMI2PD_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VPERMI2PD_BCST_Z(m, xyz, k, xyz1) }
 
 // VPERMI2PD_Z: Full Permute of Double-Precision Floating-Point Values From Two Tables Overwriting the Index (Zeroing Masking).
 //
 // Forms:
 //
+// 	VPERMI2PD.Z m128/m64bcst xmm k xmm
+// 	VPERMI2PD.Z xmm          xmm k xmm
+// 	VPERMI2PD.Z m256/m64bcst ymm k ymm
+// 	VPERMI2PD.Z ymm          ymm k ymm
 // 	VPERMI2PD.Z m512/m64bcst zmm k zmm
 // 	VPERMI2PD.Z zmm          zmm k zmm
 // Construct and append a VPERMI2PD.Z instruction to the active function.
-func (c *Context) VPERMI2PD_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VPERMI2PD_Z(mz, z, k, z1); err == nil {
+func (c *Context) VPERMI2PD_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPERMI2PD_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -52224,16 +56964,28 @@ func (c *Context) VPERMI2PD_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPERMI2PD.Z m128/m64bcst xmm k xmm
+// 	VPERMI2PD.Z xmm          xmm k xmm
+// 	VPERMI2PD.Z m256/m64bcst ymm k ymm
+// 	VPERMI2PD.Z ymm          ymm k ymm
 // 	VPERMI2PD.Z m512/m64bcst zmm k zmm
 // 	VPERMI2PD.Z zmm          zmm k zmm
 // Construct and append a VPERMI2PD.Z instruction to the active function.
 // Operates on the global context.
-func VPERMI2PD_Z(mz, z, k, z1 operand.Op) { ctx.VPERMI2PD_Z(mz, z, k, z1) }
+func VPERMI2PD_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPERMI2PD_Z(mxyz, xyz, k, xyz1) }
 
 // VPERMI2PS: Full Permute of Single-Precision Floating-Point Values From Two Tables Overwriting the Index.
 //
 // Forms:
 //
+// 	VPERMI2PS m128/m32bcst xmm xmm
+// 	VPERMI2PS m128/m32bcst xmm k xmm
+// 	VPERMI2PS xmm          xmm xmm
+// 	VPERMI2PS xmm          xmm k xmm
+// 	VPERMI2PS m256/m32bcst ymm ymm
+// 	VPERMI2PS m256/m32bcst ymm k ymm
+// 	VPERMI2PS ymm          ymm ymm
+// 	VPERMI2PS ymm          ymm k ymm
 // 	VPERMI2PS m512/m32bcst zmm zmm
 // 	VPERMI2PS m512/m32bcst zmm k zmm
 // 	VPERMI2PS zmm          zmm zmm
@@ -52251,6 +57003,14 @@ func (c *Context) VPERMI2PS(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPERMI2PS m128/m32bcst xmm xmm
+// 	VPERMI2PS m128/m32bcst xmm k xmm
+// 	VPERMI2PS xmm          xmm xmm
+// 	VPERMI2PS xmm          xmm k xmm
+// 	VPERMI2PS m256/m32bcst ymm ymm
+// 	VPERMI2PS m256/m32bcst ymm k ymm
+// 	VPERMI2PS ymm          ymm ymm
+// 	VPERMI2PS ymm          ymm k ymm
 // 	VPERMI2PS m512/m32bcst zmm zmm
 // 	VPERMI2PS m512/m32bcst zmm k zmm
 // 	VPERMI2PS zmm          zmm zmm
@@ -52263,6 +57023,10 @@ func VPERMI2PS(ops ...operand.Op) { ctx.VPERMI2PS(ops...) }
 //
 // Forms:
 //
+// 	VPERMI2PS.BCST m128/m32bcst xmm xmm
+// 	VPERMI2PS.BCST m128/m32bcst xmm k xmm
+// 	VPERMI2PS.BCST m256/m32bcst ymm ymm
+// 	VPERMI2PS.BCST m256/m32bcst ymm k ymm
 // 	VPERMI2PS.BCST m512/m32bcst zmm zmm
 // 	VPERMI2PS.BCST m512/m32bcst zmm k zmm
 // Construct and append a VPERMI2PS.BCST instruction to the active function.
@@ -52278,6 +57042,10 @@ func (c *Context) VPERMI2PS_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPERMI2PS.BCST m128/m32bcst xmm xmm
+// 	VPERMI2PS.BCST m128/m32bcst xmm k xmm
+// 	VPERMI2PS.BCST m256/m32bcst ymm ymm
+// 	VPERMI2PS.BCST m256/m32bcst ymm k ymm
 // 	VPERMI2PS.BCST m512/m32bcst zmm zmm
 // 	VPERMI2PS.BCST m512/m32bcst zmm k zmm
 // Construct and append a VPERMI2PS.BCST instruction to the active function.
@@ -52288,10 +57056,12 @@ func VPERMI2PS_BCST(ops ...operand.Op) { ctx.VPERMI2PS_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPERMI2PS.BCST.Z m128/m32bcst xmm k xmm
+// 	VPERMI2PS.BCST.Z m256/m32bcst ymm k ymm
 // 	VPERMI2PS.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VPERMI2PS.BCST.Z instruction to the active function.
-func (c *Context) VPERMI2PS_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VPERMI2PS_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VPERMI2PS_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPERMI2PS_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -52302,20 +57072,26 @@ func (c *Context) VPERMI2PS_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPERMI2PS.BCST.Z m128/m32bcst xmm k xmm
+// 	VPERMI2PS.BCST.Z m256/m32bcst ymm k ymm
 // 	VPERMI2PS.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VPERMI2PS.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VPERMI2PS_BCST_Z(m, z, k, z1 operand.Op) { ctx.VPERMI2PS_BCST_Z(m, z, k, z1) }
+func VPERMI2PS_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VPERMI2PS_BCST_Z(m, xyz, k, xyz1) }
 
 // VPERMI2PS_Z: Full Permute of Single-Precision Floating-Point Values From Two Tables Overwriting the Index (Zeroing Masking).
 //
 // Forms:
 //
+// 	VPERMI2PS.Z m128/m32bcst xmm k xmm
+// 	VPERMI2PS.Z xmm          xmm k xmm
+// 	VPERMI2PS.Z m256/m32bcst ymm k ymm
+// 	VPERMI2PS.Z ymm          ymm k ymm
 // 	VPERMI2PS.Z m512/m32bcst zmm k zmm
 // 	VPERMI2PS.Z zmm          zmm k zmm
 // Construct and append a VPERMI2PS.Z instruction to the active function.
-func (c *Context) VPERMI2PS_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VPERMI2PS_Z(mz, z, k, z1); err == nil {
+func (c *Context) VPERMI2PS_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPERMI2PS_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -52326,16 +57102,28 @@ func (c *Context) VPERMI2PS_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPERMI2PS.Z m128/m32bcst xmm k xmm
+// 	VPERMI2PS.Z xmm          xmm k xmm
+// 	VPERMI2PS.Z m256/m32bcst ymm k ymm
+// 	VPERMI2PS.Z ymm          ymm k ymm
 // 	VPERMI2PS.Z m512/m32bcst zmm k zmm
 // 	VPERMI2PS.Z zmm          zmm k zmm
 // Construct and append a VPERMI2PS.Z instruction to the active function.
 // Operates on the global context.
-func VPERMI2PS_Z(mz, z, k, z1 operand.Op) { ctx.VPERMI2PS_Z(mz, z, k, z1) }
+func VPERMI2PS_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPERMI2PS_Z(mxyz, xyz, k, xyz1) }
 
 // VPERMI2Q: Full Permute of Quadwords From Two Tables Overwriting the Index.
 //
 // Forms:
 //
+// 	VPERMI2Q m128/m64bcst xmm xmm
+// 	VPERMI2Q m128/m64bcst xmm k xmm
+// 	VPERMI2Q xmm          xmm xmm
+// 	VPERMI2Q xmm          xmm k xmm
+// 	VPERMI2Q m256/m64bcst ymm ymm
+// 	VPERMI2Q m256/m64bcst ymm k ymm
+// 	VPERMI2Q ymm          ymm ymm
+// 	VPERMI2Q ymm          ymm k ymm
 // 	VPERMI2Q m512/m64bcst zmm zmm
 // 	VPERMI2Q m512/m64bcst zmm k zmm
 // 	VPERMI2Q zmm          zmm zmm
@@ -52353,6 +57141,14 @@ func (c *Context) VPERMI2Q(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPERMI2Q m128/m64bcst xmm xmm
+// 	VPERMI2Q m128/m64bcst xmm k xmm
+// 	VPERMI2Q xmm          xmm xmm
+// 	VPERMI2Q xmm          xmm k xmm
+// 	VPERMI2Q m256/m64bcst ymm ymm
+// 	VPERMI2Q m256/m64bcst ymm k ymm
+// 	VPERMI2Q ymm          ymm ymm
+// 	VPERMI2Q ymm          ymm k ymm
 // 	VPERMI2Q m512/m64bcst zmm zmm
 // 	VPERMI2Q m512/m64bcst zmm k zmm
 // 	VPERMI2Q zmm          zmm zmm
@@ -52365,6 +57161,10 @@ func VPERMI2Q(ops ...operand.Op) { ctx.VPERMI2Q(ops...) }
 //
 // Forms:
 //
+// 	VPERMI2Q.BCST m128/m64bcst xmm xmm
+// 	VPERMI2Q.BCST m128/m64bcst xmm k xmm
+// 	VPERMI2Q.BCST m256/m64bcst ymm ymm
+// 	VPERMI2Q.BCST m256/m64bcst ymm k ymm
 // 	VPERMI2Q.BCST m512/m64bcst zmm zmm
 // 	VPERMI2Q.BCST m512/m64bcst zmm k zmm
 // Construct and append a VPERMI2Q.BCST instruction to the active function.
@@ -52380,6 +57180,10 @@ func (c *Context) VPERMI2Q_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPERMI2Q.BCST m128/m64bcst xmm xmm
+// 	VPERMI2Q.BCST m128/m64bcst xmm k xmm
+// 	VPERMI2Q.BCST m256/m64bcst ymm ymm
+// 	VPERMI2Q.BCST m256/m64bcst ymm k ymm
 // 	VPERMI2Q.BCST m512/m64bcst zmm zmm
 // 	VPERMI2Q.BCST m512/m64bcst zmm k zmm
 // Construct and append a VPERMI2Q.BCST instruction to the active function.
@@ -52390,10 +57194,12 @@ func VPERMI2Q_BCST(ops ...operand.Op) { ctx.VPERMI2Q_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPERMI2Q.BCST.Z m128/m64bcst xmm k xmm
+// 	VPERMI2Q.BCST.Z m256/m64bcst ymm k ymm
 // 	VPERMI2Q.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VPERMI2Q.BCST.Z instruction to the active function.
-func (c *Context) VPERMI2Q_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VPERMI2Q_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VPERMI2Q_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPERMI2Q_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -52404,20 +57210,26 @@ func (c *Context) VPERMI2Q_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPERMI2Q.BCST.Z m128/m64bcst xmm k xmm
+// 	VPERMI2Q.BCST.Z m256/m64bcst ymm k ymm
 // 	VPERMI2Q.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VPERMI2Q.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VPERMI2Q_BCST_Z(m, z, k, z1 operand.Op) { ctx.VPERMI2Q_BCST_Z(m, z, k, z1) }
+func VPERMI2Q_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VPERMI2Q_BCST_Z(m, xyz, k, xyz1) }
 
 // VPERMI2Q_Z: Full Permute of Quadwords From Two Tables Overwriting the Index (Zeroing Masking).
 //
 // Forms:
 //
+// 	VPERMI2Q.Z m128/m64bcst xmm k xmm
+// 	VPERMI2Q.Z xmm          xmm k xmm
+// 	VPERMI2Q.Z m256/m64bcst ymm k ymm
+// 	VPERMI2Q.Z ymm          ymm k ymm
 // 	VPERMI2Q.Z m512/m64bcst zmm k zmm
 // 	VPERMI2Q.Z zmm          zmm k zmm
 // Construct and append a VPERMI2Q.Z instruction to the active function.
-func (c *Context) VPERMI2Q_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VPERMI2Q_Z(mz, z, k, z1); err == nil {
+func (c *Context) VPERMI2Q_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPERMI2Q_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -52428,18 +57240,38 @@ func (c *Context) VPERMI2Q_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPERMI2Q.Z m128/m64bcst xmm k xmm
+// 	VPERMI2Q.Z xmm          xmm k xmm
+// 	VPERMI2Q.Z m256/m64bcst ymm k ymm
+// 	VPERMI2Q.Z ymm          ymm k ymm
 // 	VPERMI2Q.Z m512/m64bcst zmm k zmm
 // 	VPERMI2Q.Z zmm          zmm k zmm
 // Construct and append a VPERMI2Q.Z instruction to the active function.
 // Operates on the global context.
-func VPERMI2Q_Z(mz, z, k, z1 operand.Op) { ctx.VPERMI2Q_Z(mz, z, k, z1) }
+func VPERMI2Q_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPERMI2Q_Z(mxyz, xyz, k, xyz1) }
 
 // VPERMILPD: Permute Double-Precision Floating-Point Values.
 //
 // Forms:
 //
+// 	VPERMILPD imm8         m128/m64bcst xmm
+// 	VPERMILPD imm8         m128/m64bcst k xmm
+// 	VPERMILPD imm8         m256/m64bcst ymm
+// 	VPERMILPD imm8         m256/m64bcst k ymm
 // 	VPERMILPD imm8         m512/m64bcst zmm
 // 	VPERMILPD imm8         m512/m64bcst k zmm
+// 	VPERMILPD m128/m64bcst xmm          xmm
+// 	VPERMILPD m128/m64bcst xmm          k xmm
+// 	VPERMILPD imm8         xmm          xmm
+// 	VPERMILPD imm8         xmm          k xmm
+// 	VPERMILPD xmm          xmm          xmm
+// 	VPERMILPD xmm          xmm          k xmm
+// 	VPERMILPD m256/m64bcst ymm          ymm
+// 	VPERMILPD m256/m64bcst ymm          k ymm
+// 	VPERMILPD imm8         ymm          ymm
+// 	VPERMILPD imm8         ymm          k ymm
+// 	VPERMILPD ymm          ymm          ymm
+// 	VPERMILPD ymm          ymm          k ymm
 // 	VPERMILPD m512/m64bcst zmm          zmm
 // 	VPERMILPD m512/m64bcst zmm          k zmm
 // 	VPERMILPD imm8         zmm          zmm
@@ -52467,8 +57299,24 @@ func (c *Context) VPERMILPD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPERMILPD imm8         m128/m64bcst xmm
+// 	VPERMILPD imm8         m128/m64bcst k xmm
+// 	VPERMILPD imm8         m256/m64bcst ymm
+// 	VPERMILPD imm8         m256/m64bcst k ymm
 // 	VPERMILPD imm8         m512/m64bcst zmm
 // 	VPERMILPD imm8         m512/m64bcst k zmm
+// 	VPERMILPD m128/m64bcst xmm          xmm
+// 	VPERMILPD m128/m64bcst xmm          k xmm
+// 	VPERMILPD imm8         xmm          xmm
+// 	VPERMILPD imm8         xmm          k xmm
+// 	VPERMILPD xmm          xmm          xmm
+// 	VPERMILPD xmm          xmm          k xmm
+// 	VPERMILPD m256/m64bcst ymm          ymm
+// 	VPERMILPD m256/m64bcst ymm          k ymm
+// 	VPERMILPD imm8         ymm          ymm
+// 	VPERMILPD imm8         ymm          k ymm
+// 	VPERMILPD ymm          ymm          ymm
+// 	VPERMILPD ymm          ymm          k ymm
 // 	VPERMILPD m512/m64bcst zmm          zmm
 // 	VPERMILPD m512/m64bcst zmm          k zmm
 // 	VPERMILPD imm8         zmm          zmm
@@ -52491,8 +57339,16 @@ func VPERMILPD(ops ...operand.Op) { ctx.VPERMILPD(ops...) }
 //
 // Forms:
 //
+// 	VPERMILPD.BCST imm8         m128/m64bcst xmm
+// 	VPERMILPD.BCST imm8         m128/m64bcst k xmm
+// 	VPERMILPD.BCST imm8         m256/m64bcst ymm
+// 	VPERMILPD.BCST imm8         m256/m64bcst k ymm
 // 	VPERMILPD.BCST imm8         m512/m64bcst zmm
 // 	VPERMILPD.BCST imm8         m512/m64bcst k zmm
+// 	VPERMILPD.BCST m128/m64bcst xmm          xmm
+// 	VPERMILPD.BCST m128/m64bcst xmm          k xmm
+// 	VPERMILPD.BCST m256/m64bcst ymm          ymm
+// 	VPERMILPD.BCST m256/m64bcst ymm          k ymm
 // 	VPERMILPD.BCST m512/m64bcst zmm          zmm
 // 	VPERMILPD.BCST m512/m64bcst zmm          k zmm
 // Construct and append a VPERMILPD.BCST instruction to the active function.
@@ -52508,8 +57364,16 @@ func (c *Context) VPERMILPD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPERMILPD.BCST imm8         m128/m64bcst xmm
+// 	VPERMILPD.BCST imm8         m128/m64bcst k xmm
+// 	VPERMILPD.BCST imm8         m256/m64bcst ymm
+// 	VPERMILPD.BCST imm8         m256/m64bcst k ymm
 // 	VPERMILPD.BCST imm8         m512/m64bcst zmm
 // 	VPERMILPD.BCST imm8         m512/m64bcst k zmm
+// 	VPERMILPD.BCST m128/m64bcst xmm          xmm
+// 	VPERMILPD.BCST m128/m64bcst xmm          k xmm
+// 	VPERMILPD.BCST m256/m64bcst ymm          ymm
+// 	VPERMILPD.BCST m256/m64bcst ymm          k ymm
 // 	VPERMILPD.BCST m512/m64bcst zmm          zmm
 // 	VPERMILPD.BCST m512/m64bcst zmm          k zmm
 // Construct and append a VPERMILPD.BCST instruction to the active function.
@@ -52520,11 +57384,15 @@ func VPERMILPD_BCST(ops ...operand.Op) { ctx.VPERMILPD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPERMILPD.BCST.Z imm8         m128/m64bcst k xmm
+// 	VPERMILPD.BCST.Z imm8         m256/m64bcst k ymm
 // 	VPERMILPD.BCST.Z imm8         m512/m64bcst k zmm
+// 	VPERMILPD.BCST.Z m128/m64bcst xmm          k xmm
+// 	VPERMILPD.BCST.Z m256/m64bcst ymm          k ymm
 // 	VPERMILPD.BCST.Z m512/m64bcst zmm          k zmm
 // Construct and append a VPERMILPD.BCST.Z instruction to the active function.
-func (c *Context) VPERMILPD_BCST_Z(im, mz, k, z operand.Op) {
-	if inst, err := x86.VPERMILPD_BCST_Z(im, mz, k, z); err == nil {
+func (c *Context) VPERMILPD_BCST_Z(im, mxyz, k, xyz operand.Op) {
+	if inst, err := x86.VPERMILPD_BCST_Z(im, mxyz, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -52535,23 +57403,35 @@ func (c *Context) VPERMILPD_BCST_Z(im, mz, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VPERMILPD.BCST.Z imm8         m128/m64bcst k xmm
+// 	VPERMILPD.BCST.Z imm8         m256/m64bcst k ymm
 // 	VPERMILPD.BCST.Z imm8         m512/m64bcst k zmm
+// 	VPERMILPD.BCST.Z m128/m64bcst xmm          k xmm
+// 	VPERMILPD.BCST.Z m256/m64bcst ymm          k ymm
 // 	VPERMILPD.BCST.Z m512/m64bcst zmm          k zmm
 // Construct and append a VPERMILPD.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VPERMILPD_BCST_Z(im, mz, k, z operand.Op) { ctx.VPERMILPD_BCST_Z(im, mz, k, z) }
+func VPERMILPD_BCST_Z(im, mxyz, k, xyz operand.Op) { ctx.VPERMILPD_BCST_Z(im, mxyz, k, xyz) }
 
 // VPERMILPD_Z: Permute Double-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
+// 	VPERMILPD.Z imm8         m128/m64bcst k xmm
+// 	VPERMILPD.Z imm8         m256/m64bcst k ymm
 // 	VPERMILPD.Z imm8         m512/m64bcst k zmm
+// 	VPERMILPD.Z m128/m64bcst xmm          k xmm
+// 	VPERMILPD.Z imm8         xmm          k xmm
+// 	VPERMILPD.Z xmm          xmm          k xmm
+// 	VPERMILPD.Z m256/m64bcst ymm          k ymm
+// 	VPERMILPD.Z imm8         ymm          k ymm
+// 	VPERMILPD.Z ymm          ymm          k ymm
 // 	VPERMILPD.Z m512/m64bcst zmm          k zmm
 // 	VPERMILPD.Z imm8         zmm          k zmm
 // 	VPERMILPD.Z zmm          zmm          k zmm
 // Construct and append a VPERMILPD.Z instruction to the active function.
-func (c *Context) VPERMILPD_Z(imz, mz, k, z operand.Op) {
-	if inst, err := x86.VPERMILPD_Z(imz, mz, k, z); err == nil {
+func (c *Context) VPERMILPD_Z(imxyz, mxyz, k, xyz operand.Op) {
+	if inst, err := x86.VPERMILPD_Z(imxyz, mxyz, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -52562,20 +57442,44 @@ func (c *Context) VPERMILPD_Z(imz, mz, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VPERMILPD.Z imm8         m128/m64bcst k xmm
+// 	VPERMILPD.Z imm8         m256/m64bcst k ymm
 // 	VPERMILPD.Z imm8         m512/m64bcst k zmm
+// 	VPERMILPD.Z m128/m64bcst xmm          k xmm
+// 	VPERMILPD.Z imm8         xmm          k xmm
+// 	VPERMILPD.Z xmm          xmm          k xmm
+// 	VPERMILPD.Z m256/m64bcst ymm          k ymm
+// 	VPERMILPD.Z imm8         ymm          k ymm
+// 	VPERMILPD.Z ymm          ymm          k ymm
 // 	VPERMILPD.Z m512/m64bcst zmm          k zmm
 // 	VPERMILPD.Z imm8         zmm          k zmm
 // 	VPERMILPD.Z zmm          zmm          k zmm
 // Construct and append a VPERMILPD.Z instruction to the active function.
 // Operates on the global context.
-func VPERMILPD_Z(imz, mz, k, z operand.Op) { ctx.VPERMILPD_Z(imz, mz, k, z) }
+func VPERMILPD_Z(imxyz, mxyz, k, xyz operand.Op) { ctx.VPERMILPD_Z(imxyz, mxyz, k, xyz) }
 
 // VPERMILPS: Permute Single-Precision Floating-Point Values.
 //
 // Forms:
 //
+// 	VPERMILPS imm8         m128/m32bcst xmm
+// 	VPERMILPS imm8         m128/m32bcst k xmm
+// 	VPERMILPS imm8         m256/m32bcst ymm
+// 	VPERMILPS imm8         m256/m32bcst k ymm
 // 	VPERMILPS imm8         m512/m32bcst zmm
 // 	VPERMILPS imm8         m512/m32bcst k zmm
+// 	VPERMILPS m128/m32bcst xmm          xmm
+// 	VPERMILPS m128/m32bcst xmm          k xmm
+// 	VPERMILPS imm8         xmm          xmm
+// 	VPERMILPS imm8         xmm          k xmm
+// 	VPERMILPS xmm          xmm          xmm
+// 	VPERMILPS xmm          xmm          k xmm
+// 	VPERMILPS m256/m32bcst ymm          ymm
+// 	VPERMILPS m256/m32bcst ymm          k ymm
+// 	VPERMILPS imm8         ymm          ymm
+// 	VPERMILPS imm8         ymm          k ymm
+// 	VPERMILPS ymm          ymm          ymm
+// 	VPERMILPS ymm          ymm          k ymm
 // 	VPERMILPS m512/m32bcst zmm          zmm
 // 	VPERMILPS m512/m32bcst zmm          k zmm
 // 	VPERMILPS imm8         zmm          zmm
@@ -52603,8 +57507,24 @@ func (c *Context) VPERMILPS(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPERMILPS imm8         m128/m32bcst xmm
+// 	VPERMILPS imm8         m128/m32bcst k xmm
+// 	VPERMILPS imm8         m256/m32bcst ymm
+// 	VPERMILPS imm8         m256/m32bcst k ymm
 // 	VPERMILPS imm8         m512/m32bcst zmm
 // 	VPERMILPS imm8         m512/m32bcst k zmm
+// 	VPERMILPS m128/m32bcst xmm          xmm
+// 	VPERMILPS m128/m32bcst xmm          k xmm
+// 	VPERMILPS imm8         xmm          xmm
+// 	VPERMILPS imm8         xmm          k xmm
+// 	VPERMILPS xmm          xmm          xmm
+// 	VPERMILPS xmm          xmm          k xmm
+// 	VPERMILPS m256/m32bcst ymm          ymm
+// 	VPERMILPS m256/m32bcst ymm          k ymm
+// 	VPERMILPS imm8         ymm          ymm
+// 	VPERMILPS imm8         ymm          k ymm
+// 	VPERMILPS ymm          ymm          ymm
+// 	VPERMILPS ymm          ymm          k ymm
 // 	VPERMILPS m512/m32bcst zmm          zmm
 // 	VPERMILPS m512/m32bcst zmm          k zmm
 // 	VPERMILPS imm8         zmm          zmm
@@ -52627,8 +57547,16 @@ func VPERMILPS(ops ...operand.Op) { ctx.VPERMILPS(ops...) }
 //
 // Forms:
 //
+// 	VPERMILPS.BCST imm8         m128/m32bcst xmm
+// 	VPERMILPS.BCST imm8         m128/m32bcst k xmm
+// 	VPERMILPS.BCST imm8         m256/m32bcst ymm
+// 	VPERMILPS.BCST imm8         m256/m32bcst k ymm
 // 	VPERMILPS.BCST imm8         m512/m32bcst zmm
 // 	VPERMILPS.BCST imm8         m512/m32bcst k zmm
+// 	VPERMILPS.BCST m128/m32bcst xmm          xmm
+// 	VPERMILPS.BCST m128/m32bcst xmm          k xmm
+// 	VPERMILPS.BCST m256/m32bcst ymm          ymm
+// 	VPERMILPS.BCST m256/m32bcst ymm          k ymm
 // 	VPERMILPS.BCST m512/m32bcst zmm          zmm
 // 	VPERMILPS.BCST m512/m32bcst zmm          k zmm
 // Construct and append a VPERMILPS.BCST instruction to the active function.
@@ -52644,8 +57572,16 @@ func (c *Context) VPERMILPS_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPERMILPS.BCST imm8         m128/m32bcst xmm
+// 	VPERMILPS.BCST imm8         m128/m32bcst k xmm
+// 	VPERMILPS.BCST imm8         m256/m32bcst ymm
+// 	VPERMILPS.BCST imm8         m256/m32bcst k ymm
 // 	VPERMILPS.BCST imm8         m512/m32bcst zmm
 // 	VPERMILPS.BCST imm8         m512/m32bcst k zmm
+// 	VPERMILPS.BCST m128/m32bcst xmm          xmm
+// 	VPERMILPS.BCST m128/m32bcst xmm          k xmm
+// 	VPERMILPS.BCST m256/m32bcst ymm          ymm
+// 	VPERMILPS.BCST m256/m32bcst ymm          k ymm
 // 	VPERMILPS.BCST m512/m32bcst zmm          zmm
 // 	VPERMILPS.BCST m512/m32bcst zmm          k zmm
 // Construct and append a VPERMILPS.BCST instruction to the active function.
@@ -52656,11 +57592,15 @@ func VPERMILPS_BCST(ops ...operand.Op) { ctx.VPERMILPS_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPERMILPS.BCST.Z imm8         m128/m32bcst k xmm
+// 	VPERMILPS.BCST.Z imm8         m256/m32bcst k ymm
 // 	VPERMILPS.BCST.Z imm8         m512/m32bcst k zmm
+// 	VPERMILPS.BCST.Z m128/m32bcst xmm          k xmm
+// 	VPERMILPS.BCST.Z m256/m32bcst ymm          k ymm
 // 	VPERMILPS.BCST.Z m512/m32bcst zmm          k zmm
 // Construct and append a VPERMILPS.BCST.Z instruction to the active function.
-func (c *Context) VPERMILPS_BCST_Z(im, mz, k, z operand.Op) {
-	if inst, err := x86.VPERMILPS_BCST_Z(im, mz, k, z); err == nil {
+func (c *Context) VPERMILPS_BCST_Z(im, mxyz, k, xyz operand.Op) {
+	if inst, err := x86.VPERMILPS_BCST_Z(im, mxyz, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -52671,23 +57611,35 @@ func (c *Context) VPERMILPS_BCST_Z(im, mz, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VPERMILPS.BCST.Z imm8         m128/m32bcst k xmm
+// 	VPERMILPS.BCST.Z imm8         m256/m32bcst k ymm
 // 	VPERMILPS.BCST.Z imm8         m512/m32bcst k zmm
+// 	VPERMILPS.BCST.Z m128/m32bcst xmm          k xmm
+// 	VPERMILPS.BCST.Z m256/m32bcst ymm          k ymm
 // 	VPERMILPS.BCST.Z m512/m32bcst zmm          k zmm
 // Construct and append a VPERMILPS.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VPERMILPS_BCST_Z(im, mz, k, z operand.Op) { ctx.VPERMILPS_BCST_Z(im, mz, k, z) }
+func VPERMILPS_BCST_Z(im, mxyz, k, xyz operand.Op) { ctx.VPERMILPS_BCST_Z(im, mxyz, k, xyz) }
 
 // VPERMILPS_Z: Permute Single-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
+// 	VPERMILPS.Z imm8         m128/m32bcst k xmm
+// 	VPERMILPS.Z imm8         m256/m32bcst k ymm
 // 	VPERMILPS.Z imm8         m512/m32bcst k zmm
+// 	VPERMILPS.Z m128/m32bcst xmm          k xmm
+// 	VPERMILPS.Z imm8         xmm          k xmm
+// 	VPERMILPS.Z xmm          xmm          k xmm
+// 	VPERMILPS.Z m256/m32bcst ymm          k ymm
+// 	VPERMILPS.Z imm8         ymm          k ymm
+// 	VPERMILPS.Z ymm          ymm          k ymm
 // 	VPERMILPS.Z m512/m32bcst zmm          k zmm
 // 	VPERMILPS.Z imm8         zmm          k zmm
 // 	VPERMILPS.Z zmm          zmm          k zmm
 // Construct and append a VPERMILPS.Z instruction to the active function.
-func (c *Context) VPERMILPS_Z(imz, mz, k, z operand.Op) {
-	if inst, err := x86.VPERMILPS_Z(imz, mz, k, z); err == nil {
+func (c *Context) VPERMILPS_Z(imxyz, mxyz, k, xyz operand.Op) {
+	if inst, err := x86.VPERMILPS_Z(imxyz, mxyz, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -52698,20 +57650,36 @@ func (c *Context) VPERMILPS_Z(imz, mz, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VPERMILPS.Z imm8         m128/m32bcst k xmm
+// 	VPERMILPS.Z imm8         m256/m32bcst k ymm
 // 	VPERMILPS.Z imm8         m512/m32bcst k zmm
+// 	VPERMILPS.Z m128/m32bcst xmm          k xmm
+// 	VPERMILPS.Z imm8         xmm          k xmm
+// 	VPERMILPS.Z xmm          xmm          k xmm
+// 	VPERMILPS.Z m256/m32bcst ymm          k ymm
+// 	VPERMILPS.Z imm8         ymm          k ymm
+// 	VPERMILPS.Z ymm          ymm          k ymm
 // 	VPERMILPS.Z m512/m32bcst zmm          k zmm
 // 	VPERMILPS.Z imm8         zmm          k zmm
 // 	VPERMILPS.Z zmm          zmm          k zmm
 // Construct and append a VPERMILPS.Z instruction to the active function.
 // Operates on the global context.
-func VPERMILPS_Z(imz, mz, k, z operand.Op) { ctx.VPERMILPS_Z(imz, mz, k, z) }
+func VPERMILPS_Z(imxyz, mxyz, k, xyz operand.Op) { ctx.VPERMILPS_Z(imxyz, mxyz, k, xyz) }
 
 // VPERMPD: Permute Double-Precision Floating-Point Elements.
 //
 // Forms:
 //
+// 	VPERMPD imm8         m256/m64bcst ymm
+// 	VPERMPD imm8         m256/m64bcst k ymm
 // 	VPERMPD imm8         m512/m64bcst zmm
 // 	VPERMPD imm8         m512/m64bcst k zmm
+// 	VPERMPD m256/m64bcst ymm          ymm
+// 	VPERMPD m256/m64bcst ymm          k ymm
+// 	VPERMPD imm8         ymm          ymm
+// 	VPERMPD imm8         ymm          k ymm
+// 	VPERMPD ymm          ymm          ymm
+// 	VPERMPD ymm          ymm          k ymm
 // 	VPERMPD m512/m64bcst zmm          zmm
 // 	VPERMPD m512/m64bcst zmm          k zmm
 // 	VPERMPD imm8         zmm          zmm
@@ -52733,8 +57701,16 @@ func (c *Context) VPERMPD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPERMPD imm8         m256/m64bcst ymm
+// 	VPERMPD imm8         m256/m64bcst k ymm
 // 	VPERMPD imm8         m512/m64bcst zmm
 // 	VPERMPD imm8         m512/m64bcst k zmm
+// 	VPERMPD m256/m64bcst ymm          ymm
+// 	VPERMPD m256/m64bcst ymm          k ymm
+// 	VPERMPD imm8         ymm          ymm
+// 	VPERMPD imm8         ymm          k ymm
+// 	VPERMPD ymm          ymm          ymm
+// 	VPERMPD ymm          ymm          k ymm
 // 	VPERMPD m512/m64bcst zmm          zmm
 // 	VPERMPD m512/m64bcst zmm          k zmm
 // 	VPERMPD imm8         zmm          zmm
@@ -52751,8 +57727,12 @@ func VPERMPD(ops ...operand.Op) { ctx.VPERMPD(ops...) }
 //
 // Forms:
 //
+// 	VPERMPD.BCST imm8         m256/m64bcst ymm
+// 	VPERMPD.BCST imm8         m256/m64bcst k ymm
 // 	VPERMPD.BCST imm8         m512/m64bcst zmm
 // 	VPERMPD.BCST imm8         m512/m64bcst k zmm
+// 	VPERMPD.BCST m256/m64bcst ymm          ymm
+// 	VPERMPD.BCST m256/m64bcst ymm          k ymm
 // 	VPERMPD.BCST m512/m64bcst zmm          zmm
 // 	VPERMPD.BCST m512/m64bcst zmm          k zmm
 // Construct and append a VPERMPD.BCST instruction to the active function.
@@ -52768,8 +57748,12 @@ func (c *Context) VPERMPD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPERMPD.BCST imm8         m256/m64bcst ymm
+// 	VPERMPD.BCST imm8         m256/m64bcst k ymm
 // 	VPERMPD.BCST imm8         m512/m64bcst zmm
 // 	VPERMPD.BCST imm8         m512/m64bcst k zmm
+// 	VPERMPD.BCST m256/m64bcst ymm          ymm
+// 	VPERMPD.BCST m256/m64bcst ymm          k ymm
 // 	VPERMPD.BCST m512/m64bcst zmm          zmm
 // 	VPERMPD.BCST m512/m64bcst zmm          k zmm
 // Construct and append a VPERMPD.BCST instruction to the active function.
@@ -52780,11 +57764,13 @@ func VPERMPD_BCST(ops ...operand.Op) { ctx.VPERMPD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPERMPD.BCST.Z imm8         m256/m64bcst k ymm
 // 	VPERMPD.BCST.Z imm8         m512/m64bcst k zmm
+// 	VPERMPD.BCST.Z m256/m64bcst ymm          k ymm
 // 	VPERMPD.BCST.Z m512/m64bcst zmm          k zmm
 // Construct and append a VPERMPD.BCST.Z instruction to the active function.
-func (c *Context) VPERMPD_BCST_Z(im, mz, k, z operand.Op) {
-	if inst, err := x86.VPERMPD_BCST_Z(im, mz, k, z); err == nil {
+func (c *Context) VPERMPD_BCST_Z(im, myz, k, yz operand.Op) {
+	if inst, err := x86.VPERMPD_BCST_Z(im, myz, k, yz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -52795,23 +57781,29 @@ func (c *Context) VPERMPD_BCST_Z(im, mz, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VPERMPD.BCST.Z imm8         m256/m64bcst k ymm
 // 	VPERMPD.BCST.Z imm8         m512/m64bcst k zmm
+// 	VPERMPD.BCST.Z m256/m64bcst ymm          k ymm
 // 	VPERMPD.BCST.Z m512/m64bcst zmm          k zmm
 // Construct and append a VPERMPD.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VPERMPD_BCST_Z(im, mz, k, z operand.Op) { ctx.VPERMPD_BCST_Z(im, mz, k, z) }
+func VPERMPD_BCST_Z(im, myz, k, yz operand.Op) { ctx.VPERMPD_BCST_Z(im, myz, k, yz) }
 
 // VPERMPD_Z: Permute Double-Precision Floating-Point Elements (Zeroing Masking).
 //
 // Forms:
 //
+// 	VPERMPD.Z imm8         m256/m64bcst k ymm
 // 	VPERMPD.Z imm8         m512/m64bcst k zmm
+// 	VPERMPD.Z m256/m64bcst ymm          k ymm
+// 	VPERMPD.Z imm8         ymm          k ymm
+// 	VPERMPD.Z ymm          ymm          k ymm
 // 	VPERMPD.Z m512/m64bcst zmm          k zmm
 // 	VPERMPD.Z imm8         zmm          k zmm
 // 	VPERMPD.Z zmm          zmm          k zmm
 // Construct and append a VPERMPD.Z instruction to the active function.
-func (c *Context) VPERMPD_Z(imz, mz, k, z operand.Op) {
-	if inst, err := x86.VPERMPD_Z(imz, mz, k, z); err == nil {
+func (c *Context) VPERMPD_Z(imyz, myz, k, yz operand.Op) {
+	if inst, err := x86.VPERMPD_Z(imyz, myz, k, yz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -52822,18 +57814,26 @@ func (c *Context) VPERMPD_Z(imz, mz, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VPERMPD.Z imm8         m256/m64bcst k ymm
 // 	VPERMPD.Z imm8         m512/m64bcst k zmm
+// 	VPERMPD.Z m256/m64bcst ymm          k ymm
+// 	VPERMPD.Z imm8         ymm          k ymm
+// 	VPERMPD.Z ymm          ymm          k ymm
 // 	VPERMPD.Z m512/m64bcst zmm          k zmm
 // 	VPERMPD.Z imm8         zmm          k zmm
 // 	VPERMPD.Z zmm          zmm          k zmm
 // Construct and append a VPERMPD.Z instruction to the active function.
 // Operates on the global context.
-func VPERMPD_Z(imz, mz, k, z operand.Op) { ctx.VPERMPD_Z(imz, mz, k, z) }
+func VPERMPD_Z(imyz, myz, k, yz operand.Op) { ctx.VPERMPD_Z(imyz, myz, k, yz) }
 
 // VPERMPS: Permute Single-Precision Floating-Point Elements.
 //
 // Forms:
 //
+// 	VPERMPS m256/m32bcst ymm ymm
+// 	VPERMPS m256/m32bcst ymm k ymm
+// 	VPERMPS ymm          ymm ymm
+// 	VPERMPS ymm          ymm k ymm
 // 	VPERMPS m512/m32bcst zmm zmm
 // 	VPERMPS m512/m32bcst zmm k zmm
 // 	VPERMPS zmm          zmm zmm
@@ -52853,6 +57853,10 @@ func (c *Context) VPERMPS(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPERMPS m256/m32bcst ymm ymm
+// 	VPERMPS m256/m32bcst ymm k ymm
+// 	VPERMPS ymm          ymm ymm
+// 	VPERMPS ymm          ymm k ymm
 // 	VPERMPS m512/m32bcst zmm zmm
 // 	VPERMPS m512/m32bcst zmm k zmm
 // 	VPERMPS zmm          zmm zmm
@@ -52867,6 +57871,8 @@ func VPERMPS(ops ...operand.Op) { ctx.VPERMPS(ops...) }
 //
 // Forms:
 //
+// 	VPERMPS.BCST m256/m32bcst ymm ymm
+// 	VPERMPS.BCST m256/m32bcst ymm k ymm
 // 	VPERMPS.BCST m512/m32bcst zmm zmm
 // 	VPERMPS.BCST m512/m32bcst zmm k zmm
 // Construct and append a VPERMPS.BCST instruction to the active function.
@@ -52882,6 +57888,8 @@ func (c *Context) VPERMPS_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPERMPS.BCST m256/m32bcst ymm ymm
+// 	VPERMPS.BCST m256/m32bcst ymm k ymm
 // 	VPERMPS.BCST m512/m32bcst zmm zmm
 // 	VPERMPS.BCST m512/m32bcst zmm k zmm
 // Construct and append a VPERMPS.BCST instruction to the active function.
@@ -52892,10 +57900,11 @@ func VPERMPS_BCST(ops ...operand.Op) { ctx.VPERMPS_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPERMPS.BCST.Z m256/m32bcst ymm k ymm
 // 	VPERMPS.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VPERMPS.BCST.Z instruction to the active function.
-func (c *Context) VPERMPS_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VPERMPS_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VPERMPS_BCST_Z(m, yz, k, yz1 operand.Op) {
+	if inst, err := x86.VPERMPS_BCST_Z(m, yz, k, yz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -52906,20 +57915,23 @@ func (c *Context) VPERMPS_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPERMPS.BCST.Z m256/m32bcst ymm k ymm
 // 	VPERMPS.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VPERMPS.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VPERMPS_BCST_Z(m, z, k, z1 operand.Op) { ctx.VPERMPS_BCST_Z(m, z, k, z1) }
+func VPERMPS_BCST_Z(m, yz, k, yz1 operand.Op) { ctx.VPERMPS_BCST_Z(m, yz, k, yz1) }
 
 // VPERMPS_Z: Permute Single-Precision Floating-Point Elements (Zeroing Masking).
 //
 // Forms:
 //
+// 	VPERMPS.Z m256/m32bcst ymm k ymm
+// 	VPERMPS.Z ymm          ymm k ymm
 // 	VPERMPS.Z m512/m32bcst zmm k zmm
 // 	VPERMPS.Z zmm          zmm k zmm
 // Construct and append a VPERMPS.Z instruction to the active function.
-func (c *Context) VPERMPS_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VPERMPS_Z(mz, z, k, z1); err == nil {
+func (c *Context) VPERMPS_Z(myz, yz, k, yz1 operand.Op) {
+	if inst, err := x86.VPERMPS_Z(myz, yz, k, yz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -52930,18 +57942,28 @@ func (c *Context) VPERMPS_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPERMPS.Z m256/m32bcst ymm k ymm
+// 	VPERMPS.Z ymm          ymm k ymm
 // 	VPERMPS.Z m512/m32bcst zmm k zmm
 // 	VPERMPS.Z zmm          zmm k zmm
 // Construct and append a VPERMPS.Z instruction to the active function.
 // Operates on the global context.
-func VPERMPS_Z(mz, z, k, z1 operand.Op) { ctx.VPERMPS_Z(mz, z, k, z1) }
+func VPERMPS_Z(myz, yz, k, yz1 operand.Op) { ctx.VPERMPS_Z(myz, yz, k, yz1) }
 
 // VPERMQ: Permute Quadword Integers.
 //
 // Forms:
 //
+// 	VPERMQ imm8         m256/m64bcst ymm
+// 	VPERMQ imm8         m256/m64bcst k ymm
 // 	VPERMQ imm8         m512/m64bcst zmm
 // 	VPERMQ imm8         m512/m64bcst k zmm
+// 	VPERMQ m256/m64bcst ymm          ymm
+// 	VPERMQ m256/m64bcst ymm          k ymm
+// 	VPERMQ imm8         ymm          ymm
+// 	VPERMQ imm8         ymm          k ymm
+// 	VPERMQ ymm          ymm          ymm
+// 	VPERMQ ymm          ymm          k ymm
 // 	VPERMQ m512/m64bcst zmm          zmm
 // 	VPERMQ m512/m64bcst zmm          k zmm
 // 	VPERMQ imm8         zmm          zmm
@@ -52963,8 +57985,16 @@ func (c *Context) VPERMQ(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPERMQ imm8         m256/m64bcst ymm
+// 	VPERMQ imm8         m256/m64bcst k ymm
 // 	VPERMQ imm8         m512/m64bcst zmm
 // 	VPERMQ imm8         m512/m64bcst k zmm
+// 	VPERMQ m256/m64bcst ymm          ymm
+// 	VPERMQ m256/m64bcst ymm          k ymm
+// 	VPERMQ imm8         ymm          ymm
+// 	VPERMQ imm8         ymm          k ymm
+// 	VPERMQ ymm          ymm          ymm
+// 	VPERMQ ymm          ymm          k ymm
 // 	VPERMQ m512/m64bcst zmm          zmm
 // 	VPERMQ m512/m64bcst zmm          k zmm
 // 	VPERMQ imm8         zmm          zmm
@@ -52981,8 +58011,12 @@ func VPERMQ(ops ...operand.Op) { ctx.VPERMQ(ops...) }
 //
 // Forms:
 //
+// 	VPERMQ.BCST imm8         m256/m64bcst ymm
+// 	VPERMQ.BCST imm8         m256/m64bcst k ymm
 // 	VPERMQ.BCST imm8         m512/m64bcst zmm
 // 	VPERMQ.BCST imm8         m512/m64bcst k zmm
+// 	VPERMQ.BCST m256/m64bcst ymm          ymm
+// 	VPERMQ.BCST m256/m64bcst ymm          k ymm
 // 	VPERMQ.BCST m512/m64bcst zmm          zmm
 // 	VPERMQ.BCST m512/m64bcst zmm          k zmm
 // Construct and append a VPERMQ.BCST instruction to the active function.
@@ -52998,8 +58032,12 @@ func (c *Context) VPERMQ_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPERMQ.BCST imm8         m256/m64bcst ymm
+// 	VPERMQ.BCST imm8         m256/m64bcst k ymm
 // 	VPERMQ.BCST imm8         m512/m64bcst zmm
 // 	VPERMQ.BCST imm8         m512/m64bcst k zmm
+// 	VPERMQ.BCST m256/m64bcst ymm          ymm
+// 	VPERMQ.BCST m256/m64bcst ymm          k ymm
 // 	VPERMQ.BCST m512/m64bcst zmm          zmm
 // 	VPERMQ.BCST m512/m64bcst zmm          k zmm
 // Construct and append a VPERMQ.BCST instruction to the active function.
@@ -53010,11 +58048,13 @@ func VPERMQ_BCST(ops ...operand.Op) { ctx.VPERMQ_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPERMQ.BCST.Z imm8         m256/m64bcst k ymm
 // 	VPERMQ.BCST.Z imm8         m512/m64bcst k zmm
+// 	VPERMQ.BCST.Z m256/m64bcst ymm          k ymm
 // 	VPERMQ.BCST.Z m512/m64bcst zmm          k zmm
 // Construct and append a VPERMQ.BCST.Z instruction to the active function.
-func (c *Context) VPERMQ_BCST_Z(im, mz, k, z operand.Op) {
-	if inst, err := x86.VPERMQ_BCST_Z(im, mz, k, z); err == nil {
+func (c *Context) VPERMQ_BCST_Z(im, myz, k, yz operand.Op) {
+	if inst, err := x86.VPERMQ_BCST_Z(im, myz, k, yz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -53025,23 +58065,29 @@ func (c *Context) VPERMQ_BCST_Z(im, mz, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VPERMQ.BCST.Z imm8         m256/m64bcst k ymm
 // 	VPERMQ.BCST.Z imm8         m512/m64bcst k zmm
+// 	VPERMQ.BCST.Z m256/m64bcst ymm          k ymm
 // 	VPERMQ.BCST.Z m512/m64bcst zmm          k zmm
 // Construct and append a VPERMQ.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VPERMQ_BCST_Z(im, mz, k, z operand.Op) { ctx.VPERMQ_BCST_Z(im, mz, k, z) }
+func VPERMQ_BCST_Z(im, myz, k, yz operand.Op) { ctx.VPERMQ_BCST_Z(im, myz, k, yz) }
 
 // VPERMQ_Z: Permute Quadword Integers (Zeroing Masking).
 //
 // Forms:
 //
+// 	VPERMQ.Z imm8         m256/m64bcst k ymm
 // 	VPERMQ.Z imm8         m512/m64bcst k zmm
+// 	VPERMQ.Z m256/m64bcst ymm          k ymm
+// 	VPERMQ.Z imm8         ymm          k ymm
+// 	VPERMQ.Z ymm          ymm          k ymm
 // 	VPERMQ.Z m512/m64bcst zmm          k zmm
 // 	VPERMQ.Z imm8         zmm          k zmm
 // 	VPERMQ.Z zmm          zmm          k zmm
 // Construct and append a VPERMQ.Z instruction to the active function.
-func (c *Context) VPERMQ_Z(imz, mz, k, z operand.Op) {
-	if inst, err := x86.VPERMQ_Z(imz, mz, k, z); err == nil {
+func (c *Context) VPERMQ_Z(imyz, myz, k, yz operand.Op) {
+	if inst, err := x86.VPERMQ_Z(imyz, myz, k, yz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -53052,18 +58098,30 @@ func (c *Context) VPERMQ_Z(imz, mz, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VPERMQ.Z imm8         m256/m64bcst k ymm
 // 	VPERMQ.Z imm8         m512/m64bcst k zmm
+// 	VPERMQ.Z m256/m64bcst ymm          k ymm
+// 	VPERMQ.Z imm8         ymm          k ymm
+// 	VPERMQ.Z ymm          ymm          k ymm
 // 	VPERMQ.Z m512/m64bcst zmm          k zmm
 // 	VPERMQ.Z imm8         zmm          k zmm
 // 	VPERMQ.Z zmm          zmm          k zmm
 // Construct and append a VPERMQ.Z instruction to the active function.
 // Operates on the global context.
-func VPERMQ_Z(imz, mz, k, z operand.Op) { ctx.VPERMQ_Z(imz, mz, k, z) }
+func VPERMQ_Z(imyz, myz, k, yz operand.Op) { ctx.VPERMQ_Z(imyz, myz, k, yz) }
 
 // VPERMT2D: Full Permute of Doublewords From Two Tables Overwriting a Table.
 //
 // Forms:
 //
+// 	VPERMT2D m128/m32bcst xmm xmm
+// 	VPERMT2D m128/m32bcst xmm k xmm
+// 	VPERMT2D xmm          xmm xmm
+// 	VPERMT2D xmm          xmm k xmm
+// 	VPERMT2D m256/m32bcst ymm ymm
+// 	VPERMT2D m256/m32bcst ymm k ymm
+// 	VPERMT2D ymm          ymm ymm
+// 	VPERMT2D ymm          ymm k ymm
 // 	VPERMT2D m512/m32bcst zmm zmm
 // 	VPERMT2D m512/m32bcst zmm k zmm
 // 	VPERMT2D zmm          zmm zmm
@@ -53081,6 +58139,14 @@ func (c *Context) VPERMT2D(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPERMT2D m128/m32bcst xmm xmm
+// 	VPERMT2D m128/m32bcst xmm k xmm
+// 	VPERMT2D xmm          xmm xmm
+// 	VPERMT2D xmm          xmm k xmm
+// 	VPERMT2D m256/m32bcst ymm ymm
+// 	VPERMT2D m256/m32bcst ymm k ymm
+// 	VPERMT2D ymm          ymm ymm
+// 	VPERMT2D ymm          ymm k ymm
 // 	VPERMT2D m512/m32bcst zmm zmm
 // 	VPERMT2D m512/m32bcst zmm k zmm
 // 	VPERMT2D zmm          zmm zmm
@@ -53093,6 +58159,10 @@ func VPERMT2D(ops ...operand.Op) { ctx.VPERMT2D(ops...) }
 //
 // Forms:
 //
+// 	VPERMT2D.BCST m128/m32bcst xmm xmm
+// 	VPERMT2D.BCST m128/m32bcst xmm k xmm
+// 	VPERMT2D.BCST m256/m32bcst ymm ymm
+// 	VPERMT2D.BCST m256/m32bcst ymm k ymm
 // 	VPERMT2D.BCST m512/m32bcst zmm zmm
 // 	VPERMT2D.BCST m512/m32bcst zmm k zmm
 // Construct and append a VPERMT2D.BCST instruction to the active function.
@@ -53108,6 +58178,10 @@ func (c *Context) VPERMT2D_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPERMT2D.BCST m128/m32bcst xmm xmm
+// 	VPERMT2D.BCST m128/m32bcst xmm k xmm
+// 	VPERMT2D.BCST m256/m32bcst ymm ymm
+// 	VPERMT2D.BCST m256/m32bcst ymm k ymm
 // 	VPERMT2D.BCST m512/m32bcst zmm zmm
 // 	VPERMT2D.BCST m512/m32bcst zmm k zmm
 // Construct and append a VPERMT2D.BCST instruction to the active function.
@@ -53118,10 +58192,12 @@ func VPERMT2D_BCST(ops ...operand.Op) { ctx.VPERMT2D_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPERMT2D.BCST.Z m128/m32bcst xmm k xmm
+// 	VPERMT2D.BCST.Z m256/m32bcst ymm k ymm
 // 	VPERMT2D.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VPERMT2D.BCST.Z instruction to the active function.
-func (c *Context) VPERMT2D_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VPERMT2D_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VPERMT2D_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPERMT2D_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -53132,20 +58208,26 @@ func (c *Context) VPERMT2D_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPERMT2D.BCST.Z m128/m32bcst xmm k xmm
+// 	VPERMT2D.BCST.Z m256/m32bcst ymm k ymm
 // 	VPERMT2D.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VPERMT2D.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VPERMT2D_BCST_Z(m, z, k, z1 operand.Op) { ctx.VPERMT2D_BCST_Z(m, z, k, z1) }
+func VPERMT2D_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VPERMT2D_BCST_Z(m, xyz, k, xyz1) }
 
 // VPERMT2D_Z: Full Permute of Doublewords From Two Tables Overwriting a Table (Zeroing Masking).
 //
 // Forms:
 //
+// 	VPERMT2D.Z m128/m32bcst xmm k xmm
+// 	VPERMT2D.Z xmm          xmm k xmm
+// 	VPERMT2D.Z m256/m32bcst ymm k ymm
+// 	VPERMT2D.Z ymm          ymm k ymm
 // 	VPERMT2D.Z m512/m32bcst zmm k zmm
 // 	VPERMT2D.Z zmm          zmm k zmm
 // Construct and append a VPERMT2D.Z instruction to the active function.
-func (c *Context) VPERMT2D_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VPERMT2D_Z(mz, z, k, z1); err == nil {
+func (c *Context) VPERMT2D_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPERMT2D_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -53156,16 +58238,28 @@ func (c *Context) VPERMT2D_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPERMT2D.Z m128/m32bcst xmm k xmm
+// 	VPERMT2D.Z xmm          xmm k xmm
+// 	VPERMT2D.Z m256/m32bcst ymm k ymm
+// 	VPERMT2D.Z ymm          ymm k ymm
 // 	VPERMT2D.Z m512/m32bcst zmm k zmm
 // 	VPERMT2D.Z zmm          zmm k zmm
 // Construct and append a VPERMT2D.Z instruction to the active function.
 // Operates on the global context.
-func VPERMT2D_Z(mz, z, k, z1 operand.Op) { ctx.VPERMT2D_Z(mz, z, k, z1) }
+func VPERMT2D_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPERMT2D_Z(mxyz, xyz, k, xyz1) }
 
 // VPERMT2PD: Full Permute of Double-Precision Floating-Point Values From Two Tables Overwriting a Table.
 //
 // Forms:
 //
+// 	VPERMT2PD m128/m64bcst xmm xmm
+// 	VPERMT2PD m128/m64bcst xmm k xmm
+// 	VPERMT2PD xmm          xmm xmm
+// 	VPERMT2PD xmm          xmm k xmm
+// 	VPERMT2PD m256/m64bcst ymm ymm
+// 	VPERMT2PD m256/m64bcst ymm k ymm
+// 	VPERMT2PD ymm          ymm ymm
+// 	VPERMT2PD ymm          ymm k ymm
 // 	VPERMT2PD m512/m64bcst zmm zmm
 // 	VPERMT2PD m512/m64bcst zmm k zmm
 // 	VPERMT2PD zmm          zmm zmm
@@ -53183,6 +58277,14 @@ func (c *Context) VPERMT2PD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPERMT2PD m128/m64bcst xmm xmm
+// 	VPERMT2PD m128/m64bcst xmm k xmm
+// 	VPERMT2PD xmm          xmm xmm
+// 	VPERMT2PD xmm          xmm k xmm
+// 	VPERMT2PD m256/m64bcst ymm ymm
+// 	VPERMT2PD m256/m64bcst ymm k ymm
+// 	VPERMT2PD ymm          ymm ymm
+// 	VPERMT2PD ymm          ymm k ymm
 // 	VPERMT2PD m512/m64bcst zmm zmm
 // 	VPERMT2PD m512/m64bcst zmm k zmm
 // 	VPERMT2PD zmm          zmm zmm
@@ -53195,6 +58297,10 @@ func VPERMT2PD(ops ...operand.Op) { ctx.VPERMT2PD(ops...) }
 //
 // Forms:
 //
+// 	VPERMT2PD.BCST m128/m64bcst xmm xmm
+// 	VPERMT2PD.BCST m128/m64bcst xmm k xmm
+// 	VPERMT2PD.BCST m256/m64bcst ymm ymm
+// 	VPERMT2PD.BCST m256/m64bcst ymm k ymm
 // 	VPERMT2PD.BCST m512/m64bcst zmm zmm
 // 	VPERMT2PD.BCST m512/m64bcst zmm k zmm
 // Construct and append a VPERMT2PD.BCST instruction to the active function.
@@ -53210,6 +58316,10 @@ func (c *Context) VPERMT2PD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPERMT2PD.BCST m128/m64bcst xmm xmm
+// 	VPERMT2PD.BCST m128/m64bcst xmm k xmm
+// 	VPERMT2PD.BCST m256/m64bcst ymm ymm
+// 	VPERMT2PD.BCST m256/m64bcst ymm k ymm
 // 	VPERMT2PD.BCST m512/m64bcst zmm zmm
 // 	VPERMT2PD.BCST m512/m64bcst zmm k zmm
 // Construct and append a VPERMT2PD.BCST instruction to the active function.
@@ -53220,10 +58330,12 @@ func VPERMT2PD_BCST(ops ...operand.Op) { ctx.VPERMT2PD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPERMT2PD.BCST.Z m128/m64bcst xmm k xmm
+// 	VPERMT2PD.BCST.Z m256/m64bcst ymm k ymm
 // 	VPERMT2PD.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VPERMT2PD.BCST.Z instruction to the active function.
-func (c *Context) VPERMT2PD_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VPERMT2PD_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VPERMT2PD_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPERMT2PD_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -53234,20 +58346,26 @@ func (c *Context) VPERMT2PD_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPERMT2PD.BCST.Z m128/m64bcst xmm k xmm
+// 	VPERMT2PD.BCST.Z m256/m64bcst ymm k ymm
 // 	VPERMT2PD.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VPERMT2PD.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VPERMT2PD_BCST_Z(m, z, k, z1 operand.Op) { ctx.VPERMT2PD_BCST_Z(m, z, k, z1) }
+func VPERMT2PD_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VPERMT2PD_BCST_Z(m, xyz, k, xyz1) }
 
 // VPERMT2PD_Z: Full Permute of Double-Precision Floating-Point Values From Two Tables Overwriting a Table (Zeroing Masking).
 //
 // Forms:
 //
+// 	VPERMT2PD.Z m128/m64bcst xmm k xmm
+// 	VPERMT2PD.Z xmm          xmm k xmm
+// 	VPERMT2PD.Z m256/m64bcst ymm k ymm
+// 	VPERMT2PD.Z ymm          ymm k ymm
 // 	VPERMT2PD.Z m512/m64bcst zmm k zmm
 // 	VPERMT2PD.Z zmm          zmm k zmm
 // Construct and append a VPERMT2PD.Z instruction to the active function.
-func (c *Context) VPERMT2PD_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VPERMT2PD_Z(mz, z, k, z1); err == nil {
+func (c *Context) VPERMT2PD_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPERMT2PD_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -53258,16 +58376,28 @@ func (c *Context) VPERMT2PD_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPERMT2PD.Z m128/m64bcst xmm k xmm
+// 	VPERMT2PD.Z xmm          xmm k xmm
+// 	VPERMT2PD.Z m256/m64bcst ymm k ymm
+// 	VPERMT2PD.Z ymm          ymm k ymm
 // 	VPERMT2PD.Z m512/m64bcst zmm k zmm
 // 	VPERMT2PD.Z zmm          zmm k zmm
 // Construct and append a VPERMT2PD.Z instruction to the active function.
 // Operates on the global context.
-func VPERMT2PD_Z(mz, z, k, z1 operand.Op) { ctx.VPERMT2PD_Z(mz, z, k, z1) }
+func VPERMT2PD_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPERMT2PD_Z(mxyz, xyz, k, xyz1) }
 
 // VPERMT2PS: Full Permute of Single-Precision Floating-Point Values From Two Tables Overwriting a Table.
 //
 // Forms:
 //
+// 	VPERMT2PS m128/m32bcst xmm xmm
+// 	VPERMT2PS m128/m32bcst xmm k xmm
+// 	VPERMT2PS xmm          xmm xmm
+// 	VPERMT2PS xmm          xmm k xmm
+// 	VPERMT2PS m256/m32bcst ymm ymm
+// 	VPERMT2PS m256/m32bcst ymm k ymm
+// 	VPERMT2PS ymm          ymm ymm
+// 	VPERMT2PS ymm          ymm k ymm
 // 	VPERMT2PS m512/m32bcst zmm zmm
 // 	VPERMT2PS m512/m32bcst zmm k zmm
 // 	VPERMT2PS zmm          zmm zmm
@@ -53285,6 +58415,14 @@ func (c *Context) VPERMT2PS(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPERMT2PS m128/m32bcst xmm xmm
+// 	VPERMT2PS m128/m32bcst xmm k xmm
+// 	VPERMT2PS xmm          xmm xmm
+// 	VPERMT2PS xmm          xmm k xmm
+// 	VPERMT2PS m256/m32bcst ymm ymm
+// 	VPERMT2PS m256/m32bcst ymm k ymm
+// 	VPERMT2PS ymm          ymm ymm
+// 	VPERMT2PS ymm          ymm k ymm
 // 	VPERMT2PS m512/m32bcst zmm zmm
 // 	VPERMT2PS m512/m32bcst zmm k zmm
 // 	VPERMT2PS zmm          zmm zmm
@@ -53297,6 +58435,10 @@ func VPERMT2PS(ops ...operand.Op) { ctx.VPERMT2PS(ops...) }
 //
 // Forms:
 //
+// 	VPERMT2PS.BCST m128/m32bcst xmm xmm
+// 	VPERMT2PS.BCST m128/m32bcst xmm k xmm
+// 	VPERMT2PS.BCST m256/m32bcst ymm ymm
+// 	VPERMT2PS.BCST m256/m32bcst ymm k ymm
 // 	VPERMT2PS.BCST m512/m32bcst zmm zmm
 // 	VPERMT2PS.BCST m512/m32bcst zmm k zmm
 // Construct and append a VPERMT2PS.BCST instruction to the active function.
@@ -53312,6 +58454,10 @@ func (c *Context) VPERMT2PS_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPERMT2PS.BCST m128/m32bcst xmm xmm
+// 	VPERMT2PS.BCST m128/m32bcst xmm k xmm
+// 	VPERMT2PS.BCST m256/m32bcst ymm ymm
+// 	VPERMT2PS.BCST m256/m32bcst ymm k ymm
 // 	VPERMT2PS.BCST m512/m32bcst zmm zmm
 // 	VPERMT2PS.BCST m512/m32bcst zmm k zmm
 // Construct and append a VPERMT2PS.BCST instruction to the active function.
@@ -53322,10 +58468,12 @@ func VPERMT2PS_BCST(ops ...operand.Op) { ctx.VPERMT2PS_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPERMT2PS.BCST.Z m128/m32bcst xmm k xmm
+// 	VPERMT2PS.BCST.Z m256/m32bcst ymm k ymm
 // 	VPERMT2PS.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VPERMT2PS.BCST.Z instruction to the active function.
-func (c *Context) VPERMT2PS_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VPERMT2PS_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VPERMT2PS_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPERMT2PS_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -53336,20 +58484,26 @@ func (c *Context) VPERMT2PS_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPERMT2PS.BCST.Z m128/m32bcst xmm k xmm
+// 	VPERMT2PS.BCST.Z m256/m32bcst ymm k ymm
 // 	VPERMT2PS.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VPERMT2PS.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VPERMT2PS_BCST_Z(m, z, k, z1 operand.Op) { ctx.VPERMT2PS_BCST_Z(m, z, k, z1) }
+func VPERMT2PS_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VPERMT2PS_BCST_Z(m, xyz, k, xyz1) }
 
 // VPERMT2PS_Z: Full Permute of Single-Precision Floating-Point Values From Two Tables Overwriting a Table (Zeroing Masking).
 //
 // Forms:
 //
+// 	VPERMT2PS.Z m128/m32bcst xmm k xmm
+// 	VPERMT2PS.Z xmm          xmm k xmm
+// 	VPERMT2PS.Z m256/m32bcst ymm k ymm
+// 	VPERMT2PS.Z ymm          ymm k ymm
 // 	VPERMT2PS.Z m512/m32bcst zmm k zmm
 // 	VPERMT2PS.Z zmm          zmm k zmm
 // Construct and append a VPERMT2PS.Z instruction to the active function.
-func (c *Context) VPERMT2PS_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VPERMT2PS_Z(mz, z, k, z1); err == nil {
+func (c *Context) VPERMT2PS_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPERMT2PS_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -53360,16 +58514,28 @@ func (c *Context) VPERMT2PS_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPERMT2PS.Z m128/m32bcst xmm k xmm
+// 	VPERMT2PS.Z xmm          xmm k xmm
+// 	VPERMT2PS.Z m256/m32bcst ymm k ymm
+// 	VPERMT2PS.Z ymm          ymm k ymm
 // 	VPERMT2PS.Z m512/m32bcst zmm k zmm
 // 	VPERMT2PS.Z zmm          zmm k zmm
 // Construct and append a VPERMT2PS.Z instruction to the active function.
 // Operates on the global context.
-func VPERMT2PS_Z(mz, z, k, z1 operand.Op) { ctx.VPERMT2PS_Z(mz, z, k, z1) }
+func VPERMT2PS_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPERMT2PS_Z(mxyz, xyz, k, xyz1) }
 
 // VPERMT2Q: Full Permute of Quadwords From Two Tables Overwriting a Table.
 //
 // Forms:
 //
+// 	VPERMT2Q m128/m64bcst xmm xmm
+// 	VPERMT2Q m128/m64bcst xmm k xmm
+// 	VPERMT2Q xmm          xmm xmm
+// 	VPERMT2Q xmm          xmm k xmm
+// 	VPERMT2Q m256/m64bcst ymm ymm
+// 	VPERMT2Q m256/m64bcst ymm k ymm
+// 	VPERMT2Q ymm          ymm ymm
+// 	VPERMT2Q ymm          ymm k ymm
 // 	VPERMT2Q m512/m64bcst zmm zmm
 // 	VPERMT2Q m512/m64bcst zmm k zmm
 // 	VPERMT2Q zmm          zmm zmm
@@ -53387,6 +58553,14 @@ func (c *Context) VPERMT2Q(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPERMT2Q m128/m64bcst xmm xmm
+// 	VPERMT2Q m128/m64bcst xmm k xmm
+// 	VPERMT2Q xmm          xmm xmm
+// 	VPERMT2Q xmm          xmm k xmm
+// 	VPERMT2Q m256/m64bcst ymm ymm
+// 	VPERMT2Q m256/m64bcst ymm k ymm
+// 	VPERMT2Q ymm          ymm ymm
+// 	VPERMT2Q ymm          ymm k ymm
 // 	VPERMT2Q m512/m64bcst zmm zmm
 // 	VPERMT2Q m512/m64bcst zmm k zmm
 // 	VPERMT2Q zmm          zmm zmm
@@ -53399,6 +58573,10 @@ func VPERMT2Q(ops ...operand.Op) { ctx.VPERMT2Q(ops...) }
 //
 // Forms:
 //
+// 	VPERMT2Q.BCST m128/m64bcst xmm xmm
+// 	VPERMT2Q.BCST m128/m64bcst xmm k xmm
+// 	VPERMT2Q.BCST m256/m64bcst ymm ymm
+// 	VPERMT2Q.BCST m256/m64bcst ymm k ymm
 // 	VPERMT2Q.BCST m512/m64bcst zmm zmm
 // 	VPERMT2Q.BCST m512/m64bcst zmm k zmm
 // Construct and append a VPERMT2Q.BCST instruction to the active function.
@@ -53414,6 +58592,10 @@ func (c *Context) VPERMT2Q_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPERMT2Q.BCST m128/m64bcst xmm xmm
+// 	VPERMT2Q.BCST m128/m64bcst xmm k xmm
+// 	VPERMT2Q.BCST m256/m64bcst ymm ymm
+// 	VPERMT2Q.BCST m256/m64bcst ymm k ymm
 // 	VPERMT2Q.BCST m512/m64bcst zmm zmm
 // 	VPERMT2Q.BCST m512/m64bcst zmm k zmm
 // Construct and append a VPERMT2Q.BCST instruction to the active function.
@@ -53424,10 +58606,12 @@ func VPERMT2Q_BCST(ops ...operand.Op) { ctx.VPERMT2Q_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPERMT2Q.BCST.Z m128/m64bcst xmm k xmm
+// 	VPERMT2Q.BCST.Z m256/m64bcst ymm k ymm
 // 	VPERMT2Q.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VPERMT2Q.BCST.Z instruction to the active function.
-func (c *Context) VPERMT2Q_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VPERMT2Q_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VPERMT2Q_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPERMT2Q_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -53438,20 +58622,26 @@ func (c *Context) VPERMT2Q_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPERMT2Q.BCST.Z m128/m64bcst xmm k xmm
+// 	VPERMT2Q.BCST.Z m256/m64bcst ymm k ymm
 // 	VPERMT2Q.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VPERMT2Q.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VPERMT2Q_BCST_Z(m, z, k, z1 operand.Op) { ctx.VPERMT2Q_BCST_Z(m, z, k, z1) }
+func VPERMT2Q_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VPERMT2Q_BCST_Z(m, xyz, k, xyz1) }
 
 // VPERMT2Q_Z: Full Permute of Quadwords From Two Tables Overwriting a Table (Zeroing Masking).
 //
 // Forms:
 //
+// 	VPERMT2Q.Z m128/m64bcst xmm k xmm
+// 	VPERMT2Q.Z xmm          xmm k xmm
+// 	VPERMT2Q.Z m256/m64bcst ymm k ymm
+// 	VPERMT2Q.Z ymm          ymm k ymm
 // 	VPERMT2Q.Z m512/m64bcst zmm k zmm
 // 	VPERMT2Q.Z zmm          zmm k zmm
 // Construct and append a VPERMT2Q.Z instruction to the active function.
-func (c *Context) VPERMT2Q_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VPERMT2Q_Z(mz, z, k, z1); err == nil {
+func (c *Context) VPERMT2Q_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPERMT2Q_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -53462,18 +58652,30 @@ func (c *Context) VPERMT2Q_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPERMT2Q.Z m128/m64bcst xmm k xmm
+// 	VPERMT2Q.Z xmm          xmm k xmm
+// 	VPERMT2Q.Z m256/m64bcst ymm k ymm
+// 	VPERMT2Q.Z ymm          ymm k ymm
 // 	VPERMT2Q.Z m512/m64bcst zmm k zmm
 // 	VPERMT2Q.Z zmm          zmm k zmm
 // Construct and append a VPERMT2Q.Z instruction to the active function.
 // Operates on the global context.
-func VPERMT2Q_Z(mz, z, k, z1 operand.Op) { ctx.VPERMT2Q_Z(mz, z, k, z1) }
+func VPERMT2Q_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPERMT2Q_Z(mxyz, xyz, k, xyz1) }
 
 // VPEXPANDD: Load Sparse Packed Doubleword Integer Values from Dense Memory/Register.
 //
 // Forms:
 //
+// 	VPEXPANDD xmm  xmm
+// 	VPEXPANDD xmm  k xmm
+// 	VPEXPANDD ymm  ymm
+// 	VPEXPANDD ymm  k ymm
 // 	VPEXPANDD zmm  zmm
 // 	VPEXPANDD zmm  k zmm
+// 	VPEXPANDD m128 xmm
+// 	VPEXPANDD m128 k xmm
+// 	VPEXPANDD m256 ymm
+// 	VPEXPANDD m256 k ymm
 // 	VPEXPANDD m512 zmm
 // 	VPEXPANDD m512 k zmm
 // Construct and append a VPEXPANDD instruction to the active function.
@@ -53489,8 +58691,16 @@ func (c *Context) VPEXPANDD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPEXPANDD xmm  xmm
+// 	VPEXPANDD xmm  k xmm
+// 	VPEXPANDD ymm  ymm
+// 	VPEXPANDD ymm  k ymm
 // 	VPEXPANDD zmm  zmm
 // 	VPEXPANDD zmm  k zmm
+// 	VPEXPANDD m128 xmm
+// 	VPEXPANDD m128 k xmm
+// 	VPEXPANDD m256 ymm
+// 	VPEXPANDD m256 k ymm
 // 	VPEXPANDD m512 zmm
 // 	VPEXPANDD m512 k zmm
 // Construct and append a VPEXPANDD instruction to the active function.
@@ -53501,11 +58711,15 @@ func VPEXPANDD(ops ...operand.Op) { ctx.VPEXPANDD(ops...) }
 //
 // Forms:
 //
+// 	VPEXPANDD.Z xmm  k xmm
+// 	VPEXPANDD.Z ymm  k ymm
 // 	VPEXPANDD.Z zmm  k zmm
+// 	VPEXPANDD.Z m128 k xmm
+// 	VPEXPANDD.Z m256 k ymm
 // 	VPEXPANDD.Z m512 k zmm
 // Construct and append a VPEXPANDD.Z instruction to the active function.
-func (c *Context) VPEXPANDD_Z(mz, k, z operand.Op) {
-	if inst, err := x86.VPEXPANDD_Z(mz, k, z); err == nil {
+func (c *Context) VPEXPANDD_Z(mxyz, k, xyz operand.Op) {
+	if inst, err := x86.VPEXPANDD_Z(mxyz, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -53516,18 +58730,30 @@ func (c *Context) VPEXPANDD_Z(mz, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VPEXPANDD.Z xmm  k xmm
+// 	VPEXPANDD.Z ymm  k ymm
 // 	VPEXPANDD.Z zmm  k zmm
+// 	VPEXPANDD.Z m128 k xmm
+// 	VPEXPANDD.Z m256 k ymm
 // 	VPEXPANDD.Z m512 k zmm
 // Construct and append a VPEXPANDD.Z instruction to the active function.
 // Operates on the global context.
-func VPEXPANDD_Z(mz, k, z operand.Op) { ctx.VPEXPANDD_Z(mz, k, z) }
+func VPEXPANDD_Z(mxyz, k, xyz operand.Op) { ctx.VPEXPANDD_Z(mxyz, k, xyz) }
 
 // VPEXPANDQ: Load Sparse Packed Quadword Integer Values from Dense Memory/Register.
 //
 // Forms:
 //
+// 	VPEXPANDQ xmm  xmm
+// 	VPEXPANDQ xmm  k xmm
+// 	VPEXPANDQ ymm  ymm
+// 	VPEXPANDQ ymm  k ymm
 // 	VPEXPANDQ zmm  zmm
 // 	VPEXPANDQ zmm  k zmm
+// 	VPEXPANDQ m128 xmm
+// 	VPEXPANDQ m128 k xmm
+// 	VPEXPANDQ m256 ymm
+// 	VPEXPANDQ m256 k ymm
 // 	VPEXPANDQ m512 zmm
 // 	VPEXPANDQ m512 k zmm
 // Construct and append a VPEXPANDQ instruction to the active function.
@@ -53543,8 +58769,16 @@ func (c *Context) VPEXPANDQ(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPEXPANDQ xmm  xmm
+// 	VPEXPANDQ xmm  k xmm
+// 	VPEXPANDQ ymm  ymm
+// 	VPEXPANDQ ymm  k ymm
 // 	VPEXPANDQ zmm  zmm
 // 	VPEXPANDQ zmm  k zmm
+// 	VPEXPANDQ m128 xmm
+// 	VPEXPANDQ m128 k xmm
+// 	VPEXPANDQ m256 ymm
+// 	VPEXPANDQ m256 k ymm
 // 	VPEXPANDQ m512 zmm
 // 	VPEXPANDQ m512 k zmm
 // Construct and append a VPEXPANDQ instruction to the active function.
@@ -53555,11 +58789,15 @@ func VPEXPANDQ(ops ...operand.Op) { ctx.VPEXPANDQ(ops...) }
 //
 // Forms:
 //
+// 	VPEXPANDQ.Z xmm  k xmm
+// 	VPEXPANDQ.Z ymm  k ymm
 // 	VPEXPANDQ.Z zmm  k zmm
+// 	VPEXPANDQ.Z m128 k xmm
+// 	VPEXPANDQ.Z m256 k ymm
 // 	VPEXPANDQ.Z m512 k zmm
 // Construct and append a VPEXPANDQ.Z instruction to the active function.
-func (c *Context) VPEXPANDQ_Z(mz, k, z operand.Op) {
-	if inst, err := x86.VPEXPANDQ_Z(mz, k, z); err == nil {
+func (c *Context) VPEXPANDQ_Z(mxyz, k, xyz operand.Op) {
+	if inst, err := x86.VPEXPANDQ_Z(mxyz, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -53570,11 +58808,15 @@ func (c *Context) VPEXPANDQ_Z(mz, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VPEXPANDQ.Z xmm  k xmm
+// 	VPEXPANDQ.Z ymm  k ymm
 // 	VPEXPANDQ.Z zmm  k zmm
+// 	VPEXPANDQ.Z m128 k xmm
+// 	VPEXPANDQ.Z m256 k ymm
 // 	VPEXPANDQ.Z m512 k zmm
 // Construct and append a VPEXPANDQ.Z instruction to the active function.
 // Operates on the global context.
-func VPEXPANDQ_Z(mz, k, z operand.Op) { ctx.VPEXPANDQ_Z(mz, k, z) }
+func VPEXPANDQ_Z(mxyz, k, xyz operand.Op) { ctx.VPEXPANDQ_Z(mxyz, k, xyz) }
 
 // VPEXTRB: Extract Byte.
 //
@@ -53680,6 +58922,8 @@ func VPEXTRW(i, x, mr operand.Op) { ctx.VPEXTRW(i, x, mr) }
 //
 // Forms:
 //
+// 	VPGATHERDD vm32x k     xmm
+// 	VPGATHERDD vm32y k     ymm
 // 	VPGATHERDD vm32z k     zmm
 // 	VPGATHERDD xmm   vm32x xmm
 // 	VPGATHERDD ymm   vm32y ymm
@@ -53696,6 +58940,8 @@ func (c *Context) VPGATHERDD(vxy, kv, xyz operand.Op) {
 //
 // Forms:
 //
+// 	VPGATHERDD vm32x k     xmm
+// 	VPGATHERDD vm32y k     ymm
 // 	VPGATHERDD vm32z k     zmm
 // 	VPGATHERDD xmm   vm32x xmm
 // 	VPGATHERDD ymm   vm32y ymm
@@ -53707,6 +58953,8 @@ func VPGATHERDD(vxy, kv, xyz operand.Op) { ctx.VPGATHERDD(vxy, kv, xyz) }
 //
 // Forms:
 //
+// 	VPGATHERDQ vm32x k     xmm
+// 	VPGATHERDQ vm32x k     ymm
 // 	VPGATHERDQ vm32y k     zmm
 // 	VPGATHERDQ xmm   vm32x xmm
 // 	VPGATHERDQ ymm   vm32x ymm
@@ -53723,6 +58971,8 @@ func (c *Context) VPGATHERDQ(vxy, kv, xyz operand.Op) {
 //
 // Forms:
 //
+// 	VPGATHERDQ vm32x k     xmm
+// 	VPGATHERDQ vm32x k     ymm
 // 	VPGATHERDQ vm32y k     zmm
 // 	VPGATHERDQ xmm   vm32x xmm
 // 	VPGATHERDQ ymm   vm32x ymm
@@ -53734,6 +58984,8 @@ func VPGATHERDQ(vxy, kv, xyz operand.Op) { ctx.VPGATHERDQ(vxy, kv, xyz) }
 //
 // Forms:
 //
+// 	VPGATHERQD vm64x k     xmm
+// 	VPGATHERQD vm64y k     xmm
 // 	VPGATHERQD vm64z k     ymm
 // 	VPGATHERQD xmm   vm64x xmm
 // 	VPGATHERQD xmm   vm64y xmm
@@ -53750,6 +59002,8 @@ func (c *Context) VPGATHERQD(vx, kv, xy operand.Op) {
 //
 // Forms:
 //
+// 	VPGATHERQD vm64x k     xmm
+// 	VPGATHERQD vm64y k     xmm
 // 	VPGATHERQD vm64z k     ymm
 // 	VPGATHERQD xmm   vm64x xmm
 // 	VPGATHERQD xmm   vm64y xmm
@@ -53761,6 +59015,8 @@ func VPGATHERQD(vx, kv, xy operand.Op) { ctx.VPGATHERQD(vx, kv, xy) }
 //
 // Forms:
 //
+// 	VPGATHERQQ vm64x k     xmm
+// 	VPGATHERQQ vm64y k     ymm
 // 	VPGATHERQQ vm64z k     zmm
 // 	VPGATHERQQ xmm   vm64x xmm
 // 	VPGATHERQQ ymm   vm64y ymm
@@ -53777,6 +59033,8 @@ func (c *Context) VPGATHERQQ(vxy, kv, xyz operand.Op) {
 //
 // Forms:
 //
+// 	VPGATHERQQ vm64x k     xmm
+// 	VPGATHERQQ vm64y k     ymm
 // 	VPGATHERQQ vm64z k     zmm
 // 	VPGATHERQQ xmm   vm64x xmm
 // 	VPGATHERQQ ymm   vm64y ymm
@@ -54087,8 +59345,16 @@ func VPINSRW(i, mr, x, x1 operand.Op) { ctx.VPINSRW(i, mr, x, x1) }
 //
 // Forms:
 //
+// 	VPLZCNTD m128/m32bcst xmm
+// 	VPLZCNTD m128/m32bcst k xmm
+// 	VPLZCNTD m256/m32bcst ymm
+// 	VPLZCNTD m256/m32bcst k ymm
 // 	VPLZCNTD m512/m32bcst zmm
 // 	VPLZCNTD m512/m32bcst k zmm
+// 	VPLZCNTD xmm          xmm
+// 	VPLZCNTD xmm          k xmm
+// 	VPLZCNTD ymm          ymm
+// 	VPLZCNTD ymm          k ymm
 // 	VPLZCNTD zmm          zmm
 // 	VPLZCNTD zmm          k zmm
 // Construct and append a VPLZCNTD instruction to the active function.
@@ -54104,8 +59370,16 @@ func (c *Context) VPLZCNTD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPLZCNTD m128/m32bcst xmm
+// 	VPLZCNTD m128/m32bcst k xmm
+// 	VPLZCNTD m256/m32bcst ymm
+// 	VPLZCNTD m256/m32bcst k ymm
 // 	VPLZCNTD m512/m32bcst zmm
 // 	VPLZCNTD m512/m32bcst k zmm
+// 	VPLZCNTD xmm          xmm
+// 	VPLZCNTD xmm          k xmm
+// 	VPLZCNTD ymm          ymm
+// 	VPLZCNTD ymm          k ymm
 // 	VPLZCNTD zmm          zmm
 // 	VPLZCNTD zmm          k zmm
 // Construct and append a VPLZCNTD instruction to the active function.
@@ -54116,6 +59390,10 @@ func VPLZCNTD(ops ...operand.Op) { ctx.VPLZCNTD(ops...) }
 //
 // Forms:
 //
+// 	VPLZCNTD.BCST m128/m32bcst xmm
+// 	VPLZCNTD.BCST m128/m32bcst k xmm
+// 	VPLZCNTD.BCST m256/m32bcst ymm
+// 	VPLZCNTD.BCST m256/m32bcst k ymm
 // 	VPLZCNTD.BCST m512/m32bcst zmm
 // 	VPLZCNTD.BCST m512/m32bcst k zmm
 // Construct and append a VPLZCNTD.BCST instruction to the active function.
@@ -54131,6 +59409,10 @@ func (c *Context) VPLZCNTD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPLZCNTD.BCST m128/m32bcst xmm
+// 	VPLZCNTD.BCST m128/m32bcst k xmm
+// 	VPLZCNTD.BCST m256/m32bcst ymm
+// 	VPLZCNTD.BCST m256/m32bcst k ymm
 // 	VPLZCNTD.BCST m512/m32bcst zmm
 // 	VPLZCNTD.BCST m512/m32bcst k zmm
 // Construct and append a VPLZCNTD.BCST instruction to the active function.
@@ -54141,10 +59423,12 @@ func VPLZCNTD_BCST(ops ...operand.Op) { ctx.VPLZCNTD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPLZCNTD.BCST.Z m128/m32bcst k xmm
+// 	VPLZCNTD.BCST.Z m256/m32bcst k ymm
 // 	VPLZCNTD.BCST.Z m512/m32bcst k zmm
 // Construct and append a VPLZCNTD.BCST.Z instruction to the active function.
-func (c *Context) VPLZCNTD_BCST_Z(m, k, z operand.Op) {
-	if inst, err := x86.VPLZCNTD_BCST_Z(m, k, z); err == nil {
+func (c *Context) VPLZCNTD_BCST_Z(m, k, xyz operand.Op) {
+	if inst, err := x86.VPLZCNTD_BCST_Z(m, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -54155,20 +59439,26 @@ func (c *Context) VPLZCNTD_BCST_Z(m, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VPLZCNTD.BCST.Z m128/m32bcst k xmm
+// 	VPLZCNTD.BCST.Z m256/m32bcst k ymm
 // 	VPLZCNTD.BCST.Z m512/m32bcst k zmm
 // Construct and append a VPLZCNTD.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VPLZCNTD_BCST_Z(m, k, z operand.Op) { ctx.VPLZCNTD_BCST_Z(m, k, z) }
+func VPLZCNTD_BCST_Z(m, k, xyz operand.Op) { ctx.VPLZCNTD_BCST_Z(m, k, xyz) }
 
 // VPLZCNTD_Z: Count the Number of Leading Zero Bits for Packed Doubleword Values (Zeroing Masking).
 //
 // Forms:
 //
+// 	VPLZCNTD.Z m128/m32bcst k xmm
+// 	VPLZCNTD.Z m256/m32bcst k ymm
 // 	VPLZCNTD.Z m512/m32bcst k zmm
+// 	VPLZCNTD.Z xmm          k xmm
+// 	VPLZCNTD.Z ymm          k ymm
 // 	VPLZCNTD.Z zmm          k zmm
 // Construct and append a VPLZCNTD.Z instruction to the active function.
-func (c *Context) VPLZCNTD_Z(mz, k, z operand.Op) {
-	if inst, err := x86.VPLZCNTD_Z(mz, k, z); err == nil {
+func (c *Context) VPLZCNTD_Z(mxyz, k, xyz operand.Op) {
+	if inst, err := x86.VPLZCNTD_Z(mxyz, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -54179,18 +59469,30 @@ func (c *Context) VPLZCNTD_Z(mz, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VPLZCNTD.Z m128/m32bcst k xmm
+// 	VPLZCNTD.Z m256/m32bcst k ymm
 // 	VPLZCNTD.Z m512/m32bcst k zmm
+// 	VPLZCNTD.Z xmm          k xmm
+// 	VPLZCNTD.Z ymm          k ymm
 // 	VPLZCNTD.Z zmm          k zmm
 // Construct and append a VPLZCNTD.Z instruction to the active function.
 // Operates on the global context.
-func VPLZCNTD_Z(mz, k, z operand.Op) { ctx.VPLZCNTD_Z(mz, k, z) }
+func VPLZCNTD_Z(mxyz, k, xyz operand.Op) { ctx.VPLZCNTD_Z(mxyz, k, xyz) }
 
 // VPLZCNTQ: Count the Number of Leading Zero Bits for Packed Quadword Values.
 //
 // Forms:
 //
+// 	VPLZCNTQ m128/m64bcst xmm
+// 	VPLZCNTQ m128/m64bcst k xmm
+// 	VPLZCNTQ m256/m64bcst ymm
+// 	VPLZCNTQ m256/m64bcst k ymm
 // 	VPLZCNTQ m512/m64bcst zmm
 // 	VPLZCNTQ m512/m64bcst k zmm
+// 	VPLZCNTQ xmm          xmm
+// 	VPLZCNTQ xmm          k xmm
+// 	VPLZCNTQ ymm          ymm
+// 	VPLZCNTQ ymm          k ymm
 // 	VPLZCNTQ zmm          zmm
 // 	VPLZCNTQ zmm          k zmm
 // Construct and append a VPLZCNTQ instruction to the active function.
@@ -54206,8 +59508,16 @@ func (c *Context) VPLZCNTQ(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPLZCNTQ m128/m64bcst xmm
+// 	VPLZCNTQ m128/m64bcst k xmm
+// 	VPLZCNTQ m256/m64bcst ymm
+// 	VPLZCNTQ m256/m64bcst k ymm
 // 	VPLZCNTQ m512/m64bcst zmm
 // 	VPLZCNTQ m512/m64bcst k zmm
+// 	VPLZCNTQ xmm          xmm
+// 	VPLZCNTQ xmm          k xmm
+// 	VPLZCNTQ ymm          ymm
+// 	VPLZCNTQ ymm          k ymm
 // 	VPLZCNTQ zmm          zmm
 // 	VPLZCNTQ zmm          k zmm
 // Construct and append a VPLZCNTQ instruction to the active function.
@@ -54218,6 +59528,10 @@ func VPLZCNTQ(ops ...operand.Op) { ctx.VPLZCNTQ(ops...) }
 //
 // Forms:
 //
+// 	VPLZCNTQ.BCST m128/m64bcst xmm
+// 	VPLZCNTQ.BCST m128/m64bcst k xmm
+// 	VPLZCNTQ.BCST m256/m64bcst ymm
+// 	VPLZCNTQ.BCST m256/m64bcst k ymm
 // 	VPLZCNTQ.BCST m512/m64bcst zmm
 // 	VPLZCNTQ.BCST m512/m64bcst k zmm
 // Construct and append a VPLZCNTQ.BCST instruction to the active function.
@@ -54233,6 +59547,10 @@ func (c *Context) VPLZCNTQ_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPLZCNTQ.BCST m128/m64bcst xmm
+// 	VPLZCNTQ.BCST m128/m64bcst k xmm
+// 	VPLZCNTQ.BCST m256/m64bcst ymm
+// 	VPLZCNTQ.BCST m256/m64bcst k ymm
 // 	VPLZCNTQ.BCST m512/m64bcst zmm
 // 	VPLZCNTQ.BCST m512/m64bcst k zmm
 // Construct and append a VPLZCNTQ.BCST instruction to the active function.
@@ -54243,10 +59561,12 @@ func VPLZCNTQ_BCST(ops ...operand.Op) { ctx.VPLZCNTQ_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPLZCNTQ.BCST.Z m128/m64bcst k xmm
+// 	VPLZCNTQ.BCST.Z m256/m64bcst k ymm
 // 	VPLZCNTQ.BCST.Z m512/m64bcst k zmm
 // Construct and append a VPLZCNTQ.BCST.Z instruction to the active function.
-func (c *Context) VPLZCNTQ_BCST_Z(m, k, z operand.Op) {
-	if inst, err := x86.VPLZCNTQ_BCST_Z(m, k, z); err == nil {
+func (c *Context) VPLZCNTQ_BCST_Z(m, k, xyz operand.Op) {
+	if inst, err := x86.VPLZCNTQ_BCST_Z(m, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -54257,20 +59577,26 @@ func (c *Context) VPLZCNTQ_BCST_Z(m, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VPLZCNTQ.BCST.Z m128/m64bcst k xmm
+// 	VPLZCNTQ.BCST.Z m256/m64bcst k ymm
 // 	VPLZCNTQ.BCST.Z m512/m64bcst k zmm
 // Construct and append a VPLZCNTQ.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VPLZCNTQ_BCST_Z(m, k, z operand.Op) { ctx.VPLZCNTQ_BCST_Z(m, k, z) }
+func VPLZCNTQ_BCST_Z(m, k, xyz operand.Op) { ctx.VPLZCNTQ_BCST_Z(m, k, xyz) }
 
 // VPLZCNTQ_Z: Count the Number of Leading Zero Bits for Packed Quadword Values (Zeroing Masking).
 //
 // Forms:
 //
+// 	VPLZCNTQ.Z m128/m64bcst k xmm
+// 	VPLZCNTQ.Z m256/m64bcst k ymm
 // 	VPLZCNTQ.Z m512/m64bcst k zmm
+// 	VPLZCNTQ.Z xmm          k xmm
+// 	VPLZCNTQ.Z ymm          k ymm
 // 	VPLZCNTQ.Z zmm          k zmm
 // Construct and append a VPLZCNTQ.Z instruction to the active function.
-func (c *Context) VPLZCNTQ_Z(mz, k, z operand.Op) {
-	if inst, err := x86.VPLZCNTQ_Z(mz, k, z); err == nil {
+func (c *Context) VPLZCNTQ_Z(mxyz, k, xyz operand.Op) {
+	if inst, err := x86.VPLZCNTQ_Z(mxyz, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -54281,11 +59607,15 @@ func (c *Context) VPLZCNTQ_Z(mz, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VPLZCNTQ.Z m128/m64bcst k xmm
+// 	VPLZCNTQ.Z m256/m64bcst k ymm
 // 	VPLZCNTQ.Z m512/m64bcst k zmm
+// 	VPLZCNTQ.Z xmm          k xmm
+// 	VPLZCNTQ.Z ymm          k ymm
 // 	VPLZCNTQ.Z zmm          k zmm
 // Construct and append a VPLZCNTQ.Z instruction to the active function.
 // Operates on the global context.
-func VPLZCNTQ_Z(mz, k, z operand.Op) { ctx.VPLZCNTQ_Z(mz, k, z) }
+func VPLZCNTQ_Z(mxyz, k, xyz operand.Op) { ctx.VPLZCNTQ_Z(mxyz, k, xyz) }
 
 // VPMADDUBSW: Multiply and Add Packed Signed and Unsigned Byte Integers.
 //
@@ -54436,6 +59766,14 @@ func VPMAXSB(mxy, xy, xy1 operand.Op) { ctx.VPMAXSB(mxy, xy, xy1) }
 //
 // Forms:
 //
+// 	VPMAXSD m128/m32bcst xmm xmm
+// 	VPMAXSD m128/m32bcst xmm k xmm
+// 	VPMAXSD xmm          xmm xmm
+// 	VPMAXSD xmm          xmm k xmm
+// 	VPMAXSD m256/m32bcst ymm ymm
+// 	VPMAXSD m256/m32bcst ymm k ymm
+// 	VPMAXSD ymm          ymm ymm
+// 	VPMAXSD ymm          ymm k ymm
 // 	VPMAXSD m512/m32bcst zmm zmm
 // 	VPMAXSD m512/m32bcst zmm k zmm
 // 	VPMAXSD zmm          zmm zmm
@@ -54457,6 +59795,14 @@ func (c *Context) VPMAXSD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPMAXSD m128/m32bcst xmm xmm
+// 	VPMAXSD m128/m32bcst xmm k xmm
+// 	VPMAXSD xmm          xmm xmm
+// 	VPMAXSD xmm          xmm k xmm
+// 	VPMAXSD m256/m32bcst ymm ymm
+// 	VPMAXSD m256/m32bcst ymm k ymm
+// 	VPMAXSD ymm          ymm ymm
+// 	VPMAXSD ymm          ymm k ymm
 // 	VPMAXSD m512/m32bcst zmm zmm
 // 	VPMAXSD m512/m32bcst zmm k zmm
 // 	VPMAXSD zmm          zmm zmm
@@ -54473,6 +59819,10 @@ func VPMAXSD(ops ...operand.Op) { ctx.VPMAXSD(ops...) }
 //
 // Forms:
 //
+// 	VPMAXSD.BCST m128/m32bcst xmm xmm
+// 	VPMAXSD.BCST m128/m32bcst xmm k xmm
+// 	VPMAXSD.BCST m256/m32bcst ymm ymm
+// 	VPMAXSD.BCST m256/m32bcst ymm k ymm
 // 	VPMAXSD.BCST m512/m32bcst zmm zmm
 // 	VPMAXSD.BCST m512/m32bcst zmm k zmm
 // Construct and append a VPMAXSD.BCST instruction to the active function.
@@ -54488,6 +59838,10 @@ func (c *Context) VPMAXSD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPMAXSD.BCST m128/m32bcst xmm xmm
+// 	VPMAXSD.BCST m128/m32bcst xmm k xmm
+// 	VPMAXSD.BCST m256/m32bcst ymm ymm
+// 	VPMAXSD.BCST m256/m32bcst ymm k ymm
 // 	VPMAXSD.BCST m512/m32bcst zmm zmm
 // 	VPMAXSD.BCST m512/m32bcst zmm k zmm
 // Construct and append a VPMAXSD.BCST instruction to the active function.
@@ -54498,10 +59852,12 @@ func VPMAXSD_BCST(ops ...operand.Op) { ctx.VPMAXSD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPMAXSD.BCST.Z m128/m32bcst xmm k xmm
+// 	VPMAXSD.BCST.Z m256/m32bcst ymm k ymm
 // 	VPMAXSD.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VPMAXSD.BCST.Z instruction to the active function.
-func (c *Context) VPMAXSD_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VPMAXSD_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VPMAXSD_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPMAXSD_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -54512,20 +59868,26 @@ func (c *Context) VPMAXSD_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPMAXSD.BCST.Z m128/m32bcst xmm k xmm
+// 	VPMAXSD.BCST.Z m256/m32bcst ymm k ymm
 // 	VPMAXSD.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VPMAXSD.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VPMAXSD_BCST_Z(m, z, k, z1 operand.Op) { ctx.VPMAXSD_BCST_Z(m, z, k, z1) }
+func VPMAXSD_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VPMAXSD_BCST_Z(m, xyz, k, xyz1) }
 
 // VPMAXSD_Z: Maximum of Packed Signed Doubleword Integers (Zeroing Masking).
 //
 // Forms:
 //
+// 	VPMAXSD.Z m128/m32bcst xmm k xmm
+// 	VPMAXSD.Z xmm          xmm k xmm
+// 	VPMAXSD.Z m256/m32bcst ymm k ymm
+// 	VPMAXSD.Z ymm          ymm k ymm
 // 	VPMAXSD.Z m512/m32bcst zmm k zmm
 // 	VPMAXSD.Z zmm          zmm k zmm
 // Construct and append a VPMAXSD.Z instruction to the active function.
-func (c *Context) VPMAXSD_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VPMAXSD_Z(mz, z, k, z1); err == nil {
+func (c *Context) VPMAXSD_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPMAXSD_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -54536,16 +59898,28 @@ func (c *Context) VPMAXSD_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPMAXSD.Z m128/m32bcst xmm k xmm
+// 	VPMAXSD.Z xmm          xmm k xmm
+// 	VPMAXSD.Z m256/m32bcst ymm k ymm
+// 	VPMAXSD.Z ymm          ymm k ymm
 // 	VPMAXSD.Z m512/m32bcst zmm k zmm
 // 	VPMAXSD.Z zmm          zmm k zmm
 // Construct and append a VPMAXSD.Z instruction to the active function.
 // Operates on the global context.
-func VPMAXSD_Z(mz, z, k, z1 operand.Op) { ctx.VPMAXSD_Z(mz, z, k, z1) }
+func VPMAXSD_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPMAXSD_Z(mxyz, xyz, k, xyz1) }
 
 // VPMAXSQ: Maximum of Packed Signed Quadword Integers.
 //
 // Forms:
 //
+// 	VPMAXSQ m128/m64bcst xmm xmm
+// 	VPMAXSQ m128/m64bcst xmm k xmm
+// 	VPMAXSQ xmm          xmm xmm
+// 	VPMAXSQ xmm          xmm k xmm
+// 	VPMAXSQ m256/m64bcst ymm ymm
+// 	VPMAXSQ m256/m64bcst ymm k ymm
+// 	VPMAXSQ ymm          ymm ymm
+// 	VPMAXSQ ymm          ymm k ymm
 // 	VPMAXSQ m512/m64bcst zmm zmm
 // 	VPMAXSQ m512/m64bcst zmm k zmm
 // 	VPMAXSQ zmm          zmm zmm
@@ -54563,6 +59937,14 @@ func (c *Context) VPMAXSQ(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPMAXSQ m128/m64bcst xmm xmm
+// 	VPMAXSQ m128/m64bcst xmm k xmm
+// 	VPMAXSQ xmm          xmm xmm
+// 	VPMAXSQ xmm          xmm k xmm
+// 	VPMAXSQ m256/m64bcst ymm ymm
+// 	VPMAXSQ m256/m64bcst ymm k ymm
+// 	VPMAXSQ ymm          ymm ymm
+// 	VPMAXSQ ymm          ymm k ymm
 // 	VPMAXSQ m512/m64bcst zmm zmm
 // 	VPMAXSQ m512/m64bcst zmm k zmm
 // 	VPMAXSQ zmm          zmm zmm
@@ -54575,6 +59957,10 @@ func VPMAXSQ(ops ...operand.Op) { ctx.VPMAXSQ(ops...) }
 //
 // Forms:
 //
+// 	VPMAXSQ.BCST m128/m64bcst xmm xmm
+// 	VPMAXSQ.BCST m128/m64bcst xmm k xmm
+// 	VPMAXSQ.BCST m256/m64bcst ymm ymm
+// 	VPMAXSQ.BCST m256/m64bcst ymm k ymm
 // 	VPMAXSQ.BCST m512/m64bcst zmm zmm
 // 	VPMAXSQ.BCST m512/m64bcst zmm k zmm
 // Construct and append a VPMAXSQ.BCST instruction to the active function.
@@ -54590,6 +59976,10 @@ func (c *Context) VPMAXSQ_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPMAXSQ.BCST m128/m64bcst xmm xmm
+// 	VPMAXSQ.BCST m128/m64bcst xmm k xmm
+// 	VPMAXSQ.BCST m256/m64bcst ymm ymm
+// 	VPMAXSQ.BCST m256/m64bcst ymm k ymm
 // 	VPMAXSQ.BCST m512/m64bcst zmm zmm
 // 	VPMAXSQ.BCST m512/m64bcst zmm k zmm
 // Construct and append a VPMAXSQ.BCST instruction to the active function.
@@ -54600,10 +59990,12 @@ func VPMAXSQ_BCST(ops ...operand.Op) { ctx.VPMAXSQ_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPMAXSQ.BCST.Z m128/m64bcst xmm k xmm
+// 	VPMAXSQ.BCST.Z m256/m64bcst ymm k ymm
 // 	VPMAXSQ.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VPMAXSQ.BCST.Z instruction to the active function.
-func (c *Context) VPMAXSQ_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VPMAXSQ_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VPMAXSQ_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPMAXSQ_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -54614,20 +60006,26 @@ func (c *Context) VPMAXSQ_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPMAXSQ.BCST.Z m128/m64bcst xmm k xmm
+// 	VPMAXSQ.BCST.Z m256/m64bcst ymm k ymm
 // 	VPMAXSQ.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VPMAXSQ.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VPMAXSQ_BCST_Z(m, z, k, z1 operand.Op) { ctx.VPMAXSQ_BCST_Z(m, z, k, z1) }
+func VPMAXSQ_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VPMAXSQ_BCST_Z(m, xyz, k, xyz1) }
 
 // VPMAXSQ_Z: Maximum of Packed Signed Quadword Integers (Zeroing Masking).
 //
 // Forms:
 //
+// 	VPMAXSQ.Z m128/m64bcst xmm k xmm
+// 	VPMAXSQ.Z xmm          xmm k xmm
+// 	VPMAXSQ.Z m256/m64bcst ymm k ymm
+// 	VPMAXSQ.Z ymm          ymm k ymm
 // 	VPMAXSQ.Z m512/m64bcst zmm k zmm
 // 	VPMAXSQ.Z zmm          zmm k zmm
 // Construct and append a VPMAXSQ.Z instruction to the active function.
-func (c *Context) VPMAXSQ_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VPMAXSQ_Z(mz, z, k, z1); err == nil {
+func (c *Context) VPMAXSQ_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPMAXSQ_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -54638,11 +60036,15 @@ func (c *Context) VPMAXSQ_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPMAXSQ.Z m128/m64bcst xmm k xmm
+// 	VPMAXSQ.Z xmm          xmm k xmm
+// 	VPMAXSQ.Z m256/m64bcst ymm k ymm
+// 	VPMAXSQ.Z ymm          ymm k ymm
 // 	VPMAXSQ.Z m512/m64bcst zmm k zmm
 // 	VPMAXSQ.Z zmm          zmm k zmm
 // Construct and append a VPMAXSQ.Z instruction to the active function.
 // Operates on the global context.
-func VPMAXSQ_Z(mz, z, k, z1 operand.Op) { ctx.VPMAXSQ_Z(mz, z, k, z1) }
+func VPMAXSQ_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPMAXSQ_Z(mxyz, xyz, k, xyz1) }
 
 // VPMAXSW: Maximum of Packed Signed Word Integers.
 //
@@ -54706,6 +60108,14 @@ func VPMAXUB(mxy, xy, xy1 operand.Op) { ctx.VPMAXUB(mxy, xy, xy1) }
 //
 // Forms:
 //
+// 	VPMAXUD m128/m32bcst xmm xmm
+// 	VPMAXUD m128/m32bcst xmm k xmm
+// 	VPMAXUD xmm          xmm xmm
+// 	VPMAXUD xmm          xmm k xmm
+// 	VPMAXUD m256/m32bcst ymm ymm
+// 	VPMAXUD m256/m32bcst ymm k ymm
+// 	VPMAXUD ymm          ymm ymm
+// 	VPMAXUD ymm          ymm k ymm
 // 	VPMAXUD m512/m32bcst zmm zmm
 // 	VPMAXUD m512/m32bcst zmm k zmm
 // 	VPMAXUD zmm          zmm zmm
@@ -54727,6 +60137,14 @@ func (c *Context) VPMAXUD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPMAXUD m128/m32bcst xmm xmm
+// 	VPMAXUD m128/m32bcst xmm k xmm
+// 	VPMAXUD xmm          xmm xmm
+// 	VPMAXUD xmm          xmm k xmm
+// 	VPMAXUD m256/m32bcst ymm ymm
+// 	VPMAXUD m256/m32bcst ymm k ymm
+// 	VPMAXUD ymm          ymm ymm
+// 	VPMAXUD ymm          ymm k ymm
 // 	VPMAXUD m512/m32bcst zmm zmm
 // 	VPMAXUD m512/m32bcst zmm k zmm
 // 	VPMAXUD zmm          zmm zmm
@@ -54743,6 +60161,10 @@ func VPMAXUD(ops ...operand.Op) { ctx.VPMAXUD(ops...) }
 //
 // Forms:
 //
+// 	VPMAXUD.BCST m128/m32bcst xmm xmm
+// 	VPMAXUD.BCST m128/m32bcst xmm k xmm
+// 	VPMAXUD.BCST m256/m32bcst ymm ymm
+// 	VPMAXUD.BCST m256/m32bcst ymm k ymm
 // 	VPMAXUD.BCST m512/m32bcst zmm zmm
 // 	VPMAXUD.BCST m512/m32bcst zmm k zmm
 // Construct and append a VPMAXUD.BCST instruction to the active function.
@@ -54758,6 +60180,10 @@ func (c *Context) VPMAXUD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPMAXUD.BCST m128/m32bcst xmm xmm
+// 	VPMAXUD.BCST m128/m32bcst xmm k xmm
+// 	VPMAXUD.BCST m256/m32bcst ymm ymm
+// 	VPMAXUD.BCST m256/m32bcst ymm k ymm
 // 	VPMAXUD.BCST m512/m32bcst zmm zmm
 // 	VPMAXUD.BCST m512/m32bcst zmm k zmm
 // Construct and append a VPMAXUD.BCST instruction to the active function.
@@ -54768,10 +60194,12 @@ func VPMAXUD_BCST(ops ...operand.Op) { ctx.VPMAXUD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPMAXUD.BCST.Z m128/m32bcst xmm k xmm
+// 	VPMAXUD.BCST.Z m256/m32bcst ymm k ymm
 // 	VPMAXUD.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VPMAXUD.BCST.Z instruction to the active function.
-func (c *Context) VPMAXUD_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VPMAXUD_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VPMAXUD_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPMAXUD_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -54782,20 +60210,26 @@ func (c *Context) VPMAXUD_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPMAXUD.BCST.Z m128/m32bcst xmm k xmm
+// 	VPMAXUD.BCST.Z m256/m32bcst ymm k ymm
 // 	VPMAXUD.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VPMAXUD.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VPMAXUD_BCST_Z(m, z, k, z1 operand.Op) { ctx.VPMAXUD_BCST_Z(m, z, k, z1) }
+func VPMAXUD_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VPMAXUD_BCST_Z(m, xyz, k, xyz1) }
 
 // VPMAXUD_Z: Maximum of Packed Unsigned Doubleword Integers (Zeroing Masking).
 //
 // Forms:
 //
+// 	VPMAXUD.Z m128/m32bcst xmm k xmm
+// 	VPMAXUD.Z xmm          xmm k xmm
+// 	VPMAXUD.Z m256/m32bcst ymm k ymm
+// 	VPMAXUD.Z ymm          ymm k ymm
 // 	VPMAXUD.Z m512/m32bcst zmm k zmm
 // 	VPMAXUD.Z zmm          zmm k zmm
 // Construct and append a VPMAXUD.Z instruction to the active function.
-func (c *Context) VPMAXUD_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VPMAXUD_Z(mz, z, k, z1); err == nil {
+func (c *Context) VPMAXUD_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPMAXUD_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -54806,16 +60240,28 @@ func (c *Context) VPMAXUD_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPMAXUD.Z m128/m32bcst xmm k xmm
+// 	VPMAXUD.Z xmm          xmm k xmm
+// 	VPMAXUD.Z m256/m32bcst ymm k ymm
+// 	VPMAXUD.Z ymm          ymm k ymm
 // 	VPMAXUD.Z m512/m32bcst zmm k zmm
 // 	VPMAXUD.Z zmm          zmm k zmm
 // Construct and append a VPMAXUD.Z instruction to the active function.
 // Operates on the global context.
-func VPMAXUD_Z(mz, z, k, z1 operand.Op) { ctx.VPMAXUD_Z(mz, z, k, z1) }
+func VPMAXUD_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPMAXUD_Z(mxyz, xyz, k, xyz1) }
 
 // VPMAXUQ: Maximum of Packed Unsigned Quadword Integers.
 //
 // Forms:
 //
+// 	VPMAXUQ m128/m64bcst xmm xmm
+// 	VPMAXUQ m128/m64bcst xmm k xmm
+// 	VPMAXUQ xmm          xmm xmm
+// 	VPMAXUQ xmm          xmm k xmm
+// 	VPMAXUQ m256/m64bcst ymm ymm
+// 	VPMAXUQ m256/m64bcst ymm k ymm
+// 	VPMAXUQ ymm          ymm ymm
+// 	VPMAXUQ ymm          ymm k ymm
 // 	VPMAXUQ m512/m64bcst zmm zmm
 // 	VPMAXUQ m512/m64bcst zmm k zmm
 // 	VPMAXUQ zmm          zmm zmm
@@ -54833,6 +60279,14 @@ func (c *Context) VPMAXUQ(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPMAXUQ m128/m64bcst xmm xmm
+// 	VPMAXUQ m128/m64bcst xmm k xmm
+// 	VPMAXUQ xmm          xmm xmm
+// 	VPMAXUQ xmm          xmm k xmm
+// 	VPMAXUQ m256/m64bcst ymm ymm
+// 	VPMAXUQ m256/m64bcst ymm k ymm
+// 	VPMAXUQ ymm          ymm ymm
+// 	VPMAXUQ ymm          ymm k ymm
 // 	VPMAXUQ m512/m64bcst zmm zmm
 // 	VPMAXUQ m512/m64bcst zmm k zmm
 // 	VPMAXUQ zmm          zmm zmm
@@ -54845,6 +60299,10 @@ func VPMAXUQ(ops ...operand.Op) { ctx.VPMAXUQ(ops...) }
 //
 // Forms:
 //
+// 	VPMAXUQ.BCST m128/m64bcst xmm xmm
+// 	VPMAXUQ.BCST m128/m64bcst xmm k xmm
+// 	VPMAXUQ.BCST m256/m64bcst ymm ymm
+// 	VPMAXUQ.BCST m256/m64bcst ymm k ymm
 // 	VPMAXUQ.BCST m512/m64bcst zmm zmm
 // 	VPMAXUQ.BCST m512/m64bcst zmm k zmm
 // Construct and append a VPMAXUQ.BCST instruction to the active function.
@@ -54860,6 +60318,10 @@ func (c *Context) VPMAXUQ_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPMAXUQ.BCST m128/m64bcst xmm xmm
+// 	VPMAXUQ.BCST m128/m64bcst xmm k xmm
+// 	VPMAXUQ.BCST m256/m64bcst ymm ymm
+// 	VPMAXUQ.BCST m256/m64bcst ymm k ymm
 // 	VPMAXUQ.BCST m512/m64bcst zmm zmm
 // 	VPMAXUQ.BCST m512/m64bcst zmm k zmm
 // Construct and append a VPMAXUQ.BCST instruction to the active function.
@@ -54870,10 +60332,12 @@ func VPMAXUQ_BCST(ops ...operand.Op) { ctx.VPMAXUQ_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPMAXUQ.BCST.Z m128/m64bcst xmm k xmm
+// 	VPMAXUQ.BCST.Z m256/m64bcst ymm k ymm
 // 	VPMAXUQ.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VPMAXUQ.BCST.Z instruction to the active function.
-func (c *Context) VPMAXUQ_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VPMAXUQ_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VPMAXUQ_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPMAXUQ_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -54884,20 +60348,26 @@ func (c *Context) VPMAXUQ_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPMAXUQ.BCST.Z m128/m64bcst xmm k xmm
+// 	VPMAXUQ.BCST.Z m256/m64bcst ymm k ymm
 // 	VPMAXUQ.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VPMAXUQ.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VPMAXUQ_BCST_Z(m, z, k, z1 operand.Op) { ctx.VPMAXUQ_BCST_Z(m, z, k, z1) }
+func VPMAXUQ_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VPMAXUQ_BCST_Z(m, xyz, k, xyz1) }
 
 // VPMAXUQ_Z: Maximum of Packed Unsigned Quadword Integers (Zeroing Masking).
 //
 // Forms:
 //
+// 	VPMAXUQ.Z m128/m64bcst xmm k xmm
+// 	VPMAXUQ.Z xmm          xmm k xmm
+// 	VPMAXUQ.Z m256/m64bcst ymm k ymm
+// 	VPMAXUQ.Z ymm          ymm k ymm
 // 	VPMAXUQ.Z m512/m64bcst zmm k zmm
 // 	VPMAXUQ.Z zmm          zmm k zmm
 // Construct and append a VPMAXUQ.Z instruction to the active function.
-func (c *Context) VPMAXUQ_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VPMAXUQ_Z(mz, z, k, z1); err == nil {
+func (c *Context) VPMAXUQ_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPMAXUQ_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -54908,11 +60378,15 @@ func (c *Context) VPMAXUQ_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPMAXUQ.Z m128/m64bcst xmm k xmm
+// 	VPMAXUQ.Z xmm          xmm k xmm
+// 	VPMAXUQ.Z m256/m64bcst ymm k ymm
+// 	VPMAXUQ.Z ymm          ymm k ymm
 // 	VPMAXUQ.Z m512/m64bcst zmm k zmm
 // 	VPMAXUQ.Z zmm          zmm k zmm
 // Construct and append a VPMAXUQ.Z instruction to the active function.
 // Operates on the global context.
-func VPMAXUQ_Z(mz, z, k, z1 operand.Op) { ctx.VPMAXUQ_Z(mz, z, k, z1) }
+func VPMAXUQ_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPMAXUQ_Z(mxyz, xyz, k, xyz1) }
 
 // VPMAXUW: Maximum of Packed Unsigned Word Integers.
 //
@@ -54976,6 +60450,14 @@ func VPMINSB(mxy, xy, xy1 operand.Op) { ctx.VPMINSB(mxy, xy, xy1) }
 //
 // Forms:
 //
+// 	VPMINSD m128/m32bcst xmm xmm
+// 	VPMINSD m128/m32bcst xmm k xmm
+// 	VPMINSD xmm          xmm xmm
+// 	VPMINSD xmm          xmm k xmm
+// 	VPMINSD m256/m32bcst ymm ymm
+// 	VPMINSD m256/m32bcst ymm k ymm
+// 	VPMINSD ymm          ymm ymm
+// 	VPMINSD ymm          ymm k ymm
 // 	VPMINSD m512/m32bcst zmm zmm
 // 	VPMINSD m512/m32bcst zmm k zmm
 // 	VPMINSD zmm          zmm zmm
@@ -54997,6 +60479,14 @@ func (c *Context) VPMINSD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPMINSD m128/m32bcst xmm xmm
+// 	VPMINSD m128/m32bcst xmm k xmm
+// 	VPMINSD xmm          xmm xmm
+// 	VPMINSD xmm          xmm k xmm
+// 	VPMINSD m256/m32bcst ymm ymm
+// 	VPMINSD m256/m32bcst ymm k ymm
+// 	VPMINSD ymm          ymm ymm
+// 	VPMINSD ymm          ymm k ymm
 // 	VPMINSD m512/m32bcst zmm zmm
 // 	VPMINSD m512/m32bcst zmm k zmm
 // 	VPMINSD zmm          zmm zmm
@@ -55013,6 +60503,10 @@ func VPMINSD(ops ...operand.Op) { ctx.VPMINSD(ops...) }
 //
 // Forms:
 //
+// 	VPMINSD.BCST m128/m32bcst xmm xmm
+// 	VPMINSD.BCST m128/m32bcst xmm k xmm
+// 	VPMINSD.BCST m256/m32bcst ymm ymm
+// 	VPMINSD.BCST m256/m32bcst ymm k ymm
 // 	VPMINSD.BCST m512/m32bcst zmm zmm
 // 	VPMINSD.BCST m512/m32bcst zmm k zmm
 // Construct and append a VPMINSD.BCST instruction to the active function.
@@ -55028,6 +60522,10 @@ func (c *Context) VPMINSD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPMINSD.BCST m128/m32bcst xmm xmm
+// 	VPMINSD.BCST m128/m32bcst xmm k xmm
+// 	VPMINSD.BCST m256/m32bcst ymm ymm
+// 	VPMINSD.BCST m256/m32bcst ymm k ymm
 // 	VPMINSD.BCST m512/m32bcst zmm zmm
 // 	VPMINSD.BCST m512/m32bcst zmm k zmm
 // Construct and append a VPMINSD.BCST instruction to the active function.
@@ -55038,10 +60536,12 @@ func VPMINSD_BCST(ops ...operand.Op) { ctx.VPMINSD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPMINSD.BCST.Z m128/m32bcst xmm k xmm
+// 	VPMINSD.BCST.Z m256/m32bcst ymm k ymm
 // 	VPMINSD.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VPMINSD.BCST.Z instruction to the active function.
-func (c *Context) VPMINSD_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VPMINSD_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VPMINSD_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPMINSD_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -55052,20 +60552,26 @@ func (c *Context) VPMINSD_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPMINSD.BCST.Z m128/m32bcst xmm k xmm
+// 	VPMINSD.BCST.Z m256/m32bcst ymm k ymm
 // 	VPMINSD.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VPMINSD.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VPMINSD_BCST_Z(m, z, k, z1 operand.Op) { ctx.VPMINSD_BCST_Z(m, z, k, z1) }
+func VPMINSD_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VPMINSD_BCST_Z(m, xyz, k, xyz1) }
 
 // VPMINSD_Z: Minimum of Packed Signed Doubleword Integers (Zeroing Masking).
 //
 // Forms:
 //
+// 	VPMINSD.Z m128/m32bcst xmm k xmm
+// 	VPMINSD.Z xmm          xmm k xmm
+// 	VPMINSD.Z m256/m32bcst ymm k ymm
+// 	VPMINSD.Z ymm          ymm k ymm
 // 	VPMINSD.Z m512/m32bcst zmm k zmm
 // 	VPMINSD.Z zmm          zmm k zmm
 // Construct and append a VPMINSD.Z instruction to the active function.
-func (c *Context) VPMINSD_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VPMINSD_Z(mz, z, k, z1); err == nil {
+func (c *Context) VPMINSD_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPMINSD_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -55076,16 +60582,28 @@ func (c *Context) VPMINSD_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPMINSD.Z m128/m32bcst xmm k xmm
+// 	VPMINSD.Z xmm          xmm k xmm
+// 	VPMINSD.Z m256/m32bcst ymm k ymm
+// 	VPMINSD.Z ymm          ymm k ymm
 // 	VPMINSD.Z m512/m32bcst zmm k zmm
 // 	VPMINSD.Z zmm          zmm k zmm
 // Construct and append a VPMINSD.Z instruction to the active function.
 // Operates on the global context.
-func VPMINSD_Z(mz, z, k, z1 operand.Op) { ctx.VPMINSD_Z(mz, z, k, z1) }
+func VPMINSD_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPMINSD_Z(mxyz, xyz, k, xyz1) }
 
 // VPMINSQ: Minimum of Packed Signed Quadword Integers.
 //
 // Forms:
 //
+// 	VPMINSQ m128/m64bcst xmm xmm
+// 	VPMINSQ m128/m64bcst xmm k xmm
+// 	VPMINSQ xmm          xmm xmm
+// 	VPMINSQ xmm          xmm k xmm
+// 	VPMINSQ m256/m64bcst ymm ymm
+// 	VPMINSQ m256/m64bcst ymm k ymm
+// 	VPMINSQ ymm          ymm ymm
+// 	VPMINSQ ymm          ymm k ymm
 // 	VPMINSQ m512/m64bcst zmm zmm
 // 	VPMINSQ m512/m64bcst zmm k zmm
 // 	VPMINSQ zmm          zmm zmm
@@ -55103,6 +60621,14 @@ func (c *Context) VPMINSQ(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPMINSQ m128/m64bcst xmm xmm
+// 	VPMINSQ m128/m64bcst xmm k xmm
+// 	VPMINSQ xmm          xmm xmm
+// 	VPMINSQ xmm          xmm k xmm
+// 	VPMINSQ m256/m64bcst ymm ymm
+// 	VPMINSQ m256/m64bcst ymm k ymm
+// 	VPMINSQ ymm          ymm ymm
+// 	VPMINSQ ymm          ymm k ymm
 // 	VPMINSQ m512/m64bcst zmm zmm
 // 	VPMINSQ m512/m64bcst zmm k zmm
 // 	VPMINSQ zmm          zmm zmm
@@ -55115,6 +60641,10 @@ func VPMINSQ(ops ...operand.Op) { ctx.VPMINSQ(ops...) }
 //
 // Forms:
 //
+// 	VPMINSQ.BCST m128/m64bcst xmm xmm
+// 	VPMINSQ.BCST m128/m64bcst xmm k xmm
+// 	VPMINSQ.BCST m256/m64bcst ymm ymm
+// 	VPMINSQ.BCST m256/m64bcst ymm k ymm
 // 	VPMINSQ.BCST m512/m64bcst zmm zmm
 // 	VPMINSQ.BCST m512/m64bcst zmm k zmm
 // Construct and append a VPMINSQ.BCST instruction to the active function.
@@ -55130,6 +60660,10 @@ func (c *Context) VPMINSQ_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPMINSQ.BCST m128/m64bcst xmm xmm
+// 	VPMINSQ.BCST m128/m64bcst xmm k xmm
+// 	VPMINSQ.BCST m256/m64bcst ymm ymm
+// 	VPMINSQ.BCST m256/m64bcst ymm k ymm
 // 	VPMINSQ.BCST m512/m64bcst zmm zmm
 // 	VPMINSQ.BCST m512/m64bcst zmm k zmm
 // Construct and append a VPMINSQ.BCST instruction to the active function.
@@ -55140,10 +60674,12 @@ func VPMINSQ_BCST(ops ...operand.Op) { ctx.VPMINSQ_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPMINSQ.BCST.Z m128/m64bcst xmm k xmm
+// 	VPMINSQ.BCST.Z m256/m64bcst ymm k ymm
 // 	VPMINSQ.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VPMINSQ.BCST.Z instruction to the active function.
-func (c *Context) VPMINSQ_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VPMINSQ_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VPMINSQ_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPMINSQ_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -55154,20 +60690,26 @@ func (c *Context) VPMINSQ_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPMINSQ.BCST.Z m128/m64bcst xmm k xmm
+// 	VPMINSQ.BCST.Z m256/m64bcst ymm k ymm
 // 	VPMINSQ.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VPMINSQ.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VPMINSQ_BCST_Z(m, z, k, z1 operand.Op) { ctx.VPMINSQ_BCST_Z(m, z, k, z1) }
+func VPMINSQ_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VPMINSQ_BCST_Z(m, xyz, k, xyz1) }
 
 // VPMINSQ_Z: Minimum of Packed Signed Quadword Integers (Zeroing Masking).
 //
 // Forms:
 //
+// 	VPMINSQ.Z m128/m64bcst xmm k xmm
+// 	VPMINSQ.Z xmm          xmm k xmm
+// 	VPMINSQ.Z m256/m64bcst ymm k ymm
+// 	VPMINSQ.Z ymm          ymm k ymm
 // 	VPMINSQ.Z m512/m64bcst zmm k zmm
 // 	VPMINSQ.Z zmm          zmm k zmm
 // Construct and append a VPMINSQ.Z instruction to the active function.
-func (c *Context) VPMINSQ_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VPMINSQ_Z(mz, z, k, z1); err == nil {
+func (c *Context) VPMINSQ_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPMINSQ_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -55178,11 +60720,15 @@ func (c *Context) VPMINSQ_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPMINSQ.Z m128/m64bcst xmm k xmm
+// 	VPMINSQ.Z xmm          xmm k xmm
+// 	VPMINSQ.Z m256/m64bcst ymm k ymm
+// 	VPMINSQ.Z ymm          ymm k ymm
 // 	VPMINSQ.Z m512/m64bcst zmm k zmm
 // 	VPMINSQ.Z zmm          zmm k zmm
 // Construct and append a VPMINSQ.Z instruction to the active function.
 // Operates on the global context.
-func VPMINSQ_Z(mz, z, k, z1 operand.Op) { ctx.VPMINSQ_Z(mz, z, k, z1) }
+func VPMINSQ_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPMINSQ_Z(mxyz, xyz, k, xyz1) }
 
 // VPMINSW: Minimum of Packed Signed Word Integers.
 //
@@ -55246,6 +60792,14 @@ func VPMINUB(mxy, xy, xy1 operand.Op) { ctx.VPMINUB(mxy, xy, xy1) }
 //
 // Forms:
 //
+// 	VPMINUD m128/m32bcst xmm xmm
+// 	VPMINUD m128/m32bcst xmm k xmm
+// 	VPMINUD xmm          xmm xmm
+// 	VPMINUD xmm          xmm k xmm
+// 	VPMINUD m256/m32bcst ymm ymm
+// 	VPMINUD m256/m32bcst ymm k ymm
+// 	VPMINUD ymm          ymm ymm
+// 	VPMINUD ymm          ymm k ymm
 // 	VPMINUD m512/m32bcst zmm zmm
 // 	VPMINUD m512/m32bcst zmm k zmm
 // 	VPMINUD zmm          zmm zmm
@@ -55267,6 +60821,14 @@ func (c *Context) VPMINUD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPMINUD m128/m32bcst xmm xmm
+// 	VPMINUD m128/m32bcst xmm k xmm
+// 	VPMINUD xmm          xmm xmm
+// 	VPMINUD xmm          xmm k xmm
+// 	VPMINUD m256/m32bcst ymm ymm
+// 	VPMINUD m256/m32bcst ymm k ymm
+// 	VPMINUD ymm          ymm ymm
+// 	VPMINUD ymm          ymm k ymm
 // 	VPMINUD m512/m32bcst zmm zmm
 // 	VPMINUD m512/m32bcst zmm k zmm
 // 	VPMINUD zmm          zmm zmm
@@ -55283,6 +60845,10 @@ func VPMINUD(ops ...operand.Op) { ctx.VPMINUD(ops...) }
 //
 // Forms:
 //
+// 	VPMINUD.BCST m128/m32bcst xmm xmm
+// 	VPMINUD.BCST m128/m32bcst xmm k xmm
+// 	VPMINUD.BCST m256/m32bcst ymm ymm
+// 	VPMINUD.BCST m256/m32bcst ymm k ymm
 // 	VPMINUD.BCST m512/m32bcst zmm zmm
 // 	VPMINUD.BCST m512/m32bcst zmm k zmm
 // Construct and append a VPMINUD.BCST instruction to the active function.
@@ -55298,6 +60864,10 @@ func (c *Context) VPMINUD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPMINUD.BCST m128/m32bcst xmm xmm
+// 	VPMINUD.BCST m128/m32bcst xmm k xmm
+// 	VPMINUD.BCST m256/m32bcst ymm ymm
+// 	VPMINUD.BCST m256/m32bcst ymm k ymm
 // 	VPMINUD.BCST m512/m32bcst zmm zmm
 // 	VPMINUD.BCST m512/m32bcst zmm k zmm
 // Construct and append a VPMINUD.BCST instruction to the active function.
@@ -55308,10 +60878,12 @@ func VPMINUD_BCST(ops ...operand.Op) { ctx.VPMINUD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPMINUD.BCST.Z m128/m32bcst xmm k xmm
+// 	VPMINUD.BCST.Z m256/m32bcst ymm k ymm
 // 	VPMINUD.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VPMINUD.BCST.Z instruction to the active function.
-func (c *Context) VPMINUD_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VPMINUD_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VPMINUD_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPMINUD_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -55322,20 +60894,26 @@ func (c *Context) VPMINUD_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPMINUD.BCST.Z m128/m32bcst xmm k xmm
+// 	VPMINUD.BCST.Z m256/m32bcst ymm k ymm
 // 	VPMINUD.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VPMINUD.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VPMINUD_BCST_Z(m, z, k, z1 operand.Op) { ctx.VPMINUD_BCST_Z(m, z, k, z1) }
+func VPMINUD_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VPMINUD_BCST_Z(m, xyz, k, xyz1) }
 
 // VPMINUD_Z: Minimum of Packed Unsigned Doubleword Integers (Zeroing Masking).
 //
 // Forms:
 //
+// 	VPMINUD.Z m128/m32bcst xmm k xmm
+// 	VPMINUD.Z xmm          xmm k xmm
+// 	VPMINUD.Z m256/m32bcst ymm k ymm
+// 	VPMINUD.Z ymm          ymm k ymm
 // 	VPMINUD.Z m512/m32bcst zmm k zmm
 // 	VPMINUD.Z zmm          zmm k zmm
 // Construct and append a VPMINUD.Z instruction to the active function.
-func (c *Context) VPMINUD_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VPMINUD_Z(mz, z, k, z1); err == nil {
+func (c *Context) VPMINUD_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPMINUD_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -55346,16 +60924,28 @@ func (c *Context) VPMINUD_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPMINUD.Z m128/m32bcst xmm k xmm
+// 	VPMINUD.Z xmm          xmm k xmm
+// 	VPMINUD.Z m256/m32bcst ymm k ymm
+// 	VPMINUD.Z ymm          ymm k ymm
 // 	VPMINUD.Z m512/m32bcst zmm k zmm
 // 	VPMINUD.Z zmm          zmm k zmm
 // Construct and append a VPMINUD.Z instruction to the active function.
 // Operates on the global context.
-func VPMINUD_Z(mz, z, k, z1 operand.Op) { ctx.VPMINUD_Z(mz, z, k, z1) }
+func VPMINUD_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPMINUD_Z(mxyz, xyz, k, xyz1) }
 
 // VPMINUQ: Minimum of Packed Unsigned Quadword Integers.
 //
 // Forms:
 //
+// 	VPMINUQ m128/m64bcst xmm xmm
+// 	VPMINUQ m128/m64bcst xmm k xmm
+// 	VPMINUQ xmm          xmm xmm
+// 	VPMINUQ xmm          xmm k xmm
+// 	VPMINUQ m256/m64bcst ymm ymm
+// 	VPMINUQ m256/m64bcst ymm k ymm
+// 	VPMINUQ ymm          ymm ymm
+// 	VPMINUQ ymm          ymm k ymm
 // 	VPMINUQ m512/m64bcst zmm zmm
 // 	VPMINUQ m512/m64bcst zmm k zmm
 // 	VPMINUQ zmm          zmm zmm
@@ -55373,6 +60963,14 @@ func (c *Context) VPMINUQ(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPMINUQ m128/m64bcst xmm xmm
+// 	VPMINUQ m128/m64bcst xmm k xmm
+// 	VPMINUQ xmm          xmm xmm
+// 	VPMINUQ xmm          xmm k xmm
+// 	VPMINUQ m256/m64bcst ymm ymm
+// 	VPMINUQ m256/m64bcst ymm k ymm
+// 	VPMINUQ ymm          ymm ymm
+// 	VPMINUQ ymm          ymm k ymm
 // 	VPMINUQ m512/m64bcst zmm zmm
 // 	VPMINUQ m512/m64bcst zmm k zmm
 // 	VPMINUQ zmm          zmm zmm
@@ -55385,6 +60983,10 @@ func VPMINUQ(ops ...operand.Op) { ctx.VPMINUQ(ops...) }
 //
 // Forms:
 //
+// 	VPMINUQ.BCST m128/m64bcst xmm xmm
+// 	VPMINUQ.BCST m128/m64bcst xmm k xmm
+// 	VPMINUQ.BCST m256/m64bcst ymm ymm
+// 	VPMINUQ.BCST m256/m64bcst ymm k ymm
 // 	VPMINUQ.BCST m512/m64bcst zmm zmm
 // 	VPMINUQ.BCST m512/m64bcst zmm k zmm
 // Construct and append a VPMINUQ.BCST instruction to the active function.
@@ -55400,6 +61002,10 @@ func (c *Context) VPMINUQ_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPMINUQ.BCST m128/m64bcst xmm xmm
+// 	VPMINUQ.BCST m128/m64bcst xmm k xmm
+// 	VPMINUQ.BCST m256/m64bcst ymm ymm
+// 	VPMINUQ.BCST m256/m64bcst ymm k ymm
 // 	VPMINUQ.BCST m512/m64bcst zmm zmm
 // 	VPMINUQ.BCST m512/m64bcst zmm k zmm
 // Construct and append a VPMINUQ.BCST instruction to the active function.
@@ -55410,10 +61016,12 @@ func VPMINUQ_BCST(ops ...operand.Op) { ctx.VPMINUQ_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPMINUQ.BCST.Z m128/m64bcst xmm k xmm
+// 	VPMINUQ.BCST.Z m256/m64bcst ymm k ymm
 // 	VPMINUQ.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VPMINUQ.BCST.Z instruction to the active function.
-func (c *Context) VPMINUQ_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VPMINUQ_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VPMINUQ_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPMINUQ_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -55424,20 +61032,26 @@ func (c *Context) VPMINUQ_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPMINUQ.BCST.Z m128/m64bcst xmm k xmm
+// 	VPMINUQ.BCST.Z m256/m64bcst ymm k ymm
 // 	VPMINUQ.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VPMINUQ.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VPMINUQ_BCST_Z(m, z, k, z1 operand.Op) { ctx.VPMINUQ_BCST_Z(m, z, k, z1) }
+func VPMINUQ_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VPMINUQ_BCST_Z(m, xyz, k, xyz1) }
 
 // VPMINUQ_Z: Minimum of Packed Unsigned Quadword Integers (Zeroing Masking).
 //
 // Forms:
 //
+// 	VPMINUQ.Z m128/m64bcst xmm k xmm
+// 	VPMINUQ.Z xmm          xmm k xmm
+// 	VPMINUQ.Z m256/m64bcst ymm k ymm
+// 	VPMINUQ.Z ymm          ymm k ymm
 // 	VPMINUQ.Z m512/m64bcst zmm k zmm
 // 	VPMINUQ.Z zmm          zmm k zmm
 // Construct and append a VPMINUQ.Z instruction to the active function.
-func (c *Context) VPMINUQ_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VPMINUQ_Z(mz, z, k, z1); err == nil {
+func (c *Context) VPMINUQ_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPMINUQ_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -55448,11 +61062,15 @@ func (c *Context) VPMINUQ_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPMINUQ.Z m128/m64bcst xmm k xmm
+// 	VPMINUQ.Z xmm          xmm k xmm
+// 	VPMINUQ.Z m256/m64bcst ymm k ymm
+// 	VPMINUQ.Z ymm          ymm k ymm
 // 	VPMINUQ.Z m512/m64bcst zmm k zmm
 // 	VPMINUQ.Z zmm          zmm k zmm
 // Construct and append a VPMINUQ.Z instruction to the active function.
 // Operates on the global context.
-func VPMINUQ_Z(mz, z, k, z1 operand.Op) { ctx.VPMINUQ_Z(mz, z, k, z1) }
+func VPMINUQ_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPMINUQ_Z(mxyz, xyz, k, xyz1) }
 
 // VPMINUW: Minimum of Packed Unsigned Word Integers.
 //
@@ -55487,6 +61105,14 @@ func VPMINUW(mxy, xy, xy1 operand.Op) { ctx.VPMINUW(mxy, xy, xy1) }
 //
 // Forms:
 //
+// 	VPMOVDB xmm xmm
+// 	VPMOVDB xmm k xmm
+// 	VPMOVDB xmm m32
+// 	VPMOVDB xmm k m32
+// 	VPMOVDB ymm xmm
+// 	VPMOVDB ymm k xmm
+// 	VPMOVDB ymm m64
+// 	VPMOVDB ymm k m64
 // 	VPMOVDB zmm xmm
 // 	VPMOVDB zmm k xmm
 // 	VPMOVDB zmm m128
@@ -55504,6 +61130,14 @@ func (c *Context) VPMOVDB(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPMOVDB xmm xmm
+// 	VPMOVDB xmm k xmm
+// 	VPMOVDB xmm m32
+// 	VPMOVDB xmm k m32
+// 	VPMOVDB ymm xmm
+// 	VPMOVDB ymm k xmm
+// 	VPMOVDB ymm m64
+// 	VPMOVDB ymm k m64
 // 	VPMOVDB zmm xmm
 // 	VPMOVDB zmm k xmm
 // 	VPMOVDB zmm m128
@@ -55516,11 +61150,15 @@ func VPMOVDB(ops ...operand.Op) { ctx.VPMOVDB(ops...) }
 //
 // Forms:
 //
+// 	VPMOVDB.Z xmm k xmm
+// 	VPMOVDB.Z xmm k m32
+// 	VPMOVDB.Z ymm k xmm
+// 	VPMOVDB.Z ymm k m64
 // 	VPMOVDB.Z zmm k xmm
 // 	VPMOVDB.Z zmm k m128
 // Construct and append a VPMOVDB.Z instruction to the active function.
-func (c *Context) VPMOVDB_Z(z, k, mx operand.Op) {
-	if inst, err := x86.VPMOVDB_Z(z, k, mx); err == nil {
+func (c *Context) VPMOVDB_Z(xyz, k, mx operand.Op) {
+	if inst, err := x86.VPMOVDB_Z(xyz, k, mx); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -55531,16 +61169,28 @@ func (c *Context) VPMOVDB_Z(z, k, mx operand.Op) {
 //
 // Forms:
 //
+// 	VPMOVDB.Z xmm k xmm
+// 	VPMOVDB.Z xmm k m32
+// 	VPMOVDB.Z ymm k xmm
+// 	VPMOVDB.Z ymm k m64
 // 	VPMOVDB.Z zmm k xmm
 // 	VPMOVDB.Z zmm k m128
 // Construct and append a VPMOVDB.Z instruction to the active function.
 // Operates on the global context.
-func VPMOVDB_Z(z, k, mx operand.Op) { ctx.VPMOVDB_Z(z, k, mx) }
+func VPMOVDB_Z(xyz, k, mx operand.Op) { ctx.VPMOVDB_Z(xyz, k, mx) }
 
 // VPMOVDW: Down Convert Packed Doubleword Values to Word Values with Truncation.
 //
 // Forms:
 //
+// 	VPMOVDW xmm xmm
+// 	VPMOVDW xmm k xmm
+// 	VPMOVDW xmm m64
+// 	VPMOVDW xmm k m64
+// 	VPMOVDW ymm xmm
+// 	VPMOVDW ymm k xmm
+// 	VPMOVDW ymm m128
+// 	VPMOVDW ymm k m128
 // 	VPMOVDW zmm ymm
 // 	VPMOVDW zmm k ymm
 // 	VPMOVDW zmm m256
@@ -55558,6 +61208,14 @@ func (c *Context) VPMOVDW(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPMOVDW xmm xmm
+// 	VPMOVDW xmm k xmm
+// 	VPMOVDW xmm m64
+// 	VPMOVDW xmm k m64
+// 	VPMOVDW ymm xmm
+// 	VPMOVDW ymm k xmm
+// 	VPMOVDW ymm m128
+// 	VPMOVDW ymm k m128
 // 	VPMOVDW zmm ymm
 // 	VPMOVDW zmm k ymm
 // 	VPMOVDW zmm m256
@@ -55570,11 +61228,15 @@ func VPMOVDW(ops ...operand.Op) { ctx.VPMOVDW(ops...) }
 //
 // Forms:
 //
+// 	VPMOVDW.Z xmm k xmm
+// 	VPMOVDW.Z xmm k m64
+// 	VPMOVDW.Z ymm k xmm
+// 	VPMOVDW.Z ymm k m128
 // 	VPMOVDW.Z zmm k ymm
 // 	VPMOVDW.Z zmm k m256
 // Construct and append a VPMOVDW.Z instruction to the active function.
-func (c *Context) VPMOVDW_Z(z, k, my operand.Op) {
-	if inst, err := x86.VPMOVDW_Z(z, k, my); err == nil {
+func (c *Context) VPMOVDW_Z(xyz, k, mxy operand.Op) {
+	if inst, err := x86.VPMOVDW_Z(xyz, k, mxy); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -55585,11 +61247,15 @@ func (c *Context) VPMOVDW_Z(z, k, my operand.Op) {
 //
 // Forms:
 //
+// 	VPMOVDW.Z xmm k xmm
+// 	VPMOVDW.Z xmm k m64
+// 	VPMOVDW.Z ymm k xmm
+// 	VPMOVDW.Z ymm k m128
 // 	VPMOVDW.Z zmm k ymm
 // 	VPMOVDW.Z zmm k m256
 // Construct and append a VPMOVDW.Z instruction to the active function.
 // Operates on the global context.
-func VPMOVDW_Z(z, k, my operand.Op) { ctx.VPMOVDW_Z(z, k, my) }
+func VPMOVDW_Z(xyz, k, mxy operand.Op) { ctx.VPMOVDW_Z(xyz, k, mxy) }
 
 // VPMOVMSKB: Move Byte Mask.
 //
@@ -55620,6 +61286,14 @@ func VPMOVMSKB(xy, r operand.Op) { ctx.VPMOVMSKB(xy, r) }
 //
 // Forms:
 //
+// 	VPMOVQB xmm xmm
+// 	VPMOVQB xmm k xmm
+// 	VPMOVQB xmm m16
+// 	VPMOVQB xmm k m16
+// 	VPMOVQB ymm xmm
+// 	VPMOVQB ymm k xmm
+// 	VPMOVQB ymm m32
+// 	VPMOVQB ymm k m32
 // 	VPMOVQB zmm xmm
 // 	VPMOVQB zmm k xmm
 // 	VPMOVQB zmm m64
@@ -55637,6 +61311,14 @@ func (c *Context) VPMOVQB(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPMOVQB xmm xmm
+// 	VPMOVQB xmm k xmm
+// 	VPMOVQB xmm m16
+// 	VPMOVQB xmm k m16
+// 	VPMOVQB ymm xmm
+// 	VPMOVQB ymm k xmm
+// 	VPMOVQB ymm m32
+// 	VPMOVQB ymm k m32
 // 	VPMOVQB zmm xmm
 // 	VPMOVQB zmm k xmm
 // 	VPMOVQB zmm m64
@@ -55649,11 +61331,15 @@ func VPMOVQB(ops ...operand.Op) { ctx.VPMOVQB(ops...) }
 //
 // Forms:
 //
+// 	VPMOVQB.Z xmm k xmm
+// 	VPMOVQB.Z xmm k m16
+// 	VPMOVQB.Z ymm k xmm
+// 	VPMOVQB.Z ymm k m32
 // 	VPMOVQB.Z zmm k xmm
 // 	VPMOVQB.Z zmm k m64
 // Construct and append a VPMOVQB.Z instruction to the active function.
-func (c *Context) VPMOVQB_Z(z, k, mx operand.Op) {
-	if inst, err := x86.VPMOVQB_Z(z, k, mx); err == nil {
+func (c *Context) VPMOVQB_Z(xyz, k, mx operand.Op) {
+	if inst, err := x86.VPMOVQB_Z(xyz, k, mx); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -55664,16 +61350,28 @@ func (c *Context) VPMOVQB_Z(z, k, mx operand.Op) {
 //
 // Forms:
 //
+// 	VPMOVQB.Z xmm k xmm
+// 	VPMOVQB.Z xmm k m16
+// 	VPMOVQB.Z ymm k xmm
+// 	VPMOVQB.Z ymm k m32
 // 	VPMOVQB.Z zmm k xmm
 // 	VPMOVQB.Z zmm k m64
 // Construct and append a VPMOVQB.Z instruction to the active function.
 // Operates on the global context.
-func VPMOVQB_Z(z, k, mx operand.Op) { ctx.VPMOVQB_Z(z, k, mx) }
+func VPMOVQB_Z(xyz, k, mx operand.Op) { ctx.VPMOVQB_Z(xyz, k, mx) }
 
 // VPMOVQD: Down Convert Packed Quadword Values to Doubleword Values with Truncation.
 //
 // Forms:
 //
+// 	VPMOVQD xmm xmm
+// 	VPMOVQD xmm k xmm
+// 	VPMOVQD xmm m64
+// 	VPMOVQD xmm k m64
+// 	VPMOVQD ymm xmm
+// 	VPMOVQD ymm k xmm
+// 	VPMOVQD ymm m128
+// 	VPMOVQD ymm k m128
 // 	VPMOVQD zmm ymm
 // 	VPMOVQD zmm k ymm
 // 	VPMOVQD zmm m256
@@ -55691,6 +61389,14 @@ func (c *Context) VPMOVQD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPMOVQD xmm xmm
+// 	VPMOVQD xmm k xmm
+// 	VPMOVQD xmm m64
+// 	VPMOVQD xmm k m64
+// 	VPMOVQD ymm xmm
+// 	VPMOVQD ymm k xmm
+// 	VPMOVQD ymm m128
+// 	VPMOVQD ymm k m128
 // 	VPMOVQD zmm ymm
 // 	VPMOVQD zmm k ymm
 // 	VPMOVQD zmm m256
@@ -55703,11 +61409,15 @@ func VPMOVQD(ops ...operand.Op) { ctx.VPMOVQD(ops...) }
 //
 // Forms:
 //
+// 	VPMOVQD.Z xmm k xmm
+// 	VPMOVQD.Z xmm k m64
+// 	VPMOVQD.Z ymm k xmm
+// 	VPMOVQD.Z ymm k m128
 // 	VPMOVQD.Z zmm k ymm
 // 	VPMOVQD.Z zmm k m256
 // Construct and append a VPMOVQD.Z instruction to the active function.
-func (c *Context) VPMOVQD_Z(z, k, my operand.Op) {
-	if inst, err := x86.VPMOVQD_Z(z, k, my); err == nil {
+func (c *Context) VPMOVQD_Z(xyz, k, mxy operand.Op) {
+	if inst, err := x86.VPMOVQD_Z(xyz, k, mxy); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -55718,16 +61428,28 @@ func (c *Context) VPMOVQD_Z(z, k, my operand.Op) {
 //
 // Forms:
 //
+// 	VPMOVQD.Z xmm k xmm
+// 	VPMOVQD.Z xmm k m64
+// 	VPMOVQD.Z ymm k xmm
+// 	VPMOVQD.Z ymm k m128
 // 	VPMOVQD.Z zmm k ymm
 // 	VPMOVQD.Z zmm k m256
 // Construct and append a VPMOVQD.Z instruction to the active function.
 // Operates on the global context.
-func VPMOVQD_Z(z, k, my operand.Op) { ctx.VPMOVQD_Z(z, k, my) }
+func VPMOVQD_Z(xyz, k, mxy operand.Op) { ctx.VPMOVQD_Z(xyz, k, mxy) }
 
 // VPMOVQW: Down Convert Packed Quadword Values to Word Values with Truncation.
 //
 // Forms:
 //
+// 	VPMOVQW xmm xmm
+// 	VPMOVQW xmm k xmm
+// 	VPMOVQW xmm m32
+// 	VPMOVQW xmm k m32
+// 	VPMOVQW ymm xmm
+// 	VPMOVQW ymm k xmm
+// 	VPMOVQW ymm m64
+// 	VPMOVQW ymm k m64
 // 	VPMOVQW zmm xmm
 // 	VPMOVQW zmm k xmm
 // 	VPMOVQW zmm m128
@@ -55745,6 +61467,14 @@ func (c *Context) VPMOVQW(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPMOVQW xmm xmm
+// 	VPMOVQW xmm k xmm
+// 	VPMOVQW xmm m32
+// 	VPMOVQW xmm k m32
+// 	VPMOVQW ymm xmm
+// 	VPMOVQW ymm k xmm
+// 	VPMOVQW ymm m64
+// 	VPMOVQW ymm k m64
 // 	VPMOVQW zmm xmm
 // 	VPMOVQW zmm k xmm
 // 	VPMOVQW zmm m128
@@ -55757,11 +61487,15 @@ func VPMOVQW(ops ...operand.Op) { ctx.VPMOVQW(ops...) }
 //
 // Forms:
 //
+// 	VPMOVQW.Z xmm k xmm
+// 	VPMOVQW.Z xmm k m32
+// 	VPMOVQW.Z ymm k xmm
+// 	VPMOVQW.Z ymm k m64
 // 	VPMOVQW.Z zmm k xmm
 // 	VPMOVQW.Z zmm k m128
 // Construct and append a VPMOVQW.Z instruction to the active function.
-func (c *Context) VPMOVQW_Z(z, k, mx operand.Op) {
-	if inst, err := x86.VPMOVQW_Z(z, k, mx); err == nil {
+func (c *Context) VPMOVQW_Z(xyz, k, mx operand.Op) {
+	if inst, err := x86.VPMOVQW_Z(xyz, k, mx); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -55772,16 +61506,28 @@ func (c *Context) VPMOVQW_Z(z, k, mx operand.Op) {
 //
 // Forms:
 //
+// 	VPMOVQW.Z xmm k xmm
+// 	VPMOVQW.Z xmm k m32
+// 	VPMOVQW.Z ymm k xmm
+// 	VPMOVQW.Z ymm k m64
 // 	VPMOVQW.Z zmm k xmm
 // 	VPMOVQW.Z zmm k m128
 // Construct and append a VPMOVQW.Z instruction to the active function.
 // Operates on the global context.
-func VPMOVQW_Z(z, k, mx operand.Op) { ctx.VPMOVQW_Z(z, k, mx) }
+func VPMOVQW_Z(xyz, k, mx operand.Op) { ctx.VPMOVQW_Z(xyz, k, mx) }
 
 // VPMOVSDB: Down Convert Packed Doubleword Values to Byte Values with Signed Saturation.
 //
 // Forms:
 //
+// 	VPMOVSDB xmm xmm
+// 	VPMOVSDB xmm k xmm
+// 	VPMOVSDB xmm m32
+// 	VPMOVSDB xmm k m32
+// 	VPMOVSDB ymm xmm
+// 	VPMOVSDB ymm k xmm
+// 	VPMOVSDB ymm m64
+// 	VPMOVSDB ymm k m64
 // 	VPMOVSDB zmm xmm
 // 	VPMOVSDB zmm k xmm
 // 	VPMOVSDB zmm m128
@@ -55799,6 +61545,14 @@ func (c *Context) VPMOVSDB(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPMOVSDB xmm xmm
+// 	VPMOVSDB xmm k xmm
+// 	VPMOVSDB xmm m32
+// 	VPMOVSDB xmm k m32
+// 	VPMOVSDB ymm xmm
+// 	VPMOVSDB ymm k xmm
+// 	VPMOVSDB ymm m64
+// 	VPMOVSDB ymm k m64
 // 	VPMOVSDB zmm xmm
 // 	VPMOVSDB zmm k xmm
 // 	VPMOVSDB zmm m128
@@ -55811,11 +61565,15 @@ func VPMOVSDB(ops ...operand.Op) { ctx.VPMOVSDB(ops...) }
 //
 // Forms:
 //
+// 	VPMOVSDB.Z xmm k xmm
+// 	VPMOVSDB.Z xmm k m32
+// 	VPMOVSDB.Z ymm k xmm
+// 	VPMOVSDB.Z ymm k m64
 // 	VPMOVSDB.Z zmm k xmm
 // 	VPMOVSDB.Z zmm k m128
 // Construct and append a VPMOVSDB.Z instruction to the active function.
-func (c *Context) VPMOVSDB_Z(z, k, mx operand.Op) {
-	if inst, err := x86.VPMOVSDB_Z(z, k, mx); err == nil {
+func (c *Context) VPMOVSDB_Z(xyz, k, mx operand.Op) {
+	if inst, err := x86.VPMOVSDB_Z(xyz, k, mx); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -55826,16 +61584,28 @@ func (c *Context) VPMOVSDB_Z(z, k, mx operand.Op) {
 //
 // Forms:
 //
+// 	VPMOVSDB.Z xmm k xmm
+// 	VPMOVSDB.Z xmm k m32
+// 	VPMOVSDB.Z ymm k xmm
+// 	VPMOVSDB.Z ymm k m64
 // 	VPMOVSDB.Z zmm k xmm
 // 	VPMOVSDB.Z zmm k m128
 // Construct and append a VPMOVSDB.Z instruction to the active function.
 // Operates on the global context.
-func VPMOVSDB_Z(z, k, mx operand.Op) { ctx.VPMOVSDB_Z(z, k, mx) }
+func VPMOVSDB_Z(xyz, k, mx operand.Op) { ctx.VPMOVSDB_Z(xyz, k, mx) }
 
 // VPMOVSDW: Down Convert Packed Doubleword Values to Word Values with Signed Saturation.
 //
 // Forms:
 //
+// 	VPMOVSDW xmm xmm
+// 	VPMOVSDW xmm k xmm
+// 	VPMOVSDW xmm m64
+// 	VPMOVSDW xmm k m64
+// 	VPMOVSDW ymm xmm
+// 	VPMOVSDW ymm k xmm
+// 	VPMOVSDW ymm m128
+// 	VPMOVSDW ymm k m128
 // 	VPMOVSDW zmm ymm
 // 	VPMOVSDW zmm k ymm
 // 	VPMOVSDW zmm m256
@@ -55853,6 +61623,14 @@ func (c *Context) VPMOVSDW(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPMOVSDW xmm xmm
+// 	VPMOVSDW xmm k xmm
+// 	VPMOVSDW xmm m64
+// 	VPMOVSDW xmm k m64
+// 	VPMOVSDW ymm xmm
+// 	VPMOVSDW ymm k xmm
+// 	VPMOVSDW ymm m128
+// 	VPMOVSDW ymm k m128
 // 	VPMOVSDW zmm ymm
 // 	VPMOVSDW zmm k ymm
 // 	VPMOVSDW zmm m256
@@ -55865,11 +61643,15 @@ func VPMOVSDW(ops ...operand.Op) { ctx.VPMOVSDW(ops...) }
 //
 // Forms:
 //
+// 	VPMOVSDW.Z xmm k xmm
+// 	VPMOVSDW.Z xmm k m64
+// 	VPMOVSDW.Z ymm k xmm
+// 	VPMOVSDW.Z ymm k m128
 // 	VPMOVSDW.Z zmm k ymm
 // 	VPMOVSDW.Z zmm k m256
 // Construct and append a VPMOVSDW.Z instruction to the active function.
-func (c *Context) VPMOVSDW_Z(z, k, my operand.Op) {
-	if inst, err := x86.VPMOVSDW_Z(z, k, my); err == nil {
+func (c *Context) VPMOVSDW_Z(xyz, k, mxy operand.Op) {
+	if inst, err := x86.VPMOVSDW_Z(xyz, k, mxy); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -55880,16 +61662,28 @@ func (c *Context) VPMOVSDW_Z(z, k, my operand.Op) {
 //
 // Forms:
 //
+// 	VPMOVSDW.Z xmm k xmm
+// 	VPMOVSDW.Z xmm k m64
+// 	VPMOVSDW.Z ymm k xmm
+// 	VPMOVSDW.Z ymm k m128
 // 	VPMOVSDW.Z zmm k ymm
 // 	VPMOVSDW.Z zmm k m256
 // Construct and append a VPMOVSDW.Z instruction to the active function.
 // Operates on the global context.
-func VPMOVSDW_Z(z, k, my operand.Op) { ctx.VPMOVSDW_Z(z, k, my) }
+func VPMOVSDW_Z(xyz, k, mxy operand.Op) { ctx.VPMOVSDW_Z(xyz, k, mxy) }
 
 // VPMOVSQB: Down Convert Packed Quadword Values to Byte Values with Signed Saturation.
 //
 // Forms:
 //
+// 	VPMOVSQB xmm xmm
+// 	VPMOVSQB xmm k xmm
+// 	VPMOVSQB xmm m16
+// 	VPMOVSQB xmm k m16
+// 	VPMOVSQB ymm xmm
+// 	VPMOVSQB ymm k xmm
+// 	VPMOVSQB ymm m32
+// 	VPMOVSQB ymm k m32
 // 	VPMOVSQB zmm xmm
 // 	VPMOVSQB zmm k xmm
 // 	VPMOVSQB zmm m64
@@ -55907,6 +61701,14 @@ func (c *Context) VPMOVSQB(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPMOVSQB xmm xmm
+// 	VPMOVSQB xmm k xmm
+// 	VPMOVSQB xmm m16
+// 	VPMOVSQB xmm k m16
+// 	VPMOVSQB ymm xmm
+// 	VPMOVSQB ymm k xmm
+// 	VPMOVSQB ymm m32
+// 	VPMOVSQB ymm k m32
 // 	VPMOVSQB zmm xmm
 // 	VPMOVSQB zmm k xmm
 // 	VPMOVSQB zmm m64
@@ -55919,11 +61721,15 @@ func VPMOVSQB(ops ...operand.Op) { ctx.VPMOVSQB(ops...) }
 //
 // Forms:
 //
+// 	VPMOVSQB.Z xmm k xmm
+// 	VPMOVSQB.Z xmm k m16
+// 	VPMOVSQB.Z ymm k xmm
+// 	VPMOVSQB.Z ymm k m32
 // 	VPMOVSQB.Z zmm k xmm
 // 	VPMOVSQB.Z zmm k m64
 // Construct and append a VPMOVSQB.Z instruction to the active function.
-func (c *Context) VPMOVSQB_Z(z, k, mx operand.Op) {
-	if inst, err := x86.VPMOVSQB_Z(z, k, mx); err == nil {
+func (c *Context) VPMOVSQB_Z(xyz, k, mx operand.Op) {
+	if inst, err := x86.VPMOVSQB_Z(xyz, k, mx); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -55934,16 +61740,28 @@ func (c *Context) VPMOVSQB_Z(z, k, mx operand.Op) {
 //
 // Forms:
 //
+// 	VPMOVSQB.Z xmm k xmm
+// 	VPMOVSQB.Z xmm k m16
+// 	VPMOVSQB.Z ymm k xmm
+// 	VPMOVSQB.Z ymm k m32
 // 	VPMOVSQB.Z zmm k xmm
 // 	VPMOVSQB.Z zmm k m64
 // Construct and append a VPMOVSQB.Z instruction to the active function.
 // Operates on the global context.
-func VPMOVSQB_Z(z, k, mx operand.Op) { ctx.VPMOVSQB_Z(z, k, mx) }
+func VPMOVSQB_Z(xyz, k, mx operand.Op) { ctx.VPMOVSQB_Z(xyz, k, mx) }
 
 // VPMOVSQD: Down Convert Packed Quadword Values to Doubleword Values with Signed Saturation.
 //
 // Forms:
 //
+// 	VPMOVSQD xmm xmm
+// 	VPMOVSQD xmm k xmm
+// 	VPMOVSQD xmm m64
+// 	VPMOVSQD xmm k m64
+// 	VPMOVSQD ymm xmm
+// 	VPMOVSQD ymm k xmm
+// 	VPMOVSQD ymm m128
+// 	VPMOVSQD ymm k m128
 // 	VPMOVSQD zmm ymm
 // 	VPMOVSQD zmm k ymm
 // 	VPMOVSQD zmm m256
@@ -55961,6 +61779,14 @@ func (c *Context) VPMOVSQD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPMOVSQD xmm xmm
+// 	VPMOVSQD xmm k xmm
+// 	VPMOVSQD xmm m64
+// 	VPMOVSQD xmm k m64
+// 	VPMOVSQD ymm xmm
+// 	VPMOVSQD ymm k xmm
+// 	VPMOVSQD ymm m128
+// 	VPMOVSQD ymm k m128
 // 	VPMOVSQD zmm ymm
 // 	VPMOVSQD zmm k ymm
 // 	VPMOVSQD zmm m256
@@ -55973,11 +61799,15 @@ func VPMOVSQD(ops ...operand.Op) { ctx.VPMOVSQD(ops...) }
 //
 // Forms:
 //
+// 	VPMOVSQD.Z xmm k xmm
+// 	VPMOVSQD.Z xmm k m64
+// 	VPMOVSQD.Z ymm k xmm
+// 	VPMOVSQD.Z ymm k m128
 // 	VPMOVSQD.Z zmm k ymm
 // 	VPMOVSQD.Z zmm k m256
 // Construct and append a VPMOVSQD.Z instruction to the active function.
-func (c *Context) VPMOVSQD_Z(z, k, my operand.Op) {
-	if inst, err := x86.VPMOVSQD_Z(z, k, my); err == nil {
+func (c *Context) VPMOVSQD_Z(xyz, k, mxy operand.Op) {
+	if inst, err := x86.VPMOVSQD_Z(xyz, k, mxy); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -55988,16 +61818,28 @@ func (c *Context) VPMOVSQD_Z(z, k, my operand.Op) {
 //
 // Forms:
 //
+// 	VPMOVSQD.Z xmm k xmm
+// 	VPMOVSQD.Z xmm k m64
+// 	VPMOVSQD.Z ymm k xmm
+// 	VPMOVSQD.Z ymm k m128
 // 	VPMOVSQD.Z zmm k ymm
 // 	VPMOVSQD.Z zmm k m256
 // Construct and append a VPMOVSQD.Z instruction to the active function.
 // Operates on the global context.
-func VPMOVSQD_Z(z, k, my operand.Op) { ctx.VPMOVSQD_Z(z, k, my) }
+func VPMOVSQD_Z(xyz, k, mxy operand.Op) { ctx.VPMOVSQD_Z(xyz, k, mxy) }
 
 // VPMOVSQW: Down Convert Packed Quadword Values to Word Values with Signed Saturation.
 //
 // Forms:
 //
+// 	VPMOVSQW xmm xmm
+// 	VPMOVSQW xmm k xmm
+// 	VPMOVSQW xmm m32
+// 	VPMOVSQW xmm k m32
+// 	VPMOVSQW ymm xmm
+// 	VPMOVSQW ymm k xmm
+// 	VPMOVSQW ymm m64
+// 	VPMOVSQW ymm k m64
 // 	VPMOVSQW zmm xmm
 // 	VPMOVSQW zmm k xmm
 // 	VPMOVSQW zmm m128
@@ -56015,6 +61857,14 @@ func (c *Context) VPMOVSQW(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPMOVSQW xmm xmm
+// 	VPMOVSQW xmm k xmm
+// 	VPMOVSQW xmm m32
+// 	VPMOVSQW xmm k m32
+// 	VPMOVSQW ymm xmm
+// 	VPMOVSQW ymm k xmm
+// 	VPMOVSQW ymm m64
+// 	VPMOVSQW ymm k m64
 // 	VPMOVSQW zmm xmm
 // 	VPMOVSQW zmm k xmm
 // 	VPMOVSQW zmm m128
@@ -56027,11 +61877,15 @@ func VPMOVSQW(ops ...operand.Op) { ctx.VPMOVSQW(ops...) }
 //
 // Forms:
 //
+// 	VPMOVSQW.Z xmm k xmm
+// 	VPMOVSQW.Z xmm k m32
+// 	VPMOVSQW.Z ymm k xmm
+// 	VPMOVSQW.Z ymm k m64
 // 	VPMOVSQW.Z zmm k xmm
 // 	VPMOVSQW.Z zmm k m128
 // Construct and append a VPMOVSQW.Z instruction to the active function.
-func (c *Context) VPMOVSQW_Z(z, k, mx operand.Op) {
-	if inst, err := x86.VPMOVSQW_Z(z, k, mx); err == nil {
+func (c *Context) VPMOVSQW_Z(xyz, k, mx operand.Op) {
+	if inst, err := x86.VPMOVSQW_Z(xyz, k, mx); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -56042,18 +61896,30 @@ func (c *Context) VPMOVSQW_Z(z, k, mx operand.Op) {
 //
 // Forms:
 //
+// 	VPMOVSQW.Z xmm k xmm
+// 	VPMOVSQW.Z xmm k m32
+// 	VPMOVSQW.Z ymm k xmm
+// 	VPMOVSQW.Z ymm k m64
 // 	VPMOVSQW.Z zmm k xmm
 // 	VPMOVSQW.Z zmm k m128
 // Construct and append a VPMOVSQW.Z instruction to the active function.
 // Operates on the global context.
-func VPMOVSQW_Z(z, k, mx operand.Op) { ctx.VPMOVSQW_Z(z, k, mx) }
+func VPMOVSQW_Z(xyz, k, mx operand.Op) { ctx.VPMOVSQW_Z(xyz, k, mx) }
 
 // VPMOVSXBD: Move Packed Byte Integers to Doubleword Integers with Sign Extension.
 //
 // Forms:
 //
+// 	VPMOVSXBD xmm  xmm
+// 	VPMOVSXBD xmm  k xmm
+// 	VPMOVSXBD xmm  ymm
+// 	VPMOVSXBD xmm  k ymm
 // 	VPMOVSXBD xmm  zmm
 // 	VPMOVSXBD xmm  k zmm
+// 	VPMOVSXBD m32  xmm
+// 	VPMOVSXBD m32  k xmm
+// 	VPMOVSXBD m64  ymm
+// 	VPMOVSXBD m64  k ymm
 // 	VPMOVSXBD m128 zmm
 // 	VPMOVSXBD m128 k zmm
 // 	VPMOVSXBD xmm  xmm
@@ -56073,8 +61939,16 @@ func (c *Context) VPMOVSXBD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPMOVSXBD xmm  xmm
+// 	VPMOVSXBD xmm  k xmm
+// 	VPMOVSXBD xmm  ymm
+// 	VPMOVSXBD xmm  k ymm
 // 	VPMOVSXBD xmm  zmm
 // 	VPMOVSXBD xmm  k zmm
+// 	VPMOVSXBD m32  xmm
+// 	VPMOVSXBD m32  k xmm
+// 	VPMOVSXBD m64  ymm
+// 	VPMOVSXBD m64  k ymm
 // 	VPMOVSXBD m128 zmm
 // 	VPMOVSXBD m128 k zmm
 // 	VPMOVSXBD xmm  xmm
@@ -56089,11 +61963,15 @@ func VPMOVSXBD(ops ...operand.Op) { ctx.VPMOVSXBD(ops...) }
 //
 // Forms:
 //
+// 	VPMOVSXBD.Z xmm  k xmm
+// 	VPMOVSXBD.Z xmm  k ymm
 // 	VPMOVSXBD.Z xmm  k zmm
+// 	VPMOVSXBD.Z m32  k xmm
+// 	VPMOVSXBD.Z m64  k ymm
 // 	VPMOVSXBD.Z m128 k zmm
 // Construct and append a VPMOVSXBD.Z instruction to the active function.
-func (c *Context) VPMOVSXBD_Z(mx, k, z operand.Op) {
-	if inst, err := x86.VPMOVSXBD_Z(mx, k, z); err == nil {
+func (c *Context) VPMOVSXBD_Z(mx, k, xyz operand.Op) {
+	if inst, err := x86.VPMOVSXBD_Z(mx, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -56104,18 +61982,30 @@ func (c *Context) VPMOVSXBD_Z(mx, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VPMOVSXBD.Z xmm  k xmm
+// 	VPMOVSXBD.Z xmm  k ymm
 // 	VPMOVSXBD.Z xmm  k zmm
+// 	VPMOVSXBD.Z m32  k xmm
+// 	VPMOVSXBD.Z m64  k ymm
 // 	VPMOVSXBD.Z m128 k zmm
 // Construct and append a VPMOVSXBD.Z instruction to the active function.
 // Operates on the global context.
-func VPMOVSXBD_Z(mx, k, z operand.Op) { ctx.VPMOVSXBD_Z(mx, k, z) }
+func VPMOVSXBD_Z(mx, k, xyz operand.Op) { ctx.VPMOVSXBD_Z(mx, k, xyz) }
 
 // VPMOVSXBQ: Move Packed Byte Integers to Quadword Integers with Sign Extension.
 //
 // Forms:
 //
+// 	VPMOVSXBQ xmm xmm
+// 	VPMOVSXBQ xmm k xmm
+// 	VPMOVSXBQ xmm ymm
+// 	VPMOVSXBQ xmm k ymm
 // 	VPMOVSXBQ xmm zmm
 // 	VPMOVSXBQ xmm k zmm
+// 	VPMOVSXBQ m16 xmm
+// 	VPMOVSXBQ m16 k xmm
+// 	VPMOVSXBQ m32 ymm
+// 	VPMOVSXBQ m32 k ymm
 // 	VPMOVSXBQ m64 zmm
 // 	VPMOVSXBQ m64 k zmm
 // 	VPMOVSXBQ xmm xmm
@@ -56135,8 +62025,16 @@ func (c *Context) VPMOVSXBQ(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPMOVSXBQ xmm xmm
+// 	VPMOVSXBQ xmm k xmm
+// 	VPMOVSXBQ xmm ymm
+// 	VPMOVSXBQ xmm k ymm
 // 	VPMOVSXBQ xmm zmm
 // 	VPMOVSXBQ xmm k zmm
+// 	VPMOVSXBQ m16 xmm
+// 	VPMOVSXBQ m16 k xmm
+// 	VPMOVSXBQ m32 ymm
+// 	VPMOVSXBQ m32 k ymm
 // 	VPMOVSXBQ m64 zmm
 // 	VPMOVSXBQ m64 k zmm
 // 	VPMOVSXBQ xmm xmm
@@ -56151,11 +62049,15 @@ func VPMOVSXBQ(ops ...operand.Op) { ctx.VPMOVSXBQ(ops...) }
 //
 // Forms:
 //
+// 	VPMOVSXBQ.Z xmm k xmm
+// 	VPMOVSXBQ.Z xmm k ymm
 // 	VPMOVSXBQ.Z xmm k zmm
+// 	VPMOVSXBQ.Z m16 k xmm
+// 	VPMOVSXBQ.Z m32 k ymm
 // 	VPMOVSXBQ.Z m64 k zmm
 // Construct and append a VPMOVSXBQ.Z instruction to the active function.
-func (c *Context) VPMOVSXBQ_Z(mx, k, z operand.Op) {
-	if inst, err := x86.VPMOVSXBQ_Z(mx, k, z); err == nil {
+func (c *Context) VPMOVSXBQ_Z(mx, k, xyz operand.Op) {
+	if inst, err := x86.VPMOVSXBQ_Z(mx, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -56166,11 +62068,15 @@ func (c *Context) VPMOVSXBQ_Z(mx, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VPMOVSXBQ.Z xmm k xmm
+// 	VPMOVSXBQ.Z xmm k ymm
 // 	VPMOVSXBQ.Z xmm k zmm
+// 	VPMOVSXBQ.Z m16 k xmm
+// 	VPMOVSXBQ.Z m32 k ymm
 // 	VPMOVSXBQ.Z m64 k zmm
 // Construct and append a VPMOVSXBQ.Z instruction to the active function.
 // Operates on the global context.
-func VPMOVSXBQ_Z(mx, k, z operand.Op) { ctx.VPMOVSXBQ_Z(mx, k, z) }
+func VPMOVSXBQ_Z(mx, k, xyz operand.Op) { ctx.VPMOVSXBQ_Z(mx, k, xyz) }
 
 // VPMOVSXBW: Move Packed Byte Integers to Word Integers with Sign Extension.
 //
@@ -56205,8 +62111,16 @@ func VPMOVSXBW(mx, xy operand.Op) { ctx.VPMOVSXBW(mx, xy) }
 //
 // Forms:
 //
+// 	VPMOVSXDQ xmm  xmm
+// 	VPMOVSXDQ xmm  k xmm
+// 	VPMOVSXDQ xmm  ymm
+// 	VPMOVSXDQ xmm  k ymm
 // 	VPMOVSXDQ ymm  zmm
 // 	VPMOVSXDQ ymm  k zmm
+// 	VPMOVSXDQ m64  xmm
+// 	VPMOVSXDQ m64  k xmm
+// 	VPMOVSXDQ m128 ymm
+// 	VPMOVSXDQ m128 k ymm
 // 	VPMOVSXDQ m256 zmm
 // 	VPMOVSXDQ m256 k zmm
 // 	VPMOVSXDQ xmm  xmm
@@ -56226,8 +62140,16 @@ func (c *Context) VPMOVSXDQ(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPMOVSXDQ xmm  xmm
+// 	VPMOVSXDQ xmm  k xmm
+// 	VPMOVSXDQ xmm  ymm
+// 	VPMOVSXDQ xmm  k ymm
 // 	VPMOVSXDQ ymm  zmm
 // 	VPMOVSXDQ ymm  k zmm
+// 	VPMOVSXDQ m64  xmm
+// 	VPMOVSXDQ m64  k xmm
+// 	VPMOVSXDQ m128 ymm
+// 	VPMOVSXDQ m128 k ymm
 // 	VPMOVSXDQ m256 zmm
 // 	VPMOVSXDQ m256 k zmm
 // 	VPMOVSXDQ xmm  xmm
@@ -56242,11 +62164,15 @@ func VPMOVSXDQ(ops ...operand.Op) { ctx.VPMOVSXDQ(ops...) }
 //
 // Forms:
 //
+// 	VPMOVSXDQ.Z xmm  k xmm
+// 	VPMOVSXDQ.Z xmm  k ymm
 // 	VPMOVSXDQ.Z ymm  k zmm
+// 	VPMOVSXDQ.Z m64  k xmm
+// 	VPMOVSXDQ.Z m128 k ymm
 // 	VPMOVSXDQ.Z m256 k zmm
 // Construct and append a VPMOVSXDQ.Z instruction to the active function.
-func (c *Context) VPMOVSXDQ_Z(my, k, z operand.Op) {
-	if inst, err := x86.VPMOVSXDQ_Z(my, k, z); err == nil {
+func (c *Context) VPMOVSXDQ_Z(mxy, k, xyz operand.Op) {
+	if inst, err := x86.VPMOVSXDQ_Z(mxy, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -56257,18 +62183,30 @@ func (c *Context) VPMOVSXDQ_Z(my, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VPMOVSXDQ.Z xmm  k xmm
+// 	VPMOVSXDQ.Z xmm  k ymm
 // 	VPMOVSXDQ.Z ymm  k zmm
+// 	VPMOVSXDQ.Z m64  k xmm
+// 	VPMOVSXDQ.Z m128 k ymm
 // 	VPMOVSXDQ.Z m256 k zmm
 // Construct and append a VPMOVSXDQ.Z instruction to the active function.
 // Operates on the global context.
-func VPMOVSXDQ_Z(my, k, z operand.Op) { ctx.VPMOVSXDQ_Z(my, k, z) }
+func VPMOVSXDQ_Z(mxy, k, xyz operand.Op) { ctx.VPMOVSXDQ_Z(mxy, k, xyz) }
 
 // VPMOVSXWD: Move Packed Word Integers to Doubleword Integers with Sign Extension.
 //
 // Forms:
 //
+// 	VPMOVSXWD xmm  xmm
+// 	VPMOVSXWD xmm  k xmm
+// 	VPMOVSXWD xmm  ymm
+// 	VPMOVSXWD xmm  k ymm
 // 	VPMOVSXWD ymm  zmm
 // 	VPMOVSXWD ymm  k zmm
+// 	VPMOVSXWD m64  xmm
+// 	VPMOVSXWD m64  k xmm
+// 	VPMOVSXWD m128 ymm
+// 	VPMOVSXWD m128 k ymm
 // 	VPMOVSXWD m256 zmm
 // 	VPMOVSXWD m256 k zmm
 // 	VPMOVSXWD xmm  xmm
@@ -56288,8 +62226,16 @@ func (c *Context) VPMOVSXWD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPMOVSXWD xmm  xmm
+// 	VPMOVSXWD xmm  k xmm
+// 	VPMOVSXWD xmm  ymm
+// 	VPMOVSXWD xmm  k ymm
 // 	VPMOVSXWD ymm  zmm
 // 	VPMOVSXWD ymm  k zmm
+// 	VPMOVSXWD m64  xmm
+// 	VPMOVSXWD m64  k xmm
+// 	VPMOVSXWD m128 ymm
+// 	VPMOVSXWD m128 k ymm
 // 	VPMOVSXWD m256 zmm
 // 	VPMOVSXWD m256 k zmm
 // 	VPMOVSXWD xmm  xmm
@@ -56304,11 +62250,15 @@ func VPMOVSXWD(ops ...operand.Op) { ctx.VPMOVSXWD(ops...) }
 //
 // Forms:
 //
+// 	VPMOVSXWD.Z xmm  k xmm
+// 	VPMOVSXWD.Z xmm  k ymm
 // 	VPMOVSXWD.Z ymm  k zmm
+// 	VPMOVSXWD.Z m64  k xmm
+// 	VPMOVSXWD.Z m128 k ymm
 // 	VPMOVSXWD.Z m256 k zmm
 // Construct and append a VPMOVSXWD.Z instruction to the active function.
-func (c *Context) VPMOVSXWD_Z(my, k, z operand.Op) {
-	if inst, err := x86.VPMOVSXWD_Z(my, k, z); err == nil {
+func (c *Context) VPMOVSXWD_Z(mxy, k, xyz operand.Op) {
+	if inst, err := x86.VPMOVSXWD_Z(mxy, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -56319,18 +62269,30 @@ func (c *Context) VPMOVSXWD_Z(my, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VPMOVSXWD.Z xmm  k xmm
+// 	VPMOVSXWD.Z xmm  k ymm
 // 	VPMOVSXWD.Z ymm  k zmm
+// 	VPMOVSXWD.Z m64  k xmm
+// 	VPMOVSXWD.Z m128 k ymm
 // 	VPMOVSXWD.Z m256 k zmm
 // Construct and append a VPMOVSXWD.Z instruction to the active function.
 // Operates on the global context.
-func VPMOVSXWD_Z(my, k, z operand.Op) { ctx.VPMOVSXWD_Z(my, k, z) }
+func VPMOVSXWD_Z(mxy, k, xyz operand.Op) { ctx.VPMOVSXWD_Z(mxy, k, xyz) }
 
 // VPMOVSXWQ: Move Packed Word Integers to Quadword Integers with Sign Extension.
 //
 // Forms:
 //
+// 	VPMOVSXWQ xmm  xmm
+// 	VPMOVSXWQ xmm  k xmm
+// 	VPMOVSXWQ xmm  ymm
+// 	VPMOVSXWQ xmm  k ymm
 // 	VPMOVSXWQ xmm  zmm
 // 	VPMOVSXWQ xmm  k zmm
+// 	VPMOVSXWQ m32  xmm
+// 	VPMOVSXWQ m32  k xmm
+// 	VPMOVSXWQ m64  ymm
+// 	VPMOVSXWQ m64  k ymm
 // 	VPMOVSXWQ m128 zmm
 // 	VPMOVSXWQ m128 k zmm
 // 	VPMOVSXWQ xmm  xmm
@@ -56350,8 +62312,16 @@ func (c *Context) VPMOVSXWQ(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPMOVSXWQ xmm  xmm
+// 	VPMOVSXWQ xmm  k xmm
+// 	VPMOVSXWQ xmm  ymm
+// 	VPMOVSXWQ xmm  k ymm
 // 	VPMOVSXWQ xmm  zmm
 // 	VPMOVSXWQ xmm  k zmm
+// 	VPMOVSXWQ m32  xmm
+// 	VPMOVSXWQ m32  k xmm
+// 	VPMOVSXWQ m64  ymm
+// 	VPMOVSXWQ m64  k ymm
 // 	VPMOVSXWQ m128 zmm
 // 	VPMOVSXWQ m128 k zmm
 // 	VPMOVSXWQ xmm  xmm
@@ -56366,11 +62336,15 @@ func VPMOVSXWQ(ops ...operand.Op) { ctx.VPMOVSXWQ(ops...) }
 //
 // Forms:
 //
+// 	VPMOVSXWQ.Z xmm  k xmm
+// 	VPMOVSXWQ.Z xmm  k ymm
 // 	VPMOVSXWQ.Z xmm  k zmm
+// 	VPMOVSXWQ.Z m32  k xmm
+// 	VPMOVSXWQ.Z m64  k ymm
 // 	VPMOVSXWQ.Z m128 k zmm
 // Construct and append a VPMOVSXWQ.Z instruction to the active function.
-func (c *Context) VPMOVSXWQ_Z(mx, k, z operand.Op) {
-	if inst, err := x86.VPMOVSXWQ_Z(mx, k, z); err == nil {
+func (c *Context) VPMOVSXWQ_Z(mx, k, xyz operand.Op) {
+	if inst, err := x86.VPMOVSXWQ_Z(mx, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -56381,16 +62355,28 @@ func (c *Context) VPMOVSXWQ_Z(mx, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VPMOVSXWQ.Z xmm  k xmm
+// 	VPMOVSXWQ.Z xmm  k ymm
 // 	VPMOVSXWQ.Z xmm  k zmm
+// 	VPMOVSXWQ.Z m32  k xmm
+// 	VPMOVSXWQ.Z m64  k ymm
 // 	VPMOVSXWQ.Z m128 k zmm
 // Construct and append a VPMOVSXWQ.Z instruction to the active function.
 // Operates on the global context.
-func VPMOVSXWQ_Z(mx, k, z operand.Op) { ctx.VPMOVSXWQ_Z(mx, k, z) }
+func VPMOVSXWQ_Z(mx, k, xyz operand.Op) { ctx.VPMOVSXWQ_Z(mx, k, xyz) }
 
 // VPMOVUSDB: Down Convert Packed Doubleword Values to Byte Values with Unsigned Saturation.
 //
 // Forms:
 //
+// 	VPMOVUSDB xmm xmm
+// 	VPMOVUSDB xmm k xmm
+// 	VPMOVUSDB xmm m32
+// 	VPMOVUSDB xmm k m32
+// 	VPMOVUSDB ymm xmm
+// 	VPMOVUSDB ymm k xmm
+// 	VPMOVUSDB ymm m64
+// 	VPMOVUSDB ymm k m64
 // 	VPMOVUSDB zmm xmm
 // 	VPMOVUSDB zmm k xmm
 // 	VPMOVUSDB zmm m128
@@ -56408,6 +62394,14 @@ func (c *Context) VPMOVUSDB(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPMOVUSDB xmm xmm
+// 	VPMOVUSDB xmm k xmm
+// 	VPMOVUSDB xmm m32
+// 	VPMOVUSDB xmm k m32
+// 	VPMOVUSDB ymm xmm
+// 	VPMOVUSDB ymm k xmm
+// 	VPMOVUSDB ymm m64
+// 	VPMOVUSDB ymm k m64
 // 	VPMOVUSDB zmm xmm
 // 	VPMOVUSDB zmm k xmm
 // 	VPMOVUSDB zmm m128
@@ -56420,11 +62414,15 @@ func VPMOVUSDB(ops ...operand.Op) { ctx.VPMOVUSDB(ops...) }
 //
 // Forms:
 //
+// 	VPMOVUSDB.Z xmm k xmm
+// 	VPMOVUSDB.Z xmm k m32
+// 	VPMOVUSDB.Z ymm k xmm
+// 	VPMOVUSDB.Z ymm k m64
 // 	VPMOVUSDB.Z zmm k xmm
 // 	VPMOVUSDB.Z zmm k m128
 // Construct and append a VPMOVUSDB.Z instruction to the active function.
-func (c *Context) VPMOVUSDB_Z(z, k, mx operand.Op) {
-	if inst, err := x86.VPMOVUSDB_Z(z, k, mx); err == nil {
+func (c *Context) VPMOVUSDB_Z(xyz, k, mx operand.Op) {
+	if inst, err := x86.VPMOVUSDB_Z(xyz, k, mx); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -56435,16 +62433,28 @@ func (c *Context) VPMOVUSDB_Z(z, k, mx operand.Op) {
 //
 // Forms:
 //
+// 	VPMOVUSDB.Z xmm k xmm
+// 	VPMOVUSDB.Z xmm k m32
+// 	VPMOVUSDB.Z ymm k xmm
+// 	VPMOVUSDB.Z ymm k m64
 // 	VPMOVUSDB.Z zmm k xmm
 // 	VPMOVUSDB.Z zmm k m128
 // Construct and append a VPMOVUSDB.Z instruction to the active function.
 // Operates on the global context.
-func VPMOVUSDB_Z(z, k, mx operand.Op) { ctx.VPMOVUSDB_Z(z, k, mx) }
+func VPMOVUSDB_Z(xyz, k, mx operand.Op) { ctx.VPMOVUSDB_Z(xyz, k, mx) }
 
 // VPMOVUSDW: Down Convert Packed Doubleword Values to Word Values with Unsigned Saturation.
 //
 // Forms:
 //
+// 	VPMOVUSDW xmm xmm
+// 	VPMOVUSDW xmm k xmm
+// 	VPMOVUSDW xmm m64
+// 	VPMOVUSDW xmm k m64
+// 	VPMOVUSDW ymm xmm
+// 	VPMOVUSDW ymm k xmm
+// 	VPMOVUSDW ymm m128
+// 	VPMOVUSDW ymm k m128
 // 	VPMOVUSDW zmm ymm
 // 	VPMOVUSDW zmm k ymm
 // 	VPMOVUSDW zmm m256
@@ -56462,6 +62472,14 @@ func (c *Context) VPMOVUSDW(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPMOVUSDW xmm xmm
+// 	VPMOVUSDW xmm k xmm
+// 	VPMOVUSDW xmm m64
+// 	VPMOVUSDW xmm k m64
+// 	VPMOVUSDW ymm xmm
+// 	VPMOVUSDW ymm k xmm
+// 	VPMOVUSDW ymm m128
+// 	VPMOVUSDW ymm k m128
 // 	VPMOVUSDW zmm ymm
 // 	VPMOVUSDW zmm k ymm
 // 	VPMOVUSDW zmm m256
@@ -56474,11 +62492,15 @@ func VPMOVUSDW(ops ...operand.Op) { ctx.VPMOVUSDW(ops...) }
 //
 // Forms:
 //
+// 	VPMOVUSDW.Z xmm k xmm
+// 	VPMOVUSDW.Z xmm k m64
+// 	VPMOVUSDW.Z ymm k xmm
+// 	VPMOVUSDW.Z ymm k m128
 // 	VPMOVUSDW.Z zmm k ymm
 // 	VPMOVUSDW.Z zmm k m256
 // Construct and append a VPMOVUSDW.Z instruction to the active function.
-func (c *Context) VPMOVUSDW_Z(z, k, my operand.Op) {
-	if inst, err := x86.VPMOVUSDW_Z(z, k, my); err == nil {
+func (c *Context) VPMOVUSDW_Z(xyz, k, mxy operand.Op) {
+	if inst, err := x86.VPMOVUSDW_Z(xyz, k, mxy); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -56489,16 +62511,28 @@ func (c *Context) VPMOVUSDW_Z(z, k, my operand.Op) {
 //
 // Forms:
 //
+// 	VPMOVUSDW.Z xmm k xmm
+// 	VPMOVUSDW.Z xmm k m64
+// 	VPMOVUSDW.Z ymm k xmm
+// 	VPMOVUSDW.Z ymm k m128
 // 	VPMOVUSDW.Z zmm k ymm
 // 	VPMOVUSDW.Z zmm k m256
 // Construct and append a VPMOVUSDW.Z instruction to the active function.
 // Operates on the global context.
-func VPMOVUSDW_Z(z, k, my operand.Op) { ctx.VPMOVUSDW_Z(z, k, my) }
+func VPMOVUSDW_Z(xyz, k, mxy operand.Op) { ctx.VPMOVUSDW_Z(xyz, k, mxy) }
 
 // VPMOVUSQB: Down Convert Packed Quadword Values to Byte Values with Unsigned Saturation.
 //
 // Forms:
 //
+// 	VPMOVUSQB xmm xmm
+// 	VPMOVUSQB xmm k xmm
+// 	VPMOVUSQB xmm m16
+// 	VPMOVUSQB xmm k m16
+// 	VPMOVUSQB ymm xmm
+// 	VPMOVUSQB ymm k xmm
+// 	VPMOVUSQB ymm m32
+// 	VPMOVUSQB ymm k m32
 // 	VPMOVUSQB zmm xmm
 // 	VPMOVUSQB zmm k xmm
 // 	VPMOVUSQB zmm m64
@@ -56516,6 +62550,14 @@ func (c *Context) VPMOVUSQB(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPMOVUSQB xmm xmm
+// 	VPMOVUSQB xmm k xmm
+// 	VPMOVUSQB xmm m16
+// 	VPMOVUSQB xmm k m16
+// 	VPMOVUSQB ymm xmm
+// 	VPMOVUSQB ymm k xmm
+// 	VPMOVUSQB ymm m32
+// 	VPMOVUSQB ymm k m32
 // 	VPMOVUSQB zmm xmm
 // 	VPMOVUSQB zmm k xmm
 // 	VPMOVUSQB zmm m64
@@ -56528,11 +62570,15 @@ func VPMOVUSQB(ops ...operand.Op) { ctx.VPMOVUSQB(ops...) }
 //
 // Forms:
 //
+// 	VPMOVUSQB.Z xmm k xmm
+// 	VPMOVUSQB.Z xmm k m16
+// 	VPMOVUSQB.Z ymm k xmm
+// 	VPMOVUSQB.Z ymm k m32
 // 	VPMOVUSQB.Z zmm k xmm
 // 	VPMOVUSQB.Z zmm k m64
 // Construct and append a VPMOVUSQB.Z instruction to the active function.
-func (c *Context) VPMOVUSQB_Z(z, k, mx operand.Op) {
-	if inst, err := x86.VPMOVUSQB_Z(z, k, mx); err == nil {
+func (c *Context) VPMOVUSQB_Z(xyz, k, mx operand.Op) {
+	if inst, err := x86.VPMOVUSQB_Z(xyz, k, mx); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -56543,16 +62589,28 @@ func (c *Context) VPMOVUSQB_Z(z, k, mx operand.Op) {
 //
 // Forms:
 //
+// 	VPMOVUSQB.Z xmm k xmm
+// 	VPMOVUSQB.Z xmm k m16
+// 	VPMOVUSQB.Z ymm k xmm
+// 	VPMOVUSQB.Z ymm k m32
 // 	VPMOVUSQB.Z zmm k xmm
 // 	VPMOVUSQB.Z zmm k m64
 // Construct and append a VPMOVUSQB.Z instruction to the active function.
 // Operates on the global context.
-func VPMOVUSQB_Z(z, k, mx operand.Op) { ctx.VPMOVUSQB_Z(z, k, mx) }
+func VPMOVUSQB_Z(xyz, k, mx operand.Op) { ctx.VPMOVUSQB_Z(xyz, k, mx) }
 
 // VPMOVUSQD: Down Convert Packed Quadword Values to Doubleword Values with Unsigned Saturation.
 //
 // Forms:
 //
+// 	VPMOVUSQD xmm xmm
+// 	VPMOVUSQD xmm k xmm
+// 	VPMOVUSQD xmm m64
+// 	VPMOVUSQD xmm k m64
+// 	VPMOVUSQD ymm xmm
+// 	VPMOVUSQD ymm k xmm
+// 	VPMOVUSQD ymm m128
+// 	VPMOVUSQD ymm k m128
 // 	VPMOVUSQD zmm ymm
 // 	VPMOVUSQD zmm k ymm
 // 	VPMOVUSQD zmm m256
@@ -56570,6 +62628,14 @@ func (c *Context) VPMOVUSQD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPMOVUSQD xmm xmm
+// 	VPMOVUSQD xmm k xmm
+// 	VPMOVUSQD xmm m64
+// 	VPMOVUSQD xmm k m64
+// 	VPMOVUSQD ymm xmm
+// 	VPMOVUSQD ymm k xmm
+// 	VPMOVUSQD ymm m128
+// 	VPMOVUSQD ymm k m128
 // 	VPMOVUSQD zmm ymm
 // 	VPMOVUSQD zmm k ymm
 // 	VPMOVUSQD zmm m256
@@ -56582,11 +62648,15 @@ func VPMOVUSQD(ops ...operand.Op) { ctx.VPMOVUSQD(ops...) }
 //
 // Forms:
 //
+// 	VPMOVUSQD.Z xmm k xmm
+// 	VPMOVUSQD.Z xmm k m64
+// 	VPMOVUSQD.Z ymm k xmm
+// 	VPMOVUSQD.Z ymm k m128
 // 	VPMOVUSQD.Z zmm k ymm
 // 	VPMOVUSQD.Z zmm k m256
 // Construct and append a VPMOVUSQD.Z instruction to the active function.
-func (c *Context) VPMOVUSQD_Z(z, k, my operand.Op) {
-	if inst, err := x86.VPMOVUSQD_Z(z, k, my); err == nil {
+func (c *Context) VPMOVUSQD_Z(xyz, k, mxy operand.Op) {
+	if inst, err := x86.VPMOVUSQD_Z(xyz, k, mxy); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -56597,16 +62667,28 @@ func (c *Context) VPMOVUSQD_Z(z, k, my operand.Op) {
 //
 // Forms:
 //
+// 	VPMOVUSQD.Z xmm k xmm
+// 	VPMOVUSQD.Z xmm k m64
+// 	VPMOVUSQD.Z ymm k xmm
+// 	VPMOVUSQD.Z ymm k m128
 // 	VPMOVUSQD.Z zmm k ymm
 // 	VPMOVUSQD.Z zmm k m256
 // Construct and append a VPMOVUSQD.Z instruction to the active function.
 // Operates on the global context.
-func VPMOVUSQD_Z(z, k, my operand.Op) { ctx.VPMOVUSQD_Z(z, k, my) }
+func VPMOVUSQD_Z(xyz, k, mxy operand.Op) { ctx.VPMOVUSQD_Z(xyz, k, mxy) }
 
 // VPMOVUSQW: Down Convert Packed Quadword Values to Word Values with Unsigned Saturation.
 //
 // Forms:
 //
+// 	VPMOVUSQW xmm xmm
+// 	VPMOVUSQW xmm k xmm
+// 	VPMOVUSQW xmm m32
+// 	VPMOVUSQW xmm k m32
+// 	VPMOVUSQW ymm xmm
+// 	VPMOVUSQW ymm k xmm
+// 	VPMOVUSQW ymm m64
+// 	VPMOVUSQW ymm k m64
 // 	VPMOVUSQW zmm xmm
 // 	VPMOVUSQW zmm k xmm
 // 	VPMOVUSQW zmm m128
@@ -56624,6 +62706,14 @@ func (c *Context) VPMOVUSQW(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPMOVUSQW xmm xmm
+// 	VPMOVUSQW xmm k xmm
+// 	VPMOVUSQW xmm m32
+// 	VPMOVUSQW xmm k m32
+// 	VPMOVUSQW ymm xmm
+// 	VPMOVUSQW ymm k xmm
+// 	VPMOVUSQW ymm m64
+// 	VPMOVUSQW ymm k m64
 // 	VPMOVUSQW zmm xmm
 // 	VPMOVUSQW zmm k xmm
 // 	VPMOVUSQW zmm m128
@@ -56636,11 +62726,15 @@ func VPMOVUSQW(ops ...operand.Op) { ctx.VPMOVUSQW(ops...) }
 //
 // Forms:
 //
+// 	VPMOVUSQW.Z xmm k xmm
+// 	VPMOVUSQW.Z xmm k m32
+// 	VPMOVUSQW.Z ymm k xmm
+// 	VPMOVUSQW.Z ymm k m64
 // 	VPMOVUSQW.Z zmm k xmm
 // 	VPMOVUSQW.Z zmm k m128
 // Construct and append a VPMOVUSQW.Z instruction to the active function.
-func (c *Context) VPMOVUSQW_Z(z, k, mx operand.Op) {
-	if inst, err := x86.VPMOVUSQW_Z(z, k, mx); err == nil {
+func (c *Context) VPMOVUSQW_Z(xyz, k, mx operand.Op) {
+	if inst, err := x86.VPMOVUSQW_Z(xyz, k, mx); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -56651,18 +62745,30 @@ func (c *Context) VPMOVUSQW_Z(z, k, mx operand.Op) {
 //
 // Forms:
 //
+// 	VPMOVUSQW.Z xmm k xmm
+// 	VPMOVUSQW.Z xmm k m32
+// 	VPMOVUSQW.Z ymm k xmm
+// 	VPMOVUSQW.Z ymm k m64
 // 	VPMOVUSQW.Z zmm k xmm
 // 	VPMOVUSQW.Z zmm k m128
 // Construct and append a VPMOVUSQW.Z instruction to the active function.
 // Operates on the global context.
-func VPMOVUSQW_Z(z, k, mx operand.Op) { ctx.VPMOVUSQW_Z(z, k, mx) }
+func VPMOVUSQW_Z(xyz, k, mx operand.Op) { ctx.VPMOVUSQW_Z(xyz, k, mx) }
 
 // VPMOVZXBD: Move Packed Byte Integers to Doubleword Integers with Zero Extension.
 //
 // Forms:
 //
+// 	VPMOVZXBD xmm  xmm
+// 	VPMOVZXBD xmm  k xmm
+// 	VPMOVZXBD xmm  ymm
+// 	VPMOVZXBD xmm  k ymm
 // 	VPMOVZXBD xmm  zmm
 // 	VPMOVZXBD xmm  k zmm
+// 	VPMOVZXBD m32  xmm
+// 	VPMOVZXBD m32  k xmm
+// 	VPMOVZXBD m64  ymm
+// 	VPMOVZXBD m64  k ymm
 // 	VPMOVZXBD m128 zmm
 // 	VPMOVZXBD m128 k zmm
 // 	VPMOVZXBD xmm  xmm
@@ -56682,8 +62788,16 @@ func (c *Context) VPMOVZXBD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPMOVZXBD xmm  xmm
+// 	VPMOVZXBD xmm  k xmm
+// 	VPMOVZXBD xmm  ymm
+// 	VPMOVZXBD xmm  k ymm
 // 	VPMOVZXBD xmm  zmm
 // 	VPMOVZXBD xmm  k zmm
+// 	VPMOVZXBD m32  xmm
+// 	VPMOVZXBD m32  k xmm
+// 	VPMOVZXBD m64  ymm
+// 	VPMOVZXBD m64  k ymm
 // 	VPMOVZXBD m128 zmm
 // 	VPMOVZXBD m128 k zmm
 // 	VPMOVZXBD xmm  xmm
@@ -56698,11 +62812,15 @@ func VPMOVZXBD(ops ...operand.Op) { ctx.VPMOVZXBD(ops...) }
 //
 // Forms:
 //
+// 	VPMOVZXBD.Z xmm  k xmm
+// 	VPMOVZXBD.Z xmm  k ymm
 // 	VPMOVZXBD.Z xmm  k zmm
+// 	VPMOVZXBD.Z m32  k xmm
+// 	VPMOVZXBD.Z m64  k ymm
 // 	VPMOVZXBD.Z m128 k zmm
 // Construct and append a VPMOVZXBD.Z instruction to the active function.
-func (c *Context) VPMOVZXBD_Z(mx, k, z operand.Op) {
-	if inst, err := x86.VPMOVZXBD_Z(mx, k, z); err == nil {
+func (c *Context) VPMOVZXBD_Z(mx, k, xyz operand.Op) {
+	if inst, err := x86.VPMOVZXBD_Z(mx, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -56713,18 +62831,30 @@ func (c *Context) VPMOVZXBD_Z(mx, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VPMOVZXBD.Z xmm  k xmm
+// 	VPMOVZXBD.Z xmm  k ymm
 // 	VPMOVZXBD.Z xmm  k zmm
+// 	VPMOVZXBD.Z m32  k xmm
+// 	VPMOVZXBD.Z m64  k ymm
 // 	VPMOVZXBD.Z m128 k zmm
 // Construct and append a VPMOVZXBD.Z instruction to the active function.
 // Operates on the global context.
-func VPMOVZXBD_Z(mx, k, z operand.Op) { ctx.VPMOVZXBD_Z(mx, k, z) }
+func VPMOVZXBD_Z(mx, k, xyz operand.Op) { ctx.VPMOVZXBD_Z(mx, k, xyz) }
 
 // VPMOVZXBQ: Move Packed Byte Integers to Quadword Integers with Zero Extension.
 //
 // Forms:
 //
+// 	VPMOVZXBQ xmm xmm
+// 	VPMOVZXBQ xmm k xmm
+// 	VPMOVZXBQ xmm ymm
+// 	VPMOVZXBQ xmm k ymm
 // 	VPMOVZXBQ xmm zmm
 // 	VPMOVZXBQ xmm k zmm
+// 	VPMOVZXBQ m16 xmm
+// 	VPMOVZXBQ m16 k xmm
+// 	VPMOVZXBQ m32 ymm
+// 	VPMOVZXBQ m32 k ymm
 // 	VPMOVZXBQ m64 zmm
 // 	VPMOVZXBQ m64 k zmm
 // 	VPMOVZXBQ xmm xmm
@@ -56744,8 +62874,16 @@ func (c *Context) VPMOVZXBQ(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPMOVZXBQ xmm xmm
+// 	VPMOVZXBQ xmm k xmm
+// 	VPMOVZXBQ xmm ymm
+// 	VPMOVZXBQ xmm k ymm
 // 	VPMOVZXBQ xmm zmm
 // 	VPMOVZXBQ xmm k zmm
+// 	VPMOVZXBQ m16 xmm
+// 	VPMOVZXBQ m16 k xmm
+// 	VPMOVZXBQ m32 ymm
+// 	VPMOVZXBQ m32 k ymm
 // 	VPMOVZXBQ m64 zmm
 // 	VPMOVZXBQ m64 k zmm
 // 	VPMOVZXBQ xmm xmm
@@ -56760,11 +62898,15 @@ func VPMOVZXBQ(ops ...operand.Op) { ctx.VPMOVZXBQ(ops...) }
 //
 // Forms:
 //
+// 	VPMOVZXBQ.Z xmm k xmm
+// 	VPMOVZXBQ.Z xmm k ymm
 // 	VPMOVZXBQ.Z xmm k zmm
+// 	VPMOVZXBQ.Z m16 k xmm
+// 	VPMOVZXBQ.Z m32 k ymm
 // 	VPMOVZXBQ.Z m64 k zmm
 // Construct and append a VPMOVZXBQ.Z instruction to the active function.
-func (c *Context) VPMOVZXBQ_Z(mx, k, z operand.Op) {
-	if inst, err := x86.VPMOVZXBQ_Z(mx, k, z); err == nil {
+func (c *Context) VPMOVZXBQ_Z(mx, k, xyz operand.Op) {
+	if inst, err := x86.VPMOVZXBQ_Z(mx, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -56775,11 +62917,15 @@ func (c *Context) VPMOVZXBQ_Z(mx, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VPMOVZXBQ.Z xmm k xmm
+// 	VPMOVZXBQ.Z xmm k ymm
 // 	VPMOVZXBQ.Z xmm k zmm
+// 	VPMOVZXBQ.Z m16 k xmm
+// 	VPMOVZXBQ.Z m32 k ymm
 // 	VPMOVZXBQ.Z m64 k zmm
 // Construct and append a VPMOVZXBQ.Z instruction to the active function.
 // Operates on the global context.
-func VPMOVZXBQ_Z(mx, k, z operand.Op) { ctx.VPMOVZXBQ_Z(mx, k, z) }
+func VPMOVZXBQ_Z(mx, k, xyz operand.Op) { ctx.VPMOVZXBQ_Z(mx, k, xyz) }
 
 // VPMOVZXBW: Move Packed Byte Integers to Word Integers with Zero Extension.
 //
@@ -56814,8 +62960,16 @@ func VPMOVZXBW(mx, xy operand.Op) { ctx.VPMOVZXBW(mx, xy) }
 //
 // Forms:
 //
+// 	VPMOVZXDQ xmm  xmm
+// 	VPMOVZXDQ xmm  k xmm
+// 	VPMOVZXDQ xmm  ymm
+// 	VPMOVZXDQ xmm  k ymm
 // 	VPMOVZXDQ ymm  zmm
 // 	VPMOVZXDQ ymm  k zmm
+// 	VPMOVZXDQ m64  xmm
+// 	VPMOVZXDQ m64  k xmm
+// 	VPMOVZXDQ m128 ymm
+// 	VPMOVZXDQ m128 k ymm
 // 	VPMOVZXDQ m256 zmm
 // 	VPMOVZXDQ m256 k zmm
 // 	VPMOVZXDQ xmm  xmm
@@ -56835,8 +62989,16 @@ func (c *Context) VPMOVZXDQ(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPMOVZXDQ xmm  xmm
+// 	VPMOVZXDQ xmm  k xmm
+// 	VPMOVZXDQ xmm  ymm
+// 	VPMOVZXDQ xmm  k ymm
 // 	VPMOVZXDQ ymm  zmm
 // 	VPMOVZXDQ ymm  k zmm
+// 	VPMOVZXDQ m64  xmm
+// 	VPMOVZXDQ m64  k xmm
+// 	VPMOVZXDQ m128 ymm
+// 	VPMOVZXDQ m128 k ymm
 // 	VPMOVZXDQ m256 zmm
 // 	VPMOVZXDQ m256 k zmm
 // 	VPMOVZXDQ xmm  xmm
@@ -56851,11 +63013,15 @@ func VPMOVZXDQ(ops ...operand.Op) { ctx.VPMOVZXDQ(ops...) }
 //
 // Forms:
 //
+// 	VPMOVZXDQ.Z xmm  k xmm
+// 	VPMOVZXDQ.Z xmm  k ymm
 // 	VPMOVZXDQ.Z ymm  k zmm
+// 	VPMOVZXDQ.Z m64  k xmm
+// 	VPMOVZXDQ.Z m128 k ymm
 // 	VPMOVZXDQ.Z m256 k zmm
 // Construct and append a VPMOVZXDQ.Z instruction to the active function.
-func (c *Context) VPMOVZXDQ_Z(my, k, z operand.Op) {
-	if inst, err := x86.VPMOVZXDQ_Z(my, k, z); err == nil {
+func (c *Context) VPMOVZXDQ_Z(mxy, k, xyz operand.Op) {
+	if inst, err := x86.VPMOVZXDQ_Z(mxy, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -56866,18 +63032,30 @@ func (c *Context) VPMOVZXDQ_Z(my, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VPMOVZXDQ.Z xmm  k xmm
+// 	VPMOVZXDQ.Z xmm  k ymm
 // 	VPMOVZXDQ.Z ymm  k zmm
+// 	VPMOVZXDQ.Z m64  k xmm
+// 	VPMOVZXDQ.Z m128 k ymm
 // 	VPMOVZXDQ.Z m256 k zmm
 // Construct and append a VPMOVZXDQ.Z instruction to the active function.
 // Operates on the global context.
-func VPMOVZXDQ_Z(my, k, z operand.Op) { ctx.VPMOVZXDQ_Z(my, k, z) }
+func VPMOVZXDQ_Z(mxy, k, xyz operand.Op) { ctx.VPMOVZXDQ_Z(mxy, k, xyz) }
 
 // VPMOVZXWD: Move Packed Word Integers to Doubleword Integers with Zero Extension.
 //
 // Forms:
 //
+// 	VPMOVZXWD xmm  xmm
+// 	VPMOVZXWD xmm  k xmm
+// 	VPMOVZXWD xmm  ymm
+// 	VPMOVZXWD xmm  k ymm
 // 	VPMOVZXWD ymm  zmm
 // 	VPMOVZXWD ymm  k zmm
+// 	VPMOVZXWD m64  xmm
+// 	VPMOVZXWD m64  k xmm
+// 	VPMOVZXWD m128 ymm
+// 	VPMOVZXWD m128 k ymm
 // 	VPMOVZXWD m256 zmm
 // 	VPMOVZXWD m256 k zmm
 // 	VPMOVZXWD xmm  xmm
@@ -56897,8 +63075,16 @@ func (c *Context) VPMOVZXWD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPMOVZXWD xmm  xmm
+// 	VPMOVZXWD xmm  k xmm
+// 	VPMOVZXWD xmm  ymm
+// 	VPMOVZXWD xmm  k ymm
 // 	VPMOVZXWD ymm  zmm
 // 	VPMOVZXWD ymm  k zmm
+// 	VPMOVZXWD m64  xmm
+// 	VPMOVZXWD m64  k xmm
+// 	VPMOVZXWD m128 ymm
+// 	VPMOVZXWD m128 k ymm
 // 	VPMOVZXWD m256 zmm
 // 	VPMOVZXWD m256 k zmm
 // 	VPMOVZXWD xmm  xmm
@@ -56913,11 +63099,15 @@ func VPMOVZXWD(ops ...operand.Op) { ctx.VPMOVZXWD(ops...) }
 //
 // Forms:
 //
+// 	VPMOVZXWD.Z xmm  k xmm
+// 	VPMOVZXWD.Z xmm  k ymm
 // 	VPMOVZXWD.Z ymm  k zmm
+// 	VPMOVZXWD.Z m64  k xmm
+// 	VPMOVZXWD.Z m128 k ymm
 // 	VPMOVZXWD.Z m256 k zmm
 // Construct and append a VPMOVZXWD.Z instruction to the active function.
-func (c *Context) VPMOVZXWD_Z(my, k, z operand.Op) {
-	if inst, err := x86.VPMOVZXWD_Z(my, k, z); err == nil {
+func (c *Context) VPMOVZXWD_Z(mxy, k, xyz operand.Op) {
+	if inst, err := x86.VPMOVZXWD_Z(mxy, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -56928,18 +63118,30 @@ func (c *Context) VPMOVZXWD_Z(my, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VPMOVZXWD.Z xmm  k xmm
+// 	VPMOVZXWD.Z xmm  k ymm
 // 	VPMOVZXWD.Z ymm  k zmm
+// 	VPMOVZXWD.Z m64  k xmm
+// 	VPMOVZXWD.Z m128 k ymm
 // 	VPMOVZXWD.Z m256 k zmm
 // Construct and append a VPMOVZXWD.Z instruction to the active function.
 // Operates on the global context.
-func VPMOVZXWD_Z(my, k, z operand.Op) { ctx.VPMOVZXWD_Z(my, k, z) }
+func VPMOVZXWD_Z(mxy, k, xyz operand.Op) { ctx.VPMOVZXWD_Z(mxy, k, xyz) }
 
 // VPMOVZXWQ: Move Packed Word Integers to Quadword Integers with Zero Extension.
 //
 // Forms:
 //
+// 	VPMOVZXWQ xmm  xmm
+// 	VPMOVZXWQ xmm  k xmm
+// 	VPMOVZXWQ xmm  ymm
+// 	VPMOVZXWQ xmm  k ymm
 // 	VPMOVZXWQ xmm  zmm
 // 	VPMOVZXWQ xmm  k zmm
+// 	VPMOVZXWQ m32  xmm
+// 	VPMOVZXWQ m32  k xmm
+// 	VPMOVZXWQ m64  ymm
+// 	VPMOVZXWQ m64  k ymm
 // 	VPMOVZXWQ m128 zmm
 // 	VPMOVZXWQ m128 k zmm
 // 	VPMOVZXWQ xmm  xmm
@@ -56959,8 +63161,16 @@ func (c *Context) VPMOVZXWQ(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPMOVZXWQ xmm  xmm
+// 	VPMOVZXWQ xmm  k xmm
+// 	VPMOVZXWQ xmm  ymm
+// 	VPMOVZXWQ xmm  k ymm
 // 	VPMOVZXWQ xmm  zmm
 // 	VPMOVZXWQ xmm  k zmm
+// 	VPMOVZXWQ m32  xmm
+// 	VPMOVZXWQ m32  k xmm
+// 	VPMOVZXWQ m64  ymm
+// 	VPMOVZXWQ m64  k ymm
 // 	VPMOVZXWQ m128 zmm
 // 	VPMOVZXWQ m128 k zmm
 // 	VPMOVZXWQ xmm  xmm
@@ -56975,11 +63185,15 @@ func VPMOVZXWQ(ops ...operand.Op) { ctx.VPMOVZXWQ(ops...) }
 //
 // Forms:
 //
+// 	VPMOVZXWQ.Z xmm  k xmm
+// 	VPMOVZXWQ.Z xmm  k ymm
 // 	VPMOVZXWQ.Z xmm  k zmm
+// 	VPMOVZXWQ.Z m32  k xmm
+// 	VPMOVZXWQ.Z m64  k ymm
 // 	VPMOVZXWQ.Z m128 k zmm
 // Construct and append a VPMOVZXWQ.Z instruction to the active function.
-func (c *Context) VPMOVZXWQ_Z(mx, k, z operand.Op) {
-	if inst, err := x86.VPMOVZXWQ_Z(mx, k, z); err == nil {
+func (c *Context) VPMOVZXWQ_Z(mx, k, xyz operand.Op) {
+	if inst, err := x86.VPMOVZXWQ_Z(mx, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -56990,16 +63204,28 @@ func (c *Context) VPMOVZXWQ_Z(mx, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VPMOVZXWQ.Z xmm  k xmm
+// 	VPMOVZXWQ.Z xmm  k ymm
 // 	VPMOVZXWQ.Z xmm  k zmm
+// 	VPMOVZXWQ.Z m32  k xmm
+// 	VPMOVZXWQ.Z m64  k ymm
 // 	VPMOVZXWQ.Z m128 k zmm
 // Construct and append a VPMOVZXWQ.Z instruction to the active function.
 // Operates on the global context.
-func VPMOVZXWQ_Z(mx, k, z operand.Op) { ctx.VPMOVZXWQ_Z(mx, k, z) }
+func VPMOVZXWQ_Z(mx, k, xyz operand.Op) { ctx.VPMOVZXWQ_Z(mx, k, xyz) }
 
 // VPMULDQ: Multiply Packed Signed Doubleword Integers and Store Quadword Result.
 //
 // Forms:
 //
+// 	VPMULDQ m128/m64bcst xmm xmm
+// 	VPMULDQ m128/m64bcst xmm k xmm
+// 	VPMULDQ xmm          xmm xmm
+// 	VPMULDQ xmm          xmm k xmm
+// 	VPMULDQ m256/m64bcst ymm ymm
+// 	VPMULDQ m256/m64bcst ymm k ymm
+// 	VPMULDQ ymm          ymm ymm
+// 	VPMULDQ ymm          ymm k ymm
 // 	VPMULDQ m512/m64bcst zmm zmm
 // 	VPMULDQ m512/m64bcst zmm k zmm
 // 	VPMULDQ zmm          zmm zmm
@@ -57021,6 +63247,14 @@ func (c *Context) VPMULDQ(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPMULDQ m128/m64bcst xmm xmm
+// 	VPMULDQ m128/m64bcst xmm k xmm
+// 	VPMULDQ xmm          xmm xmm
+// 	VPMULDQ xmm          xmm k xmm
+// 	VPMULDQ m256/m64bcst ymm ymm
+// 	VPMULDQ m256/m64bcst ymm k ymm
+// 	VPMULDQ ymm          ymm ymm
+// 	VPMULDQ ymm          ymm k ymm
 // 	VPMULDQ m512/m64bcst zmm zmm
 // 	VPMULDQ m512/m64bcst zmm k zmm
 // 	VPMULDQ zmm          zmm zmm
@@ -57037,6 +63271,10 @@ func VPMULDQ(ops ...operand.Op) { ctx.VPMULDQ(ops...) }
 //
 // Forms:
 //
+// 	VPMULDQ.BCST m128/m64bcst xmm xmm
+// 	VPMULDQ.BCST m128/m64bcst xmm k xmm
+// 	VPMULDQ.BCST m256/m64bcst ymm ymm
+// 	VPMULDQ.BCST m256/m64bcst ymm k ymm
 // 	VPMULDQ.BCST m512/m64bcst zmm zmm
 // 	VPMULDQ.BCST m512/m64bcst zmm k zmm
 // Construct and append a VPMULDQ.BCST instruction to the active function.
@@ -57052,6 +63290,10 @@ func (c *Context) VPMULDQ_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPMULDQ.BCST m128/m64bcst xmm xmm
+// 	VPMULDQ.BCST m128/m64bcst xmm k xmm
+// 	VPMULDQ.BCST m256/m64bcst ymm ymm
+// 	VPMULDQ.BCST m256/m64bcst ymm k ymm
 // 	VPMULDQ.BCST m512/m64bcst zmm zmm
 // 	VPMULDQ.BCST m512/m64bcst zmm k zmm
 // Construct and append a VPMULDQ.BCST instruction to the active function.
@@ -57062,10 +63304,12 @@ func VPMULDQ_BCST(ops ...operand.Op) { ctx.VPMULDQ_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPMULDQ.BCST.Z m128/m64bcst xmm k xmm
+// 	VPMULDQ.BCST.Z m256/m64bcst ymm k ymm
 // 	VPMULDQ.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VPMULDQ.BCST.Z instruction to the active function.
-func (c *Context) VPMULDQ_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VPMULDQ_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VPMULDQ_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPMULDQ_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -57076,20 +63320,26 @@ func (c *Context) VPMULDQ_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPMULDQ.BCST.Z m128/m64bcst xmm k xmm
+// 	VPMULDQ.BCST.Z m256/m64bcst ymm k ymm
 // 	VPMULDQ.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VPMULDQ.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VPMULDQ_BCST_Z(m, z, k, z1 operand.Op) { ctx.VPMULDQ_BCST_Z(m, z, k, z1) }
+func VPMULDQ_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VPMULDQ_BCST_Z(m, xyz, k, xyz1) }
 
 // VPMULDQ_Z: Multiply Packed Signed Doubleword Integers and Store Quadword Result (Zeroing Masking).
 //
 // Forms:
 //
+// 	VPMULDQ.Z m128/m64bcst xmm k xmm
+// 	VPMULDQ.Z xmm          xmm k xmm
+// 	VPMULDQ.Z m256/m64bcst ymm k ymm
+// 	VPMULDQ.Z ymm          ymm k ymm
 // 	VPMULDQ.Z m512/m64bcst zmm k zmm
 // 	VPMULDQ.Z zmm          zmm k zmm
 // Construct and append a VPMULDQ.Z instruction to the active function.
-func (c *Context) VPMULDQ_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VPMULDQ_Z(mz, z, k, z1); err == nil {
+func (c *Context) VPMULDQ_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPMULDQ_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -57100,11 +63350,15 @@ func (c *Context) VPMULDQ_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPMULDQ.Z m128/m64bcst xmm k xmm
+// 	VPMULDQ.Z xmm          xmm k xmm
+// 	VPMULDQ.Z m256/m64bcst ymm k ymm
+// 	VPMULDQ.Z ymm          ymm k ymm
 // 	VPMULDQ.Z m512/m64bcst zmm k zmm
 // 	VPMULDQ.Z zmm          zmm k zmm
 // Construct and append a VPMULDQ.Z instruction to the active function.
 // Operates on the global context.
-func VPMULDQ_Z(mz, z, k, z1 operand.Op) { ctx.VPMULDQ_Z(mz, z, k, z1) }
+func VPMULDQ_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPMULDQ_Z(mxyz, xyz, k, xyz1) }
 
 // VPMULHRSW: Packed Multiply Signed Word Integers and Store High Result with Round and Scale.
 //
@@ -57197,6 +63451,14 @@ func VPMULHW(mxy, xy, xy1 operand.Op) { ctx.VPMULHW(mxy, xy, xy1) }
 //
 // Forms:
 //
+// 	VPMULLD m128/m32bcst xmm xmm
+// 	VPMULLD m128/m32bcst xmm k xmm
+// 	VPMULLD xmm          xmm xmm
+// 	VPMULLD xmm          xmm k xmm
+// 	VPMULLD m256/m32bcst ymm ymm
+// 	VPMULLD m256/m32bcst ymm k ymm
+// 	VPMULLD ymm          ymm ymm
+// 	VPMULLD ymm          ymm k ymm
 // 	VPMULLD m512/m32bcst zmm zmm
 // 	VPMULLD m512/m32bcst zmm k zmm
 // 	VPMULLD zmm          zmm zmm
@@ -57218,6 +63480,14 @@ func (c *Context) VPMULLD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPMULLD m128/m32bcst xmm xmm
+// 	VPMULLD m128/m32bcst xmm k xmm
+// 	VPMULLD xmm          xmm xmm
+// 	VPMULLD xmm          xmm k xmm
+// 	VPMULLD m256/m32bcst ymm ymm
+// 	VPMULLD m256/m32bcst ymm k ymm
+// 	VPMULLD ymm          ymm ymm
+// 	VPMULLD ymm          ymm k ymm
 // 	VPMULLD m512/m32bcst zmm zmm
 // 	VPMULLD m512/m32bcst zmm k zmm
 // 	VPMULLD zmm          zmm zmm
@@ -57234,6 +63504,10 @@ func VPMULLD(ops ...operand.Op) { ctx.VPMULLD(ops...) }
 //
 // Forms:
 //
+// 	VPMULLD.BCST m128/m32bcst xmm xmm
+// 	VPMULLD.BCST m128/m32bcst xmm k xmm
+// 	VPMULLD.BCST m256/m32bcst ymm ymm
+// 	VPMULLD.BCST m256/m32bcst ymm k ymm
 // 	VPMULLD.BCST m512/m32bcst zmm zmm
 // 	VPMULLD.BCST m512/m32bcst zmm k zmm
 // Construct and append a VPMULLD.BCST instruction to the active function.
@@ -57249,6 +63523,10 @@ func (c *Context) VPMULLD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPMULLD.BCST m128/m32bcst xmm xmm
+// 	VPMULLD.BCST m128/m32bcst xmm k xmm
+// 	VPMULLD.BCST m256/m32bcst ymm ymm
+// 	VPMULLD.BCST m256/m32bcst ymm k ymm
 // 	VPMULLD.BCST m512/m32bcst zmm zmm
 // 	VPMULLD.BCST m512/m32bcst zmm k zmm
 // Construct and append a VPMULLD.BCST instruction to the active function.
@@ -57259,10 +63537,12 @@ func VPMULLD_BCST(ops ...operand.Op) { ctx.VPMULLD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPMULLD.BCST.Z m128/m32bcst xmm k xmm
+// 	VPMULLD.BCST.Z m256/m32bcst ymm k ymm
 // 	VPMULLD.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VPMULLD.BCST.Z instruction to the active function.
-func (c *Context) VPMULLD_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VPMULLD_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VPMULLD_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPMULLD_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -57273,20 +63553,26 @@ func (c *Context) VPMULLD_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPMULLD.BCST.Z m128/m32bcst xmm k xmm
+// 	VPMULLD.BCST.Z m256/m32bcst ymm k ymm
 // 	VPMULLD.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VPMULLD.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VPMULLD_BCST_Z(m, z, k, z1 operand.Op) { ctx.VPMULLD_BCST_Z(m, z, k, z1) }
+func VPMULLD_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VPMULLD_BCST_Z(m, xyz, k, xyz1) }
 
 // VPMULLD_Z: Multiply Packed Signed Doubleword Integers and Store Low Result (Zeroing Masking).
 //
 // Forms:
 //
+// 	VPMULLD.Z m128/m32bcst xmm k xmm
+// 	VPMULLD.Z xmm          xmm k xmm
+// 	VPMULLD.Z m256/m32bcst ymm k ymm
+// 	VPMULLD.Z ymm          ymm k ymm
 // 	VPMULLD.Z m512/m32bcst zmm k zmm
 // 	VPMULLD.Z zmm          zmm k zmm
 // Construct and append a VPMULLD.Z instruction to the active function.
-func (c *Context) VPMULLD_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VPMULLD_Z(mz, z, k, z1); err == nil {
+func (c *Context) VPMULLD_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPMULLD_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -57297,11 +63583,15 @@ func (c *Context) VPMULLD_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPMULLD.Z m128/m32bcst xmm k xmm
+// 	VPMULLD.Z xmm          xmm k xmm
+// 	VPMULLD.Z m256/m32bcst ymm k ymm
+// 	VPMULLD.Z ymm          ymm k ymm
 // 	VPMULLD.Z m512/m32bcst zmm k zmm
 // 	VPMULLD.Z zmm          zmm k zmm
 // Construct and append a VPMULLD.Z instruction to the active function.
 // Operates on the global context.
-func VPMULLD_Z(mz, z, k, z1 operand.Op) { ctx.VPMULLD_Z(mz, z, k, z1) }
+func VPMULLD_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPMULLD_Z(mxyz, xyz, k, xyz1) }
 
 // VPMULLW: Multiply Packed Signed Word Integers and Store Low Result.
 //
@@ -57336,6 +63626,14 @@ func VPMULLW(mxy, xy, xy1 operand.Op) { ctx.VPMULLW(mxy, xy, xy1) }
 //
 // Forms:
 //
+// 	VPMULUDQ m128/m64bcst xmm xmm
+// 	VPMULUDQ m128/m64bcst xmm k xmm
+// 	VPMULUDQ xmm          xmm xmm
+// 	VPMULUDQ xmm          xmm k xmm
+// 	VPMULUDQ m256/m64bcst ymm ymm
+// 	VPMULUDQ m256/m64bcst ymm k ymm
+// 	VPMULUDQ ymm          ymm ymm
+// 	VPMULUDQ ymm          ymm k ymm
 // 	VPMULUDQ m512/m64bcst zmm zmm
 // 	VPMULUDQ m512/m64bcst zmm k zmm
 // 	VPMULUDQ zmm          zmm zmm
@@ -57357,6 +63655,14 @@ func (c *Context) VPMULUDQ(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPMULUDQ m128/m64bcst xmm xmm
+// 	VPMULUDQ m128/m64bcst xmm k xmm
+// 	VPMULUDQ xmm          xmm xmm
+// 	VPMULUDQ xmm          xmm k xmm
+// 	VPMULUDQ m256/m64bcst ymm ymm
+// 	VPMULUDQ m256/m64bcst ymm k ymm
+// 	VPMULUDQ ymm          ymm ymm
+// 	VPMULUDQ ymm          ymm k ymm
 // 	VPMULUDQ m512/m64bcst zmm zmm
 // 	VPMULUDQ m512/m64bcst zmm k zmm
 // 	VPMULUDQ zmm          zmm zmm
@@ -57373,6 +63679,10 @@ func VPMULUDQ(ops ...operand.Op) { ctx.VPMULUDQ(ops...) }
 //
 // Forms:
 //
+// 	VPMULUDQ.BCST m128/m64bcst xmm xmm
+// 	VPMULUDQ.BCST m128/m64bcst xmm k xmm
+// 	VPMULUDQ.BCST m256/m64bcst ymm ymm
+// 	VPMULUDQ.BCST m256/m64bcst ymm k ymm
 // 	VPMULUDQ.BCST m512/m64bcst zmm zmm
 // 	VPMULUDQ.BCST m512/m64bcst zmm k zmm
 // Construct and append a VPMULUDQ.BCST instruction to the active function.
@@ -57388,6 +63698,10 @@ func (c *Context) VPMULUDQ_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPMULUDQ.BCST m128/m64bcst xmm xmm
+// 	VPMULUDQ.BCST m128/m64bcst xmm k xmm
+// 	VPMULUDQ.BCST m256/m64bcst ymm ymm
+// 	VPMULUDQ.BCST m256/m64bcst ymm k ymm
 // 	VPMULUDQ.BCST m512/m64bcst zmm zmm
 // 	VPMULUDQ.BCST m512/m64bcst zmm k zmm
 // Construct and append a VPMULUDQ.BCST instruction to the active function.
@@ -57398,10 +63712,12 @@ func VPMULUDQ_BCST(ops ...operand.Op) { ctx.VPMULUDQ_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPMULUDQ.BCST.Z m128/m64bcst xmm k xmm
+// 	VPMULUDQ.BCST.Z m256/m64bcst ymm k ymm
 // 	VPMULUDQ.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VPMULUDQ.BCST.Z instruction to the active function.
-func (c *Context) VPMULUDQ_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VPMULUDQ_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VPMULUDQ_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPMULUDQ_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -57412,20 +63728,26 @@ func (c *Context) VPMULUDQ_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPMULUDQ.BCST.Z m128/m64bcst xmm k xmm
+// 	VPMULUDQ.BCST.Z m256/m64bcst ymm k ymm
 // 	VPMULUDQ.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VPMULUDQ.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VPMULUDQ_BCST_Z(m, z, k, z1 operand.Op) { ctx.VPMULUDQ_BCST_Z(m, z, k, z1) }
+func VPMULUDQ_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VPMULUDQ_BCST_Z(m, xyz, k, xyz1) }
 
 // VPMULUDQ_Z: Multiply Packed Unsigned Doubleword Integers (Zeroing Masking).
 //
 // Forms:
 //
+// 	VPMULUDQ.Z m128/m64bcst xmm k xmm
+// 	VPMULUDQ.Z xmm          xmm k xmm
+// 	VPMULUDQ.Z m256/m64bcst ymm k ymm
+// 	VPMULUDQ.Z ymm          ymm k ymm
 // 	VPMULUDQ.Z m512/m64bcst zmm k zmm
 // 	VPMULUDQ.Z zmm          zmm k zmm
 // Construct and append a VPMULUDQ.Z instruction to the active function.
-func (c *Context) VPMULUDQ_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VPMULUDQ_Z(mz, z, k, z1); err == nil {
+func (c *Context) VPMULUDQ_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPMULUDQ_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -57436,11 +63758,15 @@ func (c *Context) VPMULUDQ_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPMULUDQ.Z m128/m64bcst xmm k xmm
+// 	VPMULUDQ.Z xmm          xmm k xmm
+// 	VPMULUDQ.Z m256/m64bcst ymm k ymm
+// 	VPMULUDQ.Z ymm          ymm k ymm
 // 	VPMULUDQ.Z m512/m64bcst zmm k zmm
 // 	VPMULUDQ.Z zmm          zmm k zmm
 // Construct and append a VPMULUDQ.Z instruction to the active function.
 // Operates on the global context.
-func VPMULUDQ_Z(mz, z, k, z1 operand.Op) { ctx.VPMULUDQ_Z(mz, z, k, z1) }
+func VPMULUDQ_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPMULUDQ_Z(mxyz, xyz, k, xyz1) }
 
 // VPOR: Packed Bitwise Logical OR.
 //
@@ -57475,6 +63801,14 @@ func VPOR(mxy, xy, xy1 operand.Op) { ctx.VPOR(mxy, xy, xy1) }
 //
 // Forms:
 //
+// 	VPORD m128/m32bcst xmm xmm
+// 	VPORD m128/m32bcst xmm k xmm
+// 	VPORD xmm          xmm xmm
+// 	VPORD xmm          xmm k xmm
+// 	VPORD m256/m32bcst ymm ymm
+// 	VPORD m256/m32bcst ymm k ymm
+// 	VPORD ymm          ymm ymm
+// 	VPORD ymm          ymm k ymm
 // 	VPORD m512/m32bcst zmm zmm
 // 	VPORD m512/m32bcst zmm k zmm
 // 	VPORD zmm          zmm zmm
@@ -57492,6 +63826,14 @@ func (c *Context) VPORD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPORD m128/m32bcst xmm xmm
+// 	VPORD m128/m32bcst xmm k xmm
+// 	VPORD xmm          xmm xmm
+// 	VPORD xmm          xmm k xmm
+// 	VPORD m256/m32bcst ymm ymm
+// 	VPORD m256/m32bcst ymm k ymm
+// 	VPORD ymm          ymm ymm
+// 	VPORD ymm          ymm k ymm
 // 	VPORD m512/m32bcst zmm zmm
 // 	VPORD m512/m32bcst zmm k zmm
 // 	VPORD zmm          zmm zmm
@@ -57504,6 +63846,10 @@ func VPORD(ops ...operand.Op) { ctx.VPORD(ops...) }
 //
 // Forms:
 //
+// 	VPORD.BCST m128/m32bcst xmm xmm
+// 	VPORD.BCST m128/m32bcst xmm k xmm
+// 	VPORD.BCST m256/m32bcst ymm ymm
+// 	VPORD.BCST m256/m32bcst ymm k ymm
 // 	VPORD.BCST m512/m32bcst zmm zmm
 // 	VPORD.BCST m512/m32bcst zmm k zmm
 // Construct and append a VPORD.BCST instruction to the active function.
@@ -57519,6 +63865,10 @@ func (c *Context) VPORD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPORD.BCST m128/m32bcst xmm xmm
+// 	VPORD.BCST m128/m32bcst xmm k xmm
+// 	VPORD.BCST m256/m32bcst ymm ymm
+// 	VPORD.BCST m256/m32bcst ymm k ymm
 // 	VPORD.BCST m512/m32bcst zmm zmm
 // 	VPORD.BCST m512/m32bcst zmm k zmm
 // Construct and append a VPORD.BCST instruction to the active function.
@@ -57529,10 +63879,12 @@ func VPORD_BCST(ops ...operand.Op) { ctx.VPORD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPORD.BCST.Z m128/m32bcst xmm k xmm
+// 	VPORD.BCST.Z m256/m32bcst ymm k ymm
 // 	VPORD.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VPORD.BCST.Z instruction to the active function.
-func (c *Context) VPORD_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VPORD_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VPORD_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPORD_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -57543,20 +63895,26 @@ func (c *Context) VPORD_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPORD.BCST.Z m128/m32bcst xmm k xmm
+// 	VPORD.BCST.Z m256/m32bcst ymm k ymm
 // 	VPORD.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VPORD.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VPORD_BCST_Z(m, z, k, z1 operand.Op) { ctx.VPORD_BCST_Z(m, z, k, z1) }
+func VPORD_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VPORD_BCST_Z(m, xyz, k, xyz1) }
 
 // VPORD_Z: Bitwise Logical OR of Packed Doubleword Integers (Zeroing Masking).
 //
 // Forms:
 //
+// 	VPORD.Z m128/m32bcst xmm k xmm
+// 	VPORD.Z xmm          xmm k xmm
+// 	VPORD.Z m256/m32bcst ymm k ymm
+// 	VPORD.Z ymm          ymm k ymm
 // 	VPORD.Z m512/m32bcst zmm k zmm
 // 	VPORD.Z zmm          zmm k zmm
 // Construct and append a VPORD.Z instruction to the active function.
-func (c *Context) VPORD_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VPORD_Z(mz, z, k, z1); err == nil {
+func (c *Context) VPORD_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPORD_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -57567,16 +63925,28 @@ func (c *Context) VPORD_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPORD.Z m128/m32bcst xmm k xmm
+// 	VPORD.Z xmm          xmm k xmm
+// 	VPORD.Z m256/m32bcst ymm k ymm
+// 	VPORD.Z ymm          ymm k ymm
 // 	VPORD.Z m512/m32bcst zmm k zmm
 // 	VPORD.Z zmm          zmm k zmm
 // Construct and append a VPORD.Z instruction to the active function.
 // Operates on the global context.
-func VPORD_Z(mz, z, k, z1 operand.Op) { ctx.VPORD_Z(mz, z, k, z1) }
+func VPORD_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPORD_Z(mxyz, xyz, k, xyz1) }
 
 // VPORQ: Bitwise Logical OR of Packed Quadword Integers.
 //
 // Forms:
 //
+// 	VPORQ m128/m64bcst xmm xmm
+// 	VPORQ m128/m64bcst xmm k xmm
+// 	VPORQ xmm          xmm xmm
+// 	VPORQ xmm          xmm k xmm
+// 	VPORQ m256/m64bcst ymm ymm
+// 	VPORQ m256/m64bcst ymm k ymm
+// 	VPORQ ymm          ymm ymm
+// 	VPORQ ymm          ymm k ymm
 // 	VPORQ m512/m64bcst zmm zmm
 // 	VPORQ m512/m64bcst zmm k zmm
 // 	VPORQ zmm          zmm zmm
@@ -57594,6 +63964,14 @@ func (c *Context) VPORQ(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPORQ m128/m64bcst xmm xmm
+// 	VPORQ m128/m64bcst xmm k xmm
+// 	VPORQ xmm          xmm xmm
+// 	VPORQ xmm          xmm k xmm
+// 	VPORQ m256/m64bcst ymm ymm
+// 	VPORQ m256/m64bcst ymm k ymm
+// 	VPORQ ymm          ymm ymm
+// 	VPORQ ymm          ymm k ymm
 // 	VPORQ m512/m64bcst zmm zmm
 // 	VPORQ m512/m64bcst zmm k zmm
 // 	VPORQ zmm          zmm zmm
@@ -57606,6 +63984,10 @@ func VPORQ(ops ...operand.Op) { ctx.VPORQ(ops...) }
 //
 // Forms:
 //
+// 	VPORQ.BCST m128/m64bcst xmm xmm
+// 	VPORQ.BCST m128/m64bcst xmm k xmm
+// 	VPORQ.BCST m256/m64bcst ymm ymm
+// 	VPORQ.BCST m256/m64bcst ymm k ymm
 // 	VPORQ.BCST m512/m64bcst zmm zmm
 // 	VPORQ.BCST m512/m64bcst zmm k zmm
 // Construct and append a VPORQ.BCST instruction to the active function.
@@ -57621,6 +64003,10 @@ func (c *Context) VPORQ_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPORQ.BCST m128/m64bcst xmm xmm
+// 	VPORQ.BCST m128/m64bcst xmm k xmm
+// 	VPORQ.BCST m256/m64bcst ymm ymm
+// 	VPORQ.BCST m256/m64bcst ymm k ymm
 // 	VPORQ.BCST m512/m64bcst zmm zmm
 // 	VPORQ.BCST m512/m64bcst zmm k zmm
 // Construct and append a VPORQ.BCST instruction to the active function.
@@ -57631,10 +64017,12 @@ func VPORQ_BCST(ops ...operand.Op) { ctx.VPORQ_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPORQ.BCST.Z m128/m64bcst xmm k xmm
+// 	VPORQ.BCST.Z m256/m64bcst ymm k ymm
 // 	VPORQ.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VPORQ.BCST.Z instruction to the active function.
-func (c *Context) VPORQ_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VPORQ_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VPORQ_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPORQ_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -57645,20 +64033,26 @@ func (c *Context) VPORQ_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPORQ.BCST.Z m128/m64bcst xmm k xmm
+// 	VPORQ.BCST.Z m256/m64bcst ymm k ymm
 // 	VPORQ.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VPORQ.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VPORQ_BCST_Z(m, z, k, z1 operand.Op) { ctx.VPORQ_BCST_Z(m, z, k, z1) }
+func VPORQ_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VPORQ_BCST_Z(m, xyz, k, xyz1) }
 
 // VPORQ_Z: Bitwise Logical OR of Packed Quadword Integers (Zeroing Masking).
 //
 // Forms:
 //
+// 	VPORQ.Z m128/m64bcst xmm k xmm
+// 	VPORQ.Z xmm          xmm k xmm
+// 	VPORQ.Z m256/m64bcst ymm k ymm
+// 	VPORQ.Z ymm          ymm k ymm
 // 	VPORQ.Z m512/m64bcst zmm k zmm
 // 	VPORQ.Z zmm          zmm k zmm
 // Construct and append a VPORQ.Z instruction to the active function.
-func (c *Context) VPORQ_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VPORQ_Z(mz, z, k, z1); err == nil {
+func (c *Context) VPORQ_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPORQ_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -57669,18 +64063,30 @@ func (c *Context) VPORQ_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPORQ.Z m128/m64bcst xmm k xmm
+// 	VPORQ.Z xmm          xmm k xmm
+// 	VPORQ.Z m256/m64bcst ymm k ymm
+// 	VPORQ.Z ymm          ymm k ymm
 // 	VPORQ.Z m512/m64bcst zmm k zmm
 // 	VPORQ.Z zmm          zmm k zmm
 // Construct and append a VPORQ.Z instruction to the active function.
 // Operates on the global context.
-func VPORQ_Z(mz, z, k, z1 operand.Op) { ctx.VPORQ_Z(mz, z, k, z1) }
+func VPORQ_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPORQ_Z(mxyz, xyz, k, xyz1) }
 
 // VPROLD: Rotate Packed Doubleword Left.
 //
 // Forms:
 //
+// 	VPROLD imm8 m128/m32bcst xmm
+// 	VPROLD imm8 m128/m32bcst k xmm
+// 	VPROLD imm8 m256/m32bcst ymm
+// 	VPROLD imm8 m256/m32bcst k ymm
 // 	VPROLD imm8 m512/m32bcst zmm
 // 	VPROLD imm8 m512/m32bcst k zmm
+// 	VPROLD imm8 xmm          xmm
+// 	VPROLD imm8 xmm          k xmm
+// 	VPROLD imm8 ymm          ymm
+// 	VPROLD imm8 ymm          k ymm
 // 	VPROLD imm8 zmm          zmm
 // 	VPROLD imm8 zmm          k zmm
 // Construct and append a VPROLD instruction to the active function.
@@ -57696,8 +64102,16 @@ func (c *Context) VPROLD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPROLD imm8 m128/m32bcst xmm
+// 	VPROLD imm8 m128/m32bcst k xmm
+// 	VPROLD imm8 m256/m32bcst ymm
+// 	VPROLD imm8 m256/m32bcst k ymm
 // 	VPROLD imm8 m512/m32bcst zmm
 // 	VPROLD imm8 m512/m32bcst k zmm
+// 	VPROLD imm8 xmm          xmm
+// 	VPROLD imm8 xmm          k xmm
+// 	VPROLD imm8 ymm          ymm
+// 	VPROLD imm8 ymm          k ymm
 // 	VPROLD imm8 zmm          zmm
 // 	VPROLD imm8 zmm          k zmm
 // Construct and append a VPROLD instruction to the active function.
@@ -57708,6 +64122,10 @@ func VPROLD(ops ...operand.Op) { ctx.VPROLD(ops...) }
 //
 // Forms:
 //
+// 	VPROLD.BCST imm8 m128/m32bcst xmm
+// 	VPROLD.BCST imm8 m128/m32bcst k xmm
+// 	VPROLD.BCST imm8 m256/m32bcst ymm
+// 	VPROLD.BCST imm8 m256/m32bcst k ymm
 // 	VPROLD.BCST imm8 m512/m32bcst zmm
 // 	VPROLD.BCST imm8 m512/m32bcst k zmm
 // Construct and append a VPROLD.BCST instruction to the active function.
@@ -57723,6 +64141,10 @@ func (c *Context) VPROLD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPROLD.BCST imm8 m128/m32bcst xmm
+// 	VPROLD.BCST imm8 m128/m32bcst k xmm
+// 	VPROLD.BCST imm8 m256/m32bcst ymm
+// 	VPROLD.BCST imm8 m256/m32bcst k ymm
 // 	VPROLD.BCST imm8 m512/m32bcst zmm
 // 	VPROLD.BCST imm8 m512/m32bcst k zmm
 // Construct and append a VPROLD.BCST instruction to the active function.
@@ -57733,10 +64155,12 @@ func VPROLD_BCST(ops ...operand.Op) { ctx.VPROLD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPROLD.BCST.Z imm8 m128/m32bcst k xmm
+// 	VPROLD.BCST.Z imm8 m256/m32bcst k ymm
 // 	VPROLD.BCST.Z imm8 m512/m32bcst k zmm
 // Construct and append a VPROLD.BCST.Z instruction to the active function.
-func (c *Context) VPROLD_BCST_Z(i, m, k, z operand.Op) {
-	if inst, err := x86.VPROLD_BCST_Z(i, m, k, z); err == nil {
+func (c *Context) VPROLD_BCST_Z(i, m, k, xyz operand.Op) {
+	if inst, err := x86.VPROLD_BCST_Z(i, m, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -57747,20 +64171,26 @@ func (c *Context) VPROLD_BCST_Z(i, m, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VPROLD.BCST.Z imm8 m128/m32bcst k xmm
+// 	VPROLD.BCST.Z imm8 m256/m32bcst k ymm
 // 	VPROLD.BCST.Z imm8 m512/m32bcst k zmm
 // Construct and append a VPROLD.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VPROLD_BCST_Z(i, m, k, z operand.Op) { ctx.VPROLD_BCST_Z(i, m, k, z) }
+func VPROLD_BCST_Z(i, m, k, xyz operand.Op) { ctx.VPROLD_BCST_Z(i, m, k, xyz) }
 
 // VPROLD_Z: Rotate Packed Doubleword Left (Zeroing Masking).
 //
 // Forms:
 //
+// 	VPROLD.Z imm8 m128/m32bcst k xmm
+// 	VPROLD.Z imm8 m256/m32bcst k ymm
 // 	VPROLD.Z imm8 m512/m32bcst k zmm
+// 	VPROLD.Z imm8 xmm          k xmm
+// 	VPROLD.Z imm8 ymm          k ymm
 // 	VPROLD.Z imm8 zmm          k zmm
 // Construct and append a VPROLD.Z instruction to the active function.
-func (c *Context) VPROLD_Z(i, mz, k, z operand.Op) {
-	if inst, err := x86.VPROLD_Z(i, mz, k, z); err == nil {
+func (c *Context) VPROLD_Z(i, mxyz, k, xyz operand.Op) {
+	if inst, err := x86.VPROLD_Z(i, mxyz, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -57771,18 +64201,30 @@ func (c *Context) VPROLD_Z(i, mz, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VPROLD.Z imm8 m128/m32bcst k xmm
+// 	VPROLD.Z imm8 m256/m32bcst k ymm
 // 	VPROLD.Z imm8 m512/m32bcst k zmm
+// 	VPROLD.Z imm8 xmm          k xmm
+// 	VPROLD.Z imm8 ymm          k ymm
 // 	VPROLD.Z imm8 zmm          k zmm
 // Construct and append a VPROLD.Z instruction to the active function.
 // Operates on the global context.
-func VPROLD_Z(i, mz, k, z operand.Op) { ctx.VPROLD_Z(i, mz, k, z) }
+func VPROLD_Z(i, mxyz, k, xyz operand.Op) { ctx.VPROLD_Z(i, mxyz, k, xyz) }
 
 // VPROLQ: Rotate Packed Quadword Left.
 //
 // Forms:
 //
+// 	VPROLQ imm8 m128/m64bcst xmm
+// 	VPROLQ imm8 m128/m64bcst k xmm
+// 	VPROLQ imm8 m256/m64bcst ymm
+// 	VPROLQ imm8 m256/m64bcst k ymm
 // 	VPROLQ imm8 m512/m64bcst zmm
 // 	VPROLQ imm8 m512/m64bcst k zmm
+// 	VPROLQ imm8 xmm          xmm
+// 	VPROLQ imm8 xmm          k xmm
+// 	VPROLQ imm8 ymm          ymm
+// 	VPROLQ imm8 ymm          k ymm
 // 	VPROLQ imm8 zmm          zmm
 // 	VPROLQ imm8 zmm          k zmm
 // Construct and append a VPROLQ instruction to the active function.
@@ -57798,8 +64240,16 @@ func (c *Context) VPROLQ(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPROLQ imm8 m128/m64bcst xmm
+// 	VPROLQ imm8 m128/m64bcst k xmm
+// 	VPROLQ imm8 m256/m64bcst ymm
+// 	VPROLQ imm8 m256/m64bcst k ymm
 // 	VPROLQ imm8 m512/m64bcst zmm
 // 	VPROLQ imm8 m512/m64bcst k zmm
+// 	VPROLQ imm8 xmm          xmm
+// 	VPROLQ imm8 xmm          k xmm
+// 	VPROLQ imm8 ymm          ymm
+// 	VPROLQ imm8 ymm          k ymm
 // 	VPROLQ imm8 zmm          zmm
 // 	VPROLQ imm8 zmm          k zmm
 // Construct and append a VPROLQ instruction to the active function.
@@ -57810,6 +64260,10 @@ func VPROLQ(ops ...operand.Op) { ctx.VPROLQ(ops...) }
 //
 // Forms:
 //
+// 	VPROLQ.BCST imm8 m128/m64bcst xmm
+// 	VPROLQ.BCST imm8 m128/m64bcst k xmm
+// 	VPROLQ.BCST imm8 m256/m64bcst ymm
+// 	VPROLQ.BCST imm8 m256/m64bcst k ymm
 // 	VPROLQ.BCST imm8 m512/m64bcst zmm
 // 	VPROLQ.BCST imm8 m512/m64bcst k zmm
 // Construct and append a VPROLQ.BCST instruction to the active function.
@@ -57825,6 +64279,10 @@ func (c *Context) VPROLQ_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPROLQ.BCST imm8 m128/m64bcst xmm
+// 	VPROLQ.BCST imm8 m128/m64bcst k xmm
+// 	VPROLQ.BCST imm8 m256/m64bcst ymm
+// 	VPROLQ.BCST imm8 m256/m64bcst k ymm
 // 	VPROLQ.BCST imm8 m512/m64bcst zmm
 // 	VPROLQ.BCST imm8 m512/m64bcst k zmm
 // Construct and append a VPROLQ.BCST instruction to the active function.
@@ -57835,10 +64293,12 @@ func VPROLQ_BCST(ops ...operand.Op) { ctx.VPROLQ_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPROLQ.BCST.Z imm8 m128/m64bcst k xmm
+// 	VPROLQ.BCST.Z imm8 m256/m64bcst k ymm
 // 	VPROLQ.BCST.Z imm8 m512/m64bcst k zmm
 // Construct and append a VPROLQ.BCST.Z instruction to the active function.
-func (c *Context) VPROLQ_BCST_Z(i, m, k, z operand.Op) {
-	if inst, err := x86.VPROLQ_BCST_Z(i, m, k, z); err == nil {
+func (c *Context) VPROLQ_BCST_Z(i, m, k, xyz operand.Op) {
+	if inst, err := x86.VPROLQ_BCST_Z(i, m, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -57849,20 +64309,26 @@ func (c *Context) VPROLQ_BCST_Z(i, m, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VPROLQ.BCST.Z imm8 m128/m64bcst k xmm
+// 	VPROLQ.BCST.Z imm8 m256/m64bcst k ymm
 // 	VPROLQ.BCST.Z imm8 m512/m64bcst k zmm
 // Construct and append a VPROLQ.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VPROLQ_BCST_Z(i, m, k, z operand.Op) { ctx.VPROLQ_BCST_Z(i, m, k, z) }
+func VPROLQ_BCST_Z(i, m, k, xyz operand.Op) { ctx.VPROLQ_BCST_Z(i, m, k, xyz) }
 
 // VPROLQ_Z: Rotate Packed Quadword Left (Zeroing Masking).
 //
 // Forms:
 //
+// 	VPROLQ.Z imm8 m128/m64bcst k xmm
+// 	VPROLQ.Z imm8 m256/m64bcst k ymm
 // 	VPROLQ.Z imm8 m512/m64bcst k zmm
+// 	VPROLQ.Z imm8 xmm          k xmm
+// 	VPROLQ.Z imm8 ymm          k ymm
 // 	VPROLQ.Z imm8 zmm          k zmm
 // Construct and append a VPROLQ.Z instruction to the active function.
-func (c *Context) VPROLQ_Z(i, mz, k, z operand.Op) {
-	if inst, err := x86.VPROLQ_Z(i, mz, k, z); err == nil {
+func (c *Context) VPROLQ_Z(i, mxyz, k, xyz operand.Op) {
+	if inst, err := x86.VPROLQ_Z(i, mxyz, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -57873,16 +64339,28 @@ func (c *Context) VPROLQ_Z(i, mz, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VPROLQ.Z imm8 m128/m64bcst k xmm
+// 	VPROLQ.Z imm8 m256/m64bcst k ymm
 // 	VPROLQ.Z imm8 m512/m64bcst k zmm
+// 	VPROLQ.Z imm8 xmm          k xmm
+// 	VPROLQ.Z imm8 ymm          k ymm
 // 	VPROLQ.Z imm8 zmm          k zmm
 // Construct and append a VPROLQ.Z instruction to the active function.
 // Operates on the global context.
-func VPROLQ_Z(i, mz, k, z operand.Op) { ctx.VPROLQ_Z(i, mz, k, z) }
+func VPROLQ_Z(i, mxyz, k, xyz operand.Op) { ctx.VPROLQ_Z(i, mxyz, k, xyz) }
 
 // VPROLVD: Variable Rotate Packed Doubleword Left.
 //
 // Forms:
 //
+// 	VPROLVD m128/m32bcst xmm xmm
+// 	VPROLVD m128/m32bcst xmm k xmm
+// 	VPROLVD xmm          xmm xmm
+// 	VPROLVD xmm          xmm k xmm
+// 	VPROLVD m256/m32bcst ymm ymm
+// 	VPROLVD m256/m32bcst ymm k ymm
+// 	VPROLVD ymm          ymm ymm
+// 	VPROLVD ymm          ymm k ymm
 // 	VPROLVD m512/m32bcst zmm zmm
 // 	VPROLVD m512/m32bcst zmm k zmm
 // 	VPROLVD zmm          zmm zmm
@@ -57900,6 +64378,14 @@ func (c *Context) VPROLVD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPROLVD m128/m32bcst xmm xmm
+// 	VPROLVD m128/m32bcst xmm k xmm
+// 	VPROLVD xmm          xmm xmm
+// 	VPROLVD xmm          xmm k xmm
+// 	VPROLVD m256/m32bcst ymm ymm
+// 	VPROLVD m256/m32bcst ymm k ymm
+// 	VPROLVD ymm          ymm ymm
+// 	VPROLVD ymm          ymm k ymm
 // 	VPROLVD m512/m32bcst zmm zmm
 // 	VPROLVD m512/m32bcst zmm k zmm
 // 	VPROLVD zmm          zmm zmm
@@ -57912,6 +64398,10 @@ func VPROLVD(ops ...operand.Op) { ctx.VPROLVD(ops...) }
 //
 // Forms:
 //
+// 	VPROLVD.BCST m128/m32bcst xmm xmm
+// 	VPROLVD.BCST m128/m32bcst xmm k xmm
+// 	VPROLVD.BCST m256/m32bcst ymm ymm
+// 	VPROLVD.BCST m256/m32bcst ymm k ymm
 // 	VPROLVD.BCST m512/m32bcst zmm zmm
 // 	VPROLVD.BCST m512/m32bcst zmm k zmm
 // Construct and append a VPROLVD.BCST instruction to the active function.
@@ -57927,6 +64417,10 @@ func (c *Context) VPROLVD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPROLVD.BCST m128/m32bcst xmm xmm
+// 	VPROLVD.BCST m128/m32bcst xmm k xmm
+// 	VPROLVD.BCST m256/m32bcst ymm ymm
+// 	VPROLVD.BCST m256/m32bcst ymm k ymm
 // 	VPROLVD.BCST m512/m32bcst zmm zmm
 // 	VPROLVD.BCST m512/m32bcst zmm k zmm
 // Construct and append a VPROLVD.BCST instruction to the active function.
@@ -57937,10 +64431,12 @@ func VPROLVD_BCST(ops ...operand.Op) { ctx.VPROLVD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPROLVD.BCST.Z m128/m32bcst xmm k xmm
+// 	VPROLVD.BCST.Z m256/m32bcst ymm k ymm
 // 	VPROLVD.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VPROLVD.BCST.Z instruction to the active function.
-func (c *Context) VPROLVD_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VPROLVD_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VPROLVD_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPROLVD_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -57951,20 +64447,26 @@ func (c *Context) VPROLVD_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPROLVD.BCST.Z m128/m32bcst xmm k xmm
+// 	VPROLVD.BCST.Z m256/m32bcst ymm k ymm
 // 	VPROLVD.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VPROLVD.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VPROLVD_BCST_Z(m, z, k, z1 operand.Op) { ctx.VPROLVD_BCST_Z(m, z, k, z1) }
+func VPROLVD_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VPROLVD_BCST_Z(m, xyz, k, xyz1) }
 
 // VPROLVD_Z: Variable Rotate Packed Doubleword Left (Zeroing Masking).
 //
 // Forms:
 //
+// 	VPROLVD.Z m128/m32bcst xmm k xmm
+// 	VPROLVD.Z xmm          xmm k xmm
+// 	VPROLVD.Z m256/m32bcst ymm k ymm
+// 	VPROLVD.Z ymm          ymm k ymm
 // 	VPROLVD.Z m512/m32bcst zmm k zmm
 // 	VPROLVD.Z zmm          zmm k zmm
 // Construct and append a VPROLVD.Z instruction to the active function.
-func (c *Context) VPROLVD_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VPROLVD_Z(mz, z, k, z1); err == nil {
+func (c *Context) VPROLVD_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPROLVD_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -57975,16 +64477,28 @@ func (c *Context) VPROLVD_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPROLVD.Z m128/m32bcst xmm k xmm
+// 	VPROLVD.Z xmm          xmm k xmm
+// 	VPROLVD.Z m256/m32bcst ymm k ymm
+// 	VPROLVD.Z ymm          ymm k ymm
 // 	VPROLVD.Z m512/m32bcst zmm k zmm
 // 	VPROLVD.Z zmm          zmm k zmm
 // Construct and append a VPROLVD.Z instruction to the active function.
 // Operates on the global context.
-func VPROLVD_Z(mz, z, k, z1 operand.Op) { ctx.VPROLVD_Z(mz, z, k, z1) }
+func VPROLVD_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPROLVD_Z(mxyz, xyz, k, xyz1) }
 
 // VPROLVQ: Variable Rotate Packed Quadword Left.
 //
 // Forms:
 //
+// 	VPROLVQ m128/m64bcst xmm xmm
+// 	VPROLVQ m128/m64bcst xmm k xmm
+// 	VPROLVQ xmm          xmm xmm
+// 	VPROLVQ xmm          xmm k xmm
+// 	VPROLVQ m256/m64bcst ymm ymm
+// 	VPROLVQ m256/m64bcst ymm k ymm
+// 	VPROLVQ ymm          ymm ymm
+// 	VPROLVQ ymm          ymm k ymm
 // 	VPROLVQ m512/m64bcst zmm zmm
 // 	VPROLVQ m512/m64bcst zmm k zmm
 // 	VPROLVQ zmm          zmm zmm
@@ -58002,6 +64516,14 @@ func (c *Context) VPROLVQ(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPROLVQ m128/m64bcst xmm xmm
+// 	VPROLVQ m128/m64bcst xmm k xmm
+// 	VPROLVQ xmm          xmm xmm
+// 	VPROLVQ xmm          xmm k xmm
+// 	VPROLVQ m256/m64bcst ymm ymm
+// 	VPROLVQ m256/m64bcst ymm k ymm
+// 	VPROLVQ ymm          ymm ymm
+// 	VPROLVQ ymm          ymm k ymm
 // 	VPROLVQ m512/m64bcst zmm zmm
 // 	VPROLVQ m512/m64bcst zmm k zmm
 // 	VPROLVQ zmm          zmm zmm
@@ -58014,6 +64536,10 @@ func VPROLVQ(ops ...operand.Op) { ctx.VPROLVQ(ops...) }
 //
 // Forms:
 //
+// 	VPROLVQ.BCST m128/m64bcst xmm xmm
+// 	VPROLVQ.BCST m128/m64bcst xmm k xmm
+// 	VPROLVQ.BCST m256/m64bcst ymm ymm
+// 	VPROLVQ.BCST m256/m64bcst ymm k ymm
 // 	VPROLVQ.BCST m512/m64bcst zmm zmm
 // 	VPROLVQ.BCST m512/m64bcst zmm k zmm
 // Construct and append a VPROLVQ.BCST instruction to the active function.
@@ -58029,6 +64555,10 @@ func (c *Context) VPROLVQ_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPROLVQ.BCST m128/m64bcst xmm xmm
+// 	VPROLVQ.BCST m128/m64bcst xmm k xmm
+// 	VPROLVQ.BCST m256/m64bcst ymm ymm
+// 	VPROLVQ.BCST m256/m64bcst ymm k ymm
 // 	VPROLVQ.BCST m512/m64bcst zmm zmm
 // 	VPROLVQ.BCST m512/m64bcst zmm k zmm
 // Construct and append a VPROLVQ.BCST instruction to the active function.
@@ -58039,10 +64569,12 @@ func VPROLVQ_BCST(ops ...operand.Op) { ctx.VPROLVQ_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPROLVQ.BCST.Z m128/m64bcst xmm k xmm
+// 	VPROLVQ.BCST.Z m256/m64bcst ymm k ymm
 // 	VPROLVQ.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VPROLVQ.BCST.Z instruction to the active function.
-func (c *Context) VPROLVQ_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VPROLVQ_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VPROLVQ_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPROLVQ_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -58053,20 +64585,26 @@ func (c *Context) VPROLVQ_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPROLVQ.BCST.Z m128/m64bcst xmm k xmm
+// 	VPROLVQ.BCST.Z m256/m64bcst ymm k ymm
 // 	VPROLVQ.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VPROLVQ.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VPROLVQ_BCST_Z(m, z, k, z1 operand.Op) { ctx.VPROLVQ_BCST_Z(m, z, k, z1) }
+func VPROLVQ_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VPROLVQ_BCST_Z(m, xyz, k, xyz1) }
 
 // VPROLVQ_Z: Variable Rotate Packed Quadword Left (Zeroing Masking).
 //
 // Forms:
 //
+// 	VPROLVQ.Z m128/m64bcst xmm k xmm
+// 	VPROLVQ.Z xmm          xmm k xmm
+// 	VPROLVQ.Z m256/m64bcst ymm k ymm
+// 	VPROLVQ.Z ymm          ymm k ymm
 // 	VPROLVQ.Z m512/m64bcst zmm k zmm
 // 	VPROLVQ.Z zmm          zmm k zmm
 // Construct and append a VPROLVQ.Z instruction to the active function.
-func (c *Context) VPROLVQ_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VPROLVQ_Z(mz, z, k, z1); err == nil {
+func (c *Context) VPROLVQ_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPROLVQ_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -58077,18 +64615,30 @@ func (c *Context) VPROLVQ_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPROLVQ.Z m128/m64bcst xmm k xmm
+// 	VPROLVQ.Z xmm          xmm k xmm
+// 	VPROLVQ.Z m256/m64bcst ymm k ymm
+// 	VPROLVQ.Z ymm          ymm k ymm
 // 	VPROLVQ.Z m512/m64bcst zmm k zmm
 // 	VPROLVQ.Z zmm          zmm k zmm
 // Construct and append a VPROLVQ.Z instruction to the active function.
 // Operates on the global context.
-func VPROLVQ_Z(mz, z, k, z1 operand.Op) { ctx.VPROLVQ_Z(mz, z, k, z1) }
+func VPROLVQ_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPROLVQ_Z(mxyz, xyz, k, xyz1) }
 
 // VPRORD: Rotate Packed Doubleword Right.
 //
 // Forms:
 //
+// 	VPRORD imm8 m128/m32bcst xmm
+// 	VPRORD imm8 m128/m32bcst k xmm
+// 	VPRORD imm8 m256/m32bcst ymm
+// 	VPRORD imm8 m256/m32bcst k ymm
 // 	VPRORD imm8 m512/m32bcst zmm
 // 	VPRORD imm8 m512/m32bcst k zmm
+// 	VPRORD imm8 xmm          xmm
+// 	VPRORD imm8 xmm          k xmm
+// 	VPRORD imm8 ymm          ymm
+// 	VPRORD imm8 ymm          k ymm
 // 	VPRORD imm8 zmm          zmm
 // 	VPRORD imm8 zmm          k zmm
 // Construct and append a VPRORD instruction to the active function.
@@ -58104,8 +64654,16 @@ func (c *Context) VPRORD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPRORD imm8 m128/m32bcst xmm
+// 	VPRORD imm8 m128/m32bcst k xmm
+// 	VPRORD imm8 m256/m32bcst ymm
+// 	VPRORD imm8 m256/m32bcst k ymm
 // 	VPRORD imm8 m512/m32bcst zmm
 // 	VPRORD imm8 m512/m32bcst k zmm
+// 	VPRORD imm8 xmm          xmm
+// 	VPRORD imm8 xmm          k xmm
+// 	VPRORD imm8 ymm          ymm
+// 	VPRORD imm8 ymm          k ymm
 // 	VPRORD imm8 zmm          zmm
 // 	VPRORD imm8 zmm          k zmm
 // Construct and append a VPRORD instruction to the active function.
@@ -58116,6 +64674,10 @@ func VPRORD(ops ...operand.Op) { ctx.VPRORD(ops...) }
 //
 // Forms:
 //
+// 	VPRORD.BCST imm8 m128/m32bcst xmm
+// 	VPRORD.BCST imm8 m128/m32bcst k xmm
+// 	VPRORD.BCST imm8 m256/m32bcst ymm
+// 	VPRORD.BCST imm8 m256/m32bcst k ymm
 // 	VPRORD.BCST imm8 m512/m32bcst zmm
 // 	VPRORD.BCST imm8 m512/m32bcst k zmm
 // Construct and append a VPRORD.BCST instruction to the active function.
@@ -58131,6 +64693,10 @@ func (c *Context) VPRORD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPRORD.BCST imm8 m128/m32bcst xmm
+// 	VPRORD.BCST imm8 m128/m32bcst k xmm
+// 	VPRORD.BCST imm8 m256/m32bcst ymm
+// 	VPRORD.BCST imm8 m256/m32bcst k ymm
 // 	VPRORD.BCST imm8 m512/m32bcst zmm
 // 	VPRORD.BCST imm8 m512/m32bcst k zmm
 // Construct and append a VPRORD.BCST instruction to the active function.
@@ -58141,10 +64707,12 @@ func VPRORD_BCST(ops ...operand.Op) { ctx.VPRORD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPRORD.BCST.Z imm8 m128/m32bcst k xmm
+// 	VPRORD.BCST.Z imm8 m256/m32bcst k ymm
 // 	VPRORD.BCST.Z imm8 m512/m32bcst k zmm
 // Construct and append a VPRORD.BCST.Z instruction to the active function.
-func (c *Context) VPRORD_BCST_Z(i, m, k, z operand.Op) {
-	if inst, err := x86.VPRORD_BCST_Z(i, m, k, z); err == nil {
+func (c *Context) VPRORD_BCST_Z(i, m, k, xyz operand.Op) {
+	if inst, err := x86.VPRORD_BCST_Z(i, m, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -58155,20 +64723,26 @@ func (c *Context) VPRORD_BCST_Z(i, m, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VPRORD.BCST.Z imm8 m128/m32bcst k xmm
+// 	VPRORD.BCST.Z imm8 m256/m32bcst k ymm
 // 	VPRORD.BCST.Z imm8 m512/m32bcst k zmm
 // Construct and append a VPRORD.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VPRORD_BCST_Z(i, m, k, z operand.Op) { ctx.VPRORD_BCST_Z(i, m, k, z) }
+func VPRORD_BCST_Z(i, m, k, xyz operand.Op) { ctx.VPRORD_BCST_Z(i, m, k, xyz) }
 
 // VPRORD_Z: Rotate Packed Doubleword Right (Zeroing Masking).
 //
 // Forms:
 //
+// 	VPRORD.Z imm8 m128/m32bcst k xmm
+// 	VPRORD.Z imm8 m256/m32bcst k ymm
 // 	VPRORD.Z imm8 m512/m32bcst k zmm
+// 	VPRORD.Z imm8 xmm          k xmm
+// 	VPRORD.Z imm8 ymm          k ymm
 // 	VPRORD.Z imm8 zmm          k zmm
 // Construct and append a VPRORD.Z instruction to the active function.
-func (c *Context) VPRORD_Z(i, mz, k, z operand.Op) {
-	if inst, err := x86.VPRORD_Z(i, mz, k, z); err == nil {
+func (c *Context) VPRORD_Z(i, mxyz, k, xyz operand.Op) {
+	if inst, err := x86.VPRORD_Z(i, mxyz, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -58179,18 +64753,30 @@ func (c *Context) VPRORD_Z(i, mz, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VPRORD.Z imm8 m128/m32bcst k xmm
+// 	VPRORD.Z imm8 m256/m32bcst k ymm
 // 	VPRORD.Z imm8 m512/m32bcst k zmm
+// 	VPRORD.Z imm8 xmm          k xmm
+// 	VPRORD.Z imm8 ymm          k ymm
 // 	VPRORD.Z imm8 zmm          k zmm
 // Construct and append a VPRORD.Z instruction to the active function.
 // Operates on the global context.
-func VPRORD_Z(i, mz, k, z operand.Op) { ctx.VPRORD_Z(i, mz, k, z) }
+func VPRORD_Z(i, mxyz, k, xyz operand.Op) { ctx.VPRORD_Z(i, mxyz, k, xyz) }
 
 // VPRORQ: Rotate Packed Quadword Right.
 //
 // Forms:
 //
+// 	VPRORQ imm8 m128/m64bcst xmm
+// 	VPRORQ imm8 m128/m64bcst k xmm
+// 	VPRORQ imm8 m256/m64bcst ymm
+// 	VPRORQ imm8 m256/m64bcst k ymm
 // 	VPRORQ imm8 m512/m64bcst zmm
 // 	VPRORQ imm8 m512/m64bcst k zmm
+// 	VPRORQ imm8 xmm          xmm
+// 	VPRORQ imm8 xmm          k xmm
+// 	VPRORQ imm8 ymm          ymm
+// 	VPRORQ imm8 ymm          k ymm
 // 	VPRORQ imm8 zmm          zmm
 // 	VPRORQ imm8 zmm          k zmm
 // Construct and append a VPRORQ instruction to the active function.
@@ -58206,8 +64792,16 @@ func (c *Context) VPRORQ(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPRORQ imm8 m128/m64bcst xmm
+// 	VPRORQ imm8 m128/m64bcst k xmm
+// 	VPRORQ imm8 m256/m64bcst ymm
+// 	VPRORQ imm8 m256/m64bcst k ymm
 // 	VPRORQ imm8 m512/m64bcst zmm
 // 	VPRORQ imm8 m512/m64bcst k zmm
+// 	VPRORQ imm8 xmm          xmm
+// 	VPRORQ imm8 xmm          k xmm
+// 	VPRORQ imm8 ymm          ymm
+// 	VPRORQ imm8 ymm          k ymm
 // 	VPRORQ imm8 zmm          zmm
 // 	VPRORQ imm8 zmm          k zmm
 // Construct and append a VPRORQ instruction to the active function.
@@ -58218,6 +64812,10 @@ func VPRORQ(ops ...operand.Op) { ctx.VPRORQ(ops...) }
 //
 // Forms:
 //
+// 	VPRORQ.BCST imm8 m128/m64bcst xmm
+// 	VPRORQ.BCST imm8 m128/m64bcst k xmm
+// 	VPRORQ.BCST imm8 m256/m64bcst ymm
+// 	VPRORQ.BCST imm8 m256/m64bcst k ymm
 // 	VPRORQ.BCST imm8 m512/m64bcst zmm
 // 	VPRORQ.BCST imm8 m512/m64bcst k zmm
 // Construct and append a VPRORQ.BCST instruction to the active function.
@@ -58233,6 +64831,10 @@ func (c *Context) VPRORQ_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPRORQ.BCST imm8 m128/m64bcst xmm
+// 	VPRORQ.BCST imm8 m128/m64bcst k xmm
+// 	VPRORQ.BCST imm8 m256/m64bcst ymm
+// 	VPRORQ.BCST imm8 m256/m64bcst k ymm
 // 	VPRORQ.BCST imm8 m512/m64bcst zmm
 // 	VPRORQ.BCST imm8 m512/m64bcst k zmm
 // Construct and append a VPRORQ.BCST instruction to the active function.
@@ -58243,10 +64845,12 @@ func VPRORQ_BCST(ops ...operand.Op) { ctx.VPRORQ_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPRORQ.BCST.Z imm8 m128/m64bcst k xmm
+// 	VPRORQ.BCST.Z imm8 m256/m64bcst k ymm
 // 	VPRORQ.BCST.Z imm8 m512/m64bcst k zmm
 // Construct and append a VPRORQ.BCST.Z instruction to the active function.
-func (c *Context) VPRORQ_BCST_Z(i, m, k, z operand.Op) {
-	if inst, err := x86.VPRORQ_BCST_Z(i, m, k, z); err == nil {
+func (c *Context) VPRORQ_BCST_Z(i, m, k, xyz operand.Op) {
+	if inst, err := x86.VPRORQ_BCST_Z(i, m, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -58257,20 +64861,26 @@ func (c *Context) VPRORQ_BCST_Z(i, m, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VPRORQ.BCST.Z imm8 m128/m64bcst k xmm
+// 	VPRORQ.BCST.Z imm8 m256/m64bcst k ymm
 // 	VPRORQ.BCST.Z imm8 m512/m64bcst k zmm
 // Construct and append a VPRORQ.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VPRORQ_BCST_Z(i, m, k, z operand.Op) { ctx.VPRORQ_BCST_Z(i, m, k, z) }
+func VPRORQ_BCST_Z(i, m, k, xyz operand.Op) { ctx.VPRORQ_BCST_Z(i, m, k, xyz) }
 
 // VPRORQ_Z: Rotate Packed Quadword Right (Zeroing Masking).
 //
 // Forms:
 //
+// 	VPRORQ.Z imm8 m128/m64bcst k xmm
+// 	VPRORQ.Z imm8 m256/m64bcst k ymm
 // 	VPRORQ.Z imm8 m512/m64bcst k zmm
+// 	VPRORQ.Z imm8 xmm          k xmm
+// 	VPRORQ.Z imm8 ymm          k ymm
 // 	VPRORQ.Z imm8 zmm          k zmm
 // Construct and append a VPRORQ.Z instruction to the active function.
-func (c *Context) VPRORQ_Z(i, mz, k, z operand.Op) {
-	if inst, err := x86.VPRORQ_Z(i, mz, k, z); err == nil {
+func (c *Context) VPRORQ_Z(i, mxyz, k, xyz operand.Op) {
+	if inst, err := x86.VPRORQ_Z(i, mxyz, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -58281,16 +64891,28 @@ func (c *Context) VPRORQ_Z(i, mz, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VPRORQ.Z imm8 m128/m64bcst k xmm
+// 	VPRORQ.Z imm8 m256/m64bcst k ymm
 // 	VPRORQ.Z imm8 m512/m64bcst k zmm
+// 	VPRORQ.Z imm8 xmm          k xmm
+// 	VPRORQ.Z imm8 ymm          k ymm
 // 	VPRORQ.Z imm8 zmm          k zmm
 // Construct and append a VPRORQ.Z instruction to the active function.
 // Operates on the global context.
-func VPRORQ_Z(i, mz, k, z operand.Op) { ctx.VPRORQ_Z(i, mz, k, z) }
+func VPRORQ_Z(i, mxyz, k, xyz operand.Op) { ctx.VPRORQ_Z(i, mxyz, k, xyz) }
 
 // VPRORVD: Variable Rotate Packed Doubleword Right.
 //
 // Forms:
 //
+// 	VPRORVD m128/m32bcst xmm xmm
+// 	VPRORVD m128/m32bcst xmm k xmm
+// 	VPRORVD xmm          xmm xmm
+// 	VPRORVD xmm          xmm k xmm
+// 	VPRORVD m256/m32bcst ymm ymm
+// 	VPRORVD m256/m32bcst ymm k ymm
+// 	VPRORVD ymm          ymm ymm
+// 	VPRORVD ymm          ymm k ymm
 // 	VPRORVD m512/m32bcst zmm zmm
 // 	VPRORVD m512/m32bcst zmm k zmm
 // 	VPRORVD zmm          zmm zmm
@@ -58308,6 +64930,14 @@ func (c *Context) VPRORVD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPRORVD m128/m32bcst xmm xmm
+// 	VPRORVD m128/m32bcst xmm k xmm
+// 	VPRORVD xmm          xmm xmm
+// 	VPRORVD xmm          xmm k xmm
+// 	VPRORVD m256/m32bcst ymm ymm
+// 	VPRORVD m256/m32bcst ymm k ymm
+// 	VPRORVD ymm          ymm ymm
+// 	VPRORVD ymm          ymm k ymm
 // 	VPRORVD m512/m32bcst zmm zmm
 // 	VPRORVD m512/m32bcst zmm k zmm
 // 	VPRORVD zmm          zmm zmm
@@ -58320,6 +64950,10 @@ func VPRORVD(ops ...operand.Op) { ctx.VPRORVD(ops...) }
 //
 // Forms:
 //
+// 	VPRORVD.BCST m128/m32bcst xmm xmm
+// 	VPRORVD.BCST m128/m32bcst xmm k xmm
+// 	VPRORVD.BCST m256/m32bcst ymm ymm
+// 	VPRORVD.BCST m256/m32bcst ymm k ymm
 // 	VPRORVD.BCST m512/m32bcst zmm zmm
 // 	VPRORVD.BCST m512/m32bcst zmm k zmm
 // Construct and append a VPRORVD.BCST instruction to the active function.
@@ -58335,6 +64969,10 @@ func (c *Context) VPRORVD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPRORVD.BCST m128/m32bcst xmm xmm
+// 	VPRORVD.BCST m128/m32bcst xmm k xmm
+// 	VPRORVD.BCST m256/m32bcst ymm ymm
+// 	VPRORVD.BCST m256/m32bcst ymm k ymm
 // 	VPRORVD.BCST m512/m32bcst zmm zmm
 // 	VPRORVD.BCST m512/m32bcst zmm k zmm
 // Construct and append a VPRORVD.BCST instruction to the active function.
@@ -58345,10 +64983,12 @@ func VPRORVD_BCST(ops ...operand.Op) { ctx.VPRORVD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPRORVD.BCST.Z m128/m32bcst xmm k xmm
+// 	VPRORVD.BCST.Z m256/m32bcst ymm k ymm
 // 	VPRORVD.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VPRORVD.BCST.Z instruction to the active function.
-func (c *Context) VPRORVD_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VPRORVD_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VPRORVD_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPRORVD_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -58359,20 +64999,26 @@ func (c *Context) VPRORVD_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPRORVD.BCST.Z m128/m32bcst xmm k xmm
+// 	VPRORVD.BCST.Z m256/m32bcst ymm k ymm
 // 	VPRORVD.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VPRORVD.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VPRORVD_BCST_Z(m, z, k, z1 operand.Op) { ctx.VPRORVD_BCST_Z(m, z, k, z1) }
+func VPRORVD_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VPRORVD_BCST_Z(m, xyz, k, xyz1) }
 
 // VPRORVD_Z: Variable Rotate Packed Doubleword Right (Zeroing Masking).
 //
 // Forms:
 //
+// 	VPRORVD.Z m128/m32bcst xmm k xmm
+// 	VPRORVD.Z xmm          xmm k xmm
+// 	VPRORVD.Z m256/m32bcst ymm k ymm
+// 	VPRORVD.Z ymm          ymm k ymm
 // 	VPRORVD.Z m512/m32bcst zmm k zmm
 // 	VPRORVD.Z zmm          zmm k zmm
 // Construct and append a VPRORVD.Z instruction to the active function.
-func (c *Context) VPRORVD_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VPRORVD_Z(mz, z, k, z1); err == nil {
+func (c *Context) VPRORVD_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPRORVD_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -58383,16 +65029,28 @@ func (c *Context) VPRORVD_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPRORVD.Z m128/m32bcst xmm k xmm
+// 	VPRORVD.Z xmm          xmm k xmm
+// 	VPRORVD.Z m256/m32bcst ymm k ymm
+// 	VPRORVD.Z ymm          ymm k ymm
 // 	VPRORVD.Z m512/m32bcst zmm k zmm
 // 	VPRORVD.Z zmm          zmm k zmm
 // Construct and append a VPRORVD.Z instruction to the active function.
 // Operates on the global context.
-func VPRORVD_Z(mz, z, k, z1 operand.Op) { ctx.VPRORVD_Z(mz, z, k, z1) }
+func VPRORVD_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPRORVD_Z(mxyz, xyz, k, xyz1) }
 
 // VPRORVQ: Variable Rotate Packed Quadword Right.
 //
 // Forms:
 //
+// 	VPRORVQ m128/m64bcst xmm xmm
+// 	VPRORVQ m128/m64bcst xmm k xmm
+// 	VPRORVQ xmm          xmm xmm
+// 	VPRORVQ xmm          xmm k xmm
+// 	VPRORVQ m256/m64bcst ymm ymm
+// 	VPRORVQ m256/m64bcst ymm k ymm
+// 	VPRORVQ ymm          ymm ymm
+// 	VPRORVQ ymm          ymm k ymm
 // 	VPRORVQ m512/m64bcst zmm zmm
 // 	VPRORVQ m512/m64bcst zmm k zmm
 // 	VPRORVQ zmm          zmm zmm
@@ -58410,6 +65068,14 @@ func (c *Context) VPRORVQ(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPRORVQ m128/m64bcst xmm xmm
+// 	VPRORVQ m128/m64bcst xmm k xmm
+// 	VPRORVQ xmm          xmm xmm
+// 	VPRORVQ xmm          xmm k xmm
+// 	VPRORVQ m256/m64bcst ymm ymm
+// 	VPRORVQ m256/m64bcst ymm k ymm
+// 	VPRORVQ ymm          ymm ymm
+// 	VPRORVQ ymm          ymm k ymm
 // 	VPRORVQ m512/m64bcst zmm zmm
 // 	VPRORVQ m512/m64bcst zmm k zmm
 // 	VPRORVQ zmm          zmm zmm
@@ -58422,6 +65088,10 @@ func VPRORVQ(ops ...operand.Op) { ctx.VPRORVQ(ops...) }
 //
 // Forms:
 //
+// 	VPRORVQ.BCST m128/m64bcst xmm xmm
+// 	VPRORVQ.BCST m128/m64bcst xmm k xmm
+// 	VPRORVQ.BCST m256/m64bcst ymm ymm
+// 	VPRORVQ.BCST m256/m64bcst ymm k ymm
 // 	VPRORVQ.BCST m512/m64bcst zmm zmm
 // 	VPRORVQ.BCST m512/m64bcst zmm k zmm
 // Construct and append a VPRORVQ.BCST instruction to the active function.
@@ -58437,6 +65107,10 @@ func (c *Context) VPRORVQ_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPRORVQ.BCST m128/m64bcst xmm xmm
+// 	VPRORVQ.BCST m128/m64bcst xmm k xmm
+// 	VPRORVQ.BCST m256/m64bcst ymm ymm
+// 	VPRORVQ.BCST m256/m64bcst ymm k ymm
 // 	VPRORVQ.BCST m512/m64bcst zmm zmm
 // 	VPRORVQ.BCST m512/m64bcst zmm k zmm
 // Construct and append a VPRORVQ.BCST instruction to the active function.
@@ -58447,10 +65121,12 @@ func VPRORVQ_BCST(ops ...operand.Op) { ctx.VPRORVQ_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPRORVQ.BCST.Z m128/m64bcst xmm k xmm
+// 	VPRORVQ.BCST.Z m256/m64bcst ymm k ymm
 // 	VPRORVQ.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VPRORVQ.BCST.Z instruction to the active function.
-func (c *Context) VPRORVQ_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VPRORVQ_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VPRORVQ_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPRORVQ_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -58461,20 +65137,26 @@ func (c *Context) VPRORVQ_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPRORVQ.BCST.Z m128/m64bcst xmm k xmm
+// 	VPRORVQ.BCST.Z m256/m64bcst ymm k ymm
 // 	VPRORVQ.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VPRORVQ.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VPRORVQ_BCST_Z(m, z, k, z1 operand.Op) { ctx.VPRORVQ_BCST_Z(m, z, k, z1) }
+func VPRORVQ_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VPRORVQ_BCST_Z(m, xyz, k, xyz1) }
 
 // VPRORVQ_Z: Variable Rotate Packed Quadword Right (Zeroing Masking).
 //
 // Forms:
 //
+// 	VPRORVQ.Z m128/m64bcst xmm k xmm
+// 	VPRORVQ.Z xmm          xmm k xmm
+// 	VPRORVQ.Z m256/m64bcst ymm k ymm
+// 	VPRORVQ.Z ymm          ymm k ymm
 // 	VPRORVQ.Z m512/m64bcst zmm k zmm
 // 	VPRORVQ.Z zmm          zmm k zmm
 // Construct and append a VPRORVQ.Z instruction to the active function.
-func (c *Context) VPRORVQ_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VPRORVQ_Z(mz, z, k, z1); err == nil {
+func (c *Context) VPRORVQ_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPRORVQ_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -58485,11 +65167,15 @@ func (c *Context) VPRORVQ_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPRORVQ.Z m128/m64bcst xmm k xmm
+// 	VPRORVQ.Z xmm          xmm k xmm
+// 	VPRORVQ.Z m256/m64bcst ymm k ymm
+// 	VPRORVQ.Z ymm          ymm k ymm
 // 	VPRORVQ.Z m512/m64bcst zmm k zmm
 // 	VPRORVQ.Z zmm          zmm k zmm
 // Construct and append a VPRORVQ.Z instruction to the active function.
 // Operates on the global context.
-func VPRORVQ_Z(mz, z, k, z1 operand.Op) { ctx.VPRORVQ_Z(mz, z, k, z1) }
+func VPRORVQ_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPRORVQ_Z(mxyz, xyz, k, xyz1) }
 
 // VPSADBW: Compute Sum of Absolute Differences.
 //
@@ -58524,10 +65210,12 @@ func VPSADBW(mxy, xy, xy1 operand.Op) { ctx.VPSADBW(mxy, xy, xy1) }
 //
 // Forms:
 //
+// 	VPSCATTERDD xmm k vm32x
+// 	VPSCATTERDD ymm k vm32y
 // 	VPSCATTERDD zmm k vm32z
 // Construct and append a VPSCATTERDD instruction to the active function.
-func (c *Context) VPSCATTERDD(z, k, v operand.Op) {
-	if inst, err := x86.VPSCATTERDD(z, k, v); err == nil {
+func (c *Context) VPSCATTERDD(xyz, k, v operand.Op) {
+	if inst, err := x86.VPSCATTERDD(xyz, k, v); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -58538,19 +65226,23 @@ func (c *Context) VPSCATTERDD(z, k, v operand.Op) {
 //
 // Forms:
 //
+// 	VPSCATTERDD xmm k vm32x
+// 	VPSCATTERDD ymm k vm32y
 // 	VPSCATTERDD zmm k vm32z
 // Construct and append a VPSCATTERDD instruction to the active function.
 // Operates on the global context.
-func VPSCATTERDD(z, k, v operand.Op) { ctx.VPSCATTERDD(z, k, v) }
+func VPSCATTERDD(xyz, k, v operand.Op) { ctx.VPSCATTERDD(xyz, k, v) }
 
 // VPSCATTERDQ: Scatter Packed Quadword Values with Signed Doubleword Indices.
 //
 // Forms:
 //
+// 	VPSCATTERDQ xmm k vm32x
+// 	VPSCATTERDQ ymm k vm32x
 // 	VPSCATTERDQ zmm k vm32y
 // Construct and append a VPSCATTERDQ instruction to the active function.
-func (c *Context) VPSCATTERDQ(z, k, v operand.Op) {
-	if inst, err := x86.VPSCATTERDQ(z, k, v); err == nil {
+func (c *Context) VPSCATTERDQ(xyz, k, v operand.Op) {
+	if inst, err := x86.VPSCATTERDQ(xyz, k, v); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -58561,19 +65253,23 @@ func (c *Context) VPSCATTERDQ(z, k, v operand.Op) {
 //
 // Forms:
 //
+// 	VPSCATTERDQ xmm k vm32x
+// 	VPSCATTERDQ ymm k vm32x
 // 	VPSCATTERDQ zmm k vm32y
 // Construct and append a VPSCATTERDQ instruction to the active function.
 // Operates on the global context.
-func VPSCATTERDQ(z, k, v operand.Op) { ctx.VPSCATTERDQ(z, k, v) }
+func VPSCATTERDQ(xyz, k, v operand.Op) { ctx.VPSCATTERDQ(xyz, k, v) }
 
 // VPSCATTERQD: Scatter Packed Doubleword Values with Signed Quadword Indices.
 //
 // Forms:
 //
+// 	VPSCATTERQD xmm k vm64x
+// 	VPSCATTERQD xmm k vm64y
 // 	VPSCATTERQD ymm k vm64z
 // Construct and append a VPSCATTERQD instruction to the active function.
-func (c *Context) VPSCATTERQD(y, k, v operand.Op) {
-	if inst, err := x86.VPSCATTERQD(y, k, v); err == nil {
+func (c *Context) VPSCATTERQD(xy, k, v operand.Op) {
+	if inst, err := x86.VPSCATTERQD(xy, k, v); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -58584,19 +65280,23 @@ func (c *Context) VPSCATTERQD(y, k, v operand.Op) {
 //
 // Forms:
 //
+// 	VPSCATTERQD xmm k vm64x
+// 	VPSCATTERQD xmm k vm64y
 // 	VPSCATTERQD ymm k vm64z
 // Construct and append a VPSCATTERQD instruction to the active function.
 // Operates on the global context.
-func VPSCATTERQD(y, k, v operand.Op) { ctx.VPSCATTERQD(y, k, v) }
+func VPSCATTERQD(xy, k, v operand.Op) { ctx.VPSCATTERQD(xy, k, v) }
 
 // VPSCATTERQQ: Scatter Packed Quadword Values with Signed Quadword Indices.
 //
 // Forms:
 //
+// 	VPSCATTERQQ xmm k vm64x
+// 	VPSCATTERQQ ymm k vm64y
 // 	VPSCATTERQQ zmm k vm64z
 // Construct and append a VPSCATTERQQ instruction to the active function.
-func (c *Context) VPSCATTERQQ(z, k, v operand.Op) {
-	if inst, err := x86.VPSCATTERQQ(z, k, v); err == nil {
+func (c *Context) VPSCATTERQQ(xyz, k, v operand.Op) {
+	if inst, err := x86.VPSCATTERQQ(xyz, k, v); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -58607,10 +65307,12 @@ func (c *Context) VPSCATTERQQ(z, k, v operand.Op) {
 //
 // Forms:
 //
+// 	VPSCATTERQQ xmm k vm64x
+// 	VPSCATTERQQ ymm k vm64y
 // 	VPSCATTERQQ zmm k vm64z
 // Construct and append a VPSCATTERQQ instruction to the active function.
 // Operates on the global context.
-func VPSCATTERQQ(z, k, v operand.Op) { ctx.VPSCATTERQQ(z, k, v) }
+func VPSCATTERQQ(xyz, k, v operand.Op) { ctx.VPSCATTERQQ(xyz, k, v) }
 
 // VPSHUFB: Packed Shuffle Bytes.
 //
@@ -58645,8 +65347,16 @@ func VPSHUFB(mxy, xy, xy1 operand.Op) { ctx.VPSHUFB(mxy, xy, xy1) }
 //
 // Forms:
 //
+// 	VPSHUFD imm8 m128/m32bcst xmm
+// 	VPSHUFD imm8 m128/m32bcst k xmm
+// 	VPSHUFD imm8 m256/m32bcst ymm
+// 	VPSHUFD imm8 m256/m32bcst k ymm
 // 	VPSHUFD imm8 m512/m32bcst zmm
 // 	VPSHUFD imm8 m512/m32bcst k zmm
+// 	VPSHUFD imm8 xmm          xmm
+// 	VPSHUFD imm8 xmm          k xmm
+// 	VPSHUFD imm8 ymm          ymm
+// 	VPSHUFD imm8 ymm          k ymm
 // 	VPSHUFD imm8 zmm          zmm
 // 	VPSHUFD imm8 zmm          k zmm
 // 	VPSHUFD imm8 xmm          xmm
@@ -58666,8 +65376,16 @@ func (c *Context) VPSHUFD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPSHUFD imm8 m128/m32bcst xmm
+// 	VPSHUFD imm8 m128/m32bcst k xmm
+// 	VPSHUFD imm8 m256/m32bcst ymm
+// 	VPSHUFD imm8 m256/m32bcst k ymm
 // 	VPSHUFD imm8 m512/m32bcst zmm
 // 	VPSHUFD imm8 m512/m32bcst k zmm
+// 	VPSHUFD imm8 xmm          xmm
+// 	VPSHUFD imm8 xmm          k xmm
+// 	VPSHUFD imm8 ymm          ymm
+// 	VPSHUFD imm8 ymm          k ymm
 // 	VPSHUFD imm8 zmm          zmm
 // 	VPSHUFD imm8 zmm          k zmm
 // 	VPSHUFD imm8 xmm          xmm
@@ -58682,6 +65400,10 @@ func VPSHUFD(ops ...operand.Op) { ctx.VPSHUFD(ops...) }
 //
 // Forms:
 //
+// 	VPSHUFD.BCST imm8 m128/m32bcst xmm
+// 	VPSHUFD.BCST imm8 m128/m32bcst k xmm
+// 	VPSHUFD.BCST imm8 m256/m32bcst ymm
+// 	VPSHUFD.BCST imm8 m256/m32bcst k ymm
 // 	VPSHUFD.BCST imm8 m512/m32bcst zmm
 // 	VPSHUFD.BCST imm8 m512/m32bcst k zmm
 // Construct and append a VPSHUFD.BCST instruction to the active function.
@@ -58697,6 +65419,10 @@ func (c *Context) VPSHUFD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPSHUFD.BCST imm8 m128/m32bcst xmm
+// 	VPSHUFD.BCST imm8 m128/m32bcst k xmm
+// 	VPSHUFD.BCST imm8 m256/m32bcst ymm
+// 	VPSHUFD.BCST imm8 m256/m32bcst k ymm
 // 	VPSHUFD.BCST imm8 m512/m32bcst zmm
 // 	VPSHUFD.BCST imm8 m512/m32bcst k zmm
 // Construct and append a VPSHUFD.BCST instruction to the active function.
@@ -58707,10 +65433,12 @@ func VPSHUFD_BCST(ops ...operand.Op) { ctx.VPSHUFD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPSHUFD.BCST.Z imm8 m128/m32bcst k xmm
+// 	VPSHUFD.BCST.Z imm8 m256/m32bcst k ymm
 // 	VPSHUFD.BCST.Z imm8 m512/m32bcst k zmm
 // Construct and append a VPSHUFD.BCST.Z instruction to the active function.
-func (c *Context) VPSHUFD_BCST_Z(i, m, k, z operand.Op) {
-	if inst, err := x86.VPSHUFD_BCST_Z(i, m, k, z); err == nil {
+func (c *Context) VPSHUFD_BCST_Z(i, m, k, xyz operand.Op) {
+	if inst, err := x86.VPSHUFD_BCST_Z(i, m, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -58721,20 +65449,26 @@ func (c *Context) VPSHUFD_BCST_Z(i, m, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VPSHUFD.BCST.Z imm8 m128/m32bcst k xmm
+// 	VPSHUFD.BCST.Z imm8 m256/m32bcst k ymm
 // 	VPSHUFD.BCST.Z imm8 m512/m32bcst k zmm
 // Construct and append a VPSHUFD.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VPSHUFD_BCST_Z(i, m, k, z operand.Op) { ctx.VPSHUFD_BCST_Z(i, m, k, z) }
+func VPSHUFD_BCST_Z(i, m, k, xyz operand.Op) { ctx.VPSHUFD_BCST_Z(i, m, k, xyz) }
 
 // VPSHUFD_Z: Shuffle Packed Doublewords (Zeroing Masking).
 //
 // Forms:
 //
+// 	VPSHUFD.Z imm8 m128/m32bcst k xmm
+// 	VPSHUFD.Z imm8 m256/m32bcst k ymm
 // 	VPSHUFD.Z imm8 m512/m32bcst k zmm
+// 	VPSHUFD.Z imm8 xmm          k xmm
+// 	VPSHUFD.Z imm8 ymm          k ymm
 // 	VPSHUFD.Z imm8 zmm          k zmm
 // Construct and append a VPSHUFD.Z instruction to the active function.
-func (c *Context) VPSHUFD_Z(i, mz, k, z operand.Op) {
-	if inst, err := x86.VPSHUFD_Z(i, mz, k, z); err == nil {
+func (c *Context) VPSHUFD_Z(i, mxyz, k, xyz operand.Op) {
+	if inst, err := x86.VPSHUFD_Z(i, mxyz, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -58745,11 +65479,15 @@ func (c *Context) VPSHUFD_Z(i, mz, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VPSHUFD.Z imm8 m128/m32bcst k xmm
+// 	VPSHUFD.Z imm8 m256/m32bcst k ymm
 // 	VPSHUFD.Z imm8 m512/m32bcst k zmm
+// 	VPSHUFD.Z imm8 xmm          k xmm
+// 	VPSHUFD.Z imm8 ymm          k ymm
 // 	VPSHUFD.Z imm8 zmm          k zmm
 // Construct and append a VPSHUFD.Z instruction to the active function.
 // Operates on the global context.
-func VPSHUFD_Z(i, mz, k, z operand.Op) { ctx.VPSHUFD_Z(i, mz, k, z) }
+func VPSHUFD_Z(i, mxyz, k, xyz operand.Op) { ctx.VPSHUFD_Z(i, mxyz, k, xyz) }
 
 // VPSHUFHW: Shuffle Packed High Words.
 //
@@ -58900,8 +65638,24 @@ func VPSIGNW(mxy, xy, xy1 operand.Op) { ctx.VPSIGNW(mxy, xy, xy1) }
 //
 // Forms:
 //
+// 	VPSLLD imm8 m128/m32bcst xmm
+// 	VPSLLD imm8 m128/m32bcst k xmm
+// 	VPSLLD imm8 m256/m32bcst ymm
+// 	VPSLLD imm8 m256/m32bcst k ymm
 // 	VPSLLD imm8 m512/m32bcst zmm
 // 	VPSLLD imm8 m512/m32bcst k zmm
+// 	VPSLLD imm8 xmm          xmm
+// 	VPSLLD imm8 xmm          k xmm
+// 	VPSLLD xmm  xmm          xmm
+// 	VPSLLD xmm  xmm          k xmm
+// 	VPSLLD m128 xmm          xmm
+// 	VPSLLD m128 xmm          k xmm
+// 	VPSLLD imm8 ymm          ymm
+// 	VPSLLD imm8 ymm          k ymm
+// 	VPSLLD xmm  ymm          ymm
+// 	VPSLLD xmm  ymm          k ymm
+// 	VPSLLD m128 ymm          ymm
+// 	VPSLLD m128 ymm          k ymm
 // 	VPSLLD imm8 zmm          zmm
 // 	VPSLLD imm8 zmm          k zmm
 // 	VPSLLD xmm  zmm          zmm
@@ -58927,8 +65681,24 @@ func (c *Context) VPSLLD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPSLLD imm8 m128/m32bcst xmm
+// 	VPSLLD imm8 m128/m32bcst k xmm
+// 	VPSLLD imm8 m256/m32bcst ymm
+// 	VPSLLD imm8 m256/m32bcst k ymm
 // 	VPSLLD imm8 m512/m32bcst zmm
 // 	VPSLLD imm8 m512/m32bcst k zmm
+// 	VPSLLD imm8 xmm          xmm
+// 	VPSLLD imm8 xmm          k xmm
+// 	VPSLLD xmm  xmm          xmm
+// 	VPSLLD xmm  xmm          k xmm
+// 	VPSLLD m128 xmm          xmm
+// 	VPSLLD m128 xmm          k xmm
+// 	VPSLLD imm8 ymm          ymm
+// 	VPSLLD imm8 ymm          k ymm
+// 	VPSLLD xmm  ymm          ymm
+// 	VPSLLD xmm  ymm          k ymm
+// 	VPSLLD m128 ymm          ymm
+// 	VPSLLD m128 ymm          k ymm
 // 	VPSLLD imm8 zmm          zmm
 // 	VPSLLD imm8 zmm          k zmm
 // 	VPSLLD xmm  zmm          zmm
@@ -58974,6 +65744,10 @@ func VPSLLDQ(i, xy, xy1 operand.Op) { ctx.VPSLLDQ(i, xy, xy1) }
 //
 // Forms:
 //
+// 	VPSLLD.BCST imm8 m128/m32bcst xmm
+// 	VPSLLD.BCST imm8 m128/m32bcst k xmm
+// 	VPSLLD.BCST imm8 m256/m32bcst ymm
+// 	VPSLLD.BCST imm8 m256/m32bcst k ymm
 // 	VPSLLD.BCST imm8 m512/m32bcst zmm
 // 	VPSLLD.BCST imm8 m512/m32bcst k zmm
 // Construct and append a VPSLLD.BCST instruction to the active function.
@@ -58989,6 +65763,10 @@ func (c *Context) VPSLLD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPSLLD.BCST imm8 m128/m32bcst xmm
+// 	VPSLLD.BCST imm8 m128/m32bcst k xmm
+// 	VPSLLD.BCST imm8 m256/m32bcst ymm
+// 	VPSLLD.BCST imm8 m256/m32bcst k ymm
 // 	VPSLLD.BCST imm8 m512/m32bcst zmm
 // 	VPSLLD.BCST imm8 m512/m32bcst k zmm
 // Construct and append a VPSLLD.BCST instruction to the active function.
@@ -58999,10 +65777,12 @@ func VPSLLD_BCST(ops ...operand.Op) { ctx.VPSLLD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPSLLD.BCST.Z imm8 m128/m32bcst k xmm
+// 	VPSLLD.BCST.Z imm8 m256/m32bcst k ymm
 // 	VPSLLD.BCST.Z imm8 m512/m32bcst k zmm
 // Construct and append a VPSLLD.BCST.Z instruction to the active function.
-func (c *Context) VPSLLD_BCST_Z(i, m, k, z operand.Op) {
-	if inst, err := x86.VPSLLD_BCST_Z(i, m, k, z); err == nil {
+func (c *Context) VPSLLD_BCST_Z(i, m, k, xyz operand.Op) {
+	if inst, err := x86.VPSLLD_BCST_Z(i, m, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -59013,22 +65793,32 @@ func (c *Context) VPSLLD_BCST_Z(i, m, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VPSLLD.BCST.Z imm8 m128/m32bcst k xmm
+// 	VPSLLD.BCST.Z imm8 m256/m32bcst k ymm
 // 	VPSLLD.BCST.Z imm8 m512/m32bcst k zmm
 // Construct and append a VPSLLD.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VPSLLD_BCST_Z(i, m, k, z operand.Op) { ctx.VPSLLD_BCST_Z(i, m, k, z) }
+func VPSLLD_BCST_Z(i, m, k, xyz operand.Op) { ctx.VPSLLD_BCST_Z(i, m, k, xyz) }
 
 // VPSLLD_Z: Shift Packed Doubleword Data Left Logical (Zeroing Masking).
 //
 // Forms:
 //
+// 	VPSLLD.Z imm8 m128/m32bcst k xmm
+// 	VPSLLD.Z imm8 m256/m32bcst k ymm
 // 	VPSLLD.Z imm8 m512/m32bcst k zmm
+// 	VPSLLD.Z imm8 xmm          k xmm
+// 	VPSLLD.Z xmm  xmm          k xmm
+// 	VPSLLD.Z m128 xmm          k xmm
+// 	VPSLLD.Z imm8 ymm          k ymm
+// 	VPSLLD.Z xmm  ymm          k ymm
+// 	VPSLLD.Z m128 ymm          k ymm
 // 	VPSLLD.Z imm8 zmm          k zmm
 // 	VPSLLD.Z xmm  zmm          k zmm
 // 	VPSLLD.Z m128 zmm          k zmm
 // Construct and append a VPSLLD.Z instruction to the active function.
-func (c *Context) VPSLLD_Z(imx, mz, k, z operand.Op) {
-	if inst, err := x86.VPSLLD_Z(imx, mz, k, z); err == nil {
+func (c *Context) VPSLLD_Z(imx, mxyz, k, xyz operand.Op) {
+	if inst, err := x86.VPSLLD_Z(imx, mxyz, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -59039,20 +65829,44 @@ func (c *Context) VPSLLD_Z(imx, mz, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VPSLLD.Z imm8 m128/m32bcst k xmm
+// 	VPSLLD.Z imm8 m256/m32bcst k ymm
 // 	VPSLLD.Z imm8 m512/m32bcst k zmm
+// 	VPSLLD.Z imm8 xmm          k xmm
+// 	VPSLLD.Z xmm  xmm          k xmm
+// 	VPSLLD.Z m128 xmm          k xmm
+// 	VPSLLD.Z imm8 ymm          k ymm
+// 	VPSLLD.Z xmm  ymm          k ymm
+// 	VPSLLD.Z m128 ymm          k ymm
 // 	VPSLLD.Z imm8 zmm          k zmm
 // 	VPSLLD.Z xmm  zmm          k zmm
 // 	VPSLLD.Z m128 zmm          k zmm
 // Construct and append a VPSLLD.Z instruction to the active function.
 // Operates on the global context.
-func VPSLLD_Z(imx, mz, k, z operand.Op) { ctx.VPSLLD_Z(imx, mz, k, z) }
+func VPSLLD_Z(imx, mxyz, k, xyz operand.Op) { ctx.VPSLLD_Z(imx, mxyz, k, xyz) }
 
 // VPSLLQ: Shift Packed Quadword Data Left Logical.
 //
 // Forms:
 //
+// 	VPSLLQ imm8 m128/m64bcst xmm
+// 	VPSLLQ imm8 m128/m64bcst k xmm
+// 	VPSLLQ imm8 m256/m64bcst ymm
+// 	VPSLLQ imm8 m256/m64bcst k ymm
 // 	VPSLLQ imm8 m512/m64bcst zmm
 // 	VPSLLQ imm8 m512/m64bcst k zmm
+// 	VPSLLQ imm8 xmm          xmm
+// 	VPSLLQ imm8 xmm          k xmm
+// 	VPSLLQ xmm  xmm          xmm
+// 	VPSLLQ xmm  xmm          k xmm
+// 	VPSLLQ m128 xmm          xmm
+// 	VPSLLQ m128 xmm          k xmm
+// 	VPSLLQ imm8 ymm          ymm
+// 	VPSLLQ imm8 ymm          k ymm
+// 	VPSLLQ xmm  ymm          ymm
+// 	VPSLLQ xmm  ymm          k ymm
+// 	VPSLLQ m128 ymm          ymm
+// 	VPSLLQ m128 ymm          k ymm
 // 	VPSLLQ imm8 zmm          zmm
 // 	VPSLLQ imm8 zmm          k zmm
 // 	VPSLLQ xmm  zmm          zmm
@@ -59078,8 +65892,24 @@ func (c *Context) VPSLLQ(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPSLLQ imm8 m128/m64bcst xmm
+// 	VPSLLQ imm8 m128/m64bcst k xmm
+// 	VPSLLQ imm8 m256/m64bcst ymm
+// 	VPSLLQ imm8 m256/m64bcst k ymm
 // 	VPSLLQ imm8 m512/m64bcst zmm
 // 	VPSLLQ imm8 m512/m64bcst k zmm
+// 	VPSLLQ imm8 xmm          xmm
+// 	VPSLLQ imm8 xmm          k xmm
+// 	VPSLLQ xmm  xmm          xmm
+// 	VPSLLQ xmm  xmm          k xmm
+// 	VPSLLQ m128 xmm          xmm
+// 	VPSLLQ m128 xmm          k xmm
+// 	VPSLLQ imm8 ymm          ymm
+// 	VPSLLQ imm8 ymm          k ymm
+// 	VPSLLQ xmm  ymm          ymm
+// 	VPSLLQ xmm  ymm          k ymm
+// 	VPSLLQ m128 ymm          ymm
+// 	VPSLLQ m128 ymm          k ymm
 // 	VPSLLQ imm8 zmm          zmm
 // 	VPSLLQ imm8 zmm          k zmm
 // 	VPSLLQ xmm  zmm          zmm
@@ -59100,6 +65930,10 @@ func VPSLLQ(ops ...operand.Op) { ctx.VPSLLQ(ops...) }
 //
 // Forms:
 //
+// 	VPSLLQ.BCST imm8 m128/m64bcst xmm
+// 	VPSLLQ.BCST imm8 m128/m64bcst k xmm
+// 	VPSLLQ.BCST imm8 m256/m64bcst ymm
+// 	VPSLLQ.BCST imm8 m256/m64bcst k ymm
 // 	VPSLLQ.BCST imm8 m512/m64bcst zmm
 // 	VPSLLQ.BCST imm8 m512/m64bcst k zmm
 // Construct and append a VPSLLQ.BCST instruction to the active function.
@@ -59115,6 +65949,10 @@ func (c *Context) VPSLLQ_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPSLLQ.BCST imm8 m128/m64bcst xmm
+// 	VPSLLQ.BCST imm8 m128/m64bcst k xmm
+// 	VPSLLQ.BCST imm8 m256/m64bcst ymm
+// 	VPSLLQ.BCST imm8 m256/m64bcst k ymm
 // 	VPSLLQ.BCST imm8 m512/m64bcst zmm
 // 	VPSLLQ.BCST imm8 m512/m64bcst k zmm
 // Construct and append a VPSLLQ.BCST instruction to the active function.
@@ -59125,10 +65963,12 @@ func VPSLLQ_BCST(ops ...operand.Op) { ctx.VPSLLQ_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPSLLQ.BCST.Z imm8 m128/m64bcst k xmm
+// 	VPSLLQ.BCST.Z imm8 m256/m64bcst k ymm
 // 	VPSLLQ.BCST.Z imm8 m512/m64bcst k zmm
 // Construct and append a VPSLLQ.BCST.Z instruction to the active function.
-func (c *Context) VPSLLQ_BCST_Z(i, m, k, z operand.Op) {
-	if inst, err := x86.VPSLLQ_BCST_Z(i, m, k, z); err == nil {
+func (c *Context) VPSLLQ_BCST_Z(i, m, k, xyz operand.Op) {
+	if inst, err := x86.VPSLLQ_BCST_Z(i, m, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -59139,22 +65979,32 @@ func (c *Context) VPSLLQ_BCST_Z(i, m, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VPSLLQ.BCST.Z imm8 m128/m64bcst k xmm
+// 	VPSLLQ.BCST.Z imm8 m256/m64bcst k ymm
 // 	VPSLLQ.BCST.Z imm8 m512/m64bcst k zmm
 // Construct and append a VPSLLQ.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VPSLLQ_BCST_Z(i, m, k, z operand.Op) { ctx.VPSLLQ_BCST_Z(i, m, k, z) }
+func VPSLLQ_BCST_Z(i, m, k, xyz operand.Op) { ctx.VPSLLQ_BCST_Z(i, m, k, xyz) }
 
 // VPSLLQ_Z: Shift Packed Quadword Data Left Logical (Zeroing Masking).
 //
 // Forms:
 //
+// 	VPSLLQ.Z imm8 m128/m64bcst k xmm
+// 	VPSLLQ.Z imm8 m256/m64bcst k ymm
 // 	VPSLLQ.Z imm8 m512/m64bcst k zmm
+// 	VPSLLQ.Z imm8 xmm          k xmm
+// 	VPSLLQ.Z xmm  xmm          k xmm
+// 	VPSLLQ.Z m128 xmm          k xmm
+// 	VPSLLQ.Z imm8 ymm          k ymm
+// 	VPSLLQ.Z xmm  ymm          k ymm
+// 	VPSLLQ.Z m128 ymm          k ymm
 // 	VPSLLQ.Z imm8 zmm          k zmm
 // 	VPSLLQ.Z xmm  zmm          k zmm
 // 	VPSLLQ.Z m128 zmm          k zmm
 // Construct and append a VPSLLQ.Z instruction to the active function.
-func (c *Context) VPSLLQ_Z(imx, mz, k, z operand.Op) {
-	if inst, err := x86.VPSLLQ_Z(imx, mz, k, z); err == nil {
+func (c *Context) VPSLLQ_Z(imx, mxyz, k, xyz operand.Op) {
+	if inst, err := x86.VPSLLQ_Z(imx, mxyz, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -59165,18 +66015,34 @@ func (c *Context) VPSLLQ_Z(imx, mz, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VPSLLQ.Z imm8 m128/m64bcst k xmm
+// 	VPSLLQ.Z imm8 m256/m64bcst k ymm
 // 	VPSLLQ.Z imm8 m512/m64bcst k zmm
+// 	VPSLLQ.Z imm8 xmm          k xmm
+// 	VPSLLQ.Z xmm  xmm          k xmm
+// 	VPSLLQ.Z m128 xmm          k xmm
+// 	VPSLLQ.Z imm8 ymm          k ymm
+// 	VPSLLQ.Z xmm  ymm          k ymm
+// 	VPSLLQ.Z m128 ymm          k ymm
 // 	VPSLLQ.Z imm8 zmm          k zmm
 // 	VPSLLQ.Z xmm  zmm          k zmm
 // 	VPSLLQ.Z m128 zmm          k zmm
 // Construct and append a VPSLLQ.Z instruction to the active function.
 // Operates on the global context.
-func VPSLLQ_Z(imx, mz, k, z operand.Op) { ctx.VPSLLQ_Z(imx, mz, k, z) }
+func VPSLLQ_Z(imx, mxyz, k, xyz operand.Op) { ctx.VPSLLQ_Z(imx, mxyz, k, xyz) }
 
 // VPSLLVD: Variable Shift Packed Doubleword Data Left Logical.
 //
 // Forms:
 //
+// 	VPSLLVD m128/m32bcst xmm xmm
+// 	VPSLLVD m128/m32bcst xmm k xmm
+// 	VPSLLVD xmm          xmm xmm
+// 	VPSLLVD xmm          xmm k xmm
+// 	VPSLLVD m256/m32bcst ymm ymm
+// 	VPSLLVD m256/m32bcst ymm k ymm
+// 	VPSLLVD ymm          ymm ymm
+// 	VPSLLVD ymm          ymm k ymm
 // 	VPSLLVD m512/m32bcst zmm zmm
 // 	VPSLLVD m512/m32bcst zmm k zmm
 // 	VPSLLVD zmm          zmm zmm
@@ -59198,6 +66064,14 @@ func (c *Context) VPSLLVD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPSLLVD m128/m32bcst xmm xmm
+// 	VPSLLVD m128/m32bcst xmm k xmm
+// 	VPSLLVD xmm          xmm xmm
+// 	VPSLLVD xmm          xmm k xmm
+// 	VPSLLVD m256/m32bcst ymm ymm
+// 	VPSLLVD m256/m32bcst ymm k ymm
+// 	VPSLLVD ymm          ymm ymm
+// 	VPSLLVD ymm          ymm k ymm
 // 	VPSLLVD m512/m32bcst zmm zmm
 // 	VPSLLVD m512/m32bcst zmm k zmm
 // 	VPSLLVD zmm          zmm zmm
@@ -59214,6 +66088,10 @@ func VPSLLVD(ops ...operand.Op) { ctx.VPSLLVD(ops...) }
 //
 // Forms:
 //
+// 	VPSLLVD.BCST m128/m32bcst xmm xmm
+// 	VPSLLVD.BCST m128/m32bcst xmm k xmm
+// 	VPSLLVD.BCST m256/m32bcst ymm ymm
+// 	VPSLLVD.BCST m256/m32bcst ymm k ymm
 // 	VPSLLVD.BCST m512/m32bcst zmm zmm
 // 	VPSLLVD.BCST m512/m32bcst zmm k zmm
 // Construct and append a VPSLLVD.BCST instruction to the active function.
@@ -59229,6 +66107,10 @@ func (c *Context) VPSLLVD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPSLLVD.BCST m128/m32bcst xmm xmm
+// 	VPSLLVD.BCST m128/m32bcst xmm k xmm
+// 	VPSLLVD.BCST m256/m32bcst ymm ymm
+// 	VPSLLVD.BCST m256/m32bcst ymm k ymm
 // 	VPSLLVD.BCST m512/m32bcst zmm zmm
 // 	VPSLLVD.BCST m512/m32bcst zmm k zmm
 // Construct and append a VPSLLVD.BCST instruction to the active function.
@@ -59239,10 +66121,12 @@ func VPSLLVD_BCST(ops ...operand.Op) { ctx.VPSLLVD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPSLLVD.BCST.Z m128/m32bcst xmm k xmm
+// 	VPSLLVD.BCST.Z m256/m32bcst ymm k ymm
 // 	VPSLLVD.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VPSLLVD.BCST.Z instruction to the active function.
-func (c *Context) VPSLLVD_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VPSLLVD_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VPSLLVD_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPSLLVD_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -59253,20 +66137,26 @@ func (c *Context) VPSLLVD_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPSLLVD.BCST.Z m128/m32bcst xmm k xmm
+// 	VPSLLVD.BCST.Z m256/m32bcst ymm k ymm
 // 	VPSLLVD.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VPSLLVD.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VPSLLVD_BCST_Z(m, z, k, z1 operand.Op) { ctx.VPSLLVD_BCST_Z(m, z, k, z1) }
+func VPSLLVD_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VPSLLVD_BCST_Z(m, xyz, k, xyz1) }
 
 // VPSLLVD_Z: Variable Shift Packed Doubleword Data Left Logical (Zeroing Masking).
 //
 // Forms:
 //
+// 	VPSLLVD.Z m128/m32bcst xmm k xmm
+// 	VPSLLVD.Z xmm          xmm k xmm
+// 	VPSLLVD.Z m256/m32bcst ymm k ymm
+// 	VPSLLVD.Z ymm          ymm k ymm
 // 	VPSLLVD.Z m512/m32bcst zmm k zmm
 // 	VPSLLVD.Z zmm          zmm k zmm
 // Construct and append a VPSLLVD.Z instruction to the active function.
-func (c *Context) VPSLLVD_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VPSLLVD_Z(mz, z, k, z1); err == nil {
+func (c *Context) VPSLLVD_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPSLLVD_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -59277,16 +66167,28 @@ func (c *Context) VPSLLVD_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPSLLVD.Z m128/m32bcst xmm k xmm
+// 	VPSLLVD.Z xmm          xmm k xmm
+// 	VPSLLVD.Z m256/m32bcst ymm k ymm
+// 	VPSLLVD.Z ymm          ymm k ymm
 // 	VPSLLVD.Z m512/m32bcst zmm k zmm
 // 	VPSLLVD.Z zmm          zmm k zmm
 // Construct and append a VPSLLVD.Z instruction to the active function.
 // Operates on the global context.
-func VPSLLVD_Z(mz, z, k, z1 operand.Op) { ctx.VPSLLVD_Z(mz, z, k, z1) }
+func VPSLLVD_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPSLLVD_Z(mxyz, xyz, k, xyz1) }
 
 // VPSLLVQ: Variable Shift Packed Quadword Data Left Logical.
 //
 // Forms:
 //
+// 	VPSLLVQ m128/m64bcst xmm xmm
+// 	VPSLLVQ m128/m64bcst xmm k xmm
+// 	VPSLLVQ xmm          xmm xmm
+// 	VPSLLVQ xmm          xmm k xmm
+// 	VPSLLVQ m256/m64bcst ymm ymm
+// 	VPSLLVQ m256/m64bcst ymm k ymm
+// 	VPSLLVQ ymm          ymm ymm
+// 	VPSLLVQ ymm          ymm k ymm
 // 	VPSLLVQ m512/m64bcst zmm zmm
 // 	VPSLLVQ m512/m64bcst zmm k zmm
 // 	VPSLLVQ zmm          zmm zmm
@@ -59308,6 +66210,14 @@ func (c *Context) VPSLLVQ(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPSLLVQ m128/m64bcst xmm xmm
+// 	VPSLLVQ m128/m64bcst xmm k xmm
+// 	VPSLLVQ xmm          xmm xmm
+// 	VPSLLVQ xmm          xmm k xmm
+// 	VPSLLVQ m256/m64bcst ymm ymm
+// 	VPSLLVQ m256/m64bcst ymm k ymm
+// 	VPSLLVQ ymm          ymm ymm
+// 	VPSLLVQ ymm          ymm k ymm
 // 	VPSLLVQ m512/m64bcst zmm zmm
 // 	VPSLLVQ m512/m64bcst zmm k zmm
 // 	VPSLLVQ zmm          zmm zmm
@@ -59324,6 +66234,10 @@ func VPSLLVQ(ops ...operand.Op) { ctx.VPSLLVQ(ops...) }
 //
 // Forms:
 //
+// 	VPSLLVQ.BCST m128/m64bcst xmm xmm
+// 	VPSLLVQ.BCST m128/m64bcst xmm k xmm
+// 	VPSLLVQ.BCST m256/m64bcst ymm ymm
+// 	VPSLLVQ.BCST m256/m64bcst ymm k ymm
 // 	VPSLLVQ.BCST m512/m64bcst zmm zmm
 // 	VPSLLVQ.BCST m512/m64bcst zmm k zmm
 // Construct and append a VPSLLVQ.BCST instruction to the active function.
@@ -59339,6 +66253,10 @@ func (c *Context) VPSLLVQ_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPSLLVQ.BCST m128/m64bcst xmm xmm
+// 	VPSLLVQ.BCST m128/m64bcst xmm k xmm
+// 	VPSLLVQ.BCST m256/m64bcst ymm ymm
+// 	VPSLLVQ.BCST m256/m64bcst ymm k ymm
 // 	VPSLLVQ.BCST m512/m64bcst zmm zmm
 // 	VPSLLVQ.BCST m512/m64bcst zmm k zmm
 // Construct and append a VPSLLVQ.BCST instruction to the active function.
@@ -59349,10 +66267,12 @@ func VPSLLVQ_BCST(ops ...operand.Op) { ctx.VPSLLVQ_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPSLLVQ.BCST.Z m128/m64bcst xmm k xmm
+// 	VPSLLVQ.BCST.Z m256/m64bcst ymm k ymm
 // 	VPSLLVQ.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VPSLLVQ.BCST.Z instruction to the active function.
-func (c *Context) VPSLLVQ_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VPSLLVQ_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VPSLLVQ_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPSLLVQ_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -59363,20 +66283,26 @@ func (c *Context) VPSLLVQ_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPSLLVQ.BCST.Z m128/m64bcst xmm k xmm
+// 	VPSLLVQ.BCST.Z m256/m64bcst ymm k ymm
 // 	VPSLLVQ.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VPSLLVQ.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VPSLLVQ_BCST_Z(m, z, k, z1 operand.Op) { ctx.VPSLLVQ_BCST_Z(m, z, k, z1) }
+func VPSLLVQ_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VPSLLVQ_BCST_Z(m, xyz, k, xyz1) }
 
 // VPSLLVQ_Z: Variable Shift Packed Quadword Data Left Logical (Zeroing Masking).
 //
 // Forms:
 //
+// 	VPSLLVQ.Z m128/m64bcst xmm k xmm
+// 	VPSLLVQ.Z xmm          xmm k xmm
+// 	VPSLLVQ.Z m256/m64bcst ymm k ymm
+// 	VPSLLVQ.Z ymm          ymm k ymm
 // 	VPSLLVQ.Z m512/m64bcst zmm k zmm
 // 	VPSLLVQ.Z zmm          zmm k zmm
 // Construct and append a VPSLLVQ.Z instruction to the active function.
-func (c *Context) VPSLLVQ_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VPSLLVQ_Z(mz, z, k, z1); err == nil {
+func (c *Context) VPSLLVQ_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPSLLVQ_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -59387,11 +66313,15 @@ func (c *Context) VPSLLVQ_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPSLLVQ.Z m128/m64bcst xmm k xmm
+// 	VPSLLVQ.Z xmm          xmm k xmm
+// 	VPSLLVQ.Z m256/m64bcst ymm k ymm
+// 	VPSLLVQ.Z ymm          ymm k ymm
 // 	VPSLLVQ.Z m512/m64bcst zmm k zmm
 // 	VPSLLVQ.Z zmm          zmm k zmm
 // Construct and append a VPSLLVQ.Z instruction to the active function.
 // Operates on the global context.
-func VPSLLVQ_Z(mz, z, k, z1 operand.Op) { ctx.VPSLLVQ_Z(mz, z, k, z1) }
+func VPSLLVQ_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPSLLVQ_Z(mxyz, xyz, k, xyz1) }
 
 // VPSLLW: Shift Packed Word Data Left Logical.
 //
@@ -59430,8 +66360,24 @@ func VPSLLW(imx, xy, xy1 operand.Op) { ctx.VPSLLW(imx, xy, xy1) }
 //
 // Forms:
 //
+// 	VPSRAD imm8 m128/m32bcst xmm
+// 	VPSRAD imm8 m128/m32bcst k xmm
+// 	VPSRAD imm8 m256/m32bcst ymm
+// 	VPSRAD imm8 m256/m32bcst k ymm
 // 	VPSRAD imm8 m512/m32bcst zmm
 // 	VPSRAD imm8 m512/m32bcst k zmm
+// 	VPSRAD imm8 xmm          xmm
+// 	VPSRAD imm8 xmm          k xmm
+// 	VPSRAD xmm  xmm          xmm
+// 	VPSRAD xmm  xmm          k xmm
+// 	VPSRAD m128 xmm          xmm
+// 	VPSRAD m128 xmm          k xmm
+// 	VPSRAD imm8 ymm          ymm
+// 	VPSRAD imm8 ymm          k ymm
+// 	VPSRAD xmm  ymm          ymm
+// 	VPSRAD xmm  ymm          k ymm
+// 	VPSRAD m128 ymm          ymm
+// 	VPSRAD m128 ymm          k ymm
 // 	VPSRAD imm8 zmm          zmm
 // 	VPSRAD imm8 zmm          k zmm
 // 	VPSRAD xmm  zmm          zmm
@@ -59457,8 +66403,24 @@ func (c *Context) VPSRAD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPSRAD imm8 m128/m32bcst xmm
+// 	VPSRAD imm8 m128/m32bcst k xmm
+// 	VPSRAD imm8 m256/m32bcst ymm
+// 	VPSRAD imm8 m256/m32bcst k ymm
 // 	VPSRAD imm8 m512/m32bcst zmm
 // 	VPSRAD imm8 m512/m32bcst k zmm
+// 	VPSRAD imm8 xmm          xmm
+// 	VPSRAD imm8 xmm          k xmm
+// 	VPSRAD xmm  xmm          xmm
+// 	VPSRAD xmm  xmm          k xmm
+// 	VPSRAD m128 xmm          xmm
+// 	VPSRAD m128 xmm          k xmm
+// 	VPSRAD imm8 ymm          ymm
+// 	VPSRAD imm8 ymm          k ymm
+// 	VPSRAD xmm  ymm          ymm
+// 	VPSRAD xmm  ymm          k ymm
+// 	VPSRAD m128 ymm          ymm
+// 	VPSRAD m128 ymm          k ymm
 // 	VPSRAD imm8 zmm          zmm
 // 	VPSRAD imm8 zmm          k zmm
 // 	VPSRAD xmm  zmm          zmm
@@ -59479,6 +66441,10 @@ func VPSRAD(ops ...operand.Op) { ctx.VPSRAD(ops...) }
 //
 // Forms:
 //
+// 	VPSRAD.BCST imm8 m128/m32bcst xmm
+// 	VPSRAD.BCST imm8 m128/m32bcst k xmm
+// 	VPSRAD.BCST imm8 m256/m32bcst ymm
+// 	VPSRAD.BCST imm8 m256/m32bcst k ymm
 // 	VPSRAD.BCST imm8 m512/m32bcst zmm
 // 	VPSRAD.BCST imm8 m512/m32bcst k zmm
 // Construct and append a VPSRAD.BCST instruction to the active function.
@@ -59494,6 +66460,10 @@ func (c *Context) VPSRAD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPSRAD.BCST imm8 m128/m32bcst xmm
+// 	VPSRAD.BCST imm8 m128/m32bcst k xmm
+// 	VPSRAD.BCST imm8 m256/m32bcst ymm
+// 	VPSRAD.BCST imm8 m256/m32bcst k ymm
 // 	VPSRAD.BCST imm8 m512/m32bcst zmm
 // 	VPSRAD.BCST imm8 m512/m32bcst k zmm
 // Construct and append a VPSRAD.BCST instruction to the active function.
@@ -59504,10 +66474,12 @@ func VPSRAD_BCST(ops ...operand.Op) { ctx.VPSRAD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPSRAD.BCST.Z imm8 m128/m32bcst k xmm
+// 	VPSRAD.BCST.Z imm8 m256/m32bcst k ymm
 // 	VPSRAD.BCST.Z imm8 m512/m32bcst k zmm
 // Construct and append a VPSRAD.BCST.Z instruction to the active function.
-func (c *Context) VPSRAD_BCST_Z(i, m, k, z operand.Op) {
-	if inst, err := x86.VPSRAD_BCST_Z(i, m, k, z); err == nil {
+func (c *Context) VPSRAD_BCST_Z(i, m, k, xyz operand.Op) {
+	if inst, err := x86.VPSRAD_BCST_Z(i, m, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -59518,22 +66490,32 @@ func (c *Context) VPSRAD_BCST_Z(i, m, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VPSRAD.BCST.Z imm8 m128/m32bcst k xmm
+// 	VPSRAD.BCST.Z imm8 m256/m32bcst k ymm
 // 	VPSRAD.BCST.Z imm8 m512/m32bcst k zmm
 // Construct and append a VPSRAD.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VPSRAD_BCST_Z(i, m, k, z operand.Op) { ctx.VPSRAD_BCST_Z(i, m, k, z) }
+func VPSRAD_BCST_Z(i, m, k, xyz operand.Op) { ctx.VPSRAD_BCST_Z(i, m, k, xyz) }
 
 // VPSRAD_Z: Shift Packed Doubleword Data Right Arithmetic (Zeroing Masking).
 //
 // Forms:
 //
+// 	VPSRAD.Z imm8 m128/m32bcst k xmm
+// 	VPSRAD.Z imm8 m256/m32bcst k ymm
 // 	VPSRAD.Z imm8 m512/m32bcst k zmm
+// 	VPSRAD.Z imm8 xmm          k xmm
+// 	VPSRAD.Z xmm  xmm          k xmm
+// 	VPSRAD.Z m128 xmm          k xmm
+// 	VPSRAD.Z imm8 ymm          k ymm
+// 	VPSRAD.Z xmm  ymm          k ymm
+// 	VPSRAD.Z m128 ymm          k ymm
 // 	VPSRAD.Z imm8 zmm          k zmm
 // 	VPSRAD.Z xmm  zmm          k zmm
 // 	VPSRAD.Z m128 zmm          k zmm
 // Construct and append a VPSRAD.Z instruction to the active function.
-func (c *Context) VPSRAD_Z(imx, mz, k, z operand.Op) {
-	if inst, err := x86.VPSRAD_Z(imx, mz, k, z); err == nil {
+func (c *Context) VPSRAD_Z(imx, mxyz, k, xyz operand.Op) {
+	if inst, err := x86.VPSRAD_Z(imx, mxyz, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -59544,20 +66526,44 @@ func (c *Context) VPSRAD_Z(imx, mz, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VPSRAD.Z imm8 m128/m32bcst k xmm
+// 	VPSRAD.Z imm8 m256/m32bcst k ymm
 // 	VPSRAD.Z imm8 m512/m32bcst k zmm
+// 	VPSRAD.Z imm8 xmm          k xmm
+// 	VPSRAD.Z xmm  xmm          k xmm
+// 	VPSRAD.Z m128 xmm          k xmm
+// 	VPSRAD.Z imm8 ymm          k ymm
+// 	VPSRAD.Z xmm  ymm          k ymm
+// 	VPSRAD.Z m128 ymm          k ymm
 // 	VPSRAD.Z imm8 zmm          k zmm
 // 	VPSRAD.Z xmm  zmm          k zmm
 // 	VPSRAD.Z m128 zmm          k zmm
 // Construct and append a VPSRAD.Z instruction to the active function.
 // Operates on the global context.
-func VPSRAD_Z(imx, mz, k, z operand.Op) { ctx.VPSRAD_Z(imx, mz, k, z) }
+func VPSRAD_Z(imx, mxyz, k, xyz operand.Op) { ctx.VPSRAD_Z(imx, mxyz, k, xyz) }
 
 // VPSRAQ: Shift Packed Quadword Data Right Arithmetic.
 //
 // Forms:
 //
+// 	VPSRAQ imm8 m128/m64bcst xmm
+// 	VPSRAQ imm8 m128/m64bcst k xmm
+// 	VPSRAQ imm8 m256/m64bcst ymm
+// 	VPSRAQ imm8 m256/m64bcst k ymm
 // 	VPSRAQ imm8 m512/m64bcst zmm
 // 	VPSRAQ imm8 m512/m64bcst k zmm
+// 	VPSRAQ imm8 xmm          xmm
+// 	VPSRAQ imm8 xmm          k xmm
+// 	VPSRAQ xmm  xmm          xmm
+// 	VPSRAQ xmm  xmm          k xmm
+// 	VPSRAQ m128 xmm          xmm
+// 	VPSRAQ m128 xmm          k xmm
+// 	VPSRAQ imm8 ymm          ymm
+// 	VPSRAQ imm8 ymm          k ymm
+// 	VPSRAQ xmm  ymm          ymm
+// 	VPSRAQ xmm  ymm          k ymm
+// 	VPSRAQ m128 ymm          ymm
+// 	VPSRAQ m128 ymm          k ymm
 // 	VPSRAQ imm8 zmm          zmm
 // 	VPSRAQ imm8 zmm          k zmm
 // 	VPSRAQ xmm  zmm          zmm
@@ -59577,8 +66583,24 @@ func (c *Context) VPSRAQ(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPSRAQ imm8 m128/m64bcst xmm
+// 	VPSRAQ imm8 m128/m64bcst k xmm
+// 	VPSRAQ imm8 m256/m64bcst ymm
+// 	VPSRAQ imm8 m256/m64bcst k ymm
 // 	VPSRAQ imm8 m512/m64bcst zmm
 // 	VPSRAQ imm8 m512/m64bcst k zmm
+// 	VPSRAQ imm8 xmm          xmm
+// 	VPSRAQ imm8 xmm          k xmm
+// 	VPSRAQ xmm  xmm          xmm
+// 	VPSRAQ xmm  xmm          k xmm
+// 	VPSRAQ m128 xmm          xmm
+// 	VPSRAQ m128 xmm          k xmm
+// 	VPSRAQ imm8 ymm          ymm
+// 	VPSRAQ imm8 ymm          k ymm
+// 	VPSRAQ xmm  ymm          ymm
+// 	VPSRAQ xmm  ymm          k ymm
+// 	VPSRAQ m128 ymm          ymm
+// 	VPSRAQ m128 ymm          k ymm
 // 	VPSRAQ imm8 zmm          zmm
 // 	VPSRAQ imm8 zmm          k zmm
 // 	VPSRAQ xmm  zmm          zmm
@@ -59593,6 +66615,10 @@ func VPSRAQ(ops ...operand.Op) { ctx.VPSRAQ(ops...) }
 //
 // Forms:
 //
+// 	VPSRAQ.BCST imm8 m128/m64bcst xmm
+// 	VPSRAQ.BCST imm8 m128/m64bcst k xmm
+// 	VPSRAQ.BCST imm8 m256/m64bcst ymm
+// 	VPSRAQ.BCST imm8 m256/m64bcst k ymm
 // 	VPSRAQ.BCST imm8 m512/m64bcst zmm
 // 	VPSRAQ.BCST imm8 m512/m64bcst k zmm
 // Construct and append a VPSRAQ.BCST instruction to the active function.
@@ -59608,6 +66634,10 @@ func (c *Context) VPSRAQ_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPSRAQ.BCST imm8 m128/m64bcst xmm
+// 	VPSRAQ.BCST imm8 m128/m64bcst k xmm
+// 	VPSRAQ.BCST imm8 m256/m64bcst ymm
+// 	VPSRAQ.BCST imm8 m256/m64bcst k ymm
 // 	VPSRAQ.BCST imm8 m512/m64bcst zmm
 // 	VPSRAQ.BCST imm8 m512/m64bcst k zmm
 // Construct and append a VPSRAQ.BCST instruction to the active function.
@@ -59618,10 +66648,12 @@ func VPSRAQ_BCST(ops ...operand.Op) { ctx.VPSRAQ_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPSRAQ.BCST.Z imm8 m128/m64bcst k xmm
+// 	VPSRAQ.BCST.Z imm8 m256/m64bcst k ymm
 // 	VPSRAQ.BCST.Z imm8 m512/m64bcst k zmm
 // Construct and append a VPSRAQ.BCST.Z instruction to the active function.
-func (c *Context) VPSRAQ_BCST_Z(i, m, k, z operand.Op) {
-	if inst, err := x86.VPSRAQ_BCST_Z(i, m, k, z); err == nil {
+func (c *Context) VPSRAQ_BCST_Z(i, m, k, xyz operand.Op) {
+	if inst, err := x86.VPSRAQ_BCST_Z(i, m, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -59632,22 +66664,32 @@ func (c *Context) VPSRAQ_BCST_Z(i, m, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VPSRAQ.BCST.Z imm8 m128/m64bcst k xmm
+// 	VPSRAQ.BCST.Z imm8 m256/m64bcst k ymm
 // 	VPSRAQ.BCST.Z imm8 m512/m64bcst k zmm
 // Construct and append a VPSRAQ.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VPSRAQ_BCST_Z(i, m, k, z operand.Op) { ctx.VPSRAQ_BCST_Z(i, m, k, z) }
+func VPSRAQ_BCST_Z(i, m, k, xyz operand.Op) { ctx.VPSRAQ_BCST_Z(i, m, k, xyz) }
 
 // VPSRAQ_Z: Shift Packed Quadword Data Right Arithmetic (Zeroing Masking).
 //
 // Forms:
 //
+// 	VPSRAQ.Z imm8 m128/m64bcst k xmm
+// 	VPSRAQ.Z imm8 m256/m64bcst k ymm
 // 	VPSRAQ.Z imm8 m512/m64bcst k zmm
+// 	VPSRAQ.Z imm8 xmm          k xmm
+// 	VPSRAQ.Z xmm  xmm          k xmm
+// 	VPSRAQ.Z m128 xmm          k xmm
+// 	VPSRAQ.Z imm8 ymm          k ymm
+// 	VPSRAQ.Z xmm  ymm          k ymm
+// 	VPSRAQ.Z m128 ymm          k ymm
 // 	VPSRAQ.Z imm8 zmm          k zmm
 // 	VPSRAQ.Z xmm  zmm          k zmm
 // 	VPSRAQ.Z m128 zmm          k zmm
 // Construct and append a VPSRAQ.Z instruction to the active function.
-func (c *Context) VPSRAQ_Z(imx, mz, k, z operand.Op) {
-	if inst, err := x86.VPSRAQ_Z(imx, mz, k, z); err == nil {
+func (c *Context) VPSRAQ_Z(imx, mxyz, k, xyz operand.Op) {
+	if inst, err := x86.VPSRAQ_Z(imx, mxyz, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -59658,18 +66700,34 @@ func (c *Context) VPSRAQ_Z(imx, mz, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VPSRAQ.Z imm8 m128/m64bcst k xmm
+// 	VPSRAQ.Z imm8 m256/m64bcst k ymm
 // 	VPSRAQ.Z imm8 m512/m64bcst k zmm
+// 	VPSRAQ.Z imm8 xmm          k xmm
+// 	VPSRAQ.Z xmm  xmm          k xmm
+// 	VPSRAQ.Z m128 xmm          k xmm
+// 	VPSRAQ.Z imm8 ymm          k ymm
+// 	VPSRAQ.Z xmm  ymm          k ymm
+// 	VPSRAQ.Z m128 ymm          k ymm
 // 	VPSRAQ.Z imm8 zmm          k zmm
 // 	VPSRAQ.Z xmm  zmm          k zmm
 // 	VPSRAQ.Z m128 zmm          k zmm
 // Construct and append a VPSRAQ.Z instruction to the active function.
 // Operates on the global context.
-func VPSRAQ_Z(imx, mz, k, z operand.Op) { ctx.VPSRAQ_Z(imx, mz, k, z) }
+func VPSRAQ_Z(imx, mxyz, k, xyz operand.Op) { ctx.VPSRAQ_Z(imx, mxyz, k, xyz) }
 
 // VPSRAVD: Variable Shift Packed Doubleword Data Right Arithmetic.
 //
 // Forms:
 //
+// 	VPSRAVD m128/m32bcst xmm xmm
+// 	VPSRAVD m128/m32bcst xmm k xmm
+// 	VPSRAVD xmm          xmm xmm
+// 	VPSRAVD xmm          xmm k xmm
+// 	VPSRAVD m256/m32bcst ymm ymm
+// 	VPSRAVD m256/m32bcst ymm k ymm
+// 	VPSRAVD ymm          ymm ymm
+// 	VPSRAVD ymm          ymm k ymm
 // 	VPSRAVD m512/m32bcst zmm zmm
 // 	VPSRAVD m512/m32bcst zmm k zmm
 // 	VPSRAVD zmm          zmm zmm
@@ -59691,6 +66749,14 @@ func (c *Context) VPSRAVD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPSRAVD m128/m32bcst xmm xmm
+// 	VPSRAVD m128/m32bcst xmm k xmm
+// 	VPSRAVD xmm          xmm xmm
+// 	VPSRAVD xmm          xmm k xmm
+// 	VPSRAVD m256/m32bcst ymm ymm
+// 	VPSRAVD m256/m32bcst ymm k ymm
+// 	VPSRAVD ymm          ymm ymm
+// 	VPSRAVD ymm          ymm k ymm
 // 	VPSRAVD m512/m32bcst zmm zmm
 // 	VPSRAVD m512/m32bcst zmm k zmm
 // 	VPSRAVD zmm          zmm zmm
@@ -59707,6 +66773,10 @@ func VPSRAVD(ops ...operand.Op) { ctx.VPSRAVD(ops...) }
 //
 // Forms:
 //
+// 	VPSRAVD.BCST m128/m32bcst xmm xmm
+// 	VPSRAVD.BCST m128/m32bcst xmm k xmm
+// 	VPSRAVD.BCST m256/m32bcst ymm ymm
+// 	VPSRAVD.BCST m256/m32bcst ymm k ymm
 // 	VPSRAVD.BCST m512/m32bcst zmm zmm
 // 	VPSRAVD.BCST m512/m32bcst zmm k zmm
 // Construct and append a VPSRAVD.BCST instruction to the active function.
@@ -59722,6 +66792,10 @@ func (c *Context) VPSRAVD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPSRAVD.BCST m128/m32bcst xmm xmm
+// 	VPSRAVD.BCST m128/m32bcst xmm k xmm
+// 	VPSRAVD.BCST m256/m32bcst ymm ymm
+// 	VPSRAVD.BCST m256/m32bcst ymm k ymm
 // 	VPSRAVD.BCST m512/m32bcst zmm zmm
 // 	VPSRAVD.BCST m512/m32bcst zmm k zmm
 // Construct and append a VPSRAVD.BCST instruction to the active function.
@@ -59732,10 +66806,12 @@ func VPSRAVD_BCST(ops ...operand.Op) { ctx.VPSRAVD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPSRAVD.BCST.Z m128/m32bcst xmm k xmm
+// 	VPSRAVD.BCST.Z m256/m32bcst ymm k ymm
 // 	VPSRAVD.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VPSRAVD.BCST.Z instruction to the active function.
-func (c *Context) VPSRAVD_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VPSRAVD_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VPSRAVD_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPSRAVD_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -59746,20 +66822,26 @@ func (c *Context) VPSRAVD_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPSRAVD.BCST.Z m128/m32bcst xmm k xmm
+// 	VPSRAVD.BCST.Z m256/m32bcst ymm k ymm
 // 	VPSRAVD.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VPSRAVD.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VPSRAVD_BCST_Z(m, z, k, z1 operand.Op) { ctx.VPSRAVD_BCST_Z(m, z, k, z1) }
+func VPSRAVD_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VPSRAVD_BCST_Z(m, xyz, k, xyz1) }
 
 // VPSRAVD_Z: Variable Shift Packed Doubleword Data Right Arithmetic (Zeroing Masking).
 //
 // Forms:
 //
+// 	VPSRAVD.Z m128/m32bcst xmm k xmm
+// 	VPSRAVD.Z xmm          xmm k xmm
+// 	VPSRAVD.Z m256/m32bcst ymm k ymm
+// 	VPSRAVD.Z ymm          ymm k ymm
 // 	VPSRAVD.Z m512/m32bcst zmm k zmm
 // 	VPSRAVD.Z zmm          zmm k zmm
 // Construct and append a VPSRAVD.Z instruction to the active function.
-func (c *Context) VPSRAVD_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VPSRAVD_Z(mz, z, k, z1); err == nil {
+func (c *Context) VPSRAVD_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPSRAVD_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -59770,16 +66852,28 @@ func (c *Context) VPSRAVD_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPSRAVD.Z m128/m32bcst xmm k xmm
+// 	VPSRAVD.Z xmm          xmm k xmm
+// 	VPSRAVD.Z m256/m32bcst ymm k ymm
+// 	VPSRAVD.Z ymm          ymm k ymm
 // 	VPSRAVD.Z m512/m32bcst zmm k zmm
 // 	VPSRAVD.Z zmm          zmm k zmm
 // Construct and append a VPSRAVD.Z instruction to the active function.
 // Operates on the global context.
-func VPSRAVD_Z(mz, z, k, z1 operand.Op) { ctx.VPSRAVD_Z(mz, z, k, z1) }
+func VPSRAVD_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPSRAVD_Z(mxyz, xyz, k, xyz1) }
 
 // VPSRAVQ: Variable Shift Packed Quadword Data Right Arithmetic.
 //
 // Forms:
 //
+// 	VPSRAVQ m128/m64bcst xmm xmm
+// 	VPSRAVQ m128/m64bcst xmm k xmm
+// 	VPSRAVQ xmm          xmm xmm
+// 	VPSRAVQ xmm          xmm k xmm
+// 	VPSRAVQ m256/m64bcst ymm ymm
+// 	VPSRAVQ m256/m64bcst ymm k ymm
+// 	VPSRAVQ ymm          ymm ymm
+// 	VPSRAVQ ymm          ymm k ymm
 // 	VPSRAVQ m512/m64bcst zmm zmm
 // 	VPSRAVQ m512/m64bcst zmm k zmm
 // 	VPSRAVQ zmm          zmm zmm
@@ -59797,6 +66891,14 @@ func (c *Context) VPSRAVQ(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPSRAVQ m128/m64bcst xmm xmm
+// 	VPSRAVQ m128/m64bcst xmm k xmm
+// 	VPSRAVQ xmm          xmm xmm
+// 	VPSRAVQ xmm          xmm k xmm
+// 	VPSRAVQ m256/m64bcst ymm ymm
+// 	VPSRAVQ m256/m64bcst ymm k ymm
+// 	VPSRAVQ ymm          ymm ymm
+// 	VPSRAVQ ymm          ymm k ymm
 // 	VPSRAVQ m512/m64bcst zmm zmm
 // 	VPSRAVQ m512/m64bcst zmm k zmm
 // 	VPSRAVQ zmm          zmm zmm
@@ -59809,6 +66911,10 @@ func VPSRAVQ(ops ...operand.Op) { ctx.VPSRAVQ(ops...) }
 //
 // Forms:
 //
+// 	VPSRAVQ.BCST m128/m64bcst xmm xmm
+// 	VPSRAVQ.BCST m128/m64bcst xmm k xmm
+// 	VPSRAVQ.BCST m256/m64bcst ymm ymm
+// 	VPSRAVQ.BCST m256/m64bcst ymm k ymm
 // 	VPSRAVQ.BCST m512/m64bcst zmm zmm
 // 	VPSRAVQ.BCST m512/m64bcst zmm k zmm
 // Construct and append a VPSRAVQ.BCST instruction to the active function.
@@ -59824,6 +66930,10 @@ func (c *Context) VPSRAVQ_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPSRAVQ.BCST m128/m64bcst xmm xmm
+// 	VPSRAVQ.BCST m128/m64bcst xmm k xmm
+// 	VPSRAVQ.BCST m256/m64bcst ymm ymm
+// 	VPSRAVQ.BCST m256/m64bcst ymm k ymm
 // 	VPSRAVQ.BCST m512/m64bcst zmm zmm
 // 	VPSRAVQ.BCST m512/m64bcst zmm k zmm
 // Construct and append a VPSRAVQ.BCST instruction to the active function.
@@ -59834,10 +66944,12 @@ func VPSRAVQ_BCST(ops ...operand.Op) { ctx.VPSRAVQ_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPSRAVQ.BCST.Z m128/m64bcst xmm k xmm
+// 	VPSRAVQ.BCST.Z m256/m64bcst ymm k ymm
 // 	VPSRAVQ.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VPSRAVQ.BCST.Z instruction to the active function.
-func (c *Context) VPSRAVQ_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VPSRAVQ_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VPSRAVQ_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPSRAVQ_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -59848,20 +66960,26 @@ func (c *Context) VPSRAVQ_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPSRAVQ.BCST.Z m128/m64bcst xmm k xmm
+// 	VPSRAVQ.BCST.Z m256/m64bcst ymm k ymm
 // 	VPSRAVQ.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VPSRAVQ.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VPSRAVQ_BCST_Z(m, z, k, z1 operand.Op) { ctx.VPSRAVQ_BCST_Z(m, z, k, z1) }
+func VPSRAVQ_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VPSRAVQ_BCST_Z(m, xyz, k, xyz1) }
 
 // VPSRAVQ_Z: Variable Shift Packed Quadword Data Right Arithmetic (Zeroing Masking).
 //
 // Forms:
 //
+// 	VPSRAVQ.Z m128/m64bcst xmm k xmm
+// 	VPSRAVQ.Z xmm          xmm k xmm
+// 	VPSRAVQ.Z m256/m64bcst ymm k ymm
+// 	VPSRAVQ.Z ymm          ymm k ymm
 // 	VPSRAVQ.Z m512/m64bcst zmm k zmm
 // 	VPSRAVQ.Z zmm          zmm k zmm
 // Construct and append a VPSRAVQ.Z instruction to the active function.
-func (c *Context) VPSRAVQ_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VPSRAVQ_Z(mz, z, k, z1); err == nil {
+func (c *Context) VPSRAVQ_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPSRAVQ_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -59872,11 +66990,15 @@ func (c *Context) VPSRAVQ_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPSRAVQ.Z m128/m64bcst xmm k xmm
+// 	VPSRAVQ.Z xmm          xmm k xmm
+// 	VPSRAVQ.Z m256/m64bcst ymm k ymm
+// 	VPSRAVQ.Z ymm          ymm k ymm
 // 	VPSRAVQ.Z m512/m64bcst zmm k zmm
 // 	VPSRAVQ.Z zmm          zmm k zmm
 // Construct and append a VPSRAVQ.Z instruction to the active function.
 // Operates on the global context.
-func VPSRAVQ_Z(mz, z, k, z1 operand.Op) { ctx.VPSRAVQ_Z(mz, z, k, z1) }
+func VPSRAVQ_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPSRAVQ_Z(mxyz, xyz, k, xyz1) }
 
 // VPSRAW: Shift Packed Word Data Right Arithmetic.
 //
@@ -59915,8 +67037,24 @@ func VPSRAW(imx, xy, xy1 operand.Op) { ctx.VPSRAW(imx, xy, xy1) }
 //
 // Forms:
 //
+// 	VPSRLD imm8 m128/m32bcst xmm
+// 	VPSRLD imm8 m128/m32bcst k xmm
+// 	VPSRLD imm8 m256/m32bcst ymm
+// 	VPSRLD imm8 m256/m32bcst k ymm
 // 	VPSRLD imm8 m512/m32bcst zmm
 // 	VPSRLD imm8 m512/m32bcst k zmm
+// 	VPSRLD imm8 xmm          xmm
+// 	VPSRLD imm8 xmm          k xmm
+// 	VPSRLD xmm  xmm          xmm
+// 	VPSRLD xmm  xmm          k xmm
+// 	VPSRLD m128 xmm          xmm
+// 	VPSRLD m128 xmm          k xmm
+// 	VPSRLD imm8 ymm          ymm
+// 	VPSRLD imm8 ymm          k ymm
+// 	VPSRLD xmm  ymm          ymm
+// 	VPSRLD xmm  ymm          k ymm
+// 	VPSRLD m128 ymm          ymm
+// 	VPSRLD m128 ymm          k ymm
 // 	VPSRLD imm8 zmm          zmm
 // 	VPSRLD imm8 zmm          k zmm
 // 	VPSRLD xmm  zmm          zmm
@@ -59942,8 +67080,24 @@ func (c *Context) VPSRLD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPSRLD imm8 m128/m32bcst xmm
+// 	VPSRLD imm8 m128/m32bcst k xmm
+// 	VPSRLD imm8 m256/m32bcst ymm
+// 	VPSRLD imm8 m256/m32bcst k ymm
 // 	VPSRLD imm8 m512/m32bcst zmm
 // 	VPSRLD imm8 m512/m32bcst k zmm
+// 	VPSRLD imm8 xmm          xmm
+// 	VPSRLD imm8 xmm          k xmm
+// 	VPSRLD xmm  xmm          xmm
+// 	VPSRLD xmm  xmm          k xmm
+// 	VPSRLD m128 xmm          xmm
+// 	VPSRLD m128 xmm          k xmm
+// 	VPSRLD imm8 ymm          ymm
+// 	VPSRLD imm8 ymm          k ymm
+// 	VPSRLD xmm  ymm          ymm
+// 	VPSRLD xmm  ymm          k ymm
+// 	VPSRLD m128 ymm          ymm
+// 	VPSRLD m128 ymm          k ymm
 // 	VPSRLD imm8 zmm          zmm
 // 	VPSRLD imm8 zmm          k zmm
 // 	VPSRLD xmm  zmm          zmm
@@ -59989,6 +67143,10 @@ func VPSRLDQ(i, xy, xy1 operand.Op) { ctx.VPSRLDQ(i, xy, xy1) }
 //
 // Forms:
 //
+// 	VPSRLD.BCST imm8 m128/m32bcst xmm
+// 	VPSRLD.BCST imm8 m128/m32bcst k xmm
+// 	VPSRLD.BCST imm8 m256/m32bcst ymm
+// 	VPSRLD.BCST imm8 m256/m32bcst k ymm
 // 	VPSRLD.BCST imm8 m512/m32bcst zmm
 // 	VPSRLD.BCST imm8 m512/m32bcst k zmm
 // Construct and append a VPSRLD.BCST instruction to the active function.
@@ -60004,6 +67162,10 @@ func (c *Context) VPSRLD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPSRLD.BCST imm8 m128/m32bcst xmm
+// 	VPSRLD.BCST imm8 m128/m32bcst k xmm
+// 	VPSRLD.BCST imm8 m256/m32bcst ymm
+// 	VPSRLD.BCST imm8 m256/m32bcst k ymm
 // 	VPSRLD.BCST imm8 m512/m32bcst zmm
 // 	VPSRLD.BCST imm8 m512/m32bcst k zmm
 // Construct and append a VPSRLD.BCST instruction to the active function.
@@ -60014,10 +67176,12 @@ func VPSRLD_BCST(ops ...operand.Op) { ctx.VPSRLD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPSRLD.BCST.Z imm8 m128/m32bcst k xmm
+// 	VPSRLD.BCST.Z imm8 m256/m32bcst k ymm
 // 	VPSRLD.BCST.Z imm8 m512/m32bcst k zmm
 // Construct and append a VPSRLD.BCST.Z instruction to the active function.
-func (c *Context) VPSRLD_BCST_Z(i, m, k, z operand.Op) {
-	if inst, err := x86.VPSRLD_BCST_Z(i, m, k, z); err == nil {
+func (c *Context) VPSRLD_BCST_Z(i, m, k, xyz operand.Op) {
+	if inst, err := x86.VPSRLD_BCST_Z(i, m, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -60028,22 +67192,32 @@ func (c *Context) VPSRLD_BCST_Z(i, m, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VPSRLD.BCST.Z imm8 m128/m32bcst k xmm
+// 	VPSRLD.BCST.Z imm8 m256/m32bcst k ymm
 // 	VPSRLD.BCST.Z imm8 m512/m32bcst k zmm
 // Construct and append a VPSRLD.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VPSRLD_BCST_Z(i, m, k, z operand.Op) { ctx.VPSRLD_BCST_Z(i, m, k, z) }
+func VPSRLD_BCST_Z(i, m, k, xyz operand.Op) { ctx.VPSRLD_BCST_Z(i, m, k, xyz) }
 
 // VPSRLD_Z: Shift Packed Doubleword Data Right Logical (Zeroing Masking).
 //
 // Forms:
 //
+// 	VPSRLD.Z imm8 m128/m32bcst k xmm
+// 	VPSRLD.Z imm8 m256/m32bcst k ymm
 // 	VPSRLD.Z imm8 m512/m32bcst k zmm
+// 	VPSRLD.Z imm8 xmm          k xmm
+// 	VPSRLD.Z xmm  xmm          k xmm
+// 	VPSRLD.Z m128 xmm          k xmm
+// 	VPSRLD.Z imm8 ymm          k ymm
+// 	VPSRLD.Z xmm  ymm          k ymm
+// 	VPSRLD.Z m128 ymm          k ymm
 // 	VPSRLD.Z imm8 zmm          k zmm
 // 	VPSRLD.Z xmm  zmm          k zmm
 // 	VPSRLD.Z m128 zmm          k zmm
 // Construct and append a VPSRLD.Z instruction to the active function.
-func (c *Context) VPSRLD_Z(imx, mz, k, z operand.Op) {
-	if inst, err := x86.VPSRLD_Z(imx, mz, k, z); err == nil {
+func (c *Context) VPSRLD_Z(imx, mxyz, k, xyz operand.Op) {
+	if inst, err := x86.VPSRLD_Z(imx, mxyz, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -60054,20 +67228,44 @@ func (c *Context) VPSRLD_Z(imx, mz, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VPSRLD.Z imm8 m128/m32bcst k xmm
+// 	VPSRLD.Z imm8 m256/m32bcst k ymm
 // 	VPSRLD.Z imm8 m512/m32bcst k zmm
+// 	VPSRLD.Z imm8 xmm          k xmm
+// 	VPSRLD.Z xmm  xmm          k xmm
+// 	VPSRLD.Z m128 xmm          k xmm
+// 	VPSRLD.Z imm8 ymm          k ymm
+// 	VPSRLD.Z xmm  ymm          k ymm
+// 	VPSRLD.Z m128 ymm          k ymm
 // 	VPSRLD.Z imm8 zmm          k zmm
 // 	VPSRLD.Z xmm  zmm          k zmm
 // 	VPSRLD.Z m128 zmm          k zmm
 // Construct and append a VPSRLD.Z instruction to the active function.
 // Operates on the global context.
-func VPSRLD_Z(imx, mz, k, z operand.Op) { ctx.VPSRLD_Z(imx, mz, k, z) }
+func VPSRLD_Z(imx, mxyz, k, xyz operand.Op) { ctx.VPSRLD_Z(imx, mxyz, k, xyz) }
 
 // VPSRLQ: Shift Packed Quadword Data Right Logical.
 //
 // Forms:
 //
+// 	VPSRLQ imm8 m128/m64bcst xmm
+// 	VPSRLQ imm8 m128/m64bcst k xmm
+// 	VPSRLQ imm8 m256/m64bcst ymm
+// 	VPSRLQ imm8 m256/m64bcst k ymm
 // 	VPSRLQ imm8 m512/m64bcst zmm
 // 	VPSRLQ imm8 m512/m64bcst k zmm
+// 	VPSRLQ imm8 xmm          xmm
+// 	VPSRLQ imm8 xmm          k xmm
+// 	VPSRLQ xmm  xmm          xmm
+// 	VPSRLQ xmm  xmm          k xmm
+// 	VPSRLQ m128 xmm          xmm
+// 	VPSRLQ m128 xmm          k xmm
+// 	VPSRLQ imm8 ymm          ymm
+// 	VPSRLQ imm8 ymm          k ymm
+// 	VPSRLQ xmm  ymm          ymm
+// 	VPSRLQ xmm  ymm          k ymm
+// 	VPSRLQ m128 ymm          ymm
+// 	VPSRLQ m128 ymm          k ymm
 // 	VPSRLQ imm8 zmm          zmm
 // 	VPSRLQ imm8 zmm          k zmm
 // 	VPSRLQ xmm  zmm          zmm
@@ -60093,8 +67291,24 @@ func (c *Context) VPSRLQ(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPSRLQ imm8 m128/m64bcst xmm
+// 	VPSRLQ imm8 m128/m64bcst k xmm
+// 	VPSRLQ imm8 m256/m64bcst ymm
+// 	VPSRLQ imm8 m256/m64bcst k ymm
 // 	VPSRLQ imm8 m512/m64bcst zmm
 // 	VPSRLQ imm8 m512/m64bcst k zmm
+// 	VPSRLQ imm8 xmm          xmm
+// 	VPSRLQ imm8 xmm          k xmm
+// 	VPSRLQ xmm  xmm          xmm
+// 	VPSRLQ xmm  xmm          k xmm
+// 	VPSRLQ m128 xmm          xmm
+// 	VPSRLQ m128 xmm          k xmm
+// 	VPSRLQ imm8 ymm          ymm
+// 	VPSRLQ imm8 ymm          k ymm
+// 	VPSRLQ xmm  ymm          ymm
+// 	VPSRLQ xmm  ymm          k ymm
+// 	VPSRLQ m128 ymm          ymm
+// 	VPSRLQ m128 ymm          k ymm
 // 	VPSRLQ imm8 zmm          zmm
 // 	VPSRLQ imm8 zmm          k zmm
 // 	VPSRLQ xmm  zmm          zmm
@@ -60115,6 +67329,10 @@ func VPSRLQ(ops ...operand.Op) { ctx.VPSRLQ(ops...) }
 //
 // Forms:
 //
+// 	VPSRLQ.BCST imm8 m128/m64bcst xmm
+// 	VPSRLQ.BCST imm8 m128/m64bcst k xmm
+// 	VPSRLQ.BCST imm8 m256/m64bcst ymm
+// 	VPSRLQ.BCST imm8 m256/m64bcst k ymm
 // 	VPSRLQ.BCST imm8 m512/m64bcst zmm
 // 	VPSRLQ.BCST imm8 m512/m64bcst k zmm
 // Construct and append a VPSRLQ.BCST instruction to the active function.
@@ -60130,6 +67348,10 @@ func (c *Context) VPSRLQ_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPSRLQ.BCST imm8 m128/m64bcst xmm
+// 	VPSRLQ.BCST imm8 m128/m64bcst k xmm
+// 	VPSRLQ.BCST imm8 m256/m64bcst ymm
+// 	VPSRLQ.BCST imm8 m256/m64bcst k ymm
 // 	VPSRLQ.BCST imm8 m512/m64bcst zmm
 // 	VPSRLQ.BCST imm8 m512/m64bcst k zmm
 // Construct and append a VPSRLQ.BCST instruction to the active function.
@@ -60140,10 +67362,12 @@ func VPSRLQ_BCST(ops ...operand.Op) { ctx.VPSRLQ_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPSRLQ.BCST.Z imm8 m128/m64bcst k xmm
+// 	VPSRLQ.BCST.Z imm8 m256/m64bcst k ymm
 // 	VPSRLQ.BCST.Z imm8 m512/m64bcst k zmm
 // Construct and append a VPSRLQ.BCST.Z instruction to the active function.
-func (c *Context) VPSRLQ_BCST_Z(i, m, k, z operand.Op) {
-	if inst, err := x86.VPSRLQ_BCST_Z(i, m, k, z); err == nil {
+func (c *Context) VPSRLQ_BCST_Z(i, m, k, xyz operand.Op) {
+	if inst, err := x86.VPSRLQ_BCST_Z(i, m, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -60154,22 +67378,32 @@ func (c *Context) VPSRLQ_BCST_Z(i, m, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VPSRLQ.BCST.Z imm8 m128/m64bcst k xmm
+// 	VPSRLQ.BCST.Z imm8 m256/m64bcst k ymm
 // 	VPSRLQ.BCST.Z imm8 m512/m64bcst k zmm
 // Construct and append a VPSRLQ.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VPSRLQ_BCST_Z(i, m, k, z operand.Op) { ctx.VPSRLQ_BCST_Z(i, m, k, z) }
+func VPSRLQ_BCST_Z(i, m, k, xyz operand.Op) { ctx.VPSRLQ_BCST_Z(i, m, k, xyz) }
 
 // VPSRLQ_Z: Shift Packed Quadword Data Right Logical (Zeroing Masking).
 //
 // Forms:
 //
+// 	VPSRLQ.Z imm8 m128/m64bcst k xmm
+// 	VPSRLQ.Z imm8 m256/m64bcst k ymm
 // 	VPSRLQ.Z imm8 m512/m64bcst k zmm
+// 	VPSRLQ.Z imm8 xmm          k xmm
+// 	VPSRLQ.Z xmm  xmm          k xmm
+// 	VPSRLQ.Z m128 xmm          k xmm
+// 	VPSRLQ.Z imm8 ymm          k ymm
+// 	VPSRLQ.Z xmm  ymm          k ymm
+// 	VPSRLQ.Z m128 ymm          k ymm
 // 	VPSRLQ.Z imm8 zmm          k zmm
 // 	VPSRLQ.Z xmm  zmm          k zmm
 // 	VPSRLQ.Z m128 zmm          k zmm
 // Construct and append a VPSRLQ.Z instruction to the active function.
-func (c *Context) VPSRLQ_Z(imx, mz, k, z operand.Op) {
-	if inst, err := x86.VPSRLQ_Z(imx, mz, k, z); err == nil {
+func (c *Context) VPSRLQ_Z(imx, mxyz, k, xyz operand.Op) {
+	if inst, err := x86.VPSRLQ_Z(imx, mxyz, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -60180,18 +67414,34 @@ func (c *Context) VPSRLQ_Z(imx, mz, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VPSRLQ.Z imm8 m128/m64bcst k xmm
+// 	VPSRLQ.Z imm8 m256/m64bcst k ymm
 // 	VPSRLQ.Z imm8 m512/m64bcst k zmm
+// 	VPSRLQ.Z imm8 xmm          k xmm
+// 	VPSRLQ.Z xmm  xmm          k xmm
+// 	VPSRLQ.Z m128 xmm          k xmm
+// 	VPSRLQ.Z imm8 ymm          k ymm
+// 	VPSRLQ.Z xmm  ymm          k ymm
+// 	VPSRLQ.Z m128 ymm          k ymm
 // 	VPSRLQ.Z imm8 zmm          k zmm
 // 	VPSRLQ.Z xmm  zmm          k zmm
 // 	VPSRLQ.Z m128 zmm          k zmm
 // Construct and append a VPSRLQ.Z instruction to the active function.
 // Operates on the global context.
-func VPSRLQ_Z(imx, mz, k, z operand.Op) { ctx.VPSRLQ_Z(imx, mz, k, z) }
+func VPSRLQ_Z(imx, mxyz, k, xyz operand.Op) { ctx.VPSRLQ_Z(imx, mxyz, k, xyz) }
 
 // VPSRLVD: Variable Shift Packed Doubleword Data Right Logical.
 //
 // Forms:
 //
+// 	VPSRLVD m128/m32bcst xmm xmm
+// 	VPSRLVD m128/m32bcst xmm k xmm
+// 	VPSRLVD xmm          xmm xmm
+// 	VPSRLVD xmm          xmm k xmm
+// 	VPSRLVD m256/m32bcst ymm ymm
+// 	VPSRLVD m256/m32bcst ymm k ymm
+// 	VPSRLVD ymm          ymm ymm
+// 	VPSRLVD ymm          ymm k ymm
 // 	VPSRLVD m512/m32bcst zmm zmm
 // 	VPSRLVD m512/m32bcst zmm k zmm
 // 	VPSRLVD zmm          zmm zmm
@@ -60213,6 +67463,14 @@ func (c *Context) VPSRLVD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPSRLVD m128/m32bcst xmm xmm
+// 	VPSRLVD m128/m32bcst xmm k xmm
+// 	VPSRLVD xmm          xmm xmm
+// 	VPSRLVD xmm          xmm k xmm
+// 	VPSRLVD m256/m32bcst ymm ymm
+// 	VPSRLVD m256/m32bcst ymm k ymm
+// 	VPSRLVD ymm          ymm ymm
+// 	VPSRLVD ymm          ymm k ymm
 // 	VPSRLVD m512/m32bcst zmm zmm
 // 	VPSRLVD m512/m32bcst zmm k zmm
 // 	VPSRLVD zmm          zmm zmm
@@ -60229,6 +67487,10 @@ func VPSRLVD(ops ...operand.Op) { ctx.VPSRLVD(ops...) }
 //
 // Forms:
 //
+// 	VPSRLVD.BCST m128/m32bcst xmm xmm
+// 	VPSRLVD.BCST m128/m32bcst xmm k xmm
+// 	VPSRLVD.BCST m256/m32bcst ymm ymm
+// 	VPSRLVD.BCST m256/m32bcst ymm k ymm
 // 	VPSRLVD.BCST m512/m32bcst zmm zmm
 // 	VPSRLVD.BCST m512/m32bcst zmm k zmm
 // Construct and append a VPSRLVD.BCST instruction to the active function.
@@ -60244,6 +67506,10 @@ func (c *Context) VPSRLVD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPSRLVD.BCST m128/m32bcst xmm xmm
+// 	VPSRLVD.BCST m128/m32bcst xmm k xmm
+// 	VPSRLVD.BCST m256/m32bcst ymm ymm
+// 	VPSRLVD.BCST m256/m32bcst ymm k ymm
 // 	VPSRLVD.BCST m512/m32bcst zmm zmm
 // 	VPSRLVD.BCST m512/m32bcst zmm k zmm
 // Construct and append a VPSRLVD.BCST instruction to the active function.
@@ -60254,10 +67520,12 @@ func VPSRLVD_BCST(ops ...operand.Op) { ctx.VPSRLVD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPSRLVD.BCST.Z m128/m32bcst xmm k xmm
+// 	VPSRLVD.BCST.Z m256/m32bcst ymm k ymm
 // 	VPSRLVD.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VPSRLVD.BCST.Z instruction to the active function.
-func (c *Context) VPSRLVD_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VPSRLVD_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VPSRLVD_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPSRLVD_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -60268,20 +67536,26 @@ func (c *Context) VPSRLVD_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPSRLVD.BCST.Z m128/m32bcst xmm k xmm
+// 	VPSRLVD.BCST.Z m256/m32bcst ymm k ymm
 // 	VPSRLVD.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VPSRLVD.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VPSRLVD_BCST_Z(m, z, k, z1 operand.Op) { ctx.VPSRLVD_BCST_Z(m, z, k, z1) }
+func VPSRLVD_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VPSRLVD_BCST_Z(m, xyz, k, xyz1) }
 
 // VPSRLVD_Z: Variable Shift Packed Doubleword Data Right Logical (Zeroing Masking).
 //
 // Forms:
 //
+// 	VPSRLVD.Z m128/m32bcst xmm k xmm
+// 	VPSRLVD.Z xmm          xmm k xmm
+// 	VPSRLVD.Z m256/m32bcst ymm k ymm
+// 	VPSRLVD.Z ymm          ymm k ymm
 // 	VPSRLVD.Z m512/m32bcst zmm k zmm
 // 	VPSRLVD.Z zmm          zmm k zmm
 // Construct and append a VPSRLVD.Z instruction to the active function.
-func (c *Context) VPSRLVD_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VPSRLVD_Z(mz, z, k, z1); err == nil {
+func (c *Context) VPSRLVD_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPSRLVD_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -60292,16 +67566,28 @@ func (c *Context) VPSRLVD_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPSRLVD.Z m128/m32bcst xmm k xmm
+// 	VPSRLVD.Z xmm          xmm k xmm
+// 	VPSRLVD.Z m256/m32bcst ymm k ymm
+// 	VPSRLVD.Z ymm          ymm k ymm
 // 	VPSRLVD.Z m512/m32bcst zmm k zmm
 // 	VPSRLVD.Z zmm          zmm k zmm
 // Construct and append a VPSRLVD.Z instruction to the active function.
 // Operates on the global context.
-func VPSRLVD_Z(mz, z, k, z1 operand.Op) { ctx.VPSRLVD_Z(mz, z, k, z1) }
+func VPSRLVD_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPSRLVD_Z(mxyz, xyz, k, xyz1) }
 
 // VPSRLVQ: Variable Shift Packed Quadword Data Right Logical.
 //
 // Forms:
 //
+// 	VPSRLVQ m128/m64bcst xmm xmm
+// 	VPSRLVQ m128/m64bcst xmm k xmm
+// 	VPSRLVQ xmm          xmm xmm
+// 	VPSRLVQ xmm          xmm k xmm
+// 	VPSRLVQ m256/m64bcst ymm ymm
+// 	VPSRLVQ m256/m64bcst ymm k ymm
+// 	VPSRLVQ ymm          ymm ymm
+// 	VPSRLVQ ymm          ymm k ymm
 // 	VPSRLVQ m512/m64bcst zmm zmm
 // 	VPSRLVQ m512/m64bcst zmm k zmm
 // 	VPSRLVQ zmm          zmm zmm
@@ -60323,6 +67609,14 @@ func (c *Context) VPSRLVQ(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPSRLVQ m128/m64bcst xmm xmm
+// 	VPSRLVQ m128/m64bcst xmm k xmm
+// 	VPSRLVQ xmm          xmm xmm
+// 	VPSRLVQ xmm          xmm k xmm
+// 	VPSRLVQ m256/m64bcst ymm ymm
+// 	VPSRLVQ m256/m64bcst ymm k ymm
+// 	VPSRLVQ ymm          ymm ymm
+// 	VPSRLVQ ymm          ymm k ymm
 // 	VPSRLVQ m512/m64bcst zmm zmm
 // 	VPSRLVQ m512/m64bcst zmm k zmm
 // 	VPSRLVQ zmm          zmm zmm
@@ -60339,6 +67633,10 @@ func VPSRLVQ(ops ...operand.Op) { ctx.VPSRLVQ(ops...) }
 //
 // Forms:
 //
+// 	VPSRLVQ.BCST m128/m64bcst xmm xmm
+// 	VPSRLVQ.BCST m128/m64bcst xmm k xmm
+// 	VPSRLVQ.BCST m256/m64bcst ymm ymm
+// 	VPSRLVQ.BCST m256/m64bcst ymm k ymm
 // 	VPSRLVQ.BCST m512/m64bcst zmm zmm
 // 	VPSRLVQ.BCST m512/m64bcst zmm k zmm
 // Construct and append a VPSRLVQ.BCST instruction to the active function.
@@ -60354,6 +67652,10 @@ func (c *Context) VPSRLVQ_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPSRLVQ.BCST m128/m64bcst xmm xmm
+// 	VPSRLVQ.BCST m128/m64bcst xmm k xmm
+// 	VPSRLVQ.BCST m256/m64bcst ymm ymm
+// 	VPSRLVQ.BCST m256/m64bcst ymm k ymm
 // 	VPSRLVQ.BCST m512/m64bcst zmm zmm
 // 	VPSRLVQ.BCST m512/m64bcst zmm k zmm
 // Construct and append a VPSRLVQ.BCST instruction to the active function.
@@ -60364,10 +67666,12 @@ func VPSRLVQ_BCST(ops ...operand.Op) { ctx.VPSRLVQ_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPSRLVQ.BCST.Z m128/m64bcst xmm k xmm
+// 	VPSRLVQ.BCST.Z m256/m64bcst ymm k ymm
 // 	VPSRLVQ.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VPSRLVQ.BCST.Z instruction to the active function.
-func (c *Context) VPSRLVQ_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VPSRLVQ_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VPSRLVQ_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPSRLVQ_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -60378,20 +67682,26 @@ func (c *Context) VPSRLVQ_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPSRLVQ.BCST.Z m128/m64bcst xmm k xmm
+// 	VPSRLVQ.BCST.Z m256/m64bcst ymm k ymm
 // 	VPSRLVQ.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VPSRLVQ.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VPSRLVQ_BCST_Z(m, z, k, z1 operand.Op) { ctx.VPSRLVQ_BCST_Z(m, z, k, z1) }
+func VPSRLVQ_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VPSRLVQ_BCST_Z(m, xyz, k, xyz1) }
 
 // VPSRLVQ_Z: Variable Shift Packed Quadword Data Right Logical (Zeroing Masking).
 //
 // Forms:
 //
+// 	VPSRLVQ.Z m128/m64bcst xmm k xmm
+// 	VPSRLVQ.Z xmm          xmm k xmm
+// 	VPSRLVQ.Z m256/m64bcst ymm k ymm
+// 	VPSRLVQ.Z ymm          ymm k ymm
 // 	VPSRLVQ.Z m512/m64bcst zmm k zmm
 // 	VPSRLVQ.Z zmm          zmm k zmm
 // Construct and append a VPSRLVQ.Z instruction to the active function.
-func (c *Context) VPSRLVQ_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VPSRLVQ_Z(mz, z, k, z1); err == nil {
+func (c *Context) VPSRLVQ_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPSRLVQ_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -60402,11 +67712,15 @@ func (c *Context) VPSRLVQ_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPSRLVQ.Z m128/m64bcst xmm k xmm
+// 	VPSRLVQ.Z xmm          xmm k xmm
+// 	VPSRLVQ.Z m256/m64bcst ymm k ymm
+// 	VPSRLVQ.Z ymm          ymm k ymm
 // 	VPSRLVQ.Z m512/m64bcst zmm k zmm
 // 	VPSRLVQ.Z zmm          zmm k zmm
 // Construct and append a VPSRLVQ.Z instruction to the active function.
 // Operates on the global context.
-func VPSRLVQ_Z(mz, z, k, z1 operand.Op) { ctx.VPSRLVQ_Z(mz, z, k, z1) }
+func VPSRLVQ_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPSRLVQ_Z(mxyz, xyz, k, xyz1) }
 
 // VPSRLW: Shift Packed Word Data Right Logical.
 //
@@ -60474,6 +67788,14 @@ func VPSUBB(mxy, xy, xy1 operand.Op) { ctx.VPSUBB(mxy, xy, xy1) }
 //
 // Forms:
 //
+// 	VPSUBD m128/m32bcst xmm xmm
+// 	VPSUBD m128/m32bcst xmm k xmm
+// 	VPSUBD xmm          xmm xmm
+// 	VPSUBD xmm          xmm k xmm
+// 	VPSUBD m256/m32bcst ymm ymm
+// 	VPSUBD m256/m32bcst ymm k ymm
+// 	VPSUBD ymm          ymm ymm
+// 	VPSUBD ymm          ymm k ymm
 // 	VPSUBD m512/m32bcst zmm zmm
 // 	VPSUBD m512/m32bcst zmm k zmm
 // 	VPSUBD zmm          zmm zmm
@@ -60495,6 +67817,14 @@ func (c *Context) VPSUBD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPSUBD m128/m32bcst xmm xmm
+// 	VPSUBD m128/m32bcst xmm k xmm
+// 	VPSUBD xmm          xmm xmm
+// 	VPSUBD xmm          xmm k xmm
+// 	VPSUBD m256/m32bcst ymm ymm
+// 	VPSUBD m256/m32bcst ymm k ymm
+// 	VPSUBD ymm          ymm ymm
+// 	VPSUBD ymm          ymm k ymm
 // 	VPSUBD m512/m32bcst zmm zmm
 // 	VPSUBD m512/m32bcst zmm k zmm
 // 	VPSUBD zmm          zmm zmm
@@ -60511,6 +67841,10 @@ func VPSUBD(ops ...operand.Op) { ctx.VPSUBD(ops...) }
 //
 // Forms:
 //
+// 	VPSUBD.BCST m128/m32bcst xmm xmm
+// 	VPSUBD.BCST m128/m32bcst xmm k xmm
+// 	VPSUBD.BCST m256/m32bcst ymm ymm
+// 	VPSUBD.BCST m256/m32bcst ymm k ymm
 // 	VPSUBD.BCST m512/m32bcst zmm zmm
 // 	VPSUBD.BCST m512/m32bcst zmm k zmm
 // Construct and append a VPSUBD.BCST instruction to the active function.
@@ -60526,6 +67860,10 @@ func (c *Context) VPSUBD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPSUBD.BCST m128/m32bcst xmm xmm
+// 	VPSUBD.BCST m128/m32bcst xmm k xmm
+// 	VPSUBD.BCST m256/m32bcst ymm ymm
+// 	VPSUBD.BCST m256/m32bcst ymm k ymm
 // 	VPSUBD.BCST m512/m32bcst zmm zmm
 // 	VPSUBD.BCST m512/m32bcst zmm k zmm
 // Construct and append a VPSUBD.BCST instruction to the active function.
@@ -60536,10 +67874,12 @@ func VPSUBD_BCST(ops ...operand.Op) { ctx.VPSUBD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPSUBD.BCST.Z m128/m32bcst xmm k xmm
+// 	VPSUBD.BCST.Z m256/m32bcst ymm k ymm
 // 	VPSUBD.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VPSUBD.BCST.Z instruction to the active function.
-func (c *Context) VPSUBD_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VPSUBD_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VPSUBD_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPSUBD_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -60550,20 +67890,26 @@ func (c *Context) VPSUBD_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPSUBD.BCST.Z m128/m32bcst xmm k xmm
+// 	VPSUBD.BCST.Z m256/m32bcst ymm k ymm
 // 	VPSUBD.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VPSUBD.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VPSUBD_BCST_Z(m, z, k, z1 operand.Op) { ctx.VPSUBD_BCST_Z(m, z, k, z1) }
+func VPSUBD_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VPSUBD_BCST_Z(m, xyz, k, xyz1) }
 
 // VPSUBD_Z: Subtract Packed Doubleword Integers (Zeroing Masking).
 //
 // Forms:
 //
+// 	VPSUBD.Z m128/m32bcst xmm k xmm
+// 	VPSUBD.Z xmm          xmm k xmm
+// 	VPSUBD.Z m256/m32bcst ymm k ymm
+// 	VPSUBD.Z ymm          ymm k ymm
 // 	VPSUBD.Z m512/m32bcst zmm k zmm
 // 	VPSUBD.Z zmm          zmm k zmm
 // Construct and append a VPSUBD.Z instruction to the active function.
-func (c *Context) VPSUBD_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VPSUBD_Z(mz, z, k, z1); err == nil {
+func (c *Context) VPSUBD_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPSUBD_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -60574,16 +67920,28 @@ func (c *Context) VPSUBD_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPSUBD.Z m128/m32bcst xmm k xmm
+// 	VPSUBD.Z xmm          xmm k xmm
+// 	VPSUBD.Z m256/m32bcst ymm k ymm
+// 	VPSUBD.Z ymm          ymm k ymm
 // 	VPSUBD.Z m512/m32bcst zmm k zmm
 // 	VPSUBD.Z zmm          zmm k zmm
 // Construct and append a VPSUBD.Z instruction to the active function.
 // Operates on the global context.
-func VPSUBD_Z(mz, z, k, z1 operand.Op) { ctx.VPSUBD_Z(mz, z, k, z1) }
+func VPSUBD_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPSUBD_Z(mxyz, xyz, k, xyz1) }
 
 // VPSUBQ: Subtract Packed Quadword Integers.
 //
 // Forms:
 //
+// 	VPSUBQ m128/m64bcst xmm xmm
+// 	VPSUBQ m128/m64bcst xmm k xmm
+// 	VPSUBQ xmm          xmm xmm
+// 	VPSUBQ xmm          xmm k xmm
+// 	VPSUBQ m256/m64bcst ymm ymm
+// 	VPSUBQ m256/m64bcst ymm k ymm
+// 	VPSUBQ ymm          ymm ymm
+// 	VPSUBQ ymm          ymm k ymm
 // 	VPSUBQ m512/m64bcst zmm zmm
 // 	VPSUBQ m512/m64bcst zmm k zmm
 // 	VPSUBQ zmm          zmm zmm
@@ -60605,6 +67963,14 @@ func (c *Context) VPSUBQ(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPSUBQ m128/m64bcst xmm xmm
+// 	VPSUBQ m128/m64bcst xmm k xmm
+// 	VPSUBQ xmm          xmm xmm
+// 	VPSUBQ xmm          xmm k xmm
+// 	VPSUBQ m256/m64bcst ymm ymm
+// 	VPSUBQ m256/m64bcst ymm k ymm
+// 	VPSUBQ ymm          ymm ymm
+// 	VPSUBQ ymm          ymm k ymm
 // 	VPSUBQ m512/m64bcst zmm zmm
 // 	VPSUBQ m512/m64bcst zmm k zmm
 // 	VPSUBQ zmm          zmm zmm
@@ -60621,6 +67987,10 @@ func VPSUBQ(ops ...operand.Op) { ctx.VPSUBQ(ops...) }
 //
 // Forms:
 //
+// 	VPSUBQ.BCST m128/m64bcst xmm xmm
+// 	VPSUBQ.BCST m128/m64bcst xmm k xmm
+// 	VPSUBQ.BCST m256/m64bcst ymm ymm
+// 	VPSUBQ.BCST m256/m64bcst ymm k ymm
 // 	VPSUBQ.BCST m512/m64bcst zmm zmm
 // 	VPSUBQ.BCST m512/m64bcst zmm k zmm
 // Construct and append a VPSUBQ.BCST instruction to the active function.
@@ -60636,6 +68006,10 @@ func (c *Context) VPSUBQ_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPSUBQ.BCST m128/m64bcst xmm xmm
+// 	VPSUBQ.BCST m128/m64bcst xmm k xmm
+// 	VPSUBQ.BCST m256/m64bcst ymm ymm
+// 	VPSUBQ.BCST m256/m64bcst ymm k ymm
 // 	VPSUBQ.BCST m512/m64bcst zmm zmm
 // 	VPSUBQ.BCST m512/m64bcst zmm k zmm
 // Construct and append a VPSUBQ.BCST instruction to the active function.
@@ -60646,10 +68020,12 @@ func VPSUBQ_BCST(ops ...operand.Op) { ctx.VPSUBQ_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPSUBQ.BCST.Z m128/m64bcst xmm k xmm
+// 	VPSUBQ.BCST.Z m256/m64bcst ymm k ymm
 // 	VPSUBQ.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VPSUBQ.BCST.Z instruction to the active function.
-func (c *Context) VPSUBQ_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VPSUBQ_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VPSUBQ_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPSUBQ_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -60660,20 +68036,26 @@ func (c *Context) VPSUBQ_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPSUBQ.BCST.Z m128/m64bcst xmm k xmm
+// 	VPSUBQ.BCST.Z m256/m64bcst ymm k ymm
 // 	VPSUBQ.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VPSUBQ.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VPSUBQ_BCST_Z(m, z, k, z1 operand.Op) { ctx.VPSUBQ_BCST_Z(m, z, k, z1) }
+func VPSUBQ_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VPSUBQ_BCST_Z(m, xyz, k, xyz1) }
 
 // VPSUBQ_Z: Subtract Packed Quadword Integers (Zeroing Masking).
 //
 // Forms:
 //
+// 	VPSUBQ.Z m128/m64bcst xmm k xmm
+// 	VPSUBQ.Z xmm          xmm k xmm
+// 	VPSUBQ.Z m256/m64bcst ymm k ymm
+// 	VPSUBQ.Z ymm          ymm k ymm
 // 	VPSUBQ.Z m512/m64bcst zmm k zmm
 // 	VPSUBQ.Z zmm          zmm k zmm
 // Construct and append a VPSUBQ.Z instruction to the active function.
-func (c *Context) VPSUBQ_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VPSUBQ_Z(mz, z, k, z1); err == nil {
+func (c *Context) VPSUBQ_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPSUBQ_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -60684,11 +68066,15 @@ func (c *Context) VPSUBQ_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPSUBQ.Z m128/m64bcst xmm k xmm
+// 	VPSUBQ.Z xmm          xmm k xmm
+// 	VPSUBQ.Z m256/m64bcst ymm k ymm
+// 	VPSUBQ.Z ymm          ymm k ymm
 // 	VPSUBQ.Z m512/m64bcst zmm k zmm
 // 	VPSUBQ.Z zmm          zmm k zmm
 // Construct and append a VPSUBQ.Z instruction to the active function.
 // Operates on the global context.
-func VPSUBQ_Z(mz, z, k, z1 operand.Op) { ctx.VPSUBQ_Z(mz, z, k, z1) }
+func VPSUBQ_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPSUBQ_Z(mxyz, xyz, k, xyz1) }
 
 // VPSUBSB: Subtract Packed Signed Byte Integers with Signed Saturation.
 //
@@ -60839,6 +68225,14 @@ func VPSUBW(mxy, xy, xy1 operand.Op) { ctx.VPSUBW(mxy, xy, xy1) }
 //
 // Forms:
 //
+// 	VPTERNLOGD imm8 m128/m32bcst xmm xmm
+// 	VPTERNLOGD imm8 m128/m32bcst xmm k xmm
+// 	VPTERNLOGD imm8 xmm          xmm xmm
+// 	VPTERNLOGD imm8 xmm          xmm k xmm
+// 	VPTERNLOGD imm8 m256/m32bcst ymm ymm
+// 	VPTERNLOGD imm8 m256/m32bcst ymm k ymm
+// 	VPTERNLOGD imm8 ymm          ymm ymm
+// 	VPTERNLOGD imm8 ymm          ymm k ymm
 // 	VPTERNLOGD imm8 m512/m32bcst zmm zmm
 // 	VPTERNLOGD imm8 m512/m32bcst zmm k zmm
 // 	VPTERNLOGD imm8 zmm          zmm zmm
@@ -60856,6 +68250,14 @@ func (c *Context) VPTERNLOGD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPTERNLOGD imm8 m128/m32bcst xmm xmm
+// 	VPTERNLOGD imm8 m128/m32bcst xmm k xmm
+// 	VPTERNLOGD imm8 xmm          xmm xmm
+// 	VPTERNLOGD imm8 xmm          xmm k xmm
+// 	VPTERNLOGD imm8 m256/m32bcst ymm ymm
+// 	VPTERNLOGD imm8 m256/m32bcst ymm k ymm
+// 	VPTERNLOGD imm8 ymm          ymm ymm
+// 	VPTERNLOGD imm8 ymm          ymm k ymm
 // 	VPTERNLOGD imm8 m512/m32bcst zmm zmm
 // 	VPTERNLOGD imm8 m512/m32bcst zmm k zmm
 // 	VPTERNLOGD imm8 zmm          zmm zmm
@@ -60868,6 +68270,10 @@ func VPTERNLOGD(ops ...operand.Op) { ctx.VPTERNLOGD(ops...) }
 //
 // Forms:
 //
+// 	VPTERNLOGD.BCST imm8 m128/m32bcst xmm xmm
+// 	VPTERNLOGD.BCST imm8 m128/m32bcst xmm k xmm
+// 	VPTERNLOGD.BCST imm8 m256/m32bcst ymm ymm
+// 	VPTERNLOGD.BCST imm8 m256/m32bcst ymm k ymm
 // 	VPTERNLOGD.BCST imm8 m512/m32bcst zmm zmm
 // 	VPTERNLOGD.BCST imm8 m512/m32bcst zmm k zmm
 // Construct and append a VPTERNLOGD.BCST instruction to the active function.
@@ -60883,6 +68289,10 @@ func (c *Context) VPTERNLOGD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPTERNLOGD.BCST imm8 m128/m32bcst xmm xmm
+// 	VPTERNLOGD.BCST imm8 m128/m32bcst xmm k xmm
+// 	VPTERNLOGD.BCST imm8 m256/m32bcst ymm ymm
+// 	VPTERNLOGD.BCST imm8 m256/m32bcst ymm k ymm
 // 	VPTERNLOGD.BCST imm8 m512/m32bcst zmm zmm
 // 	VPTERNLOGD.BCST imm8 m512/m32bcst zmm k zmm
 // Construct and append a VPTERNLOGD.BCST instruction to the active function.
@@ -60893,10 +68303,12 @@ func VPTERNLOGD_BCST(ops ...operand.Op) { ctx.VPTERNLOGD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPTERNLOGD.BCST.Z imm8 m128/m32bcst xmm k xmm
+// 	VPTERNLOGD.BCST.Z imm8 m256/m32bcst ymm k ymm
 // 	VPTERNLOGD.BCST.Z imm8 m512/m32bcst zmm k zmm
 // Construct and append a VPTERNLOGD.BCST.Z instruction to the active function.
-func (c *Context) VPTERNLOGD_BCST_Z(i, m, z, k, z1 operand.Op) {
-	if inst, err := x86.VPTERNLOGD_BCST_Z(i, m, z, k, z1); err == nil {
+func (c *Context) VPTERNLOGD_BCST_Z(i, m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPTERNLOGD_BCST_Z(i, m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -60907,20 +68319,26 @@ func (c *Context) VPTERNLOGD_BCST_Z(i, m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPTERNLOGD.BCST.Z imm8 m128/m32bcst xmm k xmm
+// 	VPTERNLOGD.BCST.Z imm8 m256/m32bcst ymm k ymm
 // 	VPTERNLOGD.BCST.Z imm8 m512/m32bcst zmm k zmm
 // Construct and append a VPTERNLOGD.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VPTERNLOGD_BCST_Z(i, m, z, k, z1 operand.Op) { ctx.VPTERNLOGD_BCST_Z(i, m, z, k, z1) }
+func VPTERNLOGD_BCST_Z(i, m, xyz, k, xyz1 operand.Op) { ctx.VPTERNLOGD_BCST_Z(i, m, xyz, k, xyz1) }
 
 // VPTERNLOGD_Z: Bitwise Ternary Logical Operation on Doubleword Values (Zeroing Masking).
 //
 // Forms:
 //
+// 	VPTERNLOGD.Z imm8 m128/m32bcst xmm k xmm
+// 	VPTERNLOGD.Z imm8 xmm          xmm k xmm
+// 	VPTERNLOGD.Z imm8 m256/m32bcst ymm k ymm
+// 	VPTERNLOGD.Z imm8 ymm          ymm k ymm
 // 	VPTERNLOGD.Z imm8 m512/m32bcst zmm k zmm
 // 	VPTERNLOGD.Z imm8 zmm          zmm k zmm
 // Construct and append a VPTERNLOGD.Z instruction to the active function.
-func (c *Context) VPTERNLOGD_Z(i, mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VPTERNLOGD_Z(i, mz, z, k, z1); err == nil {
+func (c *Context) VPTERNLOGD_Z(i, mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPTERNLOGD_Z(i, mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -60931,16 +68349,28 @@ func (c *Context) VPTERNLOGD_Z(i, mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPTERNLOGD.Z imm8 m128/m32bcst xmm k xmm
+// 	VPTERNLOGD.Z imm8 xmm          xmm k xmm
+// 	VPTERNLOGD.Z imm8 m256/m32bcst ymm k ymm
+// 	VPTERNLOGD.Z imm8 ymm          ymm k ymm
 // 	VPTERNLOGD.Z imm8 m512/m32bcst zmm k zmm
 // 	VPTERNLOGD.Z imm8 zmm          zmm k zmm
 // Construct and append a VPTERNLOGD.Z instruction to the active function.
 // Operates on the global context.
-func VPTERNLOGD_Z(i, mz, z, k, z1 operand.Op) { ctx.VPTERNLOGD_Z(i, mz, z, k, z1) }
+func VPTERNLOGD_Z(i, mxyz, xyz, k, xyz1 operand.Op) { ctx.VPTERNLOGD_Z(i, mxyz, xyz, k, xyz1) }
 
 // VPTERNLOGQ: Bitwise Ternary Logical Operation on Quadword Values.
 //
 // Forms:
 //
+// 	VPTERNLOGQ imm8 m128/m64bcst xmm xmm
+// 	VPTERNLOGQ imm8 m128/m64bcst xmm k xmm
+// 	VPTERNLOGQ imm8 xmm          xmm xmm
+// 	VPTERNLOGQ imm8 xmm          xmm k xmm
+// 	VPTERNLOGQ imm8 m256/m64bcst ymm ymm
+// 	VPTERNLOGQ imm8 m256/m64bcst ymm k ymm
+// 	VPTERNLOGQ imm8 ymm          ymm ymm
+// 	VPTERNLOGQ imm8 ymm          ymm k ymm
 // 	VPTERNLOGQ imm8 m512/m64bcst zmm zmm
 // 	VPTERNLOGQ imm8 m512/m64bcst zmm k zmm
 // 	VPTERNLOGQ imm8 zmm          zmm zmm
@@ -60958,6 +68388,14 @@ func (c *Context) VPTERNLOGQ(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPTERNLOGQ imm8 m128/m64bcst xmm xmm
+// 	VPTERNLOGQ imm8 m128/m64bcst xmm k xmm
+// 	VPTERNLOGQ imm8 xmm          xmm xmm
+// 	VPTERNLOGQ imm8 xmm          xmm k xmm
+// 	VPTERNLOGQ imm8 m256/m64bcst ymm ymm
+// 	VPTERNLOGQ imm8 m256/m64bcst ymm k ymm
+// 	VPTERNLOGQ imm8 ymm          ymm ymm
+// 	VPTERNLOGQ imm8 ymm          ymm k ymm
 // 	VPTERNLOGQ imm8 m512/m64bcst zmm zmm
 // 	VPTERNLOGQ imm8 m512/m64bcst zmm k zmm
 // 	VPTERNLOGQ imm8 zmm          zmm zmm
@@ -60970,6 +68408,10 @@ func VPTERNLOGQ(ops ...operand.Op) { ctx.VPTERNLOGQ(ops...) }
 //
 // Forms:
 //
+// 	VPTERNLOGQ.BCST imm8 m128/m64bcst xmm xmm
+// 	VPTERNLOGQ.BCST imm8 m128/m64bcst xmm k xmm
+// 	VPTERNLOGQ.BCST imm8 m256/m64bcst ymm ymm
+// 	VPTERNLOGQ.BCST imm8 m256/m64bcst ymm k ymm
 // 	VPTERNLOGQ.BCST imm8 m512/m64bcst zmm zmm
 // 	VPTERNLOGQ.BCST imm8 m512/m64bcst zmm k zmm
 // Construct and append a VPTERNLOGQ.BCST instruction to the active function.
@@ -60985,6 +68427,10 @@ func (c *Context) VPTERNLOGQ_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPTERNLOGQ.BCST imm8 m128/m64bcst xmm xmm
+// 	VPTERNLOGQ.BCST imm8 m128/m64bcst xmm k xmm
+// 	VPTERNLOGQ.BCST imm8 m256/m64bcst ymm ymm
+// 	VPTERNLOGQ.BCST imm8 m256/m64bcst ymm k ymm
 // 	VPTERNLOGQ.BCST imm8 m512/m64bcst zmm zmm
 // 	VPTERNLOGQ.BCST imm8 m512/m64bcst zmm k zmm
 // Construct and append a VPTERNLOGQ.BCST instruction to the active function.
@@ -60995,10 +68441,12 @@ func VPTERNLOGQ_BCST(ops ...operand.Op) { ctx.VPTERNLOGQ_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPTERNLOGQ.BCST.Z imm8 m128/m64bcst xmm k xmm
+// 	VPTERNLOGQ.BCST.Z imm8 m256/m64bcst ymm k ymm
 // 	VPTERNLOGQ.BCST.Z imm8 m512/m64bcst zmm k zmm
 // Construct and append a VPTERNLOGQ.BCST.Z instruction to the active function.
-func (c *Context) VPTERNLOGQ_BCST_Z(i, m, z, k, z1 operand.Op) {
-	if inst, err := x86.VPTERNLOGQ_BCST_Z(i, m, z, k, z1); err == nil {
+func (c *Context) VPTERNLOGQ_BCST_Z(i, m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPTERNLOGQ_BCST_Z(i, m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -61009,20 +68457,26 @@ func (c *Context) VPTERNLOGQ_BCST_Z(i, m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPTERNLOGQ.BCST.Z imm8 m128/m64bcst xmm k xmm
+// 	VPTERNLOGQ.BCST.Z imm8 m256/m64bcst ymm k ymm
 // 	VPTERNLOGQ.BCST.Z imm8 m512/m64bcst zmm k zmm
 // Construct and append a VPTERNLOGQ.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VPTERNLOGQ_BCST_Z(i, m, z, k, z1 operand.Op) { ctx.VPTERNLOGQ_BCST_Z(i, m, z, k, z1) }
+func VPTERNLOGQ_BCST_Z(i, m, xyz, k, xyz1 operand.Op) { ctx.VPTERNLOGQ_BCST_Z(i, m, xyz, k, xyz1) }
 
 // VPTERNLOGQ_Z: Bitwise Ternary Logical Operation on Quadword Values (Zeroing Masking).
 //
 // Forms:
 //
+// 	VPTERNLOGQ.Z imm8 m128/m64bcst xmm k xmm
+// 	VPTERNLOGQ.Z imm8 xmm          xmm k xmm
+// 	VPTERNLOGQ.Z imm8 m256/m64bcst ymm k ymm
+// 	VPTERNLOGQ.Z imm8 ymm          ymm k ymm
 // 	VPTERNLOGQ.Z imm8 m512/m64bcst zmm k zmm
 // 	VPTERNLOGQ.Z imm8 zmm          zmm k zmm
 // Construct and append a VPTERNLOGQ.Z instruction to the active function.
-func (c *Context) VPTERNLOGQ_Z(i, mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VPTERNLOGQ_Z(i, mz, z, k, z1); err == nil {
+func (c *Context) VPTERNLOGQ_Z(i, mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPTERNLOGQ_Z(i, mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -61033,11 +68487,15 @@ func (c *Context) VPTERNLOGQ_Z(i, mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPTERNLOGQ.Z imm8 m128/m64bcst xmm k xmm
+// 	VPTERNLOGQ.Z imm8 xmm          xmm k xmm
+// 	VPTERNLOGQ.Z imm8 m256/m64bcst ymm k ymm
+// 	VPTERNLOGQ.Z imm8 ymm          ymm k ymm
 // 	VPTERNLOGQ.Z imm8 m512/m64bcst zmm k zmm
 // 	VPTERNLOGQ.Z imm8 zmm          zmm k zmm
 // Construct and append a VPTERNLOGQ.Z instruction to the active function.
 // Operates on the global context.
-func VPTERNLOGQ_Z(i, mz, z, k, z1 operand.Op) { ctx.VPTERNLOGQ_Z(i, mz, z, k, z1) }
+func VPTERNLOGQ_Z(i, mxyz, xyz, k, xyz1 operand.Op) { ctx.VPTERNLOGQ_Z(i, mxyz, xyz, k, xyz1) }
 
 // VPTEST: Packed Logical Compare.
 //
@@ -61072,6 +68530,14 @@ func VPTEST(mxy, xy operand.Op) { ctx.VPTEST(mxy, xy) }
 //
 // Forms:
 //
+// 	VPTESTMD m128/m32bcst xmm k
+// 	VPTESTMD m128/m32bcst xmm k k
+// 	VPTESTMD xmm          xmm k
+// 	VPTESTMD xmm          xmm k k
+// 	VPTESTMD m256/m32bcst ymm k
+// 	VPTESTMD m256/m32bcst ymm k k
+// 	VPTESTMD ymm          ymm k
+// 	VPTESTMD ymm          ymm k k
 // 	VPTESTMD m512/m32bcst zmm k
 // 	VPTESTMD m512/m32bcst zmm k k
 // 	VPTESTMD zmm          zmm k
@@ -61089,6 +68555,14 @@ func (c *Context) VPTESTMD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPTESTMD m128/m32bcst xmm k
+// 	VPTESTMD m128/m32bcst xmm k k
+// 	VPTESTMD xmm          xmm k
+// 	VPTESTMD xmm          xmm k k
+// 	VPTESTMD m256/m32bcst ymm k
+// 	VPTESTMD m256/m32bcst ymm k k
+// 	VPTESTMD ymm          ymm k
+// 	VPTESTMD ymm          ymm k k
 // 	VPTESTMD m512/m32bcst zmm k
 // 	VPTESTMD m512/m32bcst zmm k k
 // 	VPTESTMD zmm          zmm k
@@ -61101,6 +68575,10 @@ func VPTESTMD(ops ...operand.Op) { ctx.VPTESTMD(ops...) }
 //
 // Forms:
 //
+// 	VPTESTMD.BCST m128/m32bcst xmm k
+// 	VPTESTMD.BCST m128/m32bcst xmm k k
+// 	VPTESTMD.BCST m256/m32bcst ymm k
+// 	VPTESTMD.BCST m256/m32bcst ymm k k
 // 	VPTESTMD.BCST m512/m32bcst zmm k
 // 	VPTESTMD.BCST m512/m32bcst zmm k k
 // Construct and append a VPTESTMD.BCST instruction to the active function.
@@ -61116,6 +68594,10 @@ func (c *Context) VPTESTMD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPTESTMD.BCST m128/m32bcst xmm k
+// 	VPTESTMD.BCST m128/m32bcst xmm k k
+// 	VPTESTMD.BCST m256/m32bcst ymm k
+// 	VPTESTMD.BCST m256/m32bcst ymm k k
 // 	VPTESTMD.BCST m512/m32bcst zmm k
 // 	VPTESTMD.BCST m512/m32bcst zmm k k
 // Construct and append a VPTESTMD.BCST instruction to the active function.
@@ -61126,6 +68608,14 @@ func VPTESTMD_BCST(ops ...operand.Op) { ctx.VPTESTMD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPTESTMQ m128/m64bcst xmm k
+// 	VPTESTMQ m128/m64bcst xmm k k
+// 	VPTESTMQ xmm          xmm k
+// 	VPTESTMQ xmm          xmm k k
+// 	VPTESTMQ m256/m64bcst ymm k
+// 	VPTESTMQ m256/m64bcst ymm k k
+// 	VPTESTMQ ymm          ymm k
+// 	VPTESTMQ ymm          ymm k k
 // 	VPTESTMQ m512/m64bcst zmm k
 // 	VPTESTMQ m512/m64bcst zmm k k
 // 	VPTESTMQ zmm          zmm k
@@ -61143,6 +68633,14 @@ func (c *Context) VPTESTMQ(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPTESTMQ m128/m64bcst xmm k
+// 	VPTESTMQ m128/m64bcst xmm k k
+// 	VPTESTMQ xmm          xmm k
+// 	VPTESTMQ xmm          xmm k k
+// 	VPTESTMQ m256/m64bcst ymm k
+// 	VPTESTMQ m256/m64bcst ymm k k
+// 	VPTESTMQ ymm          ymm k
+// 	VPTESTMQ ymm          ymm k k
 // 	VPTESTMQ m512/m64bcst zmm k
 // 	VPTESTMQ m512/m64bcst zmm k k
 // 	VPTESTMQ zmm          zmm k
@@ -61155,6 +68653,10 @@ func VPTESTMQ(ops ...operand.Op) { ctx.VPTESTMQ(ops...) }
 //
 // Forms:
 //
+// 	VPTESTMQ.BCST m128/m64bcst xmm k
+// 	VPTESTMQ.BCST m128/m64bcst xmm k k
+// 	VPTESTMQ.BCST m256/m64bcst ymm k
+// 	VPTESTMQ.BCST m256/m64bcst ymm k k
 // 	VPTESTMQ.BCST m512/m64bcst zmm k
 // 	VPTESTMQ.BCST m512/m64bcst zmm k k
 // Construct and append a VPTESTMQ.BCST instruction to the active function.
@@ -61170,6 +68672,10 @@ func (c *Context) VPTESTMQ_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPTESTMQ.BCST m128/m64bcst xmm k
+// 	VPTESTMQ.BCST m128/m64bcst xmm k k
+// 	VPTESTMQ.BCST m256/m64bcst ymm k
+// 	VPTESTMQ.BCST m256/m64bcst ymm k k
 // 	VPTESTMQ.BCST m512/m64bcst zmm k
 // 	VPTESTMQ.BCST m512/m64bcst zmm k k
 // Construct and append a VPTESTMQ.BCST instruction to the active function.
@@ -61180,6 +68686,14 @@ func VPTESTMQ_BCST(ops ...operand.Op) { ctx.VPTESTMQ_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPTESTNMD m128/m32bcst xmm k
+// 	VPTESTNMD m128/m32bcst xmm k k
+// 	VPTESTNMD xmm          xmm k
+// 	VPTESTNMD xmm          xmm k k
+// 	VPTESTNMD m256/m32bcst ymm k
+// 	VPTESTNMD m256/m32bcst ymm k k
+// 	VPTESTNMD ymm          ymm k
+// 	VPTESTNMD ymm          ymm k k
 // 	VPTESTNMD m512/m32bcst zmm k
 // 	VPTESTNMD m512/m32bcst zmm k k
 // 	VPTESTNMD zmm          zmm k
@@ -61197,6 +68711,14 @@ func (c *Context) VPTESTNMD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPTESTNMD m128/m32bcst xmm k
+// 	VPTESTNMD m128/m32bcst xmm k k
+// 	VPTESTNMD xmm          xmm k
+// 	VPTESTNMD xmm          xmm k k
+// 	VPTESTNMD m256/m32bcst ymm k
+// 	VPTESTNMD m256/m32bcst ymm k k
+// 	VPTESTNMD ymm          ymm k
+// 	VPTESTNMD ymm          ymm k k
 // 	VPTESTNMD m512/m32bcst zmm k
 // 	VPTESTNMD m512/m32bcst zmm k k
 // 	VPTESTNMD zmm          zmm k
@@ -61209,6 +68731,10 @@ func VPTESTNMD(ops ...operand.Op) { ctx.VPTESTNMD(ops...) }
 //
 // Forms:
 //
+// 	VPTESTNMD.BCST m128/m32bcst xmm k
+// 	VPTESTNMD.BCST m128/m32bcst xmm k k
+// 	VPTESTNMD.BCST m256/m32bcst ymm k
+// 	VPTESTNMD.BCST m256/m32bcst ymm k k
 // 	VPTESTNMD.BCST m512/m32bcst zmm k
 // 	VPTESTNMD.BCST m512/m32bcst zmm k k
 // Construct and append a VPTESTNMD.BCST instruction to the active function.
@@ -61224,6 +68750,10 @@ func (c *Context) VPTESTNMD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPTESTNMD.BCST m128/m32bcst xmm k
+// 	VPTESTNMD.BCST m128/m32bcst xmm k k
+// 	VPTESTNMD.BCST m256/m32bcst ymm k
+// 	VPTESTNMD.BCST m256/m32bcst ymm k k
 // 	VPTESTNMD.BCST m512/m32bcst zmm k
 // 	VPTESTNMD.BCST m512/m32bcst zmm k k
 // Construct and append a VPTESTNMD.BCST instruction to the active function.
@@ -61234,6 +68764,14 @@ func VPTESTNMD_BCST(ops ...operand.Op) { ctx.VPTESTNMD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPTESTNMQ m128/m64bcst xmm k
+// 	VPTESTNMQ m128/m64bcst xmm k k
+// 	VPTESTNMQ xmm          xmm k
+// 	VPTESTNMQ xmm          xmm k k
+// 	VPTESTNMQ m256/m64bcst ymm k
+// 	VPTESTNMQ m256/m64bcst ymm k k
+// 	VPTESTNMQ ymm          ymm k
+// 	VPTESTNMQ ymm          ymm k k
 // 	VPTESTNMQ m512/m64bcst zmm k
 // 	VPTESTNMQ m512/m64bcst zmm k k
 // 	VPTESTNMQ zmm          zmm k
@@ -61251,6 +68789,14 @@ func (c *Context) VPTESTNMQ(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPTESTNMQ m128/m64bcst xmm k
+// 	VPTESTNMQ m128/m64bcst xmm k k
+// 	VPTESTNMQ xmm          xmm k
+// 	VPTESTNMQ xmm          xmm k k
+// 	VPTESTNMQ m256/m64bcst ymm k
+// 	VPTESTNMQ m256/m64bcst ymm k k
+// 	VPTESTNMQ ymm          ymm k
+// 	VPTESTNMQ ymm          ymm k k
 // 	VPTESTNMQ m512/m64bcst zmm k
 // 	VPTESTNMQ m512/m64bcst zmm k k
 // 	VPTESTNMQ zmm          zmm k
@@ -61263,6 +68809,10 @@ func VPTESTNMQ(ops ...operand.Op) { ctx.VPTESTNMQ(ops...) }
 //
 // Forms:
 //
+// 	VPTESTNMQ.BCST m128/m64bcst xmm k
+// 	VPTESTNMQ.BCST m128/m64bcst xmm k k
+// 	VPTESTNMQ.BCST m256/m64bcst ymm k
+// 	VPTESTNMQ.BCST m256/m64bcst ymm k k
 // 	VPTESTNMQ.BCST m512/m64bcst zmm k
 // 	VPTESTNMQ.BCST m512/m64bcst zmm k k
 // Construct and append a VPTESTNMQ.BCST instruction to the active function.
@@ -61278,6 +68828,10 @@ func (c *Context) VPTESTNMQ_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPTESTNMQ.BCST m128/m64bcst xmm k
+// 	VPTESTNMQ.BCST m128/m64bcst xmm k k
+// 	VPTESTNMQ.BCST m256/m64bcst ymm k
+// 	VPTESTNMQ.BCST m256/m64bcst ymm k k
 // 	VPTESTNMQ.BCST m512/m64bcst zmm k
 // 	VPTESTNMQ.BCST m512/m64bcst zmm k k
 // Construct and append a VPTESTNMQ.BCST instruction to the active function.
@@ -61317,6 +68871,14 @@ func VPUNPCKHBW(mxy, xy, xy1 operand.Op) { ctx.VPUNPCKHBW(mxy, xy, xy1) }
 //
 // Forms:
 //
+// 	VPUNPCKHDQ m128/m32bcst xmm xmm
+// 	VPUNPCKHDQ m128/m32bcst xmm k xmm
+// 	VPUNPCKHDQ xmm          xmm xmm
+// 	VPUNPCKHDQ xmm          xmm k xmm
+// 	VPUNPCKHDQ m256/m32bcst ymm ymm
+// 	VPUNPCKHDQ m256/m32bcst ymm k ymm
+// 	VPUNPCKHDQ ymm          ymm ymm
+// 	VPUNPCKHDQ ymm          ymm k ymm
 // 	VPUNPCKHDQ m512/m32bcst zmm zmm
 // 	VPUNPCKHDQ m512/m32bcst zmm k zmm
 // 	VPUNPCKHDQ zmm          zmm zmm
@@ -61338,6 +68900,14 @@ func (c *Context) VPUNPCKHDQ(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPUNPCKHDQ m128/m32bcst xmm xmm
+// 	VPUNPCKHDQ m128/m32bcst xmm k xmm
+// 	VPUNPCKHDQ xmm          xmm xmm
+// 	VPUNPCKHDQ xmm          xmm k xmm
+// 	VPUNPCKHDQ m256/m32bcst ymm ymm
+// 	VPUNPCKHDQ m256/m32bcst ymm k ymm
+// 	VPUNPCKHDQ ymm          ymm ymm
+// 	VPUNPCKHDQ ymm          ymm k ymm
 // 	VPUNPCKHDQ m512/m32bcst zmm zmm
 // 	VPUNPCKHDQ m512/m32bcst zmm k zmm
 // 	VPUNPCKHDQ zmm          zmm zmm
@@ -61354,6 +68924,10 @@ func VPUNPCKHDQ(ops ...operand.Op) { ctx.VPUNPCKHDQ(ops...) }
 //
 // Forms:
 //
+// 	VPUNPCKHDQ.BCST m128/m32bcst xmm xmm
+// 	VPUNPCKHDQ.BCST m128/m32bcst xmm k xmm
+// 	VPUNPCKHDQ.BCST m256/m32bcst ymm ymm
+// 	VPUNPCKHDQ.BCST m256/m32bcst ymm k ymm
 // 	VPUNPCKHDQ.BCST m512/m32bcst zmm zmm
 // 	VPUNPCKHDQ.BCST m512/m32bcst zmm k zmm
 // Construct and append a VPUNPCKHDQ.BCST instruction to the active function.
@@ -61369,6 +68943,10 @@ func (c *Context) VPUNPCKHDQ_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPUNPCKHDQ.BCST m128/m32bcst xmm xmm
+// 	VPUNPCKHDQ.BCST m128/m32bcst xmm k xmm
+// 	VPUNPCKHDQ.BCST m256/m32bcst ymm ymm
+// 	VPUNPCKHDQ.BCST m256/m32bcst ymm k ymm
 // 	VPUNPCKHDQ.BCST m512/m32bcst zmm zmm
 // 	VPUNPCKHDQ.BCST m512/m32bcst zmm k zmm
 // Construct and append a VPUNPCKHDQ.BCST instruction to the active function.
@@ -61379,10 +68957,12 @@ func VPUNPCKHDQ_BCST(ops ...operand.Op) { ctx.VPUNPCKHDQ_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPUNPCKHDQ.BCST.Z m128/m32bcst xmm k xmm
+// 	VPUNPCKHDQ.BCST.Z m256/m32bcst ymm k ymm
 // 	VPUNPCKHDQ.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VPUNPCKHDQ.BCST.Z instruction to the active function.
-func (c *Context) VPUNPCKHDQ_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VPUNPCKHDQ_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VPUNPCKHDQ_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPUNPCKHDQ_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -61393,20 +68973,26 @@ func (c *Context) VPUNPCKHDQ_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPUNPCKHDQ.BCST.Z m128/m32bcst xmm k xmm
+// 	VPUNPCKHDQ.BCST.Z m256/m32bcst ymm k ymm
 // 	VPUNPCKHDQ.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VPUNPCKHDQ.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VPUNPCKHDQ_BCST_Z(m, z, k, z1 operand.Op) { ctx.VPUNPCKHDQ_BCST_Z(m, z, k, z1) }
+func VPUNPCKHDQ_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VPUNPCKHDQ_BCST_Z(m, xyz, k, xyz1) }
 
 // VPUNPCKHDQ_Z: Unpack and Interleave High-Order Doublewords into Quadwords (Zeroing Masking).
 //
 // Forms:
 //
+// 	VPUNPCKHDQ.Z m128/m32bcst xmm k xmm
+// 	VPUNPCKHDQ.Z xmm          xmm k xmm
+// 	VPUNPCKHDQ.Z m256/m32bcst ymm k ymm
+// 	VPUNPCKHDQ.Z ymm          ymm k ymm
 // 	VPUNPCKHDQ.Z m512/m32bcst zmm k zmm
 // 	VPUNPCKHDQ.Z zmm          zmm k zmm
 // Construct and append a VPUNPCKHDQ.Z instruction to the active function.
-func (c *Context) VPUNPCKHDQ_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VPUNPCKHDQ_Z(mz, z, k, z1); err == nil {
+func (c *Context) VPUNPCKHDQ_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPUNPCKHDQ_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -61417,16 +69003,28 @@ func (c *Context) VPUNPCKHDQ_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPUNPCKHDQ.Z m128/m32bcst xmm k xmm
+// 	VPUNPCKHDQ.Z xmm          xmm k xmm
+// 	VPUNPCKHDQ.Z m256/m32bcst ymm k ymm
+// 	VPUNPCKHDQ.Z ymm          ymm k ymm
 // 	VPUNPCKHDQ.Z m512/m32bcst zmm k zmm
 // 	VPUNPCKHDQ.Z zmm          zmm k zmm
 // Construct and append a VPUNPCKHDQ.Z instruction to the active function.
 // Operates on the global context.
-func VPUNPCKHDQ_Z(mz, z, k, z1 operand.Op) { ctx.VPUNPCKHDQ_Z(mz, z, k, z1) }
+func VPUNPCKHDQ_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPUNPCKHDQ_Z(mxyz, xyz, k, xyz1) }
 
 // VPUNPCKHQDQ: Unpack and Interleave High-Order Quadwords into Double Quadwords.
 //
 // Forms:
 //
+// 	VPUNPCKHQDQ m128/m64bcst xmm xmm
+// 	VPUNPCKHQDQ m128/m64bcst xmm k xmm
+// 	VPUNPCKHQDQ xmm          xmm xmm
+// 	VPUNPCKHQDQ xmm          xmm k xmm
+// 	VPUNPCKHQDQ m256/m64bcst ymm ymm
+// 	VPUNPCKHQDQ m256/m64bcst ymm k ymm
+// 	VPUNPCKHQDQ ymm          ymm ymm
+// 	VPUNPCKHQDQ ymm          ymm k ymm
 // 	VPUNPCKHQDQ m512/m64bcst zmm zmm
 // 	VPUNPCKHQDQ m512/m64bcst zmm k zmm
 // 	VPUNPCKHQDQ zmm          zmm zmm
@@ -61448,6 +69046,14 @@ func (c *Context) VPUNPCKHQDQ(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPUNPCKHQDQ m128/m64bcst xmm xmm
+// 	VPUNPCKHQDQ m128/m64bcst xmm k xmm
+// 	VPUNPCKHQDQ xmm          xmm xmm
+// 	VPUNPCKHQDQ xmm          xmm k xmm
+// 	VPUNPCKHQDQ m256/m64bcst ymm ymm
+// 	VPUNPCKHQDQ m256/m64bcst ymm k ymm
+// 	VPUNPCKHQDQ ymm          ymm ymm
+// 	VPUNPCKHQDQ ymm          ymm k ymm
 // 	VPUNPCKHQDQ m512/m64bcst zmm zmm
 // 	VPUNPCKHQDQ m512/m64bcst zmm k zmm
 // 	VPUNPCKHQDQ zmm          zmm zmm
@@ -61464,6 +69070,10 @@ func VPUNPCKHQDQ(ops ...operand.Op) { ctx.VPUNPCKHQDQ(ops...) }
 //
 // Forms:
 //
+// 	VPUNPCKHQDQ.BCST m128/m64bcst xmm xmm
+// 	VPUNPCKHQDQ.BCST m128/m64bcst xmm k xmm
+// 	VPUNPCKHQDQ.BCST m256/m64bcst ymm ymm
+// 	VPUNPCKHQDQ.BCST m256/m64bcst ymm k ymm
 // 	VPUNPCKHQDQ.BCST m512/m64bcst zmm zmm
 // 	VPUNPCKHQDQ.BCST m512/m64bcst zmm k zmm
 // Construct and append a VPUNPCKHQDQ.BCST instruction to the active function.
@@ -61479,6 +69089,10 @@ func (c *Context) VPUNPCKHQDQ_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPUNPCKHQDQ.BCST m128/m64bcst xmm xmm
+// 	VPUNPCKHQDQ.BCST m128/m64bcst xmm k xmm
+// 	VPUNPCKHQDQ.BCST m256/m64bcst ymm ymm
+// 	VPUNPCKHQDQ.BCST m256/m64bcst ymm k ymm
 // 	VPUNPCKHQDQ.BCST m512/m64bcst zmm zmm
 // 	VPUNPCKHQDQ.BCST m512/m64bcst zmm k zmm
 // Construct and append a VPUNPCKHQDQ.BCST instruction to the active function.
@@ -61489,10 +69103,12 @@ func VPUNPCKHQDQ_BCST(ops ...operand.Op) { ctx.VPUNPCKHQDQ_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPUNPCKHQDQ.BCST.Z m128/m64bcst xmm k xmm
+// 	VPUNPCKHQDQ.BCST.Z m256/m64bcst ymm k ymm
 // 	VPUNPCKHQDQ.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VPUNPCKHQDQ.BCST.Z instruction to the active function.
-func (c *Context) VPUNPCKHQDQ_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VPUNPCKHQDQ_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VPUNPCKHQDQ_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPUNPCKHQDQ_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -61503,20 +69119,26 @@ func (c *Context) VPUNPCKHQDQ_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPUNPCKHQDQ.BCST.Z m128/m64bcst xmm k xmm
+// 	VPUNPCKHQDQ.BCST.Z m256/m64bcst ymm k ymm
 // 	VPUNPCKHQDQ.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VPUNPCKHQDQ.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VPUNPCKHQDQ_BCST_Z(m, z, k, z1 operand.Op) { ctx.VPUNPCKHQDQ_BCST_Z(m, z, k, z1) }
+func VPUNPCKHQDQ_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VPUNPCKHQDQ_BCST_Z(m, xyz, k, xyz1) }
 
 // VPUNPCKHQDQ_Z: Unpack and Interleave High-Order Quadwords into Double Quadwords (Zeroing Masking).
 //
 // Forms:
 //
+// 	VPUNPCKHQDQ.Z m128/m64bcst xmm k xmm
+// 	VPUNPCKHQDQ.Z xmm          xmm k xmm
+// 	VPUNPCKHQDQ.Z m256/m64bcst ymm k ymm
+// 	VPUNPCKHQDQ.Z ymm          ymm k ymm
 // 	VPUNPCKHQDQ.Z m512/m64bcst zmm k zmm
 // 	VPUNPCKHQDQ.Z zmm          zmm k zmm
 // Construct and append a VPUNPCKHQDQ.Z instruction to the active function.
-func (c *Context) VPUNPCKHQDQ_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VPUNPCKHQDQ_Z(mz, z, k, z1); err == nil {
+func (c *Context) VPUNPCKHQDQ_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPUNPCKHQDQ_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -61527,11 +69149,15 @@ func (c *Context) VPUNPCKHQDQ_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPUNPCKHQDQ.Z m128/m64bcst xmm k xmm
+// 	VPUNPCKHQDQ.Z xmm          xmm k xmm
+// 	VPUNPCKHQDQ.Z m256/m64bcst ymm k ymm
+// 	VPUNPCKHQDQ.Z ymm          ymm k ymm
 // 	VPUNPCKHQDQ.Z m512/m64bcst zmm k zmm
 // 	VPUNPCKHQDQ.Z zmm          zmm k zmm
 // Construct and append a VPUNPCKHQDQ.Z instruction to the active function.
 // Operates on the global context.
-func VPUNPCKHQDQ_Z(mz, z, k, z1 operand.Op) { ctx.VPUNPCKHQDQ_Z(mz, z, k, z1) }
+func VPUNPCKHQDQ_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPUNPCKHQDQ_Z(mxyz, xyz, k, xyz1) }
 
 // VPUNPCKHWD: Unpack and Interleave High-Order Words into Doublewords.
 //
@@ -61595,6 +69221,14 @@ func VPUNPCKLBW(mxy, xy, xy1 operand.Op) { ctx.VPUNPCKLBW(mxy, xy, xy1) }
 //
 // Forms:
 //
+// 	VPUNPCKLDQ m128/m32bcst xmm xmm
+// 	VPUNPCKLDQ m128/m32bcst xmm k xmm
+// 	VPUNPCKLDQ xmm          xmm xmm
+// 	VPUNPCKLDQ xmm          xmm k xmm
+// 	VPUNPCKLDQ m256/m32bcst ymm ymm
+// 	VPUNPCKLDQ m256/m32bcst ymm k ymm
+// 	VPUNPCKLDQ ymm          ymm ymm
+// 	VPUNPCKLDQ ymm          ymm k ymm
 // 	VPUNPCKLDQ m512/m32bcst zmm zmm
 // 	VPUNPCKLDQ m512/m32bcst zmm k zmm
 // 	VPUNPCKLDQ zmm          zmm zmm
@@ -61616,6 +69250,14 @@ func (c *Context) VPUNPCKLDQ(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPUNPCKLDQ m128/m32bcst xmm xmm
+// 	VPUNPCKLDQ m128/m32bcst xmm k xmm
+// 	VPUNPCKLDQ xmm          xmm xmm
+// 	VPUNPCKLDQ xmm          xmm k xmm
+// 	VPUNPCKLDQ m256/m32bcst ymm ymm
+// 	VPUNPCKLDQ m256/m32bcst ymm k ymm
+// 	VPUNPCKLDQ ymm          ymm ymm
+// 	VPUNPCKLDQ ymm          ymm k ymm
 // 	VPUNPCKLDQ m512/m32bcst zmm zmm
 // 	VPUNPCKLDQ m512/m32bcst zmm k zmm
 // 	VPUNPCKLDQ zmm          zmm zmm
@@ -61632,6 +69274,10 @@ func VPUNPCKLDQ(ops ...operand.Op) { ctx.VPUNPCKLDQ(ops...) }
 //
 // Forms:
 //
+// 	VPUNPCKLDQ.BCST m128/m32bcst xmm xmm
+// 	VPUNPCKLDQ.BCST m128/m32bcst xmm k xmm
+// 	VPUNPCKLDQ.BCST m256/m32bcst ymm ymm
+// 	VPUNPCKLDQ.BCST m256/m32bcst ymm k ymm
 // 	VPUNPCKLDQ.BCST m512/m32bcst zmm zmm
 // 	VPUNPCKLDQ.BCST m512/m32bcst zmm k zmm
 // Construct and append a VPUNPCKLDQ.BCST instruction to the active function.
@@ -61647,6 +69293,10 @@ func (c *Context) VPUNPCKLDQ_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPUNPCKLDQ.BCST m128/m32bcst xmm xmm
+// 	VPUNPCKLDQ.BCST m128/m32bcst xmm k xmm
+// 	VPUNPCKLDQ.BCST m256/m32bcst ymm ymm
+// 	VPUNPCKLDQ.BCST m256/m32bcst ymm k ymm
 // 	VPUNPCKLDQ.BCST m512/m32bcst zmm zmm
 // 	VPUNPCKLDQ.BCST m512/m32bcst zmm k zmm
 // Construct and append a VPUNPCKLDQ.BCST instruction to the active function.
@@ -61657,10 +69307,12 @@ func VPUNPCKLDQ_BCST(ops ...operand.Op) { ctx.VPUNPCKLDQ_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPUNPCKLDQ.BCST.Z m128/m32bcst xmm k xmm
+// 	VPUNPCKLDQ.BCST.Z m256/m32bcst ymm k ymm
 // 	VPUNPCKLDQ.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VPUNPCKLDQ.BCST.Z instruction to the active function.
-func (c *Context) VPUNPCKLDQ_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VPUNPCKLDQ_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VPUNPCKLDQ_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPUNPCKLDQ_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -61671,20 +69323,26 @@ func (c *Context) VPUNPCKLDQ_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPUNPCKLDQ.BCST.Z m128/m32bcst xmm k xmm
+// 	VPUNPCKLDQ.BCST.Z m256/m32bcst ymm k ymm
 // 	VPUNPCKLDQ.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VPUNPCKLDQ.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VPUNPCKLDQ_BCST_Z(m, z, k, z1 operand.Op) { ctx.VPUNPCKLDQ_BCST_Z(m, z, k, z1) }
+func VPUNPCKLDQ_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VPUNPCKLDQ_BCST_Z(m, xyz, k, xyz1) }
 
 // VPUNPCKLDQ_Z: Unpack and Interleave Low-Order Doublewords into Quadwords (Zeroing Masking).
 //
 // Forms:
 //
+// 	VPUNPCKLDQ.Z m128/m32bcst xmm k xmm
+// 	VPUNPCKLDQ.Z xmm          xmm k xmm
+// 	VPUNPCKLDQ.Z m256/m32bcst ymm k ymm
+// 	VPUNPCKLDQ.Z ymm          ymm k ymm
 // 	VPUNPCKLDQ.Z m512/m32bcst zmm k zmm
 // 	VPUNPCKLDQ.Z zmm          zmm k zmm
 // Construct and append a VPUNPCKLDQ.Z instruction to the active function.
-func (c *Context) VPUNPCKLDQ_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VPUNPCKLDQ_Z(mz, z, k, z1); err == nil {
+func (c *Context) VPUNPCKLDQ_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPUNPCKLDQ_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -61695,16 +69353,28 @@ func (c *Context) VPUNPCKLDQ_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPUNPCKLDQ.Z m128/m32bcst xmm k xmm
+// 	VPUNPCKLDQ.Z xmm          xmm k xmm
+// 	VPUNPCKLDQ.Z m256/m32bcst ymm k ymm
+// 	VPUNPCKLDQ.Z ymm          ymm k ymm
 // 	VPUNPCKLDQ.Z m512/m32bcst zmm k zmm
 // 	VPUNPCKLDQ.Z zmm          zmm k zmm
 // Construct and append a VPUNPCKLDQ.Z instruction to the active function.
 // Operates on the global context.
-func VPUNPCKLDQ_Z(mz, z, k, z1 operand.Op) { ctx.VPUNPCKLDQ_Z(mz, z, k, z1) }
+func VPUNPCKLDQ_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPUNPCKLDQ_Z(mxyz, xyz, k, xyz1) }
 
 // VPUNPCKLQDQ: Unpack and Interleave Low-Order Quadwords into Double Quadwords.
 //
 // Forms:
 //
+// 	VPUNPCKLQDQ m128/m64bcst xmm xmm
+// 	VPUNPCKLQDQ m128/m64bcst xmm k xmm
+// 	VPUNPCKLQDQ xmm          xmm xmm
+// 	VPUNPCKLQDQ xmm          xmm k xmm
+// 	VPUNPCKLQDQ m256/m64bcst ymm ymm
+// 	VPUNPCKLQDQ m256/m64bcst ymm k ymm
+// 	VPUNPCKLQDQ ymm          ymm ymm
+// 	VPUNPCKLQDQ ymm          ymm k ymm
 // 	VPUNPCKLQDQ m512/m64bcst zmm zmm
 // 	VPUNPCKLQDQ m512/m64bcst zmm k zmm
 // 	VPUNPCKLQDQ zmm          zmm zmm
@@ -61726,6 +69396,14 @@ func (c *Context) VPUNPCKLQDQ(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPUNPCKLQDQ m128/m64bcst xmm xmm
+// 	VPUNPCKLQDQ m128/m64bcst xmm k xmm
+// 	VPUNPCKLQDQ xmm          xmm xmm
+// 	VPUNPCKLQDQ xmm          xmm k xmm
+// 	VPUNPCKLQDQ m256/m64bcst ymm ymm
+// 	VPUNPCKLQDQ m256/m64bcst ymm k ymm
+// 	VPUNPCKLQDQ ymm          ymm ymm
+// 	VPUNPCKLQDQ ymm          ymm k ymm
 // 	VPUNPCKLQDQ m512/m64bcst zmm zmm
 // 	VPUNPCKLQDQ m512/m64bcst zmm k zmm
 // 	VPUNPCKLQDQ zmm          zmm zmm
@@ -61742,6 +69420,10 @@ func VPUNPCKLQDQ(ops ...operand.Op) { ctx.VPUNPCKLQDQ(ops...) }
 //
 // Forms:
 //
+// 	VPUNPCKLQDQ.BCST m128/m64bcst xmm xmm
+// 	VPUNPCKLQDQ.BCST m128/m64bcst xmm k xmm
+// 	VPUNPCKLQDQ.BCST m256/m64bcst ymm ymm
+// 	VPUNPCKLQDQ.BCST m256/m64bcst ymm k ymm
 // 	VPUNPCKLQDQ.BCST m512/m64bcst zmm zmm
 // 	VPUNPCKLQDQ.BCST m512/m64bcst zmm k zmm
 // Construct and append a VPUNPCKLQDQ.BCST instruction to the active function.
@@ -61757,6 +69439,10 @@ func (c *Context) VPUNPCKLQDQ_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPUNPCKLQDQ.BCST m128/m64bcst xmm xmm
+// 	VPUNPCKLQDQ.BCST m128/m64bcst xmm k xmm
+// 	VPUNPCKLQDQ.BCST m256/m64bcst ymm ymm
+// 	VPUNPCKLQDQ.BCST m256/m64bcst ymm k ymm
 // 	VPUNPCKLQDQ.BCST m512/m64bcst zmm zmm
 // 	VPUNPCKLQDQ.BCST m512/m64bcst zmm k zmm
 // Construct and append a VPUNPCKLQDQ.BCST instruction to the active function.
@@ -61767,10 +69453,12 @@ func VPUNPCKLQDQ_BCST(ops ...operand.Op) { ctx.VPUNPCKLQDQ_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPUNPCKLQDQ.BCST.Z m128/m64bcst xmm k xmm
+// 	VPUNPCKLQDQ.BCST.Z m256/m64bcst ymm k ymm
 // 	VPUNPCKLQDQ.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VPUNPCKLQDQ.BCST.Z instruction to the active function.
-func (c *Context) VPUNPCKLQDQ_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VPUNPCKLQDQ_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VPUNPCKLQDQ_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPUNPCKLQDQ_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -61781,20 +69469,26 @@ func (c *Context) VPUNPCKLQDQ_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPUNPCKLQDQ.BCST.Z m128/m64bcst xmm k xmm
+// 	VPUNPCKLQDQ.BCST.Z m256/m64bcst ymm k ymm
 // 	VPUNPCKLQDQ.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VPUNPCKLQDQ.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VPUNPCKLQDQ_BCST_Z(m, z, k, z1 operand.Op) { ctx.VPUNPCKLQDQ_BCST_Z(m, z, k, z1) }
+func VPUNPCKLQDQ_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VPUNPCKLQDQ_BCST_Z(m, xyz, k, xyz1) }
 
 // VPUNPCKLQDQ_Z: Unpack and Interleave Low-Order Quadwords into Double Quadwords (Zeroing Masking).
 //
 // Forms:
 //
+// 	VPUNPCKLQDQ.Z m128/m64bcst xmm k xmm
+// 	VPUNPCKLQDQ.Z xmm          xmm k xmm
+// 	VPUNPCKLQDQ.Z m256/m64bcst ymm k ymm
+// 	VPUNPCKLQDQ.Z ymm          ymm k ymm
 // 	VPUNPCKLQDQ.Z m512/m64bcst zmm k zmm
 // 	VPUNPCKLQDQ.Z zmm          zmm k zmm
 // Construct and append a VPUNPCKLQDQ.Z instruction to the active function.
-func (c *Context) VPUNPCKLQDQ_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VPUNPCKLQDQ_Z(mz, z, k, z1); err == nil {
+func (c *Context) VPUNPCKLQDQ_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPUNPCKLQDQ_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -61805,11 +69499,15 @@ func (c *Context) VPUNPCKLQDQ_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPUNPCKLQDQ.Z m128/m64bcst xmm k xmm
+// 	VPUNPCKLQDQ.Z xmm          xmm k xmm
+// 	VPUNPCKLQDQ.Z m256/m64bcst ymm k ymm
+// 	VPUNPCKLQDQ.Z ymm          ymm k ymm
 // 	VPUNPCKLQDQ.Z m512/m64bcst zmm k zmm
 // 	VPUNPCKLQDQ.Z zmm          zmm k zmm
 // Construct and append a VPUNPCKLQDQ.Z instruction to the active function.
 // Operates on the global context.
-func VPUNPCKLQDQ_Z(mz, z, k, z1 operand.Op) { ctx.VPUNPCKLQDQ_Z(mz, z, k, z1) }
+func VPUNPCKLQDQ_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPUNPCKLQDQ_Z(mxyz, xyz, k, xyz1) }
 
 // VPUNPCKLWD: Unpack and Interleave Low-Order Words into Doublewords.
 //
@@ -61873,6 +69571,14 @@ func VPXOR(mxy, xy, xy1 operand.Op) { ctx.VPXOR(mxy, xy, xy1) }
 //
 // Forms:
 //
+// 	VPXORD m128/m32bcst xmm xmm
+// 	VPXORD m128/m32bcst xmm k xmm
+// 	VPXORD xmm          xmm xmm
+// 	VPXORD xmm          xmm k xmm
+// 	VPXORD m256/m32bcst ymm ymm
+// 	VPXORD m256/m32bcst ymm k ymm
+// 	VPXORD ymm          ymm ymm
+// 	VPXORD ymm          ymm k ymm
 // 	VPXORD m512/m32bcst zmm zmm
 // 	VPXORD m512/m32bcst zmm k zmm
 // 	VPXORD zmm          zmm zmm
@@ -61890,6 +69596,14 @@ func (c *Context) VPXORD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPXORD m128/m32bcst xmm xmm
+// 	VPXORD m128/m32bcst xmm k xmm
+// 	VPXORD xmm          xmm xmm
+// 	VPXORD xmm          xmm k xmm
+// 	VPXORD m256/m32bcst ymm ymm
+// 	VPXORD m256/m32bcst ymm k ymm
+// 	VPXORD ymm          ymm ymm
+// 	VPXORD ymm          ymm k ymm
 // 	VPXORD m512/m32bcst zmm zmm
 // 	VPXORD m512/m32bcst zmm k zmm
 // 	VPXORD zmm          zmm zmm
@@ -61902,6 +69616,10 @@ func VPXORD(ops ...operand.Op) { ctx.VPXORD(ops...) }
 //
 // Forms:
 //
+// 	VPXORD.BCST m128/m32bcst xmm xmm
+// 	VPXORD.BCST m128/m32bcst xmm k xmm
+// 	VPXORD.BCST m256/m32bcst ymm ymm
+// 	VPXORD.BCST m256/m32bcst ymm k ymm
 // 	VPXORD.BCST m512/m32bcst zmm zmm
 // 	VPXORD.BCST m512/m32bcst zmm k zmm
 // Construct and append a VPXORD.BCST instruction to the active function.
@@ -61917,6 +69635,10 @@ func (c *Context) VPXORD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPXORD.BCST m128/m32bcst xmm xmm
+// 	VPXORD.BCST m128/m32bcst xmm k xmm
+// 	VPXORD.BCST m256/m32bcst ymm ymm
+// 	VPXORD.BCST m256/m32bcst ymm k ymm
 // 	VPXORD.BCST m512/m32bcst zmm zmm
 // 	VPXORD.BCST m512/m32bcst zmm k zmm
 // Construct and append a VPXORD.BCST instruction to the active function.
@@ -61927,10 +69649,12 @@ func VPXORD_BCST(ops ...operand.Op) { ctx.VPXORD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPXORD.BCST.Z m128/m32bcst xmm k xmm
+// 	VPXORD.BCST.Z m256/m32bcst ymm k ymm
 // 	VPXORD.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VPXORD.BCST.Z instruction to the active function.
-func (c *Context) VPXORD_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VPXORD_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VPXORD_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPXORD_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -61941,20 +69665,26 @@ func (c *Context) VPXORD_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPXORD.BCST.Z m128/m32bcst xmm k xmm
+// 	VPXORD.BCST.Z m256/m32bcst ymm k ymm
 // 	VPXORD.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VPXORD.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VPXORD_BCST_Z(m, z, k, z1 operand.Op) { ctx.VPXORD_BCST_Z(m, z, k, z1) }
+func VPXORD_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VPXORD_BCST_Z(m, xyz, k, xyz1) }
 
 // VPXORD_Z: Bitwise Logical Exclusive OR of Packed Doubleword Integers (Zeroing Masking).
 //
 // Forms:
 //
+// 	VPXORD.Z m128/m32bcst xmm k xmm
+// 	VPXORD.Z xmm          xmm k xmm
+// 	VPXORD.Z m256/m32bcst ymm k ymm
+// 	VPXORD.Z ymm          ymm k ymm
 // 	VPXORD.Z m512/m32bcst zmm k zmm
 // 	VPXORD.Z zmm          zmm k zmm
 // Construct and append a VPXORD.Z instruction to the active function.
-func (c *Context) VPXORD_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VPXORD_Z(mz, z, k, z1); err == nil {
+func (c *Context) VPXORD_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPXORD_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -61965,16 +69695,28 @@ func (c *Context) VPXORD_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPXORD.Z m128/m32bcst xmm k xmm
+// 	VPXORD.Z xmm          xmm k xmm
+// 	VPXORD.Z m256/m32bcst ymm k ymm
+// 	VPXORD.Z ymm          ymm k ymm
 // 	VPXORD.Z m512/m32bcst zmm k zmm
 // 	VPXORD.Z zmm          zmm k zmm
 // Construct and append a VPXORD.Z instruction to the active function.
 // Operates on the global context.
-func VPXORD_Z(mz, z, k, z1 operand.Op) { ctx.VPXORD_Z(mz, z, k, z1) }
+func VPXORD_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPXORD_Z(mxyz, xyz, k, xyz1) }
 
 // VPXORQ: Bitwise Logical Exclusive OR of Packed Quadword Integers.
 //
 // Forms:
 //
+// 	VPXORQ m128/m64bcst xmm xmm
+// 	VPXORQ m128/m64bcst xmm k xmm
+// 	VPXORQ xmm          xmm xmm
+// 	VPXORQ xmm          xmm k xmm
+// 	VPXORQ m256/m64bcst ymm ymm
+// 	VPXORQ m256/m64bcst ymm k ymm
+// 	VPXORQ ymm          ymm ymm
+// 	VPXORQ ymm          ymm k ymm
 // 	VPXORQ m512/m64bcst zmm zmm
 // 	VPXORQ m512/m64bcst zmm k zmm
 // 	VPXORQ zmm          zmm zmm
@@ -61992,6 +69734,14 @@ func (c *Context) VPXORQ(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPXORQ m128/m64bcst xmm xmm
+// 	VPXORQ m128/m64bcst xmm k xmm
+// 	VPXORQ xmm          xmm xmm
+// 	VPXORQ xmm          xmm k xmm
+// 	VPXORQ m256/m64bcst ymm ymm
+// 	VPXORQ m256/m64bcst ymm k ymm
+// 	VPXORQ ymm          ymm ymm
+// 	VPXORQ ymm          ymm k ymm
 // 	VPXORQ m512/m64bcst zmm zmm
 // 	VPXORQ m512/m64bcst zmm k zmm
 // 	VPXORQ zmm          zmm zmm
@@ -62004,6 +69754,10 @@ func VPXORQ(ops ...operand.Op) { ctx.VPXORQ(ops...) }
 //
 // Forms:
 //
+// 	VPXORQ.BCST m128/m64bcst xmm xmm
+// 	VPXORQ.BCST m128/m64bcst xmm k xmm
+// 	VPXORQ.BCST m256/m64bcst ymm ymm
+// 	VPXORQ.BCST m256/m64bcst ymm k ymm
 // 	VPXORQ.BCST m512/m64bcst zmm zmm
 // 	VPXORQ.BCST m512/m64bcst zmm k zmm
 // Construct and append a VPXORQ.BCST instruction to the active function.
@@ -62019,6 +69773,10 @@ func (c *Context) VPXORQ_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VPXORQ.BCST m128/m64bcst xmm xmm
+// 	VPXORQ.BCST m128/m64bcst xmm k xmm
+// 	VPXORQ.BCST m256/m64bcst ymm ymm
+// 	VPXORQ.BCST m256/m64bcst ymm k ymm
 // 	VPXORQ.BCST m512/m64bcst zmm zmm
 // 	VPXORQ.BCST m512/m64bcst zmm k zmm
 // Construct and append a VPXORQ.BCST instruction to the active function.
@@ -62029,10 +69787,12 @@ func VPXORQ_BCST(ops ...operand.Op) { ctx.VPXORQ_BCST(ops...) }
 //
 // Forms:
 //
+// 	VPXORQ.BCST.Z m128/m64bcst xmm k xmm
+// 	VPXORQ.BCST.Z m256/m64bcst ymm k ymm
 // 	VPXORQ.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VPXORQ.BCST.Z instruction to the active function.
-func (c *Context) VPXORQ_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VPXORQ_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VPXORQ_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPXORQ_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -62043,20 +69803,26 @@ func (c *Context) VPXORQ_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPXORQ.BCST.Z m128/m64bcst xmm k xmm
+// 	VPXORQ.BCST.Z m256/m64bcst ymm k ymm
 // 	VPXORQ.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VPXORQ.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VPXORQ_BCST_Z(m, z, k, z1 operand.Op) { ctx.VPXORQ_BCST_Z(m, z, k, z1) }
+func VPXORQ_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VPXORQ_BCST_Z(m, xyz, k, xyz1) }
 
 // VPXORQ_Z: Bitwise Logical Exclusive OR of Packed Quadword Integers (Zeroing Masking).
 //
 // Forms:
 //
+// 	VPXORQ.Z m128/m64bcst xmm k xmm
+// 	VPXORQ.Z xmm          xmm k xmm
+// 	VPXORQ.Z m256/m64bcst ymm k ymm
+// 	VPXORQ.Z ymm          ymm k ymm
 // 	VPXORQ.Z m512/m64bcst zmm k zmm
 // 	VPXORQ.Z zmm          zmm k zmm
 // Construct and append a VPXORQ.Z instruction to the active function.
-func (c *Context) VPXORQ_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VPXORQ_Z(mz, z, k, z1); err == nil {
+func (c *Context) VPXORQ_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPXORQ_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -62067,18 +69833,30 @@ func (c *Context) VPXORQ_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VPXORQ.Z m128/m64bcst xmm k xmm
+// 	VPXORQ.Z xmm          xmm k xmm
+// 	VPXORQ.Z m256/m64bcst ymm k ymm
+// 	VPXORQ.Z ymm          ymm k ymm
 // 	VPXORQ.Z m512/m64bcst zmm k zmm
 // 	VPXORQ.Z zmm          zmm k zmm
 // Construct and append a VPXORQ.Z instruction to the active function.
 // Operates on the global context.
-func VPXORQ_Z(mz, z, k, z1 operand.Op) { ctx.VPXORQ_Z(mz, z, k, z1) }
+func VPXORQ_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPXORQ_Z(mxyz, xyz, k, xyz1) }
 
 // VRCP14PD: Compute Approximate Reciprocals of Packed Double-Precision Floating-Point Values.
 //
 // Forms:
 //
+// 	VRCP14PD m128/m64bcst xmm
+// 	VRCP14PD m128/m64bcst k xmm
+// 	VRCP14PD m256/m64bcst ymm
+// 	VRCP14PD m256/m64bcst k ymm
 // 	VRCP14PD m512/m64bcst zmm
 // 	VRCP14PD m512/m64bcst k zmm
+// 	VRCP14PD xmm          xmm
+// 	VRCP14PD xmm          k xmm
+// 	VRCP14PD ymm          ymm
+// 	VRCP14PD ymm          k ymm
 // 	VRCP14PD zmm          zmm
 // 	VRCP14PD zmm          k zmm
 // Construct and append a VRCP14PD instruction to the active function.
@@ -62094,8 +69872,16 @@ func (c *Context) VRCP14PD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VRCP14PD m128/m64bcst xmm
+// 	VRCP14PD m128/m64bcst k xmm
+// 	VRCP14PD m256/m64bcst ymm
+// 	VRCP14PD m256/m64bcst k ymm
 // 	VRCP14PD m512/m64bcst zmm
 // 	VRCP14PD m512/m64bcst k zmm
+// 	VRCP14PD xmm          xmm
+// 	VRCP14PD xmm          k xmm
+// 	VRCP14PD ymm          ymm
+// 	VRCP14PD ymm          k ymm
 // 	VRCP14PD zmm          zmm
 // 	VRCP14PD zmm          k zmm
 // Construct and append a VRCP14PD instruction to the active function.
@@ -62106,6 +69892,10 @@ func VRCP14PD(ops ...operand.Op) { ctx.VRCP14PD(ops...) }
 //
 // Forms:
 //
+// 	VRCP14PD.BCST m128/m64bcst xmm
+// 	VRCP14PD.BCST m128/m64bcst k xmm
+// 	VRCP14PD.BCST m256/m64bcst ymm
+// 	VRCP14PD.BCST m256/m64bcst k ymm
 // 	VRCP14PD.BCST m512/m64bcst zmm
 // 	VRCP14PD.BCST m512/m64bcst k zmm
 // Construct and append a VRCP14PD.BCST instruction to the active function.
@@ -62121,6 +69911,10 @@ func (c *Context) VRCP14PD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VRCP14PD.BCST m128/m64bcst xmm
+// 	VRCP14PD.BCST m128/m64bcst k xmm
+// 	VRCP14PD.BCST m256/m64bcst ymm
+// 	VRCP14PD.BCST m256/m64bcst k ymm
 // 	VRCP14PD.BCST m512/m64bcst zmm
 // 	VRCP14PD.BCST m512/m64bcst k zmm
 // Construct and append a VRCP14PD.BCST instruction to the active function.
@@ -62131,10 +69925,12 @@ func VRCP14PD_BCST(ops ...operand.Op) { ctx.VRCP14PD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VRCP14PD.BCST.Z m128/m64bcst k xmm
+// 	VRCP14PD.BCST.Z m256/m64bcst k ymm
 // 	VRCP14PD.BCST.Z m512/m64bcst k zmm
 // Construct and append a VRCP14PD.BCST.Z instruction to the active function.
-func (c *Context) VRCP14PD_BCST_Z(m, k, z operand.Op) {
-	if inst, err := x86.VRCP14PD_BCST_Z(m, k, z); err == nil {
+func (c *Context) VRCP14PD_BCST_Z(m, k, xyz operand.Op) {
+	if inst, err := x86.VRCP14PD_BCST_Z(m, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -62145,20 +69941,26 @@ func (c *Context) VRCP14PD_BCST_Z(m, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VRCP14PD.BCST.Z m128/m64bcst k xmm
+// 	VRCP14PD.BCST.Z m256/m64bcst k ymm
 // 	VRCP14PD.BCST.Z m512/m64bcst k zmm
 // Construct and append a VRCP14PD.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VRCP14PD_BCST_Z(m, k, z operand.Op) { ctx.VRCP14PD_BCST_Z(m, k, z) }
+func VRCP14PD_BCST_Z(m, k, xyz operand.Op) { ctx.VRCP14PD_BCST_Z(m, k, xyz) }
 
 // VRCP14PD_Z: Compute Approximate Reciprocals of Packed Double-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
+// 	VRCP14PD.Z m128/m64bcst k xmm
+// 	VRCP14PD.Z m256/m64bcst k ymm
 // 	VRCP14PD.Z m512/m64bcst k zmm
+// 	VRCP14PD.Z xmm          k xmm
+// 	VRCP14PD.Z ymm          k ymm
 // 	VRCP14PD.Z zmm          k zmm
 // Construct and append a VRCP14PD.Z instruction to the active function.
-func (c *Context) VRCP14PD_Z(mz, k, z operand.Op) {
-	if inst, err := x86.VRCP14PD_Z(mz, k, z); err == nil {
+func (c *Context) VRCP14PD_Z(mxyz, k, xyz operand.Op) {
+	if inst, err := x86.VRCP14PD_Z(mxyz, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -62169,18 +69971,30 @@ func (c *Context) VRCP14PD_Z(mz, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VRCP14PD.Z m128/m64bcst k xmm
+// 	VRCP14PD.Z m256/m64bcst k ymm
 // 	VRCP14PD.Z m512/m64bcst k zmm
+// 	VRCP14PD.Z xmm          k xmm
+// 	VRCP14PD.Z ymm          k ymm
 // 	VRCP14PD.Z zmm          k zmm
 // Construct and append a VRCP14PD.Z instruction to the active function.
 // Operates on the global context.
-func VRCP14PD_Z(mz, k, z operand.Op) { ctx.VRCP14PD_Z(mz, k, z) }
+func VRCP14PD_Z(mxyz, k, xyz operand.Op) { ctx.VRCP14PD_Z(mxyz, k, xyz) }
 
 // VRCP14PS: Compute Approximate Reciprocals of Packed Single-Precision Floating-Point Values.
 //
 // Forms:
 //
+// 	VRCP14PS m128/m32bcst xmm
+// 	VRCP14PS m128/m32bcst k xmm
+// 	VRCP14PS m256/m32bcst ymm
+// 	VRCP14PS m256/m32bcst k ymm
 // 	VRCP14PS m512/m32bcst zmm
 // 	VRCP14PS m512/m32bcst k zmm
+// 	VRCP14PS xmm          xmm
+// 	VRCP14PS xmm          k xmm
+// 	VRCP14PS ymm          ymm
+// 	VRCP14PS ymm          k ymm
 // 	VRCP14PS zmm          zmm
 // 	VRCP14PS zmm          k zmm
 // Construct and append a VRCP14PS instruction to the active function.
@@ -62196,8 +70010,16 @@ func (c *Context) VRCP14PS(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VRCP14PS m128/m32bcst xmm
+// 	VRCP14PS m128/m32bcst k xmm
+// 	VRCP14PS m256/m32bcst ymm
+// 	VRCP14PS m256/m32bcst k ymm
 // 	VRCP14PS m512/m32bcst zmm
 // 	VRCP14PS m512/m32bcst k zmm
+// 	VRCP14PS xmm          xmm
+// 	VRCP14PS xmm          k xmm
+// 	VRCP14PS ymm          ymm
+// 	VRCP14PS ymm          k ymm
 // 	VRCP14PS zmm          zmm
 // 	VRCP14PS zmm          k zmm
 // Construct and append a VRCP14PS instruction to the active function.
@@ -62208,6 +70030,10 @@ func VRCP14PS(ops ...operand.Op) { ctx.VRCP14PS(ops...) }
 //
 // Forms:
 //
+// 	VRCP14PS.BCST m128/m32bcst xmm
+// 	VRCP14PS.BCST m128/m32bcst k xmm
+// 	VRCP14PS.BCST m256/m32bcst ymm
+// 	VRCP14PS.BCST m256/m32bcst k ymm
 // 	VRCP14PS.BCST m512/m32bcst zmm
 // 	VRCP14PS.BCST m512/m32bcst k zmm
 // Construct and append a VRCP14PS.BCST instruction to the active function.
@@ -62223,6 +70049,10 @@ func (c *Context) VRCP14PS_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VRCP14PS.BCST m128/m32bcst xmm
+// 	VRCP14PS.BCST m128/m32bcst k xmm
+// 	VRCP14PS.BCST m256/m32bcst ymm
+// 	VRCP14PS.BCST m256/m32bcst k ymm
 // 	VRCP14PS.BCST m512/m32bcst zmm
 // 	VRCP14PS.BCST m512/m32bcst k zmm
 // Construct and append a VRCP14PS.BCST instruction to the active function.
@@ -62233,10 +70063,12 @@ func VRCP14PS_BCST(ops ...operand.Op) { ctx.VRCP14PS_BCST(ops...) }
 //
 // Forms:
 //
+// 	VRCP14PS.BCST.Z m128/m32bcst k xmm
+// 	VRCP14PS.BCST.Z m256/m32bcst k ymm
 // 	VRCP14PS.BCST.Z m512/m32bcst k zmm
 // Construct and append a VRCP14PS.BCST.Z instruction to the active function.
-func (c *Context) VRCP14PS_BCST_Z(m, k, z operand.Op) {
-	if inst, err := x86.VRCP14PS_BCST_Z(m, k, z); err == nil {
+func (c *Context) VRCP14PS_BCST_Z(m, k, xyz operand.Op) {
+	if inst, err := x86.VRCP14PS_BCST_Z(m, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -62247,20 +70079,26 @@ func (c *Context) VRCP14PS_BCST_Z(m, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VRCP14PS.BCST.Z m128/m32bcst k xmm
+// 	VRCP14PS.BCST.Z m256/m32bcst k ymm
 // 	VRCP14PS.BCST.Z m512/m32bcst k zmm
 // Construct and append a VRCP14PS.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VRCP14PS_BCST_Z(m, k, z operand.Op) { ctx.VRCP14PS_BCST_Z(m, k, z) }
+func VRCP14PS_BCST_Z(m, k, xyz operand.Op) { ctx.VRCP14PS_BCST_Z(m, k, xyz) }
 
 // VRCP14PS_Z: Compute Approximate Reciprocals of Packed Single-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
+// 	VRCP14PS.Z m128/m32bcst k xmm
+// 	VRCP14PS.Z m256/m32bcst k ymm
 // 	VRCP14PS.Z m512/m32bcst k zmm
+// 	VRCP14PS.Z xmm          k xmm
+// 	VRCP14PS.Z ymm          k ymm
 // 	VRCP14PS.Z zmm          k zmm
 // Construct and append a VRCP14PS.Z instruction to the active function.
-func (c *Context) VRCP14PS_Z(mz, k, z operand.Op) {
-	if inst, err := x86.VRCP14PS_Z(mz, k, z); err == nil {
+func (c *Context) VRCP14PS_Z(mxyz, k, xyz operand.Op) {
+	if inst, err := x86.VRCP14PS_Z(mxyz, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -62271,11 +70109,15 @@ func (c *Context) VRCP14PS_Z(mz, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VRCP14PS.Z m128/m32bcst k xmm
+// 	VRCP14PS.Z m256/m32bcst k ymm
 // 	VRCP14PS.Z m512/m32bcst k zmm
+// 	VRCP14PS.Z xmm          k xmm
+// 	VRCP14PS.Z ymm          k ymm
 // 	VRCP14PS.Z zmm          k zmm
 // Construct and append a VRCP14PS.Z instruction to the active function.
 // Operates on the global context.
-func VRCP14PS_Z(mz, k, z operand.Op) { ctx.VRCP14PS_Z(mz, k, z) }
+func VRCP14PS_Z(mxyz, k, xyz operand.Op) { ctx.VRCP14PS_Z(mxyz, k, xyz) }
 
 // VRCP14SD: Compute Approximate Reciprocal of a Scalar Double-Precision Floating-Point Value.
 //
@@ -62443,8 +70285,16 @@ func VRCPSS(mx, x, x1 operand.Op) { ctx.VRCPSS(mx, x, x1) }
 //
 // Forms:
 //
+// 	VRNDSCALEPD imm8 m128/m64bcst xmm
+// 	VRNDSCALEPD imm8 m128/m64bcst k xmm
+// 	VRNDSCALEPD imm8 m256/m64bcst ymm
+// 	VRNDSCALEPD imm8 m256/m64bcst k ymm
 // 	VRNDSCALEPD imm8 m512/m64bcst zmm
 // 	VRNDSCALEPD imm8 m512/m64bcst k zmm
+// 	VRNDSCALEPD imm8 xmm          xmm
+// 	VRNDSCALEPD imm8 xmm          k xmm
+// 	VRNDSCALEPD imm8 ymm          ymm
+// 	VRNDSCALEPD imm8 ymm          k ymm
 // 	VRNDSCALEPD imm8 zmm          zmm
 // 	VRNDSCALEPD imm8 zmm          k zmm
 // Construct and append a VRNDSCALEPD instruction to the active function.
@@ -62460,8 +70310,16 @@ func (c *Context) VRNDSCALEPD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VRNDSCALEPD imm8 m128/m64bcst xmm
+// 	VRNDSCALEPD imm8 m128/m64bcst k xmm
+// 	VRNDSCALEPD imm8 m256/m64bcst ymm
+// 	VRNDSCALEPD imm8 m256/m64bcst k ymm
 // 	VRNDSCALEPD imm8 m512/m64bcst zmm
 // 	VRNDSCALEPD imm8 m512/m64bcst k zmm
+// 	VRNDSCALEPD imm8 xmm          xmm
+// 	VRNDSCALEPD imm8 xmm          k xmm
+// 	VRNDSCALEPD imm8 ymm          ymm
+// 	VRNDSCALEPD imm8 ymm          k ymm
 // 	VRNDSCALEPD imm8 zmm          zmm
 // 	VRNDSCALEPD imm8 zmm          k zmm
 // Construct and append a VRNDSCALEPD instruction to the active function.
@@ -62472,6 +70330,10 @@ func VRNDSCALEPD(ops ...operand.Op) { ctx.VRNDSCALEPD(ops...) }
 //
 // Forms:
 //
+// 	VRNDSCALEPD.BCST imm8 m128/m64bcst xmm
+// 	VRNDSCALEPD.BCST imm8 m128/m64bcst k xmm
+// 	VRNDSCALEPD.BCST imm8 m256/m64bcst ymm
+// 	VRNDSCALEPD.BCST imm8 m256/m64bcst k ymm
 // 	VRNDSCALEPD.BCST imm8 m512/m64bcst zmm
 // 	VRNDSCALEPD.BCST imm8 m512/m64bcst k zmm
 // Construct and append a VRNDSCALEPD.BCST instruction to the active function.
@@ -62487,6 +70349,10 @@ func (c *Context) VRNDSCALEPD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VRNDSCALEPD.BCST imm8 m128/m64bcst xmm
+// 	VRNDSCALEPD.BCST imm8 m128/m64bcst k xmm
+// 	VRNDSCALEPD.BCST imm8 m256/m64bcst ymm
+// 	VRNDSCALEPD.BCST imm8 m256/m64bcst k ymm
 // 	VRNDSCALEPD.BCST imm8 m512/m64bcst zmm
 // 	VRNDSCALEPD.BCST imm8 m512/m64bcst k zmm
 // Construct and append a VRNDSCALEPD.BCST instruction to the active function.
@@ -62497,10 +70363,12 @@ func VRNDSCALEPD_BCST(ops ...operand.Op) { ctx.VRNDSCALEPD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VRNDSCALEPD.BCST.Z imm8 m128/m64bcst k xmm
+// 	VRNDSCALEPD.BCST.Z imm8 m256/m64bcst k ymm
 // 	VRNDSCALEPD.BCST.Z imm8 m512/m64bcst k zmm
 // Construct and append a VRNDSCALEPD.BCST.Z instruction to the active function.
-func (c *Context) VRNDSCALEPD_BCST_Z(i, m, k, z operand.Op) {
-	if inst, err := x86.VRNDSCALEPD_BCST_Z(i, m, k, z); err == nil {
+func (c *Context) VRNDSCALEPD_BCST_Z(i, m, k, xyz operand.Op) {
+	if inst, err := x86.VRNDSCALEPD_BCST_Z(i, m, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -62511,10 +70379,12 @@ func (c *Context) VRNDSCALEPD_BCST_Z(i, m, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VRNDSCALEPD.BCST.Z imm8 m128/m64bcst k xmm
+// 	VRNDSCALEPD.BCST.Z imm8 m256/m64bcst k ymm
 // 	VRNDSCALEPD.BCST.Z imm8 m512/m64bcst k zmm
 // Construct and append a VRNDSCALEPD.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VRNDSCALEPD_BCST_Z(i, m, k, z operand.Op) { ctx.VRNDSCALEPD_BCST_Z(i, m, k, z) }
+func VRNDSCALEPD_BCST_Z(i, m, k, xyz operand.Op) { ctx.VRNDSCALEPD_BCST_Z(i, m, k, xyz) }
 
 // VRNDSCALEPD_SAE: Round Packed Double-Precision Floating-Point Values To Include A Given Number Of Fraction Bits (Suppress All Exceptions).
 //
@@ -62568,11 +70438,15 @@ func VRNDSCALEPD_SAE_Z(i, z, k, z1 operand.Op) { ctx.VRNDSCALEPD_SAE_Z(i, z, k, 
 //
 // Forms:
 //
+// 	VRNDSCALEPD.Z imm8 m128/m64bcst k xmm
+// 	VRNDSCALEPD.Z imm8 m256/m64bcst k ymm
 // 	VRNDSCALEPD.Z imm8 m512/m64bcst k zmm
+// 	VRNDSCALEPD.Z imm8 xmm          k xmm
+// 	VRNDSCALEPD.Z imm8 ymm          k ymm
 // 	VRNDSCALEPD.Z imm8 zmm          k zmm
 // Construct and append a VRNDSCALEPD.Z instruction to the active function.
-func (c *Context) VRNDSCALEPD_Z(i, mz, k, z operand.Op) {
-	if inst, err := x86.VRNDSCALEPD_Z(i, mz, k, z); err == nil {
+func (c *Context) VRNDSCALEPD_Z(i, mxyz, k, xyz operand.Op) {
+	if inst, err := x86.VRNDSCALEPD_Z(i, mxyz, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -62583,18 +70457,30 @@ func (c *Context) VRNDSCALEPD_Z(i, mz, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VRNDSCALEPD.Z imm8 m128/m64bcst k xmm
+// 	VRNDSCALEPD.Z imm8 m256/m64bcst k ymm
 // 	VRNDSCALEPD.Z imm8 m512/m64bcst k zmm
+// 	VRNDSCALEPD.Z imm8 xmm          k xmm
+// 	VRNDSCALEPD.Z imm8 ymm          k ymm
 // 	VRNDSCALEPD.Z imm8 zmm          k zmm
 // Construct and append a VRNDSCALEPD.Z instruction to the active function.
 // Operates on the global context.
-func VRNDSCALEPD_Z(i, mz, k, z operand.Op) { ctx.VRNDSCALEPD_Z(i, mz, k, z) }
+func VRNDSCALEPD_Z(i, mxyz, k, xyz operand.Op) { ctx.VRNDSCALEPD_Z(i, mxyz, k, xyz) }
 
 // VRNDSCALEPS: Round Packed Single-Precision Floating-Point Values To Include A Given Number Of Fraction Bits.
 //
 // Forms:
 //
+// 	VRNDSCALEPS imm8 m128/m32bcst xmm
+// 	VRNDSCALEPS imm8 m128/m32bcst k xmm
+// 	VRNDSCALEPS imm8 m256/m32bcst ymm
+// 	VRNDSCALEPS imm8 m256/m32bcst k ymm
 // 	VRNDSCALEPS imm8 m512/m32bcst zmm
 // 	VRNDSCALEPS imm8 m512/m32bcst k zmm
+// 	VRNDSCALEPS imm8 xmm          xmm
+// 	VRNDSCALEPS imm8 xmm          k xmm
+// 	VRNDSCALEPS imm8 ymm          ymm
+// 	VRNDSCALEPS imm8 ymm          k ymm
 // 	VRNDSCALEPS imm8 zmm          zmm
 // 	VRNDSCALEPS imm8 zmm          k zmm
 // Construct and append a VRNDSCALEPS instruction to the active function.
@@ -62610,8 +70496,16 @@ func (c *Context) VRNDSCALEPS(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VRNDSCALEPS imm8 m128/m32bcst xmm
+// 	VRNDSCALEPS imm8 m128/m32bcst k xmm
+// 	VRNDSCALEPS imm8 m256/m32bcst ymm
+// 	VRNDSCALEPS imm8 m256/m32bcst k ymm
 // 	VRNDSCALEPS imm8 m512/m32bcst zmm
 // 	VRNDSCALEPS imm8 m512/m32bcst k zmm
+// 	VRNDSCALEPS imm8 xmm          xmm
+// 	VRNDSCALEPS imm8 xmm          k xmm
+// 	VRNDSCALEPS imm8 ymm          ymm
+// 	VRNDSCALEPS imm8 ymm          k ymm
 // 	VRNDSCALEPS imm8 zmm          zmm
 // 	VRNDSCALEPS imm8 zmm          k zmm
 // Construct and append a VRNDSCALEPS instruction to the active function.
@@ -62622,6 +70516,10 @@ func VRNDSCALEPS(ops ...operand.Op) { ctx.VRNDSCALEPS(ops...) }
 //
 // Forms:
 //
+// 	VRNDSCALEPS.BCST imm8 m128/m32bcst xmm
+// 	VRNDSCALEPS.BCST imm8 m128/m32bcst k xmm
+// 	VRNDSCALEPS.BCST imm8 m256/m32bcst ymm
+// 	VRNDSCALEPS.BCST imm8 m256/m32bcst k ymm
 // 	VRNDSCALEPS.BCST imm8 m512/m32bcst zmm
 // 	VRNDSCALEPS.BCST imm8 m512/m32bcst k zmm
 // Construct and append a VRNDSCALEPS.BCST instruction to the active function.
@@ -62637,6 +70535,10 @@ func (c *Context) VRNDSCALEPS_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VRNDSCALEPS.BCST imm8 m128/m32bcst xmm
+// 	VRNDSCALEPS.BCST imm8 m128/m32bcst k xmm
+// 	VRNDSCALEPS.BCST imm8 m256/m32bcst ymm
+// 	VRNDSCALEPS.BCST imm8 m256/m32bcst k ymm
 // 	VRNDSCALEPS.BCST imm8 m512/m32bcst zmm
 // 	VRNDSCALEPS.BCST imm8 m512/m32bcst k zmm
 // Construct and append a VRNDSCALEPS.BCST instruction to the active function.
@@ -62647,10 +70549,12 @@ func VRNDSCALEPS_BCST(ops ...operand.Op) { ctx.VRNDSCALEPS_BCST(ops...) }
 //
 // Forms:
 //
+// 	VRNDSCALEPS.BCST.Z imm8 m128/m32bcst k xmm
+// 	VRNDSCALEPS.BCST.Z imm8 m256/m32bcst k ymm
 // 	VRNDSCALEPS.BCST.Z imm8 m512/m32bcst k zmm
 // Construct and append a VRNDSCALEPS.BCST.Z instruction to the active function.
-func (c *Context) VRNDSCALEPS_BCST_Z(i, m, k, z operand.Op) {
-	if inst, err := x86.VRNDSCALEPS_BCST_Z(i, m, k, z); err == nil {
+func (c *Context) VRNDSCALEPS_BCST_Z(i, m, k, xyz operand.Op) {
+	if inst, err := x86.VRNDSCALEPS_BCST_Z(i, m, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -62661,10 +70565,12 @@ func (c *Context) VRNDSCALEPS_BCST_Z(i, m, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VRNDSCALEPS.BCST.Z imm8 m128/m32bcst k xmm
+// 	VRNDSCALEPS.BCST.Z imm8 m256/m32bcst k ymm
 // 	VRNDSCALEPS.BCST.Z imm8 m512/m32bcst k zmm
 // Construct and append a VRNDSCALEPS.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VRNDSCALEPS_BCST_Z(i, m, k, z operand.Op) { ctx.VRNDSCALEPS_BCST_Z(i, m, k, z) }
+func VRNDSCALEPS_BCST_Z(i, m, k, xyz operand.Op) { ctx.VRNDSCALEPS_BCST_Z(i, m, k, xyz) }
 
 // VRNDSCALEPS_SAE: Round Packed Single-Precision Floating-Point Values To Include A Given Number Of Fraction Bits (Suppress All Exceptions).
 //
@@ -62718,11 +70624,15 @@ func VRNDSCALEPS_SAE_Z(i, z, k, z1 operand.Op) { ctx.VRNDSCALEPS_SAE_Z(i, z, k, 
 //
 // Forms:
 //
+// 	VRNDSCALEPS.Z imm8 m128/m32bcst k xmm
+// 	VRNDSCALEPS.Z imm8 m256/m32bcst k ymm
 // 	VRNDSCALEPS.Z imm8 m512/m32bcst k zmm
+// 	VRNDSCALEPS.Z imm8 xmm          k xmm
+// 	VRNDSCALEPS.Z imm8 ymm          k ymm
 // 	VRNDSCALEPS.Z imm8 zmm          k zmm
 // Construct and append a VRNDSCALEPS.Z instruction to the active function.
-func (c *Context) VRNDSCALEPS_Z(i, mz, k, z operand.Op) {
-	if inst, err := x86.VRNDSCALEPS_Z(i, mz, k, z); err == nil {
+func (c *Context) VRNDSCALEPS_Z(i, mxyz, k, xyz operand.Op) {
+	if inst, err := x86.VRNDSCALEPS_Z(i, mxyz, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -62733,11 +70643,15 @@ func (c *Context) VRNDSCALEPS_Z(i, mz, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VRNDSCALEPS.Z imm8 m128/m32bcst k xmm
+// 	VRNDSCALEPS.Z imm8 m256/m32bcst k ymm
 // 	VRNDSCALEPS.Z imm8 m512/m32bcst k zmm
+// 	VRNDSCALEPS.Z imm8 xmm          k xmm
+// 	VRNDSCALEPS.Z imm8 ymm          k ymm
 // 	VRNDSCALEPS.Z imm8 zmm          k zmm
 // Construct and append a VRNDSCALEPS.Z instruction to the active function.
 // Operates on the global context.
-func VRNDSCALEPS_Z(i, mz, k, z operand.Op) { ctx.VRNDSCALEPS_Z(i, mz, k, z) }
+func VRNDSCALEPS_Z(i, mxyz, k, xyz operand.Op) { ctx.VRNDSCALEPS_Z(i, mxyz, k, xyz) }
 
 // VRNDSCALESD: Round Scalar Double-Precision Floating-Point Value To Include A Given Number Of Fraction Bits.
 //
@@ -63055,8 +70969,16 @@ func VROUNDSS(i, mx, x, x1 operand.Op) { ctx.VROUNDSS(i, mx, x, x1) }
 //
 // Forms:
 //
+// 	VRSQRT14PD m128/m64bcst xmm
+// 	VRSQRT14PD m128/m64bcst k xmm
+// 	VRSQRT14PD m256/m64bcst ymm
+// 	VRSQRT14PD m256/m64bcst k ymm
 // 	VRSQRT14PD m512/m64bcst zmm
 // 	VRSQRT14PD m512/m64bcst k zmm
+// 	VRSQRT14PD xmm          xmm
+// 	VRSQRT14PD xmm          k xmm
+// 	VRSQRT14PD ymm          ymm
+// 	VRSQRT14PD ymm          k ymm
 // 	VRSQRT14PD zmm          zmm
 // 	VRSQRT14PD zmm          k zmm
 // Construct and append a VRSQRT14PD instruction to the active function.
@@ -63072,8 +70994,16 @@ func (c *Context) VRSQRT14PD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VRSQRT14PD m128/m64bcst xmm
+// 	VRSQRT14PD m128/m64bcst k xmm
+// 	VRSQRT14PD m256/m64bcst ymm
+// 	VRSQRT14PD m256/m64bcst k ymm
 // 	VRSQRT14PD m512/m64bcst zmm
 // 	VRSQRT14PD m512/m64bcst k zmm
+// 	VRSQRT14PD xmm          xmm
+// 	VRSQRT14PD xmm          k xmm
+// 	VRSQRT14PD ymm          ymm
+// 	VRSQRT14PD ymm          k ymm
 // 	VRSQRT14PD zmm          zmm
 // 	VRSQRT14PD zmm          k zmm
 // Construct and append a VRSQRT14PD instruction to the active function.
@@ -63084,6 +71014,10 @@ func VRSQRT14PD(ops ...operand.Op) { ctx.VRSQRT14PD(ops...) }
 //
 // Forms:
 //
+// 	VRSQRT14PD.BCST m128/m64bcst xmm
+// 	VRSQRT14PD.BCST m128/m64bcst k xmm
+// 	VRSQRT14PD.BCST m256/m64bcst ymm
+// 	VRSQRT14PD.BCST m256/m64bcst k ymm
 // 	VRSQRT14PD.BCST m512/m64bcst zmm
 // 	VRSQRT14PD.BCST m512/m64bcst k zmm
 // Construct and append a VRSQRT14PD.BCST instruction to the active function.
@@ -63099,6 +71033,10 @@ func (c *Context) VRSQRT14PD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VRSQRT14PD.BCST m128/m64bcst xmm
+// 	VRSQRT14PD.BCST m128/m64bcst k xmm
+// 	VRSQRT14PD.BCST m256/m64bcst ymm
+// 	VRSQRT14PD.BCST m256/m64bcst k ymm
 // 	VRSQRT14PD.BCST m512/m64bcst zmm
 // 	VRSQRT14PD.BCST m512/m64bcst k zmm
 // Construct and append a VRSQRT14PD.BCST instruction to the active function.
@@ -63109,10 +71047,12 @@ func VRSQRT14PD_BCST(ops ...operand.Op) { ctx.VRSQRT14PD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VRSQRT14PD.BCST.Z m128/m64bcst k xmm
+// 	VRSQRT14PD.BCST.Z m256/m64bcst k ymm
 // 	VRSQRT14PD.BCST.Z m512/m64bcst k zmm
 // Construct and append a VRSQRT14PD.BCST.Z instruction to the active function.
-func (c *Context) VRSQRT14PD_BCST_Z(m, k, z operand.Op) {
-	if inst, err := x86.VRSQRT14PD_BCST_Z(m, k, z); err == nil {
+func (c *Context) VRSQRT14PD_BCST_Z(m, k, xyz operand.Op) {
+	if inst, err := x86.VRSQRT14PD_BCST_Z(m, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -63123,20 +71063,26 @@ func (c *Context) VRSQRT14PD_BCST_Z(m, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VRSQRT14PD.BCST.Z m128/m64bcst k xmm
+// 	VRSQRT14PD.BCST.Z m256/m64bcst k ymm
 // 	VRSQRT14PD.BCST.Z m512/m64bcst k zmm
 // Construct and append a VRSQRT14PD.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VRSQRT14PD_BCST_Z(m, k, z operand.Op) { ctx.VRSQRT14PD_BCST_Z(m, k, z) }
+func VRSQRT14PD_BCST_Z(m, k, xyz operand.Op) { ctx.VRSQRT14PD_BCST_Z(m, k, xyz) }
 
 // VRSQRT14PD_Z: Compute Approximate Reciprocals of Square Roots of Packed Double-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
+// 	VRSQRT14PD.Z m128/m64bcst k xmm
+// 	VRSQRT14PD.Z m256/m64bcst k ymm
 // 	VRSQRT14PD.Z m512/m64bcst k zmm
+// 	VRSQRT14PD.Z xmm          k xmm
+// 	VRSQRT14PD.Z ymm          k ymm
 // 	VRSQRT14PD.Z zmm          k zmm
 // Construct and append a VRSQRT14PD.Z instruction to the active function.
-func (c *Context) VRSQRT14PD_Z(mz, k, z operand.Op) {
-	if inst, err := x86.VRSQRT14PD_Z(mz, k, z); err == nil {
+func (c *Context) VRSQRT14PD_Z(mxyz, k, xyz operand.Op) {
+	if inst, err := x86.VRSQRT14PD_Z(mxyz, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -63147,18 +71093,30 @@ func (c *Context) VRSQRT14PD_Z(mz, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VRSQRT14PD.Z m128/m64bcst k xmm
+// 	VRSQRT14PD.Z m256/m64bcst k ymm
 // 	VRSQRT14PD.Z m512/m64bcst k zmm
+// 	VRSQRT14PD.Z xmm          k xmm
+// 	VRSQRT14PD.Z ymm          k ymm
 // 	VRSQRT14PD.Z zmm          k zmm
 // Construct and append a VRSQRT14PD.Z instruction to the active function.
 // Operates on the global context.
-func VRSQRT14PD_Z(mz, k, z operand.Op) { ctx.VRSQRT14PD_Z(mz, k, z) }
+func VRSQRT14PD_Z(mxyz, k, xyz operand.Op) { ctx.VRSQRT14PD_Z(mxyz, k, xyz) }
 
 // VRSQRT14PS: Compute Approximate Reciprocals of Square Roots of Packed Single-Precision Floating-Point Values.
 //
 // Forms:
 //
+// 	VRSQRT14PS m128/m32bcst xmm
+// 	VRSQRT14PS m128/m32bcst k xmm
+// 	VRSQRT14PS m256/m32bcst ymm
+// 	VRSQRT14PS m256/m32bcst k ymm
 // 	VRSQRT14PS m512/m32bcst zmm
 // 	VRSQRT14PS m512/m32bcst k zmm
+// 	VRSQRT14PS xmm          xmm
+// 	VRSQRT14PS xmm          k xmm
+// 	VRSQRT14PS ymm          ymm
+// 	VRSQRT14PS ymm          k ymm
 // 	VRSQRT14PS zmm          zmm
 // 	VRSQRT14PS zmm          k zmm
 // Construct and append a VRSQRT14PS instruction to the active function.
@@ -63174,8 +71132,16 @@ func (c *Context) VRSQRT14PS(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VRSQRT14PS m128/m32bcst xmm
+// 	VRSQRT14PS m128/m32bcst k xmm
+// 	VRSQRT14PS m256/m32bcst ymm
+// 	VRSQRT14PS m256/m32bcst k ymm
 // 	VRSQRT14PS m512/m32bcst zmm
 // 	VRSQRT14PS m512/m32bcst k zmm
+// 	VRSQRT14PS xmm          xmm
+// 	VRSQRT14PS xmm          k xmm
+// 	VRSQRT14PS ymm          ymm
+// 	VRSQRT14PS ymm          k ymm
 // 	VRSQRT14PS zmm          zmm
 // 	VRSQRT14PS zmm          k zmm
 // Construct and append a VRSQRT14PS instruction to the active function.
@@ -63186,6 +71152,10 @@ func VRSQRT14PS(ops ...operand.Op) { ctx.VRSQRT14PS(ops...) }
 //
 // Forms:
 //
+// 	VRSQRT14PS.BCST m128/m32bcst xmm
+// 	VRSQRT14PS.BCST m128/m32bcst k xmm
+// 	VRSQRT14PS.BCST m256/m32bcst ymm
+// 	VRSQRT14PS.BCST m256/m32bcst k ymm
 // 	VRSQRT14PS.BCST m512/m32bcst zmm
 // 	VRSQRT14PS.BCST m512/m32bcst k zmm
 // Construct and append a VRSQRT14PS.BCST instruction to the active function.
@@ -63201,6 +71171,10 @@ func (c *Context) VRSQRT14PS_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VRSQRT14PS.BCST m128/m32bcst xmm
+// 	VRSQRT14PS.BCST m128/m32bcst k xmm
+// 	VRSQRT14PS.BCST m256/m32bcst ymm
+// 	VRSQRT14PS.BCST m256/m32bcst k ymm
 // 	VRSQRT14PS.BCST m512/m32bcst zmm
 // 	VRSQRT14PS.BCST m512/m32bcst k zmm
 // Construct and append a VRSQRT14PS.BCST instruction to the active function.
@@ -63211,10 +71185,12 @@ func VRSQRT14PS_BCST(ops ...operand.Op) { ctx.VRSQRT14PS_BCST(ops...) }
 //
 // Forms:
 //
+// 	VRSQRT14PS.BCST.Z m128/m32bcst k xmm
+// 	VRSQRT14PS.BCST.Z m256/m32bcst k ymm
 // 	VRSQRT14PS.BCST.Z m512/m32bcst k zmm
 // Construct and append a VRSQRT14PS.BCST.Z instruction to the active function.
-func (c *Context) VRSQRT14PS_BCST_Z(m, k, z operand.Op) {
-	if inst, err := x86.VRSQRT14PS_BCST_Z(m, k, z); err == nil {
+func (c *Context) VRSQRT14PS_BCST_Z(m, k, xyz operand.Op) {
+	if inst, err := x86.VRSQRT14PS_BCST_Z(m, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -63225,20 +71201,26 @@ func (c *Context) VRSQRT14PS_BCST_Z(m, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VRSQRT14PS.BCST.Z m128/m32bcst k xmm
+// 	VRSQRT14PS.BCST.Z m256/m32bcst k ymm
 // 	VRSQRT14PS.BCST.Z m512/m32bcst k zmm
 // Construct and append a VRSQRT14PS.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VRSQRT14PS_BCST_Z(m, k, z operand.Op) { ctx.VRSQRT14PS_BCST_Z(m, k, z) }
+func VRSQRT14PS_BCST_Z(m, k, xyz operand.Op) { ctx.VRSQRT14PS_BCST_Z(m, k, xyz) }
 
 // VRSQRT14PS_Z: Compute Approximate Reciprocals of Square Roots of Packed Single-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
+// 	VRSQRT14PS.Z m128/m32bcst k xmm
+// 	VRSQRT14PS.Z m256/m32bcst k ymm
 // 	VRSQRT14PS.Z m512/m32bcst k zmm
+// 	VRSQRT14PS.Z xmm          k xmm
+// 	VRSQRT14PS.Z ymm          k ymm
 // 	VRSQRT14PS.Z zmm          k zmm
 // Construct and append a VRSQRT14PS.Z instruction to the active function.
-func (c *Context) VRSQRT14PS_Z(mz, k, z operand.Op) {
-	if inst, err := x86.VRSQRT14PS_Z(mz, k, z); err == nil {
+func (c *Context) VRSQRT14PS_Z(mxyz, k, xyz operand.Op) {
+	if inst, err := x86.VRSQRT14PS_Z(mxyz, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -63249,11 +71231,15 @@ func (c *Context) VRSQRT14PS_Z(mz, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VRSQRT14PS.Z m128/m32bcst k xmm
+// 	VRSQRT14PS.Z m256/m32bcst k ymm
 // 	VRSQRT14PS.Z m512/m32bcst k zmm
+// 	VRSQRT14PS.Z xmm          k xmm
+// 	VRSQRT14PS.Z ymm          k ymm
 // 	VRSQRT14PS.Z zmm          k zmm
 // Construct and append a VRSQRT14PS.Z instruction to the active function.
 // Operates on the global context.
-func VRSQRT14PS_Z(mz, k, z operand.Op) { ctx.VRSQRT14PS_Z(mz, k, z) }
+func VRSQRT14PS_Z(mxyz, k, xyz operand.Op) { ctx.VRSQRT14PS_Z(mxyz, k, xyz) }
 
 // VRSQRT14SD: Compute Approximate Reciprocal of a Square Root of a Scalar Double-Precision Floating-Point Value.
 //
@@ -63421,6 +71407,14 @@ func VRSQRTSS(mx, x, x1 operand.Op) { ctx.VRSQRTSS(mx, x, x1) }
 //
 // Forms:
 //
+// 	VSCALEFPD m128/m64bcst xmm xmm
+// 	VSCALEFPD m128/m64bcst xmm k xmm
+// 	VSCALEFPD xmm          xmm xmm
+// 	VSCALEFPD xmm          xmm k xmm
+// 	VSCALEFPD m256/m64bcst ymm ymm
+// 	VSCALEFPD m256/m64bcst ymm k ymm
+// 	VSCALEFPD ymm          ymm ymm
+// 	VSCALEFPD ymm          ymm k ymm
 // 	VSCALEFPD m512/m64bcst zmm zmm
 // 	VSCALEFPD m512/m64bcst zmm k zmm
 // 	VSCALEFPD zmm          zmm zmm
@@ -63438,6 +71432,14 @@ func (c *Context) VSCALEFPD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VSCALEFPD m128/m64bcst xmm xmm
+// 	VSCALEFPD m128/m64bcst xmm k xmm
+// 	VSCALEFPD xmm          xmm xmm
+// 	VSCALEFPD xmm          xmm k xmm
+// 	VSCALEFPD m256/m64bcst ymm ymm
+// 	VSCALEFPD m256/m64bcst ymm k ymm
+// 	VSCALEFPD ymm          ymm ymm
+// 	VSCALEFPD ymm          ymm k ymm
 // 	VSCALEFPD m512/m64bcst zmm zmm
 // 	VSCALEFPD m512/m64bcst zmm k zmm
 // 	VSCALEFPD zmm          zmm zmm
@@ -63450,6 +71452,10 @@ func VSCALEFPD(ops ...operand.Op) { ctx.VSCALEFPD(ops...) }
 //
 // Forms:
 //
+// 	VSCALEFPD.BCST m128/m64bcst xmm xmm
+// 	VSCALEFPD.BCST m128/m64bcst xmm k xmm
+// 	VSCALEFPD.BCST m256/m64bcst ymm ymm
+// 	VSCALEFPD.BCST m256/m64bcst ymm k ymm
 // 	VSCALEFPD.BCST m512/m64bcst zmm zmm
 // 	VSCALEFPD.BCST m512/m64bcst zmm k zmm
 // Construct and append a VSCALEFPD.BCST instruction to the active function.
@@ -63465,6 +71471,10 @@ func (c *Context) VSCALEFPD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VSCALEFPD.BCST m128/m64bcst xmm xmm
+// 	VSCALEFPD.BCST m128/m64bcst xmm k xmm
+// 	VSCALEFPD.BCST m256/m64bcst ymm ymm
+// 	VSCALEFPD.BCST m256/m64bcst ymm k ymm
 // 	VSCALEFPD.BCST m512/m64bcst zmm zmm
 // 	VSCALEFPD.BCST m512/m64bcst zmm k zmm
 // Construct and append a VSCALEFPD.BCST instruction to the active function.
@@ -63475,10 +71485,12 @@ func VSCALEFPD_BCST(ops ...operand.Op) { ctx.VSCALEFPD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VSCALEFPD.BCST.Z m128/m64bcst xmm k xmm
+// 	VSCALEFPD.BCST.Z m256/m64bcst ymm k ymm
 // 	VSCALEFPD.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VSCALEFPD.BCST.Z instruction to the active function.
-func (c *Context) VSCALEFPD_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VSCALEFPD_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VSCALEFPD_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VSCALEFPD_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -63489,10 +71501,12 @@ func (c *Context) VSCALEFPD_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VSCALEFPD.BCST.Z m128/m64bcst xmm k xmm
+// 	VSCALEFPD.BCST.Z m256/m64bcst ymm k ymm
 // 	VSCALEFPD.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VSCALEFPD.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VSCALEFPD_BCST_Z(m, z, k, z1 operand.Op) { ctx.VSCALEFPD_BCST_Z(m, z, k, z1) }
+func VSCALEFPD_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VSCALEFPD_BCST_Z(m, xyz, k, xyz1) }
 
 // VSCALEFPD_RD_SAE: Scale Packed Double-Precision Floating-Point Values With Double-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
@@ -63690,11 +71704,15 @@ func VSCALEFPD_RZ_SAE_Z(z, z1, k, z2 operand.Op) { ctx.VSCALEFPD_RZ_SAE_Z(z, z1,
 //
 // Forms:
 //
+// 	VSCALEFPD.Z m128/m64bcst xmm k xmm
+// 	VSCALEFPD.Z xmm          xmm k xmm
+// 	VSCALEFPD.Z m256/m64bcst ymm k ymm
+// 	VSCALEFPD.Z ymm          ymm k ymm
 // 	VSCALEFPD.Z m512/m64bcst zmm k zmm
 // 	VSCALEFPD.Z zmm          zmm k zmm
 // Construct and append a VSCALEFPD.Z instruction to the active function.
-func (c *Context) VSCALEFPD_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VSCALEFPD_Z(mz, z, k, z1); err == nil {
+func (c *Context) VSCALEFPD_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VSCALEFPD_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -63705,16 +71723,28 @@ func (c *Context) VSCALEFPD_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VSCALEFPD.Z m128/m64bcst xmm k xmm
+// 	VSCALEFPD.Z xmm          xmm k xmm
+// 	VSCALEFPD.Z m256/m64bcst ymm k ymm
+// 	VSCALEFPD.Z ymm          ymm k ymm
 // 	VSCALEFPD.Z m512/m64bcst zmm k zmm
 // 	VSCALEFPD.Z zmm          zmm k zmm
 // Construct and append a VSCALEFPD.Z instruction to the active function.
 // Operates on the global context.
-func VSCALEFPD_Z(mz, z, k, z1 operand.Op) { ctx.VSCALEFPD_Z(mz, z, k, z1) }
+func VSCALEFPD_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VSCALEFPD_Z(mxyz, xyz, k, xyz1) }
 
 // VSCALEFPS: Scale Packed Single-Precision Floating-Point Values With Single-Precision Floating-Point Values.
 //
 // Forms:
 //
+// 	VSCALEFPS m128/m32bcst xmm xmm
+// 	VSCALEFPS m128/m32bcst xmm k xmm
+// 	VSCALEFPS xmm          xmm xmm
+// 	VSCALEFPS xmm          xmm k xmm
+// 	VSCALEFPS m256/m32bcst ymm ymm
+// 	VSCALEFPS m256/m32bcst ymm k ymm
+// 	VSCALEFPS ymm          ymm ymm
+// 	VSCALEFPS ymm          ymm k ymm
 // 	VSCALEFPS m512/m32bcst zmm zmm
 // 	VSCALEFPS m512/m32bcst zmm k zmm
 // 	VSCALEFPS zmm          zmm zmm
@@ -63732,6 +71762,14 @@ func (c *Context) VSCALEFPS(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VSCALEFPS m128/m32bcst xmm xmm
+// 	VSCALEFPS m128/m32bcst xmm k xmm
+// 	VSCALEFPS xmm          xmm xmm
+// 	VSCALEFPS xmm          xmm k xmm
+// 	VSCALEFPS m256/m32bcst ymm ymm
+// 	VSCALEFPS m256/m32bcst ymm k ymm
+// 	VSCALEFPS ymm          ymm ymm
+// 	VSCALEFPS ymm          ymm k ymm
 // 	VSCALEFPS m512/m32bcst zmm zmm
 // 	VSCALEFPS m512/m32bcst zmm k zmm
 // 	VSCALEFPS zmm          zmm zmm
@@ -63744,6 +71782,10 @@ func VSCALEFPS(ops ...operand.Op) { ctx.VSCALEFPS(ops...) }
 //
 // Forms:
 //
+// 	VSCALEFPS.BCST m128/m32bcst xmm xmm
+// 	VSCALEFPS.BCST m128/m32bcst xmm k xmm
+// 	VSCALEFPS.BCST m256/m32bcst ymm ymm
+// 	VSCALEFPS.BCST m256/m32bcst ymm k ymm
 // 	VSCALEFPS.BCST m512/m32bcst zmm zmm
 // 	VSCALEFPS.BCST m512/m32bcst zmm k zmm
 // Construct and append a VSCALEFPS.BCST instruction to the active function.
@@ -63759,6 +71801,10 @@ func (c *Context) VSCALEFPS_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VSCALEFPS.BCST m128/m32bcst xmm xmm
+// 	VSCALEFPS.BCST m128/m32bcst xmm k xmm
+// 	VSCALEFPS.BCST m256/m32bcst ymm ymm
+// 	VSCALEFPS.BCST m256/m32bcst ymm k ymm
 // 	VSCALEFPS.BCST m512/m32bcst zmm zmm
 // 	VSCALEFPS.BCST m512/m32bcst zmm k zmm
 // Construct and append a VSCALEFPS.BCST instruction to the active function.
@@ -63769,10 +71815,12 @@ func VSCALEFPS_BCST(ops ...operand.Op) { ctx.VSCALEFPS_BCST(ops...) }
 //
 // Forms:
 //
+// 	VSCALEFPS.BCST.Z m128/m32bcst xmm k xmm
+// 	VSCALEFPS.BCST.Z m256/m32bcst ymm k ymm
 // 	VSCALEFPS.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VSCALEFPS.BCST.Z instruction to the active function.
-func (c *Context) VSCALEFPS_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VSCALEFPS_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VSCALEFPS_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VSCALEFPS_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -63783,10 +71831,12 @@ func (c *Context) VSCALEFPS_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VSCALEFPS.BCST.Z m128/m32bcst xmm k xmm
+// 	VSCALEFPS.BCST.Z m256/m32bcst ymm k ymm
 // 	VSCALEFPS.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VSCALEFPS.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VSCALEFPS_BCST_Z(m, z, k, z1 operand.Op) { ctx.VSCALEFPS_BCST_Z(m, z, k, z1) }
+func VSCALEFPS_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VSCALEFPS_BCST_Z(m, xyz, k, xyz1) }
 
 // VSCALEFPS_RD_SAE: Scale Packed Single-Precision Floating-Point Values With Single-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
@@ -63984,11 +72034,15 @@ func VSCALEFPS_RZ_SAE_Z(z, z1, k, z2 operand.Op) { ctx.VSCALEFPS_RZ_SAE_Z(z, z1,
 //
 // Forms:
 //
+// 	VSCALEFPS.Z m128/m32bcst xmm k xmm
+// 	VSCALEFPS.Z xmm          xmm k xmm
+// 	VSCALEFPS.Z m256/m32bcst ymm k ymm
+// 	VSCALEFPS.Z ymm          ymm k ymm
 // 	VSCALEFPS.Z m512/m32bcst zmm k zmm
 // 	VSCALEFPS.Z zmm          zmm k zmm
 // Construct and append a VSCALEFPS.Z instruction to the active function.
-func (c *Context) VSCALEFPS_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VSCALEFPS_Z(mz, z, k, z1); err == nil {
+func (c *Context) VSCALEFPS_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VSCALEFPS_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -63999,11 +72053,15 @@ func (c *Context) VSCALEFPS_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VSCALEFPS.Z m128/m32bcst xmm k xmm
+// 	VSCALEFPS.Z xmm          xmm k xmm
+// 	VSCALEFPS.Z m256/m32bcst ymm k ymm
+// 	VSCALEFPS.Z ymm          ymm k ymm
 // 	VSCALEFPS.Z m512/m32bcst zmm k zmm
 // 	VSCALEFPS.Z zmm          zmm k zmm
 // Construct and append a VSCALEFPS.Z instruction to the active function.
 // Operates on the global context.
-func VSCALEFPS_Z(mz, z, k, z1 operand.Op) { ctx.VSCALEFPS_Z(mz, z, k, z1) }
+func VSCALEFPS_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VSCALEFPS_Z(mxyz, xyz, k, xyz1) }
 
 // VSCALEFSD: Scale Scalar Double-Precision Floating-Point Value With a Double-Precision Floating-Point Value.
 //
@@ -64501,10 +72559,12 @@ func VSCALEFSS_Z(mx, x, k, x1 operand.Op) { ctx.VSCALEFSS_Z(mx, x, k, x1) }
 //
 // Forms:
 //
+// 	VSCATTERDPD xmm k vm32x
+// 	VSCATTERDPD ymm k vm32x
 // 	VSCATTERDPD zmm k vm32y
 // Construct and append a VSCATTERDPD instruction to the active function.
-func (c *Context) VSCATTERDPD(z, k, v operand.Op) {
-	if inst, err := x86.VSCATTERDPD(z, k, v); err == nil {
+func (c *Context) VSCATTERDPD(xyz, k, v operand.Op) {
+	if inst, err := x86.VSCATTERDPD(xyz, k, v); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -64515,19 +72575,23 @@ func (c *Context) VSCATTERDPD(z, k, v operand.Op) {
 //
 // Forms:
 //
+// 	VSCATTERDPD xmm k vm32x
+// 	VSCATTERDPD ymm k vm32x
 // 	VSCATTERDPD zmm k vm32y
 // Construct and append a VSCATTERDPD instruction to the active function.
 // Operates on the global context.
-func VSCATTERDPD(z, k, v operand.Op) { ctx.VSCATTERDPD(z, k, v) }
+func VSCATTERDPD(xyz, k, v operand.Op) { ctx.VSCATTERDPD(xyz, k, v) }
 
 // VSCATTERDPS: Scatter Packed Single-Precision Floating-Point Values with Signed Doubleword Indices.
 //
 // Forms:
 //
+// 	VSCATTERDPS xmm k vm32x
+// 	VSCATTERDPS ymm k vm32y
 // 	VSCATTERDPS zmm k vm32z
 // Construct and append a VSCATTERDPS instruction to the active function.
-func (c *Context) VSCATTERDPS(z, k, v operand.Op) {
-	if inst, err := x86.VSCATTERDPS(z, k, v); err == nil {
+func (c *Context) VSCATTERDPS(xyz, k, v operand.Op) {
+	if inst, err := x86.VSCATTERDPS(xyz, k, v); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -64538,19 +72602,23 @@ func (c *Context) VSCATTERDPS(z, k, v operand.Op) {
 //
 // Forms:
 //
+// 	VSCATTERDPS xmm k vm32x
+// 	VSCATTERDPS ymm k vm32y
 // 	VSCATTERDPS zmm k vm32z
 // Construct and append a VSCATTERDPS instruction to the active function.
 // Operates on the global context.
-func VSCATTERDPS(z, k, v operand.Op) { ctx.VSCATTERDPS(z, k, v) }
+func VSCATTERDPS(xyz, k, v operand.Op) { ctx.VSCATTERDPS(xyz, k, v) }
 
 // VSCATTERQPD: Scatter Packed Double-Precision Floating-Point Values with Signed Quadword Indices.
 //
 // Forms:
 //
+// 	VSCATTERQPD xmm k vm64x
+// 	VSCATTERQPD ymm k vm64y
 // 	VSCATTERQPD zmm k vm64z
 // Construct and append a VSCATTERQPD instruction to the active function.
-func (c *Context) VSCATTERQPD(z, k, v operand.Op) {
-	if inst, err := x86.VSCATTERQPD(z, k, v); err == nil {
+func (c *Context) VSCATTERQPD(xyz, k, v operand.Op) {
+	if inst, err := x86.VSCATTERQPD(xyz, k, v); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -64561,19 +72629,23 @@ func (c *Context) VSCATTERQPD(z, k, v operand.Op) {
 //
 // Forms:
 //
+// 	VSCATTERQPD xmm k vm64x
+// 	VSCATTERQPD ymm k vm64y
 // 	VSCATTERQPD zmm k vm64z
 // Construct and append a VSCATTERQPD instruction to the active function.
 // Operates on the global context.
-func VSCATTERQPD(z, k, v operand.Op) { ctx.VSCATTERQPD(z, k, v) }
+func VSCATTERQPD(xyz, k, v operand.Op) { ctx.VSCATTERQPD(xyz, k, v) }
 
 // VSCATTERQPS: Scatter Packed Single-Precision Floating-Point Values with Signed Quadword Indices.
 //
 // Forms:
 //
+// 	VSCATTERQPS xmm k vm64x
+// 	VSCATTERQPS xmm k vm64y
 // 	VSCATTERQPS ymm k vm64z
 // Construct and append a VSCATTERQPS instruction to the active function.
-func (c *Context) VSCATTERQPS(y, k, v operand.Op) {
-	if inst, err := x86.VSCATTERQPS(y, k, v); err == nil {
+func (c *Context) VSCATTERQPS(xy, k, v operand.Op) {
+	if inst, err := x86.VSCATTERQPS(xy, k, v); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -64584,15 +72656,21 @@ func (c *Context) VSCATTERQPS(y, k, v operand.Op) {
 //
 // Forms:
 //
+// 	VSCATTERQPS xmm k vm64x
+// 	VSCATTERQPS xmm k vm64y
 // 	VSCATTERQPS ymm k vm64z
 // Construct and append a VSCATTERQPS instruction to the active function.
 // Operates on the global context.
-func VSCATTERQPS(y, k, v operand.Op) { ctx.VSCATTERQPS(y, k, v) }
+func VSCATTERQPS(xy, k, v operand.Op) { ctx.VSCATTERQPS(xy, k, v) }
 
 // VSHUFF32X4: Shuffle 128-Bit Packed Single-Precision Floating-Point Values.
 //
 // Forms:
 //
+// 	VSHUFF32X4 imm8 m256/m32bcst ymm ymm
+// 	VSHUFF32X4 imm8 m256/m32bcst ymm k ymm
+// 	VSHUFF32X4 imm8 ymm          ymm ymm
+// 	VSHUFF32X4 imm8 ymm          ymm k ymm
 // 	VSHUFF32X4 imm8 m512/m32bcst zmm zmm
 // 	VSHUFF32X4 imm8 m512/m32bcst zmm k zmm
 // 	VSHUFF32X4 imm8 zmm          zmm zmm
@@ -64610,6 +72688,10 @@ func (c *Context) VSHUFF32X4(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VSHUFF32X4 imm8 m256/m32bcst ymm ymm
+// 	VSHUFF32X4 imm8 m256/m32bcst ymm k ymm
+// 	VSHUFF32X4 imm8 ymm          ymm ymm
+// 	VSHUFF32X4 imm8 ymm          ymm k ymm
 // 	VSHUFF32X4 imm8 m512/m32bcst zmm zmm
 // 	VSHUFF32X4 imm8 m512/m32bcst zmm k zmm
 // 	VSHUFF32X4 imm8 zmm          zmm zmm
@@ -64622,6 +72704,8 @@ func VSHUFF32X4(ops ...operand.Op) { ctx.VSHUFF32X4(ops...) }
 //
 // Forms:
 //
+// 	VSHUFF32X4.BCST imm8 m256/m32bcst ymm ymm
+// 	VSHUFF32X4.BCST imm8 m256/m32bcst ymm k ymm
 // 	VSHUFF32X4.BCST imm8 m512/m32bcst zmm zmm
 // 	VSHUFF32X4.BCST imm8 m512/m32bcst zmm k zmm
 // Construct and append a VSHUFF32X4.BCST instruction to the active function.
@@ -64637,6 +72721,8 @@ func (c *Context) VSHUFF32X4_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VSHUFF32X4.BCST imm8 m256/m32bcst ymm ymm
+// 	VSHUFF32X4.BCST imm8 m256/m32bcst ymm k ymm
 // 	VSHUFF32X4.BCST imm8 m512/m32bcst zmm zmm
 // 	VSHUFF32X4.BCST imm8 m512/m32bcst zmm k zmm
 // Construct and append a VSHUFF32X4.BCST instruction to the active function.
@@ -64647,10 +72733,11 @@ func VSHUFF32X4_BCST(ops ...operand.Op) { ctx.VSHUFF32X4_BCST(ops...) }
 //
 // Forms:
 //
+// 	VSHUFF32X4.BCST.Z imm8 m256/m32bcst ymm k ymm
 // 	VSHUFF32X4.BCST.Z imm8 m512/m32bcst zmm k zmm
 // Construct and append a VSHUFF32X4.BCST.Z instruction to the active function.
-func (c *Context) VSHUFF32X4_BCST_Z(i, m, z, k, z1 operand.Op) {
-	if inst, err := x86.VSHUFF32X4_BCST_Z(i, m, z, k, z1); err == nil {
+func (c *Context) VSHUFF32X4_BCST_Z(i, m, yz, k, yz1 operand.Op) {
+	if inst, err := x86.VSHUFF32X4_BCST_Z(i, m, yz, k, yz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -64661,20 +72748,23 @@ func (c *Context) VSHUFF32X4_BCST_Z(i, m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VSHUFF32X4.BCST.Z imm8 m256/m32bcst ymm k ymm
 // 	VSHUFF32X4.BCST.Z imm8 m512/m32bcst zmm k zmm
 // Construct and append a VSHUFF32X4.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VSHUFF32X4_BCST_Z(i, m, z, k, z1 operand.Op) { ctx.VSHUFF32X4_BCST_Z(i, m, z, k, z1) }
+func VSHUFF32X4_BCST_Z(i, m, yz, k, yz1 operand.Op) { ctx.VSHUFF32X4_BCST_Z(i, m, yz, k, yz1) }
 
 // VSHUFF32X4_Z: Shuffle 128-Bit Packed Single-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
+// 	VSHUFF32X4.Z imm8 m256/m32bcst ymm k ymm
+// 	VSHUFF32X4.Z imm8 ymm          ymm k ymm
 // 	VSHUFF32X4.Z imm8 m512/m32bcst zmm k zmm
 // 	VSHUFF32X4.Z imm8 zmm          zmm k zmm
 // Construct and append a VSHUFF32X4.Z instruction to the active function.
-func (c *Context) VSHUFF32X4_Z(i, mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VSHUFF32X4_Z(i, mz, z, k, z1); err == nil {
+func (c *Context) VSHUFF32X4_Z(i, myz, yz, k, yz1 operand.Op) {
+	if inst, err := x86.VSHUFF32X4_Z(i, myz, yz, k, yz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -64685,16 +72775,22 @@ func (c *Context) VSHUFF32X4_Z(i, mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VSHUFF32X4.Z imm8 m256/m32bcst ymm k ymm
+// 	VSHUFF32X4.Z imm8 ymm          ymm k ymm
 // 	VSHUFF32X4.Z imm8 m512/m32bcst zmm k zmm
 // 	VSHUFF32X4.Z imm8 zmm          zmm k zmm
 // Construct and append a VSHUFF32X4.Z instruction to the active function.
 // Operates on the global context.
-func VSHUFF32X4_Z(i, mz, z, k, z1 operand.Op) { ctx.VSHUFF32X4_Z(i, mz, z, k, z1) }
+func VSHUFF32X4_Z(i, myz, yz, k, yz1 operand.Op) { ctx.VSHUFF32X4_Z(i, myz, yz, k, yz1) }
 
 // VSHUFF64X2: Shuffle 128-Bit Packed Double-Precision Floating-Point Values.
 //
 // Forms:
 //
+// 	VSHUFF64X2 imm8 m256/m64bcst ymm ymm
+// 	VSHUFF64X2 imm8 m256/m64bcst ymm k ymm
+// 	VSHUFF64X2 imm8 ymm          ymm ymm
+// 	VSHUFF64X2 imm8 ymm          ymm k ymm
 // 	VSHUFF64X2 imm8 m512/m64bcst zmm zmm
 // 	VSHUFF64X2 imm8 m512/m64bcst zmm k zmm
 // 	VSHUFF64X2 imm8 zmm          zmm zmm
@@ -64712,6 +72808,10 @@ func (c *Context) VSHUFF64X2(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VSHUFF64X2 imm8 m256/m64bcst ymm ymm
+// 	VSHUFF64X2 imm8 m256/m64bcst ymm k ymm
+// 	VSHUFF64X2 imm8 ymm          ymm ymm
+// 	VSHUFF64X2 imm8 ymm          ymm k ymm
 // 	VSHUFF64X2 imm8 m512/m64bcst zmm zmm
 // 	VSHUFF64X2 imm8 m512/m64bcst zmm k zmm
 // 	VSHUFF64X2 imm8 zmm          zmm zmm
@@ -64724,6 +72824,8 @@ func VSHUFF64X2(ops ...operand.Op) { ctx.VSHUFF64X2(ops...) }
 //
 // Forms:
 //
+// 	VSHUFF64X2.BCST imm8 m256/m64bcst ymm ymm
+// 	VSHUFF64X2.BCST imm8 m256/m64bcst ymm k ymm
 // 	VSHUFF64X2.BCST imm8 m512/m64bcst zmm zmm
 // 	VSHUFF64X2.BCST imm8 m512/m64bcst zmm k zmm
 // Construct and append a VSHUFF64X2.BCST instruction to the active function.
@@ -64739,6 +72841,8 @@ func (c *Context) VSHUFF64X2_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VSHUFF64X2.BCST imm8 m256/m64bcst ymm ymm
+// 	VSHUFF64X2.BCST imm8 m256/m64bcst ymm k ymm
 // 	VSHUFF64X2.BCST imm8 m512/m64bcst zmm zmm
 // 	VSHUFF64X2.BCST imm8 m512/m64bcst zmm k zmm
 // Construct and append a VSHUFF64X2.BCST instruction to the active function.
@@ -64749,10 +72853,11 @@ func VSHUFF64X2_BCST(ops ...operand.Op) { ctx.VSHUFF64X2_BCST(ops...) }
 //
 // Forms:
 //
+// 	VSHUFF64X2.BCST.Z imm8 m256/m64bcst ymm k ymm
 // 	VSHUFF64X2.BCST.Z imm8 m512/m64bcst zmm k zmm
 // Construct and append a VSHUFF64X2.BCST.Z instruction to the active function.
-func (c *Context) VSHUFF64X2_BCST_Z(i, m, z, k, z1 operand.Op) {
-	if inst, err := x86.VSHUFF64X2_BCST_Z(i, m, z, k, z1); err == nil {
+func (c *Context) VSHUFF64X2_BCST_Z(i, m, yz, k, yz1 operand.Op) {
+	if inst, err := x86.VSHUFF64X2_BCST_Z(i, m, yz, k, yz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -64763,20 +72868,23 @@ func (c *Context) VSHUFF64X2_BCST_Z(i, m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VSHUFF64X2.BCST.Z imm8 m256/m64bcst ymm k ymm
 // 	VSHUFF64X2.BCST.Z imm8 m512/m64bcst zmm k zmm
 // Construct and append a VSHUFF64X2.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VSHUFF64X2_BCST_Z(i, m, z, k, z1 operand.Op) { ctx.VSHUFF64X2_BCST_Z(i, m, z, k, z1) }
+func VSHUFF64X2_BCST_Z(i, m, yz, k, yz1 operand.Op) { ctx.VSHUFF64X2_BCST_Z(i, m, yz, k, yz1) }
 
 // VSHUFF64X2_Z: Shuffle 128-Bit Packed Double-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
+// 	VSHUFF64X2.Z imm8 m256/m64bcst ymm k ymm
+// 	VSHUFF64X2.Z imm8 ymm          ymm k ymm
 // 	VSHUFF64X2.Z imm8 m512/m64bcst zmm k zmm
 // 	VSHUFF64X2.Z imm8 zmm          zmm k zmm
 // Construct and append a VSHUFF64X2.Z instruction to the active function.
-func (c *Context) VSHUFF64X2_Z(i, mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VSHUFF64X2_Z(i, mz, z, k, z1); err == nil {
+func (c *Context) VSHUFF64X2_Z(i, myz, yz, k, yz1 operand.Op) {
+	if inst, err := x86.VSHUFF64X2_Z(i, myz, yz, k, yz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -64787,16 +72895,22 @@ func (c *Context) VSHUFF64X2_Z(i, mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VSHUFF64X2.Z imm8 m256/m64bcst ymm k ymm
+// 	VSHUFF64X2.Z imm8 ymm          ymm k ymm
 // 	VSHUFF64X2.Z imm8 m512/m64bcst zmm k zmm
 // 	VSHUFF64X2.Z imm8 zmm          zmm k zmm
 // Construct and append a VSHUFF64X2.Z instruction to the active function.
 // Operates on the global context.
-func VSHUFF64X2_Z(i, mz, z, k, z1 operand.Op) { ctx.VSHUFF64X2_Z(i, mz, z, k, z1) }
+func VSHUFF64X2_Z(i, myz, yz, k, yz1 operand.Op) { ctx.VSHUFF64X2_Z(i, myz, yz, k, yz1) }
 
 // VSHUFI32X4: Shuffle 128-Bit Packed Doubleword Integer Values.
 //
 // Forms:
 //
+// 	VSHUFI32X4 imm8 m256/m32bcst ymm ymm
+// 	VSHUFI32X4 imm8 m256/m32bcst ymm k ymm
+// 	VSHUFI32X4 imm8 ymm          ymm ymm
+// 	VSHUFI32X4 imm8 ymm          ymm k ymm
 // 	VSHUFI32X4 imm8 m512/m32bcst zmm zmm
 // 	VSHUFI32X4 imm8 m512/m32bcst zmm k zmm
 // 	VSHUFI32X4 imm8 zmm          zmm zmm
@@ -64814,6 +72928,10 @@ func (c *Context) VSHUFI32X4(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VSHUFI32X4 imm8 m256/m32bcst ymm ymm
+// 	VSHUFI32X4 imm8 m256/m32bcst ymm k ymm
+// 	VSHUFI32X4 imm8 ymm          ymm ymm
+// 	VSHUFI32X4 imm8 ymm          ymm k ymm
 // 	VSHUFI32X4 imm8 m512/m32bcst zmm zmm
 // 	VSHUFI32X4 imm8 m512/m32bcst zmm k zmm
 // 	VSHUFI32X4 imm8 zmm          zmm zmm
@@ -64826,6 +72944,8 @@ func VSHUFI32X4(ops ...operand.Op) { ctx.VSHUFI32X4(ops...) }
 //
 // Forms:
 //
+// 	VSHUFI32X4.BCST imm8 m256/m32bcst ymm ymm
+// 	VSHUFI32X4.BCST imm8 m256/m32bcst ymm k ymm
 // 	VSHUFI32X4.BCST imm8 m512/m32bcst zmm zmm
 // 	VSHUFI32X4.BCST imm8 m512/m32bcst zmm k zmm
 // Construct and append a VSHUFI32X4.BCST instruction to the active function.
@@ -64841,6 +72961,8 @@ func (c *Context) VSHUFI32X4_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VSHUFI32X4.BCST imm8 m256/m32bcst ymm ymm
+// 	VSHUFI32X4.BCST imm8 m256/m32bcst ymm k ymm
 // 	VSHUFI32X4.BCST imm8 m512/m32bcst zmm zmm
 // 	VSHUFI32X4.BCST imm8 m512/m32bcst zmm k zmm
 // Construct and append a VSHUFI32X4.BCST instruction to the active function.
@@ -64851,10 +72973,11 @@ func VSHUFI32X4_BCST(ops ...operand.Op) { ctx.VSHUFI32X4_BCST(ops...) }
 //
 // Forms:
 //
+// 	VSHUFI32X4.BCST.Z imm8 m256/m32bcst ymm k ymm
 // 	VSHUFI32X4.BCST.Z imm8 m512/m32bcst zmm k zmm
 // Construct and append a VSHUFI32X4.BCST.Z instruction to the active function.
-func (c *Context) VSHUFI32X4_BCST_Z(i, m, z, k, z1 operand.Op) {
-	if inst, err := x86.VSHUFI32X4_BCST_Z(i, m, z, k, z1); err == nil {
+func (c *Context) VSHUFI32X4_BCST_Z(i, m, yz, k, yz1 operand.Op) {
+	if inst, err := x86.VSHUFI32X4_BCST_Z(i, m, yz, k, yz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -64865,20 +72988,23 @@ func (c *Context) VSHUFI32X4_BCST_Z(i, m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VSHUFI32X4.BCST.Z imm8 m256/m32bcst ymm k ymm
 // 	VSHUFI32X4.BCST.Z imm8 m512/m32bcst zmm k zmm
 // Construct and append a VSHUFI32X4.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VSHUFI32X4_BCST_Z(i, m, z, k, z1 operand.Op) { ctx.VSHUFI32X4_BCST_Z(i, m, z, k, z1) }
+func VSHUFI32X4_BCST_Z(i, m, yz, k, yz1 operand.Op) { ctx.VSHUFI32X4_BCST_Z(i, m, yz, k, yz1) }
 
 // VSHUFI32X4_Z: Shuffle 128-Bit Packed Doubleword Integer Values (Zeroing Masking).
 //
 // Forms:
 //
+// 	VSHUFI32X4.Z imm8 m256/m32bcst ymm k ymm
+// 	VSHUFI32X4.Z imm8 ymm          ymm k ymm
 // 	VSHUFI32X4.Z imm8 m512/m32bcst zmm k zmm
 // 	VSHUFI32X4.Z imm8 zmm          zmm k zmm
 // Construct and append a VSHUFI32X4.Z instruction to the active function.
-func (c *Context) VSHUFI32X4_Z(i, mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VSHUFI32X4_Z(i, mz, z, k, z1); err == nil {
+func (c *Context) VSHUFI32X4_Z(i, myz, yz, k, yz1 operand.Op) {
+	if inst, err := x86.VSHUFI32X4_Z(i, myz, yz, k, yz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -64889,16 +73015,22 @@ func (c *Context) VSHUFI32X4_Z(i, mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VSHUFI32X4.Z imm8 m256/m32bcst ymm k ymm
+// 	VSHUFI32X4.Z imm8 ymm          ymm k ymm
 // 	VSHUFI32X4.Z imm8 m512/m32bcst zmm k zmm
 // 	VSHUFI32X4.Z imm8 zmm          zmm k zmm
 // Construct and append a VSHUFI32X4.Z instruction to the active function.
 // Operates on the global context.
-func VSHUFI32X4_Z(i, mz, z, k, z1 operand.Op) { ctx.VSHUFI32X4_Z(i, mz, z, k, z1) }
+func VSHUFI32X4_Z(i, myz, yz, k, yz1 operand.Op) { ctx.VSHUFI32X4_Z(i, myz, yz, k, yz1) }
 
 // VSHUFI64X2: Shuffle 128-Bit Packed Quadword Integer Values.
 //
 // Forms:
 //
+// 	VSHUFI64X2 imm8 m256/m64bcst ymm ymm
+// 	VSHUFI64X2 imm8 m256/m64bcst ymm k ymm
+// 	VSHUFI64X2 imm8 ymm          ymm ymm
+// 	VSHUFI64X2 imm8 ymm          ymm k ymm
 // 	VSHUFI64X2 imm8 m512/m64bcst zmm zmm
 // 	VSHUFI64X2 imm8 m512/m64bcst zmm k zmm
 // 	VSHUFI64X2 imm8 zmm          zmm zmm
@@ -64916,6 +73048,10 @@ func (c *Context) VSHUFI64X2(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VSHUFI64X2 imm8 m256/m64bcst ymm ymm
+// 	VSHUFI64X2 imm8 m256/m64bcst ymm k ymm
+// 	VSHUFI64X2 imm8 ymm          ymm ymm
+// 	VSHUFI64X2 imm8 ymm          ymm k ymm
 // 	VSHUFI64X2 imm8 m512/m64bcst zmm zmm
 // 	VSHUFI64X2 imm8 m512/m64bcst zmm k zmm
 // 	VSHUFI64X2 imm8 zmm          zmm zmm
@@ -64928,6 +73064,8 @@ func VSHUFI64X2(ops ...operand.Op) { ctx.VSHUFI64X2(ops...) }
 //
 // Forms:
 //
+// 	VSHUFI64X2.BCST imm8 m256/m64bcst ymm ymm
+// 	VSHUFI64X2.BCST imm8 m256/m64bcst ymm k ymm
 // 	VSHUFI64X2.BCST imm8 m512/m64bcst zmm zmm
 // 	VSHUFI64X2.BCST imm8 m512/m64bcst zmm k zmm
 // Construct and append a VSHUFI64X2.BCST instruction to the active function.
@@ -64943,6 +73081,8 @@ func (c *Context) VSHUFI64X2_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VSHUFI64X2.BCST imm8 m256/m64bcst ymm ymm
+// 	VSHUFI64X2.BCST imm8 m256/m64bcst ymm k ymm
 // 	VSHUFI64X2.BCST imm8 m512/m64bcst zmm zmm
 // 	VSHUFI64X2.BCST imm8 m512/m64bcst zmm k zmm
 // Construct and append a VSHUFI64X2.BCST instruction to the active function.
@@ -64953,10 +73093,11 @@ func VSHUFI64X2_BCST(ops ...operand.Op) { ctx.VSHUFI64X2_BCST(ops...) }
 //
 // Forms:
 //
+// 	VSHUFI64X2.BCST.Z imm8 m256/m64bcst ymm k ymm
 // 	VSHUFI64X2.BCST.Z imm8 m512/m64bcst zmm k zmm
 // Construct and append a VSHUFI64X2.BCST.Z instruction to the active function.
-func (c *Context) VSHUFI64X2_BCST_Z(i, m, z, k, z1 operand.Op) {
-	if inst, err := x86.VSHUFI64X2_BCST_Z(i, m, z, k, z1); err == nil {
+func (c *Context) VSHUFI64X2_BCST_Z(i, m, yz, k, yz1 operand.Op) {
+	if inst, err := x86.VSHUFI64X2_BCST_Z(i, m, yz, k, yz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -64967,20 +73108,23 @@ func (c *Context) VSHUFI64X2_BCST_Z(i, m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VSHUFI64X2.BCST.Z imm8 m256/m64bcst ymm k ymm
 // 	VSHUFI64X2.BCST.Z imm8 m512/m64bcst zmm k zmm
 // Construct and append a VSHUFI64X2.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VSHUFI64X2_BCST_Z(i, m, z, k, z1 operand.Op) { ctx.VSHUFI64X2_BCST_Z(i, m, z, k, z1) }
+func VSHUFI64X2_BCST_Z(i, m, yz, k, yz1 operand.Op) { ctx.VSHUFI64X2_BCST_Z(i, m, yz, k, yz1) }
 
 // VSHUFI64X2_Z: Shuffle 128-Bit Packed Quadword Integer Values (Zeroing Masking).
 //
 // Forms:
 //
+// 	VSHUFI64X2.Z imm8 m256/m64bcst ymm k ymm
+// 	VSHUFI64X2.Z imm8 ymm          ymm k ymm
 // 	VSHUFI64X2.Z imm8 m512/m64bcst zmm k zmm
 // 	VSHUFI64X2.Z imm8 zmm          zmm k zmm
 // Construct and append a VSHUFI64X2.Z instruction to the active function.
-func (c *Context) VSHUFI64X2_Z(i, mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VSHUFI64X2_Z(i, mz, z, k, z1); err == nil {
+func (c *Context) VSHUFI64X2_Z(i, myz, yz, k, yz1 operand.Op) {
+	if inst, err := x86.VSHUFI64X2_Z(i, myz, yz, k, yz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -64991,16 +73135,26 @@ func (c *Context) VSHUFI64X2_Z(i, mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VSHUFI64X2.Z imm8 m256/m64bcst ymm k ymm
+// 	VSHUFI64X2.Z imm8 ymm          ymm k ymm
 // 	VSHUFI64X2.Z imm8 m512/m64bcst zmm k zmm
 // 	VSHUFI64X2.Z imm8 zmm          zmm k zmm
 // Construct and append a VSHUFI64X2.Z instruction to the active function.
 // Operates on the global context.
-func VSHUFI64X2_Z(i, mz, z, k, z1 operand.Op) { ctx.VSHUFI64X2_Z(i, mz, z, k, z1) }
+func VSHUFI64X2_Z(i, myz, yz, k, yz1 operand.Op) { ctx.VSHUFI64X2_Z(i, myz, yz, k, yz1) }
 
 // VSHUFPD: Shuffle Packed Double-Precision Floating-Point Values.
 //
 // Forms:
 //
+// 	VSHUFPD imm8 m128/m64bcst xmm xmm
+// 	VSHUFPD imm8 m128/m64bcst xmm k xmm
+// 	VSHUFPD imm8 xmm          xmm xmm
+// 	VSHUFPD imm8 xmm          xmm k xmm
+// 	VSHUFPD imm8 m256/m64bcst ymm ymm
+// 	VSHUFPD imm8 m256/m64bcst ymm k ymm
+// 	VSHUFPD imm8 ymm          ymm ymm
+// 	VSHUFPD imm8 ymm          ymm k ymm
 // 	VSHUFPD imm8 m512/m64bcst zmm zmm
 // 	VSHUFPD imm8 m512/m64bcst zmm k zmm
 // 	VSHUFPD imm8 zmm          zmm zmm
@@ -65022,6 +73176,14 @@ func (c *Context) VSHUFPD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VSHUFPD imm8 m128/m64bcst xmm xmm
+// 	VSHUFPD imm8 m128/m64bcst xmm k xmm
+// 	VSHUFPD imm8 xmm          xmm xmm
+// 	VSHUFPD imm8 xmm          xmm k xmm
+// 	VSHUFPD imm8 m256/m64bcst ymm ymm
+// 	VSHUFPD imm8 m256/m64bcst ymm k ymm
+// 	VSHUFPD imm8 ymm          ymm ymm
+// 	VSHUFPD imm8 ymm          ymm k ymm
 // 	VSHUFPD imm8 m512/m64bcst zmm zmm
 // 	VSHUFPD imm8 m512/m64bcst zmm k zmm
 // 	VSHUFPD imm8 zmm          zmm zmm
@@ -65038,6 +73200,10 @@ func VSHUFPD(ops ...operand.Op) { ctx.VSHUFPD(ops...) }
 //
 // Forms:
 //
+// 	VSHUFPD.BCST imm8 m128/m64bcst xmm xmm
+// 	VSHUFPD.BCST imm8 m128/m64bcst xmm k xmm
+// 	VSHUFPD.BCST imm8 m256/m64bcst ymm ymm
+// 	VSHUFPD.BCST imm8 m256/m64bcst ymm k ymm
 // 	VSHUFPD.BCST imm8 m512/m64bcst zmm zmm
 // 	VSHUFPD.BCST imm8 m512/m64bcst zmm k zmm
 // Construct and append a VSHUFPD.BCST instruction to the active function.
@@ -65053,6 +73219,10 @@ func (c *Context) VSHUFPD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VSHUFPD.BCST imm8 m128/m64bcst xmm xmm
+// 	VSHUFPD.BCST imm8 m128/m64bcst xmm k xmm
+// 	VSHUFPD.BCST imm8 m256/m64bcst ymm ymm
+// 	VSHUFPD.BCST imm8 m256/m64bcst ymm k ymm
 // 	VSHUFPD.BCST imm8 m512/m64bcst zmm zmm
 // 	VSHUFPD.BCST imm8 m512/m64bcst zmm k zmm
 // Construct and append a VSHUFPD.BCST instruction to the active function.
@@ -65063,10 +73233,12 @@ func VSHUFPD_BCST(ops ...operand.Op) { ctx.VSHUFPD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VSHUFPD.BCST.Z imm8 m128/m64bcst xmm k xmm
+// 	VSHUFPD.BCST.Z imm8 m256/m64bcst ymm k ymm
 // 	VSHUFPD.BCST.Z imm8 m512/m64bcst zmm k zmm
 // Construct and append a VSHUFPD.BCST.Z instruction to the active function.
-func (c *Context) VSHUFPD_BCST_Z(i, m, z, k, z1 operand.Op) {
-	if inst, err := x86.VSHUFPD_BCST_Z(i, m, z, k, z1); err == nil {
+func (c *Context) VSHUFPD_BCST_Z(i, m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VSHUFPD_BCST_Z(i, m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -65077,20 +73249,26 @@ func (c *Context) VSHUFPD_BCST_Z(i, m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VSHUFPD.BCST.Z imm8 m128/m64bcst xmm k xmm
+// 	VSHUFPD.BCST.Z imm8 m256/m64bcst ymm k ymm
 // 	VSHUFPD.BCST.Z imm8 m512/m64bcst zmm k zmm
 // Construct and append a VSHUFPD.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VSHUFPD_BCST_Z(i, m, z, k, z1 operand.Op) { ctx.VSHUFPD_BCST_Z(i, m, z, k, z1) }
+func VSHUFPD_BCST_Z(i, m, xyz, k, xyz1 operand.Op) { ctx.VSHUFPD_BCST_Z(i, m, xyz, k, xyz1) }
 
 // VSHUFPD_Z: Shuffle Packed Double-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
+// 	VSHUFPD.Z imm8 m128/m64bcst xmm k xmm
+// 	VSHUFPD.Z imm8 xmm          xmm k xmm
+// 	VSHUFPD.Z imm8 m256/m64bcst ymm k ymm
+// 	VSHUFPD.Z imm8 ymm          ymm k ymm
 // 	VSHUFPD.Z imm8 m512/m64bcst zmm k zmm
 // 	VSHUFPD.Z imm8 zmm          zmm k zmm
 // Construct and append a VSHUFPD.Z instruction to the active function.
-func (c *Context) VSHUFPD_Z(i, mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VSHUFPD_Z(i, mz, z, k, z1); err == nil {
+func (c *Context) VSHUFPD_Z(i, mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VSHUFPD_Z(i, mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -65101,16 +73279,28 @@ func (c *Context) VSHUFPD_Z(i, mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VSHUFPD.Z imm8 m128/m64bcst xmm k xmm
+// 	VSHUFPD.Z imm8 xmm          xmm k xmm
+// 	VSHUFPD.Z imm8 m256/m64bcst ymm k ymm
+// 	VSHUFPD.Z imm8 ymm          ymm k ymm
 // 	VSHUFPD.Z imm8 m512/m64bcst zmm k zmm
 // 	VSHUFPD.Z imm8 zmm          zmm k zmm
 // Construct and append a VSHUFPD.Z instruction to the active function.
 // Operates on the global context.
-func VSHUFPD_Z(i, mz, z, k, z1 operand.Op) { ctx.VSHUFPD_Z(i, mz, z, k, z1) }
+func VSHUFPD_Z(i, mxyz, xyz, k, xyz1 operand.Op) { ctx.VSHUFPD_Z(i, mxyz, xyz, k, xyz1) }
 
 // VSHUFPS: Shuffle Packed Single-Precision Floating-Point Values.
 //
 // Forms:
 //
+// 	VSHUFPS imm8 m128/m32bcst xmm xmm
+// 	VSHUFPS imm8 m128/m32bcst xmm k xmm
+// 	VSHUFPS imm8 xmm          xmm xmm
+// 	VSHUFPS imm8 xmm          xmm k xmm
+// 	VSHUFPS imm8 m256/m32bcst ymm ymm
+// 	VSHUFPS imm8 m256/m32bcst ymm k ymm
+// 	VSHUFPS imm8 ymm          ymm ymm
+// 	VSHUFPS imm8 ymm          ymm k ymm
 // 	VSHUFPS imm8 m512/m32bcst zmm zmm
 // 	VSHUFPS imm8 m512/m32bcst zmm k zmm
 // 	VSHUFPS imm8 zmm          zmm zmm
@@ -65132,6 +73322,14 @@ func (c *Context) VSHUFPS(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VSHUFPS imm8 m128/m32bcst xmm xmm
+// 	VSHUFPS imm8 m128/m32bcst xmm k xmm
+// 	VSHUFPS imm8 xmm          xmm xmm
+// 	VSHUFPS imm8 xmm          xmm k xmm
+// 	VSHUFPS imm8 m256/m32bcst ymm ymm
+// 	VSHUFPS imm8 m256/m32bcst ymm k ymm
+// 	VSHUFPS imm8 ymm          ymm ymm
+// 	VSHUFPS imm8 ymm          ymm k ymm
 // 	VSHUFPS imm8 m512/m32bcst zmm zmm
 // 	VSHUFPS imm8 m512/m32bcst zmm k zmm
 // 	VSHUFPS imm8 zmm          zmm zmm
@@ -65148,6 +73346,10 @@ func VSHUFPS(ops ...operand.Op) { ctx.VSHUFPS(ops...) }
 //
 // Forms:
 //
+// 	VSHUFPS.BCST imm8 m128/m32bcst xmm xmm
+// 	VSHUFPS.BCST imm8 m128/m32bcst xmm k xmm
+// 	VSHUFPS.BCST imm8 m256/m32bcst ymm ymm
+// 	VSHUFPS.BCST imm8 m256/m32bcst ymm k ymm
 // 	VSHUFPS.BCST imm8 m512/m32bcst zmm zmm
 // 	VSHUFPS.BCST imm8 m512/m32bcst zmm k zmm
 // Construct and append a VSHUFPS.BCST instruction to the active function.
@@ -65163,6 +73365,10 @@ func (c *Context) VSHUFPS_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VSHUFPS.BCST imm8 m128/m32bcst xmm xmm
+// 	VSHUFPS.BCST imm8 m128/m32bcst xmm k xmm
+// 	VSHUFPS.BCST imm8 m256/m32bcst ymm ymm
+// 	VSHUFPS.BCST imm8 m256/m32bcst ymm k ymm
 // 	VSHUFPS.BCST imm8 m512/m32bcst zmm zmm
 // 	VSHUFPS.BCST imm8 m512/m32bcst zmm k zmm
 // Construct and append a VSHUFPS.BCST instruction to the active function.
@@ -65173,10 +73379,12 @@ func VSHUFPS_BCST(ops ...operand.Op) { ctx.VSHUFPS_BCST(ops...) }
 //
 // Forms:
 //
+// 	VSHUFPS.BCST.Z imm8 m128/m32bcst xmm k xmm
+// 	VSHUFPS.BCST.Z imm8 m256/m32bcst ymm k ymm
 // 	VSHUFPS.BCST.Z imm8 m512/m32bcst zmm k zmm
 // Construct and append a VSHUFPS.BCST.Z instruction to the active function.
-func (c *Context) VSHUFPS_BCST_Z(i, m, z, k, z1 operand.Op) {
-	if inst, err := x86.VSHUFPS_BCST_Z(i, m, z, k, z1); err == nil {
+func (c *Context) VSHUFPS_BCST_Z(i, m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VSHUFPS_BCST_Z(i, m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -65187,20 +73395,26 @@ func (c *Context) VSHUFPS_BCST_Z(i, m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VSHUFPS.BCST.Z imm8 m128/m32bcst xmm k xmm
+// 	VSHUFPS.BCST.Z imm8 m256/m32bcst ymm k ymm
 // 	VSHUFPS.BCST.Z imm8 m512/m32bcst zmm k zmm
 // Construct and append a VSHUFPS.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VSHUFPS_BCST_Z(i, m, z, k, z1 operand.Op) { ctx.VSHUFPS_BCST_Z(i, m, z, k, z1) }
+func VSHUFPS_BCST_Z(i, m, xyz, k, xyz1 operand.Op) { ctx.VSHUFPS_BCST_Z(i, m, xyz, k, xyz1) }
 
 // VSHUFPS_Z: Shuffle Packed Single-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
+// 	VSHUFPS.Z imm8 m128/m32bcst xmm k xmm
+// 	VSHUFPS.Z imm8 xmm          xmm k xmm
+// 	VSHUFPS.Z imm8 m256/m32bcst ymm k ymm
+// 	VSHUFPS.Z imm8 ymm          ymm k ymm
 // 	VSHUFPS.Z imm8 m512/m32bcst zmm k zmm
 // 	VSHUFPS.Z imm8 zmm          zmm k zmm
 // Construct and append a VSHUFPS.Z instruction to the active function.
-func (c *Context) VSHUFPS_Z(i, mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VSHUFPS_Z(i, mz, z, k, z1); err == nil {
+func (c *Context) VSHUFPS_Z(i, mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VSHUFPS_Z(i, mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -65211,18 +73425,30 @@ func (c *Context) VSHUFPS_Z(i, mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VSHUFPS.Z imm8 m128/m32bcst xmm k xmm
+// 	VSHUFPS.Z imm8 xmm          xmm k xmm
+// 	VSHUFPS.Z imm8 m256/m32bcst ymm k ymm
+// 	VSHUFPS.Z imm8 ymm          ymm k ymm
 // 	VSHUFPS.Z imm8 m512/m32bcst zmm k zmm
 // 	VSHUFPS.Z imm8 zmm          zmm k zmm
 // Construct and append a VSHUFPS.Z instruction to the active function.
 // Operates on the global context.
-func VSHUFPS_Z(i, mz, z, k, z1 operand.Op) { ctx.VSHUFPS_Z(i, mz, z, k, z1) }
+func VSHUFPS_Z(i, mxyz, xyz, k, xyz1 operand.Op) { ctx.VSHUFPS_Z(i, mxyz, xyz, k, xyz1) }
 
 // VSQRTPD: Compute Square Roots of Packed Double-Precision Floating-Point Values.
 //
 // Forms:
 //
+// 	VSQRTPD m128/m32bcst xmm
+// 	VSQRTPD m128/m32bcst k xmm
+// 	VSQRTPD m256/m32bcst ymm
+// 	VSQRTPD m256/m32bcst k ymm
 // 	VSQRTPD m512/m64bcst zmm
 // 	VSQRTPD m512/m64bcst k zmm
+// 	VSQRTPD xmm          xmm
+// 	VSQRTPD xmm          k xmm
+// 	VSQRTPD ymm          ymm
+// 	VSQRTPD ymm          k ymm
 // 	VSQRTPD xmm          xmm
 // 	VSQRTPD m128         xmm
 // 	VSQRTPD ymm          ymm
@@ -65242,8 +73468,16 @@ func (c *Context) VSQRTPD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VSQRTPD m128/m32bcst xmm
+// 	VSQRTPD m128/m32bcst k xmm
+// 	VSQRTPD m256/m32bcst ymm
+// 	VSQRTPD m256/m32bcst k ymm
 // 	VSQRTPD m512/m64bcst zmm
 // 	VSQRTPD m512/m64bcst k zmm
+// 	VSQRTPD xmm          xmm
+// 	VSQRTPD xmm          k xmm
+// 	VSQRTPD ymm          ymm
+// 	VSQRTPD ymm          k ymm
 // 	VSQRTPD xmm          xmm
 // 	VSQRTPD m128         xmm
 // 	VSQRTPD ymm          ymm
@@ -65258,6 +73492,10 @@ func VSQRTPD(ops ...operand.Op) { ctx.VSQRTPD(ops...) }
 //
 // Forms:
 //
+// 	VSQRTPD.BCST m128/m32bcst xmm
+// 	VSQRTPD.BCST m128/m32bcst k xmm
+// 	VSQRTPD.BCST m256/m32bcst ymm
+// 	VSQRTPD.BCST m256/m32bcst k ymm
 // 	VSQRTPD.BCST m512/m64bcst zmm
 // 	VSQRTPD.BCST m512/m64bcst k zmm
 // Construct and append a VSQRTPD.BCST instruction to the active function.
@@ -65273,6 +73511,10 @@ func (c *Context) VSQRTPD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VSQRTPD.BCST m128/m32bcst xmm
+// 	VSQRTPD.BCST m128/m32bcst k xmm
+// 	VSQRTPD.BCST m256/m32bcst ymm
+// 	VSQRTPD.BCST m256/m32bcst k ymm
 // 	VSQRTPD.BCST m512/m64bcst zmm
 // 	VSQRTPD.BCST m512/m64bcst k zmm
 // Construct and append a VSQRTPD.BCST instruction to the active function.
@@ -65283,10 +73525,12 @@ func VSQRTPD_BCST(ops ...operand.Op) { ctx.VSQRTPD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VSQRTPD.BCST.Z m128/m32bcst k xmm
+// 	VSQRTPD.BCST.Z m256/m32bcst k ymm
 // 	VSQRTPD.BCST.Z m512/m64bcst k zmm
 // Construct and append a VSQRTPD.BCST.Z instruction to the active function.
-func (c *Context) VSQRTPD_BCST_Z(m, k, z operand.Op) {
-	if inst, err := x86.VSQRTPD_BCST_Z(m, k, z); err == nil {
+func (c *Context) VSQRTPD_BCST_Z(m, k, xyz operand.Op) {
+	if inst, err := x86.VSQRTPD_BCST_Z(m, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -65297,10 +73541,12 @@ func (c *Context) VSQRTPD_BCST_Z(m, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VSQRTPD.BCST.Z m128/m32bcst k xmm
+// 	VSQRTPD.BCST.Z m256/m32bcst k ymm
 // 	VSQRTPD.BCST.Z m512/m64bcst k zmm
 // Construct and append a VSQRTPD.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VSQRTPD_BCST_Z(m, k, z operand.Op) { ctx.VSQRTPD_BCST_Z(m, k, z) }
+func VSQRTPD_BCST_Z(m, k, xyz operand.Op) { ctx.VSQRTPD_BCST_Z(m, k, xyz) }
 
 // VSQRTPD_RD_SAE: Compute Square Roots of Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
@@ -65498,11 +73744,15 @@ func VSQRTPD_RZ_SAE_Z(z, k, z1 operand.Op) { ctx.VSQRTPD_RZ_SAE_Z(z, k, z1) }
 //
 // Forms:
 //
+// 	VSQRTPD.Z m128/m32bcst k xmm
+// 	VSQRTPD.Z m256/m32bcst k ymm
 // 	VSQRTPD.Z m512/m64bcst k zmm
+// 	VSQRTPD.Z xmm          k xmm
+// 	VSQRTPD.Z ymm          k ymm
 // 	VSQRTPD.Z zmm          k zmm
 // Construct and append a VSQRTPD.Z instruction to the active function.
-func (c *Context) VSQRTPD_Z(mz, k, z operand.Op) {
-	if inst, err := x86.VSQRTPD_Z(mz, k, z); err == nil {
+func (c *Context) VSQRTPD_Z(mxyz, k, xyz operand.Op) {
+	if inst, err := x86.VSQRTPD_Z(mxyz, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -65513,18 +73763,30 @@ func (c *Context) VSQRTPD_Z(mz, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VSQRTPD.Z m128/m32bcst k xmm
+// 	VSQRTPD.Z m256/m32bcst k ymm
 // 	VSQRTPD.Z m512/m64bcst k zmm
+// 	VSQRTPD.Z xmm          k xmm
+// 	VSQRTPD.Z ymm          k ymm
 // 	VSQRTPD.Z zmm          k zmm
 // Construct and append a VSQRTPD.Z instruction to the active function.
 // Operates on the global context.
-func VSQRTPD_Z(mz, k, z operand.Op) { ctx.VSQRTPD_Z(mz, k, z) }
+func VSQRTPD_Z(mxyz, k, xyz operand.Op) { ctx.VSQRTPD_Z(mxyz, k, xyz) }
 
 // VSQRTPS: Compute Square Roots of Packed Single-Precision Floating-Point Values.
 //
 // Forms:
 //
+// 	VSQRTPS m128/m32bcst xmm
+// 	VSQRTPS m128/m32bcst k xmm
+// 	VSQRTPS m256/m32bcst ymm
+// 	VSQRTPS m256/m32bcst k ymm
 // 	VSQRTPS m512/m32bcst zmm
 // 	VSQRTPS m512/m32bcst k zmm
+// 	VSQRTPS xmm          xmm
+// 	VSQRTPS xmm          k xmm
+// 	VSQRTPS ymm          ymm
+// 	VSQRTPS ymm          k ymm
 // 	VSQRTPS xmm          xmm
 // 	VSQRTPS m128         xmm
 // 	VSQRTPS ymm          ymm
@@ -65544,8 +73806,16 @@ func (c *Context) VSQRTPS(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VSQRTPS m128/m32bcst xmm
+// 	VSQRTPS m128/m32bcst k xmm
+// 	VSQRTPS m256/m32bcst ymm
+// 	VSQRTPS m256/m32bcst k ymm
 // 	VSQRTPS m512/m32bcst zmm
 // 	VSQRTPS m512/m32bcst k zmm
+// 	VSQRTPS xmm          xmm
+// 	VSQRTPS xmm          k xmm
+// 	VSQRTPS ymm          ymm
+// 	VSQRTPS ymm          k ymm
 // 	VSQRTPS xmm          xmm
 // 	VSQRTPS m128         xmm
 // 	VSQRTPS ymm          ymm
@@ -65560,6 +73830,10 @@ func VSQRTPS(ops ...operand.Op) { ctx.VSQRTPS(ops...) }
 //
 // Forms:
 //
+// 	VSQRTPS.BCST m128/m32bcst xmm
+// 	VSQRTPS.BCST m128/m32bcst k xmm
+// 	VSQRTPS.BCST m256/m32bcst ymm
+// 	VSQRTPS.BCST m256/m32bcst k ymm
 // 	VSQRTPS.BCST m512/m32bcst zmm
 // 	VSQRTPS.BCST m512/m32bcst k zmm
 // Construct and append a VSQRTPS.BCST instruction to the active function.
@@ -65575,6 +73849,10 @@ func (c *Context) VSQRTPS_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VSQRTPS.BCST m128/m32bcst xmm
+// 	VSQRTPS.BCST m128/m32bcst k xmm
+// 	VSQRTPS.BCST m256/m32bcst ymm
+// 	VSQRTPS.BCST m256/m32bcst k ymm
 // 	VSQRTPS.BCST m512/m32bcst zmm
 // 	VSQRTPS.BCST m512/m32bcst k zmm
 // Construct and append a VSQRTPS.BCST instruction to the active function.
@@ -65585,10 +73863,12 @@ func VSQRTPS_BCST(ops ...operand.Op) { ctx.VSQRTPS_BCST(ops...) }
 //
 // Forms:
 //
+// 	VSQRTPS.BCST.Z m128/m32bcst k xmm
+// 	VSQRTPS.BCST.Z m256/m32bcst k ymm
 // 	VSQRTPS.BCST.Z m512/m32bcst k zmm
 // Construct and append a VSQRTPS.BCST.Z instruction to the active function.
-func (c *Context) VSQRTPS_BCST_Z(m, k, z operand.Op) {
-	if inst, err := x86.VSQRTPS_BCST_Z(m, k, z); err == nil {
+func (c *Context) VSQRTPS_BCST_Z(m, k, xyz operand.Op) {
+	if inst, err := x86.VSQRTPS_BCST_Z(m, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -65599,10 +73879,12 @@ func (c *Context) VSQRTPS_BCST_Z(m, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VSQRTPS.BCST.Z m128/m32bcst k xmm
+// 	VSQRTPS.BCST.Z m256/m32bcst k ymm
 // 	VSQRTPS.BCST.Z m512/m32bcst k zmm
 // Construct and append a VSQRTPS.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VSQRTPS_BCST_Z(m, k, z operand.Op) { ctx.VSQRTPS_BCST_Z(m, k, z) }
+func VSQRTPS_BCST_Z(m, k, xyz operand.Op) { ctx.VSQRTPS_BCST_Z(m, k, xyz) }
 
 // VSQRTPS_RD_SAE: Compute Square Roots of Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
@@ -65800,11 +74082,15 @@ func VSQRTPS_RZ_SAE_Z(z, k, z1 operand.Op) { ctx.VSQRTPS_RZ_SAE_Z(z, k, z1) }
 //
 // Forms:
 //
+// 	VSQRTPS.Z m128/m32bcst k xmm
+// 	VSQRTPS.Z m256/m32bcst k ymm
 // 	VSQRTPS.Z m512/m32bcst k zmm
+// 	VSQRTPS.Z xmm          k xmm
+// 	VSQRTPS.Z ymm          k ymm
 // 	VSQRTPS.Z zmm          k zmm
 // Construct and append a VSQRTPS.Z instruction to the active function.
-func (c *Context) VSQRTPS_Z(mz, k, z operand.Op) {
-	if inst, err := x86.VSQRTPS_Z(mz, k, z); err == nil {
+func (c *Context) VSQRTPS_Z(mxyz, k, xyz operand.Op) {
+	if inst, err := x86.VSQRTPS_Z(mxyz, k, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -65815,11 +74101,15 @@ func (c *Context) VSQRTPS_Z(mz, k, z operand.Op) {
 //
 // Forms:
 //
+// 	VSQRTPS.Z m128/m32bcst k xmm
+// 	VSQRTPS.Z m256/m32bcst k ymm
 // 	VSQRTPS.Z m512/m32bcst k zmm
+// 	VSQRTPS.Z xmm          k xmm
+// 	VSQRTPS.Z ymm          k ymm
 // 	VSQRTPS.Z zmm          k zmm
 // Construct and append a VSQRTPS.Z instruction to the active function.
 // Operates on the global context.
-func VSQRTPS_Z(mz, k, z operand.Op) { ctx.VSQRTPS_Z(mz, k, z) }
+func VSQRTPS_Z(mxyz, k, xyz operand.Op) { ctx.VSQRTPS_Z(mxyz, k, xyz) }
 
 // VSQRTSD: Compute Square Root of Scalar Double-Precision Floating-Point Value.
 //
@@ -66348,6 +74638,14 @@ func VSTMXCSR(m operand.Op) { ctx.VSTMXCSR(m) }
 //
 // Forms:
 //
+// 	VSUBPD m128/m64bcst xmm xmm
+// 	VSUBPD m128/m64bcst xmm k xmm
+// 	VSUBPD xmm          xmm xmm
+// 	VSUBPD xmm          xmm k xmm
+// 	VSUBPD m256/m64bcst ymm ymm
+// 	VSUBPD m256/m64bcst ymm k ymm
+// 	VSUBPD ymm          ymm ymm
+// 	VSUBPD ymm          ymm k ymm
 // 	VSUBPD m512/m64bcst zmm zmm
 // 	VSUBPD m512/m64bcst zmm k zmm
 // 	VSUBPD xmm          xmm xmm
@@ -66369,6 +74667,14 @@ func (c *Context) VSUBPD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VSUBPD m128/m64bcst xmm xmm
+// 	VSUBPD m128/m64bcst xmm k xmm
+// 	VSUBPD xmm          xmm xmm
+// 	VSUBPD xmm          xmm k xmm
+// 	VSUBPD m256/m64bcst ymm ymm
+// 	VSUBPD m256/m64bcst ymm k ymm
+// 	VSUBPD ymm          ymm ymm
+// 	VSUBPD ymm          ymm k ymm
 // 	VSUBPD m512/m64bcst zmm zmm
 // 	VSUBPD m512/m64bcst zmm k zmm
 // 	VSUBPD xmm          xmm xmm
@@ -66385,6 +74691,10 @@ func VSUBPD(ops ...operand.Op) { ctx.VSUBPD(ops...) }
 //
 // Forms:
 //
+// 	VSUBPD.BCST m128/m64bcst xmm xmm
+// 	VSUBPD.BCST m128/m64bcst xmm k xmm
+// 	VSUBPD.BCST m256/m64bcst ymm ymm
+// 	VSUBPD.BCST m256/m64bcst ymm k ymm
 // 	VSUBPD.BCST m512/m64bcst zmm zmm
 // 	VSUBPD.BCST m512/m64bcst zmm k zmm
 // Construct and append a VSUBPD.BCST instruction to the active function.
@@ -66400,6 +74710,10 @@ func (c *Context) VSUBPD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VSUBPD.BCST m128/m64bcst xmm xmm
+// 	VSUBPD.BCST m128/m64bcst xmm k xmm
+// 	VSUBPD.BCST m256/m64bcst ymm ymm
+// 	VSUBPD.BCST m256/m64bcst ymm k ymm
 // 	VSUBPD.BCST m512/m64bcst zmm zmm
 // 	VSUBPD.BCST m512/m64bcst zmm k zmm
 // Construct and append a VSUBPD.BCST instruction to the active function.
@@ -66410,10 +74724,12 @@ func VSUBPD_BCST(ops ...operand.Op) { ctx.VSUBPD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VSUBPD.BCST.Z m128/m64bcst xmm k xmm
+// 	VSUBPD.BCST.Z m256/m64bcst ymm k ymm
 // 	VSUBPD.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VSUBPD.BCST.Z instruction to the active function.
-func (c *Context) VSUBPD_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VSUBPD_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VSUBPD_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VSUBPD_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -66424,10 +74740,12 @@ func (c *Context) VSUBPD_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VSUBPD.BCST.Z m128/m64bcst xmm k xmm
+// 	VSUBPD.BCST.Z m256/m64bcst ymm k ymm
 // 	VSUBPD.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VSUBPD.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VSUBPD_BCST_Z(m, z, k, z1 operand.Op) { ctx.VSUBPD_BCST_Z(m, z, k, z1) }
+func VSUBPD_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VSUBPD_BCST_Z(m, xyz, k, xyz1) }
 
 // VSUBPD_RD_SAE: Subtract Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
@@ -66625,11 +74943,15 @@ func VSUBPD_RZ_SAE_Z(z, z1, k, z2 operand.Op) { ctx.VSUBPD_RZ_SAE_Z(z, z1, k, z2
 //
 // Forms:
 //
+// 	VSUBPD.Z m128/m64bcst xmm k xmm
+// 	VSUBPD.Z xmm          xmm k xmm
+// 	VSUBPD.Z m256/m64bcst ymm k ymm
+// 	VSUBPD.Z ymm          ymm k ymm
 // 	VSUBPD.Z m512/m64bcst zmm k zmm
 // 	VSUBPD.Z zmm          zmm k zmm
 // Construct and append a VSUBPD.Z instruction to the active function.
-func (c *Context) VSUBPD_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VSUBPD_Z(mz, z, k, z1); err == nil {
+func (c *Context) VSUBPD_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VSUBPD_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -66640,16 +74962,28 @@ func (c *Context) VSUBPD_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VSUBPD.Z m128/m64bcst xmm k xmm
+// 	VSUBPD.Z xmm          xmm k xmm
+// 	VSUBPD.Z m256/m64bcst ymm k ymm
+// 	VSUBPD.Z ymm          ymm k ymm
 // 	VSUBPD.Z m512/m64bcst zmm k zmm
 // 	VSUBPD.Z zmm          zmm k zmm
 // Construct and append a VSUBPD.Z instruction to the active function.
 // Operates on the global context.
-func VSUBPD_Z(mz, z, k, z1 operand.Op) { ctx.VSUBPD_Z(mz, z, k, z1) }
+func VSUBPD_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VSUBPD_Z(mxyz, xyz, k, xyz1) }
 
 // VSUBPS: Subtract Packed Single-Precision Floating-Point Values.
 //
 // Forms:
 //
+// 	VSUBPS m128/m32bcst xmm xmm
+// 	VSUBPS m128/m32bcst xmm k xmm
+// 	VSUBPS xmm          xmm xmm
+// 	VSUBPS xmm          xmm k xmm
+// 	VSUBPS m256/m32bcst ymm ymm
+// 	VSUBPS m256/m32bcst ymm k ymm
+// 	VSUBPS ymm          ymm ymm
+// 	VSUBPS ymm          ymm k ymm
 // 	VSUBPS m512/m32bcst zmm zmm
 // 	VSUBPS m512/m32bcst zmm k zmm
 // 	VSUBPS xmm          xmm xmm
@@ -66671,6 +75005,14 @@ func (c *Context) VSUBPS(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VSUBPS m128/m32bcst xmm xmm
+// 	VSUBPS m128/m32bcst xmm k xmm
+// 	VSUBPS xmm          xmm xmm
+// 	VSUBPS xmm          xmm k xmm
+// 	VSUBPS m256/m32bcst ymm ymm
+// 	VSUBPS m256/m32bcst ymm k ymm
+// 	VSUBPS ymm          ymm ymm
+// 	VSUBPS ymm          ymm k ymm
 // 	VSUBPS m512/m32bcst zmm zmm
 // 	VSUBPS m512/m32bcst zmm k zmm
 // 	VSUBPS xmm          xmm xmm
@@ -66687,6 +75029,10 @@ func VSUBPS(ops ...operand.Op) { ctx.VSUBPS(ops...) }
 //
 // Forms:
 //
+// 	VSUBPS.BCST m128/m32bcst xmm xmm
+// 	VSUBPS.BCST m128/m32bcst xmm k xmm
+// 	VSUBPS.BCST m256/m32bcst ymm ymm
+// 	VSUBPS.BCST m256/m32bcst ymm k ymm
 // 	VSUBPS.BCST m512/m32bcst zmm zmm
 // 	VSUBPS.BCST m512/m32bcst zmm k zmm
 // Construct and append a VSUBPS.BCST instruction to the active function.
@@ -66702,6 +75048,10 @@ func (c *Context) VSUBPS_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VSUBPS.BCST m128/m32bcst xmm xmm
+// 	VSUBPS.BCST m128/m32bcst xmm k xmm
+// 	VSUBPS.BCST m256/m32bcst ymm ymm
+// 	VSUBPS.BCST m256/m32bcst ymm k ymm
 // 	VSUBPS.BCST m512/m32bcst zmm zmm
 // 	VSUBPS.BCST m512/m32bcst zmm k zmm
 // Construct and append a VSUBPS.BCST instruction to the active function.
@@ -66712,10 +75062,12 @@ func VSUBPS_BCST(ops ...operand.Op) { ctx.VSUBPS_BCST(ops...) }
 //
 // Forms:
 //
+// 	VSUBPS.BCST.Z m128/m32bcst xmm k xmm
+// 	VSUBPS.BCST.Z m256/m32bcst ymm k ymm
 // 	VSUBPS.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VSUBPS.BCST.Z instruction to the active function.
-func (c *Context) VSUBPS_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VSUBPS_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VSUBPS_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VSUBPS_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -66726,10 +75078,12 @@ func (c *Context) VSUBPS_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VSUBPS.BCST.Z m128/m32bcst xmm k xmm
+// 	VSUBPS.BCST.Z m256/m32bcst ymm k ymm
 // 	VSUBPS.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VSUBPS.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VSUBPS_BCST_Z(m, z, k, z1 operand.Op) { ctx.VSUBPS_BCST_Z(m, z, k, z1) }
+func VSUBPS_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VSUBPS_BCST_Z(m, xyz, k, xyz1) }
 
 // VSUBPS_RD_SAE: Subtract Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity).
 //
@@ -66927,11 +75281,15 @@ func VSUBPS_RZ_SAE_Z(z, z1, k, z2 operand.Op) { ctx.VSUBPS_RZ_SAE_Z(z, z1, k, z2
 //
 // Forms:
 //
+// 	VSUBPS.Z m128/m32bcst xmm k xmm
+// 	VSUBPS.Z xmm          xmm k xmm
+// 	VSUBPS.Z m256/m32bcst ymm k ymm
+// 	VSUBPS.Z ymm          ymm k ymm
 // 	VSUBPS.Z m512/m32bcst zmm k zmm
 // 	VSUBPS.Z zmm          zmm k zmm
 // Construct and append a VSUBPS.Z instruction to the active function.
-func (c *Context) VSUBPS_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VSUBPS_Z(mz, z, k, z1); err == nil {
+func (c *Context) VSUBPS_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VSUBPS_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -66942,11 +75300,15 @@ func (c *Context) VSUBPS_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VSUBPS.Z m128/m32bcst xmm k xmm
+// 	VSUBPS.Z xmm          xmm k xmm
+// 	VSUBPS.Z m256/m32bcst ymm k ymm
+// 	VSUBPS.Z ymm          ymm k ymm
 // 	VSUBPS.Z m512/m32bcst zmm k zmm
 // 	VSUBPS.Z zmm          zmm k zmm
 // Construct and append a VSUBPS.Z instruction to the active function.
 // Operates on the global context.
-func VSUBPS_Z(mz, z, k, z1 operand.Op) { ctx.VSUBPS_Z(mz, z, k, z1) }
+func VSUBPS_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VSUBPS_Z(mxyz, xyz, k, xyz1) }
 
 // VSUBSD: Subtract Scalar Double-Precision Floating-Point Values.
 //
@@ -67614,6 +75976,14 @@ func VUCOMISS_SAE(x, x1 operand.Op) { ctx.VUCOMISS_SAE(x, x1) }
 //
 // Forms:
 //
+// 	VUNPCKHPD m128/m64bcst xmm xmm
+// 	VUNPCKHPD m128/m64bcst xmm k xmm
+// 	VUNPCKHPD xmm          xmm xmm
+// 	VUNPCKHPD xmm          xmm k xmm
+// 	VUNPCKHPD m256/m64bcst ymm ymm
+// 	VUNPCKHPD m256/m64bcst ymm k ymm
+// 	VUNPCKHPD ymm          ymm ymm
+// 	VUNPCKHPD ymm          ymm k ymm
 // 	VUNPCKHPD m512/m64bcst zmm zmm
 // 	VUNPCKHPD m512/m64bcst zmm k zmm
 // 	VUNPCKHPD zmm          zmm zmm
@@ -67635,6 +76005,14 @@ func (c *Context) VUNPCKHPD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VUNPCKHPD m128/m64bcst xmm xmm
+// 	VUNPCKHPD m128/m64bcst xmm k xmm
+// 	VUNPCKHPD xmm          xmm xmm
+// 	VUNPCKHPD xmm          xmm k xmm
+// 	VUNPCKHPD m256/m64bcst ymm ymm
+// 	VUNPCKHPD m256/m64bcst ymm k ymm
+// 	VUNPCKHPD ymm          ymm ymm
+// 	VUNPCKHPD ymm          ymm k ymm
 // 	VUNPCKHPD m512/m64bcst zmm zmm
 // 	VUNPCKHPD m512/m64bcst zmm k zmm
 // 	VUNPCKHPD zmm          zmm zmm
@@ -67651,6 +76029,10 @@ func VUNPCKHPD(ops ...operand.Op) { ctx.VUNPCKHPD(ops...) }
 //
 // Forms:
 //
+// 	VUNPCKHPD.BCST m128/m64bcst xmm xmm
+// 	VUNPCKHPD.BCST m128/m64bcst xmm k xmm
+// 	VUNPCKHPD.BCST m256/m64bcst ymm ymm
+// 	VUNPCKHPD.BCST m256/m64bcst ymm k ymm
 // 	VUNPCKHPD.BCST m512/m64bcst zmm zmm
 // 	VUNPCKHPD.BCST m512/m64bcst zmm k zmm
 // Construct and append a VUNPCKHPD.BCST instruction to the active function.
@@ -67666,6 +76048,10 @@ func (c *Context) VUNPCKHPD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VUNPCKHPD.BCST m128/m64bcst xmm xmm
+// 	VUNPCKHPD.BCST m128/m64bcst xmm k xmm
+// 	VUNPCKHPD.BCST m256/m64bcst ymm ymm
+// 	VUNPCKHPD.BCST m256/m64bcst ymm k ymm
 // 	VUNPCKHPD.BCST m512/m64bcst zmm zmm
 // 	VUNPCKHPD.BCST m512/m64bcst zmm k zmm
 // Construct and append a VUNPCKHPD.BCST instruction to the active function.
@@ -67676,10 +76062,12 @@ func VUNPCKHPD_BCST(ops ...operand.Op) { ctx.VUNPCKHPD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VUNPCKHPD.BCST.Z m128/m64bcst xmm k xmm
+// 	VUNPCKHPD.BCST.Z m256/m64bcst ymm k ymm
 // 	VUNPCKHPD.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VUNPCKHPD.BCST.Z instruction to the active function.
-func (c *Context) VUNPCKHPD_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VUNPCKHPD_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VUNPCKHPD_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VUNPCKHPD_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -67690,20 +76078,26 @@ func (c *Context) VUNPCKHPD_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VUNPCKHPD.BCST.Z m128/m64bcst xmm k xmm
+// 	VUNPCKHPD.BCST.Z m256/m64bcst ymm k ymm
 // 	VUNPCKHPD.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VUNPCKHPD.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VUNPCKHPD_BCST_Z(m, z, k, z1 operand.Op) { ctx.VUNPCKHPD_BCST_Z(m, z, k, z1) }
+func VUNPCKHPD_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VUNPCKHPD_BCST_Z(m, xyz, k, xyz1) }
 
 // VUNPCKHPD_Z: Unpack and Interleave High Packed Double-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
+// 	VUNPCKHPD.Z m128/m64bcst xmm k xmm
+// 	VUNPCKHPD.Z xmm          xmm k xmm
+// 	VUNPCKHPD.Z m256/m64bcst ymm k ymm
+// 	VUNPCKHPD.Z ymm          ymm k ymm
 // 	VUNPCKHPD.Z m512/m64bcst zmm k zmm
 // 	VUNPCKHPD.Z zmm          zmm k zmm
 // Construct and append a VUNPCKHPD.Z instruction to the active function.
-func (c *Context) VUNPCKHPD_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VUNPCKHPD_Z(mz, z, k, z1); err == nil {
+func (c *Context) VUNPCKHPD_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VUNPCKHPD_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -67714,16 +76108,28 @@ func (c *Context) VUNPCKHPD_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VUNPCKHPD.Z m128/m64bcst xmm k xmm
+// 	VUNPCKHPD.Z xmm          xmm k xmm
+// 	VUNPCKHPD.Z m256/m64bcst ymm k ymm
+// 	VUNPCKHPD.Z ymm          ymm k ymm
 // 	VUNPCKHPD.Z m512/m64bcst zmm k zmm
 // 	VUNPCKHPD.Z zmm          zmm k zmm
 // Construct and append a VUNPCKHPD.Z instruction to the active function.
 // Operates on the global context.
-func VUNPCKHPD_Z(mz, z, k, z1 operand.Op) { ctx.VUNPCKHPD_Z(mz, z, k, z1) }
+func VUNPCKHPD_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VUNPCKHPD_Z(mxyz, xyz, k, xyz1) }
 
 // VUNPCKHPS: Unpack and Interleave High Packed Single-Precision Floating-Point Values.
 //
 // Forms:
 //
+// 	VUNPCKHPS m128/m32bcst xmm xmm
+// 	VUNPCKHPS m128/m32bcst xmm k xmm
+// 	VUNPCKHPS xmm          xmm xmm
+// 	VUNPCKHPS xmm          xmm k xmm
+// 	VUNPCKHPS m256/m32bcst ymm ymm
+// 	VUNPCKHPS m256/m32bcst ymm k ymm
+// 	VUNPCKHPS ymm          ymm ymm
+// 	VUNPCKHPS ymm          ymm k ymm
 // 	VUNPCKHPS m512/m32bcst zmm zmm
 // 	VUNPCKHPS m512/m32bcst zmm k zmm
 // 	VUNPCKHPS zmm          zmm zmm
@@ -67745,6 +76151,14 @@ func (c *Context) VUNPCKHPS(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VUNPCKHPS m128/m32bcst xmm xmm
+// 	VUNPCKHPS m128/m32bcst xmm k xmm
+// 	VUNPCKHPS xmm          xmm xmm
+// 	VUNPCKHPS xmm          xmm k xmm
+// 	VUNPCKHPS m256/m32bcst ymm ymm
+// 	VUNPCKHPS m256/m32bcst ymm k ymm
+// 	VUNPCKHPS ymm          ymm ymm
+// 	VUNPCKHPS ymm          ymm k ymm
 // 	VUNPCKHPS m512/m32bcst zmm zmm
 // 	VUNPCKHPS m512/m32bcst zmm k zmm
 // 	VUNPCKHPS zmm          zmm zmm
@@ -67761,6 +76175,10 @@ func VUNPCKHPS(ops ...operand.Op) { ctx.VUNPCKHPS(ops...) }
 //
 // Forms:
 //
+// 	VUNPCKHPS.BCST m128/m32bcst xmm xmm
+// 	VUNPCKHPS.BCST m128/m32bcst xmm k xmm
+// 	VUNPCKHPS.BCST m256/m32bcst ymm ymm
+// 	VUNPCKHPS.BCST m256/m32bcst ymm k ymm
 // 	VUNPCKHPS.BCST m512/m32bcst zmm zmm
 // 	VUNPCKHPS.BCST m512/m32bcst zmm k zmm
 // Construct and append a VUNPCKHPS.BCST instruction to the active function.
@@ -67776,6 +76194,10 @@ func (c *Context) VUNPCKHPS_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VUNPCKHPS.BCST m128/m32bcst xmm xmm
+// 	VUNPCKHPS.BCST m128/m32bcst xmm k xmm
+// 	VUNPCKHPS.BCST m256/m32bcst ymm ymm
+// 	VUNPCKHPS.BCST m256/m32bcst ymm k ymm
 // 	VUNPCKHPS.BCST m512/m32bcst zmm zmm
 // 	VUNPCKHPS.BCST m512/m32bcst zmm k zmm
 // Construct and append a VUNPCKHPS.BCST instruction to the active function.
@@ -67786,10 +76208,12 @@ func VUNPCKHPS_BCST(ops ...operand.Op) { ctx.VUNPCKHPS_BCST(ops...) }
 //
 // Forms:
 //
+// 	VUNPCKHPS.BCST.Z m128/m32bcst xmm k xmm
+// 	VUNPCKHPS.BCST.Z m256/m32bcst ymm k ymm
 // 	VUNPCKHPS.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VUNPCKHPS.BCST.Z instruction to the active function.
-func (c *Context) VUNPCKHPS_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VUNPCKHPS_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VUNPCKHPS_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VUNPCKHPS_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -67800,20 +76224,26 @@ func (c *Context) VUNPCKHPS_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VUNPCKHPS.BCST.Z m128/m32bcst xmm k xmm
+// 	VUNPCKHPS.BCST.Z m256/m32bcst ymm k ymm
 // 	VUNPCKHPS.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VUNPCKHPS.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VUNPCKHPS_BCST_Z(m, z, k, z1 operand.Op) { ctx.VUNPCKHPS_BCST_Z(m, z, k, z1) }
+func VUNPCKHPS_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VUNPCKHPS_BCST_Z(m, xyz, k, xyz1) }
 
 // VUNPCKHPS_Z: Unpack and Interleave High Packed Single-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
+// 	VUNPCKHPS.Z m128/m32bcst xmm k xmm
+// 	VUNPCKHPS.Z xmm          xmm k xmm
+// 	VUNPCKHPS.Z m256/m32bcst ymm k ymm
+// 	VUNPCKHPS.Z ymm          ymm k ymm
 // 	VUNPCKHPS.Z m512/m32bcst zmm k zmm
 // 	VUNPCKHPS.Z zmm          zmm k zmm
 // Construct and append a VUNPCKHPS.Z instruction to the active function.
-func (c *Context) VUNPCKHPS_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VUNPCKHPS_Z(mz, z, k, z1); err == nil {
+func (c *Context) VUNPCKHPS_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VUNPCKHPS_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -67824,16 +76254,28 @@ func (c *Context) VUNPCKHPS_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VUNPCKHPS.Z m128/m32bcst xmm k xmm
+// 	VUNPCKHPS.Z xmm          xmm k xmm
+// 	VUNPCKHPS.Z m256/m32bcst ymm k ymm
+// 	VUNPCKHPS.Z ymm          ymm k ymm
 // 	VUNPCKHPS.Z m512/m32bcst zmm k zmm
 // 	VUNPCKHPS.Z zmm          zmm k zmm
 // Construct and append a VUNPCKHPS.Z instruction to the active function.
 // Operates on the global context.
-func VUNPCKHPS_Z(mz, z, k, z1 operand.Op) { ctx.VUNPCKHPS_Z(mz, z, k, z1) }
+func VUNPCKHPS_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VUNPCKHPS_Z(mxyz, xyz, k, xyz1) }
 
 // VUNPCKLPD: Unpack and Interleave Low Packed Double-Precision Floating-Point Values.
 //
 // Forms:
 //
+// 	VUNPCKLPD m128/m64bcst xmm xmm
+// 	VUNPCKLPD m128/m64bcst xmm k xmm
+// 	VUNPCKLPD xmm          xmm xmm
+// 	VUNPCKLPD xmm          xmm k xmm
+// 	VUNPCKLPD m256/m64bcst ymm ymm
+// 	VUNPCKLPD m256/m64bcst ymm k ymm
+// 	VUNPCKLPD ymm          ymm ymm
+// 	VUNPCKLPD ymm          ymm k ymm
 // 	VUNPCKLPD m512/m64bcst zmm zmm
 // 	VUNPCKLPD m512/m64bcst zmm k zmm
 // 	VUNPCKLPD zmm          zmm zmm
@@ -67855,6 +76297,14 @@ func (c *Context) VUNPCKLPD(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VUNPCKLPD m128/m64bcst xmm xmm
+// 	VUNPCKLPD m128/m64bcst xmm k xmm
+// 	VUNPCKLPD xmm          xmm xmm
+// 	VUNPCKLPD xmm          xmm k xmm
+// 	VUNPCKLPD m256/m64bcst ymm ymm
+// 	VUNPCKLPD m256/m64bcst ymm k ymm
+// 	VUNPCKLPD ymm          ymm ymm
+// 	VUNPCKLPD ymm          ymm k ymm
 // 	VUNPCKLPD m512/m64bcst zmm zmm
 // 	VUNPCKLPD m512/m64bcst zmm k zmm
 // 	VUNPCKLPD zmm          zmm zmm
@@ -67871,6 +76321,10 @@ func VUNPCKLPD(ops ...operand.Op) { ctx.VUNPCKLPD(ops...) }
 //
 // Forms:
 //
+// 	VUNPCKLPD.BCST m128/m64bcst xmm xmm
+// 	VUNPCKLPD.BCST m128/m64bcst xmm k xmm
+// 	VUNPCKLPD.BCST m256/m64bcst ymm ymm
+// 	VUNPCKLPD.BCST m256/m64bcst ymm k ymm
 // 	VUNPCKLPD.BCST m512/m64bcst zmm zmm
 // 	VUNPCKLPD.BCST m512/m64bcst zmm k zmm
 // Construct and append a VUNPCKLPD.BCST instruction to the active function.
@@ -67886,6 +76340,10 @@ func (c *Context) VUNPCKLPD_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VUNPCKLPD.BCST m128/m64bcst xmm xmm
+// 	VUNPCKLPD.BCST m128/m64bcst xmm k xmm
+// 	VUNPCKLPD.BCST m256/m64bcst ymm ymm
+// 	VUNPCKLPD.BCST m256/m64bcst ymm k ymm
 // 	VUNPCKLPD.BCST m512/m64bcst zmm zmm
 // 	VUNPCKLPD.BCST m512/m64bcst zmm k zmm
 // Construct and append a VUNPCKLPD.BCST instruction to the active function.
@@ -67896,10 +76354,12 @@ func VUNPCKLPD_BCST(ops ...operand.Op) { ctx.VUNPCKLPD_BCST(ops...) }
 //
 // Forms:
 //
+// 	VUNPCKLPD.BCST.Z m128/m64bcst xmm k xmm
+// 	VUNPCKLPD.BCST.Z m256/m64bcst ymm k ymm
 // 	VUNPCKLPD.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VUNPCKLPD.BCST.Z instruction to the active function.
-func (c *Context) VUNPCKLPD_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VUNPCKLPD_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VUNPCKLPD_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VUNPCKLPD_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -67910,20 +76370,26 @@ func (c *Context) VUNPCKLPD_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VUNPCKLPD.BCST.Z m128/m64bcst xmm k xmm
+// 	VUNPCKLPD.BCST.Z m256/m64bcst ymm k ymm
 // 	VUNPCKLPD.BCST.Z m512/m64bcst zmm k zmm
 // Construct and append a VUNPCKLPD.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VUNPCKLPD_BCST_Z(m, z, k, z1 operand.Op) { ctx.VUNPCKLPD_BCST_Z(m, z, k, z1) }
+func VUNPCKLPD_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VUNPCKLPD_BCST_Z(m, xyz, k, xyz1) }
 
 // VUNPCKLPD_Z: Unpack and Interleave Low Packed Double-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
+// 	VUNPCKLPD.Z m128/m64bcst xmm k xmm
+// 	VUNPCKLPD.Z xmm          xmm k xmm
+// 	VUNPCKLPD.Z m256/m64bcst ymm k ymm
+// 	VUNPCKLPD.Z ymm          ymm k ymm
 // 	VUNPCKLPD.Z m512/m64bcst zmm k zmm
 // 	VUNPCKLPD.Z zmm          zmm k zmm
 // Construct and append a VUNPCKLPD.Z instruction to the active function.
-func (c *Context) VUNPCKLPD_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VUNPCKLPD_Z(mz, z, k, z1); err == nil {
+func (c *Context) VUNPCKLPD_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VUNPCKLPD_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -67934,16 +76400,28 @@ func (c *Context) VUNPCKLPD_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VUNPCKLPD.Z m128/m64bcst xmm k xmm
+// 	VUNPCKLPD.Z xmm          xmm k xmm
+// 	VUNPCKLPD.Z m256/m64bcst ymm k ymm
+// 	VUNPCKLPD.Z ymm          ymm k ymm
 // 	VUNPCKLPD.Z m512/m64bcst zmm k zmm
 // 	VUNPCKLPD.Z zmm          zmm k zmm
 // Construct and append a VUNPCKLPD.Z instruction to the active function.
 // Operates on the global context.
-func VUNPCKLPD_Z(mz, z, k, z1 operand.Op) { ctx.VUNPCKLPD_Z(mz, z, k, z1) }
+func VUNPCKLPD_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VUNPCKLPD_Z(mxyz, xyz, k, xyz1) }
 
 // VUNPCKLPS: Unpack and Interleave Low Packed Single-Precision Floating-Point Values.
 //
 // Forms:
 //
+// 	VUNPCKLPS m128/m32bcst xmm xmm
+// 	VUNPCKLPS m128/m32bcst xmm k xmm
+// 	VUNPCKLPS xmm          xmm xmm
+// 	VUNPCKLPS xmm          xmm k xmm
+// 	VUNPCKLPS m256/m32bcst ymm ymm
+// 	VUNPCKLPS m256/m32bcst ymm k ymm
+// 	VUNPCKLPS ymm          ymm ymm
+// 	VUNPCKLPS ymm          ymm k ymm
 // 	VUNPCKLPS m512/m32bcst zmm zmm
 // 	VUNPCKLPS m512/m32bcst zmm k zmm
 // 	VUNPCKLPS zmm          zmm zmm
@@ -67965,6 +76443,14 @@ func (c *Context) VUNPCKLPS(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VUNPCKLPS m128/m32bcst xmm xmm
+// 	VUNPCKLPS m128/m32bcst xmm k xmm
+// 	VUNPCKLPS xmm          xmm xmm
+// 	VUNPCKLPS xmm          xmm k xmm
+// 	VUNPCKLPS m256/m32bcst ymm ymm
+// 	VUNPCKLPS m256/m32bcst ymm k ymm
+// 	VUNPCKLPS ymm          ymm ymm
+// 	VUNPCKLPS ymm          ymm k ymm
 // 	VUNPCKLPS m512/m32bcst zmm zmm
 // 	VUNPCKLPS m512/m32bcst zmm k zmm
 // 	VUNPCKLPS zmm          zmm zmm
@@ -67981,6 +76467,10 @@ func VUNPCKLPS(ops ...operand.Op) { ctx.VUNPCKLPS(ops...) }
 //
 // Forms:
 //
+// 	VUNPCKLPS.BCST m128/m32bcst xmm xmm
+// 	VUNPCKLPS.BCST m128/m32bcst xmm k xmm
+// 	VUNPCKLPS.BCST m256/m32bcst ymm ymm
+// 	VUNPCKLPS.BCST m256/m32bcst ymm k ymm
 // 	VUNPCKLPS.BCST m512/m32bcst zmm zmm
 // 	VUNPCKLPS.BCST m512/m32bcst zmm k zmm
 // Construct and append a VUNPCKLPS.BCST instruction to the active function.
@@ -67996,6 +76486,10 @@ func (c *Context) VUNPCKLPS_BCST(ops ...operand.Op) {
 //
 // Forms:
 //
+// 	VUNPCKLPS.BCST m128/m32bcst xmm xmm
+// 	VUNPCKLPS.BCST m128/m32bcst xmm k xmm
+// 	VUNPCKLPS.BCST m256/m32bcst ymm ymm
+// 	VUNPCKLPS.BCST m256/m32bcst ymm k ymm
 // 	VUNPCKLPS.BCST m512/m32bcst zmm zmm
 // 	VUNPCKLPS.BCST m512/m32bcst zmm k zmm
 // Construct and append a VUNPCKLPS.BCST instruction to the active function.
@@ -68006,10 +76500,12 @@ func VUNPCKLPS_BCST(ops ...operand.Op) { ctx.VUNPCKLPS_BCST(ops...) }
 //
 // Forms:
 //
+// 	VUNPCKLPS.BCST.Z m128/m32bcst xmm k xmm
+// 	VUNPCKLPS.BCST.Z m256/m32bcst ymm k ymm
 // 	VUNPCKLPS.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VUNPCKLPS.BCST.Z instruction to the active function.
-func (c *Context) VUNPCKLPS_BCST_Z(m, z, k, z1 operand.Op) {
-	if inst, err := x86.VUNPCKLPS_BCST_Z(m, z, k, z1); err == nil {
+func (c *Context) VUNPCKLPS_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VUNPCKLPS_BCST_Z(m, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -68020,20 +76516,26 @@ func (c *Context) VUNPCKLPS_BCST_Z(m, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VUNPCKLPS.BCST.Z m128/m32bcst xmm k xmm
+// 	VUNPCKLPS.BCST.Z m256/m32bcst ymm k ymm
 // 	VUNPCKLPS.BCST.Z m512/m32bcst zmm k zmm
 // Construct and append a VUNPCKLPS.BCST.Z instruction to the active function.
 // Operates on the global context.
-func VUNPCKLPS_BCST_Z(m, z, k, z1 operand.Op) { ctx.VUNPCKLPS_BCST_Z(m, z, k, z1) }
+func VUNPCKLPS_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VUNPCKLPS_BCST_Z(m, xyz, k, xyz1) }
 
 // VUNPCKLPS_Z: Unpack and Interleave Low Packed Single-Precision Floating-Point Values (Zeroing Masking).
 //
 // Forms:
 //
+// 	VUNPCKLPS.Z m128/m32bcst xmm k xmm
+// 	VUNPCKLPS.Z xmm          xmm k xmm
+// 	VUNPCKLPS.Z m256/m32bcst ymm k ymm
+// 	VUNPCKLPS.Z ymm          ymm k ymm
 // 	VUNPCKLPS.Z m512/m32bcst zmm k zmm
 // 	VUNPCKLPS.Z zmm          zmm k zmm
 // Construct and append a VUNPCKLPS.Z instruction to the active function.
-func (c *Context) VUNPCKLPS_Z(mz, z, k, z1 operand.Op) {
-	if inst, err := x86.VUNPCKLPS_Z(mz, z, k, z1); err == nil {
+func (c *Context) VUNPCKLPS_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VUNPCKLPS_Z(mxyz, xyz, k, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -68044,11 +76546,15 @@ func (c *Context) VUNPCKLPS_Z(mz, z, k, z1 operand.Op) {
 //
 // Forms:
 //
+// 	VUNPCKLPS.Z m128/m32bcst xmm k xmm
+// 	VUNPCKLPS.Z xmm          xmm k xmm
+// 	VUNPCKLPS.Z m256/m32bcst ymm k ymm
+// 	VUNPCKLPS.Z ymm          ymm k ymm
 // 	VUNPCKLPS.Z m512/m32bcst zmm k zmm
 // 	VUNPCKLPS.Z zmm          zmm k zmm
 // Construct and append a VUNPCKLPS.Z instruction to the active function.
 // Operates on the global context.
-func VUNPCKLPS_Z(mz, z, k, z1 operand.Op) { ctx.VUNPCKLPS_Z(mz, z, k, z1) }
+func VUNPCKLPS_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VUNPCKLPS_Z(mxyz, xyz, k, xyz1) }
 
 // VXORPD: Bitwise Logical XOR for Double-Precision Floating-Point Values.
 //

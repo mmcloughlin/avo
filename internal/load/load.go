@@ -134,7 +134,7 @@ func (l Loader) include(f opcodesxml.Form) bool {
 		case "TBM", "CLZERO", "FMA4", "XOP", "SSE4A", "3dnow!", "3dnow!+":
 			return false
 		// Partial support for AVX-512.
-		case "AVX512BW", "AVX512DQ", "AVX512ER", "AVX512IFMA", "AVX512PF", "AVX512VBMI", "AVX512VL", "AVX512VPOPCNTDQ":
+		case "AVX512BW", "AVX512DQ", "AVX512ER", "AVX512IFMA", "AVX512PF", "AVX512VBMI", "AVX512VPOPCNTDQ":
 			return false
 		// Incomplete support for some prefetching instructions.
 		case "PREFETCH", "PREFETCHW", "PREFETCHWT1", "CLWB":
@@ -537,12 +537,25 @@ func sizesuffix(n string, f opcodesxml.Form) string {
 	}
 
 	var (
+		XY  = rule{evexLLsize, map[int]string{128: "X", 256: "Y"}}
+		XYZ = rule{evexLLsize, map[int]string{128: "X", 256: "Y", 512: "Z"}}
 		Q   = rule{rexWsize, map[int]string{64: "Q"}}
 		LQ  = rule{rexWsize, map[int]string{32: "L", 64: "Q"}}
 		WLQ = rule{datasize, map[int]string{16: "W", 32: "L", 64: "Q"}}
 	)
 
 	rules := map[string]rule{
+		"VCVTPD2DQ":   XY,
+		"VCVTPD2PS":   XY,
+		"VCVTTPD2DQ":  XY,
+		"VCVTQQ2PS":   XY,
+		"VCVTUQQ2PS":  XY,
+		"VCVTPD2UDQ":  XY,
+		"VCVTTPD2UDQ": XY,
+
+		"VFPCLASSPD": XYZ,
+		"VFPCLASSPS": XYZ,
+
 		"VCVTSD2SI":  Q,
 		"VCVTTSD2SI": Q,
 		"VCVTTSS2SI": Q,
