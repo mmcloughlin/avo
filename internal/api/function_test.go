@@ -9,15 +9,16 @@ import (
 
 func TestFunctionsDuplicateFormSignatures(t *testing.T) {
 	// Test for duplicate form signatures within a given function. This could
-	// manifest as duplicate cast statements in generated code.
+	// manifest as duplicate case statements in generated code.
 	fns := InstructionsFunctions(inst.Instructions)
 	for _, fn := range fns {
 		t.Run(fn.Name(), func(t *testing.T) {
 			seen := map[string]bool{}
 			for _, f := range fn.Forms {
 				sig := strings.Join(f.Signature(), "_")
+				t.Log(sig)
 				if seen[sig] {
-					t.Fatalf("duplicate form signature %q", sig)
+					t.Fatalf("duplicate: %s", sig)
 				}
 				seen[sig] = true
 			}
