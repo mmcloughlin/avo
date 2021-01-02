@@ -70,6 +70,18 @@ func TestInstructionProperties(t *testing.T) {
 	}
 }
 
+func TestValidateActions(t *testing.T) {
+	for _, i := range inst.Instructions {
+		for _, f := range i.Forms {
+			for _, op := range f.Operands {
+				if err := op.Action.Validate(); err != nil {
+					t.Errorf("%s: invalid operand action", i.Opcode)
+				}
+			}
+		}
+	}
+}
+
 func TestAssembles(t *testing.T) {
 	g := gen.NewAsmTest(printer.NewArgvConfig())
 	b, err := g.Generate(inst.Instructions)

@@ -93,8 +93,14 @@ func construct(fn *api.Function, f inst.Form, s api.Signature) string {
 	}
 	fmt.Fprintf(buf, "\tOperands: %s,\n", s.ParameterSlice())
 
-	// Input output.
-	fmt.Fprintf(buf, "\tInputs: %s,\n", operandsWithAction(f, inst.R, s))
+	// Inputs.
+	a := inst.R
+	if !fn.HasSuffix("Z") {
+		a |= inst.M
+	}
+	fmt.Fprintf(buf, "\tInputs: %s,\n", operandsWithAction(f, a, s))
+
+	// Outputs.
 	fmt.Fprintf(buf, "\tOutputs: %s,\n", operandsWithAction(f, inst.W, s))
 
 	// ISAs.
@@ -124,12 +130,12 @@ func construct(fn *api.Function, f inst.Form, s api.Signature) string {
 func operandsWithAction(f inst.Form, a inst.Action, s api.Signature) string {
 	opexprs := []string{}
 	for i, op := range f.Operands {
-		if op.Action.Contains(a) {
+		if op.Action.ContainsAny(a) {
 			opexprs = append(opexprs, s.ParameterName(i))
 		}
 	}
 	for _, op := range f.ImplicitOperands {
-		if op.Action.Contains(a) {
+		if op.Action.ContainsAny(a) {
 			opexprs = append(opexprs, api.ImplicitRegister(op.Register))
 		}
 	}

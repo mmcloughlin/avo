@@ -81,3 +81,16 @@ func TestFormSupportedSuffixes(t *testing.T) {
 		}
 	}
 }
+
+func TestActionValidate(t *testing.T) {
+	invalid := []Action{
+		M,
+		R | M | W,
+		R | M,
+	}
+	for _, a := range invalid {
+		if err := a.Validate(); err == nil {
+			t.Errorf("action %q is invalid but passed validation", a)
+		}
+	}
+}
