@@ -39,8 +39,8 @@ func TestCases(t *testing.T) {
 			Expect: &ir.Instruction{
 				Opcode:   "VPADDD",
 				Suffixes: []string{"Z"},
-				Operands: []operand.Op{reg.Z1, reg.Z2, reg.K1}, // not Z3
-				Inputs:   []operand.Op{reg.Z1, reg.Z2, reg.K1, reg.Z3},
+				Operands: []operand.Op{reg.Z1, reg.Z2, reg.K1, reg.Z3},
+				Inputs:   []operand.Op{reg.Z1, reg.Z2, reg.K1}, // not Z3
 				Outputs:  []operand.Op{reg.Z3},
 				ISA:      []string{"AVX512F"},
 			},

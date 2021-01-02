@@ -19849,7 +19849,7 @@ func VADDPD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VADDPD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -19897,7 +19897,7 @@ func VADDPD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VADDPD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -19927,7 +19927,7 @@ func VADDPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VADDPD",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -19977,7 +19977,7 @@ func VADDPD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VADDPD",
 			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -20027,7 +20027,7 @@ func VADDPD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VADDPD",
 			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -20077,7 +20077,7 @@ func VADDPD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VADDPD",
 			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -20127,7 +20127,7 @@ func VADDPD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VADDPD",
 			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -20211,7 +20211,7 @@ func VADDPS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VADDPS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -20259,7 +20259,7 @@ func VADDPS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VADDPS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -20289,7 +20289,7 @@ func VADDPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VADDPS",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -20339,7 +20339,7 @@ func VADDPS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VADDPS",
 			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -20389,7 +20389,7 @@ func VADDPS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VADDPS",
 			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -20439,7 +20439,7 @@ func VADDPS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VADDPS",
 			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -20489,7 +20489,7 @@ func VADDPS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VADDPS",
 			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -20571,7 +20571,7 @@ func VADDSD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VADDSD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -20603,7 +20603,7 @@ func VADDSD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VADDSD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -20633,7 +20633,7 @@ func VADDSD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VADDSD",
 			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -20683,7 +20683,7 @@ func VADDSD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VADDSD",
 			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -20733,7 +20733,7 @@ func VADDSD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VADDSD",
 			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -20783,7 +20783,7 @@ func VADDSD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VADDSD",
 			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -20865,7 +20865,7 @@ func VADDSS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VADDSS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -20897,7 +20897,7 @@ func VADDSS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VADDSS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -20927,7 +20927,7 @@ func VADDSS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VADDSS",
 			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -20977,7 +20977,7 @@ func VADDSS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VADDSS",
 			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -21027,7 +21027,7 @@ func VADDSS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VADDSS",
 			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -21077,7 +21077,7 @@ func VADDSS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VADDSS",
 			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -21417,7 +21417,7 @@ func VALIGND(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VALIGND",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3], ops[4]},
 			Outputs:  []operand.Op{ops[4]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -21433,7 +21433,7 @@ func VALIGND(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VALIGND",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3], ops[4]},
 			Outputs:  []operand.Op{ops[4]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -21463,7 +21463,7 @@ func VALIGND_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VALIGND",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3], ops[4]},
 			Outputs:  []operand.Op{ops[4]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -21543,7 +21543,7 @@ func VALIGNQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VALIGNQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3], ops[4]},
 			Outputs:  []operand.Op{ops[4]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -21559,7 +21559,7 @@ func VALIGNQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VALIGNQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3], ops[4]},
 			Outputs:  []operand.Op{ops[4]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -21589,7 +21589,7 @@ func VALIGNQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VALIGNQ",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3], ops[4]},
 			Outputs:  []operand.Op{ops[4]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -21857,7 +21857,7 @@ func VBLENDMPD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VBLENDMPD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -21873,7 +21873,7 @@ func VBLENDMPD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VBLENDMPD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -21903,7 +21903,7 @@ func VBLENDMPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VBLENDMPD",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -21983,7 +21983,7 @@ func VBLENDMPS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VBLENDMPS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -21999,7 +21999,7 @@ func VBLENDMPS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VBLENDMPS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -22029,7 +22029,7 @@ func VBLENDMPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VBLENDMPS",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -22310,7 +22310,7 @@ func VBROADCASTF32X4(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VBROADCASTF32X4",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -22358,7 +22358,7 @@ func VBROADCASTF64X4(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VBROADCASTF64X4",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -22425,7 +22425,7 @@ func VBROADCASTI32X4(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VBROADCASTI32X4",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -22473,7 +22473,7 @@ func VBROADCASTI64X4(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VBROADCASTI64X4",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -22525,7 +22525,7 @@ func VBROADCASTSD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VBROADCASTSD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -22541,7 +22541,7 @@ func VBROADCASTSD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VBROADCASTSD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -22621,7 +22621,7 @@ func VBROADCASTSS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VBROADCASTSS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -22637,7 +22637,7 @@ func VBROADCASTSS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VBROADCASTSS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -23333,7 +23333,7 @@ func VCOMPRESSPD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VCOMPRESSPD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -23349,7 +23349,7 @@ func VCOMPRESSPD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VCOMPRESSPD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -23409,7 +23409,7 @@ func VCOMPRESSPS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VCOMPRESSPS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -23425,7 +23425,7 @@ func VCOMPRESSPS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VCOMPRESSPS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -23489,7 +23489,7 @@ func VCVTDQ2PD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VCVTDQ2PD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -23505,7 +23505,7 @@ func VCVTDQ2PD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VCVTDQ2PD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -23567,7 +23567,7 @@ func VCVTDQ2PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VCVTDQ2PD",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -23651,7 +23651,7 @@ func VCVTDQ2PS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VCVTDQ2PS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -23699,7 +23699,7 @@ func VCVTDQ2PS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VCVTDQ2PS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -23729,7 +23729,7 @@ func VCVTDQ2PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VCVTDQ2PS",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -23779,7 +23779,7 @@ func VCVTDQ2PS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VCVTDQ2PS",
 			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -23829,7 +23829,7 @@ func VCVTDQ2PS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VCVTDQ2PS",
 			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -23879,7 +23879,7 @@ func VCVTDQ2PS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VCVTDQ2PS",
 			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -23929,7 +23929,7 @@ func VCVTDQ2PS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VCVTDQ2PS",
 			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -24009,7 +24009,7 @@ func VCVTPD2DQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VCVTPD2DQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -24025,7 +24025,7 @@ func VCVTPD2DQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VCVTPD2DQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -24111,7 +24111,7 @@ func VCVTPD2DQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VCVTPD2DQ",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -24161,7 +24161,7 @@ func VCVTPD2DQ_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VCVTPD2DQ",
 			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -24211,7 +24211,7 @@ func VCVTPD2DQ_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VCVTPD2DQ",
 			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -24261,7 +24261,7 @@ func VCVTPD2DQ_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VCVTPD2DQ",
 			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -24311,7 +24311,7 @@ func VCVTPD2DQ_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VCVTPD2DQ",
 			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -24391,7 +24391,7 @@ func VCVTPD2PS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VCVTPD2PS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -24407,7 +24407,7 @@ func VCVTPD2PS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VCVTPD2PS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -24493,7 +24493,7 @@ func VCVTPD2PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VCVTPD2PS",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -24543,7 +24543,7 @@ func VCVTPD2PS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VCVTPD2PS",
 			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -24593,7 +24593,7 @@ func VCVTPD2PS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VCVTPD2PS",
 			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -24643,7 +24643,7 @@ func VCVTPD2PS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VCVTPD2PS",
 			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -24693,7 +24693,7 @@ func VCVTPD2PS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VCVTPD2PS",
 			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -24773,7 +24773,7 @@ func VCVTPD2UDQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VCVTPD2UDQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -24789,7 +24789,7 @@ func VCVTPD2UDQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VCVTPD2UDQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -24819,7 +24819,7 @@ func VCVTPD2UDQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VCVTPD2UDQ",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -24869,7 +24869,7 @@ func VCVTPD2UDQ_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VCVTPD2UDQ",
 			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -24919,7 +24919,7 @@ func VCVTPD2UDQ_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VCVTPD2UDQ",
 			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -24969,7 +24969,7 @@ func VCVTPD2UDQ_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VCVTPD2UDQ",
 			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -25019,7 +25019,7 @@ func VCVTPD2UDQ_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VCVTPD2UDQ",
 			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -25103,7 +25103,7 @@ func VCVTPH2PS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VCVTPH2PS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -25151,7 +25151,7 @@ func VCVTPH2PS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VCVTPH2PS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -25181,7 +25181,7 @@ func VCVTPH2PS_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VCVTPH2PS",
 			Suffixes: []string{"SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -25265,7 +25265,7 @@ func VCVTPS2DQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VCVTPS2DQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -25313,7 +25313,7 @@ func VCVTPS2DQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VCVTPS2DQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -25343,7 +25343,7 @@ func VCVTPS2DQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VCVTPS2DQ",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -25393,7 +25393,7 @@ func VCVTPS2DQ_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VCVTPS2DQ",
 			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -25443,7 +25443,7 @@ func VCVTPS2DQ_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VCVTPS2DQ",
 			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -25493,7 +25493,7 @@ func VCVTPS2DQ_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VCVTPS2DQ",
 			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -25543,7 +25543,7 @@ func VCVTPS2DQ_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VCVTPS2DQ",
 			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -25627,7 +25627,7 @@ func VCVTPS2PD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VCVTPS2PD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -25675,7 +25675,7 @@ func VCVTPS2PD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VCVTPS2PD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -25705,7 +25705,7 @@ func VCVTPS2PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VCVTPS2PD",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -25755,7 +25755,7 @@ func VCVTPS2PD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VCVTPS2PD",
 			Suffixes: []string{"SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -25839,7 +25839,7 @@ func VCVTPS2PH(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VCVTPS2PH",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -25887,7 +25887,7 @@ func VCVTPS2PH(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VCVTPS2PH",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -25917,7 +25917,7 @@ func VCVTPS2PH_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VCVTPS2PH",
 			Suffixes: []string{"SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -25997,7 +25997,7 @@ func VCVTPS2UDQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VCVTPS2UDQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -26013,7 +26013,7 @@ func VCVTPS2UDQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VCVTPS2UDQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -26043,7 +26043,7 @@ func VCVTPS2UDQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VCVTPS2UDQ",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -26093,7 +26093,7 @@ func VCVTPS2UDQ_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VCVTPS2UDQ",
 			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -26143,7 +26143,7 @@ func VCVTPS2UDQ_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VCVTPS2UDQ",
 			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -26193,7 +26193,7 @@ func VCVTPS2UDQ_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VCVTPS2UDQ",
 			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -26243,7 +26243,7 @@ func VCVTPS2UDQ_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VCVTPS2UDQ",
 			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -26577,7 +26577,7 @@ func VCVTSD2SS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VCVTSD2SS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -26609,7 +26609,7 @@ func VCVTSD2SS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VCVTSD2SS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -26639,7 +26639,7 @@ func VCVTSD2SS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VCVTSD2SS",
 			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -26689,7 +26689,7 @@ func VCVTSD2SS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VCVTSD2SS",
 			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -26739,7 +26739,7 @@ func VCVTSD2SS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VCVTSD2SS",
 			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -26789,7 +26789,7 @@ func VCVTSD2SS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VCVTSD2SS",
 			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -27511,7 +27511,7 @@ func VCVTSS2SD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VCVTSS2SD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -27543,7 +27543,7 @@ func VCVTSS2SD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VCVTSS2SD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -27573,7 +27573,7 @@ func VCVTSS2SD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VCVTSS2SD",
 			Suffixes: []string{"SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -28121,7 +28121,7 @@ func VCVTTPD2DQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VCVTTPD2DQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -28137,7 +28137,7 @@ func VCVTTPD2DQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VCVTTPD2DQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -28223,7 +28223,7 @@ func VCVTTPD2DQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VCVTTPD2DQ",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -28273,7 +28273,7 @@ func VCVTTPD2DQ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VCVTTPD2DQ",
 			Suffixes: []string{"SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -28353,7 +28353,7 @@ func VCVTTPD2UDQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VCVTTPD2UDQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -28369,7 +28369,7 @@ func VCVTTPD2UDQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VCVTTPD2UDQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -28399,7 +28399,7 @@ func VCVTTPD2UDQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VCVTTPD2UDQ",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -28449,7 +28449,7 @@ func VCVTTPD2UDQ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VCVTTPD2UDQ",
 			Suffixes: []string{"SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -28533,7 +28533,7 @@ func VCVTTPS2DQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VCVTTPS2DQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -28581,7 +28581,7 @@ func VCVTTPS2DQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VCVTTPS2DQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -28611,7 +28611,7 @@ func VCVTTPS2DQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VCVTTPS2DQ",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -28661,7 +28661,7 @@ func VCVTTPS2DQ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VCVTTPS2DQ",
 			Suffixes: []string{"SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -28741,7 +28741,7 @@ func VCVTTPS2UDQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VCVTTPS2UDQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -28757,7 +28757,7 @@ func VCVTTPS2UDQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VCVTTPS2UDQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -28787,7 +28787,7 @@ func VCVTTPS2UDQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VCVTTPS2UDQ",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -28837,7 +28837,7 @@ func VCVTTPS2UDQ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VCVTTPS2UDQ",
 			Suffixes: []string{"SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -29373,7 +29373,7 @@ func VCVTUDQ2PD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VCVTUDQ2PD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -29389,7 +29389,7 @@ func VCVTUDQ2PD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VCVTUDQ2PD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -29419,7 +29419,7 @@ func VCVTUDQ2PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VCVTUDQ2PD",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -29499,7 +29499,7 @@ func VCVTUDQ2PS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VCVTUDQ2PS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -29515,7 +29515,7 @@ func VCVTUDQ2PS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VCVTUDQ2PS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -29545,7 +29545,7 @@ func VCVTUDQ2PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VCVTUDQ2PS",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -29595,7 +29595,7 @@ func VCVTUDQ2PS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VCVTUDQ2PS",
 			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -29645,7 +29645,7 @@ func VCVTUDQ2PS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VCVTUDQ2PS",
 			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -29695,7 +29695,7 @@ func VCVTUDQ2PS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VCVTUDQ2PS",
 			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -29745,7 +29745,7 @@ func VCVTUDQ2PS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VCVTUDQ2PS",
 			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -30181,7 +30181,7 @@ func VDIVPD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VDIVPD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -30229,7 +30229,7 @@ func VDIVPD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VDIVPD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -30259,7 +30259,7 @@ func VDIVPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VDIVPD",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -30309,7 +30309,7 @@ func VDIVPD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VDIVPD",
 			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -30359,7 +30359,7 @@ func VDIVPD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VDIVPD",
 			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -30409,7 +30409,7 @@ func VDIVPD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VDIVPD",
 			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -30459,7 +30459,7 @@ func VDIVPD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VDIVPD",
 			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -30543,7 +30543,7 @@ func VDIVPS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VDIVPS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -30591,7 +30591,7 @@ func VDIVPS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VDIVPS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -30621,7 +30621,7 @@ func VDIVPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VDIVPS",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -30671,7 +30671,7 @@ func VDIVPS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VDIVPS",
 			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -30721,7 +30721,7 @@ func VDIVPS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VDIVPS",
 			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -30771,7 +30771,7 @@ func VDIVPS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VDIVPS",
 			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -30821,7 +30821,7 @@ func VDIVPS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VDIVPS",
 			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -30903,7 +30903,7 @@ func VDIVSD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VDIVSD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -30935,7 +30935,7 @@ func VDIVSD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VDIVSD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -30965,7 +30965,7 @@ func VDIVSD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VDIVSD",
 			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -31015,7 +31015,7 @@ func VDIVSD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VDIVSD",
 			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -31065,7 +31065,7 @@ func VDIVSD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VDIVSD",
 			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -31115,7 +31115,7 @@ func VDIVSD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VDIVSD",
 			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -31197,7 +31197,7 @@ func VDIVSS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VDIVSS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -31229,7 +31229,7 @@ func VDIVSS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VDIVSS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -31259,7 +31259,7 @@ func VDIVSS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VDIVSS",
 			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -31309,7 +31309,7 @@ func VDIVSS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VDIVSS",
 			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -31359,7 +31359,7 @@ func VDIVSS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VDIVSS",
 			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -31409,7 +31409,7 @@ func VDIVSS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VDIVSS",
 			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -31563,7 +31563,7 @@ func VEXPANDPD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VEXPANDPD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -31579,7 +31579,7 @@ func VEXPANDPD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VEXPANDPD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -31639,7 +31639,7 @@ func VEXPANDPS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VEXPANDPS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -31655,7 +31655,7 @@ func VEXPANDPS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VEXPANDPS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -31743,7 +31743,7 @@ func VEXTRACTF32X4(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VEXTRACTF32X4",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -31759,7 +31759,7 @@ func VEXTRACTF32X4(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VEXTRACTF32X4",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -31819,7 +31819,7 @@ func VEXTRACTF64X4(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VEXTRACTF64X4",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -31835,7 +31835,7 @@ func VEXTRACTF64X4(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VEXTRACTF64X4",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -31923,7 +31923,7 @@ func VEXTRACTI32X4(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VEXTRACTI32X4",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -31939,7 +31939,7 @@ func VEXTRACTI32X4(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VEXTRACTI32X4",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -31999,7 +31999,7 @@ func VEXTRACTI64X4(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VEXTRACTI64X4",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -32015,7 +32015,7 @@ func VEXTRACTI64X4(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VEXTRACTI64X4",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -52961,7 +52961,7 @@ func VGETEXPPD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VGETEXPPD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -52977,7 +52977,7 @@ func VGETEXPPD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VGETEXPPD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -53007,7 +53007,7 @@ func VGETEXPPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VGETEXPPD",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -53057,7 +53057,7 @@ func VGETEXPPD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VGETEXPPD",
 			Suffixes: []string{"SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -53137,7 +53137,7 @@ func VGETEXPPS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VGETEXPPS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -53153,7 +53153,7 @@ func VGETEXPPS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VGETEXPPS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -53183,7 +53183,7 @@ func VGETEXPPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VGETEXPPS",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -53233,7 +53233,7 @@ func VGETEXPPS_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VGETEXPPS",
 			Suffixes: []string{"SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -53313,7 +53313,7 @@ func VGETEXPSD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VGETEXPSD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -53329,7 +53329,7 @@ func VGETEXPSD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VGETEXPSD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -53359,7 +53359,7 @@ func VGETEXPSD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VGETEXPSD",
 			Suffixes: []string{"SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -53439,7 +53439,7 @@ func VGETEXPSS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VGETEXPSS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -53455,7 +53455,7 @@ func VGETEXPSS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VGETEXPSS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -53485,7 +53485,7 @@ func VGETEXPSS_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VGETEXPSS",
 			Suffixes: []string{"SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -53565,7 +53565,7 @@ func VGETMANTPD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VGETMANTPD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -53581,7 +53581,7 @@ func VGETMANTPD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VGETMANTPD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -53611,7 +53611,7 @@ func VGETMANTPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VGETMANTPD",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -53661,7 +53661,7 @@ func VGETMANTPD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VGETMANTPD",
 			Suffixes: []string{"SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -53741,7 +53741,7 @@ func VGETMANTPS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VGETMANTPS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -53757,7 +53757,7 @@ func VGETMANTPS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VGETMANTPS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -53787,7 +53787,7 @@ func VGETMANTPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VGETMANTPS",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -53837,7 +53837,7 @@ func VGETMANTPS_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VGETMANTPS",
 			Suffixes: []string{"SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -53917,7 +53917,7 @@ func VGETMANTSD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VGETMANTSD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3], ops[4]},
 			Outputs:  []operand.Op{ops[4]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -53933,7 +53933,7 @@ func VGETMANTSD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VGETMANTSD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3], ops[4]},
 			Outputs:  []operand.Op{ops[4]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -53963,7 +53963,7 @@ func VGETMANTSD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VGETMANTSD",
 			Suffixes: []string{"SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3], ops[4]},
 			Outputs:  []operand.Op{ops[4]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -54043,7 +54043,7 @@ func VGETMANTSS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VGETMANTSS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3], ops[4]},
 			Outputs:  []operand.Op{ops[4]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -54059,7 +54059,7 @@ func VGETMANTSS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VGETMANTSS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3], ops[4]},
 			Outputs:  []operand.Op{ops[4]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -54089,7 +54089,7 @@ func VGETMANTSS_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VGETMANTSS",
 			Suffixes: []string{"SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3], ops[4]},
 			Outputs:  []operand.Op{ops[4]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -54381,7 +54381,7 @@ func VINSERTF32X4(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VINSERTF32X4",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3], ops[4]},
 			Outputs:  []operand.Op{ops[4]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -54397,7 +54397,7 @@ func VINSERTF32X4(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VINSERTF32X4",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3], ops[4]},
 			Outputs:  []operand.Op{ops[4]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -54457,7 +54457,7 @@ func VINSERTF64X4(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VINSERTF64X4",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3], ops[4]},
 			Outputs:  []operand.Op{ops[4]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -54473,7 +54473,7 @@ func VINSERTF64X4(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VINSERTF64X4",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3], ops[4]},
 			Outputs:  []operand.Op{ops[4]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -54561,7 +54561,7 @@ func VINSERTI32X4(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VINSERTI32X4",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3], ops[4]},
 			Outputs:  []operand.Op{ops[4]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -54577,7 +54577,7 @@ func VINSERTI32X4(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VINSERTI32X4",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3], ops[4]},
 			Outputs:  []operand.Op{ops[4]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -54637,7 +54637,7 @@ func VINSERTI64X4(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VINSERTI64X4",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3], ops[4]},
 			Outputs:  []operand.Op{ops[4]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -54653,7 +54653,7 @@ func VINSERTI64X4(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VINSERTI64X4",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3], ops[4]},
 			Outputs:  []operand.Op{ops[4]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -54921,7 +54921,7 @@ func VMAXPD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VMAXPD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -54969,7 +54969,7 @@ func VMAXPD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VMAXPD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -54999,7 +54999,7 @@ func VMAXPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VMAXPD",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -55049,7 +55049,7 @@ func VMAXPD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VMAXPD",
 			Suffixes: []string{"SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -55133,7 +55133,7 @@ func VMAXPS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VMAXPS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -55181,7 +55181,7 @@ func VMAXPS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VMAXPS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -55211,7 +55211,7 @@ func VMAXPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VMAXPS",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -55261,7 +55261,7 @@ func VMAXPS_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VMAXPS",
 			Suffixes: []string{"SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -55343,7 +55343,7 @@ func VMAXSD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VMAXSD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -55375,7 +55375,7 @@ func VMAXSD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VMAXSD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -55405,7 +55405,7 @@ func VMAXSD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VMAXSD",
 			Suffixes: []string{"SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -55487,7 +55487,7 @@ func VMAXSS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VMAXSS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -55519,7 +55519,7 @@ func VMAXSS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VMAXSS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -55549,7 +55549,7 @@ func VMAXSS_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VMAXSS",
 			Suffixes: []string{"SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -55633,7 +55633,7 @@ func VMINPD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VMINPD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -55681,7 +55681,7 @@ func VMINPD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VMINPD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -55711,7 +55711,7 @@ func VMINPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VMINPD",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -55761,7 +55761,7 @@ func VMINPD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VMINPD",
 			Suffixes: []string{"SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -55845,7 +55845,7 @@ func VMINPS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VMINPS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -55893,7 +55893,7 @@ func VMINPS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VMINPS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -55923,7 +55923,7 @@ func VMINPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VMINPS",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -55973,7 +55973,7 @@ func VMINPS_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VMINPS",
 			Suffixes: []string{"SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -56055,7 +56055,7 @@ func VMINSD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VMINSD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -56087,7 +56087,7 @@ func VMINSD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VMINSD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -56117,7 +56117,7 @@ func VMINSD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VMINSD",
 			Suffixes: []string{"SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -56199,7 +56199,7 @@ func VMINSS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VMINSS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -56231,7 +56231,7 @@ func VMINSS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VMINSS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -56261,7 +56261,7 @@ func VMINSS_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VMINSS",
 			Suffixes: []string{"SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -56349,7 +56349,7 @@ func VMOVAPD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VMOVAPD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -56365,7 +56365,7 @@ func VMOVAPD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VMOVAPD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -56381,7 +56381,7 @@ func VMOVAPD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VMOVAPD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -56507,7 +56507,7 @@ func VMOVAPS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VMOVAPS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -56523,7 +56523,7 @@ func VMOVAPS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VMOVAPS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -56539,7 +56539,7 @@ func VMOVAPS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VMOVAPS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -56743,7 +56743,7 @@ func VMOVDDUP(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VMOVDDUP",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -56759,7 +56759,7 @@ func VMOVDDUP(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VMOVDDUP",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -56917,7 +56917,7 @@ func VMOVDQA32(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VMOVDQA32",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -56933,7 +56933,7 @@ func VMOVDQA32(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VMOVDQA32",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -56949,7 +56949,7 @@ func VMOVDQA32(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VMOVDQA32",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -57021,7 +57021,7 @@ func VMOVDQA64(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VMOVDQA64",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -57037,7 +57037,7 @@ func VMOVDQA64(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VMOVDQA64",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -57053,7 +57053,7 @@ func VMOVDQA64(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VMOVDQA64",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -57189,7 +57189,7 @@ func VMOVDQU32(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VMOVDQU32",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -57205,7 +57205,7 @@ func VMOVDQU32(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VMOVDQU32",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -57221,7 +57221,7 @@ func VMOVDQU32(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VMOVDQU32",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -57293,7 +57293,7 @@ func VMOVDQU64(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VMOVDQU64",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -57309,7 +57309,7 @@ func VMOVDQU64(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VMOVDQU64",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -57325,7 +57325,7 @@ func VMOVDQU64(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VMOVDQU64",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -57960,7 +57960,7 @@ func VMOVSD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VMOVSD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -57992,7 +57992,7 @@ func VMOVSD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VMOVSD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -58064,7 +58064,7 @@ func VMOVSHDUP(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VMOVSHDUP",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -58080,7 +58080,7 @@ func VMOVSHDUP(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VMOVSHDUP",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -58176,7 +58176,7 @@ func VMOVSLDUP(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VMOVSLDUP",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -58192,7 +58192,7 @@ func VMOVSLDUP(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VMOVSLDUP",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -58305,7 +58305,7 @@ func VMOVSS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VMOVSS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -58337,7 +58337,7 @@ func VMOVSS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VMOVSS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -58413,7 +58413,7 @@ func VMOVUPD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VMOVUPD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -58429,7 +58429,7 @@ func VMOVUPD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VMOVUPD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -58445,7 +58445,7 @@ func VMOVUPD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VMOVUPD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -58571,7 +58571,7 @@ func VMOVUPS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VMOVUPS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -58587,7 +58587,7 @@ func VMOVUPS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VMOVUPS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -58603,7 +58603,7 @@ func VMOVUPS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VMOVUPS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -58771,7 +58771,7 @@ func VMULPD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VMULPD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -58819,7 +58819,7 @@ func VMULPD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VMULPD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -58849,7 +58849,7 @@ func VMULPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VMULPD",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -58899,7 +58899,7 @@ func VMULPD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VMULPD",
 			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -58949,7 +58949,7 @@ func VMULPD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VMULPD",
 			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -58999,7 +58999,7 @@ func VMULPD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VMULPD",
 			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -59049,7 +59049,7 @@ func VMULPD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VMULPD",
 			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -59133,7 +59133,7 @@ func VMULPS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VMULPS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -59181,7 +59181,7 @@ func VMULPS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VMULPS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -59211,7 +59211,7 @@ func VMULPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VMULPS",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -59261,7 +59261,7 @@ func VMULPS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VMULPS",
 			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -59311,7 +59311,7 @@ func VMULPS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VMULPS",
 			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -59361,7 +59361,7 @@ func VMULPS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VMULPS",
 			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -59411,7 +59411,7 @@ func VMULPS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VMULPS",
 			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -59493,7 +59493,7 @@ func VMULSD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VMULSD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -59525,7 +59525,7 @@ func VMULSD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VMULSD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -59555,7 +59555,7 @@ func VMULSD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VMULSD",
 			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -59605,7 +59605,7 @@ func VMULSD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VMULSD",
 			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -59655,7 +59655,7 @@ func VMULSD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VMULSD",
 			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -59705,7 +59705,7 @@ func VMULSD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VMULSD",
 			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -59787,7 +59787,7 @@ func VMULSS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VMULSS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -59819,7 +59819,7 @@ func VMULSS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VMULSS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -59849,7 +59849,7 @@ func VMULSS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VMULSS",
 			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -59899,7 +59899,7 @@ func VMULSS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VMULSS",
 			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -59949,7 +59949,7 @@ func VMULSS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VMULSS",
 			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -59999,7 +59999,7 @@ func VMULSS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VMULSS",
 			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -60221,7 +60221,7 @@ func VPABSD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPABSD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -60237,7 +60237,7 @@ func VPABSD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPABSD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -60299,7 +60299,7 @@ func VPABSD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VPABSD",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -60379,7 +60379,7 @@ func VPABSQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPABSQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -60395,7 +60395,7 @@ func VPABSQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPABSQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -60425,7 +60425,7 @@ func VPABSQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VPABSQ",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -60785,7 +60785,7 @@ func VPADDD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPADDD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -60801,7 +60801,7 @@ func VPADDD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPADDD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -60863,7 +60863,7 @@ func VPADDD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VPADDD",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -60947,7 +60947,7 @@ func VPADDQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPADDQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -60963,7 +60963,7 @@ func VPADDQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPADDQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -61025,7 +61025,7 @@ func VPADDQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VPADDQ",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -61427,7 +61427,7 @@ func VPANDD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPANDD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -61443,7 +61443,7 @@ func VPANDD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPANDD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -61473,7 +61473,7 @@ func VPANDD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VPANDD",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -61601,7 +61601,7 @@ func VPANDND(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPANDND",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -61617,7 +61617,7 @@ func VPANDND(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPANDND",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -61647,7 +61647,7 @@ func VPANDND_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VPANDND",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -61727,7 +61727,7 @@ func VPANDNQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPANDNQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -61743,7 +61743,7 @@ func VPANDNQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPANDNQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -61773,7 +61773,7 @@ func VPANDNQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VPANDNQ",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -61853,7 +61853,7 @@ func VPANDQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPANDQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -61869,7 +61869,7 @@ func VPANDQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPANDQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -61899,7 +61899,7 @@ func VPANDQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VPANDQ",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -62117,7 +62117,7 @@ func VPBLENDMD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPBLENDMD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -62133,7 +62133,7 @@ func VPBLENDMD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPBLENDMD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -62163,7 +62163,7 @@ func VPBLENDMD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VPBLENDMD",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -62243,7 +62243,7 @@ func VPBLENDMQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPBLENDMQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -62259,7 +62259,7 @@ func VPBLENDMQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPBLENDMQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -62289,7 +62289,7 @@ func VPBLENDMQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VPBLENDMQ",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -62513,7 +62513,7 @@ func VPBROADCASTD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPBROADCASTD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -62529,7 +62529,7 @@ func VPBROADCASTD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPBROADCASTD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -62545,7 +62545,7 @@ func VPBROADCASTD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPBROADCASTD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -62653,7 +62653,7 @@ func VPBROADCASTQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPBROADCASTQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -62669,7 +62669,7 @@ func VPBROADCASTQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPBROADCASTQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -62685,7 +62685,7 @@ func VPBROADCASTQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPBROADCASTQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -63933,7 +63933,7 @@ func VPCOMPRESSD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPCOMPRESSD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -63949,7 +63949,7 @@ func VPCOMPRESSD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPCOMPRESSD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -64009,7 +64009,7 @@ func VPCOMPRESSQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPCOMPRESSQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -64025,7 +64025,7 @@ func VPCOMPRESSQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPCOMPRESSQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -64143,7 +64143,7 @@ func VPERMD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPERMD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -64159,7 +64159,7 @@ func VPERMD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPERMD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -64205,7 +64205,7 @@ func VPERMD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VPERMD",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -64801,7 +64801,7 @@ func VPERMILPD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPERMILPD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -64817,7 +64817,7 @@ func VPERMILPD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPERMILPD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -64833,7 +64833,7 @@ func VPERMILPD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPERMILPD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -64849,7 +64849,7 @@ func VPERMILPD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPERMILPD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -64945,7 +64945,7 @@ func VPERMILPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VPERMILPD",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -64963,7 +64963,7 @@ func VPERMILPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VPERMILPD",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -65085,7 +65085,7 @@ func VPERMILPS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPERMILPS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -65101,7 +65101,7 @@ func VPERMILPS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPERMILPS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -65117,7 +65117,7 @@ func VPERMILPS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPERMILPS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -65133,7 +65133,7 @@ func VPERMILPS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPERMILPS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -65229,7 +65229,7 @@ func VPERMILPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VPERMILPS",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -65247,7 +65247,7 @@ func VPERMILPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VPERMILPS",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -65363,7 +65363,7 @@ func VPERMPD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPERMPD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -65379,7 +65379,7 @@ func VPERMPD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPERMPD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -65395,7 +65395,7 @@ func VPERMPD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPERMPD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -65411,7 +65411,7 @@ func VPERMPD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPERMPD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -65459,7 +65459,7 @@ func VPERMPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VPERMPD",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -65477,7 +65477,7 @@ func VPERMPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VPERMPD",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -65589,7 +65589,7 @@ func VPERMPS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPERMPS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -65605,7 +65605,7 @@ func VPERMPS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPERMPS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -65651,7 +65651,7 @@ func VPERMPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VPERMPS",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -65737,7 +65737,7 @@ func VPERMQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPERMQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -65753,7 +65753,7 @@ func VPERMQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPERMQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -65769,7 +65769,7 @@ func VPERMQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPERMQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -65785,7 +65785,7 @@ func VPERMQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPERMQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -65833,7 +65833,7 @@ func VPERMQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VPERMQ",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -65851,7 +65851,7 @@ func VPERMQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VPERMQ",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -66465,7 +66465,7 @@ func VPEXPANDD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPEXPANDD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -66481,7 +66481,7 @@ func VPEXPANDD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPEXPANDD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -66541,7 +66541,7 @@ func VPEXPANDQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPEXPANDQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -66557,7 +66557,7 @@ func VPEXPANDQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPEXPANDQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -67533,7 +67533,7 @@ func VPMAXSD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPMAXSD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -67549,7 +67549,7 @@ func VPMAXSD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPMAXSD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -67611,7 +67611,7 @@ func VPMAXSD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VPMAXSD",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -67691,7 +67691,7 @@ func VPMAXSQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPMAXSQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -67707,7 +67707,7 @@ func VPMAXSQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPMAXSQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -67737,7 +67737,7 @@ func VPMAXSQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VPMAXSQ",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -67913,7 +67913,7 @@ func VPMAXUD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPMAXUD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -67929,7 +67929,7 @@ func VPMAXUD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPMAXUD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -67991,7 +67991,7 @@ func VPMAXUD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VPMAXUD",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -68071,7 +68071,7 @@ func VPMAXUQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPMAXUQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -68087,7 +68087,7 @@ func VPMAXUQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPMAXUQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -68117,7 +68117,7 @@ func VPMAXUQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VPMAXUQ",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -68293,7 +68293,7 @@ func VPMINSD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPMINSD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -68309,7 +68309,7 @@ func VPMINSD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPMINSD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -68371,7 +68371,7 @@ func VPMINSD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VPMINSD",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -68451,7 +68451,7 @@ func VPMINSQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPMINSQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -68467,7 +68467,7 @@ func VPMINSQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPMINSQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -68497,7 +68497,7 @@ func VPMINSQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VPMINSQ",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -68673,7 +68673,7 @@ func VPMINUD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPMINUD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -68689,7 +68689,7 @@ func VPMINUD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPMINUD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -68751,7 +68751,7 @@ func VPMINUD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VPMINUD",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -68831,7 +68831,7 @@ func VPMINUQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPMINUQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -68847,7 +68847,7 @@ func VPMINUQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPMINUQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -68877,7 +68877,7 @@ func VPMINUQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VPMINUQ",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -69003,7 +69003,7 @@ func VPMOVDB(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPMOVDB",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -69019,7 +69019,7 @@ func VPMOVDB(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPMOVDB",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -69079,7 +69079,7 @@ func VPMOVDW(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPMOVDW",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -69095,7 +69095,7 @@ func VPMOVDW(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPMOVDW",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -69183,7 +69183,7 @@ func VPMOVQB(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPMOVQB",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -69199,7 +69199,7 @@ func VPMOVQB(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPMOVQB",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -69259,7 +69259,7 @@ func VPMOVQD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPMOVQD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -69275,7 +69275,7 @@ func VPMOVQD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPMOVQD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -69335,7 +69335,7 @@ func VPMOVQW(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPMOVQW",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -69351,7 +69351,7 @@ func VPMOVQW(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPMOVQW",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -69411,7 +69411,7 @@ func VPMOVSDB(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPMOVSDB",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -69427,7 +69427,7 @@ func VPMOVSDB(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPMOVSDB",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -69487,7 +69487,7 @@ func VPMOVSDW(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPMOVSDW",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -69503,7 +69503,7 @@ func VPMOVSDW(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPMOVSDW",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -69563,7 +69563,7 @@ func VPMOVSQB(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPMOVSQB",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -69579,7 +69579,7 @@ func VPMOVSQB(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPMOVSQB",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -69639,7 +69639,7 @@ func VPMOVSQD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPMOVSQD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -69655,7 +69655,7 @@ func VPMOVSQD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPMOVSQD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -69715,7 +69715,7 @@ func VPMOVSQW(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPMOVSQW",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -69731,7 +69731,7 @@ func VPMOVSQW(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPMOVSQW",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -69795,7 +69795,7 @@ func VPMOVSXBD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPMOVSXBD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -69811,7 +69811,7 @@ func VPMOVSXBD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPMOVSXBD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -69907,7 +69907,7 @@ func VPMOVSXBQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPMOVSXBQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -69923,7 +69923,7 @@ func VPMOVSXBQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPMOVSXBQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -70065,7 +70065,7 @@ func VPMOVSXDQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPMOVSXDQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -70081,7 +70081,7 @@ func VPMOVSXDQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPMOVSXDQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -70177,7 +70177,7 @@ func VPMOVSXWD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPMOVSXWD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -70193,7 +70193,7 @@ func VPMOVSXWD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPMOVSXWD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -70289,7 +70289,7 @@ func VPMOVSXWQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPMOVSXWQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -70305,7 +70305,7 @@ func VPMOVSXWQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPMOVSXWQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -70397,7 +70397,7 @@ func VPMOVUSDB(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPMOVUSDB",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -70413,7 +70413,7 @@ func VPMOVUSDB(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPMOVUSDB",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -70473,7 +70473,7 @@ func VPMOVUSDW(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPMOVUSDW",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -70489,7 +70489,7 @@ func VPMOVUSDW(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPMOVUSDW",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -70549,7 +70549,7 @@ func VPMOVUSQB(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPMOVUSQB",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -70565,7 +70565,7 @@ func VPMOVUSQB(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPMOVUSQB",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -70625,7 +70625,7 @@ func VPMOVUSQD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPMOVUSQD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -70641,7 +70641,7 @@ func VPMOVUSQD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPMOVUSQD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -70701,7 +70701,7 @@ func VPMOVUSQW(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPMOVUSQW",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -70717,7 +70717,7 @@ func VPMOVUSQW(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPMOVUSQW",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -70781,7 +70781,7 @@ func VPMOVZXBD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPMOVZXBD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -70797,7 +70797,7 @@ func VPMOVZXBD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPMOVZXBD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -70893,7 +70893,7 @@ func VPMOVZXBQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPMOVZXBQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -70909,7 +70909,7 @@ func VPMOVZXBQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPMOVZXBQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -71051,7 +71051,7 @@ func VPMOVZXDQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPMOVZXDQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -71067,7 +71067,7 @@ func VPMOVZXDQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPMOVZXDQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -71163,7 +71163,7 @@ func VPMOVZXWD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPMOVZXWD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -71179,7 +71179,7 @@ func VPMOVZXWD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPMOVZXWD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -71275,7 +71275,7 @@ func VPMOVZXWQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPMOVZXWQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -71291,7 +71291,7 @@ func VPMOVZXWQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPMOVZXWQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -71387,7 +71387,7 @@ func VPMULDQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPMULDQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -71403,7 +71403,7 @@ func VPMULDQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPMULDQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -71465,7 +71465,7 @@ func VPMULDQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VPMULDQ",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -71687,7 +71687,7 @@ func VPMULLD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPMULLD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -71703,7 +71703,7 @@ func VPMULLD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPMULLD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -71765,7 +71765,7 @@ func VPMULLD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VPMULLD",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -71895,7 +71895,7 @@ func VPMULUDQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPMULUDQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -71911,7 +71911,7 @@ func VPMULUDQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPMULUDQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -71973,7 +71973,7 @@ func VPMULUDQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VPMULUDQ",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -72099,7 +72099,7 @@ func VPORD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPORD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -72115,7 +72115,7 @@ func VPORD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPORD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -72145,7 +72145,7 @@ func VPORD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VPORD",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -72225,7 +72225,7 @@ func VPORQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPORQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -72241,7 +72241,7 @@ func VPORQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPORQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -72271,7 +72271,7 @@ func VPORQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VPORQ",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -72351,7 +72351,7 @@ func VPROLD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPROLD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -72367,7 +72367,7 @@ func VPROLD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPROLD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -72397,7 +72397,7 @@ func VPROLD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VPROLD",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -72477,7 +72477,7 @@ func VPROLQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPROLQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -72493,7 +72493,7 @@ func VPROLQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPROLQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -72523,7 +72523,7 @@ func VPROLQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VPROLQ",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -72603,7 +72603,7 @@ func VPROLVD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPROLVD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -72619,7 +72619,7 @@ func VPROLVD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPROLVD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -72649,7 +72649,7 @@ func VPROLVD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VPROLVD",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -72729,7 +72729,7 @@ func VPROLVQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPROLVQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -72745,7 +72745,7 @@ func VPROLVQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPROLVQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -72775,7 +72775,7 @@ func VPROLVQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VPROLVQ",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -72855,7 +72855,7 @@ func VPRORD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPRORD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -72871,7 +72871,7 @@ func VPRORD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPRORD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -72901,7 +72901,7 @@ func VPRORD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VPRORD",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -72981,7 +72981,7 @@ func VPRORQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPRORQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -72997,7 +72997,7 @@ func VPRORQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPRORQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -73027,7 +73027,7 @@ func VPRORQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VPRORQ",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -73107,7 +73107,7 @@ func VPRORVD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPRORVD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -73123,7 +73123,7 @@ func VPRORVD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPRORVD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -73153,7 +73153,7 @@ func VPRORVD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VPRORVD",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -73233,7 +73233,7 @@ func VPRORVQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPRORVQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -73249,7 +73249,7 @@ func VPRORVQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPRORVQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -73279,7 +73279,7 @@ func VPRORVQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VPRORVQ",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -73533,7 +73533,7 @@ func VPSHUFD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPSHUFD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -73549,7 +73549,7 @@ func VPSHUFD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPSHUFD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -73611,7 +73611,7 @@ func VPSHUFD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VPSHUFD",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -73931,7 +73931,7 @@ func VPSLLD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPSLLD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -73947,7 +73947,7 @@ func VPSLLD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPSLLD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -73963,7 +73963,7 @@ func VPSLLD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPSLLD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -73979,7 +73979,7 @@ func VPSLLD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPSLLD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -74085,7 +74085,7 @@ func VPSLLD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VPSLLD",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -74195,7 +74195,7 @@ func VPSLLQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPSLLQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -74211,7 +74211,7 @@ func VPSLLQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPSLLQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -74227,7 +74227,7 @@ func VPSLLQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPSLLQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -74243,7 +74243,7 @@ func VPSLLQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPSLLQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -74321,7 +74321,7 @@ func VPSLLQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VPSLLQ",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -74425,7 +74425,7 @@ func VPSLLVD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPSLLVD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -74441,7 +74441,7 @@ func VPSLLVD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPSLLVD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -74503,7 +74503,7 @@ func VPSLLVD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VPSLLVD",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -74587,7 +74587,7 @@ func VPSLLVQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPSLLVQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -74603,7 +74603,7 @@ func VPSLLVQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPSLLVQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -74665,7 +74665,7 @@ func VPSLLVQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VPSLLVQ",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -74819,7 +74819,7 @@ func VPSRAD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPSRAD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -74835,7 +74835,7 @@ func VPSRAD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPSRAD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -74851,7 +74851,7 @@ func VPSRAD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPSRAD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -74867,7 +74867,7 @@ func VPSRAD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPSRAD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -74945,7 +74945,7 @@ func VPSRAD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VPSRAD",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -75049,7 +75049,7 @@ func VPSRAQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPSRAQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -75065,7 +75065,7 @@ func VPSRAQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPSRAQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -75081,7 +75081,7 @@ func VPSRAQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPSRAQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -75097,7 +75097,7 @@ func VPSRAQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPSRAQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -75127,7 +75127,7 @@ func VPSRAQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VPSRAQ",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -75231,7 +75231,7 @@ func VPSRAVD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPSRAVD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -75247,7 +75247,7 @@ func VPSRAVD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPSRAVD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -75309,7 +75309,7 @@ func VPSRAVD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VPSRAVD",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -75389,7 +75389,7 @@ func VPSRAVQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPSRAVQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -75405,7 +75405,7 @@ func VPSRAVQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPSRAVQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -75435,7 +75435,7 @@ func VPSRAVQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VPSRAVQ",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -75589,7 +75589,7 @@ func VPSRLD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPSRLD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -75605,7 +75605,7 @@ func VPSRLD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPSRLD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -75621,7 +75621,7 @@ func VPSRLD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPSRLD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -75637,7 +75637,7 @@ func VPSRLD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPSRLD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -75743,7 +75743,7 @@ func VPSRLD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VPSRLD",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -75853,7 +75853,7 @@ func VPSRLQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPSRLQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -75869,7 +75869,7 @@ func VPSRLQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPSRLQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -75885,7 +75885,7 @@ func VPSRLQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPSRLQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -75901,7 +75901,7 @@ func VPSRLQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPSRLQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -75979,7 +75979,7 @@ func VPSRLQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VPSRLQ",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -76083,7 +76083,7 @@ func VPSRLVD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPSRLVD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -76099,7 +76099,7 @@ func VPSRLVD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPSRLVD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -76161,7 +76161,7 @@ func VPSRLVD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VPSRLVD",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -76245,7 +76245,7 @@ func VPSRLVQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPSRLVQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -76261,7 +76261,7 @@ func VPSRLVQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPSRLVQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -76323,7 +76323,7 @@ func VPSRLVQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VPSRLVQ",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -76519,7 +76519,7 @@ func VPSUBD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPSUBD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -76536,7 +76536,7 @@ func VPSUBD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:           "VPSUBD",
 			Operands:         ops,
-			Inputs:           []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:           []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:          []operand.Op{ops[3]},
 			ISA:              []string{"AVX512F"},
 			CancellingInputs: true,
@@ -76601,7 +76601,7 @@ func VPSUBD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VPSUBD",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -76686,7 +76686,7 @@ func VPSUBQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPSUBQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -76703,7 +76703,7 @@ func VPSUBQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:           "VPSUBQ",
 			Operands:         ops,
-			Inputs:           []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:           []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:          []operand.Op{ops[3]},
 			ISA:              []string{"AVX512F"},
 			CancellingInputs: true,
@@ -76768,7 +76768,7 @@ func VPSUBQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VPSUBQ",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -77741,7 +77741,7 @@ func VPUNPCKHDQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPUNPCKHDQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -77757,7 +77757,7 @@ func VPUNPCKHDQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPUNPCKHDQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -77819,7 +77819,7 @@ func VPUNPCKHDQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VPUNPCKHDQ",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -77903,7 +77903,7 @@ func VPUNPCKHQDQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPUNPCKHQDQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -77919,7 +77919,7 @@ func VPUNPCKHQDQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPUNPCKHQDQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -77981,7 +77981,7 @@ func VPUNPCKHQDQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VPUNPCKHQDQ",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -78157,7 +78157,7 @@ func VPUNPCKLDQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPUNPCKLDQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -78173,7 +78173,7 @@ func VPUNPCKLDQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPUNPCKLDQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -78235,7 +78235,7 @@ func VPUNPCKLDQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VPUNPCKLDQ",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -78319,7 +78319,7 @@ func VPUNPCKLQDQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPUNPCKLQDQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -78335,7 +78335,7 @@ func VPUNPCKLQDQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPUNPCKLQDQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -78397,7 +78397,7 @@ func VPUNPCKLQDQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VPUNPCKLQDQ",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -78571,7 +78571,7 @@ func VPXORD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPXORD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -78587,7 +78587,7 @@ func VPXORD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPXORD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -78617,7 +78617,7 @@ func VPXORD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VPXORD",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -78697,7 +78697,7 @@ func VPXORQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPXORQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -78713,7 +78713,7 @@ func VPXORQ(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VPXORQ",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -78743,7 +78743,7 @@ func VPXORQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VPXORQ",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -78823,7 +78823,7 @@ func VRCP14PD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VRCP14PD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -78839,7 +78839,7 @@ func VRCP14PD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VRCP14PD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -78869,7 +78869,7 @@ func VRCP14PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VRCP14PD",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -78949,7 +78949,7 @@ func VRCP14PS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VRCP14PS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -78965,7 +78965,7 @@ func VRCP14PS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VRCP14PS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -78995,7 +78995,7 @@ func VRCP14PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VRCP14PS",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -79075,7 +79075,7 @@ func VRCP14SD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VRCP14SD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -79091,7 +79091,7 @@ func VRCP14SD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VRCP14SD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -79151,7 +79151,7 @@ func VRCP14SS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VRCP14SS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -79167,7 +79167,7 @@ func VRCP14SS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VRCP14SS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -79301,7 +79301,7 @@ func VRNDSCALEPD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VRNDSCALEPD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -79317,7 +79317,7 @@ func VRNDSCALEPD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VRNDSCALEPD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -79347,7 +79347,7 @@ func VRNDSCALEPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VRNDSCALEPD",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -79397,7 +79397,7 @@ func VRNDSCALEPD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VRNDSCALEPD",
 			Suffixes: []string{"SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -79477,7 +79477,7 @@ func VRNDSCALEPS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VRNDSCALEPS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -79493,7 +79493,7 @@ func VRNDSCALEPS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VRNDSCALEPS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -79523,7 +79523,7 @@ func VRNDSCALEPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VRNDSCALEPS",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -79573,7 +79573,7 @@ func VRNDSCALEPS_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VRNDSCALEPS",
 			Suffixes: []string{"SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -79653,7 +79653,7 @@ func VRNDSCALESD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VRNDSCALESD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3], ops[4]},
 			Outputs:  []operand.Op{ops[4]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -79669,7 +79669,7 @@ func VRNDSCALESD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VRNDSCALESD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3], ops[4]},
 			Outputs:  []operand.Op{ops[4]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -79699,7 +79699,7 @@ func VRNDSCALESD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VRNDSCALESD",
 			Suffixes: []string{"SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3], ops[4]},
 			Outputs:  []operand.Op{ops[4]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -79779,7 +79779,7 @@ func VRNDSCALESS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VRNDSCALESS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3], ops[4]},
 			Outputs:  []operand.Op{ops[4]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -79795,7 +79795,7 @@ func VRNDSCALESS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VRNDSCALESS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3], ops[4]},
 			Outputs:  []operand.Op{ops[4]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -79825,7 +79825,7 @@ func VRNDSCALESS_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VRNDSCALESS",
 			Suffixes: []string{"SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3], ops[4]},
 			Outputs:  []operand.Op{ops[4]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -80053,7 +80053,7 @@ func VRSQRT14PD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VRSQRT14PD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -80069,7 +80069,7 @@ func VRSQRT14PD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VRSQRT14PD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -80099,7 +80099,7 @@ func VRSQRT14PD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VRSQRT14PD",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -80179,7 +80179,7 @@ func VRSQRT14PS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VRSQRT14PS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -80195,7 +80195,7 @@ func VRSQRT14PS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VRSQRT14PS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -80225,7 +80225,7 @@ func VRSQRT14PS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VRSQRT14PS",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -80305,7 +80305,7 @@ func VRSQRT14SD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VRSQRT14SD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -80321,7 +80321,7 @@ func VRSQRT14SD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VRSQRT14SD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -80381,7 +80381,7 @@ func VRSQRT14SS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VRSQRT14SS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -80397,7 +80397,7 @@ func VRSQRT14SS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VRSQRT14SS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -80531,7 +80531,7 @@ func VSCALEFPD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VSCALEFPD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -80547,7 +80547,7 @@ func VSCALEFPD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VSCALEFPD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -80577,7 +80577,7 @@ func VSCALEFPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VSCALEFPD",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -80627,7 +80627,7 @@ func VSCALEFPD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VSCALEFPD",
 			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -80677,7 +80677,7 @@ func VSCALEFPD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VSCALEFPD",
 			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -80727,7 +80727,7 @@ func VSCALEFPD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VSCALEFPD",
 			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -80777,7 +80777,7 @@ func VSCALEFPD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VSCALEFPD",
 			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -80857,7 +80857,7 @@ func VSCALEFPS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VSCALEFPS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -80873,7 +80873,7 @@ func VSCALEFPS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VSCALEFPS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -80903,7 +80903,7 @@ func VSCALEFPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VSCALEFPS",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -80953,7 +80953,7 @@ func VSCALEFPS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VSCALEFPS",
 			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -81003,7 +81003,7 @@ func VSCALEFPS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VSCALEFPS",
 			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -81053,7 +81053,7 @@ func VSCALEFPS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VSCALEFPS",
 			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -81103,7 +81103,7 @@ func VSCALEFPS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VSCALEFPS",
 			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -81183,7 +81183,7 @@ func VSCALEFSD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VSCALEFSD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -81199,7 +81199,7 @@ func VSCALEFSD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VSCALEFSD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -81229,7 +81229,7 @@ func VSCALEFSD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VSCALEFSD",
 			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -81279,7 +81279,7 @@ func VSCALEFSD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VSCALEFSD",
 			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -81329,7 +81329,7 @@ func VSCALEFSD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VSCALEFSD",
 			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -81379,7 +81379,7 @@ func VSCALEFSD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VSCALEFSD",
 			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -81459,7 +81459,7 @@ func VSCALEFSS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VSCALEFSS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -81475,7 +81475,7 @@ func VSCALEFSS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VSCALEFSS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -81505,7 +81505,7 @@ func VSCALEFSS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VSCALEFSS",
 			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -81555,7 +81555,7 @@ func VSCALEFSS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VSCALEFSS",
 			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -81605,7 +81605,7 @@ func VSCALEFSS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VSCALEFSS",
 			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -81655,7 +81655,7 @@ func VSCALEFSS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VSCALEFSS",
 			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -81811,7 +81811,7 @@ func VSHUFF32X4(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VSHUFF32X4",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3], ops[4]},
 			Outputs:  []operand.Op{ops[4]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -81827,7 +81827,7 @@ func VSHUFF32X4(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VSHUFF32X4",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3], ops[4]},
 			Outputs:  []operand.Op{ops[4]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -81857,7 +81857,7 @@ func VSHUFF32X4_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VSHUFF32X4",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3], ops[4]},
 			Outputs:  []operand.Op{ops[4]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -81937,7 +81937,7 @@ func VSHUFF64X2(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VSHUFF64X2",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3], ops[4]},
 			Outputs:  []operand.Op{ops[4]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -81953,7 +81953,7 @@ func VSHUFF64X2(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VSHUFF64X2",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3], ops[4]},
 			Outputs:  []operand.Op{ops[4]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -81983,7 +81983,7 @@ func VSHUFF64X2_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VSHUFF64X2",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3], ops[4]},
 			Outputs:  []operand.Op{ops[4]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -82063,7 +82063,7 @@ func VSHUFI32X4(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VSHUFI32X4",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3], ops[4]},
 			Outputs:  []operand.Op{ops[4]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -82079,7 +82079,7 @@ func VSHUFI32X4(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VSHUFI32X4",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3], ops[4]},
 			Outputs:  []operand.Op{ops[4]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -82109,7 +82109,7 @@ func VSHUFI32X4_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VSHUFI32X4",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3], ops[4]},
 			Outputs:  []operand.Op{ops[4]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -82189,7 +82189,7 @@ func VSHUFI64X2(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VSHUFI64X2",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3], ops[4]},
 			Outputs:  []operand.Op{ops[4]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -82205,7 +82205,7 @@ func VSHUFI64X2(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VSHUFI64X2",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3], ops[4]},
 			Outputs:  []operand.Op{ops[4]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -82235,7 +82235,7 @@ func VSHUFI64X2_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VSHUFI64X2",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3], ops[4]},
 			Outputs:  []operand.Op{ops[4]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -82319,7 +82319,7 @@ func VSHUFPD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VSHUFPD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3], ops[4]},
 			Outputs:  []operand.Op{ops[4]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -82335,7 +82335,7 @@ func VSHUFPD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VSHUFPD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3], ops[4]},
 			Outputs:  []operand.Op{ops[4]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -82397,7 +82397,7 @@ func VSHUFPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VSHUFPD",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3], ops[4]},
 			Outputs:  []operand.Op{ops[4]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -82481,7 +82481,7 @@ func VSHUFPS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VSHUFPS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3], ops[4]},
 			Outputs:  []operand.Op{ops[4]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -82497,7 +82497,7 @@ func VSHUFPS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VSHUFPS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3], ops[4]},
 			Outputs:  []operand.Op{ops[4]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -82559,7 +82559,7 @@ func VSHUFPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VSHUFPS",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[1], ops[2], ops[3]},
+			Inputs:   []operand.Op{ops[1], ops[2], ops[3], ops[4]},
 			Outputs:  []operand.Op{ops[4]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -82643,7 +82643,7 @@ func VSQRTPD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VSQRTPD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -82691,7 +82691,7 @@ func VSQRTPD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VSQRTPD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -82721,7 +82721,7 @@ func VSQRTPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VSQRTPD",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -82771,7 +82771,7 @@ func VSQRTPD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VSQRTPD",
 			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -82821,7 +82821,7 @@ func VSQRTPD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VSQRTPD",
 			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -82871,7 +82871,7 @@ func VSQRTPD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VSQRTPD",
 			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -82921,7 +82921,7 @@ func VSQRTPD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VSQRTPD",
 			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -83005,7 +83005,7 @@ func VSQRTPS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VSQRTPS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -83053,7 +83053,7 @@ func VSQRTPS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VSQRTPS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -83083,7 +83083,7 @@ func VSQRTPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VSQRTPS",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -83133,7 +83133,7 @@ func VSQRTPS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VSQRTPS",
 			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -83183,7 +83183,7 @@ func VSQRTPS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VSQRTPS",
 			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -83233,7 +83233,7 @@ func VSQRTPS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VSQRTPS",
 			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -83283,7 +83283,7 @@ func VSQRTPS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VSQRTPS",
 			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -83365,7 +83365,7 @@ func VSQRTSD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VSQRTSD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -83397,7 +83397,7 @@ func VSQRTSD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VSQRTSD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -83427,7 +83427,7 @@ func VSQRTSD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VSQRTSD",
 			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -83477,7 +83477,7 @@ func VSQRTSD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VSQRTSD",
 			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -83527,7 +83527,7 @@ func VSQRTSD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VSQRTSD",
 			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -83577,7 +83577,7 @@ func VSQRTSD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VSQRTSD",
 			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -83659,7 +83659,7 @@ func VSQRTSS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VSQRTSS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -83691,7 +83691,7 @@ func VSQRTSS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VSQRTSS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -83721,7 +83721,7 @@ func VSQRTSS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VSQRTSS",
 			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -83771,7 +83771,7 @@ func VSQRTSS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VSQRTSS",
 			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -83821,7 +83821,7 @@ func VSQRTSS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VSQRTSS",
 			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -83871,7 +83871,7 @@ func VSQRTSS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VSQRTSS",
 			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -83974,7 +83974,7 @@ func VSUBPD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VSUBPD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -84022,7 +84022,7 @@ func VSUBPD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VSUBPD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -84052,7 +84052,7 @@ func VSUBPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VSUBPD",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -84102,7 +84102,7 @@ func VSUBPD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VSUBPD",
 			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -84152,7 +84152,7 @@ func VSUBPD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VSUBPD",
 			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -84202,7 +84202,7 @@ func VSUBPD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VSUBPD",
 			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -84252,7 +84252,7 @@ func VSUBPD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VSUBPD",
 			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -84336,7 +84336,7 @@ func VSUBPS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VSUBPS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -84384,7 +84384,7 @@ func VSUBPS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VSUBPS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -84414,7 +84414,7 @@ func VSUBPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VSUBPS",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -84464,7 +84464,7 @@ func VSUBPS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VSUBPS",
 			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -84514,7 +84514,7 @@ func VSUBPS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VSUBPS",
 			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -84564,7 +84564,7 @@ func VSUBPS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VSUBPS",
 			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -84614,7 +84614,7 @@ func VSUBPS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VSUBPS",
 			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -84696,7 +84696,7 @@ func VSUBSD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VSUBSD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -84728,7 +84728,7 @@ func VSUBSD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VSUBSD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -84758,7 +84758,7 @@ func VSUBSD_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VSUBSD",
 			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -84808,7 +84808,7 @@ func VSUBSD_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VSUBSD",
 			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -84858,7 +84858,7 @@ func VSUBSD_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VSUBSD",
 			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -84908,7 +84908,7 @@ func VSUBSD_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VSUBSD",
 			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -84990,7 +84990,7 @@ func VSUBSS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VSUBSS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -85022,7 +85022,7 @@ func VSUBSS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VSUBSS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -85052,7 +85052,7 @@ func VSUBSS_RD_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VSUBSS",
 			Suffixes: []string{"RD_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -85102,7 +85102,7 @@ func VSUBSS_RN_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VSUBSS",
 			Suffixes: []string{"RN_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -85152,7 +85152,7 @@ func VSUBSS_RU_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VSUBSS",
 			Suffixes: []string{"RU_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -85202,7 +85202,7 @@ func VSUBSS_RZ_SAE(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VSUBSS",
 			Suffixes: []string{"RZ_SAE"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -85510,7 +85510,7 @@ func VUNPCKHPD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VUNPCKHPD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -85526,7 +85526,7 @@ func VUNPCKHPD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VUNPCKHPD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -85588,7 +85588,7 @@ func VUNPCKHPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VUNPCKHPD",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -85672,7 +85672,7 @@ func VUNPCKHPS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VUNPCKHPS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -85688,7 +85688,7 @@ func VUNPCKHPS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VUNPCKHPS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -85750,7 +85750,7 @@ func VUNPCKHPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VUNPCKHPS",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -85834,7 +85834,7 @@ func VUNPCKLPD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VUNPCKLPD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -85850,7 +85850,7 @@ func VUNPCKLPD(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VUNPCKLPD",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -85912,7 +85912,7 @@ func VUNPCKLPD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VUNPCKLPD",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -85996,7 +85996,7 @@ func VUNPCKLPS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VUNPCKLPS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -86012,7 +86012,7 @@ func VUNPCKLPS(ops ...operand.Op) (*intrep.Instruction, error) {
 		return &intrep.Instruction{
 			Opcode:   "VUNPCKLPS",
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil
@@ -86074,7 +86074,7 @@ func VUNPCKLPS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Opcode:   "VUNPCKLPS",
 			Suffixes: []string{"BCST"},
 			Operands: ops,
-			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2], ops[3]},
 			Outputs:  []operand.Op{ops[3]},
 			ISA:      []string{"AVX512F"},
 		}, nil

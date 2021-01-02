@@ -38,6 +38,16 @@ func (f *Function) opcodesuffix(sep string) string {
 	return n
 }
 
+// HasSuffix reports whether the function has the provided suffix.
+func (f *Function) HasSuffix(suffix string) bool {
+	for _, s := range f.Suffixes {
+		if s == suffix {
+			return true
+		}
+	}
+	return false
+}
+
 // Doc returns the function document comment as a list of lines.
 func (f *Function) Doc() []string {
 	lines := []string{

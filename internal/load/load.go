@@ -413,6 +413,11 @@ func (l Loader) forms(opcode string, f opcodesxml.Form) []inst.Form {
 		ops = append(ops, masked.Operands[idx:]...)
 		masked.Operands = ops
 
+		// In the masked form, add the masked action to the output operand.
+		if masked.Zeroing && !masked.Operands[idx+1].Action.Read() {
+			masked.Operands[idx+1].Action |= inst.M
+		}
+
 		// Almost all instructions take an optional mask, apart from a few
 		// special cases.
 		if maskrequired[opcode] {
