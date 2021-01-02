@@ -15,7 +15,7 @@ import (
 // instruction forms.
 type Function struct {
 	Instruction inst.Instruction
-	Suffixes    []string
+	Suffixes    inst.Suffixes
 	inst.Forms
 }
 
@@ -33,13 +33,13 @@ func (f *Function) opcodesuffix(sep string) string {
 	n := f.Instruction.Opcode
 	for _, suffix := range f.Suffixes {
 		n += sep
-		n += suffix
+		n += suffix.String()
 	}
 	return n
 }
 
 // HasSuffix reports whether the function has the provided suffix.
-func (f *Function) HasSuffix(suffix string) bool {
+func (f *Function) HasSuffix(suffix inst.Suffix) bool {
 	for _, s := range f.Suffixes {
 		if s == suffix {
 			return true
@@ -48,10 +48,19 @@ func (f *Function) HasSuffix(suffix string) bool {
 	return false
 }
 
+// Summary returns a summary of the instruction this function constructs.
+func (f *Function) Summary() string {
+	summary := f.Instruction.Summary
+	if len(f.Suffixes) > 0 {
+		summary += " (" + strings.Join(f.Suffixes.Summaries(), ", ") + ")"
+	}
+	return summary
+}
+
 // Doc returns the function document comment as a list of lines.
 func (f *Function) Doc() []string {
 	lines := []string{
-		fmt.Sprintf("%s: %s.", f.Name(), f.Instruction.Summary),
+		fmt.Sprintf("%s: %s.", f.Name(), f.Summary()),
 		"",
 		"Forms:",
 		"",
@@ -125,7 +134,7 @@ func InstructionFunctions(i inst.Instruction) []*Function {
 	bysuffix := map[string]*Function{}
 	for _, f := range i.Forms {
 		for _, suffixes := range f.SupportedSuffixes() {
-			k := strings.Join(suffixes, ".")
+			k := suffixes.String()
 			if _, ok := bysuffix[k]; !ok {
 				bysuffix[k] = &Function{
 					Instruction: i,

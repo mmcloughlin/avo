@@ -70,6 +70,25 @@ func TestInstructionProperties(t *testing.T) {
 	}
 }
 
+func TestSuffixesHaveSummaries(t *testing.T) {
+	set := map[inst.Suffix]bool{}
+	for _, i := range inst.Instructions {
+		for _, f := range i.Forms {
+			for _, suffixes := range f.SupportedSuffixes() {
+				for _, suffix := range suffixes {
+					set[suffix] = true
+				}
+			}
+		}
+	}
+
+	for suffix := range set {
+		if suffix.Summary() == "" {
+			t.Errorf("suffix %q missing summary", suffix)
+		}
+	}
+}
+
 func TestValidateActions(t *testing.T) {
 	for _, i := range inst.Instructions {
 		for _, f := range i.Forms {
