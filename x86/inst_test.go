@@ -45,6 +45,24 @@ func TestCases(t *testing.T) {
 				ISA:      []string{"AVX512F"},
 			},
 		},
+		// Many existing AVX instructions gained EVEX-encoded forms when AVX-512
+		// was added. In a previous broken implementation, this led to multiple
+		// forms of the same instruction in the database, both the VEX and EVEX
+		// encoded versions. This causes the computed ISA list to be wrong,
+		// since it can think AVX-512 is required when in fact the instruction
+		// existed before. This test case confirms the correct ISA is selected,
+		// for one single example of this problem.
+		{
+			Name:        "vex_and_evex_encoded_forms",
+			Instruction: must(VFMADD231SS(reg.X1, reg.X2, reg.X3)),
+			Expect: &ir.Instruction{
+				Opcode:   "VFMADD231SS",
+				Operands: []operand.Op{reg.X1, reg.X2, reg.X3},
+				Inputs:   []operand.Op{reg.X1, reg.X2, reg.X3},
+				Outputs:  []operand.Op{reg.X3},
+				ISA:      []string{"FMA3"}, // not AVX512F
+			},
+		},
 	}
 
 	for _, c := range cases {
