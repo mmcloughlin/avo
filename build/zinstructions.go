@@ -50710,6 +50710,52 @@ func (c *Context) VPBROADCASTD_Z(mrx, k, z operand.Op) {
 // Operates on the global context.
 func VPBROADCASTD_Z(mrx, k, z operand.Op) { ctx.VPBROADCASTD_Z(mrx, k, z) }
 
+// VPBROADCASTMB2Q: Broadcast Low Byte of Mask Register to Packed Quadword Values.
+//
+// Forms:
+//
+// 	VPBROADCASTMB2Q k zmm
+// Construct and append a VPBROADCASTMB2Q instruction to the active function.
+func (c *Context) VPBROADCASTMB2Q(k, z operand.Op) {
+	if inst, err := x86.VPBROADCASTMB2Q(k, z); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPBROADCASTMB2Q: Broadcast Low Byte of Mask Register to Packed Quadword Values.
+//
+// Forms:
+//
+// 	VPBROADCASTMB2Q k zmm
+// Construct and append a VPBROADCASTMB2Q instruction to the active function.
+// Operates on the global context.
+func VPBROADCASTMB2Q(k, z operand.Op) { ctx.VPBROADCASTMB2Q(k, z) }
+
+// VPBROADCASTMW2D: Broadcast Low Word of Mask Register to Packed Doubleword Values.
+//
+// Forms:
+//
+// 	VPBROADCASTMW2D k zmm
+// Construct and append a VPBROADCASTMW2D instruction to the active function.
+func (c *Context) VPBROADCASTMW2D(k, z operand.Op) {
+	if inst, err := x86.VPBROADCASTMW2D(k, z); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPBROADCASTMW2D: Broadcast Low Word of Mask Register to Packed Doubleword Values.
+//
+// Forms:
+//
+// 	VPBROADCASTMW2D k zmm
+// Construct and append a VPBROADCASTMW2D instruction to the active function.
+// Operates on the global context.
+func VPBROADCASTMW2D(k, z operand.Op) { ctx.VPBROADCASTMW2D(k, z) }
+
 // VPBROADCASTQ: Broadcast Quadword Integer.
 //
 // Forms:
@@ -51619,6 +51665,210 @@ func (c *Context) VPCOMPRESSQ_Z(z, k, mz operand.Op) {
 // Construct and append a VPCOMPRESSQ.Z instruction to the active function.
 // Operates on the global context.
 func VPCOMPRESSQ_Z(z, k, mz operand.Op) { ctx.VPCOMPRESSQ_Z(z, k, mz) }
+
+// VPCONFLICTD: Detect Conflicts Within a Vector of Packed Doubleword Values into Dense Memory/Register.
+//
+// Forms:
+//
+// 	VPCONFLICTD m512/m32bcst zmm
+// 	VPCONFLICTD m512/m32bcst k zmm
+// 	VPCONFLICTD zmm          zmm
+// 	VPCONFLICTD zmm          k zmm
+// Construct and append a VPCONFLICTD instruction to the active function.
+func (c *Context) VPCONFLICTD(ops ...operand.Op) {
+	if inst, err := x86.VPCONFLICTD(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPCONFLICTD: Detect Conflicts Within a Vector of Packed Doubleword Values into Dense Memory/Register.
+//
+// Forms:
+//
+// 	VPCONFLICTD m512/m32bcst zmm
+// 	VPCONFLICTD m512/m32bcst k zmm
+// 	VPCONFLICTD zmm          zmm
+// 	VPCONFLICTD zmm          k zmm
+// Construct and append a VPCONFLICTD instruction to the active function.
+// Operates on the global context.
+func VPCONFLICTD(ops ...operand.Op) { ctx.VPCONFLICTD(ops...) }
+
+// VPCONFLICTD_BCST: Detect Conflicts Within a Vector of Packed Doubleword Values into Dense Memory/Register (Broadcast).
+//
+// Forms:
+//
+// 	VPCONFLICTD.BCST m512/m32bcst zmm
+// 	VPCONFLICTD.BCST m512/m32bcst k zmm
+// Construct and append a VPCONFLICTD.BCST instruction to the active function.
+func (c *Context) VPCONFLICTD_BCST(ops ...operand.Op) {
+	if inst, err := x86.VPCONFLICTD_BCST(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPCONFLICTD_BCST: Detect Conflicts Within a Vector of Packed Doubleword Values into Dense Memory/Register (Broadcast).
+//
+// Forms:
+//
+// 	VPCONFLICTD.BCST m512/m32bcst zmm
+// 	VPCONFLICTD.BCST m512/m32bcst k zmm
+// Construct and append a VPCONFLICTD.BCST instruction to the active function.
+// Operates on the global context.
+func VPCONFLICTD_BCST(ops ...operand.Op) { ctx.VPCONFLICTD_BCST(ops...) }
+
+// VPCONFLICTD_BCST_Z: Detect Conflicts Within a Vector of Packed Doubleword Values into Dense Memory/Register (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VPCONFLICTD.BCST.Z m512/m32bcst k zmm
+// Construct and append a VPCONFLICTD.BCST.Z instruction to the active function.
+func (c *Context) VPCONFLICTD_BCST_Z(m, k, z operand.Op) {
+	if inst, err := x86.VPCONFLICTD_BCST_Z(m, k, z); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPCONFLICTD_BCST_Z: Detect Conflicts Within a Vector of Packed Doubleword Values into Dense Memory/Register (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VPCONFLICTD.BCST.Z m512/m32bcst k zmm
+// Construct and append a VPCONFLICTD.BCST.Z instruction to the active function.
+// Operates on the global context.
+func VPCONFLICTD_BCST_Z(m, k, z operand.Op) { ctx.VPCONFLICTD_BCST_Z(m, k, z) }
+
+// VPCONFLICTD_Z: Detect Conflicts Within a Vector of Packed Doubleword Values into Dense Memory/Register (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPCONFLICTD.Z m512/m32bcst k zmm
+// 	VPCONFLICTD.Z zmm          k zmm
+// Construct and append a VPCONFLICTD.Z instruction to the active function.
+func (c *Context) VPCONFLICTD_Z(mz, k, z operand.Op) {
+	if inst, err := x86.VPCONFLICTD_Z(mz, k, z); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPCONFLICTD_Z: Detect Conflicts Within a Vector of Packed Doubleword Values into Dense Memory/Register (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPCONFLICTD.Z m512/m32bcst k zmm
+// 	VPCONFLICTD.Z zmm          k zmm
+// Construct and append a VPCONFLICTD.Z instruction to the active function.
+// Operates on the global context.
+func VPCONFLICTD_Z(mz, k, z operand.Op) { ctx.VPCONFLICTD_Z(mz, k, z) }
+
+// VPCONFLICTQ: Detect Conflicts Within a Vector of Packed Quadword Values into Dense Memory/Register.
+//
+// Forms:
+//
+// 	VPCONFLICTQ m512/m64bcst zmm
+// 	VPCONFLICTQ m512/m64bcst k zmm
+// 	VPCONFLICTQ zmm          zmm
+// 	VPCONFLICTQ zmm          k zmm
+// Construct and append a VPCONFLICTQ instruction to the active function.
+func (c *Context) VPCONFLICTQ(ops ...operand.Op) {
+	if inst, err := x86.VPCONFLICTQ(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPCONFLICTQ: Detect Conflicts Within a Vector of Packed Quadword Values into Dense Memory/Register.
+//
+// Forms:
+//
+// 	VPCONFLICTQ m512/m64bcst zmm
+// 	VPCONFLICTQ m512/m64bcst k zmm
+// 	VPCONFLICTQ zmm          zmm
+// 	VPCONFLICTQ zmm          k zmm
+// Construct and append a VPCONFLICTQ instruction to the active function.
+// Operates on the global context.
+func VPCONFLICTQ(ops ...operand.Op) { ctx.VPCONFLICTQ(ops...) }
+
+// VPCONFLICTQ_BCST: Detect Conflicts Within a Vector of Packed Quadword Values into Dense Memory/Register (Broadcast).
+//
+// Forms:
+//
+// 	VPCONFLICTQ.BCST m512/m64bcst zmm
+// 	VPCONFLICTQ.BCST m512/m64bcst k zmm
+// Construct and append a VPCONFLICTQ.BCST instruction to the active function.
+func (c *Context) VPCONFLICTQ_BCST(ops ...operand.Op) {
+	if inst, err := x86.VPCONFLICTQ_BCST(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPCONFLICTQ_BCST: Detect Conflicts Within a Vector of Packed Quadword Values into Dense Memory/Register (Broadcast).
+//
+// Forms:
+//
+// 	VPCONFLICTQ.BCST m512/m64bcst zmm
+// 	VPCONFLICTQ.BCST m512/m64bcst k zmm
+// Construct and append a VPCONFLICTQ.BCST instruction to the active function.
+// Operates on the global context.
+func VPCONFLICTQ_BCST(ops ...operand.Op) { ctx.VPCONFLICTQ_BCST(ops...) }
+
+// VPCONFLICTQ_BCST_Z: Detect Conflicts Within a Vector of Packed Quadword Values into Dense Memory/Register (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VPCONFLICTQ.BCST.Z m512/m64bcst k zmm
+// Construct and append a VPCONFLICTQ.BCST.Z instruction to the active function.
+func (c *Context) VPCONFLICTQ_BCST_Z(m, k, z operand.Op) {
+	if inst, err := x86.VPCONFLICTQ_BCST_Z(m, k, z); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPCONFLICTQ_BCST_Z: Detect Conflicts Within a Vector of Packed Quadword Values into Dense Memory/Register (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VPCONFLICTQ.BCST.Z m512/m64bcst k zmm
+// Construct and append a VPCONFLICTQ.BCST.Z instruction to the active function.
+// Operates on the global context.
+func VPCONFLICTQ_BCST_Z(m, k, z operand.Op) { ctx.VPCONFLICTQ_BCST_Z(m, k, z) }
+
+// VPCONFLICTQ_Z: Detect Conflicts Within a Vector of Packed Quadword Values into Dense Memory/Register (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPCONFLICTQ.Z m512/m64bcst k zmm
+// 	VPCONFLICTQ.Z zmm          k zmm
+// Construct and append a VPCONFLICTQ.Z instruction to the active function.
+func (c *Context) VPCONFLICTQ_Z(mz, k, z operand.Op) {
+	if inst, err := x86.VPCONFLICTQ_Z(mz, k, z); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPCONFLICTQ_Z: Detect Conflicts Within a Vector of Packed Quadword Values into Dense Memory/Register (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPCONFLICTQ.Z m512/m64bcst k zmm
+// 	VPCONFLICTQ.Z zmm          k zmm
+// Construct and append a VPCONFLICTQ.Z instruction to the active function.
+// Operates on the global context.
+func VPCONFLICTQ_Z(mz, k, z operand.Op) { ctx.VPCONFLICTQ_Z(mz, k, z) }
 
 // VPERM2F128: Permute Floating-Point Values.
 //
@@ -53832,6 +54082,210 @@ func (c *Context) VPINSRW(i, mr, x, x1 operand.Op) {
 // Construct and append a VPINSRW instruction to the active function.
 // Operates on the global context.
 func VPINSRW(i, mr, x, x1 operand.Op) { ctx.VPINSRW(i, mr, x, x1) }
+
+// VPLZCNTD: Count the Number of Leading Zero Bits for Packed Doubleword Values.
+//
+// Forms:
+//
+// 	VPLZCNTD m512/m32bcst zmm
+// 	VPLZCNTD m512/m32bcst k zmm
+// 	VPLZCNTD zmm          zmm
+// 	VPLZCNTD zmm          k zmm
+// Construct and append a VPLZCNTD instruction to the active function.
+func (c *Context) VPLZCNTD(ops ...operand.Op) {
+	if inst, err := x86.VPLZCNTD(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPLZCNTD: Count the Number of Leading Zero Bits for Packed Doubleword Values.
+//
+// Forms:
+//
+// 	VPLZCNTD m512/m32bcst zmm
+// 	VPLZCNTD m512/m32bcst k zmm
+// 	VPLZCNTD zmm          zmm
+// 	VPLZCNTD zmm          k zmm
+// Construct and append a VPLZCNTD instruction to the active function.
+// Operates on the global context.
+func VPLZCNTD(ops ...operand.Op) { ctx.VPLZCNTD(ops...) }
+
+// VPLZCNTD_BCST: Count the Number of Leading Zero Bits for Packed Doubleword Values (Broadcast).
+//
+// Forms:
+//
+// 	VPLZCNTD.BCST m512/m32bcst zmm
+// 	VPLZCNTD.BCST m512/m32bcst k zmm
+// Construct and append a VPLZCNTD.BCST instruction to the active function.
+func (c *Context) VPLZCNTD_BCST(ops ...operand.Op) {
+	if inst, err := x86.VPLZCNTD_BCST(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPLZCNTD_BCST: Count the Number of Leading Zero Bits for Packed Doubleword Values (Broadcast).
+//
+// Forms:
+//
+// 	VPLZCNTD.BCST m512/m32bcst zmm
+// 	VPLZCNTD.BCST m512/m32bcst k zmm
+// Construct and append a VPLZCNTD.BCST instruction to the active function.
+// Operates on the global context.
+func VPLZCNTD_BCST(ops ...operand.Op) { ctx.VPLZCNTD_BCST(ops...) }
+
+// VPLZCNTD_BCST_Z: Count the Number of Leading Zero Bits for Packed Doubleword Values (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VPLZCNTD.BCST.Z m512/m32bcst k zmm
+// Construct and append a VPLZCNTD.BCST.Z instruction to the active function.
+func (c *Context) VPLZCNTD_BCST_Z(m, k, z operand.Op) {
+	if inst, err := x86.VPLZCNTD_BCST_Z(m, k, z); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPLZCNTD_BCST_Z: Count the Number of Leading Zero Bits for Packed Doubleword Values (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VPLZCNTD.BCST.Z m512/m32bcst k zmm
+// Construct and append a VPLZCNTD.BCST.Z instruction to the active function.
+// Operates on the global context.
+func VPLZCNTD_BCST_Z(m, k, z operand.Op) { ctx.VPLZCNTD_BCST_Z(m, k, z) }
+
+// VPLZCNTD_Z: Count the Number of Leading Zero Bits for Packed Doubleword Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPLZCNTD.Z m512/m32bcst k zmm
+// 	VPLZCNTD.Z zmm          k zmm
+// Construct and append a VPLZCNTD.Z instruction to the active function.
+func (c *Context) VPLZCNTD_Z(mz, k, z operand.Op) {
+	if inst, err := x86.VPLZCNTD_Z(mz, k, z); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPLZCNTD_Z: Count the Number of Leading Zero Bits for Packed Doubleword Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPLZCNTD.Z m512/m32bcst k zmm
+// 	VPLZCNTD.Z zmm          k zmm
+// Construct and append a VPLZCNTD.Z instruction to the active function.
+// Operates on the global context.
+func VPLZCNTD_Z(mz, k, z operand.Op) { ctx.VPLZCNTD_Z(mz, k, z) }
+
+// VPLZCNTQ: Count the Number of Leading Zero Bits for Packed Quadword Values.
+//
+// Forms:
+//
+// 	VPLZCNTQ m512/m64bcst zmm
+// 	VPLZCNTQ m512/m64bcst k zmm
+// 	VPLZCNTQ zmm          zmm
+// 	VPLZCNTQ zmm          k zmm
+// Construct and append a VPLZCNTQ instruction to the active function.
+func (c *Context) VPLZCNTQ(ops ...operand.Op) {
+	if inst, err := x86.VPLZCNTQ(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPLZCNTQ: Count the Number of Leading Zero Bits for Packed Quadword Values.
+//
+// Forms:
+//
+// 	VPLZCNTQ m512/m64bcst zmm
+// 	VPLZCNTQ m512/m64bcst k zmm
+// 	VPLZCNTQ zmm          zmm
+// 	VPLZCNTQ zmm          k zmm
+// Construct and append a VPLZCNTQ instruction to the active function.
+// Operates on the global context.
+func VPLZCNTQ(ops ...operand.Op) { ctx.VPLZCNTQ(ops...) }
+
+// VPLZCNTQ_BCST: Count the Number of Leading Zero Bits for Packed Quadword Values (Broadcast).
+//
+// Forms:
+//
+// 	VPLZCNTQ.BCST m512/m64bcst zmm
+// 	VPLZCNTQ.BCST m512/m64bcst k zmm
+// Construct and append a VPLZCNTQ.BCST instruction to the active function.
+func (c *Context) VPLZCNTQ_BCST(ops ...operand.Op) {
+	if inst, err := x86.VPLZCNTQ_BCST(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPLZCNTQ_BCST: Count the Number of Leading Zero Bits for Packed Quadword Values (Broadcast).
+//
+// Forms:
+//
+// 	VPLZCNTQ.BCST m512/m64bcst zmm
+// 	VPLZCNTQ.BCST m512/m64bcst k zmm
+// Construct and append a VPLZCNTQ.BCST instruction to the active function.
+// Operates on the global context.
+func VPLZCNTQ_BCST(ops ...operand.Op) { ctx.VPLZCNTQ_BCST(ops...) }
+
+// VPLZCNTQ_BCST_Z: Count the Number of Leading Zero Bits for Packed Quadword Values (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VPLZCNTQ.BCST.Z m512/m64bcst k zmm
+// Construct and append a VPLZCNTQ.BCST.Z instruction to the active function.
+func (c *Context) VPLZCNTQ_BCST_Z(m, k, z operand.Op) {
+	if inst, err := x86.VPLZCNTQ_BCST_Z(m, k, z); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPLZCNTQ_BCST_Z: Count the Number of Leading Zero Bits for Packed Quadword Values (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VPLZCNTQ.BCST.Z m512/m64bcst k zmm
+// Construct and append a VPLZCNTQ.BCST.Z instruction to the active function.
+// Operates on the global context.
+func VPLZCNTQ_BCST_Z(m, k, z operand.Op) { ctx.VPLZCNTQ_BCST_Z(m, k, z) }
+
+// VPLZCNTQ_Z: Count the Number of Leading Zero Bits for Packed Quadword Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPLZCNTQ.Z m512/m64bcst k zmm
+// 	VPLZCNTQ.Z zmm          k zmm
+// Construct and append a VPLZCNTQ.Z instruction to the active function.
+func (c *Context) VPLZCNTQ_Z(mz, k, z operand.Op) {
+	if inst, err := x86.VPLZCNTQ_Z(mz, k, z); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPLZCNTQ_Z: Count the Number of Leading Zero Bits for Packed Quadword Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPLZCNTQ.Z m512/m64bcst k zmm
+// 	VPLZCNTQ.Z zmm          k zmm
+// Construct and append a VPLZCNTQ.Z instruction to the active function.
+// Operates on the global context.
+func VPLZCNTQ_Z(mz, k, z operand.Op) { ctx.VPLZCNTQ_Z(mz, k, z) }
 
 // VPMADDUBSW: Multiply and Add Packed Signed and Unsigned Byte Integers.
 //

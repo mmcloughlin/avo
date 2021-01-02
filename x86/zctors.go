@@ -62625,6 +62625,44 @@ func VPBROADCASTD_Z(mrx, k, z operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPBROADCASTD_Z: bad operands")
 }
 
+// VPBROADCASTMB2Q: Broadcast Low Byte of Mask Register to Packed Quadword Values.
+//
+// Forms:
+//
+// 	VPBROADCASTMB2Q k zmm
+func VPBROADCASTMB2Q(k, z operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case operand.IsK(k) && operand.IsZMM(z):
+		return &intrep.Instruction{
+			Opcode:   "VPBROADCASTMB2Q",
+			Operands: []operand.Op{k, z},
+			Inputs:   []operand.Op{k},
+			Outputs:  []operand.Op{z},
+			ISA:      []string{"AVX512CD"},
+		}, nil
+	}
+	return nil, errors.New("VPBROADCASTMB2Q: bad operands")
+}
+
+// VPBROADCASTMW2D: Broadcast Low Word of Mask Register to Packed Doubleword Values.
+//
+// Forms:
+//
+// 	VPBROADCASTMW2D k zmm
+func VPBROADCASTMW2D(k, z operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case operand.IsK(k) && operand.IsZMM(z):
+		return &intrep.Instruction{
+			Opcode:   "VPBROADCASTMW2D",
+			Operands: []operand.Op{k, z},
+			Inputs:   []operand.Op{k},
+			Outputs:  []operand.Op{z},
+			ISA:      []string{"AVX512CD"},
+		}, nil
+	}
+	return nil, errors.New("VPBROADCASTMW2D: bad operands")
+}
+
 // VPBROADCASTQ: Broadcast Quadword Integer.
 //
 // Forms:
@@ -64061,6 +64099,258 @@ func VPCOMPRESSQ_Z(z, k, mz operand.Op) (*intrep.Instruction, error) {
 		}, nil
 	}
 	return nil, errors.New("VPCOMPRESSQ_Z: bad operands")
+}
+
+// VPCONFLICTD: Detect Conflicts Within a Vector of Packed Doubleword Values into Dense Memory/Register.
+//
+// Forms:
+//
+// 	VPCONFLICTD m512/m32bcst zmm
+// 	VPCONFLICTD m512/m32bcst k zmm
+// 	VPCONFLICTD zmm          zmm
+// 	VPCONFLICTD zmm          k zmm
+func VPCONFLICTD(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 2 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPCONFLICTD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512CD"},
+		}, nil
+	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPCONFLICTD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512CD"},
+		}, nil
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPCONFLICTD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512CD"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPCONFLICTD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512CD"},
+		}, nil
+	}
+	return nil, errors.New("VPCONFLICTD: bad operands")
+}
+
+// VPCONFLICTD_BCST: Detect Conflicts Within a Vector of Packed Doubleword Values into Dense Memory/Register (Broadcast).
+//
+// Forms:
+//
+// 	VPCONFLICTD.BCST m512/m32bcst zmm
+// 	VPCONFLICTD.BCST m512/m32bcst k zmm
+func VPCONFLICTD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 2 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPCONFLICTD",
+			Suffixes: []string{"BCST"},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512CD"},
+		}, nil
+	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPCONFLICTD",
+			Suffixes: []string{"BCST"},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512CD"},
+		}, nil
+	}
+	return nil, errors.New("VPCONFLICTD_BCST: bad operands")
+}
+
+// VPCONFLICTD_BCST_Z: Detect Conflicts Within a Vector of Packed Doubleword Values into Dense Memory/Register (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VPCONFLICTD.BCST.Z m512/m32bcst k zmm
+func VPCONFLICTD_BCST_Z(m, k, z operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case operand.IsM512M32BCST(m) && operand.IsK(k) && operand.IsZMM(z):
+		return &intrep.Instruction{
+			Opcode:   "VPCONFLICTD",
+			Suffixes: []string{"BCST", "Z"},
+			Operands: []operand.Op{m, k, z},
+			Inputs:   []operand.Op{m, k},
+			Outputs:  []operand.Op{z},
+			ISA:      []string{"AVX512CD"},
+		}, nil
+	}
+	return nil, errors.New("VPCONFLICTD_BCST_Z: bad operands")
+}
+
+// VPCONFLICTD_Z: Detect Conflicts Within a Vector of Packed Doubleword Values into Dense Memory/Register (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPCONFLICTD.Z m512/m32bcst k zmm
+// 	VPCONFLICTD.Z zmm          k zmm
+func VPCONFLICTD_Z(mz, k, z operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case operand.IsM512M32BCST(mz) && operand.IsK(k) && operand.IsZMM(z):
+		return &intrep.Instruction{
+			Opcode:   "VPCONFLICTD",
+			Suffixes: []string{"Z"},
+			Operands: []operand.Op{mz, k, z},
+			Inputs:   []operand.Op{mz, k},
+			Outputs:  []operand.Op{z},
+			ISA:      []string{"AVX512CD"},
+		}, nil
+	case operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(z):
+		return &intrep.Instruction{
+			Opcode:   "VPCONFLICTD",
+			Suffixes: []string{"Z"},
+			Operands: []operand.Op{mz, k, z},
+			Inputs:   []operand.Op{mz, k},
+			Outputs:  []operand.Op{z},
+			ISA:      []string{"AVX512CD"},
+		}, nil
+	}
+	return nil, errors.New("VPCONFLICTD_Z: bad operands")
+}
+
+// VPCONFLICTQ: Detect Conflicts Within a Vector of Packed Quadword Values into Dense Memory/Register.
+//
+// Forms:
+//
+// 	VPCONFLICTQ m512/m64bcst zmm
+// 	VPCONFLICTQ m512/m64bcst k zmm
+// 	VPCONFLICTQ zmm          zmm
+// 	VPCONFLICTQ zmm          k zmm
+func VPCONFLICTQ(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 2 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPCONFLICTQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512CD"},
+		}, nil
+	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPCONFLICTQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512CD"},
+		}, nil
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPCONFLICTQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512CD"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPCONFLICTQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512CD"},
+		}, nil
+	}
+	return nil, errors.New("VPCONFLICTQ: bad operands")
+}
+
+// VPCONFLICTQ_BCST: Detect Conflicts Within a Vector of Packed Quadword Values into Dense Memory/Register (Broadcast).
+//
+// Forms:
+//
+// 	VPCONFLICTQ.BCST m512/m64bcst zmm
+// 	VPCONFLICTQ.BCST m512/m64bcst k zmm
+func VPCONFLICTQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 2 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPCONFLICTQ",
+			Suffixes: []string{"BCST"},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512CD"},
+		}, nil
+	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPCONFLICTQ",
+			Suffixes: []string{"BCST"},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512CD"},
+		}, nil
+	}
+	return nil, errors.New("VPCONFLICTQ_BCST: bad operands")
+}
+
+// VPCONFLICTQ_BCST_Z: Detect Conflicts Within a Vector of Packed Quadword Values into Dense Memory/Register (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VPCONFLICTQ.BCST.Z m512/m64bcst k zmm
+func VPCONFLICTQ_BCST_Z(m, k, z operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case operand.IsM512M64BCST(m) && operand.IsK(k) && operand.IsZMM(z):
+		return &intrep.Instruction{
+			Opcode:   "VPCONFLICTQ",
+			Suffixes: []string{"BCST", "Z"},
+			Operands: []operand.Op{m, k, z},
+			Inputs:   []operand.Op{m, k},
+			Outputs:  []operand.Op{z},
+			ISA:      []string{"AVX512CD"},
+		}, nil
+	}
+	return nil, errors.New("VPCONFLICTQ_BCST_Z: bad operands")
+}
+
+// VPCONFLICTQ_Z: Detect Conflicts Within a Vector of Packed Quadword Values into Dense Memory/Register (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPCONFLICTQ.Z m512/m64bcst k zmm
+// 	VPCONFLICTQ.Z zmm          k zmm
+func VPCONFLICTQ_Z(mz, k, z operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case operand.IsM512M64BCST(mz) && operand.IsK(k) && operand.IsZMM(z):
+		return &intrep.Instruction{
+			Opcode:   "VPCONFLICTQ",
+			Suffixes: []string{"Z"},
+			Operands: []operand.Op{mz, k, z},
+			Inputs:   []operand.Op{mz, k},
+			Outputs:  []operand.Op{z},
+			ISA:      []string{"AVX512CD"},
+		}, nil
+	case operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(z):
+		return &intrep.Instruction{
+			Opcode:   "VPCONFLICTQ",
+			Suffixes: []string{"Z"},
+			Operands: []operand.Op{mz, k, z},
+			Inputs:   []operand.Op{mz, k},
+			Outputs:  []operand.Op{z},
+			ISA:      []string{"AVX512CD"},
+		}, nil
+	}
+	return nil, errors.New("VPCONFLICTQ_Z: bad operands")
 }
 
 // VPERM2F128: Permute Floating-Point Values.
@@ -67275,6 +67565,258 @@ func VPINSRW(i, mr, x, x1 operand.Op) (*intrep.Instruction, error) {
 		}, nil
 	}
 	return nil, errors.New("VPINSRW: bad operands")
+}
+
+// VPLZCNTD: Count the Number of Leading Zero Bits for Packed Doubleword Values.
+//
+// Forms:
+//
+// 	VPLZCNTD m512/m32bcst zmm
+// 	VPLZCNTD m512/m32bcst k zmm
+// 	VPLZCNTD zmm          zmm
+// 	VPLZCNTD zmm          k zmm
+func VPLZCNTD(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 2 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPLZCNTD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512CD"},
+		}, nil
+	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPLZCNTD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512CD"},
+		}, nil
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPLZCNTD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512CD"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPLZCNTD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512CD"},
+		}, nil
+	}
+	return nil, errors.New("VPLZCNTD: bad operands")
+}
+
+// VPLZCNTD_BCST: Count the Number of Leading Zero Bits for Packed Doubleword Values (Broadcast).
+//
+// Forms:
+//
+// 	VPLZCNTD.BCST m512/m32bcst zmm
+// 	VPLZCNTD.BCST m512/m32bcst k zmm
+func VPLZCNTD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 2 && operand.IsM512M32BCST(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPLZCNTD",
+			Suffixes: []string{"BCST"},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512CD"},
+		}, nil
+	case len(ops) == 3 && operand.IsM512M32BCST(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPLZCNTD",
+			Suffixes: []string{"BCST"},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512CD"},
+		}, nil
+	}
+	return nil, errors.New("VPLZCNTD_BCST: bad operands")
+}
+
+// VPLZCNTD_BCST_Z: Count the Number of Leading Zero Bits for Packed Doubleword Values (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VPLZCNTD.BCST.Z m512/m32bcst k zmm
+func VPLZCNTD_BCST_Z(m, k, z operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case operand.IsM512M32BCST(m) && operand.IsK(k) && operand.IsZMM(z):
+		return &intrep.Instruction{
+			Opcode:   "VPLZCNTD",
+			Suffixes: []string{"BCST", "Z"},
+			Operands: []operand.Op{m, k, z},
+			Inputs:   []operand.Op{m, k},
+			Outputs:  []operand.Op{z},
+			ISA:      []string{"AVX512CD"},
+		}, nil
+	}
+	return nil, errors.New("VPLZCNTD_BCST_Z: bad operands")
+}
+
+// VPLZCNTD_Z: Count the Number of Leading Zero Bits for Packed Doubleword Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPLZCNTD.Z m512/m32bcst k zmm
+// 	VPLZCNTD.Z zmm          k zmm
+func VPLZCNTD_Z(mz, k, z operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case operand.IsM512M32BCST(mz) && operand.IsK(k) && operand.IsZMM(z):
+		return &intrep.Instruction{
+			Opcode:   "VPLZCNTD",
+			Suffixes: []string{"Z"},
+			Operands: []operand.Op{mz, k, z},
+			Inputs:   []operand.Op{mz, k},
+			Outputs:  []operand.Op{z},
+			ISA:      []string{"AVX512CD"},
+		}, nil
+	case operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(z):
+		return &intrep.Instruction{
+			Opcode:   "VPLZCNTD",
+			Suffixes: []string{"Z"},
+			Operands: []operand.Op{mz, k, z},
+			Inputs:   []operand.Op{mz, k},
+			Outputs:  []operand.Op{z},
+			ISA:      []string{"AVX512CD"},
+		}, nil
+	}
+	return nil, errors.New("VPLZCNTD_Z: bad operands")
+}
+
+// VPLZCNTQ: Count the Number of Leading Zero Bits for Packed Quadword Values.
+//
+// Forms:
+//
+// 	VPLZCNTQ m512/m64bcst zmm
+// 	VPLZCNTQ m512/m64bcst k zmm
+// 	VPLZCNTQ zmm          zmm
+// 	VPLZCNTQ zmm          k zmm
+func VPLZCNTQ(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 2 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPLZCNTQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512CD"},
+		}, nil
+	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPLZCNTQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512CD"},
+		}, nil
+	case len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPLZCNTQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512CD"},
+		}, nil
+	case len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPLZCNTQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512CD"},
+		}, nil
+	}
+	return nil, errors.New("VPLZCNTQ: bad operands")
+}
+
+// VPLZCNTQ_BCST: Count the Number of Leading Zero Bits for Packed Quadword Values (Broadcast).
+//
+// Forms:
+//
+// 	VPLZCNTQ.BCST m512/m64bcst zmm
+// 	VPLZCNTQ.BCST m512/m64bcst k zmm
+func VPLZCNTQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 2 && operand.IsM512M64BCST(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPLZCNTQ",
+			Suffixes: []string{"BCST"},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512CD"},
+		}, nil
+	case len(ops) == 3 && operand.IsM512M64BCST(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPLZCNTQ",
+			Suffixes: []string{"BCST"},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512CD"},
+		}, nil
+	}
+	return nil, errors.New("VPLZCNTQ_BCST: bad operands")
+}
+
+// VPLZCNTQ_BCST_Z: Count the Number of Leading Zero Bits for Packed Quadword Values (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VPLZCNTQ.BCST.Z m512/m64bcst k zmm
+func VPLZCNTQ_BCST_Z(m, k, z operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case operand.IsM512M64BCST(m) && operand.IsK(k) && operand.IsZMM(z):
+		return &intrep.Instruction{
+			Opcode:   "VPLZCNTQ",
+			Suffixes: []string{"BCST", "Z"},
+			Operands: []operand.Op{m, k, z},
+			Inputs:   []operand.Op{m, k},
+			Outputs:  []operand.Op{z},
+			ISA:      []string{"AVX512CD"},
+		}, nil
+	}
+	return nil, errors.New("VPLZCNTQ_BCST_Z: bad operands")
+}
+
+// VPLZCNTQ_Z: Count the Number of Leading Zero Bits for Packed Quadword Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPLZCNTQ.Z m512/m64bcst k zmm
+// 	VPLZCNTQ.Z zmm          k zmm
+func VPLZCNTQ_Z(mz, k, z operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case operand.IsM512M64BCST(mz) && operand.IsK(k) && operand.IsZMM(z):
+		return &intrep.Instruction{
+			Opcode:   "VPLZCNTQ",
+			Suffixes: []string{"Z"},
+			Operands: []operand.Op{mz, k, z},
+			Inputs:   []operand.Op{mz, k},
+			Outputs:  []operand.Op{z},
+			ISA:      []string{"AVX512CD"},
+		}, nil
+	case operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(z):
+		return &intrep.Instruction{
+			Opcode:   "VPLZCNTQ",
+			Suffixes: []string{"Z"},
+			Operands: []operand.Op{mz, k, z},
+			Inputs:   []operand.Op{mz, k},
+			Outputs:  []operand.Op{z},
+			ISA:      []string{"AVX512CD"},
+		}, nil
+	}
+	return nil, errors.New("VPLZCNTQ_Z: bad operands")
 }
 
 // VPMADDUBSW: Multiply and Add Packed Signed and Unsigned Byte Integers.
