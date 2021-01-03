@@ -411,7 +411,7 @@ func (l Loader) forms(opcode string, f opcodesxml.Form) []inst.Form {
 
 	// AVX-512 masking. In order to support implicit masking (with K0), Go has
 	// two instruction forms, one with the mask and one without. The mask
-	// register preceeds the output register. If the form is masked, we
+	// register precedes the output register. If the form is masked, we
 	// duplicate it to create the masked and unmasked versions.
 	masked := false
 	idx := -1

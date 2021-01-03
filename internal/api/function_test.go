@@ -12,6 +12,7 @@ func TestFunctionsDuplicateFormSignatures(t *testing.T) {
 	// manifest as duplicate case statements in generated code.
 	fns := InstructionsFunctions(inst.Instructions)
 	for _, fn := range fns {
+		fn := fn // scopelint
 		t.Run(fn.Name(), func(t *testing.T) {
 			seen := map[string]bool{}
 			for _, f := range fn.Forms {
