@@ -33073,6 +33073,306 @@ func (c *Context) VDPPS(i, mxy, xy, xy1 operand.Op) {
 // Operates on the global context.
 func VDPPS(i, mxy, xy, xy1 operand.Op) { ctx.VDPPS(i, mxy, xy, xy1) }
 
+// VEXP2PD: Approximation to the Exponential 2^x of Packed Double-Precision Floating-Point Values with Less Than 2^-23 Relative Error.
+//
+// Forms:
+//
+// 	VEXP2PD m512/m64bcst k zmm
+// 	VEXP2PD m512/m64bcst zmm
+// 	VEXP2PD zmm          k zmm
+// 	VEXP2PD zmm          zmm
+// Construct and append a VEXP2PD instruction to the active function.
+func (c *Context) VEXP2PD(ops ...operand.Op) {
+	if inst, err := x86.VEXP2PD(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VEXP2PD: Approximation to the Exponential 2^x of Packed Double-Precision Floating-Point Values with Less Than 2^-23 Relative Error.
+//
+// Forms:
+//
+// 	VEXP2PD m512/m64bcst k zmm
+// 	VEXP2PD m512/m64bcst zmm
+// 	VEXP2PD zmm          k zmm
+// 	VEXP2PD zmm          zmm
+// Construct and append a VEXP2PD instruction to the active function.
+// Operates on the global context.
+func VEXP2PD(ops ...operand.Op) { ctx.VEXP2PD(ops...) }
+
+// VEXP2PD_BCST: Approximation to the Exponential 2^x of Packed Double-Precision Floating-Point Values with Less Than 2^-23 Relative Error (Broadcast).
+//
+// Forms:
+//
+// 	VEXP2PD.BCST m512/m64bcst k zmm
+// 	VEXP2PD.BCST m512/m64bcst zmm
+// Construct and append a VEXP2PD.BCST instruction to the active function.
+func (c *Context) VEXP2PD_BCST(ops ...operand.Op) {
+	if inst, err := x86.VEXP2PD_BCST(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VEXP2PD_BCST: Approximation to the Exponential 2^x of Packed Double-Precision Floating-Point Values with Less Than 2^-23 Relative Error (Broadcast).
+//
+// Forms:
+//
+// 	VEXP2PD.BCST m512/m64bcst k zmm
+// 	VEXP2PD.BCST m512/m64bcst zmm
+// Construct and append a VEXP2PD.BCST instruction to the active function.
+// Operates on the global context.
+func VEXP2PD_BCST(ops ...operand.Op) { ctx.VEXP2PD_BCST(ops...) }
+
+// VEXP2PD_BCST_Z: Approximation to the Exponential 2^x of Packed Double-Precision Floating-Point Values with Less Than 2^-23 Relative Error (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VEXP2PD.BCST.Z m512/m64bcst k zmm
+// Construct and append a VEXP2PD.BCST.Z instruction to the active function.
+func (c *Context) VEXP2PD_BCST_Z(m, k, z operand.Op) {
+	if inst, err := x86.VEXP2PD_BCST_Z(m, k, z); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VEXP2PD_BCST_Z: Approximation to the Exponential 2^x of Packed Double-Precision Floating-Point Values with Less Than 2^-23 Relative Error (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VEXP2PD.BCST.Z m512/m64bcst k zmm
+// Construct and append a VEXP2PD.BCST.Z instruction to the active function.
+// Operates on the global context.
+func VEXP2PD_BCST_Z(m, k, z operand.Op) { ctx.VEXP2PD_BCST_Z(m, k, z) }
+
+// VEXP2PD_SAE: Approximation to the Exponential 2^x of Packed Double-Precision Floating-Point Values with Less Than 2^-23 Relative Error (Suppress All Exceptions).
+//
+// Forms:
+//
+// 	VEXP2PD.SAE zmm k zmm
+// 	VEXP2PD.SAE zmm zmm
+// Construct and append a VEXP2PD.SAE instruction to the active function.
+func (c *Context) VEXP2PD_SAE(ops ...operand.Op) {
+	if inst, err := x86.VEXP2PD_SAE(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VEXP2PD_SAE: Approximation to the Exponential 2^x of Packed Double-Precision Floating-Point Values with Less Than 2^-23 Relative Error (Suppress All Exceptions).
+//
+// Forms:
+//
+// 	VEXP2PD.SAE zmm k zmm
+// 	VEXP2PD.SAE zmm zmm
+// Construct and append a VEXP2PD.SAE instruction to the active function.
+// Operates on the global context.
+func VEXP2PD_SAE(ops ...operand.Op) { ctx.VEXP2PD_SAE(ops...) }
+
+// VEXP2PD_SAE_Z: Approximation to the Exponential 2^x of Packed Double-Precision Floating-Point Values with Less Than 2^-23 Relative Error (Suppress All Exceptions, Zeroing Masking).
+//
+// Forms:
+//
+// 	VEXP2PD.SAE.Z zmm k zmm
+// Construct and append a VEXP2PD.SAE.Z instruction to the active function.
+func (c *Context) VEXP2PD_SAE_Z(z, k, z1 operand.Op) {
+	if inst, err := x86.VEXP2PD_SAE_Z(z, k, z1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VEXP2PD_SAE_Z: Approximation to the Exponential 2^x of Packed Double-Precision Floating-Point Values with Less Than 2^-23 Relative Error (Suppress All Exceptions, Zeroing Masking).
+//
+// Forms:
+//
+// 	VEXP2PD.SAE.Z zmm k zmm
+// Construct and append a VEXP2PD.SAE.Z instruction to the active function.
+// Operates on the global context.
+func VEXP2PD_SAE_Z(z, k, z1 operand.Op) { ctx.VEXP2PD_SAE_Z(z, k, z1) }
+
+// VEXP2PD_Z: Approximation to the Exponential 2^x of Packed Double-Precision Floating-Point Values with Less Than 2^-23 Relative Error (Zeroing Masking).
+//
+// Forms:
+//
+// 	VEXP2PD.Z m512/m64bcst k zmm
+// 	VEXP2PD.Z zmm          k zmm
+// Construct and append a VEXP2PD.Z instruction to the active function.
+func (c *Context) VEXP2PD_Z(mz, k, z operand.Op) {
+	if inst, err := x86.VEXP2PD_Z(mz, k, z); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VEXP2PD_Z: Approximation to the Exponential 2^x of Packed Double-Precision Floating-Point Values with Less Than 2^-23 Relative Error (Zeroing Masking).
+//
+// Forms:
+//
+// 	VEXP2PD.Z m512/m64bcst k zmm
+// 	VEXP2PD.Z zmm          k zmm
+// Construct and append a VEXP2PD.Z instruction to the active function.
+// Operates on the global context.
+func VEXP2PD_Z(mz, k, z operand.Op) { ctx.VEXP2PD_Z(mz, k, z) }
+
+// VEXP2PS: Approximation to the Exponential 2^x of Packed Single-Precision Floating-Point Values with Less Than 2^-23 Relative Error.
+//
+// Forms:
+//
+// 	VEXP2PS m512/m32bcst k zmm
+// 	VEXP2PS m512/m32bcst zmm
+// 	VEXP2PS zmm          k zmm
+// 	VEXP2PS zmm          zmm
+// Construct and append a VEXP2PS instruction to the active function.
+func (c *Context) VEXP2PS(ops ...operand.Op) {
+	if inst, err := x86.VEXP2PS(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VEXP2PS: Approximation to the Exponential 2^x of Packed Single-Precision Floating-Point Values with Less Than 2^-23 Relative Error.
+//
+// Forms:
+//
+// 	VEXP2PS m512/m32bcst k zmm
+// 	VEXP2PS m512/m32bcst zmm
+// 	VEXP2PS zmm          k zmm
+// 	VEXP2PS zmm          zmm
+// Construct and append a VEXP2PS instruction to the active function.
+// Operates on the global context.
+func VEXP2PS(ops ...operand.Op) { ctx.VEXP2PS(ops...) }
+
+// VEXP2PS_BCST: Approximation to the Exponential 2^x of Packed Single-Precision Floating-Point Values with Less Than 2^-23 Relative Error (Broadcast).
+//
+// Forms:
+//
+// 	VEXP2PS.BCST m512/m32bcst k zmm
+// 	VEXP2PS.BCST m512/m32bcst zmm
+// Construct and append a VEXP2PS.BCST instruction to the active function.
+func (c *Context) VEXP2PS_BCST(ops ...operand.Op) {
+	if inst, err := x86.VEXP2PS_BCST(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VEXP2PS_BCST: Approximation to the Exponential 2^x of Packed Single-Precision Floating-Point Values with Less Than 2^-23 Relative Error (Broadcast).
+//
+// Forms:
+//
+// 	VEXP2PS.BCST m512/m32bcst k zmm
+// 	VEXP2PS.BCST m512/m32bcst zmm
+// Construct and append a VEXP2PS.BCST instruction to the active function.
+// Operates on the global context.
+func VEXP2PS_BCST(ops ...operand.Op) { ctx.VEXP2PS_BCST(ops...) }
+
+// VEXP2PS_BCST_Z: Approximation to the Exponential 2^x of Packed Single-Precision Floating-Point Values with Less Than 2^-23 Relative Error (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VEXP2PS.BCST.Z m512/m32bcst k zmm
+// Construct and append a VEXP2PS.BCST.Z instruction to the active function.
+func (c *Context) VEXP2PS_BCST_Z(m, k, z operand.Op) {
+	if inst, err := x86.VEXP2PS_BCST_Z(m, k, z); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VEXP2PS_BCST_Z: Approximation to the Exponential 2^x of Packed Single-Precision Floating-Point Values with Less Than 2^-23 Relative Error (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VEXP2PS.BCST.Z m512/m32bcst k zmm
+// Construct and append a VEXP2PS.BCST.Z instruction to the active function.
+// Operates on the global context.
+func VEXP2PS_BCST_Z(m, k, z operand.Op) { ctx.VEXP2PS_BCST_Z(m, k, z) }
+
+// VEXP2PS_SAE: Approximation to the Exponential 2^x of Packed Single-Precision Floating-Point Values with Less Than 2^-23 Relative Error (Suppress All Exceptions).
+//
+// Forms:
+//
+// 	VEXP2PS.SAE zmm k zmm
+// 	VEXP2PS.SAE zmm zmm
+// Construct and append a VEXP2PS.SAE instruction to the active function.
+func (c *Context) VEXP2PS_SAE(ops ...operand.Op) {
+	if inst, err := x86.VEXP2PS_SAE(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VEXP2PS_SAE: Approximation to the Exponential 2^x of Packed Single-Precision Floating-Point Values with Less Than 2^-23 Relative Error (Suppress All Exceptions).
+//
+// Forms:
+//
+// 	VEXP2PS.SAE zmm k zmm
+// 	VEXP2PS.SAE zmm zmm
+// Construct and append a VEXP2PS.SAE instruction to the active function.
+// Operates on the global context.
+func VEXP2PS_SAE(ops ...operand.Op) { ctx.VEXP2PS_SAE(ops...) }
+
+// VEXP2PS_SAE_Z: Approximation to the Exponential 2^x of Packed Single-Precision Floating-Point Values with Less Than 2^-23 Relative Error (Suppress All Exceptions, Zeroing Masking).
+//
+// Forms:
+//
+// 	VEXP2PS.SAE.Z zmm k zmm
+// Construct and append a VEXP2PS.SAE.Z instruction to the active function.
+func (c *Context) VEXP2PS_SAE_Z(z, k, z1 operand.Op) {
+	if inst, err := x86.VEXP2PS_SAE_Z(z, k, z1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VEXP2PS_SAE_Z: Approximation to the Exponential 2^x of Packed Single-Precision Floating-Point Values with Less Than 2^-23 Relative Error (Suppress All Exceptions, Zeroing Masking).
+//
+// Forms:
+//
+// 	VEXP2PS.SAE.Z zmm k zmm
+// Construct and append a VEXP2PS.SAE.Z instruction to the active function.
+// Operates on the global context.
+func VEXP2PS_SAE_Z(z, k, z1 operand.Op) { ctx.VEXP2PS_SAE_Z(z, k, z1) }
+
+// VEXP2PS_Z: Approximation to the Exponential 2^x of Packed Single-Precision Floating-Point Values with Less Than 2^-23 Relative Error (Zeroing Masking).
+//
+// Forms:
+//
+// 	VEXP2PS.Z m512/m32bcst k zmm
+// 	VEXP2PS.Z zmm          k zmm
+// Construct and append a VEXP2PS.Z instruction to the active function.
+func (c *Context) VEXP2PS_Z(mz, k, z operand.Op) {
+	if inst, err := x86.VEXP2PS_Z(mz, k, z); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VEXP2PS_Z: Approximation to the Exponential 2^x of Packed Single-Precision Floating-Point Values with Less Than 2^-23 Relative Error (Zeroing Masking).
+//
+// Forms:
+//
+// 	VEXP2PS.Z m512/m32bcst k zmm
+// 	VEXP2PS.Z zmm          k zmm
+// Construct and append a VEXP2PS.Z instruction to the active function.
+// Operates on the global context.
+func VEXP2PS_Z(mz, k, z operand.Op) { ctx.VEXP2PS_Z(mz, k, z) }
+
 // VEXPANDPD: Load Sparse Packed Double-Precision Floating-Point Values from Dense Memory.
 //
 // Forms:
@@ -81120,6 +81420,510 @@ func (c *Context) VRCP14SS_Z(mx, x, k, x1 operand.Op) {
 // Operates on the global context.
 func VRCP14SS_Z(mx, x, k, x1 operand.Op) { ctx.VRCP14SS_Z(mx, x, k, x1) }
 
+// VRCP28PD: Approximation to the Reciprocal of Packed Double-Precision Floating-Point Values with Less Than 2^-28 Relative Error.
+//
+// Forms:
+//
+// 	VRCP28PD m512/m64bcst k zmm
+// 	VRCP28PD m512/m64bcst zmm
+// 	VRCP28PD zmm          k zmm
+// 	VRCP28PD zmm          zmm
+// Construct and append a VRCP28PD instruction to the active function.
+func (c *Context) VRCP28PD(ops ...operand.Op) {
+	if inst, err := x86.VRCP28PD(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VRCP28PD: Approximation to the Reciprocal of Packed Double-Precision Floating-Point Values with Less Than 2^-28 Relative Error.
+//
+// Forms:
+//
+// 	VRCP28PD m512/m64bcst k zmm
+// 	VRCP28PD m512/m64bcst zmm
+// 	VRCP28PD zmm          k zmm
+// 	VRCP28PD zmm          zmm
+// Construct and append a VRCP28PD instruction to the active function.
+// Operates on the global context.
+func VRCP28PD(ops ...operand.Op) { ctx.VRCP28PD(ops...) }
+
+// VRCP28PD_BCST: Approximation to the Reciprocal of Packed Double-Precision Floating-Point Values with Less Than 2^-28 Relative Error (Broadcast).
+//
+// Forms:
+//
+// 	VRCP28PD.BCST m512/m64bcst k zmm
+// 	VRCP28PD.BCST m512/m64bcst zmm
+// Construct and append a VRCP28PD.BCST instruction to the active function.
+func (c *Context) VRCP28PD_BCST(ops ...operand.Op) {
+	if inst, err := x86.VRCP28PD_BCST(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VRCP28PD_BCST: Approximation to the Reciprocal of Packed Double-Precision Floating-Point Values with Less Than 2^-28 Relative Error (Broadcast).
+//
+// Forms:
+//
+// 	VRCP28PD.BCST m512/m64bcst k zmm
+// 	VRCP28PD.BCST m512/m64bcst zmm
+// Construct and append a VRCP28PD.BCST instruction to the active function.
+// Operates on the global context.
+func VRCP28PD_BCST(ops ...operand.Op) { ctx.VRCP28PD_BCST(ops...) }
+
+// VRCP28PD_BCST_Z: Approximation to the Reciprocal of Packed Double-Precision Floating-Point Values with Less Than 2^-28 Relative Error (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VRCP28PD.BCST.Z m512/m64bcst k zmm
+// Construct and append a VRCP28PD.BCST.Z instruction to the active function.
+func (c *Context) VRCP28PD_BCST_Z(m, k, z operand.Op) {
+	if inst, err := x86.VRCP28PD_BCST_Z(m, k, z); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VRCP28PD_BCST_Z: Approximation to the Reciprocal of Packed Double-Precision Floating-Point Values with Less Than 2^-28 Relative Error (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VRCP28PD.BCST.Z m512/m64bcst k zmm
+// Construct and append a VRCP28PD.BCST.Z instruction to the active function.
+// Operates on the global context.
+func VRCP28PD_BCST_Z(m, k, z operand.Op) { ctx.VRCP28PD_BCST_Z(m, k, z) }
+
+// VRCP28PD_SAE: Approximation to the Reciprocal of Packed Double-Precision Floating-Point Values with Less Than 2^-28 Relative Error (Suppress All Exceptions).
+//
+// Forms:
+//
+// 	VRCP28PD.SAE zmm k zmm
+// 	VRCP28PD.SAE zmm zmm
+// Construct and append a VRCP28PD.SAE instruction to the active function.
+func (c *Context) VRCP28PD_SAE(ops ...operand.Op) {
+	if inst, err := x86.VRCP28PD_SAE(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VRCP28PD_SAE: Approximation to the Reciprocal of Packed Double-Precision Floating-Point Values with Less Than 2^-28 Relative Error (Suppress All Exceptions).
+//
+// Forms:
+//
+// 	VRCP28PD.SAE zmm k zmm
+// 	VRCP28PD.SAE zmm zmm
+// Construct and append a VRCP28PD.SAE instruction to the active function.
+// Operates on the global context.
+func VRCP28PD_SAE(ops ...operand.Op) { ctx.VRCP28PD_SAE(ops...) }
+
+// VRCP28PD_SAE_Z: Approximation to the Reciprocal of Packed Double-Precision Floating-Point Values with Less Than 2^-28 Relative Error (Suppress All Exceptions, Zeroing Masking).
+//
+// Forms:
+//
+// 	VRCP28PD.SAE.Z zmm k zmm
+// Construct and append a VRCP28PD.SAE.Z instruction to the active function.
+func (c *Context) VRCP28PD_SAE_Z(z, k, z1 operand.Op) {
+	if inst, err := x86.VRCP28PD_SAE_Z(z, k, z1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VRCP28PD_SAE_Z: Approximation to the Reciprocal of Packed Double-Precision Floating-Point Values with Less Than 2^-28 Relative Error (Suppress All Exceptions, Zeroing Masking).
+//
+// Forms:
+//
+// 	VRCP28PD.SAE.Z zmm k zmm
+// Construct and append a VRCP28PD.SAE.Z instruction to the active function.
+// Operates on the global context.
+func VRCP28PD_SAE_Z(z, k, z1 operand.Op) { ctx.VRCP28PD_SAE_Z(z, k, z1) }
+
+// VRCP28PD_Z: Approximation to the Reciprocal of Packed Double-Precision Floating-Point Values with Less Than 2^-28 Relative Error (Zeroing Masking).
+//
+// Forms:
+//
+// 	VRCP28PD.Z m512/m64bcst k zmm
+// 	VRCP28PD.Z zmm          k zmm
+// Construct and append a VRCP28PD.Z instruction to the active function.
+func (c *Context) VRCP28PD_Z(mz, k, z operand.Op) {
+	if inst, err := x86.VRCP28PD_Z(mz, k, z); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VRCP28PD_Z: Approximation to the Reciprocal of Packed Double-Precision Floating-Point Values with Less Than 2^-28 Relative Error (Zeroing Masking).
+//
+// Forms:
+//
+// 	VRCP28PD.Z m512/m64bcst k zmm
+// 	VRCP28PD.Z zmm          k zmm
+// Construct and append a VRCP28PD.Z instruction to the active function.
+// Operates on the global context.
+func VRCP28PD_Z(mz, k, z operand.Op) { ctx.VRCP28PD_Z(mz, k, z) }
+
+// VRCP28PS: Approximation to the Reciprocal of Packed Single-Precision Floating-Point Values with Less Than 2^-28 Relative Error.
+//
+// Forms:
+//
+// 	VRCP28PS m512/m32bcst k zmm
+// 	VRCP28PS m512/m32bcst zmm
+// 	VRCP28PS zmm          k zmm
+// 	VRCP28PS zmm          zmm
+// Construct and append a VRCP28PS instruction to the active function.
+func (c *Context) VRCP28PS(ops ...operand.Op) {
+	if inst, err := x86.VRCP28PS(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VRCP28PS: Approximation to the Reciprocal of Packed Single-Precision Floating-Point Values with Less Than 2^-28 Relative Error.
+//
+// Forms:
+//
+// 	VRCP28PS m512/m32bcst k zmm
+// 	VRCP28PS m512/m32bcst zmm
+// 	VRCP28PS zmm          k zmm
+// 	VRCP28PS zmm          zmm
+// Construct and append a VRCP28PS instruction to the active function.
+// Operates on the global context.
+func VRCP28PS(ops ...operand.Op) { ctx.VRCP28PS(ops...) }
+
+// VRCP28PS_BCST: Approximation to the Reciprocal of Packed Single-Precision Floating-Point Values with Less Than 2^-28 Relative Error (Broadcast).
+//
+// Forms:
+//
+// 	VRCP28PS.BCST m512/m32bcst k zmm
+// 	VRCP28PS.BCST m512/m32bcst zmm
+// Construct and append a VRCP28PS.BCST instruction to the active function.
+func (c *Context) VRCP28PS_BCST(ops ...operand.Op) {
+	if inst, err := x86.VRCP28PS_BCST(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VRCP28PS_BCST: Approximation to the Reciprocal of Packed Single-Precision Floating-Point Values with Less Than 2^-28 Relative Error (Broadcast).
+//
+// Forms:
+//
+// 	VRCP28PS.BCST m512/m32bcst k zmm
+// 	VRCP28PS.BCST m512/m32bcst zmm
+// Construct and append a VRCP28PS.BCST instruction to the active function.
+// Operates on the global context.
+func VRCP28PS_BCST(ops ...operand.Op) { ctx.VRCP28PS_BCST(ops...) }
+
+// VRCP28PS_BCST_Z: Approximation to the Reciprocal of Packed Single-Precision Floating-Point Values with Less Than 2^-28 Relative Error (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VRCP28PS.BCST.Z m512/m32bcst k zmm
+// Construct and append a VRCP28PS.BCST.Z instruction to the active function.
+func (c *Context) VRCP28PS_BCST_Z(m, k, z operand.Op) {
+	if inst, err := x86.VRCP28PS_BCST_Z(m, k, z); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VRCP28PS_BCST_Z: Approximation to the Reciprocal of Packed Single-Precision Floating-Point Values with Less Than 2^-28 Relative Error (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VRCP28PS.BCST.Z m512/m32bcst k zmm
+// Construct and append a VRCP28PS.BCST.Z instruction to the active function.
+// Operates on the global context.
+func VRCP28PS_BCST_Z(m, k, z operand.Op) { ctx.VRCP28PS_BCST_Z(m, k, z) }
+
+// VRCP28PS_SAE: Approximation to the Reciprocal of Packed Single-Precision Floating-Point Values with Less Than 2^-28 Relative Error (Suppress All Exceptions).
+//
+// Forms:
+//
+// 	VRCP28PS.SAE zmm k zmm
+// 	VRCP28PS.SAE zmm zmm
+// Construct and append a VRCP28PS.SAE instruction to the active function.
+func (c *Context) VRCP28PS_SAE(ops ...operand.Op) {
+	if inst, err := x86.VRCP28PS_SAE(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VRCP28PS_SAE: Approximation to the Reciprocal of Packed Single-Precision Floating-Point Values with Less Than 2^-28 Relative Error (Suppress All Exceptions).
+//
+// Forms:
+//
+// 	VRCP28PS.SAE zmm k zmm
+// 	VRCP28PS.SAE zmm zmm
+// Construct and append a VRCP28PS.SAE instruction to the active function.
+// Operates on the global context.
+func VRCP28PS_SAE(ops ...operand.Op) { ctx.VRCP28PS_SAE(ops...) }
+
+// VRCP28PS_SAE_Z: Approximation to the Reciprocal of Packed Single-Precision Floating-Point Values with Less Than 2^-28 Relative Error (Suppress All Exceptions, Zeroing Masking).
+//
+// Forms:
+//
+// 	VRCP28PS.SAE.Z zmm k zmm
+// Construct and append a VRCP28PS.SAE.Z instruction to the active function.
+func (c *Context) VRCP28PS_SAE_Z(z, k, z1 operand.Op) {
+	if inst, err := x86.VRCP28PS_SAE_Z(z, k, z1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VRCP28PS_SAE_Z: Approximation to the Reciprocal of Packed Single-Precision Floating-Point Values with Less Than 2^-28 Relative Error (Suppress All Exceptions, Zeroing Masking).
+//
+// Forms:
+//
+// 	VRCP28PS.SAE.Z zmm k zmm
+// Construct and append a VRCP28PS.SAE.Z instruction to the active function.
+// Operates on the global context.
+func VRCP28PS_SAE_Z(z, k, z1 operand.Op) { ctx.VRCP28PS_SAE_Z(z, k, z1) }
+
+// VRCP28PS_Z: Approximation to the Reciprocal of Packed Single-Precision Floating-Point Values with Less Than 2^-28 Relative Error (Zeroing Masking).
+//
+// Forms:
+//
+// 	VRCP28PS.Z m512/m32bcst k zmm
+// 	VRCP28PS.Z zmm          k zmm
+// Construct and append a VRCP28PS.Z instruction to the active function.
+func (c *Context) VRCP28PS_Z(mz, k, z operand.Op) {
+	if inst, err := x86.VRCP28PS_Z(mz, k, z); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VRCP28PS_Z: Approximation to the Reciprocal of Packed Single-Precision Floating-Point Values with Less Than 2^-28 Relative Error (Zeroing Masking).
+//
+// Forms:
+//
+// 	VRCP28PS.Z m512/m32bcst k zmm
+// 	VRCP28PS.Z zmm          k zmm
+// Construct and append a VRCP28PS.Z instruction to the active function.
+// Operates on the global context.
+func VRCP28PS_Z(mz, k, z operand.Op) { ctx.VRCP28PS_Z(mz, k, z) }
+
+// VRCP28SD: Approximation to the Reciprocal of a Scalar Double-Precision Floating-Point Value with Less Than 2^-28 Relative Error.
+//
+// Forms:
+//
+// 	VRCP28SD m64 xmm k xmm
+// 	VRCP28SD m64 xmm xmm
+// 	VRCP28SD xmm xmm k xmm
+// 	VRCP28SD xmm xmm xmm
+// Construct and append a VRCP28SD instruction to the active function.
+func (c *Context) VRCP28SD(ops ...operand.Op) {
+	if inst, err := x86.VRCP28SD(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VRCP28SD: Approximation to the Reciprocal of a Scalar Double-Precision Floating-Point Value with Less Than 2^-28 Relative Error.
+//
+// Forms:
+//
+// 	VRCP28SD m64 xmm k xmm
+// 	VRCP28SD m64 xmm xmm
+// 	VRCP28SD xmm xmm k xmm
+// 	VRCP28SD xmm xmm xmm
+// Construct and append a VRCP28SD instruction to the active function.
+// Operates on the global context.
+func VRCP28SD(ops ...operand.Op) { ctx.VRCP28SD(ops...) }
+
+// VRCP28SD_SAE: Approximation to the Reciprocal of a Scalar Double-Precision Floating-Point Value with Less Than 2^-28 Relative Error (Suppress All Exceptions).
+//
+// Forms:
+//
+// 	VRCP28SD.SAE xmm xmm k xmm
+// 	VRCP28SD.SAE xmm xmm xmm
+// Construct and append a VRCP28SD.SAE instruction to the active function.
+func (c *Context) VRCP28SD_SAE(ops ...operand.Op) {
+	if inst, err := x86.VRCP28SD_SAE(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VRCP28SD_SAE: Approximation to the Reciprocal of a Scalar Double-Precision Floating-Point Value with Less Than 2^-28 Relative Error (Suppress All Exceptions).
+//
+// Forms:
+//
+// 	VRCP28SD.SAE xmm xmm k xmm
+// 	VRCP28SD.SAE xmm xmm xmm
+// Construct and append a VRCP28SD.SAE instruction to the active function.
+// Operates on the global context.
+func VRCP28SD_SAE(ops ...operand.Op) { ctx.VRCP28SD_SAE(ops...) }
+
+// VRCP28SD_SAE_Z: Approximation to the Reciprocal of a Scalar Double-Precision Floating-Point Value with Less Than 2^-28 Relative Error (Suppress All Exceptions, Zeroing Masking).
+//
+// Forms:
+//
+// 	VRCP28SD.SAE.Z xmm xmm k xmm
+// Construct and append a VRCP28SD.SAE.Z instruction to the active function.
+func (c *Context) VRCP28SD_SAE_Z(x, x1, k, x2 operand.Op) {
+	if inst, err := x86.VRCP28SD_SAE_Z(x, x1, k, x2); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VRCP28SD_SAE_Z: Approximation to the Reciprocal of a Scalar Double-Precision Floating-Point Value with Less Than 2^-28 Relative Error (Suppress All Exceptions, Zeroing Masking).
+//
+// Forms:
+//
+// 	VRCP28SD.SAE.Z xmm xmm k xmm
+// Construct and append a VRCP28SD.SAE.Z instruction to the active function.
+// Operates on the global context.
+func VRCP28SD_SAE_Z(x, x1, k, x2 operand.Op) { ctx.VRCP28SD_SAE_Z(x, x1, k, x2) }
+
+// VRCP28SD_Z: Approximation to the Reciprocal of a Scalar Double-Precision Floating-Point Value with Less Than 2^-28 Relative Error (Zeroing Masking).
+//
+// Forms:
+//
+// 	VRCP28SD.Z m64 xmm k xmm
+// 	VRCP28SD.Z xmm xmm k xmm
+// Construct and append a VRCP28SD.Z instruction to the active function.
+func (c *Context) VRCP28SD_Z(mx, x, k, x1 operand.Op) {
+	if inst, err := x86.VRCP28SD_Z(mx, x, k, x1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VRCP28SD_Z: Approximation to the Reciprocal of a Scalar Double-Precision Floating-Point Value with Less Than 2^-28 Relative Error (Zeroing Masking).
+//
+// Forms:
+//
+// 	VRCP28SD.Z m64 xmm k xmm
+// 	VRCP28SD.Z xmm xmm k xmm
+// Construct and append a VRCP28SD.Z instruction to the active function.
+// Operates on the global context.
+func VRCP28SD_Z(mx, x, k, x1 operand.Op) { ctx.VRCP28SD_Z(mx, x, k, x1) }
+
+// VRCP28SS: Approximation to the Reciprocal of a Scalar Single-Precision Floating-Point Value with Less Than 2^-28 Relative Error.
+//
+// Forms:
+//
+// 	VRCP28SS m32 xmm k xmm
+// 	VRCP28SS m32 xmm xmm
+// 	VRCP28SS xmm xmm k xmm
+// 	VRCP28SS xmm xmm xmm
+// Construct and append a VRCP28SS instruction to the active function.
+func (c *Context) VRCP28SS(ops ...operand.Op) {
+	if inst, err := x86.VRCP28SS(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VRCP28SS: Approximation to the Reciprocal of a Scalar Single-Precision Floating-Point Value with Less Than 2^-28 Relative Error.
+//
+// Forms:
+//
+// 	VRCP28SS m32 xmm k xmm
+// 	VRCP28SS m32 xmm xmm
+// 	VRCP28SS xmm xmm k xmm
+// 	VRCP28SS xmm xmm xmm
+// Construct and append a VRCP28SS instruction to the active function.
+// Operates on the global context.
+func VRCP28SS(ops ...operand.Op) { ctx.VRCP28SS(ops...) }
+
+// VRCP28SS_SAE: Approximation to the Reciprocal of a Scalar Single-Precision Floating-Point Value with Less Than 2^-28 Relative Error (Suppress All Exceptions).
+//
+// Forms:
+//
+// 	VRCP28SS.SAE xmm xmm k xmm
+// 	VRCP28SS.SAE xmm xmm xmm
+// Construct and append a VRCP28SS.SAE instruction to the active function.
+func (c *Context) VRCP28SS_SAE(ops ...operand.Op) {
+	if inst, err := x86.VRCP28SS_SAE(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VRCP28SS_SAE: Approximation to the Reciprocal of a Scalar Single-Precision Floating-Point Value with Less Than 2^-28 Relative Error (Suppress All Exceptions).
+//
+// Forms:
+//
+// 	VRCP28SS.SAE xmm xmm k xmm
+// 	VRCP28SS.SAE xmm xmm xmm
+// Construct and append a VRCP28SS.SAE instruction to the active function.
+// Operates on the global context.
+func VRCP28SS_SAE(ops ...operand.Op) { ctx.VRCP28SS_SAE(ops...) }
+
+// VRCP28SS_SAE_Z: Approximation to the Reciprocal of a Scalar Single-Precision Floating-Point Value with Less Than 2^-28 Relative Error (Suppress All Exceptions, Zeroing Masking).
+//
+// Forms:
+//
+// 	VRCP28SS.SAE.Z xmm xmm k xmm
+// Construct and append a VRCP28SS.SAE.Z instruction to the active function.
+func (c *Context) VRCP28SS_SAE_Z(x, x1, k, x2 operand.Op) {
+	if inst, err := x86.VRCP28SS_SAE_Z(x, x1, k, x2); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VRCP28SS_SAE_Z: Approximation to the Reciprocal of a Scalar Single-Precision Floating-Point Value with Less Than 2^-28 Relative Error (Suppress All Exceptions, Zeroing Masking).
+//
+// Forms:
+//
+// 	VRCP28SS.SAE.Z xmm xmm k xmm
+// Construct and append a VRCP28SS.SAE.Z instruction to the active function.
+// Operates on the global context.
+func VRCP28SS_SAE_Z(x, x1, k, x2 operand.Op) { ctx.VRCP28SS_SAE_Z(x, x1, k, x2) }
+
+// VRCP28SS_Z: Approximation to the Reciprocal of a Scalar Single-Precision Floating-Point Value with Less Than 2^-28 Relative Error (Zeroing Masking).
+//
+// Forms:
+//
+// 	VRCP28SS.Z m32 xmm k xmm
+// 	VRCP28SS.Z xmm xmm k xmm
+// Construct and append a VRCP28SS.Z instruction to the active function.
+func (c *Context) VRCP28SS_Z(mx, x, k, x1 operand.Op) {
+	if inst, err := x86.VRCP28SS_Z(mx, x, k, x1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VRCP28SS_Z: Approximation to the Reciprocal of a Scalar Single-Precision Floating-Point Value with Less Than 2^-28 Relative Error (Zeroing Masking).
+//
+// Forms:
+//
+// 	VRCP28SS.Z m32 xmm k xmm
+// 	VRCP28SS.Z xmm xmm k xmm
+// Construct and append a VRCP28SS.Z instruction to the active function.
+// Operates on the global context.
+func VRCP28SS_Z(mx, x, k, x1 operand.Op) { ctx.VRCP28SS_Z(mx, x, k, x1) }
+
 // VRCPPS: Compute Approximate Reciprocals of Packed Single-Precision Floating-Point Values.
 //
 // Forms:
@@ -82625,6 +83429,510 @@ func (c *Context) VRSQRT14SS_Z(mx, x, k, x1 operand.Op) {
 // Construct and append a VRSQRT14SS.Z instruction to the active function.
 // Operates on the global context.
 func VRSQRT14SS_Z(mx, x, k, x1 operand.Op) { ctx.VRSQRT14SS_Z(mx, x, k, x1) }
+
+// VRSQRT28PD: Approximation to the Reciprocal Square Root of Packed Double-Precision Floating-Point Values with Less Than 2^-28 Relative Error.
+//
+// Forms:
+//
+// 	VRSQRT28PD m512/m64bcst k zmm
+// 	VRSQRT28PD m512/m64bcst zmm
+// 	VRSQRT28PD zmm          k zmm
+// 	VRSQRT28PD zmm          zmm
+// Construct and append a VRSQRT28PD instruction to the active function.
+func (c *Context) VRSQRT28PD(ops ...operand.Op) {
+	if inst, err := x86.VRSQRT28PD(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VRSQRT28PD: Approximation to the Reciprocal Square Root of Packed Double-Precision Floating-Point Values with Less Than 2^-28 Relative Error.
+//
+// Forms:
+//
+// 	VRSQRT28PD m512/m64bcst k zmm
+// 	VRSQRT28PD m512/m64bcst zmm
+// 	VRSQRT28PD zmm          k zmm
+// 	VRSQRT28PD zmm          zmm
+// Construct and append a VRSQRT28PD instruction to the active function.
+// Operates on the global context.
+func VRSQRT28PD(ops ...operand.Op) { ctx.VRSQRT28PD(ops...) }
+
+// VRSQRT28PD_BCST: Approximation to the Reciprocal Square Root of Packed Double-Precision Floating-Point Values with Less Than 2^-28 Relative Error (Broadcast).
+//
+// Forms:
+//
+// 	VRSQRT28PD.BCST m512/m64bcst k zmm
+// 	VRSQRT28PD.BCST m512/m64bcst zmm
+// Construct and append a VRSQRT28PD.BCST instruction to the active function.
+func (c *Context) VRSQRT28PD_BCST(ops ...operand.Op) {
+	if inst, err := x86.VRSQRT28PD_BCST(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VRSQRT28PD_BCST: Approximation to the Reciprocal Square Root of Packed Double-Precision Floating-Point Values with Less Than 2^-28 Relative Error (Broadcast).
+//
+// Forms:
+//
+// 	VRSQRT28PD.BCST m512/m64bcst k zmm
+// 	VRSQRT28PD.BCST m512/m64bcst zmm
+// Construct and append a VRSQRT28PD.BCST instruction to the active function.
+// Operates on the global context.
+func VRSQRT28PD_BCST(ops ...operand.Op) { ctx.VRSQRT28PD_BCST(ops...) }
+
+// VRSQRT28PD_BCST_Z: Approximation to the Reciprocal Square Root of Packed Double-Precision Floating-Point Values with Less Than 2^-28 Relative Error (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VRSQRT28PD.BCST.Z m512/m64bcst k zmm
+// Construct and append a VRSQRT28PD.BCST.Z instruction to the active function.
+func (c *Context) VRSQRT28PD_BCST_Z(m, k, z operand.Op) {
+	if inst, err := x86.VRSQRT28PD_BCST_Z(m, k, z); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VRSQRT28PD_BCST_Z: Approximation to the Reciprocal Square Root of Packed Double-Precision Floating-Point Values with Less Than 2^-28 Relative Error (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VRSQRT28PD.BCST.Z m512/m64bcst k zmm
+// Construct and append a VRSQRT28PD.BCST.Z instruction to the active function.
+// Operates on the global context.
+func VRSQRT28PD_BCST_Z(m, k, z operand.Op) { ctx.VRSQRT28PD_BCST_Z(m, k, z) }
+
+// VRSQRT28PD_SAE: Approximation to the Reciprocal Square Root of Packed Double-Precision Floating-Point Values with Less Than 2^-28 Relative Error (Suppress All Exceptions).
+//
+// Forms:
+//
+// 	VRSQRT28PD.SAE zmm k zmm
+// 	VRSQRT28PD.SAE zmm zmm
+// Construct and append a VRSQRT28PD.SAE instruction to the active function.
+func (c *Context) VRSQRT28PD_SAE(ops ...operand.Op) {
+	if inst, err := x86.VRSQRT28PD_SAE(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VRSQRT28PD_SAE: Approximation to the Reciprocal Square Root of Packed Double-Precision Floating-Point Values with Less Than 2^-28 Relative Error (Suppress All Exceptions).
+//
+// Forms:
+//
+// 	VRSQRT28PD.SAE zmm k zmm
+// 	VRSQRT28PD.SAE zmm zmm
+// Construct and append a VRSQRT28PD.SAE instruction to the active function.
+// Operates on the global context.
+func VRSQRT28PD_SAE(ops ...operand.Op) { ctx.VRSQRT28PD_SAE(ops...) }
+
+// VRSQRT28PD_SAE_Z: Approximation to the Reciprocal Square Root of Packed Double-Precision Floating-Point Values with Less Than 2^-28 Relative Error (Suppress All Exceptions, Zeroing Masking).
+//
+// Forms:
+//
+// 	VRSQRT28PD.SAE.Z zmm k zmm
+// Construct and append a VRSQRT28PD.SAE.Z instruction to the active function.
+func (c *Context) VRSQRT28PD_SAE_Z(z, k, z1 operand.Op) {
+	if inst, err := x86.VRSQRT28PD_SAE_Z(z, k, z1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VRSQRT28PD_SAE_Z: Approximation to the Reciprocal Square Root of Packed Double-Precision Floating-Point Values with Less Than 2^-28 Relative Error (Suppress All Exceptions, Zeroing Masking).
+//
+// Forms:
+//
+// 	VRSQRT28PD.SAE.Z zmm k zmm
+// Construct and append a VRSQRT28PD.SAE.Z instruction to the active function.
+// Operates on the global context.
+func VRSQRT28PD_SAE_Z(z, k, z1 operand.Op) { ctx.VRSQRT28PD_SAE_Z(z, k, z1) }
+
+// VRSQRT28PD_Z: Approximation to the Reciprocal Square Root of Packed Double-Precision Floating-Point Values with Less Than 2^-28 Relative Error (Zeroing Masking).
+//
+// Forms:
+//
+// 	VRSQRT28PD.Z m512/m64bcst k zmm
+// 	VRSQRT28PD.Z zmm          k zmm
+// Construct and append a VRSQRT28PD.Z instruction to the active function.
+func (c *Context) VRSQRT28PD_Z(mz, k, z operand.Op) {
+	if inst, err := x86.VRSQRT28PD_Z(mz, k, z); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VRSQRT28PD_Z: Approximation to the Reciprocal Square Root of Packed Double-Precision Floating-Point Values with Less Than 2^-28 Relative Error (Zeroing Masking).
+//
+// Forms:
+//
+// 	VRSQRT28PD.Z m512/m64bcst k zmm
+// 	VRSQRT28PD.Z zmm          k zmm
+// Construct and append a VRSQRT28PD.Z instruction to the active function.
+// Operates on the global context.
+func VRSQRT28PD_Z(mz, k, z operand.Op) { ctx.VRSQRT28PD_Z(mz, k, z) }
+
+// VRSQRT28PS: Approximation to the Reciprocal Square Root of Packed Single-Precision Floating-Point Values with Less Than 2^-28 Relative Error.
+//
+// Forms:
+//
+// 	VRSQRT28PS m512/m32bcst k zmm
+// 	VRSQRT28PS m512/m32bcst zmm
+// 	VRSQRT28PS zmm          k zmm
+// 	VRSQRT28PS zmm          zmm
+// Construct and append a VRSQRT28PS instruction to the active function.
+func (c *Context) VRSQRT28PS(ops ...operand.Op) {
+	if inst, err := x86.VRSQRT28PS(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VRSQRT28PS: Approximation to the Reciprocal Square Root of Packed Single-Precision Floating-Point Values with Less Than 2^-28 Relative Error.
+//
+// Forms:
+//
+// 	VRSQRT28PS m512/m32bcst k zmm
+// 	VRSQRT28PS m512/m32bcst zmm
+// 	VRSQRT28PS zmm          k zmm
+// 	VRSQRT28PS zmm          zmm
+// Construct and append a VRSQRT28PS instruction to the active function.
+// Operates on the global context.
+func VRSQRT28PS(ops ...operand.Op) { ctx.VRSQRT28PS(ops...) }
+
+// VRSQRT28PS_BCST: Approximation to the Reciprocal Square Root of Packed Single-Precision Floating-Point Values with Less Than 2^-28 Relative Error (Broadcast).
+//
+// Forms:
+//
+// 	VRSQRT28PS.BCST m512/m32bcst k zmm
+// 	VRSQRT28PS.BCST m512/m32bcst zmm
+// Construct and append a VRSQRT28PS.BCST instruction to the active function.
+func (c *Context) VRSQRT28PS_BCST(ops ...operand.Op) {
+	if inst, err := x86.VRSQRT28PS_BCST(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VRSQRT28PS_BCST: Approximation to the Reciprocal Square Root of Packed Single-Precision Floating-Point Values with Less Than 2^-28 Relative Error (Broadcast).
+//
+// Forms:
+//
+// 	VRSQRT28PS.BCST m512/m32bcst k zmm
+// 	VRSQRT28PS.BCST m512/m32bcst zmm
+// Construct and append a VRSQRT28PS.BCST instruction to the active function.
+// Operates on the global context.
+func VRSQRT28PS_BCST(ops ...operand.Op) { ctx.VRSQRT28PS_BCST(ops...) }
+
+// VRSQRT28PS_BCST_Z: Approximation to the Reciprocal Square Root of Packed Single-Precision Floating-Point Values with Less Than 2^-28 Relative Error (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VRSQRT28PS.BCST.Z m512/m32bcst k zmm
+// Construct and append a VRSQRT28PS.BCST.Z instruction to the active function.
+func (c *Context) VRSQRT28PS_BCST_Z(m, k, z operand.Op) {
+	if inst, err := x86.VRSQRT28PS_BCST_Z(m, k, z); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VRSQRT28PS_BCST_Z: Approximation to the Reciprocal Square Root of Packed Single-Precision Floating-Point Values with Less Than 2^-28 Relative Error (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VRSQRT28PS.BCST.Z m512/m32bcst k zmm
+// Construct and append a VRSQRT28PS.BCST.Z instruction to the active function.
+// Operates on the global context.
+func VRSQRT28PS_BCST_Z(m, k, z operand.Op) { ctx.VRSQRT28PS_BCST_Z(m, k, z) }
+
+// VRSQRT28PS_SAE: Approximation to the Reciprocal Square Root of Packed Single-Precision Floating-Point Values with Less Than 2^-28 Relative Error (Suppress All Exceptions).
+//
+// Forms:
+//
+// 	VRSQRT28PS.SAE zmm k zmm
+// 	VRSQRT28PS.SAE zmm zmm
+// Construct and append a VRSQRT28PS.SAE instruction to the active function.
+func (c *Context) VRSQRT28PS_SAE(ops ...operand.Op) {
+	if inst, err := x86.VRSQRT28PS_SAE(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VRSQRT28PS_SAE: Approximation to the Reciprocal Square Root of Packed Single-Precision Floating-Point Values with Less Than 2^-28 Relative Error (Suppress All Exceptions).
+//
+// Forms:
+//
+// 	VRSQRT28PS.SAE zmm k zmm
+// 	VRSQRT28PS.SAE zmm zmm
+// Construct and append a VRSQRT28PS.SAE instruction to the active function.
+// Operates on the global context.
+func VRSQRT28PS_SAE(ops ...operand.Op) { ctx.VRSQRT28PS_SAE(ops...) }
+
+// VRSQRT28PS_SAE_Z: Approximation to the Reciprocal Square Root of Packed Single-Precision Floating-Point Values with Less Than 2^-28 Relative Error (Suppress All Exceptions, Zeroing Masking).
+//
+// Forms:
+//
+// 	VRSQRT28PS.SAE.Z zmm k zmm
+// Construct and append a VRSQRT28PS.SAE.Z instruction to the active function.
+func (c *Context) VRSQRT28PS_SAE_Z(z, k, z1 operand.Op) {
+	if inst, err := x86.VRSQRT28PS_SAE_Z(z, k, z1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VRSQRT28PS_SAE_Z: Approximation to the Reciprocal Square Root of Packed Single-Precision Floating-Point Values with Less Than 2^-28 Relative Error (Suppress All Exceptions, Zeroing Masking).
+//
+// Forms:
+//
+// 	VRSQRT28PS.SAE.Z zmm k zmm
+// Construct and append a VRSQRT28PS.SAE.Z instruction to the active function.
+// Operates on the global context.
+func VRSQRT28PS_SAE_Z(z, k, z1 operand.Op) { ctx.VRSQRT28PS_SAE_Z(z, k, z1) }
+
+// VRSQRT28PS_Z: Approximation to the Reciprocal Square Root of Packed Single-Precision Floating-Point Values with Less Than 2^-28 Relative Error (Zeroing Masking).
+//
+// Forms:
+//
+// 	VRSQRT28PS.Z m512/m32bcst k zmm
+// 	VRSQRT28PS.Z zmm          k zmm
+// Construct and append a VRSQRT28PS.Z instruction to the active function.
+func (c *Context) VRSQRT28PS_Z(mz, k, z operand.Op) {
+	if inst, err := x86.VRSQRT28PS_Z(mz, k, z); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VRSQRT28PS_Z: Approximation to the Reciprocal Square Root of Packed Single-Precision Floating-Point Values with Less Than 2^-28 Relative Error (Zeroing Masking).
+//
+// Forms:
+//
+// 	VRSQRT28PS.Z m512/m32bcst k zmm
+// 	VRSQRT28PS.Z zmm          k zmm
+// Construct and append a VRSQRT28PS.Z instruction to the active function.
+// Operates on the global context.
+func VRSQRT28PS_Z(mz, k, z operand.Op) { ctx.VRSQRT28PS_Z(mz, k, z) }
+
+// VRSQRT28SD: Approximation to the Reciprocal Square Root of a Scalar Double-Precision Floating-Point Value with Less Than 2^-28 Relative Error.
+//
+// Forms:
+//
+// 	VRSQRT28SD m64 xmm k xmm
+// 	VRSQRT28SD m64 xmm xmm
+// 	VRSQRT28SD xmm xmm k xmm
+// 	VRSQRT28SD xmm xmm xmm
+// Construct and append a VRSQRT28SD instruction to the active function.
+func (c *Context) VRSQRT28SD(ops ...operand.Op) {
+	if inst, err := x86.VRSQRT28SD(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VRSQRT28SD: Approximation to the Reciprocal Square Root of a Scalar Double-Precision Floating-Point Value with Less Than 2^-28 Relative Error.
+//
+// Forms:
+//
+// 	VRSQRT28SD m64 xmm k xmm
+// 	VRSQRT28SD m64 xmm xmm
+// 	VRSQRT28SD xmm xmm k xmm
+// 	VRSQRT28SD xmm xmm xmm
+// Construct and append a VRSQRT28SD instruction to the active function.
+// Operates on the global context.
+func VRSQRT28SD(ops ...operand.Op) { ctx.VRSQRT28SD(ops...) }
+
+// VRSQRT28SD_SAE: Approximation to the Reciprocal Square Root of a Scalar Double-Precision Floating-Point Value with Less Than 2^-28 Relative Error (Suppress All Exceptions).
+//
+// Forms:
+//
+// 	VRSQRT28SD.SAE xmm xmm k xmm
+// 	VRSQRT28SD.SAE xmm xmm xmm
+// Construct and append a VRSQRT28SD.SAE instruction to the active function.
+func (c *Context) VRSQRT28SD_SAE(ops ...operand.Op) {
+	if inst, err := x86.VRSQRT28SD_SAE(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VRSQRT28SD_SAE: Approximation to the Reciprocal Square Root of a Scalar Double-Precision Floating-Point Value with Less Than 2^-28 Relative Error (Suppress All Exceptions).
+//
+// Forms:
+//
+// 	VRSQRT28SD.SAE xmm xmm k xmm
+// 	VRSQRT28SD.SAE xmm xmm xmm
+// Construct and append a VRSQRT28SD.SAE instruction to the active function.
+// Operates on the global context.
+func VRSQRT28SD_SAE(ops ...operand.Op) { ctx.VRSQRT28SD_SAE(ops...) }
+
+// VRSQRT28SD_SAE_Z: Approximation to the Reciprocal Square Root of a Scalar Double-Precision Floating-Point Value with Less Than 2^-28 Relative Error (Suppress All Exceptions, Zeroing Masking).
+//
+// Forms:
+//
+// 	VRSQRT28SD.SAE.Z xmm xmm k xmm
+// Construct and append a VRSQRT28SD.SAE.Z instruction to the active function.
+func (c *Context) VRSQRT28SD_SAE_Z(x, x1, k, x2 operand.Op) {
+	if inst, err := x86.VRSQRT28SD_SAE_Z(x, x1, k, x2); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VRSQRT28SD_SAE_Z: Approximation to the Reciprocal Square Root of a Scalar Double-Precision Floating-Point Value with Less Than 2^-28 Relative Error (Suppress All Exceptions, Zeroing Masking).
+//
+// Forms:
+//
+// 	VRSQRT28SD.SAE.Z xmm xmm k xmm
+// Construct and append a VRSQRT28SD.SAE.Z instruction to the active function.
+// Operates on the global context.
+func VRSQRT28SD_SAE_Z(x, x1, k, x2 operand.Op) { ctx.VRSQRT28SD_SAE_Z(x, x1, k, x2) }
+
+// VRSQRT28SD_Z: Approximation to the Reciprocal Square Root of a Scalar Double-Precision Floating-Point Value with Less Than 2^-28 Relative Error (Zeroing Masking).
+//
+// Forms:
+//
+// 	VRSQRT28SD.Z m64 xmm k xmm
+// 	VRSQRT28SD.Z xmm xmm k xmm
+// Construct and append a VRSQRT28SD.Z instruction to the active function.
+func (c *Context) VRSQRT28SD_Z(mx, x, k, x1 operand.Op) {
+	if inst, err := x86.VRSQRT28SD_Z(mx, x, k, x1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VRSQRT28SD_Z: Approximation to the Reciprocal Square Root of a Scalar Double-Precision Floating-Point Value with Less Than 2^-28 Relative Error (Zeroing Masking).
+//
+// Forms:
+//
+// 	VRSQRT28SD.Z m64 xmm k xmm
+// 	VRSQRT28SD.Z xmm xmm k xmm
+// Construct and append a VRSQRT28SD.Z instruction to the active function.
+// Operates on the global context.
+func VRSQRT28SD_Z(mx, x, k, x1 operand.Op) { ctx.VRSQRT28SD_Z(mx, x, k, x1) }
+
+// VRSQRT28SS: Approximation to the Reciprocal Square Root of a Scalar Single-Precision Floating-Point Value with Less Than 2^-28 Relative Error.
+//
+// Forms:
+//
+// 	VRSQRT28SS m32 xmm k xmm
+// 	VRSQRT28SS m32 xmm xmm
+// 	VRSQRT28SS xmm xmm k xmm
+// 	VRSQRT28SS xmm xmm xmm
+// Construct and append a VRSQRT28SS instruction to the active function.
+func (c *Context) VRSQRT28SS(ops ...operand.Op) {
+	if inst, err := x86.VRSQRT28SS(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VRSQRT28SS: Approximation to the Reciprocal Square Root of a Scalar Single-Precision Floating-Point Value with Less Than 2^-28 Relative Error.
+//
+// Forms:
+//
+// 	VRSQRT28SS m32 xmm k xmm
+// 	VRSQRT28SS m32 xmm xmm
+// 	VRSQRT28SS xmm xmm k xmm
+// 	VRSQRT28SS xmm xmm xmm
+// Construct and append a VRSQRT28SS instruction to the active function.
+// Operates on the global context.
+func VRSQRT28SS(ops ...operand.Op) { ctx.VRSQRT28SS(ops...) }
+
+// VRSQRT28SS_SAE: Approximation to the Reciprocal Square Root of a Scalar Single-Precision Floating-Point Value with Less Than 2^-28 Relative Error (Suppress All Exceptions).
+//
+// Forms:
+//
+// 	VRSQRT28SS.SAE xmm xmm k xmm
+// 	VRSQRT28SS.SAE xmm xmm xmm
+// Construct and append a VRSQRT28SS.SAE instruction to the active function.
+func (c *Context) VRSQRT28SS_SAE(ops ...operand.Op) {
+	if inst, err := x86.VRSQRT28SS_SAE(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VRSQRT28SS_SAE: Approximation to the Reciprocal Square Root of a Scalar Single-Precision Floating-Point Value with Less Than 2^-28 Relative Error (Suppress All Exceptions).
+//
+// Forms:
+//
+// 	VRSQRT28SS.SAE xmm xmm k xmm
+// 	VRSQRT28SS.SAE xmm xmm xmm
+// Construct and append a VRSQRT28SS.SAE instruction to the active function.
+// Operates on the global context.
+func VRSQRT28SS_SAE(ops ...operand.Op) { ctx.VRSQRT28SS_SAE(ops...) }
+
+// VRSQRT28SS_SAE_Z: Approximation to the Reciprocal Square Root of a Scalar Single-Precision Floating-Point Value with Less Than 2^-28 Relative Error (Suppress All Exceptions, Zeroing Masking).
+//
+// Forms:
+//
+// 	VRSQRT28SS.SAE.Z xmm xmm k xmm
+// Construct and append a VRSQRT28SS.SAE.Z instruction to the active function.
+func (c *Context) VRSQRT28SS_SAE_Z(x, x1, k, x2 operand.Op) {
+	if inst, err := x86.VRSQRT28SS_SAE_Z(x, x1, k, x2); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VRSQRT28SS_SAE_Z: Approximation to the Reciprocal Square Root of a Scalar Single-Precision Floating-Point Value with Less Than 2^-28 Relative Error (Suppress All Exceptions, Zeroing Masking).
+//
+// Forms:
+//
+// 	VRSQRT28SS.SAE.Z xmm xmm k xmm
+// Construct and append a VRSQRT28SS.SAE.Z instruction to the active function.
+// Operates on the global context.
+func VRSQRT28SS_SAE_Z(x, x1, k, x2 operand.Op) { ctx.VRSQRT28SS_SAE_Z(x, x1, k, x2) }
+
+// VRSQRT28SS_Z: Approximation to the Reciprocal Square Root of a Scalar Single-Precision Floating-Point Value with Less Than 2^-28 Relative Error (Zeroing Masking).
+//
+// Forms:
+//
+// 	VRSQRT28SS.Z m32 xmm k xmm
+// 	VRSQRT28SS.Z xmm xmm k xmm
+// Construct and append a VRSQRT28SS.Z instruction to the active function.
+func (c *Context) VRSQRT28SS_Z(mx, x, k, x1 operand.Op) {
+	if inst, err := x86.VRSQRT28SS_Z(mx, x, k, x1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VRSQRT28SS_Z: Approximation to the Reciprocal Square Root of a Scalar Single-Precision Floating-Point Value with Less Than 2^-28 Relative Error (Zeroing Masking).
+//
+// Forms:
+//
+// 	VRSQRT28SS.Z m32 xmm k xmm
+// 	VRSQRT28SS.Z xmm xmm k xmm
+// Construct and append a VRSQRT28SS.Z instruction to the active function.
+// Operates on the global context.
+func VRSQRT28SS_Z(mx, x, k, x1 operand.Op) { ctx.VRSQRT28SS_Z(mx, x, k, x1) }
 
 // VRSQRTPS: Compute Reciprocals of Square Roots of Packed Single-Precision Floating-Point Values.
 //
