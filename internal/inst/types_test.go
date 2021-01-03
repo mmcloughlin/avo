@@ -73,6 +73,18 @@ func TestFormSupportedSuffixes(t *testing.T) {
 				{RU_SAE, Z},
 			},
 		},
+		{
+			Form: Form{
+				EVEXOnly:  true,
+				Broadcast: true,
+				Zeroing:   true,
+			},
+			Expect: []Suffixes{
+				{BCST},
+				{Z},
+				{BCST, Z},
+			},
+		},
 	}
 	for _, c := range cases {
 		got := c.Form.SupportedSuffixes()

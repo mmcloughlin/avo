@@ -70,6 +70,34 @@ func TestInstructionProperties(t *testing.T) {
 	}
 }
 
+func TestHaveSuffixes(t *testing.T) {
+	for _, i := range inst.Instructions {
+		for _, f := range i.Forms {
+			if len(f.SupportedSuffixes()) == 0 {
+				t.Errorf("%s: no supported suffixes", i.Opcode)
+			}
+		}
+	}
+}
+
+func TestAcceptsSuffixes(t *testing.T) {
+	// Verify consistency between the AcceptsSuffixes and SupportedSuffixes methods.
+	for _, i := range inst.Instructions {
+		for _, f := range i.Forms {
+			expect := false
+			for _, suffixes := range f.SupportedSuffixes() {
+				if len(suffixes) > 0 {
+					expect = true
+				}
+			}
+
+			if got := f.AcceptsSuffixes(); got != expect {
+				t.Errorf("%s: AcceptsSuffixes() = %v; expect %v", i.Opcode, got, expect)
+			}
+		}
+	}
+}
+
 func TestSuffixesHaveSummaries(t *testing.T) {
 	set := map[inst.Suffix]bool{}
 	for _, i := range inst.Instructions {
@@ -254,6 +282,26 @@ func TestZeroingHasMask(t *testing.T) {
 
 			if !mask {
 				t.Errorf("%s: expect mask operand if zeroing is enabled", i.Opcode)
+			}
+		}
+	}
+}
+
+func TestEVEXProperties(t *testing.T) {
+	for _, i := range inst.Instructions {
+		for _, f := range i.Forms {
+			if !f.EVEXOnly {
+				continue
+			}
+
+			// Expect EVEX encoding type.
+			if f.EncodingType != inst.EncodingTypeEVEX {
+				t.Errorf("%s: expect EVEX encoding type if EVEXOnly is set", i.Opcode)
+			}
+
+			// Expect at least one AVX-512 feature.
+			if !f.AcceptsSuffixes() {
+				t.Errorf("%s: expect at least one suffix type for EVEXOnly instruction", i.Opcode)
 			}
 		}
 	}
