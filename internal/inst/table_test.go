@@ -117,18 +117,6 @@ func TestSuffixesHaveSummaries(t *testing.T) {
 	}
 }
 
-func TestValidateActions(t *testing.T) {
-	for _, i := range inst.Instructions {
-		for _, f := range i.Forms {
-			for _, op := range f.Operands {
-				if err := op.Action.Validate(); err != nil {
-					t.Errorf("%s: invalid operand action", i.Opcode)
-				}
-			}
-		}
-	}
-}
-
 func TestAssembles(t *testing.T) {
 	g := gen.NewAsmTest(printer.NewArgvConfig())
 	b, err := g.Generate(inst.Instructions)
@@ -212,9 +200,9 @@ func TestCancellingInputs(t *testing.T) {
 					}
 				}
 			}
-			if n != 2 {
+			if n < 2 {
 				t.Log(f)
-				t.Errorf("%s: expected two inputs for self-cancelling form", i.Opcode)
+				t.Errorf("%s: expected at least two inputs for self-cancelling form", i.Opcode)
 			}
 		}
 	}

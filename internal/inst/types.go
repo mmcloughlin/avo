@@ -1,7 +1,6 @@
 package inst
 
 import (
-	"errors"
 	"sort"
 	"strings"
 )
@@ -265,17 +264,11 @@ type ImplicitOperand struct {
 type Action uint8
 
 // Possible Action types.
-//
-// Read and Write actions have the interpretations you would expect. Masked
-// action is intended to support AVX-512 masking: this implies "R" when
-// merge-masking is used, and ignored with zeroing-masking.
 const (
 	R Action = 1 << iota // Read
 	W                    // Write
-	M                    // Masked
 
 	RW Action = R | W // Read-Write
-	MW Action = M | W // Masked-Write
 )
 
 // ActionFromReadWrite builds an Action from boolean flags.
@@ -288,18 +281,6 @@ func ActionFromReadWrite(r, w bool) Action {
 		a |= W
 	}
 	return a
-}
-
-// Validate the action type.
-func (a Action) Validate() error {
-	switch {
-	case a.Masked() && !a.Write():
-		return errors.New("masked implies write")
-	case a.Masked() && a.Read():
-		return errors.New("masked cannot be combined with read")
-	default:
-		return nil
-	}
 }
 
 // ContainsAll reports whether a supports all actions in s.
@@ -322,19 +303,11 @@ func (a Action) Write() bool {
 	return a.ContainsAll(W)
 }
 
-// Masked reports whether a supports masking.
-func (a Action) Masked() bool {
-	return a.ContainsAll(M)
-}
-
 // String represents a as a human-readable string.
 func (a Action) String() string {
 	s := ""
 	if a.Read() {
 		s += "r"
-	}
-	if a.Masked() {
-		s += "m"
 	}
 	if a.Write() {
 		s += "w"

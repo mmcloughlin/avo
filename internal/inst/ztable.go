@@ -16629,9 +16629,8 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
-				EncodingType:     0x4,
-				Zeroing:          true,
-				EmbeddedRounding: true,
+				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -16641,17 +16640,8 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
-				EncodingType: 0x4,
-				Zeroing:      true,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x2},
-				},
 				EncodingType:     0x4,
+				Zeroing:          true,
 				EmbeddedRounding: true,
 			},
 			{
@@ -16662,6 +16652,16 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x2},
 				},
 				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType:     0x4,
+				EmbeddedRounding: true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -16947,9 +16947,8 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
-				EncodingType:     0x4,
-				Zeroing:          true,
-				EmbeddedRounding: true,
+				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -16959,8 +16958,9 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
-				EncodingType: 0x4,
-				Zeroing:      true,
+				EncodingType:     0x4,
+				Zeroing:          true,
+				EmbeddedRounding: true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -17184,8 +17184,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
-				EncodingType:     0x4,
-				EmbeddedRounding: true,
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -17195,18 +17194,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
-				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "xmm", Action: 0x1},
-					{Type: "xmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "xmm", Action: 0x2},
-				},
 				EncodingType:     0x4,
-				Zeroing:          true,
 				EmbeddedRounding: true,
 			},
 			{
@@ -17219,6 +17207,18 @@ var Instructions = []Instruction{
 				},
 				EncodingType: 0x4,
 				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType:     0x4,
+				Zeroing:          true,
+				EmbeddedRounding: true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -17283,8 +17283,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
-				EncodingType:     0x4,
-				EmbeddedRounding: true,
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -17294,7 +17293,8 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
-				EncodingType: 0x4,
+				EncodingType:     0x4,
+				EmbeddedRounding: true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -21116,8 +21116,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "k", Action: 0x2},
 				},
-				EncodingType:          0x4,
-				SuppressAllExceptions: true,
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -21128,7 +21127,8 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "k", Action: 0x2},
 				},
-				EncodingType: 0x4,
+				EncodingType:          0x4,
+				SuppressAllExceptions: true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -21380,8 +21380,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "k", Action: 0x2},
 				},
-				EncodingType:          0x4,
-				SuppressAllExceptions: true,
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -21392,16 +21391,6 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "k", Action: 0x2},
 				},
-				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "imm8", Action: 0x0},
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x2},
-				},
 				EncodingType:          0x4,
 				SuppressAllExceptions: true,
 			},
@@ -21414,6 +21403,17 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x2},
 				},
 				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x2},
+				},
+				EncodingType:          0x4,
+				SuppressAllExceptions: true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -21601,8 +21601,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "k", Action: 0x2},
 				},
-				EncodingType:          0x4,
-				SuppressAllExceptions: true,
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -21613,16 +21612,6 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "k", Action: 0x2},
 				},
-				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "imm8", Action: 0x0},
-					{Type: "xmm", Action: 0x1},
-					{Type: "xmm", Action: 0x1},
-					{Type: "k", Action: 0x2},
-				},
 				EncodingType:          0x4,
 				SuppressAllExceptions: true,
 			},
@@ -21635,6 +21624,17 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x2},
 				},
 				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x2},
+				},
+				EncodingType:          0x4,
+				SuppressAllExceptions: true,
 			},
 		},
 	},
@@ -21692,8 +21692,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "k", Action: 0x2},
 				},
-				EncodingType:          0x4,
-				SuppressAllExceptions: true,
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -21704,16 +21703,6 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "k", Action: 0x2},
 				},
-				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "imm8", Action: 0x0},
-					{Type: "xmm", Action: 0x1},
-					{Type: "xmm", Action: 0x1},
-					{Type: "k", Action: 0x2},
-				},
 				EncodingType:          0x4,
 				SuppressAllExceptions: true,
 			},
@@ -21726,6 +21715,17 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x2},
 				},
 				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x2},
+				},
+				EncodingType:          0x4,
+				SuppressAllExceptions: true,
 			},
 		},
 	},
@@ -22485,8 +22485,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
-				EncodingType:     0x4,
-				EmbeddedRounding: true,
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -22495,17 +22494,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
-				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x2},
-				},
 				EncodingType:     0x4,
-				Zeroing:          true,
 				EmbeddedRounding: true,
 			},
 			{
@@ -22517,6 +22506,17 @@ var Instructions = []Instruction{
 				},
 				EncodingType: 0x4,
 				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType:     0x4,
+				Zeroing:          true,
+				EmbeddedRounding: true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -22741,8 +22741,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "ymm", Action: 0x3},
 				},
-				EncodingType:     0x4,
-				EmbeddedRounding: true,
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -22751,17 +22750,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "ymm", Action: 0x3},
 				},
-				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "ymm", Action: 0x2},
-				},
 				EncodingType:     0x4,
-				Zeroing:          true,
 				EmbeddedRounding: true,
 			},
 			{
@@ -22773,6 +22762,17 @@ var Instructions = []Instruction{
 				},
 				EncodingType: 0x4,
 				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType:     0x4,
+				Zeroing:          true,
+				EmbeddedRounding: true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -23060,9 +23060,8 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "ymm", Action: 0x2},
 				},
-				EncodingType:     0x4,
-				Zeroing:          true,
-				EmbeddedRounding: true,
+				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -23071,8 +23070,9 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "ymm", Action: 0x2},
 				},
-				EncodingType: 0x4,
-				Zeroing:      true,
+				EncodingType:     0x4,
+				Zeroing:          true,
+				EmbeddedRounding: true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -23341,8 +23341,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
-				EncodingType:     0x4,
-				EmbeddedRounding: true,
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512DQ"},
@@ -23351,17 +23350,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
-				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512DQ"},
-				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x2},
-				},
 				EncodingType:     0x4,
-				Zeroing:          true,
 				EmbeddedRounding: true,
 			},
 			{
@@ -23373,6 +23362,17 @@ var Instructions = []Instruction{
 				},
 				EncodingType: 0x4,
 				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512DQ"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType:     0x4,
+				Zeroing:          true,
+				EmbeddedRounding: true,
 			},
 			{
 				ISA: []string{"AVX512DQ"},
@@ -23668,8 +23668,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x1},
 					{Type: "ymm", Action: 0x2},
 				},
-				EncodingType:     0x4,
-				EmbeddedRounding: true,
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -23677,7 +23676,8 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x1},
 					{Type: "ymm", Action: 0x2},
 				},
-				EncodingType: 0x4,
+				EncodingType:     0x4,
+				EmbeddedRounding: true,
 			},
 		},
 	},
@@ -23929,8 +23929,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
-				EncodingType:     0x4,
-				EmbeddedRounding: true,
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512DQ"},
@@ -23939,17 +23938,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
-				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512DQ"},
-				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x2},
-				},
 				EncodingType:     0x4,
-				Zeroing:          true,
 				EmbeddedRounding: true,
 			},
 			{
@@ -23961,6 +23950,17 @@ var Instructions = []Instruction{
 				},
 				EncodingType: 0x4,
 				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512DQ"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType:     0x4,
+				Zeroing:          true,
+				EmbeddedRounding: true,
 			},
 			{
 				ISA: []string{"AVX512DQ"},
@@ -24219,8 +24219,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
-				EncodingType:          0x4,
-				SuppressAllExceptions: true,
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -24229,7 +24228,8 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
-				EncodingType: 0x4,
+				EncodingType:          0x4,
+				SuppressAllExceptions: true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -24466,9 +24466,8 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
-				EncodingType:     0x4,
-				Zeroing:          true,
-				EmbeddedRounding: true,
+				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -24477,16 +24476,8 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
-				EncodingType: 0x4,
-				Zeroing:      true,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x2},
-				},
 				EncodingType:     0x4,
+				Zeroing:          true,
 				EmbeddedRounding: true,
 			},
 			{
@@ -24496,6 +24487,15 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x2},
 				},
 				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType:     0x4,
+				EmbeddedRounding: true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -24735,8 +24735,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
-				EncodingType:          0x4,
-				SuppressAllExceptions: true,
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -24745,17 +24744,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
-				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "ymm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x2},
-				},
 				EncodingType:          0x4,
-				Zeroing:               true,
 				SuppressAllExceptions: true,
 			},
 			{
@@ -24767,6 +24756,17 @@ var Instructions = []Instruction{
 				},
 				EncodingType: 0x4,
 				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType:          0x4,
+				Zeroing:               true,
+				SuppressAllExceptions: true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -24992,8 +24992,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "ymm", Action: 0x3},
 				},
-				EncodingType:          0x4,
-				SuppressAllExceptions: true,
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -25003,7 +25002,8 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "ymm", Action: 0x3},
 				},
-				EncodingType: 0x4,
+				EncodingType:          0x4,
+				SuppressAllExceptions: true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -25229,9 +25229,8 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
-				EncodingType:     0x4,
-				Zeroing:          true,
-				EmbeddedRounding: true,
+				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512DQ"},
@@ -25240,8 +25239,9 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
-				EncodingType: 0x4,
-				Zeroing:      true,
+				EncodingType:     0x4,
+				Zeroing:          true,
+				EmbeddedRounding: true,
 			},
 			{
 				ISA: []string{"AVX512DQ"},
@@ -25498,8 +25498,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
-				EncodingType:     0x4,
-				EmbeddedRounding: true,
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -25508,17 +25507,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
-				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x2},
-				},
 				EncodingType:     0x4,
-				Zeroing:          true,
 				EmbeddedRounding: true,
 			},
 			{
@@ -25535,9 +25524,11 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
 				EncodingType:     0x4,
+				Zeroing:          true,
 				EmbeddedRounding: true,
 			},
 			{
@@ -25547,6 +25538,15 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x2},
 				},
 				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType:     0x4,
+				EmbeddedRounding: true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -25786,8 +25786,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
-				EncodingType:     0x4,
-				EmbeddedRounding: true,
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512DQ"},
@@ -25796,17 +25795,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
-				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512DQ"},
-				Operands: []Operand{
-					{Type: "ymm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x2},
-				},
 				EncodingType:     0x4,
-				Zeroing:          true,
 				EmbeddedRounding: true,
 			},
 			{
@@ -25818,6 +25807,17 @@ var Instructions = []Instruction{
 				},
 				EncodingType: 0x4,
 				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512DQ"},
+				Operands: []Operand{
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType:     0x4,
+				Zeroing:          true,
+				EmbeddedRounding: true,
 			},
 			{
 				ISA: []string{"AVX512DQ"},
@@ -26074,8 +26074,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
-				EncodingType:     0x4,
-				EmbeddedRounding: true,
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512DQ"},
@@ -26084,17 +26083,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
-				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512DQ"},
-				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x2},
-				},
 				EncodingType:     0x4,
-				Zeroing:          true,
 				EmbeddedRounding: true,
 			},
 			{
@@ -26111,9 +26100,11 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512DQ"},
 				Operands: []Operand{
 					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
 				EncodingType:     0x4,
+				Zeroing:          true,
 				EmbeddedRounding: true,
 			},
 			{
@@ -26123,6 +26114,15 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x2},
 				},
 				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512DQ"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType:     0x4,
+				EmbeddedRounding: true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512DQ"},
@@ -26381,9 +26381,8 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "ymm", Action: 0x2},
 				},
-				EncodingType:     0x4,
-				Zeroing:          true,
-				EmbeddedRounding: true,
+				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512DQ"},
@@ -26392,8 +26391,9 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "ymm", Action: 0x2},
 				},
-				EncodingType: 0x4,
-				Zeroing:      true,
+				EncodingType:     0x4,
+				Zeroing:          true,
+				EmbeddedRounding: true,
 			},
 			{
 				ISA: []string{"AVX512DQ"},
@@ -26707,8 +26707,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
-				EncodingType:     0x4,
-				EmbeddedRounding: true,
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -26718,18 +26717,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
-				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "xmm", Action: 0x1},
-					{Type: "xmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "xmm", Action: 0x2},
-				},
 				EncodingType:     0x4,
-				Zeroing:          true,
 				EmbeddedRounding: true,
 			},
 			{
@@ -26742,6 +26730,18 @@ var Instructions = []Instruction{
 				},
 				EncodingType: 0x4,
 				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType:     0x4,
+				Zeroing:          true,
+				EmbeddedRounding: true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -27015,9 +27015,8 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
-				EncodingType:          0x4,
-				Zeroing:               true,
-				SuppressAllExceptions: true,
+				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -27027,8 +27026,9 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
-				EncodingType: 0x4,
-				Zeroing:      true,
+				EncodingType:          0x4,
+				Zeroing:               true,
+				SuppressAllExceptions: true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -27122,8 +27122,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x1},
 					{Type: "r32", Action: 0x2},
 				},
-				EncodingType:     0x4,
-				EmbeddedRounding: true,
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -27131,7 +27130,8 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x1},
 					{Type: "r32", Action: 0x2},
 				},
-				EncodingType: 0x4,
+				EncodingType:     0x4,
+				EmbeddedRounding: true,
 			},
 		},
 	},
@@ -27534,8 +27534,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
-				EncodingType:          0x4,
-				SuppressAllExceptions: true,
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512DQ"},
@@ -27544,17 +27543,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
-				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512DQ"},
-				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x2},
-				},
 				EncodingType:          0x4,
-				Zeroing:               true,
 				SuppressAllExceptions: true,
 			},
 			{
@@ -27566,6 +27555,17 @@ var Instructions = []Instruction{
 				},
 				EncodingType: 0x4,
 				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512DQ"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType:          0x4,
+				Zeroing:               true,
+				SuppressAllExceptions: true,
 			},
 			{
 				ISA: []string{"AVX512DQ"},
@@ -27822,8 +27822,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "ymm", Action: 0x3},
 				},
-				EncodingType:          0x4,
-				SuppressAllExceptions: true,
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -27832,7 +27831,8 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "ymm", Action: 0x3},
 				},
-				EncodingType: 0x4,
+				EncodingType:          0x4,
+				SuppressAllExceptions: true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -28442,8 +28442,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
-				EncodingType:          0x4,
-				SuppressAllExceptions: true,
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -28452,17 +28451,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
-				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x2},
-				},
 				EncodingType:          0x4,
-				Zeroing:               true,
 				SuppressAllExceptions: true,
 			},
 			{
@@ -28479,9 +28468,11 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
 				EncodingType:          0x4,
+				Zeroing:               true,
 				SuppressAllExceptions: true,
 			},
 			{
@@ -28491,6 +28482,15 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x2},
 				},
 				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType:          0x4,
+				SuppressAllExceptions: true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -28698,8 +28698,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
-				EncodingType:          0x4,
-				SuppressAllExceptions: true,
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512DQ"},
@@ -28708,17 +28707,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
-				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512DQ"},
-				Operands: []Operand{
-					{Type: "ymm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x2},
-				},
 				EncodingType:          0x4,
-				Zeroing:               true,
 				SuppressAllExceptions: true,
 			},
 			{
@@ -28735,9 +28724,11 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512DQ"},
 				Operands: []Operand{
 					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
 				EncodingType:          0x4,
+				Zeroing:               true,
 				SuppressAllExceptions: true,
 			},
 			{
@@ -28747,6 +28738,15 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x2},
 				},
 				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512DQ"},
+				Operands: []Operand{
+					{Type: "ymm", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType:          0x4,
+				SuppressAllExceptions: true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512DQ"},
@@ -28986,8 +28986,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
-				EncodingType:          0x4,
-				SuppressAllExceptions: true,
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -28996,17 +28995,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
-				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x2},
-				},
 				EncodingType:          0x4,
-				Zeroing:               true,
 				SuppressAllExceptions: true,
 			},
 			{
@@ -29023,9 +29012,11 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
 				EncodingType:          0x4,
+				Zeroing:               true,
 				SuppressAllExceptions: true,
 			},
 			{
@@ -29035,6 +29026,15 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x2},
 				},
 				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType:          0x4,
+				SuppressAllExceptions: true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -29274,8 +29274,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
-				EncodingType:          0x4,
-				SuppressAllExceptions: true,
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512DQ"},
@@ -29284,17 +29283,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
-				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512DQ"},
-				Operands: []Operand{
-					{Type: "ymm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x2},
-				},
 				EncodingType:          0x4,
-				Zeroing:               true,
 				SuppressAllExceptions: true,
 			},
 			{
@@ -29306,6 +29295,17 @@ var Instructions = []Instruction{
 				},
 				EncodingType: 0x4,
 				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512DQ"},
+				Operands: []Operand{
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType:          0x4,
+				Zeroing:               true,
+				SuppressAllExceptions: true,
 			},
 			{
 				ISA: []string{"AVX512DQ"},
@@ -30356,8 +30356,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
-				EncodingType:     0x4,
-				EmbeddedRounding: true,
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512DQ"},
@@ -30366,17 +30365,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
-				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512DQ"},
-				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x2},
-				},
 				EncodingType:     0x4,
-				Zeroing:          true,
 				EmbeddedRounding: true,
 			},
 			{
@@ -30388,6 +30377,17 @@ var Instructions = []Instruction{
 				},
 				EncodingType: 0x4,
 				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512DQ"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType:     0x4,
+				Zeroing:          true,
+				EmbeddedRounding: true,
 			},
 			{
 				ISA: []string{"AVX512DQ"},
@@ -31360,8 +31360,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
-				EncodingType:     0x4,
-				EmbeddedRounding: true,
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -31370,7 +31369,8 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
-				EncodingType: 0x4,
+				EncodingType:     0x4,
+				EmbeddedRounding: true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -31635,8 +31635,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
-				EncodingType:     0x4,
-				EmbeddedRounding: true,
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -31646,18 +31645,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
-				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x2},
-				},
 				EncodingType:     0x4,
-				Zeroing:          true,
 				EmbeddedRounding: true,
 			},
 			{
@@ -31670,6 +31658,18 @@ var Instructions = []Instruction{
 				},
 				EncodingType: 0x4,
 				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType:     0x4,
+				Zeroing:          true,
+				EmbeddedRounding: true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -31914,9 +31914,8 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
-				EncodingType:     0x4,
-				Zeroing:          true,
-				EmbeddedRounding: true,
+				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -31926,8 +31925,9 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
-				EncodingType: 0x4,
-				Zeroing:      true,
+				EncodingType:     0x4,
+				Zeroing:          true,
+				EmbeddedRounding: true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -31992,8 +31992,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
-				EncodingType:     0x4,
-				EmbeddedRounding: true,
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -32003,18 +32002,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
-				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "xmm", Action: 0x1},
-					{Type: "xmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "xmm", Action: 0x2},
-				},
 				EncodingType:     0x4,
-				Zeroing:          true,
 				EmbeddedRounding: true,
 			},
 			{
@@ -32027,6 +32015,18 @@ var Instructions = []Instruction{
 				},
 				EncodingType: 0x4,
 				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType:     0x4,
+				Zeroing:          true,
+				EmbeddedRounding: true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -32300,8 +32300,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
-				EncodingType:          0x4,
-				SuppressAllExceptions: true,
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512ER"},
@@ -32310,17 +32309,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
-				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512ER"},
-				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x2},
-				},
 				EncodingType:          0x4,
-				Zeroing:               true,
 				SuppressAllExceptions: true,
 			},
 			{
@@ -32332,6 +32321,17 @@ var Instructions = []Instruction{
 				},
 				EncodingType: 0x4,
 				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512ER"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType:          0x4,
+				Zeroing:               true,
+				SuppressAllExceptions: true,
 			},
 			{
 				ISA: []string{"AVX512ER"},
@@ -33542,7 +33542,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -33554,6 +33553,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -33746,7 +33746,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -33759,6 +33758,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -33890,7 +33890,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -33903,6 +33902,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -33926,7 +33926,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -33938,6 +33937,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -33945,6 +33945,17 @@ var Instructions = []Instruction{
 					{Type: "imm8", Action: 0x0},
 					{Type: "m512", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
@@ -33992,17 +34003,6 @@ var Instructions = []Instruction{
 					{Type: "imm8", Action: 0x0},
 					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "imm8", Action: 0x0},
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
@@ -34061,7 +34061,6 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -34074,6 +34073,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -34097,7 +34097,6 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -34109,6 +34108,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -34199,7 +34199,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL"},
@@ -34211,6 +34210,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL"},
@@ -34238,7 +34238,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -34250,6 +34249,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -34282,7 +34282,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType:          0x4,
-				Zeroing:               true,
 				SuppressAllExceptions: true,
 			},
 			{
@@ -34307,6 +34306,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType:          0x4,
+				Zeroing:               true,
 				SuppressAllExceptions: true,
 			},
 			{
@@ -34389,8 +34389,8 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
-				EncodingType: 0x4,
-				Zeroing:      true,
+				EncodingType:          0x4,
+				SuppressAllExceptions: true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -34401,8 +34401,8 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
-				EncodingType:          0x4,
-				SuppressAllExceptions: true,
+				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -34519,7 +34519,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -34531,6 +34530,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -34542,6 +34542,38 @@ var Instructions = []Instruction{
 				},
 				EncodingType: 0x4,
 				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType:     0x4,
+				EmbeddedRounding: true,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -34560,32 +34592,9 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
-				Zeroing:      true,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x3},
-				},
-				EncodingType:     0x4,
-				EmbeddedRounding: true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -34598,11 +34607,12 @@ var Instructions = []Instruction{
 				EmbeddedRounding: true,
 			},
 			{
-				ISA: []string{"AVX512F"},
+				ISA: []string{"AVX512VL", "AVX512F"},
 				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x3},
+					{Type: "m128", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
 			},
@@ -34620,10 +34630,10 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
 				Operands: []Operand{
-					{Type: "m128", Action: 0x1},
-					{Type: "xmm", Action: 0x1},
+					{Type: "m256", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
 					{Type: "k", Action: 0x1},
-					{Type: "xmm", Action: 0x3},
+					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
 			},
@@ -34641,16 +34651,6 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
 				Operands: []Operand{
-					{Type: "m256", Action: 0x1},
-					{Type: "ymm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "ymm", Action: 0x3},
-				},
-				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512VL", "AVX512F"},
-				Operands: []Operand{
 					{Type: "m64", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
@@ -34690,7 +34690,6 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -34702,6 +34701,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -34870,7 +34870,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -34882,6 +34881,17 @@ var Instructions = []Instruction{
 				},
 				EncodingType:     0x4,
 				EmbeddedRounding: true,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -34900,16 +34910,6 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
@@ -34954,7 +34954,6 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -34965,6 +34964,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -35008,7 +35008,6 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -35020,6 +35019,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -35062,7 +35062,6 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -35073,6 +35072,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 		},
 	},
@@ -35107,12 +35107,22 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m64", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
@@ -35129,6 +35139,17 @@ var Instructions = []Instruction{
 				},
 				EncodingType:     0x4,
 				EmbeddedRounding: true,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -35141,27 +35162,6 @@ var Instructions = []Instruction{
 				EncodingType:     0x4,
 				Zeroing:          true,
 				EmbeddedRounding: true,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "xmm", Action: 0x1},
-					{Type: "xmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "xmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "xmm", Action: 0x1},
-					{Type: "xmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "xmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -35247,9 +35247,8 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
-				EncodingType:     0x4,
-				Zeroing:          true,
-				EmbeddedRounding: true,
+				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -35259,8 +35258,9 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
-				EncodingType: 0x4,
-				Zeroing:      true,
+				EncodingType:     0x4,
+				Zeroing:          true,
+				EmbeddedRounding: true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -35353,7 +35353,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -35365,6 +35364,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -35397,6 +35397,17 @@ var Instructions = []Instruction{
 				},
 				EncodingType:     0x4,
 				EmbeddedRounding: true,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -35415,11 +35426,9 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -35432,15 +35441,6 @@ var Instructions = []Instruction{
 				EmbeddedRounding: true,
 			},
 			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
-			},
-			{
 				ISA: []string{"AVX512VL", "AVX512F"},
 				Operands: []Operand{
 					{Type: "m128", Action: 0x1},
@@ -35470,7 +35470,6 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -35481,6 +35480,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -35557,7 +35557,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -35568,16 +35567,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512VL", "AVX512F"},
-				Operands: []Operand{
-					{Type: "ymm", Action: 0x1},
-					{Type: "ymm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "ymm", Action: 0x3},
-				},
-				EncodingType: 0x4,
 				Zeroing:      true,
 			},
 			{
@@ -35589,6 +35578,17 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VL", "AVX512F"},
+				Operands: []Operand{
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 		},
 	},
@@ -35641,7 +35641,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -35653,6 +35652,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -35704,17 +35704,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -35726,6 +35715,17 @@ var Instructions = []Instruction{
 				},
 				EncodingType:     0x4,
 				EmbeddedRounding: true,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -35746,8 +35746,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
-				EncodingType:     0x4,
-				EmbeddedRounding: true,
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -35756,6 +35755,17 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
+				EncodingType:     0x4,
+				EmbeddedRounding: true,
+			},
+			{
+				ISA: []string{"AVX512VL", "AVX512F"},
+				Operands: []Operand{
+					{Type: "m128", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
 				EncodingType: 0x4,
 			},
 			{
@@ -35768,16 +35778,6 @@ var Instructions = []Instruction{
 				},
 				EncodingType: 0x4,
 				Zeroing:      true,
-			},
-			{
-				ISA: []string{"AVX512VL", "AVX512F"},
-				Operands: []Operand{
-					{Type: "m128", Action: 0x1},
-					{Type: "xmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "xmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -35809,7 +35809,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -35821,6 +35820,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -35842,7 +35842,6 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -35854,6 +35853,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -35865,17 +35865,6 @@ var Instructions = []Instruction{
 				},
 				EncodingType: 0x4,
 				Broadcast:    true,
-			},
-			{
-				ISA: []string{"AVX512VL", "AVX512F"},
-				Operands: []Operand{
-					{Type: "xmm", Action: 0x1},
-					{Type: "xmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "xmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -35890,10 +35879,10 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
 				Operands: []Operand{
-					{Type: "ymm", Action: 0x1},
-					{Type: "ymm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
-					{Type: "ymm", Action: 0x3},
+					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
 				Zeroing:      true,
@@ -35907,6 +35896,17 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VL", "AVX512F"},
+				Operands: []Operand{
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 		},
 	},
@@ -35941,12 +35941,22 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m64", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
@@ -35963,6 +35973,17 @@ var Instructions = []Instruction{
 				},
 				EncodingType:     0x4,
 				EmbeddedRounding: true,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -35975,27 +35996,6 @@ var Instructions = []Instruction{
 				EncodingType:     0x4,
 				Zeroing:          true,
 				EmbeddedRounding: true,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "xmm", Action: 0x1},
-					{Type: "xmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "xmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "xmm", Action: 0x1},
-					{Type: "xmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "xmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -36070,8 +36070,8 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
-				EncodingType: 0x4,
-				Zeroing:      true,
+				EncodingType:     0x4,
+				EmbeddedRounding: true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -36081,8 +36081,8 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
-				EncodingType:     0x4,
-				EmbeddedRounding: true,
+				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -36157,7 +36157,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -36168,6 +36167,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -36210,6 +36210,16 @@ var Instructions = []Instruction{
 				},
 				EncodingType: 0x4,
 				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -36221,6 +36231,17 @@ var Instructions = []Instruction{
 				},
 				EncodingType:     0x4,
 				EmbeddedRounding: true,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -36233,27 +36254,6 @@ var Instructions = []Instruction{
 				EncodingType:     0x4,
 				Zeroing:          true,
 				EmbeddedRounding: true,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
-				Zeroing:      true,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -36475,7 +36475,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -36487,6 +36486,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -36508,7 +36508,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -36519,12 +36518,23 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
@@ -36539,6 +36549,17 @@ var Instructions = []Instruction{
 				},
 				EncodingType:     0x4,
 				EmbeddedRounding: true,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -36557,27 +36578,6 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
-				Zeroing:      true,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
@@ -36601,7 +36601,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -36612,6 +36611,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -36676,7 +36676,6 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -36688,6 +36687,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -36709,7 +36709,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -36720,6 +36719,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -36775,22 +36775,11 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m64", Action: 0x1},
-					{Type: "xmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "xmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
@@ -36818,6 +36807,17 @@ var Instructions = []Instruction{
 				},
 				EncodingType:     0x4,
 				EmbeddedRounding: true,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -36874,12 +36874,22 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m32", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
@@ -36896,6 +36906,17 @@ var Instructions = []Instruction{
 				},
 				EncodingType:     0x4,
 				EmbeddedRounding: true,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -36908,27 +36929,6 @@ var Instructions = []Instruction{
 				EncodingType:     0x4,
 				Zeroing:          true,
 				EmbeddedRounding: true,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "xmm", Action: 0x1},
-					{Type: "xmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "xmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "xmm", Action: 0x1},
-					{Type: "xmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "xmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -36991,7 +36991,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -37002,6 +37001,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -37044,17 +37044,6 @@ var Instructions = []Instruction{
 				},
 				EncodingType: 0x4,
 				Broadcast:    true,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -37076,6 +37065,17 @@ var Instructions = []Instruction{
 				},
 				EncodingType:     0x4,
 				EmbeddedRounding: true,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -37096,8 +37096,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
-				EncodingType:     0x4,
-				EmbeddedRounding: true,
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -37106,7 +37105,8 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
-				EncodingType: 0x4,
+				EncodingType:     0x4,
+				EmbeddedRounding: true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -37117,7 +37117,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -37126,16 +37125,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512VL", "AVX512F"},
-				Operands: []Operand{
-					{Type: "m256", Action: 0x1},
-					{Type: "ymm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
 				Zeroing:      true,
@@ -37153,13 +37142,23 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
 				Operands: []Operand{
+					{Type: "m256", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VL", "AVX512F"},
+				Operands: []Operand{
 					{Type: "m64", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -37171,6 +37170,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -37192,7 +37192,6 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -37204,6 +37203,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -37225,7 +37225,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -37236,6 +37235,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -37309,7 +37309,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -37321,6 +37320,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -37359,6 +37359,16 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "m512", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
@@ -37402,7 +37412,6 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
@@ -37418,15 +37427,6 @@ var Instructions = []Instruction{
 				EmbeddedRounding: true,
 			},
 			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
-			},
-			{
 				ISA: []string{"AVX512VL", "AVX512F"},
 				Operands: []Operand{
 					{Type: "m128", Action: 0x1},
@@ -37477,7 +37477,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -37489,6 +37488,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -37510,7 +37510,6 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -37522,6 +37521,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -37543,7 +37543,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -37554,6 +37553,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -37627,7 +37627,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -37638,6 +37637,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -37657,7 +37657,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -37669,6 +37668,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -37680,6 +37680,27 @@ var Instructions = []Instruction{
 				},
 				EncodingType: 0x4,
 				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType:     0x4,
+				EmbeddedRounding: true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -37709,27 +37730,6 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x3},
-				},
-				EncodingType:     0x4,
-				EmbeddedRounding: true,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
@@ -37774,7 +37774,6 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -37785,6 +37784,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -37795,7 +37795,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -37807,6 +37806,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -37945,7 +37945,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -37957,6 +37956,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -37978,7 +37978,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -37989,6 +37988,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -38008,7 +38008,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -38020,6 +38019,17 @@ var Instructions = []Instruction{
 				},
 				EncodingType:     0x4,
 				EmbeddedRounding: true,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -38038,16 +38048,6 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
@@ -38071,7 +38071,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -38082,6 +38081,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -38200,7 +38200,6 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -38211,6 +38210,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 		},
 	},
@@ -38263,7 +38263,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -38274,6 +38273,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -38293,7 +38293,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -38305,6 +38304,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -38326,7 +38326,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -38348,6 +38347,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -38464,7 +38464,6 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -38476,6 +38475,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -38518,7 +38518,6 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -38529,6 +38528,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 		},
 	},
@@ -38581,7 +38581,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -38593,6 +38592,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -38614,7 +38614,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -38625,6 +38624,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -38634,6 +38634,27 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType:     0x4,
+				EmbeddedRounding: true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -38663,21 +38684,9 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x3},
-				},
-				EncodingType:     0x4,
-				EmbeddedRounding: true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -38688,15 +38697,6 @@ var Instructions = []Instruction{
 				},
 				EncodingType:     0x4,
 				EmbeddedRounding: true,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -38782,7 +38782,6 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -38794,6 +38793,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -38815,7 +38815,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -38826,6 +38825,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -38899,7 +38899,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -38910,6 +38909,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -38952,6 +38952,38 @@ var Instructions = []Instruction{
 				},
 				EncodingType: 0x4,
 				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType:     0x4,
+				EmbeddedRounding: true,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -38970,29 +39002,6 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
-				Zeroing:      true,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x3},
-				},
-				EncodingType:     0x4,
-				EmbeddedRounding: true,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
@@ -39006,15 +39015,6 @@ var Instructions = []Instruction{
 				},
 				EncodingType:     0x4,
 				EmbeddedRounding: true,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -39046,7 +39046,6 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -39057,6 +39056,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -39100,7 +39100,6 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -39112,6 +39111,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -39133,7 +39133,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -39144,16 +39143,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512VL", "AVX512F"},
-				Operands: []Operand{
-					{Type: "ymm", Action: 0x1},
-					{Type: "ymm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "ymm", Action: 0x3},
-				},
-				EncodingType: 0x4,
 				Zeroing:      true,
 			},
 			{
@@ -39165,6 +39154,17 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VL", "AVX512F"},
+				Operands: []Operand{
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 		},
 	},
@@ -39217,7 +39217,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -39229,6 +39228,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -39250,6 +39250,16 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "m512", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
 				Zeroing:      true,
 			},
 			{
@@ -39257,16 +39267,6 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "m512", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "m512", Action: 0x1},
-					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
@@ -39280,6 +39280,17 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType:     0x4,
+				EmbeddedRounding: true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -39309,30 +39320,19 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x3},
-				},
-				EncodingType:     0x4,
-				EmbeddedRounding: true,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x3},
-				},
-				EncodingType:     0x4,
-				EmbeddedRounding: true,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType:     0x4,
+				EmbeddedRounding: true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -39364,7 +39364,6 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -39375,6 +39374,18 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VL", "AVX512F"},
+				Operands: []Operand{
+					{Type: "m32", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -39393,17 +39404,6 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "m32", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "xmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
-				Broadcast:    true,
-			},
-			{
-				ISA: []string{"AVX512VL", "AVX512F"},
-				Operands: []Operand{
-					{Type: "m32", Action: 0x1},
-					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
@@ -39451,7 +39451,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -39462,16 +39461,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512VL", "AVX512F"},
-				Operands: []Operand{
-					{Type: "ymm", Action: 0x1},
-					{Type: "ymm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "ymm", Action: 0x3},
-				},
-				EncodingType: 0x4,
 				Zeroing:      true,
 			},
 			{
@@ -39483,6 +39472,17 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VL", "AVX512F"},
+				Operands: []Operand{
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 		},
 	},
@@ -39517,7 +39517,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -39528,6 +39527,39 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType:     0x4,
+				EmbeddedRounding: true,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -39540,38 +39572,6 @@ var Instructions = []Instruction{
 				EncodingType:     0x4,
 				Zeroing:          true,
 				EmbeddedRounding: true,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "xmm", Action: 0x1},
-					{Type: "xmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "xmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
-				Zeroing:      true,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "xmm", Action: 0x1},
-					{Type: "xmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "xmm", Action: 0x3},
-				},
-				EncodingType:     0x4,
-				EmbeddedRounding: true,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "xmm", Action: 0x1},
-					{Type: "xmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "xmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -39616,12 +39616,22 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m32", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
@@ -39637,7 +39647,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType:     0x4,
-				Zeroing:          true,
 				EmbeddedRounding: true,
 			},
 			{
@@ -39649,16 +39658,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "xmm", Action: 0x1},
-					{Type: "xmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "xmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
 				Zeroing:      true,
 			},
 			{
@@ -39670,6 +39669,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType:     0x4,
+				Zeroing:          true,
 				EmbeddedRounding: true,
 			},
 			{
@@ -39796,7 +39796,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -39818,6 +39817,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -39901,7 +39901,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -39913,6 +39912,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -39934,7 +39934,6 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -39946,6 +39945,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -39967,7 +39967,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -39978,6 +39977,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -40084,7 +40084,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -40095,6 +40094,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -40125,6 +40125,17 @@ var Instructions = []Instruction{
 				},
 				EncodingType:     0x4,
 				EmbeddedRounding: true,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -40143,17 +40154,6 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
-				Zeroing:      true,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
@@ -40198,7 +40198,6 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -40209,6 +40208,18 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VL", "AVX512F"},
+				Operands: []Operand{
+					{Type: "m32", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -40227,7 +40238,6 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "m32", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
@@ -40237,8 +40247,9 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512VL", "AVX512F"},
 				Operands: []Operand{
 					{Type: "m32", Action: 0x1},
-					{Type: "xmm", Action: 0x1},
-					{Type: "xmm", Action: 0x3},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
 				Broadcast:    true,
@@ -40260,7 +40271,6 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "m32", Action: 0x1},
 					{Type: "ymm", Action: 0x1},
-					{Type: "k", Action: 0x1},
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
@@ -40269,12 +40279,12 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
 				Operands: []Operand{
-					{Type: "m32", Action: 0x1},
-					{Type: "ymm", Action: 0x1},
-					{Type: "ymm", Action: 0x3},
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Broadcast:    true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -40290,10 +40300,10 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
 				Operands: []Operand{
-					{Type: "xmm", Action: 0x1},
-					{Type: "xmm", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
 					{Type: "k", Action: 0x1},
-					{Type: "xmm", Action: 0x3},
+					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
 			},
@@ -40307,16 +40317,6 @@ var Instructions = []Instruction{
 				},
 				EncodingType: 0x4,
 				Zeroing:      true,
-			},
-			{
-				ISA: []string{"AVX512VL", "AVX512F"},
-				Operands: []Operand{
-					{Type: "ymm", Action: 0x1},
-					{Type: "ymm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "ymm", Action: 0x3},
-				},
-				EncodingType: 0x4,
 			},
 		},
 	},
@@ -40351,7 +40351,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -40362,6 +40361,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -40372,6 +40372,17 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType:     0x4,
+				EmbeddedRounding: true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -40394,17 +40405,6 @@ var Instructions = []Instruction{
 				},
 				EncodingType:     0x4,
 				Zeroing:          true,
-				EmbeddedRounding: true,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "xmm", Action: 0x1},
-					{Type: "xmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "xmm", Action: 0x3},
-				},
-				EncodingType:     0x4,
 				EmbeddedRounding: true,
 			},
 			{
@@ -40450,7 +40450,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -40461,6 +40460,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -40471,7 +40471,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -40493,6 +40492,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -40597,7 +40597,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -40609,6 +40608,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -40630,7 +40630,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -40642,6 +40641,17 @@ var Instructions = []Instruction{
 				},
 				EncodingType:     0x4,
 				EmbeddedRounding: true,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -40660,16 +40670,6 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
@@ -40735,7 +40735,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -40747,6 +40746,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -40801,7 +40801,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -40812,6 +40811,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -40885,7 +40885,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -40897,6 +40896,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -40918,7 +40918,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -40929,12 +40928,23 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "m512", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
@@ -40949,16 +40959,6 @@ var Instructions = []Instruction{
 				},
 				EncodingType:     0x4,
 				EmbeddedRounding: true,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -41119,7 +41119,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -41130,16 +41129,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512VL", "AVX512F"},
-				Operands: []Operand{
-					{Type: "ymm", Action: 0x1},
-					{Type: "ymm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "ymm", Action: 0x3},
-				},
-				EncodingType: 0x4,
 				Zeroing:      true,
 			},
 			{
@@ -41151,6 +41140,17 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VL", "AVX512F"},
+				Operands: []Operand{
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 		},
 	},
@@ -41205,8 +41205,29 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
 				EncodingType:     0x4,
 				EmbeddedRounding: true,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -41219,27 +41240,6 @@ var Instructions = []Instruction{
 				EncodingType:     0x4,
 				Zeroing:          true,
 				EmbeddedRounding: true,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "xmm", Action: 0x1},
-					{Type: "xmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "xmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "xmm", Action: 0x1},
-					{Type: "xmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "xmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -41284,7 +41284,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -41295,6 +41294,39 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType:     0x4,
+				EmbeddedRounding: true,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -41307,38 +41339,6 @@ var Instructions = []Instruction{
 				EncodingType:     0x4,
 				Zeroing:          true,
 				EmbeddedRounding: true,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "xmm", Action: 0x1},
-					{Type: "xmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "xmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
-				Zeroing:      true,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "xmm", Action: 0x1},
-					{Type: "xmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "xmm", Action: 0x3},
-				},
-				EncodingType:     0x4,
-				EmbeddedRounding: true,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "xmm", Action: 0x1},
-					{Type: "xmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "xmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -41431,7 +41431,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -41443,6 +41442,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -41454,6 +41454,38 @@ var Instructions = []Instruction{
 				},
 				EncodingType: 0x4,
 				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType:     0x4,
+				EmbeddedRounding: true,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -41472,38 +41504,6 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x3},
-				},
-				EncodingType:     0x4,
-				EmbeddedRounding: true,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
-				Zeroing:      true,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
@@ -41656,7 +41656,6 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -41667,6 +41666,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 		},
 	},
@@ -41719,7 +41719,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -41731,6 +41730,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -41769,6 +41769,16 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "m512", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
@@ -41794,16 +41804,6 @@ var Instructions = []Instruction{
 				},
 				EncodingType: 0x4,
 				Zeroing:      true,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -41824,8 +41824,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
-				EncodingType:     0x4,
-				EmbeddedRounding: true,
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -41834,7 +41833,8 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
-				EncodingType: 0x4,
+				EncodingType:     0x4,
+				EmbeddedRounding: true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -41974,7 +41974,6 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -41985,6 +41984,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 		},
 	},
@@ -42067,7 +42067,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -42079,6 +42078,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -42090,6 +42090,38 @@ var Instructions = []Instruction{
 				},
 				EncodingType: 0x4,
 				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType:     0x4,
+				EmbeddedRounding: true,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -42108,32 +42140,9 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
-				Zeroing:      true,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x3},
-				},
-				EncodingType:     0x4,
-				EmbeddedRounding: true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -42146,11 +42155,12 @@ var Instructions = []Instruction{
 				EmbeddedRounding: true,
 			},
 			{
-				ISA: []string{"AVX512F"},
+				ISA: []string{"AVX512VL", "AVX512F"},
 				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x3},
+					{Type: "m128", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
 			},
@@ -42164,16 +42174,6 @@ var Instructions = []Instruction{
 				},
 				EncodingType: 0x4,
 				Zeroing:      true,
-			},
-			{
-				ISA: []string{"AVX512VL", "AVX512F"},
-				Operands: []Operand{
-					{Type: "m128", Action: 0x1},
-					{Type: "xmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "xmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -42355,7 +42355,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -42367,6 +42366,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -42388,7 +42388,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -42399,6 +42398,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -42408,6 +42408,27 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType:     0x4,
+				EmbeddedRounding: true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -42437,18 +42458,6 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x3},
-				},
-				EncodingType:     0x4,
-				EmbeddedRounding: true,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
@@ -42462,15 +42471,6 @@ var Instructions = []Instruction{
 				},
 				EncodingType:     0x4,
 				EmbeddedRounding: true,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -42502,7 +42502,6 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -42513,6 +42512,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -42556,7 +42556,6 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -42568,6 +42567,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -42589,7 +42589,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -42600,16 +42599,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512VL", "AVX512F"},
-				Operands: []Operand{
-					{Type: "ymm", Action: 0x1},
-					{Type: "ymm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "ymm", Action: 0x3},
-				},
-				EncodingType: 0x4,
 				Zeroing:      true,
 			},
 			{
@@ -42621,6 +42610,17 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VL", "AVX512F"},
+				Operands: []Operand{
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 		},
 	},
@@ -42736,6 +42736,27 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType:     0x4,
+				EmbeddedRounding: true,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
 				Zeroing:      true,
 			},
 			{
@@ -42755,27 +42776,6 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x3},
-				},
-				EncodingType:     0x4,
-				EmbeddedRounding: true,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
@@ -42799,7 +42799,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -42810,16 +42809,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512VL", "AVX512F"},
-				Operands: []Operand{
-					{Type: "m256", Action: 0x1},
-					{Type: "ymm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "ymm", Action: 0x3},
-				},
-				EncodingType: 0x4,
 				Zeroing:      true,
 			},
 			{
@@ -42835,6 +42824,17 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
 				Operands: []Operand{
+					{Type: "m256", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VL", "AVX512F"},
+				Operands: []Operand{
 					{Type: "m64", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
@@ -42874,7 +42874,6 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -42886,6 +42885,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -42907,7 +42907,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -42918,6 +42917,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -43024,7 +43024,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -43035,6 +43034,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -43044,6 +43044,27 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType:     0x4,
+				EmbeddedRounding: true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -43073,27 +43094,6 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x3},
-				},
-				EncodingType:     0x4,
-				EmbeddedRounding: true,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
@@ -43138,7 +43138,6 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -43149,6 +43148,18 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VL", "AVX512F"},
+				Operands: []Operand{
+					{Type: "m32", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -43167,7 +43178,6 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "m32", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
@@ -43177,8 +43187,9 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512VL", "AVX512F"},
 				Operands: []Operand{
 					{Type: "m32", Action: 0x1},
-					{Type: "xmm", Action: 0x1},
-					{Type: "xmm", Action: 0x3},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
 				Broadcast:    true,
@@ -43200,7 +43211,6 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "m32", Action: 0x1},
 					{Type: "ymm", Action: 0x1},
-					{Type: "k", Action: 0x1},
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
@@ -43209,12 +43219,12 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
 				Operands: []Operand{
-					{Type: "m32", Action: 0x1},
-					{Type: "ymm", Action: 0x1},
-					{Type: "ymm", Action: 0x3},
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Broadcast:    true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -43230,10 +43240,10 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
 				Operands: []Operand{
-					{Type: "xmm", Action: 0x1},
-					{Type: "xmm", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
 					{Type: "k", Action: 0x1},
-					{Type: "xmm", Action: 0x3},
+					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
 			},
@@ -43247,16 +43257,6 @@ var Instructions = []Instruction{
 				},
 				EncodingType: 0x4,
 				Zeroing:      true,
-			},
-			{
-				ISA: []string{"AVX512VL", "AVX512F"},
-				Operands: []Operand{
-					{Type: "ymm", Action: 0x1},
-					{Type: "ymm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "ymm", Action: 0x3},
-				},
-				EncodingType: 0x4,
 			},
 		},
 	},
@@ -43309,7 +43309,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -43320,6 +43319,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -43339,7 +43339,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -43351,6 +43350,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -43362,6 +43362,27 @@ var Instructions = []Instruction{
 				},
 				EncodingType: 0x4,
 				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType:     0x4,
+				EmbeddedRounding: true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -43391,7 +43412,6 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
@@ -43401,28 +43421,18 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType:     0x4,
+				EmbeddedRounding: true,
+			},
+			{
+				ISA: []string{"AVX512VL", "AVX512F"},
+				Operands: []Operand{
+					{Type: "m128", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x3},
-				},
-				EncodingType:     0x4,
-				EmbeddedRounding: true,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x3},
-				},
-				EncodingType:     0x4,
-				EmbeddedRounding: true,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x3},
+					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
 			},
@@ -43440,10 +43450,10 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
 				Operands: []Operand{
-					{Type: "m128", Action: 0x1},
-					{Type: "xmm", Action: 0x1},
+					{Type: "m256", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
 					{Type: "k", Action: 0x1},
-					{Type: "xmm", Action: 0x3},
+					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
 			},
@@ -43461,12 +43471,13 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
 				Operands: []Operand{
-					{Type: "m256", Action: 0x1},
-					{Type: "ymm", Action: 0x1},
+					{Type: "m64", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
-					{Type: "ymm", Action: 0x3},
+					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Broadcast:    true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -43485,7 +43496,6 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "m64", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
@@ -43495,8 +43505,9 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512VL", "AVX512F"},
 				Operands: []Operand{
 					{Type: "m64", Action: 0x1},
-					{Type: "xmm", Action: 0x1},
-					{Type: "xmm", Action: 0x3},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
 				Broadcast:    true,
@@ -43518,7 +43529,6 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "m64", Action: 0x1},
 					{Type: "ymm", Action: 0x1},
-					{Type: "k", Action: 0x1},
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
@@ -43527,12 +43537,12 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
 				Operands: []Operand{
-					{Type: "m64", Action: 0x1},
-					{Type: "ymm", Action: 0x1},
-					{Type: "ymm", Action: 0x3},
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Broadcast:    true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -43544,16 +43554,6 @@ var Instructions = []Instruction{
 				},
 				EncodingType: 0x4,
 				Zeroing:      true,
-			},
-			{
-				ISA: []string{"AVX512VL", "AVX512F"},
-				Operands: []Operand{
-					{Type: "xmm", Action: 0x1},
-					{Type: "xmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "xmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -43627,7 +43627,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -43639,6 +43638,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -43660,7 +43660,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -43671,6 +43670,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -43690,7 +43690,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -43712,6 +43711,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -43732,8 +43732,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
-				EncodingType:     0x4,
-				EmbeddedRounding: true,
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -43742,7 +43741,8 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
-				EncodingType: 0x4,
+				EncodingType:     0x4,
+				EmbeddedRounding: true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -43774,7 +43774,6 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -43785,6 +43784,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -43861,7 +43861,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -43872,16 +43871,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512VL", "AVX512F"},
-				Operands: []Operand{
-					{Type: "ymm", Action: 0x1},
-					{Type: "ymm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "ymm", Action: 0x3},
-				},
-				EncodingType: 0x4,
 				Zeroing:      true,
 			},
 			{
@@ -43893,6 +43882,17 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VL", "AVX512F"},
+				Operands: []Operand{
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 		},
 	},
@@ -43947,8 +43947,29 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
 				EncodingType:     0x4,
 				EmbeddedRounding: true,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -43961,27 +43982,6 @@ var Instructions = []Instruction{
 				EncodingType:     0x4,
 				Zeroing:          true,
 				EmbeddedRounding: true,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "xmm", Action: 0x1},
-					{Type: "xmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "xmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "xmm", Action: 0x1},
-					{Type: "xmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "xmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -44056,8 +44056,8 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
-				EncodingType: 0x4,
-				Zeroing:      true,
+				EncodingType:     0x4,
+				EmbeddedRounding: true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -44067,8 +44067,8 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
-				EncodingType:     0x4,
-				EmbeddedRounding: true,
+				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -44205,6 +44205,38 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType:     0x4,
+				EmbeddedRounding: true,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
 				EncodingType:     0x4,
 				Zeroing:          true,
 				EmbeddedRounding: true,
@@ -44214,32 +44246,9 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x3},
-				},
-				EncodingType:     0x4,
-				EmbeddedRounding: true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -44250,15 +44259,6 @@ var Instructions = []Instruction{
 				},
 				EncodingType:     0x4,
 				EmbeddedRounding: true,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -44377,7 +44377,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -44388,6 +44387,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -44461,7 +44461,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -44473,6 +44472,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -44524,6 +44524,17 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType:     0x4,
+				EmbeddedRounding: true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -44553,17 +44564,6 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x3},
-				},
-				EncodingType:     0x4,
-				EmbeddedRounding: true,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
@@ -44629,7 +44629,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -44641,6 +44640,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -44662,7 +44662,6 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -44674,6 +44673,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -44782,7 +44782,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -44794,6 +44793,17 @@ var Instructions = []Instruction{
 				},
 				EncodingType:     0x4,
 				EmbeddedRounding: true,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -44806,16 +44816,6 @@ var Instructions = []Instruction{
 				EncodingType:     0x4,
 				Zeroing:          true,
 				EmbeddedRounding: true,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "xmm", Action: 0x1},
-					{Type: "xmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "xmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -44881,6 +44881,27 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType:     0x4,
+				EmbeddedRounding: true,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
 				Zeroing:      true,
 			},
 			{
@@ -44893,27 +44914,6 @@ var Instructions = []Instruction{
 				},
 				EncodingType:     0x4,
 				Zeroing:          true,
-				EmbeddedRounding: true,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "xmm", Action: 0x1},
-					{Type: "xmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "xmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "xmm", Action: 0x1},
-					{Type: "xmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "xmm", Action: 0x3},
-				},
-				EncodingType:     0x4,
 				EmbeddedRounding: true,
 			},
 			{
@@ -44977,7 +44977,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -44988,6 +44987,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -45007,7 +45007,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -45019,6 +45018,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -45030,6 +45030,27 @@ var Instructions = []Instruction{
 				},
 				EncodingType: 0x4,
 				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType:     0x4,
+				EmbeddedRounding: true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -45059,21 +45080,9 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x3},
-				},
-				EncodingType:     0x4,
-				EmbeddedRounding: true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -45084,15 +45093,6 @@ var Instructions = []Instruction{
 				},
 				EncodingType:     0x4,
 				EmbeddedRounding: true,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -45124,7 +45124,6 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -45135,6 +45134,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -45145,7 +45145,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -45157,6 +45156,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -45178,7 +45178,6 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -45190,6 +45189,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -45295,7 +45295,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -45307,6 +45306,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -45328,7 +45328,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -45339,6 +45338,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -45348,6 +45348,38 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType:     0x4,
+				EmbeddedRounding: true,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -45366,32 +45398,9 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
-				Zeroing:      true,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x3},
-				},
-				EncodingType:     0x4,
-				EmbeddedRounding: true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -45402,15 +45411,6 @@ var Instructions = []Instruction{
 				},
 				EncodingType:     0x4,
 				EmbeddedRounding: true,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -45496,7 +45496,6 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -45508,6 +45507,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -45616,17 +45616,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "xmm", Action: 0x1},
-					{Type: "xmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "xmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -45638,6 +45627,17 @@ var Instructions = []Instruction{
 				},
 				EncodingType:     0x4,
 				EmbeddedRounding: true,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -45694,7 +45694,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -45705,6 +45704,39 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType:     0x4,
+				EmbeddedRounding: true,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -45717,38 +45749,6 @@ var Instructions = []Instruction{
 				EncodingType:     0x4,
 				Zeroing:          true,
 				EmbeddedRounding: true,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "xmm", Action: 0x1},
-					{Type: "xmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "xmm", Action: 0x3},
-				},
-				EncodingType:     0x4,
-				EmbeddedRounding: true,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "xmm", Action: 0x1},
-					{Type: "xmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "xmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "xmm", Action: 0x1},
-					{Type: "xmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "xmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -45873,6 +45873,16 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
 				EncodingType:     0x4,
 				EmbeddedRounding: true,
 			},
@@ -45885,6 +45895,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -45903,17 +45914,6 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
-				Zeroing:      true,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
@@ -45958,7 +45958,6 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -45969,6 +45968,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -46066,7 +46066,6 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -46077,6 +46076,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 		},
 	},
@@ -46162,7 +46162,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -46173,6 +46172,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -46182,17 +46182,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -46214,6 +46203,17 @@ var Instructions = []Instruction{
 				},
 				EncodingType:     0x4,
 				EmbeddedRounding: true,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -46276,7 +46276,6 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -46287,6 +46286,18 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VL", "AVX512F"},
+				Operands: []Operand{
+					{Type: "m32", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -46305,7 +46316,6 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "m32", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
@@ -46315,8 +46325,9 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512VL", "AVX512F"},
 				Operands: []Operand{
 					{Type: "m32", Action: 0x1},
-					{Type: "xmm", Action: 0x1},
-					{Type: "xmm", Action: 0x3},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
 				Broadcast:    true,
@@ -46331,17 +46342,6 @@ var Instructions = []Instruction{
 				},
 				EncodingType: 0x4,
 				Zeroing:      true,
-				Broadcast:    true,
-			},
-			{
-				ISA: []string{"AVX512VL", "AVX512F"},
-				Operands: []Operand{
-					{Type: "m32", Action: 0x1},
-					{Type: "ymm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "ymm", Action: 0x3},
-				},
-				EncodingType: 0x4,
 				Broadcast:    true,
 			},
 			{
@@ -46384,7 +46384,6 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -46395,6 +46394,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 		},
 	},
@@ -46429,7 +46429,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -46440,6 +46439,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -46450,7 +46450,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -46462,6 +46461,17 @@ var Instructions = []Instruction{
 				},
 				EncodingType:     0x4,
 				EmbeddedRounding: true,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -46474,16 +46484,6 @@ var Instructions = []Instruction{
 				EncodingType:     0x4,
 				Zeroing:          true,
 				EmbeddedRounding: true,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "xmm", Action: 0x1},
-					{Type: "xmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "xmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -46528,7 +46528,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -46539,6 +46538,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -46549,7 +46549,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -46571,6 +46570,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -46645,7 +46645,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -46656,6 +46655,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -46675,7 +46675,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -46687,6 +46686,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -46698,6 +46698,16 @@ var Instructions = []Instruction{
 				},
 				EncodingType: 0x4,
 				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -46709,6 +46719,17 @@ var Instructions = []Instruction{
 				},
 				EncodingType:     0x4,
 				EmbeddedRounding: true,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -46727,21 +46748,9 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -46754,11 +46763,12 @@ var Instructions = []Instruction{
 				EmbeddedRounding: true,
 			},
 			{
-				ISA: []string{"AVX512F"},
+				ISA: []string{"AVX512VL", "AVX512F"},
 				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x3},
+					{Type: "m128", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
 			},
@@ -46776,10 +46786,10 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
 				Operands: []Operand{
-					{Type: "m128", Action: 0x1},
-					{Type: "xmm", Action: 0x1},
+					{Type: "m256", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
 					{Type: "k", Action: 0x1},
-					{Type: "xmm", Action: 0x3},
+					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
 			},
@@ -46797,16 +46807,6 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
 				Operands: []Operand{
-					{Type: "m256", Action: 0x1},
-					{Type: "ymm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "ymm", Action: 0x3},
-				},
-				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512VL", "AVX512F"},
-				Operands: []Operand{
 					{Type: "m64", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
@@ -46879,7 +46879,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -46890,6 +46889,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -46996,7 +46996,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -47007,6 +47006,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -47026,17 +47026,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -47048,6 +47037,17 @@ var Instructions = []Instruction{
 				},
 				EncodingType:     0x4,
 				EmbeddedRounding: true,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -47068,8 +47068,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
-				EncodingType:     0x4,
-				EmbeddedRounding: true,
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -47078,6 +47077,17 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
+				EncodingType:     0x4,
+				EmbeddedRounding: true,
+			},
+			{
+				ISA: []string{"AVX512VL", "AVX512F"},
+				Operands: []Operand{
+					{Type: "m128", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
 				EncodingType: 0x4,
 			},
 			{
@@ -47090,16 +47100,6 @@ var Instructions = []Instruction{
 				},
 				EncodingType: 0x4,
 				Zeroing:      true,
-			},
-			{
-				ISA: []string{"AVX512VL", "AVX512F"},
-				Operands: []Operand{
-					{Type: "m128", Action: 0x1},
-					{Type: "xmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "xmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -47131,7 +47131,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -47143,6 +47142,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -47164,7 +47164,6 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -47176,6 +47175,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -47263,7 +47263,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -47274,27 +47273,17 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "xmm", Action: 0x1},
-					{Type: "xmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "xmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "xmm", Action: 0x1},
-					{Type: "xmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "xmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
 				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -47306,6 +47295,17 @@ var Instructions = []Instruction{
 				},
 				EncodingType:     0x4,
 				EmbeddedRounding: true,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -47382,9 +47382,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
-				EncodingType:     0x4,
-				Zeroing:          true,
-				EmbeddedRounding: true,
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -47394,7 +47392,8 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
-				EncodingType: 0x4,
+				EncodingType:     0x4,
+				EmbeddedRounding: true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -47416,6 +47415,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType:     0x4,
+				Zeroing:          true,
 				EmbeddedRounding: true,
 			},
 			{
@@ -47541,8 +47541,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
-				EncodingType:     0x4,
-				EmbeddedRounding: true,
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -47552,7 +47551,8 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
-				EncodingType: 0x4,
+				EncodingType:     0x4,
+				EmbeddedRounding: true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -47626,7 +47626,6 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -47637,6 +47636,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -47830,7 +47830,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -47841,6 +47840,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -47860,7 +47860,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -47882,6 +47881,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -47923,7 +47923,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -47934,6 +47933,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -47965,7 +47965,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -47977,6 +47976,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -48118,7 +48118,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -48140,6 +48139,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -48216,9 +48216,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
-				EncodingType:     0x4,
-				Zeroing:          true,
-				EmbeddedRounding: true,
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -48228,7 +48226,8 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
-				EncodingType: 0x4,
+				EncodingType:     0x4,
+				EmbeddedRounding: true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -48250,6 +48249,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType:     0x4,
+				Zeroing:          true,
 				EmbeddedRounding: true,
 			},
 			{
@@ -49014,8 +49014,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
-				EncodingType:          0x4,
-				SuppressAllExceptions: true,
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -49024,17 +49023,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
-				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x2},
-				},
 				EncodingType:          0x4,
-				Zeroing:               true,
 				SuppressAllExceptions: true,
 			},
 			{
@@ -49051,9 +49040,11 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512F"},
 				Operands: []Operand{
 					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
 				EncodingType:          0x4,
+				Zeroing:               true,
 				SuppressAllExceptions: true,
 			},
 			{
@@ -49063,6 +49054,15 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x2},
 				},
 				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType:          0x4,
+				SuppressAllExceptions: true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -49302,8 +49302,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
-				EncodingType:          0x4,
-				SuppressAllExceptions: true,
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -49312,17 +49311,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
-				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x2},
-				},
 				EncodingType:          0x4,
-				Zeroing:               true,
 				SuppressAllExceptions: true,
 			},
 			{
@@ -49334,6 +49323,17 @@ var Instructions = []Instruction{
 				},
 				EncodingType: 0x4,
 				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType:          0x4,
+				Zeroing:               true,
+				SuppressAllExceptions: true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -49564,8 +49564,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
-				EncodingType:          0x4,
-				SuppressAllExceptions: true,
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -49575,7 +49574,8 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
-				EncodingType: 0x4,
+				EncodingType:          0x4,
+				SuppressAllExceptions: true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -49663,8 +49663,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
-				EncodingType:          0x4,
-				SuppressAllExceptions: true,
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -49674,7 +49673,8 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
-				EncodingType: 0x4,
+				EncodingType:          0x4,
+				SuppressAllExceptions: true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -49838,8 +49838,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
-				EncodingType:          0x4,
-				SuppressAllExceptions: true,
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -49848,7 +49847,8 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
-				EncodingType: 0x4,
+				EncodingType:          0x4,
+				SuppressAllExceptions: true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -50134,9 +50134,8 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
-				EncodingType:          0x4,
-				Zeroing:               true,
-				SuppressAllExceptions: true,
+				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -50146,17 +50145,8 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
-				EncodingType: 0x4,
-				Zeroing:      true,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "imm8", Action: 0x0},
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x2},
-				},
 				EncodingType:          0x4,
+				Zeroing:               true,
 				SuppressAllExceptions: true,
 			},
 			{
@@ -50167,6 +50157,16 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x2},
 				},
 				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType:          0x4,
+				SuppressAllExceptions: true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -50402,8 +50402,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
-				EncodingType:          0x4,
-				SuppressAllExceptions: true,
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -50414,7 +50413,8 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
-				EncodingType: 0x4,
+				EncodingType:          0x4,
+				SuppressAllExceptions: true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -50557,8 +50557,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
-				EncodingType:          0x4,
-				SuppressAllExceptions: true,
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -50568,7 +50567,8 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
-				EncodingType: 0x4,
+				EncodingType:          0x4,
+				SuppressAllExceptions: true,
 			},
 		},
 	},
@@ -51926,9 +51926,8 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
-				EncodingType:          0x4,
-				Zeroing:               true,
-				SuppressAllExceptions: true,
+				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -51938,8 +51937,9 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
-				EncodingType: 0x4,
-				Zeroing:      true,
+				EncodingType:          0x4,
+				Zeroing:               true,
+				SuppressAllExceptions: true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -52223,8 +52223,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
-				EncodingType:          0x4,
-				SuppressAllExceptions: true,
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -52234,7 +52233,8 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
-				EncodingType: 0x4,
+				EncodingType:          0x4,
+				SuppressAllExceptions: true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -52502,9 +52502,8 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
-				EncodingType:          0x4,
-				Zeroing:               true,
-				SuppressAllExceptions: true,
+				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -52514,8 +52513,9 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
-				EncodingType: 0x4,
-				Zeroing:      true,
+				EncodingType:          0x4,
+				Zeroing:               true,
+				SuppressAllExceptions: true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -52580,8 +52580,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
-				EncodingType:          0x4,
-				SuppressAllExceptions: true,
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -52591,18 +52590,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
-				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "xmm", Action: 0x1},
-					{Type: "xmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "xmm", Action: 0x2},
-				},
 				EncodingType:          0x4,
-				Zeroing:               true,
 				SuppressAllExceptions: true,
 			},
 			{
@@ -52615,6 +52603,18 @@ var Instructions = []Instruction{
 				},
 				EncodingType: 0x4,
 				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType:          0x4,
+				Zeroing:               true,
+				SuppressAllExceptions: true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -52739,8 +52739,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
-				EncodingType:          0x4,
-				SuppressAllExceptions: true,
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -52750,18 +52749,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
-				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x2},
-				},
 				EncodingType:          0x4,
-				Zeroing:               true,
 				SuppressAllExceptions: true,
 			},
 			{
@@ -52774,6 +52762,18 @@ var Instructions = []Instruction{
 				},
 				EncodingType: 0x4,
 				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType:          0x4,
+				Zeroing:               true,
+				SuppressAllExceptions: true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -53057,8 +53057,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
-				EncodingType:          0x4,
-				SuppressAllExceptions: true,
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -53068,18 +53067,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
-				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x2},
-				},
 				EncodingType:          0x4,
-				Zeroing:               true,
 				SuppressAllExceptions: true,
 			},
 			{
@@ -53098,9 +53086,11 @@ var Instructions = []Instruction{
 				Operands: []Operand{
 					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
 				EncodingType:          0x4,
+				Zeroing:               true,
 				SuppressAllExceptions: true,
 			},
 			{
@@ -53111,6 +53101,16 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x2},
 				},
 				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType:          0x4,
+				SuppressAllExceptions: true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -53315,8 +53315,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
-				EncodingType:          0x4,
-				SuppressAllExceptions: true,
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -53326,7 +53325,8 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
-				EncodingType: 0x4,
+				EncodingType:          0x4,
+				SuppressAllExceptions: true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -53414,8 +53414,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
-				EncodingType:          0x4,
-				SuppressAllExceptions: true,
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -53425,7 +53424,8 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
-				EncodingType: 0x4,
+				EncodingType:          0x4,
+				SuppressAllExceptions: true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -57272,9 +57272,8 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
-				EncodingType:     0x4,
-				Zeroing:          true,
-				EmbeddedRounding: true,
+				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -57284,8 +57283,9 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
-				EncodingType: 0x4,
-				Zeroing:      true,
+				EncodingType:     0x4,
+				Zeroing:          true,
+				EmbeddedRounding: true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -57569,8 +57569,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
-				EncodingType:     0x4,
-				EmbeddedRounding: true,
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -57580,7 +57579,8 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
-				EncodingType: 0x4,
+				EncodingType:     0x4,
+				EmbeddedRounding: true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -57612,8 +57612,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
-				EncodingType:     0x4,
-				EmbeddedRounding: true,
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -57622,7 +57621,8 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
-				EncodingType: 0x4,
+				EncodingType:     0x4,
+				EmbeddedRounding: true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -57848,9 +57848,8 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
-				EncodingType:     0x4,
-				Zeroing:          true,
-				EmbeddedRounding: true,
+				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -57860,8 +57859,9 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
-				EncodingType: 0x4,
-				Zeroing:      true,
+				EncodingType:     0x4,
+				Zeroing:          true,
+				EmbeddedRounding: true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -57926,8 +57926,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
-				EncodingType:     0x4,
-				EmbeddedRounding: true,
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -57937,18 +57936,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
-				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "xmm", Action: 0x1},
-					{Type: "xmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "xmm", Action: 0x2},
-				},
 				EncodingType:     0x4,
-				Zeroing:          true,
 				EmbeddedRounding: true,
 			},
 			{
@@ -57961,6 +57949,18 @@ var Instructions = []Instruction{
 				},
 				EncodingType: 0x4,
 				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType:     0x4,
+				Zeroing:          true,
+				EmbeddedRounding: true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -70307,7 +70307,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VBMI"},
@@ -70318,6 +70317,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VBMI"},
@@ -70337,7 +70337,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VBMI"},
@@ -70348,6 +70347,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VBMI"},
@@ -70367,7 +70367,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512VBMI"},
@@ -70378,6 +70377,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512VBMI"},
@@ -70457,7 +70457,6 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512VBMI"},
@@ -70468,6 +70467,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512VBMI"},
@@ -70493,7 +70493,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -70505,6 +70504,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -70526,7 +70526,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -70537,6 +70536,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -70586,7 +70586,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -70597,6 +70596,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -70616,7 +70616,6 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -70627,6 +70626,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -70646,7 +70646,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -70656,38 +70655,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
-				Broadcast:    true,
-			},
-			{
-				ISA: []string{"AVX512VL", "AVX512F"},
-				Operands: []Operand{
-					{Type: "m32", Action: 0x1},
-					{Type: "xmm", Action: 0x1},
-					{Type: "xmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
-				Broadcast:    true,
-			},
-			{
-				ISA: []string{"AVX512VL", "AVX512F"},
-				Operands: []Operand{
-					{Type: "m32", Action: 0x1},
-					{Type: "ymm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "ymm", Action: 0x3},
-				},
-				EncodingType: 0x4,
-				Broadcast:    true,
-			},
-			{
-				ISA: []string{"AVX512VL", "AVX512F"},
-				Operands: []Operand{
-					{Type: "m32", Action: 0x1},
-					{Type: "ymm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
 				Zeroing:      true,
@@ -70697,6 +70664,39 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512VL", "AVX512F"},
 				Operands: []Operand{
 					{Type: "m32", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VL", "AVX512F"},
+				Operands: []Operand{
+					{Type: "m32", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VL", "AVX512F"},
+				Operands: []Operand{
+					{Type: "m32", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VL", "AVX512F"},
+				Operands: []Operand{
+					{Type: "m32", Action: 0x1},
 					{Type: "ymm", Action: 0x1},
 					{Type: "ymm", Action: 0x3},
 				},
@@ -70742,7 +70742,6 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -70753,6 +70752,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -70778,7 +70778,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -70789,6 +70788,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -70871,7 +70871,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -70882,6 +70881,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -70997,7 +70997,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -71008,6 +71007,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -71063,7 +71063,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -71075,6 +71074,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -71126,7 +71126,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -71137,6 +71136,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -71186,7 +71186,6 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -71197,6 +71196,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -71249,7 +71249,6 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -71261,6 +71260,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -71348,7 +71348,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -71359,6 +71358,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -71378,7 +71378,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -71390,6 +71389,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -71663,7 +71663,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512BW"},
@@ -71674,6 +71673,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512BW"},
@@ -71693,7 +71693,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512BW"},
@@ -71704,6 +71703,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512BW"},
@@ -71723,7 +71723,6 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512BW"},
@@ -71734,6 +71733,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512BW"},
@@ -71783,7 +71783,6 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512BW"},
@@ -71794,6 +71793,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512BW"},
@@ -73895,7 +73895,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VBMI"},
@@ -73906,6 +73905,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VBMI"},
@@ -73925,7 +73925,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VBMI"},
@@ -73936,6 +73935,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VBMI"},
@@ -74429,7 +74429,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -74440,6 +74439,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -74459,7 +74459,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -74470,6 +74469,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -74489,7 +74489,6 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -74500,6 +74499,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -74519,7 +74519,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -74529,27 +74528,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
-				Broadcast:    true,
-			},
-			{
-				ISA: []string{"AVX512VL", "AVX512F"},
-				Operands: []Operand{
-					{Type: "m64", Action: 0x1},
-					{Type: "xmm", Action: 0x1},
-					{Type: "xmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
-				Broadcast:    true,
-			},
-			{
-				ISA: []string{"AVX512VL", "AVX512F"},
-				Operands: []Operand{
-					{Type: "m64", Action: 0x1},
-					{Type: "ymm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
 				Zeroing:      true,
@@ -74559,11 +74537,33 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512VL", "AVX512F"},
 				Operands: []Operand{
 					{Type: "m64", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VL", "AVX512F"},
+				Operands: []Operand{
+					{Type: "m64", Action: 0x1},
 					{Type: "ymm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VL", "AVX512F"},
+				Operands: []Operand{
+					{Type: "m64", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -74615,7 +74615,6 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -74626,6 +74625,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -74651,7 +74651,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -74663,6 +74662,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -74684,7 +74684,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -74695,6 +74694,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -74774,7 +74774,6 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -74785,6 +74784,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -74804,7 +74804,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -74814,38 +74813,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
-				Broadcast:    true,
-			},
-			{
-				ISA: []string{"AVX512VL", "AVX512F"},
-				Operands: []Operand{
-					{Type: "m32", Action: 0x1},
-					{Type: "xmm", Action: 0x1},
-					{Type: "xmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
-				Broadcast:    true,
-			},
-			{
-				ISA: []string{"AVX512VL", "AVX512F"},
-				Operands: []Operand{
-					{Type: "m32", Action: 0x1},
-					{Type: "ymm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "ymm", Action: 0x3},
-				},
-				EncodingType: 0x4,
-				Broadcast:    true,
-			},
-			{
-				ISA: []string{"AVX512VL", "AVX512F"},
-				Operands: []Operand{
-					{Type: "m32", Action: 0x1},
-					{Type: "ymm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
 				Zeroing:      true,
@@ -74855,6 +74822,39 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512VL", "AVX512F"},
 				Operands: []Operand{
 					{Type: "m32", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VL", "AVX512F"},
+				Operands: []Operand{
+					{Type: "m32", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VL", "AVX512F"},
+				Operands: []Operand{
+					{Type: "m32", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VL", "AVX512F"},
+				Operands: []Operand{
+					{Type: "m32", Action: 0x1},
 					{Type: "ymm", Action: 0x1},
 					{Type: "ymm", Action: 0x3},
 				},
@@ -74900,7 +74900,6 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -74911,6 +74910,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -74936,7 +74936,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -74947,6 +74946,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -74966,7 +74966,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -74978,6 +74977,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -75059,7 +75059,6 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -75070,6 +75069,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -75122,7 +75122,6 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -75134,6 +75133,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -75155,7 +75155,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -75166,6 +75165,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -75221,7 +75221,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512BW"},
@@ -75232,6 +75231,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512BW"},
@@ -75281,7 +75281,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512BW"},
@@ -75292,6 +75291,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512BW"},
@@ -75371,7 +75371,6 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512BW"},
@@ -75382,6 +75381,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512BW"},
@@ -77129,7 +77129,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512IFMA", "AVX512VL"},
@@ -77140,6 +77139,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512IFMA", "AVX512VL"},
@@ -77159,7 +77159,6 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512IFMA", "AVX512VL"},
@@ -77170,6 +77169,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512IFMA", "AVX512VL"},
@@ -77222,7 +77222,6 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -77234,6 +77233,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -77255,7 +77255,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512IFMA", "AVX512VL"},
@@ -77266,6 +77265,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512IFMA", "AVX512VL"},
@@ -77345,7 +77345,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -77357,6 +77356,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -77378,7 +77378,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512IFMA"},
@@ -77389,6 +77388,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512IFMA"},
@@ -77444,7 +77444,6 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512IFMA", "AVX512VL"},
@@ -77455,6 +77454,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512IFMA", "AVX512VL"},
@@ -77540,7 +77540,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512IFMA", "AVX512VL"},
@@ -77551,6 +77550,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512IFMA", "AVX512VL"},
@@ -77570,7 +77570,6 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512IFMA", "AVX512VL"},
@@ -77581,6 +77580,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512IFMA", "AVX512VL"},
@@ -77600,7 +77600,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512IFMA"},
@@ -77611,6 +77610,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512IFMA"},
@@ -77663,7 +77663,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512IFMA"},
@@ -77674,6 +77673,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512IFMA"},
@@ -101665,7 +101665,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -101678,6 +101677,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -101701,7 +101701,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -101713,6 +101712,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -101767,7 +101767,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -101779,6 +101778,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -101833,7 +101833,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -101846,6 +101845,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 				Broadcast:    true,
 			},
 			{
@@ -101905,7 +101905,6 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -101917,6 +101916,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -102046,7 +102046,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -102058,6 +102057,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -102112,7 +102112,6 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -102124,6 +102123,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -102250,7 +102250,6 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
-				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -102262,6 +102261,7 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x3},
 				},
 				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -106128,9 +106128,8 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
-				EncodingType:          0x4,
-				Zeroing:               true,
-				SuppressAllExceptions: true,
+				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512DQ"},
@@ -106141,8 +106140,9 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
-				EncodingType: 0x4,
-				Zeroing:      true,
+				EncodingType:          0x4,
+				Zeroing:               true,
+				SuppressAllExceptions: true,
 			},
 			{
 				ISA: []string{"AVX512DQ"},
@@ -106453,8 +106453,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
-				EncodingType:          0x4,
-				SuppressAllExceptions: true,
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512DQ"},
@@ -106465,19 +106464,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
-				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512DQ"},
-				Operands: []Operand{
-					{Type: "imm8", Action: 0x0},
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x2},
-				},
 				EncodingType:          0x4,
-				Zeroing:               true,
 				SuppressAllExceptions: true,
 			},
 			{
@@ -106491,6 +106478,19 @@ var Instructions = []Instruction{
 				},
 				EncodingType: 0x4,
 				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512DQ"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType:          0x4,
+				Zeroing:               true,
+				SuppressAllExceptions: true,
 			},
 			{
 				ISA: []string{"AVX512DQ"},
@@ -106765,8 +106765,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
-				EncodingType:          0x4,
-				SuppressAllExceptions: true,
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512DQ"},
@@ -106777,7 +106776,8 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
-				EncodingType: 0x4,
+				EncodingType:          0x4,
+				SuppressAllExceptions: true,
 			},
 			{
 				ISA: []string{"AVX512DQ"},
@@ -106812,8 +106812,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
-				EncodingType:          0x4,
-				SuppressAllExceptions: true,
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512DQ"},
@@ -106823,7 +106822,8 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
-				EncodingType: 0x4,
+				EncodingType:          0x4,
+				SuppressAllExceptions: true,
 			},
 		},
 	},
@@ -106896,9 +106896,8 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
-				EncodingType:          0x4,
-				Zeroing:               true,
-				SuppressAllExceptions: true,
+				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512DQ"},
@@ -106909,8 +106908,9 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
-				EncodingType: 0x4,
-				Zeroing:      true,
+				EncodingType:          0x4,
+				Zeroing:               true,
+				SuppressAllExceptions: true,
 			},
 			{
 				ISA: []string{"AVX512DQ"},
@@ -107651,8 +107651,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
-				EncodingType:          0x4,
-				SuppressAllExceptions: true,
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512ER"},
@@ -107661,17 +107660,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
-				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512ER"},
-				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x2},
-				},
 				EncodingType:          0x4,
-				Zeroing:               true,
 				SuppressAllExceptions: true,
 			},
 			{
@@ -107688,9 +107677,11 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512ER"},
 				Operands: []Operand{
 					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
 				EncodingType:          0x4,
+				Zeroing:               true,
 				SuppressAllExceptions: true,
 			},
 			{
@@ -107700,6 +107691,15 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x2},
 				},
 				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512ER"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType:          0x4,
+				SuppressAllExceptions: true,
 			},
 		},
 	},
@@ -107771,8 +107771,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
-				EncodingType:          0x4,
-				SuppressAllExceptions: true,
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512ER"},
@@ -107781,17 +107780,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
-				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512ER"},
-				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x2},
-				},
 				EncodingType:          0x4,
-				Zeroing:               true,
 				SuppressAllExceptions: true,
 			},
 			{
@@ -107808,9 +107797,11 @@ var Instructions = []Instruction{
 				ISA: []string{"AVX512ER"},
 				Operands: []Operand{
 					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
 				EncodingType:          0x4,
+				Zeroing:               true,
 				SuppressAllExceptions: true,
 			},
 			{
@@ -107820,6 +107811,15 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x2},
 				},
 				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512ER"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType:          0x4,
+				SuppressAllExceptions: true,
 			},
 		},
 	},
@@ -107964,8 +107964,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
-				EncodingType:          0x4,
-				SuppressAllExceptions: true,
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512ER"},
@@ -107975,7 +107974,8 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
-				EncodingType: 0x4,
+				EncodingType:          0x4,
+				SuppressAllExceptions: true,
 			},
 			{
 				ISA: []string{"AVX512ER"},
@@ -108007,8 +108007,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
-				EncodingType:          0x4,
-				SuppressAllExceptions: true,
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512ER"},
@@ -108017,7 +108016,8 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
-				EncodingType: 0x4,
+				EncodingType:          0x4,
+				SuppressAllExceptions: true,
 			},
 		},
 	},
@@ -108893,9 +108893,8 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
-				EncodingType:          0x4,
-				Zeroing:               true,
-				SuppressAllExceptions: true,
+				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -108905,8 +108904,9 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
-				EncodingType: 0x4,
-				Zeroing:      true,
+				EncodingType:          0x4,
+				Zeroing:               true,
+				SuppressAllExceptions: true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -109190,8 +109190,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
-				EncodingType:          0x4,
-				SuppressAllExceptions: true,
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -109201,18 +109200,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
-				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "imm8", Action: 0x0},
-					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x2},
-				},
 				EncodingType:          0x4,
-				Zeroing:               true,
 				SuppressAllExceptions: true,
 			},
 			{
@@ -109225,6 +109213,18 @@ var Instructions = []Instruction{
 				},
 				EncodingType: 0x4,
 				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType:          0x4,
+				Zeroing:               true,
+				SuppressAllExceptions: true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -109634,8 +109634,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
-				EncodingType:          0x4,
-				SuppressAllExceptions: true,
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -109645,7 +109644,8 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
-				EncodingType: 0x4,
+				EncodingType:          0x4,
+				SuppressAllExceptions: true,
 			},
 		},
 	},
@@ -110540,8 +110540,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
-				EncodingType:          0x4,
-				SuppressAllExceptions: true,
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512ER"},
@@ -110549,7 +110548,8 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
-				EncodingType: 0x4,
+				EncodingType:          0x4,
+				SuppressAllExceptions: true,
 			},
 		},
 	},
@@ -110640,9 +110640,8 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
-				EncodingType:          0x4,
-				Zeroing:               true,
-				SuppressAllExceptions: true,
+				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512ER"},
@@ -110651,8 +110650,9 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
-				EncodingType: 0x4,
-				Zeroing:      true,
+				EncodingType:          0x4,
+				Zeroing:               true,
+				SuppressAllExceptions: true,
 			},
 			{
 				ISA: []string{"AVX512ER"},
@@ -110736,9 +110736,8 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
-				EncodingType:          0x4,
-				Zeroing:               true,
-				SuppressAllExceptions: true,
+				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512ER"},
@@ -110748,8 +110747,9 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
-				EncodingType: 0x4,
-				Zeroing:      true,
+				EncodingType:          0x4,
+				Zeroing:               true,
+				SuppressAllExceptions: true,
 			},
 			{
 				ISA: []string{"AVX512ER"},
@@ -110835,9 +110835,8 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
-				EncodingType:          0x4,
-				Zeroing:               true,
-				SuppressAllExceptions: true,
+				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512ER"},
@@ -110847,8 +110846,9 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
-				EncodingType: 0x4,
-				Zeroing:      true,
+				EncodingType:          0x4,
+				Zeroing:               true,
+				SuppressAllExceptions: true,
 			},
 			{
 				ISA: []string{"AVX512ER"},
@@ -111008,8 +111008,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
-				EncodingType:     0x4,
-				EmbeddedRounding: true,
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -111019,7 +111018,8 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
-				EncodingType: 0x4,
+				EncodingType:     0x4,
+				EmbeddedRounding: true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -111051,8 +111051,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
-				EncodingType:     0x4,
-				EmbeddedRounding: true,
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -111061,7 +111060,8 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
-				EncodingType: 0x4,
+				EncodingType:     0x4,
+				EmbeddedRounding: true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -111326,8 +111326,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
-				EncodingType:     0x4,
-				EmbeddedRounding: true,
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -111337,7 +111336,8 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
-				EncodingType: 0x4,
+				EncodingType:     0x4,
+				EmbeddedRounding: true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -111611,8 +111611,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
-				EncodingType:     0x4,
-				EmbeddedRounding: true,
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -111622,7 +111621,8 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
 				},
-				EncodingType: 0x4,
+				EncodingType:     0x4,
+				EmbeddedRounding: true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -111753,8 +111753,7 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
-				EncodingType:     0x4,
-				EmbeddedRounding: true,
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -111763,7 +111762,8 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
-				EncodingType: 0x4,
+				EncodingType:     0x4,
+				EmbeddedRounding: true,
 			},
 		},
 	},
@@ -113463,8 +113463,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
-				EncodingType:     0x4,
-				EmbeddedRounding: true,
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -113473,17 +113472,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
-				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512F"},
-				Operands: []Operand{
-					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x2},
-				},
 				EncodingType:     0x4,
-				Zeroing:          true,
 				EmbeddedRounding: true,
 			},
 			{
@@ -113495,6 +113484,17 @@ var Instructions = []Instruction{
 				},
 				EncodingType: 0x4,
 				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType:     0x4,
+				Zeroing:          true,
+				EmbeddedRounding: true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -113751,8 +113751,7 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
-				EncodingType:     0x4,
-				EmbeddedRounding: true,
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -113761,7 +113760,8 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x3},
 				},
-				EncodingType: 0x4,
+				EncodingType:     0x4,
+				EmbeddedRounding: true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -113790,8 +113790,7 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
-				EncodingType:     0x4,
-				EmbeddedRounding: true,
+				EncodingType: 0x4,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -113799,7 +113798,8 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
-				EncodingType: 0x4,
+				EncodingType:     0x4,
+				EmbeddedRounding: true,
 			},
 			{
 				ISA: []string{"AVX512VL", "AVX512F"},
@@ -114011,9 +114011,8 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
-				EncodingType:     0x4,
-				Zeroing:          true,
-				EmbeddedRounding: true,
+				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -114023,8 +114022,9 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
-				EncodingType: 0x4,
-				Zeroing:      true,
+				EncodingType:     0x4,
+				Zeroing:          true,
+				EmbeddedRounding: true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -114110,9 +114110,8 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
-				EncodingType:     0x4,
-				Zeroing:          true,
-				EmbeddedRounding: true,
+				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -114122,8 +114121,9 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
-				EncodingType: 0x4,
-				Zeroing:      true,
+				EncodingType:     0x4,
+				Zeroing:          true,
+				EmbeddedRounding: true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -114282,9 +114282,8 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
-				EncodingType:     0x4,
-				Zeroing:          true,
-				EmbeddedRounding: true,
+				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -114294,8 +114293,9 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
 				},
-				EncodingType: 0x4,
-				Zeroing:      true,
+				EncodingType:     0x4,
+				Zeroing:          true,
+				EmbeddedRounding: true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -114957,9 +114957,8 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
-				EncodingType:     0x4,
-				Zeroing:          true,
-				EmbeddedRounding: true,
+				EncodingType: 0x4,
+				Zeroing:      true,
 			},
 			{
 				ISA: []string{"AVX512F"},
@@ -114969,8 +114968,9 @@ var Instructions = []Instruction{
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
-				EncodingType: 0x4,
-				Zeroing:      true,
+				EncodingType:     0x4,
+				Zeroing:          true,
+				EmbeddedRounding: true,
 			},
 			{
 				ISA: []string{"AVX512F"},
