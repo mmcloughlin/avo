@@ -160,7 +160,7 @@ func (l Loader) include(f opcodesxml.Form) bool {
 		case "TBM", "CLZERO", "FMA4", "XOP", "SSE4A", "3dnow!", "3dnow!+":
 			return false
 		// Partial support for AVX-512.
-		case "AVX512IFMA", "AVX512PF", "AVX512VBMI", "AVX512VPOPCNTDQ":
+		case "AVX512PF", "AVX512VBMI", "AVX512VPOPCNTDQ":
 			return false
 		// Incomplete support for some prefetching instructions.
 		case "PREFETCH", "PREFETCHW", "PREFETCHWT1", "CLWB":

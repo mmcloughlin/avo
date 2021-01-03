@@ -51000,6 +51000,300 @@ func TestVPLZCNTQ_ZValidForms(t *testing.T) {
 	})
 }
 
+func TestVPMADD52HUQValidForms(t *testing.T) {
+	t.Run("form=m128/m64bcst_xmm_k_xmm", func(t *testing.T) {
+		if _, err := VPMADD52HUQ(operand.Mem{Base: reg.RBX, Index: reg.RCX, Scale: 8}, reg.X7, reg.K7, reg.X7); err != nil {
+			t.Fatal(err)
+		}
+	})
+	t.Run("form=m128/m64bcst_xmm_xmm", func(t *testing.T) {
+		if _, err := VPMADD52HUQ(operand.Mem{Base: reg.RBX, Index: reg.RCX, Scale: 8}, reg.X7, reg.X7); err != nil {
+			t.Fatal(err)
+		}
+	})
+	t.Run("form=m256/m64bcst_ymm_k_ymm", func(t *testing.T) {
+		if _, err := VPMADD52HUQ(operand.Mem{Base: reg.RBX, Index: reg.RCX, Scale: 8}, reg.Y15, reg.K7, reg.Y15); err != nil {
+			t.Fatal(err)
+		}
+	})
+	t.Run("form=m256/m64bcst_ymm_ymm", func(t *testing.T) {
+		if _, err := VPMADD52HUQ(operand.Mem{Base: reg.RBX, Index: reg.RCX, Scale: 8}, reg.Y15, reg.Y15); err != nil {
+			t.Fatal(err)
+		}
+	})
+	t.Run("form=xmm_xmm_k_xmm", func(t *testing.T) {
+		if _, err := VPMADD52HUQ(reg.X7, reg.X7, reg.K7, reg.X7); err != nil {
+			t.Fatal(err)
+		}
+	})
+	t.Run("form=xmm_xmm_xmm", func(t *testing.T) {
+		if _, err := VPMADD52HUQ(reg.X7, reg.X7, reg.X7); err != nil {
+			t.Fatal(err)
+		}
+	})
+	t.Run("form=ymm_ymm_k_ymm", func(t *testing.T) {
+		if _, err := VPMADD52HUQ(reg.Y15, reg.Y15, reg.K7, reg.Y15); err != nil {
+			t.Fatal(err)
+		}
+	})
+	t.Run("form=ymm_ymm_ymm", func(t *testing.T) {
+		if _, err := VPMADD52HUQ(reg.Y15, reg.Y15, reg.Y15); err != nil {
+			t.Fatal(err)
+		}
+	})
+	t.Run("form=m512/m64bcst_zmm_k_zmm", func(t *testing.T) {
+		if _, err := VPMADD52HUQ(operand.Mem{Base: reg.RBX, Index: reg.RCX, Scale: 8}, reg.Z31, reg.K7, reg.Z31); err != nil {
+			t.Fatal(err)
+		}
+	})
+	t.Run("form=m512/m64bcst_zmm_zmm", func(t *testing.T) {
+		if _, err := VPMADD52HUQ(operand.Mem{Base: reg.RBX, Index: reg.RCX, Scale: 8}, reg.Z31, reg.Z31); err != nil {
+			t.Fatal(err)
+		}
+	})
+	t.Run("form=zmm_zmm_k_zmm", func(t *testing.T) {
+		if _, err := VPMADD52HUQ(reg.Z31, reg.Z31, reg.K7, reg.Z31); err != nil {
+			t.Fatal(err)
+		}
+	})
+	t.Run("form=zmm_zmm_zmm", func(t *testing.T) {
+		if _, err := VPMADD52HUQ(reg.Z31, reg.Z31, reg.Z31); err != nil {
+			t.Fatal(err)
+		}
+	})
+}
+
+func TestVPMADD52HUQ_BCSTValidForms(t *testing.T) {
+	t.Run("form=m128/m64bcst_xmm_k_xmm", func(t *testing.T) {
+		if _, err := VPMADD52HUQ_BCST(operand.Mem{Base: reg.RBX, Index: reg.RCX, Scale: 8}, reg.X7, reg.K7, reg.X7); err != nil {
+			t.Fatal(err)
+		}
+	})
+	t.Run("form=m128/m64bcst_xmm_xmm", func(t *testing.T) {
+		if _, err := VPMADD52HUQ_BCST(operand.Mem{Base: reg.RBX, Index: reg.RCX, Scale: 8}, reg.X7, reg.X7); err != nil {
+			t.Fatal(err)
+		}
+	})
+	t.Run("form=m256/m64bcst_ymm_k_ymm", func(t *testing.T) {
+		if _, err := VPMADD52HUQ_BCST(operand.Mem{Base: reg.RBX, Index: reg.RCX, Scale: 8}, reg.Y15, reg.K7, reg.Y15); err != nil {
+			t.Fatal(err)
+		}
+	})
+	t.Run("form=m256/m64bcst_ymm_ymm", func(t *testing.T) {
+		if _, err := VPMADD52HUQ_BCST(operand.Mem{Base: reg.RBX, Index: reg.RCX, Scale: 8}, reg.Y15, reg.Y15); err != nil {
+			t.Fatal(err)
+		}
+	})
+	t.Run("form=m512/m64bcst_zmm_k_zmm", func(t *testing.T) {
+		if _, err := VPMADD52HUQ_BCST(operand.Mem{Base: reg.RBX, Index: reg.RCX, Scale: 8}, reg.Z31, reg.K7, reg.Z31); err != nil {
+			t.Fatal(err)
+		}
+	})
+	t.Run("form=m512/m64bcst_zmm_zmm", func(t *testing.T) {
+		if _, err := VPMADD52HUQ_BCST(operand.Mem{Base: reg.RBX, Index: reg.RCX, Scale: 8}, reg.Z31, reg.Z31); err != nil {
+			t.Fatal(err)
+		}
+	})
+}
+
+func TestVPMADD52HUQ_BCST_ZValidForms(t *testing.T) {
+	t.Run("form=m128/m64bcst_xmm_k_xmm", func(t *testing.T) {
+		if _, err := VPMADD52HUQ_BCST_Z(operand.Mem{Base: reg.RBX, Index: reg.RCX, Scale: 8}, reg.X7, reg.K7, reg.X7); err != nil {
+			t.Fatal(err)
+		}
+	})
+	t.Run("form=m256/m64bcst_ymm_k_ymm", func(t *testing.T) {
+		if _, err := VPMADD52HUQ_BCST_Z(operand.Mem{Base: reg.RBX, Index: reg.RCX, Scale: 8}, reg.Y15, reg.K7, reg.Y15); err != nil {
+			t.Fatal(err)
+		}
+	})
+	t.Run("form=m512/m64bcst_zmm_k_zmm", func(t *testing.T) {
+		if _, err := VPMADD52HUQ_BCST_Z(operand.Mem{Base: reg.RBX, Index: reg.RCX, Scale: 8}, reg.Z31, reg.K7, reg.Z31); err != nil {
+			t.Fatal(err)
+		}
+	})
+}
+
+func TestVPMADD52HUQ_ZValidForms(t *testing.T) {
+	t.Run("form=m128/m64bcst_xmm_k_xmm", func(t *testing.T) {
+		if _, err := VPMADD52HUQ_Z(operand.Mem{Base: reg.RBX, Index: reg.RCX, Scale: 8}, reg.X7, reg.K7, reg.X7); err != nil {
+			t.Fatal(err)
+		}
+	})
+	t.Run("form=m256/m64bcst_ymm_k_ymm", func(t *testing.T) {
+		if _, err := VPMADD52HUQ_Z(operand.Mem{Base: reg.RBX, Index: reg.RCX, Scale: 8}, reg.Y15, reg.K7, reg.Y15); err != nil {
+			t.Fatal(err)
+		}
+	})
+	t.Run("form=xmm_xmm_k_xmm", func(t *testing.T) {
+		if _, err := VPMADD52HUQ_Z(reg.X7, reg.X7, reg.K7, reg.X7); err != nil {
+			t.Fatal(err)
+		}
+	})
+	t.Run("form=ymm_ymm_k_ymm", func(t *testing.T) {
+		if _, err := VPMADD52HUQ_Z(reg.Y15, reg.Y15, reg.K7, reg.Y15); err != nil {
+			t.Fatal(err)
+		}
+	})
+	t.Run("form=m512/m64bcst_zmm_k_zmm", func(t *testing.T) {
+		if _, err := VPMADD52HUQ_Z(operand.Mem{Base: reg.RBX, Index: reg.RCX, Scale: 8}, reg.Z31, reg.K7, reg.Z31); err != nil {
+			t.Fatal(err)
+		}
+	})
+	t.Run("form=zmm_zmm_k_zmm", func(t *testing.T) {
+		if _, err := VPMADD52HUQ_Z(reg.Z31, reg.Z31, reg.K7, reg.Z31); err != nil {
+			t.Fatal(err)
+		}
+	})
+}
+
+func TestVPMADD52LUQValidForms(t *testing.T) {
+	t.Run("form=m128/m64bcst_xmm_k_xmm", func(t *testing.T) {
+		if _, err := VPMADD52LUQ(operand.Mem{Base: reg.RBX, Index: reg.RCX, Scale: 8}, reg.X7, reg.K7, reg.X7); err != nil {
+			t.Fatal(err)
+		}
+	})
+	t.Run("form=m128/m64bcst_xmm_xmm", func(t *testing.T) {
+		if _, err := VPMADD52LUQ(operand.Mem{Base: reg.RBX, Index: reg.RCX, Scale: 8}, reg.X7, reg.X7); err != nil {
+			t.Fatal(err)
+		}
+	})
+	t.Run("form=m256/m64bcst_ymm_k_ymm", func(t *testing.T) {
+		if _, err := VPMADD52LUQ(operand.Mem{Base: reg.RBX, Index: reg.RCX, Scale: 8}, reg.Y15, reg.K7, reg.Y15); err != nil {
+			t.Fatal(err)
+		}
+	})
+	t.Run("form=m256/m64bcst_ymm_ymm", func(t *testing.T) {
+		if _, err := VPMADD52LUQ(operand.Mem{Base: reg.RBX, Index: reg.RCX, Scale: 8}, reg.Y15, reg.Y15); err != nil {
+			t.Fatal(err)
+		}
+	})
+	t.Run("form=xmm_xmm_k_xmm", func(t *testing.T) {
+		if _, err := VPMADD52LUQ(reg.X7, reg.X7, reg.K7, reg.X7); err != nil {
+			t.Fatal(err)
+		}
+	})
+	t.Run("form=xmm_xmm_xmm", func(t *testing.T) {
+		if _, err := VPMADD52LUQ(reg.X7, reg.X7, reg.X7); err != nil {
+			t.Fatal(err)
+		}
+	})
+	t.Run("form=ymm_ymm_k_ymm", func(t *testing.T) {
+		if _, err := VPMADD52LUQ(reg.Y15, reg.Y15, reg.K7, reg.Y15); err != nil {
+			t.Fatal(err)
+		}
+	})
+	t.Run("form=ymm_ymm_ymm", func(t *testing.T) {
+		if _, err := VPMADD52LUQ(reg.Y15, reg.Y15, reg.Y15); err != nil {
+			t.Fatal(err)
+		}
+	})
+	t.Run("form=m512/m64bcst_zmm_k_zmm", func(t *testing.T) {
+		if _, err := VPMADD52LUQ(operand.Mem{Base: reg.RBX, Index: reg.RCX, Scale: 8}, reg.Z31, reg.K7, reg.Z31); err != nil {
+			t.Fatal(err)
+		}
+	})
+	t.Run("form=m512/m64bcst_zmm_zmm", func(t *testing.T) {
+		if _, err := VPMADD52LUQ(operand.Mem{Base: reg.RBX, Index: reg.RCX, Scale: 8}, reg.Z31, reg.Z31); err != nil {
+			t.Fatal(err)
+		}
+	})
+	t.Run("form=zmm_zmm_k_zmm", func(t *testing.T) {
+		if _, err := VPMADD52LUQ(reg.Z31, reg.Z31, reg.K7, reg.Z31); err != nil {
+			t.Fatal(err)
+		}
+	})
+	t.Run("form=zmm_zmm_zmm", func(t *testing.T) {
+		if _, err := VPMADD52LUQ(reg.Z31, reg.Z31, reg.Z31); err != nil {
+			t.Fatal(err)
+		}
+	})
+}
+
+func TestVPMADD52LUQ_BCSTValidForms(t *testing.T) {
+	t.Run("form=m128/m64bcst_xmm_k_xmm", func(t *testing.T) {
+		if _, err := VPMADD52LUQ_BCST(operand.Mem{Base: reg.RBX, Index: reg.RCX, Scale: 8}, reg.X7, reg.K7, reg.X7); err != nil {
+			t.Fatal(err)
+		}
+	})
+	t.Run("form=m128/m64bcst_xmm_xmm", func(t *testing.T) {
+		if _, err := VPMADD52LUQ_BCST(operand.Mem{Base: reg.RBX, Index: reg.RCX, Scale: 8}, reg.X7, reg.X7); err != nil {
+			t.Fatal(err)
+		}
+	})
+	t.Run("form=m256/m64bcst_ymm_k_ymm", func(t *testing.T) {
+		if _, err := VPMADD52LUQ_BCST(operand.Mem{Base: reg.RBX, Index: reg.RCX, Scale: 8}, reg.Y15, reg.K7, reg.Y15); err != nil {
+			t.Fatal(err)
+		}
+	})
+	t.Run("form=m256/m64bcst_ymm_ymm", func(t *testing.T) {
+		if _, err := VPMADD52LUQ_BCST(operand.Mem{Base: reg.RBX, Index: reg.RCX, Scale: 8}, reg.Y15, reg.Y15); err != nil {
+			t.Fatal(err)
+		}
+	})
+	t.Run("form=m512/m64bcst_zmm_k_zmm", func(t *testing.T) {
+		if _, err := VPMADD52LUQ_BCST(operand.Mem{Base: reg.RBX, Index: reg.RCX, Scale: 8}, reg.Z31, reg.K7, reg.Z31); err != nil {
+			t.Fatal(err)
+		}
+	})
+	t.Run("form=m512/m64bcst_zmm_zmm", func(t *testing.T) {
+		if _, err := VPMADD52LUQ_BCST(operand.Mem{Base: reg.RBX, Index: reg.RCX, Scale: 8}, reg.Z31, reg.Z31); err != nil {
+			t.Fatal(err)
+		}
+	})
+}
+
+func TestVPMADD52LUQ_BCST_ZValidForms(t *testing.T) {
+	t.Run("form=m128/m64bcst_xmm_k_xmm", func(t *testing.T) {
+		if _, err := VPMADD52LUQ_BCST_Z(operand.Mem{Base: reg.RBX, Index: reg.RCX, Scale: 8}, reg.X7, reg.K7, reg.X7); err != nil {
+			t.Fatal(err)
+		}
+	})
+	t.Run("form=m256/m64bcst_ymm_k_ymm", func(t *testing.T) {
+		if _, err := VPMADD52LUQ_BCST_Z(operand.Mem{Base: reg.RBX, Index: reg.RCX, Scale: 8}, reg.Y15, reg.K7, reg.Y15); err != nil {
+			t.Fatal(err)
+		}
+	})
+	t.Run("form=m512/m64bcst_zmm_k_zmm", func(t *testing.T) {
+		if _, err := VPMADD52LUQ_BCST_Z(operand.Mem{Base: reg.RBX, Index: reg.RCX, Scale: 8}, reg.Z31, reg.K7, reg.Z31); err != nil {
+			t.Fatal(err)
+		}
+	})
+}
+
+func TestVPMADD52LUQ_ZValidForms(t *testing.T) {
+	t.Run("form=m128/m64bcst_xmm_k_xmm", func(t *testing.T) {
+		if _, err := VPMADD52LUQ_Z(operand.Mem{Base: reg.RBX, Index: reg.RCX, Scale: 8}, reg.X7, reg.K7, reg.X7); err != nil {
+			t.Fatal(err)
+		}
+	})
+	t.Run("form=m256/m64bcst_ymm_k_ymm", func(t *testing.T) {
+		if _, err := VPMADD52LUQ_Z(operand.Mem{Base: reg.RBX, Index: reg.RCX, Scale: 8}, reg.Y15, reg.K7, reg.Y15); err != nil {
+			t.Fatal(err)
+		}
+	})
+	t.Run("form=xmm_xmm_k_xmm", func(t *testing.T) {
+		if _, err := VPMADD52LUQ_Z(reg.X7, reg.X7, reg.K7, reg.X7); err != nil {
+			t.Fatal(err)
+		}
+	})
+	t.Run("form=ymm_ymm_k_ymm", func(t *testing.T) {
+		if _, err := VPMADD52LUQ_Z(reg.Y15, reg.Y15, reg.K7, reg.Y15); err != nil {
+			t.Fatal(err)
+		}
+	})
+	t.Run("form=m512/m64bcst_zmm_k_zmm", func(t *testing.T) {
+		if _, err := VPMADD52LUQ_Z(operand.Mem{Base: reg.RBX, Index: reg.RCX, Scale: 8}, reg.Z31, reg.K7, reg.Z31); err != nil {
+			t.Fatal(err)
+		}
+	})
+	t.Run("form=zmm_zmm_k_zmm", func(t *testing.T) {
+		if _, err := VPMADD52LUQ_Z(reg.Z31, reg.Z31, reg.K7, reg.Z31); err != nil {
+			t.Fatal(err)
+		}
+	})
+}
+
 func TestVPMADDUBSWValidForms(t *testing.T) {
 	t.Run("form=m256_ymm_ymm", func(t *testing.T) {
 		if _, err := VPMADDUBSW(operand.Mem{Base: reg.RBX, Index: reg.RCX, Scale: 8}, reg.Y15, reg.Y15); err != nil {

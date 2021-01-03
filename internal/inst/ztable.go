@@ -50934,6 +50934,270 @@ var Instructions = []Instruction{
 		},
 	},
 	{
+		Opcode:  "VPMADD52HUQ",
+		Summary: "Packed Multiply of Unsigned 52-bit Unsigned Integers and Add High 52-bit Products to Quadword Accumulators",
+		Forms: []Form{
+			{
+				ISA: []string{"AVX512IFMA", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m128/m64bcst", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512IFMA", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m128/m64bcst", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512IFMA", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m256/m64bcst", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512IFMA", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m256/m64bcst", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512IFMA", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512IFMA", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512IFMA", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512IFMA", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512IFMA"},
+				Operands: []Operand{
+					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512IFMA"},
+				Operands: []Operand{
+					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512IFMA"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512IFMA"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+		},
+	},
+	{
+		Opcode:  "VPMADD52LUQ",
+		Summary: "Packed Multiply of Unsigned 52-bit Integers and Add the Low 52-bit Products to Quadword Accumulators",
+		Forms: []Form{
+			{
+				ISA: []string{"AVX512IFMA", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m128/m64bcst", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512IFMA", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m128/m64bcst", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512IFMA", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m256/m64bcst", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512IFMA", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m256/m64bcst", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512IFMA", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512IFMA", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512IFMA", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512IFMA", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512IFMA"},
+				Operands: []Operand{
+					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512IFMA"},
+				Operands: []Operand{
+					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512IFMA"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512IFMA"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+		},
+	},
+	{
 		Opcode:  "VPMADDUBSW",
 		Summary: "Multiply and Add Packed Signed and Unsigned Byte Integers",
 		Forms: []Form{
