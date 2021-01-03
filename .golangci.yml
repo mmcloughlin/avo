@@ -1,17 +1,20 @@
+run:
+  timeout: 10m
+
 linters:
   enable-all: true
   disable:
-  - funlen
-  - maligned
-  - lll
-  - gosec
-  - prealloc
-  - unparam
-  - gochecknoglobals
-  - gochecknoinits
-  - gomnd
-  - wsl
-  - godox
+    - funlen
+    - maligned
+    - lll
+    - gosec
+    - prealloc
+    - unparam
+    - gochecknoglobals
+    - gochecknoinits
+    - gomnd
+    - wsl
+    - godox
 
 linters-settings:
   depguard:
@@ -26,4 +29,6 @@ issues:
     # errcheck: Almost all programs ignore errors on these functions and in most cases it's ok
     - Error return value of .((os\.)?std(out|err)\..*|.*Close|.*Flush|os\.Remove(All)?|.*printf?|os\.(Un)?Setenv). is not checked
     # gocritic: https://github.com/go-critic/go-critic/issues/762
-    - ' with `(len|cap|real|imag)`'
+    - " with `(len|cap|real|imag)`"
+    # We want to allow all caps in certain cases.
+    - "ALL_CAPS in Go names"

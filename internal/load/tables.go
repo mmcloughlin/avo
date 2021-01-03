@@ -96,7 +96,7 @@ func init() {
 }
 
 // maskrequired is a set of AVX-512 opcodes where the mask register is required.
-// Usually the mask register can be ommitted, in which case K0 is implied.
+// Usually the mask register can be omitted, in which case K0 is implied.
 var maskrequired = map[string]bool{
 	// Reference: https://github.com/golang/go/blob/4fd94558820100129b98f284e21b19fc27a99926/src/cmd/internal/obj/x86/asm6.go#L4219-L4240
 	//

@@ -6,7 +6,10 @@ import (
 )
 
 const (
-	Package     = "github.com/mmcloughlin/avo"
+	// Package is the avo package import path.
+	Package = "github.com/mmcloughlin/avo"
+
+	// OperandType is the type used for operands.
 	OperandType = "operand.Op"
 )
 
