@@ -3,6 +3,7 @@ package gen
 import (
 	"bytes"
 	"fmt"
+	"sort"
 	"strings"
 
 	"github.com/mmcloughlin/avo/internal/api"
@@ -61,7 +62,12 @@ func (c *ctors) forms(fn *api.Function, s api.Signature) {
 		return
 	}
 
-	c.Printf("switch {\n")
+	// Generate switch cases.
+	type Case struct {
+		Conditions  []string
+		Instruction string
+	}
+	groups := map[string]*Case{}
 
 	for _, f := range fn.Forms {
 		var conds []string
@@ -76,11 +82,34 @@ func (c *ctors) forms(fn *api.Function, s api.Signature) {
 			conds = append(conds, checktype)
 		}
 
-		c.Printf("case %s:\n", strings.Join(conds, " && "))
-		c.Printf("return &%s, nil\n", construct(fn, f, s))
+		cond := strings.Join(conds, " && ")
+		instruction := construct(fn, f, s)
+
+		if _, ok := groups[instruction]; !ok {
+			groups[instruction] = &Case{Instruction: instruction}
+		}
+		groups[instruction].Conditions = append(groups[instruction].Conditions, cond)
+
 	}
 
+	// Collect in slice. (Sorted for reproducibility.)
+	var cases []*Case
+	for _, cse := range groups {
+		cases = append(cases, cse)
+	}
+
+	sort.Slice(cases, func(i, j int) bool {
+		return cases[i].Instruction < cases[j].Instruction
+	})
+
+	// Output switch statement.
+	c.Printf("switch {\n")
+	for _, cse := range cases {
+		c.Printf("case %s:\n", strings.Join(cse.Conditions, ",\n"))
+		c.Printf("return &%s, nil\n", cse.Instruction)
+	}
 	c.Printf("}\n")
+
 	c.Printf("return nil, errors.New(\"%s: bad operands\")\n", fn.Name())
 }
 
