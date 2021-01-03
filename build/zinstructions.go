@@ -73827,6 +73827,210 @@ func (c *Context) VPMULUDQ_Z(mxyz, xyz, k, xyz1 operand.Op) {
 // Operates on the global context.
 func VPMULUDQ_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPMULUDQ_Z(mxyz, xyz, k, xyz1) }
 
+// VPOPCNTD: Packed Population Count for Doubleword Integers.
+//
+// Forms:
+//
+// 	VPOPCNTD m512/m32bcst k zmm
+// 	VPOPCNTD m512/m32bcst zmm
+// 	VPOPCNTD zmm          k zmm
+// 	VPOPCNTD zmm          zmm
+// Construct and append a VPOPCNTD instruction to the active function.
+func (c *Context) VPOPCNTD(ops ...operand.Op) {
+	if inst, err := x86.VPOPCNTD(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPOPCNTD: Packed Population Count for Doubleword Integers.
+//
+// Forms:
+//
+// 	VPOPCNTD m512/m32bcst k zmm
+// 	VPOPCNTD m512/m32bcst zmm
+// 	VPOPCNTD zmm          k zmm
+// 	VPOPCNTD zmm          zmm
+// Construct and append a VPOPCNTD instruction to the active function.
+// Operates on the global context.
+func VPOPCNTD(ops ...operand.Op) { ctx.VPOPCNTD(ops...) }
+
+// VPOPCNTD_BCST: Packed Population Count for Doubleword Integers (Broadcast).
+//
+// Forms:
+//
+// 	VPOPCNTD.BCST m512/m32bcst k zmm
+// 	VPOPCNTD.BCST m512/m32bcst zmm
+// Construct and append a VPOPCNTD.BCST instruction to the active function.
+func (c *Context) VPOPCNTD_BCST(ops ...operand.Op) {
+	if inst, err := x86.VPOPCNTD_BCST(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPOPCNTD_BCST: Packed Population Count for Doubleword Integers (Broadcast).
+//
+// Forms:
+//
+// 	VPOPCNTD.BCST m512/m32bcst k zmm
+// 	VPOPCNTD.BCST m512/m32bcst zmm
+// Construct and append a VPOPCNTD.BCST instruction to the active function.
+// Operates on the global context.
+func VPOPCNTD_BCST(ops ...operand.Op) { ctx.VPOPCNTD_BCST(ops...) }
+
+// VPOPCNTD_BCST_Z: Packed Population Count for Doubleword Integers (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VPOPCNTD.BCST.Z m512/m32bcst k zmm
+// Construct and append a VPOPCNTD.BCST.Z instruction to the active function.
+func (c *Context) VPOPCNTD_BCST_Z(m, k, z operand.Op) {
+	if inst, err := x86.VPOPCNTD_BCST_Z(m, k, z); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPOPCNTD_BCST_Z: Packed Population Count for Doubleword Integers (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VPOPCNTD.BCST.Z m512/m32bcst k zmm
+// Construct and append a VPOPCNTD.BCST.Z instruction to the active function.
+// Operates on the global context.
+func VPOPCNTD_BCST_Z(m, k, z operand.Op) { ctx.VPOPCNTD_BCST_Z(m, k, z) }
+
+// VPOPCNTD_Z: Packed Population Count for Doubleword Integers (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPOPCNTD.Z m512/m32bcst k zmm
+// 	VPOPCNTD.Z zmm          k zmm
+// Construct and append a VPOPCNTD.Z instruction to the active function.
+func (c *Context) VPOPCNTD_Z(mz, k, z operand.Op) {
+	if inst, err := x86.VPOPCNTD_Z(mz, k, z); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPOPCNTD_Z: Packed Population Count for Doubleword Integers (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPOPCNTD.Z m512/m32bcst k zmm
+// 	VPOPCNTD.Z zmm          k zmm
+// Construct and append a VPOPCNTD.Z instruction to the active function.
+// Operates on the global context.
+func VPOPCNTD_Z(mz, k, z operand.Op) { ctx.VPOPCNTD_Z(mz, k, z) }
+
+// VPOPCNTQ: Packed Population Count for Quadword Integers.
+//
+// Forms:
+//
+// 	VPOPCNTQ m512/m64bcst k zmm
+// 	VPOPCNTQ m512/m64bcst zmm
+// 	VPOPCNTQ zmm          k zmm
+// 	VPOPCNTQ zmm          zmm
+// Construct and append a VPOPCNTQ instruction to the active function.
+func (c *Context) VPOPCNTQ(ops ...operand.Op) {
+	if inst, err := x86.VPOPCNTQ(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPOPCNTQ: Packed Population Count for Quadword Integers.
+//
+// Forms:
+//
+// 	VPOPCNTQ m512/m64bcst k zmm
+// 	VPOPCNTQ m512/m64bcst zmm
+// 	VPOPCNTQ zmm          k zmm
+// 	VPOPCNTQ zmm          zmm
+// Construct and append a VPOPCNTQ instruction to the active function.
+// Operates on the global context.
+func VPOPCNTQ(ops ...operand.Op) { ctx.VPOPCNTQ(ops...) }
+
+// VPOPCNTQ_BCST: Packed Population Count for Quadword Integers (Broadcast).
+//
+// Forms:
+//
+// 	VPOPCNTQ.BCST m512/m64bcst k zmm
+// 	VPOPCNTQ.BCST m512/m64bcst zmm
+// Construct and append a VPOPCNTQ.BCST instruction to the active function.
+func (c *Context) VPOPCNTQ_BCST(ops ...operand.Op) {
+	if inst, err := x86.VPOPCNTQ_BCST(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPOPCNTQ_BCST: Packed Population Count for Quadword Integers (Broadcast).
+//
+// Forms:
+//
+// 	VPOPCNTQ.BCST m512/m64bcst k zmm
+// 	VPOPCNTQ.BCST m512/m64bcst zmm
+// Construct and append a VPOPCNTQ.BCST instruction to the active function.
+// Operates on the global context.
+func VPOPCNTQ_BCST(ops ...operand.Op) { ctx.VPOPCNTQ_BCST(ops...) }
+
+// VPOPCNTQ_BCST_Z: Packed Population Count for Quadword Integers (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VPOPCNTQ.BCST.Z m512/m64bcst k zmm
+// Construct and append a VPOPCNTQ.BCST.Z instruction to the active function.
+func (c *Context) VPOPCNTQ_BCST_Z(m, k, z operand.Op) {
+	if inst, err := x86.VPOPCNTQ_BCST_Z(m, k, z); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPOPCNTQ_BCST_Z: Packed Population Count for Quadword Integers (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VPOPCNTQ.BCST.Z m512/m64bcst k zmm
+// Construct and append a VPOPCNTQ.BCST.Z instruction to the active function.
+// Operates on the global context.
+func VPOPCNTQ_BCST_Z(m, k, z operand.Op) { ctx.VPOPCNTQ_BCST_Z(m, k, z) }
+
+// VPOPCNTQ_Z: Packed Population Count for Quadword Integers (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPOPCNTQ.Z m512/m64bcst k zmm
+// 	VPOPCNTQ.Z zmm          k zmm
+// Construct and append a VPOPCNTQ.Z instruction to the active function.
+func (c *Context) VPOPCNTQ_Z(mz, k, z operand.Op) {
+	if inst, err := x86.VPOPCNTQ_Z(mz, k, z); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPOPCNTQ_Z: Packed Population Count for Quadword Integers (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPOPCNTQ.Z m512/m64bcst k zmm
+// 	VPOPCNTQ.Z zmm          k zmm
+// Construct and append a VPOPCNTQ.Z instruction to the active function.
+// Operates on the global context.
+func VPOPCNTQ_Z(mz, k, z operand.Op) { ctx.VPOPCNTQ_Z(mz, k, z) }
+
 // VPOR: Packed Bitwise Logical OR.
 //
 // Forms:
