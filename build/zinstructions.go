@@ -67764,6 +67764,282 @@ func (c *Context) VPLZCNTQ_Z(mxyz, k, xyz operand.Op) {
 // Operates on the global context.
 func VPLZCNTQ_Z(mxyz, k, xyz operand.Op) { ctx.VPLZCNTQ_Z(mxyz, k, xyz) }
 
+// VPMADD52HUQ: Packed Multiply of Unsigned 52-bit Unsigned Integers and Add High 52-bit Products to Quadword Accumulators.
+//
+// Forms:
+//
+// 	VPMADD52HUQ m128/m64bcst xmm k xmm
+// 	VPMADD52HUQ m128/m64bcst xmm xmm
+// 	VPMADD52HUQ m256/m64bcst ymm k ymm
+// 	VPMADD52HUQ m256/m64bcst ymm ymm
+// 	VPMADD52HUQ xmm          xmm k xmm
+// 	VPMADD52HUQ xmm          xmm xmm
+// 	VPMADD52HUQ ymm          ymm k ymm
+// 	VPMADD52HUQ ymm          ymm ymm
+// 	VPMADD52HUQ m512/m64bcst zmm k zmm
+// 	VPMADD52HUQ m512/m64bcst zmm zmm
+// 	VPMADD52HUQ zmm          zmm k zmm
+// 	VPMADD52HUQ zmm          zmm zmm
+// Construct and append a VPMADD52HUQ instruction to the active function.
+func (c *Context) VPMADD52HUQ(ops ...operand.Op) {
+	if inst, err := x86.VPMADD52HUQ(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPMADD52HUQ: Packed Multiply of Unsigned 52-bit Unsigned Integers and Add High 52-bit Products to Quadword Accumulators.
+//
+// Forms:
+//
+// 	VPMADD52HUQ m128/m64bcst xmm k xmm
+// 	VPMADD52HUQ m128/m64bcst xmm xmm
+// 	VPMADD52HUQ m256/m64bcst ymm k ymm
+// 	VPMADD52HUQ m256/m64bcst ymm ymm
+// 	VPMADD52HUQ xmm          xmm k xmm
+// 	VPMADD52HUQ xmm          xmm xmm
+// 	VPMADD52HUQ ymm          ymm k ymm
+// 	VPMADD52HUQ ymm          ymm ymm
+// 	VPMADD52HUQ m512/m64bcst zmm k zmm
+// 	VPMADD52HUQ m512/m64bcst zmm zmm
+// 	VPMADD52HUQ zmm          zmm k zmm
+// 	VPMADD52HUQ zmm          zmm zmm
+// Construct and append a VPMADD52HUQ instruction to the active function.
+// Operates on the global context.
+func VPMADD52HUQ(ops ...operand.Op) { ctx.VPMADD52HUQ(ops...) }
+
+// VPMADD52HUQ_BCST: Packed Multiply of Unsigned 52-bit Unsigned Integers and Add High 52-bit Products to Quadword Accumulators (Broadcast).
+//
+// Forms:
+//
+// 	VPMADD52HUQ.BCST m128/m64bcst xmm k xmm
+// 	VPMADD52HUQ.BCST m128/m64bcst xmm xmm
+// 	VPMADD52HUQ.BCST m256/m64bcst ymm k ymm
+// 	VPMADD52HUQ.BCST m256/m64bcst ymm ymm
+// 	VPMADD52HUQ.BCST m512/m64bcst zmm k zmm
+// 	VPMADD52HUQ.BCST m512/m64bcst zmm zmm
+// Construct and append a VPMADD52HUQ.BCST instruction to the active function.
+func (c *Context) VPMADD52HUQ_BCST(ops ...operand.Op) {
+	if inst, err := x86.VPMADD52HUQ_BCST(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPMADD52HUQ_BCST: Packed Multiply of Unsigned 52-bit Unsigned Integers and Add High 52-bit Products to Quadword Accumulators (Broadcast).
+//
+// Forms:
+//
+// 	VPMADD52HUQ.BCST m128/m64bcst xmm k xmm
+// 	VPMADD52HUQ.BCST m128/m64bcst xmm xmm
+// 	VPMADD52HUQ.BCST m256/m64bcst ymm k ymm
+// 	VPMADD52HUQ.BCST m256/m64bcst ymm ymm
+// 	VPMADD52HUQ.BCST m512/m64bcst zmm k zmm
+// 	VPMADD52HUQ.BCST m512/m64bcst zmm zmm
+// Construct and append a VPMADD52HUQ.BCST instruction to the active function.
+// Operates on the global context.
+func VPMADD52HUQ_BCST(ops ...operand.Op) { ctx.VPMADD52HUQ_BCST(ops...) }
+
+// VPMADD52HUQ_BCST_Z: Packed Multiply of Unsigned 52-bit Unsigned Integers and Add High 52-bit Products to Quadword Accumulators (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VPMADD52HUQ.BCST.Z m128/m64bcst xmm k xmm
+// 	VPMADD52HUQ.BCST.Z m256/m64bcst ymm k ymm
+// 	VPMADD52HUQ.BCST.Z m512/m64bcst zmm k zmm
+// Construct and append a VPMADD52HUQ.BCST.Z instruction to the active function.
+func (c *Context) VPMADD52HUQ_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPMADD52HUQ_BCST_Z(m, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPMADD52HUQ_BCST_Z: Packed Multiply of Unsigned 52-bit Unsigned Integers and Add High 52-bit Products to Quadword Accumulators (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VPMADD52HUQ.BCST.Z m128/m64bcst xmm k xmm
+// 	VPMADD52HUQ.BCST.Z m256/m64bcst ymm k ymm
+// 	VPMADD52HUQ.BCST.Z m512/m64bcst zmm k zmm
+// Construct and append a VPMADD52HUQ.BCST.Z instruction to the active function.
+// Operates on the global context.
+func VPMADD52HUQ_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VPMADD52HUQ_BCST_Z(m, xyz, k, xyz1) }
+
+// VPMADD52HUQ_Z: Packed Multiply of Unsigned 52-bit Unsigned Integers and Add High 52-bit Products to Quadword Accumulators (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPMADD52HUQ.Z m128/m64bcst xmm k xmm
+// 	VPMADD52HUQ.Z m256/m64bcst ymm k ymm
+// 	VPMADD52HUQ.Z xmm          xmm k xmm
+// 	VPMADD52HUQ.Z ymm          ymm k ymm
+// 	VPMADD52HUQ.Z m512/m64bcst zmm k zmm
+// 	VPMADD52HUQ.Z zmm          zmm k zmm
+// Construct and append a VPMADD52HUQ.Z instruction to the active function.
+func (c *Context) VPMADD52HUQ_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPMADD52HUQ_Z(mxyz, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPMADD52HUQ_Z: Packed Multiply of Unsigned 52-bit Unsigned Integers and Add High 52-bit Products to Quadword Accumulators (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPMADD52HUQ.Z m128/m64bcst xmm k xmm
+// 	VPMADD52HUQ.Z m256/m64bcst ymm k ymm
+// 	VPMADD52HUQ.Z xmm          xmm k xmm
+// 	VPMADD52HUQ.Z ymm          ymm k ymm
+// 	VPMADD52HUQ.Z m512/m64bcst zmm k zmm
+// 	VPMADD52HUQ.Z zmm          zmm k zmm
+// Construct and append a VPMADD52HUQ.Z instruction to the active function.
+// Operates on the global context.
+func VPMADD52HUQ_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPMADD52HUQ_Z(mxyz, xyz, k, xyz1) }
+
+// VPMADD52LUQ: Packed Multiply of Unsigned 52-bit Integers and Add the Low 52-bit Products to Quadword Accumulators.
+//
+// Forms:
+//
+// 	VPMADD52LUQ m128/m64bcst xmm k xmm
+// 	VPMADD52LUQ m128/m64bcst xmm xmm
+// 	VPMADD52LUQ m256/m64bcst ymm k ymm
+// 	VPMADD52LUQ m256/m64bcst ymm ymm
+// 	VPMADD52LUQ xmm          xmm k xmm
+// 	VPMADD52LUQ xmm          xmm xmm
+// 	VPMADD52LUQ ymm          ymm k ymm
+// 	VPMADD52LUQ ymm          ymm ymm
+// 	VPMADD52LUQ m512/m64bcst zmm k zmm
+// 	VPMADD52LUQ m512/m64bcst zmm zmm
+// 	VPMADD52LUQ zmm          zmm k zmm
+// 	VPMADD52LUQ zmm          zmm zmm
+// Construct and append a VPMADD52LUQ instruction to the active function.
+func (c *Context) VPMADD52LUQ(ops ...operand.Op) {
+	if inst, err := x86.VPMADD52LUQ(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPMADD52LUQ: Packed Multiply of Unsigned 52-bit Integers and Add the Low 52-bit Products to Quadword Accumulators.
+//
+// Forms:
+//
+// 	VPMADD52LUQ m128/m64bcst xmm k xmm
+// 	VPMADD52LUQ m128/m64bcst xmm xmm
+// 	VPMADD52LUQ m256/m64bcst ymm k ymm
+// 	VPMADD52LUQ m256/m64bcst ymm ymm
+// 	VPMADD52LUQ xmm          xmm k xmm
+// 	VPMADD52LUQ xmm          xmm xmm
+// 	VPMADD52LUQ ymm          ymm k ymm
+// 	VPMADD52LUQ ymm          ymm ymm
+// 	VPMADD52LUQ m512/m64bcst zmm k zmm
+// 	VPMADD52LUQ m512/m64bcst zmm zmm
+// 	VPMADD52LUQ zmm          zmm k zmm
+// 	VPMADD52LUQ zmm          zmm zmm
+// Construct and append a VPMADD52LUQ instruction to the active function.
+// Operates on the global context.
+func VPMADD52LUQ(ops ...operand.Op) { ctx.VPMADD52LUQ(ops...) }
+
+// VPMADD52LUQ_BCST: Packed Multiply of Unsigned 52-bit Integers and Add the Low 52-bit Products to Quadword Accumulators (Broadcast).
+//
+// Forms:
+//
+// 	VPMADD52LUQ.BCST m128/m64bcst xmm k xmm
+// 	VPMADD52LUQ.BCST m128/m64bcst xmm xmm
+// 	VPMADD52LUQ.BCST m256/m64bcst ymm k ymm
+// 	VPMADD52LUQ.BCST m256/m64bcst ymm ymm
+// 	VPMADD52LUQ.BCST m512/m64bcst zmm k zmm
+// 	VPMADD52LUQ.BCST m512/m64bcst zmm zmm
+// Construct and append a VPMADD52LUQ.BCST instruction to the active function.
+func (c *Context) VPMADD52LUQ_BCST(ops ...operand.Op) {
+	if inst, err := x86.VPMADD52LUQ_BCST(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPMADD52LUQ_BCST: Packed Multiply of Unsigned 52-bit Integers and Add the Low 52-bit Products to Quadword Accumulators (Broadcast).
+//
+// Forms:
+//
+// 	VPMADD52LUQ.BCST m128/m64bcst xmm k xmm
+// 	VPMADD52LUQ.BCST m128/m64bcst xmm xmm
+// 	VPMADD52LUQ.BCST m256/m64bcst ymm k ymm
+// 	VPMADD52LUQ.BCST m256/m64bcst ymm ymm
+// 	VPMADD52LUQ.BCST m512/m64bcst zmm k zmm
+// 	VPMADD52LUQ.BCST m512/m64bcst zmm zmm
+// Construct and append a VPMADD52LUQ.BCST instruction to the active function.
+// Operates on the global context.
+func VPMADD52LUQ_BCST(ops ...operand.Op) { ctx.VPMADD52LUQ_BCST(ops...) }
+
+// VPMADD52LUQ_BCST_Z: Packed Multiply of Unsigned 52-bit Integers and Add the Low 52-bit Products to Quadword Accumulators (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VPMADD52LUQ.BCST.Z m128/m64bcst xmm k xmm
+// 	VPMADD52LUQ.BCST.Z m256/m64bcst ymm k ymm
+// 	VPMADD52LUQ.BCST.Z m512/m64bcst zmm k zmm
+// Construct and append a VPMADD52LUQ.BCST.Z instruction to the active function.
+func (c *Context) VPMADD52LUQ_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPMADD52LUQ_BCST_Z(m, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPMADD52LUQ_BCST_Z: Packed Multiply of Unsigned 52-bit Integers and Add the Low 52-bit Products to Quadword Accumulators (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VPMADD52LUQ.BCST.Z m128/m64bcst xmm k xmm
+// 	VPMADD52LUQ.BCST.Z m256/m64bcst ymm k ymm
+// 	VPMADD52LUQ.BCST.Z m512/m64bcst zmm k zmm
+// Construct and append a VPMADD52LUQ.BCST.Z instruction to the active function.
+// Operates on the global context.
+func VPMADD52LUQ_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VPMADD52LUQ_BCST_Z(m, xyz, k, xyz1) }
+
+// VPMADD52LUQ_Z: Packed Multiply of Unsigned 52-bit Integers and Add the Low 52-bit Products to Quadword Accumulators (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPMADD52LUQ.Z m128/m64bcst xmm k xmm
+// 	VPMADD52LUQ.Z m256/m64bcst ymm k ymm
+// 	VPMADD52LUQ.Z xmm          xmm k xmm
+// 	VPMADD52LUQ.Z ymm          ymm k ymm
+// 	VPMADD52LUQ.Z m512/m64bcst zmm k zmm
+// 	VPMADD52LUQ.Z zmm          zmm k zmm
+// Construct and append a VPMADD52LUQ.Z instruction to the active function.
+func (c *Context) VPMADD52LUQ_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPMADD52LUQ_Z(mxyz, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPMADD52LUQ_Z: Packed Multiply of Unsigned 52-bit Integers and Add the Low 52-bit Products to Quadword Accumulators (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPMADD52LUQ.Z m128/m64bcst xmm k xmm
+// 	VPMADD52LUQ.Z m256/m64bcst ymm k ymm
+// 	VPMADD52LUQ.Z xmm          xmm k xmm
+// 	VPMADD52LUQ.Z ymm          ymm k ymm
+// 	VPMADD52LUQ.Z m512/m64bcst zmm k zmm
+// 	VPMADD52LUQ.Z zmm          zmm k zmm
+// Construct and append a VPMADD52LUQ.Z instruction to the active function.
+// Operates on the global context.
+func VPMADD52LUQ_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPMADD52LUQ_Z(mxyz, xyz, k, xyz1) }
+
 // VPMADDUBSW: Multiply and Add Packed Signed and Unsigned Byte Integers.
 //
 // Forms:
