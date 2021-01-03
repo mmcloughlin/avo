@@ -6537,6 +6537,121 @@ func (c *Context) JZ(r operand.Op) {
 // Operates on the global context.
 func JZ(r operand.Op) { ctx.JZ(r) }
 
+// KADDD: ADD Two 32-bit Masks.
+//
+// Forms:
+//
+// 	KADDD k k k
+// Construct and append a KADDD instruction to the active function.
+func (c *Context) KADDD(k, k1, k2 operand.Op) {
+	if inst, err := x86.KADDD(k, k1, k2); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// KADDD: ADD Two 32-bit Masks.
+//
+// Forms:
+//
+// 	KADDD k k k
+// Construct and append a KADDD instruction to the active function.
+// Operates on the global context.
+func KADDD(k, k1, k2 operand.Op) { ctx.KADDD(k, k1, k2) }
+
+// KADDQ: ADD Two 64-bit Masks.
+//
+// Forms:
+//
+// 	KADDQ k k k
+// Construct and append a KADDQ instruction to the active function.
+func (c *Context) KADDQ(k, k1, k2 operand.Op) {
+	if inst, err := x86.KADDQ(k, k1, k2); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// KADDQ: ADD Two 64-bit Masks.
+//
+// Forms:
+//
+// 	KADDQ k k k
+// Construct and append a KADDQ instruction to the active function.
+// Operates on the global context.
+func KADDQ(k, k1, k2 operand.Op) { ctx.KADDQ(k, k1, k2) }
+
+// KANDD: Bitwise Logical AND 32-bit Masks.
+//
+// Forms:
+//
+// 	KANDD k k k
+// Construct and append a KANDD instruction to the active function.
+func (c *Context) KANDD(k, k1, k2 operand.Op) {
+	if inst, err := x86.KANDD(k, k1, k2); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// KANDD: Bitwise Logical AND 32-bit Masks.
+//
+// Forms:
+//
+// 	KANDD k k k
+// Construct and append a KANDD instruction to the active function.
+// Operates on the global context.
+func KANDD(k, k1, k2 operand.Op) { ctx.KANDD(k, k1, k2) }
+
+// KANDND: Bitwise Logical AND NOT 32-bit Masks.
+//
+// Forms:
+//
+// 	KANDND k k k
+// Construct and append a KANDND instruction to the active function.
+func (c *Context) KANDND(k, k1, k2 operand.Op) {
+	if inst, err := x86.KANDND(k, k1, k2); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// KANDND: Bitwise Logical AND NOT 32-bit Masks.
+//
+// Forms:
+//
+// 	KANDND k k k
+// Construct and append a KANDND instruction to the active function.
+// Operates on the global context.
+func KANDND(k, k1, k2 operand.Op) { ctx.KANDND(k, k1, k2) }
+
+// KANDNQ: Bitwise Logical AND NOT 64-bit Masks.
+//
+// Forms:
+//
+// 	KANDNQ k k k
+// Construct and append a KANDNQ instruction to the active function.
+func (c *Context) KANDNQ(k, k1, k2 operand.Op) {
+	if inst, err := x86.KANDNQ(k, k1, k2); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// KANDNQ: Bitwise Logical AND NOT 64-bit Masks.
+//
+// Forms:
+//
+// 	KANDNQ k k k
+// Construct and append a KANDNQ instruction to the active function.
+// Operates on the global context.
+func KANDNQ(k, k1, k2 operand.Op) { ctx.KANDNQ(k, k1, k2) }
+
 // KANDNW: Bitwise Logical AND NOT 16-bit Masks.
 //
 // Forms:
@@ -6560,6 +6675,29 @@ func (c *Context) KANDNW(k, k1, k2 operand.Op) {
 // Operates on the global context.
 func KANDNW(k, k1, k2 operand.Op) { ctx.KANDNW(k, k1, k2) }
 
+// KANDQ: Bitwise Logical AND 64-bit Masks.
+//
+// Forms:
+//
+// 	KANDQ k k k
+// Construct and append a KANDQ instruction to the active function.
+func (c *Context) KANDQ(k, k1, k2 operand.Op) {
+	if inst, err := x86.KANDQ(k, k1, k2); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// KANDQ: Bitwise Logical AND 64-bit Masks.
+//
+// Forms:
+//
+// 	KANDQ k k k
+// Construct and append a KANDQ instruction to the active function.
+// Operates on the global context.
+func KANDQ(k, k1, k2 operand.Op) { ctx.KANDQ(k, k1, k2) }
+
 // KANDW: Bitwise Logical AND 16-bit Masks.
 //
 // Forms:
@@ -6582,6 +6720,68 @@ func (c *Context) KANDW(k, k1, k2 operand.Op) {
 // Construct and append a KANDW instruction to the active function.
 // Operates on the global context.
 func KANDW(k, k1, k2 operand.Op) { ctx.KANDW(k, k1, k2) }
+
+// KMOVD: Move 32-bit Mask.
+//
+// Forms:
+//
+// 	KMOVD k   k
+// 	KMOVD k   m32
+// 	KMOVD k   r32
+// 	KMOVD m32 k
+// 	KMOVD r32 k
+// Construct and append a KMOVD instruction to the active function.
+func (c *Context) KMOVD(kmr, kmr1 operand.Op) {
+	if inst, err := x86.KMOVD(kmr, kmr1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// KMOVD: Move 32-bit Mask.
+//
+// Forms:
+//
+// 	KMOVD k   k
+// 	KMOVD k   m32
+// 	KMOVD k   r32
+// 	KMOVD m32 k
+// 	KMOVD r32 k
+// Construct and append a KMOVD instruction to the active function.
+// Operates on the global context.
+func KMOVD(kmr, kmr1 operand.Op) { ctx.KMOVD(kmr, kmr1) }
+
+// KMOVQ: Move 64-bit Mask.
+//
+// Forms:
+//
+// 	KMOVQ k   k
+// 	KMOVQ k   m64
+// 	KMOVQ k   r64
+// 	KMOVQ m64 k
+// 	KMOVQ r64 k
+// Construct and append a KMOVQ instruction to the active function.
+func (c *Context) KMOVQ(kmr, kmr1 operand.Op) {
+	if inst, err := x86.KMOVQ(kmr, kmr1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// KMOVQ: Move 64-bit Mask.
+//
+// Forms:
+//
+// 	KMOVQ k   k
+// 	KMOVQ k   m64
+// 	KMOVQ k   r64
+// 	KMOVQ m64 k
+// 	KMOVQ r64 k
+// Construct and append a KMOVQ instruction to the active function.
+// Operates on the global context.
+func KMOVQ(kmr, kmr1 operand.Op) { ctx.KMOVQ(kmr, kmr1) }
 
 // KMOVW: Move 16-bit Mask.
 //
@@ -6614,6 +6814,52 @@ func (c *Context) KMOVW(kmr, kmr1 operand.Op) {
 // Operates on the global context.
 func KMOVW(kmr, kmr1 operand.Op) { ctx.KMOVW(kmr, kmr1) }
 
+// KNOTD: NOT 32-bit Mask Register.
+//
+// Forms:
+//
+// 	KNOTD k k
+// Construct and append a KNOTD instruction to the active function.
+func (c *Context) KNOTD(k, k1 operand.Op) {
+	if inst, err := x86.KNOTD(k, k1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// KNOTD: NOT 32-bit Mask Register.
+//
+// Forms:
+//
+// 	KNOTD k k
+// Construct and append a KNOTD instruction to the active function.
+// Operates on the global context.
+func KNOTD(k, k1 operand.Op) { ctx.KNOTD(k, k1) }
+
+// KNOTQ: NOT 64-bit Mask Register.
+//
+// Forms:
+//
+// 	KNOTQ k k
+// Construct and append a KNOTQ instruction to the active function.
+func (c *Context) KNOTQ(k, k1 operand.Op) {
+	if inst, err := x86.KNOTQ(k, k1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// KNOTQ: NOT 64-bit Mask Register.
+//
+// Forms:
+//
+// 	KNOTQ k k
+// Construct and append a KNOTQ instruction to the active function.
+// Operates on the global context.
+func KNOTQ(k, k1 operand.Op) { ctx.KNOTQ(k, k1) }
+
 // KNOTW: NOT 16-bit Mask Register.
 //
 // Forms:
@@ -6636,6 +6882,98 @@ func (c *Context) KNOTW(k, k1 operand.Op) {
 // Construct and append a KNOTW instruction to the active function.
 // Operates on the global context.
 func KNOTW(k, k1 operand.Op) { ctx.KNOTW(k, k1) }
+
+// KORD: Bitwise Logical OR 32-bit Masks.
+//
+// Forms:
+//
+// 	KORD k k k
+// Construct and append a KORD instruction to the active function.
+func (c *Context) KORD(k, k1, k2 operand.Op) {
+	if inst, err := x86.KORD(k, k1, k2); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// KORD: Bitwise Logical OR 32-bit Masks.
+//
+// Forms:
+//
+// 	KORD k k k
+// Construct and append a KORD instruction to the active function.
+// Operates on the global context.
+func KORD(k, k1, k2 operand.Op) { ctx.KORD(k, k1, k2) }
+
+// KORQ: Bitwise Logical OR 64-bit Masks.
+//
+// Forms:
+//
+// 	KORQ k k k
+// Construct and append a KORQ instruction to the active function.
+func (c *Context) KORQ(k, k1, k2 operand.Op) {
+	if inst, err := x86.KORQ(k, k1, k2); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// KORQ: Bitwise Logical OR 64-bit Masks.
+//
+// Forms:
+//
+// 	KORQ k k k
+// Construct and append a KORQ instruction to the active function.
+// Operates on the global context.
+func KORQ(k, k1, k2 operand.Op) { ctx.KORQ(k, k1, k2) }
+
+// KORTESTD: OR 32-bit Masks and Set Flags.
+//
+// Forms:
+//
+// 	KORTESTD k k
+// Construct and append a KORTESTD instruction to the active function.
+func (c *Context) KORTESTD(k, k1 operand.Op) {
+	if inst, err := x86.KORTESTD(k, k1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// KORTESTD: OR 32-bit Masks and Set Flags.
+//
+// Forms:
+//
+// 	KORTESTD k k
+// Construct and append a KORTESTD instruction to the active function.
+// Operates on the global context.
+func KORTESTD(k, k1 operand.Op) { ctx.KORTESTD(k, k1) }
+
+// KORTESTQ: OR 64-bit Masks and Set Flags.
+//
+// Forms:
+//
+// 	KORTESTQ k k
+// Construct and append a KORTESTQ instruction to the active function.
+func (c *Context) KORTESTQ(k, k1 operand.Op) {
+	if inst, err := x86.KORTESTQ(k, k1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// KORTESTQ: OR 64-bit Masks and Set Flags.
+//
+// Forms:
+//
+// 	KORTESTQ k k
+// Construct and append a KORTESTQ instruction to the active function.
+// Operates on the global context.
+func KORTESTQ(k, k1 operand.Op) { ctx.KORTESTQ(k, k1) }
 
 // KORTESTW: OR 16-bit Masks and Set Flags.
 //
@@ -6683,6 +7021,52 @@ func (c *Context) KORW(k, k1, k2 operand.Op) {
 // Operates on the global context.
 func KORW(k, k1, k2 operand.Op) { ctx.KORW(k, k1, k2) }
 
+// KSHIFTLD: Shift Left 32-bit Masks.
+//
+// Forms:
+//
+// 	KSHIFTLD imm8 k k
+// Construct and append a KSHIFTLD instruction to the active function.
+func (c *Context) KSHIFTLD(i, k, k1 operand.Op) {
+	if inst, err := x86.KSHIFTLD(i, k, k1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// KSHIFTLD: Shift Left 32-bit Masks.
+//
+// Forms:
+//
+// 	KSHIFTLD imm8 k k
+// Construct and append a KSHIFTLD instruction to the active function.
+// Operates on the global context.
+func KSHIFTLD(i, k, k1 operand.Op) { ctx.KSHIFTLD(i, k, k1) }
+
+// KSHIFTLQ: Shift Left 64-bit Masks.
+//
+// Forms:
+//
+// 	KSHIFTLQ imm8 k k
+// Construct and append a KSHIFTLQ instruction to the active function.
+func (c *Context) KSHIFTLQ(i, k, k1 operand.Op) {
+	if inst, err := x86.KSHIFTLQ(i, k, k1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// KSHIFTLQ: Shift Left 64-bit Masks.
+//
+// Forms:
+//
+// 	KSHIFTLQ imm8 k k
+// Construct and append a KSHIFTLQ instruction to the active function.
+// Operates on the global context.
+func KSHIFTLQ(i, k, k1 operand.Op) { ctx.KSHIFTLQ(i, k, k1) }
+
 // KSHIFTLW: Shift Left 16-bit Masks.
 //
 // Forms:
@@ -6705,6 +7089,52 @@ func (c *Context) KSHIFTLW(i, k, k1 operand.Op) {
 // Construct and append a KSHIFTLW instruction to the active function.
 // Operates on the global context.
 func KSHIFTLW(i, k, k1 operand.Op) { ctx.KSHIFTLW(i, k, k1) }
+
+// KSHIFTRD: Shift Right 32-bit Masks.
+//
+// Forms:
+//
+// 	KSHIFTRD imm8 k k
+// Construct and append a KSHIFTRD instruction to the active function.
+func (c *Context) KSHIFTRD(i, k, k1 operand.Op) {
+	if inst, err := x86.KSHIFTRD(i, k, k1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// KSHIFTRD: Shift Right 32-bit Masks.
+//
+// Forms:
+//
+// 	KSHIFTRD imm8 k k
+// Construct and append a KSHIFTRD instruction to the active function.
+// Operates on the global context.
+func KSHIFTRD(i, k, k1 operand.Op) { ctx.KSHIFTRD(i, k, k1) }
+
+// KSHIFTRQ: Shift Right 64-bit Masks.
+//
+// Forms:
+//
+// 	KSHIFTRQ imm8 k k
+// Construct and append a KSHIFTRQ instruction to the active function.
+func (c *Context) KSHIFTRQ(i, k, k1 operand.Op) {
+	if inst, err := x86.KSHIFTRQ(i, k, k1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// KSHIFTRQ: Shift Right 64-bit Masks.
+//
+// Forms:
+//
+// 	KSHIFTRQ imm8 k k
+// Construct and append a KSHIFTRQ instruction to the active function.
+// Operates on the global context.
+func KSHIFTRQ(i, k, k1 operand.Op) { ctx.KSHIFTRQ(i, k, k1) }
 
 // KSHIFTRW: Shift Right 16-bit Masks.
 //
@@ -6729,6 +7159,52 @@ func (c *Context) KSHIFTRW(i, k, k1 operand.Op) {
 // Operates on the global context.
 func KSHIFTRW(i, k, k1 operand.Op) { ctx.KSHIFTRW(i, k, k1) }
 
+// KTESTD: Bit Test 32-bit Masks and Set Flags.
+//
+// Forms:
+//
+// 	KTESTD k k
+// Construct and append a KTESTD instruction to the active function.
+func (c *Context) KTESTD(k, k1 operand.Op) {
+	if inst, err := x86.KTESTD(k, k1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// KTESTD: Bit Test 32-bit Masks and Set Flags.
+//
+// Forms:
+//
+// 	KTESTD k k
+// Construct and append a KTESTD instruction to the active function.
+// Operates on the global context.
+func KTESTD(k, k1 operand.Op) { ctx.KTESTD(k, k1) }
+
+// KTESTQ: Bit Test 64-bit Masks and Set Flags.
+//
+// Forms:
+//
+// 	KTESTQ k k
+// Construct and append a KTESTQ instruction to the active function.
+func (c *Context) KTESTQ(k, k1 operand.Op) {
+	if inst, err := x86.KTESTQ(k, k1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// KTESTQ: Bit Test 64-bit Masks and Set Flags.
+//
+// Forms:
+//
+// 	KTESTQ k k
+// Construct and append a KTESTQ instruction to the active function.
+// Operates on the global context.
+func KTESTQ(k, k1 operand.Op) { ctx.KTESTQ(k, k1) }
+
 // KUNPCKBW: Unpack and Interleave 8-bit Masks.
 //
 // Forms:
@@ -6752,6 +7228,98 @@ func (c *Context) KUNPCKBW(k, k1, k2 operand.Op) {
 // Operates on the global context.
 func KUNPCKBW(k, k1, k2 operand.Op) { ctx.KUNPCKBW(k, k1, k2) }
 
+// KUNPCKDQ: Unpack and Interleave 32-bit Masks.
+//
+// Forms:
+//
+// 	KUNPCKDQ k k k
+// Construct and append a KUNPCKDQ instruction to the active function.
+func (c *Context) KUNPCKDQ(k, k1, k2 operand.Op) {
+	if inst, err := x86.KUNPCKDQ(k, k1, k2); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// KUNPCKDQ: Unpack and Interleave 32-bit Masks.
+//
+// Forms:
+//
+// 	KUNPCKDQ k k k
+// Construct and append a KUNPCKDQ instruction to the active function.
+// Operates on the global context.
+func KUNPCKDQ(k, k1, k2 operand.Op) { ctx.KUNPCKDQ(k, k1, k2) }
+
+// KUNPCKWD: Unpack and Interleave 16-bit Masks.
+//
+// Forms:
+//
+// 	KUNPCKWD k k k
+// Construct and append a KUNPCKWD instruction to the active function.
+func (c *Context) KUNPCKWD(k, k1, k2 operand.Op) {
+	if inst, err := x86.KUNPCKWD(k, k1, k2); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// KUNPCKWD: Unpack and Interleave 16-bit Masks.
+//
+// Forms:
+//
+// 	KUNPCKWD k k k
+// Construct and append a KUNPCKWD instruction to the active function.
+// Operates on the global context.
+func KUNPCKWD(k, k1, k2 operand.Op) { ctx.KUNPCKWD(k, k1, k2) }
+
+// KXNORD: Bitwise Logical XNOR 32-bit Masks.
+//
+// Forms:
+//
+// 	KXNORD k k k
+// Construct and append a KXNORD instruction to the active function.
+func (c *Context) KXNORD(k, k1, k2 operand.Op) {
+	if inst, err := x86.KXNORD(k, k1, k2); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// KXNORD: Bitwise Logical XNOR 32-bit Masks.
+//
+// Forms:
+//
+// 	KXNORD k k k
+// Construct and append a KXNORD instruction to the active function.
+// Operates on the global context.
+func KXNORD(k, k1, k2 operand.Op) { ctx.KXNORD(k, k1, k2) }
+
+// KXNORQ: Bitwise Logical XNOR 64-bit Masks.
+//
+// Forms:
+//
+// 	KXNORQ k k k
+// Construct and append a KXNORQ instruction to the active function.
+func (c *Context) KXNORQ(k, k1, k2 operand.Op) {
+	if inst, err := x86.KXNORQ(k, k1, k2); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// KXNORQ: Bitwise Logical XNOR 64-bit Masks.
+//
+// Forms:
+//
+// 	KXNORQ k k k
+// Construct and append a KXNORQ instruction to the active function.
+// Operates on the global context.
+func KXNORQ(k, k1, k2 operand.Op) { ctx.KXNORQ(k, k1, k2) }
+
 // KXNORW: Bitwise Logical XNOR 16-bit Masks.
 //
 // Forms:
@@ -6774,6 +7342,52 @@ func (c *Context) KXNORW(k, k1, k2 operand.Op) {
 // Construct and append a KXNORW instruction to the active function.
 // Operates on the global context.
 func KXNORW(k, k1, k2 operand.Op) { ctx.KXNORW(k, k1, k2) }
+
+// KXORD: Bitwise Logical XOR 32-bit Masks.
+//
+// Forms:
+//
+// 	KXORD k k k
+// Construct and append a KXORD instruction to the active function.
+func (c *Context) KXORD(k, k1, k2 operand.Op) {
+	if inst, err := x86.KXORD(k, k1, k2); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// KXORD: Bitwise Logical XOR 32-bit Masks.
+//
+// Forms:
+//
+// 	KXORD k k k
+// Construct and append a KXORD instruction to the active function.
+// Operates on the global context.
+func KXORD(k, k1, k2 operand.Op) { ctx.KXORD(k, k1, k2) }
+
+// KXORQ: Bitwise Logical XOR 64-bit Masks.
+//
+// Forms:
+//
+// 	KXORQ k k k
+// Construct and append a KXORQ instruction to the active function.
+func (c *Context) KXORQ(k, k1, k2 operand.Op) {
+	if inst, err := x86.KXORQ(k, k1, k2); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// KXORQ: Bitwise Logical XOR 64-bit Masks.
+//
+// Forms:
+//
+// 	KXORQ k k k
+// Construct and append a KXORQ instruction to the active function.
+// Operates on the global context.
+func KXORQ(k, k1, k2 operand.Op) { ctx.KXORQ(k, k1, k2) }
 
 // KXORW: Bitwise Logical XOR 16-bit Masks.
 //
@@ -26316,6 +26930,84 @@ func (c *Context) VCVTUSI2SSQ_RZ_SAE(r, x, x1 operand.Op) {
 // Construct and append a VCVTUSI2SSQ.RZ_SAE instruction to the active function.
 // Operates on the global context.
 func VCVTUSI2SSQ_RZ_SAE(r, x, x1 operand.Op) { ctx.VCVTUSI2SSQ_RZ_SAE(r, x, x1) }
+
+// VDBPSADBW: Double Block Packed Sum-Absolute-Differences on Unsigned Bytes.
+//
+// Forms:
+//
+// 	VDBPSADBW imm8 m512 zmm k zmm
+// 	VDBPSADBW imm8 m512 zmm zmm
+// 	VDBPSADBW imm8 zmm  zmm k zmm
+// 	VDBPSADBW imm8 zmm  zmm zmm
+// 	VDBPSADBW imm8 m128 xmm k xmm
+// 	VDBPSADBW imm8 m128 xmm xmm
+// 	VDBPSADBW imm8 m256 ymm k ymm
+// 	VDBPSADBW imm8 m256 ymm ymm
+// 	VDBPSADBW imm8 xmm  xmm k xmm
+// 	VDBPSADBW imm8 xmm  xmm xmm
+// 	VDBPSADBW imm8 ymm  ymm k ymm
+// 	VDBPSADBW imm8 ymm  ymm ymm
+// Construct and append a VDBPSADBW instruction to the active function.
+func (c *Context) VDBPSADBW(ops ...operand.Op) {
+	if inst, err := x86.VDBPSADBW(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VDBPSADBW: Double Block Packed Sum-Absolute-Differences on Unsigned Bytes.
+//
+// Forms:
+//
+// 	VDBPSADBW imm8 m512 zmm k zmm
+// 	VDBPSADBW imm8 m512 zmm zmm
+// 	VDBPSADBW imm8 zmm  zmm k zmm
+// 	VDBPSADBW imm8 zmm  zmm zmm
+// 	VDBPSADBW imm8 m128 xmm k xmm
+// 	VDBPSADBW imm8 m128 xmm xmm
+// 	VDBPSADBW imm8 m256 ymm k ymm
+// 	VDBPSADBW imm8 m256 ymm ymm
+// 	VDBPSADBW imm8 xmm  xmm k xmm
+// 	VDBPSADBW imm8 xmm  xmm xmm
+// 	VDBPSADBW imm8 ymm  ymm k ymm
+// 	VDBPSADBW imm8 ymm  ymm ymm
+// Construct and append a VDBPSADBW instruction to the active function.
+// Operates on the global context.
+func VDBPSADBW(ops ...operand.Op) { ctx.VDBPSADBW(ops...) }
+
+// VDBPSADBW_Z: Double Block Packed Sum-Absolute-Differences on Unsigned Bytes (Zeroing Masking).
+//
+// Forms:
+//
+// 	VDBPSADBW.Z imm8 m512 zmm k zmm
+// 	VDBPSADBW.Z imm8 zmm  zmm k zmm
+// 	VDBPSADBW.Z imm8 m128 xmm k xmm
+// 	VDBPSADBW.Z imm8 m256 ymm k ymm
+// 	VDBPSADBW.Z imm8 xmm  xmm k xmm
+// 	VDBPSADBW.Z imm8 ymm  ymm k ymm
+// Construct and append a VDBPSADBW.Z instruction to the active function.
+func (c *Context) VDBPSADBW_Z(i, mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VDBPSADBW_Z(i, mxyz, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VDBPSADBW_Z: Double Block Packed Sum-Absolute-Differences on Unsigned Bytes (Zeroing Masking).
+//
+// Forms:
+//
+// 	VDBPSADBW.Z imm8 m512 zmm k zmm
+// 	VDBPSADBW.Z imm8 zmm  zmm k zmm
+// 	VDBPSADBW.Z imm8 m128 xmm k xmm
+// 	VDBPSADBW.Z imm8 m256 ymm k ymm
+// 	VDBPSADBW.Z imm8 xmm  xmm k xmm
+// 	VDBPSADBW.Z imm8 ymm  ymm k ymm
+// Construct and append a VDBPSADBW.Z instruction to the active function.
+// Operates on the global context.
+func VDBPSADBW_Z(i, mxyz, xyz, k, xyz1 operand.Op) { ctx.VDBPSADBW_Z(i, mxyz, xyz, k, xyz1) }
 
 // VDIVPD: Divide Packed Double-Precision Floating-Point Values.
 //
@@ -50067,6 +50759,102 @@ func (c *Context) VMOVDQU(mxy, mxy1 operand.Op) {
 // Operates on the global context.
 func VMOVDQU(mxy, mxy1 operand.Op) { ctx.VMOVDQU(mxy, mxy1) }
 
+// VMOVDQU16: Move Unaligned Word Values.
+//
+// Forms:
+//
+// 	VMOVDQU16 m512 k zmm
+// 	VMOVDQU16 m512 zmm
+// 	VMOVDQU16 zmm  k m512
+// 	VMOVDQU16 zmm  k zmm
+// 	VMOVDQU16 zmm  m512
+// 	VMOVDQU16 zmm  zmm
+// 	VMOVDQU16 m128 k xmm
+// 	VMOVDQU16 m128 xmm
+// 	VMOVDQU16 m256 k ymm
+// 	VMOVDQU16 m256 ymm
+// 	VMOVDQU16 xmm  k m128
+// 	VMOVDQU16 xmm  k xmm
+// 	VMOVDQU16 xmm  m128
+// 	VMOVDQU16 xmm  xmm
+// 	VMOVDQU16 ymm  k m256
+// 	VMOVDQU16 ymm  k ymm
+// 	VMOVDQU16 ymm  m256
+// 	VMOVDQU16 ymm  ymm
+// Construct and append a VMOVDQU16 instruction to the active function.
+func (c *Context) VMOVDQU16(ops ...operand.Op) {
+	if inst, err := x86.VMOVDQU16(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VMOVDQU16: Move Unaligned Word Values.
+//
+// Forms:
+//
+// 	VMOVDQU16 m512 k zmm
+// 	VMOVDQU16 m512 zmm
+// 	VMOVDQU16 zmm  k m512
+// 	VMOVDQU16 zmm  k zmm
+// 	VMOVDQU16 zmm  m512
+// 	VMOVDQU16 zmm  zmm
+// 	VMOVDQU16 m128 k xmm
+// 	VMOVDQU16 m128 xmm
+// 	VMOVDQU16 m256 k ymm
+// 	VMOVDQU16 m256 ymm
+// 	VMOVDQU16 xmm  k m128
+// 	VMOVDQU16 xmm  k xmm
+// 	VMOVDQU16 xmm  m128
+// 	VMOVDQU16 xmm  xmm
+// 	VMOVDQU16 ymm  k m256
+// 	VMOVDQU16 ymm  k ymm
+// 	VMOVDQU16 ymm  m256
+// 	VMOVDQU16 ymm  ymm
+// Construct and append a VMOVDQU16 instruction to the active function.
+// Operates on the global context.
+func VMOVDQU16(ops ...operand.Op) { ctx.VMOVDQU16(ops...) }
+
+// VMOVDQU16_Z: Move Unaligned Word Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VMOVDQU16.Z m512 k zmm
+// 	VMOVDQU16.Z zmm  k m512
+// 	VMOVDQU16.Z zmm  k zmm
+// 	VMOVDQU16.Z m128 k xmm
+// 	VMOVDQU16.Z m256 k ymm
+// 	VMOVDQU16.Z xmm  k m128
+// 	VMOVDQU16.Z xmm  k xmm
+// 	VMOVDQU16.Z ymm  k m256
+// 	VMOVDQU16.Z ymm  k ymm
+// Construct and append a VMOVDQU16.Z instruction to the active function.
+func (c *Context) VMOVDQU16_Z(mxyz, k, mxyz1 operand.Op) {
+	if inst, err := x86.VMOVDQU16_Z(mxyz, k, mxyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VMOVDQU16_Z: Move Unaligned Word Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VMOVDQU16.Z m512 k zmm
+// 	VMOVDQU16.Z zmm  k m512
+// 	VMOVDQU16.Z zmm  k zmm
+// 	VMOVDQU16.Z m128 k xmm
+// 	VMOVDQU16.Z m256 k ymm
+// 	VMOVDQU16.Z xmm  k m128
+// 	VMOVDQU16.Z xmm  k xmm
+// 	VMOVDQU16.Z ymm  k m256
+// 	VMOVDQU16.Z ymm  k ymm
+// Construct and append a VMOVDQU16.Z instruction to the active function.
+// Operates on the global context.
+func VMOVDQU16_Z(mxyz, k, mxyz1 operand.Op) { ctx.VMOVDQU16_Z(mxyz, k, mxyz1) }
+
 // VMOVDQU32: Move Unaligned Doubleword Values.
 //
 // Forms:
@@ -50258,6 +51046,102 @@ func (c *Context) VMOVDQU64_Z(mxyz, k, mxyz1 operand.Op) {
 // Construct and append a VMOVDQU64.Z instruction to the active function.
 // Operates on the global context.
 func VMOVDQU64_Z(mxyz, k, mxyz1 operand.Op) { ctx.VMOVDQU64_Z(mxyz, k, mxyz1) }
+
+// VMOVDQU8: Move Unaligned Byte Values.
+//
+// Forms:
+//
+// 	VMOVDQU8 m512 k zmm
+// 	VMOVDQU8 m512 zmm
+// 	VMOVDQU8 zmm  k m512
+// 	VMOVDQU8 zmm  k zmm
+// 	VMOVDQU8 zmm  m512
+// 	VMOVDQU8 zmm  zmm
+// 	VMOVDQU8 m128 k xmm
+// 	VMOVDQU8 m128 xmm
+// 	VMOVDQU8 m256 k ymm
+// 	VMOVDQU8 m256 ymm
+// 	VMOVDQU8 xmm  k m128
+// 	VMOVDQU8 xmm  k xmm
+// 	VMOVDQU8 xmm  m128
+// 	VMOVDQU8 xmm  xmm
+// 	VMOVDQU8 ymm  k m256
+// 	VMOVDQU8 ymm  k ymm
+// 	VMOVDQU8 ymm  m256
+// 	VMOVDQU8 ymm  ymm
+// Construct and append a VMOVDQU8 instruction to the active function.
+func (c *Context) VMOVDQU8(ops ...operand.Op) {
+	if inst, err := x86.VMOVDQU8(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VMOVDQU8: Move Unaligned Byte Values.
+//
+// Forms:
+//
+// 	VMOVDQU8 m512 k zmm
+// 	VMOVDQU8 m512 zmm
+// 	VMOVDQU8 zmm  k m512
+// 	VMOVDQU8 zmm  k zmm
+// 	VMOVDQU8 zmm  m512
+// 	VMOVDQU8 zmm  zmm
+// 	VMOVDQU8 m128 k xmm
+// 	VMOVDQU8 m128 xmm
+// 	VMOVDQU8 m256 k ymm
+// 	VMOVDQU8 m256 ymm
+// 	VMOVDQU8 xmm  k m128
+// 	VMOVDQU8 xmm  k xmm
+// 	VMOVDQU8 xmm  m128
+// 	VMOVDQU8 xmm  xmm
+// 	VMOVDQU8 ymm  k m256
+// 	VMOVDQU8 ymm  k ymm
+// 	VMOVDQU8 ymm  m256
+// 	VMOVDQU8 ymm  ymm
+// Construct and append a VMOVDQU8 instruction to the active function.
+// Operates on the global context.
+func VMOVDQU8(ops ...operand.Op) { ctx.VMOVDQU8(ops...) }
+
+// VMOVDQU8_Z: Move Unaligned Byte Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VMOVDQU8.Z m512 k zmm
+// 	VMOVDQU8.Z zmm  k m512
+// 	VMOVDQU8.Z zmm  k zmm
+// 	VMOVDQU8.Z m128 k xmm
+// 	VMOVDQU8.Z m256 k ymm
+// 	VMOVDQU8.Z xmm  k m128
+// 	VMOVDQU8.Z xmm  k xmm
+// 	VMOVDQU8.Z ymm  k m256
+// 	VMOVDQU8.Z ymm  k ymm
+// Construct and append a VMOVDQU8.Z instruction to the active function.
+func (c *Context) VMOVDQU8_Z(mxyz, k, mxyz1 operand.Op) {
+	if inst, err := x86.VMOVDQU8_Z(mxyz, k, mxyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VMOVDQU8_Z: Move Unaligned Byte Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VMOVDQU8.Z m512 k zmm
+// 	VMOVDQU8.Z zmm  k m512
+// 	VMOVDQU8.Z zmm  k zmm
+// 	VMOVDQU8.Z m128 k xmm
+// 	VMOVDQU8.Z m256 k ymm
+// 	VMOVDQU8.Z xmm  k m128
+// 	VMOVDQU8.Z xmm  k xmm
+// 	VMOVDQU8.Z ymm  k m256
+// 	VMOVDQU8.Z ymm  k ymm
+// Construct and append a VMOVDQU8.Z instruction to the active function.
+// Operates on the global context.
+func VMOVDQU8_Z(mxyz, k, mxyz1 operand.Op) { ctx.VMOVDQU8_Z(mxyz, k, mxyz1) }
 
 // VMOVHLPS: Move Packed Single-Precision Floating-Point Values High to Low.
 //
@@ -52313,9 +53197,17 @@ func VORPS(mxy, xy, xy1 operand.Op) { ctx.VORPS(mxy, xy, xy1) }
 // 	VPABSB ymm  ymm
 // 	VPABSB m128 xmm
 // 	VPABSB xmm  xmm
+// 	VPABSB m512 k zmm
+// 	VPABSB m512 zmm
+// 	VPABSB zmm  k zmm
+// 	VPABSB zmm  zmm
+// 	VPABSB m128 k xmm
+// 	VPABSB m256 k ymm
+// 	VPABSB xmm  k xmm
+// 	VPABSB ymm  k ymm
 // Construct and append a VPABSB instruction to the active function.
-func (c *Context) VPABSB(mxy, xy operand.Op) {
-	if inst, err := x86.VPABSB(mxy, xy); err == nil {
+func (c *Context) VPABSB(ops ...operand.Op) {
+	if inst, err := x86.VPABSB(ops...); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -52330,9 +53222,50 @@ func (c *Context) VPABSB(mxy, xy operand.Op) {
 // 	VPABSB ymm  ymm
 // 	VPABSB m128 xmm
 // 	VPABSB xmm  xmm
+// 	VPABSB m512 k zmm
+// 	VPABSB m512 zmm
+// 	VPABSB zmm  k zmm
+// 	VPABSB zmm  zmm
+// 	VPABSB m128 k xmm
+// 	VPABSB m256 k ymm
+// 	VPABSB xmm  k xmm
+// 	VPABSB ymm  k ymm
 // Construct and append a VPABSB instruction to the active function.
 // Operates on the global context.
-func VPABSB(mxy, xy operand.Op) { ctx.VPABSB(mxy, xy) }
+func VPABSB(ops ...operand.Op) { ctx.VPABSB(ops...) }
+
+// VPABSB_Z: Packed Absolute Value of Byte Integers (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPABSB.Z m512 k zmm
+// 	VPABSB.Z zmm  k zmm
+// 	VPABSB.Z m128 k xmm
+// 	VPABSB.Z m256 k ymm
+// 	VPABSB.Z xmm  k xmm
+// 	VPABSB.Z ymm  k ymm
+// Construct and append a VPABSB.Z instruction to the active function.
+func (c *Context) VPABSB_Z(mxyz, k, xyz operand.Op) {
+	if inst, err := x86.VPABSB_Z(mxyz, k, xyz); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPABSB_Z: Packed Absolute Value of Byte Integers (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPABSB.Z m512 k zmm
+// 	VPABSB.Z zmm  k zmm
+// 	VPABSB.Z m128 k xmm
+// 	VPABSB.Z m256 k ymm
+// 	VPABSB.Z xmm  k xmm
+// 	VPABSB.Z ymm  k ymm
+// Construct and append a VPABSB.Z instruction to the active function.
+// Operates on the global context.
+func VPABSB_Z(mxyz, k, xyz operand.Op) { ctx.VPABSB_Z(mxyz, k, xyz) }
 
 // VPABSD: Packed Absolute Value of Doubleword Integers.
 //
@@ -52622,9 +53555,17 @@ func VPABSQ_Z(mxyz, k, xyz operand.Op) { ctx.VPABSQ_Z(mxyz, k, xyz) }
 // 	VPABSW ymm  ymm
 // 	VPABSW m128 xmm
 // 	VPABSW xmm  xmm
+// 	VPABSW m512 k zmm
+// 	VPABSW m512 zmm
+// 	VPABSW zmm  k zmm
+// 	VPABSW zmm  zmm
+// 	VPABSW m128 k xmm
+// 	VPABSW m256 k ymm
+// 	VPABSW xmm  k xmm
+// 	VPABSW ymm  k ymm
 // Construct and append a VPABSW instruction to the active function.
-func (c *Context) VPABSW(mxy, xy operand.Op) {
-	if inst, err := x86.VPABSW(mxy, xy); err == nil {
+func (c *Context) VPABSW(ops ...operand.Op) {
+	if inst, err := x86.VPABSW(ops...); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -52639,21 +53580,72 @@ func (c *Context) VPABSW(mxy, xy operand.Op) {
 // 	VPABSW ymm  ymm
 // 	VPABSW m128 xmm
 // 	VPABSW xmm  xmm
+// 	VPABSW m512 k zmm
+// 	VPABSW m512 zmm
+// 	VPABSW zmm  k zmm
+// 	VPABSW zmm  zmm
+// 	VPABSW m128 k xmm
+// 	VPABSW m256 k ymm
+// 	VPABSW xmm  k xmm
+// 	VPABSW ymm  k ymm
 // Construct and append a VPABSW instruction to the active function.
 // Operates on the global context.
-func VPABSW(mxy, xy operand.Op) { ctx.VPABSW(mxy, xy) }
+func VPABSW(ops ...operand.Op) { ctx.VPABSW(ops...) }
+
+// VPABSW_Z: Packed Absolute Value of Word Integers (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPABSW.Z m512 k zmm
+// 	VPABSW.Z zmm  k zmm
+// 	VPABSW.Z m128 k xmm
+// 	VPABSW.Z m256 k ymm
+// 	VPABSW.Z xmm  k xmm
+// 	VPABSW.Z ymm  k ymm
+// Construct and append a VPABSW.Z instruction to the active function.
+func (c *Context) VPABSW_Z(mxyz, k, xyz operand.Op) {
+	if inst, err := x86.VPABSW_Z(mxyz, k, xyz); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPABSW_Z: Packed Absolute Value of Word Integers (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPABSW.Z m512 k zmm
+// 	VPABSW.Z zmm  k zmm
+// 	VPABSW.Z m128 k xmm
+// 	VPABSW.Z m256 k ymm
+// 	VPABSW.Z xmm  k xmm
+// 	VPABSW.Z ymm  k ymm
+// Construct and append a VPABSW.Z instruction to the active function.
+// Operates on the global context.
+func VPABSW_Z(mxyz, k, xyz operand.Op) { ctx.VPABSW_Z(mxyz, k, xyz) }
 
 // VPACKSSDW: Pack Doublewords into Words with Signed Saturation.
 //
 // Forms:
 //
-// 	VPACKSSDW m256 ymm ymm
-// 	VPACKSSDW ymm  ymm ymm
-// 	VPACKSSDW m128 xmm xmm
-// 	VPACKSSDW xmm  xmm xmm
+// 	VPACKSSDW m256         ymm ymm
+// 	VPACKSSDW ymm          ymm ymm
+// 	VPACKSSDW m128         xmm xmm
+// 	VPACKSSDW xmm          xmm xmm
+// 	VPACKSSDW m512/m32bcst zmm k zmm
+// 	VPACKSSDW m512/m32bcst zmm zmm
+// 	VPACKSSDW zmm          zmm k zmm
+// 	VPACKSSDW zmm          zmm zmm
+// 	VPACKSSDW m128/m32bcst xmm k xmm
+// 	VPACKSSDW m128/m32bcst xmm xmm
+// 	VPACKSSDW m256/m32bcst ymm k ymm
+// 	VPACKSSDW m256/m32bcst ymm ymm
+// 	VPACKSSDW xmm          xmm k xmm
+// 	VPACKSSDW ymm          ymm k ymm
 // Construct and append a VPACKSSDW instruction to the active function.
-func (c *Context) VPACKSSDW(mxy, xy, xy1 operand.Op) {
-	if inst, err := x86.VPACKSSDW(mxy, xy, xy1); err == nil {
+func (c *Context) VPACKSSDW(ops ...operand.Op) {
+	if inst, err := x86.VPACKSSDW(ops...); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -52664,13 +53656,116 @@ func (c *Context) VPACKSSDW(mxy, xy, xy1 operand.Op) {
 //
 // Forms:
 //
-// 	VPACKSSDW m256 ymm ymm
-// 	VPACKSSDW ymm  ymm ymm
-// 	VPACKSSDW m128 xmm xmm
-// 	VPACKSSDW xmm  xmm xmm
+// 	VPACKSSDW m256         ymm ymm
+// 	VPACKSSDW ymm          ymm ymm
+// 	VPACKSSDW m128         xmm xmm
+// 	VPACKSSDW xmm          xmm xmm
+// 	VPACKSSDW m512/m32bcst zmm k zmm
+// 	VPACKSSDW m512/m32bcst zmm zmm
+// 	VPACKSSDW zmm          zmm k zmm
+// 	VPACKSSDW zmm          zmm zmm
+// 	VPACKSSDW m128/m32bcst xmm k xmm
+// 	VPACKSSDW m128/m32bcst xmm xmm
+// 	VPACKSSDW m256/m32bcst ymm k ymm
+// 	VPACKSSDW m256/m32bcst ymm ymm
+// 	VPACKSSDW xmm          xmm k xmm
+// 	VPACKSSDW ymm          ymm k ymm
 // Construct and append a VPACKSSDW instruction to the active function.
 // Operates on the global context.
-func VPACKSSDW(mxy, xy, xy1 operand.Op) { ctx.VPACKSSDW(mxy, xy, xy1) }
+func VPACKSSDW(ops ...operand.Op) { ctx.VPACKSSDW(ops...) }
+
+// VPACKSSDW_BCST: Pack Doublewords into Words with Signed Saturation (Broadcast).
+//
+// Forms:
+//
+// 	VPACKSSDW.BCST m512/m32bcst zmm k zmm
+// 	VPACKSSDW.BCST m512/m32bcst zmm zmm
+// 	VPACKSSDW.BCST m128/m32bcst xmm k xmm
+// 	VPACKSSDW.BCST m128/m32bcst xmm xmm
+// 	VPACKSSDW.BCST m256/m32bcst ymm k ymm
+// 	VPACKSSDW.BCST m256/m32bcst ymm ymm
+// Construct and append a VPACKSSDW.BCST instruction to the active function.
+func (c *Context) VPACKSSDW_BCST(ops ...operand.Op) {
+	if inst, err := x86.VPACKSSDW_BCST(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPACKSSDW_BCST: Pack Doublewords into Words with Signed Saturation (Broadcast).
+//
+// Forms:
+//
+// 	VPACKSSDW.BCST m512/m32bcst zmm k zmm
+// 	VPACKSSDW.BCST m512/m32bcst zmm zmm
+// 	VPACKSSDW.BCST m128/m32bcst xmm k xmm
+// 	VPACKSSDW.BCST m128/m32bcst xmm xmm
+// 	VPACKSSDW.BCST m256/m32bcst ymm k ymm
+// 	VPACKSSDW.BCST m256/m32bcst ymm ymm
+// Construct and append a VPACKSSDW.BCST instruction to the active function.
+// Operates on the global context.
+func VPACKSSDW_BCST(ops ...operand.Op) { ctx.VPACKSSDW_BCST(ops...) }
+
+// VPACKSSDW_BCST_Z: Pack Doublewords into Words with Signed Saturation (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VPACKSSDW.BCST.Z m512/m32bcst zmm k zmm
+// 	VPACKSSDW.BCST.Z m128/m32bcst xmm k xmm
+// 	VPACKSSDW.BCST.Z m256/m32bcst ymm k ymm
+// Construct and append a VPACKSSDW.BCST.Z instruction to the active function.
+func (c *Context) VPACKSSDW_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPACKSSDW_BCST_Z(m, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPACKSSDW_BCST_Z: Pack Doublewords into Words with Signed Saturation (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VPACKSSDW.BCST.Z m512/m32bcst zmm k zmm
+// 	VPACKSSDW.BCST.Z m128/m32bcst xmm k xmm
+// 	VPACKSSDW.BCST.Z m256/m32bcst ymm k ymm
+// Construct and append a VPACKSSDW.BCST.Z instruction to the active function.
+// Operates on the global context.
+func VPACKSSDW_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VPACKSSDW_BCST_Z(m, xyz, k, xyz1) }
+
+// VPACKSSDW_Z: Pack Doublewords into Words with Signed Saturation (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPACKSSDW.Z m512/m32bcst zmm k zmm
+// 	VPACKSSDW.Z zmm          zmm k zmm
+// 	VPACKSSDW.Z m128/m32bcst xmm k xmm
+// 	VPACKSSDW.Z m256/m32bcst ymm k ymm
+// 	VPACKSSDW.Z xmm          xmm k xmm
+// 	VPACKSSDW.Z ymm          ymm k ymm
+// Construct and append a VPACKSSDW.Z instruction to the active function.
+func (c *Context) VPACKSSDW_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPACKSSDW_Z(mxyz, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPACKSSDW_Z: Pack Doublewords into Words with Signed Saturation (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPACKSSDW.Z m512/m32bcst zmm k zmm
+// 	VPACKSSDW.Z zmm          zmm k zmm
+// 	VPACKSSDW.Z m128/m32bcst xmm k xmm
+// 	VPACKSSDW.Z m256/m32bcst ymm k ymm
+// 	VPACKSSDW.Z xmm          xmm k xmm
+// 	VPACKSSDW.Z ymm          ymm k ymm
+// Construct and append a VPACKSSDW.Z instruction to the active function.
+// Operates on the global context.
+func VPACKSSDW_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPACKSSDW_Z(mxyz, xyz, k, xyz1) }
 
 // VPACKSSWB: Pack Words into Bytes with Signed Saturation.
 //
@@ -52680,9 +53775,17 @@ func VPACKSSDW(mxy, xy, xy1 operand.Op) { ctx.VPACKSSDW(mxy, xy, xy1) }
 // 	VPACKSSWB ymm  ymm ymm
 // 	VPACKSSWB m128 xmm xmm
 // 	VPACKSSWB xmm  xmm xmm
+// 	VPACKSSWB m512 zmm k zmm
+// 	VPACKSSWB m512 zmm zmm
+// 	VPACKSSWB zmm  zmm k zmm
+// 	VPACKSSWB zmm  zmm zmm
+// 	VPACKSSWB m128 xmm k xmm
+// 	VPACKSSWB m256 ymm k ymm
+// 	VPACKSSWB xmm  xmm k xmm
+// 	VPACKSSWB ymm  ymm k ymm
 // Construct and append a VPACKSSWB instruction to the active function.
-func (c *Context) VPACKSSWB(mxy, xy, xy1 operand.Op) {
-	if inst, err := x86.VPACKSSWB(mxy, xy, xy1); err == nil {
+func (c *Context) VPACKSSWB(ops ...operand.Op) {
+	if inst, err := x86.VPACKSSWB(ops...); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -52697,21 +53800,72 @@ func (c *Context) VPACKSSWB(mxy, xy, xy1 operand.Op) {
 // 	VPACKSSWB ymm  ymm ymm
 // 	VPACKSSWB m128 xmm xmm
 // 	VPACKSSWB xmm  xmm xmm
+// 	VPACKSSWB m512 zmm k zmm
+// 	VPACKSSWB m512 zmm zmm
+// 	VPACKSSWB zmm  zmm k zmm
+// 	VPACKSSWB zmm  zmm zmm
+// 	VPACKSSWB m128 xmm k xmm
+// 	VPACKSSWB m256 ymm k ymm
+// 	VPACKSSWB xmm  xmm k xmm
+// 	VPACKSSWB ymm  ymm k ymm
 // Construct and append a VPACKSSWB instruction to the active function.
 // Operates on the global context.
-func VPACKSSWB(mxy, xy, xy1 operand.Op) { ctx.VPACKSSWB(mxy, xy, xy1) }
+func VPACKSSWB(ops ...operand.Op) { ctx.VPACKSSWB(ops...) }
+
+// VPACKSSWB_Z: Pack Words into Bytes with Signed Saturation (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPACKSSWB.Z m512 zmm k zmm
+// 	VPACKSSWB.Z zmm  zmm k zmm
+// 	VPACKSSWB.Z m128 xmm k xmm
+// 	VPACKSSWB.Z m256 ymm k ymm
+// 	VPACKSSWB.Z xmm  xmm k xmm
+// 	VPACKSSWB.Z ymm  ymm k ymm
+// Construct and append a VPACKSSWB.Z instruction to the active function.
+func (c *Context) VPACKSSWB_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPACKSSWB_Z(mxyz, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPACKSSWB_Z: Pack Words into Bytes with Signed Saturation (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPACKSSWB.Z m512 zmm k zmm
+// 	VPACKSSWB.Z zmm  zmm k zmm
+// 	VPACKSSWB.Z m128 xmm k xmm
+// 	VPACKSSWB.Z m256 ymm k ymm
+// 	VPACKSSWB.Z xmm  xmm k xmm
+// 	VPACKSSWB.Z ymm  ymm k ymm
+// Construct and append a VPACKSSWB.Z instruction to the active function.
+// Operates on the global context.
+func VPACKSSWB_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPACKSSWB_Z(mxyz, xyz, k, xyz1) }
 
 // VPACKUSDW: Pack Doublewords into Words with Unsigned Saturation.
 //
 // Forms:
 //
-// 	VPACKUSDW m256 ymm ymm
-// 	VPACKUSDW ymm  ymm ymm
-// 	VPACKUSDW m128 xmm xmm
-// 	VPACKUSDW xmm  xmm xmm
+// 	VPACKUSDW m256         ymm ymm
+// 	VPACKUSDW ymm          ymm ymm
+// 	VPACKUSDW m128         xmm xmm
+// 	VPACKUSDW xmm          xmm xmm
+// 	VPACKUSDW m512/m32bcst zmm k zmm
+// 	VPACKUSDW m512/m32bcst zmm zmm
+// 	VPACKUSDW zmm          zmm k zmm
+// 	VPACKUSDW zmm          zmm zmm
+// 	VPACKUSDW m128/m32bcst xmm k xmm
+// 	VPACKUSDW m128/m32bcst xmm xmm
+// 	VPACKUSDW m256/m32bcst ymm k ymm
+// 	VPACKUSDW m256/m32bcst ymm ymm
+// 	VPACKUSDW xmm          xmm k xmm
+// 	VPACKUSDW ymm          ymm k ymm
 // Construct and append a VPACKUSDW instruction to the active function.
-func (c *Context) VPACKUSDW(mxy, xy, xy1 operand.Op) {
-	if inst, err := x86.VPACKUSDW(mxy, xy, xy1); err == nil {
+func (c *Context) VPACKUSDW(ops ...operand.Op) {
+	if inst, err := x86.VPACKUSDW(ops...); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -52722,13 +53876,116 @@ func (c *Context) VPACKUSDW(mxy, xy, xy1 operand.Op) {
 //
 // Forms:
 //
-// 	VPACKUSDW m256 ymm ymm
-// 	VPACKUSDW ymm  ymm ymm
-// 	VPACKUSDW m128 xmm xmm
-// 	VPACKUSDW xmm  xmm xmm
+// 	VPACKUSDW m256         ymm ymm
+// 	VPACKUSDW ymm          ymm ymm
+// 	VPACKUSDW m128         xmm xmm
+// 	VPACKUSDW xmm          xmm xmm
+// 	VPACKUSDW m512/m32bcst zmm k zmm
+// 	VPACKUSDW m512/m32bcst zmm zmm
+// 	VPACKUSDW zmm          zmm k zmm
+// 	VPACKUSDW zmm          zmm zmm
+// 	VPACKUSDW m128/m32bcst xmm k xmm
+// 	VPACKUSDW m128/m32bcst xmm xmm
+// 	VPACKUSDW m256/m32bcst ymm k ymm
+// 	VPACKUSDW m256/m32bcst ymm ymm
+// 	VPACKUSDW xmm          xmm k xmm
+// 	VPACKUSDW ymm          ymm k ymm
 // Construct and append a VPACKUSDW instruction to the active function.
 // Operates on the global context.
-func VPACKUSDW(mxy, xy, xy1 operand.Op) { ctx.VPACKUSDW(mxy, xy, xy1) }
+func VPACKUSDW(ops ...operand.Op) { ctx.VPACKUSDW(ops...) }
+
+// VPACKUSDW_BCST: Pack Doublewords into Words with Unsigned Saturation (Broadcast).
+//
+// Forms:
+//
+// 	VPACKUSDW.BCST m512/m32bcst zmm k zmm
+// 	VPACKUSDW.BCST m512/m32bcst zmm zmm
+// 	VPACKUSDW.BCST m128/m32bcst xmm k xmm
+// 	VPACKUSDW.BCST m128/m32bcst xmm xmm
+// 	VPACKUSDW.BCST m256/m32bcst ymm k ymm
+// 	VPACKUSDW.BCST m256/m32bcst ymm ymm
+// Construct and append a VPACKUSDW.BCST instruction to the active function.
+func (c *Context) VPACKUSDW_BCST(ops ...operand.Op) {
+	if inst, err := x86.VPACKUSDW_BCST(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPACKUSDW_BCST: Pack Doublewords into Words with Unsigned Saturation (Broadcast).
+//
+// Forms:
+//
+// 	VPACKUSDW.BCST m512/m32bcst zmm k zmm
+// 	VPACKUSDW.BCST m512/m32bcst zmm zmm
+// 	VPACKUSDW.BCST m128/m32bcst xmm k xmm
+// 	VPACKUSDW.BCST m128/m32bcst xmm xmm
+// 	VPACKUSDW.BCST m256/m32bcst ymm k ymm
+// 	VPACKUSDW.BCST m256/m32bcst ymm ymm
+// Construct and append a VPACKUSDW.BCST instruction to the active function.
+// Operates on the global context.
+func VPACKUSDW_BCST(ops ...operand.Op) { ctx.VPACKUSDW_BCST(ops...) }
+
+// VPACKUSDW_BCST_Z: Pack Doublewords into Words with Unsigned Saturation (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VPACKUSDW.BCST.Z m512/m32bcst zmm k zmm
+// 	VPACKUSDW.BCST.Z m128/m32bcst xmm k xmm
+// 	VPACKUSDW.BCST.Z m256/m32bcst ymm k ymm
+// Construct and append a VPACKUSDW.BCST.Z instruction to the active function.
+func (c *Context) VPACKUSDW_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPACKUSDW_BCST_Z(m, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPACKUSDW_BCST_Z: Pack Doublewords into Words with Unsigned Saturation (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VPACKUSDW.BCST.Z m512/m32bcst zmm k zmm
+// 	VPACKUSDW.BCST.Z m128/m32bcst xmm k xmm
+// 	VPACKUSDW.BCST.Z m256/m32bcst ymm k ymm
+// Construct and append a VPACKUSDW.BCST.Z instruction to the active function.
+// Operates on the global context.
+func VPACKUSDW_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VPACKUSDW_BCST_Z(m, xyz, k, xyz1) }
+
+// VPACKUSDW_Z: Pack Doublewords into Words with Unsigned Saturation (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPACKUSDW.Z m512/m32bcst zmm k zmm
+// 	VPACKUSDW.Z zmm          zmm k zmm
+// 	VPACKUSDW.Z m128/m32bcst xmm k xmm
+// 	VPACKUSDW.Z m256/m32bcst ymm k ymm
+// 	VPACKUSDW.Z xmm          xmm k xmm
+// 	VPACKUSDW.Z ymm          ymm k ymm
+// Construct and append a VPACKUSDW.Z instruction to the active function.
+func (c *Context) VPACKUSDW_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPACKUSDW_Z(mxyz, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPACKUSDW_Z: Pack Doublewords into Words with Unsigned Saturation (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPACKUSDW.Z m512/m32bcst zmm k zmm
+// 	VPACKUSDW.Z zmm          zmm k zmm
+// 	VPACKUSDW.Z m128/m32bcst xmm k xmm
+// 	VPACKUSDW.Z m256/m32bcst ymm k ymm
+// 	VPACKUSDW.Z xmm          xmm k xmm
+// 	VPACKUSDW.Z ymm          ymm k ymm
+// Construct and append a VPACKUSDW.Z instruction to the active function.
+// Operates on the global context.
+func VPACKUSDW_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPACKUSDW_Z(mxyz, xyz, k, xyz1) }
 
 // VPACKUSWB: Pack Words into Bytes with Unsigned Saturation.
 //
@@ -52738,9 +53995,17 @@ func VPACKUSDW(mxy, xy, xy1 operand.Op) { ctx.VPACKUSDW(mxy, xy, xy1) }
 // 	VPACKUSWB ymm  ymm ymm
 // 	VPACKUSWB m128 xmm xmm
 // 	VPACKUSWB xmm  xmm xmm
+// 	VPACKUSWB m512 zmm k zmm
+// 	VPACKUSWB m512 zmm zmm
+// 	VPACKUSWB zmm  zmm k zmm
+// 	VPACKUSWB zmm  zmm zmm
+// 	VPACKUSWB m128 xmm k xmm
+// 	VPACKUSWB m256 ymm k ymm
+// 	VPACKUSWB xmm  xmm k xmm
+// 	VPACKUSWB ymm  ymm k ymm
 // Construct and append a VPACKUSWB instruction to the active function.
-func (c *Context) VPACKUSWB(mxy, xy, xy1 operand.Op) {
-	if inst, err := x86.VPACKUSWB(mxy, xy, xy1); err == nil {
+func (c *Context) VPACKUSWB(ops ...operand.Op) {
+	if inst, err := x86.VPACKUSWB(ops...); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -52755,9 +54020,50 @@ func (c *Context) VPACKUSWB(mxy, xy, xy1 operand.Op) {
 // 	VPACKUSWB ymm  ymm ymm
 // 	VPACKUSWB m128 xmm xmm
 // 	VPACKUSWB xmm  xmm xmm
+// 	VPACKUSWB m512 zmm k zmm
+// 	VPACKUSWB m512 zmm zmm
+// 	VPACKUSWB zmm  zmm k zmm
+// 	VPACKUSWB zmm  zmm zmm
+// 	VPACKUSWB m128 xmm k xmm
+// 	VPACKUSWB m256 ymm k ymm
+// 	VPACKUSWB xmm  xmm k xmm
+// 	VPACKUSWB ymm  ymm k ymm
 // Construct and append a VPACKUSWB instruction to the active function.
 // Operates on the global context.
-func VPACKUSWB(mxy, xy, xy1 operand.Op) { ctx.VPACKUSWB(mxy, xy, xy1) }
+func VPACKUSWB(ops ...operand.Op) { ctx.VPACKUSWB(ops...) }
+
+// VPACKUSWB_Z: Pack Words into Bytes with Unsigned Saturation (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPACKUSWB.Z m512 zmm k zmm
+// 	VPACKUSWB.Z zmm  zmm k zmm
+// 	VPACKUSWB.Z m128 xmm k xmm
+// 	VPACKUSWB.Z m256 ymm k ymm
+// 	VPACKUSWB.Z xmm  xmm k xmm
+// 	VPACKUSWB.Z ymm  ymm k ymm
+// Construct and append a VPACKUSWB.Z instruction to the active function.
+func (c *Context) VPACKUSWB_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPACKUSWB_Z(mxyz, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPACKUSWB_Z: Pack Words into Bytes with Unsigned Saturation (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPACKUSWB.Z m512 zmm k zmm
+// 	VPACKUSWB.Z zmm  zmm k zmm
+// 	VPACKUSWB.Z m128 xmm k xmm
+// 	VPACKUSWB.Z m256 ymm k ymm
+// 	VPACKUSWB.Z xmm  xmm k xmm
+// 	VPACKUSWB.Z ymm  ymm k ymm
+// Construct and append a VPACKUSWB.Z instruction to the active function.
+// Operates on the global context.
+func VPACKUSWB_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPACKUSWB_Z(mxyz, xyz, k, xyz1) }
 
 // VPADDB: Add Packed Byte Integers.
 //
@@ -52767,9 +54073,17 @@ func VPACKUSWB(mxy, xy, xy1 operand.Op) { ctx.VPACKUSWB(mxy, xy, xy1) }
 // 	VPADDB ymm  ymm ymm
 // 	VPADDB m128 xmm xmm
 // 	VPADDB xmm  xmm xmm
+// 	VPADDB m512 zmm k zmm
+// 	VPADDB m512 zmm zmm
+// 	VPADDB zmm  zmm k zmm
+// 	VPADDB zmm  zmm zmm
+// 	VPADDB m128 xmm k xmm
+// 	VPADDB m256 ymm k ymm
+// 	VPADDB xmm  xmm k xmm
+// 	VPADDB ymm  ymm k ymm
 // Construct and append a VPADDB instruction to the active function.
-func (c *Context) VPADDB(mxy, xy, xy1 operand.Op) {
-	if inst, err := x86.VPADDB(mxy, xy, xy1); err == nil {
+func (c *Context) VPADDB(ops ...operand.Op) {
+	if inst, err := x86.VPADDB(ops...); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -52784,9 +54098,50 @@ func (c *Context) VPADDB(mxy, xy, xy1 operand.Op) {
 // 	VPADDB ymm  ymm ymm
 // 	VPADDB m128 xmm xmm
 // 	VPADDB xmm  xmm xmm
+// 	VPADDB m512 zmm k zmm
+// 	VPADDB m512 zmm zmm
+// 	VPADDB zmm  zmm k zmm
+// 	VPADDB zmm  zmm zmm
+// 	VPADDB m128 xmm k xmm
+// 	VPADDB m256 ymm k ymm
+// 	VPADDB xmm  xmm k xmm
+// 	VPADDB ymm  ymm k ymm
 // Construct and append a VPADDB instruction to the active function.
 // Operates on the global context.
-func VPADDB(mxy, xy, xy1 operand.Op) { ctx.VPADDB(mxy, xy, xy1) }
+func VPADDB(ops ...operand.Op) { ctx.VPADDB(ops...) }
+
+// VPADDB_Z: Add Packed Byte Integers (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPADDB.Z m512 zmm k zmm
+// 	VPADDB.Z zmm  zmm k zmm
+// 	VPADDB.Z m128 xmm k xmm
+// 	VPADDB.Z m256 ymm k ymm
+// 	VPADDB.Z xmm  xmm k xmm
+// 	VPADDB.Z ymm  ymm k ymm
+// Construct and append a VPADDB.Z instruction to the active function.
+func (c *Context) VPADDB_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPADDB_Z(mxyz, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPADDB_Z: Add Packed Byte Integers (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPADDB.Z m512 zmm k zmm
+// 	VPADDB.Z zmm  zmm k zmm
+// 	VPADDB.Z m128 xmm k xmm
+// 	VPADDB.Z m256 ymm k ymm
+// 	VPADDB.Z xmm  xmm k xmm
+// 	VPADDB.Z ymm  ymm k ymm
+// Construct and append a VPADDB.Z instruction to the active function.
+// Operates on the global context.
+func VPADDB_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPADDB_Z(mxyz, xyz, k, xyz1) }
 
 // VPADDD: Add Packed Doubleword Integers.
 //
@@ -53080,9 +54435,17 @@ func VPADDQ_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPADDQ_Z(mxyz, xyz, k, xyz1) 
 // 	VPADDSB ymm  ymm ymm
 // 	VPADDSB m128 xmm xmm
 // 	VPADDSB xmm  xmm xmm
+// 	VPADDSB m512 zmm k zmm
+// 	VPADDSB m512 zmm zmm
+// 	VPADDSB zmm  zmm k zmm
+// 	VPADDSB zmm  zmm zmm
+// 	VPADDSB m128 xmm k xmm
+// 	VPADDSB m256 ymm k ymm
+// 	VPADDSB xmm  xmm k xmm
+// 	VPADDSB ymm  ymm k ymm
 // Construct and append a VPADDSB instruction to the active function.
-func (c *Context) VPADDSB(mxy, xy, xy1 operand.Op) {
-	if inst, err := x86.VPADDSB(mxy, xy, xy1); err == nil {
+func (c *Context) VPADDSB(ops ...operand.Op) {
+	if inst, err := x86.VPADDSB(ops...); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -53097,9 +54460,50 @@ func (c *Context) VPADDSB(mxy, xy, xy1 operand.Op) {
 // 	VPADDSB ymm  ymm ymm
 // 	VPADDSB m128 xmm xmm
 // 	VPADDSB xmm  xmm xmm
+// 	VPADDSB m512 zmm k zmm
+// 	VPADDSB m512 zmm zmm
+// 	VPADDSB zmm  zmm k zmm
+// 	VPADDSB zmm  zmm zmm
+// 	VPADDSB m128 xmm k xmm
+// 	VPADDSB m256 ymm k ymm
+// 	VPADDSB xmm  xmm k xmm
+// 	VPADDSB ymm  ymm k ymm
 // Construct and append a VPADDSB instruction to the active function.
 // Operates on the global context.
-func VPADDSB(mxy, xy, xy1 operand.Op) { ctx.VPADDSB(mxy, xy, xy1) }
+func VPADDSB(ops ...operand.Op) { ctx.VPADDSB(ops...) }
+
+// VPADDSB_Z: Add Packed Signed Byte Integers with Signed Saturation (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPADDSB.Z m512 zmm k zmm
+// 	VPADDSB.Z zmm  zmm k zmm
+// 	VPADDSB.Z m128 xmm k xmm
+// 	VPADDSB.Z m256 ymm k ymm
+// 	VPADDSB.Z xmm  xmm k xmm
+// 	VPADDSB.Z ymm  ymm k ymm
+// Construct and append a VPADDSB.Z instruction to the active function.
+func (c *Context) VPADDSB_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPADDSB_Z(mxyz, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPADDSB_Z: Add Packed Signed Byte Integers with Signed Saturation (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPADDSB.Z m512 zmm k zmm
+// 	VPADDSB.Z zmm  zmm k zmm
+// 	VPADDSB.Z m128 xmm k xmm
+// 	VPADDSB.Z m256 ymm k ymm
+// 	VPADDSB.Z xmm  xmm k xmm
+// 	VPADDSB.Z ymm  ymm k ymm
+// Construct and append a VPADDSB.Z instruction to the active function.
+// Operates on the global context.
+func VPADDSB_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPADDSB_Z(mxyz, xyz, k, xyz1) }
 
 // VPADDSW: Add Packed Signed Word Integers with Signed Saturation.
 //
@@ -53109,9 +54513,17 @@ func VPADDSB(mxy, xy, xy1 operand.Op) { ctx.VPADDSB(mxy, xy, xy1) }
 // 	VPADDSW ymm  ymm ymm
 // 	VPADDSW m128 xmm xmm
 // 	VPADDSW xmm  xmm xmm
+// 	VPADDSW m512 zmm k zmm
+// 	VPADDSW m512 zmm zmm
+// 	VPADDSW zmm  zmm k zmm
+// 	VPADDSW zmm  zmm zmm
+// 	VPADDSW m128 xmm k xmm
+// 	VPADDSW m256 ymm k ymm
+// 	VPADDSW xmm  xmm k xmm
+// 	VPADDSW ymm  ymm k ymm
 // Construct and append a VPADDSW instruction to the active function.
-func (c *Context) VPADDSW(mxy, xy, xy1 operand.Op) {
-	if inst, err := x86.VPADDSW(mxy, xy, xy1); err == nil {
+func (c *Context) VPADDSW(ops ...operand.Op) {
+	if inst, err := x86.VPADDSW(ops...); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -53126,9 +54538,50 @@ func (c *Context) VPADDSW(mxy, xy, xy1 operand.Op) {
 // 	VPADDSW ymm  ymm ymm
 // 	VPADDSW m128 xmm xmm
 // 	VPADDSW xmm  xmm xmm
+// 	VPADDSW m512 zmm k zmm
+// 	VPADDSW m512 zmm zmm
+// 	VPADDSW zmm  zmm k zmm
+// 	VPADDSW zmm  zmm zmm
+// 	VPADDSW m128 xmm k xmm
+// 	VPADDSW m256 ymm k ymm
+// 	VPADDSW xmm  xmm k xmm
+// 	VPADDSW ymm  ymm k ymm
 // Construct and append a VPADDSW instruction to the active function.
 // Operates on the global context.
-func VPADDSW(mxy, xy, xy1 operand.Op) { ctx.VPADDSW(mxy, xy, xy1) }
+func VPADDSW(ops ...operand.Op) { ctx.VPADDSW(ops...) }
+
+// VPADDSW_Z: Add Packed Signed Word Integers with Signed Saturation (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPADDSW.Z m512 zmm k zmm
+// 	VPADDSW.Z zmm  zmm k zmm
+// 	VPADDSW.Z m128 xmm k xmm
+// 	VPADDSW.Z m256 ymm k ymm
+// 	VPADDSW.Z xmm  xmm k xmm
+// 	VPADDSW.Z ymm  ymm k ymm
+// Construct and append a VPADDSW.Z instruction to the active function.
+func (c *Context) VPADDSW_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPADDSW_Z(mxyz, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPADDSW_Z: Add Packed Signed Word Integers with Signed Saturation (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPADDSW.Z m512 zmm k zmm
+// 	VPADDSW.Z zmm  zmm k zmm
+// 	VPADDSW.Z m128 xmm k xmm
+// 	VPADDSW.Z m256 ymm k ymm
+// 	VPADDSW.Z xmm  xmm k xmm
+// 	VPADDSW.Z ymm  ymm k ymm
+// Construct and append a VPADDSW.Z instruction to the active function.
+// Operates on the global context.
+func VPADDSW_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPADDSW_Z(mxyz, xyz, k, xyz1) }
 
 // VPADDUSB: Add Packed Unsigned Byte Integers with Unsigned Saturation.
 //
@@ -53138,9 +54591,17 @@ func VPADDSW(mxy, xy, xy1 operand.Op) { ctx.VPADDSW(mxy, xy, xy1) }
 // 	VPADDUSB ymm  ymm ymm
 // 	VPADDUSB m128 xmm xmm
 // 	VPADDUSB xmm  xmm xmm
+// 	VPADDUSB m512 zmm k zmm
+// 	VPADDUSB m512 zmm zmm
+// 	VPADDUSB zmm  zmm k zmm
+// 	VPADDUSB zmm  zmm zmm
+// 	VPADDUSB m128 xmm k xmm
+// 	VPADDUSB m256 ymm k ymm
+// 	VPADDUSB xmm  xmm k xmm
+// 	VPADDUSB ymm  ymm k ymm
 // Construct and append a VPADDUSB instruction to the active function.
-func (c *Context) VPADDUSB(mxy, xy, xy1 operand.Op) {
-	if inst, err := x86.VPADDUSB(mxy, xy, xy1); err == nil {
+func (c *Context) VPADDUSB(ops ...operand.Op) {
+	if inst, err := x86.VPADDUSB(ops...); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -53155,9 +54616,50 @@ func (c *Context) VPADDUSB(mxy, xy, xy1 operand.Op) {
 // 	VPADDUSB ymm  ymm ymm
 // 	VPADDUSB m128 xmm xmm
 // 	VPADDUSB xmm  xmm xmm
+// 	VPADDUSB m512 zmm k zmm
+// 	VPADDUSB m512 zmm zmm
+// 	VPADDUSB zmm  zmm k zmm
+// 	VPADDUSB zmm  zmm zmm
+// 	VPADDUSB m128 xmm k xmm
+// 	VPADDUSB m256 ymm k ymm
+// 	VPADDUSB xmm  xmm k xmm
+// 	VPADDUSB ymm  ymm k ymm
 // Construct and append a VPADDUSB instruction to the active function.
 // Operates on the global context.
-func VPADDUSB(mxy, xy, xy1 operand.Op) { ctx.VPADDUSB(mxy, xy, xy1) }
+func VPADDUSB(ops ...operand.Op) { ctx.VPADDUSB(ops...) }
+
+// VPADDUSB_Z: Add Packed Unsigned Byte Integers with Unsigned Saturation (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPADDUSB.Z m512 zmm k zmm
+// 	VPADDUSB.Z zmm  zmm k zmm
+// 	VPADDUSB.Z m128 xmm k xmm
+// 	VPADDUSB.Z m256 ymm k ymm
+// 	VPADDUSB.Z xmm  xmm k xmm
+// 	VPADDUSB.Z ymm  ymm k ymm
+// Construct and append a VPADDUSB.Z instruction to the active function.
+func (c *Context) VPADDUSB_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPADDUSB_Z(mxyz, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPADDUSB_Z: Add Packed Unsigned Byte Integers with Unsigned Saturation (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPADDUSB.Z m512 zmm k zmm
+// 	VPADDUSB.Z zmm  zmm k zmm
+// 	VPADDUSB.Z m128 xmm k xmm
+// 	VPADDUSB.Z m256 ymm k ymm
+// 	VPADDUSB.Z xmm  xmm k xmm
+// 	VPADDUSB.Z ymm  ymm k ymm
+// Construct and append a VPADDUSB.Z instruction to the active function.
+// Operates on the global context.
+func VPADDUSB_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPADDUSB_Z(mxyz, xyz, k, xyz1) }
 
 // VPADDUSW: Add Packed Unsigned Word Integers with Unsigned Saturation.
 //
@@ -53167,9 +54669,17 @@ func VPADDUSB(mxy, xy, xy1 operand.Op) { ctx.VPADDUSB(mxy, xy, xy1) }
 // 	VPADDUSW ymm  ymm ymm
 // 	VPADDUSW m128 xmm xmm
 // 	VPADDUSW xmm  xmm xmm
+// 	VPADDUSW m512 zmm k zmm
+// 	VPADDUSW m512 zmm zmm
+// 	VPADDUSW zmm  zmm k zmm
+// 	VPADDUSW zmm  zmm zmm
+// 	VPADDUSW m128 xmm k xmm
+// 	VPADDUSW m256 ymm k ymm
+// 	VPADDUSW xmm  xmm k xmm
+// 	VPADDUSW ymm  ymm k ymm
 // Construct and append a VPADDUSW instruction to the active function.
-func (c *Context) VPADDUSW(mxy, xy, xy1 operand.Op) {
-	if inst, err := x86.VPADDUSW(mxy, xy, xy1); err == nil {
+func (c *Context) VPADDUSW(ops ...operand.Op) {
+	if inst, err := x86.VPADDUSW(ops...); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -53184,9 +54694,50 @@ func (c *Context) VPADDUSW(mxy, xy, xy1 operand.Op) {
 // 	VPADDUSW ymm  ymm ymm
 // 	VPADDUSW m128 xmm xmm
 // 	VPADDUSW xmm  xmm xmm
+// 	VPADDUSW m512 zmm k zmm
+// 	VPADDUSW m512 zmm zmm
+// 	VPADDUSW zmm  zmm k zmm
+// 	VPADDUSW zmm  zmm zmm
+// 	VPADDUSW m128 xmm k xmm
+// 	VPADDUSW m256 ymm k ymm
+// 	VPADDUSW xmm  xmm k xmm
+// 	VPADDUSW ymm  ymm k ymm
 // Construct and append a VPADDUSW instruction to the active function.
 // Operates on the global context.
-func VPADDUSW(mxy, xy, xy1 operand.Op) { ctx.VPADDUSW(mxy, xy, xy1) }
+func VPADDUSW(ops ...operand.Op) { ctx.VPADDUSW(ops...) }
+
+// VPADDUSW_Z: Add Packed Unsigned Word Integers with Unsigned Saturation (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPADDUSW.Z m512 zmm k zmm
+// 	VPADDUSW.Z zmm  zmm k zmm
+// 	VPADDUSW.Z m128 xmm k xmm
+// 	VPADDUSW.Z m256 ymm k ymm
+// 	VPADDUSW.Z xmm  xmm k xmm
+// 	VPADDUSW.Z ymm  ymm k ymm
+// Construct and append a VPADDUSW.Z instruction to the active function.
+func (c *Context) VPADDUSW_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPADDUSW_Z(mxyz, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPADDUSW_Z: Add Packed Unsigned Word Integers with Unsigned Saturation (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPADDUSW.Z m512 zmm k zmm
+// 	VPADDUSW.Z zmm  zmm k zmm
+// 	VPADDUSW.Z m128 xmm k xmm
+// 	VPADDUSW.Z m256 ymm k ymm
+// 	VPADDUSW.Z xmm  xmm k xmm
+// 	VPADDUSW.Z ymm  ymm k ymm
+// Construct and append a VPADDUSW.Z instruction to the active function.
+// Operates on the global context.
+func VPADDUSW_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPADDUSW_Z(mxyz, xyz, k, xyz1) }
 
 // VPADDW: Add Packed Word Integers.
 //
@@ -53196,9 +54747,17 @@ func VPADDUSW(mxy, xy, xy1 operand.Op) { ctx.VPADDUSW(mxy, xy, xy1) }
 // 	VPADDW ymm  ymm ymm
 // 	VPADDW m128 xmm xmm
 // 	VPADDW xmm  xmm xmm
+// 	VPADDW m512 zmm k zmm
+// 	VPADDW m512 zmm zmm
+// 	VPADDW zmm  zmm k zmm
+// 	VPADDW zmm  zmm zmm
+// 	VPADDW m128 xmm k xmm
+// 	VPADDW m256 ymm k ymm
+// 	VPADDW xmm  xmm k xmm
+// 	VPADDW ymm  ymm k ymm
 // Construct and append a VPADDW instruction to the active function.
-func (c *Context) VPADDW(mxy, xy, xy1 operand.Op) {
-	if inst, err := x86.VPADDW(mxy, xy, xy1); err == nil {
+func (c *Context) VPADDW(ops ...operand.Op) {
+	if inst, err := x86.VPADDW(ops...); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -53213,9 +54772,50 @@ func (c *Context) VPADDW(mxy, xy, xy1 operand.Op) {
 // 	VPADDW ymm  ymm ymm
 // 	VPADDW m128 xmm xmm
 // 	VPADDW xmm  xmm xmm
+// 	VPADDW m512 zmm k zmm
+// 	VPADDW m512 zmm zmm
+// 	VPADDW zmm  zmm k zmm
+// 	VPADDW zmm  zmm zmm
+// 	VPADDW m128 xmm k xmm
+// 	VPADDW m256 ymm k ymm
+// 	VPADDW xmm  xmm k xmm
+// 	VPADDW ymm  ymm k ymm
 // Construct and append a VPADDW instruction to the active function.
 // Operates on the global context.
-func VPADDW(mxy, xy, xy1 operand.Op) { ctx.VPADDW(mxy, xy, xy1) }
+func VPADDW(ops ...operand.Op) { ctx.VPADDW(ops...) }
+
+// VPADDW_Z: Add Packed Word Integers (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPADDW.Z m512 zmm k zmm
+// 	VPADDW.Z zmm  zmm k zmm
+// 	VPADDW.Z m128 xmm k xmm
+// 	VPADDW.Z m256 ymm k ymm
+// 	VPADDW.Z xmm  xmm k xmm
+// 	VPADDW.Z ymm  ymm k ymm
+// Construct and append a VPADDW.Z instruction to the active function.
+func (c *Context) VPADDW_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPADDW_Z(mxyz, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPADDW_Z: Add Packed Word Integers (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPADDW.Z m512 zmm k zmm
+// 	VPADDW.Z zmm  zmm k zmm
+// 	VPADDW.Z m128 xmm k xmm
+// 	VPADDW.Z m256 ymm k ymm
+// 	VPADDW.Z xmm  xmm k xmm
+// 	VPADDW.Z ymm  ymm k ymm
+// Construct and append a VPADDW.Z instruction to the active function.
+// Operates on the global context.
+func VPADDW_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPADDW_Z(mxyz, xyz, k, xyz1) }
 
 // VPALIGNR: Packed Align Right.
 //
@@ -53225,9 +54825,17 @@ func VPADDW(mxy, xy, xy1 operand.Op) { ctx.VPADDW(mxy, xy, xy1) }
 // 	VPALIGNR imm8 ymm  ymm ymm
 // 	VPALIGNR imm8 m128 xmm xmm
 // 	VPALIGNR imm8 xmm  xmm xmm
+// 	VPALIGNR imm8 m512 zmm k zmm
+// 	VPALIGNR imm8 m512 zmm zmm
+// 	VPALIGNR imm8 zmm  zmm k zmm
+// 	VPALIGNR imm8 zmm  zmm zmm
+// 	VPALIGNR imm8 m128 xmm k xmm
+// 	VPALIGNR imm8 m256 ymm k ymm
+// 	VPALIGNR imm8 xmm  xmm k xmm
+// 	VPALIGNR imm8 ymm  ymm k ymm
 // Construct and append a VPALIGNR instruction to the active function.
-func (c *Context) VPALIGNR(i, mxy, xy, xy1 operand.Op) {
-	if inst, err := x86.VPALIGNR(i, mxy, xy, xy1); err == nil {
+func (c *Context) VPALIGNR(ops ...operand.Op) {
+	if inst, err := x86.VPALIGNR(ops...); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -53242,9 +54850,50 @@ func (c *Context) VPALIGNR(i, mxy, xy, xy1 operand.Op) {
 // 	VPALIGNR imm8 ymm  ymm ymm
 // 	VPALIGNR imm8 m128 xmm xmm
 // 	VPALIGNR imm8 xmm  xmm xmm
+// 	VPALIGNR imm8 m512 zmm k zmm
+// 	VPALIGNR imm8 m512 zmm zmm
+// 	VPALIGNR imm8 zmm  zmm k zmm
+// 	VPALIGNR imm8 zmm  zmm zmm
+// 	VPALIGNR imm8 m128 xmm k xmm
+// 	VPALIGNR imm8 m256 ymm k ymm
+// 	VPALIGNR imm8 xmm  xmm k xmm
+// 	VPALIGNR imm8 ymm  ymm k ymm
 // Construct and append a VPALIGNR instruction to the active function.
 // Operates on the global context.
-func VPALIGNR(i, mxy, xy, xy1 operand.Op) { ctx.VPALIGNR(i, mxy, xy, xy1) }
+func VPALIGNR(ops ...operand.Op) { ctx.VPALIGNR(ops...) }
+
+// VPALIGNR_Z: Packed Align Right (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPALIGNR.Z imm8 m512 zmm k zmm
+// 	VPALIGNR.Z imm8 zmm  zmm k zmm
+// 	VPALIGNR.Z imm8 m128 xmm k xmm
+// 	VPALIGNR.Z imm8 m256 ymm k ymm
+// 	VPALIGNR.Z imm8 xmm  xmm k xmm
+// 	VPALIGNR.Z imm8 ymm  ymm k ymm
+// Construct and append a VPALIGNR.Z instruction to the active function.
+func (c *Context) VPALIGNR_Z(i, mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPALIGNR_Z(i, mxyz, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPALIGNR_Z: Packed Align Right (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPALIGNR.Z imm8 m512 zmm k zmm
+// 	VPALIGNR.Z imm8 zmm  zmm k zmm
+// 	VPALIGNR.Z imm8 m128 xmm k xmm
+// 	VPALIGNR.Z imm8 m256 ymm k ymm
+// 	VPALIGNR.Z imm8 xmm  xmm k xmm
+// 	VPALIGNR.Z imm8 ymm  ymm k ymm
+// Construct and append a VPALIGNR.Z instruction to the active function.
+// Operates on the global context.
+func VPALIGNR_Z(i, mxyz, xyz, k, xyz1 operand.Op) { ctx.VPALIGNR_Z(i, mxyz, xyz, k, xyz1) }
 
 // VPAND: Packed Bitwise Logical AND.
 //
@@ -53864,9 +55513,17 @@ func VPANDQ_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPANDQ_Z(mxyz, xyz, k, xyz1) 
 // 	VPAVGB ymm  ymm ymm
 // 	VPAVGB m128 xmm xmm
 // 	VPAVGB xmm  xmm xmm
+// 	VPAVGB m512 zmm k zmm
+// 	VPAVGB m512 zmm zmm
+// 	VPAVGB zmm  zmm k zmm
+// 	VPAVGB zmm  zmm zmm
+// 	VPAVGB m128 xmm k xmm
+// 	VPAVGB m256 ymm k ymm
+// 	VPAVGB xmm  xmm k xmm
+// 	VPAVGB ymm  ymm k ymm
 // Construct and append a VPAVGB instruction to the active function.
-func (c *Context) VPAVGB(mxy, xy, xy1 operand.Op) {
-	if inst, err := x86.VPAVGB(mxy, xy, xy1); err == nil {
+func (c *Context) VPAVGB(ops ...operand.Op) {
+	if inst, err := x86.VPAVGB(ops...); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -53881,9 +55538,50 @@ func (c *Context) VPAVGB(mxy, xy, xy1 operand.Op) {
 // 	VPAVGB ymm  ymm ymm
 // 	VPAVGB m128 xmm xmm
 // 	VPAVGB xmm  xmm xmm
+// 	VPAVGB m512 zmm k zmm
+// 	VPAVGB m512 zmm zmm
+// 	VPAVGB zmm  zmm k zmm
+// 	VPAVGB zmm  zmm zmm
+// 	VPAVGB m128 xmm k xmm
+// 	VPAVGB m256 ymm k ymm
+// 	VPAVGB xmm  xmm k xmm
+// 	VPAVGB ymm  ymm k ymm
 // Construct and append a VPAVGB instruction to the active function.
 // Operates on the global context.
-func VPAVGB(mxy, xy, xy1 operand.Op) { ctx.VPAVGB(mxy, xy, xy1) }
+func VPAVGB(ops ...operand.Op) { ctx.VPAVGB(ops...) }
+
+// VPAVGB_Z: Average Packed Byte Integers (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPAVGB.Z m512 zmm k zmm
+// 	VPAVGB.Z zmm  zmm k zmm
+// 	VPAVGB.Z m128 xmm k xmm
+// 	VPAVGB.Z m256 ymm k ymm
+// 	VPAVGB.Z xmm  xmm k xmm
+// 	VPAVGB.Z ymm  ymm k ymm
+// Construct and append a VPAVGB.Z instruction to the active function.
+func (c *Context) VPAVGB_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPAVGB_Z(mxyz, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPAVGB_Z: Average Packed Byte Integers (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPAVGB.Z m512 zmm k zmm
+// 	VPAVGB.Z zmm  zmm k zmm
+// 	VPAVGB.Z m128 xmm k xmm
+// 	VPAVGB.Z m256 ymm k ymm
+// 	VPAVGB.Z xmm  xmm k xmm
+// 	VPAVGB.Z ymm  ymm k ymm
+// Construct and append a VPAVGB.Z instruction to the active function.
+// Operates on the global context.
+func VPAVGB_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPAVGB_Z(mxyz, xyz, k, xyz1) }
 
 // VPAVGW: Average Packed Word Integers.
 //
@@ -53893,9 +55591,17 @@ func VPAVGB(mxy, xy, xy1 operand.Op) { ctx.VPAVGB(mxy, xy, xy1) }
 // 	VPAVGW ymm  ymm ymm
 // 	VPAVGW m128 xmm xmm
 // 	VPAVGW xmm  xmm xmm
+// 	VPAVGW m512 zmm k zmm
+// 	VPAVGW m512 zmm zmm
+// 	VPAVGW zmm  zmm k zmm
+// 	VPAVGW zmm  zmm zmm
+// 	VPAVGW m128 xmm k xmm
+// 	VPAVGW m256 ymm k ymm
+// 	VPAVGW xmm  xmm k xmm
+// 	VPAVGW ymm  ymm k ymm
 // Construct and append a VPAVGW instruction to the active function.
-func (c *Context) VPAVGW(mxy, xy, xy1 operand.Op) {
-	if inst, err := x86.VPAVGW(mxy, xy, xy1); err == nil {
+func (c *Context) VPAVGW(ops ...operand.Op) {
+	if inst, err := x86.VPAVGW(ops...); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -53910,9 +55616,50 @@ func (c *Context) VPAVGW(mxy, xy, xy1 operand.Op) {
 // 	VPAVGW ymm  ymm ymm
 // 	VPAVGW m128 xmm xmm
 // 	VPAVGW xmm  xmm xmm
+// 	VPAVGW m512 zmm k zmm
+// 	VPAVGW m512 zmm zmm
+// 	VPAVGW zmm  zmm k zmm
+// 	VPAVGW zmm  zmm zmm
+// 	VPAVGW m128 xmm k xmm
+// 	VPAVGW m256 ymm k ymm
+// 	VPAVGW xmm  xmm k xmm
+// 	VPAVGW ymm  ymm k ymm
 // Construct and append a VPAVGW instruction to the active function.
 // Operates on the global context.
-func VPAVGW(mxy, xy, xy1 operand.Op) { ctx.VPAVGW(mxy, xy, xy1) }
+func VPAVGW(ops ...operand.Op) { ctx.VPAVGW(ops...) }
+
+// VPAVGW_Z: Average Packed Word Integers (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPAVGW.Z m512 zmm k zmm
+// 	VPAVGW.Z zmm  zmm k zmm
+// 	VPAVGW.Z m128 xmm k xmm
+// 	VPAVGW.Z m256 ymm k ymm
+// 	VPAVGW.Z xmm  xmm k xmm
+// 	VPAVGW.Z ymm  ymm k ymm
+// Construct and append a VPAVGW.Z instruction to the active function.
+func (c *Context) VPAVGW_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPAVGW_Z(mxyz, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPAVGW_Z: Average Packed Word Integers (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPAVGW.Z m512 zmm k zmm
+// 	VPAVGW.Z zmm  zmm k zmm
+// 	VPAVGW.Z m128 xmm k xmm
+// 	VPAVGW.Z m256 ymm k ymm
+// 	VPAVGW.Z xmm  xmm k xmm
+// 	VPAVGW.Z ymm  ymm k ymm
+// Construct and append a VPAVGW.Z instruction to the active function.
+// Operates on the global context.
+func VPAVGW_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPAVGW_Z(mxyz, xyz, k, xyz1) }
 
 // VPBLENDD: Blend Packed Doublewords.
 //
@@ -53942,6 +55689,84 @@ func (c *Context) VPBLENDD(i, mxy, xy, xy1 operand.Op) {
 // Construct and append a VPBLENDD instruction to the active function.
 // Operates on the global context.
 func VPBLENDD(i, mxy, xy, xy1 operand.Op) { ctx.VPBLENDD(i, mxy, xy, xy1) }
+
+// VPBLENDMB: Blend Byte Vectors Using an OpMask Control.
+//
+// Forms:
+//
+// 	VPBLENDMB m512 zmm k zmm
+// 	VPBLENDMB m512 zmm zmm
+// 	VPBLENDMB zmm  zmm k zmm
+// 	VPBLENDMB zmm  zmm zmm
+// 	VPBLENDMB m128 xmm k xmm
+// 	VPBLENDMB m128 xmm xmm
+// 	VPBLENDMB m256 ymm k ymm
+// 	VPBLENDMB m256 ymm ymm
+// 	VPBLENDMB xmm  xmm k xmm
+// 	VPBLENDMB xmm  xmm xmm
+// 	VPBLENDMB ymm  ymm k ymm
+// 	VPBLENDMB ymm  ymm ymm
+// Construct and append a VPBLENDMB instruction to the active function.
+func (c *Context) VPBLENDMB(ops ...operand.Op) {
+	if inst, err := x86.VPBLENDMB(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPBLENDMB: Blend Byte Vectors Using an OpMask Control.
+//
+// Forms:
+//
+// 	VPBLENDMB m512 zmm k zmm
+// 	VPBLENDMB m512 zmm zmm
+// 	VPBLENDMB zmm  zmm k zmm
+// 	VPBLENDMB zmm  zmm zmm
+// 	VPBLENDMB m128 xmm k xmm
+// 	VPBLENDMB m128 xmm xmm
+// 	VPBLENDMB m256 ymm k ymm
+// 	VPBLENDMB m256 ymm ymm
+// 	VPBLENDMB xmm  xmm k xmm
+// 	VPBLENDMB xmm  xmm xmm
+// 	VPBLENDMB ymm  ymm k ymm
+// 	VPBLENDMB ymm  ymm ymm
+// Construct and append a VPBLENDMB instruction to the active function.
+// Operates on the global context.
+func VPBLENDMB(ops ...operand.Op) { ctx.VPBLENDMB(ops...) }
+
+// VPBLENDMB_Z: Blend Byte Vectors Using an OpMask Control (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPBLENDMB.Z m512 zmm k zmm
+// 	VPBLENDMB.Z zmm  zmm k zmm
+// 	VPBLENDMB.Z m128 xmm k xmm
+// 	VPBLENDMB.Z m256 ymm k ymm
+// 	VPBLENDMB.Z xmm  xmm k xmm
+// 	VPBLENDMB.Z ymm  ymm k ymm
+// Construct and append a VPBLENDMB.Z instruction to the active function.
+func (c *Context) VPBLENDMB_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPBLENDMB_Z(mxyz, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPBLENDMB_Z: Blend Byte Vectors Using an OpMask Control (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPBLENDMB.Z m512 zmm k zmm
+// 	VPBLENDMB.Z zmm  zmm k zmm
+// 	VPBLENDMB.Z m128 xmm k xmm
+// 	VPBLENDMB.Z m256 ymm k ymm
+// 	VPBLENDMB.Z xmm  xmm k xmm
+// 	VPBLENDMB.Z ymm  ymm k ymm
+// Construct and append a VPBLENDMB.Z instruction to the active function.
+// Operates on the global context.
+func VPBLENDMB_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPBLENDMB_Z(mxyz, xyz, k, xyz1) }
 
 // VPBLENDMD: Blend Doubleword Vectors Using an OpMask Control.
 //
@@ -54219,6 +56044,84 @@ func (c *Context) VPBLENDMQ_Z(mxyz, xyz, k, xyz1 operand.Op) {
 // Operates on the global context.
 func VPBLENDMQ_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPBLENDMQ_Z(mxyz, xyz, k, xyz1) }
 
+// VPBLENDMW: Blend Word Vectors Using an OpMask Control.
+//
+// Forms:
+//
+// 	VPBLENDMW m512 zmm k zmm
+// 	VPBLENDMW m512 zmm zmm
+// 	VPBLENDMW zmm  zmm k zmm
+// 	VPBLENDMW zmm  zmm zmm
+// 	VPBLENDMW m128 xmm k xmm
+// 	VPBLENDMW m128 xmm xmm
+// 	VPBLENDMW m256 ymm k ymm
+// 	VPBLENDMW m256 ymm ymm
+// 	VPBLENDMW xmm  xmm k xmm
+// 	VPBLENDMW xmm  xmm xmm
+// 	VPBLENDMW ymm  ymm k ymm
+// 	VPBLENDMW ymm  ymm ymm
+// Construct and append a VPBLENDMW instruction to the active function.
+func (c *Context) VPBLENDMW(ops ...operand.Op) {
+	if inst, err := x86.VPBLENDMW(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPBLENDMW: Blend Word Vectors Using an OpMask Control.
+//
+// Forms:
+//
+// 	VPBLENDMW m512 zmm k zmm
+// 	VPBLENDMW m512 zmm zmm
+// 	VPBLENDMW zmm  zmm k zmm
+// 	VPBLENDMW zmm  zmm zmm
+// 	VPBLENDMW m128 xmm k xmm
+// 	VPBLENDMW m128 xmm xmm
+// 	VPBLENDMW m256 ymm k ymm
+// 	VPBLENDMW m256 ymm ymm
+// 	VPBLENDMW xmm  xmm k xmm
+// 	VPBLENDMW xmm  xmm xmm
+// 	VPBLENDMW ymm  ymm k ymm
+// 	VPBLENDMW ymm  ymm ymm
+// Construct and append a VPBLENDMW instruction to the active function.
+// Operates on the global context.
+func VPBLENDMW(ops ...operand.Op) { ctx.VPBLENDMW(ops...) }
+
+// VPBLENDMW_Z: Blend Word Vectors Using an OpMask Control (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPBLENDMW.Z m512 zmm k zmm
+// 	VPBLENDMW.Z zmm  zmm k zmm
+// 	VPBLENDMW.Z m128 xmm k xmm
+// 	VPBLENDMW.Z m256 ymm k ymm
+// 	VPBLENDMW.Z xmm  xmm k xmm
+// 	VPBLENDMW.Z ymm  ymm k ymm
+// Construct and append a VPBLENDMW.Z instruction to the active function.
+func (c *Context) VPBLENDMW_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPBLENDMW_Z(mxyz, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPBLENDMW_Z: Blend Word Vectors Using an OpMask Control (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPBLENDMW.Z m512 zmm k zmm
+// 	VPBLENDMW.Z zmm  zmm k zmm
+// 	VPBLENDMW.Z m128 xmm k xmm
+// 	VPBLENDMW.Z m256 ymm k ymm
+// 	VPBLENDMW.Z xmm  xmm k xmm
+// 	VPBLENDMW.Z ymm  ymm k ymm
+// Construct and append a VPBLENDMW.Z instruction to the active function.
+// Operates on the global context.
+func VPBLENDMW_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPBLENDMW_Z(mxyz, xyz, k, xyz1) }
+
 // VPBLENDVB: Variable Blend Packed Bytes.
 //
 // Forms:
@@ -54285,9 +56188,23 @@ func VPBLENDW(i, mxy, xy, xy1 operand.Op) { ctx.VPBLENDW(i, mxy, xy, xy1) }
 // 	VPBROADCASTB m8  ymm
 // 	VPBROADCASTB xmm xmm
 // 	VPBROADCASTB xmm ymm
+// 	VPBROADCASTB m8  k zmm
+// 	VPBROADCASTB m8  zmm
+// 	VPBROADCASTB r32 k zmm
+// 	VPBROADCASTB r32 zmm
+// 	VPBROADCASTB xmm k zmm
+// 	VPBROADCASTB xmm zmm
+// 	VPBROADCASTB m8  k xmm
+// 	VPBROADCASTB m8  k ymm
+// 	VPBROADCASTB r32 k xmm
+// 	VPBROADCASTB r32 k ymm
+// 	VPBROADCASTB r32 xmm
+// 	VPBROADCASTB r32 ymm
+// 	VPBROADCASTB xmm k xmm
+// 	VPBROADCASTB xmm k ymm
 // Construct and append a VPBROADCASTB instruction to the active function.
-func (c *Context) VPBROADCASTB(mx, xy operand.Op) {
-	if inst, err := x86.VPBROADCASTB(mx, xy); err == nil {
+func (c *Context) VPBROADCASTB(ops ...operand.Op) {
+	if inst, err := x86.VPBROADCASTB(ops...); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -54302,9 +56219,62 @@ func (c *Context) VPBROADCASTB(mx, xy operand.Op) {
 // 	VPBROADCASTB m8  ymm
 // 	VPBROADCASTB xmm xmm
 // 	VPBROADCASTB xmm ymm
+// 	VPBROADCASTB m8  k zmm
+// 	VPBROADCASTB m8  zmm
+// 	VPBROADCASTB r32 k zmm
+// 	VPBROADCASTB r32 zmm
+// 	VPBROADCASTB xmm k zmm
+// 	VPBROADCASTB xmm zmm
+// 	VPBROADCASTB m8  k xmm
+// 	VPBROADCASTB m8  k ymm
+// 	VPBROADCASTB r32 k xmm
+// 	VPBROADCASTB r32 k ymm
+// 	VPBROADCASTB r32 xmm
+// 	VPBROADCASTB r32 ymm
+// 	VPBROADCASTB xmm k xmm
+// 	VPBROADCASTB xmm k ymm
 // Construct and append a VPBROADCASTB instruction to the active function.
 // Operates on the global context.
-func VPBROADCASTB(mx, xy operand.Op) { ctx.VPBROADCASTB(mx, xy) }
+func VPBROADCASTB(ops ...operand.Op) { ctx.VPBROADCASTB(ops...) }
+
+// VPBROADCASTB_Z: Broadcast Byte Integer (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPBROADCASTB.Z m8  k zmm
+// 	VPBROADCASTB.Z r32 k zmm
+// 	VPBROADCASTB.Z xmm k zmm
+// 	VPBROADCASTB.Z m8  k xmm
+// 	VPBROADCASTB.Z m8  k ymm
+// 	VPBROADCASTB.Z r32 k xmm
+// 	VPBROADCASTB.Z r32 k ymm
+// 	VPBROADCASTB.Z xmm k xmm
+// 	VPBROADCASTB.Z xmm k ymm
+// Construct and append a VPBROADCASTB.Z instruction to the active function.
+func (c *Context) VPBROADCASTB_Z(mrx, k, xyz operand.Op) {
+	if inst, err := x86.VPBROADCASTB_Z(mrx, k, xyz); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPBROADCASTB_Z: Broadcast Byte Integer (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPBROADCASTB.Z m8  k zmm
+// 	VPBROADCASTB.Z r32 k zmm
+// 	VPBROADCASTB.Z xmm k zmm
+// 	VPBROADCASTB.Z m8  k xmm
+// 	VPBROADCASTB.Z m8  k ymm
+// 	VPBROADCASTB.Z r32 k xmm
+// 	VPBROADCASTB.Z r32 k ymm
+// 	VPBROADCASTB.Z xmm k xmm
+// 	VPBROADCASTB.Z xmm k ymm
+// Construct and append a VPBROADCASTB.Z instruction to the active function.
+// Operates on the global context.
+func VPBROADCASTB_Z(mrx, k, xyz operand.Op) { ctx.VPBROADCASTB_Z(mrx, k, xyz) }
 
 // VPBROADCASTD: Broadcast Doubleword Integer.
 //
@@ -54560,9 +56530,23 @@ func VPBROADCASTQ_Z(mrx, k, xyz operand.Op) { ctx.VPBROADCASTQ_Z(mrx, k, xyz) }
 // 	VPBROADCASTW m16 ymm
 // 	VPBROADCASTW xmm xmm
 // 	VPBROADCASTW xmm ymm
+// 	VPBROADCASTW m16 k zmm
+// 	VPBROADCASTW m16 zmm
+// 	VPBROADCASTW r32 k zmm
+// 	VPBROADCASTW r32 zmm
+// 	VPBROADCASTW xmm k zmm
+// 	VPBROADCASTW xmm zmm
+// 	VPBROADCASTW m16 k xmm
+// 	VPBROADCASTW m16 k ymm
+// 	VPBROADCASTW r32 k xmm
+// 	VPBROADCASTW r32 k ymm
+// 	VPBROADCASTW r32 xmm
+// 	VPBROADCASTW r32 ymm
+// 	VPBROADCASTW xmm k xmm
+// 	VPBROADCASTW xmm k ymm
 // Construct and append a VPBROADCASTW instruction to the active function.
-func (c *Context) VPBROADCASTW(mx, xy operand.Op) {
-	if inst, err := x86.VPBROADCASTW(mx, xy); err == nil {
+func (c *Context) VPBROADCASTW(ops ...operand.Op) {
+	if inst, err := x86.VPBROADCASTW(ops...); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -54577,9 +56561,62 @@ func (c *Context) VPBROADCASTW(mx, xy operand.Op) {
 // 	VPBROADCASTW m16 ymm
 // 	VPBROADCASTW xmm xmm
 // 	VPBROADCASTW xmm ymm
+// 	VPBROADCASTW m16 k zmm
+// 	VPBROADCASTW m16 zmm
+// 	VPBROADCASTW r32 k zmm
+// 	VPBROADCASTW r32 zmm
+// 	VPBROADCASTW xmm k zmm
+// 	VPBROADCASTW xmm zmm
+// 	VPBROADCASTW m16 k xmm
+// 	VPBROADCASTW m16 k ymm
+// 	VPBROADCASTW r32 k xmm
+// 	VPBROADCASTW r32 k ymm
+// 	VPBROADCASTW r32 xmm
+// 	VPBROADCASTW r32 ymm
+// 	VPBROADCASTW xmm k xmm
+// 	VPBROADCASTW xmm k ymm
 // Construct and append a VPBROADCASTW instruction to the active function.
 // Operates on the global context.
-func VPBROADCASTW(mx, xy operand.Op) { ctx.VPBROADCASTW(mx, xy) }
+func VPBROADCASTW(ops ...operand.Op) { ctx.VPBROADCASTW(ops...) }
+
+// VPBROADCASTW_Z: Broadcast Word Integer (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPBROADCASTW.Z m16 k zmm
+// 	VPBROADCASTW.Z r32 k zmm
+// 	VPBROADCASTW.Z xmm k zmm
+// 	VPBROADCASTW.Z m16 k xmm
+// 	VPBROADCASTW.Z m16 k ymm
+// 	VPBROADCASTW.Z r32 k xmm
+// 	VPBROADCASTW.Z r32 k ymm
+// 	VPBROADCASTW.Z xmm k xmm
+// 	VPBROADCASTW.Z xmm k ymm
+// Construct and append a VPBROADCASTW.Z instruction to the active function.
+func (c *Context) VPBROADCASTW_Z(mrx, k, xyz operand.Op) {
+	if inst, err := x86.VPBROADCASTW_Z(mrx, k, xyz); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPBROADCASTW_Z: Broadcast Word Integer (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPBROADCASTW.Z m16 k zmm
+// 	VPBROADCASTW.Z r32 k zmm
+// 	VPBROADCASTW.Z xmm k zmm
+// 	VPBROADCASTW.Z m16 k xmm
+// 	VPBROADCASTW.Z m16 k ymm
+// 	VPBROADCASTW.Z r32 k xmm
+// 	VPBROADCASTW.Z r32 k ymm
+// 	VPBROADCASTW.Z xmm k xmm
+// 	VPBROADCASTW.Z xmm k ymm
+// Construct and append a VPBROADCASTW.Z instruction to the active function.
+// Operates on the global context.
+func VPBROADCASTW_Z(mrx, k, xyz operand.Op) { ctx.VPBROADCASTW_Z(mrx, k, xyz) }
 
 // VPCLMULQDQ: Carry-Less Quadword Multiplication.
 //
@@ -54605,6 +56642,51 @@ func (c *Context) VPCLMULQDQ(i, mx, x, x1 operand.Op) {
 // Construct and append a VPCLMULQDQ instruction to the active function.
 // Operates on the global context.
 func VPCLMULQDQ(i, mx, x, x1 operand.Op) { ctx.VPCLMULQDQ(i, mx, x, x1) }
+
+// VPCMPB: Compare Packed Signed Byte Values.
+//
+// Forms:
+//
+// 	VPCMPB imm8 m512 zmm k k
+// 	VPCMPB imm8 m512 zmm k
+// 	VPCMPB imm8 zmm  zmm k k
+// 	VPCMPB imm8 zmm  zmm k
+// 	VPCMPB imm8 m128 xmm k k
+// 	VPCMPB imm8 m128 xmm k
+// 	VPCMPB imm8 m256 ymm k k
+// 	VPCMPB imm8 m256 ymm k
+// 	VPCMPB imm8 xmm  xmm k k
+// 	VPCMPB imm8 xmm  xmm k
+// 	VPCMPB imm8 ymm  ymm k k
+// 	VPCMPB imm8 ymm  ymm k
+// Construct and append a VPCMPB instruction to the active function.
+func (c *Context) VPCMPB(ops ...operand.Op) {
+	if inst, err := x86.VPCMPB(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPCMPB: Compare Packed Signed Byte Values.
+//
+// Forms:
+//
+// 	VPCMPB imm8 m512 zmm k k
+// 	VPCMPB imm8 m512 zmm k
+// 	VPCMPB imm8 zmm  zmm k k
+// 	VPCMPB imm8 zmm  zmm k
+// 	VPCMPB imm8 m128 xmm k k
+// 	VPCMPB imm8 m128 xmm k
+// 	VPCMPB imm8 m256 ymm k k
+// 	VPCMPB imm8 m256 ymm k
+// 	VPCMPB imm8 xmm  xmm k k
+// 	VPCMPB imm8 xmm  xmm k
+// 	VPCMPB imm8 ymm  ymm k k
+// 	VPCMPB imm8 ymm  ymm k
+// Construct and append a VPCMPB instruction to the active function.
+// Operates on the global context.
+func VPCMPB(ops ...operand.Op) { ctx.VPCMPB(ops...) }
 
 // VPCMPD: Compare Packed Signed Doubleword Values.
 //
@@ -54692,9 +56774,21 @@ func VPCMPD_BCST(ops ...operand.Op) { ctx.VPCMPD_BCST(ops...) }
 // 	VPCMPEQB ymm  ymm ymm
 // 	VPCMPEQB m128 xmm xmm
 // 	VPCMPEQB xmm  xmm xmm
+// 	VPCMPEQB m512 zmm k k
+// 	VPCMPEQB m512 zmm k
+// 	VPCMPEQB zmm  zmm k k
+// 	VPCMPEQB zmm  zmm k
+// 	VPCMPEQB m128 xmm k k
+// 	VPCMPEQB m128 xmm k
+// 	VPCMPEQB m256 ymm k k
+// 	VPCMPEQB m256 ymm k
+// 	VPCMPEQB xmm  xmm k k
+// 	VPCMPEQB xmm  xmm k
+// 	VPCMPEQB ymm  ymm k k
+// 	VPCMPEQB ymm  ymm k
 // Construct and append a VPCMPEQB instruction to the active function.
-func (c *Context) VPCMPEQB(mxy, xy, xy1 operand.Op) {
-	if inst, err := x86.VPCMPEQB(mxy, xy, xy1); err == nil {
+func (c *Context) VPCMPEQB(ops ...operand.Op) {
+	if inst, err := x86.VPCMPEQB(ops...); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -54709,9 +56803,21 @@ func (c *Context) VPCMPEQB(mxy, xy, xy1 operand.Op) {
 // 	VPCMPEQB ymm  ymm ymm
 // 	VPCMPEQB m128 xmm xmm
 // 	VPCMPEQB xmm  xmm xmm
+// 	VPCMPEQB m512 zmm k k
+// 	VPCMPEQB m512 zmm k
+// 	VPCMPEQB zmm  zmm k k
+// 	VPCMPEQB zmm  zmm k
+// 	VPCMPEQB m128 xmm k k
+// 	VPCMPEQB m128 xmm k
+// 	VPCMPEQB m256 ymm k k
+// 	VPCMPEQB m256 ymm k
+// 	VPCMPEQB xmm  xmm k k
+// 	VPCMPEQB xmm  xmm k
+// 	VPCMPEQB ymm  ymm k k
+// 	VPCMPEQB ymm  ymm k
 // Construct and append a VPCMPEQB instruction to the active function.
 // Operates on the global context.
-func VPCMPEQB(mxy, xy, xy1 operand.Op) { ctx.VPCMPEQB(mxy, xy, xy1) }
+func VPCMPEQB(ops ...operand.Op) { ctx.VPCMPEQB(ops...) }
 
 // VPCMPEQD: Compare Packed Doubleword Data for Equality.
 //
@@ -54893,9 +56999,21 @@ func VPCMPEQQ_BCST(ops ...operand.Op) { ctx.VPCMPEQQ_BCST(ops...) }
 // 	VPCMPEQW ymm  ymm ymm
 // 	VPCMPEQW m128 xmm xmm
 // 	VPCMPEQW xmm  xmm xmm
+// 	VPCMPEQW m512 zmm k k
+// 	VPCMPEQW m512 zmm k
+// 	VPCMPEQW zmm  zmm k k
+// 	VPCMPEQW zmm  zmm k
+// 	VPCMPEQW m128 xmm k k
+// 	VPCMPEQW m128 xmm k
+// 	VPCMPEQW m256 ymm k k
+// 	VPCMPEQW m256 ymm k
+// 	VPCMPEQW xmm  xmm k k
+// 	VPCMPEQW xmm  xmm k
+// 	VPCMPEQW ymm  ymm k k
+// 	VPCMPEQW ymm  ymm k
 // Construct and append a VPCMPEQW instruction to the active function.
-func (c *Context) VPCMPEQW(mxy, xy, xy1 operand.Op) {
-	if inst, err := x86.VPCMPEQW(mxy, xy, xy1); err == nil {
+func (c *Context) VPCMPEQW(ops ...operand.Op) {
+	if inst, err := x86.VPCMPEQW(ops...); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -54910,9 +57028,21 @@ func (c *Context) VPCMPEQW(mxy, xy, xy1 operand.Op) {
 // 	VPCMPEQW ymm  ymm ymm
 // 	VPCMPEQW m128 xmm xmm
 // 	VPCMPEQW xmm  xmm xmm
+// 	VPCMPEQW m512 zmm k k
+// 	VPCMPEQW m512 zmm k
+// 	VPCMPEQW zmm  zmm k k
+// 	VPCMPEQW zmm  zmm k
+// 	VPCMPEQW m128 xmm k k
+// 	VPCMPEQW m128 xmm k
+// 	VPCMPEQW m256 ymm k k
+// 	VPCMPEQW m256 ymm k
+// 	VPCMPEQW xmm  xmm k k
+// 	VPCMPEQW xmm  xmm k
+// 	VPCMPEQW ymm  ymm k k
+// 	VPCMPEQW ymm  ymm k
 // Construct and append a VPCMPEQW instruction to the active function.
 // Operates on the global context.
-func VPCMPEQW(mxy, xy, xy1 operand.Op) { ctx.VPCMPEQW(mxy, xy, xy1) }
+func VPCMPEQW(ops ...operand.Op) { ctx.VPCMPEQW(ops...) }
 
 // VPCMPESTRI: Packed Compare Explicit Length Strings, Return Index.
 //
@@ -54972,9 +57102,21 @@ func VPCMPESTRM(i, mx, x operand.Op) { ctx.VPCMPESTRM(i, mx, x) }
 // 	VPCMPGTB ymm  ymm ymm
 // 	VPCMPGTB m128 xmm xmm
 // 	VPCMPGTB xmm  xmm xmm
+// 	VPCMPGTB m512 zmm k k
+// 	VPCMPGTB m512 zmm k
+// 	VPCMPGTB zmm  zmm k k
+// 	VPCMPGTB zmm  zmm k
+// 	VPCMPGTB m128 xmm k k
+// 	VPCMPGTB m128 xmm k
+// 	VPCMPGTB m256 ymm k k
+// 	VPCMPGTB m256 ymm k
+// 	VPCMPGTB xmm  xmm k k
+// 	VPCMPGTB xmm  xmm k
+// 	VPCMPGTB ymm  ymm k k
+// 	VPCMPGTB ymm  ymm k
 // Construct and append a VPCMPGTB instruction to the active function.
-func (c *Context) VPCMPGTB(mxy, xy, xy1 operand.Op) {
-	if inst, err := x86.VPCMPGTB(mxy, xy, xy1); err == nil {
+func (c *Context) VPCMPGTB(ops ...operand.Op) {
+	if inst, err := x86.VPCMPGTB(ops...); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -54989,9 +57131,21 @@ func (c *Context) VPCMPGTB(mxy, xy, xy1 operand.Op) {
 // 	VPCMPGTB ymm  ymm ymm
 // 	VPCMPGTB m128 xmm xmm
 // 	VPCMPGTB xmm  xmm xmm
+// 	VPCMPGTB m512 zmm k k
+// 	VPCMPGTB m512 zmm k
+// 	VPCMPGTB zmm  zmm k k
+// 	VPCMPGTB zmm  zmm k
+// 	VPCMPGTB m128 xmm k k
+// 	VPCMPGTB m128 xmm k
+// 	VPCMPGTB m256 ymm k k
+// 	VPCMPGTB m256 ymm k
+// 	VPCMPGTB xmm  xmm k k
+// 	VPCMPGTB xmm  xmm k
+// 	VPCMPGTB ymm  ymm k k
+// 	VPCMPGTB ymm  ymm k
 // Construct and append a VPCMPGTB instruction to the active function.
 // Operates on the global context.
-func VPCMPGTB(mxy, xy, xy1 operand.Op) { ctx.VPCMPGTB(mxy, xy, xy1) }
+func VPCMPGTB(ops ...operand.Op) { ctx.VPCMPGTB(ops...) }
 
 // VPCMPGTD: Compare Packed Signed Doubleword Integers for Greater Than.
 //
@@ -55173,9 +57327,21 @@ func VPCMPGTQ_BCST(ops ...operand.Op) { ctx.VPCMPGTQ_BCST(ops...) }
 // 	VPCMPGTW ymm  ymm ymm
 // 	VPCMPGTW m128 xmm xmm
 // 	VPCMPGTW xmm  xmm xmm
+// 	VPCMPGTW m512 zmm k k
+// 	VPCMPGTW m512 zmm k
+// 	VPCMPGTW zmm  zmm k k
+// 	VPCMPGTW zmm  zmm k
+// 	VPCMPGTW m128 xmm k k
+// 	VPCMPGTW m128 xmm k
+// 	VPCMPGTW m256 ymm k k
+// 	VPCMPGTW m256 ymm k
+// 	VPCMPGTW xmm  xmm k k
+// 	VPCMPGTW xmm  xmm k
+// 	VPCMPGTW ymm  ymm k k
+// 	VPCMPGTW ymm  ymm k
 // Construct and append a VPCMPGTW instruction to the active function.
-func (c *Context) VPCMPGTW(mxy, xy, xy1 operand.Op) {
-	if inst, err := x86.VPCMPGTW(mxy, xy, xy1); err == nil {
+func (c *Context) VPCMPGTW(ops ...operand.Op) {
+	if inst, err := x86.VPCMPGTW(ops...); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -55190,9 +57356,21 @@ func (c *Context) VPCMPGTW(mxy, xy, xy1 operand.Op) {
 // 	VPCMPGTW ymm  ymm ymm
 // 	VPCMPGTW m128 xmm xmm
 // 	VPCMPGTW xmm  xmm xmm
+// 	VPCMPGTW m512 zmm k k
+// 	VPCMPGTW m512 zmm k
+// 	VPCMPGTW zmm  zmm k k
+// 	VPCMPGTW zmm  zmm k
+// 	VPCMPGTW m128 xmm k k
+// 	VPCMPGTW m128 xmm k
+// 	VPCMPGTW m256 ymm k k
+// 	VPCMPGTW m256 ymm k
+// 	VPCMPGTW xmm  xmm k k
+// 	VPCMPGTW xmm  xmm k
+// 	VPCMPGTW ymm  ymm k k
+// 	VPCMPGTW ymm  ymm k
 // Construct and append a VPCMPGTW instruction to the active function.
 // Operates on the global context.
-func VPCMPGTW(mxy, xy, xy1 operand.Op) { ctx.VPCMPGTW(mxy, xy, xy1) }
+func VPCMPGTW(ops ...operand.Op) { ctx.VPCMPGTW(ops...) }
 
 // VPCMPISTRI: Packed Compare Implicit Length Strings, Return Index.
 //
@@ -55321,6 +57499,51 @@ func (c *Context) VPCMPQ_BCST(ops ...operand.Op) {
 // Construct and append a VPCMPQ.BCST instruction to the active function.
 // Operates on the global context.
 func VPCMPQ_BCST(ops ...operand.Op) { ctx.VPCMPQ_BCST(ops...) }
+
+// VPCMPUB: Compare Packed Unsigned Byte Values.
+//
+// Forms:
+//
+// 	VPCMPUB imm8 m512 zmm k k
+// 	VPCMPUB imm8 m512 zmm k
+// 	VPCMPUB imm8 zmm  zmm k k
+// 	VPCMPUB imm8 zmm  zmm k
+// 	VPCMPUB imm8 m128 xmm k k
+// 	VPCMPUB imm8 m128 xmm k
+// 	VPCMPUB imm8 m256 ymm k k
+// 	VPCMPUB imm8 m256 ymm k
+// 	VPCMPUB imm8 xmm  xmm k k
+// 	VPCMPUB imm8 xmm  xmm k
+// 	VPCMPUB imm8 ymm  ymm k k
+// 	VPCMPUB imm8 ymm  ymm k
+// Construct and append a VPCMPUB instruction to the active function.
+func (c *Context) VPCMPUB(ops ...operand.Op) {
+	if inst, err := x86.VPCMPUB(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPCMPUB: Compare Packed Unsigned Byte Values.
+//
+// Forms:
+//
+// 	VPCMPUB imm8 m512 zmm k k
+// 	VPCMPUB imm8 m512 zmm k
+// 	VPCMPUB imm8 zmm  zmm k k
+// 	VPCMPUB imm8 zmm  zmm k
+// 	VPCMPUB imm8 m128 xmm k k
+// 	VPCMPUB imm8 m128 xmm k
+// 	VPCMPUB imm8 m256 ymm k k
+// 	VPCMPUB imm8 m256 ymm k
+// 	VPCMPUB imm8 xmm  xmm k k
+// 	VPCMPUB imm8 xmm  xmm k
+// 	VPCMPUB imm8 ymm  ymm k k
+// 	VPCMPUB imm8 ymm  ymm k
+// Construct and append a VPCMPUB instruction to the active function.
+// Operates on the global context.
+func VPCMPUB(ops ...operand.Op) { ctx.VPCMPUB(ops...) }
 
 // VPCMPUD: Compare Packed Unsigned Doubleword Values.
 //
@@ -55477,6 +57700,96 @@ func (c *Context) VPCMPUQ_BCST(ops ...operand.Op) {
 // Construct and append a VPCMPUQ.BCST instruction to the active function.
 // Operates on the global context.
 func VPCMPUQ_BCST(ops ...operand.Op) { ctx.VPCMPUQ_BCST(ops...) }
+
+// VPCMPUW: Compare Packed Unsigned Word Values.
+//
+// Forms:
+//
+// 	VPCMPUW imm8 m512 zmm k k
+// 	VPCMPUW imm8 m512 zmm k
+// 	VPCMPUW imm8 zmm  zmm k k
+// 	VPCMPUW imm8 zmm  zmm k
+// 	VPCMPUW imm8 m128 xmm k k
+// 	VPCMPUW imm8 m128 xmm k
+// 	VPCMPUW imm8 m256 ymm k k
+// 	VPCMPUW imm8 m256 ymm k
+// 	VPCMPUW imm8 xmm  xmm k k
+// 	VPCMPUW imm8 xmm  xmm k
+// 	VPCMPUW imm8 ymm  ymm k k
+// 	VPCMPUW imm8 ymm  ymm k
+// Construct and append a VPCMPUW instruction to the active function.
+func (c *Context) VPCMPUW(ops ...operand.Op) {
+	if inst, err := x86.VPCMPUW(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPCMPUW: Compare Packed Unsigned Word Values.
+//
+// Forms:
+//
+// 	VPCMPUW imm8 m512 zmm k k
+// 	VPCMPUW imm8 m512 zmm k
+// 	VPCMPUW imm8 zmm  zmm k k
+// 	VPCMPUW imm8 zmm  zmm k
+// 	VPCMPUW imm8 m128 xmm k k
+// 	VPCMPUW imm8 m128 xmm k
+// 	VPCMPUW imm8 m256 ymm k k
+// 	VPCMPUW imm8 m256 ymm k
+// 	VPCMPUW imm8 xmm  xmm k k
+// 	VPCMPUW imm8 xmm  xmm k
+// 	VPCMPUW imm8 ymm  ymm k k
+// 	VPCMPUW imm8 ymm  ymm k
+// Construct and append a VPCMPUW instruction to the active function.
+// Operates on the global context.
+func VPCMPUW(ops ...operand.Op) { ctx.VPCMPUW(ops...) }
+
+// VPCMPW: Compare Packed Signed Word Values.
+//
+// Forms:
+//
+// 	VPCMPW imm8 m512 zmm k k
+// 	VPCMPW imm8 m512 zmm k
+// 	VPCMPW imm8 zmm  zmm k k
+// 	VPCMPW imm8 zmm  zmm k
+// 	VPCMPW imm8 m128 xmm k k
+// 	VPCMPW imm8 m128 xmm k
+// 	VPCMPW imm8 m256 ymm k k
+// 	VPCMPW imm8 m256 ymm k
+// 	VPCMPW imm8 xmm  xmm k k
+// 	VPCMPW imm8 xmm  xmm k
+// 	VPCMPW imm8 ymm  ymm k k
+// 	VPCMPW imm8 ymm  ymm k
+// Construct and append a VPCMPW instruction to the active function.
+func (c *Context) VPCMPW(ops ...operand.Op) {
+	if inst, err := x86.VPCMPW(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPCMPW: Compare Packed Signed Word Values.
+//
+// Forms:
+//
+// 	VPCMPW imm8 m512 zmm k k
+// 	VPCMPW imm8 m512 zmm k
+// 	VPCMPW imm8 zmm  zmm k k
+// 	VPCMPW imm8 zmm  zmm k
+// 	VPCMPW imm8 m128 xmm k k
+// 	VPCMPW imm8 m128 xmm k
+// 	VPCMPW imm8 m256 ymm k k
+// 	VPCMPW imm8 m256 ymm k
+// 	VPCMPW imm8 xmm  xmm k k
+// 	VPCMPW imm8 xmm  xmm k
+// 	VPCMPW imm8 ymm  ymm k k
+// 	VPCMPW imm8 ymm  ymm k
+// Construct and append a VPCMPW instruction to the active function.
+// Operates on the global context.
+func VPCMPW(ops ...operand.Op) { ctx.VPCMPW(ops...) }
 
 // VPCOMPRESSD: Store Sparse Packed Doubleword Integer Values into Dense Memory/Register.
 //
@@ -56633,6 +58946,84 @@ func (c *Context) VPERMI2Q_Z(mxyz, xyz, k, xyz1 operand.Op) {
 // Construct and append a VPERMI2Q.Z instruction to the active function.
 // Operates on the global context.
 func VPERMI2Q_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPERMI2Q_Z(mxyz, xyz, k, xyz1) }
+
+// VPERMI2W: Full Permute of Words From Two Tables Overwriting the Index.
+//
+// Forms:
+//
+// 	VPERMI2W m512 zmm k zmm
+// 	VPERMI2W m512 zmm zmm
+// 	VPERMI2W zmm  zmm k zmm
+// 	VPERMI2W zmm  zmm zmm
+// 	VPERMI2W m128 xmm k xmm
+// 	VPERMI2W m128 xmm xmm
+// 	VPERMI2W m256 ymm k ymm
+// 	VPERMI2W m256 ymm ymm
+// 	VPERMI2W xmm  xmm k xmm
+// 	VPERMI2W xmm  xmm xmm
+// 	VPERMI2W ymm  ymm k ymm
+// 	VPERMI2W ymm  ymm ymm
+// Construct and append a VPERMI2W instruction to the active function.
+func (c *Context) VPERMI2W(ops ...operand.Op) {
+	if inst, err := x86.VPERMI2W(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPERMI2W: Full Permute of Words From Two Tables Overwriting the Index.
+//
+// Forms:
+//
+// 	VPERMI2W m512 zmm k zmm
+// 	VPERMI2W m512 zmm zmm
+// 	VPERMI2W zmm  zmm k zmm
+// 	VPERMI2W zmm  zmm zmm
+// 	VPERMI2W m128 xmm k xmm
+// 	VPERMI2W m128 xmm xmm
+// 	VPERMI2W m256 ymm k ymm
+// 	VPERMI2W m256 ymm ymm
+// 	VPERMI2W xmm  xmm k xmm
+// 	VPERMI2W xmm  xmm xmm
+// 	VPERMI2W ymm  ymm k ymm
+// 	VPERMI2W ymm  ymm ymm
+// Construct and append a VPERMI2W instruction to the active function.
+// Operates on the global context.
+func VPERMI2W(ops ...operand.Op) { ctx.VPERMI2W(ops...) }
+
+// VPERMI2W_Z: Full Permute of Words From Two Tables Overwriting the Index (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPERMI2W.Z m512 zmm k zmm
+// 	VPERMI2W.Z zmm  zmm k zmm
+// 	VPERMI2W.Z m128 xmm k xmm
+// 	VPERMI2W.Z m256 ymm k ymm
+// 	VPERMI2W.Z xmm  xmm k xmm
+// 	VPERMI2W.Z ymm  ymm k ymm
+// Construct and append a VPERMI2W.Z instruction to the active function.
+func (c *Context) VPERMI2W_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPERMI2W_Z(mxyz, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPERMI2W_Z: Full Permute of Words From Two Tables Overwriting the Index (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPERMI2W.Z m512 zmm k zmm
+// 	VPERMI2W.Z zmm  zmm k zmm
+// 	VPERMI2W.Z m128 xmm k xmm
+// 	VPERMI2W.Z m256 ymm k ymm
+// 	VPERMI2W.Z xmm  xmm k xmm
+// 	VPERMI2W.Z ymm  ymm k ymm
+// Construct and append a VPERMI2W.Z instruction to the active function.
+// Operates on the global context.
+func VPERMI2W_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPERMI2W_Z(mxyz, xyz, k, xyz1) }
 
 // VPERMILPD: Permute Double-Precision Floating-Point Values.
 //
@@ -58024,6 +60415,162 @@ func (c *Context) VPERMT2Q_Z(mxyz, xyz, k, xyz1 operand.Op) {
 // Operates on the global context.
 func VPERMT2Q_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPERMT2Q_Z(mxyz, xyz, k, xyz1) }
 
+// VPERMT2W: Full Permute of Words From Two Tables Overwriting a Table.
+//
+// Forms:
+//
+// 	VPERMT2W m512 zmm k zmm
+// 	VPERMT2W m512 zmm zmm
+// 	VPERMT2W zmm  zmm k zmm
+// 	VPERMT2W zmm  zmm zmm
+// 	VPERMT2W m128 xmm k xmm
+// 	VPERMT2W m128 xmm xmm
+// 	VPERMT2W m256 ymm k ymm
+// 	VPERMT2W m256 ymm ymm
+// 	VPERMT2W xmm  xmm k xmm
+// 	VPERMT2W xmm  xmm xmm
+// 	VPERMT2W ymm  ymm k ymm
+// 	VPERMT2W ymm  ymm ymm
+// Construct and append a VPERMT2W instruction to the active function.
+func (c *Context) VPERMT2W(ops ...operand.Op) {
+	if inst, err := x86.VPERMT2W(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPERMT2W: Full Permute of Words From Two Tables Overwriting a Table.
+//
+// Forms:
+//
+// 	VPERMT2W m512 zmm k zmm
+// 	VPERMT2W m512 zmm zmm
+// 	VPERMT2W zmm  zmm k zmm
+// 	VPERMT2W zmm  zmm zmm
+// 	VPERMT2W m128 xmm k xmm
+// 	VPERMT2W m128 xmm xmm
+// 	VPERMT2W m256 ymm k ymm
+// 	VPERMT2W m256 ymm ymm
+// 	VPERMT2W xmm  xmm k xmm
+// 	VPERMT2W xmm  xmm xmm
+// 	VPERMT2W ymm  ymm k ymm
+// 	VPERMT2W ymm  ymm ymm
+// Construct and append a VPERMT2W instruction to the active function.
+// Operates on the global context.
+func VPERMT2W(ops ...operand.Op) { ctx.VPERMT2W(ops...) }
+
+// VPERMT2W_Z: Full Permute of Words From Two Tables Overwriting a Table (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPERMT2W.Z m512 zmm k zmm
+// 	VPERMT2W.Z zmm  zmm k zmm
+// 	VPERMT2W.Z m128 xmm k xmm
+// 	VPERMT2W.Z m256 ymm k ymm
+// 	VPERMT2W.Z xmm  xmm k xmm
+// 	VPERMT2W.Z ymm  ymm k ymm
+// Construct and append a VPERMT2W.Z instruction to the active function.
+func (c *Context) VPERMT2W_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPERMT2W_Z(mxyz, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPERMT2W_Z: Full Permute of Words From Two Tables Overwriting a Table (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPERMT2W.Z m512 zmm k zmm
+// 	VPERMT2W.Z zmm  zmm k zmm
+// 	VPERMT2W.Z m128 xmm k xmm
+// 	VPERMT2W.Z m256 ymm k ymm
+// 	VPERMT2W.Z xmm  xmm k xmm
+// 	VPERMT2W.Z ymm  ymm k ymm
+// Construct and append a VPERMT2W.Z instruction to the active function.
+// Operates on the global context.
+func VPERMT2W_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPERMT2W_Z(mxyz, xyz, k, xyz1) }
+
+// VPERMW: Permute Word Integers.
+//
+// Forms:
+//
+// 	VPERMW m512 zmm k zmm
+// 	VPERMW m512 zmm zmm
+// 	VPERMW zmm  zmm k zmm
+// 	VPERMW zmm  zmm zmm
+// 	VPERMW m128 xmm k xmm
+// 	VPERMW m128 xmm xmm
+// 	VPERMW m256 ymm k ymm
+// 	VPERMW m256 ymm ymm
+// 	VPERMW xmm  xmm k xmm
+// 	VPERMW xmm  xmm xmm
+// 	VPERMW ymm  ymm k ymm
+// 	VPERMW ymm  ymm ymm
+// Construct and append a VPERMW instruction to the active function.
+func (c *Context) VPERMW(ops ...operand.Op) {
+	if inst, err := x86.VPERMW(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPERMW: Permute Word Integers.
+//
+// Forms:
+//
+// 	VPERMW m512 zmm k zmm
+// 	VPERMW m512 zmm zmm
+// 	VPERMW zmm  zmm k zmm
+// 	VPERMW zmm  zmm zmm
+// 	VPERMW m128 xmm k xmm
+// 	VPERMW m128 xmm xmm
+// 	VPERMW m256 ymm k ymm
+// 	VPERMW m256 ymm ymm
+// 	VPERMW xmm  xmm k xmm
+// 	VPERMW xmm  xmm xmm
+// 	VPERMW ymm  ymm k ymm
+// 	VPERMW ymm  ymm ymm
+// Construct and append a VPERMW instruction to the active function.
+// Operates on the global context.
+func VPERMW(ops ...operand.Op) { ctx.VPERMW(ops...) }
+
+// VPERMW_Z: Permute Word Integers (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPERMW.Z m512 zmm k zmm
+// 	VPERMW.Z zmm  zmm k zmm
+// 	VPERMW.Z m128 xmm k xmm
+// 	VPERMW.Z m256 ymm k ymm
+// 	VPERMW.Z xmm  xmm k xmm
+// 	VPERMW.Z ymm  ymm k ymm
+// Construct and append a VPERMW.Z instruction to the active function.
+func (c *Context) VPERMW_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPERMW_Z(mxyz, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPERMW_Z: Permute Word Integers (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPERMW.Z m512 zmm k zmm
+// 	VPERMW.Z zmm  zmm k zmm
+// 	VPERMW.Z m128 xmm k xmm
+// 	VPERMW.Z m256 ymm k ymm
+// 	VPERMW.Z xmm  xmm k xmm
+// 	VPERMW.Z ymm  ymm k ymm
+// Construct and append a VPERMW.Z instruction to the active function.
+// Operates on the global context.
+func VPERMW_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPERMW_Z(mxyz, xyz, k, xyz1) }
+
 // VPEXPANDD: Load Sparse Packed Doubleword Integer Values from Dense Memory/Register.
 //
 // Forms:
@@ -58987,9 +61534,17 @@ func VPLZCNTQ_Z(mxyz, k, xyz operand.Op) { ctx.VPLZCNTQ_Z(mxyz, k, xyz) }
 // 	VPMADDUBSW ymm  ymm ymm
 // 	VPMADDUBSW m128 xmm xmm
 // 	VPMADDUBSW xmm  xmm xmm
+// 	VPMADDUBSW m512 zmm k zmm
+// 	VPMADDUBSW m512 zmm zmm
+// 	VPMADDUBSW zmm  zmm k zmm
+// 	VPMADDUBSW zmm  zmm zmm
+// 	VPMADDUBSW m128 xmm k xmm
+// 	VPMADDUBSW m256 ymm k ymm
+// 	VPMADDUBSW xmm  xmm k xmm
+// 	VPMADDUBSW ymm  ymm k ymm
 // Construct and append a VPMADDUBSW instruction to the active function.
-func (c *Context) VPMADDUBSW(mxy, xy, xy1 operand.Op) {
-	if inst, err := x86.VPMADDUBSW(mxy, xy, xy1); err == nil {
+func (c *Context) VPMADDUBSW(ops ...operand.Op) {
+	if inst, err := x86.VPMADDUBSW(ops...); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -59004,9 +61559,50 @@ func (c *Context) VPMADDUBSW(mxy, xy, xy1 operand.Op) {
 // 	VPMADDUBSW ymm  ymm ymm
 // 	VPMADDUBSW m128 xmm xmm
 // 	VPMADDUBSW xmm  xmm xmm
+// 	VPMADDUBSW m512 zmm k zmm
+// 	VPMADDUBSW m512 zmm zmm
+// 	VPMADDUBSW zmm  zmm k zmm
+// 	VPMADDUBSW zmm  zmm zmm
+// 	VPMADDUBSW m128 xmm k xmm
+// 	VPMADDUBSW m256 ymm k ymm
+// 	VPMADDUBSW xmm  xmm k xmm
+// 	VPMADDUBSW ymm  ymm k ymm
 // Construct and append a VPMADDUBSW instruction to the active function.
 // Operates on the global context.
-func VPMADDUBSW(mxy, xy, xy1 operand.Op) { ctx.VPMADDUBSW(mxy, xy, xy1) }
+func VPMADDUBSW(ops ...operand.Op) { ctx.VPMADDUBSW(ops...) }
+
+// VPMADDUBSW_Z: Multiply and Add Packed Signed and Unsigned Byte Integers (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPMADDUBSW.Z m512 zmm k zmm
+// 	VPMADDUBSW.Z zmm  zmm k zmm
+// 	VPMADDUBSW.Z m128 xmm k xmm
+// 	VPMADDUBSW.Z m256 ymm k ymm
+// 	VPMADDUBSW.Z xmm  xmm k xmm
+// 	VPMADDUBSW.Z ymm  ymm k ymm
+// Construct and append a VPMADDUBSW.Z instruction to the active function.
+func (c *Context) VPMADDUBSW_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPMADDUBSW_Z(mxyz, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPMADDUBSW_Z: Multiply and Add Packed Signed and Unsigned Byte Integers (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPMADDUBSW.Z m512 zmm k zmm
+// 	VPMADDUBSW.Z zmm  zmm k zmm
+// 	VPMADDUBSW.Z m128 xmm k xmm
+// 	VPMADDUBSW.Z m256 ymm k ymm
+// 	VPMADDUBSW.Z xmm  xmm k xmm
+// 	VPMADDUBSW.Z ymm  ymm k ymm
+// Construct and append a VPMADDUBSW.Z instruction to the active function.
+// Operates on the global context.
+func VPMADDUBSW_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPMADDUBSW_Z(mxyz, xyz, k, xyz1) }
 
 // VPMADDWD: Multiply and Add Packed Signed Word Integers.
 //
@@ -59016,9 +61612,17 @@ func VPMADDUBSW(mxy, xy, xy1 operand.Op) { ctx.VPMADDUBSW(mxy, xy, xy1) }
 // 	VPMADDWD ymm  ymm ymm
 // 	VPMADDWD m128 xmm xmm
 // 	VPMADDWD xmm  xmm xmm
+// 	VPMADDWD m512 zmm k zmm
+// 	VPMADDWD m512 zmm zmm
+// 	VPMADDWD zmm  zmm k zmm
+// 	VPMADDWD zmm  zmm zmm
+// 	VPMADDWD m128 xmm k xmm
+// 	VPMADDWD m256 ymm k ymm
+// 	VPMADDWD xmm  xmm k xmm
+// 	VPMADDWD ymm  ymm k ymm
 // Construct and append a VPMADDWD instruction to the active function.
-func (c *Context) VPMADDWD(mxy, xy, xy1 operand.Op) {
-	if inst, err := x86.VPMADDWD(mxy, xy, xy1); err == nil {
+func (c *Context) VPMADDWD(ops ...operand.Op) {
+	if inst, err := x86.VPMADDWD(ops...); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -59033,9 +61637,50 @@ func (c *Context) VPMADDWD(mxy, xy, xy1 operand.Op) {
 // 	VPMADDWD ymm  ymm ymm
 // 	VPMADDWD m128 xmm xmm
 // 	VPMADDWD xmm  xmm xmm
+// 	VPMADDWD m512 zmm k zmm
+// 	VPMADDWD m512 zmm zmm
+// 	VPMADDWD zmm  zmm k zmm
+// 	VPMADDWD zmm  zmm zmm
+// 	VPMADDWD m128 xmm k xmm
+// 	VPMADDWD m256 ymm k ymm
+// 	VPMADDWD xmm  xmm k xmm
+// 	VPMADDWD ymm  ymm k ymm
 // Construct and append a VPMADDWD instruction to the active function.
 // Operates on the global context.
-func VPMADDWD(mxy, xy, xy1 operand.Op) { ctx.VPMADDWD(mxy, xy, xy1) }
+func VPMADDWD(ops ...operand.Op) { ctx.VPMADDWD(ops...) }
+
+// VPMADDWD_Z: Multiply and Add Packed Signed Word Integers (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPMADDWD.Z m512 zmm k zmm
+// 	VPMADDWD.Z zmm  zmm k zmm
+// 	VPMADDWD.Z m128 xmm k xmm
+// 	VPMADDWD.Z m256 ymm k ymm
+// 	VPMADDWD.Z xmm  xmm k xmm
+// 	VPMADDWD.Z ymm  ymm k ymm
+// Construct and append a VPMADDWD.Z instruction to the active function.
+func (c *Context) VPMADDWD_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPMADDWD_Z(mxyz, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPMADDWD_Z: Multiply and Add Packed Signed Word Integers (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPMADDWD.Z m512 zmm k zmm
+// 	VPMADDWD.Z zmm  zmm k zmm
+// 	VPMADDWD.Z m128 xmm k xmm
+// 	VPMADDWD.Z m256 ymm k ymm
+// 	VPMADDWD.Z xmm  xmm k xmm
+// 	VPMADDWD.Z ymm  ymm k ymm
+// Construct and append a VPMADDWD.Z instruction to the active function.
+// Operates on the global context.
+func VPMADDWD_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPMADDWD_Z(mxyz, xyz, k, xyz1) }
 
 // VPMASKMOVD: Conditional Move Packed Doubleword Integers.
 //
@@ -59103,9 +61748,17 @@ func VPMASKMOVQ(mxy, xy, mxy1 operand.Op) { ctx.VPMASKMOVQ(mxy, xy, mxy1) }
 // 	VPMAXSB ymm  ymm ymm
 // 	VPMAXSB m128 xmm xmm
 // 	VPMAXSB xmm  xmm xmm
+// 	VPMAXSB m512 zmm k zmm
+// 	VPMAXSB m512 zmm zmm
+// 	VPMAXSB zmm  zmm k zmm
+// 	VPMAXSB zmm  zmm zmm
+// 	VPMAXSB m128 xmm k xmm
+// 	VPMAXSB m256 ymm k ymm
+// 	VPMAXSB xmm  xmm k xmm
+// 	VPMAXSB ymm  ymm k ymm
 // Construct and append a VPMAXSB instruction to the active function.
-func (c *Context) VPMAXSB(mxy, xy, xy1 operand.Op) {
-	if inst, err := x86.VPMAXSB(mxy, xy, xy1); err == nil {
+func (c *Context) VPMAXSB(ops ...operand.Op) {
+	if inst, err := x86.VPMAXSB(ops...); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -59120,9 +61773,50 @@ func (c *Context) VPMAXSB(mxy, xy, xy1 operand.Op) {
 // 	VPMAXSB ymm  ymm ymm
 // 	VPMAXSB m128 xmm xmm
 // 	VPMAXSB xmm  xmm xmm
+// 	VPMAXSB m512 zmm k zmm
+// 	VPMAXSB m512 zmm zmm
+// 	VPMAXSB zmm  zmm k zmm
+// 	VPMAXSB zmm  zmm zmm
+// 	VPMAXSB m128 xmm k xmm
+// 	VPMAXSB m256 ymm k ymm
+// 	VPMAXSB xmm  xmm k xmm
+// 	VPMAXSB ymm  ymm k ymm
 // Construct and append a VPMAXSB instruction to the active function.
 // Operates on the global context.
-func VPMAXSB(mxy, xy, xy1 operand.Op) { ctx.VPMAXSB(mxy, xy, xy1) }
+func VPMAXSB(ops ...operand.Op) { ctx.VPMAXSB(ops...) }
+
+// VPMAXSB_Z: Maximum of Packed Signed Byte Integers (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPMAXSB.Z m512 zmm k zmm
+// 	VPMAXSB.Z zmm  zmm k zmm
+// 	VPMAXSB.Z m128 xmm k xmm
+// 	VPMAXSB.Z m256 ymm k ymm
+// 	VPMAXSB.Z xmm  xmm k xmm
+// 	VPMAXSB.Z ymm  ymm k ymm
+// Construct and append a VPMAXSB.Z instruction to the active function.
+func (c *Context) VPMAXSB_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPMAXSB_Z(mxyz, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPMAXSB_Z: Maximum of Packed Signed Byte Integers (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPMAXSB.Z m512 zmm k zmm
+// 	VPMAXSB.Z zmm  zmm k zmm
+// 	VPMAXSB.Z m128 xmm k xmm
+// 	VPMAXSB.Z m256 ymm k ymm
+// 	VPMAXSB.Z xmm  xmm k xmm
+// 	VPMAXSB.Z ymm  ymm k ymm
+// Construct and append a VPMAXSB.Z instruction to the active function.
+// Operates on the global context.
+func VPMAXSB_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPMAXSB_Z(mxyz, xyz, k, xyz1) }
 
 // VPMAXSD: Maximum of Packed Signed Doubleword Integers.
 //
@@ -59412,9 +62106,17 @@ func VPMAXSQ_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPMAXSQ_Z(mxyz, xyz, k, xyz1
 // 	VPMAXSW ymm  ymm ymm
 // 	VPMAXSW m128 xmm xmm
 // 	VPMAXSW xmm  xmm xmm
+// 	VPMAXSW m512 zmm k zmm
+// 	VPMAXSW m512 zmm zmm
+// 	VPMAXSW zmm  zmm k zmm
+// 	VPMAXSW zmm  zmm zmm
+// 	VPMAXSW m128 xmm k xmm
+// 	VPMAXSW m256 ymm k ymm
+// 	VPMAXSW xmm  xmm k xmm
+// 	VPMAXSW ymm  ymm k ymm
 // Construct and append a VPMAXSW instruction to the active function.
-func (c *Context) VPMAXSW(mxy, xy, xy1 operand.Op) {
-	if inst, err := x86.VPMAXSW(mxy, xy, xy1); err == nil {
+func (c *Context) VPMAXSW(ops ...operand.Op) {
+	if inst, err := x86.VPMAXSW(ops...); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -59429,9 +62131,50 @@ func (c *Context) VPMAXSW(mxy, xy, xy1 operand.Op) {
 // 	VPMAXSW ymm  ymm ymm
 // 	VPMAXSW m128 xmm xmm
 // 	VPMAXSW xmm  xmm xmm
+// 	VPMAXSW m512 zmm k zmm
+// 	VPMAXSW m512 zmm zmm
+// 	VPMAXSW zmm  zmm k zmm
+// 	VPMAXSW zmm  zmm zmm
+// 	VPMAXSW m128 xmm k xmm
+// 	VPMAXSW m256 ymm k ymm
+// 	VPMAXSW xmm  xmm k xmm
+// 	VPMAXSW ymm  ymm k ymm
 // Construct and append a VPMAXSW instruction to the active function.
 // Operates on the global context.
-func VPMAXSW(mxy, xy, xy1 operand.Op) { ctx.VPMAXSW(mxy, xy, xy1) }
+func VPMAXSW(ops ...operand.Op) { ctx.VPMAXSW(ops...) }
+
+// VPMAXSW_Z: Maximum of Packed Signed Word Integers (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPMAXSW.Z m512 zmm k zmm
+// 	VPMAXSW.Z zmm  zmm k zmm
+// 	VPMAXSW.Z m128 xmm k xmm
+// 	VPMAXSW.Z m256 ymm k ymm
+// 	VPMAXSW.Z xmm  xmm k xmm
+// 	VPMAXSW.Z ymm  ymm k ymm
+// Construct and append a VPMAXSW.Z instruction to the active function.
+func (c *Context) VPMAXSW_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPMAXSW_Z(mxyz, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPMAXSW_Z: Maximum of Packed Signed Word Integers (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPMAXSW.Z m512 zmm k zmm
+// 	VPMAXSW.Z zmm  zmm k zmm
+// 	VPMAXSW.Z m128 xmm k xmm
+// 	VPMAXSW.Z m256 ymm k ymm
+// 	VPMAXSW.Z xmm  xmm k xmm
+// 	VPMAXSW.Z ymm  ymm k ymm
+// Construct and append a VPMAXSW.Z instruction to the active function.
+// Operates on the global context.
+func VPMAXSW_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPMAXSW_Z(mxyz, xyz, k, xyz1) }
 
 // VPMAXUB: Maximum of Packed Unsigned Byte Integers.
 //
@@ -59441,9 +62184,17 @@ func VPMAXSW(mxy, xy, xy1 operand.Op) { ctx.VPMAXSW(mxy, xy, xy1) }
 // 	VPMAXUB ymm  ymm ymm
 // 	VPMAXUB m128 xmm xmm
 // 	VPMAXUB xmm  xmm xmm
+// 	VPMAXUB m512 zmm k zmm
+// 	VPMAXUB m512 zmm zmm
+// 	VPMAXUB zmm  zmm k zmm
+// 	VPMAXUB zmm  zmm zmm
+// 	VPMAXUB m128 xmm k xmm
+// 	VPMAXUB m256 ymm k ymm
+// 	VPMAXUB xmm  xmm k xmm
+// 	VPMAXUB ymm  ymm k ymm
 // Construct and append a VPMAXUB instruction to the active function.
-func (c *Context) VPMAXUB(mxy, xy, xy1 operand.Op) {
-	if inst, err := x86.VPMAXUB(mxy, xy, xy1); err == nil {
+func (c *Context) VPMAXUB(ops ...operand.Op) {
+	if inst, err := x86.VPMAXUB(ops...); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -59458,9 +62209,50 @@ func (c *Context) VPMAXUB(mxy, xy, xy1 operand.Op) {
 // 	VPMAXUB ymm  ymm ymm
 // 	VPMAXUB m128 xmm xmm
 // 	VPMAXUB xmm  xmm xmm
+// 	VPMAXUB m512 zmm k zmm
+// 	VPMAXUB m512 zmm zmm
+// 	VPMAXUB zmm  zmm k zmm
+// 	VPMAXUB zmm  zmm zmm
+// 	VPMAXUB m128 xmm k xmm
+// 	VPMAXUB m256 ymm k ymm
+// 	VPMAXUB xmm  xmm k xmm
+// 	VPMAXUB ymm  ymm k ymm
 // Construct and append a VPMAXUB instruction to the active function.
 // Operates on the global context.
-func VPMAXUB(mxy, xy, xy1 operand.Op) { ctx.VPMAXUB(mxy, xy, xy1) }
+func VPMAXUB(ops ...operand.Op) { ctx.VPMAXUB(ops...) }
+
+// VPMAXUB_Z: Maximum of Packed Unsigned Byte Integers (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPMAXUB.Z m512 zmm k zmm
+// 	VPMAXUB.Z zmm  zmm k zmm
+// 	VPMAXUB.Z m128 xmm k xmm
+// 	VPMAXUB.Z m256 ymm k ymm
+// 	VPMAXUB.Z xmm  xmm k xmm
+// 	VPMAXUB.Z ymm  ymm k ymm
+// Construct and append a VPMAXUB.Z instruction to the active function.
+func (c *Context) VPMAXUB_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPMAXUB_Z(mxyz, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPMAXUB_Z: Maximum of Packed Unsigned Byte Integers (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPMAXUB.Z m512 zmm k zmm
+// 	VPMAXUB.Z zmm  zmm k zmm
+// 	VPMAXUB.Z m128 xmm k xmm
+// 	VPMAXUB.Z m256 ymm k ymm
+// 	VPMAXUB.Z xmm  xmm k xmm
+// 	VPMAXUB.Z ymm  ymm k ymm
+// Construct and append a VPMAXUB.Z instruction to the active function.
+// Operates on the global context.
+func VPMAXUB_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPMAXUB_Z(mxyz, xyz, k, xyz1) }
 
 // VPMAXUD: Maximum of Packed Unsigned Doubleword Integers.
 //
@@ -59750,9 +62542,17 @@ func VPMAXUQ_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPMAXUQ_Z(mxyz, xyz, k, xyz1
 // 	VPMAXUW ymm  ymm ymm
 // 	VPMAXUW m128 xmm xmm
 // 	VPMAXUW xmm  xmm xmm
+// 	VPMAXUW m512 zmm k zmm
+// 	VPMAXUW m512 zmm zmm
+// 	VPMAXUW zmm  zmm k zmm
+// 	VPMAXUW zmm  zmm zmm
+// 	VPMAXUW m128 xmm k xmm
+// 	VPMAXUW m256 ymm k ymm
+// 	VPMAXUW xmm  xmm k xmm
+// 	VPMAXUW ymm  ymm k ymm
 // Construct and append a VPMAXUW instruction to the active function.
-func (c *Context) VPMAXUW(mxy, xy, xy1 operand.Op) {
-	if inst, err := x86.VPMAXUW(mxy, xy, xy1); err == nil {
+func (c *Context) VPMAXUW(ops ...operand.Op) {
+	if inst, err := x86.VPMAXUW(ops...); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -59767,9 +62567,50 @@ func (c *Context) VPMAXUW(mxy, xy, xy1 operand.Op) {
 // 	VPMAXUW ymm  ymm ymm
 // 	VPMAXUW m128 xmm xmm
 // 	VPMAXUW xmm  xmm xmm
+// 	VPMAXUW m512 zmm k zmm
+// 	VPMAXUW m512 zmm zmm
+// 	VPMAXUW zmm  zmm k zmm
+// 	VPMAXUW zmm  zmm zmm
+// 	VPMAXUW m128 xmm k xmm
+// 	VPMAXUW m256 ymm k ymm
+// 	VPMAXUW xmm  xmm k xmm
+// 	VPMAXUW ymm  ymm k ymm
 // Construct and append a VPMAXUW instruction to the active function.
 // Operates on the global context.
-func VPMAXUW(mxy, xy, xy1 operand.Op) { ctx.VPMAXUW(mxy, xy, xy1) }
+func VPMAXUW(ops ...operand.Op) { ctx.VPMAXUW(ops...) }
+
+// VPMAXUW_Z: Maximum of Packed Unsigned Word Integers (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPMAXUW.Z m512 zmm k zmm
+// 	VPMAXUW.Z zmm  zmm k zmm
+// 	VPMAXUW.Z m128 xmm k xmm
+// 	VPMAXUW.Z m256 ymm k ymm
+// 	VPMAXUW.Z xmm  xmm k xmm
+// 	VPMAXUW.Z ymm  ymm k ymm
+// Construct and append a VPMAXUW.Z instruction to the active function.
+func (c *Context) VPMAXUW_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPMAXUW_Z(mxyz, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPMAXUW_Z: Maximum of Packed Unsigned Word Integers (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPMAXUW.Z m512 zmm k zmm
+// 	VPMAXUW.Z zmm  zmm k zmm
+// 	VPMAXUW.Z m128 xmm k xmm
+// 	VPMAXUW.Z m256 ymm k ymm
+// 	VPMAXUW.Z xmm  xmm k xmm
+// 	VPMAXUW.Z ymm  ymm k ymm
+// Construct and append a VPMAXUW.Z instruction to the active function.
+// Operates on the global context.
+func VPMAXUW_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPMAXUW_Z(mxyz, xyz, k, xyz1) }
 
 // VPMINSB: Minimum of Packed Signed Byte Integers.
 //
@@ -59779,9 +62620,17 @@ func VPMAXUW(mxy, xy, xy1 operand.Op) { ctx.VPMAXUW(mxy, xy, xy1) }
 // 	VPMINSB ymm  ymm ymm
 // 	VPMINSB m128 xmm xmm
 // 	VPMINSB xmm  xmm xmm
+// 	VPMINSB m512 zmm k zmm
+// 	VPMINSB m512 zmm zmm
+// 	VPMINSB zmm  zmm k zmm
+// 	VPMINSB zmm  zmm zmm
+// 	VPMINSB m128 xmm k xmm
+// 	VPMINSB m256 ymm k ymm
+// 	VPMINSB xmm  xmm k xmm
+// 	VPMINSB ymm  ymm k ymm
 // Construct and append a VPMINSB instruction to the active function.
-func (c *Context) VPMINSB(mxy, xy, xy1 operand.Op) {
-	if inst, err := x86.VPMINSB(mxy, xy, xy1); err == nil {
+func (c *Context) VPMINSB(ops ...operand.Op) {
+	if inst, err := x86.VPMINSB(ops...); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -59796,9 +62645,50 @@ func (c *Context) VPMINSB(mxy, xy, xy1 operand.Op) {
 // 	VPMINSB ymm  ymm ymm
 // 	VPMINSB m128 xmm xmm
 // 	VPMINSB xmm  xmm xmm
+// 	VPMINSB m512 zmm k zmm
+// 	VPMINSB m512 zmm zmm
+// 	VPMINSB zmm  zmm k zmm
+// 	VPMINSB zmm  zmm zmm
+// 	VPMINSB m128 xmm k xmm
+// 	VPMINSB m256 ymm k ymm
+// 	VPMINSB xmm  xmm k xmm
+// 	VPMINSB ymm  ymm k ymm
 // Construct and append a VPMINSB instruction to the active function.
 // Operates on the global context.
-func VPMINSB(mxy, xy, xy1 operand.Op) { ctx.VPMINSB(mxy, xy, xy1) }
+func VPMINSB(ops ...operand.Op) { ctx.VPMINSB(ops...) }
+
+// VPMINSB_Z: Minimum of Packed Signed Byte Integers (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPMINSB.Z m512 zmm k zmm
+// 	VPMINSB.Z zmm  zmm k zmm
+// 	VPMINSB.Z m128 xmm k xmm
+// 	VPMINSB.Z m256 ymm k ymm
+// 	VPMINSB.Z xmm  xmm k xmm
+// 	VPMINSB.Z ymm  ymm k ymm
+// Construct and append a VPMINSB.Z instruction to the active function.
+func (c *Context) VPMINSB_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPMINSB_Z(mxyz, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPMINSB_Z: Minimum of Packed Signed Byte Integers (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPMINSB.Z m512 zmm k zmm
+// 	VPMINSB.Z zmm  zmm k zmm
+// 	VPMINSB.Z m128 xmm k xmm
+// 	VPMINSB.Z m256 ymm k ymm
+// 	VPMINSB.Z xmm  xmm k xmm
+// 	VPMINSB.Z ymm  ymm k ymm
+// Construct and append a VPMINSB.Z instruction to the active function.
+// Operates on the global context.
+func VPMINSB_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPMINSB_Z(mxyz, xyz, k, xyz1) }
 
 // VPMINSD: Minimum of Packed Signed Doubleword Integers.
 //
@@ -60088,9 +62978,17 @@ func VPMINSQ_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPMINSQ_Z(mxyz, xyz, k, xyz1
 // 	VPMINSW ymm  ymm ymm
 // 	VPMINSW m128 xmm xmm
 // 	VPMINSW xmm  xmm xmm
+// 	VPMINSW m512 zmm k zmm
+// 	VPMINSW m512 zmm zmm
+// 	VPMINSW zmm  zmm k zmm
+// 	VPMINSW zmm  zmm zmm
+// 	VPMINSW m128 xmm k xmm
+// 	VPMINSW m256 ymm k ymm
+// 	VPMINSW xmm  xmm k xmm
+// 	VPMINSW ymm  ymm k ymm
 // Construct and append a VPMINSW instruction to the active function.
-func (c *Context) VPMINSW(mxy, xy, xy1 operand.Op) {
-	if inst, err := x86.VPMINSW(mxy, xy, xy1); err == nil {
+func (c *Context) VPMINSW(ops ...operand.Op) {
+	if inst, err := x86.VPMINSW(ops...); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -60105,9 +63003,50 @@ func (c *Context) VPMINSW(mxy, xy, xy1 operand.Op) {
 // 	VPMINSW ymm  ymm ymm
 // 	VPMINSW m128 xmm xmm
 // 	VPMINSW xmm  xmm xmm
+// 	VPMINSW m512 zmm k zmm
+// 	VPMINSW m512 zmm zmm
+// 	VPMINSW zmm  zmm k zmm
+// 	VPMINSW zmm  zmm zmm
+// 	VPMINSW m128 xmm k xmm
+// 	VPMINSW m256 ymm k ymm
+// 	VPMINSW xmm  xmm k xmm
+// 	VPMINSW ymm  ymm k ymm
 // Construct and append a VPMINSW instruction to the active function.
 // Operates on the global context.
-func VPMINSW(mxy, xy, xy1 operand.Op) { ctx.VPMINSW(mxy, xy, xy1) }
+func VPMINSW(ops ...operand.Op) { ctx.VPMINSW(ops...) }
+
+// VPMINSW_Z: Minimum of Packed Signed Word Integers (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPMINSW.Z m512 zmm k zmm
+// 	VPMINSW.Z zmm  zmm k zmm
+// 	VPMINSW.Z m128 xmm k xmm
+// 	VPMINSW.Z m256 ymm k ymm
+// 	VPMINSW.Z xmm  xmm k xmm
+// 	VPMINSW.Z ymm  ymm k ymm
+// Construct and append a VPMINSW.Z instruction to the active function.
+func (c *Context) VPMINSW_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPMINSW_Z(mxyz, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPMINSW_Z: Minimum of Packed Signed Word Integers (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPMINSW.Z m512 zmm k zmm
+// 	VPMINSW.Z zmm  zmm k zmm
+// 	VPMINSW.Z m128 xmm k xmm
+// 	VPMINSW.Z m256 ymm k ymm
+// 	VPMINSW.Z xmm  xmm k xmm
+// 	VPMINSW.Z ymm  ymm k ymm
+// Construct and append a VPMINSW.Z instruction to the active function.
+// Operates on the global context.
+func VPMINSW_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPMINSW_Z(mxyz, xyz, k, xyz1) }
 
 // VPMINUB: Minimum of Packed Unsigned Byte Integers.
 //
@@ -60117,9 +63056,17 @@ func VPMINSW(mxy, xy, xy1 operand.Op) { ctx.VPMINSW(mxy, xy, xy1) }
 // 	VPMINUB ymm  ymm ymm
 // 	VPMINUB m128 xmm xmm
 // 	VPMINUB xmm  xmm xmm
+// 	VPMINUB m512 zmm k zmm
+// 	VPMINUB m512 zmm zmm
+// 	VPMINUB zmm  zmm k zmm
+// 	VPMINUB zmm  zmm zmm
+// 	VPMINUB m128 xmm k xmm
+// 	VPMINUB m256 ymm k ymm
+// 	VPMINUB xmm  xmm k xmm
+// 	VPMINUB ymm  ymm k ymm
 // Construct and append a VPMINUB instruction to the active function.
-func (c *Context) VPMINUB(mxy, xy, xy1 operand.Op) {
-	if inst, err := x86.VPMINUB(mxy, xy, xy1); err == nil {
+func (c *Context) VPMINUB(ops ...operand.Op) {
+	if inst, err := x86.VPMINUB(ops...); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -60134,9 +63081,50 @@ func (c *Context) VPMINUB(mxy, xy, xy1 operand.Op) {
 // 	VPMINUB ymm  ymm ymm
 // 	VPMINUB m128 xmm xmm
 // 	VPMINUB xmm  xmm xmm
+// 	VPMINUB m512 zmm k zmm
+// 	VPMINUB m512 zmm zmm
+// 	VPMINUB zmm  zmm k zmm
+// 	VPMINUB zmm  zmm zmm
+// 	VPMINUB m128 xmm k xmm
+// 	VPMINUB m256 ymm k ymm
+// 	VPMINUB xmm  xmm k xmm
+// 	VPMINUB ymm  ymm k ymm
 // Construct and append a VPMINUB instruction to the active function.
 // Operates on the global context.
-func VPMINUB(mxy, xy, xy1 operand.Op) { ctx.VPMINUB(mxy, xy, xy1) }
+func VPMINUB(ops ...operand.Op) { ctx.VPMINUB(ops...) }
+
+// VPMINUB_Z: Minimum of Packed Unsigned Byte Integers (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPMINUB.Z m512 zmm k zmm
+// 	VPMINUB.Z zmm  zmm k zmm
+// 	VPMINUB.Z m128 xmm k xmm
+// 	VPMINUB.Z m256 ymm k ymm
+// 	VPMINUB.Z xmm  xmm k xmm
+// 	VPMINUB.Z ymm  ymm k ymm
+// Construct and append a VPMINUB.Z instruction to the active function.
+func (c *Context) VPMINUB_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPMINUB_Z(mxyz, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPMINUB_Z: Minimum of Packed Unsigned Byte Integers (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPMINUB.Z m512 zmm k zmm
+// 	VPMINUB.Z zmm  zmm k zmm
+// 	VPMINUB.Z m128 xmm k xmm
+// 	VPMINUB.Z m256 ymm k ymm
+// 	VPMINUB.Z xmm  xmm k xmm
+// 	VPMINUB.Z ymm  ymm k ymm
+// Construct and append a VPMINUB.Z instruction to the active function.
+// Operates on the global context.
+func VPMINUB_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPMINUB_Z(mxyz, xyz, k, xyz1) }
 
 // VPMINUD: Minimum of Packed Unsigned Doubleword Integers.
 //
@@ -60426,9 +63414,17 @@ func VPMINUQ_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPMINUQ_Z(mxyz, xyz, k, xyz1
 // 	VPMINUW ymm  ymm ymm
 // 	VPMINUW m128 xmm xmm
 // 	VPMINUW xmm  xmm xmm
+// 	VPMINUW m512 zmm k zmm
+// 	VPMINUW m512 zmm zmm
+// 	VPMINUW zmm  zmm k zmm
+// 	VPMINUW zmm  zmm zmm
+// 	VPMINUW m128 xmm k xmm
+// 	VPMINUW m256 ymm k ymm
+// 	VPMINUW xmm  xmm k xmm
+// 	VPMINUW ymm  ymm k ymm
 // Construct and append a VPMINUW instruction to the active function.
-func (c *Context) VPMINUW(mxy, xy, xy1 operand.Op) {
-	if inst, err := x86.VPMINUW(mxy, xy, xy1); err == nil {
+func (c *Context) VPMINUW(ops ...operand.Op) {
+	if inst, err := x86.VPMINUW(ops...); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -60443,9 +63439,77 @@ func (c *Context) VPMINUW(mxy, xy, xy1 operand.Op) {
 // 	VPMINUW ymm  ymm ymm
 // 	VPMINUW m128 xmm xmm
 // 	VPMINUW xmm  xmm xmm
+// 	VPMINUW m512 zmm k zmm
+// 	VPMINUW m512 zmm zmm
+// 	VPMINUW zmm  zmm k zmm
+// 	VPMINUW zmm  zmm zmm
+// 	VPMINUW m128 xmm k xmm
+// 	VPMINUW m256 ymm k ymm
+// 	VPMINUW xmm  xmm k xmm
+// 	VPMINUW ymm  ymm k ymm
 // Construct and append a VPMINUW instruction to the active function.
 // Operates on the global context.
-func VPMINUW(mxy, xy, xy1 operand.Op) { ctx.VPMINUW(mxy, xy, xy1) }
+func VPMINUW(ops ...operand.Op) { ctx.VPMINUW(ops...) }
+
+// VPMINUW_Z: Minimum of Packed Unsigned Word Integers (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPMINUW.Z m512 zmm k zmm
+// 	VPMINUW.Z zmm  zmm k zmm
+// 	VPMINUW.Z m128 xmm k xmm
+// 	VPMINUW.Z m256 ymm k ymm
+// 	VPMINUW.Z xmm  xmm k xmm
+// 	VPMINUW.Z ymm  ymm k ymm
+// Construct and append a VPMINUW.Z instruction to the active function.
+func (c *Context) VPMINUW_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPMINUW_Z(mxyz, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPMINUW_Z: Minimum of Packed Unsigned Word Integers (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPMINUW.Z m512 zmm k zmm
+// 	VPMINUW.Z zmm  zmm k zmm
+// 	VPMINUW.Z m128 xmm k xmm
+// 	VPMINUW.Z m256 ymm k ymm
+// 	VPMINUW.Z xmm  xmm k xmm
+// 	VPMINUW.Z ymm  ymm k ymm
+// Construct and append a VPMINUW.Z instruction to the active function.
+// Operates on the global context.
+func VPMINUW_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPMINUW_Z(mxyz, xyz, k, xyz1) }
+
+// VPMOVB2M: Move Signs of Packed Byte Integers to Mask Register.
+//
+// Forms:
+//
+// 	VPMOVB2M zmm k
+// 	VPMOVB2M xmm k
+// 	VPMOVB2M ymm k
+// Construct and append a VPMOVB2M instruction to the active function.
+func (c *Context) VPMOVB2M(xyz, k operand.Op) {
+	if inst, err := x86.VPMOVB2M(xyz, k); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPMOVB2M: Move Signs of Packed Byte Integers to Mask Register.
+//
+// Forms:
+//
+// 	VPMOVB2M zmm k
+// 	VPMOVB2M xmm k
+// 	VPMOVB2M ymm k
+// Construct and append a VPMOVB2M instruction to the active function.
+// Operates on the global context.
+func VPMOVB2M(xyz, k operand.Op) { ctx.VPMOVB2M(xyz, k) }
 
 // VPMOVDB: Down Convert Packed Doubleword Values to Byte Values with Truncation.
 //
@@ -60602,6 +63666,60 @@ func (c *Context) VPMOVDW_Z(xyz, k, mxy operand.Op) {
 // Construct and append a VPMOVDW.Z instruction to the active function.
 // Operates on the global context.
 func VPMOVDW_Z(xyz, k, mxy operand.Op) { ctx.VPMOVDW_Z(xyz, k, mxy) }
+
+// VPMOVM2B: Expand Bits of Mask Register to Packed Byte Integers.
+//
+// Forms:
+//
+// 	VPMOVM2B k zmm
+// 	VPMOVM2B k xmm
+// 	VPMOVM2B k ymm
+// Construct and append a VPMOVM2B instruction to the active function.
+func (c *Context) VPMOVM2B(k, xyz operand.Op) {
+	if inst, err := x86.VPMOVM2B(k, xyz); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPMOVM2B: Expand Bits of Mask Register to Packed Byte Integers.
+//
+// Forms:
+//
+// 	VPMOVM2B k zmm
+// 	VPMOVM2B k xmm
+// 	VPMOVM2B k ymm
+// Construct and append a VPMOVM2B instruction to the active function.
+// Operates on the global context.
+func VPMOVM2B(k, xyz operand.Op) { ctx.VPMOVM2B(k, xyz) }
+
+// VPMOVM2W: Expand Bits of Mask Register to Packed Word Integers.
+//
+// Forms:
+//
+// 	VPMOVM2W k zmm
+// 	VPMOVM2W k xmm
+// 	VPMOVM2W k ymm
+// Construct and append a VPMOVM2W instruction to the active function.
+func (c *Context) VPMOVM2W(k, xyz operand.Op) {
+	if inst, err := x86.VPMOVM2W(k, xyz); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPMOVM2W: Expand Bits of Mask Register to Packed Word Integers.
+//
+// Forms:
+//
+// 	VPMOVM2W k zmm
+// 	VPMOVM2W k xmm
+// 	VPMOVM2W k ymm
+// Construct and append a VPMOVM2W instruction to the active function.
+// Operates on the global context.
+func VPMOVM2W(k, xyz operand.Op) { ctx.VPMOVM2W(k, xyz) }
 
 // VPMOVMSKB: Move Byte Mask.
 //
@@ -61252,6 +64370,84 @@ func (c *Context) VPMOVSQW_Z(xyz, k, mx operand.Op) {
 // Operates on the global context.
 func VPMOVSQW_Z(xyz, k, mx operand.Op) { ctx.VPMOVSQW_Z(xyz, k, mx) }
 
+// VPMOVSWB: Down Convert Packed Word Values to Byte Values with Signed Saturation.
+//
+// Forms:
+//
+// 	VPMOVSWB zmm k m256
+// 	VPMOVSWB zmm k ymm
+// 	VPMOVSWB zmm m256
+// 	VPMOVSWB zmm ymm
+// 	VPMOVSWB xmm k m64
+// 	VPMOVSWB xmm k xmm
+// 	VPMOVSWB xmm m64
+// 	VPMOVSWB xmm xmm
+// 	VPMOVSWB ymm k m128
+// 	VPMOVSWB ymm k xmm
+// 	VPMOVSWB ymm m128
+// 	VPMOVSWB ymm xmm
+// Construct and append a VPMOVSWB instruction to the active function.
+func (c *Context) VPMOVSWB(ops ...operand.Op) {
+	if inst, err := x86.VPMOVSWB(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPMOVSWB: Down Convert Packed Word Values to Byte Values with Signed Saturation.
+//
+// Forms:
+//
+// 	VPMOVSWB zmm k m256
+// 	VPMOVSWB zmm k ymm
+// 	VPMOVSWB zmm m256
+// 	VPMOVSWB zmm ymm
+// 	VPMOVSWB xmm k m64
+// 	VPMOVSWB xmm k xmm
+// 	VPMOVSWB xmm m64
+// 	VPMOVSWB xmm xmm
+// 	VPMOVSWB ymm k m128
+// 	VPMOVSWB ymm k xmm
+// 	VPMOVSWB ymm m128
+// 	VPMOVSWB ymm xmm
+// Construct and append a VPMOVSWB instruction to the active function.
+// Operates on the global context.
+func VPMOVSWB(ops ...operand.Op) { ctx.VPMOVSWB(ops...) }
+
+// VPMOVSWB_Z: Down Convert Packed Word Values to Byte Values with Signed Saturation (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPMOVSWB.Z zmm k m256
+// 	VPMOVSWB.Z zmm k ymm
+// 	VPMOVSWB.Z xmm k m64
+// 	VPMOVSWB.Z xmm k xmm
+// 	VPMOVSWB.Z ymm k m128
+// 	VPMOVSWB.Z ymm k xmm
+// Construct and append a VPMOVSWB.Z instruction to the active function.
+func (c *Context) VPMOVSWB_Z(xyz, k, mxy operand.Op) {
+	if inst, err := x86.VPMOVSWB_Z(xyz, k, mxy); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPMOVSWB_Z: Down Convert Packed Word Values to Byte Values with Signed Saturation (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPMOVSWB.Z zmm k m256
+// 	VPMOVSWB.Z zmm k ymm
+// 	VPMOVSWB.Z xmm k m64
+// 	VPMOVSWB.Z xmm k xmm
+// 	VPMOVSWB.Z ymm k m128
+// 	VPMOVSWB.Z ymm k xmm
+// Construct and append a VPMOVSWB.Z instruction to the active function.
+// Operates on the global context.
+func VPMOVSWB_Z(xyz, k, mxy operand.Op) { ctx.VPMOVSWB_Z(xyz, k, mxy) }
+
 // VPMOVSXBD: Move Packed Byte Integers to Doubleword Integers with Sign Extension.
 //
 // Forms:
@@ -61416,9 +64612,17 @@ func VPMOVSXBQ_Z(mx, k, xyz operand.Op) { ctx.VPMOVSXBQ_Z(mx, k, xyz) }
 // 	VPMOVSXBW xmm  ymm
 // 	VPMOVSXBW m64  xmm
 // 	VPMOVSXBW xmm  xmm
+// 	VPMOVSXBW m256 k zmm
+// 	VPMOVSXBW m256 zmm
+// 	VPMOVSXBW ymm  k zmm
+// 	VPMOVSXBW ymm  zmm
+// 	VPMOVSXBW m128 k ymm
+// 	VPMOVSXBW m64  k xmm
+// 	VPMOVSXBW xmm  k xmm
+// 	VPMOVSXBW xmm  k ymm
 // Construct and append a VPMOVSXBW instruction to the active function.
-func (c *Context) VPMOVSXBW(mx, xy operand.Op) {
-	if inst, err := x86.VPMOVSXBW(mx, xy); err == nil {
+func (c *Context) VPMOVSXBW(ops ...operand.Op) {
+	if inst, err := x86.VPMOVSXBW(ops...); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -61433,9 +64637,50 @@ func (c *Context) VPMOVSXBW(mx, xy operand.Op) {
 // 	VPMOVSXBW xmm  ymm
 // 	VPMOVSXBW m64  xmm
 // 	VPMOVSXBW xmm  xmm
+// 	VPMOVSXBW m256 k zmm
+// 	VPMOVSXBW m256 zmm
+// 	VPMOVSXBW ymm  k zmm
+// 	VPMOVSXBW ymm  zmm
+// 	VPMOVSXBW m128 k ymm
+// 	VPMOVSXBW m64  k xmm
+// 	VPMOVSXBW xmm  k xmm
+// 	VPMOVSXBW xmm  k ymm
 // Construct and append a VPMOVSXBW instruction to the active function.
 // Operates on the global context.
-func VPMOVSXBW(mx, xy operand.Op) { ctx.VPMOVSXBW(mx, xy) }
+func VPMOVSXBW(ops ...operand.Op) { ctx.VPMOVSXBW(ops...) }
+
+// VPMOVSXBW_Z: Move Packed Byte Integers to Word Integers with Sign Extension (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPMOVSXBW.Z m256 k zmm
+// 	VPMOVSXBW.Z ymm  k zmm
+// 	VPMOVSXBW.Z m128 k ymm
+// 	VPMOVSXBW.Z m64  k xmm
+// 	VPMOVSXBW.Z xmm  k xmm
+// 	VPMOVSXBW.Z xmm  k ymm
+// Construct and append a VPMOVSXBW.Z instruction to the active function.
+func (c *Context) VPMOVSXBW_Z(mxy, k, xyz operand.Op) {
+	if inst, err := x86.VPMOVSXBW_Z(mxy, k, xyz); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPMOVSXBW_Z: Move Packed Byte Integers to Word Integers with Sign Extension (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPMOVSXBW.Z m256 k zmm
+// 	VPMOVSXBW.Z ymm  k zmm
+// 	VPMOVSXBW.Z m128 k ymm
+// 	VPMOVSXBW.Z m64  k xmm
+// 	VPMOVSXBW.Z xmm  k xmm
+// 	VPMOVSXBW.Z xmm  k ymm
+// Construct and append a VPMOVSXBW.Z instruction to the active function.
+// Operates on the global context.
+func VPMOVSXBW_Z(mxy, k, xyz operand.Op) { ctx.VPMOVSXBW_Z(mxy, k, xyz) }
 
 // VPMOVSXDQ: Move Packed Doubleword Integers to Quadword Integers with Sign Extension.
 //
@@ -62061,6 +65306,189 @@ func (c *Context) VPMOVUSQW_Z(xyz, k, mx operand.Op) {
 // Operates on the global context.
 func VPMOVUSQW_Z(xyz, k, mx operand.Op) { ctx.VPMOVUSQW_Z(xyz, k, mx) }
 
+// VPMOVUSWB: Down Convert Packed Word Values to Byte Values with Unsigned Saturation.
+//
+// Forms:
+//
+// 	VPMOVUSWB zmm k m256
+// 	VPMOVUSWB zmm k ymm
+// 	VPMOVUSWB zmm m256
+// 	VPMOVUSWB zmm ymm
+// 	VPMOVUSWB xmm k m64
+// 	VPMOVUSWB xmm k xmm
+// 	VPMOVUSWB xmm m64
+// 	VPMOVUSWB xmm xmm
+// 	VPMOVUSWB ymm k m128
+// 	VPMOVUSWB ymm k xmm
+// 	VPMOVUSWB ymm m128
+// 	VPMOVUSWB ymm xmm
+// Construct and append a VPMOVUSWB instruction to the active function.
+func (c *Context) VPMOVUSWB(ops ...operand.Op) {
+	if inst, err := x86.VPMOVUSWB(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPMOVUSWB: Down Convert Packed Word Values to Byte Values with Unsigned Saturation.
+//
+// Forms:
+//
+// 	VPMOVUSWB zmm k m256
+// 	VPMOVUSWB zmm k ymm
+// 	VPMOVUSWB zmm m256
+// 	VPMOVUSWB zmm ymm
+// 	VPMOVUSWB xmm k m64
+// 	VPMOVUSWB xmm k xmm
+// 	VPMOVUSWB xmm m64
+// 	VPMOVUSWB xmm xmm
+// 	VPMOVUSWB ymm k m128
+// 	VPMOVUSWB ymm k xmm
+// 	VPMOVUSWB ymm m128
+// 	VPMOVUSWB ymm xmm
+// Construct and append a VPMOVUSWB instruction to the active function.
+// Operates on the global context.
+func VPMOVUSWB(ops ...operand.Op) { ctx.VPMOVUSWB(ops...) }
+
+// VPMOVUSWB_Z: Down Convert Packed Word Values to Byte Values with Unsigned Saturation (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPMOVUSWB.Z zmm k m256
+// 	VPMOVUSWB.Z zmm k ymm
+// 	VPMOVUSWB.Z xmm k m64
+// 	VPMOVUSWB.Z xmm k xmm
+// 	VPMOVUSWB.Z ymm k m128
+// 	VPMOVUSWB.Z ymm k xmm
+// Construct and append a VPMOVUSWB.Z instruction to the active function.
+func (c *Context) VPMOVUSWB_Z(xyz, k, mxy operand.Op) {
+	if inst, err := x86.VPMOVUSWB_Z(xyz, k, mxy); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPMOVUSWB_Z: Down Convert Packed Word Values to Byte Values with Unsigned Saturation (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPMOVUSWB.Z zmm k m256
+// 	VPMOVUSWB.Z zmm k ymm
+// 	VPMOVUSWB.Z xmm k m64
+// 	VPMOVUSWB.Z xmm k xmm
+// 	VPMOVUSWB.Z ymm k m128
+// 	VPMOVUSWB.Z ymm k xmm
+// Construct and append a VPMOVUSWB.Z instruction to the active function.
+// Operates on the global context.
+func VPMOVUSWB_Z(xyz, k, mxy operand.Op) { ctx.VPMOVUSWB_Z(xyz, k, mxy) }
+
+// VPMOVW2M: Move Signs of Packed Word Integers to Mask Register.
+//
+// Forms:
+//
+// 	VPMOVW2M zmm k
+// 	VPMOVW2M xmm k
+// 	VPMOVW2M ymm k
+// Construct and append a VPMOVW2M instruction to the active function.
+func (c *Context) VPMOVW2M(xyz, k operand.Op) {
+	if inst, err := x86.VPMOVW2M(xyz, k); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPMOVW2M: Move Signs of Packed Word Integers to Mask Register.
+//
+// Forms:
+//
+// 	VPMOVW2M zmm k
+// 	VPMOVW2M xmm k
+// 	VPMOVW2M ymm k
+// Construct and append a VPMOVW2M instruction to the active function.
+// Operates on the global context.
+func VPMOVW2M(xyz, k operand.Op) { ctx.VPMOVW2M(xyz, k) }
+
+// VPMOVWB: Down Convert Packed Word Values to Byte Values with Truncation.
+//
+// Forms:
+//
+// 	VPMOVWB zmm k m256
+// 	VPMOVWB zmm k ymm
+// 	VPMOVWB zmm m256
+// 	VPMOVWB zmm ymm
+// 	VPMOVWB xmm k m64
+// 	VPMOVWB xmm k xmm
+// 	VPMOVWB xmm m64
+// 	VPMOVWB xmm xmm
+// 	VPMOVWB ymm k m128
+// 	VPMOVWB ymm k xmm
+// 	VPMOVWB ymm m128
+// 	VPMOVWB ymm xmm
+// Construct and append a VPMOVWB instruction to the active function.
+func (c *Context) VPMOVWB(ops ...operand.Op) {
+	if inst, err := x86.VPMOVWB(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPMOVWB: Down Convert Packed Word Values to Byte Values with Truncation.
+//
+// Forms:
+//
+// 	VPMOVWB zmm k m256
+// 	VPMOVWB zmm k ymm
+// 	VPMOVWB zmm m256
+// 	VPMOVWB zmm ymm
+// 	VPMOVWB xmm k m64
+// 	VPMOVWB xmm k xmm
+// 	VPMOVWB xmm m64
+// 	VPMOVWB xmm xmm
+// 	VPMOVWB ymm k m128
+// 	VPMOVWB ymm k xmm
+// 	VPMOVWB ymm m128
+// 	VPMOVWB ymm xmm
+// Construct and append a VPMOVWB instruction to the active function.
+// Operates on the global context.
+func VPMOVWB(ops ...operand.Op) { ctx.VPMOVWB(ops...) }
+
+// VPMOVWB_Z: Down Convert Packed Word Values to Byte Values with Truncation (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPMOVWB.Z zmm k m256
+// 	VPMOVWB.Z zmm k ymm
+// 	VPMOVWB.Z xmm k m64
+// 	VPMOVWB.Z xmm k xmm
+// 	VPMOVWB.Z ymm k m128
+// 	VPMOVWB.Z ymm k xmm
+// Construct and append a VPMOVWB.Z instruction to the active function.
+func (c *Context) VPMOVWB_Z(xyz, k, mxy operand.Op) {
+	if inst, err := x86.VPMOVWB_Z(xyz, k, mxy); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPMOVWB_Z: Down Convert Packed Word Values to Byte Values with Truncation (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPMOVWB.Z zmm k m256
+// 	VPMOVWB.Z zmm k ymm
+// 	VPMOVWB.Z xmm k m64
+// 	VPMOVWB.Z xmm k xmm
+// 	VPMOVWB.Z ymm k m128
+// 	VPMOVWB.Z ymm k xmm
+// Construct and append a VPMOVWB.Z instruction to the active function.
+// Operates on the global context.
+func VPMOVWB_Z(xyz, k, mxy operand.Op) { ctx.VPMOVWB_Z(xyz, k, mxy) }
+
 // VPMOVZXBD: Move Packed Byte Integers to Doubleword Integers with Zero Extension.
 //
 // Forms:
@@ -62225,9 +65653,17 @@ func VPMOVZXBQ_Z(mx, k, xyz operand.Op) { ctx.VPMOVZXBQ_Z(mx, k, xyz) }
 // 	VPMOVZXBW xmm  ymm
 // 	VPMOVZXBW m64  xmm
 // 	VPMOVZXBW xmm  xmm
+// 	VPMOVZXBW m256 k zmm
+// 	VPMOVZXBW m256 zmm
+// 	VPMOVZXBW ymm  k zmm
+// 	VPMOVZXBW ymm  zmm
+// 	VPMOVZXBW m128 k ymm
+// 	VPMOVZXBW m64  k xmm
+// 	VPMOVZXBW xmm  k xmm
+// 	VPMOVZXBW xmm  k ymm
 // Construct and append a VPMOVZXBW instruction to the active function.
-func (c *Context) VPMOVZXBW(mx, xy operand.Op) {
-	if inst, err := x86.VPMOVZXBW(mx, xy); err == nil {
+func (c *Context) VPMOVZXBW(ops ...operand.Op) {
+	if inst, err := x86.VPMOVZXBW(ops...); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -62242,9 +65678,50 @@ func (c *Context) VPMOVZXBW(mx, xy operand.Op) {
 // 	VPMOVZXBW xmm  ymm
 // 	VPMOVZXBW m64  xmm
 // 	VPMOVZXBW xmm  xmm
+// 	VPMOVZXBW m256 k zmm
+// 	VPMOVZXBW m256 zmm
+// 	VPMOVZXBW ymm  k zmm
+// 	VPMOVZXBW ymm  zmm
+// 	VPMOVZXBW m128 k ymm
+// 	VPMOVZXBW m64  k xmm
+// 	VPMOVZXBW xmm  k xmm
+// 	VPMOVZXBW xmm  k ymm
 // Construct and append a VPMOVZXBW instruction to the active function.
 // Operates on the global context.
-func VPMOVZXBW(mx, xy operand.Op) { ctx.VPMOVZXBW(mx, xy) }
+func VPMOVZXBW(ops ...operand.Op) { ctx.VPMOVZXBW(ops...) }
+
+// VPMOVZXBW_Z: Move Packed Byte Integers to Word Integers with Zero Extension (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPMOVZXBW.Z m256 k zmm
+// 	VPMOVZXBW.Z ymm  k zmm
+// 	VPMOVZXBW.Z m128 k ymm
+// 	VPMOVZXBW.Z m64  k xmm
+// 	VPMOVZXBW.Z xmm  k xmm
+// 	VPMOVZXBW.Z xmm  k ymm
+// Construct and append a VPMOVZXBW.Z instruction to the active function.
+func (c *Context) VPMOVZXBW_Z(mxy, k, xyz operand.Op) {
+	if inst, err := x86.VPMOVZXBW_Z(mxy, k, xyz); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPMOVZXBW_Z: Move Packed Byte Integers to Word Integers with Zero Extension (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPMOVZXBW.Z m256 k zmm
+// 	VPMOVZXBW.Z ymm  k zmm
+// 	VPMOVZXBW.Z m128 k ymm
+// 	VPMOVZXBW.Z m64  k xmm
+// 	VPMOVZXBW.Z xmm  k xmm
+// 	VPMOVZXBW.Z xmm  k ymm
+// Construct and append a VPMOVZXBW.Z instruction to the active function.
+// Operates on the global context.
+func VPMOVZXBW_Z(mxy, k, xyz operand.Op) { ctx.VPMOVZXBW_Z(mxy, k, xyz) }
 
 // VPMOVZXDQ: Move Packed Doubleword Integers to Quadword Integers with Zero Extension.
 //
@@ -62630,9 +66107,17 @@ func VPMULDQ_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPMULDQ_Z(mxyz, xyz, k, xyz1
 // 	VPMULHRSW ymm  ymm ymm
 // 	VPMULHRSW m128 xmm xmm
 // 	VPMULHRSW xmm  xmm xmm
+// 	VPMULHRSW m512 zmm k zmm
+// 	VPMULHRSW m512 zmm zmm
+// 	VPMULHRSW zmm  zmm k zmm
+// 	VPMULHRSW zmm  zmm zmm
+// 	VPMULHRSW m128 xmm k xmm
+// 	VPMULHRSW m256 ymm k ymm
+// 	VPMULHRSW xmm  xmm k xmm
+// 	VPMULHRSW ymm  ymm k ymm
 // Construct and append a VPMULHRSW instruction to the active function.
-func (c *Context) VPMULHRSW(mxy, xy, xy1 operand.Op) {
-	if inst, err := x86.VPMULHRSW(mxy, xy, xy1); err == nil {
+func (c *Context) VPMULHRSW(ops ...operand.Op) {
+	if inst, err := x86.VPMULHRSW(ops...); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -62647,9 +66132,50 @@ func (c *Context) VPMULHRSW(mxy, xy, xy1 operand.Op) {
 // 	VPMULHRSW ymm  ymm ymm
 // 	VPMULHRSW m128 xmm xmm
 // 	VPMULHRSW xmm  xmm xmm
+// 	VPMULHRSW m512 zmm k zmm
+// 	VPMULHRSW m512 zmm zmm
+// 	VPMULHRSW zmm  zmm k zmm
+// 	VPMULHRSW zmm  zmm zmm
+// 	VPMULHRSW m128 xmm k xmm
+// 	VPMULHRSW m256 ymm k ymm
+// 	VPMULHRSW xmm  xmm k xmm
+// 	VPMULHRSW ymm  ymm k ymm
 // Construct and append a VPMULHRSW instruction to the active function.
 // Operates on the global context.
-func VPMULHRSW(mxy, xy, xy1 operand.Op) { ctx.VPMULHRSW(mxy, xy, xy1) }
+func VPMULHRSW(ops ...operand.Op) { ctx.VPMULHRSW(ops...) }
+
+// VPMULHRSW_Z: Packed Multiply Signed Word Integers and Store High Result with Round and Scale (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPMULHRSW.Z m512 zmm k zmm
+// 	VPMULHRSW.Z zmm  zmm k zmm
+// 	VPMULHRSW.Z m128 xmm k xmm
+// 	VPMULHRSW.Z m256 ymm k ymm
+// 	VPMULHRSW.Z xmm  xmm k xmm
+// 	VPMULHRSW.Z ymm  ymm k ymm
+// Construct and append a VPMULHRSW.Z instruction to the active function.
+func (c *Context) VPMULHRSW_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPMULHRSW_Z(mxyz, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPMULHRSW_Z: Packed Multiply Signed Word Integers and Store High Result with Round and Scale (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPMULHRSW.Z m512 zmm k zmm
+// 	VPMULHRSW.Z zmm  zmm k zmm
+// 	VPMULHRSW.Z m128 xmm k xmm
+// 	VPMULHRSW.Z m256 ymm k ymm
+// 	VPMULHRSW.Z xmm  xmm k xmm
+// 	VPMULHRSW.Z ymm  ymm k ymm
+// Construct and append a VPMULHRSW.Z instruction to the active function.
+// Operates on the global context.
+func VPMULHRSW_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPMULHRSW_Z(mxyz, xyz, k, xyz1) }
 
 // VPMULHUW: Multiply Packed Unsigned Word Integers and Store High Result.
 //
@@ -62659,9 +66185,17 @@ func VPMULHRSW(mxy, xy, xy1 operand.Op) { ctx.VPMULHRSW(mxy, xy, xy1) }
 // 	VPMULHUW ymm  ymm ymm
 // 	VPMULHUW m128 xmm xmm
 // 	VPMULHUW xmm  xmm xmm
+// 	VPMULHUW m512 zmm k zmm
+// 	VPMULHUW m512 zmm zmm
+// 	VPMULHUW zmm  zmm k zmm
+// 	VPMULHUW zmm  zmm zmm
+// 	VPMULHUW m128 xmm k xmm
+// 	VPMULHUW m256 ymm k ymm
+// 	VPMULHUW xmm  xmm k xmm
+// 	VPMULHUW ymm  ymm k ymm
 // Construct and append a VPMULHUW instruction to the active function.
-func (c *Context) VPMULHUW(mxy, xy, xy1 operand.Op) {
-	if inst, err := x86.VPMULHUW(mxy, xy, xy1); err == nil {
+func (c *Context) VPMULHUW(ops ...operand.Op) {
+	if inst, err := x86.VPMULHUW(ops...); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -62676,9 +66210,50 @@ func (c *Context) VPMULHUW(mxy, xy, xy1 operand.Op) {
 // 	VPMULHUW ymm  ymm ymm
 // 	VPMULHUW m128 xmm xmm
 // 	VPMULHUW xmm  xmm xmm
+// 	VPMULHUW m512 zmm k zmm
+// 	VPMULHUW m512 zmm zmm
+// 	VPMULHUW zmm  zmm k zmm
+// 	VPMULHUW zmm  zmm zmm
+// 	VPMULHUW m128 xmm k xmm
+// 	VPMULHUW m256 ymm k ymm
+// 	VPMULHUW xmm  xmm k xmm
+// 	VPMULHUW ymm  ymm k ymm
 // Construct and append a VPMULHUW instruction to the active function.
 // Operates on the global context.
-func VPMULHUW(mxy, xy, xy1 operand.Op) { ctx.VPMULHUW(mxy, xy, xy1) }
+func VPMULHUW(ops ...operand.Op) { ctx.VPMULHUW(ops...) }
+
+// VPMULHUW_Z: Multiply Packed Unsigned Word Integers and Store High Result (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPMULHUW.Z m512 zmm k zmm
+// 	VPMULHUW.Z zmm  zmm k zmm
+// 	VPMULHUW.Z m128 xmm k xmm
+// 	VPMULHUW.Z m256 ymm k ymm
+// 	VPMULHUW.Z xmm  xmm k xmm
+// 	VPMULHUW.Z ymm  ymm k ymm
+// Construct and append a VPMULHUW.Z instruction to the active function.
+func (c *Context) VPMULHUW_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPMULHUW_Z(mxyz, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPMULHUW_Z: Multiply Packed Unsigned Word Integers and Store High Result (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPMULHUW.Z m512 zmm k zmm
+// 	VPMULHUW.Z zmm  zmm k zmm
+// 	VPMULHUW.Z m128 xmm k xmm
+// 	VPMULHUW.Z m256 ymm k ymm
+// 	VPMULHUW.Z xmm  xmm k xmm
+// 	VPMULHUW.Z ymm  ymm k ymm
+// Construct and append a VPMULHUW.Z instruction to the active function.
+// Operates on the global context.
+func VPMULHUW_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPMULHUW_Z(mxyz, xyz, k, xyz1) }
 
 // VPMULHW: Multiply Packed Signed Word Integers and Store High Result.
 //
@@ -62688,9 +66263,17 @@ func VPMULHUW(mxy, xy, xy1 operand.Op) { ctx.VPMULHUW(mxy, xy, xy1) }
 // 	VPMULHW ymm  ymm ymm
 // 	VPMULHW m128 xmm xmm
 // 	VPMULHW xmm  xmm xmm
+// 	VPMULHW m512 zmm k zmm
+// 	VPMULHW m512 zmm zmm
+// 	VPMULHW zmm  zmm k zmm
+// 	VPMULHW zmm  zmm zmm
+// 	VPMULHW m128 xmm k xmm
+// 	VPMULHW m256 ymm k ymm
+// 	VPMULHW xmm  xmm k xmm
+// 	VPMULHW ymm  ymm k ymm
 // Construct and append a VPMULHW instruction to the active function.
-func (c *Context) VPMULHW(mxy, xy, xy1 operand.Op) {
-	if inst, err := x86.VPMULHW(mxy, xy, xy1); err == nil {
+func (c *Context) VPMULHW(ops ...operand.Op) {
+	if inst, err := x86.VPMULHW(ops...); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -62705,9 +66288,50 @@ func (c *Context) VPMULHW(mxy, xy, xy1 operand.Op) {
 // 	VPMULHW ymm  ymm ymm
 // 	VPMULHW m128 xmm xmm
 // 	VPMULHW xmm  xmm xmm
+// 	VPMULHW m512 zmm k zmm
+// 	VPMULHW m512 zmm zmm
+// 	VPMULHW zmm  zmm k zmm
+// 	VPMULHW zmm  zmm zmm
+// 	VPMULHW m128 xmm k xmm
+// 	VPMULHW m256 ymm k ymm
+// 	VPMULHW xmm  xmm k xmm
+// 	VPMULHW ymm  ymm k ymm
 // Construct and append a VPMULHW instruction to the active function.
 // Operates on the global context.
-func VPMULHW(mxy, xy, xy1 operand.Op) { ctx.VPMULHW(mxy, xy, xy1) }
+func VPMULHW(ops ...operand.Op) { ctx.VPMULHW(ops...) }
+
+// VPMULHW_Z: Multiply Packed Signed Word Integers and Store High Result (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPMULHW.Z m512 zmm k zmm
+// 	VPMULHW.Z zmm  zmm k zmm
+// 	VPMULHW.Z m128 xmm k xmm
+// 	VPMULHW.Z m256 ymm k ymm
+// 	VPMULHW.Z xmm  xmm k xmm
+// 	VPMULHW.Z ymm  ymm k ymm
+// Construct and append a VPMULHW.Z instruction to the active function.
+func (c *Context) VPMULHW_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPMULHW_Z(mxyz, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPMULHW_Z: Multiply Packed Signed Word Integers and Store High Result (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPMULHW.Z m512 zmm k zmm
+// 	VPMULHW.Z zmm  zmm k zmm
+// 	VPMULHW.Z m128 xmm k xmm
+// 	VPMULHW.Z m256 ymm k ymm
+// 	VPMULHW.Z xmm  xmm k xmm
+// 	VPMULHW.Z ymm  ymm k ymm
+// Construct and append a VPMULHW.Z instruction to the active function.
+// Operates on the global context.
+func VPMULHW_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPMULHW_Z(mxyz, xyz, k, xyz1) }
 
 // VPMULLD: Multiply Packed Signed Doubleword Integers and Store Low Result.
 //
@@ -62859,9 +66483,17 @@ func VPMULLD_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPMULLD_Z(mxyz, xyz, k, xyz1
 // 	VPMULLW ymm  ymm ymm
 // 	VPMULLW m128 xmm xmm
 // 	VPMULLW xmm  xmm xmm
+// 	VPMULLW m512 zmm k zmm
+// 	VPMULLW m512 zmm zmm
+// 	VPMULLW zmm  zmm k zmm
+// 	VPMULLW zmm  zmm zmm
+// 	VPMULLW m128 xmm k xmm
+// 	VPMULLW m256 ymm k ymm
+// 	VPMULLW xmm  xmm k xmm
+// 	VPMULLW ymm  ymm k ymm
 // Construct and append a VPMULLW instruction to the active function.
-func (c *Context) VPMULLW(mxy, xy, xy1 operand.Op) {
-	if inst, err := x86.VPMULLW(mxy, xy, xy1); err == nil {
+func (c *Context) VPMULLW(ops ...operand.Op) {
+	if inst, err := x86.VPMULLW(ops...); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -62876,9 +66508,50 @@ func (c *Context) VPMULLW(mxy, xy, xy1 operand.Op) {
 // 	VPMULLW ymm  ymm ymm
 // 	VPMULLW m128 xmm xmm
 // 	VPMULLW xmm  xmm xmm
+// 	VPMULLW m512 zmm k zmm
+// 	VPMULLW m512 zmm zmm
+// 	VPMULLW zmm  zmm k zmm
+// 	VPMULLW zmm  zmm zmm
+// 	VPMULLW m128 xmm k xmm
+// 	VPMULLW m256 ymm k ymm
+// 	VPMULLW xmm  xmm k xmm
+// 	VPMULLW ymm  ymm k ymm
 // Construct and append a VPMULLW instruction to the active function.
 // Operates on the global context.
-func VPMULLW(mxy, xy, xy1 operand.Op) { ctx.VPMULLW(mxy, xy, xy1) }
+func VPMULLW(ops ...operand.Op) { ctx.VPMULLW(ops...) }
+
+// VPMULLW_Z: Multiply Packed Signed Word Integers and Store Low Result (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPMULLW.Z m512 zmm k zmm
+// 	VPMULLW.Z zmm  zmm k zmm
+// 	VPMULLW.Z m128 xmm k xmm
+// 	VPMULLW.Z m256 ymm k ymm
+// 	VPMULLW.Z xmm  xmm k xmm
+// 	VPMULLW.Z ymm  ymm k ymm
+// Construct and append a VPMULLW.Z instruction to the active function.
+func (c *Context) VPMULLW_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPMULLW_Z(mxyz, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPMULLW_Z: Multiply Packed Signed Word Integers and Store Low Result (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPMULLW.Z m512 zmm k zmm
+// 	VPMULLW.Z zmm  zmm k zmm
+// 	VPMULLW.Z m128 xmm k xmm
+// 	VPMULLW.Z m256 ymm k ymm
+// 	VPMULLW.Z xmm  xmm k xmm
+// 	VPMULLW.Z ymm  ymm k ymm
+// Construct and append a VPMULLW.Z instruction to the active function.
+// Operates on the global context.
+func VPMULLW_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPMULLW_Z(mxyz, xyz, k, xyz1) }
 
 // VPMULUDQ: Multiply Packed Unsigned Doubleword Integers.
 //
@@ -64439,9 +68112,11 @@ func VPRORVQ_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPRORVQ_Z(mxyz, xyz, k, xyz1
 // 	VPSADBW ymm  ymm ymm
 // 	VPSADBW m128 xmm xmm
 // 	VPSADBW xmm  xmm xmm
+// 	VPSADBW m512 zmm zmm
+// 	VPSADBW zmm  zmm zmm
 // Construct and append a VPSADBW instruction to the active function.
-func (c *Context) VPSADBW(mxy, xy, xy1 operand.Op) {
-	if inst, err := x86.VPSADBW(mxy, xy, xy1); err == nil {
+func (c *Context) VPSADBW(mxyz, xyz, xyz1 operand.Op) {
+	if inst, err := x86.VPSADBW(mxyz, xyz, xyz1); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -64456,9 +68131,11 @@ func (c *Context) VPSADBW(mxy, xy, xy1 operand.Op) {
 // 	VPSADBW ymm  ymm ymm
 // 	VPSADBW m128 xmm xmm
 // 	VPSADBW xmm  xmm xmm
+// 	VPSADBW m512 zmm zmm
+// 	VPSADBW zmm  zmm zmm
 // Construct and append a VPSADBW instruction to the active function.
 // Operates on the global context.
-func VPSADBW(mxy, xy, xy1 operand.Op) { ctx.VPSADBW(mxy, xy, xy1) }
+func VPSADBW(mxyz, xyz, xyz1 operand.Op) { ctx.VPSADBW(mxyz, xyz, xyz1) }
 
 // VPSCATTERDD: Scatter Packed Doubleword Values with Signed Doubleword Indices.
 //
@@ -64576,9 +68253,17 @@ func VPSCATTERQQ(xyz, k, v operand.Op) { ctx.VPSCATTERQQ(xyz, k, v) }
 // 	VPSHUFB ymm  ymm ymm
 // 	VPSHUFB m128 xmm xmm
 // 	VPSHUFB xmm  xmm xmm
+// 	VPSHUFB m512 zmm k zmm
+// 	VPSHUFB m512 zmm zmm
+// 	VPSHUFB zmm  zmm k zmm
+// 	VPSHUFB zmm  zmm zmm
+// 	VPSHUFB m128 xmm k xmm
+// 	VPSHUFB m256 ymm k ymm
+// 	VPSHUFB xmm  xmm k xmm
+// 	VPSHUFB ymm  ymm k ymm
 // Construct and append a VPSHUFB instruction to the active function.
-func (c *Context) VPSHUFB(mxy, xy, xy1 operand.Op) {
-	if inst, err := x86.VPSHUFB(mxy, xy, xy1); err == nil {
+func (c *Context) VPSHUFB(ops ...operand.Op) {
+	if inst, err := x86.VPSHUFB(ops...); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -64593,9 +68278,50 @@ func (c *Context) VPSHUFB(mxy, xy, xy1 operand.Op) {
 // 	VPSHUFB ymm  ymm ymm
 // 	VPSHUFB m128 xmm xmm
 // 	VPSHUFB xmm  xmm xmm
+// 	VPSHUFB m512 zmm k zmm
+// 	VPSHUFB m512 zmm zmm
+// 	VPSHUFB zmm  zmm k zmm
+// 	VPSHUFB zmm  zmm zmm
+// 	VPSHUFB m128 xmm k xmm
+// 	VPSHUFB m256 ymm k ymm
+// 	VPSHUFB xmm  xmm k xmm
+// 	VPSHUFB ymm  ymm k ymm
 // Construct and append a VPSHUFB instruction to the active function.
 // Operates on the global context.
-func VPSHUFB(mxy, xy, xy1 operand.Op) { ctx.VPSHUFB(mxy, xy, xy1) }
+func VPSHUFB(ops ...operand.Op) { ctx.VPSHUFB(ops...) }
+
+// VPSHUFB_Z: Packed Shuffle Bytes (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPSHUFB.Z m512 zmm k zmm
+// 	VPSHUFB.Z zmm  zmm k zmm
+// 	VPSHUFB.Z m128 xmm k xmm
+// 	VPSHUFB.Z m256 ymm k ymm
+// 	VPSHUFB.Z xmm  xmm k xmm
+// 	VPSHUFB.Z ymm  ymm k ymm
+// Construct and append a VPSHUFB.Z instruction to the active function.
+func (c *Context) VPSHUFB_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPSHUFB_Z(mxyz, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPSHUFB_Z: Packed Shuffle Bytes (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPSHUFB.Z m512 zmm k zmm
+// 	VPSHUFB.Z zmm  zmm k zmm
+// 	VPSHUFB.Z m128 xmm k xmm
+// 	VPSHUFB.Z m256 ymm k ymm
+// 	VPSHUFB.Z xmm  xmm k xmm
+// 	VPSHUFB.Z ymm  ymm k ymm
+// Construct and append a VPSHUFB.Z instruction to the active function.
+// Operates on the global context.
+func VPSHUFB_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPSHUFB_Z(mxyz, xyz, k, xyz1) }
 
 // VPSHUFD: Shuffle Packed Doublewords.
 //
@@ -64747,9 +68473,17 @@ func VPSHUFD_Z(i, mxyz, k, xyz operand.Op) { ctx.VPSHUFD_Z(i, mxyz, k, xyz) }
 // 	VPSHUFHW imm8 ymm  ymm
 // 	VPSHUFHW imm8 m128 xmm
 // 	VPSHUFHW imm8 xmm  xmm
+// 	VPSHUFHW imm8 m512 k zmm
+// 	VPSHUFHW imm8 m512 zmm
+// 	VPSHUFHW imm8 zmm  k zmm
+// 	VPSHUFHW imm8 zmm  zmm
+// 	VPSHUFHW imm8 m128 k xmm
+// 	VPSHUFHW imm8 m256 k ymm
+// 	VPSHUFHW imm8 xmm  k xmm
+// 	VPSHUFHW imm8 ymm  k ymm
 // Construct and append a VPSHUFHW instruction to the active function.
-func (c *Context) VPSHUFHW(i, mxy, xy operand.Op) {
-	if inst, err := x86.VPSHUFHW(i, mxy, xy); err == nil {
+func (c *Context) VPSHUFHW(ops ...operand.Op) {
+	if inst, err := x86.VPSHUFHW(ops...); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -64764,9 +68498,50 @@ func (c *Context) VPSHUFHW(i, mxy, xy operand.Op) {
 // 	VPSHUFHW imm8 ymm  ymm
 // 	VPSHUFHW imm8 m128 xmm
 // 	VPSHUFHW imm8 xmm  xmm
+// 	VPSHUFHW imm8 m512 k zmm
+// 	VPSHUFHW imm8 m512 zmm
+// 	VPSHUFHW imm8 zmm  k zmm
+// 	VPSHUFHW imm8 zmm  zmm
+// 	VPSHUFHW imm8 m128 k xmm
+// 	VPSHUFHW imm8 m256 k ymm
+// 	VPSHUFHW imm8 xmm  k xmm
+// 	VPSHUFHW imm8 ymm  k ymm
 // Construct and append a VPSHUFHW instruction to the active function.
 // Operates on the global context.
-func VPSHUFHW(i, mxy, xy operand.Op) { ctx.VPSHUFHW(i, mxy, xy) }
+func VPSHUFHW(ops ...operand.Op) { ctx.VPSHUFHW(ops...) }
+
+// VPSHUFHW_Z: Shuffle Packed High Words (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPSHUFHW.Z imm8 m512 k zmm
+// 	VPSHUFHW.Z imm8 zmm  k zmm
+// 	VPSHUFHW.Z imm8 m128 k xmm
+// 	VPSHUFHW.Z imm8 m256 k ymm
+// 	VPSHUFHW.Z imm8 xmm  k xmm
+// 	VPSHUFHW.Z imm8 ymm  k ymm
+// Construct and append a VPSHUFHW.Z instruction to the active function.
+func (c *Context) VPSHUFHW_Z(i, mxyz, k, xyz operand.Op) {
+	if inst, err := x86.VPSHUFHW_Z(i, mxyz, k, xyz); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPSHUFHW_Z: Shuffle Packed High Words (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPSHUFHW.Z imm8 m512 k zmm
+// 	VPSHUFHW.Z imm8 zmm  k zmm
+// 	VPSHUFHW.Z imm8 m128 k xmm
+// 	VPSHUFHW.Z imm8 m256 k ymm
+// 	VPSHUFHW.Z imm8 xmm  k xmm
+// 	VPSHUFHW.Z imm8 ymm  k ymm
+// Construct and append a VPSHUFHW.Z instruction to the active function.
+// Operates on the global context.
+func VPSHUFHW_Z(i, mxyz, k, xyz operand.Op) { ctx.VPSHUFHW_Z(i, mxyz, k, xyz) }
 
 // VPSHUFLW: Shuffle Packed Low Words.
 //
@@ -64776,9 +68551,17 @@ func VPSHUFHW(i, mxy, xy operand.Op) { ctx.VPSHUFHW(i, mxy, xy) }
 // 	VPSHUFLW imm8 ymm  ymm
 // 	VPSHUFLW imm8 m128 xmm
 // 	VPSHUFLW imm8 xmm  xmm
+// 	VPSHUFLW imm8 m512 k zmm
+// 	VPSHUFLW imm8 m512 zmm
+// 	VPSHUFLW imm8 zmm  k zmm
+// 	VPSHUFLW imm8 zmm  zmm
+// 	VPSHUFLW imm8 m128 k xmm
+// 	VPSHUFLW imm8 m256 k ymm
+// 	VPSHUFLW imm8 xmm  k xmm
+// 	VPSHUFLW imm8 ymm  k ymm
 // Construct and append a VPSHUFLW instruction to the active function.
-func (c *Context) VPSHUFLW(i, mxy, xy operand.Op) {
-	if inst, err := x86.VPSHUFLW(i, mxy, xy); err == nil {
+func (c *Context) VPSHUFLW(ops ...operand.Op) {
+	if inst, err := x86.VPSHUFLW(ops...); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -64793,9 +68576,50 @@ func (c *Context) VPSHUFLW(i, mxy, xy operand.Op) {
 // 	VPSHUFLW imm8 ymm  ymm
 // 	VPSHUFLW imm8 m128 xmm
 // 	VPSHUFLW imm8 xmm  xmm
+// 	VPSHUFLW imm8 m512 k zmm
+// 	VPSHUFLW imm8 m512 zmm
+// 	VPSHUFLW imm8 zmm  k zmm
+// 	VPSHUFLW imm8 zmm  zmm
+// 	VPSHUFLW imm8 m128 k xmm
+// 	VPSHUFLW imm8 m256 k ymm
+// 	VPSHUFLW imm8 xmm  k xmm
+// 	VPSHUFLW imm8 ymm  k ymm
 // Construct and append a VPSHUFLW instruction to the active function.
 // Operates on the global context.
-func VPSHUFLW(i, mxy, xy operand.Op) { ctx.VPSHUFLW(i, mxy, xy) }
+func VPSHUFLW(ops ...operand.Op) { ctx.VPSHUFLW(ops...) }
+
+// VPSHUFLW_Z: Shuffle Packed Low Words (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPSHUFLW.Z imm8 m512 k zmm
+// 	VPSHUFLW.Z imm8 zmm  k zmm
+// 	VPSHUFLW.Z imm8 m128 k xmm
+// 	VPSHUFLW.Z imm8 m256 k ymm
+// 	VPSHUFLW.Z imm8 xmm  k xmm
+// 	VPSHUFLW.Z imm8 ymm  k ymm
+// Construct and append a VPSHUFLW.Z instruction to the active function.
+func (c *Context) VPSHUFLW_Z(i, mxyz, k, xyz operand.Op) {
+	if inst, err := x86.VPSHUFLW_Z(i, mxyz, k, xyz); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPSHUFLW_Z: Shuffle Packed Low Words (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPSHUFLW.Z imm8 m512 k zmm
+// 	VPSHUFLW.Z imm8 zmm  k zmm
+// 	VPSHUFLW.Z imm8 m128 k xmm
+// 	VPSHUFLW.Z imm8 m256 k ymm
+// 	VPSHUFLW.Z imm8 xmm  k xmm
+// 	VPSHUFLW.Z imm8 ymm  k ymm
+// Construct and append a VPSHUFLW.Z instruction to the active function.
+// Operates on the global context.
+func VPSHUFLW_Z(i, mxyz, k, xyz operand.Op) { ctx.VPSHUFLW_Z(i, mxyz, k, xyz) }
 
 // VPSIGNB: Packed Sign of Byte Integers.
 //
@@ -64957,11 +68781,15 @@ func VPSLLD(ops ...operand.Op) { ctx.VPSLLD(ops...) }
 //
 // Forms:
 //
-// 	VPSLLDQ imm8 ymm ymm
-// 	VPSLLDQ imm8 xmm xmm
+// 	VPSLLDQ imm8 ymm  ymm
+// 	VPSLLDQ imm8 xmm  xmm
+// 	VPSLLDQ imm8 m512 zmm
+// 	VPSLLDQ imm8 zmm  zmm
+// 	VPSLLDQ imm8 m128 xmm
+// 	VPSLLDQ imm8 m256 ymm
 // Construct and append a VPSLLDQ instruction to the active function.
-func (c *Context) VPSLLDQ(i, xy, xy1 operand.Op) {
-	if inst, err := x86.VPSLLDQ(i, xy, xy1); err == nil {
+func (c *Context) VPSLLDQ(i, mxyz, xyz operand.Op) {
+	if inst, err := x86.VPSLLDQ(i, mxyz, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -64972,11 +68800,15 @@ func (c *Context) VPSLLDQ(i, xy, xy1 operand.Op) {
 //
 // Forms:
 //
-// 	VPSLLDQ imm8 ymm ymm
-// 	VPSLLDQ imm8 xmm xmm
+// 	VPSLLDQ imm8 ymm  ymm
+// 	VPSLLDQ imm8 xmm  xmm
+// 	VPSLLDQ imm8 m512 zmm
+// 	VPSLLDQ imm8 zmm  zmm
+// 	VPSLLDQ imm8 m128 xmm
+// 	VPSLLDQ imm8 m256 ymm
 // Construct and append a VPSLLDQ instruction to the active function.
 // Operates on the global context.
-func VPSLLDQ(i, xy, xy1 operand.Op) { ctx.VPSLLDQ(i, xy, xy1) }
+func VPSLLDQ(i, mxyz, xyz operand.Op) { ctx.VPSLLDQ(i, mxyz, xyz) }
 
 // VPSLLD_BCST: Shift Packed Doubleword Data Left Logical (Broadcast).
 //
@@ -65541,19 +69373,115 @@ func (c *Context) VPSLLVQ_Z(mxyz, xyz, k, xyz1 operand.Op) {
 // Operates on the global context.
 func VPSLLVQ_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPSLLVQ_Z(mxyz, xyz, k, xyz1) }
 
+// VPSLLVW: Variable Shift Packed Word Data Left Logical.
+//
+// Forms:
+//
+// 	VPSLLVW m512 zmm k zmm
+// 	VPSLLVW m512 zmm zmm
+// 	VPSLLVW zmm  zmm k zmm
+// 	VPSLLVW zmm  zmm zmm
+// 	VPSLLVW m128 xmm k xmm
+// 	VPSLLVW m128 xmm xmm
+// 	VPSLLVW m256 ymm k ymm
+// 	VPSLLVW m256 ymm ymm
+// 	VPSLLVW xmm  xmm k xmm
+// 	VPSLLVW xmm  xmm xmm
+// 	VPSLLVW ymm  ymm k ymm
+// 	VPSLLVW ymm  ymm ymm
+// Construct and append a VPSLLVW instruction to the active function.
+func (c *Context) VPSLLVW(ops ...operand.Op) {
+	if inst, err := x86.VPSLLVW(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPSLLVW: Variable Shift Packed Word Data Left Logical.
+//
+// Forms:
+//
+// 	VPSLLVW m512 zmm k zmm
+// 	VPSLLVW m512 zmm zmm
+// 	VPSLLVW zmm  zmm k zmm
+// 	VPSLLVW zmm  zmm zmm
+// 	VPSLLVW m128 xmm k xmm
+// 	VPSLLVW m128 xmm xmm
+// 	VPSLLVW m256 ymm k ymm
+// 	VPSLLVW m256 ymm ymm
+// 	VPSLLVW xmm  xmm k xmm
+// 	VPSLLVW xmm  xmm xmm
+// 	VPSLLVW ymm  ymm k ymm
+// 	VPSLLVW ymm  ymm ymm
+// Construct and append a VPSLLVW instruction to the active function.
+// Operates on the global context.
+func VPSLLVW(ops ...operand.Op) { ctx.VPSLLVW(ops...) }
+
+// VPSLLVW_Z: Variable Shift Packed Word Data Left Logical (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPSLLVW.Z m512 zmm k zmm
+// 	VPSLLVW.Z zmm  zmm k zmm
+// 	VPSLLVW.Z m128 xmm k xmm
+// 	VPSLLVW.Z m256 ymm k ymm
+// 	VPSLLVW.Z xmm  xmm k xmm
+// 	VPSLLVW.Z ymm  ymm k ymm
+// Construct and append a VPSLLVW.Z instruction to the active function.
+func (c *Context) VPSLLVW_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPSLLVW_Z(mxyz, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPSLLVW_Z: Variable Shift Packed Word Data Left Logical (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPSLLVW.Z m512 zmm k zmm
+// 	VPSLLVW.Z zmm  zmm k zmm
+// 	VPSLLVW.Z m128 xmm k xmm
+// 	VPSLLVW.Z m256 ymm k ymm
+// 	VPSLLVW.Z xmm  xmm k xmm
+// 	VPSLLVW.Z ymm  ymm k ymm
+// Construct and append a VPSLLVW.Z instruction to the active function.
+// Operates on the global context.
+func VPSLLVW_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPSLLVW_Z(mxyz, xyz, k, xyz1) }
+
 // VPSLLW: Shift Packed Word Data Left Logical.
 //
 // Forms:
 //
-// 	VPSLLW imm8 ymm ymm
-// 	VPSLLW m128 ymm ymm
-// 	VPSLLW xmm  ymm ymm
-// 	VPSLLW imm8 xmm xmm
-// 	VPSLLW m128 xmm xmm
-// 	VPSLLW xmm  xmm xmm
+// 	VPSLLW imm8 ymm  ymm
+// 	VPSLLW m128 ymm  ymm
+// 	VPSLLW xmm  ymm  ymm
+// 	VPSLLW imm8 xmm  xmm
+// 	VPSLLW m128 xmm  xmm
+// 	VPSLLW xmm  xmm  xmm
+// 	VPSLLW imm8 m512 k zmm
+// 	VPSLLW imm8 m512 zmm
+// 	VPSLLW imm8 zmm  k zmm
+// 	VPSLLW imm8 zmm  zmm
+// 	VPSLLW m128 zmm  k zmm
+// 	VPSLLW m128 zmm  zmm
+// 	VPSLLW xmm  zmm  k zmm
+// 	VPSLLW xmm  zmm  zmm
+// 	VPSLLW imm8 m128 k xmm
+// 	VPSLLW imm8 m128 xmm
+// 	VPSLLW imm8 m256 k ymm
+// 	VPSLLW imm8 m256 ymm
+// 	VPSLLW imm8 xmm  k xmm
+// 	VPSLLW imm8 ymm  k ymm
+// 	VPSLLW m128 xmm  k xmm
+// 	VPSLLW m128 ymm  k ymm
+// 	VPSLLW xmm  xmm  k xmm
+// 	VPSLLW xmm  ymm  k ymm
 // Construct and append a VPSLLW instruction to the active function.
-func (c *Context) VPSLLW(imx, xy, xy1 operand.Op) {
-	if inst, err := x86.VPSLLW(imx, xy, xy1); err == nil {
+func (c *Context) VPSLLW(ops ...operand.Op) {
+	if inst, err := x86.VPSLLW(ops...); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -65564,15 +69492,78 @@ func (c *Context) VPSLLW(imx, xy, xy1 operand.Op) {
 //
 // Forms:
 //
-// 	VPSLLW imm8 ymm ymm
-// 	VPSLLW m128 ymm ymm
-// 	VPSLLW xmm  ymm ymm
-// 	VPSLLW imm8 xmm xmm
-// 	VPSLLW m128 xmm xmm
-// 	VPSLLW xmm  xmm xmm
+// 	VPSLLW imm8 ymm  ymm
+// 	VPSLLW m128 ymm  ymm
+// 	VPSLLW xmm  ymm  ymm
+// 	VPSLLW imm8 xmm  xmm
+// 	VPSLLW m128 xmm  xmm
+// 	VPSLLW xmm  xmm  xmm
+// 	VPSLLW imm8 m512 k zmm
+// 	VPSLLW imm8 m512 zmm
+// 	VPSLLW imm8 zmm  k zmm
+// 	VPSLLW imm8 zmm  zmm
+// 	VPSLLW m128 zmm  k zmm
+// 	VPSLLW m128 zmm  zmm
+// 	VPSLLW xmm  zmm  k zmm
+// 	VPSLLW xmm  zmm  zmm
+// 	VPSLLW imm8 m128 k xmm
+// 	VPSLLW imm8 m128 xmm
+// 	VPSLLW imm8 m256 k ymm
+// 	VPSLLW imm8 m256 ymm
+// 	VPSLLW imm8 xmm  k xmm
+// 	VPSLLW imm8 ymm  k ymm
+// 	VPSLLW m128 xmm  k xmm
+// 	VPSLLW m128 ymm  k ymm
+// 	VPSLLW xmm  xmm  k xmm
+// 	VPSLLW xmm  ymm  k ymm
 // Construct and append a VPSLLW instruction to the active function.
 // Operates on the global context.
-func VPSLLW(imx, xy, xy1 operand.Op) { ctx.VPSLLW(imx, xy, xy1) }
+func VPSLLW(ops ...operand.Op) { ctx.VPSLLW(ops...) }
+
+// VPSLLW_Z: Shift Packed Word Data Left Logical (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPSLLW.Z imm8 m512 k zmm
+// 	VPSLLW.Z imm8 zmm  k zmm
+// 	VPSLLW.Z m128 zmm  k zmm
+// 	VPSLLW.Z xmm  zmm  k zmm
+// 	VPSLLW.Z imm8 m128 k xmm
+// 	VPSLLW.Z imm8 m256 k ymm
+// 	VPSLLW.Z imm8 xmm  k xmm
+// 	VPSLLW.Z imm8 ymm  k ymm
+// 	VPSLLW.Z m128 xmm  k xmm
+// 	VPSLLW.Z m128 ymm  k ymm
+// 	VPSLLW.Z xmm  xmm  k xmm
+// 	VPSLLW.Z xmm  ymm  k ymm
+// Construct and append a VPSLLW.Z instruction to the active function.
+func (c *Context) VPSLLW_Z(imx, mxyz, k, xyz operand.Op) {
+	if inst, err := x86.VPSLLW_Z(imx, mxyz, k, xyz); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPSLLW_Z: Shift Packed Word Data Left Logical (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPSLLW.Z imm8 m512 k zmm
+// 	VPSLLW.Z imm8 zmm  k zmm
+// 	VPSLLW.Z m128 zmm  k zmm
+// 	VPSLLW.Z xmm  zmm  k zmm
+// 	VPSLLW.Z imm8 m128 k xmm
+// 	VPSLLW.Z imm8 m256 k ymm
+// 	VPSLLW.Z imm8 xmm  k xmm
+// 	VPSLLW.Z imm8 ymm  k ymm
+// 	VPSLLW.Z m128 xmm  k xmm
+// 	VPSLLW.Z m128 ymm  k ymm
+// 	VPSLLW.Z xmm  xmm  k xmm
+// 	VPSLLW.Z xmm  ymm  k ymm
+// Construct and append a VPSLLW.Z instruction to the active function.
+// Operates on the global context.
+func VPSLLW_Z(imx, mxyz, k, xyz operand.Op) { ctx.VPSLLW_Z(imx, mxyz, k, xyz) }
 
 // VPSRAD: Shift Packed Doubleword Data Right Arithmetic.
 //
@@ -66202,19 +70193,115 @@ func (c *Context) VPSRAVQ_Z(mxyz, xyz, k, xyz1 operand.Op) {
 // Operates on the global context.
 func VPSRAVQ_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPSRAVQ_Z(mxyz, xyz, k, xyz1) }
 
+// VPSRAVW: Variable Shift Packed Word Data Right Arithmetic.
+//
+// Forms:
+//
+// 	VPSRAVW m512 zmm k zmm
+// 	VPSRAVW m512 zmm zmm
+// 	VPSRAVW zmm  zmm k zmm
+// 	VPSRAVW zmm  zmm zmm
+// 	VPSRAVW m128 xmm k xmm
+// 	VPSRAVW m128 xmm xmm
+// 	VPSRAVW m256 ymm k ymm
+// 	VPSRAVW m256 ymm ymm
+// 	VPSRAVW xmm  xmm k xmm
+// 	VPSRAVW xmm  xmm xmm
+// 	VPSRAVW ymm  ymm k ymm
+// 	VPSRAVW ymm  ymm ymm
+// Construct and append a VPSRAVW instruction to the active function.
+func (c *Context) VPSRAVW(ops ...operand.Op) {
+	if inst, err := x86.VPSRAVW(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPSRAVW: Variable Shift Packed Word Data Right Arithmetic.
+//
+// Forms:
+//
+// 	VPSRAVW m512 zmm k zmm
+// 	VPSRAVW m512 zmm zmm
+// 	VPSRAVW zmm  zmm k zmm
+// 	VPSRAVW zmm  zmm zmm
+// 	VPSRAVW m128 xmm k xmm
+// 	VPSRAVW m128 xmm xmm
+// 	VPSRAVW m256 ymm k ymm
+// 	VPSRAVW m256 ymm ymm
+// 	VPSRAVW xmm  xmm k xmm
+// 	VPSRAVW xmm  xmm xmm
+// 	VPSRAVW ymm  ymm k ymm
+// 	VPSRAVW ymm  ymm ymm
+// Construct and append a VPSRAVW instruction to the active function.
+// Operates on the global context.
+func VPSRAVW(ops ...operand.Op) { ctx.VPSRAVW(ops...) }
+
+// VPSRAVW_Z: Variable Shift Packed Word Data Right Arithmetic (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPSRAVW.Z m512 zmm k zmm
+// 	VPSRAVW.Z zmm  zmm k zmm
+// 	VPSRAVW.Z m128 xmm k xmm
+// 	VPSRAVW.Z m256 ymm k ymm
+// 	VPSRAVW.Z xmm  xmm k xmm
+// 	VPSRAVW.Z ymm  ymm k ymm
+// Construct and append a VPSRAVW.Z instruction to the active function.
+func (c *Context) VPSRAVW_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPSRAVW_Z(mxyz, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPSRAVW_Z: Variable Shift Packed Word Data Right Arithmetic (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPSRAVW.Z m512 zmm k zmm
+// 	VPSRAVW.Z zmm  zmm k zmm
+// 	VPSRAVW.Z m128 xmm k xmm
+// 	VPSRAVW.Z m256 ymm k ymm
+// 	VPSRAVW.Z xmm  xmm k xmm
+// 	VPSRAVW.Z ymm  ymm k ymm
+// Construct and append a VPSRAVW.Z instruction to the active function.
+// Operates on the global context.
+func VPSRAVW_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPSRAVW_Z(mxyz, xyz, k, xyz1) }
+
 // VPSRAW: Shift Packed Word Data Right Arithmetic.
 //
 // Forms:
 //
-// 	VPSRAW imm8 ymm ymm
-// 	VPSRAW m128 ymm ymm
-// 	VPSRAW xmm  ymm ymm
-// 	VPSRAW imm8 xmm xmm
-// 	VPSRAW m128 xmm xmm
-// 	VPSRAW xmm  xmm xmm
+// 	VPSRAW imm8 ymm  ymm
+// 	VPSRAW m128 ymm  ymm
+// 	VPSRAW xmm  ymm  ymm
+// 	VPSRAW imm8 xmm  xmm
+// 	VPSRAW m128 xmm  xmm
+// 	VPSRAW xmm  xmm  xmm
+// 	VPSRAW imm8 m512 k zmm
+// 	VPSRAW imm8 m512 zmm
+// 	VPSRAW imm8 zmm  k zmm
+// 	VPSRAW imm8 zmm  zmm
+// 	VPSRAW m128 zmm  k zmm
+// 	VPSRAW m128 zmm  zmm
+// 	VPSRAW xmm  zmm  k zmm
+// 	VPSRAW xmm  zmm  zmm
+// 	VPSRAW imm8 m128 k xmm
+// 	VPSRAW imm8 m128 xmm
+// 	VPSRAW imm8 m256 k ymm
+// 	VPSRAW imm8 m256 ymm
+// 	VPSRAW imm8 xmm  k xmm
+// 	VPSRAW imm8 ymm  k ymm
+// 	VPSRAW m128 xmm  k xmm
+// 	VPSRAW m128 ymm  k ymm
+// 	VPSRAW xmm  xmm  k xmm
+// 	VPSRAW xmm  ymm  k ymm
 // Construct and append a VPSRAW instruction to the active function.
-func (c *Context) VPSRAW(imx, xy, xy1 operand.Op) {
-	if inst, err := x86.VPSRAW(imx, xy, xy1); err == nil {
+func (c *Context) VPSRAW(ops ...operand.Op) {
+	if inst, err := x86.VPSRAW(ops...); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -66225,15 +70312,78 @@ func (c *Context) VPSRAW(imx, xy, xy1 operand.Op) {
 //
 // Forms:
 //
-// 	VPSRAW imm8 ymm ymm
-// 	VPSRAW m128 ymm ymm
-// 	VPSRAW xmm  ymm ymm
-// 	VPSRAW imm8 xmm xmm
-// 	VPSRAW m128 xmm xmm
-// 	VPSRAW xmm  xmm xmm
+// 	VPSRAW imm8 ymm  ymm
+// 	VPSRAW m128 ymm  ymm
+// 	VPSRAW xmm  ymm  ymm
+// 	VPSRAW imm8 xmm  xmm
+// 	VPSRAW m128 xmm  xmm
+// 	VPSRAW xmm  xmm  xmm
+// 	VPSRAW imm8 m512 k zmm
+// 	VPSRAW imm8 m512 zmm
+// 	VPSRAW imm8 zmm  k zmm
+// 	VPSRAW imm8 zmm  zmm
+// 	VPSRAW m128 zmm  k zmm
+// 	VPSRAW m128 zmm  zmm
+// 	VPSRAW xmm  zmm  k zmm
+// 	VPSRAW xmm  zmm  zmm
+// 	VPSRAW imm8 m128 k xmm
+// 	VPSRAW imm8 m128 xmm
+// 	VPSRAW imm8 m256 k ymm
+// 	VPSRAW imm8 m256 ymm
+// 	VPSRAW imm8 xmm  k xmm
+// 	VPSRAW imm8 ymm  k ymm
+// 	VPSRAW m128 xmm  k xmm
+// 	VPSRAW m128 ymm  k ymm
+// 	VPSRAW xmm  xmm  k xmm
+// 	VPSRAW xmm  ymm  k ymm
 // Construct and append a VPSRAW instruction to the active function.
 // Operates on the global context.
-func VPSRAW(imx, xy, xy1 operand.Op) { ctx.VPSRAW(imx, xy, xy1) }
+func VPSRAW(ops ...operand.Op) { ctx.VPSRAW(ops...) }
+
+// VPSRAW_Z: Shift Packed Word Data Right Arithmetic (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPSRAW.Z imm8 m512 k zmm
+// 	VPSRAW.Z imm8 zmm  k zmm
+// 	VPSRAW.Z m128 zmm  k zmm
+// 	VPSRAW.Z xmm  zmm  k zmm
+// 	VPSRAW.Z imm8 m128 k xmm
+// 	VPSRAW.Z imm8 m256 k ymm
+// 	VPSRAW.Z imm8 xmm  k xmm
+// 	VPSRAW.Z imm8 ymm  k ymm
+// 	VPSRAW.Z m128 xmm  k xmm
+// 	VPSRAW.Z m128 ymm  k ymm
+// 	VPSRAW.Z xmm  xmm  k xmm
+// 	VPSRAW.Z xmm  ymm  k ymm
+// Construct and append a VPSRAW.Z instruction to the active function.
+func (c *Context) VPSRAW_Z(imx, mxyz, k, xyz operand.Op) {
+	if inst, err := x86.VPSRAW_Z(imx, mxyz, k, xyz); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPSRAW_Z: Shift Packed Word Data Right Arithmetic (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPSRAW.Z imm8 m512 k zmm
+// 	VPSRAW.Z imm8 zmm  k zmm
+// 	VPSRAW.Z m128 zmm  k zmm
+// 	VPSRAW.Z xmm  zmm  k zmm
+// 	VPSRAW.Z imm8 m128 k xmm
+// 	VPSRAW.Z imm8 m256 k ymm
+// 	VPSRAW.Z imm8 xmm  k xmm
+// 	VPSRAW.Z imm8 ymm  k ymm
+// 	VPSRAW.Z m128 xmm  k xmm
+// 	VPSRAW.Z m128 ymm  k ymm
+// 	VPSRAW.Z xmm  xmm  k xmm
+// 	VPSRAW.Z xmm  ymm  k ymm
+// Construct and append a VPSRAW.Z instruction to the active function.
+// Operates on the global context.
+func VPSRAW_Z(imx, mxyz, k, xyz operand.Op) { ctx.VPSRAW_Z(imx, mxyz, k, xyz) }
 
 // VPSRLD: Shift Packed Doubleword Data Right Logical.
 //
@@ -66308,11 +70458,15 @@ func VPSRLD(ops ...operand.Op) { ctx.VPSRLD(ops...) }
 //
 // Forms:
 //
-// 	VPSRLDQ imm8 ymm ymm
-// 	VPSRLDQ imm8 xmm xmm
+// 	VPSRLDQ imm8 ymm  ymm
+// 	VPSRLDQ imm8 xmm  xmm
+// 	VPSRLDQ imm8 m512 zmm
+// 	VPSRLDQ imm8 zmm  zmm
+// 	VPSRLDQ imm8 m128 xmm
+// 	VPSRLDQ imm8 m256 ymm
 // Construct and append a VPSRLDQ instruction to the active function.
-func (c *Context) VPSRLDQ(i, xy, xy1 operand.Op) {
-	if inst, err := x86.VPSRLDQ(i, xy, xy1); err == nil {
+func (c *Context) VPSRLDQ(i, mxyz, xyz operand.Op) {
+	if inst, err := x86.VPSRLDQ(i, mxyz, xyz); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -66323,11 +70477,15 @@ func (c *Context) VPSRLDQ(i, xy, xy1 operand.Op) {
 //
 // Forms:
 //
-// 	VPSRLDQ imm8 ymm ymm
-// 	VPSRLDQ imm8 xmm xmm
+// 	VPSRLDQ imm8 ymm  ymm
+// 	VPSRLDQ imm8 xmm  xmm
+// 	VPSRLDQ imm8 m512 zmm
+// 	VPSRLDQ imm8 zmm  zmm
+// 	VPSRLDQ imm8 m128 xmm
+// 	VPSRLDQ imm8 m256 ymm
 // Construct and append a VPSRLDQ instruction to the active function.
 // Operates on the global context.
-func VPSRLDQ(i, xy, xy1 operand.Op) { ctx.VPSRLDQ(i, xy, xy1) }
+func VPSRLDQ(i, mxyz, xyz operand.Op) { ctx.VPSRLDQ(i, mxyz, xyz) }
 
 // VPSRLD_BCST: Shift Packed Doubleword Data Right Logical (Broadcast).
 //
@@ -66892,19 +71050,115 @@ func (c *Context) VPSRLVQ_Z(mxyz, xyz, k, xyz1 operand.Op) {
 // Operates on the global context.
 func VPSRLVQ_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPSRLVQ_Z(mxyz, xyz, k, xyz1) }
 
+// VPSRLVW: Variable Shift Packed Word Data Right Logical.
+//
+// Forms:
+//
+// 	VPSRLVW m512 zmm k zmm
+// 	VPSRLVW m512 zmm zmm
+// 	VPSRLVW zmm  zmm k zmm
+// 	VPSRLVW zmm  zmm zmm
+// 	VPSRLVW m128 xmm k xmm
+// 	VPSRLVW m128 xmm xmm
+// 	VPSRLVW m256 ymm k ymm
+// 	VPSRLVW m256 ymm ymm
+// 	VPSRLVW xmm  xmm k xmm
+// 	VPSRLVW xmm  xmm xmm
+// 	VPSRLVW ymm  ymm k ymm
+// 	VPSRLVW ymm  ymm ymm
+// Construct and append a VPSRLVW instruction to the active function.
+func (c *Context) VPSRLVW(ops ...operand.Op) {
+	if inst, err := x86.VPSRLVW(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPSRLVW: Variable Shift Packed Word Data Right Logical.
+//
+// Forms:
+//
+// 	VPSRLVW m512 zmm k zmm
+// 	VPSRLVW m512 zmm zmm
+// 	VPSRLVW zmm  zmm k zmm
+// 	VPSRLVW zmm  zmm zmm
+// 	VPSRLVW m128 xmm k xmm
+// 	VPSRLVW m128 xmm xmm
+// 	VPSRLVW m256 ymm k ymm
+// 	VPSRLVW m256 ymm ymm
+// 	VPSRLVW xmm  xmm k xmm
+// 	VPSRLVW xmm  xmm xmm
+// 	VPSRLVW ymm  ymm k ymm
+// 	VPSRLVW ymm  ymm ymm
+// Construct and append a VPSRLVW instruction to the active function.
+// Operates on the global context.
+func VPSRLVW(ops ...operand.Op) { ctx.VPSRLVW(ops...) }
+
+// VPSRLVW_Z: Variable Shift Packed Word Data Right Logical (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPSRLVW.Z m512 zmm k zmm
+// 	VPSRLVW.Z zmm  zmm k zmm
+// 	VPSRLVW.Z m128 xmm k xmm
+// 	VPSRLVW.Z m256 ymm k ymm
+// 	VPSRLVW.Z xmm  xmm k xmm
+// 	VPSRLVW.Z ymm  ymm k ymm
+// Construct and append a VPSRLVW.Z instruction to the active function.
+func (c *Context) VPSRLVW_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPSRLVW_Z(mxyz, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPSRLVW_Z: Variable Shift Packed Word Data Right Logical (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPSRLVW.Z m512 zmm k zmm
+// 	VPSRLVW.Z zmm  zmm k zmm
+// 	VPSRLVW.Z m128 xmm k xmm
+// 	VPSRLVW.Z m256 ymm k ymm
+// 	VPSRLVW.Z xmm  xmm k xmm
+// 	VPSRLVW.Z ymm  ymm k ymm
+// Construct and append a VPSRLVW.Z instruction to the active function.
+// Operates on the global context.
+func VPSRLVW_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPSRLVW_Z(mxyz, xyz, k, xyz1) }
+
 // VPSRLW: Shift Packed Word Data Right Logical.
 //
 // Forms:
 //
-// 	VPSRLW imm8 ymm ymm
-// 	VPSRLW m128 ymm ymm
-// 	VPSRLW xmm  ymm ymm
-// 	VPSRLW imm8 xmm xmm
-// 	VPSRLW m128 xmm xmm
-// 	VPSRLW xmm  xmm xmm
+// 	VPSRLW imm8 ymm  ymm
+// 	VPSRLW m128 ymm  ymm
+// 	VPSRLW xmm  ymm  ymm
+// 	VPSRLW imm8 xmm  xmm
+// 	VPSRLW m128 xmm  xmm
+// 	VPSRLW xmm  xmm  xmm
+// 	VPSRLW imm8 m512 k zmm
+// 	VPSRLW imm8 m512 zmm
+// 	VPSRLW imm8 zmm  k zmm
+// 	VPSRLW imm8 zmm  zmm
+// 	VPSRLW m128 zmm  k zmm
+// 	VPSRLW m128 zmm  zmm
+// 	VPSRLW xmm  zmm  k zmm
+// 	VPSRLW xmm  zmm  zmm
+// 	VPSRLW imm8 m128 k xmm
+// 	VPSRLW imm8 m128 xmm
+// 	VPSRLW imm8 m256 k ymm
+// 	VPSRLW imm8 m256 ymm
+// 	VPSRLW imm8 xmm  k xmm
+// 	VPSRLW imm8 ymm  k ymm
+// 	VPSRLW m128 xmm  k xmm
+// 	VPSRLW m128 ymm  k ymm
+// 	VPSRLW xmm  xmm  k xmm
+// 	VPSRLW xmm  ymm  k ymm
 // Construct and append a VPSRLW instruction to the active function.
-func (c *Context) VPSRLW(imx, xy, xy1 operand.Op) {
-	if inst, err := x86.VPSRLW(imx, xy, xy1); err == nil {
+func (c *Context) VPSRLW(ops ...operand.Op) {
+	if inst, err := x86.VPSRLW(ops...); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -66915,15 +71169,78 @@ func (c *Context) VPSRLW(imx, xy, xy1 operand.Op) {
 //
 // Forms:
 //
-// 	VPSRLW imm8 ymm ymm
-// 	VPSRLW m128 ymm ymm
-// 	VPSRLW xmm  ymm ymm
-// 	VPSRLW imm8 xmm xmm
-// 	VPSRLW m128 xmm xmm
-// 	VPSRLW xmm  xmm xmm
+// 	VPSRLW imm8 ymm  ymm
+// 	VPSRLW m128 ymm  ymm
+// 	VPSRLW xmm  ymm  ymm
+// 	VPSRLW imm8 xmm  xmm
+// 	VPSRLW m128 xmm  xmm
+// 	VPSRLW xmm  xmm  xmm
+// 	VPSRLW imm8 m512 k zmm
+// 	VPSRLW imm8 m512 zmm
+// 	VPSRLW imm8 zmm  k zmm
+// 	VPSRLW imm8 zmm  zmm
+// 	VPSRLW m128 zmm  k zmm
+// 	VPSRLW m128 zmm  zmm
+// 	VPSRLW xmm  zmm  k zmm
+// 	VPSRLW xmm  zmm  zmm
+// 	VPSRLW imm8 m128 k xmm
+// 	VPSRLW imm8 m128 xmm
+// 	VPSRLW imm8 m256 k ymm
+// 	VPSRLW imm8 m256 ymm
+// 	VPSRLW imm8 xmm  k xmm
+// 	VPSRLW imm8 ymm  k ymm
+// 	VPSRLW m128 xmm  k xmm
+// 	VPSRLW m128 ymm  k ymm
+// 	VPSRLW xmm  xmm  k xmm
+// 	VPSRLW xmm  ymm  k ymm
 // Construct and append a VPSRLW instruction to the active function.
 // Operates on the global context.
-func VPSRLW(imx, xy, xy1 operand.Op) { ctx.VPSRLW(imx, xy, xy1) }
+func VPSRLW(ops ...operand.Op) { ctx.VPSRLW(ops...) }
+
+// VPSRLW_Z: Shift Packed Word Data Right Logical (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPSRLW.Z imm8 m512 k zmm
+// 	VPSRLW.Z imm8 zmm  k zmm
+// 	VPSRLW.Z m128 zmm  k zmm
+// 	VPSRLW.Z xmm  zmm  k zmm
+// 	VPSRLW.Z imm8 m128 k xmm
+// 	VPSRLW.Z imm8 m256 k ymm
+// 	VPSRLW.Z imm8 xmm  k xmm
+// 	VPSRLW.Z imm8 ymm  k ymm
+// 	VPSRLW.Z m128 xmm  k xmm
+// 	VPSRLW.Z m128 ymm  k ymm
+// 	VPSRLW.Z xmm  xmm  k xmm
+// 	VPSRLW.Z xmm  ymm  k ymm
+// Construct and append a VPSRLW.Z instruction to the active function.
+func (c *Context) VPSRLW_Z(imx, mxyz, k, xyz operand.Op) {
+	if inst, err := x86.VPSRLW_Z(imx, mxyz, k, xyz); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPSRLW_Z: Shift Packed Word Data Right Logical (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPSRLW.Z imm8 m512 k zmm
+// 	VPSRLW.Z imm8 zmm  k zmm
+// 	VPSRLW.Z m128 zmm  k zmm
+// 	VPSRLW.Z xmm  zmm  k zmm
+// 	VPSRLW.Z imm8 m128 k xmm
+// 	VPSRLW.Z imm8 m256 k ymm
+// 	VPSRLW.Z imm8 xmm  k xmm
+// 	VPSRLW.Z imm8 ymm  k ymm
+// 	VPSRLW.Z m128 xmm  k xmm
+// 	VPSRLW.Z m128 ymm  k ymm
+// 	VPSRLW.Z xmm  xmm  k xmm
+// 	VPSRLW.Z xmm  ymm  k ymm
+// Construct and append a VPSRLW.Z instruction to the active function.
+// Operates on the global context.
+func VPSRLW_Z(imx, mxyz, k, xyz operand.Op) { ctx.VPSRLW_Z(imx, mxyz, k, xyz) }
 
 // VPSUBB: Subtract Packed Byte Integers.
 //
@@ -66933,9 +71250,17 @@ func VPSRLW(imx, xy, xy1 operand.Op) { ctx.VPSRLW(imx, xy, xy1) }
 // 	VPSUBB ymm  ymm ymm
 // 	VPSUBB m128 xmm xmm
 // 	VPSUBB xmm  xmm xmm
+// 	VPSUBB m512 zmm k zmm
+// 	VPSUBB m512 zmm zmm
+// 	VPSUBB zmm  zmm k zmm
+// 	VPSUBB zmm  zmm zmm
+// 	VPSUBB m128 xmm k xmm
+// 	VPSUBB m256 ymm k ymm
+// 	VPSUBB xmm  xmm k xmm
+// 	VPSUBB ymm  ymm k ymm
 // Construct and append a VPSUBB instruction to the active function.
-func (c *Context) VPSUBB(mxy, xy, xy1 operand.Op) {
-	if inst, err := x86.VPSUBB(mxy, xy, xy1); err == nil {
+func (c *Context) VPSUBB(ops ...operand.Op) {
+	if inst, err := x86.VPSUBB(ops...); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -66950,9 +71275,50 @@ func (c *Context) VPSUBB(mxy, xy, xy1 operand.Op) {
 // 	VPSUBB ymm  ymm ymm
 // 	VPSUBB m128 xmm xmm
 // 	VPSUBB xmm  xmm xmm
+// 	VPSUBB m512 zmm k zmm
+// 	VPSUBB m512 zmm zmm
+// 	VPSUBB zmm  zmm k zmm
+// 	VPSUBB zmm  zmm zmm
+// 	VPSUBB m128 xmm k xmm
+// 	VPSUBB m256 ymm k ymm
+// 	VPSUBB xmm  xmm k xmm
+// 	VPSUBB ymm  ymm k ymm
 // Construct and append a VPSUBB instruction to the active function.
 // Operates on the global context.
-func VPSUBB(mxy, xy, xy1 operand.Op) { ctx.VPSUBB(mxy, xy, xy1) }
+func VPSUBB(ops ...operand.Op) { ctx.VPSUBB(ops...) }
+
+// VPSUBB_Z: Subtract Packed Byte Integers (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPSUBB.Z m512 zmm k zmm
+// 	VPSUBB.Z zmm  zmm k zmm
+// 	VPSUBB.Z m128 xmm k xmm
+// 	VPSUBB.Z m256 ymm k ymm
+// 	VPSUBB.Z xmm  xmm k xmm
+// 	VPSUBB.Z ymm  ymm k ymm
+// Construct and append a VPSUBB.Z instruction to the active function.
+func (c *Context) VPSUBB_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPSUBB_Z(mxyz, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPSUBB_Z: Subtract Packed Byte Integers (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPSUBB.Z m512 zmm k zmm
+// 	VPSUBB.Z zmm  zmm k zmm
+// 	VPSUBB.Z m128 xmm k xmm
+// 	VPSUBB.Z m256 ymm k ymm
+// 	VPSUBB.Z xmm  xmm k xmm
+// 	VPSUBB.Z ymm  ymm k ymm
+// Construct and append a VPSUBB.Z instruction to the active function.
+// Operates on the global context.
+func VPSUBB_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPSUBB_Z(mxyz, xyz, k, xyz1) }
 
 // VPSUBD: Subtract Packed Doubleword Integers.
 //
@@ -67246,9 +71612,17 @@ func VPSUBQ_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPSUBQ_Z(mxyz, xyz, k, xyz1) 
 // 	VPSUBSB ymm  ymm ymm
 // 	VPSUBSB m128 xmm xmm
 // 	VPSUBSB xmm  xmm xmm
+// 	VPSUBSB m512 zmm k zmm
+// 	VPSUBSB m512 zmm zmm
+// 	VPSUBSB zmm  zmm k zmm
+// 	VPSUBSB zmm  zmm zmm
+// 	VPSUBSB m128 xmm k xmm
+// 	VPSUBSB m256 ymm k ymm
+// 	VPSUBSB xmm  xmm k xmm
+// 	VPSUBSB ymm  ymm k ymm
 // Construct and append a VPSUBSB instruction to the active function.
-func (c *Context) VPSUBSB(mxy, xy, xy1 operand.Op) {
-	if inst, err := x86.VPSUBSB(mxy, xy, xy1); err == nil {
+func (c *Context) VPSUBSB(ops ...operand.Op) {
+	if inst, err := x86.VPSUBSB(ops...); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -67263,9 +71637,50 @@ func (c *Context) VPSUBSB(mxy, xy, xy1 operand.Op) {
 // 	VPSUBSB ymm  ymm ymm
 // 	VPSUBSB m128 xmm xmm
 // 	VPSUBSB xmm  xmm xmm
+// 	VPSUBSB m512 zmm k zmm
+// 	VPSUBSB m512 zmm zmm
+// 	VPSUBSB zmm  zmm k zmm
+// 	VPSUBSB zmm  zmm zmm
+// 	VPSUBSB m128 xmm k xmm
+// 	VPSUBSB m256 ymm k ymm
+// 	VPSUBSB xmm  xmm k xmm
+// 	VPSUBSB ymm  ymm k ymm
 // Construct and append a VPSUBSB instruction to the active function.
 // Operates on the global context.
-func VPSUBSB(mxy, xy, xy1 operand.Op) { ctx.VPSUBSB(mxy, xy, xy1) }
+func VPSUBSB(ops ...operand.Op) { ctx.VPSUBSB(ops...) }
+
+// VPSUBSB_Z: Subtract Packed Signed Byte Integers with Signed Saturation (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPSUBSB.Z m512 zmm k zmm
+// 	VPSUBSB.Z zmm  zmm k zmm
+// 	VPSUBSB.Z m128 xmm k xmm
+// 	VPSUBSB.Z m256 ymm k ymm
+// 	VPSUBSB.Z xmm  xmm k xmm
+// 	VPSUBSB.Z ymm  ymm k ymm
+// Construct and append a VPSUBSB.Z instruction to the active function.
+func (c *Context) VPSUBSB_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPSUBSB_Z(mxyz, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPSUBSB_Z: Subtract Packed Signed Byte Integers with Signed Saturation (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPSUBSB.Z m512 zmm k zmm
+// 	VPSUBSB.Z zmm  zmm k zmm
+// 	VPSUBSB.Z m128 xmm k xmm
+// 	VPSUBSB.Z m256 ymm k ymm
+// 	VPSUBSB.Z xmm  xmm k xmm
+// 	VPSUBSB.Z ymm  ymm k ymm
+// Construct and append a VPSUBSB.Z instruction to the active function.
+// Operates on the global context.
+func VPSUBSB_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPSUBSB_Z(mxyz, xyz, k, xyz1) }
 
 // VPSUBSW: Subtract Packed Signed Word Integers with Signed Saturation.
 //
@@ -67275,9 +71690,17 @@ func VPSUBSB(mxy, xy, xy1 operand.Op) { ctx.VPSUBSB(mxy, xy, xy1) }
 // 	VPSUBSW ymm  ymm ymm
 // 	VPSUBSW m128 xmm xmm
 // 	VPSUBSW xmm  xmm xmm
+// 	VPSUBSW m512 zmm k zmm
+// 	VPSUBSW m512 zmm zmm
+// 	VPSUBSW zmm  zmm k zmm
+// 	VPSUBSW zmm  zmm zmm
+// 	VPSUBSW m128 xmm k xmm
+// 	VPSUBSW m256 ymm k ymm
+// 	VPSUBSW xmm  xmm k xmm
+// 	VPSUBSW ymm  ymm k ymm
 // Construct and append a VPSUBSW instruction to the active function.
-func (c *Context) VPSUBSW(mxy, xy, xy1 operand.Op) {
-	if inst, err := x86.VPSUBSW(mxy, xy, xy1); err == nil {
+func (c *Context) VPSUBSW(ops ...operand.Op) {
+	if inst, err := x86.VPSUBSW(ops...); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -67292,9 +71715,50 @@ func (c *Context) VPSUBSW(mxy, xy, xy1 operand.Op) {
 // 	VPSUBSW ymm  ymm ymm
 // 	VPSUBSW m128 xmm xmm
 // 	VPSUBSW xmm  xmm xmm
+// 	VPSUBSW m512 zmm k zmm
+// 	VPSUBSW m512 zmm zmm
+// 	VPSUBSW zmm  zmm k zmm
+// 	VPSUBSW zmm  zmm zmm
+// 	VPSUBSW m128 xmm k xmm
+// 	VPSUBSW m256 ymm k ymm
+// 	VPSUBSW xmm  xmm k xmm
+// 	VPSUBSW ymm  ymm k ymm
 // Construct and append a VPSUBSW instruction to the active function.
 // Operates on the global context.
-func VPSUBSW(mxy, xy, xy1 operand.Op) { ctx.VPSUBSW(mxy, xy, xy1) }
+func VPSUBSW(ops ...operand.Op) { ctx.VPSUBSW(ops...) }
+
+// VPSUBSW_Z: Subtract Packed Signed Word Integers with Signed Saturation (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPSUBSW.Z m512 zmm k zmm
+// 	VPSUBSW.Z zmm  zmm k zmm
+// 	VPSUBSW.Z m128 xmm k xmm
+// 	VPSUBSW.Z m256 ymm k ymm
+// 	VPSUBSW.Z xmm  xmm k xmm
+// 	VPSUBSW.Z ymm  ymm k ymm
+// Construct and append a VPSUBSW.Z instruction to the active function.
+func (c *Context) VPSUBSW_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPSUBSW_Z(mxyz, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPSUBSW_Z: Subtract Packed Signed Word Integers with Signed Saturation (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPSUBSW.Z m512 zmm k zmm
+// 	VPSUBSW.Z zmm  zmm k zmm
+// 	VPSUBSW.Z m128 xmm k xmm
+// 	VPSUBSW.Z m256 ymm k ymm
+// 	VPSUBSW.Z xmm  xmm k xmm
+// 	VPSUBSW.Z ymm  ymm k ymm
+// Construct and append a VPSUBSW.Z instruction to the active function.
+// Operates on the global context.
+func VPSUBSW_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPSUBSW_Z(mxyz, xyz, k, xyz1) }
 
 // VPSUBUSB: Subtract Packed Unsigned Byte Integers with Unsigned Saturation.
 //
@@ -67304,9 +71768,17 @@ func VPSUBSW(mxy, xy, xy1 operand.Op) { ctx.VPSUBSW(mxy, xy, xy1) }
 // 	VPSUBUSB ymm  ymm ymm
 // 	VPSUBUSB m128 xmm xmm
 // 	VPSUBUSB xmm  xmm xmm
+// 	VPSUBUSB m512 zmm k zmm
+// 	VPSUBUSB m512 zmm zmm
+// 	VPSUBUSB zmm  zmm k zmm
+// 	VPSUBUSB zmm  zmm zmm
+// 	VPSUBUSB m128 xmm k xmm
+// 	VPSUBUSB m256 ymm k ymm
+// 	VPSUBUSB xmm  xmm k xmm
+// 	VPSUBUSB ymm  ymm k ymm
 // Construct and append a VPSUBUSB instruction to the active function.
-func (c *Context) VPSUBUSB(mxy, xy, xy1 operand.Op) {
-	if inst, err := x86.VPSUBUSB(mxy, xy, xy1); err == nil {
+func (c *Context) VPSUBUSB(ops ...operand.Op) {
+	if inst, err := x86.VPSUBUSB(ops...); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -67321,9 +71793,50 @@ func (c *Context) VPSUBUSB(mxy, xy, xy1 operand.Op) {
 // 	VPSUBUSB ymm  ymm ymm
 // 	VPSUBUSB m128 xmm xmm
 // 	VPSUBUSB xmm  xmm xmm
+// 	VPSUBUSB m512 zmm k zmm
+// 	VPSUBUSB m512 zmm zmm
+// 	VPSUBUSB zmm  zmm k zmm
+// 	VPSUBUSB zmm  zmm zmm
+// 	VPSUBUSB m128 xmm k xmm
+// 	VPSUBUSB m256 ymm k ymm
+// 	VPSUBUSB xmm  xmm k xmm
+// 	VPSUBUSB ymm  ymm k ymm
 // Construct and append a VPSUBUSB instruction to the active function.
 // Operates on the global context.
-func VPSUBUSB(mxy, xy, xy1 operand.Op) { ctx.VPSUBUSB(mxy, xy, xy1) }
+func VPSUBUSB(ops ...operand.Op) { ctx.VPSUBUSB(ops...) }
+
+// VPSUBUSB_Z: Subtract Packed Unsigned Byte Integers with Unsigned Saturation (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPSUBUSB.Z m512 zmm k zmm
+// 	VPSUBUSB.Z zmm  zmm k zmm
+// 	VPSUBUSB.Z m128 xmm k xmm
+// 	VPSUBUSB.Z m256 ymm k ymm
+// 	VPSUBUSB.Z xmm  xmm k xmm
+// 	VPSUBUSB.Z ymm  ymm k ymm
+// Construct and append a VPSUBUSB.Z instruction to the active function.
+func (c *Context) VPSUBUSB_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPSUBUSB_Z(mxyz, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPSUBUSB_Z: Subtract Packed Unsigned Byte Integers with Unsigned Saturation (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPSUBUSB.Z m512 zmm k zmm
+// 	VPSUBUSB.Z zmm  zmm k zmm
+// 	VPSUBUSB.Z m128 xmm k xmm
+// 	VPSUBUSB.Z m256 ymm k ymm
+// 	VPSUBUSB.Z xmm  xmm k xmm
+// 	VPSUBUSB.Z ymm  ymm k ymm
+// Construct and append a VPSUBUSB.Z instruction to the active function.
+// Operates on the global context.
+func VPSUBUSB_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPSUBUSB_Z(mxyz, xyz, k, xyz1) }
 
 // VPSUBUSW: Subtract Packed Unsigned Word Integers with Unsigned Saturation.
 //
@@ -67333,9 +71846,17 @@ func VPSUBUSB(mxy, xy, xy1 operand.Op) { ctx.VPSUBUSB(mxy, xy, xy1) }
 // 	VPSUBUSW ymm  ymm ymm
 // 	VPSUBUSW m128 xmm xmm
 // 	VPSUBUSW xmm  xmm xmm
+// 	VPSUBUSW m512 zmm k zmm
+// 	VPSUBUSW m512 zmm zmm
+// 	VPSUBUSW zmm  zmm k zmm
+// 	VPSUBUSW zmm  zmm zmm
+// 	VPSUBUSW m128 xmm k xmm
+// 	VPSUBUSW m256 ymm k ymm
+// 	VPSUBUSW xmm  xmm k xmm
+// 	VPSUBUSW ymm  ymm k ymm
 // Construct and append a VPSUBUSW instruction to the active function.
-func (c *Context) VPSUBUSW(mxy, xy, xy1 operand.Op) {
-	if inst, err := x86.VPSUBUSW(mxy, xy, xy1); err == nil {
+func (c *Context) VPSUBUSW(ops ...operand.Op) {
+	if inst, err := x86.VPSUBUSW(ops...); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -67350,9 +71871,50 @@ func (c *Context) VPSUBUSW(mxy, xy, xy1 operand.Op) {
 // 	VPSUBUSW ymm  ymm ymm
 // 	VPSUBUSW m128 xmm xmm
 // 	VPSUBUSW xmm  xmm xmm
+// 	VPSUBUSW m512 zmm k zmm
+// 	VPSUBUSW m512 zmm zmm
+// 	VPSUBUSW zmm  zmm k zmm
+// 	VPSUBUSW zmm  zmm zmm
+// 	VPSUBUSW m128 xmm k xmm
+// 	VPSUBUSW m256 ymm k ymm
+// 	VPSUBUSW xmm  xmm k xmm
+// 	VPSUBUSW ymm  ymm k ymm
 // Construct and append a VPSUBUSW instruction to the active function.
 // Operates on the global context.
-func VPSUBUSW(mxy, xy, xy1 operand.Op) { ctx.VPSUBUSW(mxy, xy, xy1) }
+func VPSUBUSW(ops ...operand.Op) { ctx.VPSUBUSW(ops...) }
+
+// VPSUBUSW_Z: Subtract Packed Unsigned Word Integers with Unsigned Saturation (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPSUBUSW.Z m512 zmm k zmm
+// 	VPSUBUSW.Z zmm  zmm k zmm
+// 	VPSUBUSW.Z m128 xmm k xmm
+// 	VPSUBUSW.Z m256 ymm k ymm
+// 	VPSUBUSW.Z xmm  xmm k xmm
+// 	VPSUBUSW.Z ymm  ymm k ymm
+// Construct and append a VPSUBUSW.Z instruction to the active function.
+func (c *Context) VPSUBUSW_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPSUBUSW_Z(mxyz, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPSUBUSW_Z: Subtract Packed Unsigned Word Integers with Unsigned Saturation (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPSUBUSW.Z m512 zmm k zmm
+// 	VPSUBUSW.Z zmm  zmm k zmm
+// 	VPSUBUSW.Z m128 xmm k xmm
+// 	VPSUBUSW.Z m256 ymm k ymm
+// 	VPSUBUSW.Z xmm  xmm k xmm
+// 	VPSUBUSW.Z ymm  ymm k ymm
+// Construct and append a VPSUBUSW.Z instruction to the active function.
+// Operates on the global context.
+func VPSUBUSW_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPSUBUSW_Z(mxyz, xyz, k, xyz1) }
 
 // VPSUBW: Subtract Packed Word Integers.
 //
@@ -67362,9 +71924,17 @@ func VPSUBUSW(mxy, xy, xy1 operand.Op) { ctx.VPSUBUSW(mxy, xy, xy1) }
 // 	VPSUBW ymm  ymm ymm
 // 	VPSUBW m128 xmm xmm
 // 	VPSUBW xmm  xmm xmm
+// 	VPSUBW m512 zmm k zmm
+// 	VPSUBW m512 zmm zmm
+// 	VPSUBW zmm  zmm k zmm
+// 	VPSUBW zmm  zmm zmm
+// 	VPSUBW m128 xmm k xmm
+// 	VPSUBW m256 ymm k ymm
+// 	VPSUBW xmm  xmm k xmm
+// 	VPSUBW ymm  ymm k ymm
 // Construct and append a VPSUBW instruction to the active function.
-func (c *Context) VPSUBW(mxy, xy, xy1 operand.Op) {
-	if inst, err := x86.VPSUBW(mxy, xy, xy1); err == nil {
+func (c *Context) VPSUBW(ops ...operand.Op) {
+	if inst, err := x86.VPSUBW(ops...); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -67379,9 +71949,50 @@ func (c *Context) VPSUBW(mxy, xy, xy1 operand.Op) {
 // 	VPSUBW ymm  ymm ymm
 // 	VPSUBW m128 xmm xmm
 // 	VPSUBW xmm  xmm xmm
+// 	VPSUBW m512 zmm k zmm
+// 	VPSUBW m512 zmm zmm
+// 	VPSUBW zmm  zmm k zmm
+// 	VPSUBW zmm  zmm zmm
+// 	VPSUBW m128 xmm k xmm
+// 	VPSUBW m256 ymm k ymm
+// 	VPSUBW xmm  xmm k xmm
+// 	VPSUBW ymm  ymm k ymm
 // Construct and append a VPSUBW instruction to the active function.
 // Operates on the global context.
-func VPSUBW(mxy, xy, xy1 operand.Op) { ctx.VPSUBW(mxy, xy, xy1) }
+func VPSUBW(ops ...operand.Op) { ctx.VPSUBW(ops...) }
+
+// VPSUBW_Z: Subtract Packed Word Integers (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPSUBW.Z m512 zmm k zmm
+// 	VPSUBW.Z zmm  zmm k zmm
+// 	VPSUBW.Z m128 xmm k xmm
+// 	VPSUBW.Z m256 ymm k ymm
+// 	VPSUBW.Z xmm  xmm k xmm
+// 	VPSUBW.Z ymm  ymm k ymm
+// Construct and append a VPSUBW.Z instruction to the active function.
+func (c *Context) VPSUBW_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPSUBW_Z(mxyz, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPSUBW_Z: Subtract Packed Word Integers (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPSUBW.Z m512 zmm k zmm
+// 	VPSUBW.Z zmm  zmm k zmm
+// 	VPSUBW.Z m128 xmm k xmm
+// 	VPSUBW.Z m256 ymm k ymm
+// 	VPSUBW.Z xmm  xmm k xmm
+// 	VPSUBW.Z ymm  ymm k ymm
+// Construct and append a VPSUBW.Z instruction to the active function.
+// Operates on the global context.
+func VPSUBW_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPSUBW_Z(mxyz, xyz, k, xyz1) }
 
 // VPTERNLOGD: Bitwise Ternary Logical Operation on Doubleword Values.
 //
@@ -67688,6 +72299,51 @@ func (c *Context) VPTEST(mxy, xy operand.Op) {
 // Operates on the global context.
 func VPTEST(mxy, xy operand.Op) { ctx.VPTEST(mxy, xy) }
 
+// VPTESTMB: Logical AND of Packed Byte Integer Values and Set Mask.
+//
+// Forms:
+//
+// 	VPTESTMB m512 zmm k k
+// 	VPTESTMB m512 zmm k
+// 	VPTESTMB zmm  zmm k k
+// 	VPTESTMB zmm  zmm k
+// 	VPTESTMB m128 xmm k k
+// 	VPTESTMB m128 xmm k
+// 	VPTESTMB m256 ymm k k
+// 	VPTESTMB m256 ymm k
+// 	VPTESTMB xmm  xmm k k
+// 	VPTESTMB xmm  xmm k
+// 	VPTESTMB ymm  ymm k k
+// 	VPTESTMB ymm  ymm k
+// Construct and append a VPTESTMB instruction to the active function.
+func (c *Context) VPTESTMB(ops ...operand.Op) {
+	if inst, err := x86.VPTESTMB(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPTESTMB: Logical AND of Packed Byte Integer Values and Set Mask.
+//
+// Forms:
+//
+// 	VPTESTMB m512 zmm k k
+// 	VPTESTMB m512 zmm k
+// 	VPTESTMB zmm  zmm k k
+// 	VPTESTMB zmm  zmm k
+// 	VPTESTMB m128 xmm k k
+// 	VPTESTMB m128 xmm k
+// 	VPTESTMB m256 ymm k k
+// 	VPTESTMB m256 ymm k
+// 	VPTESTMB xmm  xmm k k
+// 	VPTESTMB xmm  xmm k
+// 	VPTESTMB ymm  ymm k k
+// 	VPTESTMB ymm  ymm k
+// Construct and append a VPTESTMB instruction to the active function.
+// Operates on the global context.
+func VPTESTMB(ops ...operand.Op) { ctx.VPTESTMB(ops...) }
+
 // VPTESTMD: Logical AND of Packed Doubleword Integer Values and Set Mask.
 //
 // Forms:
@@ -67843,6 +72499,96 @@ func (c *Context) VPTESTMQ_BCST(ops ...operand.Op) {
 // Construct and append a VPTESTMQ.BCST instruction to the active function.
 // Operates on the global context.
 func VPTESTMQ_BCST(ops ...operand.Op) { ctx.VPTESTMQ_BCST(ops...) }
+
+// VPTESTMW: Logical AND of Packed Word Integer Values and Set Mask.
+//
+// Forms:
+//
+// 	VPTESTMW m512 zmm k k
+// 	VPTESTMW m512 zmm k
+// 	VPTESTMW zmm  zmm k k
+// 	VPTESTMW zmm  zmm k
+// 	VPTESTMW m128 xmm k k
+// 	VPTESTMW m128 xmm k
+// 	VPTESTMW m256 ymm k k
+// 	VPTESTMW m256 ymm k
+// 	VPTESTMW xmm  xmm k k
+// 	VPTESTMW xmm  xmm k
+// 	VPTESTMW ymm  ymm k k
+// 	VPTESTMW ymm  ymm k
+// Construct and append a VPTESTMW instruction to the active function.
+func (c *Context) VPTESTMW(ops ...operand.Op) {
+	if inst, err := x86.VPTESTMW(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPTESTMW: Logical AND of Packed Word Integer Values and Set Mask.
+//
+// Forms:
+//
+// 	VPTESTMW m512 zmm k k
+// 	VPTESTMW m512 zmm k
+// 	VPTESTMW zmm  zmm k k
+// 	VPTESTMW zmm  zmm k
+// 	VPTESTMW m128 xmm k k
+// 	VPTESTMW m128 xmm k
+// 	VPTESTMW m256 ymm k k
+// 	VPTESTMW m256 ymm k
+// 	VPTESTMW xmm  xmm k k
+// 	VPTESTMW xmm  xmm k
+// 	VPTESTMW ymm  ymm k k
+// 	VPTESTMW ymm  ymm k
+// Construct and append a VPTESTMW instruction to the active function.
+// Operates on the global context.
+func VPTESTMW(ops ...operand.Op) { ctx.VPTESTMW(ops...) }
+
+// VPTESTNMB: Logical NAND of Packed Byte Integer Values and Set Mask.
+//
+// Forms:
+//
+// 	VPTESTNMB m512 zmm k k
+// 	VPTESTNMB m512 zmm k
+// 	VPTESTNMB zmm  zmm k k
+// 	VPTESTNMB zmm  zmm k
+// 	VPTESTNMB m128 xmm k k
+// 	VPTESTNMB m128 xmm k
+// 	VPTESTNMB m256 ymm k k
+// 	VPTESTNMB m256 ymm k
+// 	VPTESTNMB xmm  xmm k k
+// 	VPTESTNMB xmm  xmm k
+// 	VPTESTNMB ymm  ymm k k
+// 	VPTESTNMB ymm  ymm k
+// Construct and append a VPTESTNMB instruction to the active function.
+func (c *Context) VPTESTNMB(ops ...operand.Op) {
+	if inst, err := x86.VPTESTNMB(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPTESTNMB: Logical NAND of Packed Byte Integer Values and Set Mask.
+//
+// Forms:
+//
+// 	VPTESTNMB m512 zmm k k
+// 	VPTESTNMB m512 zmm k
+// 	VPTESTNMB zmm  zmm k k
+// 	VPTESTNMB zmm  zmm k
+// 	VPTESTNMB m128 xmm k k
+// 	VPTESTNMB m128 xmm k
+// 	VPTESTNMB m256 ymm k k
+// 	VPTESTNMB m256 ymm k
+// 	VPTESTNMB xmm  xmm k k
+// 	VPTESTNMB xmm  xmm k
+// 	VPTESTNMB ymm  ymm k k
+// 	VPTESTNMB ymm  ymm k
+// Construct and append a VPTESTNMB instruction to the active function.
+// Operates on the global context.
+func VPTESTNMB(ops ...operand.Op) { ctx.VPTESTNMB(ops...) }
 
 // VPTESTNMD: Logical NAND of Packed Doubleword Integer Values and Set Mask.
 //
@@ -68000,6 +72746,51 @@ func (c *Context) VPTESTNMQ_BCST(ops ...operand.Op) {
 // Operates on the global context.
 func VPTESTNMQ_BCST(ops ...operand.Op) { ctx.VPTESTNMQ_BCST(ops...) }
 
+// VPTESTNMW: Logical NAND of Packed Word Integer Values and Set Mask.
+//
+// Forms:
+//
+// 	VPTESTNMW m512 zmm k k
+// 	VPTESTNMW m512 zmm k
+// 	VPTESTNMW zmm  zmm k k
+// 	VPTESTNMW zmm  zmm k
+// 	VPTESTNMW m128 xmm k k
+// 	VPTESTNMW m128 xmm k
+// 	VPTESTNMW m256 ymm k k
+// 	VPTESTNMW m256 ymm k
+// 	VPTESTNMW xmm  xmm k k
+// 	VPTESTNMW xmm  xmm k
+// 	VPTESTNMW ymm  ymm k k
+// 	VPTESTNMW ymm  ymm k
+// Construct and append a VPTESTNMW instruction to the active function.
+func (c *Context) VPTESTNMW(ops ...operand.Op) {
+	if inst, err := x86.VPTESTNMW(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPTESTNMW: Logical NAND of Packed Word Integer Values and Set Mask.
+//
+// Forms:
+//
+// 	VPTESTNMW m512 zmm k k
+// 	VPTESTNMW m512 zmm k
+// 	VPTESTNMW zmm  zmm k k
+// 	VPTESTNMW zmm  zmm k
+// 	VPTESTNMW m128 xmm k k
+// 	VPTESTNMW m128 xmm k
+// 	VPTESTNMW m256 ymm k k
+// 	VPTESTNMW m256 ymm k
+// 	VPTESTNMW xmm  xmm k k
+// 	VPTESTNMW xmm  xmm k
+// 	VPTESTNMW ymm  ymm k k
+// 	VPTESTNMW ymm  ymm k
+// Construct and append a VPTESTNMW instruction to the active function.
+// Operates on the global context.
+func VPTESTNMW(ops ...operand.Op) { ctx.VPTESTNMW(ops...) }
+
 // VPUNPCKHBW: Unpack and Interleave High-Order Bytes into Words.
 //
 // Forms:
@@ -68008,9 +72799,17 @@ func VPTESTNMQ_BCST(ops ...operand.Op) { ctx.VPTESTNMQ_BCST(ops...) }
 // 	VPUNPCKHBW ymm  ymm ymm
 // 	VPUNPCKHBW m128 xmm xmm
 // 	VPUNPCKHBW xmm  xmm xmm
+// 	VPUNPCKHBW m512 zmm k zmm
+// 	VPUNPCKHBW m512 zmm zmm
+// 	VPUNPCKHBW zmm  zmm k zmm
+// 	VPUNPCKHBW zmm  zmm zmm
+// 	VPUNPCKHBW m128 xmm k xmm
+// 	VPUNPCKHBW m256 ymm k ymm
+// 	VPUNPCKHBW xmm  xmm k xmm
+// 	VPUNPCKHBW ymm  ymm k ymm
 // Construct and append a VPUNPCKHBW instruction to the active function.
-func (c *Context) VPUNPCKHBW(mxy, xy, xy1 operand.Op) {
-	if inst, err := x86.VPUNPCKHBW(mxy, xy, xy1); err == nil {
+func (c *Context) VPUNPCKHBW(ops ...operand.Op) {
+	if inst, err := x86.VPUNPCKHBW(ops...); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -68025,9 +72824,50 @@ func (c *Context) VPUNPCKHBW(mxy, xy, xy1 operand.Op) {
 // 	VPUNPCKHBW ymm  ymm ymm
 // 	VPUNPCKHBW m128 xmm xmm
 // 	VPUNPCKHBW xmm  xmm xmm
+// 	VPUNPCKHBW m512 zmm k zmm
+// 	VPUNPCKHBW m512 zmm zmm
+// 	VPUNPCKHBW zmm  zmm k zmm
+// 	VPUNPCKHBW zmm  zmm zmm
+// 	VPUNPCKHBW m128 xmm k xmm
+// 	VPUNPCKHBW m256 ymm k ymm
+// 	VPUNPCKHBW xmm  xmm k xmm
+// 	VPUNPCKHBW ymm  ymm k ymm
 // Construct and append a VPUNPCKHBW instruction to the active function.
 // Operates on the global context.
-func VPUNPCKHBW(mxy, xy, xy1 operand.Op) { ctx.VPUNPCKHBW(mxy, xy, xy1) }
+func VPUNPCKHBW(ops ...operand.Op) { ctx.VPUNPCKHBW(ops...) }
+
+// VPUNPCKHBW_Z: Unpack and Interleave High-Order Bytes into Words (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPUNPCKHBW.Z m512 zmm k zmm
+// 	VPUNPCKHBW.Z zmm  zmm k zmm
+// 	VPUNPCKHBW.Z m128 xmm k xmm
+// 	VPUNPCKHBW.Z m256 ymm k ymm
+// 	VPUNPCKHBW.Z xmm  xmm k xmm
+// 	VPUNPCKHBW.Z ymm  ymm k ymm
+// Construct and append a VPUNPCKHBW.Z instruction to the active function.
+func (c *Context) VPUNPCKHBW_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPUNPCKHBW_Z(mxyz, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPUNPCKHBW_Z: Unpack and Interleave High-Order Bytes into Words (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPUNPCKHBW.Z m512 zmm k zmm
+// 	VPUNPCKHBW.Z zmm  zmm k zmm
+// 	VPUNPCKHBW.Z m128 xmm k xmm
+// 	VPUNPCKHBW.Z m256 ymm k ymm
+// 	VPUNPCKHBW.Z xmm  xmm k xmm
+// 	VPUNPCKHBW.Z ymm  ymm k ymm
+// Construct and append a VPUNPCKHBW.Z instruction to the active function.
+// Operates on the global context.
+func VPUNPCKHBW_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPUNPCKHBW_Z(mxyz, xyz, k, xyz1) }
 
 // VPUNPCKHDQ: Unpack and Interleave High-Order Doublewords into Quadwords.
 //
@@ -68321,9 +73161,17 @@ func VPUNPCKHQDQ_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPUNPCKHQDQ_Z(mxyz, xyz,
 // 	VPUNPCKHWD ymm  ymm ymm
 // 	VPUNPCKHWD m128 xmm xmm
 // 	VPUNPCKHWD xmm  xmm xmm
+// 	VPUNPCKHWD m512 zmm k zmm
+// 	VPUNPCKHWD m512 zmm zmm
+// 	VPUNPCKHWD zmm  zmm k zmm
+// 	VPUNPCKHWD zmm  zmm zmm
+// 	VPUNPCKHWD m128 xmm k xmm
+// 	VPUNPCKHWD m256 ymm k ymm
+// 	VPUNPCKHWD xmm  xmm k xmm
+// 	VPUNPCKHWD ymm  ymm k ymm
 // Construct and append a VPUNPCKHWD instruction to the active function.
-func (c *Context) VPUNPCKHWD(mxy, xy, xy1 operand.Op) {
-	if inst, err := x86.VPUNPCKHWD(mxy, xy, xy1); err == nil {
+func (c *Context) VPUNPCKHWD(ops ...operand.Op) {
+	if inst, err := x86.VPUNPCKHWD(ops...); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -68338,9 +73186,50 @@ func (c *Context) VPUNPCKHWD(mxy, xy, xy1 operand.Op) {
 // 	VPUNPCKHWD ymm  ymm ymm
 // 	VPUNPCKHWD m128 xmm xmm
 // 	VPUNPCKHWD xmm  xmm xmm
+// 	VPUNPCKHWD m512 zmm k zmm
+// 	VPUNPCKHWD m512 zmm zmm
+// 	VPUNPCKHWD zmm  zmm k zmm
+// 	VPUNPCKHWD zmm  zmm zmm
+// 	VPUNPCKHWD m128 xmm k xmm
+// 	VPUNPCKHWD m256 ymm k ymm
+// 	VPUNPCKHWD xmm  xmm k xmm
+// 	VPUNPCKHWD ymm  ymm k ymm
 // Construct and append a VPUNPCKHWD instruction to the active function.
 // Operates on the global context.
-func VPUNPCKHWD(mxy, xy, xy1 operand.Op) { ctx.VPUNPCKHWD(mxy, xy, xy1) }
+func VPUNPCKHWD(ops ...operand.Op) { ctx.VPUNPCKHWD(ops...) }
+
+// VPUNPCKHWD_Z: Unpack and Interleave High-Order Words into Doublewords (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPUNPCKHWD.Z m512 zmm k zmm
+// 	VPUNPCKHWD.Z zmm  zmm k zmm
+// 	VPUNPCKHWD.Z m128 xmm k xmm
+// 	VPUNPCKHWD.Z m256 ymm k ymm
+// 	VPUNPCKHWD.Z xmm  xmm k xmm
+// 	VPUNPCKHWD.Z ymm  ymm k ymm
+// Construct and append a VPUNPCKHWD.Z instruction to the active function.
+func (c *Context) VPUNPCKHWD_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPUNPCKHWD_Z(mxyz, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPUNPCKHWD_Z: Unpack and Interleave High-Order Words into Doublewords (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPUNPCKHWD.Z m512 zmm k zmm
+// 	VPUNPCKHWD.Z zmm  zmm k zmm
+// 	VPUNPCKHWD.Z m128 xmm k xmm
+// 	VPUNPCKHWD.Z m256 ymm k ymm
+// 	VPUNPCKHWD.Z xmm  xmm k xmm
+// 	VPUNPCKHWD.Z ymm  ymm k ymm
+// Construct and append a VPUNPCKHWD.Z instruction to the active function.
+// Operates on the global context.
+func VPUNPCKHWD_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPUNPCKHWD_Z(mxyz, xyz, k, xyz1) }
 
 // VPUNPCKLBW: Unpack and Interleave Low-Order Bytes into Words.
 //
@@ -68350,9 +73239,17 @@ func VPUNPCKHWD(mxy, xy, xy1 operand.Op) { ctx.VPUNPCKHWD(mxy, xy, xy1) }
 // 	VPUNPCKLBW ymm  ymm ymm
 // 	VPUNPCKLBW m128 xmm xmm
 // 	VPUNPCKLBW xmm  xmm xmm
+// 	VPUNPCKLBW m512 zmm k zmm
+// 	VPUNPCKLBW m512 zmm zmm
+// 	VPUNPCKLBW zmm  zmm k zmm
+// 	VPUNPCKLBW zmm  zmm zmm
+// 	VPUNPCKLBW m128 xmm k xmm
+// 	VPUNPCKLBW m256 ymm k ymm
+// 	VPUNPCKLBW xmm  xmm k xmm
+// 	VPUNPCKLBW ymm  ymm k ymm
 // Construct and append a VPUNPCKLBW instruction to the active function.
-func (c *Context) VPUNPCKLBW(mxy, xy, xy1 operand.Op) {
-	if inst, err := x86.VPUNPCKLBW(mxy, xy, xy1); err == nil {
+func (c *Context) VPUNPCKLBW(ops ...operand.Op) {
+	if inst, err := x86.VPUNPCKLBW(ops...); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -68367,9 +73264,50 @@ func (c *Context) VPUNPCKLBW(mxy, xy, xy1 operand.Op) {
 // 	VPUNPCKLBW ymm  ymm ymm
 // 	VPUNPCKLBW m128 xmm xmm
 // 	VPUNPCKLBW xmm  xmm xmm
+// 	VPUNPCKLBW m512 zmm k zmm
+// 	VPUNPCKLBW m512 zmm zmm
+// 	VPUNPCKLBW zmm  zmm k zmm
+// 	VPUNPCKLBW zmm  zmm zmm
+// 	VPUNPCKLBW m128 xmm k xmm
+// 	VPUNPCKLBW m256 ymm k ymm
+// 	VPUNPCKLBW xmm  xmm k xmm
+// 	VPUNPCKLBW ymm  ymm k ymm
 // Construct and append a VPUNPCKLBW instruction to the active function.
 // Operates on the global context.
-func VPUNPCKLBW(mxy, xy, xy1 operand.Op) { ctx.VPUNPCKLBW(mxy, xy, xy1) }
+func VPUNPCKLBW(ops ...operand.Op) { ctx.VPUNPCKLBW(ops...) }
+
+// VPUNPCKLBW_Z: Unpack and Interleave Low-Order Bytes into Words (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPUNPCKLBW.Z m512 zmm k zmm
+// 	VPUNPCKLBW.Z zmm  zmm k zmm
+// 	VPUNPCKLBW.Z m128 xmm k xmm
+// 	VPUNPCKLBW.Z m256 ymm k ymm
+// 	VPUNPCKLBW.Z xmm  xmm k xmm
+// 	VPUNPCKLBW.Z ymm  ymm k ymm
+// Construct and append a VPUNPCKLBW.Z instruction to the active function.
+func (c *Context) VPUNPCKLBW_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPUNPCKLBW_Z(mxyz, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPUNPCKLBW_Z: Unpack and Interleave Low-Order Bytes into Words (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPUNPCKLBW.Z m512 zmm k zmm
+// 	VPUNPCKLBW.Z zmm  zmm k zmm
+// 	VPUNPCKLBW.Z m128 xmm k xmm
+// 	VPUNPCKLBW.Z m256 ymm k ymm
+// 	VPUNPCKLBW.Z xmm  xmm k xmm
+// 	VPUNPCKLBW.Z ymm  ymm k ymm
+// Construct and append a VPUNPCKLBW.Z instruction to the active function.
+// Operates on the global context.
+func VPUNPCKLBW_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPUNPCKLBW_Z(mxyz, xyz, k, xyz1) }
 
 // VPUNPCKLDQ: Unpack and Interleave Low-Order Doublewords into Quadwords.
 //
@@ -68663,9 +73601,17 @@ func VPUNPCKLQDQ_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPUNPCKLQDQ_Z(mxyz, xyz,
 // 	VPUNPCKLWD ymm  ymm ymm
 // 	VPUNPCKLWD m128 xmm xmm
 // 	VPUNPCKLWD xmm  xmm xmm
+// 	VPUNPCKLWD m512 zmm k zmm
+// 	VPUNPCKLWD m512 zmm zmm
+// 	VPUNPCKLWD zmm  zmm k zmm
+// 	VPUNPCKLWD zmm  zmm zmm
+// 	VPUNPCKLWD m128 xmm k xmm
+// 	VPUNPCKLWD m256 ymm k ymm
+// 	VPUNPCKLWD xmm  xmm k xmm
+// 	VPUNPCKLWD ymm  ymm k ymm
 // Construct and append a VPUNPCKLWD instruction to the active function.
-func (c *Context) VPUNPCKLWD(mxy, xy, xy1 operand.Op) {
-	if inst, err := x86.VPUNPCKLWD(mxy, xy, xy1); err == nil {
+func (c *Context) VPUNPCKLWD(ops ...operand.Op) {
+	if inst, err := x86.VPUNPCKLWD(ops...); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -68680,9 +73626,50 @@ func (c *Context) VPUNPCKLWD(mxy, xy, xy1 operand.Op) {
 // 	VPUNPCKLWD ymm  ymm ymm
 // 	VPUNPCKLWD m128 xmm xmm
 // 	VPUNPCKLWD xmm  xmm xmm
+// 	VPUNPCKLWD m512 zmm k zmm
+// 	VPUNPCKLWD m512 zmm zmm
+// 	VPUNPCKLWD zmm  zmm k zmm
+// 	VPUNPCKLWD zmm  zmm zmm
+// 	VPUNPCKLWD m128 xmm k xmm
+// 	VPUNPCKLWD m256 ymm k ymm
+// 	VPUNPCKLWD xmm  xmm k xmm
+// 	VPUNPCKLWD ymm  ymm k ymm
 // Construct and append a VPUNPCKLWD instruction to the active function.
 // Operates on the global context.
-func VPUNPCKLWD(mxy, xy, xy1 operand.Op) { ctx.VPUNPCKLWD(mxy, xy, xy1) }
+func VPUNPCKLWD(ops ...operand.Op) { ctx.VPUNPCKLWD(ops...) }
+
+// VPUNPCKLWD_Z: Unpack and Interleave Low-Order Words into Doublewords (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPUNPCKLWD.Z m512 zmm k zmm
+// 	VPUNPCKLWD.Z zmm  zmm k zmm
+// 	VPUNPCKLWD.Z m128 xmm k xmm
+// 	VPUNPCKLWD.Z m256 ymm k ymm
+// 	VPUNPCKLWD.Z xmm  xmm k xmm
+// 	VPUNPCKLWD.Z ymm  ymm k ymm
+// Construct and append a VPUNPCKLWD.Z instruction to the active function.
+func (c *Context) VPUNPCKLWD_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPUNPCKLWD_Z(mxyz, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPUNPCKLWD_Z: Unpack and Interleave Low-Order Words into Doublewords (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPUNPCKLWD.Z m512 zmm k zmm
+// 	VPUNPCKLWD.Z zmm  zmm k zmm
+// 	VPUNPCKLWD.Z m128 xmm k xmm
+// 	VPUNPCKLWD.Z m256 ymm k ymm
+// 	VPUNPCKLWD.Z xmm  xmm k xmm
+// 	VPUNPCKLWD.Z ymm  ymm k ymm
+// Construct and append a VPUNPCKLWD.Z instruction to the active function.
+// Operates on the global context.
+func VPUNPCKLWD_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPUNPCKLWD_Z(mxyz, xyz, k, xyz1) }
 
 // VPXOR: Packed Bitwise Logical Exclusive OR.
 //
