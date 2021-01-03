@@ -24978,6 +24978,98 @@ var Instructions = []Instruction{
 		},
 	},
 	{
+		Opcode:  "VEXP2PD",
+		Summary: "Approximation to the Exponential 2^x of Packed Double-Precision Floating-Point Values with Less Than 2^-23 Relative Error",
+		Forms: []Form{
+			{
+				ISA: []string{"AVX512ER"},
+				Operands: []Operand{
+					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x6},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512ER"},
+				Operands: []Operand{
+					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512ER"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x6},
+				},
+				EncodingType:          0x4,
+				Zeroing:               true,
+				SuppressAllExceptions: true,
+			},
+			{
+				ISA: []string{"AVX512ER"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType:          0x4,
+				SuppressAllExceptions: true,
+			},
+		},
+	},
+	{
+		Opcode:  "VEXP2PS",
+		Summary: "Approximation to the Exponential 2^x of Packed Single-Precision Floating-Point Values with Less Than 2^-23 Relative Error",
+		Forms: []Form{
+			{
+				ISA: []string{"AVX512ER"},
+				Operands: []Operand{
+					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x6},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512ER"},
+				Operands: []Operand{
+					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512ER"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x6},
+				},
+				EncodingType:          0x4,
+				Zeroing:               true,
+				SuppressAllExceptions: true,
+			},
+			{
+				ISA: []string{"AVX512ER"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType:          0x4,
+				SuppressAllExceptions: true,
+			},
+		},
+	},
+	{
 		Opcode:  "VEXPANDPD",
 		Summary: "Load Sparse Packed Double-Precision Floating-Point Values from Dense Memory",
 		Forms: []Form{
@@ -68477,6 +68569,194 @@ var Instructions = []Instruction{
 		},
 	},
 	{
+		Opcode:  "VRCP28PD",
+		Summary: "Approximation to the Reciprocal of Packed Double-Precision Floating-Point Values with Less Than 2^-28 Relative Error",
+		Forms: []Form{
+			{
+				ISA: []string{"AVX512ER"},
+				Operands: []Operand{
+					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x6},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512ER"},
+				Operands: []Operand{
+					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512ER"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x6},
+				},
+				EncodingType:          0x4,
+				Zeroing:               true,
+				SuppressAllExceptions: true,
+			},
+			{
+				ISA: []string{"AVX512ER"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType:          0x4,
+				SuppressAllExceptions: true,
+			},
+		},
+	},
+	{
+		Opcode:  "VRCP28PS",
+		Summary: "Approximation to the Reciprocal of Packed Single-Precision Floating-Point Values with Less Than 2^-28 Relative Error",
+		Forms: []Form{
+			{
+				ISA: []string{"AVX512ER"},
+				Operands: []Operand{
+					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x6},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512ER"},
+				Operands: []Operand{
+					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512ER"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x6},
+				},
+				EncodingType:          0x4,
+				Zeroing:               true,
+				SuppressAllExceptions: true,
+			},
+			{
+				ISA: []string{"AVX512ER"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType:          0x4,
+				SuppressAllExceptions: true,
+			},
+		},
+	},
+	{
+		Opcode:  "VRCP28SD",
+		Summary: "Approximation to the Reciprocal of a Scalar Double-Precision Floating-Point Value with Less Than 2^-28 Relative Error",
+		Forms: []Form{
+			{
+				ISA: []string{"AVX512ER"},
+				Operands: []Operand{
+					{Type: "m64", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x6},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512ER"},
+				Operands: []Operand{
+					{Type: "m64", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512ER"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x6},
+				},
+				EncodingType:          0x4,
+				Zeroing:               true,
+				SuppressAllExceptions: true,
+			},
+			{
+				ISA: []string{"AVX512ER"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType:          0x4,
+				SuppressAllExceptions: true,
+			},
+		},
+	},
+	{
+		Opcode:  "VRCP28SS",
+		Summary: "Approximation to the Reciprocal of a Scalar Single-Precision Floating-Point Value with Less Than 2^-28 Relative Error",
+		Forms: []Form{
+			{
+				ISA: []string{"AVX512ER"},
+				Operands: []Operand{
+					{Type: "m32", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x6},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512ER"},
+				Operands: []Operand{
+					{Type: "m32", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512ER"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x6},
+				},
+				EncodingType:          0x4,
+				Zeroing:               true,
+				SuppressAllExceptions: true,
+			},
+			{
+				ISA: []string{"AVX512ER"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType:          0x4,
+				SuppressAllExceptions: true,
+			},
+		},
+	},
+	{
 		Opcode:  "VRCPPS",
 		Summary: "Compute Approximate Reciprocals of Packed Single-Precision Floating-Point Values",
 		Forms: []Form{
@@ -69739,6 +70019,194 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x2},
 				},
 				EncodingType: 0x4,
+			},
+		},
+	},
+	{
+		Opcode:  "VRSQRT28PD",
+		Summary: "Approximation to the Reciprocal Square Root of Packed Double-Precision Floating-Point Values with Less Than 2^-28 Relative Error",
+		Forms: []Form{
+			{
+				ISA: []string{"AVX512ER"},
+				Operands: []Operand{
+					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x6},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512ER"},
+				Operands: []Operand{
+					{Type: "m512/m64bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512ER"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x6},
+				},
+				EncodingType:          0x4,
+				Zeroing:               true,
+				SuppressAllExceptions: true,
+			},
+			{
+				ISA: []string{"AVX512ER"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType:          0x4,
+				SuppressAllExceptions: true,
+			},
+		},
+	},
+	{
+		Opcode:  "VRSQRT28PS",
+		Summary: "Approximation to the Reciprocal Square Root of Packed Single-Precision Floating-Point Values with Less Than 2^-28 Relative Error",
+		Forms: []Form{
+			{
+				ISA: []string{"AVX512ER"},
+				Operands: []Operand{
+					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x6},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512ER"},
+				Operands: []Operand{
+					{Type: "m512/m32bcst", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512ER"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x6},
+				},
+				EncodingType:          0x4,
+				Zeroing:               true,
+				SuppressAllExceptions: true,
+			},
+			{
+				ISA: []string{"AVX512ER"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType:          0x4,
+				SuppressAllExceptions: true,
+			},
+		},
+	},
+	{
+		Opcode:  "VRSQRT28SD",
+		Summary: "Approximation to the Reciprocal Square Root of a Scalar Double-Precision Floating-Point Value with Less Than 2^-28 Relative Error",
+		Forms: []Form{
+			{
+				ISA: []string{"AVX512ER"},
+				Operands: []Operand{
+					{Type: "m64", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x6},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512ER"},
+				Operands: []Operand{
+					{Type: "m64", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512ER"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x6},
+				},
+				EncodingType:          0x4,
+				Zeroing:               true,
+				SuppressAllExceptions: true,
+			},
+			{
+				ISA: []string{"AVX512ER"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType:          0x4,
+				SuppressAllExceptions: true,
+			},
+		},
+	},
+	{
+		Opcode:  "VRSQRT28SS",
+		Summary: "Approximation to the Reciprocal Square Root of a Scalar Single-Precision Floating-Point Value with Less Than 2^-28 Relative Error",
+		Forms: []Form{
+			{
+				ISA: []string{"AVX512ER"},
+				Operands: []Operand{
+					{Type: "m32", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x6},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512ER"},
+				Operands: []Operand{
+					{Type: "m32", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512ER"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x6},
+				},
+				EncodingType:          0x4,
+				Zeroing:               true,
+				SuppressAllExceptions: true,
+			},
+			{
+				ISA: []string{"AVX512ER"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType:          0x4,
+				SuppressAllExceptions: true,
 			},
 		},
 	},
