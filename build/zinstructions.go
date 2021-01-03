@@ -64511,6 +64511,84 @@ func (c *Context) VPERM2I128(i, my, y, y1 operand.Op) {
 // Operates on the global context.
 func VPERM2I128(i, my, y, y1 operand.Op) { ctx.VPERM2I128(i, my, y, y1) }
 
+// VPERMB: Permute Byte Integers.
+//
+// Forms:
+//
+// 	VPERMB m512 zmm k zmm
+// 	VPERMB m512 zmm zmm
+// 	VPERMB zmm  zmm k zmm
+// 	VPERMB zmm  zmm zmm
+// 	VPERMB m128 xmm k xmm
+// 	VPERMB m128 xmm xmm
+// 	VPERMB m256 ymm k ymm
+// 	VPERMB m256 ymm ymm
+// 	VPERMB xmm  xmm k xmm
+// 	VPERMB xmm  xmm xmm
+// 	VPERMB ymm  ymm k ymm
+// 	VPERMB ymm  ymm ymm
+// Construct and append a VPERMB instruction to the active function.
+func (c *Context) VPERMB(ops ...operand.Op) {
+	if inst, err := x86.VPERMB(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPERMB: Permute Byte Integers.
+//
+// Forms:
+//
+// 	VPERMB m512 zmm k zmm
+// 	VPERMB m512 zmm zmm
+// 	VPERMB zmm  zmm k zmm
+// 	VPERMB zmm  zmm zmm
+// 	VPERMB m128 xmm k xmm
+// 	VPERMB m128 xmm xmm
+// 	VPERMB m256 ymm k ymm
+// 	VPERMB m256 ymm ymm
+// 	VPERMB xmm  xmm k xmm
+// 	VPERMB xmm  xmm xmm
+// 	VPERMB ymm  ymm k ymm
+// 	VPERMB ymm  ymm ymm
+// Construct and append a VPERMB instruction to the active function.
+// Operates on the global context.
+func VPERMB(ops ...operand.Op) { ctx.VPERMB(ops...) }
+
+// VPERMB_Z: Permute Byte Integers (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPERMB.Z m512 zmm k zmm
+// 	VPERMB.Z zmm  zmm k zmm
+// 	VPERMB.Z m128 xmm k xmm
+// 	VPERMB.Z m256 ymm k ymm
+// 	VPERMB.Z xmm  xmm k xmm
+// 	VPERMB.Z ymm  ymm k ymm
+// Construct and append a VPERMB.Z instruction to the active function.
+func (c *Context) VPERMB_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPERMB_Z(mxyz, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPERMB_Z: Permute Byte Integers (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPERMB.Z m512 zmm k zmm
+// 	VPERMB.Z zmm  zmm k zmm
+// 	VPERMB.Z m128 xmm k xmm
+// 	VPERMB.Z m256 ymm k ymm
+// 	VPERMB.Z xmm  xmm k xmm
+// 	VPERMB.Z ymm  ymm k ymm
+// Construct and append a VPERMB.Z instruction to the active function.
+// Operates on the global context.
+func VPERMB_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPERMB_Z(mxyz, xyz, k, xyz1) }
+
 // VPERMD: Permute Doubleword Integers.
 //
 // Forms:
@@ -64632,6 +64710,84 @@ func (c *Context) VPERMD_Z(myz, yz, k, yz1 operand.Op) {
 // Construct and append a VPERMD.Z instruction to the active function.
 // Operates on the global context.
 func VPERMD_Z(myz, yz, k, yz1 operand.Op) { ctx.VPERMD_Z(myz, yz, k, yz1) }
+
+// VPERMI2B: Full Permute of Bytes From Two Tables Overwriting the Index.
+//
+// Forms:
+//
+// 	VPERMI2B m512 zmm k zmm
+// 	VPERMI2B m512 zmm zmm
+// 	VPERMI2B zmm  zmm k zmm
+// 	VPERMI2B zmm  zmm zmm
+// 	VPERMI2B m128 xmm k xmm
+// 	VPERMI2B m128 xmm xmm
+// 	VPERMI2B m256 ymm k ymm
+// 	VPERMI2B m256 ymm ymm
+// 	VPERMI2B xmm  xmm k xmm
+// 	VPERMI2B xmm  xmm xmm
+// 	VPERMI2B ymm  ymm k ymm
+// 	VPERMI2B ymm  ymm ymm
+// Construct and append a VPERMI2B instruction to the active function.
+func (c *Context) VPERMI2B(ops ...operand.Op) {
+	if inst, err := x86.VPERMI2B(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPERMI2B: Full Permute of Bytes From Two Tables Overwriting the Index.
+//
+// Forms:
+//
+// 	VPERMI2B m512 zmm k zmm
+// 	VPERMI2B m512 zmm zmm
+// 	VPERMI2B zmm  zmm k zmm
+// 	VPERMI2B zmm  zmm zmm
+// 	VPERMI2B m128 xmm k xmm
+// 	VPERMI2B m128 xmm xmm
+// 	VPERMI2B m256 ymm k ymm
+// 	VPERMI2B m256 ymm ymm
+// 	VPERMI2B xmm  xmm k xmm
+// 	VPERMI2B xmm  xmm xmm
+// 	VPERMI2B ymm  ymm k ymm
+// 	VPERMI2B ymm  ymm ymm
+// Construct and append a VPERMI2B instruction to the active function.
+// Operates on the global context.
+func VPERMI2B(ops ...operand.Op) { ctx.VPERMI2B(ops...) }
+
+// VPERMI2B_Z: Full Permute of Bytes From Two Tables Overwriting the Index (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPERMI2B.Z m512 zmm k zmm
+// 	VPERMI2B.Z zmm  zmm k zmm
+// 	VPERMI2B.Z m128 xmm k xmm
+// 	VPERMI2B.Z m256 ymm k ymm
+// 	VPERMI2B.Z xmm  xmm k xmm
+// 	VPERMI2B.Z ymm  ymm k ymm
+// Construct and append a VPERMI2B.Z instruction to the active function.
+func (c *Context) VPERMI2B_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPERMI2B_Z(mxyz, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPERMI2B_Z: Full Permute of Bytes From Two Tables Overwriting the Index (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPERMI2B.Z m512 zmm k zmm
+// 	VPERMI2B.Z zmm  zmm k zmm
+// 	VPERMI2B.Z m128 xmm k xmm
+// 	VPERMI2B.Z m256 ymm k ymm
+// 	VPERMI2B.Z xmm  xmm k xmm
+// 	VPERMI2B.Z ymm  ymm k ymm
+// Construct and append a VPERMI2B.Z instruction to the active function.
+// Operates on the global context.
+func VPERMI2B_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPERMI2B_Z(mxyz, xyz, k, xyz1) }
 
 // VPERMI2D: Full Permute of Doublewords From Two Tables Overwriting the Index.
 //
@@ -66100,6 +66256,84 @@ func (c *Context) VPERMQ_Z(imyz, myz, k, yz operand.Op) {
 // Construct and append a VPERMQ.Z instruction to the active function.
 // Operates on the global context.
 func VPERMQ_Z(imyz, myz, k, yz operand.Op) { ctx.VPERMQ_Z(imyz, myz, k, yz) }
+
+// VPERMT2B: Full Permute of Bytes From Two Tables Overwriting a Table.
+//
+// Forms:
+//
+// 	VPERMT2B m512 zmm k zmm
+// 	VPERMT2B m512 zmm zmm
+// 	VPERMT2B zmm  zmm k zmm
+// 	VPERMT2B zmm  zmm zmm
+// 	VPERMT2B m128 xmm k xmm
+// 	VPERMT2B m128 xmm xmm
+// 	VPERMT2B m256 ymm k ymm
+// 	VPERMT2B m256 ymm ymm
+// 	VPERMT2B xmm  xmm k xmm
+// 	VPERMT2B xmm  xmm xmm
+// 	VPERMT2B ymm  ymm k ymm
+// 	VPERMT2B ymm  ymm ymm
+// Construct and append a VPERMT2B instruction to the active function.
+func (c *Context) VPERMT2B(ops ...operand.Op) {
+	if inst, err := x86.VPERMT2B(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPERMT2B: Full Permute of Bytes From Two Tables Overwriting a Table.
+//
+// Forms:
+//
+// 	VPERMT2B m512 zmm k zmm
+// 	VPERMT2B m512 zmm zmm
+// 	VPERMT2B zmm  zmm k zmm
+// 	VPERMT2B zmm  zmm zmm
+// 	VPERMT2B m128 xmm k xmm
+// 	VPERMT2B m128 xmm xmm
+// 	VPERMT2B m256 ymm k ymm
+// 	VPERMT2B m256 ymm ymm
+// 	VPERMT2B xmm  xmm k xmm
+// 	VPERMT2B xmm  xmm xmm
+// 	VPERMT2B ymm  ymm k ymm
+// 	VPERMT2B ymm  ymm ymm
+// Construct and append a VPERMT2B instruction to the active function.
+// Operates on the global context.
+func VPERMT2B(ops ...operand.Op) { ctx.VPERMT2B(ops...) }
+
+// VPERMT2B_Z: Full Permute of Bytes From Two Tables Overwriting a Table (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPERMT2B.Z m512 zmm k zmm
+// 	VPERMT2B.Z zmm  zmm k zmm
+// 	VPERMT2B.Z m128 xmm k xmm
+// 	VPERMT2B.Z m256 ymm k ymm
+// 	VPERMT2B.Z xmm  xmm k xmm
+// 	VPERMT2B.Z ymm  ymm k ymm
+// Construct and append a VPERMT2B.Z instruction to the active function.
+func (c *Context) VPERMT2B_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPERMT2B_Z(mxyz, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPERMT2B_Z: Full Permute of Bytes From Two Tables Overwriting a Table (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPERMT2B.Z m512 zmm k zmm
+// 	VPERMT2B.Z zmm  zmm k zmm
+// 	VPERMT2B.Z m128 xmm k xmm
+// 	VPERMT2B.Z m256 ymm k ymm
+// 	VPERMT2B.Z xmm  xmm k xmm
+// 	VPERMT2B.Z ymm  ymm k ymm
+// Construct and append a VPERMT2B.Z instruction to the active function.
+// Operates on the global context.
+func VPERMT2B_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPERMT2B_Z(mxyz, xyz, k, xyz1) }
 
 // VPERMT2D: Full Permute of Doublewords From Two Tables Overwriting a Table.
 //
@@ -73312,6 +73546,144 @@ func (c *Context) VPMULLW_Z(mxyz, xyz, k, xyz1 operand.Op) {
 // Construct and append a VPMULLW.Z instruction to the active function.
 // Operates on the global context.
 func VPMULLW_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPMULLW_Z(mxyz, xyz, k, xyz1) }
+
+// VPMULTISHIFTQB: Select Packed Unaligned Bytes from Quadword Sources.
+//
+// Forms:
+//
+// 	VPMULTISHIFTQB m128/m64bcst xmm k xmm
+// 	VPMULTISHIFTQB m128/m64bcst xmm xmm
+// 	VPMULTISHIFTQB m256/m64bcst ymm k ymm
+// 	VPMULTISHIFTQB m256/m64bcst ymm ymm
+// 	VPMULTISHIFTQB xmm          xmm k xmm
+// 	VPMULTISHIFTQB xmm          xmm xmm
+// 	VPMULTISHIFTQB ymm          ymm k ymm
+// 	VPMULTISHIFTQB ymm          ymm ymm
+// 	VPMULTISHIFTQB m512/m64bcst zmm k zmm
+// 	VPMULTISHIFTQB m512/m64bcst zmm zmm
+// 	VPMULTISHIFTQB zmm          zmm k zmm
+// 	VPMULTISHIFTQB zmm          zmm zmm
+// Construct and append a VPMULTISHIFTQB instruction to the active function.
+func (c *Context) VPMULTISHIFTQB(ops ...operand.Op) {
+	if inst, err := x86.VPMULTISHIFTQB(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPMULTISHIFTQB: Select Packed Unaligned Bytes from Quadword Sources.
+//
+// Forms:
+//
+// 	VPMULTISHIFTQB m128/m64bcst xmm k xmm
+// 	VPMULTISHIFTQB m128/m64bcst xmm xmm
+// 	VPMULTISHIFTQB m256/m64bcst ymm k ymm
+// 	VPMULTISHIFTQB m256/m64bcst ymm ymm
+// 	VPMULTISHIFTQB xmm          xmm k xmm
+// 	VPMULTISHIFTQB xmm          xmm xmm
+// 	VPMULTISHIFTQB ymm          ymm k ymm
+// 	VPMULTISHIFTQB ymm          ymm ymm
+// 	VPMULTISHIFTQB m512/m64bcst zmm k zmm
+// 	VPMULTISHIFTQB m512/m64bcst zmm zmm
+// 	VPMULTISHIFTQB zmm          zmm k zmm
+// 	VPMULTISHIFTQB zmm          zmm zmm
+// Construct and append a VPMULTISHIFTQB instruction to the active function.
+// Operates on the global context.
+func VPMULTISHIFTQB(ops ...operand.Op) { ctx.VPMULTISHIFTQB(ops...) }
+
+// VPMULTISHIFTQB_BCST: Select Packed Unaligned Bytes from Quadword Sources (Broadcast).
+//
+// Forms:
+//
+// 	VPMULTISHIFTQB.BCST m128/m64bcst xmm k xmm
+// 	VPMULTISHIFTQB.BCST m128/m64bcst xmm xmm
+// 	VPMULTISHIFTQB.BCST m256/m64bcst ymm k ymm
+// 	VPMULTISHIFTQB.BCST m256/m64bcst ymm ymm
+// 	VPMULTISHIFTQB.BCST m512/m64bcst zmm k zmm
+// 	VPMULTISHIFTQB.BCST m512/m64bcst zmm zmm
+// Construct and append a VPMULTISHIFTQB.BCST instruction to the active function.
+func (c *Context) VPMULTISHIFTQB_BCST(ops ...operand.Op) {
+	if inst, err := x86.VPMULTISHIFTQB_BCST(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPMULTISHIFTQB_BCST: Select Packed Unaligned Bytes from Quadword Sources (Broadcast).
+//
+// Forms:
+//
+// 	VPMULTISHIFTQB.BCST m128/m64bcst xmm k xmm
+// 	VPMULTISHIFTQB.BCST m128/m64bcst xmm xmm
+// 	VPMULTISHIFTQB.BCST m256/m64bcst ymm k ymm
+// 	VPMULTISHIFTQB.BCST m256/m64bcst ymm ymm
+// 	VPMULTISHIFTQB.BCST m512/m64bcst zmm k zmm
+// 	VPMULTISHIFTQB.BCST m512/m64bcst zmm zmm
+// Construct and append a VPMULTISHIFTQB.BCST instruction to the active function.
+// Operates on the global context.
+func VPMULTISHIFTQB_BCST(ops ...operand.Op) { ctx.VPMULTISHIFTQB_BCST(ops...) }
+
+// VPMULTISHIFTQB_BCST_Z: Select Packed Unaligned Bytes from Quadword Sources (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VPMULTISHIFTQB.BCST.Z m128/m64bcst xmm k xmm
+// 	VPMULTISHIFTQB.BCST.Z m256/m64bcst ymm k ymm
+// 	VPMULTISHIFTQB.BCST.Z m512/m64bcst zmm k zmm
+// Construct and append a VPMULTISHIFTQB.BCST.Z instruction to the active function.
+func (c *Context) VPMULTISHIFTQB_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPMULTISHIFTQB_BCST_Z(m, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPMULTISHIFTQB_BCST_Z: Select Packed Unaligned Bytes from Quadword Sources (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VPMULTISHIFTQB.BCST.Z m128/m64bcst xmm k xmm
+// 	VPMULTISHIFTQB.BCST.Z m256/m64bcst ymm k ymm
+// 	VPMULTISHIFTQB.BCST.Z m512/m64bcst zmm k zmm
+// Construct and append a VPMULTISHIFTQB.BCST.Z instruction to the active function.
+// Operates on the global context.
+func VPMULTISHIFTQB_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VPMULTISHIFTQB_BCST_Z(m, xyz, k, xyz1) }
+
+// VPMULTISHIFTQB_Z: Select Packed Unaligned Bytes from Quadword Sources (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPMULTISHIFTQB.Z m128/m64bcst xmm k xmm
+// 	VPMULTISHIFTQB.Z m256/m64bcst ymm k ymm
+// 	VPMULTISHIFTQB.Z xmm          xmm k xmm
+// 	VPMULTISHIFTQB.Z ymm          ymm k ymm
+// 	VPMULTISHIFTQB.Z m512/m64bcst zmm k zmm
+// 	VPMULTISHIFTQB.Z zmm          zmm k zmm
+// Construct and append a VPMULTISHIFTQB.Z instruction to the active function.
+func (c *Context) VPMULTISHIFTQB_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPMULTISHIFTQB_Z(mxyz, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPMULTISHIFTQB_Z: Select Packed Unaligned Bytes from Quadword Sources (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPMULTISHIFTQB.Z m128/m64bcst xmm k xmm
+// 	VPMULTISHIFTQB.Z m256/m64bcst ymm k ymm
+// 	VPMULTISHIFTQB.Z xmm          xmm k xmm
+// 	VPMULTISHIFTQB.Z ymm          ymm k ymm
+// 	VPMULTISHIFTQB.Z m512/m64bcst zmm k zmm
+// 	VPMULTISHIFTQB.Z zmm          zmm k zmm
+// Construct and append a VPMULTISHIFTQB.Z instruction to the active function.
+// Operates on the global context.
+func VPMULTISHIFTQB_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPMULTISHIFTQB_Z(mxyz, xyz, k, xyz1) }
 
 // VPMULUDQ: Multiply Packed Unsigned Doubleword Integers.
 //
