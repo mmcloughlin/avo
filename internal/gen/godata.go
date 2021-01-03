@@ -65,7 +65,6 @@ func (g *godata) Generate(is []inst.Instruction) ([]byte, error) {
 				Enabled bool
 			}{
 				{"CancellingInputs", f.CancellingInputs},
-				{"EVEXOnly", f.EVEXOnly},
 				{"Zeroing", f.Zeroing},
 				{"EmbeddedRounding", f.EmbeddedRounding},
 				{"SuppressAllExceptions", f.SuppressAllExceptions},

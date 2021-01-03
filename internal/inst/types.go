@@ -100,29 +100,22 @@ type Form struct {
 	// operands, which have the same register type.
 	CancellingInputs bool
 
-	// EVEXOnly indicates that this instruction form represents only the cases
-	// where at least on EVEX-encoded feature is used, such as zeroing, embedded
-	// rounding or others. This typically means that there is another VEX
-	// encoded version of the same instruction, which Go will prefer unless
-	// suffixes are provided.
-	EVEXOnly bool
-
-	// Zeroing indicates whether the instruction form supports AVX-512 zeroing.
-	// This is the .Z suffix in Go, usually indicated with {z} operand suffix in
+	// Zeroing indicates whether the instruction form uses AVX-512 zeroing. This
+	// is the .Z suffix in Go, usually indicated with {z} operand suffix in
 	// Intel manuals.
 	Zeroing bool
 
-	// EmbeddedRounding indicates whether the instruction form supports AVX-512
+	// EmbeddedRounding indicates whether the instruction form uses AVX-512
 	// embedded rounding. This is the RN_SAE, RZ_SAE, RD_SAE and RU_SAE suffixes
 	// in Go, usually indicated with {er} in Intel manuals.
 	EmbeddedRounding bool
 
-	// SuppressAllExceptions indicates whether the instruction form supports
-	// AVX-512 "suppress all exceptions". This is the SAE suffix in Go, usually
+	// SuppressAllExceptions indicates whether the instruction form uses AVX-512
+	// "suppress all exceptions". This is the SAE suffix in Go, usually
 	// indicated with {sae} in Intel manuals.
 	SuppressAllExceptions bool
 
-	// Broadcast indicates whether the instruction form supports AVX-512
+	// Broadcast indicates whether the instruction form uses AVX-512
 	// broadcast. This is the BCST suffix in Go, usually indicated by operand
 	// types like "m64bcst" in Intel manuals.
 	Broadcast bool
@@ -172,7 +165,7 @@ func (f Form) SupportedSuffixes() []Suffixes {
 				exts = append(exts, ext)
 			}
 		}
-		suffixes = append(suffixes, exts...)
+		suffixes = exts
 	}
 
 	if f.Broadcast {
@@ -189,13 +182,6 @@ func (f Form) SupportedSuffixes() []Suffixes {
 
 	if f.Zeroing {
 		add(Z)
-	}
-
-	if f.EVEXOnly {
-		if len(suffixes[0]) != 0 {
-			panic("expect first suffixes entry to be empty")
-		}
-		suffixes = suffixes[1:]
 	}
 
 	return suffixes

@@ -12,6 +12,8 @@ import (
 func TestCases(t *testing.T) {
 	must := MustInstruction(t)
 
+	m128 := operand.Mem{Base: reg.RAX}
+
 	cases := []struct {
 		Name        string
 		Instruction *ir.Instruction
@@ -50,15 +52,25 @@ func TestCases(t *testing.T) {
 		// forms of the same instruction in the database, both the VEX and EVEX
 		// encoded versions. This causes the computed ISA list to be wrong,
 		// since it can think AVX-512 is required when in fact the instruction
-		// existed before. This test case confirms the correct ISA is selected,
-		// for one single example of this problem.
+		// existed before. These test cases confirm the correct ISA is selected.
 		{
-			Name:        "vex_and_evex_encoded_forms",
-			Instruction: must(VFMADD231SS(reg.X1, reg.X2, reg.X3)),
+			Name:        "vex_evex_xmm_xmm_xmm",
+			Instruction: must(VFMADD132PS(reg.X1, reg.X2, reg.X3)),
 			Expect: &ir.Instruction{
-				Opcode:   "VFMADD231SS",
+				Opcode:   "VFMADD132PS",
 				Operands: []operand.Op{reg.X1, reg.X2, reg.X3},
 				Inputs:   []operand.Op{reg.X1, reg.X2, reg.X3},
+				Outputs:  []operand.Op{reg.X3},
+				ISA:      []string{"FMA3"}, // not AVX512F
+			},
+		},
+		{
+			Name:        "vex_evex_m128_xmm_xmm",
+			Instruction: must(VFMADD132PS(m128, reg.X2, reg.X3)),
+			Expect: &ir.Instruction{
+				Opcode:   "VFMADD132PS",
+				Operands: []operand.Op{m128, reg.X2, reg.X3},
+				Inputs:   []operand.Op{m128, reg.X2, reg.X3},
 				Outputs:  []operand.Op{reg.X3},
 				ISA:      []string{"FMA3"}, // not AVX512F
 			},
