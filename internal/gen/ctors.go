@@ -123,11 +123,7 @@ func construct(fn *api.Function, f inst.Form, s api.Signature) string {
 	fmt.Fprintf(buf, "\tOperands: %s,\n", s.ParameterSlice())
 
 	// Inputs.
-	a := inst.R
-	if !fn.HasSuffix("Z") {
-		a |= inst.M
-	}
-	fmt.Fprintf(buf, "\tInputs: %s,\n", operandsWithAction(f, a, s))
+	fmt.Fprintf(buf, "\tInputs: %s,\n", operandsWithAction(f, inst.R, s))
 
 	// Outputs.
 	fmt.Fprintf(buf, "\tOutputs: %s,\n", operandsWithAction(f, inst.W, s))

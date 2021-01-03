@@ -862,11 +862,5 @@ func sortforms(fs []inst.Form) {
 }
 
 func sortkey(f inst.Form) string {
-	return fmt.Sprintf(
-		"%d %s %v %v",
-		f.EncodingType,
-		f.ISA,
-		f.Operands,
-		f.ImplicitOperands,
-	)
+	return fmt.Sprintf("%d %v %v", f.EncodingType, f.ISA, f)
 }
