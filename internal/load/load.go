@@ -1,6 +1,8 @@
 package load
 
 import (
+	"errors"
+	"fmt"
 	"path/filepath"
 	"reflect"
 	"sort"
@@ -11,6 +13,18 @@ import (
 	"github.com/mmcloughlin/avo/internal/opcodescsv"
 	"github.com/mmcloughlin/avo/internal/opcodesxml"
 )
+
+// This file is a mess. Some of this complexity is unavoidable, since the state
+// of x86 instruction databases is also a mess, especially when it comes to
+// idiosyncrasies of the Go assembler implementation. Some of the complexity is
+// probably avoidable by migrating to using Intel XED
+// (https://github.com/mmcloughlin/avo/issues/23), but for now this is an unholy
+// mix of PeachPy's Opcodes database and Go's x86 CSV file.
+//
+// The goal is simply to keep as much of the uglyness in this file as possible,
+// producing a clean instruction database for the rest of avo to use. Any nasty
+// logic here should be backed up with a test somewhere to ensure the result is
+// correct, even if the code that produced it is awful.
 
 // Expected data source filenames.
 const (
@@ -95,7 +109,15 @@ func (l *Loader) Load() ([]inst.Instruction, error) {
 		i.Forms = dedupe(i.Forms)
 	}
 
-	// Convert to a slice, sorted by opcode.
+	// Resolve forms that have VEX and EVEX encoded forms.
+	for _, i := range im {
+		i.Forms, err = vexevex(i.Forms)
+		if err != nil {
+			return nil, err
+		}
+	}
+
+	// Convert to a slice. Sort instructions and forms for reproducibility.
 	is := make([]inst.Instruction, 0, len(im))
 	for _, i := range im {
 		is = append(is, *i)
@@ -104,6 +126,10 @@ func (l *Loader) Load() ([]inst.Instruction, error) {
 	sort.Slice(is, func(i, j int) bool {
 		return is[i].Opcode < is[j].Opcode
 	})
+
+	for _, i := range im {
+		sortforms(i.Forms)
+	}
 
 	return is, nil
 }
@@ -342,6 +368,7 @@ func (l Loader) forms(opcode string, f opcodesxml.Form) []inst.Form {
 		ISA:              isas,
 		Operands:         ops,
 		ImplicitOperands: implicits,
+		EncodingType:     enctype(f),
 		CancellingInputs: f.CancellingInputs,
 	}
 
@@ -445,6 +472,30 @@ func operand(op opcodesxml.Operand) inst.Operand {
 	return inst.Operand{
 		Type:   op.Type,
 		Action: inst.ActionFromReadWrite(op.Input, op.Output),
+	}
+}
+
+// findoperand looks for an operand type and returns its index, if found.
+func findoperand(ops []inst.Operand, t string) (int, bool) {
+	for i, op := range ops {
+		if op.Type == t {
+			return i, true
+		}
+	}
+	return 0, false
+}
+
+// enctype selects the encoding type for the instruction form.
+func enctype(f opcodesxml.Form) inst.EncodingType {
+	switch {
+	case f.Encoding.EVEX != nil:
+		return inst.EncodingTypeEVEX
+	case f.Encoding.VEX != nil:
+		return inst.EncodingTypeVEX
+	case f.Encoding.REX != nil:
+		return inst.EncodingTypeREX
+	default:
+		return inst.EncodingTypeLegacy
 	}
 }
 
@@ -630,6 +681,64 @@ func evexLLsize(f opcodesxml.Form) int {
 	return size[e.EVEX.LL]
 }
 
+// vexevex fixes instructions that have both VEX and EVEX encoded forms with the
+// same operand types. Go uses the VEX encoded form unless EVEX-only features
+// are used.
+func vexevex(fs []inst.Form) ([]inst.Form, error) {
+	// Group forms by signature.
+	bysig := map[string][]inst.Form{}
+	for _, f := range fs {
+		sig := strings.Join(f.Signature(), "_")
+		bysig[sig] = append(bysig[sig], f)
+	}
+
+	// Resolve overlaps.
+	var results []inst.Form
+	for sig, group := range bysig {
+		if len(group) < 2 {
+			results = append(results, group...)
+			continue
+		}
+
+		// We expect these conflicts are caused by VEX/EVEX pairs. Bail if it's
+		// something else.
+		if len(group) > 2 {
+			return nil, fmt.Errorf("more than two forms with signature %q", sig)
+		}
+
+		if group[0].EncodingType == inst.EncodingTypeEVEX {
+			group[0], group[1] = group[1], group[0]
+		}
+
+		if group[0].EncodingType != inst.EncodingTypeVEX || group[1].EncodingType != inst.EncodingTypeEVEX {
+			return nil, errors.New("expected pair of VEX/EVEX encoded forms")
+		}
+
+		vex, evex := group[0], group[1]
+
+		// In this scenario, we set a flag on the EVEX version to indicate that
+		// this form only represents the EVEX features of this instruction,
+		// since there is also a VEX-encoded version of the same thing.
+		//
+		// Hack: we only maintain both forms if the EVEX version accepts
+		// suffixes. This makes up for inadequacies in avo at the moment. One
+		// reason to use the EVEX version rather than VEX is to use the
+		// registers Z16, Z17, ... and up. However, avo does not implement the
+		// logic to distinguish between the two halfs of the vector registers.
+		// So in its current state the only reason to need the EVEX version is
+		// to encode suffixes.
+		//
+		// TODO(mbm): restrict use of vector registers https://github.com/mmcloughlin/avo/issues/146
+		results = append(results, vex)
+		if evex.AcceptsSuffixes() {
+			evex.EVEXOnly = true
+			results = append(results, evex)
+		}
+	}
+
+	return results, nil
+}
+
 // dedupe a list of forms.
 func dedupe(fs []inst.Form) []inst.Form {
 	uniq := make([]inst.Form, 0, len(fs))
@@ -648,12 +757,19 @@ func dedupe(fs []inst.Form) []inst.Form {
 	return uniq
 }
 
-// findoperand looks for an operand type and returns its index, if found.
-func findoperand(ops []inst.Operand, t string) (int, bool) {
-	for i, op := range ops {
-		if op.Type == t {
-			return i, true
-		}
-	}
-	return 0, false
+// sortforms sorts a list of forms
+func sortforms(fs []inst.Form) {
+	sort.Slice(fs, func(i, j int) bool {
+		return sortkey(fs[i]) < sortkey(fs[j])
+	})
+}
+
+func sortkey(f inst.Form) string {
+	return fmt.Sprintf(
+		"%d %s %v %v",
+		f.EncodingType,
+		f.ISA,
+		f.Operands,
+		f.ImplicitOperands,
+	)
 }

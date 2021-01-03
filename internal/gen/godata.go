@@ -58,11 +58,14 @@ func (g *godata) Generate(is []inst.Instruction) ([]byte, error) {
 				g.Printf("},\n")
 			}
 
+			g.Printf("EncodingType: %#v,\n", f.EncodingType)
+
 			for _, flag := range []struct {
 				Field   string
 				Enabled bool
 			}{
 				{"CancellingInputs", f.CancellingInputs},
+				{"EVEXOnly", f.EVEXOnly},
 				{"Zeroing", f.Zeroing},
 				{"EmbeddedRounding", f.EmbeddedRounding},
 				{"SuppressAllExceptions", f.SuppressAllExceptions},

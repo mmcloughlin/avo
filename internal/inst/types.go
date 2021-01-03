@@ -90,12 +90,22 @@ type Form struct {
 	// Registers read or written but not explicitly passed to the instruction.
 	ImplicitOperands []ImplicitOperand
 
+	// Encoding type required for this instruction form.
+	EncodingType EncodingType
+
 	// CancellingInputs indicates this instruction form has no dependency on the
 	// input operands when they refer to the same register. The classic example of
 	// this is "XORQ RAX, RAX", in which case the output has no dependence on the
 	// value of RAX. Instruction forms with cancelling inputs have only two input
 	// operands, which have the same register type.
 	CancellingInputs bool
+
+	// EVEXOnly indicates that this instruction form represents only the cases
+	// where at least on EVEX-encoded feature is used, such as zeroing, embedded
+	// rounding or others. This typically means that there is another VEX
+	// encoded version of the same instruction, which Go will prefer unless
+	// suffixes are provided.
+	EVEXOnly bool
 
 	// Zeroing indicates whether the instruction form supports AVX-512 zeroing.
 	// This is the .Z suffix in Go, usually indicated with {z} operand suffix in
@@ -141,6 +151,11 @@ func (f Form) Clone() Form {
 	return c
 }
 
+// AcceptsSuffixes reports whether this form takes any opcode suffixes.
+func (f Form) AcceptsSuffixes() bool {
+	return f.Broadcast || f.EmbeddedRounding || f.SuppressAllExceptions || f.Zeroing
+}
+
 // SupportedSuffixes returns the list of all possible suffix combinations
 // supported by this instruction form.
 func (f Form) SupportedSuffixes() []Suffixes {
@@ -174,6 +189,13 @@ func (f Form) SupportedSuffixes() []Suffixes {
 
 	if f.Zeroing {
 		add(Z)
+	}
+
+	if f.EVEXOnly {
+		if len(suffixes[0]) != 0 {
+			panic("expect first suffixes entry to be empty")
+		}
+		suffixes = suffixes[1:]
 	}
 
 	return suffixes
@@ -333,3 +355,14 @@ func (a Action) String() string {
 	}
 	return s
 }
+
+// EncodingType specifies a category of encoding types.
+type EncodingType uint8
+
+// Supported encoding types.
+const (
+	EncodingTypeLegacy EncodingType = 1 + iota
+	EncodingTypeREX
+	EncodingTypeVEX
+	EncodingTypeEVEX
+)
