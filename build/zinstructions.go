@@ -6537,6 +6537,29 @@ func (c *Context) JZ(r operand.Op) {
 // Operates on the global context.
 func JZ(r operand.Op) { ctx.JZ(r) }
 
+// KADDB: ADD Two 8-bit Masks.
+//
+// Forms:
+//
+// 	KADDB k k k
+// Construct and append a KADDB instruction to the active function.
+func (c *Context) KADDB(k, k1, k2 operand.Op) {
+	if inst, err := x86.KADDB(k, k1, k2); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// KADDB: ADD Two 8-bit Masks.
+//
+// Forms:
+//
+// 	KADDB k k k
+// Construct and append a KADDB instruction to the active function.
+// Operates on the global context.
+func KADDB(k, k1, k2 operand.Op) { ctx.KADDB(k, k1, k2) }
+
 // KADDD: ADD Two 32-bit Masks.
 //
 // Forms:
@@ -6583,6 +6606,52 @@ func (c *Context) KADDQ(k, k1, k2 operand.Op) {
 // Operates on the global context.
 func KADDQ(k, k1, k2 operand.Op) { ctx.KADDQ(k, k1, k2) }
 
+// KADDW: ADD Two 16-bit Masks.
+//
+// Forms:
+//
+// 	KADDW k k k
+// Construct and append a KADDW instruction to the active function.
+func (c *Context) KADDW(k, k1, k2 operand.Op) {
+	if inst, err := x86.KADDW(k, k1, k2); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// KADDW: ADD Two 16-bit Masks.
+//
+// Forms:
+//
+// 	KADDW k k k
+// Construct and append a KADDW instruction to the active function.
+// Operates on the global context.
+func KADDW(k, k1, k2 operand.Op) { ctx.KADDW(k, k1, k2) }
+
+// KANDB: Bitwise Logical AND 8-bit Masks.
+//
+// Forms:
+//
+// 	KANDB k k k
+// Construct and append a KANDB instruction to the active function.
+func (c *Context) KANDB(k, k1, k2 operand.Op) {
+	if inst, err := x86.KANDB(k, k1, k2); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// KANDB: Bitwise Logical AND 8-bit Masks.
+//
+// Forms:
+//
+// 	KANDB k k k
+// Construct and append a KANDB instruction to the active function.
+// Operates on the global context.
+func KANDB(k, k1, k2 operand.Op) { ctx.KANDB(k, k1, k2) }
+
 // KANDD: Bitwise Logical AND 32-bit Masks.
 //
 // Forms:
@@ -6605,6 +6674,29 @@ func (c *Context) KANDD(k, k1, k2 operand.Op) {
 // Construct and append a KANDD instruction to the active function.
 // Operates on the global context.
 func KANDD(k, k1, k2 operand.Op) { ctx.KANDD(k, k1, k2) }
+
+// KANDNB: Bitwise Logical AND NOT 8-bit Masks.
+//
+// Forms:
+//
+// 	KANDNB k k k
+// Construct and append a KANDNB instruction to the active function.
+func (c *Context) KANDNB(k, k1, k2 operand.Op) {
+	if inst, err := x86.KANDNB(k, k1, k2); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// KANDNB: Bitwise Logical AND NOT 8-bit Masks.
+//
+// Forms:
+//
+// 	KANDNB k k k
+// Construct and append a KANDNB instruction to the active function.
+// Operates on the global context.
+func KANDNB(k, k1, k2 operand.Op) { ctx.KANDNB(k, k1, k2) }
 
 // KANDND: Bitwise Logical AND NOT 32-bit Masks.
 //
@@ -6721,6 +6813,37 @@ func (c *Context) KANDW(k, k1, k2 operand.Op) {
 // Operates on the global context.
 func KANDW(k, k1, k2 operand.Op) { ctx.KANDW(k, k1, k2) }
 
+// KMOVB: Move 8-bit Mask.
+//
+// Forms:
+//
+// 	KMOVB k   k
+// 	KMOVB k   m8
+// 	KMOVB k   r32
+// 	KMOVB m8  k
+// 	KMOVB r32 k
+// Construct and append a KMOVB instruction to the active function.
+func (c *Context) KMOVB(kmr, kmr1 operand.Op) {
+	if inst, err := x86.KMOVB(kmr, kmr1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// KMOVB: Move 8-bit Mask.
+//
+// Forms:
+//
+// 	KMOVB k   k
+// 	KMOVB k   m8
+// 	KMOVB k   r32
+// 	KMOVB m8  k
+// 	KMOVB r32 k
+// Construct and append a KMOVB instruction to the active function.
+// Operates on the global context.
+func KMOVB(kmr, kmr1 operand.Op) { ctx.KMOVB(kmr, kmr1) }
+
 // KMOVD: Move 32-bit Mask.
 //
 // Forms:
@@ -6814,6 +6937,29 @@ func (c *Context) KMOVW(kmr, kmr1 operand.Op) {
 // Operates on the global context.
 func KMOVW(kmr, kmr1 operand.Op) { ctx.KMOVW(kmr, kmr1) }
 
+// KNOTB: NOT 8-bit Mask Register.
+//
+// Forms:
+//
+// 	KNOTB k k
+// Construct and append a KNOTB instruction to the active function.
+func (c *Context) KNOTB(k, k1 operand.Op) {
+	if inst, err := x86.KNOTB(k, k1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// KNOTB: NOT 8-bit Mask Register.
+//
+// Forms:
+//
+// 	KNOTB k k
+// Construct and append a KNOTB instruction to the active function.
+// Operates on the global context.
+func KNOTB(k, k1 operand.Op) { ctx.KNOTB(k, k1) }
+
 // KNOTD: NOT 32-bit Mask Register.
 //
 // Forms:
@@ -6883,6 +7029,29 @@ func (c *Context) KNOTW(k, k1 operand.Op) {
 // Operates on the global context.
 func KNOTW(k, k1 operand.Op) { ctx.KNOTW(k, k1) }
 
+// KORB: Bitwise Logical OR 8-bit Masks.
+//
+// Forms:
+//
+// 	KORB k k k
+// Construct and append a KORB instruction to the active function.
+func (c *Context) KORB(k, k1, k2 operand.Op) {
+	if inst, err := x86.KORB(k, k1, k2); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// KORB: Bitwise Logical OR 8-bit Masks.
+//
+// Forms:
+//
+// 	KORB k k k
+// Construct and append a KORB instruction to the active function.
+// Operates on the global context.
+func KORB(k, k1, k2 operand.Op) { ctx.KORB(k, k1, k2) }
+
 // KORD: Bitwise Logical OR 32-bit Masks.
 //
 // Forms:
@@ -6928,6 +7097,29 @@ func (c *Context) KORQ(k, k1, k2 operand.Op) {
 // Construct and append a KORQ instruction to the active function.
 // Operates on the global context.
 func KORQ(k, k1, k2 operand.Op) { ctx.KORQ(k, k1, k2) }
+
+// KORTESTB: OR 8-bit Masks and Set Flags.
+//
+// Forms:
+//
+// 	KORTESTB k k
+// Construct and append a KORTESTB instruction to the active function.
+func (c *Context) KORTESTB(k, k1 operand.Op) {
+	if inst, err := x86.KORTESTB(k, k1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// KORTESTB: OR 8-bit Masks and Set Flags.
+//
+// Forms:
+//
+// 	KORTESTB k k
+// Construct and append a KORTESTB instruction to the active function.
+// Operates on the global context.
+func KORTESTB(k, k1 operand.Op) { ctx.KORTESTB(k, k1) }
 
 // KORTESTD: OR 32-bit Masks and Set Flags.
 //
@@ -7021,6 +7213,29 @@ func (c *Context) KORW(k, k1, k2 operand.Op) {
 // Operates on the global context.
 func KORW(k, k1, k2 operand.Op) { ctx.KORW(k, k1, k2) }
 
+// KSHIFTLB: Shift Left 8-bit Masks.
+//
+// Forms:
+//
+// 	KSHIFTLB imm8 k k
+// Construct and append a KSHIFTLB instruction to the active function.
+func (c *Context) KSHIFTLB(i, k, k1 operand.Op) {
+	if inst, err := x86.KSHIFTLB(i, k, k1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// KSHIFTLB: Shift Left 8-bit Masks.
+//
+// Forms:
+//
+// 	KSHIFTLB imm8 k k
+// Construct and append a KSHIFTLB instruction to the active function.
+// Operates on the global context.
+func KSHIFTLB(i, k, k1 operand.Op) { ctx.KSHIFTLB(i, k, k1) }
+
 // KSHIFTLD: Shift Left 32-bit Masks.
 //
 // Forms:
@@ -7089,6 +7304,29 @@ func (c *Context) KSHIFTLW(i, k, k1 operand.Op) {
 // Construct and append a KSHIFTLW instruction to the active function.
 // Operates on the global context.
 func KSHIFTLW(i, k, k1 operand.Op) { ctx.KSHIFTLW(i, k, k1) }
+
+// KSHIFTRB: Shift Right 8-bit Masks.
+//
+// Forms:
+//
+// 	KSHIFTRB imm8 k k
+// Construct and append a KSHIFTRB instruction to the active function.
+func (c *Context) KSHIFTRB(i, k, k1 operand.Op) {
+	if inst, err := x86.KSHIFTRB(i, k, k1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// KSHIFTRB: Shift Right 8-bit Masks.
+//
+// Forms:
+//
+// 	KSHIFTRB imm8 k k
+// Construct and append a KSHIFTRB instruction to the active function.
+// Operates on the global context.
+func KSHIFTRB(i, k, k1 operand.Op) { ctx.KSHIFTRB(i, k, k1) }
 
 // KSHIFTRD: Shift Right 32-bit Masks.
 //
@@ -7159,6 +7397,29 @@ func (c *Context) KSHIFTRW(i, k, k1 operand.Op) {
 // Operates on the global context.
 func KSHIFTRW(i, k, k1 operand.Op) { ctx.KSHIFTRW(i, k, k1) }
 
+// KTESTB: Bit Test 8-bit Masks and Set Flags.
+//
+// Forms:
+//
+// 	KTESTB k k
+// Construct and append a KTESTB instruction to the active function.
+func (c *Context) KTESTB(k, k1 operand.Op) {
+	if inst, err := x86.KTESTB(k, k1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// KTESTB: Bit Test 8-bit Masks and Set Flags.
+//
+// Forms:
+//
+// 	KTESTB k k
+// Construct and append a KTESTB instruction to the active function.
+// Operates on the global context.
+func KTESTB(k, k1 operand.Op) { ctx.KTESTB(k, k1) }
+
 // KTESTD: Bit Test 32-bit Masks and Set Flags.
 //
 // Forms:
@@ -7204,6 +7465,29 @@ func (c *Context) KTESTQ(k, k1 operand.Op) {
 // Construct and append a KTESTQ instruction to the active function.
 // Operates on the global context.
 func KTESTQ(k, k1 operand.Op) { ctx.KTESTQ(k, k1) }
+
+// KTESTW: Bit Test 16-bit Masks and Set Flags.
+//
+// Forms:
+//
+// 	KTESTW k k
+// Construct and append a KTESTW instruction to the active function.
+func (c *Context) KTESTW(k, k1 operand.Op) {
+	if inst, err := x86.KTESTW(k, k1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// KTESTW: Bit Test 16-bit Masks and Set Flags.
+//
+// Forms:
+//
+// 	KTESTW k k
+// Construct and append a KTESTW instruction to the active function.
+// Operates on the global context.
+func KTESTW(k, k1 operand.Op) { ctx.KTESTW(k, k1) }
 
 // KUNPCKBW: Unpack and Interleave 8-bit Masks.
 //
@@ -7274,6 +7558,29 @@ func (c *Context) KUNPCKWD(k, k1, k2 operand.Op) {
 // Operates on the global context.
 func KUNPCKWD(k, k1, k2 operand.Op) { ctx.KUNPCKWD(k, k1, k2) }
 
+// KXNORB: Bitwise Logical XNOR 8-bit Masks.
+//
+// Forms:
+//
+// 	KXNORB k k k
+// Construct and append a KXNORB instruction to the active function.
+func (c *Context) KXNORB(k, k1, k2 operand.Op) {
+	if inst, err := x86.KXNORB(k, k1, k2); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// KXNORB: Bitwise Logical XNOR 8-bit Masks.
+//
+// Forms:
+//
+// 	KXNORB k k k
+// Construct and append a KXNORB instruction to the active function.
+// Operates on the global context.
+func KXNORB(k, k1, k2 operand.Op) { ctx.KXNORB(k, k1, k2) }
+
 // KXNORD: Bitwise Logical XNOR 32-bit Masks.
 //
 // Forms:
@@ -7342,6 +7649,29 @@ func (c *Context) KXNORW(k, k1, k2 operand.Op) {
 // Construct and append a KXNORW instruction to the active function.
 // Operates on the global context.
 func KXNORW(k, k1, k2 operand.Op) { ctx.KXNORW(k, k1, k2) }
+
+// KXORB: Bitwise Logical XOR 8-bit Masks.
+//
+// Forms:
+//
+// 	KXORB k k k
+// Construct and append a KXORB instruction to the active function.
+func (c *Context) KXORB(k, k1, k2 operand.Op) {
+	if inst, err := x86.KXORB(k, k1, k2); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// KXORB: Bitwise Logical XOR 8-bit Masks.
+//
+// Forms:
+//
+// 	KXORB k k k
+// Construct and append a KXORB instruction to the active function.
+// Operates on the global context.
+func KXORB(k, k1, k2 operand.Op) { ctx.KXORB(k, k1, k2) }
 
 // KXORD: Bitwise Logical XOR 32-bit Masks.
 //
@@ -18391,13 +18721,23 @@ func VALIGNQ_Z(i, mxyz, xyz, k, xyz1 operand.Op) { ctx.VALIGNQ_Z(i, mxyz, xyz, k
 //
 // Forms:
 //
-// 	VANDNPD m128 xmm xmm
-// 	VANDNPD m256 ymm ymm
-// 	VANDNPD xmm  xmm xmm
-// 	VANDNPD ymm  ymm ymm
+// 	VANDNPD m128         xmm xmm
+// 	VANDNPD m256         ymm ymm
+// 	VANDNPD xmm          xmm xmm
+// 	VANDNPD ymm          ymm ymm
+// 	VANDNPD m512/m64bcst zmm k zmm
+// 	VANDNPD m512/m64bcst zmm zmm
+// 	VANDNPD zmm          zmm k zmm
+// 	VANDNPD zmm          zmm zmm
+// 	VANDNPD m128/m64bcst xmm k xmm
+// 	VANDNPD m128/m64bcst xmm xmm
+// 	VANDNPD m256/m64bcst ymm k ymm
+// 	VANDNPD m256/m64bcst ymm ymm
+// 	VANDNPD xmm          xmm k xmm
+// 	VANDNPD ymm          ymm k ymm
 // Construct and append a VANDNPD instruction to the active function.
-func (c *Context) VANDNPD(mxy, xy, xy1 operand.Op) {
-	if inst, err := x86.VANDNPD(mxy, xy, xy1); err == nil {
+func (c *Context) VANDNPD(ops ...operand.Op) {
+	if inst, err := x86.VANDNPD(ops...); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -18408,25 +18748,138 @@ func (c *Context) VANDNPD(mxy, xy, xy1 operand.Op) {
 //
 // Forms:
 //
-// 	VANDNPD m128 xmm xmm
-// 	VANDNPD m256 ymm ymm
-// 	VANDNPD xmm  xmm xmm
-// 	VANDNPD ymm  ymm ymm
+// 	VANDNPD m128         xmm xmm
+// 	VANDNPD m256         ymm ymm
+// 	VANDNPD xmm          xmm xmm
+// 	VANDNPD ymm          ymm ymm
+// 	VANDNPD m512/m64bcst zmm k zmm
+// 	VANDNPD m512/m64bcst zmm zmm
+// 	VANDNPD zmm          zmm k zmm
+// 	VANDNPD zmm          zmm zmm
+// 	VANDNPD m128/m64bcst xmm k xmm
+// 	VANDNPD m128/m64bcst xmm xmm
+// 	VANDNPD m256/m64bcst ymm k ymm
+// 	VANDNPD m256/m64bcst ymm ymm
+// 	VANDNPD xmm          xmm k xmm
+// 	VANDNPD ymm          ymm k ymm
 // Construct and append a VANDNPD instruction to the active function.
 // Operates on the global context.
-func VANDNPD(mxy, xy, xy1 operand.Op) { ctx.VANDNPD(mxy, xy, xy1) }
+func VANDNPD(ops ...operand.Op) { ctx.VANDNPD(ops...) }
+
+// VANDNPD_BCST: Bitwise Logical AND NOT of Packed Double-Precision Floating-Point Values (Broadcast).
+//
+// Forms:
+//
+// 	VANDNPD.BCST m512/m64bcst zmm k zmm
+// 	VANDNPD.BCST m512/m64bcst zmm zmm
+// 	VANDNPD.BCST m128/m64bcst xmm k xmm
+// 	VANDNPD.BCST m128/m64bcst xmm xmm
+// 	VANDNPD.BCST m256/m64bcst ymm k ymm
+// 	VANDNPD.BCST m256/m64bcst ymm ymm
+// Construct and append a VANDNPD.BCST instruction to the active function.
+func (c *Context) VANDNPD_BCST(ops ...operand.Op) {
+	if inst, err := x86.VANDNPD_BCST(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VANDNPD_BCST: Bitwise Logical AND NOT of Packed Double-Precision Floating-Point Values (Broadcast).
+//
+// Forms:
+//
+// 	VANDNPD.BCST m512/m64bcst zmm k zmm
+// 	VANDNPD.BCST m512/m64bcst zmm zmm
+// 	VANDNPD.BCST m128/m64bcst xmm k xmm
+// 	VANDNPD.BCST m128/m64bcst xmm xmm
+// 	VANDNPD.BCST m256/m64bcst ymm k ymm
+// 	VANDNPD.BCST m256/m64bcst ymm ymm
+// Construct and append a VANDNPD.BCST instruction to the active function.
+// Operates on the global context.
+func VANDNPD_BCST(ops ...operand.Op) { ctx.VANDNPD_BCST(ops...) }
+
+// VANDNPD_BCST_Z: Bitwise Logical AND NOT of Packed Double-Precision Floating-Point Values (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VANDNPD.BCST.Z m512/m64bcst zmm k zmm
+// 	VANDNPD.BCST.Z m128/m64bcst xmm k xmm
+// 	VANDNPD.BCST.Z m256/m64bcst ymm k ymm
+// Construct and append a VANDNPD.BCST.Z instruction to the active function.
+func (c *Context) VANDNPD_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VANDNPD_BCST_Z(m, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VANDNPD_BCST_Z: Bitwise Logical AND NOT of Packed Double-Precision Floating-Point Values (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VANDNPD.BCST.Z m512/m64bcst zmm k zmm
+// 	VANDNPD.BCST.Z m128/m64bcst xmm k xmm
+// 	VANDNPD.BCST.Z m256/m64bcst ymm k ymm
+// Construct and append a VANDNPD.BCST.Z instruction to the active function.
+// Operates on the global context.
+func VANDNPD_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VANDNPD_BCST_Z(m, xyz, k, xyz1) }
+
+// VANDNPD_Z: Bitwise Logical AND NOT of Packed Double-Precision Floating-Point Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VANDNPD.Z m512/m64bcst zmm k zmm
+// 	VANDNPD.Z zmm          zmm k zmm
+// 	VANDNPD.Z m128/m64bcst xmm k xmm
+// 	VANDNPD.Z m256/m64bcst ymm k ymm
+// 	VANDNPD.Z xmm          xmm k xmm
+// 	VANDNPD.Z ymm          ymm k ymm
+// Construct and append a VANDNPD.Z instruction to the active function.
+func (c *Context) VANDNPD_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VANDNPD_Z(mxyz, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VANDNPD_Z: Bitwise Logical AND NOT of Packed Double-Precision Floating-Point Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VANDNPD.Z m512/m64bcst zmm k zmm
+// 	VANDNPD.Z zmm          zmm k zmm
+// 	VANDNPD.Z m128/m64bcst xmm k xmm
+// 	VANDNPD.Z m256/m64bcst ymm k ymm
+// 	VANDNPD.Z xmm          xmm k xmm
+// 	VANDNPD.Z ymm          ymm k ymm
+// Construct and append a VANDNPD.Z instruction to the active function.
+// Operates on the global context.
+func VANDNPD_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VANDNPD_Z(mxyz, xyz, k, xyz1) }
 
 // VANDNPS: Bitwise Logical AND NOT of Packed Single-Precision Floating-Point Values.
 //
 // Forms:
 //
-// 	VANDNPS m128 xmm xmm
-// 	VANDNPS m256 ymm ymm
-// 	VANDNPS xmm  xmm xmm
-// 	VANDNPS ymm  ymm ymm
+// 	VANDNPS m128         xmm xmm
+// 	VANDNPS m256         ymm ymm
+// 	VANDNPS xmm          xmm xmm
+// 	VANDNPS ymm          ymm ymm
+// 	VANDNPS m512/m32bcst zmm k zmm
+// 	VANDNPS m512/m32bcst zmm zmm
+// 	VANDNPS zmm          zmm k zmm
+// 	VANDNPS zmm          zmm zmm
+// 	VANDNPS m128/m32bcst xmm k xmm
+// 	VANDNPS m128/m32bcst xmm xmm
+// 	VANDNPS m256/m32bcst ymm k ymm
+// 	VANDNPS m256/m32bcst ymm ymm
+// 	VANDNPS xmm          xmm k xmm
+// 	VANDNPS ymm          ymm k ymm
 // Construct and append a VANDNPS instruction to the active function.
-func (c *Context) VANDNPS(mxy, xy, xy1 operand.Op) {
-	if inst, err := x86.VANDNPS(mxy, xy, xy1); err == nil {
+func (c *Context) VANDNPS(ops ...operand.Op) {
+	if inst, err := x86.VANDNPS(ops...); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -18437,25 +18890,138 @@ func (c *Context) VANDNPS(mxy, xy, xy1 operand.Op) {
 //
 // Forms:
 //
-// 	VANDNPS m128 xmm xmm
-// 	VANDNPS m256 ymm ymm
-// 	VANDNPS xmm  xmm xmm
-// 	VANDNPS ymm  ymm ymm
+// 	VANDNPS m128         xmm xmm
+// 	VANDNPS m256         ymm ymm
+// 	VANDNPS xmm          xmm xmm
+// 	VANDNPS ymm          ymm ymm
+// 	VANDNPS m512/m32bcst zmm k zmm
+// 	VANDNPS m512/m32bcst zmm zmm
+// 	VANDNPS zmm          zmm k zmm
+// 	VANDNPS zmm          zmm zmm
+// 	VANDNPS m128/m32bcst xmm k xmm
+// 	VANDNPS m128/m32bcst xmm xmm
+// 	VANDNPS m256/m32bcst ymm k ymm
+// 	VANDNPS m256/m32bcst ymm ymm
+// 	VANDNPS xmm          xmm k xmm
+// 	VANDNPS ymm          ymm k ymm
 // Construct and append a VANDNPS instruction to the active function.
 // Operates on the global context.
-func VANDNPS(mxy, xy, xy1 operand.Op) { ctx.VANDNPS(mxy, xy, xy1) }
+func VANDNPS(ops ...operand.Op) { ctx.VANDNPS(ops...) }
+
+// VANDNPS_BCST: Bitwise Logical AND NOT of Packed Single-Precision Floating-Point Values (Broadcast).
+//
+// Forms:
+//
+// 	VANDNPS.BCST m512/m32bcst zmm k zmm
+// 	VANDNPS.BCST m512/m32bcst zmm zmm
+// 	VANDNPS.BCST m128/m32bcst xmm k xmm
+// 	VANDNPS.BCST m128/m32bcst xmm xmm
+// 	VANDNPS.BCST m256/m32bcst ymm k ymm
+// 	VANDNPS.BCST m256/m32bcst ymm ymm
+// Construct and append a VANDNPS.BCST instruction to the active function.
+func (c *Context) VANDNPS_BCST(ops ...operand.Op) {
+	if inst, err := x86.VANDNPS_BCST(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VANDNPS_BCST: Bitwise Logical AND NOT of Packed Single-Precision Floating-Point Values (Broadcast).
+//
+// Forms:
+//
+// 	VANDNPS.BCST m512/m32bcst zmm k zmm
+// 	VANDNPS.BCST m512/m32bcst zmm zmm
+// 	VANDNPS.BCST m128/m32bcst xmm k xmm
+// 	VANDNPS.BCST m128/m32bcst xmm xmm
+// 	VANDNPS.BCST m256/m32bcst ymm k ymm
+// 	VANDNPS.BCST m256/m32bcst ymm ymm
+// Construct and append a VANDNPS.BCST instruction to the active function.
+// Operates on the global context.
+func VANDNPS_BCST(ops ...operand.Op) { ctx.VANDNPS_BCST(ops...) }
+
+// VANDNPS_BCST_Z: Bitwise Logical AND NOT of Packed Single-Precision Floating-Point Values (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VANDNPS.BCST.Z m512/m32bcst zmm k zmm
+// 	VANDNPS.BCST.Z m128/m32bcst xmm k xmm
+// 	VANDNPS.BCST.Z m256/m32bcst ymm k ymm
+// Construct and append a VANDNPS.BCST.Z instruction to the active function.
+func (c *Context) VANDNPS_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VANDNPS_BCST_Z(m, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VANDNPS_BCST_Z: Bitwise Logical AND NOT of Packed Single-Precision Floating-Point Values (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VANDNPS.BCST.Z m512/m32bcst zmm k zmm
+// 	VANDNPS.BCST.Z m128/m32bcst xmm k xmm
+// 	VANDNPS.BCST.Z m256/m32bcst ymm k ymm
+// Construct and append a VANDNPS.BCST.Z instruction to the active function.
+// Operates on the global context.
+func VANDNPS_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VANDNPS_BCST_Z(m, xyz, k, xyz1) }
+
+// VANDNPS_Z: Bitwise Logical AND NOT of Packed Single-Precision Floating-Point Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VANDNPS.Z m512/m32bcst zmm k zmm
+// 	VANDNPS.Z zmm          zmm k zmm
+// 	VANDNPS.Z m128/m32bcst xmm k xmm
+// 	VANDNPS.Z m256/m32bcst ymm k ymm
+// 	VANDNPS.Z xmm          xmm k xmm
+// 	VANDNPS.Z ymm          ymm k ymm
+// Construct and append a VANDNPS.Z instruction to the active function.
+func (c *Context) VANDNPS_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VANDNPS_Z(mxyz, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VANDNPS_Z: Bitwise Logical AND NOT of Packed Single-Precision Floating-Point Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VANDNPS.Z m512/m32bcst zmm k zmm
+// 	VANDNPS.Z zmm          zmm k zmm
+// 	VANDNPS.Z m128/m32bcst xmm k xmm
+// 	VANDNPS.Z m256/m32bcst ymm k ymm
+// 	VANDNPS.Z xmm          xmm k xmm
+// 	VANDNPS.Z ymm          ymm k ymm
+// Construct and append a VANDNPS.Z instruction to the active function.
+// Operates on the global context.
+func VANDNPS_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VANDNPS_Z(mxyz, xyz, k, xyz1) }
 
 // VANDPD: Bitwise Logical AND of Packed Double-Precision Floating-Point Values.
 //
 // Forms:
 //
-// 	VANDPD m128 xmm xmm
-// 	VANDPD m256 ymm ymm
-// 	VANDPD xmm  xmm xmm
-// 	VANDPD ymm  ymm ymm
+// 	VANDPD m128         xmm xmm
+// 	VANDPD m256         ymm ymm
+// 	VANDPD xmm          xmm xmm
+// 	VANDPD ymm          ymm ymm
+// 	VANDPD m512/m64bcst zmm k zmm
+// 	VANDPD m512/m64bcst zmm zmm
+// 	VANDPD zmm          zmm k zmm
+// 	VANDPD zmm          zmm zmm
+// 	VANDPD m128/m64bcst xmm k xmm
+// 	VANDPD m128/m64bcst xmm xmm
+// 	VANDPD m256/m64bcst ymm k ymm
+// 	VANDPD m256/m64bcst ymm ymm
+// 	VANDPD xmm          xmm k xmm
+// 	VANDPD ymm          ymm k ymm
 // Construct and append a VANDPD instruction to the active function.
-func (c *Context) VANDPD(mxy, xy, xy1 operand.Op) {
-	if inst, err := x86.VANDPD(mxy, xy, xy1); err == nil {
+func (c *Context) VANDPD(ops ...operand.Op) {
+	if inst, err := x86.VANDPD(ops...); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -18466,25 +19032,138 @@ func (c *Context) VANDPD(mxy, xy, xy1 operand.Op) {
 //
 // Forms:
 //
-// 	VANDPD m128 xmm xmm
-// 	VANDPD m256 ymm ymm
-// 	VANDPD xmm  xmm xmm
-// 	VANDPD ymm  ymm ymm
+// 	VANDPD m128         xmm xmm
+// 	VANDPD m256         ymm ymm
+// 	VANDPD xmm          xmm xmm
+// 	VANDPD ymm          ymm ymm
+// 	VANDPD m512/m64bcst zmm k zmm
+// 	VANDPD m512/m64bcst zmm zmm
+// 	VANDPD zmm          zmm k zmm
+// 	VANDPD zmm          zmm zmm
+// 	VANDPD m128/m64bcst xmm k xmm
+// 	VANDPD m128/m64bcst xmm xmm
+// 	VANDPD m256/m64bcst ymm k ymm
+// 	VANDPD m256/m64bcst ymm ymm
+// 	VANDPD xmm          xmm k xmm
+// 	VANDPD ymm          ymm k ymm
 // Construct and append a VANDPD instruction to the active function.
 // Operates on the global context.
-func VANDPD(mxy, xy, xy1 operand.Op) { ctx.VANDPD(mxy, xy, xy1) }
+func VANDPD(ops ...operand.Op) { ctx.VANDPD(ops...) }
+
+// VANDPD_BCST: Bitwise Logical AND of Packed Double-Precision Floating-Point Values (Broadcast).
+//
+// Forms:
+//
+// 	VANDPD.BCST m512/m64bcst zmm k zmm
+// 	VANDPD.BCST m512/m64bcst zmm zmm
+// 	VANDPD.BCST m128/m64bcst xmm k xmm
+// 	VANDPD.BCST m128/m64bcst xmm xmm
+// 	VANDPD.BCST m256/m64bcst ymm k ymm
+// 	VANDPD.BCST m256/m64bcst ymm ymm
+// Construct and append a VANDPD.BCST instruction to the active function.
+func (c *Context) VANDPD_BCST(ops ...operand.Op) {
+	if inst, err := x86.VANDPD_BCST(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VANDPD_BCST: Bitwise Logical AND of Packed Double-Precision Floating-Point Values (Broadcast).
+//
+// Forms:
+//
+// 	VANDPD.BCST m512/m64bcst zmm k zmm
+// 	VANDPD.BCST m512/m64bcst zmm zmm
+// 	VANDPD.BCST m128/m64bcst xmm k xmm
+// 	VANDPD.BCST m128/m64bcst xmm xmm
+// 	VANDPD.BCST m256/m64bcst ymm k ymm
+// 	VANDPD.BCST m256/m64bcst ymm ymm
+// Construct and append a VANDPD.BCST instruction to the active function.
+// Operates on the global context.
+func VANDPD_BCST(ops ...operand.Op) { ctx.VANDPD_BCST(ops...) }
+
+// VANDPD_BCST_Z: Bitwise Logical AND of Packed Double-Precision Floating-Point Values (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VANDPD.BCST.Z m512/m64bcst zmm k zmm
+// 	VANDPD.BCST.Z m128/m64bcst xmm k xmm
+// 	VANDPD.BCST.Z m256/m64bcst ymm k ymm
+// Construct and append a VANDPD.BCST.Z instruction to the active function.
+func (c *Context) VANDPD_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VANDPD_BCST_Z(m, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VANDPD_BCST_Z: Bitwise Logical AND of Packed Double-Precision Floating-Point Values (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VANDPD.BCST.Z m512/m64bcst zmm k zmm
+// 	VANDPD.BCST.Z m128/m64bcst xmm k xmm
+// 	VANDPD.BCST.Z m256/m64bcst ymm k ymm
+// Construct and append a VANDPD.BCST.Z instruction to the active function.
+// Operates on the global context.
+func VANDPD_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VANDPD_BCST_Z(m, xyz, k, xyz1) }
+
+// VANDPD_Z: Bitwise Logical AND of Packed Double-Precision Floating-Point Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VANDPD.Z m512/m64bcst zmm k zmm
+// 	VANDPD.Z zmm          zmm k zmm
+// 	VANDPD.Z m128/m64bcst xmm k xmm
+// 	VANDPD.Z m256/m64bcst ymm k ymm
+// 	VANDPD.Z xmm          xmm k xmm
+// 	VANDPD.Z ymm          ymm k ymm
+// Construct and append a VANDPD.Z instruction to the active function.
+func (c *Context) VANDPD_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VANDPD_Z(mxyz, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VANDPD_Z: Bitwise Logical AND of Packed Double-Precision Floating-Point Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VANDPD.Z m512/m64bcst zmm k zmm
+// 	VANDPD.Z zmm          zmm k zmm
+// 	VANDPD.Z m128/m64bcst xmm k xmm
+// 	VANDPD.Z m256/m64bcst ymm k ymm
+// 	VANDPD.Z xmm          xmm k xmm
+// 	VANDPD.Z ymm          ymm k ymm
+// Construct and append a VANDPD.Z instruction to the active function.
+// Operates on the global context.
+func VANDPD_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VANDPD_Z(mxyz, xyz, k, xyz1) }
 
 // VANDPS: Bitwise Logical AND of Packed Single-Precision Floating-Point Values.
 //
 // Forms:
 //
-// 	VANDPS m128 xmm xmm
-// 	VANDPS m256 ymm ymm
-// 	VANDPS xmm  xmm xmm
-// 	VANDPS ymm  ymm ymm
+// 	VANDPS m128         xmm xmm
+// 	VANDPS m256         ymm ymm
+// 	VANDPS xmm          xmm xmm
+// 	VANDPS ymm          ymm ymm
+// 	VANDPS m512/m32bcst zmm k zmm
+// 	VANDPS m512/m32bcst zmm zmm
+// 	VANDPS zmm          zmm k zmm
+// 	VANDPS zmm          zmm zmm
+// 	VANDPS m128/m32bcst xmm k xmm
+// 	VANDPS m128/m32bcst xmm xmm
+// 	VANDPS m256/m32bcst ymm k ymm
+// 	VANDPS m256/m32bcst ymm ymm
+// 	VANDPS xmm          xmm k xmm
+// 	VANDPS ymm          ymm k ymm
 // Construct and append a VANDPS instruction to the active function.
-func (c *Context) VANDPS(mxy, xy, xy1 operand.Op) {
-	if inst, err := x86.VANDPS(mxy, xy, xy1); err == nil {
+func (c *Context) VANDPS(ops ...operand.Op) {
+	if inst, err := x86.VANDPS(ops...); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -18495,13 +19174,116 @@ func (c *Context) VANDPS(mxy, xy, xy1 operand.Op) {
 //
 // Forms:
 //
-// 	VANDPS m128 xmm xmm
-// 	VANDPS m256 ymm ymm
-// 	VANDPS xmm  xmm xmm
-// 	VANDPS ymm  ymm ymm
+// 	VANDPS m128         xmm xmm
+// 	VANDPS m256         ymm ymm
+// 	VANDPS xmm          xmm xmm
+// 	VANDPS ymm          ymm ymm
+// 	VANDPS m512/m32bcst zmm k zmm
+// 	VANDPS m512/m32bcst zmm zmm
+// 	VANDPS zmm          zmm k zmm
+// 	VANDPS zmm          zmm zmm
+// 	VANDPS m128/m32bcst xmm k xmm
+// 	VANDPS m128/m32bcst xmm xmm
+// 	VANDPS m256/m32bcst ymm k ymm
+// 	VANDPS m256/m32bcst ymm ymm
+// 	VANDPS xmm          xmm k xmm
+// 	VANDPS ymm          ymm k ymm
 // Construct and append a VANDPS instruction to the active function.
 // Operates on the global context.
-func VANDPS(mxy, xy, xy1 operand.Op) { ctx.VANDPS(mxy, xy, xy1) }
+func VANDPS(ops ...operand.Op) { ctx.VANDPS(ops...) }
+
+// VANDPS_BCST: Bitwise Logical AND of Packed Single-Precision Floating-Point Values (Broadcast).
+//
+// Forms:
+//
+// 	VANDPS.BCST m512/m32bcst zmm k zmm
+// 	VANDPS.BCST m512/m32bcst zmm zmm
+// 	VANDPS.BCST m128/m32bcst xmm k xmm
+// 	VANDPS.BCST m128/m32bcst xmm xmm
+// 	VANDPS.BCST m256/m32bcst ymm k ymm
+// 	VANDPS.BCST m256/m32bcst ymm ymm
+// Construct and append a VANDPS.BCST instruction to the active function.
+func (c *Context) VANDPS_BCST(ops ...operand.Op) {
+	if inst, err := x86.VANDPS_BCST(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VANDPS_BCST: Bitwise Logical AND of Packed Single-Precision Floating-Point Values (Broadcast).
+//
+// Forms:
+//
+// 	VANDPS.BCST m512/m32bcst zmm k zmm
+// 	VANDPS.BCST m512/m32bcst zmm zmm
+// 	VANDPS.BCST m128/m32bcst xmm k xmm
+// 	VANDPS.BCST m128/m32bcst xmm xmm
+// 	VANDPS.BCST m256/m32bcst ymm k ymm
+// 	VANDPS.BCST m256/m32bcst ymm ymm
+// Construct and append a VANDPS.BCST instruction to the active function.
+// Operates on the global context.
+func VANDPS_BCST(ops ...operand.Op) { ctx.VANDPS_BCST(ops...) }
+
+// VANDPS_BCST_Z: Bitwise Logical AND of Packed Single-Precision Floating-Point Values (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VANDPS.BCST.Z m512/m32bcst zmm k zmm
+// 	VANDPS.BCST.Z m128/m32bcst xmm k xmm
+// 	VANDPS.BCST.Z m256/m32bcst ymm k ymm
+// Construct and append a VANDPS.BCST.Z instruction to the active function.
+func (c *Context) VANDPS_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VANDPS_BCST_Z(m, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VANDPS_BCST_Z: Bitwise Logical AND of Packed Single-Precision Floating-Point Values (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VANDPS.BCST.Z m512/m32bcst zmm k zmm
+// 	VANDPS.BCST.Z m128/m32bcst xmm k xmm
+// 	VANDPS.BCST.Z m256/m32bcst ymm k ymm
+// Construct and append a VANDPS.BCST.Z instruction to the active function.
+// Operates on the global context.
+func VANDPS_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VANDPS_BCST_Z(m, xyz, k, xyz1) }
+
+// VANDPS_Z: Bitwise Logical AND of Packed Single-Precision Floating-Point Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VANDPS.Z m512/m32bcst zmm k zmm
+// 	VANDPS.Z zmm          zmm k zmm
+// 	VANDPS.Z m128/m32bcst xmm k xmm
+// 	VANDPS.Z m256/m32bcst ymm k ymm
+// 	VANDPS.Z xmm          xmm k xmm
+// 	VANDPS.Z ymm          ymm k ymm
+// Construct and append a VANDPS.Z instruction to the active function.
+func (c *Context) VANDPS_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VANDPS_Z(mxyz, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VANDPS_Z: Bitwise Logical AND of Packed Single-Precision Floating-Point Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VANDPS.Z m512/m32bcst zmm k zmm
+// 	VANDPS.Z zmm          zmm k zmm
+// 	VANDPS.Z m128/m32bcst xmm k xmm
+// 	VANDPS.Z m256/m32bcst ymm k ymm
+// 	VANDPS.Z xmm          xmm k xmm
+// 	VANDPS.Z ymm          ymm k ymm
+// Construct and append a VANDPS.Z instruction to the active function.
+// Operates on the global context.
+func VANDPS_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VANDPS_Z(mxyz, xyz, k, xyz1) }
 
 // VBLENDMPD: Blend Packed Double-Precision Floating-Point Vectors Using an OpMask Control.
 //
@@ -18918,6 +19700,72 @@ func (c *Context) VBROADCASTF128(m, y operand.Op) {
 // Operates on the global context.
 func VBROADCASTF128(m, y operand.Op) { ctx.VBROADCASTF128(m, y) }
 
+// VBROADCASTF32X2: Broadcast Two Single-Precision Floating-Point Elements.
+//
+// Forms:
+//
+// 	VBROADCASTF32X2 m64 k zmm
+// 	VBROADCASTF32X2 m64 zmm
+// 	VBROADCASTF32X2 xmm k zmm
+// 	VBROADCASTF32X2 xmm zmm
+// 	VBROADCASTF32X2 m64 k ymm
+// 	VBROADCASTF32X2 m64 ymm
+// 	VBROADCASTF32X2 xmm k ymm
+// 	VBROADCASTF32X2 xmm ymm
+// Construct and append a VBROADCASTF32X2 instruction to the active function.
+func (c *Context) VBROADCASTF32X2(ops ...operand.Op) {
+	if inst, err := x86.VBROADCASTF32X2(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VBROADCASTF32X2: Broadcast Two Single-Precision Floating-Point Elements.
+//
+// Forms:
+//
+// 	VBROADCASTF32X2 m64 k zmm
+// 	VBROADCASTF32X2 m64 zmm
+// 	VBROADCASTF32X2 xmm k zmm
+// 	VBROADCASTF32X2 xmm zmm
+// 	VBROADCASTF32X2 m64 k ymm
+// 	VBROADCASTF32X2 m64 ymm
+// 	VBROADCASTF32X2 xmm k ymm
+// 	VBROADCASTF32X2 xmm ymm
+// Construct and append a VBROADCASTF32X2 instruction to the active function.
+// Operates on the global context.
+func VBROADCASTF32X2(ops ...operand.Op) { ctx.VBROADCASTF32X2(ops...) }
+
+// VBROADCASTF32X2_Z: Broadcast Two Single-Precision Floating-Point Elements (Zeroing Masking).
+//
+// Forms:
+//
+// 	VBROADCASTF32X2.Z m64 k zmm
+// 	VBROADCASTF32X2.Z xmm k zmm
+// 	VBROADCASTF32X2.Z m64 k ymm
+// 	VBROADCASTF32X2.Z xmm k ymm
+// Construct and append a VBROADCASTF32X2.Z instruction to the active function.
+func (c *Context) VBROADCASTF32X2_Z(mx, k, yz operand.Op) {
+	if inst, err := x86.VBROADCASTF32X2_Z(mx, k, yz); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VBROADCASTF32X2_Z: Broadcast Two Single-Precision Floating-Point Elements (Zeroing Masking).
+//
+// Forms:
+//
+// 	VBROADCASTF32X2.Z m64 k zmm
+// 	VBROADCASTF32X2.Z xmm k zmm
+// 	VBROADCASTF32X2.Z m64 k ymm
+// 	VBROADCASTF32X2.Z xmm k ymm
+// Construct and append a VBROADCASTF32X2.Z instruction to the active function.
+// Operates on the global context.
+func VBROADCASTF32X2_Z(mx, k, yz operand.Op) { ctx.VBROADCASTF32X2_Z(mx, k, yz) }
+
 // VBROADCASTF32X4: Broadcast Four Single-Precision Floating-Point Elements.
 //
 // Forms:
@@ -18971,6 +19819,108 @@ func (c *Context) VBROADCASTF32X4_Z(m, k, yz operand.Op) {
 // Construct and append a VBROADCASTF32X4.Z instruction to the active function.
 // Operates on the global context.
 func VBROADCASTF32X4_Z(m, k, yz operand.Op) { ctx.VBROADCASTF32X4_Z(m, k, yz) }
+
+// VBROADCASTF32X8: Broadcast Eight Single-Precision Floating-Point Elements.
+//
+// Forms:
+//
+// 	VBROADCASTF32X8 m256 k zmm
+// 	VBROADCASTF32X8 m256 zmm
+// Construct and append a VBROADCASTF32X8 instruction to the active function.
+func (c *Context) VBROADCASTF32X8(ops ...operand.Op) {
+	if inst, err := x86.VBROADCASTF32X8(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VBROADCASTF32X8: Broadcast Eight Single-Precision Floating-Point Elements.
+//
+// Forms:
+//
+// 	VBROADCASTF32X8 m256 k zmm
+// 	VBROADCASTF32X8 m256 zmm
+// Construct and append a VBROADCASTF32X8 instruction to the active function.
+// Operates on the global context.
+func VBROADCASTF32X8(ops ...operand.Op) { ctx.VBROADCASTF32X8(ops...) }
+
+// VBROADCASTF32X8_Z: Broadcast Eight Single-Precision Floating-Point Elements (Zeroing Masking).
+//
+// Forms:
+//
+// 	VBROADCASTF32X8.Z m256 k zmm
+// Construct and append a VBROADCASTF32X8.Z instruction to the active function.
+func (c *Context) VBROADCASTF32X8_Z(m, k, z operand.Op) {
+	if inst, err := x86.VBROADCASTF32X8_Z(m, k, z); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VBROADCASTF32X8_Z: Broadcast Eight Single-Precision Floating-Point Elements (Zeroing Masking).
+//
+// Forms:
+//
+// 	VBROADCASTF32X8.Z m256 k zmm
+// Construct and append a VBROADCASTF32X8.Z instruction to the active function.
+// Operates on the global context.
+func VBROADCASTF32X8_Z(m, k, z operand.Op) { ctx.VBROADCASTF32X8_Z(m, k, z) }
+
+// VBROADCASTF64X2: Broadcast Two Double-Precision Floating-Point Elements.
+//
+// Forms:
+//
+// 	VBROADCASTF64X2 m128 k zmm
+// 	VBROADCASTF64X2 m128 zmm
+// 	VBROADCASTF64X2 m128 k ymm
+// 	VBROADCASTF64X2 m128 ymm
+// Construct and append a VBROADCASTF64X2 instruction to the active function.
+func (c *Context) VBROADCASTF64X2(ops ...operand.Op) {
+	if inst, err := x86.VBROADCASTF64X2(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VBROADCASTF64X2: Broadcast Two Double-Precision Floating-Point Elements.
+//
+// Forms:
+//
+// 	VBROADCASTF64X2 m128 k zmm
+// 	VBROADCASTF64X2 m128 zmm
+// 	VBROADCASTF64X2 m128 k ymm
+// 	VBROADCASTF64X2 m128 ymm
+// Construct and append a VBROADCASTF64X2 instruction to the active function.
+// Operates on the global context.
+func VBROADCASTF64X2(ops ...operand.Op) { ctx.VBROADCASTF64X2(ops...) }
+
+// VBROADCASTF64X2_Z: Broadcast Two Double-Precision Floating-Point Elements (Zeroing Masking).
+//
+// Forms:
+//
+// 	VBROADCASTF64X2.Z m128 k zmm
+// 	VBROADCASTF64X2.Z m128 k ymm
+// Construct and append a VBROADCASTF64X2.Z instruction to the active function.
+func (c *Context) VBROADCASTF64X2_Z(m, k, yz operand.Op) {
+	if inst, err := x86.VBROADCASTF64X2_Z(m, k, yz); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VBROADCASTF64X2_Z: Broadcast Two Double-Precision Floating-Point Elements (Zeroing Masking).
+//
+// Forms:
+//
+// 	VBROADCASTF64X2.Z m128 k zmm
+// 	VBROADCASTF64X2.Z m128 k ymm
+// Construct and append a VBROADCASTF64X2.Z instruction to the active function.
+// Operates on the global context.
+func VBROADCASTF64X2_Z(m, k, yz operand.Op) { ctx.VBROADCASTF64X2_Z(m, k, yz) }
 
 // VBROADCASTF64X4: Broadcast Four Double-Precision Floating-Point Elements.
 //
@@ -19043,6 +19993,84 @@ func (c *Context) VBROADCASTI128(m, y operand.Op) {
 // Operates on the global context.
 func VBROADCASTI128(m, y operand.Op) { ctx.VBROADCASTI128(m, y) }
 
+// VBROADCASTI32X2: Broadcast Two Doubleword Elements.
+//
+// Forms:
+//
+// 	VBROADCASTI32X2 m64 k zmm
+// 	VBROADCASTI32X2 m64 zmm
+// 	VBROADCASTI32X2 xmm k zmm
+// 	VBROADCASTI32X2 xmm zmm
+// 	VBROADCASTI32X2 m64 k xmm
+// 	VBROADCASTI32X2 m64 k ymm
+// 	VBROADCASTI32X2 m64 xmm
+// 	VBROADCASTI32X2 m64 ymm
+// 	VBROADCASTI32X2 xmm k xmm
+// 	VBROADCASTI32X2 xmm k ymm
+// 	VBROADCASTI32X2 xmm xmm
+// 	VBROADCASTI32X2 xmm ymm
+// Construct and append a VBROADCASTI32X2 instruction to the active function.
+func (c *Context) VBROADCASTI32X2(ops ...operand.Op) {
+	if inst, err := x86.VBROADCASTI32X2(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VBROADCASTI32X2: Broadcast Two Doubleword Elements.
+//
+// Forms:
+//
+// 	VBROADCASTI32X2 m64 k zmm
+// 	VBROADCASTI32X2 m64 zmm
+// 	VBROADCASTI32X2 xmm k zmm
+// 	VBROADCASTI32X2 xmm zmm
+// 	VBROADCASTI32X2 m64 k xmm
+// 	VBROADCASTI32X2 m64 k ymm
+// 	VBROADCASTI32X2 m64 xmm
+// 	VBROADCASTI32X2 m64 ymm
+// 	VBROADCASTI32X2 xmm k xmm
+// 	VBROADCASTI32X2 xmm k ymm
+// 	VBROADCASTI32X2 xmm xmm
+// 	VBROADCASTI32X2 xmm ymm
+// Construct and append a VBROADCASTI32X2 instruction to the active function.
+// Operates on the global context.
+func VBROADCASTI32X2(ops ...operand.Op) { ctx.VBROADCASTI32X2(ops...) }
+
+// VBROADCASTI32X2_Z: Broadcast Two Doubleword Elements (Zeroing Masking).
+//
+// Forms:
+//
+// 	VBROADCASTI32X2.Z m64 k zmm
+// 	VBROADCASTI32X2.Z xmm k zmm
+// 	VBROADCASTI32X2.Z m64 k xmm
+// 	VBROADCASTI32X2.Z m64 k ymm
+// 	VBROADCASTI32X2.Z xmm k xmm
+// 	VBROADCASTI32X2.Z xmm k ymm
+// Construct and append a VBROADCASTI32X2.Z instruction to the active function.
+func (c *Context) VBROADCASTI32X2_Z(mx, k, xyz operand.Op) {
+	if inst, err := x86.VBROADCASTI32X2_Z(mx, k, xyz); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VBROADCASTI32X2_Z: Broadcast Two Doubleword Elements (Zeroing Masking).
+//
+// Forms:
+//
+// 	VBROADCASTI32X2.Z m64 k zmm
+// 	VBROADCASTI32X2.Z xmm k zmm
+// 	VBROADCASTI32X2.Z m64 k xmm
+// 	VBROADCASTI32X2.Z m64 k ymm
+// 	VBROADCASTI32X2.Z xmm k xmm
+// 	VBROADCASTI32X2.Z xmm k ymm
+// Construct and append a VBROADCASTI32X2.Z instruction to the active function.
+// Operates on the global context.
+func VBROADCASTI32X2_Z(mx, k, xyz operand.Op) { ctx.VBROADCASTI32X2_Z(mx, k, xyz) }
+
 // VBROADCASTI32X4: Broadcast Four Doubleword Elements.
 //
 // Forms:
@@ -19096,6 +20124,108 @@ func (c *Context) VBROADCASTI32X4_Z(m, k, yz operand.Op) {
 // Construct and append a VBROADCASTI32X4.Z instruction to the active function.
 // Operates on the global context.
 func VBROADCASTI32X4_Z(m, k, yz operand.Op) { ctx.VBROADCASTI32X4_Z(m, k, yz) }
+
+// VBROADCASTI32X8: Broadcast Eight Doubleword Elements.
+//
+// Forms:
+//
+// 	VBROADCASTI32X8 m256 k zmm
+// 	VBROADCASTI32X8 m256 zmm
+// Construct and append a VBROADCASTI32X8 instruction to the active function.
+func (c *Context) VBROADCASTI32X8(ops ...operand.Op) {
+	if inst, err := x86.VBROADCASTI32X8(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VBROADCASTI32X8: Broadcast Eight Doubleword Elements.
+//
+// Forms:
+//
+// 	VBROADCASTI32X8 m256 k zmm
+// 	VBROADCASTI32X8 m256 zmm
+// Construct and append a VBROADCASTI32X8 instruction to the active function.
+// Operates on the global context.
+func VBROADCASTI32X8(ops ...operand.Op) { ctx.VBROADCASTI32X8(ops...) }
+
+// VBROADCASTI32X8_Z: Broadcast Eight Doubleword Elements (Zeroing Masking).
+//
+// Forms:
+//
+// 	VBROADCASTI32X8.Z m256 k zmm
+// Construct and append a VBROADCASTI32X8.Z instruction to the active function.
+func (c *Context) VBROADCASTI32X8_Z(m, k, z operand.Op) {
+	if inst, err := x86.VBROADCASTI32X8_Z(m, k, z); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VBROADCASTI32X8_Z: Broadcast Eight Doubleword Elements (Zeroing Masking).
+//
+// Forms:
+//
+// 	VBROADCASTI32X8.Z m256 k zmm
+// Construct and append a VBROADCASTI32X8.Z instruction to the active function.
+// Operates on the global context.
+func VBROADCASTI32X8_Z(m, k, z operand.Op) { ctx.VBROADCASTI32X8_Z(m, k, z) }
+
+// VBROADCASTI64X2: Broadcast Two Quadword Elements.
+//
+// Forms:
+//
+// 	VBROADCASTI64X2 m128 k zmm
+// 	VBROADCASTI64X2 m128 zmm
+// 	VBROADCASTI64X2 m128 k ymm
+// 	VBROADCASTI64X2 m128 ymm
+// Construct and append a VBROADCASTI64X2 instruction to the active function.
+func (c *Context) VBROADCASTI64X2(ops ...operand.Op) {
+	if inst, err := x86.VBROADCASTI64X2(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VBROADCASTI64X2: Broadcast Two Quadword Elements.
+//
+// Forms:
+//
+// 	VBROADCASTI64X2 m128 k zmm
+// 	VBROADCASTI64X2 m128 zmm
+// 	VBROADCASTI64X2 m128 k ymm
+// 	VBROADCASTI64X2 m128 ymm
+// Construct and append a VBROADCASTI64X2 instruction to the active function.
+// Operates on the global context.
+func VBROADCASTI64X2(ops ...operand.Op) { ctx.VBROADCASTI64X2(ops...) }
+
+// VBROADCASTI64X2_Z: Broadcast Two Quadword Elements (Zeroing Masking).
+//
+// Forms:
+//
+// 	VBROADCASTI64X2.Z m128 k zmm
+// 	VBROADCASTI64X2.Z m128 k ymm
+// Construct and append a VBROADCASTI64X2.Z instruction to the active function.
+func (c *Context) VBROADCASTI64X2_Z(m, k, yz operand.Op) {
+	if inst, err := x86.VBROADCASTI64X2_Z(m, k, yz); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VBROADCASTI64X2_Z: Broadcast Two Quadword Elements (Zeroing Masking).
+//
+// Forms:
+//
+// 	VBROADCASTI64X2.Z m128 k zmm
+// 	VBROADCASTI64X2.Z m128 k ymm
+// Construct and append a VBROADCASTI64X2.Z instruction to the active function.
+// Operates on the global context.
+func VBROADCASTI64X2_Z(m, k, yz operand.Op) { ctx.VBROADCASTI64X2_Z(m, k, yz) }
 
 // VBROADCASTI64X4: Broadcast Four Quadword Elements.
 //
@@ -21351,6 +22481,336 @@ func (c *Context) VCVTPD2PS_Z(mz, k, y operand.Op) {
 // Operates on the global context.
 func VCVTPD2PS_Z(mz, k, y operand.Op) { ctx.VCVTPD2PS_Z(mz, k, y) }
 
+// VCVTPD2QQ: Convert Packed Double-Precision Floating-Point Values to Packed Quadword Integers.
+//
+// Forms:
+//
+// 	VCVTPD2QQ m512/m64bcst k zmm
+// 	VCVTPD2QQ m512/m64bcst zmm
+// 	VCVTPD2QQ zmm          k zmm
+// 	VCVTPD2QQ zmm          zmm
+// 	VCVTPD2QQ m128/m64bcst k xmm
+// 	VCVTPD2QQ m128/m64bcst xmm
+// 	VCVTPD2QQ m256/m64bcst k ymm
+// 	VCVTPD2QQ m256/m64bcst ymm
+// 	VCVTPD2QQ xmm          k xmm
+// 	VCVTPD2QQ xmm          xmm
+// 	VCVTPD2QQ ymm          k ymm
+// 	VCVTPD2QQ ymm          ymm
+// Construct and append a VCVTPD2QQ instruction to the active function.
+func (c *Context) VCVTPD2QQ(ops ...operand.Op) {
+	if inst, err := x86.VCVTPD2QQ(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTPD2QQ: Convert Packed Double-Precision Floating-Point Values to Packed Quadword Integers.
+//
+// Forms:
+//
+// 	VCVTPD2QQ m512/m64bcst k zmm
+// 	VCVTPD2QQ m512/m64bcst zmm
+// 	VCVTPD2QQ zmm          k zmm
+// 	VCVTPD2QQ zmm          zmm
+// 	VCVTPD2QQ m128/m64bcst k xmm
+// 	VCVTPD2QQ m128/m64bcst xmm
+// 	VCVTPD2QQ m256/m64bcst k ymm
+// 	VCVTPD2QQ m256/m64bcst ymm
+// 	VCVTPD2QQ xmm          k xmm
+// 	VCVTPD2QQ xmm          xmm
+// 	VCVTPD2QQ ymm          k ymm
+// 	VCVTPD2QQ ymm          ymm
+// Construct and append a VCVTPD2QQ instruction to the active function.
+// Operates on the global context.
+func VCVTPD2QQ(ops ...operand.Op) { ctx.VCVTPD2QQ(ops...) }
+
+// VCVTPD2QQ_BCST: Convert Packed Double-Precision Floating-Point Values to Packed Quadword Integers (Broadcast).
+//
+// Forms:
+//
+// 	VCVTPD2QQ.BCST m512/m64bcst k zmm
+// 	VCVTPD2QQ.BCST m512/m64bcst zmm
+// 	VCVTPD2QQ.BCST m128/m64bcst k xmm
+// 	VCVTPD2QQ.BCST m128/m64bcst xmm
+// 	VCVTPD2QQ.BCST m256/m64bcst k ymm
+// 	VCVTPD2QQ.BCST m256/m64bcst ymm
+// Construct and append a VCVTPD2QQ.BCST instruction to the active function.
+func (c *Context) VCVTPD2QQ_BCST(ops ...operand.Op) {
+	if inst, err := x86.VCVTPD2QQ_BCST(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTPD2QQ_BCST: Convert Packed Double-Precision Floating-Point Values to Packed Quadword Integers (Broadcast).
+//
+// Forms:
+//
+// 	VCVTPD2QQ.BCST m512/m64bcst k zmm
+// 	VCVTPD2QQ.BCST m512/m64bcst zmm
+// 	VCVTPD2QQ.BCST m128/m64bcst k xmm
+// 	VCVTPD2QQ.BCST m128/m64bcst xmm
+// 	VCVTPD2QQ.BCST m256/m64bcst k ymm
+// 	VCVTPD2QQ.BCST m256/m64bcst ymm
+// Construct and append a VCVTPD2QQ.BCST instruction to the active function.
+// Operates on the global context.
+func VCVTPD2QQ_BCST(ops ...operand.Op) { ctx.VCVTPD2QQ_BCST(ops...) }
+
+// VCVTPD2QQ_BCST_Z: Convert Packed Double-Precision Floating-Point Values to Packed Quadword Integers (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTPD2QQ.BCST.Z m512/m64bcst k zmm
+// 	VCVTPD2QQ.BCST.Z m128/m64bcst k xmm
+// 	VCVTPD2QQ.BCST.Z m256/m64bcst k ymm
+// Construct and append a VCVTPD2QQ.BCST.Z instruction to the active function.
+func (c *Context) VCVTPD2QQ_BCST_Z(m, k, xyz operand.Op) {
+	if inst, err := x86.VCVTPD2QQ_BCST_Z(m, k, xyz); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTPD2QQ_BCST_Z: Convert Packed Double-Precision Floating-Point Values to Packed Quadword Integers (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTPD2QQ.BCST.Z m512/m64bcst k zmm
+// 	VCVTPD2QQ.BCST.Z m128/m64bcst k xmm
+// 	VCVTPD2QQ.BCST.Z m256/m64bcst k ymm
+// Construct and append a VCVTPD2QQ.BCST.Z instruction to the active function.
+// Operates on the global context.
+func VCVTPD2QQ_BCST_Z(m, k, xyz operand.Op) { ctx.VCVTPD2QQ_BCST_Z(m, k, xyz) }
+
+// VCVTPD2QQ_RD_SAE: Convert Packed Double-Precision Floating-Point Values to Packed Quadword Integers (Round Towards Negative Infinity).
+//
+// Forms:
+//
+// 	VCVTPD2QQ.RD_SAE zmm k zmm
+// 	VCVTPD2QQ.RD_SAE zmm zmm
+// Construct and append a VCVTPD2QQ.RD_SAE instruction to the active function.
+func (c *Context) VCVTPD2QQ_RD_SAE(ops ...operand.Op) {
+	if inst, err := x86.VCVTPD2QQ_RD_SAE(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTPD2QQ_RD_SAE: Convert Packed Double-Precision Floating-Point Values to Packed Quadword Integers (Round Towards Negative Infinity).
+//
+// Forms:
+//
+// 	VCVTPD2QQ.RD_SAE zmm k zmm
+// 	VCVTPD2QQ.RD_SAE zmm zmm
+// Construct and append a VCVTPD2QQ.RD_SAE instruction to the active function.
+// Operates on the global context.
+func VCVTPD2QQ_RD_SAE(ops ...operand.Op) { ctx.VCVTPD2QQ_RD_SAE(ops...) }
+
+// VCVTPD2QQ_RD_SAE_Z: Convert Packed Double-Precision Floating-Point Values to Packed Quadword Integers (Round Towards Negative Infinity, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTPD2QQ.RD_SAE.Z zmm k zmm
+// Construct and append a VCVTPD2QQ.RD_SAE.Z instruction to the active function.
+func (c *Context) VCVTPD2QQ_RD_SAE_Z(z, k, z1 operand.Op) {
+	if inst, err := x86.VCVTPD2QQ_RD_SAE_Z(z, k, z1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTPD2QQ_RD_SAE_Z: Convert Packed Double-Precision Floating-Point Values to Packed Quadword Integers (Round Towards Negative Infinity, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTPD2QQ.RD_SAE.Z zmm k zmm
+// Construct and append a VCVTPD2QQ.RD_SAE.Z instruction to the active function.
+// Operates on the global context.
+func VCVTPD2QQ_RD_SAE_Z(z, k, z1 operand.Op) { ctx.VCVTPD2QQ_RD_SAE_Z(z, k, z1) }
+
+// VCVTPD2QQ_RN_SAE: Convert Packed Double-Precision Floating-Point Values to Packed Quadword Integers (Round Towards Nearest).
+//
+// Forms:
+//
+// 	VCVTPD2QQ.RN_SAE zmm k zmm
+// 	VCVTPD2QQ.RN_SAE zmm zmm
+// Construct and append a VCVTPD2QQ.RN_SAE instruction to the active function.
+func (c *Context) VCVTPD2QQ_RN_SAE(ops ...operand.Op) {
+	if inst, err := x86.VCVTPD2QQ_RN_SAE(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTPD2QQ_RN_SAE: Convert Packed Double-Precision Floating-Point Values to Packed Quadword Integers (Round Towards Nearest).
+//
+// Forms:
+//
+// 	VCVTPD2QQ.RN_SAE zmm k zmm
+// 	VCVTPD2QQ.RN_SAE zmm zmm
+// Construct and append a VCVTPD2QQ.RN_SAE instruction to the active function.
+// Operates on the global context.
+func VCVTPD2QQ_RN_SAE(ops ...operand.Op) { ctx.VCVTPD2QQ_RN_SAE(ops...) }
+
+// VCVTPD2QQ_RN_SAE_Z: Convert Packed Double-Precision Floating-Point Values to Packed Quadword Integers (Round Towards Nearest, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTPD2QQ.RN_SAE.Z zmm k zmm
+// Construct and append a VCVTPD2QQ.RN_SAE.Z instruction to the active function.
+func (c *Context) VCVTPD2QQ_RN_SAE_Z(z, k, z1 operand.Op) {
+	if inst, err := x86.VCVTPD2QQ_RN_SAE_Z(z, k, z1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTPD2QQ_RN_SAE_Z: Convert Packed Double-Precision Floating-Point Values to Packed Quadword Integers (Round Towards Nearest, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTPD2QQ.RN_SAE.Z zmm k zmm
+// Construct and append a VCVTPD2QQ.RN_SAE.Z instruction to the active function.
+// Operates on the global context.
+func VCVTPD2QQ_RN_SAE_Z(z, k, z1 operand.Op) { ctx.VCVTPD2QQ_RN_SAE_Z(z, k, z1) }
+
+// VCVTPD2QQ_RU_SAE: Convert Packed Double-Precision Floating-Point Values to Packed Quadword Integers (Round Towards Positive Infinity).
+//
+// Forms:
+//
+// 	VCVTPD2QQ.RU_SAE zmm k zmm
+// 	VCVTPD2QQ.RU_SAE zmm zmm
+// Construct and append a VCVTPD2QQ.RU_SAE instruction to the active function.
+func (c *Context) VCVTPD2QQ_RU_SAE(ops ...operand.Op) {
+	if inst, err := x86.VCVTPD2QQ_RU_SAE(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTPD2QQ_RU_SAE: Convert Packed Double-Precision Floating-Point Values to Packed Quadword Integers (Round Towards Positive Infinity).
+//
+// Forms:
+//
+// 	VCVTPD2QQ.RU_SAE zmm k zmm
+// 	VCVTPD2QQ.RU_SAE zmm zmm
+// Construct and append a VCVTPD2QQ.RU_SAE instruction to the active function.
+// Operates on the global context.
+func VCVTPD2QQ_RU_SAE(ops ...operand.Op) { ctx.VCVTPD2QQ_RU_SAE(ops...) }
+
+// VCVTPD2QQ_RU_SAE_Z: Convert Packed Double-Precision Floating-Point Values to Packed Quadword Integers (Round Towards Positive Infinity, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTPD2QQ.RU_SAE.Z zmm k zmm
+// Construct and append a VCVTPD2QQ.RU_SAE.Z instruction to the active function.
+func (c *Context) VCVTPD2QQ_RU_SAE_Z(z, k, z1 operand.Op) {
+	if inst, err := x86.VCVTPD2QQ_RU_SAE_Z(z, k, z1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTPD2QQ_RU_SAE_Z: Convert Packed Double-Precision Floating-Point Values to Packed Quadword Integers (Round Towards Positive Infinity, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTPD2QQ.RU_SAE.Z zmm k zmm
+// Construct and append a VCVTPD2QQ.RU_SAE.Z instruction to the active function.
+// Operates on the global context.
+func VCVTPD2QQ_RU_SAE_Z(z, k, z1 operand.Op) { ctx.VCVTPD2QQ_RU_SAE_Z(z, k, z1) }
+
+// VCVTPD2QQ_RZ_SAE: Convert Packed Double-Precision Floating-Point Values to Packed Quadword Integers (Round Towards Zero).
+//
+// Forms:
+//
+// 	VCVTPD2QQ.RZ_SAE zmm k zmm
+// 	VCVTPD2QQ.RZ_SAE zmm zmm
+// Construct and append a VCVTPD2QQ.RZ_SAE instruction to the active function.
+func (c *Context) VCVTPD2QQ_RZ_SAE(ops ...operand.Op) {
+	if inst, err := x86.VCVTPD2QQ_RZ_SAE(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTPD2QQ_RZ_SAE: Convert Packed Double-Precision Floating-Point Values to Packed Quadword Integers (Round Towards Zero).
+//
+// Forms:
+//
+// 	VCVTPD2QQ.RZ_SAE zmm k zmm
+// 	VCVTPD2QQ.RZ_SAE zmm zmm
+// Construct and append a VCVTPD2QQ.RZ_SAE instruction to the active function.
+// Operates on the global context.
+func VCVTPD2QQ_RZ_SAE(ops ...operand.Op) { ctx.VCVTPD2QQ_RZ_SAE(ops...) }
+
+// VCVTPD2QQ_RZ_SAE_Z: Convert Packed Double-Precision Floating-Point Values to Packed Quadword Integers (Round Towards Zero, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTPD2QQ.RZ_SAE.Z zmm k zmm
+// Construct and append a VCVTPD2QQ.RZ_SAE.Z instruction to the active function.
+func (c *Context) VCVTPD2QQ_RZ_SAE_Z(z, k, z1 operand.Op) {
+	if inst, err := x86.VCVTPD2QQ_RZ_SAE_Z(z, k, z1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTPD2QQ_RZ_SAE_Z: Convert Packed Double-Precision Floating-Point Values to Packed Quadword Integers (Round Towards Zero, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTPD2QQ.RZ_SAE.Z zmm k zmm
+// Construct and append a VCVTPD2QQ.RZ_SAE.Z instruction to the active function.
+// Operates on the global context.
+func VCVTPD2QQ_RZ_SAE_Z(z, k, z1 operand.Op) { ctx.VCVTPD2QQ_RZ_SAE_Z(z, k, z1) }
+
+// VCVTPD2QQ_Z: Convert Packed Double-Precision Floating-Point Values to Packed Quadword Integers (Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTPD2QQ.Z m512/m64bcst k zmm
+// 	VCVTPD2QQ.Z zmm          k zmm
+// 	VCVTPD2QQ.Z m128/m64bcst k xmm
+// 	VCVTPD2QQ.Z m256/m64bcst k ymm
+// 	VCVTPD2QQ.Z xmm          k xmm
+// 	VCVTPD2QQ.Z ymm          k ymm
+// Construct and append a VCVTPD2QQ.Z instruction to the active function.
+func (c *Context) VCVTPD2QQ_Z(mxyz, k, xyz operand.Op) {
+	if inst, err := x86.VCVTPD2QQ_Z(mxyz, k, xyz); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTPD2QQ_Z: Convert Packed Double-Precision Floating-Point Values to Packed Quadword Integers (Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTPD2QQ.Z m512/m64bcst k zmm
+// 	VCVTPD2QQ.Z zmm          k zmm
+// 	VCVTPD2QQ.Z m128/m64bcst k xmm
+// 	VCVTPD2QQ.Z m256/m64bcst k ymm
+// 	VCVTPD2QQ.Z xmm          k xmm
+// 	VCVTPD2QQ.Z ymm          k ymm
+// Construct and append a VCVTPD2QQ.Z instruction to the active function.
+// Operates on the global context.
+func VCVTPD2QQ_Z(mxyz, k, xyz operand.Op) { ctx.VCVTPD2QQ_Z(mxyz, k, xyz) }
+
 // VCVTPD2UDQ: Convert Packed Double-Precision Floating-Point Values to Packed Unsigned Doubleword Integers.
 //
 // Forms:
@@ -21848,6 +23308,336 @@ func (c *Context) VCVTPD2UDQ_Z(mz, k, y operand.Op) {
 // Construct and append a VCVTPD2UDQ.Z instruction to the active function.
 // Operates on the global context.
 func VCVTPD2UDQ_Z(mz, k, y operand.Op) { ctx.VCVTPD2UDQ_Z(mz, k, y) }
+
+// VCVTPD2UQQ: Convert Packed Double-Precision Floating-Point Values to Packed Unsigned Quadword Integers.
+//
+// Forms:
+//
+// 	VCVTPD2UQQ m512/m64bcst k zmm
+// 	VCVTPD2UQQ m512/m64bcst zmm
+// 	VCVTPD2UQQ zmm          k zmm
+// 	VCVTPD2UQQ zmm          zmm
+// 	VCVTPD2UQQ m128/m64bcst k xmm
+// 	VCVTPD2UQQ m128/m64bcst xmm
+// 	VCVTPD2UQQ m256/m64bcst k ymm
+// 	VCVTPD2UQQ m256/m64bcst ymm
+// 	VCVTPD2UQQ xmm          k xmm
+// 	VCVTPD2UQQ xmm          xmm
+// 	VCVTPD2UQQ ymm          k ymm
+// 	VCVTPD2UQQ ymm          ymm
+// Construct and append a VCVTPD2UQQ instruction to the active function.
+func (c *Context) VCVTPD2UQQ(ops ...operand.Op) {
+	if inst, err := x86.VCVTPD2UQQ(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTPD2UQQ: Convert Packed Double-Precision Floating-Point Values to Packed Unsigned Quadword Integers.
+//
+// Forms:
+//
+// 	VCVTPD2UQQ m512/m64bcst k zmm
+// 	VCVTPD2UQQ m512/m64bcst zmm
+// 	VCVTPD2UQQ zmm          k zmm
+// 	VCVTPD2UQQ zmm          zmm
+// 	VCVTPD2UQQ m128/m64bcst k xmm
+// 	VCVTPD2UQQ m128/m64bcst xmm
+// 	VCVTPD2UQQ m256/m64bcst k ymm
+// 	VCVTPD2UQQ m256/m64bcst ymm
+// 	VCVTPD2UQQ xmm          k xmm
+// 	VCVTPD2UQQ xmm          xmm
+// 	VCVTPD2UQQ ymm          k ymm
+// 	VCVTPD2UQQ ymm          ymm
+// Construct and append a VCVTPD2UQQ instruction to the active function.
+// Operates on the global context.
+func VCVTPD2UQQ(ops ...operand.Op) { ctx.VCVTPD2UQQ(ops...) }
+
+// VCVTPD2UQQ_BCST: Convert Packed Double-Precision Floating-Point Values to Packed Unsigned Quadword Integers (Broadcast).
+//
+// Forms:
+//
+// 	VCVTPD2UQQ.BCST m512/m64bcst k zmm
+// 	VCVTPD2UQQ.BCST m512/m64bcst zmm
+// 	VCVTPD2UQQ.BCST m128/m64bcst k xmm
+// 	VCVTPD2UQQ.BCST m128/m64bcst xmm
+// 	VCVTPD2UQQ.BCST m256/m64bcst k ymm
+// 	VCVTPD2UQQ.BCST m256/m64bcst ymm
+// Construct and append a VCVTPD2UQQ.BCST instruction to the active function.
+func (c *Context) VCVTPD2UQQ_BCST(ops ...operand.Op) {
+	if inst, err := x86.VCVTPD2UQQ_BCST(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTPD2UQQ_BCST: Convert Packed Double-Precision Floating-Point Values to Packed Unsigned Quadword Integers (Broadcast).
+//
+// Forms:
+//
+// 	VCVTPD2UQQ.BCST m512/m64bcst k zmm
+// 	VCVTPD2UQQ.BCST m512/m64bcst zmm
+// 	VCVTPD2UQQ.BCST m128/m64bcst k xmm
+// 	VCVTPD2UQQ.BCST m128/m64bcst xmm
+// 	VCVTPD2UQQ.BCST m256/m64bcst k ymm
+// 	VCVTPD2UQQ.BCST m256/m64bcst ymm
+// Construct and append a VCVTPD2UQQ.BCST instruction to the active function.
+// Operates on the global context.
+func VCVTPD2UQQ_BCST(ops ...operand.Op) { ctx.VCVTPD2UQQ_BCST(ops...) }
+
+// VCVTPD2UQQ_BCST_Z: Convert Packed Double-Precision Floating-Point Values to Packed Unsigned Quadword Integers (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTPD2UQQ.BCST.Z m512/m64bcst k zmm
+// 	VCVTPD2UQQ.BCST.Z m128/m64bcst k xmm
+// 	VCVTPD2UQQ.BCST.Z m256/m64bcst k ymm
+// Construct and append a VCVTPD2UQQ.BCST.Z instruction to the active function.
+func (c *Context) VCVTPD2UQQ_BCST_Z(m, k, xyz operand.Op) {
+	if inst, err := x86.VCVTPD2UQQ_BCST_Z(m, k, xyz); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTPD2UQQ_BCST_Z: Convert Packed Double-Precision Floating-Point Values to Packed Unsigned Quadword Integers (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTPD2UQQ.BCST.Z m512/m64bcst k zmm
+// 	VCVTPD2UQQ.BCST.Z m128/m64bcst k xmm
+// 	VCVTPD2UQQ.BCST.Z m256/m64bcst k ymm
+// Construct and append a VCVTPD2UQQ.BCST.Z instruction to the active function.
+// Operates on the global context.
+func VCVTPD2UQQ_BCST_Z(m, k, xyz operand.Op) { ctx.VCVTPD2UQQ_BCST_Z(m, k, xyz) }
+
+// VCVTPD2UQQ_RD_SAE: Convert Packed Double-Precision Floating-Point Values to Packed Unsigned Quadword Integers (Round Towards Negative Infinity).
+//
+// Forms:
+//
+// 	VCVTPD2UQQ.RD_SAE zmm k zmm
+// 	VCVTPD2UQQ.RD_SAE zmm zmm
+// Construct and append a VCVTPD2UQQ.RD_SAE instruction to the active function.
+func (c *Context) VCVTPD2UQQ_RD_SAE(ops ...operand.Op) {
+	if inst, err := x86.VCVTPD2UQQ_RD_SAE(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTPD2UQQ_RD_SAE: Convert Packed Double-Precision Floating-Point Values to Packed Unsigned Quadword Integers (Round Towards Negative Infinity).
+//
+// Forms:
+//
+// 	VCVTPD2UQQ.RD_SAE zmm k zmm
+// 	VCVTPD2UQQ.RD_SAE zmm zmm
+// Construct and append a VCVTPD2UQQ.RD_SAE instruction to the active function.
+// Operates on the global context.
+func VCVTPD2UQQ_RD_SAE(ops ...operand.Op) { ctx.VCVTPD2UQQ_RD_SAE(ops...) }
+
+// VCVTPD2UQQ_RD_SAE_Z: Convert Packed Double-Precision Floating-Point Values to Packed Unsigned Quadword Integers (Round Towards Negative Infinity, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTPD2UQQ.RD_SAE.Z zmm k zmm
+// Construct and append a VCVTPD2UQQ.RD_SAE.Z instruction to the active function.
+func (c *Context) VCVTPD2UQQ_RD_SAE_Z(z, k, z1 operand.Op) {
+	if inst, err := x86.VCVTPD2UQQ_RD_SAE_Z(z, k, z1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTPD2UQQ_RD_SAE_Z: Convert Packed Double-Precision Floating-Point Values to Packed Unsigned Quadword Integers (Round Towards Negative Infinity, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTPD2UQQ.RD_SAE.Z zmm k zmm
+// Construct and append a VCVTPD2UQQ.RD_SAE.Z instruction to the active function.
+// Operates on the global context.
+func VCVTPD2UQQ_RD_SAE_Z(z, k, z1 operand.Op) { ctx.VCVTPD2UQQ_RD_SAE_Z(z, k, z1) }
+
+// VCVTPD2UQQ_RN_SAE: Convert Packed Double-Precision Floating-Point Values to Packed Unsigned Quadword Integers (Round Towards Nearest).
+//
+// Forms:
+//
+// 	VCVTPD2UQQ.RN_SAE zmm k zmm
+// 	VCVTPD2UQQ.RN_SAE zmm zmm
+// Construct and append a VCVTPD2UQQ.RN_SAE instruction to the active function.
+func (c *Context) VCVTPD2UQQ_RN_SAE(ops ...operand.Op) {
+	if inst, err := x86.VCVTPD2UQQ_RN_SAE(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTPD2UQQ_RN_SAE: Convert Packed Double-Precision Floating-Point Values to Packed Unsigned Quadword Integers (Round Towards Nearest).
+//
+// Forms:
+//
+// 	VCVTPD2UQQ.RN_SAE zmm k zmm
+// 	VCVTPD2UQQ.RN_SAE zmm zmm
+// Construct and append a VCVTPD2UQQ.RN_SAE instruction to the active function.
+// Operates on the global context.
+func VCVTPD2UQQ_RN_SAE(ops ...operand.Op) { ctx.VCVTPD2UQQ_RN_SAE(ops...) }
+
+// VCVTPD2UQQ_RN_SAE_Z: Convert Packed Double-Precision Floating-Point Values to Packed Unsigned Quadword Integers (Round Towards Nearest, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTPD2UQQ.RN_SAE.Z zmm k zmm
+// Construct and append a VCVTPD2UQQ.RN_SAE.Z instruction to the active function.
+func (c *Context) VCVTPD2UQQ_RN_SAE_Z(z, k, z1 operand.Op) {
+	if inst, err := x86.VCVTPD2UQQ_RN_SAE_Z(z, k, z1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTPD2UQQ_RN_SAE_Z: Convert Packed Double-Precision Floating-Point Values to Packed Unsigned Quadword Integers (Round Towards Nearest, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTPD2UQQ.RN_SAE.Z zmm k zmm
+// Construct and append a VCVTPD2UQQ.RN_SAE.Z instruction to the active function.
+// Operates on the global context.
+func VCVTPD2UQQ_RN_SAE_Z(z, k, z1 operand.Op) { ctx.VCVTPD2UQQ_RN_SAE_Z(z, k, z1) }
+
+// VCVTPD2UQQ_RU_SAE: Convert Packed Double-Precision Floating-Point Values to Packed Unsigned Quadword Integers (Round Towards Positive Infinity).
+//
+// Forms:
+//
+// 	VCVTPD2UQQ.RU_SAE zmm k zmm
+// 	VCVTPD2UQQ.RU_SAE zmm zmm
+// Construct and append a VCVTPD2UQQ.RU_SAE instruction to the active function.
+func (c *Context) VCVTPD2UQQ_RU_SAE(ops ...operand.Op) {
+	if inst, err := x86.VCVTPD2UQQ_RU_SAE(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTPD2UQQ_RU_SAE: Convert Packed Double-Precision Floating-Point Values to Packed Unsigned Quadword Integers (Round Towards Positive Infinity).
+//
+// Forms:
+//
+// 	VCVTPD2UQQ.RU_SAE zmm k zmm
+// 	VCVTPD2UQQ.RU_SAE zmm zmm
+// Construct and append a VCVTPD2UQQ.RU_SAE instruction to the active function.
+// Operates on the global context.
+func VCVTPD2UQQ_RU_SAE(ops ...operand.Op) { ctx.VCVTPD2UQQ_RU_SAE(ops...) }
+
+// VCVTPD2UQQ_RU_SAE_Z: Convert Packed Double-Precision Floating-Point Values to Packed Unsigned Quadword Integers (Round Towards Positive Infinity, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTPD2UQQ.RU_SAE.Z zmm k zmm
+// Construct and append a VCVTPD2UQQ.RU_SAE.Z instruction to the active function.
+func (c *Context) VCVTPD2UQQ_RU_SAE_Z(z, k, z1 operand.Op) {
+	if inst, err := x86.VCVTPD2UQQ_RU_SAE_Z(z, k, z1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTPD2UQQ_RU_SAE_Z: Convert Packed Double-Precision Floating-Point Values to Packed Unsigned Quadword Integers (Round Towards Positive Infinity, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTPD2UQQ.RU_SAE.Z zmm k zmm
+// Construct and append a VCVTPD2UQQ.RU_SAE.Z instruction to the active function.
+// Operates on the global context.
+func VCVTPD2UQQ_RU_SAE_Z(z, k, z1 operand.Op) { ctx.VCVTPD2UQQ_RU_SAE_Z(z, k, z1) }
+
+// VCVTPD2UQQ_RZ_SAE: Convert Packed Double-Precision Floating-Point Values to Packed Unsigned Quadword Integers (Round Towards Zero).
+//
+// Forms:
+//
+// 	VCVTPD2UQQ.RZ_SAE zmm k zmm
+// 	VCVTPD2UQQ.RZ_SAE zmm zmm
+// Construct and append a VCVTPD2UQQ.RZ_SAE instruction to the active function.
+func (c *Context) VCVTPD2UQQ_RZ_SAE(ops ...operand.Op) {
+	if inst, err := x86.VCVTPD2UQQ_RZ_SAE(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTPD2UQQ_RZ_SAE: Convert Packed Double-Precision Floating-Point Values to Packed Unsigned Quadword Integers (Round Towards Zero).
+//
+// Forms:
+//
+// 	VCVTPD2UQQ.RZ_SAE zmm k zmm
+// 	VCVTPD2UQQ.RZ_SAE zmm zmm
+// Construct and append a VCVTPD2UQQ.RZ_SAE instruction to the active function.
+// Operates on the global context.
+func VCVTPD2UQQ_RZ_SAE(ops ...operand.Op) { ctx.VCVTPD2UQQ_RZ_SAE(ops...) }
+
+// VCVTPD2UQQ_RZ_SAE_Z: Convert Packed Double-Precision Floating-Point Values to Packed Unsigned Quadword Integers (Round Towards Zero, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTPD2UQQ.RZ_SAE.Z zmm k zmm
+// Construct and append a VCVTPD2UQQ.RZ_SAE.Z instruction to the active function.
+func (c *Context) VCVTPD2UQQ_RZ_SAE_Z(z, k, z1 operand.Op) {
+	if inst, err := x86.VCVTPD2UQQ_RZ_SAE_Z(z, k, z1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTPD2UQQ_RZ_SAE_Z: Convert Packed Double-Precision Floating-Point Values to Packed Unsigned Quadword Integers (Round Towards Zero, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTPD2UQQ.RZ_SAE.Z zmm k zmm
+// Construct and append a VCVTPD2UQQ.RZ_SAE.Z instruction to the active function.
+// Operates on the global context.
+func VCVTPD2UQQ_RZ_SAE_Z(z, k, z1 operand.Op) { ctx.VCVTPD2UQQ_RZ_SAE_Z(z, k, z1) }
+
+// VCVTPD2UQQ_Z: Convert Packed Double-Precision Floating-Point Values to Packed Unsigned Quadword Integers (Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTPD2UQQ.Z m512/m64bcst k zmm
+// 	VCVTPD2UQQ.Z zmm          k zmm
+// 	VCVTPD2UQQ.Z m128/m64bcst k xmm
+// 	VCVTPD2UQQ.Z m256/m64bcst k ymm
+// 	VCVTPD2UQQ.Z xmm          k xmm
+// 	VCVTPD2UQQ.Z ymm          k ymm
+// Construct and append a VCVTPD2UQQ.Z instruction to the active function.
+func (c *Context) VCVTPD2UQQ_Z(mxyz, k, xyz operand.Op) {
+	if inst, err := x86.VCVTPD2UQQ_Z(mxyz, k, xyz); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTPD2UQQ_Z: Convert Packed Double-Precision Floating-Point Values to Packed Unsigned Quadword Integers (Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTPD2UQQ.Z m512/m64bcst k zmm
+// 	VCVTPD2UQQ.Z zmm          k zmm
+// 	VCVTPD2UQQ.Z m128/m64bcst k xmm
+// 	VCVTPD2UQQ.Z m256/m64bcst k ymm
+// 	VCVTPD2UQQ.Z xmm          k xmm
+// 	VCVTPD2UQQ.Z ymm          k ymm
+// Construct and append a VCVTPD2UQQ.Z instruction to the active function.
+// Operates on the global context.
+func VCVTPD2UQQ_Z(mxyz, k, xyz operand.Op) { ctx.VCVTPD2UQQ_Z(mxyz, k, xyz) }
 
 // VCVTPH2PS: Convert Half-Precision FP Values to Single-Precision FP Values.
 //
@@ -22625,6 +24415,336 @@ func (c *Context) VCVTPS2PH_Z(i, xyz, k, mxy operand.Op) {
 // Operates on the global context.
 func VCVTPS2PH_Z(i, xyz, k, mxy operand.Op) { ctx.VCVTPS2PH_Z(i, xyz, k, mxy) }
 
+// VCVTPS2QQ: Convert Packed Single Precision Floating-Point Values to Packed Singed Quadword Integer Values.
+//
+// Forms:
+//
+// 	VCVTPS2QQ m256/m32bcst k zmm
+// 	VCVTPS2QQ m256/m32bcst zmm
+// 	VCVTPS2QQ ymm          k zmm
+// 	VCVTPS2QQ ymm          zmm
+// 	VCVTPS2QQ m128/m32bcst k ymm
+// 	VCVTPS2QQ m128/m32bcst ymm
+// 	VCVTPS2QQ m64/m32bcst  k xmm
+// 	VCVTPS2QQ m64/m32bcst  xmm
+// 	VCVTPS2QQ xmm          k xmm
+// 	VCVTPS2QQ xmm          k ymm
+// 	VCVTPS2QQ xmm          xmm
+// 	VCVTPS2QQ xmm          ymm
+// Construct and append a VCVTPS2QQ instruction to the active function.
+func (c *Context) VCVTPS2QQ(ops ...operand.Op) {
+	if inst, err := x86.VCVTPS2QQ(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTPS2QQ: Convert Packed Single Precision Floating-Point Values to Packed Singed Quadword Integer Values.
+//
+// Forms:
+//
+// 	VCVTPS2QQ m256/m32bcst k zmm
+// 	VCVTPS2QQ m256/m32bcst zmm
+// 	VCVTPS2QQ ymm          k zmm
+// 	VCVTPS2QQ ymm          zmm
+// 	VCVTPS2QQ m128/m32bcst k ymm
+// 	VCVTPS2QQ m128/m32bcst ymm
+// 	VCVTPS2QQ m64/m32bcst  k xmm
+// 	VCVTPS2QQ m64/m32bcst  xmm
+// 	VCVTPS2QQ xmm          k xmm
+// 	VCVTPS2QQ xmm          k ymm
+// 	VCVTPS2QQ xmm          xmm
+// 	VCVTPS2QQ xmm          ymm
+// Construct and append a VCVTPS2QQ instruction to the active function.
+// Operates on the global context.
+func VCVTPS2QQ(ops ...operand.Op) { ctx.VCVTPS2QQ(ops...) }
+
+// VCVTPS2QQ_BCST: Convert Packed Single Precision Floating-Point Values to Packed Singed Quadword Integer Values (Broadcast).
+//
+// Forms:
+//
+// 	VCVTPS2QQ.BCST m256/m32bcst k zmm
+// 	VCVTPS2QQ.BCST m256/m32bcst zmm
+// 	VCVTPS2QQ.BCST m128/m32bcst k ymm
+// 	VCVTPS2QQ.BCST m128/m32bcst ymm
+// 	VCVTPS2QQ.BCST m64/m32bcst  k xmm
+// 	VCVTPS2QQ.BCST m64/m32bcst  xmm
+// Construct and append a VCVTPS2QQ.BCST instruction to the active function.
+func (c *Context) VCVTPS2QQ_BCST(ops ...operand.Op) {
+	if inst, err := x86.VCVTPS2QQ_BCST(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTPS2QQ_BCST: Convert Packed Single Precision Floating-Point Values to Packed Singed Quadword Integer Values (Broadcast).
+//
+// Forms:
+//
+// 	VCVTPS2QQ.BCST m256/m32bcst k zmm
+// 	VCVTPS2QQ.BCST m256/m32bcst zmm
+// 	VCVTPS2QQ.BCST m128/m32bcst k ymm
+// 	VCVTPS2QQ.BCST m128/m32bcst ymm
+// 	VCVTPS2QQ.BCST m64/m32bcst  k xmm
+// 	VCVTPS2QQ.BCST m64/m32bcst  xmm
+// Construct and append a VCVTPS2QQ.BCST instruction to the active function.
+// Operates on the global context.
+func VCVTPS2QQ_BCST(ops ...operand.Op) { ctx.VCVTPS2QQ_BCST(ops...) }
+
+// VCVTPS2QQ_BCST_Z: Convert Packed Single Precision Floating-Point Values to Packed Singed Quadword Integer Values (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTPS2QQ.BCST.Z m256/m32bcst k zmm
+// 	VCVTPS2QQ.BCST.Z m128/m32bcst k ymm
+// 	VCVTPS2QQ.BCST.Z m64/m32bcst  k xmm
+// Construct and append a VCVTPS2QQ.BCST.Z instruction to the active function.
+func (c *Context) VCVTPS2QQ_BCST_Z(m, k, xyz operand.Op) {
+	if inst, err := x86.VCVTPS2QQ_BCST_Z(m, k, xyz); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTPS2QQ_BCST_Z: Convert Packed Single Precision Floating-Point Values to Packed Singed Quadword Integer Values (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTPS2QQ.BCST.Z m256/m32bcst k zmm
+// 	VCVTPS2QQ.BCST.Z m128/m32bcst k ymm
+// 	VCVTPS2QQ.BCST.Z m64/m32bcst  k xmm
+// Construct and append a VCVTPS2QQ.BCST.Z instruction to the active function.
+// Operates on the global context.
+func VCVTPS2QQ_BCST_Z(m, k, xyz operand.Op) { ctx.VCVTPS2QQ_BCST_Z(m, k, xyz) }
+
+// VCVTPS2QQ_RD_SAE: Convert Packed Single Precision Floating-Point Values to Packed Singed Quadword Integer Values (Round Towards Negative Infinity).
+//
+// Forms:
+//
+// 	VCVTPS2QQ.RD_SAE ymm k zmm
+// 	VCVTPS2QQ.RD_SAE ymm zmm
+// Construct and append a VCVTPS2QQ.RD_SAE instruction to the active function.
+func (c *Context) VCVTPS2QQ_RD_SAE(ops ...operand.Op) {
+	if inst, err := x86.VCVTPS2QQ_RD_SAE(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTPS2QQ_RD_SAE: Convert Packed Single Precision Floating-Point Values to Packed Singed Quadword Integer Values (Round Towards Negative Infinity).
+//
+// Forms:
+//
+// 	VCVTPS2QQ.RD_SAE ymm k zmm
+// 	VCVTPS2QQ.RD_SAE ymm zmm
+// Construct and append a VCVTPS2QQ.RD_SAE instruction to the active function.
+// Operates on the global context.
+func VCVTPS2QQ_RD_SAE(ops ...operand.Op) { ctx.VCVTPS2QQ_RD_SAE(ops...) }
+
+// VCVTPS2QQ_RD_SAE_Z: Convert Packed Single Precision Floating-Point Values to Packed Singed Quadword Integer Values (Round Towards Negative Infinity, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTPS2QQ.RD_SAE.Z ymm k zmm
+// Construct and append a VCVTPS2QQ.RD_SAE.Z instruction to the active function.
+func (c *Context) VCVTPS2QQ_RD_SAE_Z(y, k, z operand.Op) {
+	if inst, err := x86.VCVTPS2QQ_RD_SAE_Z(y, k, z); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTPS2QQ_RD_SAE_Z: Convert Packed Single Precision Floating-Point Values to Packed Singed Quadword Integer Values (Round Towards Negative Infinity, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTPS2QQ.RD_SAE.Z ymm k zmm
+// Construct and append a VCVTPS2QQ.RD_SAE.Z instruction to the active function.
+// Operates on the global context.
+func VCVTPS2QQ_RD_SAE_Z(y, k, z operand.Op) { ctx.VCVTPS2QQ_RD_SAE_Z(y, k, z) }
+
+// VCVTPS2QQ_RN_SAE: Convert Packed Single Precision Floating-Point Values to Packed Singed Quadword Integer Values (Round Towards Nearest).
+//
+// Forms:
+//
+// 	VCVTPS2QQ.RN_SAE ymm k zmm
+// 	VCVTPS2QQ.RN_SAE ymm zmm
+// Construct and append a VCVTPS2QQ.RN_SAE instruction to the active function.
+func (c *Context) VCVTPS2QQ_RN_SAE(ops ...operand.Op) {
+	if inst, err := x86.VCVTPS2QQ_RN_SAE(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTPS2QQ_RN_SAE: Convert Packed Single Precision Floating-Point Values to Packed Singed Quadword Integer Values (Round Towards Nearest).
+//
+// Forms:
+//
+// 	VCVTPS2QQ.RN_SAE ymm k zmm
+// 	VCVTPS2QQ.RN_SAE ymm zmm
+// Construct and append a VCVTPS2QQ.RN_SAE instruction to the active function.
+// Operates on the global context.
+func VCVTPS2QQ_RN_SAE(ops ...operand.Op) { ctx.VCVTPS2QQ_RN_SAE(ops...) }
+
+// VCVTPS2QQ_RN_SAE_Z: Convert Packed Single Precision Floating-Point Values to Packed Singed Quadword Integer Values (Round Towards Nearest, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTPS2QQ.RN_SAE.Z ymm k zmm
+// Construct and append a VCVTPS2QQ.RN_SAE.Z instruction to the active function.
+func (c *Context) VCVTPS2QQ_RN_SAE_Z(y, k, z operand.Op) {
+	if inst, err := x86.VCVTPS2QQ_RN_SAE_Z(y, k, z); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTPS2QQ_RN_SAE_Z: Convert Packed Single Precision Floating-Point Values to Packed Singed Quadword Integer Values (Round Towards Nearest, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTPS2QQ.RN_SAE.Z ymm k zmm
+// Construct and append a VCVTPS2QQ.RN_SAE.Z instruction to the active function.
+// Operates on the global context.
+func VCVTPS2QQ_RN_SAE_Z(y, k, z operand.Op) { ctx.VCVTPS2QQ_RN_SAE_Z(y, k, z) }
+
+// VCVTPS2QQ_RU_SAE: Convert Packed Single Precision Floating-Point Values to Packed Singed Quadword Integer Values (Round Towards Positive Infinity).
+//
+// Forms:
+//
+// 	VCVTPS2QQ.RU_SAE ymm k zmm
+// 	VCVTPS2QQ.RU_SAE ymm zmm
+// Construct and append a VCVTPS2QQ.RU_SAE instruction to the active function.
+func (c *Context) VCVTPS2QQ_RU_SAE(ops ...operand.Op) {
+	if inst, err := x86.VCVTPS2QQ_RU_SAE(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTPS2QQ_RU_SAE: Convert Packed Single Precision Floating-Point Values to Packed Singed Quadword Integer Values (Round Towards Positive Infinity).
+//
+// Forms:
+//
+// 	VCVTPS2QQ.RU_SAE ymm k zmm
+// 	VCVTPS2QQ.RU_SAE ymm zmm
+// Construct and append a VCVTPS2QQ.RU_SAE instruction to the active function.
+// Operates on the global context.
+func VCVTPS2QQ_RU_SAE(ops ...operand.Op) { ctx.VCVTPS2QQ_RU_SAE(ops...) }
+
+// VCVTPS2QQ_RU_SAE_Z: Convert Packed Single Precision Floating-Point Values to Packed Singed Quadword Integer Values (Round Towards Positive Infinity, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTPS2QQ.RU_SAE.Z ymm k zmm
+// Construct and append a VCVTPS2QQ.RU_SAE.Z instruction to the active function.
+func (c *Context) VCVTPS2QQ_RU_SAE_Z(y, k, z operand.Op) {
+	if inst, err := x86.VCVTPS2QQ_RU_SAE_Z(y, k, z); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTPS2QQ_RU_SAE_Z: Convert Packed Single Precision Floating-Point Values to Packed Singed Quadword Integer Values (Round Towards Positive Infinity, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTPS2QQ.RU_SAE.Z ymm k zmm
+// Construct and append a VCVTPS2QQ.RU_SAE.Z instruction to the active function.
+// Operates on the global context.
+func VCVTPS2QQ_RU_SAE_Z(y, k, z operand.Op) { ctx.VCVTPS2QQ_RU_SAE_Z(y, k, z) }
+
+// VCVTPS2QQ_RZ_SAE: Convert Packed Single Precision Floating-Point Values to Packed Singed Quadword Integer Values (Round Towards Zero).
+//
+// Forms:
+//
+// 	VCVTPS2QQ.RZ_SAE ymm k zmm
+// 	VCVTPS2QQ.RZ_SAE ymm zmm
+// Construct and append a VCVTPS2QQ.RZ_SAE instruction to the active function.
+func (c *Context) VCVTPS2QQ_RZ_SAE(ops ...operand.Op) {
+	if inst, err := x86.VCVTPS2QQ_RZ_SAE(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTPS2QQ_RZ_SAE: Convert Packed Single Precision Floating-Point Values to Packed Singed Quadword Integer Values (Round Towards Zero).
+//
+// Forms:
+//
+// 	VCVTPS2QQ.RZ_SAE ymm k zmm
+// 	VCVTPS2QQ.RZ_SAE ymm zmm
+// Construct and append a VCVTPS2QQ.RZ_SAE instruction to the active function.
+// Operates on the global context.
+func VCVTPS2QQ_RZ_SAE(ops ...operand.Op) { ctx.VCVTPS2QQ_RZ_SAE(ops...) }
+
+// VCVTPS2QQ_RZ_SAE_Z: Convert Packed Single Precision Floating-Point Values to Packed Singed Quadword Integer Values (Round Towards Zero, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTPS2QQ.RZ_SAE.Z ymm k zmm
+// Construct and append a VCVTPS2QQ.RZ_SAE.Z instruction to the active function.
+func (c *Context) VCVTPS2QQ_RZ_SAE_Z(y, k, z operand.Op) {
+	if inst, err := x86.VCVTPS2QQ_RZ_SAE_Z(y, k, z); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTPS2QQ_RZ_SAE_Z: Convert Packed Single Precision Floating-Point Values to Packed Singed Quadword Integer Values (Round Towards Zero, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTPS2QQ.RZ_SAE.Z ymm k zmm
+// Construct and append a VCVTPS2QQ.RZ_SAE.Z instruction to the active function.
+// Operates on the global context.
+func VCVTPS2QQ_RZ_SAE_Z(y, k, z operand.Op) { ctx.VCVTPS2QQ_RZ_SAE_Z(y, k, z) }
+
+// VCVTPS2QQ_Z: Convert Packed Single Precision Floating-Point Values to Packed Singed Quadword Integer Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTPS2QQ.Z m256/m32bcst k zmm
+// 	VCVTPS2QQ.Z ymm          k zmm
+// 	VCVTPS2QQ.Z m128/m32bcst k ymm
+// 	VCVTPS2QQ.Z m64/m32bcst  k xmm
+// 	VCVTPS2QQ.Z xmm          k xmm
+// 	VCVTPS2QQ.Z xmm          k ymm
+// Construct and append a VCVTPS2QQ.Z instruction to the active function.
+func (c *Context) VCVTPS2QQ_Z(mxy, k, xyz operand.Op) {
+	if inst, err := x86.VCVTPS2QQ_Z(mxy, k, xyz); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTPS2QQ_Z: Convert Packed Single Precision Floating-Point Values to Packed Singed Quadword Integer Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTPS2QQ.Z m256/m32bcst k zmm
+// 	VCVTPS2QQ.Z ymm          k zmm
+// 	VCVTPS2QQ.Z m128/m32bcst k ymm
+// 	VCVTPS2QQ.Z m64/m32bcst  k xmm
+// 	VCVTPS2QQ.Z xmm          k xmm
+// 	VCVTPS2QQ.Z xmm          k ymm
+// Construct and append a VCVTPS2QQ.Z instruction to the active function.
+// Operates on the global context.
+func VCVTPS2QQ_Z(mxy, k, xyz operand.Op) { ctx.VCVTPS2QQ_Z(mxy, k, xyz) }
+
 // VCVTPS2UDQ: Convert Packed Single-Precision Floating-Point Values to Packed Unsigned Doubleword Integer Values.
 //
 // Forms:
@@ -22954,6 +25074,1164 @@ func (c *Context) VCVTPS2UDQ_Z(mxyz, k, xyz operand.Op) {
 // Construct and append a VCVTPS2UDQ.Z instruction to the active function.
 // Operates on the global context.
 func VCVTPS2UDQ_Z(mxyz, k, xyz operand.Op) { ctx.VCVTPS2UDQ_Z(mxyz, k, xyz) }
+
+// VCVTPS2UQQ: Convert Packed Single Precision Floating-Point Values to Packed Unsigned Quadword Integer Values.
+//
+// Forms:
+//
+// 	VCVTPS2UQQ m256/m32bcst k zmm
+// 	VCVTPS2UQQ m256/m32bcst zmm
+// 	VCVTPS2UQQ ymm          k zmm
+// 	VCVTPS2UQQ ymm          zmm
+// 	VCVTPS2UQQ m128/m32bcst k ymm
+// 	VCVTPS2UQQ m128/m32bcst ymm
+// 	VCVTPS2UQQ m64/m32bcst  k xmm
+// 	VCVTPS2UQQ m64/m32bcst  xmm
+// 	VCVTPS2UQQ xmm          k xmm
+// 	VCVTPS2UQQ xmm          k ymm
+// 	VCVTPS2UQQ xmm          xmm
+// 	VCVTPS2UQQ xmm          ymm
+// Construct and append a VCVTPS2UQQ instruction to the active function.
+func (c *Context) VCVTPS2UQQ(ops ...operand.Op) {
+	if inst, err := x86.VCVTPS2UQQ(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTPS2UQQ: Convert Packed Single Precision Floating-Point Values to Packed Unsigned Quadword Integer Values.
+//
+// Forms:
+//
+// 	VCVTPS2UQQ m256/m32bcst k zmm
+// 	VCVTPS2UQQ m256/m32bcst zmm
+// 	VCVTPS2UQQ ymm          k zmm
+// 	VCVTPS2UQQ ymm          zmm
+// 	VCVTPS2UQQ m128/m32bcst k ymm
+// 	VCVTPS2UQQ m128/m32bcst ymm
+// 	VCVTPS2UQQ m64/m32bcst  k xmm
+// 	VCVTPS2UQQ m64/m32bcst  xmm
+// 	VCVTPS2UQQ xmm          k xmm
+// 	VCVTPS2UQQ xmm          k ymm
+// 	VCVTPS2UQQ xmm          xmm
+// 	VCVTPS2UQQ xmm          ymm
+// Construct and append a VCVTPS2UQQ instruction to the active function.
+// Operates on the global context.
+func VCVTPS2UQQ(ops ...operand.Op) { ctx.VCVTPS2UQQ(ops...) }
+
+// VCVTPS2UQQ_BCST: Convert Packed Single Precision Floating-Point Values to Packed Unsigned Quadword Integer Values (Broadcast).
+//
+// Forms:
+//
+// 	VCVTPS2UQQ.BCST m256/m32bcst k zmm
+// 	VCVTPS2UQQ.BCST m256/m32bcst zmm
+// 	VCVTPS2UQQ.BCST m128/m32bcst k ymm
+// 	VCVTPS2UQQ.BCST m128/m32bcst ymm
+// 	VCVTPS2UQQ.BCST m64/m32bcst  k xmm
+// 	VCVTPS2UQQ.BCST m64/m32bcst  xmm
+// Construct and append a VCVTPS2UQQ.BCST instruction to the active function.
+func (c *Context) VCVTPS2UQQ_BCST(ops ...operand.Op) {
+	if inst, err := x86.VCVTPS2UQQ_BCST(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTPS2UQQ_BCST: Convert Packed Single Precision Floating-Point Values to Packed Unsigned Quadword Integer Values (Broadcast).
+//
+// Forms:
+//
+// 	VCVTPS2UQQ.BCST m256/m32bcst k zmm
+// 	VCVTPS2UQQ.BCST m256/m32bcst zmm
+// 	VCVTPS2UQQ.BCST m128/m32bcst k ymm
+// 	VCVTPS2UQQ.BCST m128/m32bcst ymm
+// 	VCVTPS2UQQ.BCST m64/m32bcst  k xmm
+// 	VCVTPS2UQQ.BCST m64/m32bcst  xmm
+// Construct and append a VCVTPS2UQQ.BCST instruction to the active function.
+// Operates on the global context.
+func VCVTPS2UQQ_BCST(ops ...operand.Op) { ctx.VCVTPS2UQQ_BCST(ops...) }
+
+// VCVTPS2UQQ_BCST_Z: Convert Packed Single Precision Floating-Point Values to Packed Unsigned Quadword Integer Values (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTPS2UQQ.BCST.Z m256/m32bcst k zmm
+// 	VCVTPS2UQQ.BCST.Z m128/m32bcst k ymm
+// 	VCVTPS2UQQ.BCST.Z m64/m32bcst  k xmm
+// Construct and append a VCVTPS2UQQ.BCST.Z instruction to the active function.
+func (c *Context) VCVTPS2UQQ_BCST_Z(m, k, xyz operand.Op) {
+	if inst, err := x86.VCVTPS2UQQ_BCST_Z(m, k, xyz); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTPS2UQQ_BCST_Z: Convert Packed Single Precision Floating-Point Values to Packed Unsigned Quadword Integer Values (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTPS2UQQ.BCST.Z m256/m32bcst k zmm
+// 	VCVTPS2UQQ.BCST.Z m128/m32bcst k ymm
+// 	VCVTPS2UQQ.BCST.Z m64/m32bcst  k xmm
+// Construct and append a VCVTPS2UQQ.BCST.Z instruction to the active function.
+// Operates on the global context.
+func VCVTPS2UQQ_BCST_Z(m, k, xyz operand.Op) { ctx.VCVTPS2UQQ_BCST_Z(m, k, xyz) }
+
+// VCVTPS2UQQ_RD_SAE: Convert Packed Single Precision Floating-Point Values to Packed Unsigned Quadword Integer Values (Round Towards Negative Infinity).
+//
+// Forms:
+//
+// 	VCVTPS2UQQ.RD_SAE ymm k zmm
+// 	VCVTPS2UQQ.RD_SAE ymm zmm
+// Construct and append a VCVTPS2UQQ.RD_SAE instruction to the active function.
+func (c *Context) VCVTPS2UQQ_RD_SAE(ops ...operand.Op) {
+	if inst, err := x86.VCVTPS2UQQ_RD_SAE(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTPS2UQQ_RD_SAE: Convert Packed Single Precision Floating-Point Values to Packed Unsigned Quadword Integer Values (Round Towards Negative Infinity).
+//
+// Forms:
+//
+// 	VCVTPS2UQQ.RD_SAE ymm k zmm
+// 	VCVTPS2UQQ.RD_SAE ymm zmm
+// Construct and append a VCVTPS2UQQ.RD_SAE instruction to the active function.
+// Operates on the global context.
+func VCVTPS2UQQ_RD_SAE(ops ...operand.Op) { ctx.VCVTPS2UQQ_RD_SAE(ops...) }
+
+// VCVTPS2UQQ_RD_SAE_Z: Convert Packed Single Precision Floating-Point Values to Packed Unsigned Quadword Integer Values (Round Towards Negative Infinity, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTPS2UQQ.RD_SAE.Z ymm k zmm
+// Construct and append a VCVTPS2UQQ.RD_SAE.Z instruction to the active function.
+func (c *Context) VCVTPS2UQQ_RD_SAE_Z(y, k, z operand.Op) {
+	if inst, err := x86.VCVTPS2UQQ_RD_SAE_Z(y, k, z); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTPS2UQQ_RD_SAE_Z: Convert Packed Single Precision Floating-Point Values to Packed Unsigned Quadword Integer Values (Round Towards Negative Infinity, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTPS2UQQ.RD_SAE.Z ymm k zmm
+// Construct and append a VCVTPS2UQQ.RD_SAE.Z instruction to the active function.
+// Operates on the global context.
+func VCVTPS2UQQ_RD_SAE_Z(y, k, z operand.Op) { ctx.VCVTPS2UQQ_RD_SAE_Z(y, k, z) }
+
+// VCVTPS2UQQ_RN_SAE: Convert Packed Single Precision Floating-Point Values to Packed Unsigned Quadword Integer Values (Round Towards Nearest).
+//
+// Forms:
+//
+// 	VCVTPS2UQQ.RN_SAE ymm k zmm
+// 	VCVTPS2UQQ.RN_SAE ymm zmm
+// Construct and append a VCVTPS2UQQ.RN_SAE instruction to the active function.
+func (c *Context) VCVTPS2UQQ_RN_SAE(ops ...operand.Op) {
+	if inst, err := x86.VCVTPS2UQQ_RN_SAE(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTPS2UQQ_RN_SAE: Convert Packed Single Precision Floating-Point Values to Packed Unsigned Quadword Integer Values (Round Towards Nearest).
+//
+// Forms:
+//
+// 	VCVTPS2UQQ.RN_SAE ymm k zmm
+// 	VCVTPS2UQQ.RN_SAE ymm zmm
+// Construct and append a VCVTPS2UQQ.RN_SAE instruction to the active function.
+// Operates on the global context.
+func VCVTPS2UQQ_RN_SAE(ops ...operand.Op) { ctx.VCVTPS2UQQ_RN_SAE(ops...) }
+
+// VCVTPS2UQQ_RN_SAE_Z: Convert Packed Single Precision Floating-Point Values to Packed Unsigned Quadword Integer Values (Round Towards Nearest, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTPS2UQQ.RN_SAE.Z ymm k zmm
+// Construct and append a VCVTPS2UQQ.RN_SAE.Z instruction to the active function.
+func (c *Context) VCVTPS2UQQ_RN_SAE_Z(y, k, z operand.Op) {
+	if inst, err := x86.VCVTPS2UQQ_RN_SAE_Z(y, k, z); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTPS2UQQ_RN_SAE_Z: Convert Packed Single Precision Floating-Point Values to Packed Unsigned Quadword Integer Values (Round Towards Nearest, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTPS2UQQ.RN_SAE.Z ymm k zmm
+// Construct and append a VCVTPS2UQQ.RN_SAE.Z instruction to the active function.
+// Operates on the global context.
+func VCVTPS2UQQ_RN_SAE_Z(y, k, z operand.Op) { ctx.VCVTPS2UQQ_RN_SAE_Z(y, k, z) }
+
+// VCVTPS2UQQ_RU_SAE: Convert Packed Single Precision Floating-Point Values to Packed Unsigned Quadword Integer Values (Round Towards Positive Infinity).
+//
+// Forms:
+//
+// 	VCVTPS2UQQ.RU_SAE ymm k zmm
+// 	VCVTPS2UQQ.RU_SAE ymm zmm
+// Construct and append a VCVTPS2UQQ.RU_SAE instruction to the active function.
+func (c *Context) VCVTPS2UQQ_RU_SAE(ops ...operand.Op) {
+	if inst, err := x86.VCVTPS2UQQ_RU_SAE(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTPS2UQQ_RU_SAE: Convert Packed Single Precision Floating-Point Values to Packed Unsigned Quadword Integer Values (Round Towards Positive Infinity).
+//
+// Forms:
+//
+// 	VCVTPS2UQQ.RU_SAE ymm k zmm
+// 	VCVTPS2UQQ.RU_SAE ymm zmm
+// Construct and append a VCVTPS2UQQ.RU_SAE instruction to the active function.
+// Operates on the global context.
+func VCVTPS2UQQ_RU_SAE(ops ...operand.Op) { ctx.VCVTPS2UQQ_RU_SAE(ops...) }
+
+// VCVTPS2UQQ_RU_SAE_Z: Convert Packed Single Precision Floating-Point Values to Packed Unsigned Quadword Integer Values (Round Towards Positive Infinity, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTPS2UQQ.RU_SAE.Z ymm k zmm
+// Construct and append a VCVTPS2UQQ.RU_SAE.Z instruction to the active function.
+func (c *Context) VCVTPS2UQQ_RU_SAE_Z(y, k, z operand.Op) {
+	if inst, err := x86.VCVTPS2UQQ_RU_SAE_Z(y, k, z); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTPS2UQQ_RU_SAE_Z: Convert Packed Single Precision Floating-Point Values to Packed Unsigned Quadword Integer Values (Round Towards Positive Infinity, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTPS2UQQ.RU_SAE.Z ymm k zmm
+// Construct and append a VCVTPS2UQQ.RU_SAE.Z instruction to the active function.
+// Operates on the global context.
+func VCVTPS2UQQ_RU_SAE_Z(y, k, z operand.Op) { ctx.VCVTPS2UQQ_RU_SAE_Z(y, k, z) }
+
+// VCVTPS2UQQ_RZ_SAE: Convert Packed Single Precision Floating-Point Values to Packed Unsigned Quadword Integer Values (Round Towards Zero).
+//
+// Forms:
+//
+// 	VCVTPS2UQQ.RZ_SAE ymm k zmm
+// 	VCVTPS2UQQ.RZ_SAE ymm zmm
+// Construct and append a VCVTPS2UQQ.RZ_SAE instruction to the active function.
+func (c *Context) VCVTPS2UQQ_RZ_SAE(ops ...operand.Op) {
+	if inst, err := x86.VCVTPS2UQQ_RZ_SAE(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTPS2UQQ_RZ_SAE: Convert Packed Single Precision Floating-Point Values to Packed Unsigned Quadword Integer Values (Round Towards Zero).
+//
+// Forms:
+//
+// 	VCVTPS2UQQ.RZ_SAE ymm k zmm
+// 	VCVTPS2UQQ.RZ_SAE ymm zmm
+// Construct and append a VCVTPS2UQQ.RZ_SAE instruction to the active function.
+// Operates on the global context.
+func VCVTPS2UQQ_RZ_SAE(ops ...operand.Op) { ctx.VCVTPS2UQQ_RZ_SAE(ops...) }
+
+// VCVTPS2UQQ_RZ_SAE_Z: Convert Packed Single Precision Floating-Point Values to Packed Unsigned Quadword Integer Values (Round Towards Zero, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTPS2UQQ.RZ_SAE.Z ymm k zmm
+// Construct and append a VCVTPS2UQQ.RZ_SAE.Z instruction to the active function.
+func (c *Context) VCVTPS2UQQ_RZ_SAE_Z(y, k, z operand.Op) {
+	if inst, err := x86.VCVTPS2UQQ_RZ_SAE_Z(y, k, z); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTPS2UQQ_RZ_SAE_Z: Convert Packed Single Precision Floating-Point Values to Packed Unsigned Quadword Integer Values (Round Towards Zero, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTPS2UQQ.RZ_SAE.Z ymm k zmm
+// Construct and append a VCVTPS2UQQ.RZ_SAE.Z instruction to the active function.
+// Operates on the global context.
+func VCVTPS2UQQ_RZ_SAE_Z(y, k, z operand.Op) { ctx.VCVTPS2UQQ_RZ_SAE_Z(y, k, z) }
+
+// VCVTPS2UQQ_Z: Convert Packed Single Precision Floating-Point Values to Packed Unsigned Quadword Integer Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTPS2UQQ.Z m256/m32bcst k zmm
+// 	VCVTPS2UQQ.Z ymm          k zmm
+// 	VCVTPS2UQQ.Z m128/m32bcst k ymm
+// 	VCVTPS2UQQ.Z m64/m32bcst  k xmm
+// 	VCVTPS2UQQ.Z xmm          k xmm
+// 	VCVTPS2UQQ.Z xmm          k ymm
+// Construct and append a VCVTPS2UQQ.Z instruction to the active function.
+func (c *Context) VCVTPS2UQQ_Z(mxy, k, xyz operand.Op) {
+	if inst, err := x86.VCVTPS2UQQ_Z(mxy, k, xyz); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTPS2UQQ_Z: Convert Packed Single Precision Floating-Point Values to Packed Unsigned Quadword Integer Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTPS2UQQ.Z m256/m32bcst k zmm
+// 	VCVTPS2UQQ.Z ymm          k zmm
+// 	VCVTPS2UQQ.Z m128/m32bcst k ymm
+// 	VCVTPS2UQQ.Z m64/m32bcst  k xmm
+// 	VCVTPS2UQQ.Z xmm          k xmm
+// 	VCVTPS2UQQ.Z xmm          k ymm
+// Construct and append a VCVTPS2UQQ.Z instruction to the active function.
+// Operates on the global context.
+func VCVTPS2UQQ_Z(mxy, k, xyz operand.Op) { ctx.VCVTPS2UQQ_Z(mxy, k, xyz) }
+
+// VCVTQQ2PD: Convert Packed Quadword Integers to Packed Double-Precision Floating-Point Values.
+//
+// Forms:
+//
+// 	VCVTQQ2PD m512/m64bcst k zmm
+// 	VCVTQQ2PD m512/m64bcst zmm
+// 	VCVTQQ2PD zmm          k zmm
+// 	VCVTQQ2PD zmm          zmm
+// 	VCVTQQ2PD m128/m64bcst k xmm
+// 	VCVTQQ2PD m128/m64bcst xmm
+// 	VCVTQQ2PD m256/m64bcst k ymm
+// 	VCVTQQ2PD m256/m64bcst ymm
+// 	VCVTQQ2PD xmm          k xmm
+// 	VCVTQQ2PD xmm          xmm
+// 	VCVTQQ2PD ymm          k ymm
+// 	VCVTQQ2PD ymm          ymm
+// Construct and append a VCVTQQ2PD instruction to the active function.
+func (c *Context) VCVTQQ2PD(ops ...operand.Op) {
+	if inst, err := x86.VCVTQQ2PD(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTQQ2PD: Convert Packed Quadword Integers to Packed Double-Precision Floating-Point Values.
+//
+// Forms:
+//
+// 	VCVTQQ2PD m512/m64bcst k zmm
+// 	VCVTQQ2PD m512/m64bcst zmm
+// 	VCVTQQ2PD zmm          k zmm
+// 	VCVTQQ2PD zmm          zmm
+// 	VCVTQQ2PD m128/m64bcst k xmm
+// 	VCVTQQ2PD m128/m64bcst xmm
+// 	VCVTQQ2PD m256/m64bcst k ymm
+// 	VCVTQQ2PD m256/m64bcst ymm
+// 	VCVTQQ2PD xmm          k xmm
+// 	VCVTQQ2PD xmm          xmm
+// 	VCVTQQ2PD ymm          k ymm
+// 	VCVTQQ2PD ymm          ymm
+// Construct and append a VCVTQQ2PD instruction to the active function.
+// Operates on the global context.
+func VCVTQQ2PD(ops ...operand.Op) { ctx.VCVTQQ2PD(ops...) }
+
+// VCVTQQ2PD_BCST: Convert Packed Quadword Integers to Packed Double-Precision Floating-Point Values (Broadcast).
+//
+// Forms:
+//
+// 	VCVTQQ2PD.BCST m512/m64bcst k zmm
+// 	VCVTQQ2PD.BCST m512/m64bcst zmm
+// 	VCVTQQ2PD.BCST m128/m64bcst k xmm
+// 	VCVTQQ2PD.BCST m128/m64bcst xmm
+// 	VCVTQQ2PD.BCST m256/m64bcst k ymm
+// 	VCVTQQ2PD.BCST m256/m64bcst ymm
+// Construct and append a VCVTQQ2PD.BCST instruction to the active function.
+func (c *Context) VCVTQQ2PD_BCST(ops ...operand.Op) {
+	if inst, err := x86.VCVTQQ2PD_BCST(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTQQ2PD_BCST: Convert Packed Quadword Integers to Packed Double-Precision Floating-Point Values (Broadcast).
+//
+// Forms:
+//
+// 	VCVTQQ2PD.BCST m512/m64bcst k zmm
+// 	VCVTQQ2PD.BCST m512/m64bcst zmm
+// 	VCVTQQ2PD.BCST m128/m64bcst k xmm
+// 	VCVTQQ2PD.BCST m128/m64bcst xmm
+// 	VCVTQQ2PD.BCST m256/m64bcst k ymm
+// 	VCVTQQ2PD.BCST m256/m64bcst ymm
+// Construct and append a VCVTQQ2PD.BCST instruction to the active function.
+// Operates on the global context.
+func VCVTQQ2PD_BCST(ops ...operand.Op) { ctx.VCVTQQ2PD_BCST(ops...) }
+
+// VCVTQQ2PD_BCST_Z: Convert Packed Quadword Integers to Packed Double-Precision Floating-Point Values (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTQQ2PD.BCST.Z m512/m64bcst k zmm
+// 	VCVTQQ2PD.BCST.Z m128/m64bcst k xmm
+// 	VCVTQQ2PD.BCST.Z m256/m64bcst k ymm
+// Construct and append a VCVTQQ2PD.BCST.Z instruction to the active function.
+func (c *Context) VCVTQQ2PD_BCST_Z(m, k, xyz operand.Op) {
+	if inst, err := x86.VCVTQQ2PD_BCST_Z(m, k, xyz); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTQQ2PD_BCST_Z: Convert Packed Quadword Integers to Packed Double-Precision Floating-Point Values (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTQQ2PD.BCST.Z m512/m64bcst k zmm
+// 	VCVTQQ2PD.BCST.Z m128/m64bcst k xmm
+// 	VCVTQQ2PD.BCST.Z m256/m64bcst k ymm
+// Construct and append a VCVTQQ2PD.BCST.Z instruction to the active function.
+// Operates on the global context.
+func VCVTQQ2PD_BCST_Z(m, k, xyz operand.Op) { ctx.VCVTQQ2PD_BCST_Z(m, k, xyz) }
+
+// VCVTQQ2PD_RD_SAE: Convert Packed Quadword Integers to Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity).
+//
+// Forms:
+//
+// 	VCVTQQ2PD.RD_SAE zmm k zmm
+// 	VCVTQQ2PD.RD_SAE zmm zmm
+// Construct and append a VCVTQQ2PD.RD_SAE instruction to the active function.
+func (c *Context) VCVTQQ2PD_RD_SAE(ops ...operand.Op) {
+	if inst, err := x86.VCVTQQ2PD_RD_SAE(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTQQ2PD_RD_SAE: Convert Packed Quadword Integers to Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity).
+//
+// Forms:
+//
+// 	VCVTQQ2PD.RD_SAE zmm k zmm
+// 	VCVTQQ2PD.RD_SAE zmm zmm
+// Construct and append a VCVTQQ2PD.RD_SAE instruction to the active function.
+// Operates on the global context.
+func VCVTQQ2PD_RD_SAE(ops ...operand.Op) { ctx.VCVTQQ2PD_RD_SAE(ops...) }
+
+// VCVTQQ2PD_RD_SAE_Z: Convert Packed Quadword Integers to Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTQQ2PD.RD_SAE.Z zmm k zmm
+// Construct and append a VCVTQQ2PD.RD_SAE.Z instruction to the active function.
+func (c *Context) VCVTQQ2PD_RD_SAE_Z(z, k, z1 operand.Op) {
+	if inst, err := x86.VCVTQQ2PD_RD_SAE_Z(z, k, z1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTQQ2PD_RD_SAE_Z: Convert Packed Quadword Integers to Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTQQ2PD.RD_SAE.Z zmm k zmm
+// Construct and append a VCVTQQ2PD.RD_SAE.Z instruction to the active function.
+// Operates on the global context.
+func VCVTQQ2PD_RD_SAE_Z(z, k, z1 operand.Op) { ctx.VCVTQQ2PD_RD_SAE_Z(z, k, z1) }
+
+// VCVTQQ2PD_RN_SAE: Convert Packed Quadword Integers to Packed Double-Precision Floating-Point Values (Round Towards Nearest).
+//
+// Forms:
+//
+// 	VCVTQQ2PD.RN_SAE zmm k zmm
+// 	VCVTQQ2PD.RN_SAE zmm zmm
+// Construct and append a VCVTQQ2PD.RN_SAE instruction to the active function.
+func (c *Context) VCVTQQ2PD_RN_SAE(ops ...operand.Op) {
+	if inst, err := x86.VCVTQQ2PD_RN_SAE(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTQQ2PD_RN_SAE: Convert Packed Quadword Integers to Packed Double-Precision Floating-Point Values (Round Towards Nearest).
+//
+// Forms:
+//
+// 	VCVTQQ2PD.RN_SAE zmm k zmm
+// 	VCVTQQ2PD.RN_SAE zmm zmm
+// Construct and append a VCVTQQ2PD.RN_SAE instruction to the active function.
+// Operates on the global context.
+func VCVTQQ2PD_RN_SAE(ops ...operand.Op) { ctx.VCVTQQ2PD_RN_SAE(ops...) }
+
+// VCVTQQ2PD_RN_SAE_Z: Convert Packed Quadword Integers to Packed Double-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTQQ2PD.RN_SAE.Z zmm k zmm
+// Construct and append a VCVTQQ2PD.RN_SAE.Z instruction to the active function.
+func (c *Context) VCVTQQ2PD_RN_SAE_Z(z, k, z1 operand.Op) {
+	if inst, err := x86.VCVTQQ2PD_RN_SAE_Z(z, k, z1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTQQ2PD_RN_SAE_Z: Convert Packed Quadword Integers to Packed Double-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTQQ2PD.RN_SAE.Z zmm k zmm
+// Construct and append a VCVTQQ2PD.RN_SAE.Z instruction to the active function.
+// Operates on the global context.
+func VCVTQQ2PD_RN_SAE_Z(z, k, z1 operand.Op) { ctx.VCVTQQ2PD_RN_SAE_Z(z, k, z1) }
+
+// VCVTQQ2PD_RU_SAE: Convert Packed Quadword Integers to Packed Double-Precision Floating-Point Values (Round Towards Positive Infinity).
+//
+// Forms:
+//
+// 	VCVTQQ2PD.RU_SAE zmm k zmm
+// 	VCVTQQ2PD.RU_SAE zmm zmm
+// Construct and append a VCVTQQ2PD.RU_SAE instruction to the active function.
+func (c *Context) VCVTQQ2PD_RU_SAE(ops ...operand.Op) {
+	if inst, err := x86.VCVTQQ2PD_RU_SAE(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTQQ2PD_RU_SAE: Convert Packed Quadword Integers to Packed Double-Precision Floating-Point Values (Round Towards Positive Infinity).
+//
+// Forms:
+//
+// 	VCVTQQ2PD.RU_SAE zmm k zmm
+// 	VCVTQQ2PD.RU_SAE zmm zmm
+// Construct and append a VCVTQQ2PD.RU_SAE instruction to the active function.
+// Operates on the global context.
+func VCVTQQ2PD_RU_SAE(ops ...operand.Op) { ctx.VCVTQQ2PD_RU_SAE(ops...) }
+
+// VCVTQQ2PD_RU_SAE_Z: Convert Packed Quadword Integers to Packed Double-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTQQ2PD.RU_SAE.Z zmm k zmm
+// Construct and append a VCVTQQ2PD.RU_SAE.Z instruction to the active function.
+func (c *Context) VCVTQQ2PD_RU_SAE_Z(z, k, z1 operand.Op) {
+	if inst, err := x86.VCVTQQ2PD_RU_SAE_Z(z, k, z1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTQQ2PD_RU_SAE_Z: Convert Packed Quadword Integers to Packed Double-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTQQ2PD.RU_SAE.Z zmm k zmm
+// Construct and append a VCVTQQ2PD.RU_SAE.Z instruction to the active function.
+// Operates on the global context.
+func VCVTQQ2PD_RU_SAE_Z(z, k, z1 operand.Op) { ctx.VCVTQQ2PD_RU_SAE_Z(z, k, z1) }
+
+// VCVTQQ2PD_RZ_SAE: Convert Packed Quadword Integers to Packed Double-Precision Floating-Point Values (Round Towards Zero).
+//
+// Forms:
+//
+// 	VCVTQQ2PD.RZ_SAE zmm k zmm
+// 	VCVTQQ2PD.RZ_SAE zmm zmm
+// Construct and append a VCVTQQ2PD.RZ_SAE instruction to the active function.
+func (c *Context) VCVTQQ2PD_RZ_SAE(ops ...operand.Op) {
+	if inst, err := x86.VCVTQQ2PD_RZ_SAE(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTQQ2PD_RZ_SAE: Convert Packed Quadword Integers to Packed Double-Precision Floating-Point Values (Round Towards Zero).
+//
+// Forms:
+//
+// 	VCVTQQ2PD.RZ_SAE zmm k zmm
+// 	VCVTQQ2PD.RZ_SAE zmm zmm
+// Construct and append a VCVTQQ2PD.RZ_SAE instruction to the active function.
+// Operates on the global context.
+func VCVTQQ2PD_RZ_SAE(ops ...operand.Op) { ctx.VCVTQQ2PD_RZ_SAE(ops...) }
+
+// VCVTQQ2PD_RZ_SAE_Z: Convert Packed Quadword Integers to Packed Double-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTQQ2PD.RZ_SAE.Z zmm k zmm
+// Construct and append a VCVTQQ2PD.RZ_SAE.Z instruction to the active function.
+func (c *Context) VCVTQQ2PD_RZ_SAE_Z(z, k, z1 operand.Op) {
+	if inst, err := x86.VCVTQQ2PD_RZ_SAE_Z(z, k, z1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTQQ2PD_RZ_SAE_Z: Convert Packed Quadword Integers to Packed Double-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTQQ2PD.RZ_SAE.Z zmm k zmm
+// Construct and append a VCVTQQ2PD.RZ_SAE.Z instruction to the active function.
+// Operates on the global context.
+func VCVTQQ2PD_RZ_SAE_Z(z, k, z1 operand.Op) { ctx.VCVTQQ2PD_RZ_SAE_Z(z, k, z1) }
+
+// VCVTQQ2PD_Z: Convert Packed Quadword Integers to Packed Double-Precision Floating-Point Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTQQ2PD.Z m512/m64bcst k zmm
+// 	VCVTQQ2PD.Z zmm          k zmm
+// 	VCVTQQ2PD.Z m128/m64bcst k xmm
+// 	VCVTQQ2PD.Z m256/m64bcst k ymm
+// 	VCVTQQ2PD.Z xmm          k xmm
+// 	VCVTQQ2PD.Z ymm          k ymm
+// Construct and append a VCVTQQ2PD.Z instruction to the active function.
+func (c *Context) VCVTQQ2PD_Z(mxyz, k, xyz operand.Op) {
+	if inst, err := x86.VCVTQQ2PD_Z(mxyz, k, xyz); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTQQ2PD_Z: Convert Packed Quadword Integers to Packed Double-Precision Floating-Point Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTQQ2PD.Z m512/m64bcst k zmm
+// 	VCVTQQ2PD.Z zmm          k zmm
+// 	VCVTQQ2PD.Z m128/m64bcst k xmm
+// 	VCVTQQ2PD.Z m256/m64bcst k ymm
+// 	VCVTQQ2PD.Z xmm          k xmm
+// 	VCVTQQ2PD.Z ymm          k ymm
+// Construct and append a VCVTQQ2PD.Z instruction to the active function.
+// Operates on the global context.
+func VCVTQQ2PD_Z(mxyz, k, xyz operand.Op) { ctx.VCVTQQ2PD_Z(mxyz, k, xyz) }
+
+// VCVTQQ2PS: Convert Packed Quadword Integers to Packed Single-Precision Floating-Point Values.
+//
+// Forms:
+//
+// 	VCVTQQ2PS m512/m64bcst k ymm
+// 	VCVTQQ2PS m512/m64bcst ymm
+// 	VCVTQQ2PS zmm          k ymm
+// 	VCVTQQ2PS zmm          ymm
+// Construct and append a VCVTQQ2PS instruction to the active function.
+func (c *Context) VCVTQQ2PS(ops ...operand.Op) {
+	if inst, err := x86.VCVTQQ2PS(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTQQ2PS: Convert Packed Quadword Integers to Packed Single-Precision Floating-Point Values.
+//
+// Forms:
+//
+// 	VCVTQQ2PS m512/m64bcst k ymm
+// 	VCVTQQ2PS m512/m64bcst ymm
+// 	VCVTQQ2PS zmm          k ymm
+// 	VCVTQQ2PS zmm          ymm
+// Construct and append a VCVTQQ2PS instruction to the active function.
+// Operates on the global context.
+func VCVTQQ2PS(ops ...operand.Op) { ctx.VCVTQQ2PS(ops...) }
+
+// VCVTQQ2PSX: Convert Packed Quadword Integers to Packed Single-Precision Floating-Point Values.
+//
+// Forms:
+//
+// 	VCVTQQ2PSX m128/m64bcst k xmm
+// 	VCVTQQ2PSX m128/m64bcst xmm
+// 	VCVTQQ2PSX xmm          k xmm
+// 	VCVTQQ2PSX xmm          xmm
+// Construct and append a VCVTQQ2PSX instruction to the active function.
+func (c *Context) VCVTQQ2PSX(ops ...operand.Op) {
+	if inst, err := x86.VCVTQQ2PSX(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTQQ2PSX: Convert Packed Quadword Integers to Packed Single-Precision Floating-Point Values.
+//
+// Forms:
+//
+// 	VCVTQQ2PSX m128/m64bcst k xmm
+// 	VCVTQQ2PSX m128/m64bcst xmm
+// 	VCVTQQ2PSX xmm          k xmm
+// 	VCVTQQ2PSX xmm          xmm
+// Construct and append a VCVTQQ2PSX instruction to the active function.
+// Operates on the global context.
+func VCVTQQ2PSX(ops ...operand.Op) { ctx.VCVTQQ2PSX(ops...) }
+
+// VCVTQQ2PSX_BCST: Convert Packed Quadword Integers to Packed Single-Precision Floating-Point Values (Broadcast).
+//
+// Forms:
+//
+// 	VCVTQQ2PSX.BCST m128/m64bcst k xmm
+// 	VCVTQQ2PSX.BCST m128/m64bcst xmm
+// Construct and append a VCVTQQ2PSX.BCST instruction to the active function.
+func (c *Context) VCVTQQ2PSX_BCST(ops ...operand.Op) {
+	if inst, err := x86.VCVTQQ2PSX_BCST(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTQQ2PSX_BCST: Convert Packed Quadword Integers to Packed Single-Precision Floating-Point Values (Broadcast).
+//
+// Forms:
+//
+// 	VCVTQQ2PSX.BCST m128/m64bcst k xmm
+// 	VCVTQQ2PSX.BCST m128/m64bcst xmm
+// Construct and append a VCVTQQ2PSX.BCST instruction to the active function.
+// Operates on the global context.
+func VCVTQQ2PSX_BCST(ops ...operand.Op) { ctx.VCVTQQ2PSX_BCST(ops...) }
+
+// VCVTQQ2PSX_BCST_Z: Convert Packed Quadword Integers to Packed Single-Precision Floating-Point Values (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTQQ2PSX.BCST.Z m128/m64bcst k xmm
+// Construct and append a VCVTQQ2PSX.BCST.Z instruction to the active function.
+func (c *Context) VCVTQQ2PSX_BCST_Z(m, k, x operand.Op) {
+	if inst, err := x86.VCVTQQ2PSX_BCST_Z(m, k, x); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTQQ2PSX_BCST_Z: Convert Packed Quadword Integers to Packed Single-Precision Floating-Point Values (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTQQ2PSX.BCST.Z m128/m64bcst k xmm
+// Construct and append a VCVTQQ2PSX.BCST.Z instruction to the active function.
+// Operates on the global context.
+func VCVTQQ2PSX_BCST_Z(m, k, x operand.Op) { ctx.VCVTQQ2PSX_BCST_Z(m, k, x) }
+
+// VCVTQQ2PSX_Z: Convert Packed Quadword Integers to Packed Single-Precision Floating-Point Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTQQ2PSX.Z m128/m64bcst k xmm
+// 	VCVTQQ2PSX.Z xmm          k xmm
+// Construct and append a VCVTQQ2PSX.Z instruction to the active function.
+func (c *Context) VCVTQQ2PSX_Z(mx, k, x operand.Op) {
+	if inst, err := x86.VCVTQQ2PSX_Z(mx, k, x); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTQQ2PSX_Z: Convert Packed Quadword Integers to Packed Single-Precision Floating-Point Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTQQ2PSX.Z m128/m64bcst k xmm
+// 	VCVTQQ2PSX.Z xmm          k xmm
+// Construct and append a VCVTQQ2PSX.Z instruction to the active function.
+// Operates on the global context.
+func VCVTQQ2PSX_Z(mx, k, x operand.Op) { ctx.VCVTQQ2PSX_Z(mx, k, x) }
+
+// VCVTQQ2PSY: Convert Packed Quadword Integers to Packed Single-Precision Floating-Point Values.
+//
+// Forms:
+//
+// 	VCVTQQ2PSY m256/m64bcst k xmm
+// 	VCVTQQ2PSY m256/m64bcst xmm
+// 	VCVTQQ2PSY ymm          k xmm
+// 	VCVTQQ2PSY ymm          xmm
+// Construct and append a VCVTQQ2PSY instruction to the active function.
+func (c *Context) VCVTQQ2PSY(ops ...operand.Op) {
+	if inst, err := x86.VCVTQQ2PSY(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTQQ2PSY: Convert Packed Quadword Integers to Packed Single-Precision Floating-Point Values.
+//
+// Forms:
+//
+// 	VCVTQQ2PSY m256/m64bcst k xmm
+// 	VCVTQQ2PSY m256/m64bcst xmm
+// 	VCVTQQ2PSY ymm          k xmm
+// 	VCVTQQ2PSY ymm          xmm
+// Construct and append a VCVTQQ2PSY instruction to the active function.
+// Operates on the global context.
+func VCVTQQ2PSY(ops ...operand.Op) { ctx.VCVTQQ2PSY(ops...) }
+
+// VCVTQQ2PSY_BCST: Convert Packed Quadword Integers to Packed Single-Precision Floating-Point Values (Broadcast).
+//
+// Forms:
+//
+// 	VCVTQQ2PSY.BCST m256/m64bcst k xmm
+// 	VCVTQQ2PSY.BCST m256/m64bcst xmm
+// Construct and append a VCVTQQ2PSY.BCST instruction to the active function.
+func (c *Context) VCVTQQ2PSY_BCST(ops ...operand.Op) {
+	if inst, err := x86.VCVTQQ2PSY_BCST(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTQQ2PSY_BCST: Convert Packed Quadword Integers to Packed Single-Precision Floating-Point Values (Broadcast).
+//
+// Forms:
+//
+// 	VCVTQQ2PSY.BCST m256/m64bcst k xmm
+// 	VCVTQQ2PSY.BCST m256/m64bcst xmm
+// Construct and append a VCVTQQ2PSY.BCST instruction to the active function.
+// Operates on the global context.
+func VCVTQQ2PSY_BCST(ops ...operand.Op) { ctx.VCVTQQ2PSY_BCST(ops...) }
+
+// VCVTQQ2PSY_BCST_Z: Convert Packed Quadword Integers to Packed Single-Precision Floating-Point Values (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTQQ2PSY.BCST.Z m256/m64bcst k xmm
+// Construct and append a VCVTQQ2PSY.BCST.Z instruction to the active function.
+func (c *Context) VCVTQQ2PSY_BCST_Z(m, k, x operand.Op) {
+	if inst, err := x86.VCVTQQ2PSY_BCST_Z(m, k, x); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTQQ2PSY_BCST_Z: Convert Packed Quadword Integers to Packed Single-Precision Floating-Point Values (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTQQ2PSY.BCST.Z m256/m64bcst k xmm
+// Construct and append a VCVTQQ2PSY.BCST.Z instruction to the active function.
+// Operates on the global context.
+func VCVTQQ2PSY_BCST_Z(m, k, x operand.Op) { ctx.VCVTQQ2PSY_BCST_Z(m, k, x) }
+
+// VCVTQQ2PSY_Z: Convert Packed Quadword Integers to Packed Single-Precision Floating-Point Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTQQ2PSY.Z m256/m64bcst k xmm
+// 	VCVTQQ2PSY.Z ymm          k xmm
+// Construct and append a VCVTQQ2PSY.Z instruction to the active function.
+func (c *Context) VCVTQQ2PSY_Z(my, k, x operand.Op) {
+	if inst, err := x86.VCVTQQ2PSY_Z(my, k, x); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTQQ2PSY_Z: Convert Packed Quadword Integers to Packed Single-Precision Floating-Point Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTQQ2PSY.Z m256/m64bcst k xmm
+// 	VCVTQQ2PSY.Z ymm          k xmm
+// Construct and append a VCVTQQ2PSY.Z instruction to the active function.
+// Operates on the global context.
+func VCVTQQ2PSY_Z(my, k, x operand.Op) { ctx.VCVTQQ2PSY_Z(my, k, x) }
+
+// VCVTQQ2PS_BCST: Convert Packed Quadword Integers to Packed Single-Precision Floating-Point Values (Broadcast).
+//
+// Forms:
+//
+// 	VCVTQQ2PS.BCST m512/m64bcst k ymm
+// 	VCVTQQ2PS.BCST m512/m64bcst ymm
+// Construct and append a VCVTQQ2PS.BCST instruction to the active function.
+func (c *Context) VCVTQQ2PS_BCST(ops ...operand.Op) {
+	if inst, err := x86.VCVTQQ2PS_BCST(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTQQ2PS_BCST: Convert Packed Quadword Integers to Packed Single-Precision Floating-Point Values (Broadcast).
+//
+// Forms:
+//
+// 	VCVTQQ2PS.BCST m512/m64bcst k ymm
+// 	VCVTQQ2PS.BCST m512/m64bcst ymm
+// Construct and append a VCVTQQ2PS.BCST instruction to the active function.
+// Operates on the global context.
+func VCVTQQ2PS_BCST(ops ...operand.Op) { ctx.VCVTQQ2PS_BCST(ops...) }
+
+// VCVTQQ2PS_BCST_Z: Convert Packed Quadword Integers to Packed Single-Precision Floating-Point Values (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTQQ2PS.BCST.Z m512/m64bcst k ymm
+// Construct and append a VCVTQQ2PS.BCST.Z instruction to the active function.
+func (c *Context) VCVTQQ2PS_BCST_Z(m, k, y operand.Op) {
+	if inst, err := x86.VCVTQQ2PS_BCST_Z(m, k, y); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTQQ2PS_BCST_Z: Convert Packed Quadword Integers to Packed Single-Precision Floating-Point Values (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTQQ2PS.BCST.Z m512/m64bcst k ymm
+// Construct and append a VCVTQQ2PS.BCST.Z instruction to the active function.
+// Operates on the global context.
+func VCVTQQ2PS_BCST_Z(m, k, y operand.Op) { ctx.VCVTQQ2PS_BCST_Z(m, k, y) }
+
+// VCVTQQ2PS_RD_SAE: Convert Packed Quadword Integers to Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity).
+//
+// Forms:
+//
+// 	VCVTQQ2PS.RD_SAE zmm k ymm
+// 	VCVTQQ2PS.RD_SAE zmm ymm
+// Construct and append a VCVTQQ2PS.RD_SAE instruction to the active function.
+func (c *Context) VCVTQQ2PS_RD_SAE(ops ...operand.Op) {
+	if inst, err := x86.VCVTQQ2PS_RD_SAE(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTQQ2PS_RD_SAE: Convert Packed Quadword Integers to Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity).
+//
+// Forms:
+//
+// 	VCVTQQ2PS.RD_SAE zmm k ymm
+// 	VCVTQQ2PS.RD_SAE zmm ymm
+// Construct and append a VCVTQQ2PS.RD_SAE instruction to the active function.
+// Operates on the global context.
+func VCVTQQ2PS_RD_SAE(ops ...operand.Op) { ctx.VCVTQQ2PS_RD_SAE(ops...) }
+
+// VCVTQQ2PS_RD_SAE_Z: Convert Packed Quadword Integers to Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTQQ2PS.RD_SAE.Z zmm k ymm
+// Construct and append a VCVTQQ2PS.RD_SAE.Z instruction to the active function.
+func (c *Context) VCVTQQ2PS_RD_SAE_Z(z, k, y operand.Op) {
+	if inst, err := x86.VCVTQQ2PS_RD_SAE_Z(z, k, y); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTQQ2PS_RD_SAE_Z: Convert Packed Quadword Integers to Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTQQ2PS.RD_SAE.Z zmm k ymm
+// Construct and append a VCVTQQ2PS.RD_SAE.Z instruction to the active function.
+// Operates on the global context.
+func VCVTQQ2PS_RD_SAE_Z(z, k, y operand.Op) { ctx.VCVTQQ2PS_RD_SAE_Z(z, k, y) }
+
+// VCVTQQ2PS_RN_SAE: Convert Packed Quadword Integers to Packed Single-Precision Floating-Point Values (Round Towards Nearest).
+//
+// Forms:
+//
+// 	VCVTQQ2PS.RN_SAE zmm k ymm
+// 	VCVTQQ2PS.RN_SAE zmm ymm
+// Construct and append a VCVTQQ2PS.RN_SAE instruction to the active function.
+func (c *Context) VCVTQQ2PS_RN_SAE(ops ...operand.Op) {
+	if inst, err := x86.VCVTQQ2PS_RN_SAE(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTQQ2PS_RN_SAE: Convert Packed Quadword Integers to Packed Single-Precision Floating-Point Values (Round Towards Nearest).
+//
+// Forms:
+//
+// 	VCVTQQ2PS.RN_SAE zmm k ymm
+// 	VCVTQQ2PS.RN_SAE zmm ymm
+// Construct and append a VCVTQQ2PS.RN_SAE instruction to the active function.
+// Operates on the global context.
+func VCVTQQ2PS_RN_SAE(ops ...operand.Op) { ctx.VCVTQQ2PS_RN_SAE(ops...) }
+
+// VCVTQQ2PS_RN_SAE_Z: Convert Packed Quadword Integers to Packed Single-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTQQ2PS.RN_SAE.Z zmm k ymm
+// Construct and append a VCVTQQ2PS.RN_SAE.Z instruction to the active function.
+func (c *Context) VCVTQQ2PS_RN_SAE_Z(z, k, y operand.Op) {
+	if inst, err := x86.VCVTQQ2PS_RN_SAE_Z(z, k, y); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTQQ2PS_RN_SAE_Z: Convert Packed Quadword Integers to Packed Single-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTQQ2PS.RN_SAE.Z zmm k ymm
+// Construct and append a VCVTQQ2PS.RN_SAE.Z instruction to the active function.
+// Operates on the global context.
+func VCVTQQ2PS_RN_SAE_Z(z, k, y operand.Op) { ctx.VCVTQQ2PS_RN_SAE_Z(z, k, y) }
+
+// VCVTQQ2PS_RU_SAE: Convert Packed Quadword Integers to Packed Single-Precision Floating-Point Values (Round Towards Positive Infinity).
+//
+// Forms:
+//
+// 	VCVTQQ2PS.RU_SAE zmm k ymm
+// 	VCVTQQ2PS.RU_SAE zmm ymm
+// Construct and append a VCVTQQ2PS.RU_SAE instruction to the active function.
+func (c *Context) VCVTQQ2PS_RU_SAE(ops ...operand.Op) {
+	if inst, err := x86.VCVTQQ2PS_RU_SAE(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTQQ2PS_RU_SAE: Convert Packed Quadword Integers to Packed Single-Precision Floating-Point Values (Round Towards Positive Infinity).
+//
+// Forms:
+//
+// 	VCVTQQ2PS.RU_SAE zmm k ymm
+// 	VCVTQQ2PS.RU_SAE zmm ymm
+// Construct and append a VCVTQQ2PS.RU_SAE instruction to the active function.
+// Operates on the global context.
+func VCVTQQ2PS_RU_SAE(ops ...operand.Op) { ctx.VCVTQQ2PS_RU_SAE(ops...) }
+
+// VCVTQQ2PS_RU_SAE_Z: Convert Packed Quadword Integers to Packed Single-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTQQ2PS.RU_SAE.Z zmm k ymm
+// Construct and append a VCVTQQ2PS.RU_SAE.Z instruction to the active function.
+func (c *Context) VCVTQQ2PS_RU_SAE_Z(z, k, y operand.Op) {
+	if inst, err := x86.VCVTQQ2PS_RU_SAE_Z(z, k, y); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTQQ2PS_RU_SAE_Z: Convert Packed Quadword Integers to Packed Single-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTQQ2PS.RU_SAE.Z zmm k ymm
+// Construct and append a VCVTQQ2PS.RU_SAE.Z instruction to the active function.
+// Operates on the global context.
+func VCVTQQ2PS_RU_SAE_Z(z, k, y operand.Op) { ctx.VCVTQQ2PS_RU_SAE_Z(z, k, y) }
+
+// VCVTQQ2PS_RZ_SAE: Convert Packed Quadword Integers to Packed Single-Precision Floating-Point Values (Round Towards Zero).
+//
+// Forms:
+//
+// 	VCVTQQ2PS.RZ_SAE zmm k ymm
+// 	VCVTQQ2PS.RZ_SAE zmm ymm
+// Construct and append a VCVTQQ2PS.RZ_SAE instruction to the active function.
+func (c *Context) VCVTQQ2PS_RZ_SAE(ops ...operand.Op) {
+	if inst, err := x86.VCVTQQ2PS_RZ_SAE(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTQQ2PS_RZ_SAE: Convert Packed Quadword Integers to Packed Single-Precision Floating-Point Values (Round Towards Zero).
+//
+// Forms:
+//
+// 	VCVTQQ2PS.RZ_SAE zmm k ymm
+// 	VCVTQQ2PS.RZ_SAE zmm ymm
+// Construct and append a VCVTQQ2PS.RZ_SAE instruction to the active function.
+// Operates on the global context.
+func VCVTQQ2PS_RZ_SAE(ops ...operand.Op) { ctx.VCVTQQ2PS_RZ_SAE(ops...) }
+
+// VCVTQQ2PS_RZ_SAE_Z: Convert Packed Quadword Integers to Packed Single-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTQQ2PS.RZ_SAE.Z zmm k ymm
+// Construct and append a VCVTQQ2PS.RZ_SAE.Z instruction to the active function.
+func (c *Context) VCVTQQ2PS_RZ_SAE_Z(z, k, y operand.Op) {
+	if inst, err := x86.VCVTQQ2PS_RZ_SAE_Z(z, k, y); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTQQ2PS_RZ_SAE_Z: Convert Packed Quadword Integers to Packed Single-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTQQ2PS.RZ_SAE.Z zmm k ymm
+// Construct and append a VCVTQQ2PS.RZ_SAE.Z instruction to the active function.
+// Operates on the global context.
+func VCVTQQ2PS_RZ_SAE_Z(z, k, y operand.Op) { ctx.VCVTQQ2PS_RZ_SAE_Z(z, k, y) }
+
+// VCVTQQ2PS_Z: Convert Packed Quadword Integers to Packed Single-Precision Floating-Point Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTQQ2PS.Z m512/m64bcst k ymm
+// 	VCVTQQ2PS.Z zmm          k ymm
+// Construct and append a VCVTQQ2PS.Z instruction to the active function.
+func (c *Context) VCVTQQ2PS_Z(mz, k, y operand.Op) {
+	if inst, err := x86.VCVTQQ2PS_Z(mz, k, y); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTQQ2PS_Z: Convert Packed Quadword Integers to Packed Single-Precision Floating-Point Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTQQ2PS.Z m512/m64bcst k ymm
+// 	VCVTQQ2PS.Z zmm          k ymm
+// Construct and append a VCVTQQ2PS.Z instruction to the active function.
+// Operates on the global context.
+func VCVTQQ2PS_Z(mz, k, y operand.Op) { ctx.VCVTQQ2PS_Z(mz, k, y) }
 
 // VCVTSD2SI: Convert Scalar Double-Precision FP Value to Integer.
 //
@@ -24973,6 +28251,192 @@ func (c *Context) VCVTTPD2DQ_Z(mz, k, y operand.Op) {
 // Operates on the global context.
 func VCVTTPD2DQ_Z(mz, k, y operand.Op) { ctx.VCVTTPD2DQ_Z(mz, k, y) }
 
+// VCVTTPD2QQ: Convert with Truncation Packed Double-Precision Floating-Point Values to Packed Quadword Integers.
+//
+// Forms:
+//
+// 	VCVTTPD2QQ m512/m64bcst k zmm
+// 	VCVTTPD2QQ m512/m64bcst zmm
+// 	VCVTTPD2QQ zmm          k zmm
+// 	VCVTTPD2QQ zmm          zmm
+// 	VCVTTPD2QQ m128/m64bcst k xmm
+// 	VCVTTPD2QQ m128/m64bcst xmm
+// 	VCVTTPD2QQ m256/m64bcst k ymm
+// 	VCVTTPD2QQ m256/m64bcst ymm
+// 	VCVTTPD2QQ xmm          k xmm
+// 	VCVTTPD2QQ xmm          xmm
+// 	VCVTTPD2QQ ymm          k ymm
+// 	VCVTTPD2QQ ymm          ymm
+// Construct and append a VCVTTPD2QQ instruction to the active function.
+func (c *Context) VCVTTPD2QQ(ops ...operand.Op) {
+	if inst, err := x86.VCVTTPD2QQ(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTTPD2QQ: Convert with Truncation Packed Double-Precision Floating-Point Values to Packed Quadword Integers.
+//
+// Forms:
+//
+// 	VCVTTPD2QQ m512/m64bcst k zmm
+// 	VCVTTPD2QQ m512/m64bcst zmm
+// 	VCVTTPD2QQ zmm          k zmm
+// 	VCVTTPD2QQ zmm          zmm
+// 	VCVTTPD2QQ m128/m64bcst k xmm
+// 	VCVTTPD2QQ m128/m64bcst xmm
+// 	VCVTTPD2QQ m256/m64bcst k ymm
+// 	VCVTTPD2QQ m256/m64bcst ymm
+// 	VCVTTPD2QQ xmm          k xmm
+// 	VCVTTPD2QQ xmm          xmm
+// 	VCVTTPD2QQ ymm          k ymm
+// 	VCVTTPD2QQ ymm          ymm
+// Construct and append a VCVTTPD2QQ instruction to the active function.
+// Operates on the global context.
+func VCVTTPD2QQ(ops ...operand.Op) { ctx.VCVTTPD2QQ(ops...) }
+
+// VCVTTPD2QQ_BCST: Convert with Truncation Packed Double-Precision Floating-Point Values to Packed Quadword Integers (Broadcast).
+//
+// Forms:
+//
+// 	VCVTTPD2QQ.BCST m512/m64bcst k zmm
+// 	VCVTTPD2QQ.BCST m512/m64bcst zmm
+// 	VCVTTPD2QQ.BCST m128/m64bcst k xmm
+// 	VCVTTPD2QQ.BCST m128/m64bcst xmm
+// 	VCVTTPD2QQ.BCST m256/m64bcst k ymm
+// 	VCVTTPD2QQ.BCST m256/m64bcst ymm
+// Construct and append a VCVTTPD2QQ.BCST instruction to the active function.
+func (c *Context) VCVTTPD2QQ_BCST(ops ...operand.Op) {
+	if inst, err := x86.VCVTTPD2QQ_BCST(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTTPD2QQ_BCST: Convert with Truncation Packed Double-Precision Floating-Point Values to Packed Quadword Integers (Broadcast).
+//
+// Forms:
+//
+// 	VCVTTPD2QQ.BCST m512/m64bcst k zmm
+// 	VCVTTPD2QQ.BCST m512/m64bcst zmm
+// 	VCVTTPD2QQ.BCST m128/m64bcst k xmm
+// 	VCVTTPD2QQ.BCST m128/m64bcst xmm
+// 	VCVTTPD2QQ.BCST m256/m64bcst k ymm
+// 	VCVTTPD2QQ.BCST m256/m64bcst ymm
+// Construct and append a VCVTTPD2QQ.BCST instruction to the active function.
+// Operates on the global context.
+func VCVTTPD2QQ_BCST(ops ...operand.Op) { ctx.VCVTTPD2QQ_BCST(ops...) }
+
+// VCVTTPD2QQ_BCST_Z: Convert with Truncation Packed Double-Precision Floating-Point Values to Packed Quadword Integers (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTTPD2QQ.BCST.Z m512/m64bcst k zmm
+// 	VCVTTPD2QQ.BCST.Z m128/m64bcst k xmm
+// 	VCVTTPD2QQ.BCST.Z m256/m64bcst k ymm
+// Construct and append a VCVTTPD2QQ.BCST.Z instruction to the active function.
+func (c *Context) VCVTTPD2QQ_BCST_Z(m, k, xyz operand.Op) {
+	if inst, err := x86.VCVTTPD2QQ_BCST_Z(m, k, xyz); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTTPD2QQ_BCST_Z: Convert with Truncation Packed Double-Precision Floating-Point Values to Packed Quadword Integers (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTTPD2QQ.BCST.Z m512/m64bcst k zmm
+// 	VCVTTPD2QQ.BCST.Z m128/m64bcst k xmm
+// 	VCVTTPD2QQ.BCST.Z m256/m64bcst k ymm
+// Construct and append a VCVTTPD2QQ.BCST.Z instruction to the active function.
+// Operates on the global context.
+func VCVTTPD2QQ_BCST_Z(m, k, xyz operand.Op) { ctx.VCVTTPD2QQ_BCST_Z(m, k, xyz) }
+
+// VCVTTPD2QQ_SAE: Convert with Truncation Packed Double-Precision Floating-Point Values to Packed Quadword Integers (Suppress All Exceptions).
+//
+// Forms:
+//
+// 	VCVTTPD2QQ.SAE zmm k zmm
+// 	VCVTTPD2QQ.SAE zmm zmm
+// Construct and append a VCVTTPD2QQ.SAE instruction to the active function.
+func (c *Context) VCVTTPD2QQ_SAE(ops ...operand.Op) {
+	if inst, err := x86.VCVTTPD2QQ_SAE(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTTPD2QQ_SAE: Convert with Truncation Packed Double-Precision Floating-Point Values to Packed Quadword Integers (Suppress All Exceptions).
+//
+// Forms:
+//
+// 	VCVTTPD2QQ.SAE zmm k zmm
+// 	VCVTTPD2QQ.SAE zmm zmm
+// Construct and append a VCVTTPD2QQ.SAE instruction to the active function.
+// Operates on the global context.
+func VCVTTPD2QQ_SAE(ops ...operand.Op) { ctx.VCVTTPD2QQ_SAE(ops...) }
+
+// VCVTTPD2QQ_SAE_Z: Convert with Truncation Packed Double-Precision Floating-Point Values to Packed Quadword Integers (Suppress All Exceptions, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTTPD2QQ.SAE.Z zmm k zmm
+// Construct and append a VCVTTPD2QQ.SAE.Z instruction to the active function.
+func (c *Context) VCVTTPD2QQ_SAE_Z(z, k, z1 operand.Op) {
+	if inst, err := x86.VCVTTPD2QQ_SAE_Z(z, k, z1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTTPD2QQ_SAE_Z: Convert with Truncation Packed Double-Precision Floating-Point Values to Packed Quadword Integers (Suppress All Exceptions, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTTPD2QQ.SAE.Z zmm k zmm
+// Construct and append a VCVTTPD2QQ.SAE.Z instruction to the active function.
+// Operates on the global context.
+func VCVTTPD2QQ_SAE_Z(z, k, z1 operand.Op) { ctx.VCVTTPD2QQ_SAE_Z(z, k, z1) }
+
+// VCVTTPD2QQ_Z: Convert with Truncation Packed Double-Precision Floating-Point Values to Packed Quadword Integers (Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTTPD2QQ.Z m512/m64bcst k zmm
+// 	VCVTTPD2QQ.Z zmm          k zmm
+// 	VCVTTPD2QQ.Z m128/m64bcst k xmm
+// 	VCVTTPD2QQ.Z m256/m64bcst k ymm
+// 	VCVTTPD2QQ.Z xmm          k xmm
+// 	VCVTTPD2QQ.Z ymm          k ymm
+// Construct and append a VCVTTPD2QQ.Z instruction to the active function.
+func (c *Context) VCVTTPD2QQ_Z(mxyz, k, xyz operand.Op) {
+	if inst, err := x86.VCVTTPD2QQ_Z(mxyz, k, xyz); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTTPD2QQ_Z: Convert with Truncation Packed Double-Precision Floating-Point Values to Packed Quadword Integers (Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTTPD2QQ.Z m512/m64bcst k zmm
+// 	VCVTTPD2QQ.Z zmm          k zmm
+// 	VCVTTPD2QQ.Z m128/m64bcst k xmm
+// 	VCVTTPD2QQ.Z m256/m64bcst k ymm
+// 	VCVTTPD2QQ.Z xmm          k xmm
+// 	VCVTTPD2QQ.Z ymm          k ymm
+// Construct and append a VCVTTPD2QQ.Z instruction to the active function.
+// Operates on the global context.
+func VCVTTPD2QQ_Z(mxyz, k, xyz operand.Op) { ctx.VCVTTPD2QQ_Z(mxyz, k, xyz) }
+
 // VCVTTPD2UDQ: Convert with Truncation Packed Double-Precision Floating-Point Values to Packed Unsigned Doubleword Integers.
 //
 // Forms:
@@ -25327,6 +28791,192 @@ func (c *Context) VCVTTPD2UDQ_Z(mz, k, y operand.Op) {
 // Operates on the global context.
 func VCVTTPD2UDQ_Z(mz, k, y operand.Op) { ctx.VCVTTPD2UDQ_Z(mz, k, y) }
 
+// VCVTTPD2UQQ: Convert with Truncation Packed Double-Precision Floating-Point Values to Packed Unsigned Quadword Integers.
+//
+// Forms:
+//
+// 	VCVTTPD2UQQ m512/m64bcst k zmm
+// 	VCVTTPD2UQQ m512/m64bcst zmm
+// 	VCVTTPD2UQQ zmm          k zmm
+// 	VCVTTPD2UQQ zmm          zmm
+// 	VCVTTPD2UQQ m128/m64bcst k xmm
+// 	VCVTTPD2UQQ m128/m64bcst xmm
+// 	VCVTTPD2UQQ m256/m64bcst k ymm
+// 	VCVTTPD2UQQ m256/m64bcst ymm
+// 	VCVTTPD2UQQ xmm          k xmm
+// 	VCVTTPD2UQQ xmm          xmm
+// 	VCVTTPD2UQQ ymm          k ymm
+// 	VCVTTPD2UQQ ymm          ymm
+// Construct and append a VCVTTPD2UQQ instruction to the active function.
+func (c *Context) VCVTTPD2UQQ(ops ...operand.Op) {
+	if inst, err := x86.VCVTTPD2UQQ(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTTPD2UQQ: Convert with Truncation Packed Double-Precision Floating-Point Values to Packed Unsigned Quadword Integers.
+//
+// Forms:
+//
+// 	VCVTTPD2UQQ m512/m64bcst k zmm
+// 	VCVTTPD2UQQ m512/m64bcst zmm
+// 	VCVTTPD2UQQ zmm          k zmm
+// 	VCVTTPD2UQQ zmm          zmm
+// 	VCVTTPD2UQQ m128/m64bcst k xmm
+// 	VCVTTPD2UQQ m128/m64bcst xmm
+// 	VCVTTPD2UQQ m256/m64bcst k ymm
+// 	VCVTTPD2UQQ m256/m64bcst ymm
+// 	VCVTTPD2UQQ xmm          k xmm
+// 	VCVTTPD2UQQ xmm          xmm
+// 	VCVTTPD2UQQ ymm          k ymm
+// 	VCVTTPD2UQQ ymm          ymm
+// Construct and append a VCVTTPD2UQQ instruction to the active function.
+// Operates on the global context.
+func VCVTTPD2UQQ(ops ...operand.Op) { ctx.VCVTTPD2UQQ(ops...) }
+
+// VCVTTPD2UQQ_BCST: Convert with Truncation Packed Double-Precision Floating-Point Values to Packed Unsigned Quadword Integers (Broadcast).
+//
+// Forms:
+//
+// 	VCVTTPD2UQQ.BCST m512/m64bcst k zmm
+// 	VCVTTPD2UQQ.BCST m512/m64bcst zmm
+// 	VCVTTPD2UQQ.BCST m128/m64bcst k xmm
+// 	VCVTTPD2UQQ.BCST m128/m64bcst xmm
+// 	VCVTTPD2UQQ.BCST m256/m64bcst k ymm
+// 	VCVTTPD2UQQ.BCST m256/m64bcst ymm
+// Construct and append a VCVTTPD2UQQ.BCST instruction to the active function.
+func (c *Context) VCVTTPD2UQQ_BCST(ops ...operand.Op) {
+	if inst, err := x86.VCVTTPD2UQQ_BCST(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTTPD2UQQ_BCST: Convert with Truncation Packed Double-Precision Floating-Point Values to Packed Unsigned Quadword Integers (Broadcast).
+//
+// Forms:
+//
+// 	VCVTTPD2UQQ.BCST m512/m64bcst k zmm
+// 	VCVTTPD2UQQ.BCST m512/m64bcst zmm
+// 	VCVTTPD2UQQ.BCST m128/m64bcst k xmm
+// 	VCVTTPD2UQQ.BCST m128/m64bcst xmm
+// 	VCVTTPD2UQQ.BCST m256/m64bcst k ymm
+// 	VCVTTPD2UQQ.BCST m256/m64bcst ymm
+// Construct and append a VCVTTPD2UQQ.BCST instruction to the active function.
+// Operates on the global context.
+func VCVTTPD2UQQ_BCST(ops ...operand.Op) { ctx.VCVTTPD2UQQ_BCST(ops...) }
+
+// VCVTTPD2UQQ_BCST_Z: Convert with Truncation Packed Double-Precision Floating-Point Values to Packed Unsigned Quadword Integers (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTTPD2UQQ.BCST.Z m512/m64bcst k zmm
+// 	VCVTTPD2UQQ.BCST.Z m128/m64bcst k xmm
+// 	VCVTTPD2UQQ.BCST.Z m256/m64bcst k ymm
+// Construct and append a VCVTTPD2UQQ.BCST.Z instruction to the active function.
+func (c *Context) VCVTTPD2UQQ_BCST_Z(m, k, xyz operand.Op) {
+	if inst, err := x86.VCVTTPD2UQQ_BCST_Z(m, k, xyz); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTTPD2UQQ_BCST_Z: Convert with Truncation Packed Double-Precision Floating-Point Values to Packed Unsigned Quadword Integers (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTTPD2UQQ.BCST.Z m512/m64bcst k zmm
+// 	VCVTTPD2UQQ.BCST.Z m128/m64bcst k xmm
+// 	VCVTTPD2UQQ.BCST.Z m256/m64bcst k ymm
+// Construct and append a VCVTTPD2UQQ.BCST.Z instruction to the active function.
+// Operates on the global context.
+func VCVTTPD2UQQ_BCST_Z(m, k, xyz operand.Op) { ctx.VCVTTPD2UQQ_BCST_Z(m, k, xyz) }
+
+// VCVTTPD2UQQ_SAE: Convert with Truncation Packed Double-Precision Floating-Point Values to Packed Unsigned Quadword Integers (Suppress All Exceptions).
+//
+// Forms:
+//
+// 	VCVTTPD2UQQ.SAE zmm k zmm
+// 	VCVTTPD2UQQ.SAE zmm zmm
+// Construct and append a VCVTTPD2UQQ.SAE instruction to the active function.
+func (c *Context) VCVTTPD2UQQ_SAE(ops ...operand.Op) {
+	if inst, err := x86.VCVTTPD2UQQ_SAE(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTTPD2UQQ_SAE: Convert with Truncation Packed Double-Precision Floating-Point Values to Packed Unsigned Quadword Integers (Suppress All Exceptions).
+//
+// Forms:
+//
+// 	VCVTTPD2UQQ.SAE zmm k zmm
+// 	VCVTTPD2UQQ.SAE zmm zmm
+// Construct and append a VCVTTPD2UQQ.SAE instruction to the active function.
+// Operates on the global context.
+func VCVTTPD2UQQ_SAE(ops ...operand.Op) { ctx.VCVTTPD2UQQ_SAE(ops...) }
+
+// VCVTTPD2UQQ_SAE_Z: Convert with Truncation Packed Double-Precision Floating-Point Values to Packed Unsigned Quadword Integers (Suppress All Exceptions, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTTPD2UQQ.SAE.Z zmm k zmm
+// Construct and append a VCVTTPD2UQQ.SAE.Z instruction to the active function.
+func (c *Context) VCVTTPD2UQQ_SAE_Z(z, k, z1 operand.Op) {
+	if inst, err := x86.VCVTTPD2UQQ_SAE_Z(z, k, z1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTTPD2UQQ_SAE_Z: Convert with Truncation Packed Double-Precision Floating-Point Values to Packed Unsigned Quadword Integers (Suppress All Exceptions, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTTPD2UQQ.SAE.Z zmm k zmm
+// Construct and append a VCVTTPD2UQQ.SAE.Z instruction to the active function.
+// Operates on the global context.
+func VCVTTPD2UQQ_SAE_Z(z, k, z1 operand.Op) { ctx.VCVTTPD2UQQ_SAE_Z(z, k, z1) }
+
+// VCVTTPD2UQQ_Z: Convert with Truncation Packed Double-Precision Floating-Point Values to Packed Unsigned Quadword Integers (Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTTPD2UQQ.Z m512/m64bcst k zmm
+// 	VCVTTPD2UQQ.Z zmm          k zmm
+// 	VCVTTPD2UQQ.Z m128/m64bcst k xmm
+// 	VCVTTPD2UQQ.Z m256/m64bcst k ymm
+// 	VCVTTPD2UQQ.Z xmm          k xmm
+// 	VCVTTPD2UQQ.Z ymm          k ymm
+// Construct and append a VCVTTPD2UQQ.Z instruction to the active function.
+func (c *Context) VCVTTPD2UQQ_Z(mxyz, k, xyz operand.Op) {
+	if inst, err := x86.VCVTTPD2UQQ_Z(mxyz, k, xyz); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTTPD2UQQ_Z: Convert with Truncation Packed Double-Precision Floating-Point Values to Packed Unsigned Quadword Integers (Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTTPD2UQQ.Z m512/m64bcst k zmm
+// 	VCVTTPD2UQQ.Z zmm          k zmm
+// 	VCVTTPD2UQQ.Z m128/m64bcst k xmm
+// 	VCVTTPD2UQQ.Z m256/m64bcst k ymm
+// 	VCVTTPD2UQQ.Z xmm          k xmm
+// 	VCVTTPD2UQQ.Z ymm          k ymm
+// Construct and append a VCVTTPD2UQQ.Z instruction to the active function.
+// Operates on the global context.
+func VCVTTPD2UQQ_Z(mxyz, k, xyz operand.Op) { ctx.VCVTTPD2UQQ_Z(mxyz, k, xyz) }
+
 // VCVTTPS2DQ: Convert with Truncation Packed Single-Precision FP Values to Packed Dword Integers.
 //
 // Forms:
@@ -25517,6 +29167,192 @@ func (c *Context) VCVTTPS2DQ_Z(mxyz, k, xyz operand.Op) {
 // Operates on the global context.
 func VCVTTPS2DQ_Z(mxyz, k, xyz operand.Op) { ctx.VCVTTPS2DQ_Z(mxyz, k, xyz) }
 
+// VCVTTPS2QQ: Convert with Truncation Packed Single Precision Floating-Point Values to Packed Singed Quadword Integer Values.
+//
+// Forms:
+//
+// 	VCVTTPS2QQ m256/m32bcst k zmm
+// 	VCVTTPS2QQ m256/m32bcst zmm
+// 	VCVTTPS2QQ ymm          k zmm
+// 	VCVTTPS2QQ ymm          zmm
+// 	VCVTTPS2QQ m128/m32bcst k ymm
+// 	VCVTTPS2QQ m128/m32bcst ymm
+// 	VCVTTPS2QQ m64/m32bcst  k xmm
+// 	VCVTTPS2QQ m64/m32bcst  xmm
+// 	VCVTTPS2QQ xmm          k xmm
+// 	VCVTTPS2QQ xmm          k ymm
+// 	VCVTTPS2QQ xmm          xmm
+// 	VCVTTPS2QQ xmm          ymm
+// Construct and append a VCVTTPS2QQ instruction to the active function.
+func (c *Context) VCVTTPS2QQ(ops ...operand.Op) {
+	if inst, err := x86.VCVTTPS2QQ(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTTPS2QQ: Convert with Truncation Packed Single Precision Floating-Point Values to Packed Singed Quadword Integer Values.
+//
+// Forms:
+//
+// 	VCVTTPS2QQ m256/m32bcst k zmm
+// 	VCVTTPS2QQ m256/m32bcst zmm
+// 	VCVTTPS2QQ ymm          k zmm
+// 	VCVTTPS2QQ ymm          zmm
+// 	VCVTTPS2QQ m128/m32bcst k ymm
+// 	VCVTTPS2QQ m128/m32bcst ymm
+// 	VCVTTPS2QQ m64/m32bcst  k xmm
+// 	VCVTTPS2QQ m64/m32bcst  xmm
+// 	VCVTTPS2QQ xmm          k xmm
+// 	VCVTTPS2QQ xmm          k ymm
+// 	VCVTTPS2QQ xmm          xmm
+// 	VCVTTPS2QQ xmm          ymm
+// Construct and append a VCVTTPS2QQ instruction to the active function.
+// Operates on the global context.
+func VCVTTPS2QQ(ops ...operand.Op) { ctx.VCVTTPS2QQ(ops...) }
+
+// VCVTTPS2QQ_BCST: Convert with Truncation Packed Single Precision Floating-Point Values to Packed Singed Quadword Integer Values (Broadcast).
+//
+// Forms:
+//
+// 	VCVTTPS2QQ.BCST m256/m32bcst k zmm
+// 	VCVTTPS2QQ.BCST m256/m32bcst zmm
+// 	VCVTTPS2QQ.BCST m128/m32bcst k ymm
+// 	VCVTTPS2QQ.BCST m128/m32bcst ymm
+// 	VCVTTPS2QQ.BCST m64/m32bcst  k xmm
+// 	VCVTTPS2QQ.BCST m64/m32bcst  xmm
+// Construct and append a VCVTTPS2QQ.BCST instruction to the active function.
+func (c *Context) VCVTTPS2QQ_BCST(ops ...operand.Op) {
+	if inst, err := x86.VCVTTPS2QQ_BCST(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTTPS2QQ_BCST: Convert with Truncation Packed Single Precision Floating-Point Values to Packed Singed Quadword Integer Values (Broadcast).
+//
+// Forms:
+//
+// 	VCVTTPS2QQ.BCST m256/m32bcst k zmm
+// 	VCVTTPS2QQ.BCST m256/m32bcst zmm
+// 	VCVTTPS2QQ.BCST m128/m32bcst k ymm
+// 	VCVTTPS2QQ.BCST m128/m32bcst ymm
+// 	VCVTTPS2QQ.BCST m64/m32bcst  k xmm
+// 	VCVTTPS2QQ.BCST m64/m32bcst  xmm
+// Construct and append a VCVTTPS2QQ.BCST instruction to the active function.
+// Operates on the global context.
+func VCVTTPS2QQ_BCST(ops ...operand.Op) { ctx.VCVTTPS2QQ_BCST(ops...) }
+
+// VCVTTPS2QQ_BCST_Z: Convert with Truncation Packed Single Precision Floating-Point Values to Packed Singed Quadword Integer Values (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTTPS2QQ.BCST.Z m256/m32bcst k zmm
+// 	VCVTTPS2QQ.BCST.Z m128/m32bcst k ymm
+// 	VCVTTPS2QQ.BCST.Z m64/m32bcst  k xmm
+// Construct and append a VCVTTPS2QQ.BCST.Z instruction to the active function.
+func (c *Context) VCVTTPS2QQ_BCST_Z(m, k, xyz operand.Op) {
+	if inst, err := x86.VCVTTPS2QQ_BCST_Z(m, k, xyz); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTTPS2QQ_BCST_Z: Convert with Truncation Packed Single Precision Floating-Point Values to Packed Singed Quadword Integer Values (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTTPS2QQ.BCST.Z m256/m32bcst k zmm
+// 	VCVTTPS2QQ.BCST.Z m128/m32bcst k ymm
+// 	VCVTTPS2QQ.BCST.Z m64/m32bcst  k xmm
+// Construct and append a VCVTTPS2QQ.BCST.Z instruction to the active function.
+// Operates on the global context.
+func VCVTTPS2QQ_BCST_Z(m, k, xyz operand.Op) { ctx.VCVTTPS2QQ_BCST_Z(m, k, xyz) }
+
+// VCVTTPS2QQ_SAE: Convert with Truncation Packed Single Precision Floating-Point Values to Packed Singed Quadword Integer Values (Suppress All Exceptions).
+//
+// Forms:
+//
+// 	VCVTTPS2QQ.SAE ymm k zmm
+// 	VCVTTPS2QQ.SAE ymm zmm
+// Construct and append a VCVTTPS2QQ.SAE instruction to the active function.
+func (c *Context) VCVTTPS2QQ_SAE(ops ...operand.Op) {
+	if inst, err := x86.VCVTTPS2QQ_SAE(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTTPS2QQ_SAE: Convert with Truncation Packed Single Precision Floating-Point Values to Packed Singed Quadword Integer Values (Suppress All Exceptions).
+//
+// Forms:
+//
+// 	VCVTTPS2QQ.SAE ymm k zmm
+// 	VCVTTPS2QQ.SAE ymm zmm
+// Construct and append a VCVTTPS2QQ.SAE instruction to the active function.
+// Operates on the global context.
+func VCVTTPS2QQ_SAE(ops ...operand.Op) { ctx.VCVTTPS2QQ_SAE(ops...) }
+
+// VCVTTPS2QQ_SAE_Z: Convert with Truncation Packed Single Precision Floating-Point Values to Packed Singed Quadword Integer Values (Suppress All Exceptions, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTTPS2QQ.SAE.Z ymm k zmm
+// Construct and append a VCVTTPS2QQ.SAE.Z instruction to the active function.
+func (c *Context) VCVTTPS2QQ_SAE_Z(y, k, z operand.Op) {
+	if inst, err := x86.VCVTTPS2QQ_SAE_Z(y, k, z); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTTPS2QQ_SAE_Z: Convert with Truncation Packed Single Precision Floating-Point Values to Packed Singed Quadword Integer Values (Suppress All Exceptions, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTTPS2QQ.SAE.Z ymm k zmm
+// Construct and append a VCVTTPS2QQ.SAE.Z instruction to the active function.
+// Operates on the global context.
+func VCVTTPS2QQ_SAE_Z(y, k, z operand.Op) { ctx.VCVTTPS2QQ_SAE_Z(y, k, z) }
+
+// VCVTTPS2QQ_Z: Convert with Truncation Packed Single Precision Floating-Point Values to Packed Singed Quadword Integer Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTTPS2QQ.Z m256/m32bcst k zmm
+// 	VCVTTPS2QQ.Z ymm          k zmm
+// 	VCVTTPS2QQ.Z m128/m32bcst k ymm
+// 	VCVTTPS2QQ.Z m64/m32bcst  k xmm
+// 	VCVTTPS2QQ.Z xmm          k xmm
+// 	VCVTTPS2QQ.Z xmm          k ymm
+// Construct and append a VCVTTPS2QQ.Z instruction to the active function.
+func (c *Context) VCVTTPS2QQ_Z(mxy, k, xyz operand.Op) {
+	if inst, err := x86.VCVTTPS2QQ_Z(mxy, k, xyz); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTTPS2QQ_Z: Convert with Truncation Packed Single Precision Floating-Point Values to Packed Singed Quadword Integer Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTTPS2QQ.Z m256/m32bcst k zmm
+// 	VCVTTPS2QQ.Z ymm          k zmm
+// 	VCVTTPS2QQ.Z m128/m32bcst k ymm
+// 	VCVTTPS2QQ.Z m64/m32bcst  k xmm
+// 	VCVTTPS2QQ.Z xmm          k xmm
+// 	VCVTTPS2QQ.Z xmm          k ymm
+// Construct and append a VCVTTPS2QQ.Z instruction to the active function.
+// Operates on the global context.
+func VCVTTPS2QQ_Z(mxy, k, xyz operand.Op) { ctx.VCVTTPS2QQ_Z(mxy, k, xyz) }
+
 // VCVTTPS2UDQ: Convert with Truncation Packed Single-Precision Floating-Point Values to Packed Unsigned Doubleword Integer Values.
 //
 // Forms:
@@ -25702,6 +29538,192 @@ func (c *Context) VCVTTPS2UDQ_Z(mxyz, k, xyz operand.Op) {
 // Construct and append a VCVTTPS2UDQ.Z instruction to the active function.
 // Operates on the global context.
 func VCVTTPS2UDQ_Z(mxyz, k, xyz operand.Op) { ctx.VCVTTPS2UDQ_Z(mxyz, k, xyz) }
+
+// VCVTTPS2UQQ: Convert with Truncation Packed Single Precision Floating-Point Values to Packed Unsigned Quadword Integer Values.
+//
+// Forms:
+//
+// 	VCVTTPS2UQQ m256/m32bcst k zmm
+// 	VCVTTPS2UQQ m256/m32bcst zmm
+// 	VCVTTPS2UQQ ymm          k zmm
+// 	VCVTTPS2UQQ ymm          zmm
+// 	VCVTTPS2UQQ m128/m32bcst k ymm
+// 	VCVTTPS2UQQ m128/m32bcst ymm
+// 	VCVTTPS2UQQ m64/m32bcst  k xmm
+// 	VCVTTPS2UQQ m64/m32bcst  xmm
+// 	VCVTTPS2UQQ xmm          k xmm
+// 	VCVTTPS2UQQ xmm          k ymm
+// 	VCVTTPS2UQQ xmm          xmm
+// 	VCVTTPS2UQQ xmm          ymm
+// Construct and append a VCVTTPS2UQQ instruction to the active function.
+func (c *Context) VCVTTPS2UQQ(ops ...operand.Op) {
+	if inst, err := x86.VCVTTPS2UQQ(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTTPS2UQQ: Convert with Truncation Packed Single Precision Floating-Point Values to Packed Unsigned Quadword Integer Values.
+//
+// Forms:
+//
+// 	VCVTTPS2UQQ m256/m32bcst k zmm
+// 	VCVTTPS2UQQ m256/m32bcst zmm
+// 	VCVTTPS2UQQ ymm          k zmm
+// 	VCVTTPS2UQQ ymm          zmm
+// 	VCVTTPS2UQQ m128/m32bcst k ymm
+// 	VCVTTPS2UQQ m128/m32bcst ymm
+// 	VCVTTPS2UQQ m64/m32bcst  k xmm
+// 	VCVTTPS2UQQ m64/m32bcst  xmm
+// 	VCVTTPS2UQQ xmm          k xmm
+// 	VCVTTPS2UQQ xmm          k ymm
+// 	VCVTTPS2UQQ xmm          xmm
+// 	VCVTTPS2UQQ xmm          ymm
+// Construct and append a VCVTTPS2UQQ instruction to the active function.
+// Operates on the global context.
+func VCVTTPS2UQQ(ops ...operand.Op) { ctx.VCVTTPS2UQQ(ops...) }
+
+// VCVTTPS2UQQ_BCST: Convert with Truncation Packed Single Precision Floating-Point Values to Packed Unsigned Quadword Integer Values (Broadcast).
+//
+// Forms:
+//
+// 	VCVTTPS2UQQ.BCST m256/m32bcst k zmm
+// 	VCVTTPS2UQQ.BCST m256/m32bcst zmm
+// 	VCVTTPS2UQQ.BCST m128/m32bcst k ymm
+// 	VCVTTPS2UQQ.BCST m128/m32bcst ymm
+// 	VCVTTPS2UQQ.BCST m64/m32bcst  k xmm
+// 	VCVTTPS2UQQ.BCST m64/m32bcst  xmm
+// Construct and append a VCVTTPS2UQQ.BCST instruction to the active function.
+func (c *Context) VCVTTPS2UQQ_BCST(ops ...operand.Op) {
+	if inst, err := x86.VCVTTPS2UQQ_BCST(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTTPS2UQQ_BCST: Convert with Truncation Packed Single Precision Floating-Point Values to Packed Unsigned Quadword Integer Values (Broadcast).
+//
+// Forms:
+//
+// 	VCVTTPS2UQQ.BCST m256/m32bcst k zmm
+// 	VCVTTPS2UQQ.BCST m256/m32bcst zmm
+// 	VCVTTPS2UQQ.BCST m128/m32bcst k ymm
+// 	VCVTTPS2UQQ.BCST m128/m32bcst ymm
+// 	VCVTTPS2UQQ.BCST m64/m32bcst  k xmm
+// 	VCVTTPS2UQQ.BCST m64/m32bcst  xmm
+// Construct and append a VCVTTPS2UQQ.BCST instruction to the active function.
+// Operates on the global context.
+func VCVTTPS2UQQ_BCST(ops ...operand.Op) { ctx.VCVTTPS2UQQ_BCST(ops...) }
+
+// VCVTTPS2UQQ_BCST_Z: Convert with Truncation Packed Single Precision Floating-Point Values to Packed Unsigned Quadword Integer Values (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTTPS2UQQ.BCST.Z m256/m32bcst k zmm
+// 	VCVTTPS2UQQ.BCST.Z m128/m32bcst k ymm
+// 	VCVTTPS2UQQ.BCST.Z m64/m32bcst  k xmm
+// Construct and append a VCVTTPS2UQQ.BCST.Z instruction to the active function.
+func (c *Context) VCVTTPS2UQQ_BCST_Z(m, k, xyz operand.Op) {
+	if inst, err := x86.VCVTTPS2UQQ_BCST_Z(m, k, xyz); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTTPS2UQQ_BCST_Z: Convert with Truncation Packed Single Precision Floating-Point Values to Packed Unsigned Quadword Integer Values (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTTPS2UQQ.BCST.Z m256/m32bcst k zmm
+// 	VCVTTPS2UQQ.BCST.Z m128/m32bcst k ymm
+// 	VCVTTPS2UQQ.BCST.Z m64/m32bcst  k xmm
+// Construct and append a VCVTTPS2UQQ.BCST.Z instruction to the active function.
+// Operates on the global context.
+func VCVTTPS2UQQ_BCST_Z(m, k, xyz operand.Op) { ctx.VCVTTPS2UQQ_BCST_Z(m, k, xyz) }
+
+// VCVTTPS2UQQ_SAE: Convert with Truncation Packed Single Precision Floating-Point Values to Packed Unsigned Quadword Integer Values (Suppress All Exceptions).
+//
+// Forms:
+//
+// 	VCVTTPS2UQQ.SAE ymm k zmm
+// 	VCVTTPS2UQQ.SAE ymm zmm
+// Construct and append a VCVTTPS2UQQ.SAE instruction to the active function.
+func (c *Context) VCVTTPS2UQQ_SAE(ops ...operand.Op) {
+	if inst, err := x86.VCVTTPS2UQQ_SAE(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTTPS2UQQ_SAE: Convert with Truncation Packed Single Precision Floating-Point Values to Packed Unsigned Quadword Integer Values (Suppress All Exceptions).
+//
+// Forms:
+//
+// 	VCVTTPS2UQQ.SAE ymm k zmm
+// 	VCVTTPS2UQQ.SAE ymm zmm
+// Construct and append a VCVTTPS2UQQ.SAE instruction to the active function.
+// Operates on the global context.
+func VCVTTPS2UQQ_SAE(ops ...operand.Op) { ctx.VCVTTPS2UQQ_SAE(ops...) }
+
+// VCVTTPS2UQQ_SAE_Z: Convert with Truncation Packed Single Precision Floating-Point Values to Packed Unsigned Quadword Integer Values (Suppress All Exceptions, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTTPS2UQQ.SAE.Z ymm k zmm
+// Construct and append a VCVTTPS2UQQ.SAE.Z instruction to the active function.
+func (c *Context) VCVTTPS2UQQ_SAE_Z(y, k, z operand.Op) {
+	if inst, err := x86.VCVTTPS2UQQ_SAE_Z(y, k, z); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTTPS2UQQ_SAE_Z: Convert with Truncation Packed Single Precision Floating-Point Values to Packed Unsigned Quadword Integer Values (Suppress All Exceptions, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTTPS2UQQ.SAE.Z ymm k zmm
+// Construct and append a VCVTTPS2UQQ.SAE.Z instruction to the active function.
+// Operates on the global context.
+func VCVTTPS2UQQ_SAE_Z(y, k, z operand.Op) { ctx.VCVTTPS2UQQ_SAE_Z(y, k, z) }
+
+// VCVTTPS2UQQ_Z: Convert with Truncation Packed Single Precision Floating-Point Values to Packed Unsigned Quadword Integer Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTTPS2UQQ.Z m256/m32bcst k zmm
+// 	VCVTTPS2UQQ.Z ymm          k zmm
+// 	VCVTTPS2UQQ.Z m128/m32bcst k ymm
+// 	VCVTTPS2UQQ.Z m64/m32bcst  k xmm
+// 	VCVTTPS2UQQ.Z xmm          k xmm
+// 	VCVTTPS2UQQ.Z xmm          k ymm
+// Construct and append a VCVTTPS2UQQ.Z instruction to the active function.
+func (c *Context) VCVTTPS2UQQ_Z(mxy, k, xyz operand.Op) {
+	if inst, err := x86.VCVTTPS2UQQ_Z(mxy, k, xyz); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTTPS2UQQ_Z: Convert with Truncation Packed Single Precision Floating-Point Values to Packed Unsigned Quadword Integer Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTTPS2UQQ.Z m256/m32bcst k zmm
+// 	VCVTTPS2UQQ.Z ymm          k zmm
+// 	VCVTTPS2UQQ.Z m128/m32bcst k ymm
+// 	VCVTTPS2UQQ.Z m64/m32bcst  k xmm
+// 	VCVTTPS2UQQ.Z xmm          k xmm
+// 	VCVTTPS2UQQ.Z xmm          k ymm
+// Construct and append a VCVTTPS2UQQ.Z instruction to the active function.
+// Operates on the global context.
+func VCVTTPS2UQQ_Z(mxy, k, xyz operand.Op) { ctx.VCVTTPS2UQQ_Z(mxy, k, xyz) }
 
 // VCVTTSD2SI: Convert with Truncation Scalar Double-Precision FP Value to Signed Integer.
 //
@@ -26554,6 +30576,834 @@ func (c *Context) VCVTUDQ2PS_Z(mxyz, k, xyz operand.Op) {
 // Construct and append a VCVTUDQ2PS.Z instruction to the active function.
 // Operates on the global context.
 func VCVTUDQ2PS_Z(mxyz, k, xyz operand.Op) { ctx.VCVTUDQ2PS_Z(mxyz, k, xyz) }
+
+// VCVTUQQ2PD: Convert Packed Unsigned Quadword Integers to Packed Double-Precision Floating-Point Values.
+//
+// Forms:
+//
+// 	VCVTUQQ2PD m512/m64bcst k zmm
+// 	VCVTUQQ2PD m512/m64bcst zmm
+// 	VCVTUQQ2PD zmm          k zmm
+// 	VCVTUQQ2PD zmm          zmm
+// 	VCVTUQQ2PD m128/m64bcst k xmm
+// 	VCVTUQQ2PD m128/m64bcst xmm
+// 	VCVTUQQ2PD m256/m64bcst k ymm
+// 	VCVTUQQ2PD m256/m64bcst ymm
+// 	VCVTUQQ2PD xmm          k xmm
+// 	VCVTUQQ2PD xmm          xmm
+// 	VCVTUQQ2PD ymm          k ymm
+// 	VCVTUQQ2PD ymm          ymm
+// Construct and append a VCVTUQQ2PD instruction to the active function.
+func (c *Context) VCVTUQQ2PD(ops ...operand.Op) {
+	if inst, err := x86.VCVTUQQ2PD(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTUQQ2PD: Convert Packed Unsigned Quadword Integers to Packed Double-Precision Floating-Point Values.
+//
+// Forms:
+//
+// 	VCVTUQQ2PD m512/m64bcst k zmm
+// 	VCVTUQQ2PD m512/m64bcst zmm
+// 	VCVTUQQ2PD zmm          k zmm
+// 	VCVTUQQ2PD zmm          zmm
+// 	VCVTUQQ2PD m128/m64bcst k xmm
+// 	VCVTUQQ2PD m128/m64bcst xmm
+// 	VCVTUQQ2PD m256/m64bcst k ymm
+// 	VCVTUQQ2PD m256/m64bcst ymm
+// 	VCVTUQQ2PD xmm          k xmm
+// 	VCVTUQQ2PD xmm          xmm
+// 	VCVTUQQ2PD ymm          k ymm
+// 	VCVTUQQ2PD ymm          ymm
+// Construct and append a VCVTUQQ2PD instruction to the active function.
+// Operates on the global context.
+func VCVTUQQ2PD(ops ...operand.Op) { ctx.VCVTUQQ2PD(ops...) }
+
+// VCVTUQQ2PD_BCST: Convert Packed Unsigned Quadword Integers to Packed Double-Precision Floating-Point Values (Broadcast).
+//
+// Forms:
+//
+// 	VCVTUQQ2PD.BCST m512/m64bcst k zmm
+// 	VCVTUQQ2PD.BCST m512/m64bcst zmm
+// 	VCVTUQQ2PD.BCST m128/m64bcst k xmm
+// 	VCVTUQQ2PD.BCST m128/m64bcst xmm
+// 	VCVTUQQ2PD.BCST m256/m64bcst k ymm
+// 	VCVTUQQ2PD.BCST m256/m64bcst ymm
+// Construct and append a VCVTUQQ2PD.BCST instruction to the active function.
+func (c *Context) VCVTUQQ2PD_BCST(ops ...operand.Op) {
+	if inst, err := x86.VCVTUQQ2PD_BCST(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTUQQ2PD_BCST: Convert Packed Unsigned Quadword Integers to Packed Double-Precision Floating-Point Values (Broadcast).
+//
+// Forms:
+//
+// 	VCVTUQQ2PD.BCST m512/m64bcst k zmm
+// 	VCVTUQQ2PD.BCST m512/m64bcst zmm
+// 	VCVTUQQ2PD.BCST m128/m64bcst k xmm
+// 	VCVTUQQ2PD.BCST m128/m64bcst xmm
+// 	VCVTUQQ2PD.BCST m256/m64bcst k ymm
+// 	VCVTUQQ2PD.BCST m256/m64bcst ymm
+// Construct and append a VCVTUQQ2PD.BCST instruction to the active function.
+// Operates on the global context.
+func VCVTUQQ2PD_BCST(ops ...operand.Op) { ctx.VCVTUQQ2PD_BCST(ops...) }
+
+// VCVTUQQ2PD_BCST_Z: Convert Packed Unsigned Quadword Integers to Packed Double-Precision Floating-Point Values (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTUQQ2PD.BCST.Z m512/m64bcst k zmm
+// 	VCVTUQQ2PD.BCST.Z m128/m64bcst k xmm
+// 	VCVTUQQ2PD.BCST.Z m256/m64bcst k ymm
+// Construct and append a VCVTUQQ2PD.BCST.Z instruction to the active function.
+func (c *Context) VCVTUQQ2PD_BCST_Z(m, k, xyz operand.Op) {
+	if inst, err := x86.VCVTUQQ2PD_BCST_Z(m, k, xyz); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTUQQ2PD_BCST_Z: Convert Packed Unsigned Quadword Integers to Packed Double-Precision Floating-Point Values (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTUQQ2PD.BCST.Z m512/m64bcst k zmm
+// 	VCVTUQQ2PD.BCST.Z m128/m64bcst k xmm
+// 	VCVTUQQ2PD.BCST.Z m256/m64bcst k ymm
+// Construct and append a VCVTUQQ2PD.BCST.Z instruction to the active function.
+// Operates on the global context.
+func VCVTUQQ2PD_BCST_Z(m, k, xyz operand.Op) { ctx.VCVTUQQ2PD_BCST_Z(m, k, xyz) }
+
+// VCVTUQQ2PD_RD_SAE: Convert Packed Unsigned Quadword Integers to Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity).
+//
+// Forms:
+//
+// 	VCVTUQQ2PD.RD_SAE zmm k zmm
+// 	VCVTUQQ2PD.RD_SAE zmm zmm
+// Construct and append a VCVTUQQ2PD.RD_SAE instruction to the active function.
+func (c *Context) VCVTUQQ2PD_RD_SAE(ops ...operand.Op) {
+	if inst, err := x86.VCVTUQQ2PD_RD_SAE(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTUQQ2PD_RD_SAE: Convert Packed Unsigned Quadword Integers to Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity).
+//
+// Forms:
+//
+// 	VCVTUQQ2PD.RD_SAE zmm k zmm
+// 	VCVTUQQ2PD.RD_SAE zmm zmm
+// Construct and append a VCVTUQQ2PD.RD_SAE instruction to the active function.
+// Operates on the global context.
+func VCVTUQQ2PD_RD_SAE(ops ...operand.Op) { ctx.VCVTUQQ2PD_RD_SAE(ops...) }
+
+// VCVTUQQ2PD_RD_SAE_Z: Convert Packed Unsigned Quadword Integers to Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTUQQ2PD.RD_SAE.Z zmm k zmm
+// Construct and append a VCVTUQQ2PD.RD_SAE.Z instruction to the active function.
+func (c *Context) VCVTUQQ2PD_RD_SAE_Z(z, k, z1 operand.Op) {
+	if inst, err := x86.VCVTUQQ2PD_RD_SAE_Z(z, k, z1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTUQQ2PD_RD_SAE_Z: Convert Packed Unsigned Quadword Integers to Packed Double-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTUQQ2PD.RD_SAE.Z zmm k zmm
+// Construct and append a VCVTUQQ2PD.RD_SAE.Z instruction to the active function.
+// Operates on the global context.
+func VCVTUQQ2PD_RD_SAE_Z(z, k, z1 operand.Op) { ctx.VCVTUQQ2PD_RD_SAE_Z(z, k, z1) }
+
+// VCVTUQQ2PD_RN_SAE: Convert Packed Unsigned Quadword Integers to Packed Double-Precision Floating-Point Values (Round Towards Nearest).
+//
+// Forms:
+//
+// 	VCVTUQQ2PD.RN_SAE zmm k zmm
+// 	VCVTUQQ2PD.RN_SAE zmm zmm
+// Construct and append a VCVTUQQ2PD.RN_SAE instruction to the active function.
+func (c *Context) VCVTUQQ2PD_RN_SAE(ops ...operand.Op) {
+	if inst, err := x86.VCVTUQQ2PD_RN_SAE(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTUQQ2PD_RN_SAE: Convert Packed Unsigned Quadword Integers to Packed Double-Precision Floating-Point Values (Round Towards Nearest).
+//
+// Forms:
+//
+// 	VCVTUQQ2PD.RN_SAE zmm k zmm
+// 	VCVTUQQ2PD.RN_SAE zmm zmm
+// Construct and append a VCVTUQQ2PD.RN_SAE instruction to the active function.
+// Operates on the global context.
+func VCVTUQQ2PD_RN_SAE(ops ...operand.Op) { ctx.VCVTUQQ2PD_RN_SAE(ops...) }
+
+// VCVTUQQ2PD_RN_SAE_Z: Convert Packed Unsigned Quadword Integers to Packed Double-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTUQQ2PD.RN_SAE.Z zmm k zmm
+// Construct and append a VCVTUQQ2PD.RN_SAE.Z instruction to the active function.
+func (c *Context) VCVTUQQ2PD_RN_SAE_Z(z, k, z1 operand.Op) {
+	if inst, err := x86.VCVTUQQ2PD_RN_SAE_Z(z, k, z1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTUQQ2PD_RN_SAE_Z: Convert Packed Unsigned Quadword Integers to Packed Double-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTUQQ2PD.RN_SAE.Z zmm k zmm
+// Construct and append a VCVTUQQ2PD.RN_SAE.Z instruction to the active function.
+// Operates on the global context.
+func VCVTUQQ2PD_RN_SAE_Z(z, k, z1 operand.Op) { ctx.VCVTUQQ2PD_RN_SAE_Z(z, k, z1) }
+
+// VCVTUQQ2PD_RU_SAE: Convert Packed Unsigned Quadword Integers to Packed Double-Precision Floating-Point Values (Round Towards Positive Infinity).
+//
+// Forms:
+//
+// 	VCVTUQQ2PD.RU_SAE zmm k zmm
+// 	VCVTUQQ2PD.RU_SAE zmm zmm
+// Construct and append a VCVTUQQ2PD.RU_SAE instruction to the active function.
+func (c *Context) VCVTUQQ2PD_RU_SAE(ops ...operand.Op) {
+	if inst, err := x86.VCVTUQQ2PD_RU_SAE(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTUQQ2PD_RU_SAE: Convert Packed Unsigned Quadword Integers to Packed Double-Precision Floating-Point Values (Round Towards Positive Infinity).
+//
+// Forms:
+//
+// 	VCVTUQQ2PD.RU_SAE zmm k zmm
+// 	VCVTUQQ2PD.RU_SAE zmm zmm
+// Construct and append a VCVTUQQ2PD.RU_SAE instruction to the active function.
+// Operates on the global context.
+func VCVTUQQ2PD_RU_SAE(ops ...operand.Op) { ctx.VCVTUQQ2PD_RU_SAE(ops...) }
+
+// VCVTUQQ2PD_RU_SAE_Z: Convert Packed Unsigned Quadword Integers to Packed Double-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTUQQ2PD.RU_SAE.Z zmm k zmm
+// Construct and append a VCVTUQQ2PD.RU_SAE.Z instruction to the active function.
+func (c *Context) VCVTUQQ2PD_RU_SAE_Z(z, k, z1 operand.Op) {
+	if inst, err := x86.VCVTUQQ2PD_RU_SAE_Z(z, k, z1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTUQQ2PD_RU_SAE_Z: Convert Packed Unsigned Quadword Integers to Packed Double-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTUQQ2PD.RU_SAE.Z zmm k zmm
+// Construct and append a VCVTUQQ2PD.RU_SAE.Z instruction to the active function.
+// Operates on the global context.
+func VCVTUQQ2PD_RU_SAE_Z(z, k, z1 operand.Op) { ctx.VCVTUQQ2PD_RU_SAE_Z(z, k, z1) }
+
+// VCVTUQQ2PD_RZ_SAE: Convert Packed Unsigned Quadword Integers to Packed Double-Precision Floating-Point Values (Round Towards Zero).
+//
+// Forms:
+//
+// 	VCVTUQQ2PD.RZ_SAE zmm k zmm
+// 	VCVTUQQ2PD.RZ_SAE zmm zmm
+// Construct and append a VCVTUQQ2PD.RZ_SAE instruction to the active function.
+func (c *Context) VCVTUQQ2PD_RZ_SAE(ops ...operand.Op) {
+	if inst, err := x86.VCVTUQQ2PD_RZ_SAE(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTUQQ2PD_RZ_SAE: Convert Packed Unsigned Quadword Integers to Packed Double-Precision Floating-Point Values (Round Towards Zero).
+//
+// Forms:
+//
+// 	VCVTUQQ2PD.RZ_SAE zmm k zmm
+// 	VCVTUQQ2PD.RZ_SAE zmm zmm
+// Construct and append a VCVTUQQ2PD.RZ_SAE instruction to the active function.
+// Operates on the global context.
+func VCVTUQQ2PD_RZ_SAE(ops ...operand.Op) { ctx.VCVTUQQ2PD_RZ_SAE(ops...) }
+
+// VCVTUQQ2PD_RZ_SAE_Z: Convert Packed Unsigned Quadword Integers to Packed Double-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTUQQ2PD.RZ_SAE.Z zmm k zmm
+// Construct and append a VCVTUQQ2PD.RZ_SAE.Z instruction to the active function.
+func (c *Context) VCVTUQQ2PD_RZ_SAE_Z(z, k, z1 operand.Op) {
+	if inst, err := x86.VCVTUQQ2PD_RZ_SAE_Z(z, k, z1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTUQQ2PD_RZ_SAE_Z: Convert Packed Unsigned Quadword Integers to Packed Double-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTUQQ2PD.RZ_SAE.Z zmm k zmm
+// Construct and append a VCVTUQQ2PD.RZ_SAE.Z instruction to the active function.
+// Operates on the global context.
+func VCVTUQQ2PD_RZ_SAE_Z(z, k, z1 operand.Op) { ctx.VCVTUQQ2PD_RZ_SAE_Z(z, k, z1) }
+
+// VCVTUQQ2PD_Z: Convert Packed Unsigned Quadword Integers to Packed Double-Precision Floating-Point Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTUQQ2PD.Z m512/m64bcst k zmm
+// 	VCVTUQQ2PD.Z zmm          k zmm
+// 	VCVTUQQ2PD.Z m128/m64bcst k xmm
+// 	VCVTUQQ2PD.Z m256/m64bcst k ymm
+// 	VCVTUQQ2PD.Z xmm          k xmm
+// 	VCVTUQQ2PD.Z ymm          k ymm
+// Construct and append a VCVTUQQ2PD.Z instruction to the active function.
+func (c *Context) VCVTUQQ2PD_Z(mxyz, k, xyz operand.Op) {
+	if inst, err := x86.VCVTUQQ2PD_Z(mxyz, k, xyz); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTUQQ2PD_Z: Convert Packed Unsigned Quadword Integers to Packed Double-Precision Floating-Point Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTUQQ2PD.Z m512/m64bcst k zmm
+// 	VCVTUQQ2PD.Z zmm          k zmm
+// 	VCVTUQQ2PD.Z m128/m64bcst k xmm
+// 	VCVTUQQ2PD.Z m256/m64bcst k ymm
+// 	VCVTUQQ2PD.Z xmm          k xmm
+// 	VCVTUQQ2PD.Z ymm          k ymm
+// Construct and append a VCVTUQQ2PD.Z instruction to the active function.
+// Operates on the global context.
+func VCVTUQQ2PD_Z(mxyz, k, xyz operand.Op) { ctx.VCVTUQQ2PD_Z(mxyz, k, xyz) }
+
+// VCVTUQQ2PS: Convert Packed Unsigned Quadword Integers to Packed Single-Precision Floating-Point Values.
+//
+// Forms:
+//
+// 	VCVTUQQ2PS m512/m64bcst k ymm
+// 	VCVTUQQ2PS m512/m64bcst ymm
+// 	VCVTUQQ2PS zmm          k ymm
+// 	VCVTUQQ2PS zmm          ymm
+// Construct and append a VCVTUQQ2PS instruction to the active function.
+func (c *Context) VCVTUQQ2PS(ops ...operand.Op) {
+	if inst, err := x86.VCVTUQQ2PS(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTUQQ2PS: Convert Packed Unsigned Quadword Integers to Packed Single-Precision Floating-Point Values.
+//
+// Forms:
+//
+// 	VCVTUQQ2PS m512/m64bcst k ymm
+// 	VCVTUQQ2PS m512/m64bcst ymm
+// 	VCVTUQQ2PS zmm          k ymm
+// 	VCVTUQQ2PS zmm          ymm
+// Construct and append a VCVTUQQ2PS instruction to the active function.
+// Operates on the global context.
+func VCVTUQQ2PS(ops ...operand.Op) { ctx.VCVTUQQ2PS(ops...) }
+
+// VCVTUQQ2PSX: Convert Packed Unsigned Quadword Integers to Packed Single-Precision Floating-Point Values.
+//
+// Forms:
+//
+// 	VCVTUQQ2PSX m128/m64bcst k xmm
+// 	VCVTUQQ2PSX m128/m64bcst xmm
+// 	VCVTUQQ2PSX xmm          k xmm
+// 	VCVTUQQ2PSX xmm          xmm
+// Construct and append a VCVTUQQ2PSX instruction to the active function.
+func (c *Context) VCVTUQQ2PSX(ops ...operand.Op) {
+	if inst, err := x86.VCVTUQQ2PSX(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTUQQ2PSX: Convert Packed Unsigned Quadword Integers to Packed Single-Precision Floating-Point Values.
+//
+// Forms:
+//
+// 	VCVTUQQ2PSX m128/m64bcst k xmm
+// 	VCVTUQQ2PSX m128/m64bcst xmm
+// 	VCVTUQQ2PSX xmm          k xmm
+// 	VCVTUQQ2PSX xmm          xmm
+// Construct and append a VCVTUQQ2PSX instruction to the active function.
+// Operates on the global context.
+func VCVTUQQ2PSX(ops ...operand.Op) { ctx.VCVTUQQ2PSX(ops...) }
+
+// VCVTUQQ2PSX_BCST: Convert Packed Unsigned Quadword Integers to Packed Single-Precision Floating-Point Values (Broadcast).
+//
+// Forms:
+//
+// 	VCVTUQQ2PSX.BCST m128/m64bcst k xmm
+// 	VCVTUQQ2PSX.BCST m128/m64bcst xmm
+// Construct and append a VCVTUQQ2PSX.BCST instruction to the active function.
+func (c *Context) VCVTUQQ2PSX_BCST(ops ...operand.Op) {
+	if inst, err := x86.VCVTUQQ2PSX_BCST(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTUQQ2PSX_BCST: Convert Packed Unsigned Quadword Integers to Packed Single-Precision Floating-Point Values (Broadcast).
+//
+// Forms:
+//
+// 	VCVTUQQ2PSX.BCST m128/m64bcst k xmm
+// 	VCVTUQQ2PSX.BCST m128/m64bcst xmm
+// Construct and append a VCVTUQQ2PSX.BCST instruction to the active function.
+// Operates on the global context.
+func VCVTUQQ2PSX_BCST(ops ...operand.Op) { ctx.VCVTUQQ2PSX_BCST(ops...) }
+
+// VCVTUQQ2PSX_BCST_Z: Convert Packed Unsigned Quadword Integers to Packed Single-Precision Floating-Point Values (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTUQQ2PSX.BCST.Z m128/m64bcst k xmm
+// Construct and append a VCVTUQQ2PSX.BCST.Z instruction to the active function.
+func (c *Context) VCVTUQQ2PSX_BCST_Z(m, k, x operand.Op) {
+	if inst, err := x86.VCVTUQQ2PSX_BCST_Z(m, k, x); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTUQQ2PSX_BCST_Z: Convert Packed Unsigned Quadword Integers to Packed Single-Precision Floating-Point Values (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTUQQ2PSX.BCST.Z m128/m64bcst k xmm
+// Construct and append a VCVTUQQ2PSX.BCST.Z instruction to the active function.
+// Operates on the global context.
+func VCVTUQQ2PSX_BCST_Z(m, k, x operand.Op) { ctx.VCVTUQQ2PSX_BCST_Z(m, k, x) }
+
+// VCVTUQQ2PSX_Z: Convert Packed Unsigned Quadword Integers to Packed Single-Precision Floating-Point Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTUQQ2PSX.Z m128/m64bcst k xmm
+// 	VCVTUQQ2PSX.Z xmm          k xmm
+// Construct and append a VCVTUQQ2PSX.Z instruction to the active function.
+func (c *Context) VCVTUQQ2PSX_Z(mx, k, x operand.Op) {
+	if inst, err := x86.VCVTUQQ2PSX_Z(mx, k, x); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTUQQ2PSX_Z: Convert Packed Unsigned Quadword Integers to Packed Single-Precision Floating-Point Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTUQQ2PSX.Z m128/m64bcst k xmm
+// 	VCVTUQQ2PSX.Z xmm          k xmm
+// Construct and append a VCVTUQQ2PSX.Z instruction to the active function.
+// Operates on the global context.
+func VCVTUQQ2PSX_Z(mx, k, x operand.Op) { ctx.VCVTUQQ2PSX_Z(mx, k, x) }
+
+// VCVTUQQ2PSY: Convert Packed Unsigned Quadword Integers to Packed Single-Precision Floating-Point Values.
+//
+// Forms:
+//
+// 	VCVTUQQ2PSY m256/m64bcst k xmm
+// 	VCVTUQQ2PSY m256/m64bcst xmm
+// 	VCVTUQQ2PSY ymm          k xmm
+// 	VCVTUQQ2PSY ymm          xmm
+// Construct and append a VCVTUQQ2PSY instruction to the active function.
+func (c *Context) VCVTUQQ2PSY(ops ...operand.Op) {
+	if inst, err := x86.VCVTUQQ2PSY(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTUQQ2PSY: Convert Packed Unsigned Quadword Integers to Packed Single-Precision Floating-Point Values.
+//
+// Forms:
+//
+// 	VCVTUQQ2PSY m256/m64bcst k xmm
+// 	VCVTUQQ2PSY m256/m64bcst xmm
+// 	VCVTUQQ2PSY ymm          k xmm
+// 	VCVTUQQ2PSY ymm          xmm
+// Construct and append a VCVTUQQ2PSY instruction to the active function.
+// Operates on the global context.
+func VCVTUQQ2PSY(ops ...operand.Op) { ctx.VCVTUQQ2PSY(ops...) }
+
+// VCVTUQQ2PSY_BCST: Convert Packed Unsigned Quadword Integers to Packed Single-Precision Floating-Point Values (Broadcast).
+//
+// Forms:
+//
+// 	VCVTUQQ2PSY.BCST m256/m64bcst k xmm
+// 	VCVTUQQ2PSY.BCST m256/m64bcst xmm
+// Construct and append a VCVTUQQ2PSY.BCST instruction to the active function.
+func (c *Context) VCVTUQQ2PSY_BCST(ops ...operand.Op) {
+	if inst, err := x86.VCVTUQQ2PSY_BCST(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTUQQ2PSY_BCST: Convert Packed Unsigned Quadword Integers to Packed Single-Precision Floating-Point Values (Broadcast).
+//
+// Forms:
+//
+// 	VCVTUQQ2PSY.BCST m256/m64bcst k xmm
+// 	VCVTUQQ2PSY.BCST m256/m64bcst xmm
+// Construct and append a VCVTUQQ2PSY.BCST instruction to the active function.
+// Operates on the global context.
+func VCVTUQQ2PSY_BCST(ops ...operand.Op) { ctx.VCVTUQQ2PSY_BCST(ops...) }
+
+// VCVTUQQ2PSY_BCST_Z: Convert Packed Unsigned Quadword Integers to Packed Single-Precision Floating-Point Values (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTUQQ2PSY.BCST.Z m256/m64bcst k xmm
+// Construct and append a VCVTUQQ2PSY.BCST.Z instruction to the active function.
+func (c *Context) VCVTUQQ2PSY_BCST_Z(m, k, x operand.Op) {
+	if inst, err := x86.VCVTUQQ2PSY_BCST_Z(m, k, x); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTUQQ2PSY_BCST_Z: Convert Packed Unsigned Quadword Integers to Packed Single-Precision Floating-Point Values (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTUQQ2PSY.BCST.Z m256/m64bcst k xmm
+// Construct and append a VCVTUQQ2PSY.BCST.Z instruction to the active function.
+// Operates on the global context.
+func VCVTUQQ2PSY_BCST_Z(m, k, x operand.Op) { ctx.VCVTUQQ2PSY_BCST_Z(m, k, x) }
+
+// VCVTUQQ2PSY_Z: Convert Packed Unsigned Quadword Integers to Packed Single-Precision Floating-Point Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTUQQ2PSY.Z m256/m64bcst k xmm
+// 	VCVTUQQ2PSY.Z ymm          k xmm
+// Construct and append a VCVTUQQ2PSY.Z instruction to the active function.
+func (c *Context) VCVTUQQ2PSY_Z(my, k, x operand.Op) {
+	if inst, err := x86.VCVTUQQ2PSY_Z(my, k, x); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTUQQ2PSY_Z: Convert Packed Unsigned Quadword Integers to Packed Single-Precision Floating-Point Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTUQQ2PSY.Z m256/m64bcst k xmm
+// 	VCVTUQQ2PSY.Z ymm          k xmm
+// Construct and append a VCVTUQQ2PSY.Z instruction to the active function.
+// Operates on the global context.
+func VCVTUQQ2PSY_Z(my, k, x operand.Op) { ctx.VCVTUQQ2PSY_Z(my, k, x) }
+
+// VCVTUQQ2PS_BCST: Convert Packed Unsigned Quadword Integers to Packed Single-Precision Floating-Point Values (Broadcast).
+//
+// Forms:
+//
+// 	VCVTUQQ2PS.BCST m512/m64bcst k ymm
+// 	VCVTUQQ2PS.BCST m512/m64bcst ymm
+// Construct and append a VCVTUQQ2PS.BCST instruction to the active function.
+func (c *Context) VCVTUQQ2PS_BCST(ops ...operand.Op) {
+	if inst, err := x86.VCVTUQQ2PS_BCST(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTUQQ2PS_BCST: Convert Packed Unsigned Quadword Integers to Packed Single-Precision Floating-Point Values (Broadcast).
+//
+// Forms:
+//
+// 	VCVTUQQ2PS.BCST m512/m64bcst k ymm
+// 	VCVTUQQ2PS.BCST m512/m64bcst ymm
+// Construct and append a VCVTUQQ2PS.BCST instruction to the active function.
+// Operates on the global context.
+func VCVTUQQ2PS_BCST(ops ...operand.Op) { ctx.VCVTUQQ2PS_BCST(ops...) }
+
+// VCVTUQQ2PS_BCST_Z: Convert Packed Unsigned Quadword Integers to Packed Single-Precision Floating-Point Values (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTUQQ2PS.BCST.Z m512/m64bcst k ymm
+// Construct and append a VCVTUQQ2PS.BCST.Z instruction to the active function.
+func (c *Context) VCVTUQQ2PS_BCST_Z(m, k, y operand.Op) {
+	if inst, err := x86.VCVTUQQ2PS_BCST_Z(m, k, y); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTUQQ2PS_BCST_Z: Convert Packed Unsigned Quadword Integers to Packed Single-Precision Floating-Point Values (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTUQQ2PS.BCST.Z m512/m64bcst k ymm
+// Construct and append a VCVTUQQ2PS.BCST.Z instruction to the active function.
+// Operates on the global context.
+func VCVTUQQ2PS_BCST_Z(m, k, y operand.Op) { ctx.VCVTUQQ2PS_BCST_Z(m, k, y) }
+
+// VCVTUQQ2PS_RD_SAE: Convert Packed Unsigned Quadword Integers to Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity).
+//
+// Forms:
+//
+// 	VCVTUQQ2PS.RD_SAE zmm k ymm
+// 	VCVTUQQ2PS.RD_SAE zmm ymm
+// Construct and append a VCVTUQQ2PS.RD_SAE instruction to the active function.
+func (c *Context) VCVTUQQ2PS_RD_SAE(ops ...operand.Op) {
+	if inst, err := x86.VCVTUQQ2PS_RD_SAE(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTUQQ2PS_RD_SAE: Convert Packed Unsigned Quadword Integers to Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity).
+//
+// Forms:
+//
+// 	VCVTUQQ2PS.RD_SAE zmm k ymm
+// 	VCVTUQQ2PS.RD_SAE zmm ymm
+// Construct and append a VCVTUQQ2PS.RD_SAE instruction to the active function.
+// Operates on the global context.
+func VCVTUQQ2PS_RD_SAE(ops ...operand.Op) { ctx.VCVTUQQ2PS_RD_SAE(ops...) }
+
+// VCVTUQQ2PS_RD_SAE_Z: Convert Packed Unsigned Quadword Integers to Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTUQQ2PS.RD_SAE.Z zmm k ymm
+// Construct and append a VCVTUQQ2PS.RD_SAE.Z instruction to the active function.
+func (c *Context) VCVTUQQ2PS_RD_SAE_Z(z, k, y operand.Op) {
+	if inst, err := x86.VCVTUQQ2PS_RD_SAE_Z(z, k, y); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTUQQ2PS_RD_SAE_Z: Convert Packed Unsigned Quadword Integers to Packed Single-Precision Floating-Point Values (Round Towards Negative Infinity, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTUQQ2PS.RD_SAE.Z zmm k ymm
+// Construct and append a VCVTUQQ2PS.RD_SAE.Z instruction to the active function.
+// Operates on the global context.
+func VCVTUQQ2PS_RD_SAE_Z(z, k, y operand.Op) { ctx.VCVTUQQ2PS_RD_SAE_Z(z, k, y) }
+
+// VCVTUQQ2PS_RN_SAE: Convert Packed Unsigned Quadword Integers to Packed Single-Precision Floating-Point Values (Round Towards Nearest).
+//
+// Forms:
+//
+// 	VCVTUQQ2PS.RN_SAE zmm k ymm
+// 	VCVTUQQ2PS.RN_SAE zmm ymm
+// Construct and append a VCVTUQQ2PS.RN_SAE instruction to the active function.
+func (c *Context) VCVTUQQ2PS_RN_SAE(ops ...operand.Op) {
+	if inst, err := x86.VCVTUQQ2PS_RN_SAE(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTUQQ2PS_RN_SAE: Convert Packed Unsigned Quadword Integers to Packed Single-Precision Floating-Point Values (Round Towards Nearest).
+//
+// Forms:
+//
+// 	VCVTUQQ2PS.RN_SAE zmm k ymm
+// 	VCVTUQQ2PS.RN_SAE zmm ymm
+// Construct and append a VCVTUQQ2PS.RN_SAE instruction to the active function.
+// Operates on the global context.
+func VCVTUQQ2PS_RN_SAE(ops ...operand.Op) { ctx.VCVTUQQ2PS_RN_SAE(ops...) }
+
+// VCVTUQQ2PS_RN_SAE_Z: Convert Packed Unsigned Quadword Integers to Packed Single-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTUQQ2PS.RN_SAE.Z zmm k ymm
+// Construct and append a VCVTUQQ2PS.RN_SAE.Z instruction to the active function.
+func (c *Context) VCVTUQQ2PS_RN_SAE_Z(z, k, y operand.Op) {
+	if inst, err := x86.VCVTUQQ2PS_RN_SAE_Z(z, k, y); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTUQQ2PS_RN_SAE_Z: Convert Packed Unsigned Quadword Integers to Packed Single-Precision Floating-Point Values (Round Towards Nearest, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTUQQ2PS.RN_SAE.Z zmm k ymm
+// Construct and append a VCVTUQQ2PS.RN_SAE.Z instruction to the active function.
+// Operates on the global context.
+func VCVTUQQ2PS_RN_SAE_Z(z, k, y operand.Op) { ctx.VCVTUQQ2PS_RN_SAE_Z(z, k, y) }
+
+// VCVTUQQ2PS_RU_SAE: Convert Packed Unsigned Quadword Integers to Packed Single-Precision Floating-Point Values (Round Towards Positive Infinity).
+//
+// Forms:
+//
+// 	VCVTUQQ2PS.RU_SAE zmm k ymm
+// 	VCVTUQQ2PS.RU_SAE zmm ymm
+// Construct and append a VCVTUQQ2PS.RU_SAE instruction to the active function.
+func (c *Context) VCVTUQQ2PS_RU_SAE(ops ...operand.Op) {
+	if inst, err := x86.VCVTUQQ2PS_RU_SAE(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTUQQ2PS_RU_SAE: Convert Packed Unsigned Quadword Integers to Packed Single-Precision Floating-Point Values (Round Towards Positive Infinity).
+//
+// Forms:
+//
+// 	VCVTUQQ2PS.RU_SAE zmm k ymm
+// 	VCVTUQQ2PS.RU_SAE zmm ymm
+// Construct and append a VCVTUQQ2PS.RU_SAE instruction to the active function.
+// Operates on the global context.
+func VCVTUQQ2PS_RU_SAE(ops ...operand.Op) { ctx.VCVTUQQ2PS_RU_SAE(ops...) }
+
+// VCVTUQQ2PS_RU_SAE_Z: Convert Packed Unsigned Quadword Integers to Packed Single-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTUQQ2PS.RU_SAE.Z zmm k ymm
+// Construct and append a VCVTUQQ2PS.RU_SAE.Z instruction to the active function.
+func (c *Context) VCVTUQQ2PS_RU_SAE_Z(z, k, y operand.Op) {
+	if inst, err := x86.VCVTUQQ2PS_RU_SAE_Z(z, k, y); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTUQQ2PS_RU_SAE_Z: Convert Packed Unsigned Quadword Integers to Packed Single-Precision Floating-Point Values (Round Towards Positive Infinity, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTUQQ2PS.RU_SAE.Z zmm k ymm
+// Construct and append a VCVTUQQ2PS.RU_SAE.Z instruction to the active function.
+// Operates on the global context.
+func VCVTUQQ2PS_RU_SAE_Z(z, k, y operand.Op) { ctx.VCVTUQQ2PS_RU_SAE_Z(z, k, y) }
+
+// VCVTUQQ2PS_RZ_SAE: Convert Packed Unsigned Quadword Integers to Packed Single-Precision Floating-Point Values (Round Towards Zero).
+//
+// Forms:
+//
+// 	VCVTUQQ2PS.RZ_SAE zmm k ymm
+// 	VCVTUQQ2PS.RZ_SAE zmm ymm
+// Construct and append a VCVTUQQ2PS.RZ_SAE instruction to the active function.
+func (c *Context) VCVTUQQ2PS_RZ_SAE(ops ...operand.Op) {
+	if inst, err := x86.VCVTUQQ2PS_RZ_SAE(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTUQQ2PS_RZ_SAE: Convert Packed Unsigned Quadword Integers to Packed Single-Precision Floating-Point Values (Round Towards Zero).
+//
+// Forms:
+//
+// 	VCVTUQQ2PS.RZ_SAE zmm k ymm
+// 	VCVTUQQ2PS.RZ_SAE zmm ymm
+// Construct and append a VCVTUQQ2PS.RZ_SAE instruction to the active function.
+// Operates on the global context.
+func VCVTUQQ2PS_RZ_SAE(ops ...operand.Op) { ctx.VCVTUQQ2PS_RZ_SAE(ops...) }
+
+// VCVTUQQ2PS_RZ_SAE_Z: Convert Packed Unsigned Quadword Integers to Packed Single-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTUQQ2PS.RZ_SAE.Z zmm k ymm
+// Construct and append a VCVTUQQ2PS.RZ_SAE.Z instruction to the active function.
+func (c *Context) VCVTUQQ2PS_RZ_SAE_Z(z, k, y operand.Op) {
+	if inst, err := x86.VCVTUQQ2PS_RZ_SAE_Z(z, k, y); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTUQQ2PS_RZ_SAE_Z: Convert Packed Unsigned Quadword Integers to Packed Single-Precision Floating-Point Values (Round Towards Zero, Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTUQQ2PS.RZ_SAE.Z zmm k ymm
+// Construct and append a VCVTUQQ2PS.RZ_SAE.Z instruction to the active function.
+// Operates on the global context.
+func VCVTUQQ2PS_RZ_SAE_Z(z, k, y operand.Op) { ctx.VCVTUQQ2PS_RZ_SAE_Z(z, k, y) }
+
+// VCVTUQQ2PS_Z: Convert Packed Unsigned Quadword Integers to Packed Single-Precision Floating-Point Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTUQQ2PS.Z m512/m64bcst k ymm
+// 	VCVTUQQ2PS.Z zmm          k ymm
+// Construct and append a VCVTUQQ2PS.Z instruction to the active function.
+func (c *Context) VCVTUQQ2PS_Z(mz, k, y operand.Op) {
+	if inst, err := x86.VCVTUQQ2PS_Z(mz, k, y); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VCVTUQQ2PS_Z: Convert Packed Unsigned Quadword Integers to Packed Single-Precision Floating-Point Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VCVTUQQ2PS.Z m512/m64bcst k ymm
+// 	VCVTUQQ2PS.Z zmm          k ymm
+// Construct and append a VCVTUQQ2PS.Z instruction to the active function.
+// Operates on the global context.
+func VCVTUQQ2PS_Z(mz, k, y operand.Op) { ctx.VCVTUQQ2PS_Z(mz, k, y) }
 
 // VCVTUSI2SDL: Convert Unsigned Integer to Scalar Double-Precision Floating-Point Value.
 //
@@ -28470,6 +33320,126 @@ func (c *Context) VEXTRACTF32X4_Z(i, yz, k, mx operand.Op) {
 // Operates on the global context.
 func VEXTRACTF32X4_Z(i, yz, k, mx operand.Op) { ctx.VEXTRACTF32X4_Z(i, yz, k, mx) }
 
+// VEXTRACTF32X8: Extract 256 Bits of Packed Single-Precision Floating-Point Values.
+//
+// Forms:
+//
+// 	VEXTRACTF32X8 imm8 zmm k m256
+// 	VEXTRACTF32X8 imm8 zmm k ymm
+// 	VEXTRACTF32X8 imm8 zmm m256
+// 	VEXTRACTF32X8 imm8 zmm ymm
+// Construct and append a VEXTRACTF32X8 instruction to the active function.
+func (c *Context) VEXTRACTF32X8(ops ...operand.Op) {
+	if inst, err := x86.VEXTRACTF32X8(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VEXTRACTF32X8: Extract 256 Bits of Packed Single-Precision Floating-Point Values.
+//
+// Forms:
+//
+// 	VEXTRACTF32X8 imm8 zmm k m256
+// 	VEXTRACTF32X8 imm8 zmm k ymm
+// 	VEXTRACTF32X8 imm8 zmm m256
+// 	VEXTRACTF32X8 imm8 zmm ymm
+// Construct and append a VEXTRACTF32X8 instruction to the active function.
+// Operates on the global context.
+func VEXTRACTF32X8(ops ...operand.Op) { ctx.VEXTRACTF32X8(ops...) }
+
+// VEXTRACTF32X8_Z: Extract 256 Bits of Packed Single-Precision Floating-Point Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VEXTRACTF32X8.Z imm8 zmm k m256
+// 	VEXTRACTF32X8.Z imm8 zmm k ymm
+// Construct and append a VEXTRACTF32X8.Z instruction to the active function.
+func (c *Context) VEXTRACTF32X8_Z(i, z, k, my operand.Op) {
+	if inst, err := x86.VEXTRACTF32X8_Z(i, z, k, my); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VEXTRACTF32X8_Z: Extract 256 Bits of Packed Single-Precision Floating-Point Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VEXTRACTF32X8.Z imm8 zmm k m256
+// 	VEXTRACTF32X8.Z imm8 zmm k ymm
+// Construct and append a VEXTRACTF32X8.Z instruction to the active function.
+// Operates on the global context.
+func VEXTRACTF32X8_Z(i, z, k, my operand.Op) { ctx.VEXTRACTF32X8_Z(i, z, k, my) }
+
+// VEXTRACTF64X2: Extract 128 Bits of Packed Double-Precision Floating-Point Values.
+//
+// Forms:
+//
+// 	VEXTRACTF64X2 imm8 zmm k m128
+// 	VEXTRACTF64X2 imm8 zmm k xmm
+// 	VEXTRACTF64X2 imm8 zmm m128
+// 	VEXTRACTF64X2 imm8 zmm xmm
+// 	VEXTRACTF64X2 imm8 ymm k m128
+// 	VEXTRACTF64X2 imm8 ymm k xmm
+// 	VEXTRACTF64X2 imm8 ymm m128
+// 	VEXTRACTF64X2 imm8 ymm xmm
+// Construct and append a VEXTRACTF64X2 instruction to the active function.
+func (c *Context) VEXTRACTF64X2(ops ...operand.Op) {
+	if inst, err := x86.VEXTRACTF64X2(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VEXTRACTF64X2: Extract 128 Bits of Packed Double-Precision Floating-Point Values.
+//
+// Forms:
+//
+// 	VEXTRACTF64X2 imm8 zmm k m128
+// 	VEXTRACTF64X2 imm8 zmm k xmm
+// 	VEXTRACTF64X2 imm8 zmm m128
+// 	VEXTRACTF64X2 imm8 zmm xmm
+// 	VEXTRACTF64X2 imm8 ymm k m128
+// 	VEXTRACTF64X2 imm8 ymm k xmm
+// 	VEXTRACTF64X2 imm8 ymm m128
+// 	VEXTRACTF64X2 imm8 ymm xmm
+// Construct and append a VEXTRACTF64X2 instruction to the active function.
+// Operates on the global context.
+func VEXTRACTF64X2(ops ...operand.Op) { ctx.VEXTRACTF64X2(ops...) }
+
+// VEXTRACTF64X2_Z: Extract 128 Bits of Packed Double-Precision Floating-Point Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VEXTRACTF64X2.Z imm8 zmm k m128
+// 	VEXTRACTF64X2.Z imm8 zmm k xmm
+// 	VEXTRACTF64X2.Z imm8 ymm k m128
+// 	VEXTRACTF64X2.Z imm8 ymm k xmm
+// Construct and append a VEXTRACTF64X2.Z instruction to the active function.
+func (c *Context) VEXTRACTF64X2_Z(i, yz, k, mx operand.Op) {
+	if inst, err := x86.VEXTRACTF64X2_Z(i, yz, k, mx); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VEXTRACTF64X2_Z: Extract 128 Bits of Packed Double-Precision Floating-Point Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VEXTRACTF64X2.Z imm8 zmm k m128
+// 	VEXTRACTF64X2.Z imm8 zmm k xmm
+// 	VEXTRACTF64X2.Z imm8 ymm k m128
+// 	VEXTRACTF64X2.Z imm8 ymm k xmm
+// Construct and append a VEXTRACTF64X2.Z instruction to the active function.
+// Operates on the global context.
+func VEXTRACTF64X2_Z(i, yz, k, mx operand.Op) { ctx.VEXTRACTF64X2_Z(i, yz, k, mx) }
+
 // VEXTRACTF64X4: Extract 256 Bits of Packed Double-Precision Floating-Point Values.
 //
 // Forms:
@@ -28614,6 +33584,126 @@ func (c *Context) VEXTRACTI32X4_Z(i, yz, k, mx operand.Op) {
 // Construct and append a VEXTRACTI32X4.Z instruction to the active function.
 // Operates on the global context.
 func VEXTRACTI32X4_Z(i, yz, k, mx operand.Op) { ctx.VEXTRACTI32X4_Z(i, yz, k, mx) }
+
+// VEXTRACTI32X8: Extract 256 Bits of Packed Doubleword Integer Values.
+//
+// Forms:
+//
+// 	VEXTRACTI32X8 imm8 zmm k m256
+// 	VEXTRACTI32X8 imm8 zmm k ymm
+// 	VEXTRACTI32X8 imm8 zmm m256
+// 	VEXTRACTI32X8 imm8 zmm ymm
+// Construct and append a VEXTRACTI32X8 instruction to the active function.
+func (c *Context) VEXTRACTI32X8(ops ...operand.Op) {
+	if inst, err := x86.VEXTRACTI32X8(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VEXTRACTI32X8: Extract 256 Bits of Packed Doubleword Integer Values.
+//
+// Forms:
+//
+// 	VEXTRACTI32X8 imm8 zmm k m256
+// 	VEXTRACTI32X8 imm8 zmm k ymm
+// 	VEXTRACTI32X8 imm8 zmm m256
+// 	VEXTRACTI32X8 imm8 zmm ymm
+// Construct and append a VEXTRACTI32X8 instruction to the active function.
+// Operates on the global context.
+func VEXTRACTI32X8(ops ...operand.Op) { ctx.VEXTRACTI32X8(ops...) }
+
+// VEXTRACTI32X8_Z: Extract 256 Bits of Packed Doubleword Integer Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VEXTRACTI32X8.Z imm8 zmm k m256
+// 	VEXTRACTI32X8.Z imm8 zmm k ymm
+// Construct and append a VEXTRACTI32X8.Z instruction to the active function.
+func (c *Context) VEXTRACTI32X8_Z(i, z, k, my operand.Op) {
+	if inst, err := x86.VEXTRACTI32X8_Z(i, z, k, my); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VEXTRACTI32X8_Z: Extract 256 Bits of Packed Doubleword Integer Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VEXTRACTI32X8.Z imm8 zmm k m256
+// 	VEXTRACTI32X8.Z imm8 zmm k ymm
+// Construct and append a VEXTRACTI32X8.Z instruction to the active function.
+// Operates on the global context.
+func VEXTRACTI32X8_Z(i, z, k, my operand.Op) { ctx.VEXTRACTI32X8_Z(i, z, k, my) }
+
+// VEXTRACTI64X2: Extract 128 Bits of Packed Quadword Integer Values.
+//
+// Forms:
+//
+// 	VEXTRACTI64X2 imm8 zmm k m128
+// 	VEXTRACTI64X2 imm8 zmm k xmm
+// 	VEXTRACTI64X2 imm8 zmm m128
+// 	VEXTRACTI64X2 imm8 zmm xmm
+// 	VEXTRACTI64X2 imm8 ymm k m128
+// 	VEXTRACTI64X2 imm8 ymm k xmm
+// 	VEXTRACTI64X2 imm8 ymm m128
+// 	VEXTRACTI64X2 imm8 ymm xmm
+// Construct and append a VEXTRACTI64X2 instruction to the active function.
+func (c *Context) VEXTRACTI64X2(ops ...operand.Op) {
+	if inst, err := x86.VEXTRACTI64X2(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VEXTRACTI64X2: Extract 128 Bits of Packed Quadword Integer Values.
+//
+// Forms:
+//
+// 	VEXTRACTI64X2 imm8 zmm k m128
+// 	VEXTRACTI64X2 imm8 zmm k xmm
+// 	VEXTRACTI64X2 imm8 zmm m128
+// 	VEXTRACTI64X2 imm8 zmm xmm
+// 	VEXTRACTI64X2 imm8 ymm k m128
+// 	VEXTRACTI64X2 imm8 ymm k xmm
+// 	VEXTRACTI64X2 imm8 ymm m128
+// 	VEXTRACTI64X2 imm8 ymm xmm
+// Construct and append a VEXTRACTI64X2 instruction to the active function.
+// Operates on the global context.
+func VEXTRACTI64X2(ops ...operand.Op) { ctx.VEXTRACTI64X2(ops...) }
+
+// VEXTRACTI64X2_Z: Extract 128 Bits of Packed Quadword Integer Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VEXTRACTI64X2.Z imm8 zmm k m128
+// 	VEXTRACTI64X2.Z imm8 zmm k xmm
+// 	VEXTRACTI64X2.Z imm8 ymm k m128
+// 	VEXTRACTI64X2.Z imm8 ymm k xmm
+// Construct and append a VEXTRACTI64X2.Z instruction to the active function.
+func (c *Context) VEXTRACTI64X2_Z(i, yz, k, mx operand.Op) {
+	if inst, err := x86.VEXTRACTI64X2_Z(i, yz, k, mx); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VEXTRACTI64X2_Z: Extract 128 Bits of Packed Quadword Integer Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VEXTRACTI64X2.Z imm8 zmm k m128
+// 	VEXTRACTI64X2.Z imm8 zmm k xmm
+// 	VEXTRACTI64X2.Z imm8 ymm k m128
+// 	VEXTRACTI64X2.Z imm8 ymm k xmm
+// Construct and append a VEXTRACTI64X2.Z instruction to the active function.
+// Operates on the global context.
+func VEXTRACTI64X2_Z(i, yz, k, mx operand.Op) { ctx.VEXTRACTI64X2_Z(i, yz, k, mx) }
 
 // VEXTRACTI64X4: Extract 256 Bits of Packed Quadword Integer Values.
 //
@@ -47198,6 +52288,388 @@ func (c *Context) VFNMSUB231SS_Z(mx, x, k, x1 operand.Op) {
 // Operates on the global context.
 func VFNMSUB231SS_Z(mx, x, k, x1 operand.Op) { ctx.VFNMSUB231SS_Z(mx, x, k, x1) }
 
+// VFPCLASSPDX: Test Class of Packed Double-Precision Floating-Point Values.
+//
+// Forms:
+//
+// 	VFPCLASSPDX imm8 m128/m64bcst k k
+// 	VFPCLASSPDX imm8 m128/m64bcst k
+// 	VFPCLASSPDX imm8 xmm          k k
+// 	VFPCLASSPDX imm8 xmm          k
+// Construct and append a VFPCLASSPDX instruction to the active function.
+func (c *Context) VFPCLASSPDX(ops ...operand.Op) {
+	if inst, err := x86.VFPCLASSPDX(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VFPCLASSPDX: Test Class of Packed Double-Precision Floating-Point Values.
+//
+// Forms:
+//
+// 	VFPCLASSPDX imm8 m128/m64bcst k k
+// 	VFPCLASSPDX imm8 m128/m64bcst k
+// 	VFPCLASSPDX imm8 xmm          k k
+// 	VFPCLASSPDX imm8 xmm          k
+// Construct and append a VFPCLASSPDX instruction to the active function.
+// Operates on the global context.
+func VFPCLASSPDX(ops ...operand.Op) { ctx.VFPCLASSPDX(ops...) }
+
+// VFPCLASSPDX_BCST: Test Class of Packed Double-Precision Floating-Point Values (Broadcast).
+//
+// Forms:
+//
+// 	VFPCLASSPDX.BCST imm8 m128/m64bcst k k
+// 	VFPCLASSPDX.BCST imm8 m128/m64bcst k
+// Construct and append a VFPCLASSPDX.BCST instruction to the active function.
+func (c *Context) VFPCLASSPDX_BCST(ops ...operand.Op) {
+	if inst, err := x86.VFPCLASSPDX_BCST(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VFPCLASSPDX_BCST: Test Class of Packed Double-Precision Floating-Point Values (Broadcast).
+//
+// Forms:
+//
+// 	VFPCLASSPDX.BCST imm8 m128/m64bcst k k
+// 	VFPCLASSPDX.BCST imm8 m128/m64bcst k
+// Construct and append a VFPCLASSPDX.BCST instruction to the active function.
+// Operates on the global context.
+func VFPCLASSPDX_BCST(ops ...operand.Op) { ctx.VFPCLASSPDX_BCST(ops...) }
+
+// VFPCLASSPDY: Test Class of Packed Double-Precision Floating-Point Values.
+//
+// Forms:
+//
+// 	VFPCLASSPDY imm8 m256/m64bcst k k
+// 	VFPCLASSPDY imm8 m256/m64bcst k
+// 	VFPCLASSPDY imm8 ymm          k k
+// 	VFPCLASSPDY imm8 ymm          k
+// Construct and append a VFPCLASSPDY instruction to the active function.
+func (c *Context) VFPCLASSPDY(ops ...operand.Op) {
+	if inst, err := x86.VFPCLASSPDY(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VFPCLASSPDY: Test Class of Packed Double-Precision Floating-Point Values.
+//
+// Forms:
+//
+// 	VFPCLASSPDY imm8 m256/m64bcst k k
+// 	VFPCLASSPDY imm8 m256/m64bcst k
+// 	VFPCLASSPDY imm8 ymm          k k
+// 	VFPCLASSPDY imm8 ymm          k
+// Construct and append a VFPCLASSPDY instruction to the active function.
+// Operates on the global context.
+func VFPCLASSPDY(ops ...operand.Op) { ctx.VFPCLASSPDY(ops...) }
+
+// VFPCLASSPDY_BCST: Test Class of Packed Double-Precision Floating-Point Values (Broadcast).
+//
+// Forms:
+//
+// 	VFPCLASSPDY.BCST imm8 m256/m64bcst k k
+// 	VFPCLASSPDY.BCST imm8 m256/m64bcst k
+// Construct and append a VFPCLASSPDY.BCST instruction to the active function.
+func (c *Context) VFPCLASSPDY_BCST(ops ...operand.Op) {
+	if inst, err := x86.VFPCLASSPDY_BCST(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VFPCLASSPDY_BCST: Test Class of Packed Double-Precision Floating-Point Values (Broadcast).
+//
+// Forms:
+//
+// 	VFPCLASSPDY.BCST imm8 m256/m64bcst k k
+// 	VFPCLASSPDY.BCST imm8 m256/m64bcst k
+// Construct and append a VFPCLASSPDY.BCST instruction to the active function.
+// Operates on the global context.
+func VFPCLASSPDY_BCST(ops ...operand.Op) { ctx.VFPCLASSPDY_BCST(ops...) }
+
+// VFPCLASSPDZ: Test Class of Packed Double-Precision Floating-Point Values.
+//
+// Forms:
+//
+// 	VFPCLASSPDZ imm8 m512/m64bcst k k
+// 	VFPCLASSPDZ imm8 m512/m64bcst k
+// 	VFPCLASSPDZ imm8 zmm          k k
+// 	VFPCLASSPDZ imm8 zmm          k
+// Construct and append a VFPCLASSPDZ instruction to the active function.
+func (c *Context) VFPCLASSPDZ(ops ...operand.Op) {
+	if inst, err := x86.VFPCLASSPDZ(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VFPCLASSPDZ: Test Class of Packed Double-Precision Floating-Point Values.
+//
+// Forms:
+//
+// 	VFPCLASSPDZ imm8 m512/m64bcst k k
+// 	VFPCLASSPDZ imm8 m512/m64bcst k
+// 	VFPCLASSPDZ imm8 zmm          k k
+// 	VFPCLASSPDZ imm8 zmm          k
+// Construct and append a VFPCLASSPDZ instruction to the active function.
+// Operates on the global context.
+func VFPCLASSPDZ(ops ...operand.Op) { ctx.VFPCLASSPDZ(ops...) }
+
+// VFPCLASSPDZ_BCST: Test Class of Packed Double-Precision Floating-Point Values (Broadcast).
+//
+// Forms:
+//
+// 	VFPCLASSPDZ.BCST imm8 m512/m64bcst k k
+// 	VFPCLASSPDZ.BCST imm8 m512/m64bcst k
+// Construct and append a VFPCLASSPDZ.BCST instruction to the active function.
+func (c *Context) VFPCLASSPDZ_BCST(ops ...operand.Op) {
+	if inst, err := x86.VFPCLASSPDZ_BCST(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VFPCLASSPDZ_BCST: Test Class of Packed Double-Precision Floating-Point Values (Broadcast).
+//
+// Forms:
+//
+// 	VFPCLASSPDZ.BCST imm8 m512/m64bcst k k
+// 	VFPCLASSPDZ.BCST imm8 m512/m64bcst k
+// Construct and append a VFPCLASSPDZ.BCST instruction to the active function.
+// Operates on the global context.
+func VFPCLASSPDZ_BCST(ops ...operand.Op) { ctx.VFPCLASSPDZ_BCST(ops...) }
+
+// VFPCLASSPSX: Test Class of Packed Single-Precision Floating-Point Values.
+//
+// Forms:
+//
+// 	VFPCLASSPSX imm8 m128/m32bcst k k
+// 	VFPCLASSPSX imm8 m128/m32bcst k
+// 	VFPCLASSPSX imm8 xmm          k k
+// 	VFPCLASSPSX imm8 xmm          k
+// Construct and append a VFPCLASSPSX instruction to the active function.
+func (c *Context) VFPCLASSPSX(ops ...operand.Op) {
+	if inst, err := x86.VFPCLASSPSX(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VFPCLASSPSX: Test Class of Packed Single-Precision Floating-Point Values.
+//
+// Forms:
+//
+// 	VFPCLASSPSX imm8 m128/m32bcst k k
+// 	VFPCLASSPSX imm8 m128/m32bcst k
+// 	VFPCLASSPSX imm8 xmm          k k
+// 	VFPCLASSPSX imm8 xmm          k
+// Construct and append a VFPCLASSPSX instruction to the active function.
+// Operates on the global context.
+func VFPCLASSPSX(ops ...operand.Op) { ctx.VFPCLASSPSX(ops...) }
+
+// VFPCLASSPSX_BCST: Test Class of Packed Single-Precision Floating-Point Values (Broadcast).
+//
+// Forms:
+//
+// 	VFPCLASSPSX.BCST imm8 m128/m32bcst k k
+// 	VFPCLASSPSX.BCST imm8 m128/m32bcst k
+// Construct and append a VFPCLASSPSX.BCST instruction to the active function.
+func (c *Context) VFPCLASSPSX_BCST(ops ...operand.Op) {
+	if inst, err := x86.VFPCLASSPSX_BCST(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VFPCLASSPSX_BCST: Test Class of Packed Single-Precision Floating-Point Values (Broadcast).
+//
+// Forms:
+//
+// 	VFPCLASSPSX.BCST imm8 m128/m32bcst k k
+// 	VFPCLASSPSX.BCST imm8 m128/m32bcst k
+// Construct and append a VFPCLASSPSX.BCST instruction to the active function.
+// Operates on the global context.
+func VFPCLASSPSX_BCST(ops ...operand.Op) { ctx.VFPCLASSPSX_BCST(ops...) }
+
+// VFPCLASSPSY: Test Class of Packed Single-Precision Floating-Point Values.
+//
+// Forms:
+//
+// 	VFPCLASSPSY imm8 m256/m32bcst k k
+// 	VFPCLASSPSY imm8 m256/m32bcst k
+// 	VFPCLASSPSY imm8 ymm          k k
+// 	VFPCLASSPSY imm8 ymm          k
+// Construct and append a VFPCLASSPSY instruction to the active function.
+func (c *Context) VFPCLASSPSY(ops ...operand.Op) {
+	if inst, err := x86.VFPCLASSPSY(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VFPCLASSPSY: Test Class of Packed Single-Precision Floating-Point Values.
+//
+// Forms:
+//
+// 	VFPCLASSPSY imm8 m256/m32bcst k k
+// 	VFPCLASSPSY imm8 m256/m32bcst k
+// 	VFPCLASSPSY imm8 ymm          k k
+// 	VFPCLASSPSY imm8 ymm          k
+// Construct and append a VFPCLASSPSY instruction to the active function.
+// Operates on the global context.
+func VFPCLASSPSY(ops ...operand.Op) { ctx.VFPCLASSPSY(ops...) }
+
+// VFPCLASSPSY_BCST: Test Class of Packed Single-Precision Floating-Point Values (Broadcast).
+//
+// Forms:
+//
+// 	VFPCLASSPSY.BCST imm8 m256/m32bcst k k
+// 	VFPCLASSPSY.BCST imm8 m256/m32bcst k
+// Construct and append a VFPCLASSPSY.BCST instruction to the active function.
+func (c *Context) VFPCLASSPSY_BCST(ops ...operand.Op) {
+	if inst, err := x86.VFPCLASSPSY_BCST(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VFPCLASSPSY_BCST: Test Class of Packed Single-Precision Floating-Point Values (Broadcast).
+//
+// Forms:
+//
+// 	VFPCLASSPSY.BCST imm8 m256/m32bcst k k
+// 	VFPCLASSPSY.BCST imm8 m256/m32bcst k
+// Construct and append a VFPCLASSPSY.BCST instruction to the active function.
+// Operates on the global context.
+func VFPCLASSPSY_BCST(ops ...operand.Op) { ctx.VFPCLASSPSY_BCST(ops...) }
+
+// VFPCLASSPSZ: Test Class of Packed Single-Precision Floating-Point Values.
+//
+// Forms:
+//
+// 	VFPCLASSPSZ imm8 m512/m32bcst k k
+// 	VFPCLASSPSZ imm8 m512/m32bcst k
+// 	VFPCLASSPSZ imm8 zmm          k k
+// 	VFPCLASSPSZ imm8 zmm          k
+// Construct and append a VFPCLASSPSZ instruction to the active function.
+func (c *Context) VFPCLASSPSZ(ops ...operand.Op) {
+	if inst, err := x86.VFPCLASSPSZ(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VFPCLASSPSZ: Test Class of Packed Single-Precision Floating-Point Values.
+//
+// Forms:
+//
+// 	VFPCLASSPSZ imm8 m512/m32bcst k k
+// 	VFPCLASSPSZ imm8 m512/m32bcst k
+// 	VFPCLASSPSZ imm8 zmm          k k
+// 	VFPCLASSPSZ imm8 zmm          k
+// Construct and append a VFPCLASSPSZ instruction to the active function.
+// Operates on the global context.
+func VFPCLASSPSZ(ops ...operand.Op) { ctx.VFPCLASSPSZ(ops...) }
+
+// VFPCLASSPSZ_BCST: Test Class of Packed Single-Precision Floating-Point Values (Broadcast).
+//
+// Forms:
+//
+// 	VFPCLASSPSZ.BCST imm8 m512/m32bcst k k
+// 	VFPCLASSPSZ.BCST imm8 m512/m32bcst k
+// Construct and append a VFPCLASSPSZ.BCST instruction to the active function.
+func (c *Context) VFPCLASSPSZ_BCST(ops ...operand.Op) {
+	if inst, err := x86.VFPCLASSPSZ_BCST(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VFPCLASSPSZ_BCST: Test Class of Packed Single-Precision Floating-Point Values (Broadcast).
+//
+// Forms:
+//
+// 	VFPCLASSPSZ.BCST imm8 m512/m32bcst k k
+// 	VFPCLASSPSZ.BCST imm8 m512/m32bcst k
+// Construct and append a VFPCLASSPSZ.BCST instruction to the active function.
+// Operates on the global context.
+func VFPCLASSPSZ_BCST(ops ...operand.Op) { ctx.VFPCLASSPSZ_BCST(ops...) }
+
+// VFPCLASSSD: Test Class of Scalar Double-Precision Floating-Point Value.
+//
+// Forms:
+//
+// 	VFPCLASSSD imm8 m64 k k
+// 	VFPCLASSSD imm8 m64 k
+// 	VFPCLASSSD imm8 xmm k k
+// 	VFPCLASSSD imm8 xmm k
+// Construct and append a VFPCLASSSD instruction to the active function.
+func (c *Context) VFPCLASSSD(ops ...operand.Op) {
+	if inst, err := x86.VFPCLASSSD(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VFPCLASSSD: Test Class of Scalar Double-Precision Floating-Point Value.
+//
+// Forms:
+//
+// 	VFPCLASSSD imm8 m64 k k
+// 	VFPCLASSSD imm8 m64 k
+// 	VFPCLASSSD imm8 xmm k k
+// 	VFPCLASSSD imm8 xmm k
+// Construct and append a VFPCLASSSD instruction to the active function.
+// Operates on the global context.
+func VFPCLASSSD(ops ...operand.Op) { ctx.VFPCLASSSD(ops...) }
+
+// VFPCLASSSS: Test Class of Scalar Single-Precision Floating-Point Value.
+//
+// Forms:
+//
+// 	VFPCLASSSS imm8 m32 k k
+// 	VFPCLASSSS imm8 m32 k
+// 	VFPCLASSSS imm8 xmm k k
+// 	VFPCLASSSS imm8 xmm k
+// Construct and append a VFPCLASSSS instruction to the active function.
+func (c *Context) VFPCLASSSS(ops ...operand.Op) {
+	if inst, err := x86.VFPCLASSSS(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VFPCLASSSS: Test Class of Scalar Single-Precision Floating-Point Value.
+//
+// Forms:
+//
+// 	VFPCLASSSS imm8 m32 k k
+// 	VFPCLASSSS imm8 m32 k
+// 	VFPCLASSSS imm8 xmm k k
+// 	VFPCLASSSS imm8 xmm k
+// Construct and append a VFPCLASSSS instruction to the active function.
+// Operates on the global context.
+func VFPCLASSSS(ops ...operand.Op) { ctx.VFPCLASSSS(ops...) }
+
 // VGATHERDPD: Gather Packed Double-Precision Floating-Point Values Using Signed Doubleword Indices.
 //
 // Forms:
@@ -48681,6 +54153,126 @@ func (c *Context) VINSERTF32X4_Z(i, mx, yz, k, yz1 operand.Op) {
 // Operates on the global context.
 func VINSERTF32X4_Z(i, mx, yz, k, yz1 operand.Op) { ctx.VINSERTF32X4_Z(i, mx, yz, k, yz1) }
 
+// VINSERTF32X8: Insert 256 Bits of Packed Single-Precision Floating-Point Values.
+//
+// Forms:
+//
+// 	VINSERTF32X8 imm8 m256 zmm k zmm
+// 	VINSERTF32X8 imm8 m256 zmm zmm
+// 	VINSERTF32X8 imm8 ymm  zmm k zmm
+// 	VINSERTF32X8 imm8 ymm  zmm zmm
+// Construct and append a VINSERTF32X8 instruction to the active function.
+func (c *Context) VINSERTF32X8(ops ...operand.Op) {
+	if inst, err := x86.VINSERTF32X8(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VINSERTF32X8: Insert 256 Bits of Packed Single-Precision Floating-Point Values.
+//
+// Forms:
+//
+// 	VINSERTF32X8 imm8 m256 zmm k zmm
+// 	VINSERTF32X8 imm8 m256 zmm zmm
+// 	VINSERTF32X8 imm8 ymm  zmm k zmm
+// 	VINSERTF32X8 imm8 ymm  zmm zmm
+// Construct and append a VINSERTF32X8 instruction to the active function.
+// Operates on the global context.
+func VINSERTF32X8(ops ...operand.Op) { ctx.VINSERTF32X8(ops...) }
+
+// VINSERTF32X8_Z: Insert 256 Bits of Packed Single-Precision Floating-Point Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VINSERTF32X8.Z imm8 m256 zmm k zmm
+// 	VINSERTF32X8.Z imm8 ymm  zmm k zmm
+// Construct and append a VINSERTF32X8.Z instruction to the active function.
+func (c *Context) VINSERTF32X8_Z(i, my, z, k, z1 operand.Op) {
+	if inst, err := x86.VINSERTF32X8_Z(i, my, z, k, z1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VINSERTF32X8_Z: Insert 256 Bits of Packed Single-Precision Floating-Point Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VINSERTF32X8.Z imm8 m256 zmm k zmm
+// 	VINSERTF32X8.Z imm8 ymm  zmm k zmm
+// Construct and append a VINSERTF32X8.Z instruction to the active function.
+// Operates on the global context.
+func VINSERTF32X8_Z(i, my, z, k, z1 operand.Op) { ctx.VINSERTF32X8_Z(i, my, z, k, z1) }
+
+// VINSERTF64X2: Insert 128 Bits of Packed Double-Precision Floating-Point Values.
+//
+// Forms:
+//
+// 	VINSERTF64X2 imm8 m128 zmm k zmm
+// 	VINSERTF64X2 imm8 m128 zmm zmm
+// 	VINSERTF64X2 imm8 xmm  zmm k zmm
+// 	VINSERTF64X2 imm8 xmm  zmm zmm
+// 	VINSERTF64X2 imm8 m128 ymm k ymm
+// 	VINSERTF64X2 imm8 m128 ymm ymm
+// 	VINSERTF64X2 imm8 xmm  ymm k ymm
+// 	VINSERTF64X2 imm8 xmm  ymm ymm
+// Construct and append a VINSERTF64X2 instruction to the active function.
+func (c *Context) VINSERTF64X2(ops ...operand.Op) {
+	if inst, err := x86.VINSERTF64X2(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VINSERTF64X2: Insert 128 Bits of Packed Double-Precision Floating-Point Values.
+//
+// Forms:
+//
+// 	VINSERTF64X2 imm8 m128 zmm k zmm
+// 	VINSERTF64X2 imm8 m128 zmm zmm
+// 	VINSERTF64X2 imm8 xmm  zmm k zmm
+// 	VINSERTF64X2 imm8 xmm  zmm zmm
+// 	VINSERTF64X2 imm8 m128 ymm k ymm
+// 	VINSERTF64X2 imm8 m128 ymm ymm
+// 	VINSERTF64X2 imm8 xmm  ymm k ymm
+// 	VINSERTF64X2 imm8 xmm  ymm ymm
+// Construct and append a VINSERTF64X2 instruction to the active function.
+// Operates on the global context.
+func VINSERTF64X2(ops ...operand.Op) { ctx.VINSERTF64X2(ops...) }
+
+// VINSERTF64X2_Z: Insert 128 Bits of Packed Double-Precision Floating-Point Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VINSERTF64X2.Z imm8 m128 zmm k zmm
+// 	VINSERTF64X2.Z imm8 xmm  zmm k zmm
+// 	VINSERTF64X2.Z imm8 m128 ymm k ymm
+// 	VINSERTF64X2.Z imm8 xmm  ymm k ymm
+// Construct and append a VINSERTF64X2.Z instruction to the active function.
+func (c *Context) VINSERTF64X2_Z(i, mx, yz, k, yz1 operand.Op) {
+	if inst, err := x86.VINSERTF64X2_Z(i, mx, yz, k, yz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VINSERTF64X2_Z: Insert 128 Bits of Packed Double-Precision Floating-Point Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VINSERTF64X2.Z imm8 m128 zmm k zmm
+// 	VINSERTF64X2.Z imm8 xmm  zmm k zmm
+// 	VINSERTF64X2.Z imm8 m128 ymm k ymm
+// 	VINSERTF64X2.Z imm8 xmm  ymm k ymm
+// Construct and append a VINSERTF64X2.Z instruction to the active function.
+// Operates on the global context.
+func VINSERTF64X2_Z(i, mx, yz, k, yz1 operand.Op) { ctx.VINSERTF64X2_Z(i, mx, yz, k, yz1) }
+
 // VINSERTF64X4: Insert 256 Bits of Packed Double-Precision Floating-Point Values.
 //
 // Forms:
@@ -48825,6 +54417,126 @@ func (c *Context) VINSERTI32X4_Z(i, mx, yz, k, yz1 operand.Op) {
 // Construct and append a VINSERTI32X4.Z instruction to the active function.
 // Operates on the global context.
 func VINSERTI32X4_Z(i, mx, yz, k, yz1 operand.Op) { ctx.VINSERTI32X4_Z(i, mx, yz, k, yz1) }
+
+// VINSERTI32X8: Insert 256 Bits of Packed Doubleword Integer Values.
+//
+// Forms:
+//
+// 	VINSERTI32X8 imm8 m256 zmm k zmm
+// 	VINSERTI32X8 imm8 m256 zmm zmm
+// 	VINSERTI32X8 imm8 ymm  zmm k zmm
+// 	VINSERTI32X8 imm8 ymm  zmm zmm
+// Construct and append a VINSERTI32X8 instruction to the active function.
+func (c *Context) VINSERTI32X8(ops ...operand.Op) {
+	if inst, err := x86.VINSERTI32X8(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VINSERTI32X8: Insert 256 Bits of Packed Doubleword Integer Values.
+//
+// Forms:
+//
+// 	VINSERTI32X8 imm8 m256 zmm k zmm
+// 	VINSERTI32X8 imm8 m256 zmm zmm
+// 	VINSERTI32X8 imm8 ymm  zmm k zmm
+// 	VINSERTI32X8 imm8 ymm  zmm zmm
+// Construct and append a VINSERTI32X8 instruction to the active function.
+// Operates on the global context.
+func VINSERTI32X8(ops ...operand.Op) { ctx.VINSERTI32X8(ops...) }
+
+// VINSERTI32X8_Z: Insert 256 Bits of Packed Doubleword Integer Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VINSERTI32X8.Z imm8 m256 zmm k zmm
+// 	VINSERTI32X8.Z imm8 ymm  zmm k zmm
+// Construct and append a VINSERTI32X8.Z instruction to the active function.
+func (c *Context) VINSERTI32X8_Z(i, my, z, k, z1 operand.Op) {
+	if inst, err := x86.VINSERTI32X8_Z(i, my, z, k, z1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VINSERTI32X8_Z: Insert 256 Bits of Packed Doubleword Integer Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VINSERTI32X8.Z imm8 m256 zmm k zmm
+// 	VINSERTI32X8.Z imm8 ymm  zmm k zmm
+// Construct and append a VINSERTI32X8.Z instruction to the active function.
+// Operates on the global context.
+func VINSERTI32X8_Z(i, my, z, k, z1 operand.Op) { ctx.VINSERTI32X8_Z(i, my, z, k, z1) }
+
+// VINSERTI64X2: Insert 128 Bits of Packed Quadword Integer Values.
+//
+// Forms:
+//
+// 	VINSERTI64X2 imm8 m128 zmm k zmm
+// 	VINSERTI64X2 imm8 m128 zmm zmm
+// 	VINSERTI64X2 imm8 xmm  zmm k zmm
+// 	VINSERTI64X2 imm8 xmm  zmm zmm
+// 	VINSERTI64X2 imm8 m128 ymm k ymm
+// 	VINSERTI64X2 imm8 m128 ymm ymm
+// 	VINSERTI64X2 imm8 xmm  ymm k ymm
+// 	VINSERTI64X2 imm8 xmm  ymm ymm
+// Construct and append a VINSERTI64X2 instruction to the active function.
+func (c *Context) VINSERTI64X2(ops ...operand.Op) {
+	if inst, err := x86.VINSERTI64X2(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VINSERTI64X2: Insert 128 Bits of Packed Quadword Integer Values.
+//
+// Forms:
+//
+// 	VINSERTI64X2 imm8 m128 zmm k zmm
+// 	VINSERTI64X2 imm8 m128 zmm zmm
+// 	VINSERTI64X2 imm8 xmm  zmm k zmm
+// 	VINSERTI64X2 imm8 xmm  zmm zmm
+// 	VINSERTI64X2 imm8 m128 ymm k ymm
+// 	VINSERTI64X2 imm8 m128 ymm ymm
+// 	VINSERTI64X2 imm8 xmm  ymm k ymm
+// 	VINSERTI64X2 imm8 xmm  ymm ymm
+// Construct and append a VINSERTI64X2 instruction to the active function.
+// Operates on the global context.
+func VINSERTI64X2(ops ...operand.Op) { ctx.VINSERTI64X2(ops...) }
+
+// VINSERTI64X2_Z: Insert 128 Bits of Packed Quadword Integer Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VINSERTI64X2.Z imm8 m128 zmm k zmm
+// 	VINSERTI64X2.Z imm8 xmm  zmm k zmm
+// 	VINSERTI64X2.Z imm8 m128 ymm k ymm
+// 	VINSERTI64X2.Z imm8 xmm  ymm k ymm
+// Construct and append a VINSERTI64X2.Z instruction to the active function.
+func (c *Context) VINSERTI64X2_Z(i, mx, yz, k, yz1 operand.Op) {
+	if inst, err := x86.VINSERTI64X2_Z(i, mx, yz, k, yz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VINSERTI64X2_Z: Insert 128 Bits of Packed Quadword Integer Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VINSERTI64X2.Z imm8 m128 zmm k zmm
+// 	VINSERTI64X2.Z imm8 xmm  zmm k zmm
+// 	VINSERTI64X2.Z imm8 m128 ymm k ymm
+// 	VINSERTI64X2.Z imm8 xmm  ymm k ymm
+// Construct and append a VINSERTI64X2.Z instruction to the active function.
+// Operates on the global context.
+func VINSERTI64X2_Z(i, mx, yz, k, yz1 operand.Op) { ctx.VINSERTI64X2_Z(i, mx, yz, k, yz1) }
 
 // VINSERTI64X4: Insert 256 Bits of Packed Quadword Integer Values.
 //
@@ -53135,13 +58847,23 @@ func VMULSS_Z(mx, x, k, x1 operand.Op) { ctx.VMULSS_Z(mx, x, k, x1) }
 //
 // Forms:
 //
-// 	VORPD m128 xmm xmm
-// 	VORPD m256 ymm ymm
-// 	VORPD xmm  xmm xmm
-// 	VORPD ymm  ymm ymm
+// 	VORPD m128         xmm xmm
+// 	VORPD m256         ymm ymm
+// 	VORPD xmm          xmm xmm
+// 	VORPD ymm          ymm ymm
+// 	VORPD m512/m64bcst zmm k zmm
+// 	VORPD m512/m64bcst zmm zmm
+// 	VORPD zmm          zmm k zmm
+// 	VORPD zmm          zmm zmm
+// 	VORPD m128/m64bcst xmm k xmm
+// 	VORPD m128/m64bcst xmm xmm
+// 	VORPD m256/m64bcst ymm k ymm
+// 	VORPD m256/m64bcst ymm ymm
+// 	VORPD xmm          xmm k xmm
+// 	VORPD ymm          ymm k ymm
 // Construct and append a VORPD instruction to the active function.
-func (c *Context) VORPD(mxy, xy, xy1 operand.Op) {
-	if inst, err := x86.VORPD(mxy, xy, xy1); err == nil {
+func (c *Context) VORPD(ops ...operand.Op) {
+	if inst, err := x86.VORPD(ops...); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -53152,25 +58874,138 @@ func (c *Context) VORPD(mxy, xy, xy1 operand.Op) {
 //
 // Forms:
 //
-// 	VORPD m128 xmm xmm
-// 	VORPD m256 ymm ymm
-// 	VORPD xmm  xmm xmm
-// 	VORPD ymm  ymm ymm
+// 	VORPD m128         xmm xmm
+// 	VORPD m256         ymm ymm
+// 	VORPD xmm          xmm xmm
+// 	VORPD ymm          ymm ymm
+// 	VORPD m512/m64bcst zmm k zmm
+// 	VORPD m512/m64bcst zmm zmm
+// 	VORPD zmm          zmm k zmm
+// 	VORPD zmm          zmm zmm
+// 	VORPD m128/m64bcst xmm k xmm
+// 	VORPD m128/m64bcst xmm xmm
+// 	VORPD m256/m64bcst ymm k ymm
+// 	VORPD m256/m64bcst ymm ymm
+// 	VORPD xmm          xmm k xmm
+// 	VORPD ymm          ymm k ymm
 // Construct and append a VORPD instruction to the active function.
 // Operates on the global context.
-func VORPD(mxy, xy, xy1 operand.Op) { ctx.VORPD(mxy, xy, xy1) }
+func VORPD(ops ...operand.Op) { ctx.VORPD(ops...) }
+
+// VORPD_BCST: Bitwise Logical OR of Double-Precision Floating-Point Values (Broadcast).
+//
+// Forms:
+//
+// 	VORPD.BCST m512/m64bcst zmm k zmm
+// 	VORPD.BCST m512/m64bcst zmm zmm
+// 	VORPD.BCST m128/m64bcst xmm k xmm
+// 	VORPD.BCST m128/m64bcst xmm xmm
+// 	VORPD.BCST m256/m64bcst ymm k ymm
+// 	VORPD.BCST m256/m64bcst ymm ymm
+// Construct and append a VORPD.BCST instruction to the active function.
+func (c *Context) VORPD_BCST(ops ...operand.Op) {
+	if inst, err := x86.VORPD_BCST(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VORPD_BCST: Bitwise Logical OR of Double-Precision Floating-Point Values (Broadcast).
+//
+// Forms:
+//
+// 	VORPD.BCST m512/m64bcst zmm k zmm
+// 	VORPD.BCST m512/m64bcst zmm zmm
+// 	VORPD.BCST m128/m64bcst xmm k xmm
+// 	VORPD.BCST m128/m64bcst xmm xmm
+// 	VORPD.BCST m256/m64bcst ymm k ymm
+// 	VORPD.BCST m256/m64bcst ymm ymm
+// Construct and append a VORPD.BCST instruction to the active function.
+// Operates on the global context.
+func VORPD_BCST(ops ...operand.Op) { ctx.VORPD_BCST(ops...) }
+
+// VORPD_BCST_Z: Bitwise Logical OR of Double-Precision Floating-Point Values (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VORPD.BCST.Z m512/m64bcst zmm k zmm
+// 	VORPD.BCST.Z m128/m64bcst xmm k xmm
+// 	VORPD.BCST.Z m256/m64bcst ymm k ymm
+// Construct and append a VORPD.BCST.Z instruction to the active function.
+func (c *Context) VORPD_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VORPD_BCST_Z(m, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VORPD_BCST_Z: Bitwise Logical OR of Double-Precision Floating-Point Values (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VORPD.BCST.Z m512/m64bcst zmm k zmm
+// 	VORPD.BCST.Z m128/m64bcst xmm k xmm
+// 	VORPD.BCST.Z m256/m64bcst ymm k ymm
+// Construct and append a VORPD.BCST.Z instruction to the active function.
+// Operates on the global context.
+func VORPD_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VORPD_BCST_Z(m, xyz, k, xyz1) }
+
+// VORPD_Z: Bitwise Logical OR of Double-Precision Floating-Point Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VORPD.Z m512/m64bcst zmm k zmm
+// 	VORPD.Z zmm          zmm k zmm
+// 	VORPD.Z m128/m64bcst xmm k xmm
+// 	VORPD.Z m256/m64bcst ymm k ymm
+// 	VORPD.Z xmm          xmm k xmm
+// 	VORPD.Z ymm          ymm k ymm
+// Construct and append a VORPD.Z instruction to the active function.
+func (c *Context) VORPD_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VORPD_Z(mxyz, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VORPD_Z: Bitwise Logical OR of Double-Precision Floating-Point Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VORPD.Z m512/m64bcst zmm k zmm
+// 	VORPD.Z zmm          zmm k zmm
+// 	VORPD.Z m128/m64bcst xmm k xmm
+// 	VORPD.Z m256/m64bcst ymm k ymm
+// 	VORPD.Z xmm          xmm k xmm
+// 	VORPD.Z ymm          ymm k ymm
+// Construct and append a VORPD.Z instruction to the active function.
+// Operates on the global context.
+func VORPD_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VORPD_Z(mxyz, xyz, k, xyz1) }
 
 // VORPS: Bitwise Logical OR of Single-Precision Floating-Point Values.
 //
 // Forms:
 //
-// 	VORPS m128 xmm xmm
-// 	VORPS m256 ymm ymm
-// 	VORPS xmm  xmm xmm
-// 	VORPS ymm  ymm ymm
+// 	VORPS m128         xmm xmm
+// 	VORPS m256         ymm ymm
+// 	VORPS xmm          xmm xmm
+// 	VORPS ymm          ymm ymm
+// 	VORPS m512/m32bcst zmm k zmm
+// 	VORPS m512/m32bcst zmm zmm
+// 	VORPS zmm          zmm k zmm
+// 	VORPS zmm          zmm zmm
+// 	VORPS m128/m32bcst xmm k xmm
+// 	VORPS m128/m32bcst xmm xmm
+// 	VORPS m256/m32bcst ymm k ymm
+// 	VORPS m256/m32bcst ymm ymm
+// 	VORPS xmm          xmm k xmm
+// 	VORPS ymm          ymm k ymm
 // Construct and append a VORPS instruction to the active function.
-func (c *Context) VORPS(mxy, xy, xy1 operand.Op) {
-	if inst, err := x86.VORPS(mxy, xy, xy1); err == nil {
+func (c *Context) VORPS(ops ...operand.Op) {
+	if inst, err := x86.VORPS(ops...); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -53181,13 +59016,116 @@ func (c *Context) VORPS(mxy, xy, xy1 operand.Op) {
 //
 // Forms:
 //
-// 	VORPS m128 xmm xmm
-// 	VORPS m256 ymm ymm
-// 	VORPS xmm  xmm xmm
-// 	VORPS ymm  ymm ymm
+// 	VORPS m128         xmm xmm
+// 	VORPS m256         ymm ymm
+// 	VORPS xmm          xmm xmm
+// 	VORPS ymm          ymm ymm
+// 	VORPS m512/m32bcst zmm k zmm
+// 	VORPS m512/m32bcst zmm zmm
+// 	VORPS zmm          zmm k zmm
+// 	VORPS zmm          zmm zmm
+// 	VORPS m128/m32bcst xmm k xmm
+// 	VORPS m128/m32bcst xmm xmm
+// 	VORPS m256/m32bcst ymm k ymm
+// 	VORPS m256/m32bcst ymm ymm
+// 	VORPS xmm          xmm k xmm
+// 	VORPS ymm          ymm k ymm
 // Construct and append a VORPS instruction to the active function.
 // Operates on the global context.
-func VORPS(mxy, xy, xy1 operand.Op) { ctx.VORPS(mxy, xy, xy1) }
+func VORPS(ops ...operand.Op) { ctx.VORPS(ops...) }
+
+// VORPS_BCST: Bitwise Logical OR of Single-Precision Floating-Point Values (Broadcast).
+//
+// Forms:
+//
+// 	VORPS.BCST m512/m32bcst zmm k zmm
+// 	VORPS.BCST m512/m32bcst zmm zmm
+// 	VORPS.BCST m128/m32bcst xmm k xmm
+// 	VORPS.BCST m128/m32bcst xmm xmm
+// 	VORPS.BCST m256/m32bcst ymm k ymm
+// 	VORPS.BCST m256/m32bcst ymm ymm
+// Construct and append a VORPS.BCST instruction to the active function.
+func (c *Context) VORPS_BCST(ops ...operand.Op) {
+	if inst, err := x86.VORPS_BCST(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VORPS_BCST: Bitwise Logical OR of Single-Precision Floating-Point Values (Broadcast).
+//
+// Forms:
+//
+// 	VORPS.BCST m512/m32bcst zmm k zmm
+// 	VORPS.BCST m512/m32bcst zmm zmm
+// 	VORPS.BCST m128/m32bcst xmm k xmm
+// 	VORPS.BCST m128/m32bcst xmm xmm
+// 	VORPS.BCST m256/m32bcst ymm k ymm
+// 	VORPS.BCST m256/m32bcst ymm ymm
+// Construct and append a VORPS.BCST instruction to the active function.
+// Operates on the global context.
+func VORPS_BCST(ops ...operand.Op) { ctx.VORPS_BCST(ops...) }
+
+// VORPS_BCST_Z: Bitwise Logical OR of Single-Precision Floating-Point Values (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VORPS.BCST.Z m512/m32bcst zmm k zmm
+// 	VORPS.BCST.Z m128/m32bcst xmm k xmm
+// 	VORPS.BCST.Z m256/m32bcst ymm k ymm
+// Construct and append a VORPS.BCST.Z instruction to the active function.
+func (c *Context) VORPS_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VORPS_BCST_Z(m, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VORPS_BCST_Z: Bitwise Logical OR of Single-Precision Floating-Point Values (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VORPS.BCST.Z m512/m32bcst zmm k zmm
+// 	VORPS.BCST.Z m128/m32bcst xmm k xmm
+// 	VORPS.BCST.Z m256/m32bcst ymm k ymm
+// Construct and append a VORPS.BCST.Z instruction to the active function.
+// Operates on the global context.
+func VORPS_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VORPS_BCST_Z(m, xyz, k, xyz1) }
+
+// VORPS_Z: Bitwise Logical OR of Single-Precision Floating-Point Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VORPS.Z m512/m32bcst zmm k zmm
+// 	VORPS.Z zmm          zmm k zmm
+// 	VORPS.Z m128/m32bcst xmm k xmm
+// 	VORPS.Z m256/m32bcst ymm k ymm
+// 	VORPS.Z xmm          xmm k xmm
+// 	VORPS.Z ymm          ymm k ymm
+// Construct and append a VORPS.Z instruction to the active function.
+func (c *Context) VORPS_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VORPS_Z(mxyz, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VORPS_Z: Bitwise Logical OR of Single-Precision Floating-Point Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VORPS.Z m512/m32bcst zmm k zmm
+// 	VORPS.Z zmm          zmm k zmm
+// 	VORPS.Z m128/m32bcst xmm k xmm
+// 	VORPS.Z m256/m32bcst ymm k ymm
+// 	VORPS.Z xmm          xmm k xmm
+// 	VORPS.Z ymm          ymm k ymm
+// Construct and append a VORPS.Z instruction to the active function.
+// Operates on the global context.
+func VORPS_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VORPS_Z(mxyz, xyz, k, xyz1) }
 
 // VPABSB: Packed Absolute Value of Byte Integers.
 //
@@ -63511,6 +69449,33 @@ func (c *Context) VPMOVB2M(xyz, k operand.Op) {
 // Operates on the global context.
 func VPMOVB2M(xyz, k operand.Op) { ctx.VPMOVB2M(xyz, k) }
 
+// VPMOVD2M: Move Signs of Packed Doubleword Integers to Mask Register.
+//
+// Forms:
+//
+// 	VPMOVD2M zmm k
+// 	VPMOVD2M xmm k
+// 	VPMOVD2M ymm k
+// Construct and append a VPMOVD2M instruction to the active function.
+func (c *Context) VPMOVD2M(xyz, k operand.Op) {
+	if inst, err := x86.VPMOVD2M(xyz, k); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPMOVD2M: Move Signs of Packed Doubleword Integers to Mask Register.
+//
+// Forms:
+//
+// 	VPMOVD2M zmm k
+// 	VPMOVD2M xmm k
+// 	VPMOVD2M ymm k
+// Construct and append a VPMOVD2M instruction to the active function.
+// Operates on the global context.
+func VPMOVD2M(xyz, k operand.Op) { ctx.VPMOVD2M(xyz, k) }
+
 // VPMOVDB: Down Convert Packed Doubleword Values to Byte Values with Truncation.
 //
 // Forms:
@@ -63694,6 +69659,60 @@ func (c *Context) VPMOVM2B(k, xyz operand.Op) {
 // Operates on the global context.
 func VPMOVM2B(k, xyz operand.Op) { ctx.VPMOVM2B(k, xyz) }
 
+// VPMOVM2D: Expand Bits of Mask Register to Packed Doubleword Integers.
+//
+// Forms:
+//
+// 	VPMOVM2D k zmm
+// 	VPMOVM2D k xmm
+// 	VPMOVM2D k ymm
+// Construct and append a VPMOVM2D instruction to the active function.
+func (c *Context) VPMOVM2D(k, xyz operand.Op) {
+	if inst, err := x86.VPMOVM2D(k, xyz); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPMOVM2D: Expand Bits of Mask Register to Packed Doubleword Integers.
+//
+// Forms:
+//
+// 	VPMOVM2D k zmm
+// 	VPMOVM2D k xmm
+// 	VPMOVM2D k ymm
+// Construct and append a VPMOVM2D instruction to the active function.
+// Operates on the global context.
+func VPMOVM2D(k, xyz operand.Op) { ctx.VPMOVM2D(k, xyz) }
+
+// VPMOVM2Q: Expand Bits of Mask Register to Packed Quadword Integers.
+//
+// Forms:
+//
+// 	VPMOVM2Q k zmm
+// 	VPMOVM2Q k xmm
+// 	VPMOVM2Q k ymm
+// Construct and append a VPMOVM2Q instruction to the active function.
+func (c *Context) VPMOVM2Q(k, xyz operand.Op) {
+	if inst, err := x86.VPMOVM2Q(k, xyz); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPMOVM2Q: Expand Bits of Mask Register to Packed Quadword Integers.
+//
+// Forms:
+//
+// 	VPMOVM2Q k zmm
+// 	VPMOVM2Q k xmm
+// 	VPMOVM2Q k ymm
+// Construct and append a VPMOVM2Q instruction to the active function.
+// Operates on the global context.
+func VPMOVM2Q(k, xyz operand.Op) { ctx.VPMOVM2Q(k, xyz) }
+
 // VPMOVM2W: Expand Bits of Mask Register to Packed Word Integers.
 //
 // Forms:
@@ -63745,6 +69764,33 @@ func (c *Context) VPMOVMSKB(xy, r operand.Op) {
 // Construct and append a VPMOVMSKB instruction to the active function.
 // Operates on the global context.
 func VPMOVMSKB(xy, r operand.Op) { ctx.VPMOVMSKB(xy, r) }
+
+// VPMOVQ2M: Move Signs of Packed Quadword Integers to Mask Register.
+//
+// Forms:
+//
+// 	VPMOVQ2M zmm k
+// 	VPMOVQ2M xmm k
+// 	VPMOVQ2M ymm k
+// Construct and append a VPMOVQ2M instruction to the active function.
+func (c *Context) VPMOVQ2M(xyz, k operand.Op) {
+	if inst, err := x86.VPMOVQ2M(xyz, k); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPMOVQ2M: Move Signs of Packed Quadword Integers to Mask Register.
+//
+// Forms:
+//
+// 	VPMOVQ2M zmm k
+// 	VPMOVQ2M xmm k
+// 	VPMOVQ2M ymm k
+// Construct and append a VPMOVQ2M instruction to the active function.
+// Operates on the global context.
+func VPMOVQ2M(xyz, k operand.Op) { ctx.VPMOVQ2M(xyz, k) }
 
 // VPMOVQB: Down Convert Packed Quadword Values to Byte Values with Truncation.
 //
@@ -66474,6 +72520,144 @@ func (c *Context) VPMULLD_Z(mxyz, xyz, k, xyz1 operand.Op) {
 // Construct and append a VPMULLD.Z instruction to the active function.
 // Operates on the global context.
 func VPMULLD_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPMULLD_Z(mxyz, xyz, k, xyz1) }
+
+// VPMULLQ: Multiply Packed Signed Quadword Integers and Store Low Result.
+//
+// Forms:
+//
+// 	VPMULLQ m512/m64bcst zmm k zmm
+// 	VPMULLQ m512/m64bcst zmm zmm
+// 	VPMULLQ zmm          zmm k zmm
+// 	VPMULLQ zmm          zmm zmm
+// 	VPMULLQ m128/m64bcst xmm k xmm
+// 	VPMULLQ m128/m64bcst xmm xmm
+// 	VPMULLQ m256/m64bcst ymm k ymm
+// 	VPMULLQ m256/m64bcst ymm ymm
+// 	VPMULLQ xmm          xmm k xmm
+// 	VPMULLQ xmm          xmm xmm
+// 	VPMULLQ ymm          ymm k ymm
+// 	VPMULLQ ymm          ymm ymm
+// Construct and append a VPMULLQ instruction to the active function.
+func (c *Context) VPMULLQ(ops ...operand.Op) {
+	if inst, err := x86.VPMULLQ(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPMULLQ: Multiply Packed Signed Quadword Integers and Store Low Result.
+//
+// Forms:
+//
+// 	VPMULLQ m512/m64bcst zmm k zmm
+// 	VPMULLQ m512/m64bcst zmm zmm
+// 	VPMULLQ zmm          zmm k zmm
+// 	VPMULLQ zmm          zmm zmm
+// 	VPMULLQ m128/m64bcst xmm k xmm
+// 	VPMULLQ m128/m64bcst xmm xmm
+// 	VPMULLQ m256/m64bcst ymm k ymm
+// 	VPMULLQ m256/m64bcst ymm ymm
+// 	VPMULLQ xmm          xmm k xmm
+// 	VPMULLQ xmm          xmm xmm
+// 	VPMULLQ ymm          ymm k ymm
+// 	VPMULLQ ymm          ymm ymm
+// Construct and append a VPMULLQ instruction to the active function.
+// Operates on the global context.
+func VPMULLQ(ops ...operand.Op) { ctx.VPMULLQ(ops...) }
+
+// VPMULLQ_BCST: Multiply Packed Signed Quadword Integers and Store Low Result (Broadcast).
+//
+// Forms:
+//
+// 	VPMULLQ.BCST m512/m64bcst zmm k zmm
+// 	VPMULLQ.BCST m512/m64bcst zmm zmm
+// 	VPMULLQ.BCST m128/m64bcst xmm k xmm
+// 	VPMULLQ.BCST m128/m64bcst xmm xmm
+// 	VPMULLQ.BCST m256/m64bcst ymm k ymm
+// 	VPMULLQ.BCST m256/m64bcst ymm ymm
+// Construct and append a VPMULLQ.BCST instruction to the active function.
+func (c *Context) VPMULLQ_BCST(ops ...operand.Op) {
+	if inst, err := x86.VPMULLQ_BCST(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPMULLQ_BCST: Multiply Packed Signed Quadword Integers and Store Low Result (Broadcast).
+//
+// Forms:
+//
+// 	VPMULLQ.BCST m512/m64bcst zmm k zmm
+// 	VPMULLQ.BCST m512/m64bcst zmm zmm
+// 	VPMULLQ.BCST m128/m64bcst xmm k xmm
+// 	VPMULLQ.BCST m128/m64bcst xmm xmm
+// 	VPMULLQ.BCST m256/m64bcst ymm k ymm
+// 	VPMULLQ.BCST m256/m64bcst ymm ymm
+// Construct and append a VPMULLQ.BCST instruction to the active function.
+// Operates on the global context.
+func VPMULLQ_BCST(ops ...operand.Op) { ctx.VPMULLQ_BCST(ops...) }
+
+// VPMULLQ_BCST_Z: Multiply Packed Signed Quadword Integers and Store Low Result (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VPMULLQ.BCST.Z m512/m64bcst zmm k zmm
+// 	VPMULLQ.BCST.Z m128/m64bcst xmm k xmm
+// 	VPMULLQ.BCST.Z m256/m64bcst ymm k ymm
+// Construct and append a VPMULLQ.BCST.Z instruction to the active function.
+func (c *Context) VPMULLQ_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPMULLQ_BCST_Z(m, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPMULLQ_BCST_Z: Multiply Packed Signed Quadword Integers and Store Low Result (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VPMULLQ.BCST.Z m512/m64bcst zmm k zmm
+// 	VPMULLQ.BCST.Z m128/m64bcst xmm k xmm
+// 	VPMULLQ.BCST.Z m256/m64bcst ymm k ymm
+// Construct and append a VPMULLQ.BCST.Z instruction to the active function.
+// Operates on the global context.
+func VPMULLQ_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VPMULLQ_BCST_Z(m, xyz, k, xyz1) }
+
+// VPMULLQ_Z: Multiply Packed Signed Quadword Integers and Store Low Result (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPMULLQ.Z m512/m64bcst zmm k zmm
+// 	VPMULLQ.Z zmm          zmm k zmm
+// 	VPMULLQ.Z m128/m64bcst xmm k xmm
+// 	VPMULLQ.Z m256/m64bcst ymm k ymm
+// 	VPMULLQ.Z xmm          xmm k xmm
+// 	VPMULLQ.Z ymm          ymm k ymm
+// Construct and append a VPMULLQ.Z instruction to the active function.
+func (c *Context) VPMULLQ_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VPMULLQ_Z(mxyz, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPMULLQ_Z: Multiply Packed Signed Quadword Integers and Store Low Result (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPMULLQ.Z m512/m64bcst zmm k zmm
+// 	VPMULLQ.Z zmm          zmm k zmm
+// 	VPMULLQ.Z m128/m64bcst xmm k xmm
+// 	VPMULLQ.Z m256/m64bcst ymm k ymm
+// 	VPMULLQ.Z xmm          xmm k xmm
+// 	VPMULLQ.Z ymm          ymm k ymm
+// Construct and append a VPMULLQ.Z instruction to the active function.
+// Operates on the global context.
+func VPMULLQ_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPMULLQ_Z(mxyz, xyz, k, xyz1) }
 
 // VPMULLW: Multiply Packed Signed Word Integers and Store Low Result.
 //
@@ -73976,6 +80160,582 @@ func (c *Context) VPXORQ_Z(mxyz, xyz, k, xyz1 operand.Op) {
 // Operates on the global context.
 func VPXORQ_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPXORQ_Z(mxyz, xyz, k, xyz1) }
 
+// VRANGEPD: Range Restriction Calculation For Packed Pairs of Double-Precision Floating-Point Values.
+//
+// Forms:
+//
+// 	VRANGEPD imm8 m512/m64bcst zmm k zmm
+// 	VRANGEPD imm8 m512/m64bcst zmm zmm
+// 	VRANGEPD imm8 zmm          zmm k zmm
+// 	VRANGEPD imm8 zmm          zmm zmm
+// 	VRANGEPD imm8 m128/m64bcst xmm k xmm
+// 	VRANGEPD imm8 m128/m64bcst xmm xmm
+// 	VRANGEPD imm8 m256/m64bcst ymm k ymm
+// 	VRANGEPD imm8 m256/m64bcst ymm ymm
+// 	VRANGEPD imm8 xmm          xmm k xmm
+// 	VRANGEPD imm8 xmm          xmm xmm
+// 	VRANGEPD imm8 ymm          ymm k ymm
+// 	VRANGEPD imm8 ymm          ymm ymm
+// Construct and append a VRANGEPD instruction to the active function.
+func (c *Context) VRANGEPD(ops ...operand.Op) {
+	if inst, err := x86.VRANGEPD(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VRANGEPD: Range Restriction Calculation For Packed Pairs of Double-Precision Floating-Point Values.
+//
+// Forms:
+//
+// 	VRANGEPD imm8 m512/m64bcst zmm k zmm
+// 	VRANGEPD imm8 m512/m64bcst zmm zmm
+// 	VRANGEPD imm8 zmm          zmm k zmm
+// 	VRANGEPD imm8 zmm          zmm zmm
+// 	VRANGEPD imm8 m128/m64bcst xmm k xmm
+// 	VRANGEPD imm8 m128/m64bcst xmm xmm
+// 	VRANGEPD imm8 m256/m64bcst ymm k ymm
+// 	VRANGEPD imm8 m256/m64bcst ymm ymm
+// 	VRANGEPD imm8 xmm          xmm k xmm
+// 	VRANGEPD imm8 xmm          xmm xmm
+// 	VRANGEPD imm8 ymm          ymm k ymm
+// 	VRANGEPD imm8 ymm          ymm ymm
+// Construct and append a VRANGEPD instruction to the active function.
+// Operates on the global context.
+func VRANGEPD(ops ...operand.Op) { ctx.VRANGEPD(ops...) }
+
+// VRANGEPD_BCST: Range Restriction Calculation For Packed Pairs of Double-Precision Floating-Point Values (Broadcast).
+//
+// Forms:
+//
+// 	VRANGEPD.BCST imm8 m512/m64bcst zmm k zmm
+// 	VRANGEPD.BCST imm8 m512/m64bcst zmm zmm
+// 	VRANGEPD.BCST imm8 m128/m64bcst xmm k xmm
+// 	VRANGEPD.BCST imm8 m128/m64bcst xmm xmm
+// 	VRANGEPD.BCST imm8 m256/m64bcst ymm k ymm
+// 	VRANGEPD.BCST imm8 m256/m64bcst ymm ymm
+// Construct and append a VRANGEPD.BCST instruction to the active function.
+func (c *Context) VRANGEPD_BCST(ops ...operand.Op) {
+	if inst, err := x86.VRANGEPD_BCST(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VRANGEPD_BCST: Range Restriction Calculation For Packed Pairs of Double-Precision Floating-Point Values (Broadcast).
+//
+// Forms:
+//
+// 	VRANGEPD.BCST imm8 m512/m64bcst zmm k zmm
+// 	VRANGEPD.BCST imm8 m512/m64bcst zmm zmm
+// 	VRANGEPD.BCST imm8 m128/m64bcst xmm k xmm
+// 	VRANGEPD.BCST imm8 m128/m64bcst xmm xmm
+// 	VRANGEPD.BCST imm8 m256/m64bcst ymm k ymm
+// 	VRANGEPD.BCST imm8 m256/m64bcst ymm ymm
+// Construct and append a VRANGEPD.BCST instruction to the active function.
+// Operates on the global context.
+func VRANGEPD_BCST(ops ...operand.Op) { ctx.VRANGEPD_BCST(ops...) }
+
+// VRANGEPD_BCST_Z: Range Restriction Calculation For Packed Pairs of Double-Precision Floating-Point Values (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VRANGEPD.BCST.Z imm8 m512/m64bcst zmm k zmm
+// 	VRANGEPD.BCST.Z imm8 m128/m64bcst xmm k xmm
+// 	VRANGEPD.BCST.Z imm8 m256/m64bcst ymm k ymm
+// Construct and append a VRANGEPD.BCST.Z instruction to the active function.
+func (c *Context) VRANGEPD_BCST_Z(i, m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VRANGEPD_BCST_Z(i, m, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VRANGEPD_BCST_Z: Range Restriction Calculation For Packed Pairs of Double-Precision Floating-Point Values (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VRANGEPD.BCST.Z imm8 m512/m64bcst zmm k zmm
+// 	VRANGEPD.BCST.Z imm8 m128/m64bcst xmm k xmm
+// 	VRANGEPD.BCST.Z imm8 m256/m64bcst ymm k ymm
+// Construct and append a VRANGEPD.BCST.Z instruction to the active function.
+// Operates on the global context.
+func VRANGEPD_BCST_Z(i, m, xyz, k, xyz1 operand.Op) { ctx.VRANGEPD_BCST_Z(i, m, xyz, k, xyz1) }
+
+// VRANGEPD_SAE: Range Restriction Calculation For Packed Pairs of Double-Precision Floating-Point Values (Suppress All Exceptions).
+//
+// Forms:
+//
+// 	VRANGEPD.SAE imm8 zmm zmm k zmm
+// 	VRANGEPD.SAE imm8 zmm zmm zmm
+// Construct and append a VRANGEPD.SAE instruction to the active function.
+func (c *Context) VRANGEPD_SAE(ops ...operand.Op) {
+	if inst, err := x86.VRANGEPD_SAE(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VRANGEPD_SAE: Range Restriction Calculation For Packed Pairs of Double-Precision Floating-Point Values (Suppress All Exceptions).
+//
+// Forms:
+//
+// 	VRANGEPD.SAE imm8 zmm zmm k zmm
+// 	VRANGEPD.SAE imm8 zmm zmm zmm
+// Construct and append a VRANGEPD.SAE instruction to the active function.
+// Operates on the global context.
+func VRANGEPD_SAE(ops ...operand.Op) { ctx.VRANGEPD_SAE(ops...) }
+
+// VRANGEPD_SAE_Z: Range Restriction Calculation For Packed Pairs of Double-Precision Floating-Point Values (Suppress All Exceptions, Zeroing Masking).
+//
+// Forms:
+//
+// 	VRANGEPD.SAE.Z imm8 zmm zmm k zmm
+// Construct and append a VRANGEPD.SAE.Z instruction to the active function.
+func (c *Context) VRANGEPD_SAE_Z(i, z, z1, k, z2 operand.Op) {
+	if inst, err := x86.VRANGEPD_SAE_Z(i, z, z1, k, z2); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VRANGEPD_SAE_Z: Range Restriction Calculation For Packed Pairs of Double-Precision Floating-Point Values (Suppress All Exceptions, Zeroing Masking).
+//
+// Forms:
+//
+// 	VRANGEPD.SAE.Z imm8 zmm zmm k zmm
+// Construct and append a VRANGEPD.SAE.Z instruction to the active function.
+// Operates on the global context.
+func VRANGEPD_SAE_Z(i, z, z1, k, z2 operand.Op) { ctx.VRANGEPD_SAE_Z(i, z, z1, k, z2) }
+
+// VRANGEPD_Z: Range Restriction Calculation For Packed Pairs of Double-Precision Floating-Point Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VRANGEPD.Z imm8 m512/m64bcst zmm k zmm
+// 	VRANGEPD.Z imm8 zmm          zmm k zmm
+// 	VRANGEPD.Z imm8 m128/m64bcst xmm k xmm
+// 	VRANGEPD.Z imm8 m256/m64bcst ymm k ymm
+// 	VRANGEPD.Z imm8 xmm          xmm k xmm
+// 	VRANGEPD.Z imm8 ymm          ymm k ymm
+// Construct and append a VRANGEPD.Z instruction to the active function.
+func (c *Context) VRANGEPD_Z(i, mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VRANGEPD_Z(i, mxyz, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VRANGEPD_Z: Range Restriction Calculation For Packed Pairs of Double-Precision Floating-Point Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VRANGEPD.Z imm8 m512/m64bcst zmm k zmm
+// 	VRANGEPD.Z imm8 zmm          zmm k zmm
+// 	VRANGEPD.Z imm8 m128/m64bcst xmm k xmm
+// 	VRANGEPD.Z imm8 m256/m64bcst ymm k ymm
+// 	VRANGEPD.Z imm8 xmm          xmm k xmm
+// 	VRANGEPD.Z imm8 ymm          ymm k ymm
+// Construct and append a VRANGEPD.Z instruction to the active function.
+// Operates on the global context.
+func VRANGEPD_Z(i, mxyz, xyz, k, xyz1 operand.Op) { ctx.VRANGEPD_Z(i, mxyz, xyz, k, xyz1) }
+
+// VRANGEPS: Range Restriction Calculation For Packed Pairs of Single-Precision Floating-Point Values.
+//
+// Forms:
+//
+// 	VRANGEPS imm8 m512/m32bcst zmm k zmm
+// 	VRANGEPS imm8 m512/m32bcst zmm zmm
+// 	VRANGEPS imm8 zmm          zmm k zmm
+// 	VRANGEPS imm8 zmm          zmm zmm
+// 	VRANGEPS imm8 m128/m32bcst xmm k xmm
+// 	VRANGEPS imm8 m128/m32bcst xmm xmm
+// 	VRANGEPS imm8 m256/m32bcst ymm k ymm
+// 	VRANGEPS imm8 m256/m32bcst ymm ymm
+// 	VRANGEPS imm8 xmm          xmm k xmm
+// 	VRANGEPS imm8 xmm          xmm xmm
+// 	VRANGEPS imm8 ymm          ymm k ymm
+// 	VRANGEPS imm8 ymm          ymm ymm
+// Construct and append a VRANGEPS instruction to the active function.
+func (c *Context) VRANGEPS(ops ...operand.Op) {
+	if inst, err := x86.VRANGEPS(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VRANGEPS: Range Restriction Calculation For Packed Pairs of Single-Precision Floating-Point Values.
+//
+// Forms:
+//
+// 	VRANGEPS imm8 m512/m32bcst zmm k zmm
+// 	VRANGEPS imm8 m512/m32bcst zmm zmm
+// 	VRANGEPS imm8 zmm          zmm k zmm
+// 	VRANGEPS imm8 zmm          zmm zmm
+// 	VRANGEPS imm8 m128/m32bcst xmm k xmm
+// 	VRANGEPS imm8 m128/m32bcst xmm xmm
+// 	VRANGEPS imm8 m256/m32bcst ymm k ymm
+// 	VRANGEPS imm8 m256/m32bcst ymm ymm
+// 	VRANGEPS imm8 xmm          xmm k xmm
+// 	VRANGEPS imm8 xmm          xmm xmm
+// 	VRANGEPS imm8 ymm          ymm k ymm
+// 	VRANGEPS imm8 ymm          ymm ymm
+// Construct and append a VRANGEPS instruction to the active function.
+// Operates on the global context.
+func VRANGEPS(ops ...operand.Op) { ctx.VRANGEPS(ops...) }
+
+// VRANGEPS_BCST: Range Restriction Calculation For Packed Pairs of Single-Precision Floating-Point Values (Broadcast).
+//
+// Forms:
+//
+// 	VRANGEPS.BCST imm8 m512/m32bcst zmm k zmm
+// 	VRANGEPS.BCST imm8 m512/m32bcst zmm zmm
+// 	VRANGEPS.BCST imm8 m128/m32bcst xmm k xmm
+// 	VRANGEPS.BCST imm8 m128/m32bcst xmm xmm
+// 	VRANGEPS.BCST imm8 m256/m32bcst ymm k ymm
+// 	VRANGEPS.BCST imm8 m256/m32bcst ymm ymm
+// Construct and append a VRANGEPS.BCST instruction to the active function.
+func (c *Context) VRANGEPS_BCST(ops ...operand.Op) {
+	if inst, err := x86.VRANGEPS_BCST(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VRANGEPS_BCST: Range Restriction Calculation For Packed Pairs of Single-Precision Floating-Point Values (Broadcast).
+//
+// Forms:
+//
+// 	VRANGEPS.BCST imm8 m512/m32bcst zmm k zmm
+// 	VRANGEPS.BCST imm8 m512/m32bcst zmm zmm
+// 	VRANGEPS.BCST imm8 m128/m32bcst xmm k xmm
+// 	VRANGEPS.BCST imm8 m128/m32bcst xmm xmm
+// 	VRANGEPS.BCST imm8 m256/m32bcst ymm k ymm
+// 	VRANGEPS.BCST imm8 m256/m32bcst ymm ymm
+// Construct and append a VRANGEPS.BCST instruction to the active function.
+// Operates on the global context.
+func VRANGEPS_BCST(ops ...operand.Op) { ctx.VRANGEPS_BCST(ops...) }
+
+// VRANGEPS_BCST_Z: Range Restriction Calculation For Packed Pairs of Single-Precision Floating-Point Values (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VRANGEPS.BCST.Z imm8 m512/m32bcst zmm k zmm
+// 	VRANGEPS.BCST.Z imm8 m128/m32bcst xmm k xmm
+// 	VRANGEPS.BCST.Z imm8 m256/m32bcst ymm k ymm
+// Construct and append a VRANGEPS.BCST.Z instruction to the active function.
+func (c *Context) VRANGEPS_BCST_Z(i, m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VRANGEPS_BCST_Z(i, m, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VRANGEPS_BCST_Z: Range Restriction Calculation For Packed Pairs of Single-Precision Floating-Point Values (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VRANGEPS.BCST.Z imm8 m512/m32bcst zmm k zmm
+// 	VRANGEPS.BCST.Z imm8 m128/m32bcst xmm k xmm
+// 	VRANGEPS.BCST.Z imm8 m256/m32bcst ymm k ymm
+// Construct and append a VRANGEPS.BCST.Z instruction to the active function.
+// Operates on the global context.
+func VRANGEPS_BCST_Z(i, m, xyz, k, xyz1 operand.Op) { ctx.VRANGEPS_BCST_Z(i, m, xyz, k, xyz1) }
+
+// VRANGEPS_SAE: Range Restriction Calculation For Packed Pairs of Single-Precision Floating-Point Values (Suppress All Exceptions).
+//
+// Forms:
+//
+// 	VRANGEPS.SAE imm8 zmm zmm k zmm
+// 	VRANGEPS.SAE imm8 zmm zmm zmm
+// Construct and append a VRANGEPS.SAE instruction to the active function.
+func (c *Context) VRANGEPS_SAE(ops ...operand.Op) {
+	if inst, err := x86.VRANGEPS_SAE(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VRANGEPS_SAE: Range Restriction Calculation For Packed Pairs of Single-Precision Floating-Point Values (Suppress All Exceptions).
+//
+// Forms:
+//
+// 	VRANGEPS.SAE imm8 zmm zmm k zmm
+// 	VRANGEPS.SAE imm8 zmm zmm zmm
+// Construct and append a VRANGEPS.SAE instruction to the active function.
+// Operates on the global context.
+func VRANGEPS_SAE(ops ...operand.Op) { ctx.VRANGEPS_SAE(ops...) }
+
+// VRANGEPS_SAE_Z: Range Restriction Calculation For Packed Pairs of Single-Precision Floating-Point Values (Suppress All Exceptions, Zeroing Masking).
+//
+// Forms:
+//
+// 	VRANGEPS.SAE.Z imm8 zmm zmm k zmm
+// Construct and append a VRANGEPS.SAE.Z instruction to the active function.
+func (c *Context) VRANGEPS_SAE_Z(i, z, z1, k, z2 operand.Op) {
+	if inst, err := x86.VRANGEPS_SAE_Z(i, z, z1, k, z2); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VRANGEPS_SAE_Z: Range Restriction Calculation For Packed Pairs of Single-Precision Floating-Point Values (Suppress All Exceptions, Zeroing Masking).
+//
+// Forms:
+//
+// 	VRANGEPS.SAE.Z imm8 zmm zmm k zmm
+// Construct and append a VRANGEPS.SAE.Z instruction to the active function.
+// Operates on the global context.
+func VRANGEPS_SAE_Z(i, z, z1, k, z2 operand.Op) { ctx.VRANGEPS_SAE_Z(i, z, z1, k, z2) }
+
+// VRANGEPS_Z: Range Restriction Calculation For Packed Pairs of Single-Precision Floating-Point Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VRANGEPS.Z imm8 m512/m32bcst zmm k zmm
+// 	VRANGEPS.Z imm8 zmm          zmm k zmm
+// 	VRANGEPS.Z imm8 m128/m32bcst xmm k xmm
+// 	VRANGEPS.Z imm8 m256/m32bcst ymm k ymm
+// 	VRANGEPS.Z imm8 xmm          xmm k xmm
+// 	VRANGEPS.Z imm8 ymm          ymm k ymm
+// Construct and append a VRANGEPS.Z instruction to the active function.
+func (c *Context) VRANGEPS_Z(i, mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VRANGEPS_Z(i, mxyz, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VRANGEPS_Z: Range Restriction Calculation For Packed Pairs of Single-Precision Floating-Point Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VRANGEPS.Z imm8 m512/m32bcst zmm k zmm
+// 	VRANGEPS.Z imm8 zmm          zmm k zmm
+// 	VRANGEPS.Z imm8 m128/m32bcst xmm k xmm
+// 	VRANGEPS.Z imm8 m256/m32bcst ymm k ymm
+// 	VRANGEPS.Z imm8 xmm          xmm k xmm
+// 	VRANGEPS.Z imm8 ymm          ymm k ymm
+// Construct and append a VRANGEPS.Z instruction to the active function.
+// Operates on the global context.
+func VRANGEPS_Z(i, mxyz, xyz, k, xyz1 operand.Op) { ctx.VRANGEPS_Z(i, mxyz, xyz, k, xyz1) }
+
+// VRANGESD: Range Restriction Calculation For a pair of Scalar Double-Precision Floating-Point Values.
+//
+// Forms:
+//
+// 	VRANGESD imm8 m64 xmm k xmm
+// 	VRANGESD imm8 m64 xmm xmm
+// 	VRANGESD imm8 xmm xmm k xmm
+// 	VRANGESD imm8 xmm xmm xmm
+// Construct and append a VRANGESD instruction to the active function.
+func (c *Context) VRANGESD(ops ...operand.Op) {
+	if inst, err := x86.VRANGESD(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VRANGESD: Range Restriction Calculation For a pair of Scalar Double-Precision Floating-Point Values.
+//
+// Forms:
+//
+// 	VRANGESD imm8 m64 xmm k xmm
+// 	VRANGESD imm8 m64 xmm xmm
+// 	VRANGESD imm8 xmm xmm k xmm
+// 	VRANGESD imm8 xmm xmm xmm
+// Construct and append a VRANGESD instruction to the active function.
+// Operates on the global context.
+func VRANGESD(ops ...operand.Op) { ctx.VRANGESD(ops...) }
+
+// VRANGESD_SAE: Range Restriction Calculation For a pair of Scalar Double-Precision Floating-Point Values (Suppress All Exceptions).
+//
+// Forms:
+//
+// 	VRANGESD.SAE imm8 xmm xmm k xmm
+// 	VRANGESD.SAE imm8 xmm xmm xmm
+// Construct and append a VRANGESD.SAE instruction to the active function.
+func (c *Context) VRANGESD_SAE(ops ...operand.Op) {
+	if inst, err := x86.VRANGESD_SAE(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VRANGESD_SAE: Range Restriction Calculation For a pair of Scalar Double-Precision Floating-Point Values (Suppress All Exceptions).
+//
+// Forms:
+//
+// 	VRANGESD.SAE imm8 xmm xmm k xmm
+// 	VRANGESD.SAE imm8 xmm xmm xmm
+// Construct and append a VRANGESD.SAE instruction to the active function.
+// Operates on the global context.
+func VRANGESD_SAE(ops ...operand.Op) { ctx.VRANGESD_SAE(ops...) }
+
+// VRANGESD_SAE_Z: Range Restriction Calculation For a pair of Scalar Double-Precision Floating-Point Values (Suppress All Exceptions, Zeroing Masking).
+//
+// Forms:
+//
+// 	VRANGESD.SAE.Z imm8 xmm xmm k xmm
+// Construct and append a VRANGESD.SAE.Z instruction to the active function.
+func (c *Context) VRANGESD_SAE_Z(i, x, x1, k, x2 operand.Op) {
+	if inst, err := x86.VRANGESD_SAE_Z(i, x, x1, k, x2); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VRANGESD_SAE_Z: Range Restriction Calculation For a pair of Scalar Double-Precision Floating-Point Values (Suppress All Exceptions, Zeroing Masking).
+//
+// Forms:
+//
+// 	VRANGESD.SAE.Z imm8 xmm xmm k xmm
+// Construct and append a VRANGESD.SAE.Z instruction to the active function.
+// Operates on the global context.
+func VRANGESD_SAE_Z(i, x, x1, k, x2 operand.Op) { ctx.VRANGESD_SAE_Z(i, x, x1, k, x2) }
+
+// VRANGESD_Z: Range Restriction Calculation For a pair of Scalar Double-Precision Floating-Point Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VRANGESD.Z imm8 m64 xmm k xmm
+// 	VRANGESD.Z imm8 xmm xmm k xmm
+// Construct and append a VRANGESD.Z instruction to the active function.
+func (c *Context) VRANGESD_Z(i, mx, x, k, x1 operand.Op) {
+	if inst, err := x86.VRANGESD_Z(i, mx, x, k, x1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VRANGESD_Z: Range Restriction Calculation For a pair of Scalar Double-Precision Floating-Point Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VRANGESD.Z imm8 m64 xmm k xmm
+// 	VRANGESD.Z imm8 xmm xmm k xmm
+// Construct and append a VRANGESD.Z instruction to the active function.
+// Operates on the global context.
+func VRANGESD_Z(i, mx, x, k, x1 operand.Op) { ctx.VRANGESD_Z(i, mx, x, k, x1) }
+
+// VRANGESS: Range Restriction Calculation For a pair of Scalar Single-Precision Floating-Point Values.
+//
+// Forms:
+//
+// 	VRANGESS imm8 m32 xmm k xmm
+// 	VRANGESS imm8 m32 xmm xmm
+// 	VRANGESS imm8 xmm xmm k xmm
+// 	VRANGESS imm8 xmm xmm xmm
+// Construct and append a VRANGESS instruction to the active function.
+func (c *Context) VRANGESS(ops ...operand.Op) {
+	if inst, err := x86.VRANGESS(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VRANGESS: Range Restriction Calculation For a pair of Scalar Single-Precision Floating-Point Values.
+//
+// Forms:
+//
+// 	VRANGESS imm8 m32 xmm k xmm
+// 	VRANGESS imm8 m32 xmm xmm
+// 	VRANGESS imm8 xmm xmm k xmm
+// 	VRANGESS imm8 xmm xmm xmm
+// Construct and append a VRANGESS instruction to the active function.
+// Operates on the global context.
+func VRANGESS(ops ...operand.Op) { ctx.VRANGESS(ops...) }
+
+// VRANGESS_SAE: Range Restriction Calculation For a pair of Scalar Single-Precision Floating-Point Values (Suppress All Exceptions).
+//
+// Forms:
+//
+// 	VRANGESS.SAE imm8 xmm xmm k xmm
+// 	VRANGESS.SAE imm8 xmm xmm xmm
+// Construct and append a VRANGESS.SAE instruction to the active function.
+func (c *Context) VRANGESS_SAE(ops ...operand.Op) {
+	if inst, err := x86.VRANGESS_SAE(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VRANGESS_SAE: Range Restriction Calculation For a pair of Scalar Single-Precision Floating-Point Values (Suppress All Exceptions).
+//
+// Forms:
+//
+// 	VRANGESS.SAE imm8 xmm xmm k xmm
+// 	VRANGESS.SAE imm8 xmm xmm xmm
+// Construct and append a VRANGESS.SAE instruction to the active function.
+// Operates on the global context.
+func VRANGESS_SAE(ops ...operand.Op) { ctx.VRANGESS_SAE(ops...) }
+
+// VRANGESS_SAE_Z: Range Restriction Calculation For a pair of Scalar Single-Precision Floating-Point Values (Suppress All Exceptions, Zeroing Masking).
+//
+// Forms:
+//
+// 	VRANGESS.SAE.Z imm8 xmm xmm k xmm
+// Construct and append a VRANGESS.SAE.Z instruction to the active function.
+func (c *Context) VRANGESS_SAE_Z(i, x, x1, k, x2 operand.Op) {
+	if inst, err := x86.VRANGESS_SAE_Z(i, x, x1, k, x2); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VRANGESS_SAE_Z: Range Restriction Calculation For a pair of Scalar Single-Precision Floating-Point Values (Suppress All Exceptions, Zeroing Masking).
+//
+// Forms:
+//
+// 	VRANGESS.SAE.Z imm8 xmm xmm k xmm
+// Construct and append a VRANGESS.SAE.Z instruction to the active function.
+// Operates on the global context.
+func VRANGESS_SAE_Z(i, x, x1, k, x2 operand.Op) { ctx.VRANGESS_SAE_Z(i, x, x1, k, x2) }
+
+// VRANGESS_Z: Range Restriction Calculation For a pair of Scalar Single-Precision Floating-Point Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VRANGESS.Z imm8 m32 xmm k xmm
+// 	VRANGESS.Z imm8 xmm xmm k xmm
+// Construct and append a VRANGESS.Z instruction to the active function.
+func (c *Context) VRANGESS_Z(i, mx, x, k, x1 operand.Op) {
+	if inst, err := x86.VRANGESS_Z(i, mx, x, k, x1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VRANGESS_Z: Range Restriction Calculation For a pair of Scalar Single-Precision Floating-Point Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VRANGESS.Z imm8 m32 xmm k xmm
+// 	VRANGESS.Z imm8 xmm xmm k xmm
+// Construct and append a VRANGESS.Z instruction to the active function.
+// Operates on the global context.
+func VRANGESS_Z(i, mx, x, k, x1 operand.Op) { ctx.VRANGESS_Z(i, mx, x, k, x1) }
+
 // VRCP14PD: Compute Approximate Reciprocals of Packed Double-Precision Floating-Point Values.
 //
 // Forms:
@@ -74413,6 +81173,390 @@ func (c *Context) VRCPSS(mx, x, x1 operand.Op) {
 // Construct and append a VRCPSS instruction to the active function.
 // Operates on the global context.
 func VRCPSS(mx, x, x1 operand.Op) { ctx.VRCPSS(mx, x, x1) }
+
+// VREDUCEPD: Perform Reduction Transformation on Packed Double-Precision Floating-Point Values.
+//
+// Forms:
+//
+// 	VREDUCEPD imm8 m512/m64bcst k zmm
+// 	VREDUCEPD imm8 m512/m64bcst zmm
+// 	VREDUCEPD imm8 zmm          k zmm
+// 	VREDUCEPD imm8 zmm          zmm
+// 	VREDUCEPD imm8 m128/m64bcst k xmm
+// 	VREDUCEPD imm8 m128/m64bcst xmm
+// 	VREDUCEPD imm8 m256/m64bcst k ymm
+// 	VREDUCEPD imm8 m256/m64bcst ymm
+// 	VREDUCEPD imm8 xmm          k xmm
+// 	VREDUCEPD imm8 xmm          xmm
+// 	VREDUCEPD imm8 ymm          k ymm
+// 	VREDUCEPD imm8 ymm          ymm
+// Construct and append a VREDUCEPD instruction to the active function.
+func (c *Context) VREDUCEPD(ops ...operand.Op) {
+	if inst, err := x86.VREDUCEPD(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VREDUCEPD: Perform Reduction Transformation on Packed Double-Precision Floating-Point Values.
+//
+// Forms:
+//
+// 	VREDUCEPD imm8 m512/m64bcst k zmm
+// 	VREDUCEPD imm8 m512/m64bcst zmm
+// 	VREDUCEPD imm8 zmm          k zmm
+// 	VREDUCEPD imm8 zmm          zmm
+// 	VREDUCEPD imm8 m128/m64bcst k xmm
+// 	VREDUCEPD imm8 m128/m64bcst xmm
+// 	VREDUCEPD imm8 m256/m64bcst k ymm
+// 	VREDUCEPD imm8 m256/m64bcst ymm
+// 	VREDUCEPD imm8 xmm          k xmm
+// 	VREDUCEPD imm8 xmm          xmm
+// 	VREDUCEPD imm8 ymm          k ymm
+// 	VREDUCEPD imm8 ymm          ymm
+// Construct and append a VREDUCEPD instruction to the active function.
+// Operates on the global context.
+func VREDUCEPD(ops ...operand.Op) { ctx.VREDUCEPD(ops...) }
+
+// VREDUCEPD_BCST: Perform Reduction Transformation on Packed Double-Precision Floating-Point Values (Broadcast).
+//
+// Forms:
+//
+// 	VREDUCEPD.BCST imm8 m512/m64bcst k zmm
+// 	VREDUCEPD.BCST imm8 m512/m64bcst zmm
+// 	VREDUCEPD.BCST imm8 m128/m64bcst k xmm
+// 	VREDUCEPD.BCST imm8 m128/m64bcst xmm
+// 	VREDUCEPD.BCST imm8 m256/m64bcst k ymm
+// 	VREDUCEPD.BCST imm8 m256/m64bcst ymm
+// Construct and append a VREDUCEPD.BCST instruction to the active function.
+func (c *Context) VREDUCEPD_BCST(ops ...operand.Op) {
+	if inst, err := x86.VREDUCEPD_BCST(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VREDUCEPD_BCST: Perform Reduction Transformation on Packed Double-Precision Floating-Point Values (Broadcast).
+//
+// Forms:
+//
+// 	VREDUCEPD.BCST imm8 m512/m64bcst k zmm
+// 	VREDUCEPD.BCST imm8 m512/m64bcst zmm
+// 	VREDUCEPD.BCST imm8 m128/m64bcst k xmm
+// 	VREDUCEPD.BCST imm8 m128/m64bcst xmm
+// 	VREDUCEPD.BCST imm8 m256/m64bcst k ymm
+// 	VREDUCEPD.BCST imm8 m256/m64bcst ymm
+// Construct and append a VREDUCEPD.BCST instruction to the active function.
+// Operates on the global context.
+func VREDUCEPD_BCST(ops ...operand.Op) { ctx.VREDUCEPD_BCST(ops...) }
+
+// VREDUCEPD_BCST_Z: Perform Reduction Transformation on Packed Double-Precision Floating-Point Values (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VREDUCEPD.BCST.Z imm8 m512/m64bcst k zmm
+// 	VREDUCEPD.BCST.Z imm8 m128/m64bcst k xmm
+// 	VREDUCEPD.BCST.Z imm8 m256/m64bcst k ymm
+// Construct and append a VREDUCEPD.BCST.Z instruction to the active function.
+func (c *Context) VREDUCEPD_BCST_Z(i, m, k, xyz operand.Op) {
+	if inst, err := x86.VREDUCEPD_BCST_Z(i, m, k, xyz); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VREDUCEPD_BCST_Z: Perform Reduction Transformation on Packed Double-Precision Floating-Point Values (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VREDUCEPD.BCST.Z imm8 m512/m64bcst k zmm
+// 	VREDUCEPD.BCST.Z imm8 m128/m64bcst k xmm
+// 	VREDUCEPD.BCST.Z imm8 m256/m64bcst k ymm
+// Construct and append a VREDUCEPD.BCST.Z instruction to the active function.
+// Operates on the global context.
+func VREDUCEPD_BCST_Z(i, m, k, xyz operand.Op) { ctx.VREDUCEPD_BCST_Z(i, m, k, xyz) }
+
+// VREDUCEPD_Z: Perform Reduction Transformation on Packed Double-Precision Floating-Point Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VREDUCEPD.Z imm8 m512/m64bcst k zmm
+// 	VREDUCEPD.Z imm8 zmm          k zmm
+// 	VREDUCEPD.Z imm8 m128/m64bcst k xmm
+// 	VREDUCEPD.Z imm8 m256/m64bcst k ymm
+// 	VREDUCEPD.Z imm8 xmm          k xmm
+// 	VREDUCEPD.Z imm8 ymm          k ymm
+// Construct and append a VREDUCEPD.Z instruction to the active function.
+func (c *Context) VREDUCEPD_Z(i, mxyz, k, xyz operand.Op) {
+	if inst, err := x86.VREDUCEPD_Z(i, mxyz, k, xyz); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VREDUCEPD_Z: Perform Reduction Transformation on Packed Double-Precision Floating-Point Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VREDUCEPD.Z imm8 m512/m64bcst k zmm
+// 	VREDUCEPD.Z imm8 zmm          k zmm
+// 	VREDUCEPD.Z imm8 m128/m64bcst k xmm
+// 	VREDUCEPD.Z imm8 m256/m64bcst k ymm
+// 	VREDUCEPD.Z imm8 xmm          k xmm
+// 	VREDUCEPD.Z imm8 ymm          k ymm
+// Construct and append a VREDUCEPD.Z instruction to the active function.
+// Operates on the global context.
+func VREDUCEPD_Z(i, mxyz, k, xyz operand.Op) { ctx.VREDUCEPD_Z(i, mxyz, k, xyz) }
+
+// VREDUCEPS: Perform Reduction Transformation on Packed Single-Precision Floating-Point Values.
+//
+// Forms:
+//
+// 	VREDUCEPS imm8 m512/m32bcst k zmm
+// 	VREDUCEPS imm8 m512/m32bcst zmm
+// 	VREDUCEPS imm8 zmm          k zmm
+// 	VREDUCEPS imm8 zmm          zmm
+// 	VREDUCEPS imm8 m128/m32bcst k xmm
+// 	VREDUCEPS imm8 m128/m32bcst xmm
+// 	VREDUCEPS imm8 m256/m32bcst k ymm
+// 	VREDUCEPS imm8 m256/m32bcst ymm
+// 	VREDUCEPS imm8 xmm          k xmm
+// 	VREDUCEPS imm8 xmm          xmm
+// 	VREDUCEPS imm8 ymm          k ymm
+// 	VREDUCEPS imm8 ymm          ymm
+// Construct and append a VREDUCEPS instruction to the active function.
+func (c *Context) VREDUCEPS(ops ...operand.Op) {
+	if inst, err := x86.VREDUCEPS(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VREDUCEPS: Perform Reduction Transformation on Packed Single-Precision Floating-Point Values.
+//
+// Forms:
+//
+// 	VREDUCEPS imm8 m512/m32bcst k zmm
+// 	VREDUCEPS imm8 m512/m32bcst zmm
+// 	VREDUCEPS imm8 zmm          k zmm
+// 	VREDUCEPS imm8 zmm          zmm
+// 	VREDUCEPS imm8 m128/m32bcst k xmm
+// 	VREDUCEPS imm8 m128/m32bcst xmm
+// 	VREDUCEPS imm8 m256/m32bcst k ymm
+// 	VREDUCEPS imm8 m256/m32bcst ymm
+// 	VREDUCEPS imm8 xmm          k xmm
+// 	VREDUCEPS imm8 xmm          xmm
+// 	VREDUCEPS imm8 ymm          k ymm
+// 	VREDUCEPS imm8 ymm          ymm
+// Construct and append a VREDUCEPS instruction to the active function.
+// Operates on the global context.
+func VREDUCEPS(ops ...operand.Op) { ctx.VREDUCEPS(ops...) }
+
+// VREDUCEPS_BCST: Perform Reduction Transformation on Packed Single-Precision Floating-Point Values (Broadcast).
+//
+// Forms:
+//
+// 	VREDUCEPS.BCST imm8 m512/m32bcst k zmm
+// 	VREDUCEPS.BCST imm8 m512/m32bcst zmm
+// 	VREDUCEPS.BCST imm8 m128/m32bcst k xmm
+// 	VREDUCEPS.BCST imm8 m128/m32bcst xmm
+// 	VREDUCEPS.BCST imm8 m256/m32bcst k ymm
+// 	VREDUCEPS.BCST imm8 m256/m32bcst ymm
+// Construct and append a VREDUCEPS.BCST instruction to the active function.
+func (c *Context) VREDUCEPS_BCST(ops ...operand.Op) {
+	if inst, err := x86.VREDUCEPS_BCST(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VREDUCEPS_BCST: Perform Reduction Transformation on Packed Single-Precision Floating-Point Values (Broadcast).
+//
+// Forms:
+//
+// 	VREDUCEPS.BCST imm8 m512/m32bcst k zmm
+// 	VREDUCEPS.BCST imm8 m512/m32bcst zmm
+// 	VREDUCEPS.BCST imm8 m128/m32bcst k xmm
+// 	VREDUCEPS.BCST imm8 m128/m32bcst xmm
+// 	VREDUCEPS.BCST imm8 m256/m32bcst k ymm
+// 	VREDUCEPS.BCST imm8 m256/m32bcst ymm
+// Construct and append a VREDUCEPS.BCST instruction to the active function.
+// Operates on the global context.
+func VREDUCEPS_BCST(ops ...operand.Op) { ctx.VREDUCEPS_BCST(ops...) }
+
+// VREDUCEPS_BCST_Z: Perform Reduction Transformation on Packed Single-Precision Floating-Point Values (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VREDUCEPS.BCST.Z imm8 m512/m32bcst k zmm
+// 	VREDUCEPS.BCST.Z imm8 m128/m32bcst k xmm
+// 	VREDUCEPS.BCST.Z imm8 m256/m32bcst k ymm
+// Construct and append a VREDUCEPS.BCST.Z instruction to the active function.
+func (c *Context) VREDUCEPS_BCST_Z(i, m, k, xyz operand.Op) {
+	if inst, err := x86.VREDUCEPS_BCST_Z(i, m, k, xyz); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VREDUCEPS_BCST_Z: Perform Reduction Transformation on Packed Single-Precision Floating-Point Values (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VREDUCEPS.BCST.Z imm8 m512/m32bcst k zmm
+// 	VREDUCEPS.BCST.Z imm8 m128/m32bcst k xmm
+// 	VREDUCEPS.BCST.Z imm8 m256/m32bcst k ymm
+// Construct and append a VREDUCEPS.BCST.Z instruction to the active function.
+// Operates on the global context.
+func VREDUCEPS_BCST_Z(i, m, k, xyz operand.Op) { ctx.VREDUCEPS_BCST_Z(i, m, k, xyz) }
+
+// VREDUCEPS_Z: Perform Reduction Transformation on Packed Single-Precision Floating-Point Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VREDUCEPS.Z imm8 m512/m32bcst k zmm
+// 	VREDUCEPS.Z imm8 zmm          k zmm
+// 	VREDUCEPS.Z imm8 m128/m32bcst k xmm
+// 	VREDUCEPS.Z imm8 m256/m32bcst k ymm
+// 	VREDUCEPS.Z imm8 xmm          k xmm
+// 	VREDUCEPS.Z imm8 ymm          k ymm
+// Construct and append a VREDUCEPS.Z instruction to the active function.
+func (c *Context) VREDUCEPS_Z(i, mxyz, k, xyz operand.Op) {
+	if inst, err := x86.VREDUCEPS_Z(i, mxyz, k, xyz); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VREDUCEPS_Z: Perform Reduction Transformation on Packed Single-Precision Floating-Point Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VREDUCEPS.Z imm8 m512/m32bcst k zmm
+// 	VREDUCEPS.Z imm8 zmm          k zmm
+// 	VREDUCEPS.Z imm8 m128/m32bcst k xmm
+// 	VREDUCEPS.Z imm8 m256/m32bcst k ymm
+// 	VREDUCEPS.Z imm8 xmm          k xmm
+// 	VREDUCEPS.Z imm8 ymm          k ymm
+// Construct and append a VREDUCEPS.Z instruction to the active function.
+// Operates on the global context.
+func VREDUCEPS_Z(i, mxyz, k, xyz operand.Op) { ctx.VREDUCEPS_Z(i, mxyz, k, xyz) }
+
+// VREDUCESD: Perform Reduction Transformation on a Scalar Double-Precision Floating-Point Value.
+//
+// Forms:
+//
+// 	VREDUCESD imm8 m64 xmm k xmm
+// 	VREDUCESD imm8 m64 xmm xmm
+// 	VREDUCESD imm8 xmm xmm k xmm
+// 	VREDUCESD imm8 xmm xmm xmm
+// Construct and append a VREDUCESD instruction to the active function.
+func (c *Context) VREDUCESD(ops ...operand.Op) {
+	if inst, err := x86.VREDUCESD(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VREDUCESD: Perform Reduction Transformation on a Scalar Double-Precision Floating-Point Value.
+//
+// Forms:
+//
+// 	VREDUCESD imm8 m64 xmm k xmm
+// 	VREDUCESD imm8 m64 xmm xmm
+// 	VREDUCESD imm8 xmm xmm k xmm
+// 	VREDUCESD imm8 xmm xmm xmm
+// Construct and append a VREDUCESD instruction to the active function.
+// Operates on the global context.
+func VREDUCESD(ops ...operand.Op) { ctx.VREDUCESD(ops...) }
+
+// VREDUCESD_Z: Perform Reduction Transformation on a Scalar Double-Precision Floating-Point Value (Zeroing Masking).
+//
+// Forms:
+//
+// 	VREDUCESD.Z imm8 m64 xmm k xmm
+// 	VREDUCESD.Z imm8 xmm xmm k xmm
+// Construct and append a VREDUCESD.Z instruction to the active function.
+func (c *Context) VREDUCESD_Z(i, mx, x, k, x1 operand.Op) {
+	if inst, err := x86.VREDUCESD_Z(i, mx, x, k, x1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VREDUCESD_Z: Perform Reduction Transformation on a Scalar Double-Precision Floating-Point Value (Zeroing Masking).
+//
+// Forms:
+//
+// 	VREDUCESD.Z imm8 m64 xmm k xmm
+// 	VREDUCESD.Z imm8 xmm xmm k xmm
+// Construct and append a VREDUCESD.Z instruction to the active function.
+// Operates on the global context.
+func VREDUCESD_Z(i, mx, x, k, x1 operand.Op) { ctx.VREDUCESD_Z(i, mx, x, k, x1) }
+
+// VREDUCESS: Perform Reduction Transformation on a Scalar Single-Precision Floating-Point Value.
+//
+// Forms:
+//
+// 	VREDUCESS imm8 m32 xmm k xmm
+// 	VREDUCESS imm8 m32 xmm xmm
+// 	VREDUCESS imm8 xmm xmm k xmm
+// 	VREDUCESS imm8 xmm xmm xmm
+// Construct and append a VREDUCESS instruction to the active function.
+func (c *Context) VREDUCESS(ops ...operand.Op) {
+	if inst, err := x86.VREDUCESS(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VREDUCESS: Perform Reduction Transformation on a Scalar Single-Precision Floating-Point Value.
+//
+// Forms:
+//
+// 	VREDUCESS imm8 m32 xmm k xmm
+// 	VREDUCESS imm8 m32 xmm xmm
+// 	VREDUCESS imm8 xmm xmm k xmm
+// 	VREDUCESS imm8 xmm xmm xmm
+// Construct and append a VREDUCESS instruction to the active function.
+// Operates on the global context.
+func VREDUCESS(ops ...operand.Op) { ctx.VREDUCESS(ops...) }
+
+// VREDUCESS_Z: Perform Reduction Transformation on a Scalar Single-Precision Floating-Point Value (Zeroing Masking).
+//
+// Forms:
+//
+// 	VREDUCESS.Z imm8 m32 xmm k xmm
+// 	VREDUCESS.Z imm8 xmm xmm k xmm
+// Construct and append a VREDUCESS.Z instruction to the active function.
+func (c *Context) VREDUCESS_Z(i, mx, x, k, x1 operand.Op) {
+	if inst, err := x86.VREDUCESS_Z(i, mx, x, k, x1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VREDUCESS_Z: Perform Reduction Transformation on a Scalar Single-Precision Floating-Point Value (Zeroing Masking).
+//
+// Forms:
+//
+// 	VREDUCESS.Z imm8 m32 xmm k xmm
+// 	VREDUCESS.Z imm8 xmm xmm k xmm
+// Construct and append a VREDUCESS.Z instruction to the active function.
+// Operates on the global context.
+func VREDUCESS_Z(i, mx, x, k, x1 operand.Op) { ctx.VREDUCESS_Z(i, mx, x, k, x1) }
 
 // VRNDSCALEPD: Round Packed Double-Precision Floating-Point Values To Include A Given Number Of Fraction Bits.
 //
@@ -80629,13 +87773,23 @@ func VUNPCKLPS_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VUNPCKLPS_Z(mxyz, xyz, k, 
 //
 // Forms:
 //
-// 	VXORPD m128 xmm xmm
-// 	VXORPD m256 ymm ymm
-// 	VXORPD xmm  xmm xmm
-// 	VXORPD ymm  ymm ymm
+// 	VXORPD m128         xmm xmm
+// 	VXORPD m256         ymm ymm
+// 	VXORPD xmm          xmm xmm
+// 	VXORPD ymm          ymm ymm
+// 	VXORPD m512/m64bcst zmm k zmm
+// 	VXORPD m512/m64bcst zmm zmm
+// 	VXORPD zmm          zmm k zmm
+// 	VXORPD zmm          zmm zmm
+// 	VXORPD m128/m64bcst xmm k xmm
+// 	VXORPD m128/m64bcst xmm xmm
+// 	VXORPD m256/m64bcst ymm k ymm
+// 	VXORPD m256/m64bcst ymm ymm
+// 	VXORPD xmm          xmm k xmm
+// 	VXORPD ymm          ymm k ymm
 // Construct and append a VXORPD instruction to the active function.
-func (c *Context) VXORPD(mxy, xy, xy1 operand.Op) {
-	if inst, err := x86.VXORPD(mxy, xy, xy1); err == nil {
+func (c *Context) VXORPD(ops ...operand.Op) {
+	if inst, err := x86.VXORPD(ops...); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -80646,25 +87800,138 @@ func (c *Context) VXORPD(mxy, xy, xy1 operand.Op) {
 //
 // Forms:
 //
-// 	VXORPD m128 xmm xmm
-// 	VXORPD m256 ymm ymm
-// 	VXORPD xmm  xmm xmm
-// 	VXORPD ymm  ymm ymm
+// 	VXORPD m128         xmm xmm
+// 	VXORPD m256         ymm ymm
+// 	VXORPD xmm          xmm xmm
+// 	VXORPD ymm          ymm ymm
+// 	VXORPD m512/m64bcst zmm k zmm
+// 	VXORPD m512/m64bcst zmm zmm
+// 	VXORPD zmm          zmm k zmm
+// 	VXORPD zmm          zmm zmm
+// 	VXORPD m128/m64bcst xmm k xmm
+// 	VXORPD m128/m64bcst xmm xmm
+// 	VXORPD m256/m64bcst ymm k ymm
+// 	VXORPD m256/m64bcst ymm ymm
+// 	VXORPD xmm          xmm k xmm
+// 	VXORPD ymm          ymm k ymm
 // Construct and append a VXORPD instruction to the active function.
 // Operates on the global context.
-func VXORPD(mxy, xy, xy1 operand.Op) { ctx.VXORPD(mxy, xy, xy1) }
+func VXORPD(ops ...operand.Op) { ctx.VXORPD(ops...) }
+
+// VXORPD_BCST: Bitwise Logical XOR for Double-Precision Floating-Point Values (Broadcast).
+//
+// Forms:
+//
+// 	VXORPD.BCST m512/m64bcst zmm k zmm
+// 	VXORPD.BCST m512/m64bcst zmm zmm
+// 	VXORPD.BCST m128/m64bcst xmm k xmm
+// 	VXORPD.BCST m128/m64bcst xmm xmm
+// 	VXORPD.BCST m256/m64bcst ymm k ymm
+// 	VXORPD.BCST m256/m64bcst ymm ymm
+// Construct and append a VXORPD.BCST instruction to the active function.
+func (c *Context) VXORPD_BCST(ops ...operand.Op) {
+	if inst, err := x86.VXORPD_BCST(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VXORPD_BCST: Bitwise Logical XOR for Double-Precision Floating-Point Values (Broadcast).
+//
+// Forms:
+//
+// 	VXORPD.BCST m512/m64bcst zmm k zmm
+// 	VXORPD.BCST m512/m64bcst zmm zmm
+// 	VXORPD.BCST m128/m64bcst xmm k xmm
+// 	VXORPD.BCST m128/m64bcst xmm xmm
+// 	VXORPD.BCST m256/m64bcst ymm k ymm
+// 	VXORPD.BCST m256/m64bcst ymm ymm
+// Construct and append a VXORPD.BCST instruction to the active function.
+// Operates on the global context.
+func VXORPD_BCST(ops ...operand.Op) { ctx.VXORPD_BCST(ops...) }
+
+// VXORPD_BCST_Z: Bitwise Logical XOR for Double-Precision Floating-Point Values (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VXORPD.BCST.Z m512/m64bcst zmm k zmm
+// 	VXORPD.BCST.Z m128/m64bcst xmm k xmm
+// 	VXORPD.BCST.Z m256/m64bcst ymm k ymm
+// Construct and append a VXORPD.BCST.Z instruction to the active function.
+func (c *Context) VXORPD_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VXORPD_BCST_Z(m, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VXORPD_BCST_Z: Bitwise Logical XOR for Double-Precision Floating-Point Values (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VXORPD.BCST.Z m512/m64bcst zmm k zmm
+// 	VXORPD.BCST.Z m128/m64bcst xmm k xmm
+// 	VXORPD.BCST.Z m256/m64bcst ymm k ymm
+// Construct and append a VXORPD.BCST.Z instruction to the active function.
+// Operates on the global context.
+func VXORPD_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VXORPD_BCST_Z(m, xyz, k, xyz1) }
+
+// VXORPD_Z: Bitwise Logical XOR for Double-Precision Floating-Point Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VXORPD.Z m512/m64bcst zmm k zmm
+// 	VXORPD.Z zmm          zmm k zmm
+// 	VXORPD.Z m128/m64bcst xmm k xmm
+// 	VXORPD.Z m256/m64bcst ymm k ymm
+// 	VXORPD.Z xmm          xmm k xmm
+// 	VXORPD.Z ymm          ymm k ymm
+// Construct and append a VXORPD.Z instruction to the active function.
+func (c *Context) VXORPD_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VXORPD_Z(mxyz, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VXORPD_Z: Bitwise Logical XOR for Double-Precision Floating-Point Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VXORPD.Z m512/m64bcst zmm k zmm
+// 	VXORPD.Z zmm          zmm k zmm
+// 	VXORPD.Z m128/m64bcst xmm k xmm
+// 	VXORPD.Z m256/m64bcst ymm k ymm
+// 	VXORPD.Z xmm          xmm k xmm
+// 	VXORPD.Z ymm          ymm k ymm
+// Construct and append a VXORPD.Z instruction to the active function.
+// Operates on the global context.
+func VXORPD_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VXORPD_Z(mxyz, xyz, k, xyz1) }
 
 // VXORPS: Bitwise Logical XOR for Single-Precision Floating-Point Values.
 //
 // Forms:
 //
-// 	VXORPS m128 xmm xmm
-// 	VXORPS m256 ymm ymm
-// 	VXORPS xmm  xmm xmm
-// 	VXORPS ymm  ymm ymm
+// 	VXORPS m128         xmm xmm
+// 	VXORPS m256         ymm ymm
+// 	VXORPS xmm          xmm xmm
+// 	VXORPS ymm          ymm ymm
+// 	VXORPS m512/m32bcst zmm k zmm
+// 	VXORPS m512/m32bcst zmm zmm
+// 	VXORPS zmm          zmm k zmm
+// 	VXORPS zmm          zmm zmm
+// 	VXORPS m128/m32bcst xmm k xmm
+// 	VXORPS m128/m32bcst xmm xmm
+// 	VXORPS m256/m32bcst ymm k ymm
+// 	VXORPS m256/m32bcst ymm ymm
+// 	VXORPS xmm          xmm k xmm
+// 	VXORPS ymm          ymm k ymm
 // Construct and append a VXORPS instruction to the active function.
-func (c *Context) VXORPS(mxy, xy, xy1 operand.Op) {
-	if inst, err := x86.VXORPS(mxy, xy, xy1); err == nil {
+func (c *Context) VXORPS(ops ...operand.Op) {
+	if inst, err := x86.VXORPS(ops...); err == nil {
 		c.Instruction(inst)
 	} else {
 		c.adderror(err)
@@ -80675,13 +87942,116 @@ func (c *Context) VXORPS(mxy, xy, xy1 operand.Op) {
 //
 // Forms:
 //
-// 	VXORPS m128 xmm xmm
-// 	VXORPS m256 ymm ymm
-// 	VXORPS xmm  xmm xmm
-// 	VXORPS ymm  ymm ymm
+// 	VXORPS m128         xmm xmm
+// 	VXORPS m256         ymm ymm
+// 	VXORPS xmm          xmm xmm
+// 	VXORPS ymm          ymm ymm
+// 	VXORPS m512/m32bcst zmm k zmm
+// 	VXORPS m512/m32bcst zmm zmm
+// 	VXORPS zmm          zmm k zmm
+// 	VXORPS zmm          zmm zmm
+// 	VXORPS m128/m32bcst xmm k xmm
+// 	VXORPS m128/m32bcst xmm xmm
+// 	VXORPS m256/m32bcst ymm k ymm
+// 	VXORPS m256/m32bcst ymm ymm
+// 	VXORPS xmm          xmm k xmm
+// 	VXORPS ymm          ymm k ymm
 // Construct and append a VXORPS instruction to the active function.
 // Operates on the global context.
-func VXORPS(mxy, xy, xy1 operand.Op) { ctx.VXORPS(mxy, xy, xy1) }
+func VXORPS(ops ...operand.Op) { ctx.VXORPS(ops...) }
+
+// VXORPS_BCST: Bitwise Logical XOR for Single-Precision Floating-Point Values (Broadcast).
+//
+// Forms:
+//
+// 	VXORPS.BCST m512/m32bcst zmm k zmm
+// 	VXORPS.BCST m512/m32bcst zmm zmm
+// 	VXORPS.BCST m128/m32bcst xmm k xmm
+// 	VXORPS.BCST m128/m32bcst xmm xmm
+// 	VXORPS.BCST m256/m32bcst ymm k ymm
+// 	VXORPS.BCST m256/m32bcst ymm ymm
+// Construct and append a VXORPS.BCST instruction to the active function.
+func (c *Context) VXORPS_BCST(ops ...operand.Op) {
+	if inst, err := x86.VXORPS_BCST(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VXORPS_BCST: Bitwise Logical XOR for Single-Precision Floating-Point Values (Broadcast).
+//
+// Forms:
+//
+// 	VXORPS.BCST m512/m32bcst zmm k zmm
+// 	VXORPS.BCST m512/m32bcst zmm zmm
+// 	VXORPS.BCST m128/m32bcst xmm k xmm
+// 	VXORPS.BCST m128/m32bcst xmm xmm
+// 	VXORPS.BCST m256/m32bcst ymm k ymm
+// 	VXORPS.BCST m256/m32bcst ymm ymm
+// Construct and append a VXORPS.BCST instruction to the active function.
+// Operates on the global context.
+func VXORPS_BCST(ops ...operand.Op) { ctx.VXORPS_BCST(ops...) }
+
+// VXORPS_BCST_Z: Bitwise Logical XOR for Single-Precision Floating-Point Values (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VXORPS.BCST.Z m512/m32bcst zmm k zmm
+// 	VXORPS.BCST.Z m128/m32bcst xmm k xmm
+// 	VXORPS.BCST.Z m256/m32bcst ymm k ymm
+// Construct and append a VXORPS.BCST.Z instruction to the active function.
+func (c *Context) VXORPS_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VXORPS_BCST_Z(m, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VXORPS_BCST_Z: Bitwise Logical XOR for Single-Precision Floating-Point Values (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VXORPS.BCST.Z m512/m32bcst zmm k zmm
+// 	VXORPS.BCST.Z m128/m32bcst xmm k xmm
+// 	VXORPS.BCST.Z m256/m32bcst ymm k ymm
+// Construct and append a VXORPS.BCST.Z instruction to the active function.
+// Operates on the global context.
+func VXORPS_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VXORPS_BCST_Z(m, xyz, k, xyz1) }
+
+// VXORPS_Z: Bitwise Logical XOR for Single-Precision Floating-Point Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VXORPS.Z m512/m32bcst zmm k zmm
+// 	VXORPS.Z zmm          zmm k zmm
+// 	VXORPS.Z m128/m32bcst xmm k xmm
+// 	VXORPS.Z m256/m32bcst ymm k ymm
+// 	VXORPS.Z xmm          xmm k xmm
+// 	VXORPS.Z ymm          ymm k ymm
+// Construct and append a VXORPS.Z instruction to the active function.
+func (c *Context) VXORPS_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	if inst, err := x86.VXORPS_Z(mxyz, xyz, k, xyz1); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VXORPS_Z: Bitwise Logical XOR for Single-Precision Floating-Point Values (Zeroing Masking).
+//
+// Forms:
+//
+// 	VXORPS.Z m512/m32bcst zmm k zmm
+// 	VXORPS.Z zmm          zmm k zmm
+// 	VXORPS.Z m128/m32bcst xmm k xmm
+// 	VXORPS.Z m256/m32bcst ymm k ymm
+// 	VXORPS.Z xmm          xmm k xmm
+// 	VXORPS.Z ymm          ymm k ymm
+// Construct and append a VXORPS.Z instruction to the active function.
+// Operates on the global context.
+func VXORPS_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VXORPS_Z(mxyz, xyz, k, xyz1) }
 
 // VZEROALL: Zero All YMM Registers.
 //
