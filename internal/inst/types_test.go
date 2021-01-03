@@ -21,7 +21,6 @@ func TestFormSupportedSuffixes(t *testing.T) {
 				Broadcast: true,
 			},
 			Expect: []Suffixes{
-				{},
 				{BCST},
 			},
 		},
@@ -30,7 +29,6 @@ func TestFormSupportedSuffixes(t *testing.T) {
 				EmbeddedRounding: true,
 			},
 			Expect: []Suffixes{
-				{},
 				{RN_SAE},
 				{RZ_SAE},
 				{RD_SAE},
@@ -42,7 +40,6 @@ func TestFormSupportedSuffixes(t *testing.T) {
 				SuppressAllExceptions: true,
 			},
 			Expect: []Suffixes{
-				{},
 				{SAE},
 			},
 		},
@@ -51,8 +48,7 @@ func TestFormSupportedSuffixes(t *testing.T) {
 				Zeroing: true,
 			},
 			Expect: []Suffixes{
-				{},
-				{"Z"},
+				{Z},
 			},
 		},
 		{
@@ -61,12 +57,6 @@ func TestFormSupportedSuffixes(t *testing.T) {
 				Zeroing:          true,
 			},
 			Expect: []Suffixes{
-				{},
-				{RN_SAE},
-				{RZ_SAE},
-				{RD_SAE},
-				{RU_SAE},
-				{Z},
 				{RN_SAE, Z},
 				{RZ_SAE, Z},
 				{RD_SAE, Z},
@@ -75,13 +65,10 @@ func TestFormSupportedSuffixes(t *testing.T) {
 		},
 		{
 			Form: Form{
-				EVEXOnly:  true,
 				Broadcast: true,
 				Zeroing:   true,
 			},
 			Expect: []Suffixes{
-				{BCST},
-				{Z},
 				{BCST, Z},
 			},
 		},
