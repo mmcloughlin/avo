@@ -184,12 +184,6 @@ func IsM64(op Op) bool {
 	return IsMSize(op, 8)
 }
 
-// IsM64M32BCST returns true if op is a 64-bit or 32-bit broadcast memory operand.
-func IsM64M32BCST(op Op) bool {
-	// TODO(mbm): should "m64/m32bcst" be the same as "m64"?
-	return IsM64(op)
-}
-
 // IsMSize returns true if op is a memory operand using general-purpose address
 // registers of the given size in bytes.
 func IsMSize(op Op, n uint) bool {
@@ -210,52 +204,16 @@ func IsM128(op Op) bool {
 	return IsM64(op)
 }
 
-// IsM128M32BCST returns true if op is a 128-bit or 32-bit broadcast memory operand.
-func IsM128M32BCST(op Op) bool {
-	// TODO(mbm): should "m128/m32bcst" be the same as "m128"?
-	return IsM128(op)
-}
-
-// IsM128M64BCST returns true if op is a 128-bit or 64-bit broadcast memory operand.
-func IsM128M64BCST(op Op) bool {
-	// TODO(mbm): should "m128/m64bcst" be the same as "m128"?
-	return IsM128(op)
-}
-
 // IsM256 returns true if op is a 256-bit memory operand.
 func IsM256(op Op) bool {
 	// TODO(mbm): should "m256" be the same as "m64"?
 	return IsM64(op)
 }
 
-// IsM256M32BCST returns true if op is a 256-bit or 32-bit broadcast memory operand.
-func IsM256M32BCST(op Op) bool {
-	// TODO(mbm): should "m256/m32bcst" be the same as "m256"?
-	return IsM256(op)
-}
-
-// IsM256M64BCST returns true if op is a 256-bit or 64-bit broadcast memory operand.
-func IsM256M64BCST(op Op) bool {
-	// TODO(mbm): should "m256/m64bcst" be the same as "m256"?
-	return IsM256(op)
-}
-
 // IsM512 returns true if op is a 512-bit memory operand.
 func IsM512(op Op) bool {
 	// TODO(mbm): should "m512" be the same as "m64"?
 	return IsM64(op)
-}
-
-// IsM512M32BCST returns true if op is a 512-bit or 32-bit broadcast memory operand.
-func IsM512M32BCST(op Op) bool {
-	// TODO(mbm): should "m512/m32bcst" be the same as "m512"?
-	return IsM512(op)
-}
-
-// IsM512M64BCST returns true if op is a 512-bit or 64-bit broadcast memory operand.
-func IsM512M64BCST(op Op) bool {
-	// TODO(mbm): should "m512/m64bcst" be the same as "m512"?
-	return IsM512(op)
 }
 
 // IsVM32X returns true if op is a vector memory operand with 32-bit XMM index.
