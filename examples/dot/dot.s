@@ -3,7 +3,7 @@
 #include "textflag.h"
 
 // func Dot(x []float32, y []float32) float32
-// Requires: AVX, AVX512F, AVX512VL, FMA3, SSE
+// Requires: AVX, FMA3, SSE
 TEXT ·Dot(SB), NOSPLIT, $0-52
 	MOVQ   x_base+0(FP), AX
 	MOVQ   y_base+24(FP), CX
