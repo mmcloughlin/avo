@@ -34,6 +34,6 @@ func GoFmt(i Interface) Interface {
 		if err != nil {
 			return b, err
 		}
-		return formatted, err
+		return formatted, nil
 	})
 }
