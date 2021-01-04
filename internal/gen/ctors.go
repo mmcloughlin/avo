@@ -89,7 +89,6 @@ func (c *ctors) forms(fn *api.Function, s api.Signature) {
 			groups[instruction] = &Case{Instruction: instruction}
 		}
 		groups[instruction].Conditions = append(groups[instruction].Conditions, cond)
-
 	}
 
 	// Collect in slice. (Sorted for reproducibility.)
