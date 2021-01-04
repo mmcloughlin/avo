@@ -30,6 +30,10 @@ func GoFmt(i Interface) Interface {
 		if err != nil {
 			return nil, err
 		}
-		return format.Source(b)
+		formatted, err := format.Source(b)
+		if err != nil {
+			return b, err
+		}
+		return formatted, nil
 	})
 }
