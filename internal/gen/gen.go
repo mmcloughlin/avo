@@ -32,7 +32,7 @@ func GoFmt(i Interface) Interface {
 		}
 		formatted, err := format.Source(b)
 		if err != nil {
-			formatted = b
+			return b, err
 		}
 		return formatted, err
 	})
