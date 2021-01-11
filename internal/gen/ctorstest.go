@@ -24,8 +24,9 @@ func (c *ctorstest) Generate(is []inst.Instruction) ([]byte, error) {
 	c.Printf("// %s\n\n", c.cfg.GeneratedWarning())
 	c.Printf("package x86\n\n")
 	c.Printf("import (\n")
-	c.Printf("\t\"testing\"\n")
 	c.Printf("\t\"math\"\n")
+	c.Printf("\t\"testing\"\n")
+	c.Printf("\t\"time\"\n")
 	c.NL()
 	c.Printf("\t\"%s/reg\"\n", api.Package)
 	c.Printf("\t\"%s/operand\"\n", api.Package)
@@ -37,6 +38,8 @@ func (c *ctorstest) Generate(is []inst.Instruction) ([]byte, error) {
 	for _, fn := range fns {
 		c.function(fn)
 	}
+
+	c.benchmark(fns)
 
 	return c.Result()
 }
@@ -61,6 +64,23 @@ func (c *ctorstest) function(fn *api.Function) {
 		c.Printf("})\n")
 	}
 
+	c.Printf("}\n\n")
+}
+
+func (c *ctorstest) benchmark(fns []*api.Function) {
+	c.Printf("func BenchmarkConstructors(b *testing.B) {\n")
+	c.Printf("start := time.Now()\n")
+	c.Printf("for i := 0; i < b.N; i++ {\n")
+	n := 0
+	for _, fn := range fns {
+		for _, f := range fn.Forms {
+			n++
+			c.Printf("%s(%s)\n", fn.Name(), strings.Join(formargs(f), ", "))
+		}
+	}
+	c.Printf("}\n")
+	c.Printf("elapsed := time.Since(start)\n")
+	c.Printf("\tb.ReportMetric(%d * float64(b.N) / elapsed.Seconds(), \"inst/s\")\n", n)
 	c.Printf("}\n\n")
 }
 
