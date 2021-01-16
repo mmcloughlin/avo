@@ -1784,7 +1784,7 @@ func CALL(r operand.Op) (*intrep.Instruction, error) {
 func CBW() (*intrep.Instruction, error) {
 	return &intrep.Instruction{
 		Opcode:   "CBW",
-		Operands: nil,
+		Operands: []operand.Op{},
 		Inputs:   []operand.Op{reg.AL},
 		Outputs:  []operand.Op{reg.AX},
 	}, nil
@@ -1798,7 +1798,7 @@ func CBW() (*intrep.Instruction, error) {
 func CDQ() (*intrep.Instruction, error) {
 	return &intrep.Instruction{
 		Opcode:   "CDQ",
-		Operands: nil,
+		Operands: []operand.Op{},
 		Inputs:   []operand.Op{reg.EAX},
 		Outputs:  []operand.Op{reg.EDX},
 	}, nil
@@ -1812,7 +1812,7 @@ func CDQ() (*intrep.Instruction, error) {
 func CDQE() (*intrep.Instruction, error) {
 	return &intrep.Instruction{
 		Opcode:   "CDQE",
-		Operands: nil,
+		Operands: []operand.Op{},
 		Inputs:   []operand.Op{reg.EAX},
 		Outputs:  []operand.Op{reg.RAX},
 	}, nil
@@ -1826,7 +1826,7 @@ func CDQE() (*intrep.Instruction, error) {
 func CLC() (*intrep.Instruction, error) {
 	return &intrep.Instruction{
 		Opcode:   "CLC",
-		Operands: nil,
+		Operands: []operand.Op{},
 		Inputs:   []operand.Op{},
 		Outputs:  []operand.Op{},
 	}, nil
@@ -1840,7 +1840,7 @@ func CLC() (*intrep.Instruction, error) {
 func CLD() (*intrep.Instruction, error) {
 	return &intrep.Instruction{
 		Opcode:   "CLD",
-		Operands: nil,
+		Operands: []operand.Op{},
 		Inputs:   []operand.Op{},
 		Outputs:  []operand.Op{},
 	}, nil
@@ -1892,7 +1892,7 @@ func CLFLUSHOPT(m operand.Op) (*intrep.Instruction, error) {
 func CMC() (*intrep.Instruction, error) {
 	return &intrep.Instruction{
 		Opcode:   "CMC",
-		Operands: nil,
+		Operands: []operand.Op{},
 		Inputs:   []operand.Op{},
 		Outputs:  []operand.Op{},
 	}, nil
@@ -3332,7 +3332,7 @@ func COMISS(mx, x operand.Op) (*intrep.Instruction, error) {
 func CPUID() (*intrep.Instruction, error) {
 	return &intrep.Instruction{
 		Opcode:   "CPUID",
-		Operands: nil,
+		Operands: []operand.Op{},
 		Inputs:   []operand.Op{reg.EAX, reg.ECX},
 		Outputs:  []operand.Op{reg.EAX, reg.EBX, reg.ECX, reg.EDX},
 		ISA:      []string{"CPUID"},
@@ -3347,7 +3347,7 @@ func CPUID() (*intrep.Instruction, error) {
 func CQO() (*intrep.Instruction, error) {
 	return &intrep.Instruction{
 		Opcode:   "CQO",
-		Operands: nil,
+		Operands: []operand.Op{},
 		Inputs:   []operand.Op{reg.RAX},
 		Outputs:  []operand.Op{reg.RDX},
 	}, nil
@@ -3860,7 +3860,7 @@ func CVTTSS2SL(mx, r operand.Op) (*intrep.Instruction, error) {
 func CWD() (*intrep.Instruction, error) {
 	return &intrep.Instruction{
 		Opcode:   "CWD",
-		Operands: nil,
+		Operands: []operand.Op{},
 		Inputs:   []operand.Op{reg.AX},
 		Outputs:  []operand.Op{reg.DX},
 	}, nil
@@ -3874,7 +3874,7 @@ func CWD() (*intrep.Instruction, error) {
 func CWDE() (*intrep.Instruction, error) {
 	return &intrep.Instruction{
 		Opcode:   "CWDE",
-		Operands: nil,
+		Operands: []operand.Op{},
 		Inputs:   []operand.Op{reg.AX},
 		Outputs:  []operand.Op{reg.EAX},
 	}, nil
@@ -6819,7 +6819,7 @@ func LEAW(m, r operand.Op) (*intrep.Instruction, error) {
 func LFENCE() (*intrep.Instruction, error) {
 	return &intrep.Instruction{
 		Opcode:   "LFENCE",
-		Operands: nil,
+		Operands: []operand.Op{},
 		Inputs:   []operand.Op{},
 		Outputs:  []operand.Op{},
 		ISA:      []string{"SSE2"},
@@ -7019,7 +7019,7 @@ func MAXSS(mx, x operand.Op) (*intrep.Instruction, error) {
 func MFENCE() (*intrep.Instruction, error) {
 	return &intrep.Instruction{
 		Opcode:   "MFENCE",
-		Operands: nil,
+		Operands: []operand.Op{},
 		Inputs:   []operand.Op{},
 		Outputs:  []operand.Op{},
 		ISA:      []string{"SSE2"},
@@ -7118,7 +7118,7 @@ func MINSS(mx, x operand.Op) (*intrep.Instruction, error) {
 func MONITOR() (*intrep.Instruction, error) {
 	return &intrep.Instruction{
 		Opcode:   "MONITOR",
-		Operands: nil,
+		Operands: []operand.Op{},
 		Inputs:   []operand.Op{reg.RAX, reg.ECX, reg.EDX},
 		Outputs:  []operand.Op{},
 		ISA:      []string{"MONITOR"},
@@ -8539,7 +8539,7 @@ func MULXQ(mr, r, r1 operand.Op) (*intrep.Instruction, error) {
 func MWAIT() (*intrep.Instruction, error) {
 	return &intrep.Instruction{
 		Opcode:   "MWAIT",
-		Operands: nil,
+		Operands: []operand.Op{},
 		Inputs:   []operand.Op{reg.EAX, reg.ECX},
 		Outputs:  []operand.Op{},
 		ISA:      []string{"MONITOR"},
@@ -8634,7 +8634,7 @@ func NEGW(mr operand.Op) (*intrep.Instruction, error) {
 func NOP() (*intrep.Instruction, error) {
 	return &intrep.Instruction{
 		Opcode:   "NOP",
-		Operands: nil,
+		Operands: []operand.Op{},
 		Inputs:   []operand.Op{},
 		Outputs:  []operand.Op{},
 	}, nil
@@ -9325,7 +9325,7 @@ func PANDN(mx, x operand.Op) (*intrep.Instruction, error) {
 func PAUSE() (*intrep.Instruction, error) {
 	return &intrep.Instruction{
 		Opcode:   "PAUSE",
-		Operands: nil,
+		Operands: []operand.Op{},
 		Inputs:   []operand.Op{},
 		Outputs:  []operand.Op{},
 	}, nil
@@ -12468,7 +12468,7 @@ func RDSEEDL(r operand.Op) (*intrep.Instruction, error) {
 func RDTSC() (*intrep.Instruction, error) {
 	return &intrep.Instruction{
 		Opcode:   "RDTSC",
-		Operands: nil,
+		Operands: []operand.Op{},
 		Inputs:   []operand.Op{},
 		Outputs:  []operand.Op{reg.EAX, reg.EDX},
 		ISA:      []string{"RDTSC"},
@@ -12483,7 +12483,7 @@ func RDTSC() (*intrep.Instruction, error) {
 func RDTSCP() (*intrep.Instruction, error) {
 	return &intrep.Instruction{
 		Opcode:   "RDTSCP",
-		Operands: nil,
+		Operands: []operand.Op{},
 		Inputs:   []operand.Op{},
 		Outputs:  []operand.Op{reg.EAX, reg.ECX, reg.EDX},
 		ISA:      []string{"RDTSCP"},
@@ -12498,7 +12498,7 @@ func RDTSCP() (*intrep.Instruction, error) {
 func RET() (*intrep.Instruction, error) {
 	return &intrep.Instruction{
 		Opcode:     "RET",
-		Operands:   nil,
+		Operands:   []operand.Op{},
 		Inputs:     []operand.Op{},
 		Outputs:    []operand.Op{},
 		IsTerminal: true,
@@ -13817,7 +13817,7 @@ func SETPS(mr operand.Op) (*intrep.Instruction, error) {
 func SFENCE() (*intrep.Instruction, error) {
 	return &intrep.Instruction{
 		Opcode:   "SFENCE",
-		Operands: nil,
+		Operands: []operand.Op{},
 		Inputs:   []operand.Op{},
 		Outputs:  []operand.Op{},
 		ISA:      []string{"MMX+"},
@@ -14581,7 +14581,7 @@ func SQRTSS(mx, x operand.Op) (*intrep.Instruction, error) {
 func STC() (*intrep.Instruction, error) {
 	return &intrep.Instruction{
 		Opcode:   "STC",
-		Operands: nil,
+		Operands: []operand.Op{},
 		Inputs:   []operand.Op{},
 		Outputs:  []operand.Op{},
 	}, nil
@@ -14595,7 +14595,7 @@ func STC() (*intrep.Instruction, error) {
 func STD() (*intrep.Instruction, error) {
 	return &intrep.Instruction{
 		Opcode:   "STD",
-		Operands: nil,
+		Operands: []operand.Op{},
 		Inputs:   []operand.Op{},
 		Outputs:  []operand.Op{},
 	}, nil
@@ -14888,7 +14888,7 @@ func SUBW(imr, amr operand.Op) (*intrep.Instruction, error) {
 func SYSCALL() (*intrep.Instruction, error) {
 	return &intrep.Instruction{
 		Opcode:   "SYSCALL",
-		Operands: nil,
+		Operands: []operand.Op{},
 		Inputs:   []operand.Op{},
 		Outputs:  []operand.Op{reg.R11, reg.RCX},
 	}, nil
@@ -15135,7 +15135,7 @@ func UCOMISS(mx, x operand.Op) (*intrep.Instruction, error) {
 func UD2() (*intrep.Instruction, error) {
 	return &intrep.Instruction{
 		Opcode:   "UD2",
-		Operands: nil,
+		Operands: []operand.Op{},
 		Inputs:   []operand.Op{},
 		Outputs:  []operand.Op{},
 	}, nil
@@ -104123,7 +104123,7 @@ func VXORPS_Z(mxyz, xyz, k, xyz1 operand.Op) (*intrep.Instruction, error) {
 func VZEROALL() (*intrep.Instruction, error) {
 	return &intrep.Instruction{
 		Opcode:   "VZEROALL",
-		Operands: nil,
+		Operands: []operand.Op{},
 		Inputs:   []operand.Op{},
 		Outputs:  []operand.Op{},
 		ISA:      []string{"AVX"},
@@ -104138,7 +104138,7 @@ func VZEROALL() (*intrep.Instruction, error) {
 func VZEROUPPER() (*intrep.Instruction, error) {
 	return &intrep.Instruction{
 		Opcode:   "VZEROUPPER",
-		Operands: nil,
+		Operands: []operand.Op{},
 		Inputs:   []operand.Op{},
 		Outputs:  []operand.Op{},
 		ISA:      []string{"AVX"},
@@ -104333,7 +104333,7 @@ func XCHGW(amr, amr1 operand.Op) (*intrep.Instruction, error) {
 func XGETBV() (*intrep.Instruction, error) {
 	return &intrep.Instruction{
 		Opcode:   "XGETBV",
-		Operands: nil,
+		Operands: []operand.Op{},
 		Inputs:   []operand.Op{reg.ECX},
 		Outputs:  []operand.Op{reg.EAX, reg.EDX},
 	}, nil
@@ -104347,7 +104347,7 @@ func XGETBV() (*intrep.Instruction, error) {
 func XLAT() (*intrep.Instruction, error) {
 	return &intrep.Instruction{
 		Opcode:   "XLAT",
-		Operands: nil,
+		Operands: []operand.Op{},
 		Inputs:   []operand.Op{reg.AL, reg.EBX},
 		Outputs:  []operand.Op{reg.AL},
 	}, nil

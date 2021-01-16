@@ -25,9 +25,11 @@ func (c *ctorstest) Generate(is []inst.Instruction) ([]byte, error) {
 	c.Printf("package x86\n\n")
 	c.Printf("import (\n")
 	c.Printf("\t\"math\"\n")
+	c.Printf("\t\"reflect\"\n")
 	c.Printf("\t\"testing\"\n")
 	c.Printf("\t\"time\"\n")
 	c.NL()
+	c.Printf("\tintrep \"%s/ir\"\n", api.Package)
 	c.Printf("\t\"%s/reg\"\n", api.Package)
 	c.Printf("\t\"%s/operand\"\n", api.Package)
 	c.Printf(")\n\n")
@@ -58,9 +60,11 @@ func (c *ctorstest) function(fn *api.Function) {
 	for _, f := range fn.Forms {
 		name := strings.Join(f.Signature(), "_")
 		c.Printf("t.Run(\"form=%s\", func(t *testing.T) {\n", name)
-		args := formargs(f)
-		c.Printf("if _, err := %s(%s)", fn.Name(), strings.Join(args, ", "))
-		c.Printf("; err != nil { t.Fatal(err) }\n")
+		s := formsig(f)
+		c.Printf("expect := &%s\n", construct(fn, f, s))
+		c.Printf("got, err := %s(%s)\n", fn.Name(), s.Arguments())
+		c.Printf("if err != nil { t.Fatal(err) }\n")
+		c.Printf("if !reflect.DeepEqual(expect, got) { t.Fatal(\"mismatch\") }\n")
 		c.Printf("})\n")
 	}
 
@@ -75,7 +79,7 @@ func (c *ctorstest) benchmark(fns []*api.Function) {
 	for _, fn := range fns {
 		for _, f := range fn.Forms {
 			n++
-			c.Printf("%s(%s)\n", fn.Name(), strings.Join(formargs(f), ", "))
+			c.Printf("%s(%s)\n", fn.Name(), formsig(f).Arguments())
 		}
 	}
 	c.Printf("}\n")
@@ -84,12 +88,12 @@ func (c *ctorstest) benchmark(fns []*api.Function) {
 	c.Printf("}\n\n")
 }
 
-func formargs(f inst.Form) []string {
+func formsig(f inst.Form) api.Signature {
 	var names []string
 	for _, op := range f.Operands {
 		names = append(names, argname(op.Type))
 	}
-	return names
+	return api.ArgsList(names)
 }
 
 func argname(t string) string {
