@@ -15,7 +15,11 @@ type Signature interface {
 	Length() string
 }
 
-// argslist is the signature for a function with the given named parameters.
+// ArgsList builds a signature for a function with the named parameters.
+func ArgsList(args []string) Signature {
+	return argslist(args)
+}
+
 type argslist []string
 
 func (a argslist) ParameterList() string      { return strings.Join(a, ", ") + " " + OperandType }
@@ -26,7 +30,11 @@ func (a argslist) ParameterSlice() string {
 }
 func (a argslist) Length() string { return strconv.Itoa(len(a)) }
 
-// variadic is the signature for a variadic function.
+// Variadic is the signature for a variadic function with the named argument slice.
+func Variadic(name string) Signature {
+	return variadic{name: name}
+}
+
 type variadic struct {
 	name string
 }
@@ -37,11 +45,15 @@ func (v variadic) ParameterName(i int) string { return fmt.Sprintf("%s[%d]", v.n
 func (v variadic) ParameterSlice() string     { return v.name }
 func (v variadic) Length() string             { return fmt.Sprintf("len(%s)", v.name) }
 
-// niladic is the signature for a function with no arguments.
+// Niladic is the signature for a function with no arguments.
+func Niladic() Signature {
+	return niladic{}
+}
+
 type niladic struct{}
 
 func (n niladic) ParameterList() string      { return "" }
 func (n niladic) Arguments() string          { return "" }
 func (n niladic) ParameterName(i int) string { panic("niladic function has no parameters") }
-func (n niladic) ParameterSlice() string     { return "nil" }
+func (n niladic) ParameterSlice() string     { return fmt.Sprintf("[]%s{}", OperandType) }
 func (n niladic) Length() string             { return "0" }
