@@ -18,6 +18,7 @@ var generators = map[string]gen.Builder{
 	"asmtest":    gen.NewAsmTest,
 	"godata":     gen.NewGoData,
 	"godatatest": gen.NewGoDataTest,
+	"optab":      gen.NewOptab,
 	"ctors":      gen.NewCtors,
 	"ctorstest":  gen.NewCtorsTest,
 	"build":      gen.NewBuild,
