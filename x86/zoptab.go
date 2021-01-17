@@ -2,6 +2,50 @@
 
 package x86
 
+type OperandType uint8
+
+const (
+	OperandTypeNone OperandType = iota
+	OperandType1
+	OperandType3
+	OperandTypeAL
+	OperandTypeAX
+	OperandTypeCL
+	OperandTypeEAX
+	OperandTypeIMM16
+	OperandTypeIMM2U
+	OperandTypeIMM32
+	OperandTypeIMM64
+	OperandTypeIMM8
+	OperandTypeK
+	OperandTypeM
+	OperandTypeM128
+	OperandTypeM16
+	OperandTypeM256
+	OperandTypeM32
+	OperandTypeM512
+	OperandTypeM64
+	OperandTypeM8
+	OperandTypeR16
+	OperandTypeR32
+	OperandTypeR64
+	OperandTypeR8
+	OperandTypeRAX
+	OperandTypeREL32
+	OperandTypeREL8
+	OperandTypeVM32X
+	OperandTypeVM32Y
+	OperandTypeVM32Z
+	OperandTypeVM64X
+	OperandTypeVM64Y
+	OperandTypeVM64Z
+	OperandTypeXMM
+	OperandTypeXMM0
+	OperandTypeYMM
+	OperandTypeZMM
+	operandtypemax
+)
+
 type Opcode uint16
 
 const (

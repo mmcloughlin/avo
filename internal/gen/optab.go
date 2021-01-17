@@ -1,6 +1,7 @@
 package gen
 
 import (
+	"github.com/mmcloughlin/avo/internal/api"
 	"github.com/mmcloughlin/avo/internal/inst"
 	"github.com/mmcloughlin/avo/internal/prnt"
 	"github.com/mmcloughlin/avo/printer"
@@ -18,8 +19,22 @@ func NewOptab(cfg printer.Config) Interface {
 func (t *optab) Generate(is []inst.Instruction) ([]byte, error) {
 	t.Printf("// %s\n\n", t.cfg.GeneratedWarning())
 	t.Printf("package x86\n\n")
+
+	// Operand types.
+	t.operands(is)
+
+	// Opcodes table.
 	t.opcodes(is)
+
 	return t.Result()
+}
+
+func (t *optab) operands(is []inst.Instruction) {
+	e := &enum{name: "OperandType"}
+	for _, t := range inst.OperandTypes(is) {
+		e.values = append(e.values, api.OperandTypeIdentifier(t))
+	}
+	e.Print(&t.Generator)
 }
 
 func (t *optab) opcodes(is []inst.Instruction) {
@@ -28,4 +43,5 @@ func (t *optab) opcodes(is []inst.Instruction) {
 		e.values = append(e.values, i.Opcode)
 	}
 	e.Print(&t.Generator)
+	e.StringMethod(&t.Generator)
 }

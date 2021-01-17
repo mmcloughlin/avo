@@ -19,7 +19,13 @@ func ImplicitRegister(t string) string {
 	return fmt.Sprintf("reg.%s", strings.ToUpper(r))
 }
 
+// OperandTypeIdentifier maps an operand type to a string suitable for a related
+// Go identifier.
+func OperandTypeIdentifier(t string) string {
+	return strings.ToUpper(strings.ReplaceAll(t, "/", ""))
+}
+
 // CheckerName returns the name of the function that checks an operand of type t.
 func CheckerName(t string) string {
-	return "operand.Is" + strings.ToUpper(strings.ReplaceAll(t, "/", ""))
+	return "operand.Is" + OperandTypeIdentifier(t)
 }

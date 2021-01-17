@@ -26,8 +26,9 @@ func (e *enum) Print(p *prnt.Generator) {
 	}
 	p.Printf("\t%s\n", e.MaxName())
 	p.Printf(")\n\n")
+}
 
-	// String method.
+func (e *enum) StringMethod(p *prnt.Generator) {
 	stringtab := strings.ToLower(e.name) + "strings"
 
 	r := e.Receiver()
