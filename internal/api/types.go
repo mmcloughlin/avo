@@ -1,6 +1,7 @@
 package api
 
 import (
+	"path"
 	"strings"
 )
 
@@ -11,6 +12,11 @@ const (
 	// OperandType is the type used for operands.
 	OperandType = "operand.Op"
 )
+
+// ImportPath returns the full import path for an avo subpackage.
+func ImportPath(pkg string) string {
+	return path.Join(Package, pkg)
+}
 
 // ImplicitRegisterIdentifier maps an implicit register name to a string
 // suitable for a related Go identifier.

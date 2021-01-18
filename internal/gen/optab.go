@@ -19,6 +19,9 @@ func NewOptab(cfg printer.Config) Interface {
 func (t *optab) Generate(is []inst.Instruction) ([]byte, error) {
 	t.Printf("// %s\n\n", t.cfg.GeneratedWarning())
 	t.Printf("package x86\n\n")
+	t.Printf("import (\n")
+	t.Printf("\t%q\n", api.ImportPath("operand"))
+	t.Printf(")\n\n")
 
 	// Arity.
 	t.arity(is)
@@ -51,11 +54,24 @@ func (t *optab) arity(is []inst.Instruction) {
 }
 
 func (t *optab) operandTypes(is []inst.Instruction) {
+	types := inst.OperandTypes(is)
+
+	// Operand type enum.
 	e := &enum{name: "OperandType"}
-	for _, t := range inst.OperandTypes(is) {
+	for _, t := range types {
 		e.values = append(e.values, api.OperandTypeIdentifier(t))
 	}
 	e.Print(&t.Generator)
+
+	// Operand match function.
+	t.Printf("func (%s %s) Match(op %s) bool {\n", e.Receiver(), e.Name(), api.OperandType)
+	t.Printf("\tswitch %s {\n", e.Receiver())
+	t.Printf("\t\tdefault: return false\n")
+	for _, typ := range types {
+		t.Printf("\t\tcase %s: return %s(op)\n", e.ConstName(api.OperandTypeIdentifier(typ)), api.CheckerName(typ))
+	}
+	t.Printf("\t}\n")
+	t.Printf("}\n\n")
 }
 
 func (t *optab) implicitRegisters(is []inst.Instruction) {
