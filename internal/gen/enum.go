@@ -46,6 +46,10 @@ func (e *enum) StringMethod(p *prnt.Generator) {
 	p.Printf("}\n\n")
 }
 
+func (e *enum) Name() string {
+	return e.name
+}
+
 func (e *enum) Receiver() string {
 	return strings.ToLower(e.name[:1])
 }

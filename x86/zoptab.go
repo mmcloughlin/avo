@@ -2,6 +2,10 @@
 
 package x86
 
+import (
+	"github.com/mmcloughlin/avo/operand"
+)
+
 const MaxArity = 6
 
 type OperandType uint8
@@ -47,6 +51,87 @@ const (
 	OperandTypeZMM
 	operandtypemax
 )
+
+func (o OperandType) Match(op operand.Op) bool {
+	switch o {
+	default:
+		return false
+	case OperandType1:
+		return operand.Is1(op)
+	case OperandType3:
+		return operand.Is3(op)
+	case OperandTypeAL:
+		return operand.IsAL(op)
+	case OperandTypeAX:
+		return operand.IsAX(op)
+	case OperandTypeCL:
+		return operand.IsCL(op)
+	case OperandTypeEAX:
+		return operand.IsEAX(op)
+	case OperandTypeIMM16:
+		return operand.IsIMM16(op)
+	case OperandTypeIMM2U:
+		return operand.IsIMM2U(op)
+	case OperandTypeIMM32:
+		return operand.IsIMM32(op)
+	case OperandTypeIMM64:
+		return operand.IsIMM64(op)
+	case OperandTypeIMM8:
+		return operand.IsIMM8(op)
+	case OperandTypeK:
+		return operand.IsK(op)
+	case OperandTypeM:
+		return operand.IsM(op)
+	case OperandTypeM128:
+		return operand.IsM128(op)
+	case OperandTypeM16:
+		return operand.IsM16(op)
+	case OperandTypeM256:
+		return operand.IsM256(op)
+	case OperandTypeM32:
+		return operand.IsM32(op)
+	case OperandTypeM512:
+		return operand.IsM512(op)
+	case OperandTypeM64:
+		return operand.IsM64(op)
+	case OperandTypeM8:
+		return operand.IsM8(op)
+	case OperandTypeR16:
+		return operand.IsR16(op)
+	case OperandTypeR32:
+		return operand.IsR32(op)
+	case OperandTypeR64:
+		return operand.IsR64(op)
+	case OperandTypeR8:
+		return operand.IsR8(op)
+	case OperandTypeRAX:
+		return operand.IsRAX(op)
+	case OperandTypeREL32:
+		return operand.IsREL32(op)
+	case OperandTypeREL8:
+		return operand.IsREL8(op)
+	case OperandTypeVM32X:
+		return operand.IsVM32X(op)
+	case OperandTypeVM32Y:
+		return operand.IsVM32Y(op)
+	case OperandTypeVM32Z:
+		return operand.IsVM32Z(op)
+	case OperandTypeVM64X:
+		return operand.IsVM64X(op)
+	case OperandTypeVM64Y:
+		return operand.IsVM64Y(op)
+	case OperandTypeVM64Z:
+		return operand.IsVM64Z(op)
+	case OperandTypeXMM:
+		return operand.IsXMM(op)
+	case OperandTypeXMM0:
+		return operand.IsXMM0(op)
+	case OperandTypeYMM:
+		return operand.IsYMM(op)
+	case OperandTypeZMM:
+		return operand.IsZMM(op)
+	}
+}
 
 type ImplicitRegister uint8
 
