@@ -20,8 +20,9 @@ func (t *optab) Generate(is []inst.Instruction) ([]byte, error) {
 	t.Printf("// %s\n\n", t.cfg.GeneratedWarning())
 	t.Printf("package x86\n\n")
 
-	// Operand types.
-	t.operands(is)
+	// Operand types and implicit registers.
+	t.operandTypes(is)
+	t.implicitRegisters(is)
 
 	// Opcodes table.
 	t.opcodes(is)
@@ -29,10 +30,18 @@ func (t *optab) Generate(is []inst.Instruction) ([]byte, error) {
 	return t.Result()
 }
 
-func (t *optab) operands(is []inst.Instruction) {
+func (t *optab) operandTypes(is []inst.Instruction) {
 	e := &enum{name: "OperandType"}
 	for _, t := range inst.OperandTypes(is) {
 		e.values = append(e.values, api.OperandTypeIdentifier(t))
+	}
+	e.Print(&t.Generator)
+}
+
+func (t *optab) implicitRegisters(is []inst.Instruction) {
+	e := &enum{name: "ImplicitRegister"}
+	for _, r := range inst.ImplicitRegisters(is) {
+		e.values = append(e.values, api.ImplicitRegisterIdentifier(r))
 	}
 	e.Print(&t.Generator)
 }

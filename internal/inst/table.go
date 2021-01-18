@@ -39,3 +39,27 @@ func OperandTypes(is []Instruction) []string {
 
 	return types
 }
+
+// ImplicitRegisters returns all the registers that appear as implicit operands
+// in the provided instructions.
+func ImplicitRegisters(is []Instruction) []string {
+	// Collect set.
+	set := map[string]bool{}
+	for _, i := range is {
+		for _, f := range i.Forms {
+			for _, op := range f.ImplicitOperands {
+				set[op.Register] = true
+			}
+		}
+	}
+
+	// Convert to sorted slice.
+	regs := make([]string, 0, len(set))
+	for r := range set {
+		regs = append(regs, r)
+	}
+
+	sort.Strings(regs)
+
+	return regs
+}

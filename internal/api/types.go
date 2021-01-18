@@ -1,7 +1,6 @@
 package api
 
 import (
-	"fmt"
 	"strings"
 )
 
@@ -13,10 +12,16 @@ const (
 	OperandType = "operand.Op"
 )
 
+// ImplicitRegisterIdentifier maps an implicit register name to a string
+// suitable for a related Go identifier.
+func ImplicitRegisterIdentifier(r string) string {
+	r = strings.Replace(r, "mm", "", 1) // handles the "xmm0" type
+	return strings.ToUpper(r)
+}
+
 // ImplicitRegister returns avo syntax for the given implicit register type (from Opcodes XML).
-func ImplicitRegister(t string) string {
-	r := strings.Replace(t, "mm", "", 1) // handles the "xmm0" type
-	return fmt.Sprintf("reg.%s", strings.ToUpper(r))
+func ImplicitRegister(r string) string {
+	return "reg." + ImplicitRegisterIdentifier(r)
 }
 
 // OperandTypeIdentifier maps an operand type to a string suitable for a related

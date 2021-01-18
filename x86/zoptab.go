@@ -46,6 +46,27 @@ const (
 	operandtypemax
 )
 
+type ImplicitRegister uint8
+
+const (
+	ImplicitRegisterNone ImplicitRegister = iota
+	ImplicitRegisterAL
+	ImplicitRegisterAX
+	ImplicitRegisterDX
+	ImplicitRegisterEAX
+	ImplicitRegisterEBX
+	ImplicitRegisterECX
+	ImplicitRegisterEDX
+	ImplicitRegisterR11
+	ImplicitRegisterRAX
+	ImplicitRegisterRBX
+	ImplicitRegisterRCX
+	ImplicitRegisterRDI
+	ImplicitRegisterRDX
+	ImplicitRegisterX0
+	implicitregistermax
+)
+
 type Opcode uint16
 
 const (
