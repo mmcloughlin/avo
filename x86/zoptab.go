@@ -2,6 +2,8 @@
 
 package x86
 
+const MaxArity = 6
+
 type OperandType uint8
 
 const (
@@ -65,6 +67,20 @@ const (
 	ImplicitRegisterRDX
 	ImplicitRegisterX0
 	implicitregistermax
+)
+
+type Suffix uint8
+
+const (
+	SuffixNone Suffix = iota
+	SuffixBCST
+	SuffixRD_SAE
+	SuffixRN_SAE
+	SuffixRU_SAE
+	SuffixRZ_SAE
+	SuffixSAE
+	SuffixZ
+	suffixmax
 )
 
 type Opcode uint16
