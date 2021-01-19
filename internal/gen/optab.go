@@ -1,6 +1,8 @@
 package gen
 
 import (
+	"strings"
+
 	"github.com/mmcloughlin/avo/internal/api"
 	"github.com/mmcloughlin/avo/internal/inst"
 	"github.com/mmcloughlin/avo/internal/prnt"
@@ -8,8 +10,13 @@ import (
 )
 
 type optab struct {
-	cfg printer.Config
 	prnt.Generator
+
+	cfg printer.Config
+
+	operandTypes      *enum
+	implicitRegisters *enum
+	opcodes           *enum
 }
 
 func NewOptab(cfg printer.Config) Interface {
@@ -23,23 +30,26 @@ func (t *optab) Generate(is []inst.Instruction) ([]byte, error) {
 	t.Printf("\t%q\n", api.ImportPath("operand"))
 	t.Printf(")\n\n")
 
-	// Arity.
-	t.arity(is)
+	// Size constants.
+	t.maxOperands(is)
 
 	// Operand types and implicit registers.
-	t.operandTypes(is)
-	t.implicitRegisters(is)
+	t.operandTypesEnum(is)
+	t.implicitRegistersEnum(is)
 
 	// Suffixes.
-	t.suffixes(is)
+	t.suffixesEnum(is)
 
-	// Opcodes table.
-	t.opcodes(is)
+	// Opcodes.
+	t.opcodesEnum(is)
+
+	// Forms table.
+	t.forms(is)
 
 	return t.Result()
 }
 
-func (t *optab) arity(is []inst.Instruction) {
+func (t *optab) maxOperands(is []inst.Instruction) {
 	max := 0
 	for _, i := range inst.Instructions {
 		for _, f := range i.Forms {
@@ -50,10 +60,11 @@ func (t *optab) arity(is []inst.Instruction) {
 		}
 	}
 
-	t.Printf("const MaxArity = %d\n", max)
+	t.Comment("MaxOperands is the maximum number of operands in an instruction form, including implicit operands.")
+	t.Printf("const MaxOperands = %d\n\n", max)
 }
 
-func (t *optab) operandTypes(is []inst.Instruction) {
+func (t *optab) operandTypesEnum(is []inst.Instruction) {
 	types := inst.OperandTypes(is)
 
 	// Operand type enum.
@@ -72,17 +83,20 @@ func (t *optab) operandTypes(is []inst.Instruction) {
 	}
 	t.Printf("\t}\n")
 	t.Printf("}\n\n")
+
+	t.operandTypes = e
 }
 
-func (t *optab) implicitRegisters(is []inst.Instruction) {
+func (t *optab) implicitRegistersEnum(is []inst.Instruction) {
 	e := &enum{name: "ImplicitRegister"}
 	for _, r := range inst.ImplicitRegisters(is) {
 		e.values = append(e.values, api.ImplicitRegisterIdentifier(r))
 	}
 	e.Print(&t.Generator)
+	t.implicitRegisters = e
 }
 
-func (t *optab) suffixes(is []inst.Instruction) {
+func (t *optab) suffixesEnum(is []inst.Instruction) {
 	e := &enum{name: "Suffix"}
 	for _, s := range inst.UniqueSuffixes(is) {
 		e.values = append(e.values, s.String())
@@ -90,11 +104,77 @@ func (t *optab) suffixes(is []inst.Instruction) {
 	e.Print(&t.Generator)
 }
 
-func (t *optab) opcodes(is []inst.Instruction) {
+func (t *optab) opcodesEnum(is []inst.Instruction) {
 	e := &enum{name: "Opcode"}
 	for _, i := range is {
 		e.values = append(e.values, i.Opcode)
 	}
 	e.Print(&t.Generator)
 	e.StringMethod(&t.Generator)
+	t.opcodes = e
+}
+
+func (t *optab) forms(is []inst.Instruction) {
+	t.Printf("var forms = []Form{\n")
+	for _, i := range is {
+		for _, f := range i.Forms {
+			t.Printf("{")
+
+			// Basic properties.
+			t.Printf("%s, ", t.opcodes.ConstName(i.Opcode))
+			t.Printf("%s, ", features(i, f))
+			t.Printf("%d, ", len(f.Operands))
+
+			// Operands.
+			t.Printf("Operands{")
+			for _, op := range f.Operands {
+				t.Printf(
+					"{uint8(%s),false,%s},",
+					t.operandTypes.ConstName(api.OperandTypeIdentifier(op.Type)),
+					action(op.Action),
+				)
+			}
+			for _, op := range f.ImplicitOperands {
+				t.Printf(
+					"{uint8(%s),true,%s},",
+					t.implicitRegisters.ConstName(api.ImplicitRegisterIdentifier(op.Register)),
+					action(op.Action),
+				)
+			}
+			t.Printf("}")
+
+			t.Printf("},\n")
+		}
+	}
+	t.Printf("}\n\n")
+}
+
+func features(i inst.Instruction, f inst.Form) string {
+	var enabled []string
+	for _, feature := range []struct {
+		Name    string
+		Enabled bool
+	}{
+		{"Terminal", i.IsTerminal()},
+		{"Branch", i.IsBranch()},
+		{"ConditionalBranch", i.IsConditionalBranch()},
+		{"CancellingInputs", f.CancellingInputs},
+	} {
+		if feature.Enabled {
+			enabled = append(enabled, "Feature"+feature.Name)
+		}
+	}
+
+	if len(enabled) == 0 {
+		return "0"
+	}
+	return strings.Join(enabled, "|")
+}
+
+func action(a inst.Action) string {
+	c := strings.ToUpper(a.String())
+	if c == "" {
+		c = "None"
+	}
+	return "Action" + c
 }
