@@ -363,6 +363,7 @@ func (l Loader) forms(opcode string, f opcodesxml.Form) []inst.Form {
 	for _, isa := range f.ISA {
 		isas = append(isas, isa.ID)
 	}
+	sort.Strings(isas)
 
 	// Initialize form.
 	form := inst.Form{

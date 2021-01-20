@@ -1,6 +1,9 @@
 package inst
 
-import "sort"
+import (
+	"sort"
+	"strings"
+)
 
 //go:generate avogen -bootstrap -data ../data -output ztable.go godata
 //go:generate avogen -bootstrap -data ../data -output ztable_test.go godatatest
@@ -70,6 +73,39 @@ func UniqueSuffixes(is []Instruction) []Suffix {
 	})
 
 	return suffixes
+}
+
+// ISAs returns all the unique ISAs seen in the given instructions.
+func ISAs(is []Instruction) []string {
+	set := map[string]bool{}
+	for _, i := range is {
+		for _, f := range i.Forms {
+			for _, isa := range f.ISA {
+				set[isa] = true
+			}
+		}
+	}
+	return sortedslice(set)
+}
+
+// ISACombinations returns all the unique combinations of ISAs seen in the given
+// instructions.
+func ISACombinations(is []Instruction) [][]string {
+	var combinations [][]string
+	seen := map[string]bool{}
+	for _, i := range is {
+		for _, f := range i.Forms {
+			isas := append([]string(nil), f.ISA...)
+			sort.Strings(isas)
+			key := strings.Join(isas, ",")
+
+			if !seen[key] {
+				combinations = append(combinations, isas)
+				seen[key] = true
+			}
+		}
+	}
+	return combinations
 }
 
 // sortedslice builds a sorted slice of strings from a set.
