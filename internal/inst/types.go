@@ -148,6 +148,27 @@ func (f Form) AcceptsSuffixes() bool {
 	return f.Broadcast || f.EmbeddedRounding || f.SuppressAllExceptions || f.Zeroing
 }
 
+// SuffixesClass returns a key representing the class of instruction suffixes it
+// accepts. All instructions sharing a suffix class accept the same suffixes.
+// Returns the empty string if the form takes no suffixes.
+func (f Form) SuffixesClass() string {
+	var parts []string
+	for _, flag := range []struct {
+		Name    string
+		Enabled bool
+	}{
+		{"er", f.EmbeddedRounding},
+		{"sae", f.SuppressAllExceptions},
+		{"bcst", f.Broadcast},
+		{"z", f.Zeroing},
+	} {
+		if flag.Enabled {
+			parts = append(parts, flag.Name)
+		}
+	}
+	return strings.Join(parts, "_")
+}
+
 // SupportedSuffixes returns the list of all possible suffix combinations
 // supported by this instruction form.
 func (f Form) SupportedSuffixes() []Suffixes {
