@@ -5,6 +5,7 @@ const (
 	KindPseudo Kind = iota
 	KindGP
 	KindVector
+	KindOpmask
 )
 
 // Declare register families.
@@ -12,11 +13,13 @@ var (
 	Pseudo         = &Family{Kind: KindPseudo}
 	GeneralPurpose = &Family{Kind: KindGP}
 	Vector         = &Family{Kind: KindVector}
+	Opmask         = &Family{Kind: KindOpmask}
 
 	Families = []*Family{
 		Pseudo,
 		GeneralPurpose,
 		Vector,
+		Opmask,
 	}
 )
 
@@ -328,4 +331,53 @@ var (
 	Z29 = vec(S512, 29, "Z29")
 	Z30 = vec(S512, 30, "Z30")
 	Z31 = vec(S512, 31, "Z31")
+)
+
+// OpmaskPhysical is a opmask physical register.
+type OpmaskPhysical interface {
+	Physical
+}
+
+type opmaskp struct {
+	Physical
+}
+
+func newopmaskp(r Physical) OpmaskPhysical { return opmaskp{Physical: r} }
+
+// OpmaskVirtual is a virtual opmask register.
+type OpmaskVirtual interface {
+	Virtual
+}
+
+type opmaskv struct {
+	Virtual
+}
+
+func newopmaskv(v Virtual) OpmaskVirtual { return opmaskv{Virtual: v} }
+
+func opmask(s Spec, id Index, name string, flags ...Info) OpmaskPhysical {
+	r := newopmaskp(newregister(Opmask, s, id, name, flags...))
+	Opmask.add(r)
+	return r
+}
+
+// Opmask registers.
+//
+// Note that while K0 is a physical opmask register (it is a valid opmask source
+// and destination operand), it cannot be used as an opmask predicate value
+// because in that context K0 means "all true" or "no mask" regardless of the
+// actual contents of the physical register. For that reason, K0 should never be
+// assigned as a "general purpose" opmask register. However, it can be
+// explicitly operated upon by name as non-predicate operand, for example to
+// hold a constant or temporary value during calculations on other opmask
+// registers.
+var (
+	K0 = opmask(S64, 0, "K0", Restricted)
+	K1 = opmask(S64, 1, "K1")
+	K2 = opmask(S64, 2, "K2")
+	K3 = opmask(S64, 3, "K3")
+	K4 = opmask(S64, 4, "K4")
+	K5 = opmask(S64, 5, "K5")
+	K6 = opmask(S64, 6, "K6")
+	K7 = opmask(S64, 7, "K7")
 )

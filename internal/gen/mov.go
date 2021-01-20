@@ -6,6 +6,7 @@ import (
 	"sort"
 	"strings"
 
+	"github.com/mmcloughlin/avo/internal/api"
 	"github.com/mmcloughlin/avo/internal/inst"
 	"github.com/mmcloughlin/avo/internal/prnt"
 	"github.com/mmcloughlin/avo/printer"
@@ -29,7 +30,7 @@ func (m *mov) Generate(is []inst.Instruction) ([]byte, error) {
 	m.Printf("import (\n")
 	m.Printf("\t\"go/types\"\n")
 	m.NL()
-	m.Printf("\t\"%s/operand\"\n", pkg)
+	m.Printf("\t\"%s/operand\"\n", api.Package)
 	m.Printf(")\n\n")
 
 	m.Printf("func (c *Context) mov(a, b operand.Op, an, bn int, t *types.Basic) {\n")

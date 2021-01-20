@@ -37,6 +37,7 @@ func NewComment(lines ...string) *Comment {
 // Instruction is a single instruction in a function.
 type Instruction struct {
 	Opcode   string
+	Suffixes []string
 	Operands []operand.Op
 
 	Inputs  []operand.Op
@@ -60,6 +61,15 @@ type Instruction struct {
 }
 
 func (i *Instruction) node() {}
+
+// OpcodeWithSuffixes returns the full opcode, including dot-separated suffixes.
+func (i *Instruction) OpcodeWithSuffixes() string {
+	opcode := i.Opcode
+	for _, s := range i.Suffixes {
+		opcode += "." + s
+	}
+	return opcode
+}
 
 // IsUnconditionalBranch reports whether i is an unconditional branch.
 func (i Instruction) IsUnconditionalBranch() bool {

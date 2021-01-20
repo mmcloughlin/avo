@@ -98,6 +98,9 @@ func YMM() reg.VecVirtual { return ctx.YMM() }
 // ZMM allocates and returns a 512-bit vector register.
 func ZMM() reg.VecVirtual { return ctx.ZMM() }
 
+// K allocates and returns an opmask register.
+func K() reg.OpmaskVirtual { return ctx.K() }
+
 // Param returns a the named argument of the active function.
 func Param(name string) gotypes.Component { return ctx.Param(name) }
 
