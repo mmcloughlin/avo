@@ -3,6 +3,7 @@ package inst_test
 import (
 	"io/ioutil"
 	"reflect"
+	"sort"
 	"strings"
 	"testing"
 
@@ -113,6 +114,16 @@ func TestSuffixesHaveSummaries(t *testing.T) {
 	for suffix := range set {
 		if suffix.Summary() == "" {
 			t.Errorf("suffix %q missing summary", suffix)
+		}
+	}
+}
+
+func TestISASorted(t *testing.T) {
+	for _, i := range inst.Instructions {
+		for _, f := range i.Forms {
+			if !sort.StringsAreSorted(f.ISA) {
+				t.Fatalf("%s: isa not sorted", i.Opcode)
+			}
 		}
 	}
 }

@@ -2,6 +2,7 @@ package gen
 
 import (
 	"fmt"
+	"strconv"
 	"strings"
 
 	"github.com/mmcloughlin/avo/internal/prnt"
@@ -28,22 +29,30 @@ func (e *enum) Print(p *prnt.Generator) {
 	p.Printf(")\n\n")
 }
 
-func (e *enum) StringMethod(p *prnt.Generator) {
-	stringtab := strings.ToLower(e.name) + "strings"
+func (e *enum) MapMethod(p *prnt.Generator, name, ret, zero string, mapping []string) {
+	table := strings.ToLower(e.name + name + "table")
 
 	r := e.Receiver()
-	p.Printf("func (%s %s) String() string {\n", r, e.name)
+	p.Printf("func (%s %s) %s() %s {\n", r, e.name, name, ret)
 	p.Printf("if %s < %s && %s < %s {\n", e.None(), r, r, e.MaxName())
-	p.Printf("return %s[%s-1]\n", stringtab, r)
+	p.Printf("return %s[%s-1]\n", table, r)
 	p.Printf("}\n")
-	p.Printf("return \"\"\n")
+	p.Printf("return %s\n", zero)
 	p.Printf("}\n\n")
 
-	p.Printf("var %s = []string{\n", stringtab)
-	for _, value := range e.values {
-		p.Printf("\t%q,\n", value)
+	p.Printf("var %s = []%s{\n", table, ret)
+	for _, value := range mapping {
+		p.Printf("\t%s,\n", value)
 	}
 	p.Printf("}\n\n")
+}
+
+func (e *enum) StringMethod(p *prnt.Generator) {
+	mapping := make([]string, len(e.values))
+	for i, s := range e.values {
+		mapping[i] = strconv.Quote(s)
+	}
+	e.MapMethod(p, "String", "string", `""`, mapping)
 }
 
 func (e *enum) Name() string {

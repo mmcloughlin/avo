@@ -3,6 +3,7 @@ package x86
 type Form struct {
 	Opcode   Opcode
 	Features Feature
+	ISAs     ISAs
 	Arity    uint8
 	Operands Operands
 }

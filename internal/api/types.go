@@ -2,6 +2,7 @@ package api
 
 import (
 	"path"
+	"sort"
 	"strings"
 )
 
@@ -39,4 +40,18 @@ func OperandTypeIdentifier(t string) string {
 // CheckerName returns the name of the function that checks an operand of type t.
 func CheckerName(t string) string {
 	return "operand.Is" + OperandTypeIdentifier(t)
+}
+
+// ISAsIdentifier returns a string representation of an ISA list that suitable
+// for use in a Go identifier.
+func ISAsIdentifier(isas []string) string {
+	if len(isas) == 0 {
+		return "Base"
+	}
+	sorted := append([]string(nil), isas...)
+	sort.Strings(sorted)
+	ident := strings.Join(sorted, "_")
+	ident = strings.ReplaceAll(ident, ".", "") // SSE4.1
+	ident = strings.ReplaceAll(ident, "+", "") // MMX+
+	return ident
 }

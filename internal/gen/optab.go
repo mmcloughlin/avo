@@ -1,6 +1,7 @@
 package gen
 
 import (
+	"fmt"
 	"strings"
 
 	"github.com/mmcloughlin/avo/internal/api"
@@ -16,6 +17,7 @@ type optab struct {
 
 	operandTypes      *enum
 	implicitRegisters *enum
+	isas              *enum
 	opcodes           *enum
 }
 
@@ -33,14 +35,11 @@ func (t *optab) Generate(is []inst.Instruction) ([]byte, error) {
 	// Size constants.
 	t.maxOperands(is)
 
-	// Operand types and implicit registers.
+	// Enums.
 	t.operandTypesEnum(is)
 	t.implicitRegistersEnum(is)
-
-	// Suffixes.
 	t.suffixesEnum(is)
-
-	// Opcodes.
+	t.isasEnum(is)
 	t.opcodesEnum(is)
 
 	// Forms table.
@@ -96,6 +95,27 @@ func (t *optab) implicitRegistersEnum(is []inst.Instruction) {
 	t.implicitRegisters = e
 }
 
+func (t *optab) isasEnum(is []inst.Instruction) {
+	combinations := inst.ISACombinations(is)
+
+	// Enum.
+	e := &enum{name: "ISAs"}
+	for _, isas := range combinations {
+		e.values = append(e.values, api.ISAsIdentifier(isas))
+	}
+
+	e.Print(&t.Generator)
+
+	// Mapping method to produce the list of ISAs.
+	lists := make([]string, len(combinations))
+	for i, isas := range combinations {
+		lists[i] = fmt.Sprintf("%#v", isas)
+	}
+	e.MapMethod(&t.Generator, "List", "[]string", "nil", lists)
+
+	t.isas = e
+}
+
 func (t *optab) suffixesEnum(is []inst.Instruction) {
 	e := &enum{name: "Suffix"}
 	for _, s := range inst.UniqueSuffixes(is) {
@@ -123,9 +143,10 @@ func (t *optab) forms(is []inst.Instruction) {
 			// Basic properties.
 			t.Printf("%s, ", t.opcodes.ConstName(i.Opcode))
 			t.Printf("%s, ", features(i, f))
-			t.Printf("%d, ", len(f.Operands))
+			t.Printf("%s, ", t.isas.ConstName(api.ISAsIdentifier(f.ISA)))
 
 			// Operands.
+			t.Printf("%d, ", len(f.Operands))
 			t.Printf("Operands{")
 			for _, op := range f.Operands {
 				t.Printf(
