@@ -75,6 +75,24 @@ func UniqueSuffixes(is []Instruction) []Suffix {
 	return suffixes
 }
 
+// SuffixesClasses returns all possible classes of suffix combinations.
+func SuffixesClasses(is []Instruction) map[string][]Suffixes {
+	classes := map[string][]Suffixes{}
+	for _, i := range is {
+		for _, f := range i.Forms {
+			if !f.AcceptsSuffixes() {
+				continue
+			}
+			class := f.SuffixesClass()
+			if _, ok := classes[class]; ok {
+				continue
+			}
+			classes[class] = f.SupportedSuffixes()
+		}
+	}
+	return classes
+}
+
 // ISAs returns all the unique ISAs seen in the given instructions.
 func ISAs(is []Instruction) []string {
 	set := map[string]bool{}

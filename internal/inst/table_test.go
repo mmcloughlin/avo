@@ -99,6 +99,31 @@ func TestAcceptsSuffixes(t *testing.T) {
 	}
 }
 
+func TestSuffixesClasses(t *testing.T) {
+	// Verify that all instructions in a suffix class support the same suffixes.
+	reps := map[string][]inst.Suffixes{}
+	for _, i := range inst.Instructions {
+		for _, f := range i.Forms {
+			if !f.AcceptsSuffixes() {
+				continue
+			}
+
+			class := f.SuffixesClass()
+			expect, ok := reps[class]
+			if !ok {
+				t.Logf("new class %q: representative from instruction %s", class, i.Opcode)
+				reps[class] = f.SupportedSuffixes()
+				continue
+			}
+
+			got := f.SupportedSuffixes()
+			if !reflect.DeepEqual(expect, got) {
+				t.Fatalf("suffixes mismatch for class %q", class)
+			}
+		}
+	}
+}
+
 func TestSuffixesHaveSummaries(t *testing.T) {
 	set := map[inst.Suffix]bool{}
 	for _, i := range inst.Instructions {
