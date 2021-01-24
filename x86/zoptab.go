@@ -9,6 +9,9 @@ import (
 // MaxOperands is the maximum number of operands in an instruction form, including implicit operands.
 const MaxOperands = 6
 
+// MaxSuffixes is the maximum number of suffixes an instruction can have.
+const MaxSuffixes = 2
+
 type OperandType uint8
 
 const (

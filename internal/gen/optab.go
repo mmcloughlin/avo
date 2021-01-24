@@ -34,6 +34,7 @@ func (t *optab) Generate(is []inst.Instruction) ([]byte, error) {
 
 	// Size constants.
 	t.maxOperands(is)
+	t.maxSuffixes(is)
 
 	// Enums.
 	t.operandTypesEnum(is)
@@ -61,6 +62,20 @@ func (t *optab) maxOperands(is []inst.Instruction) {
 
 	t.Comment("MaxOperands is the maximum number of operands in an instruction form, including implicit operands.")
 	t.Printf("const MaxOperands = %d\n\n", max)
+}
+
+func (t *optab) maxSuffixes(is []inst.Instruction) {
+	max := 0
+	for _, class := range inst.SuffixesClasses(is) {
+		for _, suffixes := range class {
+			if len(suffixes) > max {
+				max = len(suffixes)
+			}
+		}
+	}
+
+	t.Comment("MaxSuffixes is the maximum number of suffixes an instruction can have.")
+	t.Printf("const MaxSuffixes = %d\n\n", max)
 }
 
 func (t *optab) operandTypesEnum(is []inst.Instruction) {

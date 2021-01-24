@@ -8,6 +8,8 @@ type Form struct {
 	Operands Operands
 }
 
+type Suffixes [MaxSuffixes]Suffix
+
 type Feature uint8
 
 const (
