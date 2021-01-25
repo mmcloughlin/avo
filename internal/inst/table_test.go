@@ -104,10 +104,6 @@ func TestSuffixesClasses(t *testing.T) {
 	reps := map[string][]inst.Suffixes{}
 	for _, i := range inst.Instructions {
 		for _, f := range i.Forms {
-			if !f.AcceptsSuffixes() {
-				continue
-			}
-
 			class := f.SuffixesClass()
 			expect, ok := reps[class]
 			if !ok {

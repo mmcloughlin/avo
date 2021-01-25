@@ -150,8 +150,10 @@ func (f Form) AcceptsSuffixes() bool {
 
 // SuffixesClass returns a key representing the class of instruction suffixes it
 // accepts. All instructions sharing a suffix class accept the same suffixes.
-// Returns the empty string if the form takes no suffixes.
 func (f Form) SuffixesClass() string {
+	if !f.AcceptsSuffixes() {
+		return "nil"
+	}
 	var parts []string
 	for _, flag := range []struct {
 		Name    string

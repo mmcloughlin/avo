@@ -80,9 +80,6 @@ func SuffixesClasses(is []Instruction) map[string][]Suffixes {
 	classes := map[string][]Suffixes{}
 	for _, i := range is {
 		for _, f := range i.Forms {
-			if !f.AcceptsSuffixes() {
-				continue
-			}
 			class := f.SuffixesClass()
 			if _, ok := classes[class]; ok {
 				continue
