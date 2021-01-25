@@ -19,6 +19,7 @@ type optab struct {
 	operandTypes      *enum
 	implicitRegisters *enum
 	suffixes          *enum
+	suffixesClasses   *enum
 	isas              *enum
 	opcodes           *enum
 }
@@ -42,7 +43,7 @@ func (t *optab) Generate(is []inst.Instruction) ([]byte, error) {
 	t.operandTypesEnum(is)
 	t.implicitRegistersEnum(is)
 	t.suffixesEnum(is)
-	t.suffixesClasses(is)
+	t.suffixesClassesEnum(is)
 	t.isasEnum(is)
 	t.opcodesEnum(is)
 
@@ -144,7 +145,7 @@ func (t *optab) suffixesEnum(is []inst.Instruction) {
 	t.suffixes = e
 }
 
-func (t *optab) suffixesClasses(is []inst.Instruction) {
+func (t *optab) suffixesClassesEnum(is []inst.Instruction) {
 	// Gather suffixes classes.
 	classes := inst.SuffixesClasses(is)
 	keys := make([]string, 0, len(classes))
@@ -154,7 +155,7 @@ func (t *optab) suffixesClasses(is []inst.Instruction) {
 	sort.Strings(keys)
 
 	// Build enum.
-	e := &enum{name: "SuffixesClasses"}
+	e := &enum{name: "SuffixesClass"}
 	for _, key := range keys {
 		e.values = append(e.values, api.SuffixesClassIdentifier(key))
 	}
@@ -180,6 +181,8 @@ func (t *optab) suffixesClasses(is []inst.Instruction) {
 	}
 
 	e.MapMethod(&t.Generator, "SuffixesSet", "map[Suffixes]bool", "nil", sets)
+
+	t.suffixesClasses = e
 }
 
 func (t *optab) opcodesEnum(is []inst.Instruction) {
@@ -200,6 +203,7 @@ func (t *optab) forms(is []inst.Instruction) {
 
 			// Basic properties.
 			t.Printf("%s, ", t.opcodes.ConstName(i.Opcode))
+			t.Printf("%s, ", t.suffixesClass(f))
 			t.Printf("%s, ", features(i, f))
 			t.Printf("%s, ", t.isas.ConstName(api.ISAsIdentifier(f.ISA)))
 
@@ -226,6 +230,14 @@ func (t *optab) forms(is []inst.Instruction) {
 		}
 	}
 	t.Printf("}\n\n")
+}
+
+func (t *optab) suffixesClass(f inst.Form) string {
+	ident := api.SuffixesClassIdentifier(f.SuffixesClass())
+	if ident == "" {
+		return t.suffixesClasses.None()
+	}
+	return t.suffixesClasses.ConstName(ident)
 }
 
 func features(i inst.Instruction, f inst.Form) string {

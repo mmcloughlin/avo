@@ -1,11 +1,12 @@
 package x86
 
 type Form struct {
-	Opcode   Opcode
-	Features Feature
-	ISAs     ISAs
-	Arity    uint8
-	Operands Operands
+	Opcode        Opcode
+	SuffixesClass SuffixesClass
+	Features      Feature
+	ISAs          ISAs
+	Arity         uint8
+	Operands      Operands
 }
 
 type Suffixes [MaxSuffixes]Suffix
