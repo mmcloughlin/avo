@@ -172,6 +172,37 @@ const (
 	suffixmax
 )
 
+type SuffixesClasses uint8
+
+const (
+	SuffixesClassesNone SuffixesClasses = iota
+	SuffixesClassesBCST
+	SuffixesClassesBCST_Z
+	SuffixesClassesER
+	SuffixesClassesER_Z
+	SuffixesClassesSAE
+	SuffixesClassesSAE_Z
+	SuffixesClassesZ
+	suffixesclassesmax
+)
+
+func (s SuffixesClasses) SuffixesSet() map[Suffixes]bool {
+	if SuffixesClassesNone < s && s < suffixesclassesmax {
+		return suffixesclassessuffixessettable[s-1]
+	}
+	return nil
+}
+
+var suffixesclassessuffixessettable = []map[Suffixes]bool{
+	{{SuffixBCST}: true},
+	{{SuffixBCST, SuffixZ}: true},
+	{{SuffixRD_SAE}: true, {SuffixRN_SAE}: true, {SuffixRU_SAE}: true, {SuffixRZ_SAE}: true},
+	{{SuffixRD_SAE, SuffixZ}: true, {SuffixRN_SAE, SuffixZ}: true, {SuffixRU_SAE, SuffixZ}: true, {SuffixRZ_SAE, SuffixZ}: true},
+	{{SuffixSAE}: true},
+	{{SuffixSAE, SuffixZ}: true},
+	{{SuffixZ}: true},
+}
+
 type ISAs uint8
 
 const (

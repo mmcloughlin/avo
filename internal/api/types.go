@@ -55,3 +55,9 @@ func ISAsIdentifier(isas []string) string {
 	ident = strings.ReplaceAll(ident, "+", "") // MMX+
 	return ident
 }
+
+// SuffixesClassIdentifier returns a string representation of a suffix class
+// that's suitable for use in a Go identifier.
+func SuffixesClassIdentifier(c string) string {
+	return strings.ToUpper(c)
+}

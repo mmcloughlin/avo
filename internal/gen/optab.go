@@ -2,6 +2,7 @@ package gen
 
 import (
 	"fmt"
+	"sort"
 	"strings"
 
 	"github.com/mmcloughlin/avo/internal/api"
@@ -17,6 +18,7 @@ type optab struct {
 
 	operandTypes      *enum
 	implicitRegisters *enum
+	suffixes          *enum
 	isas              *enum
 	opcodes           *enum
 }
@@ -40,6 +42,7 @@ func (t *optab) Generate(is []inst.Instruction) ([]byte, error) {
 	t.operandTypesEnum(is)
 	t.implicitRegistersEnum(is)
 	t.suffixesEnum(is)
+	t.suffixesClasses(is)
 	t.isasEnum(is)
 	t.opcodesEnum(is)
 
@@ -137,6 +140,46 @@ func (t *optab) suffixesEnum(is []inst.Instruction) {
 		e.values = append(e.values, s.String())
 	}
 	e.Print(&t.Generator)
+
+	t.suffixes = e
+}
+
+func (t *optab) suffixesClasses(is []inst.Instruction) {
+	// Gather suffixes classes.
+	classes := inst.SuffixesClasses(is)
+	keys := make([]string, 0, len(classes))
+	for key := range classes {
+		keys = append(keys, key)
+	}
+	sort.Strings(keys)
+
+	// Build enum.
+	e := &enum{name: "SuffixesClasses"}
+	for _, key := range keys {
+		e.values = append(e.values, api.SuffixesClassIdentifier(key))
+	}
+	e.Print(&t.Generator)
+
+	// Mapping method to the set of accepted suffixes.
+	sets := make([]string, 0, len(classes))
+	for _, key := range keys {
+		var entries []string
+		for _, suffixes := range classes[key] {
+			var parts []string
+			for _, suffix := range suffixes {
+				parts = append(parts, t.suffixes.ConstName(suffix.String()))
+			}
+
+			entry := fmt.Sprintf("{%s}: true", strings.Join(parts, ", "))
+			entries = append(entries, entry)
+		}
+
+		sort.Strings(entries)
+		set := "{" + strings.Join(entries, ", ") + "}"
+		sets = append(sets, set)
+	}
+
+	e.MapMethod(&t.Generator, "SuffixesSet", "map[Suffixes]bool", "nil", sets)
 }
 
 func (t *optab) opcodesEnum(is []inst.Instruction) {

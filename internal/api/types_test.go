@@ -15,3 +15,12 @@ func TestISAsIdentifier(t *testing.T) {
 		}
 	}
 }
+
+func TestSuffixesClassIdentifier(t *testing.T) {
+	for key := range inst.SuffixesClasses(inst.Instructions) {
+		ident := SuffixesClassIdentifier(key)
+		if !token.IsIdentifier(ident) {
+			t.Errorf("expected %q to be an identifier", ident)
+		}
+	}
+}
