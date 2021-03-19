@@ -74,13 +74,14 @@ func main() {
 	}
 
 	// Generate output.
-	b, err := g.Generate(is)
-	if err != nil {
-		log.Fatal(err)
-	}
+	b, generr := g.Generate(is)
 
 	// Write.
 	if _, err := w.Write(b); err != nil {
 		log.Fatal(err)
+	}
+
+	if generr != nil {
+		log.Fatal(generr)
 	}
 }
