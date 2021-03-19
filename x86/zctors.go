@@ -82794,12 +82794,31 @@ func VPMULUDQ_Z(mxyz, xyz, k, xyz1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+// 	VPOPCNTD m128 k xmm
+// 	VPOPCNTD m128 xmm
+// 	VPOPCNTD m256 k ymm
+// 	VPOPCNTD m256 ymm
+// 	VPOPCNTD xmm  k xmm
+// 	VPOPCNTD xmm  xmm
+// 	VPOPCNTD ymm  k ymm
+// 	VPOPCNTD ymm  ymm
 // 	VPOPCNTD m512 k zmm
 // 	VPOPCNTD m512 zmm
 // 	VPOPCNTD zmm  k zmm
 // 	VPOPCNTD zmm  zmm
 func VPOPCNTD(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsK(ops[1]) && operand.IsXMM(ops[2]),
+		len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsK(ops[1]) && operand.IsYMM(ops[2]),
+		len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsK(ops[1]) && operand.IsXMM(ops[2]),
+		len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsK(ops[1]) && operand.IsYMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPOPCNTD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512VL", "AVX512VPOPCNTDQ"},
+		}, nil
 	case len(ops) == 3 && operand.IsM512(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]),
 		len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
@@ -82808,6 +82827,17 @@ func VPOPCNTD(ops ...operand.Op) (*intrep.Instruction, error) {
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512VPOPCNTDQ"},
+		}, nil
+	case len(ops) == 2 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]),
+		len(ops) == 2 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]),
+		len(ops) == 2 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]),
+		len(ops) == 2 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPOPCNTD",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512VL", "AVX512VPOPCNTDQ"},
 		}, nil
 	case len(ops) == 2 && operand.IsM512(ops[0]) && operand.IsZMM(ops[1]),
 		len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]):
@@ -82826,10 +82856,24 @@ func VPOPCNTD(ops ...operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+// 	VPOPCNTD.BCST m32 k xmm
+// 	VPOPCNTD.BCST m32 k ymm
+// 	VPOPCNTD.BCST m32 xmm
+// 	VPOPCNTD.BCST m32 ymm
 // 	VPOPCNTD.BCST m32 k zmm
 // 	VPOPCNTD.BCST m32 zmm
 func VPOPCNTD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
+	case len(ops) == 3 && operand.IsM32(ops[0]) && operand.IsK(ops[1]) && operand.IsXMM(ops[2]),
+		len(ops) == 3 && operand.IsM32(ops[0]) && operand.IsK(ops[1]) && operand.IsYMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPOPCNTD",
+			Suffixes: []string{"BCST"},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512VL", "AVX512VPOPCNTDQ"},
+		}, nil
 	case len(ops) == 3 && operand.IsM32(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPOPCNTD",
@@ -82838,6 +82882,16 @@ func VPOPCNTD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512VPOPCNTDQ"},
+		}, nil
+	case len(ops) == 2 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]),
+		len(ops) == 2 && operand.IsM32(ops[0]) && operand.IsYMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPOPCNTD",
+			Suffixes: []string{"BCST"},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512VL", "AVX512VPOPCNTDQ"},
 		}, nil
 	case len(ops) == 2 && operand.IsM32(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
@@ -82856,16 +82910,28 @@ func VPOPCNTD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+// 	VPOPCNTD.BCST.Z m32 k xmm
+// 	VPOPCNTD.BCST.Z m32 k ymm
 // 	VPOPCNTD.BCST.Z m32 k zmm
-func VPOPCNTD_BCST_Z(m, k, z operand.Op) (*intrep.Instruction, error) {
+func VPOPCNTD_BCST_Z(m, k, xyz operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsM32(m) && operand.IsK(k) && operand.IsZMM(z):
+	case operand.IsM32(m) && operand.IsK(k) && operand.IsXMM(xyz),
+		operand.IsM32(m) && operand.IsK(k) && operand.IsYMM(xyz):
 		return &intrep.Instruction{
 			Opcode:   "VPOPCNTD",
 			Suffixes: []string{"BCST", "Z"},
-			Operands: []operand.Op{m, k, z},
+			Operands: []operand.Op{m, k, xyz},
 			Inputs:   []operand.Op{m, k},
-			Outputs:  []operand.Op{z},
+			Outputs:  []operand.Op{xyz},
+			ISA:      []string{"AVX512VL", "AVX512VPOPCNTDQ"},
+		}, nil
+	case operand.IsM32(m) && operand.IsK(k) && operand.IsZMM(xyz):
+		return &intrep.Instruction{
+			Opcode:   "VPOPCNTD",
+			Suffixes: []string{"BCST", "Z"},
+			Operands: []operand.Op{m, k, xyz},
+			Inputs:   []operand.Op{m, k},
+			Outputs:  []operand.Op{xyz},
 			ISA:      []string{"AVX512VPOPCNTDQ"},
 		}, nil
 	}
@@ -82876,18 +82942,34 @@ func VPOPCNTD_BCST_Z(m, k, z operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+// 	VPOPCNTD.Z m128 k xmm
+// 	VPOPCNTD.Z m256 k ymm
+// 	VPOPCNTD.Z xmm  k xmm
+// 	VPOPCNTD.Z ymm  k ymm
 // 	VPOPCNTD.Z m512 k zmm
 // 	VPOPCNTD.Z zmm  k zmm
-func VPOPCNTD_Z(mz, k, z operand.Op) (*intrep.Instruction, error) {
+func VPOPCNTD_Z(mxyz, k, xyz operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsM512(mz) && operand.IsK(k) && operand.IsZMM(z),
-		operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(z):
+	case operand.IsM128(mxyz) && operand.IsK(k) && operand.IsXMM(xyz),
+		operand.IsM256(mxyz) && operand.IsK(k) && operand.IsYMM(xyz),
+		operand.IsXMM(mxyz) && operand.IsK(k) && operand.IsXMM(xyz),
+		operand.IsYMM(mxyz) && operand.IsK(k) && operand.IsYMM(xyz):
 		return &intrep.Instruction{
 			Opcode:   "VPOPCNTD",
 			Suffixes: []string{"Z"},
-			Operands: []operand.Op{mz, k, z},
-			Inputs:   []operand.Op{mz, k},
-			Outputs:  []operand.Op{z},
+			Operands: []operand.Op{mxyz, k, xyz},
+			Inputs:   []operand.Op{mxyz, k},
+			Outputs:  []operand.Op{xyz},
+			ISA:      []string{"AVX512VL", "AVX512VPOPCNTDQ"},
+		}, nil
+	case operand.IsM512(mxyz) && operand.IsK(k) && operand.IsZMM(xyz),
+		operand.IsZMM(mxyz) && operand.IsK(k) && operand.IsZMM(xyz):
+		return &intrep.Instruction{
+			Opcode:   "VPOPCNTD",
+			Suffixes: []string{"Z"},
+			Operands: []operand.Op{mxyz, k, xyz},
+			Inputs:   []operand.Op{mxyz, k},
+			Outputs:  []operand.Op{xyz},
 			ISA:      []string{"AVX512VPOPCNTDQ"},
 		}, nil
 	}
@@ -82898,12 +82980,31 @@ func VPOPCNTD_Z(mz, k, z operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+// 	VPOPCNTQ m128 k xmm
+// 	VPOPCNTQ m128 xmm
+// 	VPOPCNTQ m256 k ymm
+// 	VPOPCNTQ m256 ymm
+// 	VPOPCNTQ xmm  k xmm
+// 	VPOPCNTQ xmm  xmm
+// 	VPOPCNTQ ymm  k ymm
+// 	VPOPCNTQ ymm  ymm
 // 	VPOPCNTQ m512 k zmm
 // 	VPOPCNTQ m512 zmm
 // 	VPOPCNTQ zmm  k zmm
 // 	VPOPCNTQ zmm  zmm
 func VPOPCNTQ(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsK(ops[1]) && operand.IsXMM(ops[2]),
+		len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsK(ops[1]) && operand.IsYMM(ops[2]),
+		len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsK(ops[1]) && operand.IsXMM(ops[2]),
+		len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsK(ops[1]) && operand.IsYMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPOPCNTQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512VL", "AVX512VPOPCNTDQ"},
+		}, nil
 	case len(ops) == 3 && operand.IsM512(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]),
 		len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
@@ -82912,6 +83013,17 @@ func VPOPCNTQ(ops ...operand.Op) (*intrep.Instruction, error) {
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512VPOPCNTDQ"},
+		}, nil
+	case len(ops) == 2 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]),
+		len(ops) == 2 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]),
+		len(ops) == 2 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]),
+		len(ops) == 2 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPOPCNTQ",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512VL", "AVX512VPOPCNTDQ"},
 		}, nil
 	case len(ops) == 2 && operand.IsM512(ops[0]) && operand.IsZMM(ops[1]),
 		len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]):
@@ -82930,10 +83042,24 @@ func VPOPCNTQ(ops ...operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+// 	VPOPCNTQ.BCST m64 k xmm
+// 	VPOPCNTQ.BCST m64 k ymm
+// 	VPOPCNTQ.BCST m64 xmm
+// 	VPOPCNTQ.BCST m64 ymm
 // 	VPOPCNTQ.BCST m64 k zmm
 // 	VPOPCNTQ.BCST m64 zmm
 func VPOPCNTQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 	switch {
+	case len(ops) == 3 && operand.IsM64(ops[0]) && operand.IsK(ops[1]) && operand.IsXMM(ops[2]),
+		len(ops) == 3 && operand.IsM64(ops[0]) && operand.IsK(ops[1]) && operand.IsYMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPOPCNTQ",
+			Suffixes: []string{"BCST"},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512VL", "AVX512VPOPCNTDQ"},
+		}, nil
 	case len(ops) == 3 && operand.IsM64(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
 		return &intrep.Instruction{
 			Opcode:   "VPOPCNTQ",
@@ -82942,6 +83068,16 @@ func VPOPCNTQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
 			Outputs:  []operand.Op{ops[2]},
 			ISA:      []string{"AVX512VPOPCNTDQ"},
+		}, nil
+	case len(ops) == 2 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]),
+		len(ops) == 2 && operand.IsM64(ops[0]) && operand.IsYMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPOPCNTQ",
+			Suffixes: []string{"BCST"},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512VL", "AVX512VPOPCNTDQ"},
 		}, nil
 	case len(ops) == 2 && operand.IsM64(ops[0]) && operand.IsZMM(ops[1]):
 		return &intrep.Instruction{
@@ -82960,16 +83096,28 @@ func VPOPCNTQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+// 	VPOPCNTQ.BCST.Z m64 k xmm
+// 	VPOPCNTQ.BCST.Z m64 k ymm
 // 	VPOPCNTQ.BCST.Z m64 k zmm
-func VPOPCNTQ_BCST_Z(m, k, z operand.Op) (*intrep.Instruction, error) {
+func VPOPCNTQ_BCST_Z(m, k, xyz operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsM64(m) && operand.IsK(k) && operand.IsZMM(z):
+	case operand.IsM64(m) && operand.IsK(k) && operand.IsXMM(xyz),
+		operand.IsM64(m) && operand.IsK(k) && operand.IsYMM(xyz):
 		return &intrep.Instruction{
 			Opcode:   "VPOPCNTQ",
 			Suffixes: []string{"BCST", "Z"},
-			Operands: []operand.Op{m, k, z},
+			Operands: []operand.Op{m, k, xyz},
 			Inputs:   []operand.Op{m, k},
-			Outputs:  []operand.Op{z},
+			Outputs:  []operand.Op{xyz},
+			ISA:      []string{"AVX512VL", "AVX512VPOPCNTDQ"},
+		}, nil
+	case operand.IsM64(m) && operand.IsK(k) && operand.IsZMM(xyz):
+		return &intrep.Instruction{
+			Opcode:   "VPOPCNTQ",
+			Suffixes: []string{"BCST", "Z"},
+			Operands: []operand.Op{m, k, xyz},
+			Inputs:   []operand.Op{m, k},
+			Outputs:  []operand.Op{xyz},
 			ISA:      []string{"AVX512VPOPCNTDQ"},
 		}, nil
 	}
@@ -82980,18 +83128,34 @@ func VPOPCNTQ_BCST_Z(m, k, z operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+// 	VPOPCNTQ.Z m128 k xmm
+// 	VPOPCNTQ.Z m256 k ymm
+// 	VPOPCNTQ.Z xmm  k xmm
+// 	VPOPCNTQ.Z ymm  k ymm
 // 	VPOPCNTQ.Z m512 k zmm
 // 	VPOPCNTQ.Z zmm  k zmm
-func VPOPCNTQ_Z(mz, k, z operand.Op) (*intrep.Instruction, error) {
+func VPOPCNTQ_Z(mxyz, k, xyz operand.Op) (*intrep.Instruction, error) {
 	switch {
-	case operand.IsM512(mz) && operand.IsK(k) && operand.IsZMM(z),
-		operand.IsZMM(mz) && operand.IsK(k) && operand.IsZMM(z):
+	case operand.IsM128(mxyz) && operand.IsK(k) && operand.IsXMM(xyz),
+		operand.IsM256(mxyz) && operand.IsK(k) && operand.IsYMM(xyz),
+		operand.IsXMM(mxyz) && operand.IsK(k) && operand.IsXMM(xyz),
+		operand.IsYMM(mxyz) && operand.IsK(k) && operand.IsYMM(xyz):
 		return &intrep.Instruction{
 			Opcode:   "VPOPCNTQ",
 			Suffixes: []string{"Z"},
-			Operands: []operand.Op{mz, k, z},
-			Inputs:   []operand.Op{mz, k},
-			Outputs:  []operand.Op{z},
+			Operands: []operand.Op{mxyz, k, xyz},
+			Inputs:   []operand.Op{mxyz, k},
+			Outputs:  []operand.Op{xyz},
+			ISA:      []string{"AVX512VL", "AVX512VPOPCNTDQ"},
+		}, nil
+	case operand.IsM512(mxyz) && operand.IsK(k) && operand.IsZMM(xyz),
+		operand.IsZMM(mxyz) && operand.IsK(k) && operand.IsZMM(xyz):
+		return &intrep.Instruction{
+			Opcode:   "VPOPCNTQ",
+			Suffixes: []string{"Z"},
+			Operands: []operand.Op{mxyz, k, xyz},
+			Inputs:   []operand.Op{mxyz, k},
+			Outputs:  []operand.Op{xyz},
 			ISA:      []string{"AVX512VPOPCNTDQ"},
 		}, nil
 	}
