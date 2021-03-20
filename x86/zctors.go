@@ -82790,6 +82790,192 @@ func VPMULUDQ_Z(mxyz, xyz, k, xyz1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("VPMULUDQ_Z: bad operands")
 }
 
+// VPOPCNTB: Packed Population Count for Byte Integers.
+//
+// Forms:
+//
+// 	VPOPCNTB m128 k xmm
+// 	VPOPCNTB m128 xmm
+// 	VPOPCNTB m256 k ymm
+// 	VPOPCNTB m256 ymm
+// 	VPOPCNTB xmm  k xmm
+// 	VPOPCNTB xmm  xmm
+// 	VPOPCNTB ymm  k ymm
+// 	VPOPCNTB ymm  ymm
+// 	VPOPCNTB m512 k zmm
+// 	VPOPCNTB m512 zmm
+// 	VPOPCNTB zmm  k zmm
+// 	VPOPCNTB zmm  zmm
+func VPOPCNTB(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsK(ops[1]) && operand.IsXMM(ops[2]),
+		len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsK(ops[1]) && operand.IsYMM(ops[2]),
+		len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsK(ops[1]) && operand.IsXMM(ops[2]),
+		len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsK(ops[1]) && operand.IsYMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPOPCNTB",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512BITALG", "AVX512VL"},
+		}, nil
+	case len(ops) == 3 && operand.IsM512(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]),
+		len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPOPCNTB",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512BITALG"},
+		}, nil
+	case len(ops) == 2 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]),
+		len(ops) == 2 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]),
+		len(ops) == 2 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]),
+		len(ops) == 2 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPOPCNTB",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512BITALG", "AVX512VL"},
+		}, nil
+	case len(ops) == 2 && operand.IsM512(ops[0]) && operand.IsZMM(ops[1]),
+		len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPOPCNTB",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512BITALG"},
+		}, nil
+	}
+	return nil, errors.New("VPOPCNTB: bad operands")
+}
+
+// VPOPCNTB_BCST: Packed Population Count for Byte Integers (Broadcast).
+//
+// Forms:
+//
+// 	VPOPCNTB.BCST m32 k xmm
+// 	VPOPCNTB.BCST m32 k ymm
+// 	VPOPCNTB.BCST m32 xmm
+// 	VPOPCNTB.BCST m32 ymm
+// 	VPOPCNTB.BCST m32 k zmm
+// 	VPOPCNTB.BCST m32 zmm
+func VPOPCNTB_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 3 && operand.IsM32(ops[0]) && operand.IsK(ops[1]) && operand.IsXMM(ops[2]),
+		len(ops) == 3 && operand.IsM32(ops[0]) && operand.IsK(ops[1]) && operand.IsYMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPOPCNTB",
+			Suffixes: []string{"BCST"},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512BITALG", "AVX512VL"},
+		}, nil
+	case len(ops) == 3 && operand.IsM32(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPOPCNTB",
+			Suffixes: []string{"BCST"},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512BITALG"},
+		}, nil
+	case len(ops) == 2 && operand.IsM32(ops[0]) && operand.IsXMM(ops[1]),
+		len(ops) == 2 && operand.IsM32(ops[0]) && operand.IsYMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPOPCNTB",
+			Suffixes: []string{"BCST"},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512BITALG", "AVX512VL"},
+		}, nil
+	case len(ops) == 2 && operand.IsM32(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPOPCNTB",
+			Suffixes: []string{"BCST"},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512BITALG"},
+		}, nil
+	}
+	return nil, errors.New("VPOPCNTB_BCST: bad operands")
+}
+
+// VPOPCNTB_BCST_Z: Packed Population Count for Byte Integers (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VPOPCNTB.BCST.Z m32 k xmm
+// 	VPOPCNTB.BCST.Z m32 k ymm
+// 	VPOPCNTB.BCST.Z m32 k zmm
+func VPOPCNTB_BCST_Z(m, k, xyz operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case operand.IsM32(m) && operand.IsK(k) && operand.IsXMM(xyz),
+		operand.IsM32(m) && operand.IsK(k) && operand.IsYMM(xyz):
+		return &intrep.Instruction{
+			Opcode:   "VPOPCNTB",
+			Suffixes: []string{"BCST", "Z"},
+			Operands: []operand.Op{m, k, xyz},
+			Inputs:   []operand.Op{m, k},
+			Outputs:  []operand.Op{xyz},
+			ISA:      []string{"AVX512BITALG", "AVX512VL"},
+		}, nil
+	case operand.IsM32(m) && operand.IsK(k) && operand.IsZMM(xyz):
+		return &intrep.Instruction{
+			Opcode:   "VPOPCNTB",
+			Suffixes: []string{"BCST", "Z"},
+			Operands: []operand.Op{m, k, xyz},
+			Inputs:   []operand.Op{m, k},
+			Outputs:  []operand.Op{xyz},
+			ISA:      []string{"AVX512BITALG"},
+		}, nil
+	}
+	return nil, errors.New("VPOPCNTB_BCST_Z: bad operands")
+}
+
+// VPOPCNTB_Z: Packed Population Count for Byte Integers (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPOPCNTB.Z m128 k xmm
+// 	VPOPCNTB.Z m256 k ymm
+// 	VPOPCNTB.Z xmm  k xmm
+// 	VPOPCNTB.Z ymm  k ymm
+// 	VPOPCNTB.Z m512 k zmm
+// 	VPOPCNTB.Z zmm  k zmm
+func VPOPCNTB_Z(mxyz, k, xyz operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case operand.IsM128(mxyz) && operand.IsK(k) && operand.IsXMM(xyz),
+		operand.IsM256(mxyz) && operand.IsK(k) && operand.IsYMM(xyz),
+		operand.IsXMM(mxyz) && operand.IsK(k) && operand.IsXMM(xyz),
+		operand.IsYMM(mxyz) && operand.IsK(k) && operand.IsYMM(xyz):
+		return &intrep.Instruction{
+			Opcode:   "VPOPCNTB",
+			Suffixes: []string{"Z"},
+			Operands: []operand.Op{mxyz, k, xyz},
+			Inputs:   []operand.Op{mxyz, k},
+			Outputs:  []operand.Op{xyz},
+			ISA:      []string{"AVX512BITALG", "AVX512VL"},
+		}, nil
+	case operand.IsM512(mxyz) && operand.IsK(k) && operand.IsZMM(xyz),
+		operand.IsZMM(mxyz) && operand.IsK(k) && operand.IsZMM(xyz):
+		return &intrep.Instruction{
+			Opcode:   "VPOPCNTB",
+			Suffixes: []string{"Z"},
+			Operands: []operand.Op{mxyz, k, xyz},
+			Inputs:   []operand.Op{mxyz, k},
+			Outputs:  []operand.Op{xyz},
+			ISA:      []string{"AVX512BITALG"},
+		}, nil
+	}
+	return nil, errors.New("VPOPCNTB_Z: bad operands")
+}
+
 // VPOPCNTD: Packed Population Count for Doubleword Integers.
 //
 // Forms:
@@ -83160,6 +83346,192 @@ func VPOPCNTQ_Z(mxyz, k, xyz operand.Op) (*intrep.Instruction, error) {
 		}, nil
 	}
 	return nil, errors.New("VPOPCNTQ_Z: bad operands")
+}
+
+// VPOPCNTW: Packed Population Count for Word Integers.
+//
+// Forms:
+//
+// 	VPOPCNTW m128 k xmm
+// 	VPOPCNTW m128 xmm
+// 	VPOPCNTW m256 k ymm
+// 	VPOPCNTW m256 ymm
+// 	VPOPCNTW xmm  k xmm
+// 	VPOPCNTW xmm  xmm
+// 	VPOPCNTW ymm  k ymm
+// 	VPOPCNTW ymm  ymm
+// 	VPOPCNTW m512 k zmm
+// 	VPOPCNTW m512 zmm
+// 	VPOPCNTW zmm  k zmm
+// 	VPOPCNTW zmm  zmm
+func VPOPCNTW(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 3 && operand.IsM128(ops[0]) && operand.IsK(ops[1]) && operand.IsXMM(ops[2]),
+		len(ops) == 3 && operand.IsM256(ops[0]) && operand.IsK(ops[1]) && operand.IsYMM(ops[2]),
+		len(ops) == 3 && operand.IsXMM(ops[0]) && operand.IsK(ops[1]) && operand.IsXMM(ops[2]),
+		len(ops) == 3 && operand.IsYMM(ops[0]) && operand.IsK(ops[1]) && operand.IsYMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPOPCNTW",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512BITALG", "AVX512VL"},
+		}, nil
+	case len(ops) == 3 && operand.IsM512(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]),
+		len(ops) == 3 && operand.IsZMM(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPOPCNTW",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512BITALG"},
+		}, nil
+	case len(ops) == 2 && operand.IsM128(ops[0]) && operand.IsXMM(ops[1]),
+		len(ops) == 2 && operand.IsM256(ops[0]) && operand.IsYMM(ops[1]),
+		len(ops) == 2 && operand.IsXMM(ops[0]) && operand.IsXMM(ops[1]),
+		len(ops) == 2 && operand.IsYMM(ops[0]) && operand.IsYMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPOPCNTW",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512BITALG", "AVX512VL"},
+		}, nil
+	case len(ops) == 2 && operand.IsM512(ops[0]) && operand.IsZMM(ops[1]),
+		len(ops) == 2 && operand.IsZMM(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPOPCNTW",
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512BITALG"},
+		}, nil
+	}
+	return nil, errors.New("VPOPCNTW: bad operands")
+}
+
+// VPOPCNTW_BCST: Packed Population Count for Word Integers (Broadcast).
+//
+// Forms:
+//
+// 	VPOPCNTW.BCST m64 k xmm
+// 	VPOPCNTW.BCST m64 k ymm
+// 	VPOPCNTW.BCST m64 xmm
+// 	VPOPCNTW.BCST m64 ymm
+// 	VPOPCNTW.BCST m64 k zmm
+// 	VPOPCNTW.BCST m64 zmm
+func VPOPCNTW_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case len(ops) == 3 && operand.IsM64(ops[0]) && operand.IsK(ops[1]) && operand.IsXMM(ops[2]),
+		len(ops) == 3 && operand.IsM64(ops[0]) && operand.IsK(ops[1]) && operand.IsYMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPOPCNTW",
+			Suffixes: []string{"BCST"},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512BITALG", "AVX512VL"},
+		}, nil
+	case len(ops) == 3 && operand.IsM64(ops[0]) && operand.IsK(ops[1]) && operand.IsZMM(ops[2]):
+		return &intrep.Instruction{
+			Opcode:   "VPOPCNTW",
+			Suffixes: []string{"BCST"},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0], ops[1], ops[2]},
+			Outputs:  []operand.Op{ops[2]},
+			ISA:      []string{"AVX512BITALG"},
+		}, nil
+	case len(ops) == 2 && operand.IsM64(ops[0]) && operand.IsXMM(ops[1]),
+		len(ops) == 2 && operand.IsM64(ops[0]) && operand.IsYMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPOPCNTW",
+			Suffixes: []string{"BCST"},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512BITALG", "AVX512VL"},
+		}, nil
+	case len(ops) == 2 && operand.IsM64(ops[0]) && operand.IsZMM(ops[1]):
+		return &intrep.Instruction{
+			Opcode:   "VPOPCNTW",
+			Suffixes: []string{"BCST"},
+			Operands: ops,
+			Inputs:   []operand.Op{ops[0]},
+			Outputs:  []operand.Op{ops[1]},
+			ISA:      []string{"AVX512BITALG"},
+		}, nil
+	}
+	return nil, errors.New("VPOPCNTW_BCST: bad operands")
+}
+
+// VPOPCNTW_BCST_Z: Packed Population Count for Word Integers (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+// 	VPOPCNTW.BCST.Z m64 k xmm
+// 	VPOPCNTW.BCST.Z m64 k ymm
+// 	VPOPCNTW.BCST.Z m64 k zmm
+func VPOPCNTW_BCST_Z(m, k, xyz operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case operand.IsM64(m) && operand.IsK(k) && operand.IsXMM(xyz),
+		operand.IsM64(m) && operand.IsK(k) && operand.IsYMM(xyz):
+		return &intrep.Instruction{
+			Opcode:   "VPOPCNTW",
+			Suffixes: []string{"BCST", "Z"},
+			Operands: []operand.Op{m, k, xyz},
+			Inputs:   []operand.Op{m, k},
+			Outputs:  []operand.Op{xyz},
+			ISA:      []string{"AVX512BITALG", "AVX512VL"},
+		}, nil
+	case operand.IsM64(m) && operand.IsK(k) && operand.IsZMM(xyz):
+		return &intrep.Instruction{
+			Opcode:   "VPOPCNTW",
+			Suffixes: []string{"BCST", "Z"},
+			Operands: []operand.Op{m, k, xyz},
+			Inputs:   []operand.Op{m, k},
+			Outputs:  []operand.Op{xyz},
+			ISA:      []string{"AVX512BITALG"},
+		}, nil
+	}
+	return nil, errors.New("VPOPCNTW_BCST_Z: bad operands")
+}
+
+// VPOPCNTW_Z: Packed Population Count for Word Integers (Zeroing Masking).
+//
+// Forms:
+//
+// 	VPOPCNTW.Z m128 k xmm
+// 	VPOPCNTW.Z m256 k ymm
+// 	VPOPCNTW.Z xmm  k xmm
+// 	VPOPCNTW.Z ymm  k ymm
+// 	VPOPCNTW.Z m512 k zmm
+// 	VPOPCNTW.Z zmm  k zmm
+func VPOPCNTW_Z(mxyz, k, xyz operand.Op) (*intrep.Instruction, error) {
+	switch {
+	case operand.IsM128(mxyz) && operand.IsK(k) && operand.IsXMM(xyz),
+		operand.IsM256(mxyz) && operand.IsK(k) && operand.IsYMM(xyz),
+		operand.IsXMM(mxyz) && operand.IsK(k) && operand.IsXMM(xyz),
+		operand.IsYMM(mxyz) && operand.IsK(k) && operand.IsYMM(xyz):
+		return &intrep.Instruction{
+			Opcode:   "VPOPCNTW",
+			Suffixes: []string{"Z"},
+			Operands: []operand.Op{mxyz, k, xyz},
+			Inputs:   []operand.Op{mxyz, k},
+			Outputs:  []operand.Op{xyz},
+			ISA:      []string{"AVX512BITALG", "AVX512VL"},
+		}, nil
+	case operand.IsM512(mxyz) && operand.IsK(k) && operand.IsZMM(xyz),
+		operand.IsZMM(mxyz) && operand.IsK(k) && operand.IsZMM(xyz):
+		return &intrep.Instruction{
+			Opcode:   "VPOPCNTW",
+			Suffixes: []string{"Z"},
+			Operands: []operand.Op{mxyz, k, xyz},
+			Inputs:   []operand.Op{mxyz, k},
+			Outputs:  []operand.Op{xyz},
+			ISA:      []string{"AVX512BITALG"},
+		}, nil
+	}
+	return nil, errors.New("VPOPCNTW_Z: bad operands")
 }
 
 // VPOR: Packed Bitwise Logical OR.

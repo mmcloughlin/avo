@@ -219,6 +219,8 @@ const (
 	ISAsAVX512VBMI
 	ISAsAVX512IFMA_AVX512VL
 	ISAsAVX512IFMA
+	ISAsAVX512BITALG_AVX512VL
+	ISAsAVX512BITALG
 	ISAsAVX512VL_AVX512VPOPCNTDQ
 	ISAsAVX512VPOPCNTDQ
 	ISAsAVX512BW_AVX512F
@@ -279,6 +281,8 @@ var isaslisttable = [][]string{
 	[]string{"AVX512VBMI"},
 	[]string{"AVX512IFMA", "AVX512VL"},
 	[]string{"AVX512IFMA"},
+	[]string{"AVX512BITALG", "AVX512VL"},
+	[]string{"AVX512BITALG"},
 	[]string{"AVX512VL", "AVX512VPOPCNTDQ"},
 	[]string{"AVX512VPOPCNTDQ"},
 	[]string{"AVX512BW", "AVX512F"},
@@ -1408,8 +1412,10 @@ const (
 	OpcodeVPMULLW
 	OpcodeVPMULTISHIFTQB
 	OpcodeVPMULUDQ
+	OpcodeVPOPCNTB
 	OpcodeVPOPCNTD
 	OpcodeVPOPCNTQ
+	OpcodeVPOPCNTW
 	OpcodeVPOR
 	OpcodeVPORD
 	OpcodeVPORQ
@@ -2701,8 +2707,10 @@ var opcodestringtable = []string{
 	"VPMULLW",
 	"VPMULTISHIFTQB",
 	"VPMULUDQ",
+	"VPOPCNTB",
 	"VPOPCNTD",
 	"VPOPCNTQ",
+	"VPOPCNTW",
 	"VPOR",
 	"VPORD",
 	"VPORQ",
@@ -11591,6 +11599,33 @@ var forms = []Form{
 	{OpcodeVPMULUDQ, 0, ISAsAVX512F, 4, Operands{{uint8(OperandTypeZMM), false, ActionR}, {uint8(OperandTypeZMM), false, ActionR}, {uint8(OperandTypeK), false, ActionR}, {uint8(OperandTypeZMM), false, ActionRW}}},
 	{OpcodeVPMULUDQ, 0, ISAsAVX512F, 4, Operands{{uint8(OperandTypeZMM), false, ActionR}, {uint8(OperandTypeZMM), false, ActionR}, {uint8(OperandTypeK), false, ActionR}, {uint8(OperandTypeZMM), false, ActionW}}},
 	{OpcodeVPMULUDQ, 0, ISAsAVX512F, 3, Operands{{uint8(OperandTypeZMM), false, ActionR}, {uint8(OperandTypeZMM), false, ActionR}, {uint8(OperandTypeZMM), false, ActionW}}},
+	{OpcodeVPOPCNTB, 0, ISAsAVX512BITALG_AVX512VL, 3, Operands{{uint8(OperandTypeM128), false, ActionR}, {uint8(OperandTypeK), false, ActionR}, {uint8(OperandTypeXMM), false, ActionRW}}},
+	{OpcodeVPOPCNTB, 0, ISAsAVX512BITALG_AVX512VL, 3, Operands{{uint8(OperandTypeM128), false, ActionR}, {uint8(OperandTypeK), false, ActionR}, {uint8(OperandTypeXMM), false, ActionW}}},
+	{OpcodeVPOPCNTB, 0, ISAsAVX512BITALG_AVX512VL, 2, Operands{{uint8(OperandTypeM128), false, ActionR}, {uint8(OperandTypeXMM), false, ActionW}}},
+	{OpcodeVPOPCNTB, 0, ISAsAVX512BITALG_AVX512VL, 3, Operands{{uint8(OperandTypeM256), false, ActionR}, {uint8(OperandTypeK), false, ActionR}, {uint8(OperandTypeYMM), false, ActionRW}}},
+	{OpcodeVPOPCNTB, 0, ISAsAVX512BITALG_AVX512VL, 3, Operands{{uint8(OperandTypeM256), false, ActionR}, {uint8(OperandTypeK), false, ActionR}, {uint8(OperandTypeYMM), false, ActionW}}},
+	{OpcodeVPOPCNTB, 0, ISAsAVX512BITALG_AVX512VL, 2, Operands{{uint8(OperandTypeM256), false, ActionR}, {uint8(OperandTypeYMM), false, ActionW}}},
+	{OpcodeVPOPCNTB, 0, ISAsAVX512BITALG_AVX512VL, 3, Operands{{uint8(OperandTypeM32), false, ActionR}, {uint8(OperandTypeK), false, ActionR}, {uint8(OperandTypeXMM), false, ActionRW}}},
+	{OpcodeVPOPCNTB, 0, ISAsAVX512BITALG_AVX512VL, 3, Operands{{uint8(OperandTypeM32), false, ActionR}, {uint8(OperandTypeK), false, ActionR}, {uint8(OperandTypeXMM), false, ActionW}}},
+	{OpcodeVPOPCNTB, 0, ISAsAVX512BITALG_AVX512VL, 3, Operands{{uint8(OperandTypeM32), false, ActionR}, {uint8(OperandTypeK), false, ActionR}, {uint8(OperandTypeYMM), false, ActionRW}}},
+	{OpcodeVPOPCNTB, 0, ISAsAVX512BITALG_AVX512VL, 3, Operands{{uint8(OperandTypeM32), false, ActionR}, {uint8(OperandTypeK), false, ActionR}, {uint8(OperandTypeYMM), false, ActionW}}},
+	{OpcodeVPOPCNTB, 0, ISAsAVX512BITALG_AVX512VL, 2, Operands{{uint8(OperandTypeM32), false, ActionR}, {uint8(OperandTypeXMM), false, ActionW}}},
+	{OpcodeVPOPCNTB, 0, ISAsAVX512BITALG_AVX512VL, 2, Operands{{uint8(OperandTypeM32), false, ActionR}, {uint8(OperandTypeYMM), false, ActionW}}},
+	{OpcodeVPOPCNTB, 0, ISAsAVX512BITALG_AVX512VL, 3, Operands{{uint8(OperandTypeXMM), false, ActionR}, {uint8(OperandTypeK), false, ActionR}, {uint8(OperandTypeXMM), false, ActionRW}}},
+	{OpcodeVPOPCNTB, 0, ISAsAVX512BITALG_AVX512VL, 3, Operands{{uint8(OperandTypeXMM), false, ActionR}, {uint8(OperandTypeK), false, ActionR}, {uint8(OperandTypeXMM), false, ActionW}}},
+	{OpcodeVPOPCNTB, 0, ISAsAVX512BITALG_AVX512VL, 2, Operands{{uint8(OperandTypeXMM), false, ActionR}, {uint8(OperandTypeXMM), false, ActionW}}},
+	{OpcodeVPOPCNTB, 0, ISAsAVX512BITALG_AVX512VL, 3, Operands{{uint8(OperandTypeYMM), false, ActionR}, {uint8(OperandTypeK), false, ActionR}, {uint8(OperandTypeYMM), false, ActionRW}}},
+	{OpcodeVPOPCNTB, 0, ISAsAVX512BITALG_AVX512VL, 3, Operands{{uint8(OperandTypeYMM), false, ActionR}, {uint8(OperandTypeK), false, ActionR}, {uint8(OperandTypeYMM), false, ActionW}}},
+	{OpcodeVPOPCNTB, 0, ISAsAVX512BITALG_AVX512VL, 2, Operands{{uint8(OperandTypeYMM), false, ActionR}, {uint8(OperandTypeYMM), false, ActionW}}},
+	{OpcodeVPOPCNTB, 0, ISAsAVX512BITALG, 3, Operands{{uint8(OperandTypeM32), false, ActionR}, {uint8(OperandTypeK), false, ActionR}, {uint8(OperandTypeZMM), false, ActionRW}}},
+	{OpcodeVPOPCNTB, 0, ISAsAVX512BITALG, 3, Operands{{uint8(OperandTypeM32), false, ActionR}, {uint8(OperandTypeK), false, ActionR}, {uint8(OperandTypeZMM), false, ActionW}}},
+	{OpcodeVPOPCNTB, 0, ISAsAVX512BITALG, 2, Operands{{uint8(OperandTypeM32), false, ActionR}, {uint8(OperandTypeZMM), false, ActionW}}},
+	{OpcodeVPOPCNTB, 0, ISAsAVX512BITALG, 3, Operands{{uint8(OperandTypeM512), false, ActionR}, {uint8(OperandTypeK), false, ActionR}, {uint8(OperandTypeZMM), false, ActionRW}}},
+	{OpcodeVPOPCNTB, 0, ISAsAVX512BITALG, 3, Operands{{uint8(OperandTypeM512), false, ActionR}, {uint8(OperandTypeK), false, ActionR}, {uint8(OperandTypeZMM), false, ActionW}}},
+	{OpcodeVPOPCNTB, 0, ISAsAVX512BITALG, 2, Operands{{uint8(OperandTypeM512), false, ActionR}, {uint8(OperandTypeZMM), false, ActionW}}},
+	{OpcodeVPOPCNTB, 0, ISAsAVX512BITALG, 3, Operands{{uint8(OperandTypeZMM), false, ActionR}, {uint8(OperandTypeK), false, ActionR}, {uint8(OperandTypeZMM), false, ActionRW}}},
+	{OpcodeVPOPCNTB, 0, ISAsAVX512BITALG, 3, Operands{{uint8(OperandTypeZMM), false, ActionR}, {uint8(OperandTypeK), false, ActionR}, {uint8(OperandTypeZMM), false, ActionW}}},
+	{OpcodeVPOPCNTB, 0, ISAsAVX512BITALG, 2, Operands{{uint8(OperandTypeZMM), false, ActionR}, {uint8(OperandTypeZMM), false, ActionW}}},
 	{OpcodeVPOPCNTD, 0, ISAsAVX512VL_AVX512VPOPCNTDQ, 3, Operands{{uint8(OperandTypeM128), false, ActionR}, {uint8(OperandTypeK), false, ActionR}, {uint8(OperandTypeXMM), false, ActionRW}}},
 	{OpcodeVPOPCNTD, 0, ISAsAVX512VL_AVX512VPOPCNTDQ, 3, Operands{{uint8(OperandTypeM128), false, ActionR}, {uint8(OperandTypeK), false, ActionR}, {uint8(OperandTypeXMM), false, ActionW}}},
 	{OpcodeVPOPCNTD, 0, ISAsAVX512VL_AVX512VPOPCNTDQ, 2, Operands{{uint8(OperandTypeM128), false, ActionR}, {uint8(OperandTypeXMM), false, ActionW}}},
@@ -11645,6 +11680,33 @@ var forms = []Form{
 	{OpcodeVPOPCNTQ, 0, ISAsAVX512VPOPCNTDQ, 3, Operands{{uint8(OperandTypeZMM), false, ActionR}, {uint8(OperandTypeK), false, ActionR}, {uint8(OperandTypeZMM), false, ActionRW}}},
 	{OpcodeVPOPCNTQ, 0, ISAsAVX512VPOPCNTDQ, 3, Operands{{uint8(OperandTypeZMM), false, ActionR}, {uint8(OperandTypeK), false, ActionR}, {uint8(OperandTypeZMM), false, ActionW}}},
 	{OpcodeVPOPCNTQ, 0, ISAsAVX512VPOPCNTDQ, 2, Operands{{uint8(OperandTypeZMM), false, ActionR}, {uint8(OperandTypeZMM), false, ActionW}}},
+	{OpcodeVPOPCNTW, 0, ISAsAVX512BITALG_AVX512VL, 3, Operands{{uint8(OperandTypeM128), false, ActionR}, {uint8(OperandTypeK), false, ActionR}, {uint8(OperandTypeXMM), false, ActionRW}}},
+	{OpcodeVPOPCNTW, 0, ISAsAVX512BITALG_AVX512VL, 3, Operands{{uint8(OperandTypeM128), false, ActionR}, {uint8(OperandTypeK), false, ActionR}, {uint8(OperandTypeXMM), false, ActionW}}},
+	{OpcodeVPOPCNTW, 0, ISAsAVX512BITALG_AVX512VL, 2, Operands{{uint8(OperandTypeM128), false, ActionR}, {uint8(OperandTypeXMM), false, ActionW}}},
+	{OpcodeVPOPCNTW, 0, ISAsAVX512BITALG_AVX512VL, 3, Operands{{uint8(OperandTypeM256), false, ActionR}, {uint8(OperandTypeK), false, ActionR}, {uint8(OperandTypeYMM), false, ActionRW}}},
+	{OpcodeVPOPCNTW, 0, ISAsAVX512BITALG_AVX512VL, 3, Operands{{uint8(OperandTypeM256), false, ActionR}, {uint8(OperandTypeK), false, ActionR}, {uint8(OperandTypeYMM), false, ActionW}}},
+	{OpcodeVPOPCNTW, 0, ISAsAVX512BITALG_AVX512VL, 2, Operands{{uint8(OperandTypeM256), false, ActionR}, {uint8(OperandTypeYMM), false, ActionW}}},
+	{OpcodeVPOPCNTW, 0, ISAsAVX512BITALG_AVX512VL, 3, Operands{{uint8(OperandTypeM64), false, ActionR}, {uint8(OperandTypeK), false, ActionR}, {uint8(OperandTypeXMM), false, ActionRW}}},
+	{OpcodeVPOPCNTW, 0, ISAsAVX512BITALG_AVX512VL, 3, Operands{{uint8(OperandTypeM64), false, ActionR}, {uint8(OperandTypeK), false, ActionR}, {uint8(OperandTypeXMM), false, ActionW}}},
+	{OpcodeVPOPCNTW, 0, ISAsAVX512BITALG_AVX512VL, 3, Operands{{uint8(OperandTypeM64), false, ActionR}, {uint8(OperandTypeK), false, ActionR}, {uint8(OperandTypeYMM), false, ActionRW}}},
+	{OpcodeVPOPCNTW, 0, ISAsAVX512BITALG_AVX512VL, 3, Operands{{uint8(OperandTypeM64), false, ActionR}, {uint8(OperandTypeK), false, ActionR}, {uint8(OperandTypeYMM), false, ActionW}}},
+	{OpcodeVPOPCNTW, 0, ISAsAVX512BITALG_AVX512VL, 2, Operands{{uint8(OperandTypeM64), false, ActionR}, {uint8(OperandTypeXMM), false, ActionW}}},
+	{OpcodeVPOPCNTW, 0, ISAsAVX512BITALG_AVX512VL, 2, Operands{{uint8(OperandTypeM64), false, ActionR}, {uint8(OperandTypeYMM), false, ActionW}}},
+	{OpcodeVPOPCNTW, 0, ISAsAVX512BITALG_AVX512VL, 3, Operands{{uint8(OperandTypeXMM), false, ActionR}, {uint8(OperandTypeK), false, ActionR}, {uint8(OperandTypeXMM), false, ActionRW}}},
+	{OpcodeVPOPCNTW, 0, ISAsAVX512BITALG_AVX512VL, 3, Operands{{uint8(OperandTypeXMM), false, ActionR}, {uint8(OperandTypeK), false, ActionR}, {uint8(OperandTypeXMM), false, ActionW}}},
+	{OpcodeVPOPCNTW, 0, ISAsAVX512BITALG_AVX512VL, 2, Operands{{uint8(OperandTypeXMM), false, ActionR}, {uint8(OperandTypeXMM), false, ActionW}}},
+	{OpcodeVPOPCNTW, 0, ISAsAVX512BITALG_AVX512VL, 3, Operands{{uint8(OperandTypeYMM), false, ActionR}, {uint8(OperandTypeK), false, ActionR}, {uint8(OperandTypeYMM), false, ActionRW}}},
+	{OpcodeVPOPCNTW, 0, ISAsAVX512BITALG_AVX512VL, 3, Operands{{uint8(OperandTypeYMM), false, ActionR}, {uint8(OperandTypeK), false, ActionR}, {uint8(OperandTypeYMM), false, ActionW}}},
+	{OpcodeVPOPCNTW, 0, ISAsAVX512BITALG_AVX512VL, 2, Operands{{uint8(OperandTypeYMM), false, ActionR}, {uint8(OperandTypeYMM), false, ActionW}}},
+	{OpcodeVPOPCNTW, 0, ISAsAVX512BITALG, 3, Operands{{uint8(OperandTypeM512), false, ActionR}, {uint8(OperandTypeK), false, ActionR}, {uint8(OperandTypeZMM), false, ActionRW}}},
+	{OpcodeVPOPCNTW, 0, ISAsAVX512BITALG, 3, Operands{{uint8(OperandTypeM512), false, ActionR}, {uint8(OperandTypeK), false, ActionR}, {uint8(OperandTypeZMM), false, ActionW}}},
+	{OpcodeVPOPCNTW, 0, ISAsAVX512BITALG, 2, Operands{{uint8(OperandTypeM512), false, ActionR}, {uint8(OperandTypeZMM), false, ActionW}}},
+	{OpcodeVPOPCNTW, 0, ISAsAVX512BITALG, 3, Operands{{uint8(OperandTypeM64), false, ActionR}, {uint8(OperandTypeK), false, ActionR}, {uint8(OperandTypeZMM), false, ActionRW}}},
+	{OpcodeVPOPCNTW, 0, ISAsAVX512BITALG, 3, Operands{{uint8(OperandTypeM64), false, ActionR}, {uint8(OperandTypeK), false, ActionR}, {uint8(OperandTypeZMM), false, ActionW}}},
+	{OpcodeVPOPCNTW, 0, ISAsAVX512BITALG, 2, Operands{{uint8(OperandTypeM64), false, ActionR}, {uint8(OperandTypeZMM), false, ActionW}}},
+	{OpcodeVPOPCNTW, 0, ISAsAVX512BITALG, 3, Operands{{uint8(OperandTypeZMM), false, ActionR}, {uint8(OperandTypeK), false, ActionR}, {uint8(OperandTypeZMM), false, ActionRW}}},
+	{OpcodeVPOPCNTW, 0, ISAsAVX512BITALG, 3, Operands{{uint8(OperandTypeZMM), false, ActionR}, {uint8(OperandTypeK), false, ActionR}, {uint8(OperandTypeZMM), false, ActionW}}},
+	{OpcodeVPOPCNTW, 0, ISAsAVX512BITALG, 2, Operands{{uint8(OperandTypeZMM), false, ActionR}, {uint8(OperandTypeZMM), false, ActionW}}},
 	{OpcodeVPOR, 0, ISAsAVX2, 3, Operands{{uint8(OperandTypeM256), false, ActionR}, {uint8(OperandTypeYMM), false, ActionR}, {uint8(OperandTypeYMM), false, ActionW}}},
 	{OpcodeVPOR, 0, ISAsAVX2, 3, Operands{{uint8(OperandTypeYMM), false, ActionR}, {uint8(OperandTypeYMM), false, ActionR}, {uint8(OperandTypeYMM), false, ActionW}}},
 	{OpcodeVPOR, 0, ISAsAVX, 3, Operands{{uint8(OperandTypeM128), false, ActionR}, {uint8(OperandTypeXMM), false, ActionR}, {uint8(OperandTypeXMM), false, ActionW}}},
