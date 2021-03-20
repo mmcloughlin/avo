@@ -73560,66 +73560,6 @@ func (c *Context) VPOPCNTB(ops ...operand.Op) {
 // Operates on the global context.
 func VPOPCNTB(ops ...operand.Op) { ctx.VPOPCNTB(ops...) }
 
-// VPOPCNTB_BCST: Packed Population Count for Byte Integers (Broadcast).
-//
-// Forms:
-//
-// 	VPOPCNTB.BCST m32 k xmm
-// 	VPOPCNTB.BCST m32 k ymm
-// 	VPOPCNTB.BCST m32 xmm
-// 	VPOPCNTB.BCST m32 ymm
-// 	VPOPCNTB.BCST m32 k zmm
-// 	VPOPCNTB.BCST m32 zmm
-// Construct and append a VPOPCNTB.BCST instruction to the active function.
-func (c *Context) VPOPCNTB_BCST(ops ...operand.Op) {
-	if inst, err := x86.VPOPCNTB_BCST(ops...); err == nil {
-		c.Instruction(inst)
-	} else {
-		c.adderror(err)
-	}
-}
-
-// VPOPCNTB_BCST: Packed Population Count for Byte Integers (Broadcast).
-//
-// Forms:
-//
-// 	VPOPCNTB.BCST m32 k xmm
-// 	VPOPCNTB.BCST m32 k ymm
-// 	VPOPCNTB.BCST m32 xmm
-// 	VPOPCNTB.BCST m32 ymm
-// 	VPOPCNTB.BCST m32 k zmm
-// 	VPOPCNTB.BCST m32 zmm
-// Construct and append a VPOPCNTB.BCST instruction to the active function.
-// Operates on the global context.
-func VPOPCNTB_BCST(ops ...operand.Op) { ctx.VPOPCNTB_BCST(ops...) }
-
-// VPOPCNTB_BCST_Z: Packed Population Count for Byte Integers (Broadcast, Zeroing Masking).
-//
-// Forms:
-//
-// 	VPOPCNTB.BCST.Z m32 k xmm
-// 	VPOPCNTB.BCST.Z m32 k ymm
-// 	VPOPCNTB.BCST.Z m32 k zmm
-// Construct and append a VPOPCNTB.BCST.Z instruction to the active function.
-func (c *Context) VPOPCNTB_BCST_Z(m, k, xyz operand.Op) {
-	if inst, err := x86.VPOPCNTB_BCST_Z(m, k, xyz); err == nil {
-		c.Instruction(inst)
-	} else {
-		c.adderror(err)
-	}
-}
-
-// VPOPCNTB_BCST_Z: Packed Population Count for Byte Integers (Broadcast, Zeroing Masking).
-//
-// Forms:
-//
-// 	VPOPCNTB.BCST.Z m32 k xmm
-// 	VPOPCNTB.BCST.Z m32 k ymm
-// 	VPOPCNTB.BCST.Z m32 k zmm
-// Construct and append a VPOPCNTB.BCST.Z instruction to the active function.
-// Operates on the global context.
-func VPOPCNTB_BCST_Z(m, k, xyz operand.Op) { ctx.VPOPCNTB_BCST_Z(m, k, xyz) }
-
 // VPOPCNTB_Z: Packed Population Count for Byte Integers (Zeroing Masking).
 //
 // Forms:
@@ -73973,66 +73913,6 @@ func (c *Context) VPOPCNTW(ops ...operand.Op) {
 // Construct and append a VPOPCNTW instruction to the active function.
 // Operates on the global context.
 func VPOPCNTW(ops ...operand.Op) { ctx.VPOPCNTW(ops...) }
-
-// VPOPCNTW_BCST: Packed Population Count for Word Integers (Broadcast).
-//
-// Forms:
-//
-// 	VPOPCNTW.BCST m64 k xmm
-// 	VPOPCNTW.BCST m64 k ymm
-// 	VPOPCNTW.BCST m64 xmm
-// 	VPOPCNTW.BCST m64 ymm
-// 	VPOPCNTW.BCST m64 k zmm
-// 	VPOPCNTW.BCST m64 zmm
-// Construct and append a VPOPCNTW.BCST instruction to the active function.
-func (c *Context) VPOPCNTW_BCST(ops ...operand.Op) {
-	if inst, err := x86.VPOPCNTW_BCST(ops...); err == nil {
-		c.Instruction(inst)
-	} else {
-		c.adderror(err)
-	}
-}
-
-// VPOPCNTW_BCST: Packed Population Count for Word Integers (Broadcast).
-//
-// Forms:
-//
-// 	VPOPCNTW.BCST m64 k xmm
-// 	VPOPCNTW.BCST m64 k ymm
-// 	VPOPCNTW.BCST m64 xmm
-// 	VPOPCNTW.BCST m64 ymm
-// 	VPOPCNTW.BCST m64 k zmm
-// 	VPOPCNTW.BCST m64 zmm
-// Construct and append a VPOPCNTW.BCST instruction to the active function.
-// Operates on the global context.
-func VPOPCNTW_BCST(ops ...operand.Op) { ctx.VPOPCNTW_BCST(ops...) }
-
-// VPOPCNTW_BCST_Z: Packed Population Count for Word Integers (Broadcast, Zeroing Masking).
-//
-// Forms:
-//
-// 	VPOPCNTW.BCST.Z m64 k xmm
-// 	VPOPCNTW.BCST.Z m64 k ymm
-// 	VPOPCNTW.BCST.Z m64 k zmm
-// Construct and append a VPOPCNTW.BCST.Z instruction to the active function.
-func (c *Context) VPOPCNTW_BCST_Z(m, k, xyz operand.Op) {
-	if inst, err := x86.VPOPCNTW_BCST_Z(m, k, xyz); err == nil {
-		c.Instruction(inst)
-	} else {
-		c.adderror(err)
-	}
-}
-
-// VPOPCNTW_BCST_Z: Packed Population Count for Word Integers (Broadcast, Zeroing Masking).
-//
-// Forms:
-//
-// 	VPOPCNTW.BCST.Z m64 k xmm
-// 	VPOPCNTW.BCST.Z m64 k ymm
-// 	VPOPCNTW.BCST.Z m64 k zmm
-// Construct and append a VPOPCNTW.BCST.Z instruction to the active function.
-// Operates on the global context.
-func VPOPCNTW_BCST_Z(m, k, xyz operand.Op) { ctx.VPOPCNTW_BCST_Z(m, k, xyz) }
 
 // VPOPCNTW_Z: Packed Population Count for Word Integers (Zeroing Masking).
 //
@@ -75661,6 +75541,51 @@ func (c *Context) VPSHUFB(ops ...operand.Op) {
 // Construct and append a VPSHUFB instruction to the active function.
 // Operates on the global context.
 func VPSHUFB(ops ...operand.Op) { ctx.VPSHUFB(ops...) }
+
+// VPSHUFBITQMB: Shuffle Bits from Quadword Elements Using Byte Indexes into Mask.
+//
+// Forms:
+//
+// 	VPSHUFBITQMB m128 xmm k k
+// 	VPSHUFBITQMB m128 xmm k
+// 	VPSHUFBITQMB m256 ymm k k
+// 	VPSHUFBITQMB m256 ymm k
+// 	VPSHUFBITQMB xmm  xmm k k
+// 	VPSHUFBITQMB xmm  xmm k
+// 	VPSHUFBITQMB ymm  ymm k k
+// 	VPSHUFBITQMB ymm  ymm k
+// 	VPSHUFBITQMB m512 zmm k k
+// 	VPSHUFBITQMB m512 zmm k
+// 	VPSHUFBITQMB zmm  zmm k k
+// 	VPSHUFBITQMB zmm  zmm k
+// Construct and append a VPSHUFBITQMB instruction to the active function.
+func (c *Context) VPSHUFBITQMB(ops ...operand.Op) {
+	if inst, err := x86.VPSHUFBITQMB(ops...); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// VPSHUFBITQMB: Shuffle Bits from Quadword Elements Using Byte Indexes into Mask.
+//
+// Forms:
+//
+// 	VPSHUFBITQMB m128 xmm k k
+// 	VPSHUFBITQMB m128 xmm k
+// 	VPSHUFBITQMB m256 ymm k k
+// 	VPSHUFBITQMB m256 ymm k
+// 	VPSHUFBITQMB xmm  xmm k k
+// 	VPSHUFBITQMB xmm  xmm k
+// 	VPSHUFBITQMB ymm  ymm k k
+// 	VPSHUFBITQMB ymm  ymm k
+// 	VPSHUFBITQMB m512 zmm k k
+// 	VPSHUFBITQMB m512 zmm k
+// 	VPSHUFBITQMB zmm  zmm k k
+// 	VPSHUFBITQMB zmm  zmm k
+// Construct and append a VPSHUFBITQMB instruction to the active function.
+// Operates on the global context.
+func VPSHUFBITQMB(ops ...operand.Op) { ctx.VPSHUFBITQMB(ops...) }
 
 // VPSHUFB_Z: Packed Shuffle Bytes (Zeroing Masking).
 //
