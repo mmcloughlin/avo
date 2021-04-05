@@ -16,8 +16,8 @@ TEXT ·Dot(SB), NOSPLIT, $0-52
 	VXORPS Y5, Y5, Y5
 
 blockloop:
-	CMPQ        DX, $0x00000030
-	JL          tail
+	CMPQ        DX, $0x00000000
+	JE          reduce
 	VMOVUPS     (AX), Y6
 	VMOVUPS     32(AX), Y7
 	VMOVUPS     64(AX), Y8
@@ -30,23 +30,12 @@ blockloop:
 	VFMADD231PS 96(CX), Y9, Y3
 	VFMADD231PS 128(CX), Y10, Y4
 	VFMADD231PS 160(CX), Y11, Y5
+	CMPQ        DX, $0x00000030
+	JL          reduce
 	ADDQ        $0x000000c0, AX
 	ADDQ        $0x000000c0, CX
 	SUBQ        $0x00000030, DX
 	JMP         blockloop
-
-tail:
-	VXORPS X6, X6, X6
-
-tailloop:
-	CMPQ        DX, $0x00000000
-	JE          reduce
-	VMOVSS      (AX), X7
-	VFMADD231SS (CX), X7, X6
-	ADDQ        $0x00000004, AX
-	ADDQ        $0x00000004, CX
-	DECQ        DX
-	JMP         tailloop
 
 reduce:
 	VADDPS       Y0, Y1, Y0
@@ -56,7 +45,6 @@ reduce:
 	VADDPS       Y0, Y5, Y0
 	VEXTRACTF128 $0x01, Y0, X1
 	VADDPS       X0, X1, X0
-	VADDPS       X0, X6, X0
 	VHADDPS      X0, X0, X0
 	VHADDPS      X0, X0, X0
 	MOVSS        X0, ret+48(FP)
