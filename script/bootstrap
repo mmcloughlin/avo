@@ -1,7 +1,7 @@
 #!/bin/bash -ex
 
-# Standalone version of the asmdecl analysis tool.
-go install ./internal/cmd/asmdecl
+# Standalone version of the assembly checks in go vet.
+go install ./internal/cmd/asmvet
 
 # Install golangci-lint
 golangci_lint_version='v1.23.6'
