@@ -3,7 +3,7 @@
 #include "textflag.h"
 
 // func GP8() uint8
-TEXT ·GP8(SB), NOSPLIT, $0-1
+TEXT ·GP8(SB), NOSPLIT, $8-1
 	MOVB $0x01, AL
 	MOVB $0x02, CL
 	MOVB $0x03, DL

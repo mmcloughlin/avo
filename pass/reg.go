@@ -3,6 +3,7 @@ package pass
 import (
 	"errors"
 
+	"github.com/mmcloughlin/avo/gotypes"
 	"github.com/mmcloughlin/avo/ir"
 	"github.com/mmcloughlin/avo/operand"
 	"github.com/mmcloughlin/avo/reg"
@@ -120,6 +121,12 @@ func BindRegisters(fn *ir.Function) error {
 		for idx := range i.Operands {
 			i.Operands[idx] = operand.ApplyAllocation(i.Operands[idx], fn.Allocation)
 		}
+		for idx := range i.Inputs {
+			i.Inputs[idx] = operand.ApplyAllocation(i.Inputs[idx], fn.Allocation)
+		}
+		for idx := range i.Outputs {
+			i.Outputs[idx] = operand.ApplyAllocation(i.Outputs[idx], fn.Allocation)
+		}
 	}
 	return nil
 }
@@ -133,6 +140,29 @@ func VerifyAllocation(fn *ir.Function) error {
 				return errors.New("non physical register found")
 			}
 		}
+	}
+
+	return nil
+}
+
+func EnsureBasePointerCalleeSaved(fn *ir.Function) error {
+	// Check to see if the base pointer is written to.
+	clobbered := false
+	for _, i := range fn.Instructions() {
+		for _, r := range i.OutputRegisters() {
+			if p := reg.ToPhysical(r); p != nil && (p.Info()&reg.BasePointer) != 0 {
+				clobbered = true
+			}
+		}
+	}
+
+	//
+	if !clobbered {
+		return nil
+	}
+
+	if fn.LocalSize == 0 {
+		fn.AllocLocal(int(gotypes.PointerSize))
 	}
 
 	return nil
