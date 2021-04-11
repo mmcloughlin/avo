@@ -1,8 +1,5 @@
 #!/bin/bash -ex
 
-# Install dependencies.
-go mod download
-
 # Standalone version of the asmdecl analysis tool.
 go install ./internal/cmd/asmdecl
 
@@ -10,17 +7,20 @@ go install ./internal/cmd/asmdecl
 golangci_lint_version='v1.23.6'
 curl -sfL https://install.goreleaser.com/github.com/golangci/golangci-lint.sh | sh -s -- -b $GOPATH/bin ${golangci_lint_version}
 
-# Use gobin for tools install.
-GO111MODULE=off go get -u github.com/myitcv/gobin
+# Install tools.
+tools=(
+    # embedmd required for documentation generation
+    github.com/campoy/embedmd
 
-# embedmd required for documentation generation
-gobin github.com/campoy/embedmd@v1.0.0
+    # covertool for merging coverage reports
+    github.com/dlespiau/covertool
 
-# covertool for merging coverage reports
-gobin github.com/dlespiau/covertool@v0.0.0-20180314162135-b0c4c6d0583a
+    # asmfmt for enforcing assembly style
+    github.com/klauspost/asmfmt/cmd/asmfmt
 
-# asmfmt for enforcing assembly style
-gobin github.com/klauspost/asmfmt/cmd/asmfmt@v1.2.1
+    # gofumports for stricter formatting
+    mvdan.cc/gofumpt/gofumports
+)
 
-# gofumports for stricter formatting
-gobin mvdan.cc/gofumpt/gofumports@v0.0.0-20200412215918-a91da47f375c
+go install -modfile=script/tools.mod "${tools[@]}"
+
