@@ -55,3 +55,36 @@ var attrname = map[Attribute]string{
 	REFLECTMETHOD: "REFLECTMETHOD",
 	TOPFRAME:      "TOPFRAME",
 }
+
+// NOPROF reports whether the NOPROF flag is set.
+func (a Attribute) NOPROF() bool { return (a & NOPROF) != 0 }
+
+// DUPOK reports whether the DUPOK flag is set.
+func (a Attribute) DUPOK() bool { return (a & DUPOK) != 0 }
+
+// NOSPLIT reports whether the NOSPLIT flag is set.
+func (a Attribute) NOSPLIT() bool { return (a & NOSPLIT) != 0 }
+
+// RODATA reports whether the RODATA flag is set.
+func (a Attribute) RODATA() bool { return (a & RODATA) != 0 }
+
+// NOPTR reports whether the NOPTR flag is set.
+func (a Attribute) NOPTR() bool { return (a & NOPTR) != 0 }
+
+// WRAPPER reports whether the WRAPPER flag is set.
+func (a Attribute) WRAPPER() bool { return (a & WRAPPER) != 0 }
+
+// NEEDCTXT reports whether the NEEDCTXT flag is set.
+func (a Attribute) NEEDCTXT() bool { return (a & NEEDCTXT) != 0 }
+
+// TLSBSS reports whether the TLSBSS flag is set.
+func (a Attribute) TLSBSS() bool { return (a & TLSBSS) != 0 }
+
+// NOFRAME reports whether the NOFRAME flag is set.
+func (a Attribute) NOFRAME() bool { return (a & NOFRAME) != 0 }
+
+// REFLECTMETHOD reports whether the REFLECTMETHOD flag is set.
+func (a Attribute) REFLECTMETHOD() bool { return (a & REFLECTMETHOD) != 0 }
+
+// TOPFRAME reports whether the TOPFRAME flag is set.
+func (a Attribute) TOPFRAME() bool { return (a & TOPFRAME) != 0 }
