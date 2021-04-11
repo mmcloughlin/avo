@@ -197,4 +197,10 @@ func PrintFlagAttributes(w io.Writer, fs []Flag) {
 		fmt.Fprintf(w, "\t%s: %q,\n", f.Name, f.Name)
 	}
 	fmt.Fprintf(w, "}\n")
+
+	// Flag test methods.
+	for _, f := range fs {
+		fmt.Fprintf(w, "\n// %s reports whether the %s flag is set.\n", f.Name, f.Name)
+		fmt.Fprintf(w, "func (a Attribute) %s() bool { return (a & %s) != 0 }\n", f.Name, f.Name)
+	}
 }
