@@ -74,7 +74,7 @@ func Liveness(fn *ir.Function) error {
 
 // AllocateRegisters performs register allocation.
 func AllocateRegisters(fn *ir.Function) error {
-	// Populate allocators (one per kind).
+	// Initialize one allocator per kind.
 	as := map[reg.Kind]*Allocator{}
 	for _, i := range fn.Instructions() {
 		for _, r := range i.Registers() {
@@ -86,7 +86,27 @@ func AllocateRegisters(fn *ir.Function) error {
 				}
 				as[k] = a
 			}
-			as[k].Add(r.ID())
+		}
+	}
+
+	// De-prioritize the base pointer register. This can be used as a general
+	// purpose register, but it's callee-save so needs to be saved/restored if
+	// it is clobbered.
+	for k, a := range as {
+		f := reg.FamilyOfKind(k)
+		for _, r := range f.Registers() {
+			if (r.Info() & reg.BasePointer) != 0 {
+				// Negative priority penalizes this register relative to all
+				// others (having default zero priority).
+				a.SetPriority(r.ID(), -1)
+			}
+		}
+	}
+
+	// Populate registers to be allocated.
+	for _, i := range fn.Instructions() {
+		for _, r := range i.Registers() {
+			as[r.Kind()].Add(r.ID())
 		}
 	}
 
