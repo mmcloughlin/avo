@@ -17,6 +17,7 @@ type edge struct {
 // Allocator is a graph-coloring register allocator.
 type Allocator struct {
 	registers  []reg.ID
+	priority   map[reg.ID]int
 	allocation reg.Allocation
 	edges      []*edge
 	possible   map[reg.ID][]reg.ID
@@ -42,13 +43,16 @@ func NewAllocator(rs []reg.Physical) (*Allocator, error) {
 	for id := range idset {
 		ids = append(ids, id)
 	}
-	sort.Slice(ids, func(i, j int) bool { return ids[i] < ids[j] })
 
-	return &Allocator{
+	a := &Allocator{
 		registers:  ids,
+		priority:   map[reg.ID]int{},
 		allocation: reg.NewEmptyAllocation(),
 		possible:   map[reg.ID][]reg.ID{},
-	}, nil
+	}
+	a.sortregisters()
+
+	return a, nil
 }
 
 // NewAllocatorForKind builds an allocator for the given kind of registers.
@@ -58,6 +62,23 @@ func NewAllocatorForKind(k reg.Kind) (*Allocator, error) {
 		return nil, errors.New("unknown register family")
 	}
 	return NewAllocator(f.Registers())
+}
+
+// SetPriority sets the priority of the given regiser to p. Higher priority
+// registers are preferred in allocations. By default all registers have 0
+// priority.
+func (a *Allocator) SetPriority(id reg.ID, p int) {
+	a.priority[id] = p
+}
+
+// sortregisters sorts the list of available registers: higher priority first,
+// falling back to sorting by ID.
+func (a *Allocator) sortregisters() {
+	sort.Slice(a.registers, func(i, j int) bool {
+		ri, rj := a.registers[i], a.registers[j]
+		pi, pj := a.priority[ri], a.priority[rj]
+		return (pi > pj) || (pi == pj && ri < rj)
+	})
 }
 
 // AddInterferenceSet records that r interferes with every register in s. Convenience wrapper around AddInterference.
