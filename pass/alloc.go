@@ -66,9 +66,11 @@ func NewAllocatorForKind(k reg.Kind) (*Allocator, error) {
 
 // SetPriority sets the priority of the given regiser to p. Higher priority
 // registers are preferred in allocations. By default all registers have 0
-// priority.
+// priority. Priority will only apply to subsequent Add() calls, therefore
+// typically all SetPriority calls should happen at allocator initialization.
 func (a *Allocator) SetPriority(id reg.ID, p int) {
 	a.priority[id] = p
+	a.sortregisters()
 }
 
 // sortregisters sorts the list of available registers: higher priority first,
