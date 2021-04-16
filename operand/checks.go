@@ -35,26 +35,30 @@ func IsIMM2U(op Op) bool {
 
 // IsIMM8 returns true is op is an 8-bit immediate.
 func IsIMM8(op Op) bool {
-	_, ok := op.(U8)
-	return ok
+	_, uok := op.(U8)
+	_, iok := op.(I8)
+	return uok || iok
 }
 
 // IsIMM16 returns true is op is a 16-bit immediate.
 func IsIMM16(op Op) bool {
-	_, ok := op.(U16)
-	return ok
+	_, uok := op.(U16)
+	_, iok := op.(I16)
+	return uok || iok
 }
 
 // IsIMM32 returns true is op is a 32-bit immediate.
 func IsIMM32(op Op) bool {
-	_, ok := op.(U32)
-	return ok
+	_, uok := op.(U32)
+	_, iok := op.(I32)
+	return uok || iok
 }
 
 // IsIMM64 returns true is op is a 64-bit immediate.
 func IsIMM64(op Op) bool {
-	_, ok := op.(U64)
-	return ok
+	_, uok := op.(U64)
+	_, iok := op.(I64)
+	return uok || iok
 }
 
 // IsAL returns true if op is the AL register.
