@@ -17,8 +17,10 @@ test -z "$(git status --porcelain)"
 # (Provide examples directory explicitly since it is skipped by default.)
 golangci-lint run ./... ./examples/...
 
-# Check asm declarations.
-asmdecl ./...
+# Check asm declarations. Exclude issue #145 regression test due to problems
+# with the way asmdecl handles large or composite types. See
+# https://github.com/golang/go/issues/39220.
+asmdecl $(go list ./... | grep -v issue145)
 
 # Custom linters.
 ./script/linter/pkgdoc
