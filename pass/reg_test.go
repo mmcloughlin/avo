@@ -3,6 +3,7 @@ package pass_test
 import (
 	"testing"
 
+	"github.com/mmcloughlin/avo/attr"
 	"github.com/mmcloughlin/avo/build"
 	"github.com/mmcloughlin/avo/ir"
 	"github.com/mmcloughlin/avo/operand"
@@ -103,4 +104,55 @@ func AssertRegistersMatchSet(t *testing.T, rs []reg.Register, s reg.MaskSet) {
 
 func ConstructLiveness(t *testing.T, ctx *build.Context) *ir.Function {
 	return BuildFunction(t, ctx, pass.LabelTarget, pass.CFG, pass.Liveness)
+}
+
+func TestEnsureBasePointerCalleeSavedFrameless(t *testing.T) {
+	// Construct a function that writes to the base pointer.
+	ctx := build.NewContext()
+	ctx.Function("clobber")
+	ctx.ADDQ(reg.RAX, reg.RBP)
+
+	// Build the function with the EnsureBasePointerCalleeSaved pass.
+	fn := BuildFunction(t, ctx, pass.EnsureBasePointerCalleeSaved)
+
+	// Since the function was frameless, expect that the pass would have
+	expect := 8
+	if fn.LocalSize != expect {
+		t.Fatalf("expected frame size %d; got %d", expect, fn.LocalSize)
+	}
+}
+
+func TestEnsureBasePointerCalleeSavedWithFrame(t *testing.T) {
+	// Construct a function that writes to the base pointer, but already has a
+	// stack frame.
+	expect := 64
+
+	ctx := build.NewContext()
+	ctx.Function("clobber")
+	ctx.AllocLocal(expect)
+	ctx.ADDQ(reg.RAX, reg.RBP)
+
+	// Build the function with the EnsureBasePointerCalleeSaved pass.
+	fn := BuildFunction(t, ctx, pass.EnsureBasePointerCalleeSaved)
+
+	// Expect that since the function already has a stack frame, there's no need to increase its size.
+	if fn.LocalSize != expect {
+		t.Fatalf("expected frame size %d; got %d", expect, fn.LocalSize)
+	}
+}
+
+func TestEnsureBasePointerCalleeSavedNOFRAME(t *testing.T) {
+	// Construct a NOFRAME function that writes to base pointer.
+	ctx := build.NewContext()
+	ctx.Function("clobber")
+	ctx.Attributes(attr.NOFRAME)
+	ctx.ADDQ(reg.RAX, reg.RBP)
+
+	// Build the function.
+	fn := BuildFunction(t, ctx)
+
+	// Expect the pass to fail due to NOFRAME exception.
+	if err := pass.EnsureBasePointerCalleeSaved(fn); err == nil {
+		t.Fatal("expected error from NOFRAME function that clobbers base pointer")
+	}
 }

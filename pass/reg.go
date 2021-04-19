@@ -3,6 +3,7 @@ package pass
 import (
 	"errors"
 
+	"github.com/mmcloughlin/avo/gotypes"
 	"github.com/mmcloughlin/avo/ir"
 	"github.com/mmcloughlin/avo/operand"
 	"github.com/mmcloughlin/avo/reg"
@@ -120,6 +121,12 @@ func BindRegisters(fn *ir.Function) error {
 		for idx := range i.Operands {
 			i.Operands[idx] = operand.ApplyAllocation(i.Operands[idx], fn.Allocation)
 		}
+		for idx := range i.Inputs {
+			i.Inputs[idx] = operand.ApplyAllocation(i.Inputs[idx], fn.Allocation)
+		}
+		for idx := range i.Outputs {
+			i.Outputs[idx] = operand.ApplyAllocation(i.Outputs[idx], fn.Allocation)
+		}
 	}
 	return nil
 }
@@ -133,6 +140,62 @@ func VerifyAllocation(fn *ir.Function) error {
 				return errors.New("non physical register found")
 			}
 		}
+	}
+
+	return nil
+}
+
+// EnsureBasePointerCalleeSaved ensures that the base pointer register will be
+// saved and restored if it has been clobbered by the function.
+func EnsureBasePointerCalleeSaved(fn *ir.Function) error {
+	// Check to see if the base pointer is written to.
+	clobbered := false
+	for _, i := range fn.Instructions() {
+		for _, r := range i.OutputRegisters() {
+			if p := reg.ToPhysical(r); p != nil && (p.Info()&reg.BasePointer) != 0 {
+				clobbered = true
+			}
+		}
+	}
+
+	if !clobbered {
+		return nil
+	}
+
+	// This function clobbers the base pointer register so we need to ensure it
+	// will be saved and restored. The Go assembler will do this automatically,
+	// with a few exceptions detailed below. In summary, we can usually ensure
+	// this happens by ensuring the function is not frameless (apart from
+	// NOFRAME functions).
+	//
+	// Reference: https://github.com/golang/go/blob/3f4977bd5800beca059defb5de4dc64cd758cbb9/src/cmd/internal/obj/x86/obj6.go#L591-L609
+	//
+	//		var bpsize int
+	//		if ctxt.Arch.Family == sys.AMD64 &&
+	//			!p.From.Sym.NoFrame() && // (1) below
+	//			!(autoffset == 0 && p.From.Sym.NoSplit()) && // (2) below
+	//			!(autoffset == 0 && !hasCall) { // (3) below
+	//			// Make room to save a base pointer.
+	//			// There are 2 cases we must avoid:
+	//			// 1) If noframe is set (which we do for functions which tail call).
+	//			// 2) Scary runtime internals which would be all messed up by frame pointers.
+	//			//    We detect these using a heuristic: frameless nosplit functions.
+	//			//    TODO: Maybe someday we label them all with NOFRAME and get rid of this heuristic.
+	//			// For performance, we also want to avoid:
+	//			// 3) Frameless leaf functions
+	//			bpsize = ctxt.Arch.PtrSize
+	//			autoffset += int32(bpsize)
+	//			p.To.Offset += int64(bpsize)
+	//		} else {
+	//			bpsize = 0
+	//		}
+	//
+	if fn.Attributes.NOFRAME() {
+		return errors.New("NOFRAME function clobbers base pointer register")
+	}
+
+	if fn.LocalSize == 0 {
+		fn.AllocLocal(int(gotypes.PointerSize))
 	}
 
 	return nil

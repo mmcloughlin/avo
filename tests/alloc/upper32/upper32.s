@@ -3,7 +3,7 @@
 #include "textflag.h"
 
 // func Upper32() uint64
-TEXT ·Upper32(SB), NOSPLIT, $0-8
+TEXT ·Upper32(SB), NOSPLIT, $8-8
 	// Initialize sum.
 	XORQ AX, AX
 

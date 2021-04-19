@@ -3,7 +3,7 @@
 #include "textflag.h"
 
 // func Hash(state *State, key []byte) uint64
-TEXT ·Hash(SB), NOSPLIT, $0-40
+TEXT ·Hash(SB), NOSPLIT, $8-40
 	MOVQ  state+0(FP), AX
 	MOVQ  key_base+8(FP), CX
 	MOVQ  key_len+16(FP), DX

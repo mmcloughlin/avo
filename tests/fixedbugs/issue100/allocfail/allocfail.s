@@ -8978,7 +8978,7 @@ emit_literal_skip_emit_remainder_encodeBlockAsm12BAvx:
 
 // func emitLiteral(dst []byte, lit []byte) int
 // Requires: SSE2
-TEXT ·emitLiteral(SB), NOSPLIT, $0-56
+TEXT ·emitLiteral(SB), NOSPLIT, $8-56
 	MOVQ dst_base+0(FP), AX
 	MOVQ lit_base+24(FP), CX
 	MOVQ lit_len+32(FP), DX
@@ -9212,7 +9212,7 @@ emit_literal_end_standalone:
 
 // func emitLiteralAvx(dst []byte, lit []byte) int
 // Requires: AVX, SSE2
-TEXT ·emitLiteralAvx(SB), NOSPLIT, $0-56
+TEXT ·emitLiteralAvx(SB), NOSPLIT, $8-56
 	MOVQ dst_base+0(FP), AX
 	MOVQ lit_base+24(FP), CX
 	MOVQ lit_len+32(FP), DX
@@ -9492,7 +9492,7 @@ emit_literal_end_avx_standalone:
 	RET
 
 // func emitRepeat(dst []byte, offset int, length int) int
-TEXT ·emitRepeat(SB), NOSPLIT, $0-48
+TEXT ·emitRepeat(SB), NOSPLIT, $8-48
 	XORQ BX, BX
 	MOVQ dst_base+0(FP), AX
 	MOVQ offset+24(FP), CX
@@ -9574,7 +9574,7 @@ gen_emit_repeat_end:
 	RET
 
 // func emitCopy(dst []byte, offset int, length int) int
-TEXT ·emitCopy(SB), NOSPLIT, $0-48
+TEXT ·emitCopy(SB), NOSPLIT, $8-48
 	XORQ BX, BX
 	MOVQ dst_base+0(FP), AX
 	MOVQ offset+24(FP), CX
@@ -9784,7 +9784,7 @@ gen_emit_copy_end:
 	RET
 
 // func matchLen(a []byte, b []byte) int
-TEXT ·matchLen(SB), NOSPLIT, $0-56
+TEXT ·matchLen(SB), NOSPLIT, $8-56
 	MOVQ a_base+0(FP), AX
 	MOVQ b_base+24(FP), CX
 	MOVQ a_len+8(FP), DX

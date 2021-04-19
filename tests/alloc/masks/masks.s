@@ -3,7 +3,7 @@
 #include "textflag.h"
 
 // func Masks() (uint16, uint64)
-TEXT ·Masks(SB), NOSPLIT, $0-16
+TEXT ·Masks(SB), NOSPLIT, $8-16
 	MOVQ $0x0001002a, AX
 	MOVQ $0x0002002a, CX
 	MOVQ $0x0003002a, DX
