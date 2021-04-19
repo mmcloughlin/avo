@@ -106,6 +106,51 @@ func ConstructLiveness(t *testing.T, ctx *build.Context) *ir.Function {
 	return BuildFunction(t, ctx, pass.LabelTarget, pass.CFG, pass.Liveness)
 }
 
+func TestAllocateRegistersBasePointerDeprioritized(t *testing.T) {
+	// Construct a function that requires n general-purpose registers all live
+	// at once. Choose n to be the maximal possible number of registers without
+	// touching the base pointer.
+	n := 14
+
+	ctx := build.NewContext()
+	ctx.Function("sum")
+	ctx.SignatureExpr("func() uint64")
+
+	x := make([]reg.GPVirtual, n)
+	for i := 0; i < n; i++ {
+		x[i] = ctx.GP64()
+		ctx.MOVQ(operand.U64(i), x[i])
+	}
+
+	for i := 1; i < n; i++ {
+		ctx.ADDQ(x[i], x[0])
+	}
+
+	ctx.Store(x[0], ctx.ReturnIndex(0))
+	ctx.RET()
+
+	// Build and compile the function up to register allocation.
+	fn := BuildFunction(t, ctx, pass.LabelTarget, pass.CFG, pass.Liveness, pass.AllocateRegisters, pass.BindRegisters)
+
+	// Verify this function uses n registers, but not the base pointer.
+	ps := map[reg.Physical]bool{}
+	for _, i := range fn.Instructions() {
+		for _, r := range i.OutputRegisters() {
+			ps[reg.ToPhysical(r)] = true
+		}
+	}
+
+	if len(ps) != n {
+		t.Fatalf("expected function to require %d registers", n)
+	}
+
+	for p := range ps {
+		if (p.Info() & reg.BasePointer) != 0 {
+			t.Fatal("base pointer used")
+		}
+	}
+}
+
 func TestEnsureBasePointerCalleeSavedFrameless(t *testing.T) {
 	// Construct a function that writes to the base pointer.
 	ctx := build.NewContext()
