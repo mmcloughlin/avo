@@ -15,6 +15,9 @@ import (
 // Sizes provides type sizes used by the standard Go compiler on amd64.
 var Sizes = types.SizesFor("gc", "amd64")
 
+// PointerSize is the size of a pointer on amd64.
+var PointerSize = Sizes.Sizeof(types.Typ[types.UnsafePointer])
+
 // Basic represents a primitive/basic type at a given memory address.
 type Basic struct {
 	Addr operand.Mem

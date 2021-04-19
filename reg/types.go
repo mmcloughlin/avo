@@ -145,6 +145,7 @@ type Info uint8
 const (
 	None       Info = 0
 	Restricted Info = 1 << iota
+	BasePointer
 )
 
 // Physical is a concrete register.

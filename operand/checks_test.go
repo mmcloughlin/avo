@@ -36,6 +36,12 @@ func TestChecks(t *testing.T) {
 
 		{IsIMM64, Imm((1 << 64) - 1), true},
 
+		// Signed Immediates
+		{IsIMM8, I8(-1), true},
+		{IsIMM16, I16(-1), true},
+		{IsIMM32, I32(-1), true},
+		{IsIMM64, I64(-1), true},
+
 		// Specific registers
 		{IsAL, reg.AL, true},
 		{IsAL, reg.CL, false},
