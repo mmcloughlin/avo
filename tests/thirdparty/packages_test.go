@@ -105,7 +105,6 @@ func (t *PackageTest) modinit() {
 
 // replaceavo points all avo dependencies to the local version.
 func (t *PackageTest) replaceavo() {
-
 	// Determine the path to avo.
 	_, self, _, ok := runtime.Caller(1)
 	if !ok {
