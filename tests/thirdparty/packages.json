@@ -7,6 +7,7 @@
             [
                 "go",
                 "run",
+                "-mod=mod",
                 ".",
                 "-avx",
                 "-out",
@@ -29,6 +30,7 @@
             [
                 "go",
                 "run",
+                "-mod=mod",
                 "_avo/asm.go",
                 "-out",
                 "sip13_amd64.s"
@@ -42,6 +44,7 @@
             [
                 "go",
                 "run",
+                "-mod=mod",
                 "avo/gen.go",
                 "-out",
                 "blocks_amd64.s",
@@ -70,6 +73,7 @@
             [
                 "go",
                 "run",
+                "-mod=mod",
                 "asm.go",
                 "-out",
                 "marvin_amd64.s"
@@ -125,6 +129,7 @@
             [
                 "go",
                 "run",
+                "-mod=mod",
                 "asm/asm.go",
                 "-out",
                 "primitivefuncs_amd64.s"
@@ -133,20 +138,61 @@
     },
     {
         "import_path": "github.com/klauspost/compress",
-        "version": "23a5980ed240fd76b89481403c834f48943b3788",
-        "dir": "s2",
+        "version": "2adf487b3e02f95ce7efd6e4953fda0ae7ecd080",
+        "dir": "s2/_generate",
         "generate": [
             [
                 "go",
                 "run",
+                "-mod=mod",
                 "gen.go",
                 "-out",
-                "encodeblock_amd64.s",
+                "../encodeblock_amd64.s",
                 "-stubs",
-                "encodeblock_amd64.go"
+                "../encodeblock_amd64.go",
+                "-pkg",
+                "s2"
             ]
         ],
         "test": "./s2"
+    },
+    {
+        "import_path": "github.com/klauspost/reedsolomon",
+        "version": "922778284547557265cff0f903ab5f4c27e40ae9",
+        "dir": "_gen",
+        "generate": [
+            [
+                "go",
+                "run",
+                "-mod=mod",
+                "gen.go",
+                "-out",
+                "../galois_gen_amd64.s",
+                "-stubs",
+                "../galois_gen_amd64.go",
+                "-pkg",
+                "reedsolomon"
+            ]
+        ]
+    },
+    {
+        "import_path": "github.com/minio/md5-simd",
+        "version": "30ad8af83f6868c2a30c615f3edf1a9366bf3f89",
+        "dir": "_gen",
+        "generate": [
+            [
+                "go",
+                "run",
+                "-mod=mod",
+                "gen.go",
+                "-out",
+                "../md5block_amd64.s",
+                "-stubs",
+                "../md5block_amd64.go",
+                "-pkg",
+                "md5simd"
+            ]
+        ]
     },
     {
         "import_path": "github.com/zeebo/blake3",
@@ -156,6 +202,7 @@
             [
                 "go",
                 "run",
+                "-mod=mod",
                 "./avx2",
                 "-out",
                 "../avx2/impl.s"
