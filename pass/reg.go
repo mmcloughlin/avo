@@ -91,7 +91,8 @@ func AllocateRegisters(fn *ir.Function) error {
 
 	// De-prioritize the base pointer register. This can be used as a general
 	// purpose register, but it's callee-save so needs to be saved/restored if
-	// it is clobbered.
+	// it is clobbered. For this reason we prefer to avoid using it unless
+	// forced to by register pressure.
 	for k, a := range as {
 		f := reg.FamilyOfKind(k)
 		for _, r := range f.Registers() {
