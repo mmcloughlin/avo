@@ -3,7 +3,6 @@ package pass
 import (
 	"errors"
 
-	"github.com/mmcloughlin/avo/attr"
 	"github.com/mmcloughlin/avo/gotypes"
 	"github.com/mmcloughlin/avo/ir"
 	"github.com/mmcloughlin/avo/operand"
@@ -191,7 +190,7 @@ func EnsureBasePointerCalleeSaved(fn *ir.Function) error {
 	//			bpsize = 0
 	//		}
 	//
-	if (fn.Attributes & attr.NOFRAME) != 0 {
+	if fn.Attributes.NOFRAME() {
 		return errors.New("NOFRAME function clobbers base pointer register")
 	}
 
