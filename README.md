@@ -17,8 +17,8 @@
 
 For more about `avo`:
 
-* Introductory talk [Better `x86` Assembly Generation with Go](https://www.youtube.com/watch?v=6Y5CZ7_tyA4) ([slides](https://speakerdeck.com/mmcloughlin/better-x86-assembly-generation-with-go)) at [dotGo 2019](https://2019.dotgo.eu/)
-* [Tutorial at Gophercon 2019](https://www.youtube.com/watch?v=WaD8sNqroAw) ([slides](https://speakerdeck.com/mmcloughlin/better-x86-assembly-generation-with-go-gophercon-2019))
+* Introductory talk ["Better `x86` Assembly Generation with Go"](https://www.youtube.com/watch?v=6Y5CZ7_tyA4) at [dotGo 2019](https://2019.dotgo.eu/) ([slides](https://speakerdeck.com/mmcloughlin/better-x86-assembly-generation-with-go))
+* [Longer tutorial at Gophercon 2019](https://www.youtube.com/watch?v=WaD8sNqroAw) showing a highly-optimized dot product ([slides](https://speakerdeck.com/mmcloughlin/better-x86-assembly-generation-with-go-gophercon-2019))
 * Watch [Filippo Valsorda](https://filippo.io/) live code the [rewrite of `filippo.io/edwards25519` assembly with `avo`](https://videos.filippo.io/videos/watch/d7173fa3-3d74-4f58-9e5a-30f26cf416e2?start=3m)
 * Discuss `avo` and general Go assembly topics in the [#assembly](https://gophers.slack.com/archives/C6WDZJ70S) channel of [Gophers Slack](https://invite.slack.golangbridge.org/)
 
