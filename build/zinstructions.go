@@ -1129,6 +1129,60 @@ func (c *Context) BLENDVPS(x, mx, x1 operand.Op) {
 	}
 }
 
+// REP: Repeat the following instructions with the number in cx.
+func (c *Context) REP(cx operand.Op) {
+	if inst, err := x86.REP(cx); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// REPE: Repeat the following instructions while ZF is set
+func (c *Context) REPE(cx operand.Op) {
+	if inst, err := x86.REPE(cx); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// REPNE: Repeat the following instructions while ZF is not set
+func (c *Context) REPNE(cx operand.Op) {
+	if inst, err := x86.REPNE(cx); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// MOVSB: Move byte at address at SI to DI
+func (c *Context) MOVSB(si, di operand.Op) {
+	if inst, err := x86.MOVSB(si, di); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// MOVSW: Move word at address at SI to DI
+func (c *Context) MOVSW(si, di operand.Op) {
+	if inst, err := x86.MOVSW(si, di); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
+// MOVSL: Move long at address at SI to DI
+func (c *Context) MOVSL(si, di operand.Op) {
+	if inst, err := x86.MOVSL(si, di); err == nil {
+		c.Instruction(inst)
+	} else {
+		c.adderror(err)
+	}
+}
+
 // BLENDVPS:  Variable Blend Packed Single Precision Floating-Point Values.
 //
 // Forms:
@@ -1138,6 +1192,24 @@ func (c *Context) BLENDVPS(x, mx, x1 operand.Op) {
 // Construct and append a BLENDVPS instruction to the active function.
 // Operates on the global context.
 func BLENDVPS(x, mx, x1 operand.Op) { ctx.BLENDVPS(x, mx, x1) }
+
+// REP: Repeat the following instructions with the number in cx.
+func REP(cx operand.Op) {ctx.REP(cx)}
+
+// REPE: Repeat the following instructions while ZF is set
+func REPE(cx operand.Op) {ctx.REPE(cx)}
+
+// REPNE: Repeat the following instructions while ZF is not set
+func REPNE(cx operand.Op) {ctx.REPNE(cx)}
+
+// MOVSB: Move byte at address at SI to DI
+func MOVSB(si, di operand.Op) {ctx.MOVSB(si, di)}
+
+// MOVSW: Move word at address at SI to DI
+func MOVSW(si, di operand.Op) {ctx.MOVSW(si, di)}
+
+// MOVSL: Move long at address at SI to DI
+func MOVSL(si, di operand.Op) {ctx.MOVSL(si, di)}
 
 // BLSIL: Isolate Lowest Set Bit.
 //

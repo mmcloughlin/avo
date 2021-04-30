@@ -6859,6 +6859,15 @@ var Instructions = []Instruction{
 		},
 	},
 	{
+		Opcode:  "MOVSB",
+		Summary: "Move byte at address at SI to DI",
+		Forms: []Form{
+			{
+				Operands: []Operand{},
+			},
+		},
+	},
+	{
 		Opcode:  "MOVSD",
 		Summary: "Move Scalar Double-Precision Floating-Point Value",
 		Forms: []Form{
@@ -6949,6 +6958,15 @@ var Instructions = []Instruction{
 					{Type: "xmm", Action: 0x1},
 					{Type: "m32", Action: 0x2},
 				},
+			},
+		},
+	},
+	{
+		Opcode:  "MOVSW",
+		Summary: "Move word at address at SI to DI",
+		Forms: []Form{
+			{
+				Operands: []Operand{},
 			},
 		},
 	},
@@ -11135,6 +11153,33 @@ var Instructions = []Instruction{
 					{Register: "ecx", Action: 0x2},
 					{Register: "edx", Action: 0x2},
 				},
+			},
+		},
+	},
+	{
+		Opcode:  "REP",
+		Summary: "Repeat",
+		Forms: []Form{
+			{
+				Operands: []Operand{},
+			},
+		},
+	},
+	{
+		Opcode:  "REPE",
+		Summary: "Repeat",
+		Forms: []Form{
+			{
+				Operands: []Operand{},
+			},
+		},
+	},
+	{
+		Opcode:  "REPNE",
+		Summary: "Repeat",
+		Forms: []Form{
+			{
+				Operands: []Operand{},
 			},
 		},
 	},
