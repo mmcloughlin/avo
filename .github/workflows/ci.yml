@@ -44,16 +44,16 @@ jobs:
       run: ./script/coverage
 
     - name: Upload Unit Test Coverage
-      uses: codecov/codecov-action@967e2b38a85a62bd61be5529ada27ebc109948c2 #v1.4.1
+      uses: codecov/codecov-action@51d810878be5422784e86451c0e7c14e5860ec47 # v2.0.2
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
-        file: unittests.coverprofile
+        files: unittests.coverprofile
         flags: unittests
     - name: Upload Integration Test Coverage
-      uses: codecov/codecov-action@967e2b38a85a62bd61be5529ada27ebc109948c2 #v1.4.1
+      uses: codecov/codecov-action@51d810878be5422784e86451c0e7c14e5860ec47 # v2.0.2
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
-        file: integration.coverprofile
+        files: integration.coverprofile
         flags: integration
 
   lint:
