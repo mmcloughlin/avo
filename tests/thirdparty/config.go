@@ -24,6 +24,10 @@ func (r Repository) String() string {
 	return path.Join(r.Owner, r.Name)
 }
 
+func (r Repository) ID() string {
+	return r.Owner + "-" + r.Name
+}
+
 // CloneURL returns the git clone URL.
 func (r Repository) CloneURL() string {
 	return fmt.Sprintf("https://github.com/%s.git", r)
@@ -44,9 +48,9 @@ type Package struct {
 	Test       []*Step    `json:"test"`     // test commands (defaults to "go test ./...")
 }
 
-// Name returns the package name.
-func (p Package) Name() string {
-	return p.Repository.String()
+// ID returns an identifier for the package.
+func (p Package) ID() string {
+	return p.Repository.ID()
 }
 
 func (p Package) Steps(c *Context) []*Step {

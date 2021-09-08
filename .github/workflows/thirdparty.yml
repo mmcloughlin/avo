@@ -12,7 +12,7 @@ on:
   pull_request:
 
 jobs:
-  zeebo/xxh3:
+  zeebo-xxh3:
     runs-on: ubuntu-latest
     steps:
     - name: Install Go
@@ -31,7 +31,7 @@ jobs:
         path: thirdparty
         persist-credentials: false
 
-  dgryski/go-sip13:
+  dgryski-go-sip13:
     runs-on: ubuntu-latest
     steps:
     - name: Install Go
@@ -50,7 +50,7 @@ jobs:
         path: thirdparty
         persist-credentials: false
 
-  phoreproject/bls:
+  phoreproject-bls:
     runs-on: ubuntu-latest
     steps:
     - name: Install Go
