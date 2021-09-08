@@ -73,7 +73,7 @@ func (t *PackageTest) Run() {
 func (t *PackageTest) checkout() {
 	// Clone repo.
 	dst := filepath.Join(t.WorkDir, t.Name())
-	test.Exec(t.T, "git", "clone", "--quiet", t.CloneURL(), dst)
+	test.Exec(t.T, "git", "clone", "--quiet", t.Repository.CloneURL(), dst)
 	t.repopath = dst
 
 	// Checkout specific version.

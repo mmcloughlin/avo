@@ -3,14 +3,30 @@ package thirdparty
 
 import (
 	"encoding/json"
+	"fmt"
 	"io"
 	"os"
+	"path"
 	"path/filepath"
 )
 
 type Context struct {
 	AvoDirectory        string
 	RepositoryDirectory string
+}
+
+type Repository struct {
+	Owner string `json:"owner"`
+	Name  string `json:"name"`
+}
+
+func (r Repository) String() string {
+	return path.Join(r.Owner, r.Name)
+}
+
+// CloneURL returns the git clone URL.
+func (r Repository) CloneURL() string {
+	return fmt.Sprintf("https://github.com/%s.git", r)
 }
 
 type Step struct {
@@ -20,30 +36,17 @@ type Step struct {
 
 // Package defines an integration test based on a third-party package using avo.
 type Package struct {
-	ImportPath string  `json:"import_path"` // package import path
-	Version    string  `json:"version"`     // git sha, tag or branch
-	Module     string  `json:"module"`      // path to module file
-	Setup      []*Step `json:"setup"`       // setup commands to run
-	Generate   []*Step `json:"generate"`    // generate commands to run
-	Test       string  `json:"test"`        // test path relative to repo root (if empty defaults to ./...)
+	Repository Repository `json:"repository"`
+	Version    string     `json:"version"`  // git sha, tag or branch
+	Module     string     `json:"module"`   // path to module file
+	Setup      []*Step    `json:"setup"`    // setup commands to run
+	Generate   []*Step    `json:"generate"` // generate commands to run
+	Test       []*Step    `json:"test"`     // test commands (defaults to "go test ./...")
 }
 
 // Name returns the package name.
 func (p Package) Name() string {
-	return filepath.Base(p.ImportPath)
-}
-
-// CloneURL returns the git clone URL.
-func (p Package) CloneURL() string {
-	return "https://" + p.ImportPath + ".git"
-}
-
-// TestPath returns the paths to run "go test" on, relative to the repository root.
-func (p Package) TestPath() string {
-	if p.Test == "" {
-		return "./..."
-	}
-	return p.Test
+	return p.Repository.String()
 }
 
 func (p Package) Steps(c *Context) []*Step {
@@ -76,11 +79,15 @@ func (p Package) Steps(c *Context) []*Step {
 	})
 
 	// Tests.
-	steps = append(steps, &Step{
-		Commands: [][]string{
-			{"go", "test", p.TestPath()},
-		},
-	})
+	if len(p.Test) > 0 {
+		steps = append(steps, p.Test...)
+	} else {
+		steps = append(steps, &Step{
+			Commands: [][]string{
+				{"go", "test", "./..."},
+			},
+		})
+	}
 
 	return steps
 }

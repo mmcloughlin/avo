@@ -5,32 +5,6 @@ import (
 	"testing"
 )
 
-func TestPackageName(t *testing.T) {
-	p := Package{ImportPath: "github.com/username/repo"}
-	if p.Name() != "repo" {
-		t.Fail()
-	}
-}
-
-func TestPackageCloneURL(t *testing.T) {
-	p := Package{ImportPath: "github.com/username/repo"}
-	if p.CloneURL() != "https://github.com/username/repo.git" {
-		t.Fail()
-	}
-}
-
-func TestPackagesTestPath(t *testing.T) {
-	p := Package{}
-	if p.TestPath() != "./..." {
-		t.Fail()
-	}
-
-	p.Test = "./sub"
-	if p.TestPath() != "./sub" {
-		t.Fail()
-	}
-}
-
 func TestLoadPackages(t *testing.T) {
 	r := strings.NewReader(`[{"unknown_field": "value"}]`)
 	_, err := LoadPackages(r)

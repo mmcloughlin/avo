@@ -1,6 +1,9 @@
 [
     {
-        "import_path": "github.com/zeebo/xxh3",
+        "repository": {
+            "owner": "zeebo",
+            "name": "xxh3"
+        },
         "version": "v1.0.0-rc1",
         "module": "avo/go.mod",
         "generate": [
@@ -28,7 +31,10 @@
         ]
     },
     {
-        "import_path": "github.com/dgryski/go-sip13",
+        "repository": {
+            "owner": "dgryski",
+            "name": "go-sip13"
+        },
         "version": "62edffca92457b3a66125c686137cc5f0fe81672",
         "module": "_avo/go.mod",
         "setup": [
@@ -84,7 +90,10 @@
         ]
     },
     {
-        "import_path": "github.com/phoreproject/bls",
+        "repository": {
+            "owner": "phoreproject",
+            "name": "bls"
+        },
         "version": "a88a5ae26844d7293359422888d7c7f69f43c845",
         "module": "asm/go.mod",
         "setup": [

@@ -80,7 +80,7 @@ on:
 	// One job per package.
 	// c := thirdparty.Context{
 	// 	AvoDirectory:        "{{ runner.workspace }}/avo",
-	// 	RepositoryDirectory: "{{ runner.workspace }}/pkg",
+	// 	RepositoryDirectory: "{{ runner.workspace }}/thirdparty",
 	// }
 
 	fmt.Fprintln(w, "jobs:")
@@ -95,6 +95,22 @@ on:
 		fmt.Fprintf(w, "      with:\n")
 		fmt.Fprintf(w, "        go-version: 1.17.x\n")
 
+		// Checkout avo.
+		fmt.Fprintf(w, "    - name: Checkout avo\n")
+		fmt.Fprintf(w, "      uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f # v2.3.4\n")
+		fmt.Fprintf(w, "      with:\n")
+		fmt.Fprintf(w, "        path: avo\n")
+		fmt.Fprintf(w, "        persist-credentials: false\n")
+
+		// Checkout the third-party package.
+		// Checkout avo.
+		fmt.Fprintf(w, "    - name: Checkout %s\n", pkg.Repository)
+		fmt.Fprintf(w, "      uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f # v2.3.4\n")
+		fmt.Fprintf(w, "      with:\n")
+		fmt.Fprintf(w, "        repository: %s\n", pkg.Repository)
+		fmt.Fprintf(w, "        path: thirdparty\n")
+		fmt.Fprintf(w, "        persist-credentials: false\n")
+
 		fmt.Fprintf(w, "\n")
 	}
 
@@ -104,8 +120,8 @@ on:
 	//         go-version: [1.15.x, 1.16.x]
 	//         platform: [ubuntu-latest]
 	//     runs-on: ${{ matrix.platform }}
-	//     steps:
 	//     - name: Configure Go Environment
+	//     steps:
 	//       run: |
 	//         echo GOPATH=${{ runner.workspace }} >> $GITHUB_ENV
 	//         echo ${{ runner.workspace }}/bin >> $GITHUB_PATH
