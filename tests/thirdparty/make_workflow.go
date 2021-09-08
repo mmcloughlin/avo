@@ -10,6 +10,7 @@ import (
 	"io"
 	"log"
 	"os"
+	"path"
 	"path/filepath"
 	"runtime"
 
@@ -96,32 +97,32 @@ on:
 		fmt.Fprintf(w, "        go-version: 1.17.x\n")
 
 		// Checkout avo.
+		avodir := "avo"
 		fmt.Fprintf(w, "    - name: Checkout avo\n")
 		fmt.Fprintf(w, "      uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f # v2.3.4\n")
 		fmt.Fprintf(w, "      with:\n")
-		fmt.Fprintf(w, "        path: avo\n")
+		fmt.Fprintf(w, "        path: %s\n", avodir)
 		fmt.Fprintf(w, "        persist-credentials: false\n")
 
 		// Checkout the third-party package.
+		pkgdir := pkg.Repository.Name
 		fmt.Fprintf(w, "    - name: Checkout %s\n", pkg.Repository)
 		fmt.Fprintf(w, "      uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f # v2.3.4\n")
 		fmt.Fprintf(w, "      with:\n")
 		fmt.Fprintf(w, "        repository: %s\n", pkg.Repository)
 		fmt.Fprintf(w, "        ref: %s\n", pkg.Version)
-		fmt.Fprintf(w, "        path: thirdparty\n")
+		fmt.Fprintf(w, "        path: %s\n", pkgdir)
 		fmt.Fprintf(w, "        persist-credentials: false\n")
 
 		// Build steps.
 		c := &thirdparty.Context{
-			AvoDirectory:        "${{ runner.workspace }}/avo",
-			RepositoryDirectory: "${{ runner.workspace }}/thirdparty",
+			AvoDirectory:        path.Join("${{ runner.workspace }}", avodir),
+			RepositoryDirectory: path.Join("${{ runner.workspace }}", pkgdir),
 		}
 
 		for _, step := range pkg.Steps(c) {
 			fmt.Fprintf(w, "    - name: %s\n", step.Name)
-			if step.WorkingDirectory != "" {
-				fmt.Fprintf(w, "      working-directory: %s\n", step.WorkingDirectory)
-			}
+			fmt.Fprintf(w, "      working-directory: %s\n", path.Join(pkgdir, step.WorkingDirectory))
 			fmt.Fprintf(w, "      run: |\n")
 			for _, cmd := range step.Commands {
 				fmt.Fprintf(w, "        %s\n", cmd)
