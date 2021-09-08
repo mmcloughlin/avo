@@ -86,6 +86,7 @@ on:
 	fmt.Fprintln(w, "jobs:")
 	for _, pkg := range pkgs {
 		fmt.Fprintf(w, "  %s:\n", pkg.Name())
+		fmt.Fprintf(w, "    steps:\n")
 
 		// Install Go.
 		fmt.Fprintf(w, "    - name: Install Go\n")
