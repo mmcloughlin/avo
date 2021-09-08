@@ -45,7 +45,7 @@ jobs:
     - name: Diff
       working-directory: xxh3
       run: |
-        git -C ${{ runner.workspace }}/xxh3 diff
+        git diff
     - name: Test
       working-directory: xxh3
       run: |
@@ -94,7 +94,7 @@ jobs:
     - name: Diff
       working-directory: go-sip13
       run: |
-        git -C ${{ runner.workspace }}/go-sip13 diff
+        git diff
     - name: Test
       working-directory: go-sip13
       run: |
@@ -140,7 +140,7 @@ jobs:
     - name: Diff
       working-directory: bls
       run: |
-        git -C ${{ runner.workspace }}/bls diff
+        git diff
     - name: Test
       working-directory: bls
       run: |

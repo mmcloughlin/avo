@@ -133,10 +133,8 @@ func (p *Package) Steps(c *Context) []*Step {
 
 	// Display changes.
 	steps = append(steps, &Step{
-		Name: "Diff",
-		Commands: []string{
-			"git -C " + c.RepositoryDirectory + " diff",
-		},
+		Name:     "Diff",
+		Commands: []string{"git diff"},
 	})
 
 	// Tests.
