@@ -10,6 +10,8 @@ import (
 	"github.com/mmcloughlin/avo/internal/test"
 )
 
+//go:generate go run make_workflow.go -pkgs packages.json -output ../../.github/workflows/thirdparty.yml
+
 // Custom flags.
 var (
 	pkgsfilename = flag.String("pkgs", "", "packages configuration")
