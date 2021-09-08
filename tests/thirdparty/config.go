@@ -35,9 +35,9 @@ func (r Repository) CloneURL() string {
 }
 
 type Step struct {
-	Name             string     `json:"name"`
-	WorkingDirectory string     `json:"dir"`
-	Commands         [][]string `json:"commands"`
+	Name             string   `json:"name"`
+	WorkingDirectory string   `json:"dir"`
+	Commands         []string `json:"commands"`
 }
 
 func (s *Step) Validate() error {
@@ -121,10 +121,10 @@ func (p *Package) Steps(c *Context) []*Step {
 	steps = append(steps, &Step{
 		Name:             "Avo Module Replacement",
 		WorkingDirectory: moddir,
-		Commands: [][]string{
-			{"go", "mod", "edit", "-modfile=" + modfile, "-require=github.com/mmcloughlin/avo@" + invalid},
-			{"go", "mod", "edit", "-modfile=" + modfile, "-replace=github.com/mmcloughlin/avo=" + c.AvoDirectory},
-			{"go", "mod", "tidy", "-modfile=" + modfile},
+		Commands: []string{
+			"go mod edit -modfile=" + modfile + " -require=github.com/mmcloughlin/avo@" + invalid,
+			"go mod edit -modfile=" + modfile + " -replace=github.com/mmcloughlin/avo=" + c.AvoDirectory,
+			"go mod tidy -modfile=" + modfile,
 		},
 	})
 
@@ -134,8 +134,8 @@ func (p *Package) Steps(c *Context) []*Step {
 	// Display changes.
 	steps = append(steps, &Step{
 		Name: "Diff",
-		Commands: [][]string{
-			{"git", "-C", c.RepositoryDirectory, "diff"},
+		Commands: []string{
+			"git -C " + c.RepositoryDirectory + " diff",
 		},
 	})
 
@@ -145,8 +145,8 @@ func (p *Package) Steps(c *Context) []*Step {
 	} else {
 		steps = append(steps, &Step{
 			Name: "Test",
-			Commands: [][]string{
-				{"go", "test", "./..."},
+			Commands: []string{
+				"go test ./...",
 			},
 		})
 	}

@@ -12,7 +12,6 @@ import (
 	"os"
 	"path/filepath"
 	"runtime"
-	"strings"
 
 	"github.com/mmcloughlin/avo/tests/thirdparty"
 )
@@ -125,7 +124,7 @@ on:
 			}
 			fmt.Fprintf(w, "      run: |\n")
 			for _, cmd := range step.Commands {
-				fmt.Fprintf(w, "        %s\n", strings.Join(cmd, " "))
+				fmt.Fprintf(w, "        %s\n", cmd)
 			}
 		}
 

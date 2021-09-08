@@ -99,8 +99,8 @@ func (t *PackageTest) steps() {
 	}
 
 	for _, s := range t.Steps(c) {
-		for _, args := range s.Commands {
-			cmd := exec.Command(args[0], args[1:]...)
+		for _, command := range s.Commands {
+			cmd := exec.Command("sh", "-c", command)
 			cmd.Dir = filepath.Join(t.repopath, s.WorkingDirectory)
 			test.ExecCommand(t.T, cmd)
 		}
