@@ -82,5 +82,55 @@
                 ]
             }
         ]
+    },
+    {
+        "import_path": "github.com/phoreproject/bls",
+        "version": "a88a5ae26844d7293359422888d7c7f69f43c845",
+        "module": "asm/go.mod",
+        "setup": [
+            {
+                "dir": "asm",
+                "commands": [
+                    [
+                        "sed",
+                        "-i.bak",
+                        "/\\/\\/ +build ignore/d",
+                        "asm.go"
+                    ],
+                    [
+                        "go",
+                        "mod",
+                        "init",
+                        "github.com/phoreproject/bls/asm"
+                    ]
+                ]
+            }
+        ],
+        "generate": [
+            {
+                "dir": "asm",
+                "commands": [
+                    [
+                        "go",
+                        "mod",
+                        "edit",
+                        "-require=github.com/phoreproject/bls@v0.0.0-00010101000000-000000000000",
+                        "-replace=github.com/phoreproject/bls=../"
+                    ],
+                    [
+                        "go",
+                        "mod",
+                        "download"
+                    ],
+                    [
+                        "go",
+                        "run",
+                        ".",
+                        "-out",
+                        "../primitivefuncs_amd64.s"
+                    ]
+                ]
+            }
+        ]
     }
 ]
