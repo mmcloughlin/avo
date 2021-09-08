@@ -60,6 +60,7 @@ type PackageTest struct {
 	Latest  bool   // use latest version of the package
 
 	repopath string // path the repo is cloned to
+	cwd      string // working directory to execute commands in
 }
 
 // Run the test.
@@ -79,6 +80,7 @@ func (t *PackageTest) checkout() {
 	dst := filepath.Join(t.WorkDir, t.Name())
 	t.git("clone", "--quiet", t.CloneURL(), dst)
 	t.repopath = dst
+	t.cd(t.repopath)
 
 	// Checkout specific version.
 	if t.Latest {
@@ -115,15 +117,22 @@ func (t *PackageTest) replaceavo() {
 		if err != nil {
 			return err
 		}
-		if filepath.Base(path) != "go.mod" {
+		dir, base := filepath.Split(path)
+		if base != "go.mod" {
 			return nil
 		}
-		t.gotool("mod", "edit", "-replace=github.com/mmcloughlin/avo="+avodir, path)
+		t.cd(dir)
+		t.gotool("mod", "tidy")
+		t.gotool("get", "github.com/mmcloughlin/avo")
+		t.gotool("mod", "edit", "-replace=github.com/mmcloughlin/avo="+avodir)
+		t.gotool("mod", "download")
 		return nil
 	})
 	if err != nil {
 		t.Fatal(err)
 	}
+
+	t.cd(t.repopath)
 }
 
 // generate runs generate commands.
@@ -156,6 +165,11 @@ func (t *PackageTest) git(arg ...string) {
 // gotool runs a go command.
 func (t *PackageTest) gotool(arg ...string) {
 	cmd := exec.Command(test.GoTool(), arg...)
-	cmd.Dir = t.repopath
+	cmd.Dir = t.cwd
 	test.ExecCommand(t.T, cmd)
+}
+
+// cd sets the working directory.
+func (t *PackageTest) cd(dir string) {
+	t.cwd = dir
 }
