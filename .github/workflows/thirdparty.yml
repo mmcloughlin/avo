@@ -35,7 +35,7 @@ jobs:
       working-directory: xxh3/avo
       run: |
         go mod edit -modfile=go.mod -require=github.com/mmcloughlin/avo@v0.0.0-00010101000000-000000000000
-        go mod edit -modfile=go.mod -replace=github.com/mmcloughlin/avo=${{ runner.workspace }}/avo
+        go mod edit -modfile=go.mod -replace=github.com/mmcloughlin/avo=${{ github.workspace }}/avo
         go mod tidy -modfile=go.mod
     - name: Generate
       working-directory: xxh3/avo
@@ -83,7 +83,7 @@ jobs:
       working-directory: go-sip13/_avo
       run: |
         go mod edit -modfile=go.mod -require=github.com/mmcloughlin/avo@v0.0.0-00010101000000-000000000000
-        go mod edit -modfile=go.mod -replace=github.com/mmcloughlin/avo=${{ runner.workspace }}/avo
+        go mod edit -modfile=go.mod -replace=github.com/mmcloughlin/avo=${{ github.workspace }}/avo
         go mod tidy -modfile=go.mod
     - name: Generate
       working-directory: go-sip13/_avo
@@ -128,7 +128,7 @@ jobs:
       working-directory: bls/asm
       run: |
         go mod edit -modfile=go.mod -require=github.com/mmcloughlin/avo@v0.0.0-00010101000000-000000000000
-        go mod edit -modfile=go.mod -replace=github.com/mmcloughlin/avo=${{ runner.workspace }}/avo
+        go mod edit -modfile=go.mod -replace=github.com/mmcloughlin/avo=${{ github.workspace }}/avo
         go mod tidy -modfile=go.mod
     - name: Generate
       working-directory: bls/asm

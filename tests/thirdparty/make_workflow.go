@@ -116,8 +116,8 @@ on:
 
 		// Build steps.
 		c := &thirdparty.Context{
-			AvoDirectory:        path.Join("${{ runner.workspace }}", avodir),
-			RepositoryDirectory: path.Join("${{ runner.workspace }}", pkgdir),
+			AvoDirectory:        path.Join("${{ github.workspace }}", avodir),
+			RepositoryDirectory: path.Join("${{ github.workspace }}", pkgdir),
 		}
 
 		for _, step := range pkg.Steps(c) {
