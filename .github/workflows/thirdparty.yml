@@ -29,23 +29,25 @@ jobs:
       with:
         repository: zeebo/xxh3
         ref: v1.0.0-rc1
-        path: thirdparty
+        path: xxh3
         persist-credentials: false
     - name: Avo Module Replacement
-      working-directory: avo
+      working-directory: xxh3/avo
       run: |
         go mod edit -modfile=go.mod -require=github.com/mmcloughlin/avo@v0.0.0-00010101000000-000000000000
         go mod edit -modfile=go.mod -replace=github.com/mmcloughlin/avo=${{ runner.workspace }}/avo
         go mod tidy -modfile=go.mod
     - name: Generate
-      working-directory: avo
+      working-directory: xxh3/avo
       run: |
         go run . -avx -out ../accum_vector_avx_amd64.s
         go run . -sse -out ../accum_vector_sse_amd64.s
     - name: Diff
+      working-directory: xxh3
       run: |
-        git -C ${{ runner.workspace }}/thirdparty diff
+        git -C ${{ runner.workspace }}/xxh3 diff
     - name: Test
+      working-directory: xxh3
       run: |
         go test ./...
 
@@ -66,32 +68,35 @@ jobs:
       with:
         repository: dgryski/go-sip13
         ref: 62edffca92457b3a66125c686137cc5f0fe81672
-        path: thirdparty
+        path: go-sip13
         persist-credentials: false
     - name: Setup Root Module
+      working-directory: go-sip13
       run: |
         go mod init github.com/dgryski/go-sip13
     - name: Setup Generator Module
-      working-directory: _avo
+      working-directory: go-sip13/_avo
       run: |
         sed -i.bak '/+build ignore/d' asm.go
         go mod init github.com/dgryski/go-sip13/_avo
     - name: Avo Module Replacement
-      working-directory: _avo
+      working-directory: go-sip13/_avo
       run: |
         go mod edit -modfile=go.mod -require=github.com/mmcloughlin/avo@v0.0.0-00010101000000-000000000000
         go mod edit -modfile=go.mod -replace=github.com/mmcloughlin/avo=${{ runner.workspace }}/avo
         go mod tidy -modfile=go.mod
     - name: Generate
-      working-directory: _avo
+      working-directory: go-sip13/_avo
       run: |
         go mod edit -modfile=go.mod -require=github.com/dgryski/go-sip13@v0.0.0-00010101000000-000000000000
         go mod edit -modfile=go.mod -replace=github.com/dgryski/go-sip13=../
         go run . -out ../sip13_amd64.s
     - name: Diff
+      working-directory: go-sip13
       run: |
-        git -C ${{ runner.workspace }}/thirdparty diff
+        git -C ${{ runner.workspace }}/go-sip13 diff
     - name: Test
+      working-directory: go-sip13
       run: |
         go test ./...
 
@@ -112,30 +117,32 @@ jobs:
       with:
         repository: phoreproject/bls
         ref: a88a5ae26844d7293359422888d7c7f69f43c845
-        path: thirdparty
+        path: bls
         persist-credentials: false
     - name: Setup
-      working-directory: asm
+      working-directory: bls/asm
       run: |
         sed -i.bak '/+build ignore/d' asm.go
         go mod init github.com/phoreproject/bls/asm
     - name: Avo Module Replacement
-      working-directory: asm
+      working-directory: bls/asm
       run: |
         go mod edit -modfile=go.mod -require=github.com/mmcloughlin/avo@v0.0.0-00010101000000-000000000000
         go mod edit -modfile=go.mod -replace=github.com/mmcloughlin/avo=${{ runner.workspace }}/avo
         go mod tidy -modfile=go.mod
     - name: Generate
-      working-directory: asm
+      working-directory: bls/asm
       run: |
         go mod edit -modfile=go.mod -require=github.com/phoreproject/bls@v0.0.0-00010101000000-000000000000
         go mod edit -modfile=go.mod -replace=github.com/phoreproject/bls=../
         go mod download
         go run . -out ../primitivefuncs_amd64.s
     - name: Diff
+      working-directory: bls
       run: |
-        git -C ${{ runner.workspace }}/thirdparty diff
+        git -C ${{ runner.workspace }}/bls diff
     - name: Test
+      working-directory: bls
       run: |
         go test ./...
 
