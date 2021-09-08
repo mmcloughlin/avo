@@ -34,7 +34,7 @@ func TestPackages(t *testing.T) {
 
 	for _, pkg := range pkgs {
 		pkg := pkg // scopelint
-		t.Run(pkg.Name(), func(t *testing.T) {
+		t.Run(pkg.ID(), func(t *testing.T) {
 			dir, clean := test.TempDir(t)
 			if !*preserve {
 				defer clean()
@@ -55,7 +55,7 @@ func TestPackages(t *testing.T) {
 // PackageTest executes an integration test based on a given third-party package.
 type PackageTest struct {
 	*testing.T
-	Package
+	*Package
 
 	WorkDir string // working directory for the test
 	Latest  bool   // use latest version of the package

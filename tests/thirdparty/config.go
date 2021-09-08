@@ -3,6 +3,7 @@ package thirdparty
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io"
 	"os"
@@ -34,8 +35,19 @@ func (r Repository) CloneURL() string {
 }
 
 type Step struct {
+	Name             string     `json:"name"`
 	WorkingDirectory string     `json:"dir"`
 	Commands         [][]string `json:"commands"`
+}
+
+func (s *Step) Validate() error {
+	if s.Name == "" {
+		return errors.New("missing name")
+	}
+	if len(s.Commands) == 0 {
+		return errors.New("missing commands")
+	}
+	return nil
 }
 
 // Package defines an integration test based on a third-party package using avo.
@@ -49,11 +61,54 @@ type Package struct {
 }
 
 // ID returns an identifier for the package.
-func (p Package) ID() string {
+func (p *Package) ID() string {
 	return p.Repository.ID()
 }
 
-func (p Package) Steps(c *Context) []*Step {
+func (p *Package) setdefaults() {
+	for _, stage := range []struct {
+		Steps       []*Step
+		DefaultName string
+	}{
+		{p.Setup, "Setup"},
+		{p.Generate, "Generate"},
+		{p.Test, "Test"},
+	} {
+		if len(stage.Steps) == 1 && stage.Steps[0].Name == "" {
+			stage.Steps[0].Name = stage.DefaultName
+		}
+	}
+
+}
+
+func (p *Package) Validate() error {
+	if p.Version == "" {
+		return errors.New("missing version")
+	}
+	if p.Module == "" {
+		return errors.New("missing module")
+	}
+	if len(p.Generate) == 0 {
+		return errors.New("no generate commands")
+	}
+
+	stages := map[string][]*Step{
+		"setup":    p.Setup,
+		"generate": p.Generate,
+		"test":     p.Test,
+	}
+	for name, steps := range stages {
+		for _, s := range steps {
+			if err := s.Validate(); err != nil {
+				return fmt.Errorf("%s step: %w", name, err)
+			}
+		}
+	}
+
+	return nil
+}
+
+func (p *Package) Steps(c *Context) []*Step {
 	var steps []*Step
 
 	// Optional setup.
@@ -64,6 +119,7 @@ func (p Package) Steps(c *Context) []*Step {
 	moddir := filepath.Dir(p.Module)
 	modfile := filepath.Base(p.Module)
 	steps = append(steps, &Step{
+		Name:             "Avo Module Replacement",
 		WorkingDirectory: moddir,
 		Commands: [][]string{
 			{"go", "mod", "edit", "-modfile=" + modfile, "-require=github.com/mmcloughlin/avo@" + invalid},
@@ -77,6 +133,7 @@ func (p Package) Steps(c *Context) []*Step {
 
 	// Display changes.
 	steps = append(steps, &Step{
+		Name: "Diff",
 		Commands: [][]string{
 			{"git", "-C", c.RepositoryDirectory, "diff"},
 		},
@@ -87,6 +144,7 @@ func (p Package) Steps(c *Context) []*Step {
 		steps = append(steps, p.Test...)
 	} else {
 		steps = append(steps, &Step{
+			Name: "Test",
 			Commands: [][]string{
 				{"go", "test", "./..."},
 			},
@@ -96,19 +154,37 @@ func (p Package) Steps(c *Context) []*Step {
 	return steps
 }
 
+type Packages []*Package
+
+func (p Packages) setdefaults() {
+	for _, pkg := range p {
+		pkg.setdefaults()
+	}
+}
+
+func (p Packages) Validate() error {
+	for _, pkg := range p {
+		if err := pkg.Validate(); err != nil {
+			return fmt.Errorf("package %s: %w", pkg.ID(), err)
+		}
+	}
+	return nil
+}
+
 // LoadPackages loads a list of package configurations from JSON format.
-func LoadPackages(r io.Reader) ([]Package, error) {
-	var pkgs []Package
+func LoadPackages(r io.Reader) (Packages, error) {
+	var pkgs Packages
 	d := json.NewDecoder(r)
 	d.DisallowUnknownFields()
 	if err := d.Decode(&pkgs); err != nil {
 		return nil, err
 	}
+	pkgs.setdefaults()
 	return pkgs, nil
 }
 
 // LoadPackagesFile loads a list of package configurations from a JSON file.
-func LoadPackagesFile(filename string) ([]Package, error) {
+func LoadPackagesFile(filename string) (Packages, error) {
 	f, err := os.Open(filename)
 	if err != nil {
 		return nil, err

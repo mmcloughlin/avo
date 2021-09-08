@@ -39,6 +39,7 @@
         "module": "_avo/go.mod",
         "setup": [
             {
+                "name": "Setup Root Module",
                 "commands": [
                     [
                         "go",
@@ -49,6 +50,7 @@
                 ]
             },
             {
+                "name": "Setup Generator Module",
                 "dir": "_avo",
                 "commands": [
                     [

@@ -28,8 +28,26 @@ jobs:
       uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f # v2.3.4
       with:
         repository: zeebo/xxh3
+        ref: v1.0.0-rc1
         path: thirdparty
         persist-credentials: false
+    - name: Avo Module Replacement
+      working-directory: avo
+      run: |
+        go mod edit -modfile=go.mod -require=github.com/mmcloughlin/avo@v0.0.0-00010101000000-000000000000
+        go mod edit -modfile=go.mod -replace=github.com/mmcloughlin/avo=${{ runner.workspace }}/avo
+        go mod tidy -modfile=go.mod
+    - name: Generate
+      working-directory: avo
+      run: |
+        go run . -avx -out ../accum_vector_avx_amd64
+        go run . -sse -out ../accum_vector_sse_amd64.s
+    - name: Diff
+      run: |
+        git -C ${{ runner.workspace }}/thirdparty diff
+    - name: Test
+      run: |
+        go test ./...
 
   dgryski-go-sip13:
     runs-on: ubuntu-latest
@@ -47,8 +65,34 @@ jobs:
       uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f # v2.3.4
       with:
         repository: dgryski/go-sip13
+        ref: 62edffca92457b3a66125c686137cc5f0fe81672
         path: thirdparty
         persist-credentials: false
+    - name: Setup Root Module
+      run: |
+        go mod init github.com/dgryski/go-sip13
+    - name: Setup Generator Module
+      working-directory: _avo
+      run: |
+        sed -i.bak /\/\/ +build ignore/d asm.go
+        go mod init github.com/dgryski/go-sip13/_avo
+    - name: Avo Module Replacement
+      working-directory: _avo
+      run: |
+        go mod edit -modfile=go.mod -require=github.com/mmcloughlin/avo@v0.0.0-00010101000000-000000000000
+        go mod edit -modfile=go.mod -replace=github.com/mmcloughlin/avo=${{ runner.workspace }}/avo
+        go mod tidy -modfile=go.mod
+    - name: Generate
+      working-directory: _avo
+      run: |
+        go mod edit -modfile=go.mod -require=github.com/dgryski/go-sip13@v0.0.0-00010101000000-000000000000 -replace=github.com/dgryski/go-sip13=../
+        go run . -out ../sip13_amd64.s
+    - name: Diff
+      run: |
+        git -C ${{ runner.workspace }}/thirdparty diff
+    - name: Test
+      run: |
+        go test ./...
 
   phoreproject-bls:
     runs-on: ubuntu-latest
@@ -66,6 +110,30 @@ jobs:
       uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f # v2.3.4
       with:
         repository: phoreproject/bls
+        ref: a88a5ae26844d7293359422888d7c7f69f43c845
         path: thirdparty
         persist-credentials: false
+    - name: Setup
+      working-directory: asm
+      run: |
+        sed -i.bak /\/\/ +build ignore/d asm.go
+        go mod init github.com/phoreproject/bls/asm
+    - name: Avo Module Replacement
+      working-directory: asm
+      run: |
+        go mod edit -modfile=go.mod -require=github.com/mmcloughlin/avo@v0.0.0-00010101000000-000000000000
+        go mod edit -modfile=go.mod -replace=github.com/mmcloughlin/avo=${{ runner.workspace }}/avo
+        go mod tidy -modfile=go.mod
+    - name: Generate
+      working-directory: asm
+      run: |
+        go mod edit -require=github.com/phoreproject/bls@v0.0.0-00010101000000-000000000000 -replace=github.com/phoreproject/bls=../
+        go mod download
+        go run . -out ../primitivefuncs_amd64.s
+    - name: Diff
+      run: |
+        git -C ${{ runner.workspace }}/thirdparty diff
+    - name: Test
+      run: |
+        go test ./...
 
