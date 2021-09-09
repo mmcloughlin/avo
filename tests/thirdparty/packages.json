@@ -77,5 +77,21 @@
                 ]
             }
         ]
+    },
+    {
+        "repository": {
+            "owner": "minio",
+            "name": "md5-simd"
+        },
+        "version": "30ad8af83f6868c2a30c615f3edf1a9366bf3f89",
+        "module": "_gen/go.mod",
+        "generate": [
+            {
+                "dir": "_gen",
+                "commands": [
+                    "go run -mod=mod gen.go -out ../md5block_amd64.s -stubs ../md5block_amd64.go -pkg md5simd"
+                ]
+            }
+        ]
     }
 ]
