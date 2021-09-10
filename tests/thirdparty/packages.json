@@ -89,7 +89,40 @@
             {
                 "dir": "_gen",
                 "commands": [
-                    "go run -mod=mod gen.go -out ../md5block_amd64.s -stubs ../md5block_amd64.go -pkg md5simd"
+                    "go run gen.go -out ../md5block_amd64.s -stubs ../md5block_amd64.go -pkg md5simd"
+                ]
+            }
+        ]
+    },
+    {
+        "repository": {
+            "owner": "zeebo",
+            "name": "blake3"
+        },
+        "version": "25dba572f0e78ec108f0dd79c9c15288f542d7d9",
+        "module": "avo/go.mod",
+        "generate": [
+            {
+                "dir": "avo",
+                "commands": [
+                    "go run ./avx2 -out ../avx2/impl.s",
+                    "go run ./sse41 -out ../sse41/impl.s"
+                ]
+            }
+        ]
+    },
+    {
+        "repository": {
+            "owner": "klauspost",
+            "name": "reedsolomon"
+        },
+        "version": "922778284547557265cff0f903ab5f4c27e40ae9",
+        "module": "_gen/go.mod",
+        "generate": [
+            {
+                "dir": "_gen",
+                "commands": [
+                    "go run gen.go -out ../galois_gen_amd64.s -stubs ../galois_gen_amd64.go -pkg reedsolomon"
                 ]
             }
         ]
