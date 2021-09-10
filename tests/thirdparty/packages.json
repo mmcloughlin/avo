@@ -256,5 +256,47 @@
                 ]
             }
         ]
+    },
+    {
+        "repository": {
+            "owner": "dgryski",
+            "name": "go-speck"
+        },
+        "version": "5b36d4c08d8840c352a153bf37281434ad550ec0",
+        "module": "avo/go.mod",
+        "setup": [
+            {
+                "name": "Setup Root Module",
+                "commands": [
+                    "go mod init github.com/dgryski/go-speck",
+                    "go get github.com/dgryski/go-skipjack@v0.0.0-20150401095227-f3a984a142ab"
+                ]
+            },
+            {
+                "name": "Create Generator Module",
+                "commands": [
+                    "mkdir avo",
+                    "git mv asm.go avo"
+                ]
+            },
+            {
+                "name": "Setup Generator Module",
+                "dir": "avo",
+                "commands": [
+                    "sed -i.bak '/+build ignore/d' asm.go",
+                    "go mod init github.com/dgryski/go-speck/avo"
+                ]
+            }
+        ],
+        "generate": [
+            {
+                "dir": "avo",
+                "commands": [
+                    "go mod edit -modfile=go.mod -require=github.com/dgryski/go-speck@v0.0.0-00010101000000-000000000000",
+                    "go mod edit -modfile=go.mod -replace=github.com/dgryski/go-speck=../",
+                    "go run asm.go -out ../speck_amd64.s"
+                ]
+            }
+        ]
     }
 ]
