@@ -151,5 +151,29 @@
                 ]
             }
         ]
+    },
+    {
+        "repository": {
+            "owner": "klauspost",
+            "name": "compress"
+        },
+        "version": "2adf487b3e02f95ce7efd6e4953fda0ae7ecd080",
+        "module": "s2/_generate/go.mod",
+        "generate": [
+            {
+                "commands": [
+                    "go run gen.go -out ../encodeblock_amd64.s -stubs ../encodeblock_amd64.go -pkg s2"
+                ],
+                "dir": "s2/_generate"
+            }
+        ],
+        "test": [
+            {
+                "dir": "s2",
+                "commands": [
+                    "go test"
+                ]
+            }
+        ]
     }
 ]

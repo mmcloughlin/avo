@@ -284,3 +284,38 @@ jobs:
       working-directory: wyhash
       run: go test ./...
 
+  klauspost-compress:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Install Go
+      uses: actions/setup-go@37335c7bb261b353407cff977110895fa0b4f7d8 # v2.1.3
+      with:
+        go-version: 1.17.x
+    - name: Checkout avo
+      uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f # v2.3.4
+      with:
+        path: avo
+        persist-credentials: false
+    - name: Checkout klauspost/compress
+      uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f # v2.3.4
+      with:
+        repository: klauspost/compress
+        ref: 2adf487b3e02f95ce7efd6e4953fda0ae7ecd080
+        path: compress
+        persist-credentials: false
+    - name: Avo Module Replacement
+      working-directory: compress/s2/_generate
+      run: |
+        go mod edit -modfile=go.mod -require=github.com/mmcloughlin/avo@v0.0.0-00010101000000-000000000000
+        go mod edit -modfile=go.mod -replace=github.com/mmcloughlin/avo=${{ github.workspace }}/avo
+        go mod tidy -modfile=go.mod
+    - name: Generate
+      working-directory: compress/s2/_generate
+      run: go run gen.go -out ../encodeblock_amd64.s -stubs ../encodeblock_amd64.go -pkg s2
+    - name: Diff
+      working-directory: compress
+      run: git diff
+    - name: Test
+      working-directory: compress/s2
+      run: go test
+
