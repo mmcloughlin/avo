@@ -319,3 +319,53 @@ jobs:
       working-directory: compress/s2
       run: go test
 
+  dgryski-go-bloomindex:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Install Go
+      uses: actions/setup-go@37335c7bb261b353407cff977110895fa0b4f7d8 # v2.1.3
+      with:
+        go-version: 1.17.x
+    - name: Checkout avo
+      uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f # v2.3.4
+      with:
+        path: avo
+        persist-credentials: false
+    - name: Checkout dgryski/go-bloomindex
+      uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f # v2.3.4
+      with:
+        repository: dgryski/go-bloomindex
+        ref: 0902316dce158c154b958ee5cfc706c62af29a42
+        path: go-bloomindex
+        persist-credentials: false
+    - name: Setup Root Module
+      working-directory: go-bloomindex
+      run: |
+        go mod init github.com/dgryski/go-bloomindex
+        go get github.com/dgryski/go-bits@v0.0.0-20180113010104-bd8a69a71dc2
+    - name: Create Generator Module
+      working-directory: go-bloomindex
+      run: |
+        mkdir avo
+        git mv asm.go avo
+    - name: Setup Generator Module
+      working-directory: go-bloomindex/avo
+      run: |
+        sed -i.bak '/+build ignore/d' asm.go
+        go mod init github.com/dgryski/go-bloomindex/avo
+    - name: Avo Module Replacement
+      working-directory: go-bloomindex/avo
+      run: |
+        go mod edit -modfile=go.mod -require=github.com/mmcloughlin/avo@v0.0.0-00010101000000-000000000000
+        go mod edit -modfile=go.mod -replace=github.com/mmcloughlin/avo=${{ github.workspace }}/avo
+        go mod tidy -modfile=go.mod
+    - name: Generate
+      working-directory: go-bloomindex/avo
+      run: go run asm.go -out ../query_amd64.s
+    - name: Diff
+      working-directory: go-bloomindex
+      run: git diff
+    - name: Test
+      working-directory: go-bloomindex
+      run: go test ./...
+

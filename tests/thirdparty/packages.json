@@ -161,10 +161,10 @@
         "module": "s2/_generate/go.mod",
         "generate": [
             {
+                "dir": "s2/_generate",
                 "commands": [
                     "go run gen.go -out ../encodeblock_amd64.s -stubs ../encodeblock_amd64.go -pkg s2"
-                ],
-                "dir": "s2/_generate"
+                ]
             }
         ],
         "test": [
@@ -172,6 +172,46 @@
                 "dir": "s2",
                 "commands": [
                     "go test"
+                ]
+            }
+        ]
+    },
+    {
+        "repository": {
+            "owner": "dgryski",
+            "name": "go-bloomindex"
+        },
+        "version": "0902316dce158c154b958ee5cfc706c62af29a42",
+        "module": "avo/go.mod",
+        "setup": [
+            {
+                "name": "Setup Root Module",
+                "commands": [
+                    "go mod init github.com/dgryski/go-bloomindex",
+                    "go get github.com/dgryski/go-bits@v0.0.0-20180113010104-bd8a69a71dc2"
+                ]
+            },
+            {
+                "name": "Create Generator Module",
+                "commands": [
+                    "mkdir avo",
+                    "git mv asm.go avo"
+                ]
+            },
+            {
+                "name": "Setup Generator Module",
+                "dir": "avo",
+                "commands": [
+                    "sed -i.bak '/+build ignore/d' asm.go",
+                    "go mod init github.com/dgryski/go-bloomindex/avo"
+                ]
+            }
+        ],
+        "generate": [
+            {
+                "dir": "avo",
+                "commands": [
+                    "go run asm.go -out ../query_amd64.s"
                 ]
             }
         ]
