@@ -126,5 +126,30 @@
                 ]
             }
         ]
+    },
+    {
+        "repository": {
+            "owner": "orisano",
+            "name": "wyhash"
+        },
+        "version": "32a3f7f6ba4797e2d87dab2969cc9dd63d39cce9",
+        "module": "avo/go.mod",
+        "setup": [
+            {
+                "name": "Setup Generator Module",
+                "dir": "avo",
+                "commands": [
+                    "go mod init github.com/orisano/wyhash/avo"
+                ]
+            }
+        ],
+        "generate": [
+            {
+                "dir": "avo",
+                "commands": [
+                    "go run gen.go -out ../blocks_amd64.s -stubs ../blocks_amd64.go -pkg wyhash"
+                ]
+            }
+        ]
     }
 ]
