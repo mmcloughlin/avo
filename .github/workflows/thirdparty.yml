@@ -473,3 +473,56 @@ jobs:
       working-directory: go-speck
       run: go test ./...
 
+  dgryski-go-chaskey:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Install Go
+      uses: actions/setup-go@37335c7bb261b353407cff977110895fa0b4f7d8 # v2.1.3
+      with:
+        go-version: 1.17.x
+    - name: Checkout avo
+      uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f # v2.3.4
+      with:
+        path: avo
+        persist-credentials: false
+    - name: Checkout dgryski/go-chaskey
+      uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f # v2.3.4
+      with:
+        repository: dgryski/go-chaskey
+        ref: ba454392bc5ab6daae103e15147185f8f4a27dcc
+        path: go-chaskey
+        persist-credentials: false
+    - name: Setup Root Module
+      working-directory: go-chaskey
+      run: |
+        go mod init github.com/dgryski/go-chaskey
+        go get github.com/dchest/siphash@v1.2.2
+    - name: Create Generator Module
+      working-directory: go-chaskey
+      run: |
+        mkdir avo
+        git mv asm.go avo
+    - name: Setup Generator Module
+      working-directory: go-chaskey/avo
+      run: |
+        sed -i.bak '/+build ignore/d' asm.go
+        go mod init github.com/dgryski/go-chaskey/avo
+    - name: Avo Module Replacement
+      working-directory: go-chaskey/avo
+      run: |
+        go mod edit -modfile=go.mod -require=github.com/mmcloughlin/avo@v0.0.0-00010101000000-000000000000
+        go mod edit -modfile=go.mod -replace=github.com/mmcloughlin/avo=${{ github.workspace }}/avo
+        go mod tidy -modfile=go.mod
+    - name: Generate
+      working-directory: go-chaskey/avo
+      run: |
+        go mod edit -modfile=go.mod -require=github.com/dgryski/go-chaskey@v0.0.0-00010101000000-000000000000
+        go mod edit -modfile=go.mod -replace=github.com/dgryski/go-chaskey=../
+        go run asm.go -out ../core_amd64.s
+    - name: Diff
+      working-directory: go-chaskey
+      run: git diff
+    - name: Test
+      working-directory: go-chaskey
+      run: go test ./...
+

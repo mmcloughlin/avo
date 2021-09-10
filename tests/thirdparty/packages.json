@@ -298,5 +298,47 @@
                 ]
             }
         ]
+    },
+    {
+        "repository": {
+            "owner": "dgryski",
+            "name": "go-chaskey"
+        },
+        "version": "ba454392bc5ab6daae103e15147185f8f4a27dcc",
+        "module": "avo/go.mod",
+        "setup": [
+            {
+                "name": "Setup Root Module",
+                "commands": [
+                    "go mod init github.com/dgryski/go-chaskey",
+                    "go get github.com/dchest/siphash@v1.2.2"
+                ]
+            },
+            {
+                "name": "Create Generator Module",
+                "commands": [
+                    "mkdir avo",
+                    "git mv asm.go avo"
+                ]
+            },
+            {
+                "name": "Setup Generator Module",
+                "dir": "avo",
+                "commands": [
+                    "sed -i.bak '/+build ignore/d' asm.go",
+                    "go mod init github.com/dgryski/go-chaskey/avo"
+                ]
+            }
+        ],
+        "generate": [
+            {
+                "dir": "avo",
+                "commands": [
+                    "go mod edit -modfile=go.mod -require=github.com/dgryski/go-chaskey@v0.0.0-00010101000000-000000000000",
+                    "go mod edit -modfile=go.mod -replace=github.com/dgryski/go-chaskey=../",
+                    "go run asm.go -out ../core_amd64.s"
+                ]
+            }
+        ]
     }
 ]
