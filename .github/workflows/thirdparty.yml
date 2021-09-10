@@ -420,3 +420,56 @@ jobs:
       working-directory: go-marvin32
       run: go test ./...
 
+  dgryski-go-speck:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Install Go
+      uses: actions/setup-go@37335c7bb261b353407cff977110895fa0b4f7d8 # v2.1.3
+      with:
+        go-version: 1.17.x
+    - name: Checkout avo
+      uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f # v2.3.4
+      with:
+        path: avo
+        persist-credentials: false
+    - name: Checkout dgryski/go-speck
+      uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f # v2.3.4
+      with:
+        repository: dgryski/go-speck
+        ref: 5b36d4c08d8840c352a153bf37281434ad550ec0
+        path: go-speck
+        persist-credentials: false
+    - name: Setup Root Module
+      working-directory: go-speck
+      run: |
+        go mod init github.com/dgryski/go-speck
+        go get github.com/dgryski/go-skipjack@v0.0.0-20150401095227-f3a984a142ab
+    - name: Create Generator Module
+      working-directory: go-speck
+      run: |
+        mkdir avo
+        git mv asm.go avo
+    - name: Setup Generator Module
+      working-directory: go-speck/avo
+      run: |
+        sed -i.bak '/+build ignore/d' asm.go
+        go mod init github.com/dgryski/go-speck/avo
+    - name: Avo Module Replacement
+      working-directory: go-speck/avo
+      run: |
+        go mod edit -modfile=go.mod -require=github.com/mmcloughlin/avo@v0.0.0-00010101000000-000000000000
+        go mod edit -modfile=go.mod -replace=github.com/mmcloughlin/avo=${{ github.workspace }}/avo
+        go mod tidy -modfile=go.mod
+    - name: Generate
+      working-directory: go-speck/avo
+      run: |
+        go mod edit -modfile=go.mod -require=github.com/dgryski/go-speck@v0.0.0-00010101000000-000000000000
+        go mod edit -modfile=go.mod -replace=github.com/dgryski/go-speck=../
+        go run asm.go -out ../speck_amd64.s
+    - name: Diff
+      working-directory: go-speck
+      run: git diff
+    - name: Test
+      working-directory: go-speck
+      run: go test ./...
+
