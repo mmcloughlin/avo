@@ -123,9 +123,14 @@ on:
 		for _, step := range pkg.Steps(c) {
 			fmt.Fprintf(w, "    - name: %s\n", step.Name)
 			fmt.Fprintf(w, "      working-directory: %s\n", path.Join(pkgdir, step.WorkingDirectory))
-			fmt.Fprintf(w, "      run: |\n")
-			for _, cmd := range step.Commands {
-				fmt.Fprintf(w, "        %s\n", cmd)
+			if len(step.Commands) == 1 {
+				fmt.Fprintf(w, "      run: %s\n", step.Commands[0])
+			} else {
+				fmt.Fprintf(w, "      run: |\n")
+				for _, cmd := range step.Commands {
+					fmt.Fprintf(w, "        %s\n", cmd)
+				}
+
 			}
 		}
 

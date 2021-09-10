@@ -44,12 +44,10 @@ jobs:
         go run . -sse -out ../accum_vector_sse_amd64.s
     - name: Diff
       working-directory: xxh3
-      run: |
-        git diff
+      run: git diff
     - name: Test
       working-directory: xxh3
-      run: |
-        go test ./...
+      run: go test ./...
 
   dgryski-go-sip13:
     runs-on: ubuntu-latest
@@ -72,8 +70,7 @@ jobs:
         persist-credentials: false
     - name: Setup Root Module
       working-directory: go-sip13
-      run: |
-        go mod init github.com/dgryski/go-sip13
+      run: go mod init github.com/dgryski/go-sip13
     - name: Setup Generator Module
       working-directory: go-sip13/_avo
       run: |
@@ -93,12 +90,10 @@ jobs:
         go run . -out ../sip13_amd64.s
     - name: Diff
       working-directory: go-sip13
-      run: |
-        git diff
+      run: git diff
     - name: Test
       working-directory: go-sip13
-      run: |
-        go test ./...
+      run: go test ./...
 
   phoreproject-bls:
     runs-on: ubuntu-latest
@@ -139,12 +134,10 @@ jobs:
         go run . -out ../primitivefuncs_amd64.s
     - name: Diff
       working-directory: bls
-      run: |
-        git diff
+      run: git diff
     - name: Test
       working-directory: bls
-      run: |
-        go test ./...
+      run: go test ./...
 
   minio-md5-simd:
     runs-on: ubuntu-latest
@@ -173,16 +166,13 @@ jobs:
         go mod tidy -modfile=go.mod
     - name: Generate
       working-directory: md5-simd/_gen
-      run: |
-        go run gen.go -out ../md5block_amd64.s -stubs ../md5block_amd64.go -pkg md5simd
+      run: go run gen.go -out ../md5block_amd64.s -stubs ../md5block_amd64.go -pkg md5simd
     - name: Diff
       working-directory: md5-simd
-      run: |
-        git diff
+      run: git diff
     - name: Test
       working-directory: md5-simd
-      run: |
-        go test ./...
+      run: go test ./...
 
   zeebo-blake3:
     runs-on: ubuntu-latest
@@ -216,12 +206,10 @@ jobs:
         go run ./sse41 -out ../sse41/impl.s
     - name: Diff
       working-directory: blake3
-      run: |
-        git diff
+      run: git diff
     - name: Test
       working-directory: blake3
-      run: |
-        go test ./...
+      run: go test ./...
 
   klauspost-reedsolomon:
     runs-on: ubuntu-latest
@@ -250,16 +238,13 @@ jobs:
         go mod tidy -modfile=go.mod
     - name: Generate
       working-directory: reedsolomon/_gen
-      run: |
-        go run gen.go -out ../galois_gen_amd64.s -stubs ../galois_gen_amd64.go -pkg reedsolomon
+      run: go run gen.go -out ../galois_gen_amd64.s -stubs ../galois_gen_amd64.go -pkg reedsolomon
     - name: Diff
       working-directory: reedsolomon
-      run: |
-        git diff
+      run: git diff
     - name: Test
       working-directory: reedsolomon
-      run: |
-        go test ./...
+      run: go test ./...
 
   orisano-wyhash:
     runs-on: ubuntu-latest
@@ -282,8 +267,7 @@ jobs:
         persist-credentials: false
     - name: Setup Generator Module
       working-directory: wyhash/avo
-      run: |
-        go mod init github.com/orisano/wyhash/avo
+      run: go mod init github.com/orisano/wyhash/avo
     - name: Avo Module Replacement
       working-directory: wyhash/avo
       run: |
@@ -292,14 +276,11 @@ jobs:
         go mod tidy -modfile=go.mod
     - name: Generate
       working-directory: wyhash/avo
-      run: |
-        go run gen.go -out ../blocks_amd64.s -stubs ../blocks_amd64.go -pkg wyhash
+      run: go run gen.go -out ../blocks_amd64.s -stubs ../blocks_amd64.go -pkg wyhash
     - name: Diff
       working-directory: wyhash
-      run: |
-        git diff
+      run: git diff
     - name: Test
       working-directory: wyhash
-      run: |
-        go test ./...
+      run: go test ./...
 
