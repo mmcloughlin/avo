@@ -10,7 +10,7 @@ import (
 	"github.com/mmcloughlin/avo/internal/test"
 )
 
-//go:generate go run make_workflow.go -pkgs packages.json -output ../../.github/workflows/thirdparty.yml
+//go:generate go run make_workflow.go -pkgs packages.json -output ../../.github/workflows/packages.yml
 
 // Custom flags.
 var (
