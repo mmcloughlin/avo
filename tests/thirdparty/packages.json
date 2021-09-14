@@ -340,5 +340,47 @@
                 ]
             }
         ]
+    },
+    {
+        "repository": {
+            "owner": "lukechampine",
+            "name": "us"
+        },
+        "version": "dff56a80f83653cb14eeeb57ba6ba3c3e942c412",
+        "module": "merkle/blake2b/avo/go.mod",
+        "setup": [
+            {
+                "name": "Create Generator Module",
+                "dir": "merkle/blake2b",
+                "commands": [
+                    "mkdir avo",
+                    "git mv gen.go avo"
+                ]
+            },
+            {
+                "name": "Setup Generator Module",
+                "dir": "merkle/blake2b/avo",
+                "commands": [
+                    "sed -i.bak '/+build ignore/d' gen.go",
+                    "go mod init github.com/lukechampine/us/merkle/blake2b/avo"
+                ]
+            }
+        ],
+        "generate": [
+            {
+                "dir": "merkle/blake2b/avo",
+                "commands": [
+                    "go run gen.go -out ../blake2b_amd64.s"
+                ]
+            }
+        ],
+        "test": [
+            {
+                "dir": "merkle/blake2b",
+                "commands": [
+                    "go test"
+                ]
+            }
+        ]
     }
 ]

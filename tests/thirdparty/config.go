@@ -16,21 +16,21 @@ type Context struct {
 	RepositoryDirectory string
 }
 
-type Repository struct {
+type GithubRepository struct {
 	Owner string `json:"owner"`
 	Name  string `json:"name"`
 }
 
-func (r Repository) String() string {
+func (r GithubRepository) String() string {
 	return path.Join(r.Owner, r.Name)
 }
 
-func (r Repository) ID() string {
+func (r GithubRepository) ID() string {
 	return r.Owner + "-" + r.Name
 }
 
 // CloneURL returns the git clone URL.
-func (r Repository) CloneURL() string {
+func (r GithubRepository) CloneURL() string {
 	return fmt.Sprintf("https://github.com/%s.git", r)
 }
 
@@ -52,12 +52,12 @@ func (s *Step) Validate() error {
 
 // Package defines an integration test based on a third-party package using avo.
 type Package struct {
-	Repository Repository `json:"repository"`
-	Version    string     `json:"version"`  // git sha, tag or branch
-	Module     string     `json:"module"`   // path to module file
-	Setup      []*Step    `json:"setup"`    // setup commands to run
-	Generate   []*Step    `json:"generate"` // generate commands to run
-	Test       []*Step    `json:"test"`     // test commands (defaults to "go test ./...")
+	Repository GithubRepository `json:"repository"`
+	Version    string           `json:"version"`  // git sha, tag or branch
+	Module     string           `json:"module"`   // path to module file
+	Setup      []*Step          `json:"setup"`    // setup commands to run
+	Generate   []*Step          `json:"generate"` // generate commands to run
+	Test       []*Step          `json:"test"`     // test commands (defaults to "go test ./...")
 }
 
 // ID returns an identifier for the package.
