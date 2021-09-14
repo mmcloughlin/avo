@@ -78,7 +78,6 @@ func (p *Package) setdefaults() {
 			stage.Steps[0].Name = stage.DefaultName
 		}
 	}
-
 }
 
 func (p *Package) Validate() error {
