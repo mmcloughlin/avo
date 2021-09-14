@@ -158,20 +158,13 @@
             "name": "compress"
         },
         "version": "2adf487b3e02f95ce7efd6e4953fda0ae7ecd080",
-        "module": "s2/_generate/go.mod",
+        "pkg": "s2",
+        "module": "_generate/go.mod",
         "generate": [
             {
-                "dir": "s2/_generate",
+                "dir": "_generate",
                 "commands": [
                     "go run gen.go -out ../encodeblock_amd64.s -stubs ../encodeblock_amd64.go -pkg s2"
-                ]
-            }
-        ],
-        "test": [
-            {
-                "dir": "s2",
-                "commands": [
-                    "go test"
                 ]
             }
         ]
@@ -347,11 +340,11 @@
             "name": "us"
         },
         "version": "dff56a80f83653cb14eeeb57ba6ba3c3e942c412",
-        "module": "merkle/blake2b/avo/go.mod",
+        "pkg": "merkle/blake2b",
+        "module": "avo/go.mod",
         "setup": [
             {
                 "name": "Create Generator Module",
-                "dir": "merkle/blake2b",
                 "commands": [
                     "mkdir avo",
                     "git mv gen.go avo"
@@ -359,7 +352,7 @@
             },
             {
                 "name": "Setup Generator Module",
-                "dir": "merkle/blake2b/avo",
+                "dir": "avo",
                 "commands": [
                     "sed -i.bak '/+build ignore/d' gen.go",
                     "go mod init github.com/lukechampine/us/merkle/blake2b/avo"
@@ -368,17 +361,9 @@
         ],
         "generate": [
             {
-                "dir": "merkle/blake2b/avo",
+                "dir": "avo",
                 "commands": [
                     "go run gen.go -out ../blake2b_amd64.s"
-                ]
-            }
-        ],
-        "test": [
-            {
-                "dir": "merkle/blake2b",
-                "commands": [
-                    "go test"
                 ]
             }
         ]

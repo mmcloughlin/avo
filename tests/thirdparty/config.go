@@ -9,6 +9,7 @@ import (
 	"os"
 	"path"
 	"path/filepath"
+	"strings"
 )
 
 type Context struct {
@@ -54,6 +55,7 @@ func (s *Step) Validate() error {
 type Package struct {
 	Repository GithubRepository `json:"repository"`
 	Version    string           `json:"version"`  // git sha, tag or branch
+	SubPackage string           `json:"pkg"`      // sub-package within the repository
 	Module     string           `json:"module"`   // path to module file
 	Setup      []*Step          `json:"setup"`    // setup commands to run
 	Generate   []*Step          `json:"generate"` // generate commands to run
@@ -62,7 +64,11 @@ type Package struct {
 
 // ID returns an identifier for the package.
 func (p *Package) ID() string {
-	return p.Repository.ID()
+	id := p.Repository.ID()
+	if p.SubPackage != "" {
+		id += "-" + strings.ReplaceAll(p.SubPackage, "/", "-")
+	}
+	return id
 }
 
 func (p *Package) setdefaults() {
@@ -146,6 +152,13 @@ func (p *Package) Steps(c *Context) []*Step {
 				"go test ./...",
 			},
 		})
+	}
+
+	// Prepend sub-directory to every step.
+	if p.SubPackage != "" {
+		for _, s := range steps {
+			s.WorkingDirectory = filepath.Join(p.SubPackage, s.WorkingDirectory)
+		}
 	}
 
 	return steps

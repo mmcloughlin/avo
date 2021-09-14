@@ -284,7 +284,7 @@ jobs:
       working-directory: wyhash
       run: go test ./...
 
-  klauspost-compress:
+  klauspost-compress-s2:
     runs-on: ubuntu-latest
     steps:
     - name: Install Go
@@ -313,11 +313,11 @@ jobs:
       working-directory: compress/s2/_generate
       run: go run gen.go -out ../encodeblock_amd64.s -stubs ../encodeblock_amd64.go -pkg s2
     - name: Diff
-      working-directory: compress
+      working-directory: compress/s2
       run: git diff
     - name: Test
       working-directory: compress/s2
-      run: go test
+      run: go test ./...
 
   dgryski-go-bloomindex:
     runs-on: ubuntu-latest
@@ -526,7 +526,7 @@ jobs:
       working-directory: go-chaskey
       run: go test ./...
 
-  lukechampine-us:
+  lukechampine-us-merkle-blake2b:
     runs-on: ubuntu-latest
     steps:
     - name: Install Go
@@ -565,9 +565,9 @@ jobs:
       working-directory: us/merkle/blake2b/avo
       run: go run gen.go -out ../blake2b_amd64.s
     - name: Diff
-      working-directory: us
+      working-directory: us/merkle/blake2b
       run: git diff
     - name: Test
       working-directory: us/merkle/blake2b
-      run: go test
+      run: go test ./...
 
