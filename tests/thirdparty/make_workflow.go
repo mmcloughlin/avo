@@ -94,7 +94,7 @@ func GenerateWorkflow(pkgs thirdparty.Packages) ([]byte, error) {
 
 		g.Linef("runs-on: ubuntu-latest")
 		g.Linef("steps:")
-		//g.Indent()
+		g.Indent()
 
 		// Install Go.
 		g.Linef("- name: Install Go")
@@ -139,7 +139,7 @@ func GenerateWorkflow(pkgs thirdparty.Packages) ([]byte, error) {
 			}
 		}
 
-		//g.Dedent()
+		g.Dedent()
 		g.Dedent()
 	}
 	g.Dedent()
