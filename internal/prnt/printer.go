@@ -13,8 +13,11 @@ import (
 // any errors to be stored so they can be checked at the end, rather than having
 // error checks obscuring the code generation.
 type Generator struct {
-	buf bytes.Buffer
-	err error
+	buf     bytes.Buffer
+	level   int    // current indentation level
+	indent  string // indentation string
+	pending bool   // if there's a pending indentation
+	err     error
 }
 
 // Raw provides direct access to the underlying output stream.
@@ -22,10 +25,32 @@ func (g *Generator) Raw() io.Writer {
 	return &g.buf
 }
 
+func (g *Generator) SetIndentString(indent string) {
+	g.indent = indent
+}
+
+func (g *Generator) Indent() {
+	g.level++
+}
+
+func (g *Generator) Dedent() {
+	g.level--
+}
+
+func (g *Generator) Linef(format string, args ...interface{}) {
+	g.Printf(format, args...)
+	g.NL()
+}
+
 // Printf prints to the internal buffer.
 func (g *Generator) Printf(format string, args ...interface{}) {
 	if g.err != nil {
 		return
+	}
+	if g.pending {
+		indent := strings.Repeat(g.indent, g.level)
+		format = indent + format
+		g.pending = false
 	}
 	_, err := fmt.Fprintf(&g.buf, format, args...)
 	g.AddError(err)
@@ -34,6 +59,7 @@ func (g *Generator) Printf(format string, args ...interface{}) {
 // NL prints a new line.
 func (g *Generator) NL() {
 	g.Printf("\n")
+	g.pending = true
 }
 
 // Comment writes comment lines prefixed with "// ".
