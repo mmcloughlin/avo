@@ -2,7 +2,6 @@ package thirdparty
 
 import (
 	"flag"
-	"os"
 	"os/exec"
 	"path/filepath"
 	"runtime"
@@ -10,6 +9,8 @@ import (
 
 	"github.com/mmcloughlin/avo/internal/test"
 )
+
+//go:generate go run make_workflow.go -pkgs packages.json -output ../../.github/workflows/packages.yml
 
 // Custom flags.
 var (
@@ -33,7 +34,7 @@ func TestPackages(t *testing.T) {
 
 	for _, pkg := range pkgs {
 		pkg := pkg // scopelint
-		t.Run(pkg.Name(), func(t *testing.T) {
+		t.Run(pkg.ID(), func(t *testing.T) {
 			dir, clean := test.TempDir(t)
 			if !*preserve {
 				defer clean()
@@ -54,57 +55,36 @@ func TestPackages(t *testing.T) {
 // PackageTest executes an integration test based on a given third-party package.
 type PackageTest struct {
 	*testing.T
-	Package
+	*Package
 
 	WorkDir string // working directory for the test
 	Latest  bool   // use latest version of the package
 
 	repopath string // path the repo is cloned to
-	cwd      string // working directory to execute commands in
 }
 
 // Run the test.
 func (t *PackageTest) Run() {
 	t.checkout()
-	t.modinit()
-	t.replaceavo()
-	t.diff()
-	t.generate()
-	t.diff()
-	t.test()
+	t.steps()
 }
 
 // checkout the code at the specified version.
 func (t *PackageTest) checkout() {
 	// Clone repo.
 	dst := filepath.Join(t.WorkDir, t.Name())
-	t.git("clone", "--quiet", t.CloneURL(), dst)
+	test.Exec(t.T, "git", "clone", "--quiet", t.Repository.CloneURL(), dst)
 	t.repopath = dst
-	t.cd(t.repopath)
 
 	// Checkout specific version.
 	if t.Latest {
 		t.Log("using latest version")
 		return
 	}
-	t.git("-C", t.repopath, "checkout", "--quiet", t.Version)
+	test.Exec(t.T, "git", "-C", t.repopath, "checkout", "--quiet", t.Version)
 }
 
-// modinit initializes the repo as a go module if it isn't one already.
-func (t *PackageTest) modinit() {
-	// Check if module path already exists.
-	gomod := filepath.Join(t.repopath, "go.mod")
-	if _, err := os.Stat(gomod); err == nil {
-		t.Logf("already a module")
-		return
-	}
-
-	// Initialize the module.
-	t.gotool("mod", "init", t.ImportPath)
-}
-
-// replaceavo points all avo dependencies to the local version.
-func (t *PackageTest) replaceavo() {
+func (t *PackageTest) steps() {
 	// Determine the path to avo.
 	_, self, _, ok := runtime.Caller(1)
 	if !ok {
@@ -112,64 +92,17 @@ func (t *PackageTest) replaceavo() {
 	}
 	avodir := filepath.Join(filepath.Dir(self), "..", "..")
 
-	// Edit all go.mod files in the repo.
-	err := filepath.Walk(t.repopath, func(path string, info os.FileInfo, err error) error {
-		if err != nil {
-			return err
+	// Run steps.
+	c := &Context{
+		AvoDirectory:        avodir,
+		RepositoryDirectory: t.repopath,
+	}
+
+	for _, s := range t.Steps(c) {
+		for _, command := range s.Commands {
+			cmd := exec.Command("sh", "-c", command)
+			cmd.Dir = filepath.Join(t.repopath, s.WorkingDirectory)
+			test.ExecCommand(t.T, cmd)
 		}
-		dir, base := filepath.Split(path)
-		if base != "go.mod" {
-			return nil
-		}
-		t.cd(dir)
-		t.gotool("mod", "tidy")
-		t.gotool("get", "github.com/mmcloughlin/avo")
-		t.gotool("mod", "edit", "-replace=github.com/mmcloughlin/avo="+avodir)
-		t.gotool("mod", "download")
-		return nil
-	})
-	if err != nil {
-		t.Fatal(err)
 	}
-
-	t.cd(t.repopath)
-}
-
-// generate runs generate commands.
-func (t *PackageTest) generate() {
-	if len(t.Generate) == 0 {
-		t.Fatal("no commands specified")
-	}
-	for _, args := range t.Generate {
-		cmd := exec.Command(args[0], args[1:]...)
-		cmd.Dir = filepath.Join(t.repopath, t.Dir)
-		test.ExecCommand(t.T, cmd)
-	}
-}
-
-// diff runs git diff on the repository.
-func (t *PackageTest) diff() {
-	t.git("-C", t.repopath, "diff")
-}
-
-// test runs go test.
-func (t *PackageTest) test() {
-	t.gotool("test", t.TestPath())
-}
-
-// git runs a git command.
-func (t *PackageTest) git(arg ...string) {
-	test.Exec(t.T, "git", arg...)
-}
-
-// gotool runs a go command.
-func (t *PackageTest) gotool(arg ...string) {
-	cmd := exec.Command(test.GoTool(), arg...)
-	cmd.Dir = t.cwd
-	test.ExecCommand(t.T, cmd)
-}
-
-// cd sets the working directory.
-func (t *PackageTest) cd(dir string) {
-	t.cwd = dir
 }

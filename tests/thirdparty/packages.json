@@ -1,234 +1,371 @@
 [
     {
-        "import_path": "github.com/zeebo/xxh3",
-        "version": "65f423c10688c362d2a2ce6987b665c72ee7bddd",
-        "dir": "avo",
+        "repository": {
+            "owner": "zeebo",
+            "name": "xxh3"
+        },
+        "version": "v1.0.0-rc1",
+        "module": "avo/go.mod",
         "generate": [
-            [
-                "go",
-                "run",
-                "-mod=mod",
-                ".",
-                "-avx",
-                "-out",
-                "../vector_avx_amd64.s"
-            ],
-            [
-                "go",
-                "run",
-                ".",
-                "-sse",
-                "-out",
-                "../vector_sse_amd64.s"
-            ]
+            {
+                "dir": "avo",
+                "commands": [
+                    "go run . -avx -out ../accum_vector_avx_amd64.s",
+                    "go run . -sse -out ../accum_vector_sse_amd64.s"
+                ]
+            }
         ]
     },
     {
-        "import_path": "github.com/dgryski/go-sip13",
-        "version": "25c5027a8c7bfa6dab4b577e53e5c9068f6e2152",
-        "generate": [
-            [
-                "go",
-                "run",
-                "-mod=mod",
-                "_avo/asm.go",
-                "-out",
-                "sip13_amd64.s"
-            ]
-        ]
-    },
-    {
-        "import_path": "github.com/orisano/wyhash",
-        "version": "32a3f7f6ba4797e2d87dab2969cc9dd63d39cce9",
-        "generate": [
-            [
-                "go",
-                "run",
-                "-mod=mod",
-                "avo/gen.go",
-                "-out",
-                "blocks_amd64.s",
-                "-stubs",
-                "blocks_amd64.go"
-            ]
-        ]
-    },
-    {
-        "import_path": "github.com/dgryski/go-bloomindex",
-        "version": "0902316dce158c154b958ee5cfc706c62af29a42",
-        "generate": [
-            [
-                "go",
-                "run",
-                "asm.go",
-                "-out",
-                "query_amd64.s"
-            ]
-        ]
-    },
-    {
-        "import_path": "github.com/dgryski/go-marvin32",
-        "version": "7d18f4c6ea7c24b29d1c7a670f8ae40b0812f2e3",
-        "generate": [
-            [
-                "go",
-                "run",
-                "-mod=mod",
-                "asm.go",
-                "-out",
-                "marvin_amd64.s"
-            ]
-        ]
-    },
-    {
-        "import_path": "github.com/dgryski/go-speck",
-        "version": "5b36d4c08d8840c352a153bf37281434ad550ec0",
-        "generate": [
-            [
-                "go",
-                "run",
-                "asm.go",
-                "-out",
-                "speck_amd64.s"
-            ]
-        ]
-    },
-    {
-        "import_path": "github.com/dgryski/go-chaskey",
-        "version": "ba454392bc5ab6daae103e15147185f8f4a27dcc",
-        "generate": [
-            [
-                "go",
-                "run",
-                "asm.go",
-                "-out",
-                "core_amd64.s"
-            ]
-        ]
-    },
-    {
-        "import_path": "github.com/mkevac/gopherconrussia2019",
-        "version": "235b8b0156a20b4e078b88462e669730f99caeb1",
-        "dir": "simplesimd",
-        "generate": [
-            [
-                "go",
-                "run",
-                "asm.go",
-                "-out",
-                "simd.s",
-                "-stubs",
-                "stub.go"
-            ]
-        ]
-    },
-    {
-        "import_path": "github.com/phoreproject/bls",
-        "version": "9d5f85bf4a9badf491a1b9b27fb3344b489bd2c4",
-        "generate": [
-            [
-                "go",
-                "run",
-                "-mod=mod",
-                "asm/asm.go",
-                "-out",
-                "primitivefuncs_amd64.s"
-            ]
-        ]
-    },
-    {
-        "import_path": "github.com/klauspost/compress",
-        "version": "2adf487b3e02f95ce7efd6e4953fda0ae7ecd080",
-        "dir": "s2/_generate",
-        "generate": [
-            [
-                "go",
-                "run",
-                "-mod=mod",
-                "gen.go",
-                "-out",
-                "../encodeblock_amd64.s",
-                "-stubs",
-                "../encodeblock_amd64.go",
-                "-pkg",
-                "s2"
-            ]
+        "repository": {
+            "owner": "dgryski",
+            "name": "go-sip13"
+        },
+        "version": "62edffca92457b3a66125c686137cc5f0fe81672",
+        "module": "_avo/go.mod",
+        "setup": [
+            {
+                "name": "Setup Root Module",
+                "commands": [
+                    "go mod init github.com/dgryski/go-sip13"
+                ]
+            },
+            {
+                "name": "Setup Generator Module",
+                "dir": "_avo",
+                "commands": [
+                    "sed -i.bak '/+build ignore/d' asm.go",
+                    "go mod init github.com/dgryski/go-sip13/_avo"
+                ]
+            }
         ],
-        "test": "./s2"
-    },
-    {
-        "import_path": "github.com/klauspost/reedsolomon",
-        "version": "922778284547557265cff0f903ab5f4c27e40ae9",
-        "dir": "_gen",
         "generate": [
-            [
-                "go",
-                "run",
-                "-mod=mod",
-                "gen.go",
-                "-out",
-                "../galois_gen_amd64.s",
-                "-stubs",
-                "../galois_gen_amd64.go",
-                "-pkg",
-                "reedsolomon"
-            ]
+            {
+                "dir": "_avo",
+                "commands": [
+                    "go mod edit -modfile=go.mod -require=github.com/dgryski/go-sip13@v0.0.0-00010101000000-000000000000",
+                    "go mod edit -modfile=go.mod -replace=github.com/dgryski/go-sip13=../",
+                    "go run . -out ../sip13_amd64.s"
+                ]
+            }
         ]
     },
     {
-        "import_path": "github.com/minio/md5-simd",
+        "repository": {
+            "owner": "phoreproject",
+            "name": "bls"
+        },
+        "version": "a88a5ae26844d7293359422888d7c7f69f43c845",
+        "module": "asm/go.mod",
+        "setup": [
+            {
+                "dir": "asm",
+                "commands": [
+                    "sed -i.bak '/+build ignore/d' asm.go",
+                    "go mod init github.com/phoreproject/bls/asm"
+                ]
+            }
+        ],
+        "generate": [
+            {
+                "dir": "asm",
+                "commands": [
+                    "go mod edit -modfile=go.mod -require=github.com/phoreproject/bls@v0.0.0-00010101000000-000000000000",
+                    "go mod edit -modfile=go.mod -replace=github.com/phoreproject/bls=../",
+                    "go mod download",
+                    "go run . -out ../primitivefuncs_amd64.s"
+                ]
+            }
+        ]
+    },
+    {
+        "repository": {
+            "owner": "minio",
+            "name": "md5-simd"
+        },
         "version": "30ad8af83f6868c2a30c615f3edf1a9366bf3f89",
-        "dir": "_gen",
+        "module": "_gen/go.mod",
         "generate": [
-            [
-                "go",
-                "run",
-                "-mod=mod",
-                "gen.go",
-                "-out",
-                "../md5block_amd64.s",
-                "-stubs",
-                "../md5block_amd64.go",
-                "-pkg",
-                "md5simd"
-            ]
+            {
+                "dir": "_gen",
+                "commands": [
+                    "go run gen.go -out ../md5block_amd64.s -stubs ../md5block_amd64.go -pkg md5simd"
+                ]
+            }
         ]
     },
     {
-        "import_path": "github.com/zeebo/blake3",
+        "repository": {
+            "owner": "zeebo",
+            "name": "blake3"
+        },
         "version": "25dba572f0e78ec108f0dd79c9c15288f542d7d9",
-        "dir": "avo",
+        "module": "avo/go.mod",
         "generate": [
-            [
-                "go",
-                "run",
-                "-mod=mod",
-                "./avx2",
-                "-out",
-                "../avx2/impl.s"
-            ],
-            [
-                "go",
-                "run",
-                "./sse41",
-                "-out",
-                "../sse41/impl.s"
-            ]
+            {
+                "dir": "avo",
+                "commands": [
+                    "go run ./avx2 -out ../avx2/impl.s",
+                    "go run ./sse41 -out ../sse41/impl.s"
+                ]
+            }
         ]
     },
     {
-        "import_path": "github.com/lukechampine/us",
-        "version": "dff56a80f83653cb14eeeb57ba6ba3c3e942c412",
-        "dir": "merkle/blake2b",
+        "repository": {
+            "owner": "klauspost",
+            "name": "reedsolomon"
+        },
+        "version": "922778284547557265cff0f903ab5f4c27e40ae9",
+        "module": "_gen/go.mod",
         "generate": [
-            [
-                "go",
-                "run",
-                "gen.go",
-                "-out",
-                "blake2b_amd64.s"
-            ]
+            {
+                "dir": "_gen",
+                "commands": [
+                    "go run gen.go -out ../galois_gen_amd64.s -stubs ../galois_gen_amd64.go -pkg reedsolomon"
+                ]
+            }
+        ]
+    },
+    {
+        "repository": {
+            "owner": "orisano",
+            "name": "wyhash"
+        },
+        "version": "32a3f7f6ba4797e2d87dab2969cc9dd63d39cce9",
+        "module": "avo/go.mod",
+        "setup": [
+            {
+                "name": "Setup Generator Module",
+                "dir": "avo",
+                "commands": [
+                    "go mod init github.com/orisano/wyhash/avo"
+                ]
+            }
         ],
-        "test": "./merkle/..."
+        "generate": [
+            {
+                "dir": "avo",
+                "commands": [
+                    "go run gen.go -out ../blocks_amd64.s -stubs ../blocks_amd64.go -pkg wyhash"
+                ]
+            }
+        ]
+    },
+    {
+        "repository": {
+            "owner": "klauspost",
+            "name": "compress"
+        },
+        "version": "2adf487b3e02f95ce7efd6e4953fda0ae7ecd080",
+        "pkg": "s2",
+        "module": "_generate/go.mod",
+        "generate": [
+            {
+                "dir": "_generate",
+                "commands": [
+                    "go run gen.go -out ../encodeblock_amd64.s -stubs ../encodeblock_amd64.go -pkg s2"
+                ]
+            }
+        ]
+    },
+    {
+        "repository": {
+            "owner": "dgryski",
+            "name": "go-bloomindex"
+        },
+        "version": "0902316dce158c154b958ee5cfc706c62af29a42",
+        "module": "avo/go.mod",
+        "setup": [
+            {
+                "name": "Setup Root Module",
+                "commands": [
+                    "go mod init github.com/dgryski/go-bloomindex",
+                    "go get github.com/dgryski/go-bits@v0.0.0-20180113010104-bd8a69a71dc2"
+                ]
+            },
+            {
+                "name": "Create Generator Module",
+                "commands": [
+                    "mkdir avo",
+                    "git mv asm.go avo"
+                ]
+            },
+            {
+                "name": "Setup Generator Module",
+                "dir": "avo",
+                "commands": [
+                    "sed -i.bak '/+build ignore/d' asm.go",
+                    "go mod init github.com/dgryski/go-bloomindex/avo"
+                ]
+            }
+        ],
+        "generate": [
+            {
+                "dir": "avo",
+                "commands": [
+                    "go run asm.go -out ../query_amd64.s"
+                ]
+            }
+        ]
+    },
+    {
+        "repository": {
+            "owner": "dgryski",
+            "name": "go-marvin32"
+        },
+        "version": "7d18f4c6ea7c24b29d1c7a670f8ae40b0812f2e3",
+        "module": "avo/go.mod",
+        "setup": [
+            {
+                "name": "Setup Root Module",
+                "commands": [
+                    "go mod init github.com/dgryski/go-marvin32"
+                ]
+            },
+            {
+                "name": "Create Generator Module",
+                "commands": [
+                    "mkdir avo",
+                    "git mv asm.go avo"
+                ]
+            },
+            {
+                "name": "Setup Generator Module",
+                "dir": "avo",
+                "commands": [
+                    "sed -i.bak '/+build ignore/d' asm.go",
+                    "go mod init github.com/dgryski/go-marvin32/avo"
+                ]
+            }
+        ],
+        "generate": [
+            {
+                "dir": "avo",
+                "commands": [
+                    "go mod edit -modfile=go.mod -require=github.com/dgryski/go-marvin32@v0.0.0-00010101000000-000000000000",
+                    "go mod edit -modfile=go.mod -replace=github.com/dgryski/go-marvin32=../",
+                    "go run asm.go -out ../marvin_amd64.s"
+                ]
+            }
+        ]
+    },
+    {
+        "repository": {
+            "owner": "dgryski",
+            "name": "go-speck"
+        },
+        "version": "5b36d4c08d8840c352a153bf37281434ad550ec0",
+        "module": "avo/go.mod",
+        "setup": [
+            {
+                "name": "Setup Root Module",
+                "commands": [
+                    "go mod init github.com/dgryski/go-speck",
+                    "go get github.com/dgryski/go-skipjack@v0.0.0-20150401095227-f3a984a142ab"
+                ]
+            },
+            {
+                "name": "Create Generator Module",
+                "commands": [
+                    "mkdir avo",
+                    "git mv asm.go avo"
+                ]
+            },
+            {
+                "name": "Setup Generator Module",
+                "dir": "avo",
+                "commands": [
+                    "sed -i.bak '/+build ignore/d' asm.go",
+                    "go mod init github.com/dgryski/go-speck/avo"
+                ]
+            }
+        ],
+        "generate": [
+            {
+                "dir": "avo",
+                "commands": [
+                    "go mod edit -modfile=go.mod -require=github.com/dgryski/go-speck@v0.0.0-00010101000000-000000000000",
+                    "go mod edit -modfile=go.mod -replace=github.com/dgryski/go-speck=../",
+                    "go run asm.go -out ../speck_amd64.s"
+                ]
+            }
+        ]
+    },
+    {
+        "repository": {
+            "owner": "dgryski",
+            "name": "go-chaskey"
+        },
+        "version": "ba454392bc5ab6daae103e15147185f8f4a27dcc",
+        "module": "avo/go.mod",
+        "setup": [
+            {
+                "name": "Setup Root Module",
+                "commands": [
+                    "go mod init github.com/dgryski/go-chaskey",
+                    "go get github.com/dchest/siphash@v1.2.2"
+                ]
+            },
+            {
+                "name": "Create Generator Module",
+                "commands": [
+                    "mkdir avo",
+                    "git mv asm.go avo"
+                ]
+            },
+            {
+                "name": "Setup Generator Module",
+                "dir": "avo",
+                "commands": [
+                    "sed -i.bak '/+build ignore/d' asm.go",
+                    "go mod init github.com/dgryski/go-chaskey/avo"
+                ]
+            }
+        ],
+        "generate": [
+            {
+                "dir": "avo",
+                "commands": [
+                    "go mod edit -modfile=go.mod -require=github.com/dgryski/go-chaskey@v0.0.0-00010101000000-000000000000",
+                    "go mod edit -modfile=go.mod -replace=github.com/dgryski/go-chaskey=../",
+                    "go run asm.go -out ../core_amd64.s"
+                ]
+            }
+        ]
+    },
+    {
+        "repository": {
+            "owner": "lukechampine",
+            "name": "us"
+        },
+        "version": "dff56a80f83653cb14eeeb57ba6ba3c3e942c412",
+        "pkg": "merkle/blake2b",
+        "module": "avo/go.mod",
+        "setup": [
+            {
+                "name": "Create Generator Module",
+                "commands": [
+                    "mkdir avo",
+                    "git mv gen.go avo"
+                ]
+            },
+            {
+                "name": "Setup Generator Module",
+                "dir": "avo",
+                "commands": [
+                    "sed -i.bak '/+build ignore/d' gen.go",
+                    "go mod init github.com/lukechampine/us/merkle/blake2b/avo"
+                ]
+            }
+        ],
+        "generate": [
+            {
+                "dir": "avo",
+                "commands": [
+                    "go run gen.go -out ../blake2b_amd64.s"
+                ]
+            }
+        ]
     }
 ]
