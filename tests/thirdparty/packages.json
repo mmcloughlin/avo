@@ -367,5 +367,20 @@
                 ]
             }
         ]
+    },
+    {
+        "repository": {
+            "owner": "segmentio",
+            "name": "asm"
+        },
+        "version": "v1.0.0",
+        "module": "build/go.mod",
+        "generate": [
+            {
+                "commands": [
+                    "make --always-make build"
+                ]
+            }
+        ]
     }
 ]
