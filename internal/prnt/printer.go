@@ -17,7 +17,7 @@ type Generator struct {
 	level   int    // current indentation level
 	indent  string // indentation string
 	pending bool   // if there's a pending indentation
-	err     error
+	err     error  // saved error from printing
 }
 
 // Raw provides direct access to the underlying output stream.
@@ -25,18 +25,23 @@ func (g *Generator) Raw() io.Writer {
 	return &g.buf
 }
 
+// SetIndentString sets the string used for one level of indentation. Use
+// Indent() and Dedent() to control indent level.
 func (g *Generator) SetIndentString(indent string) {
 	g.indent = indent
 }
 
+// Indent increments the indent level.
 func (g *Generator) Indent() {
 	g.level++
 }
 
+// Dedent decrements the indent level.
 func (g *Generator) Dedent() {
 	g.level--
 }
 
+// Linef prints formatted output terminated with a new line.
 func (g *Generator) Linef(format string, args ...interface{}) {
 	g.Printf(format, args...)
 	g.NL()
