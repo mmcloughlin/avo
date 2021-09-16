@@ -12,11 +12,7 @@ import (
 	"strings"
 )
 
-type Context struct {
-	AvoDirectory        string
-	RepositoryDirectory string
-}
-
+// GithubRepository specifies a repository on github.
 type GithubRepository struct {
 	Owner string `json:"owner"`
 	Name  string `json:"name"`
@@ -26,21 +22,20 @@ func (r GithubRepository) String() string {
 	return path.Join(r.Owner, r.Name)
 }
 
-func (r GithubRepository) ID() string {
-	return r.Owner + "-" + r.Name
-}
-
 // CloneURL returns the git clone URL.
 func (r GithubRepository) CloneURL() string {
 	return fmt.Sprintf("https://github.com/%s.git", r)
 }
 
+// Step represents a set of commands to run as part of the testing plan for a
+// third-party package.
 type Step struct {
 	Name             string   `json:"name"`
 	WorkingDirectory string   `json:"dir"`
 	Commands         []string `json:"commands"`
 }
 
+// Validate step parameters.
 func (s *Step) Validate() error {
 	if s.Name == "" {
 		return errors.New("missing name")
@@ -53,24 +48,43 @@ func (s *Step) Validate() error {
 
 // Package defines an integration test based on a third-party package using avo.
 type Package struct {
+	// Repository the package belongs to. At the moment, all packages are
+	// available on github.
 	Repository GithubRepository `json:"repository"`
-	Version    string           `json:"version"`  // git sha, tag or branch
-	SubPackage string           `json:"pkg"`      // sub-package within the repository
-	Module     string           `json:"module"`   // path to module file
-	Setup      []*Step          `json:"setup"`    // setup commands to run
-	Generate   []*Step          `json:"generate"` // generate commands to run
-	Test       []*Step          `json:"test"`     // test commands (defaults to "go test ./...")
+
+	// Version as a git sha, tag or branch.
+	Version string `json:"version"`
+
+	// Sub-package within the repository under test. All file path references
+	// will be relative to this directory. If empty the root of the repository
+	// is used.
+	SubPackage string `json:"pkg"`
+
+	// Path to the module file for the avo generator package. This is necessary
+	// so the integration test can insert replace directives to point at the avo
+	// version under test.
+	Module string `json:"module"`
+
+	// Setup steps. These run prior to the insertion of avo replace directives,
+	// therefore should be used if it's necessary to initialize new go modules
+	// within the repository.
+	Setup []*Step `json:"setup"`
+
+	// Steps to run the avo code generator.
+	Generate []*Step `json:"generate"` // generate commands to run
+
+	// Test steps. If empty, defaults to "go test ./...".
+	Test []*Step `json:"test"`
 }
 
 // ID returns an identifier for the package.
 func (p *Package) ID() string {
-	id := p.Repository.ID()
-	if p.SubPackage != "" {
-		id += "-" + strings.ReplaceAll(p.SubPackage, "/", "-")
-	}
-	return id
+	pkgpath := path.Join(p.Repository.String(), p.SubPackage)
+	return strings.ReplaceAll(pkgpath, "/", "-")
 }
 
+// setdefaults fills in missing parameters to help make the input package
+// descriptions less verbose.
 func (p *Package) setdefaults() {
 	for _, stage := range []struct {
 		Steps       []*Step
@@ -86,6 +100,7 @@ func (p *Package) setdefaults() {
 	}
 }
 
+// Validate package definition.
 func (p *Package) Validate() error {
 	if p.Version == "" {
 		return errors.New("missing version")
@@ -113,6 +128,17 @@ func (p *Package) Validate() error {
 	return nil
 }
 
+// Context specifies execution environment parameters for a third-party test.
+type Context struct {
+	// Path to the avo version under test.
+	AvoDirectory string
+
+	// Path to the checked out third-party repository.
+	RepositoryDirectory string
+}
+
+// Steps generates the list of steps required to execute the integration test
+// for this package. Context specifies execution environment parameters.
 func (p *Package) Steps(c *Context) []*Step {
 	var steps []*Step
 
@@ -164,6 +190,7 @@ func (p *Package) Steps(c *Context) []*Step {
 	return steps
 }
 
+// Packages is a collection of third-party integration tests.
 type Packages []*Package
 
 func (p Packages) setdefaults() {
@@ -172,6 +199,7 @@ func (p Packages) setdefaults() {
 	}
 }
 
+// Validate the package collection.
 func (p Packages) Validate() error {
 	for _, pkg := range p {
 		if err := pkg.Validate(); err != nil {
