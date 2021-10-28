@@ -110,7 +110,10 @@ jobs:
           ref: a88a5ae26844d7293359422888d7c7f69f43c845
           path: bls
           persist-credentials: false
-      - name: Setup
+      - name: Setup Root Module
+        working-directory: bls
+        run: go mod tidy
+      - name: Setup Generator Module
         working-directory: bls/asm
         run: |
           sed -i.bak '/+build ignore/d' asm.go

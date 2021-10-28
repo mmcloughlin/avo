@@ -59,6 +59,13 @@
         "module": "asm/go.mod",
         "setup": [
             {
+                "name": "Setup Root Module",
+                "commands": [
+                    "go mod tidy"
+                ]
+            },
+            {
+                "name": "Setup Generator Module",
                 "dir": "asm",
                 "commands": [
                     "sed -i.bak '/+build ignore/d' asm.go",
