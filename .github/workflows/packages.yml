@@ -4,10 +4,10 @@ name: packages
 permissions:
   contents: read
 on:
-  push:
-    branches:
-      - master
-  pull_request:
+  workflow_run:
+    workflows: ["ci"]
+    types:
+      - completed
 
 jobs:
   zeebo-xxh3:

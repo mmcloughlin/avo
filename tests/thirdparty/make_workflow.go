@@ -79,10 +79,10 @@ func GenerateWorkflow(pkgs thirdparty.Packages) ([]byte, error) {
 	g.Linef("  contents: read")
 
 	g.Linef("on:")
-	g.Linef("  push:")
-	g.Linef("    branches:")
-	g.Linef("      - master")
-	g.Linef("  pull_request:")
+	g.Linef("  workflow_run:")
+	g.Linef("    workflows: [\"ci\"]")
+	g.Linef("    types:")
+	g.Linef("      - completed")
 
 	// One job per package.
 	g.NL()
