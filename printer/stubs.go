@@ -1,6 +1,7 @@
 package printer
 
 import (
+	"github.com/mmcloughlin/avo/buildtags"
 	"github.com/mmcloughlin/avo/internal/prnt"
 	"github.com/mmcloughlin/avo/ir"
 )
@@ -19,8 +20,12 @@ func (s *stubs) Print(f *ir.File) ([]byte, error) {
 	s.Comment(s.cfg.GeneratedWarning())
 
 	if len(f.Constraints) > 0 {
+		constraints, err := buildtags.Format(f.Constraints)
+		if err != nil {
+			s.AddError(err)
+		}
 		s.NL()
-		s.Printf(f.Constraints.GoString())
+		s.Printf(constraints)
 	}
 
 	s.NL()

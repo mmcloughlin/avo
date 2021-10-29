@@ -4,6 +4,7 @@ import (
 	"strconv"
 	"strings"
 
+	"github.com/mmcloughlin/avo/buildtags"
 	"github.com/mmcloughlin/avo/internal/prnt"
 	"github.com/mmcloughlin/avo/ir"
 	"github.com/mmcloughlin/avo/operand"
@@ -44,8 +45,12 @@ func (p *goasm) header(f *ir.File) {
 	p.Comment(p.cfg.GeneratedWarning())
 
 	if len(f.Constraints) > 0 {
+		constraints, err := buildtags.Format(f.Constraints)
+		if err != nil {
+			p.AddError(err)
+		}
 		p.NL()
-		p.Printf(f.Constraints.GoString())
+		p.Printf(constraints)
 	}
 
 	if len(f.Includes) > 0 {
