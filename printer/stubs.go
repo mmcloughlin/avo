@@ -20,12 +20,12 @@ func (s *stubs) Print(f *ir.File) ([]byte, error) {
 	s.Comment(s.cfg.GeneratedWarning())
 
 	if len(f.Constraints) > 0 {
-		src, err := buildtags.Format(f.Constraints)
+		constraints, err := buildtags.Format(f.Constraints)
 		if err != nil {
 			s.AddError(err)
 		}
 		s.NL()
-		s.Printf(src)
+		s.Printf(constraints)
 	}
 
 	s.NL()

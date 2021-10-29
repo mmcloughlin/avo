@@ -45,12 +45,12 @@ func (p *goasm) header(f *ir.File) {
 	p.Comment(p.cfg.GeneratedWarning())
 
 	if len(f.Constraints) > 0 {
-		src, err := buildtags.Format(f.Constraints)
+		constraints, err := buildtags.Format(f.Constraints)
 		if err != nil {
 			p.AddError(err)
 		}
 		p.NL()
-		p.Printf(src)
+		p.Printf(constraints)
 	}
 
 	if len(f.Includes) > 0 {
