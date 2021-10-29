@@ -8,11 +8,11 @@ import (
 	"strings"
 )
 
-// PlusBuildSyntaxSupported reports whether the current Go version supports "//
-// +build" constraint syntax.
+// PlusBuildSyntaxSupported reports whether the current Go version supports the
+// "// +build" constraint syntax.
 func PlusBuildSyntaxSupported() bool { return plusbuild }
 
-// GoBuildSyntaxSupported reports whether the current Go version supports
+// GoBuildSyntaxSupported reports whether the current Go version supports the
 // "//go:build" constraint syntax.
 func GoBuildSyntaxSupported() bool { return gobuild }
 
