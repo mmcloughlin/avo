@@ -8,10 +8,15 @@ import (
 	"strings"
 )
 
+// PlusBuildSyntaxSupported reports whether the current Go version supports "//
+// +build" constraint syntax.
 func PlusBuildSyntaxSupported() bool { return plusbuild }
 
+// GoBuildSyntaxSupported reports whether the current Go version supports
+// "//go:build" constraint syntax.
 func GoBuildSyntaxSupported() bool { return gobuild }
 
+// Format constraints according to the syntax supported by the current Go version.
 func Format(t ConstraintsConvertable) (string, error) {
 	// Print build tags to minimal Go source that can be passed to go/format.
 	src := t.ToConstraints().GoString() + "\npackage stub"
