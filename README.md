@@ -36,6 +36,7 @@ $ go get -u github.com/mmcloughlin/avo
 
 [embedmd]:# (examples/add/asm.go)
 ```go
+//go:build ignore
 // +build ignore
 
 package main
