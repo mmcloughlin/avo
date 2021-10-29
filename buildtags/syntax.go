@@ -1,4 +1,4 @@
-package printer
+package buildtags
 
 import (
 	"bufio"
@@ -6,13 +6,15 @@ import (
 	"fmt"
 	"go/format"
 	"strings"
-
-	"github.com/mmcloughlin/avo/buildtags"
 )
 
-func constraints(cs buildtags.Constraints) (string, error) {
+func PlusBuildSyntaxSupported() bool { return plusbuild }
+
+func GoBuildSyntaxSupported() bool { return gobuild }
+
+func Format(t ConstraintsConvertable) (string, error) {
 	// Print build tags to minimal Go source that can be passed to go/format.
-	src := cs.GoString() + "\npackage stub"
+	src := t.ToConstraints().GoString() + "\npackage stub"
 
 	// Format them.
 	formatted, err := format.Source([]byte(src))
