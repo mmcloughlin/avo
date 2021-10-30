@@ -159,6 +159,7 @@ func TestSignatureSizes(t *testing.T) {
 		{"func(uint64) uint64", 16},
 		{"func([7]byte) byte", 9},
 		{"func(uint64, uint64) (uint64, uint64)", 32},
+		{"func(uint16)", 2},
 	}
 	for _, c := range cases {
 		s, err := ParseSignature(c.Expr)

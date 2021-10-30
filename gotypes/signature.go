@@ -97,20 +97,22 @@ func (s *Signature) init() {
 	p := s.sig.Params()
 	r := s.sig.Results()
 
-	// Compute parameter offsets.
+	// Compute parameter offsets. Note that if the function has results,
+	// additional padding up to max align is inserted between parameters and
+	// results.
 	vs := tuplevars(p)
 	vs = append(vs, types.NewParam(token.NoPos, nil, "sentinel", types.Typ[types.Uint64]))
 	paramsoffsets := Sizes.Offsetsof(vs)
 	paramssize := paramsoffsets[p.Len()]
+	if r.Len() == 0 {
+		paramssize = structsize(vs[:p.Len()])
+	}
 	s.params = newTuple(p, paramsoffsets, paramssize, "arg")
 
 	// Result offsets.
 	vs = tuplevars(r)
 	resultsoffsets := Sizes.Offsetsof(vs)
-	var resultssize int64
-	if n := len(vs); n > 0 {
-		resultssize = resultsoffsets[n-1] + Sizes.Sizeof(vs[n-1].Type())
-	}
+	resultssize := structsize(vs)
 	for i := range resultsoffsets {
 		resultsoffsets[i] += paramssize
 	}
@@ -174,4 +176,18 @@ func tuplevars(t *types.Tuple) []*types.Var {
 		vs[i] = t.At(i)
 	}
 	return vs
+}
+
+// structsize computes the size of a struct containing the given variables as
+// fields. It would be equivalent to calculating the size of types.NewStruct(vs,
+// nil), apart from the fact that NewStruct panics if multiple fields have the
+// same name, and this happens for example if the variables represent return
+// types from a function.
+func structsize(vs []*types.Var) int64 {
+	n := len(vs)
+	if n == 0 {
+		return 0
+	}
+	offsets := Sizes.Offsetsof(vs)
+	return offsets[n-1] + Sizes.Sizeof(vs[n-1].Type())
 }
