@@ -122,6 +122,9 @@ func Store(src reg.Register, dst gotypes.Component) { ctx.Store(src, dst) }
 // Dereference loads a pointer and returns its element type.
 func Dereference(ptr gotypes.Component) gotypes.Component { return ctx.Dereference(ptr) }
 
+// Function starts building a new function with the given name.
+func Function(name string) { ctx.Function(name) }
+
 // Doc sets documentation comment lines for the currently active function.
 func Doc(lines ...string) { ctx.Doc(lines...) }
 
@@ -130,6 +133,12 @@ func Pragma(directive string, args ...string) { ctx.Pragma(directive, args...) }
 
 // Attributes sets function attributes for the currently active function.
 func Attributes(a attr.Attribute) { ctx.Attributes(a) }
+
+// Signature sets the signature for the currently active function.
+func Signature(s *gotypes.Signature) { ctx.Signature(s) }
+
+// SignatureExpr parses the signature expression and sets it as the active function's signature.
+func SignatureExpr(expr string) { ctx.SignatureExpr(expr) }
 
 // Implement starts building a function of the given name, whose type is
 // specified by a stub in the containing package.
