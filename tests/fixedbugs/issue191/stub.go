@@ -2,4 +2,5 @@
 
 package issue191
 
+// Uint16 tests argument size without return types.
 func Uint16(n uint16)
