@@ -33,7 +33,8 @@ func Format(t ConstraintsConvertable) (string, error) {
 	output := ""
 	for scanner.Scan() {
 		line := scanner.Text()
-		if strings.HasPrefix(line, "//") {
+		if (PlusBuildSyntaxSupported() && strings.HasPrefix(line, "// +build")) ||
+			(GoBuildSyntaxSupported() && strings.HasPrefix(line, "//go:build")) {
 			output += line + "\n"
 		}
 	}
