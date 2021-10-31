@@ -2,514 +2,514 @@
 
 package signature
 
-func Signature0() (uint32, complex64)
+func Signature0() (uint32, int16)
 
-func Signature1() (int16, complex64)
+func Signature1(int16, uint, uint32) (int64, int8, uint64, int64)
 
-func Signature2(float32, int16) (float32, uint)
+func Signature2(uint, int16) (uint32, uintptr, int16, uint16)
 
-func Signature3(uint32, complex128, int64, int8) (uint64, int64)
+func Signature3(uintptr, uint32) uint32
 
-func Signature4(uint, int16) (uint32, uintptr, int16, uint16)
+func Signature4(int64, uint32) (uint16, int64, uint32, int8)
 
-func Signature5(uintptr, uint32) uint32
+func Signature5(int8)
 
-func Signature6(string, int64) (int32, bool)
+func Signature6(int64)
 
-func Signature7(uint16, float32) (uint32, int8, uintptr, int8)
+func Signature7(uint) (int8, int, uintptr, uintptr)
 
-func Signature8() complex128
+func Signature8(uint16) int
 
-func Signature9(string) string
+func Signature9(uint32, uint16, uint16) (uintptr, uint16, int8, uint8)
 
-func Signature10() (uint, int8)
+func Signature10(uint, uint, int64) (int8, uintptr, uint, int32)
 
-func Signature11(float32) (bool, bool, int)
+func Signature11() (uint64, int16, uint64, uint)
 
-func Signature12(string, uintptr, uintptr, float32) (uint16, complex64)
+func Signature12(uintptr) (uint8, uint8)
 
-func Signature13(int) (bool, uint32, uint16)
+func Signature13() uint8
 
-func Signature14(float32, uint16, uint64) (uint16, int8, string)
+func Signature14(int8, uint64, uintptr) int32
 
-func Signature15(uint8, uint, bool)
+func Signature15(uint32, uint32, int16) (uint64, int)
 
-func Signature16(int64, int8, int8, complex64) (complex64, uint)
+func Signature16(uint32) uint16
 
-func Signature17()
+func Signature17(int16) (int32, uint, int8, uint8)
 
-func Signature18(float32, uint64, int16, float32) (uint64, uint, complex64, uintptr)
+func Signature18(uintptr, uintptr) (uint8, uint32)
 
-func Signature19(string, string) (uint8, float32, uint8)
+func Signature19(int, uint64, int) (int32, uintptr)
 
-func Signature20() uint8
+func Signature20(uint32)
 
-func Signature21(int8, bool, float32) (complex64, uint64, string)
+func Signature21(uint8, int8, uint64) (uint16, uint32)
 
-func Signature22() (uintptr, int32, int8, uint32)
+func Signature22(int, uint16, uint8, int8) (int8, uint32)
 
-func Signature23(float32, string, int16) (uint64, complex64)
+func Signature23(int32, uint32) (uint8, int16)
 
-func Signature24(int) uint32
+func Signature24(int16, uintptr)
 
-func Signature25(uint16) int16
+func Signature25(int8, int32, uint16, uint)
 
-func Signature26(int32, string, uint, int8) float32
+func Signature26() (uint16, uint64, int)
 
-func Signature27() (uintptr, complex128, uint8, complex64)
+func Signature27(uint32) (uint64, uint8)
 
-func Signature28(uint32, int32, int) (uint64, int)
+func Signature28(uint64, int16, uint8, uintptr) (uint16, uintptr)
 
-func Signature29(int32, complex64) (string, uintptr, uint64, uint32)
+func Signature29(int8, int32, uint64, int64) uint16
 
-func Signature30() (uint8, int8, complex128)
+func Signature30(int8, uint16, int32, uint64) uint8
 
-func Signature31(complex128, uint64, uint16, float64) (uint32, float32)
+func Signature31(uint64, uint8, uint32) (int16, uintptr)
 
-func Signature32(float64, string, uint16) uint8
+func Signature32(int16, int) (int64, uint64, uintptr, uint16)
 
-func Signature33(int8) (int8, uint32)
+func Signature33(int16, int8, int8)
 
-func Signature34(int32, uint32) (float64, uint8)
+func Signature34(uint16, int64)
 
-func Signature35(int16, float32, int16, uintptr)
+func Signature35(int8, uint, uint, int8) uint64
 
-func Signature36(complex64, int8, float32, complex128)
+func Signature36() (uint8, int, uintptr, uintptr)
 
-func Signature37(float64, string, int32, complex128) (float64, float32, uint)
+func Signature37() (uint16, uint16, uint32, uint16)
 
-func Signature38()
+func Signature38(uint8, uint, uint32)
 
-func Signature39(uint16, uint64, int) uint32
+func Signature39(uint8, int32, int) int16
 
-func Signature40(float64, float32) (uint8, uint64, int16)
+func Signature40(int16, int, int16) (int8, uint64)
 
-func Signature41(uint8) (uint32, uint16, uintptr)
+func Signature41() (uint, uintptr, uint32)
 
-func Signature42(string, int8, int32, string)
+func Signature42(uint8, uint8)
 
-func Signature43() float32
+func Signature43() uint8
 
-func Signature44() float64
+func Signature44(int32, int16) uint32
 
-func Signature45(int64, float64) (int8, float32)
+func Signature45() (uintptr, uintptr, uint8)
 
-func Signature46(complex128) (string, complex128, complex128)
+func Signature46(int8) (uint8, uint8, uint, int32)
 
-func Signature47(int32, uint64, uint16, complex128) (complex128, float64, complex128, complex128)
+func Signature47(uint8) uint
 
-func Signature48(complex128, uint8, uint32, uint64) int16
+func Signature48(int32, uint, uintptr, int32) uint8
 
-func Signature49() uintptr
+func Signature49(uint16, int16)
 
-func Signature50(int16, int) (int64, bool, complex64, uint64)
+func Signature50(int64, int16, uint64, uintptr) (int8, uint, int32)
 
-func Signature51(uintptr)
+func Signature51(int64, uint32, int8)
 
-func Signature52() (string, bool, int16)
+func Signature52() (uint8, int32, int64)
 
-func Signature53(float64, int8, uintptr, uint16) int8
+func Signature53() (uint8, uint16)
 
-func Signature54(complex128) (uint, int8, uint64)
+func Signature54(uint64, int16, uint64) (int16, int16)
 
-func Signature55() (uint8, complex128, int, complex128)
+func Signature55(uint64) (uint, int, uint32, uintptr)
 
-func Signature56(float32, complex64) (uint, int8, string, complex64)
+func Signature56() (int16, uintptr)
 
-func Signature57(uint16, float64, uint16) (float64, float32, float32, uint16)
+func Signature57(uint32, uint8, uint)
 
-func Signature58(uint8, uint, float32) (uint32, int)
+func Signature58(int, int64)
 
-func Signature59(int32, int, string)
+func Signature59() uint8
 
-func Signature60(int16, complex64, int) (float32, int16, int32)
+func Signature60(uintptr, int8, uint8, uint)
 
-func Signature61(int8, uint64, complex64) (uint, uintptr, uint32)
+func Signature61(int8, uint16, int8)
 
-func Signature62(string, complex128)
+func Signature62() uint8
 
-func Signature63(uint8, uint8, uint8, float32) (int16, float64)
+func Signature63(int32, int, int64) (int64, uintptr, int32, uint64)
 
-func Signature64(float32, uint32, int32, string) (float64, uintptr, string, uintptr)
+func Signature64(uint32, uint16, uint8) (int16, int32)
 
-func Signature65(uintptr, int8, uint8, uint8) (int32, float64, complex128, uint8)
+func Signature65(int32, uint8)
 
-func Signature66(uint) (int32, uint, uintptr, float64)
+func Signature66() (int16, uintptr, uint32, uint)
 
-func Signature67() (uint64, bool)
+func Signature67(uint32, uint)
 
-func Signature68(string) (float64, uint8, complex64)
+func Signature68(int32, uint64, uint16) int32
 
-func Signature69(int16)
+func Signature69(int) uint
 
-func Signature70(float64, float64, int64, int16) uintptr
+func Signature70() int64
 
-func Signature71(int8, uint, complex64)
+func Signature71(int, int8, uint16, uint16) (uint16, uint64)
 
-func Signature72(int32, uintptr, int64) (uint32, int8)
+func Signature72(uint32, uintptr, uint8) (uint16, int8, int16, uint16)
 
-func Signature73()
+func Signature73(int8, uint32, int8, uint) (uint64, int64)
 
-func Signature74(uint8, int32, int64)
+func Signature74() (int64, uint64, uint16, int64)
 
-func Signature75(uint8, uint16) (uint64, complex64, int16)
+func Signature75(uint16, int) (uintptr, uint, uint32)
 
-func Signature76(uint64, complex64, float32) (int16, int16, int32)
+func Signature76() int8
 
-func Signature77(complex128, uint, float32, int) (uint32, float64, complex128, uintptr)
+func Signature77(uint32, uint32)
 
-func Signature78() (float32, int16)
+func Signature78(int) (uint, int32)
 
-func Signature79() (uint32, uint8, uint)
+func Signature79(int16, int64, int32) (int64, uint8)
 
-func Signature80() (int, int64)
+func Signature80() (int64, int8, int8)
 
-func Signature81()
+func Signature81(uint8, uintptr)
 
-func Signature82(uint8) (uintptr, int8, uint8, uint)
+func Signature82(uint, int32, int64) (uint8, uintptr, uint, uint32)
 
-func Signature83() (float64, int8, uint16)
+func Signature83(uint64, uint) (int8, int, uintptr)
 
-func Signature84(complex64, bool, int8, uint64)
+func Signature84() (uint64, int16)
 
-func Signature85(float32) (int32, int, string, int64)
+func Signature85(uint32, uint64, uint64) (int16, int8, uint64)
 
-func Signature86(int64, uintptr, bool, float32)
+func Signature86(int16, uint64, int64, uint64) (uint64, uint32, uintptr)
 
-func Signature87(uint64) (uint32, string, string)
+func Signature87(int32, uint8, int32, int8) uintptr
 
-func Signature88(uint16, complex64, uint8) (int16, int32)
+func Signature88(int, int8, uintptr, int64) (uint8, uint8, int64, int8)
 
-func Signature89(int32, complex128) (uintptr, int64, uint16)
+func Signature89(int64, uint16) (uint8, int, int32)
 
-func Signature90(uintptr, float64, uint32, complex128) (bool, string, uint32)
+func Signature90(uint64) (uint64, uint64, int64)
 
-func Signature91(complex128, bool)
+func Signature91(uint16, uintptr, int, int64) (int8, uint8, int, int)
 
-func Signature92() (int32, uint64, float32)
+func Signature92(uint32, uint64, uint32, uint) (int8, uint8, uint)
 
-func Signature93(uint16, int32, float32, int) complex64
+func Signature93(uint32, uint, int64, int)
 
-func Signature94(float32, uint)
+func Signature94(uint64)
 
-func Signature95(int64) (int, int8, uint16, uint16)
+func Signature95() (uint, uintptr, int, uintptr)
 
-func Signature96(string, uint16) (uint64, uint32, uintptr, uint8)
+func Signature96(uint8, int16, int32) uint64
 
-func Signature97(uint16, int8, float64, complex128) (uint16, string, string)
+func Signature97(uint, uint, uint) (int8, int, int64)
 
-func Signature98(int8) (uint32, int8)
+func Signature98(int8, int) (int16, int16)
 
-func Signature99(uint64, int64, uint64, int64) bool
+func Signature99(uint64) (uintptr, int16, uintptr)
 
-func Signature100(uint64, uint16, int64) (uint16, int)
+func Signature100(int32) (int, int16, int64, uint32)
 
-func Signature101(uintptr, uint, bool) (float64, uint32)
+func Signature101() (uint64, uint64, int64, uint8)
 
-func Signature102() int8
+func Signature102(uint32, uint)
 
-func Signature103(uint32, uint32)
+func Signature103() uint16
 
-func Signature104(string) float32
+func Signature104() (int, uint)
 
-func Signature105(int, uint) (float32, bool)
+func Signature105(uint16, int64, int8) uint64
 
-func Signature106(complex64, int16, int64)
+func Signature106(uint32, int64, uint32, uint8)
 
-func Signature107(int32, uintptr) (bool, int64, uint8, int64)
+func Signature107(uint64, uintptr) int32
 
-func Signature108(int8) (int8, float32)
+func Signature108(uint8, int64, uint8, uint32) int64
 
-func Signature109()
+func Signature109(uint, uint, uint8, uint32) int
 
-func Signature110() int32
+func Signature110() uint8
 
-func Signature111(uint, float32, int32)
+func Signature111(uint32, uint) (int16, uint64, uint32, uint32)
 
-func Signature112(int64, float64) (uint8, uintptr, complex128, uint)
+func Signature112(uint, uintptr, uint16, uint16) (uint32, int16, int64, uint)
 
-func Signature113(float32, uint64) (uint, int8)
+func Signature113(uintptr, int64, uintptr, int32) (int16, int64)
 
-func Signature114(uintptr)
+func Signature114(int32, int64, uint, uint32)
 
-func Signature115(uint64, int16) (float64, uint32, uint64)
+func Signature115() uint64
 
-func Signature116(uintptr) string
+func Signature116() (int64, uint16)
 
-func Signature117(string, int8) uint64
+func Signature117(uintptr, int64, int32, uintptr)
 
-func Signature118(int16, float32, uint64, int64) (complex128, uint64, uint32)
+func Signature118(int32, uint)
 
-func Signature119(complex128, float32, float32, float32)
+func Signature119(int32, int16) (int16, int64)
 
-func Signature120(int32, uint8, int32, int8) uintptr
+func Signature120(int, uintptr) (uint8, uint16, int)
 
-func Signature121(int, float64, float64, int8) uintptr
+func Signature121(uint32, int32)
 
-func Signature122(uint8, uint8) bool
+func Signature122() int32
 
-func Signature123(int64)
+func Signature123() (uint, uint, int32)
 
-func Signature124(int64, complex64) uint16
+func Signature124(uint64, int32, uint32) (uint32, uint32, uint8)
 
-func Signature125(bool, uint8, int)
+func Signature125(uint32, uint64)
 
-func Signature126(uint64, uint64, complex128) (complex128, uint64, int64)
+func Signature126(uint, uint8, uint64) int8
 
-func Signature127(uint16, uintptr, int, int64) (bool, int8, uint8, int)
+func Signature127(uint64, uint8) (uintptr, uint32)
 
-func Signature128(uint32) (uint64, uint32, uint)
+func Signature128(uint64)
 
-func Signature129(int8, uint8, uint) (float32, uint32, uint, complex64)
+func Signature129() (uint64, uint8, int8)
 
-func Signature130(complex64, float32, int64, int)
+func Signature130(uint, uint8, uint, int64) (uint64, uint8)
 
-func Signature131(uint64)
+func Signature131() (uint8, uint32, uint16)
 
-func Signature132() (uint, uintptr, float64, int)
+func Signature132() (int64, int64, int, uint64)
 
-func Signature133()
+func Signature133(uint64, uint8, int64, uint32) (uint32, uint8, int32)
 
-func Signature134(uint8, int16, bool) int
+func Signature134(int32) uintptr
 
-func Signature135(uint64, int32, uint) complex64
+func Signature135(uint16) (uintptr, int32, int, uint8)
 
-func Signature136(int8, float64, int, int64) (int8, int)
+func Signature136(int64)
 
-func Signature137(int16, float32) (complex128, bool)
+func Signature137(uint8, uint16, int, int8) int64
 
-func Signature138(int64, uintptr, complex64, int16) (uintptr, complex128, bool)
+func Signature138()
 
-func Signature139(int32, float32)
+func Signature139() (int, uint8, uint32)
 
-func Signature140(complex64, complex64, bool) float32
+func Signature140(uint32, int16) int8
 
-func Signature141(int, int16, bool, int64) (uint, uint64, float32, uint64)
+func Signature141(uint16) (uintptr, uint32, uint64)
 
-func Signature142(bool) (int16, uint32, complex64, uint)
+func Signature142(int, int64) (uint64, int8)
 
-func Signature143()
+func Signature143(int) (int64, int, int, int32)
 
-func Signature144(float32)
+func Signature144(uint64, int16, int8, int16) (int16, uint64, int32)
 
-func Signature145(complex128, int, string, uint) (uint16, complex128, string)
+func Signature145() (int, int64)
 
-func Signature146(int64, complex64) (uint64, uint, uint32, int64)
+func Signature146() (uint, int64, int8, uint32)
 
-func Signature147(bool, uint32, uint8, uintptr) (uint64, uintptr)
+func Signature147(int16)
 
-func Signature148(bool) (int, complex64, uint8)
+func Signature148(uint, uint32) (uint8, int32, uint16, uint)
 
-func Signature149(int64, uint8) string
+func Signature149(uint64, uint64, int, int8) (uintptr, int, uint64)
 
-func Signature150(float64) int64
+func Signature150(uint32, int32) (int16, uintptr, uint16)
 
-func Signature151(uint, string, uint, float64) (uint8, complex128, uint32)
+func Signature151(uint32, int16) (int, uint, uint)
 
-func Signature152(int)
+func Signature152() (uint, int32, int64)
 
-func Signature153(uint8) (uint32, uint)
+func Signature153(uint8, uint16, uint64, uint) int
 
-func Signature154(int16, uint64, string, uint32) (uint32, complex128, uint, complex128)
+func Signature154(uint, int, int32, int64) (uint, int8, int16, uintptr)
 
-func Signature155(complex128, uintptr, complex128) (uint16, string, uint32)
+func Signature155(int16, uint16) (uint, int16, uint, int16)
 
-func Signature156(int16) (uint, uintptr, int64)
+func Signature156(int64)
 
-func Signature157() (float64, int16, int64, int32)
+func Signature157(int64, uint16, uint16) (uint, int64)
 
-func Signature158() string
+func Signature158() (int32, uint64, int64)
 
-func Signature159(uint32, complex64, int8, float32)
+func Signature159(int, uint)
 
-func Signature160(uint64, uint32) (complex128, int64)
+func Signature160() int
 
-func Signature161(uint16, uintptr) float32
+func Signature161(uint, int32, uint64, int16) (uint32, int32, uint, uintptr)
 
-func Signature162(bool, int64, int32) (complex128, int64, complex64)
+func Signature162(uintptr, int, int) (int16, int8)
 
-func Signature163(int32, float32) (uint, int32, int16, int16)
+func Signature163(int32) uintptr
 
-func Signature164(uintptr, complex128, bool) (bool, int)
+func Signature164(uintptr) (int64, uint, uint8, uint64)
 
-func Signature165(uint8)
+func Signature165(int16, uintptr) (int8, int, int16)
 
-func Signature166(float64) (bool, uint32, int32, uintptr)
+func Signature166(int16) uint16
 
-func Signature167() string
+func Signature167(uint32, int, int64) (int, uint16, int8, uintptr)
 
-func Signature168(int32)
+func Signature168(int32, uint16) (uint16, uint16, uint16)
 
-func Signature169(uint, complex128, uint) (int32, int32)
+func Signature169(uint32, uint8, int64)
 
-func Signature170(uint64, int32, uint32, uint32) (uint32, uint32, uint8)
+func Signature170(uint16, uintptr, uintptr, uintptr) (int, uint8, uint64)
 
-func Signature171(float32, uint32)
+func Signature171()
 
-func Signature172() (uint, float32, uint8)
+func Signature172(int32, uint32) (int8, int64)
 
-func Signature173() (float32, complex64)
+func Signature173(uint8, uint64)
 
-func Signature174()
+func Signature174() uint8
 
-func Signature175(uint64, bool) (uintptr, uint32)
+func Signature175(uint) (uint32, uint32, uint8, int8)
 
-func Signature176(string) (float64, string)
+func Signature176(uintptr, uintptr, int, uint8)
 
-func Signature177(complex64, uint64)
+func Signature177(uint, uint) (int16, uintptr)
 
-func Signature178() (uint64, string, uint8)
+func Signature178() int8
 
-func Signature179(int8) (uint, uint8, float64, uint)
+func Signature179(int32, int32, int8) (int8, uintptr)
 
-func Signature180() (uint64, complex64)
+func Signature180(uintptr, uint16) (int64, uint8, uintptr, int64)
 
-func Signature181(uint8)
+func Signature181() (int8, uintptr)
 
-func Signature182(uint8, uint32, float64) (float64, int64, int64, int)
+func Signature182(int32, uint32) (uintptr, int, uint, uint)
 
-func Signature183(uint64, uint64, uint8) (uint32, float64, uint32, uint8)
+func Signature183() int
 
-func Signature184(string, complex64, int32) int32
+func Signature184(int)
 
-func Signature185(uintptr) uint16
+func Signature185(int16, uint8, int16) uint64
 
-func Signature186(uintptr, complex128, int32, int) int32
+func Signature186(int, int32) (int64, int16, uint8)
 
-func Signature187(uint64, uint8, uint16, int) (int8, float32, int64)
+func Signature187(uint64) (uint32, int)
 
-func Signature188()
+func Signature188() (int8, uint)
 
-func Signature189() (int, uint8, uint32)
+func Signature189(int8, uint)
 
-func Signature190(uint32, int16) int8
+func Signature190() int64
 
-func Signature191(uint16) (uintptr, string, uint32)
+func Signature191(uint16, uint) uint16
 
-func Signature192(uint64, float32)
+func Signature192() (uint16, int32, int)
 
-func Signature193(int64, uint64) (int, float32)
+func Signature193(uint8, int, int32) (int8, uintptr, uint64, int)
 
-func Signature194(int64, int) string
+func Signature194(uint16, uint64, uint8) (int, int8, uint)
 
-func Signature195(int, int32) (uint64, int16, string, int8)
+func Signature195(int, uint) (int32, int, int8)
 
-func Signature196(complex128, int16, uint64) (float64, uint64, int32, uint16)
+func Signature196(uint16) (uintptr, uint32)
 
-func Signature197(int, int64)
+func Signature197(uintptr, int32) (int64, int16)
 
-func Signature198(uint, string, complex128, bool)
+func Signature198(uint8) (uint8, int16, uint32)
 
-func Signature199(int8) (uint32, int16, float64)
+func Signature199(uint)
 
-func Signature200(string, uint) (string, complex128, uint8, int32)
+func Signature200(uintptr) uintptr
 
-func Signature201(float32, uint16) (uint, int, uint64)
+func Signature201(uint64, int8) (uint8, int8, int16, uintptr)
 
-func Signature202(uint64, int) (complex128, int8)
+func Signature202(uint16, uint64, int8, uint) (uint, uint64, uintptr, int16)
 
-func Signature203(uintptr, int, float32) (complex128, bool, uint64, complex128)
+func Signature203(int16, int8, uint, int8)
 
-func Signature204() (float64, uint32)
+func Signature204(int16, int32, uint) (uint8, int64, uintptr)
 
-func Signature205(int32, bool, int16, uintptr) (float64, float32, uint32, int16)
+func Signature205(int, int8, int16, int16) (uintptr, uint64, uint64, uintptr)
 
-func Signature206(int, string, float32) (uint, uint)
+func Signature206() (int8, int, uint32)
 
-func Signature207() (uint, int32, int64)
+func Signature207(uint16) (int32, uint16)
 
-func Signature208(uint8, uint16, uint64, uint) complex128
+func Signature208(int32, uintptr, int8, int32) (uint8, uint, int16)
 
-func Signature209(int) (uint, int, int32, float32)
+func Signature209(int8, int16)
 
-func Signature210(bool, int64, uint16, float32)
+func Signature210(int) (uint64, uint64, int8)
 
-func Signature211(complex128, int8, complex128) (int16, complex128, uintptr)
+func Signature211(uint32, uint, uintptr) (uint32, uint64, uint8)
 
-func Signature212(int16, complex64) (float64, float32, complex64)
+func Signature212(uint8, int8, int) uint8
 
-func Signature213() (uint, complex64)
+func Signature213(uint16, uintptr) (uint64, uint16, int)
 
-func Signature214(uint, int16, string, int64)
+func Signature214(uint16, uintptr, int8) (int16, int64, int)
 
-func Signature215(float32, int64, uint16) int64
+func Signature215(int16, int8) uintptr
 
-func Signature216(uint, complex64)
+func Signature216() (int16, uint16)
 
-func Signature217(string, int64, int8, int32) int64
+func Signature217(int32, uint, int) (uint32, int64, uint)
 
-func Signature218(bool, float32) (uint, int)
+func Signature218() (int16, uint16, int16, uint32)
 
-func Signature219() int
+func Signature219(int32, int32) (uint16, uint8)
 
-func Signature220(uint, int32, uint64, float32) (int16, int8, complex64)
+func Signature220(uint8, int64) (uint64, int32)
 
-func Signature221() complex128
+func Signature221(uintptr, int, int8) uint64
 
-func Signature222(float32, int32, uint) (int8, uintptr)
+func Signature222() uintptr
 
-func Signature223(int) (int16, int8)
+func Signature223(uint16, uint8, uint16, uint8) (uint32, int32)
 
-func Signature224(string) (uintptr, float64)
+func Signature224(int16, int8, int8, uint32)
 
-func Signature225(uintptr, uint8, int64, uint) (uint64, uintptr, bool)
+func Signature225(uintptr, int64) (int32, int, uintptr)
 
-func Signature226(bool, bool, uintptr, int64)
+func Signature226(uint64) int64
 
-func Signature227(int, float64) (string, string, bool, complex64)
+func Signature227() (int64, int32, uintptr)
 
-func Signature228(int16, int16, int64)
+func Signature228(int16, int64, int16, int64)
 
-func Signature229(uint64) int
+func Signature229(int32, int, uint64, int64) (int, uint, uintptr, uint16)
 
-func Signature230(int64, string, float64) (uint16, float32)
+func Signature230() (uintptr, uint64)
 
-func Signature231(complex128, complex128) (uintptr, float32, complex64, int32)
+func Signature231() (int8, uint32, int, int16)
 
-func Signature232() (uint16, uint16, complex128)
+func Signature232()
 
-func Signature233(uint16, uint32, float64) (int64, complex128)
+func Signature233(uint16, uint8, int16) (uint8, int16, uint64, int64)
 
-func Signature234() bool
+func Signature234(int8, uint8, int8) (uint8, uint8, uintptr)
 
-func Signature235(uintptr) complex64
+func Signature235(int16, uint) (int64, uint16, uint32)
 
-func Signature236(uintptr, float64) (uint8, uint64)
+func Signature236(uint64, uint, int32, int8)
 
-func Signature237()
+func Signature237(uint32, int32, int, uintptr) (int16, int64, int32)
 
-func Signature238(int32, uint32) (string, int8)
+func Signature238(int8, uint16)
 
-func Signature239(int64, uint8) (uint64, float64, uint, uint8)
+func Signature239() (uint64, int8)
 
-func Signature240(float32) (uint32, float32)
+func Signature240(uint, int32, uint64) uint64
 
-func Signature241(float32, uint8, int8, float32) uintptr
+func Signature241(int64, uint, uint8)
 
-func Signature242(complex128, int, string, uint8)
+func Signature242(int64, int8, uint32) (int32, uint, uint32, uint64)
 
-func Signature243(uint, uint) (int16, uintptr)
+func Signature243(uint, uint16) uint16
 
-func Signature244() bool
+func Signature244() (uintptr, int, uint8)
 
-func Signature245(int32) int32
+func Signature245(int64, int16)
 
-func Signature246() (complex128, int8)
+func Signature246(int64, uint16, uint8) (uint16, uint, uint)
 
-func Signature247(float64, string, complex128) uintptr
+func Signature247(uint32, uintptr) (int32, int32)
 
-func Signature248() uint16
+func Signature248(int16, int16) (uint, int32)
 
-func Signature249(float64, int64, float64, uint8)
+func Signature249() (uint32, uint16, uint)
 
-func Signature250()
+func Signature250(int64, uintptr) (uint64, uint16)
 
-func Signature251(int8, uintptr) (int32, uint32)
+func Signature251(int64, int32, int, int64) uintptr
 
-func Signature252(uintptr, string, int, complex128) (uint, uint, uint32, int32)
+func Signature252(int) uint16
 
-func Signature253(int, string, string) (uint8, uintptr)
+func Signature253(int8, uint) (int, uint16, int64)
 
-func Signature254(string) (float32, complex128)
+func Signature254(uint32) (int8, int32)
 
-func Signature255(complex128, int16) complex128
+func Signature255(uint8, uint64, int8, int8) (int16, uint16, uint32, int16)
