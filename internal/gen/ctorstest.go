@@ -29,7 +29,6 @@ func (c *ctorstest) Generate(is []inst.Instruction) ([]byte, error) {
 	c.Printf("package x86\n\n")
 	c.Printf("import (\n")
 	c.Printf("\t\"math\"\n")
-	c.Printf("\t\"reflect\"\n")
 	c.Printf("\t\"testing\"\n")
 	c.Printf("\t\"time\"\n")
 	c.NL()
@@ -68,7 +67,7 @@ func (c *ctorstest) function(fn *api.Function) {
 		c.Printf("expect := &%s\n", construct(fn, f, s))
 		c.Printf("got, err := %s(%s)\n", fn.Name(), s.Arguments())
 		c.Printf("if err != nil { t.Fatal(err) }\n")
-		c.Printf("if !reflect.DeepEqual(expect, got) { t.Fatal(\"mismatch\") }\n")
+		c.Printf("AssertInstructionEqual(t, got, expect)\n")
 		c.Printf("})\n")
 	}
 
@@ -132,7 +131,7 @@ func construct(fn *api.Function, f inst.Form, s api.Signature) string {
 }
 
 func operandsWithAction(f inst.Form, a inst.Action, s api.Signature) string {
-	opexprs := []string{}
+	var opexprs []string
 	for i, op := range f.Operands {
 		if op.Action.ContainsAny(a) {
 			opexprs = append(opexprs, s.ParameterName(i))
@@ -142,6 +141,9 @@ func operandsWithAction(f inst.Form, a inst.Action, s api.Signature) string {
 		if op.Action.ContainsAny(a) {
 			opexprs = append(opexprs, api.ImplicitRegister(op.Register))
 		}
+	}
+	if len(opexprs) == 0 {
+		return "nil"
 	}
 	return fmt.Sprintf("[]%s{%s}", api.OperandType, strings.Join(opexprs, ", "))
 }

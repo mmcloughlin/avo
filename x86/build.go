@@ -46,6 +46,7 @@ func build(f *Form, suffixes Suffixes, ops []operand.Op) (*ir.Instruction, error
 	i := &ir.Instruction{
 		Opcode:           f.Opcode.String(),
 		Suffixes:         suffixes.Strings(),
+		Operands:         ops,
 		IsTerminal:       (f.Features & FeatureTerminal) != 0,
 		IsBranch:         (f.Features & FeatureBranch) != 0,
 		IsConditional:    (f.Features & FeatureConditionalBranch) != 0,
@@ -53,8 +54,12 @@ func build(f *Form, suffixes Suffixes, ops []operand.Op) (*ir.Instruction, error
 		ISA:              f.ISAs.List(),
 	}
 
-	// Operands.
+	// Input/output operands.
 	for _, spec := range f.Operands {
+		if spec.Type == 0 {
+			break
+		}
+
 		var op operand.Op
 		if spec.Implicit {
 			op = ImplicitRegister(spec.Type).Register()
@@ -62,7 +67,6 @@ func build(f *Form, suffixes Suffixes, ops []operand.Op) (*ir.Instruction, error
 			op, ops = ops[0], ops[1:]
 		}
 
-		i.Operands = append(i.Operands, op)
 		if spec.Action.Read() {
 			i.Inputs = append(i.Inputs, op)
 		}
