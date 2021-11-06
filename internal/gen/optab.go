@@ -183,7 +183,17 @@ func (t *optab) opcodeEnum(is []inst.Instruction) {
 }
 
 func (t *optab) forms(is []inst.Instruction) {
-	t.Printf("var forms = []Form{\n")
+	// We require all instructions for a given opcode to be in a contiguous
+	// block. This is likely true already but we'll make a sorted copy to ensure
+	// the optab is robust to changes elsewhere.
+	is = append([]inst.Instruction(nil), is...)
+	sort.Slice(is, func(i, j int) bool {
+		return is[i].Opcode < is[j].Opcode
+	})
+
+	// Output instruction forms table.
+	table := "forms"
+	t.Printf("var %s = []Form{\n", table)
 	for _, i := range is {
 		for _, f := range i.Forms {
 			t.Printf("{")
@@ -217,6 +227,17 @@ func (t *optab) forms(is []inst.Instruction) {
 		}
 	}
 	t.Printf("}\n\n")
+
+	// Build mapping from opcode to corresponsing forms.
+	forms := map[string]string{}
+	n := 0
+	for _, i := range is {
+		e := n + len(i.Forms)
+		forms[i.Opcode] = fmt.Sprintf("%s[%d:%d]", table, n, e)
+		n = e
+	}
+
+	t.mapping(t.table.Opcode(), "Forms", "[]Form", "nil", forms)
 }
 
 func (t *optab) enum(e *Enum) {
