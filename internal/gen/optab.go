@@ -117,7 +117,7 @@ func (t *optab) suffixesType(is []inst.Instruction) {
 	t.Comment("MaxSuffixes is the maximum number of suffixes an instruction can have.")
 	t.Printf("const MaxSuffixes = %d\n\n", max)
 
-	t.Printf("type Suffixes [MaxSuffixes]Suffix\n")
+	t.Printf("type Suffixes [MaxSuffixes]%s\n", t.table.Suffix().Name())
 
 	// Conversion function to list of strings.
 	mapname := "suffixesstringsmap"
