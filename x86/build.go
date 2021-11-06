@@ -54,14 +54,12 @@ func build(f *Form, suffixes Suffixes, ops []operand.Op) (*ir.Instruction, error
 	}
 
 	// Operands.
-	n := 0
 	for _, spec := range f.Operands {
 		var op operand.Op
 		if spec.Implicit {
 			op = ImplicitRegister(spec.Type).Register()
 		} else {
-			op = ops[n]
-			n++
+			op, ops = ops[0], ops[1:]
 		}
 
 		i.Operands = append(i.Operands, op)
