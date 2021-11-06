@@ -9,9 +9,6 @@ import (
 // MaxOperands is the maximum number of operands in an instruction form, including implicit operands.
 const MaxOperands = 6
 
-// MaxSuffixes is the maximum number of suffixes an instruction can have.
-const MaxSuffixes = 2
-
 type OperandType uint8
 
 const (
@@ -171,6 +168,32 @@ const (
 	SuffixZ
 	suffixmax
 )
+
+// MaxSuffixes is the maximum number of suffixes an instruction can have.
+const MaxSuffixes = 2
+
+type Suffixes [MaxSuffixes]Suffix
+
+func (s Suffixes) Strings() []string {
+	return suffixesstringsmap[s]
+}
+
+var suffixesstringsmap = map[Suffixes][]string{
+	{SuffixBCST, SuffixZ}:   []string{"BCST", "Z"},
+	{SuffixBCST}:            []string{"BCST"},
+	{SuffixRD_SAE, SuffixZ}: []string{"RD_SAE", "Z"},
+	{SuffixRD_SAE}:          []string{"RD_SAE"},
+	{SuffixRN_SAE, SuffixZ}: []string{"RN_SAE", "Z"},
+	{SuffixRN_SAE}:          []string{"RN_SAE"},
+	{SuffixRU_SAE, SuffixZ}: []string{"RU_SAE", "Z"},
+	{SuffixRU_SAE}:          []string{"RU_SAE"},
+	{SuffixRZ_SAE, SuffixZ}: []string{"RZ_SAE", "Z"},
+	{SuffixRZ_SAE}:          []string{"RZ_SAE"},
+	{SuffixSAE, SuffixZ}:    []string{"SAE", "Z"},
+	{SuffixSAE}:             []string{"SAE"},
+	{SuffixZ}:               []string{"Z"},
+	{}:                      []string(nil),
+}
 
 type SuffixesClass uint8
 

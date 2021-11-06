@@ -43,8 +43,18 @@ func match(f *Form, suffixes Suffixes, ops []operand.Op) bool {
 
 func build(f *Form, suffixes Suffixes, ops []operand.Op) (*ir.Instruction, error) {
 	i := &ir.Instruction{
-		Opcode: f.Opcode.String(),
+		Opcode:           f.Opcode.String(),
+		Suffixes:         suffixes.Strings(),
+		IsTerminal:       (f.Features & FeatureTerminal) != 0,
+		IsBranch:         (f.Features & FeatureBranch) != 0,
+		IsConditional:    (f.Features & FeatureConditionalBranch) != 0,
+		CancellingInputs: (f.Features & FeatureCancellingInputs) != 0,
+		ISA:              f.ISAs.List(),
 	}
+
+	// TODO: Operands []operand.Op
+	// TODO: Inputs  []operand.Op
+	// TODO: Outputs []operand.Op
 
 	return i, nil
 }

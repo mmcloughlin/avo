@@ -16,12 +16,12 @@ type optab struct {
 
 	cfg printer.Config
 
-	operandTypes      *enum
-	implicitRegisters *enum
-	suffixes          *enum
-	suffixesClasses   *enum
-	isas              *enum
-	opcodes           *enum
+	operandType      *enum
+	implicitRegister *enum
+	suffix           *enum
+	suffixesClass    *enum
+	isas             *enum
+	opcode           *enum
 }
 
 func NewOptab(cfg printer.Config) Interface {
@@ -37,15 +37,15 @@ func (t *optab) Generate(is []inst.Instruction) ([]byte, error) {
 
 	// Size constants.
 	t.maxOperands(is)
-	t.maxSuffixes(is)
 
-	// Enums.
-	t.operandTypesEnum(is)
-	t.implicitRegistersEnum(is)
-	t.suffixesEnum(is)
-	t.suffixesClassesEnum(is)
+	// Types.
+	t.operandTypeEnum(is)
+	t.implicitRegisterEnum(is)
+	t.suffixEnum(is)
+	t.suffixesType(is)
+	t.suffixesClassEnum(is)
 	t.isasEnum(is)
-	t.opcodesEnum(is)
+	t.opcodeEnum(is)
 
 	// Forms table.
 	t.forms(is)
@@ -68,21 +68,7 @@ func (t *optab) maxOperands(is []inst.Instruction) {
 	t.Printf("const MaxOperands = %d\n\n", max)
 }
 
-func (t *optab) maxSuffixes(is []inst.Instruction) {
-	max := 0
-	for _, class := range inst.SuffixesClasses(is) {
-		for _, suffixes := range class {
-			if len(suffixes) > max {
-				max = len(suffixes)
-			}
-		}
-	}
-
-	t.Comment("MaxSuffixes is the maximum number of suffixes an instruction can have.")
-	t.Printf("const MaxSuffixes = %d\n\n", max)
-}
-
-func (t *optab) operandTypesEnum(is []inst.Instruction) {
+func (t *optab) operandTypeEnum(is []inst.Instruction) {
 	types := inst.OperandTypes(is)
 
 	// Operand type enum.
@@ -102,16 +88,110 @@ func (t *optab) operandTypesEnum(is []inst.Instruction) {
 	t.Printf("\t}\n")
 	t.Printf("}\n\n")
 
-	t.operandTypes = e
+	t.operandType = e
 }
 
-func (t *optab) implicitRegistersEnum(is []inst.Instruction) {
+func (t *optab) implicitRegisterEnum(is []inst.Instruction) {
 	e := &enum{name: "ImplicitRegister"}
 	for _, r := range inst.ImplicitRegisters(is) {
 		e.values = append(e.values, api.ImplicitRegisterIdentifier(r))
 	}
 	e.Print(&t.Generator)
-	t.implicitRegisters = e
+	t.implicitRegister = e
+}
+
+func (t *optab) suffixEnum(is []inst.Instruction) {
+	e := &enum{name: "Suffix"}
+	for _, s := range inst.UniqueSuffixes(is) {
+		e.values = append(e.values, s.String())
+	}
+	e.Print(&t.Generator)
+
+	t.suffix = e
+}
+
+func (t *optab) suffixesType(is []inst.Instruction) {
+	// Declare the type as an array. This requires us to know the maximum number
+	// of suffixes an instruction can have.
+	max := 0
+	for _, class := range inst.SuffixesClasses(is) {
+		for _, suffixes := range class {
+			if len(suffixes) > max {
+				max = len(suffixes)
+			}
+		}
+	}
+
+	t.Comment("MaxSuffixes is the maximum number of suffixes an instruction can have.")
+	t.Printf("const MaxSuffixes = %d\n\n", max)
+
+	t.Printf("type Suffixes [MaxSuffixes]Suffix\n")
+
+	// Conversion function to list of strings.
+	mapname := "suffixesstringsmap"
+
+	t.Printf("func (s Suffixes) Strings() []string {\n")
+	t.Printf("return %s[s]", mapname)
+	t.Printf("}\n")
+
+	var entries []string
+	for _, class := range inst.SuffixesClasses(is) {
+		for _, suffixes := range class {
+			entry := fmt.Sprintf("%s: %#v", t.suffixesConst(suffixes), suffixes.Strings())
+			entries = append(entries, entry)
+		}
+
+	}
+
+	t.Printf("var %s = map[Suffixes][]string{\n", mapname)
+	sort.Strings(entries)
+	for _, entry := range entries {
+		t.Printf("%s,\n", entry)
+	}
+	t.Printf("}\n")
+}
+
+func (t *optab) suffixesClassEnum(is []inst.Instruction) {
+	// Gather suffixes classes.
+	classes := inst.SuffixesClasses(is)
+	keys := make([]string, 0, len(classes))
+	for key := range classes {
+		keys = append(keys, key)
+	}
+	sort.Strings(keys)
+
+	// Build enum.
+	e := &enum{name: "SuffixesClass"}
+	for _, key := range keys {
+		e.values = append(e.values, api.SuffixesClassIdentifier(key))
+	}
+	e.Print(&t.Generator)
+
+	// Mapping method to the set of accepted suffixes.
+	sets := make([]string, 0, len(classes))
+	for _, key := range keys {
+		var entries []string
+		for _, suffixes := range classes[key] {
+			entry := fmt.Sprintf("%s: true", t.suffixesConst(suffixes))
+			entries = append(entries, entry)
+		}
+
+		sort.Strings(entries)
+		set := "{" + strings.Join(entries, ", ") + "}"
+		sets = append(sets, set)
+	}
+
+	e.MapMethod(&t.Generator, "SuffixesSet", "map[Suffixes]bool", "nil", sets)
+
+	t.suffixesClass = e
+}
+
+func (t *optab) suffixesConst(suffixes inst.Suffixes) string {
+	var parts []string
+	for _, suffix := range suffixes {
+		parts = append(parts, t.suffix.ConstName(suffix.String()))
+	}
+	return "{" + strings.Join(parts, ", ") + "}"
 }
 
 func (t *optab) isasEnum(is []inst.Instruction) {
@@ -135,64 +215,14 @@ func (t *optab) isasEnum(is []inst.Instruction) {
 	t.isas = e
 }
 
-func (t *optab) suffixesEnum(is []inst.Instruction) {
-	e := &enum{name: "Suffix"}
-	for _, s := range inst.UniqueSuffixes(is) {
-		e.values = append(e.values, s.String())
-	}
-	e.Print(&t.Generator)
-
-	t.suffixes = e
-}
-
-func (t *optab) suffixesClassesEnum(is []inst.Instruction) {
-	// Gather suffixes classes.
-	classes := inst.SuffixesClasses(is)
-	keys := make([]string, 0, len(classes))
-	for key := range classes {
-		keys = append(keys, key)
-	}
-	sort.Strings(keys)
-
-	// Build enum.
-	e := &enum{name: "SuffixesClass"}
-	for _, key := range keys {
-		e.values = append(e.values, api.SuffixesClassIdentifier(key))
-	}
-	e.Print(&t.Generator)
-
-	// Mapping method to the set of accepted suffixes.
-	sets := make([]string, 0, len(classes))
-	for _, key := range keys {
-		var entries []string
-		for _, suffixes := range classes[key] {
-			var parts []string
-			for _, suffix := range suffixes {
-				parts = append(parts, t.suffixes.ConstName(suffix.String()))
-			}
-
-			entry := fmt.Sprintf("{%s}: true", strings.Join(parts, ", "))
-			entries = append(entries, entry)
-		}
-
-		sort.Strings(entries)
-		set := "{" + strings.Join(entries, ", ") + "}"
-		sets = append(sets, set)
-	}
-
-	e.MapMethod(&t.Generator, "SuffixesSet", "map[Suffixes]bool", "nil", sets)
-
-	t.suffixesClasses = e
-}
-
-func (t *optab) opcodesEnum(is []inst.Instruction) {
+func (t *optab) opcodeEnum(is []inst.Instruction) {
 	e := &enum{name: "Opcode"}
 	for _, i := range is {
 		e.values = append(e.values, i.Opcode)
 	}
 	e.Print(&t.Generator)
 	e.StringMethod(&t.Generator)
-	t.opcodes = e
+	t.opcode = e
 }
 
 func (t *optab) forms(is []inst.Instruction) {
@@ -202,8 +232,8 @@ func (t *optab) forms(is []inst.Instruction) {
 			t.Printf("{")
 
 			// Basic properties.
-			t.Printf("%s, ", t.opcodes.ConstName(i.Opcode))
-			t.Printf("%s, ", t.suffixesClass(f))
+			t.Printf("%s, ", t.opcode.ConstName(i.Opcode))
+			t.Printf("%s, ", t.suffixesClassConst(f))
 			t.Printf("%s, ", features(i, f))
 			t.Printf("%s, ", t.isas.ConstName(api.ISAsIdentifier(f.ISA)))
 
@@ -213,14 +243,14 @@ func (t *optab) forms(is []inst.Instruction) {
 			for _, op := range f.Operands {
 				t.Printf(
 					"{uint8(%s),false,%s},",
-					t.operandTypes.ConstName(api.OperandTypeIdentifier(op.Type)),
+					t.operandType.ConstName(api.OperandTypeIdentifier(op.Type)),
 					action(op.Action),
 				)
 			}
 			for _, op := range f.ImplicitOperands {
 				t.Printf(
 					"{uint8(%s),true,%s},",
-					t.implicitRegisters.ConstName(api.ImplicitRegisterIdentifier(op.Register)),
+					t.implicitRegister.ConstName(api.ImplicitRegisterIdentifier(op.Register)),
 					action(op.Action),
 				)
 			}
@@ -232,12 +262,12 @@ func (t *optab) forms(is []inst.Instruction) {
 	t.Printf("}\n\n")
 }
 
-func (t *optab) suffixesClass(f inst.Form) string {
+func (t *optab) suffixesClassConst(f inst.Form) string {
 	ident := api.SuffixesClassIdentifier(f.SuffixesClass())
 	if ident == "" {
-		return t.suffixesClasses.None()
+		return t.suffixesClass.None()
 	}
-	return t.suffixesClasses.ConstName(ident)
+	return t.suffixesClass.ConstName(ident)
 }
 
 func features(i inst.Instruction, f inst.Form) string {
