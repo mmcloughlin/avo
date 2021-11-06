@@ -1,6 +1,8 @@
 package gen
 
 import (
+	"bytes"
+	"fmt"
 	"strings"
 
 	"github.com/mmcloughlin/avo/internal/api"
@@ -88,6 +90,60 @@ func (c *ctorstest) benchmark(fns []*api.Function) {
 	c.Printf("elapsed := time.Since(start)\n")
 	c.Printf("\tb.ReportMetric(%d * float64(b.N) / elapsed.Seconds(), \"inst/s\")\n", n)
 	c.Printf("}\n\n")
+}
+
+func construct(fn *api.Function, f inst.Form, s api.Signature) string {
+	buf := bytes.NewBuffer(nil)
+	fmt.Fprintf(buf, "intrep.Instruction{\n")
+	fmt.Fprintf(buf, "\tOpcode: %#v,\n", fn.Instruction.Opcode)
+	if len(fn.Suffixes) > 0 {
+		fmt.Fprintf(buf, "\tSuffixes: %#v,\n", fn.Suffixes.Strings())
+	}
+	fmt.Fprintf(buf, "\tOperands: %s,\n", s.ParameterSlice())
+
+	// Inputs.
+	fmt.Fprintf(buf, "\tInputs: %s,\n", operandsWithAction(f, inst.R, s))
+
+	// Outputs.
+	fmt.Fprintf(buf, "\tOutputs: %s,\n", operandsWithAction(f, inst.W, s))
+
+	// ISAs.
+	if len(f.ISA) > 0 {
+		fmt.Fprintf(buf, "\tISA: %#v,\n", f.ISA)
+	}
+
+	// Branch variables.
+	if fn.Instruction.IsTerminal() {
+		fmt.Fprintf(buf, "\tIsTerminal: true,\n")
+	}
+
+	if fn.Instruction.IsBranch() {
+		fmt.Fprintf(buf, "\tIsBranch: true,\n")
+		fmt.Fprintf(buf, "\tIsConditional: %#v,\n", fn.Instruction.IsConditionalBranch())
+	}
+
+	// Cancelling inputs.
+	if f.CancellingInputs {
+		fmt.Fprintf(buf, "\tCancellingInputs: true,\n")
+	}
+
+	fmt.Fprintf(buf, "}")
+	return buf.String()
+}
+
+func operandsWithAction(f inst.Form, a inst.Action, s api.Signature) string {
+	opexprs := []string{}
+	for i, op := range f.Operands {
+		if op.Action.ContainsAny(a) {
+			opexprs = append(opexprs, s.ParameterName(i))
+		}
+	}
+	for _, op := range f.ImplicitOperands {
+		if op.Action.ContainsAny(a) {
+			opexprs = append(opexprs, api.ImplicitRegister(op.Register))
+		}
+	}
+	return fmt.Sprintf("[]%s{%s}", api.OperandType, strings.Join(opexprs, ", "))
 }
 
 func formsig(f inst.Form) api.Signature {

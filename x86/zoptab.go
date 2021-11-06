@@ -215,20 +215,20 @@ func (s Suffixes) Strings() []string {
 }
 
 var suffixesstringsmap = map[Suffixes][]string{
-	{SuffixBCST, SuffixZ}:   []string{"BCST", "Z"},
-	{SuffixBCST}:            []string{"BCST"},
-	{SuffixRD_SAE, SuffixZ}: []string{"RD_SAE", "Z"},
-	{SuffixRD_SAE}:          []string{"RD_SAE"},
-	{SuffixRN_SAE, SuffixZ}: []string{"RN_SAE", "Z"},
-	{SuffixRN_SAE}:          []string{"RN_SAE"},
-	{SuffixRU_SAE, SuffixZ}: []string{"RU_SAE", "Z"},
-	{SuffixRU_SAE}:          []string{"RU_SAE"},
-	{SuffixRZ_SAE, SuffixZ}: []string{"RZ_SAE", "Z"},
-	{SuffixRZ_SAE}:          []string{"RZ_SAE"},
-	{SuffixSAE, SuffixZ}:    []string{"SAE", "Z"},
-	{SuffixSAE}:             []string{"SAE"},
-	{SuffixZ}:               []string{"Z"},
-	{}:                      []string(nil),
+	Suffixes{SuffixBCST, SuffixZ}:   []string{"BCST", "Z"},
+	Suffixes{SuffixBCST}:            []string{"BCST"},
+	Suffixes{SuffixRD_SAE, SuffixZ}: []string{"RD_SAE", "Z"},
+	Suffixes{SuffixRD_SAE}:          []string{"RD_SAE"},
+	Suffixes{SuffixRN_SAE, SuffixZ}: []string{"RN_SAE", "Z"},
+	Suffixes{SuffixRN_SAE}:          []string{"RN_SAE"},
+	Suffixes{SuffixRU_SAE, SuffixZ}: []string{"RU_SAE", "Z"},
+	Suffixes{SuffixRU_SAE}:          []string{"RU_SAE"},
+	Suffixes{SuffixRZ_SAE, SuffixZ}: []string{"RZ_SAE", "Z"},
+	Suffixes{SuffixRZ_SAE}:          []string{"RZ_SAE"},
+	Suffixes{SuffixSAE, SuffixZ}:    []string{"SAE", "Z"},
+	Suffixes{SuffixSAE}:             []string{"SAE"},
+	Suffixes{SuffixZ}:               []string{"Z"},
+	Suffixes{}:                      []string(nil),
 }
 
 type SuffixesClass uint8
@@ -254,14 +254,14 @@ func (s SuffixesClass) SuffixesSet() map[Suffixes]bool {
 }
 
 var suffixesclasssuffixessettable = []map[Suffixes]bool{
-	{{SuffixBCST}: true},
-	{{SuffixBCST, SuffixZ}: true},
-	{{SuffixRD_SAE}: true, {SuffixRN_SAE}: true, {SuffixRU_SAE}: true, {SuffixRZ_SAE}: true},
-	{{SuffixRD_SAE, SuffixZ}: true, {SuffixRN_SAE, SuffixZ}: true, {SuffixRU_SAE, SuffixZ}: true, {SuffixRZ_SAE, SuffixZ}: true},
-	{{}: true},
-	{{SuffixSAE}: true},
-	{{SuffixSAE, SuffixZ}: true},
-	{{SuffixZ}: true},
+	{Suffixes{SuffixBCST}: true},
+	{Suffixes{SuffixBCST, SuffixZ}: true},
+	{Suffixes{SuffixRD_SAE}: true, Suffixes{SuffixRN_SAE}: true, Suffixes{SuffixRU_SAE}: true, Suffixes{SuffixRZ_SAE}: true},
+	{Suffixes{SuffixRD_SAE, SuffixZ}: true, Suffixes{SuffixRN_SAE, SuffixZ}: true, Suffixes{SuffixRU_SAE, SuffixZ}: true, Suffixes{SuffixRZ_SAE, SuffixZ}: true},
+	{Suffixes{}: true},
+	{Suffixes{SuffixSAE}: true},
+	{Suffixes{SuffixSAE, SuffixZ}: true},
+	{Suffixes{SuffixZ}: true},
 }
 
 type ISAs uint8

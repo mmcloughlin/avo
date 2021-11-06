@@ -154,7 +154,7 @@ func (t *Table) SuffixesConst(suffixes inst.Suffixes) string {
 	for _, suffix := range suffixes {
 		parts = append(parts, t.SuffixConst(suffix))
 	}
-	return "{" + strings.Join(parts, ", ") + "}"
+	return "Suffixes{" + strings.Join(parts, ", ") + "}"
 }
 
 func (t *Table) SuffixesClass() *Enum { return t.suffixesClass }

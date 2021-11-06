@@ -10,14 +10,13 @@ const (
 	// Package is the avo package import path.
 	Package = "github.com/mmcloughlin/avo"
 
-	// OperandPackage is the avo package for operands.
-	OperandPackage = "operand"
+	// Main avo package names.
+	IRPackage       = "ir"
+	OperandPackage  = "operand"
+	RegisterPackage = "reg"
 
 	// OperandType is the type used for operands.
 	OperandType = OperandPackage + ".Op"
-
-	// RegisterPackage is the avo package for registers.
-	RegisterPackage = "reg"
 
 	// RegisterType is the type used for registers.
 	RegisterType = RegisterPackage + ".Register"
@@ -37,7 +36,7 @@ func ImplicitRegisterIdentifier(r string) string {
 
 // ImplicitRegister returns avo syntax for the given implicit register type (from Opcodes XML).
 func ImplicitRegister(r string) string {
-	return "reg." + ImplicitRegisterIdentifier(r)
+	return RegisterPackage + "." + ImplicitRegisterIdentifier(r)
 }
 
 // OperandTypeIdentifier maps an operand type to a string suitable for a related
