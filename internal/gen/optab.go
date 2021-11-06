@@ -32,7 +32,8 @@ func (t *optab) Generate(is []inst.Instruction) ([]byte, error) {
 	t.Printf("// %s\n\n", t.cfg.GeneratedWarning())
 	t.Printf("package x86\n\n")
 	t.Printf("import (\n")
-	t.Printf("\t%q\n", api.ImportPath("operand"))
+	t.Printf("\t%q\n", api.ImportPath(api.OperandPackage))
+	t.Printf("\t%q\n", api.ImportPath(api.RegisterPackage))
 	t.Printf(")\n\n")
 
 	// Size constants.
@@ -92,11 +93,25 @@ func (t *optab) operandTypeEnum(is []inst.Instruction) {
 }
 
 func (t *optab) implicitRegisterEnum(is []inst.Instruction) {
+	registers := inst.ImplicitRegisters(is)
+
+	// Implicit register enum.
 	e := &enum{name: "ImplicitRegister"}
-	for _, r := range inst.ImplicitRegisters(is) {
+	for _, r := range registers {
 		e.values = append(e.values, api.ImplicitRegisterIdentifier(r))
 	}
 	e.Print(&t.Generator)
+
+	// Register conversion function.
+	t.Printf("func (%s %s) Register() %s {\n", e.Receiver(), e.Name(), api.RegisterType)
+	t.Printf("\tswitch %s {\n", e.Receiver())
+	t.Printf("\t\tdefault: panic(\"unexpected implicit register type\")\n")
+	for _, r := range registers {
+		t.Printf("\t\tcase %s: return %s\n", e.ConstName(api.ImplicitRegisterIdentifier(r)), api.ImplicitRegister(r))
+	}
+	t.Printf("\t}\n")
+	t.Printf("}\n\n")
+
 	t.implicitRegister = e
 }
 

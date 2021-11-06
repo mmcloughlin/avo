@@ -10,8 +10,17 @@ const (
 	// Package is the avo package import path.
 	Package = "github.com/mmcloughlin/avo"
 
+	// OperandPackage is the avo package for operands.
+	OperandPackage = "operand"
+
 	// OperandType is the type used for operands.
-	OperandType = "operand.Op"
+	OperandType = OperandPackage + ".Op"
+
+	// RegisterPackage is the avo package for registers.
+	RegisterPackage = "reg"
+
+	// RegisterType is the type used for registers.
+	RegisterType = RegisterPackage + ".Register"
 )
 
 // ImportPath returns the full import path for an avo subpackage.

@@ -42,6 +42,7 @@ func match(f *Form, suffixes Suffixes, ops []operand.Op) bool {
 }
 
 func build(f *Form, suffixes Suffixes, ops []operand.Op) (*ir.Instruction, error) {
+	// Base instruction properties.
 	i := &ir.Instruction{
 		Opcode:           f.Opcode.String(),
 		Suffixes:         suffixes.Strings(),
@@ -52,9 +53,25 @@ func build(f *Form, suffixes Suffixes, ops []operand.Op) (*ir.Instruction, error
 		ISA:              f.ISAs.List(),
 	}
 
-	// TODO: Operands []operand.Op
-	// TODO: Inputs  []operand.Op
-	// TODO: Outputs []operand.Op
+	// Operands.
+	n := 0
+	for _, spec := range f.Operands {
+		var op operand.Op
+		if spec.Implicit {
+			op = ImplicitRegister(spec.Type).Register()
+		} else {
+			op = ops[n]
+			n++
+		}
+
+		i.Operands = append(i.Operands, op)
+		if spec.Action.Read() {
+			i.Inputs = append(i.Inputs, op)
+		}
+		if spec.Action.Write() {
+			i.Outputs = append(i.Outputs, op)
+		}
+	}
 
 	return i, nil
 }

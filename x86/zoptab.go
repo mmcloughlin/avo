@@ -4,6 +4,7 @@ package x86
 
 import (
 	"github.com/mmcloughlin/avo/operand"
+	"github.com/mmcloughlin/avo/reg"
 )
 
 // MaxOperands is the maximum number of operands in an instruction form, including implicit operands.
@@ -154,6 +155,41 @@ const (
 	ImplicitRegisterX0
 	implicitregistermax
 )
+
+func (i ImplicitRegister) Register() reg.Register {
+	switch i {
+	default:
+		panic("unexpected implicit register type")
+	case ImplicitRegisterAL:
+		return reg.AL
+	case ImplicitRegisterAX:
+		return reg.AX
+	case ImplicitRegisterDX:
+		return reg.DX
+	case ImplicitRegisterEAX:
+		return reg.EAX
+	case ImplicitRegisterEBX:
+		return reg.EBX
+	case ImplicitRegisterECX:
+		return reg.ECX
+	case ImplicitRegisterEDX:
+		return reg.EDX
+	case ImplicitRegisterR11:
+		return reg.R11
+	case ImplicitRegisterRAX:
+		return reg.RAX
+	case ImplicitRegisterRBX:
+		return reg.RBX
+	case ImplicitRegisterRCX:
+		return reg.RCX
+	case ImplicitRegisterRDI:
+		return reg.RDI
+	case ImplicitRegisterRDX:
+		return reg.RDX
+	case ImplicitRegisterX0:
+		return reg.X0
+	}
+}
 
 type Suffix uint8
 

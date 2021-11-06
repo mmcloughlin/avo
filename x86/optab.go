@@ -34,3 +34,7 @@ const (
 	ActionW    Action = 2
 	ActionRW   Action = ActionR | ActionW
 )
+
+func (a Action) Read() bool { return (a & ActionR) != 0 }
+
+func (a Action) Write() bool { return (a & ActionW) != 0 }
