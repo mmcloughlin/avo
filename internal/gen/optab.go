@@ -3,6 +3,7 @@ package gen
 import (
 	"fmt"
 	"sort"
+	"strconv"
 	"strings"
 
 	"github.com/mmcloughlin/avo/internal/api"
@@ -16,12 +17,7 @@ type optab struct {
 
 	cfg printer.Config
 
-	operandType      *enum
-	implicitRegister *enum
-	suffix           *enum
-	suffixesClass    *enum
-	isas             *enum
-	opcode           *enum
+	table *Table
 }
 
 func NewOptab(cfg printer.Config) Interface {
@@ -36,13 +32,16 @@ func (t *optab) Generate(is []inst.Instruction) ([]byte, error) {
 	t.Printf("\t%q\n", api.ImportPath(api.RegisterPackage))
 	t.Printf(")\n\n")
 
+	// Generate instruction data table.
+	t.table = NewTable(is)
+
 	// Size constants.
 	t.maxOperands(is)
 
 	// Types.
 	t.operandTypeEnum(is)
 	t.implicitRegisterEnum(is)
-	t.suffixEnum(is)
+	t.enum(t.table.Suffix())
 	t.suffixesType(is)
 	t.suffixesClassEnum(is)
 	t.isasEnum(is)
@@ -70,59 +69,37 @@ func (t *optab) maxOperands(is []inst.Instruction) {
 }
 
 func (t *optab) operandTypeEnum(is []inst.Instruction) {
-	types := inst.OperandTypes(is)
-
 	// Operand type enum.
-	e := &enum{name: "OperandType"}
-	for _, t := range types {
-		e.values = append(e.values, api.OperandTypeIdentifier(t))
-	}
-	e.Print(&t.Generator)
+	e := t.table.OperandType()
+	t.enum(e)
 
 	// Operand match function.
+	types := inst.OperandTypes(is)
 	t.Printf("func (%s %s) Match(op %s) bool {\n", e.Receiver(), e.Name(), api.OperandType)
 	t.Printf("\tswitch %s {\n", e.Receiver())
 	t.Printf("\t\tdefault: return false\n")
 	for _, typ := range types {
-		t.Printf("\t\tcase %s: return %s(op)\n", e.ConstName(api.OperandTypeIdentifier(typ)), api.CheckerName(typ))
+		t.Printf("\t\tcase %s: return %s(op)\n", t.table.OperandTypeConst(typ), api.CheckerName(typ))
 	}
 	t.Printf("\t}\n")
 	t.Printf("}\n\n")
-
-	t.operandType = e
 }
 
 func (t *optab) implicitRegisterEnum(is []inst.Instruction) {
-	registers := inst.ImplicitRegisters(is)
-
 	// Implicit register enum.
-	e := &enum{name: "ImplicitRegister"}
-	for _, r := range registers {
-		e.values = append(e.values, api.ImplicitRegisterIdentifier(r))
-	}
-	e.Print(&t.Generator)
+	e := t.table.ImplicitRegister()
+	t.enum(e)
 
 	// Register conversion function.
+	registers := inst.ImplicitRegisters(is)
 	t.Printf("func (%s %s) Register() %s {\n", e.Receiver(), e.Name(), api.RegisterType)
 	t.Printf("\tswitch %s {\n", e.Receiver())
 	t.Printf("\t\tdefault: panic(\"unexpected implicit register type\")\n")
 	for _, r := range registers {
-		t.Printf("\t\tcase %s: return %s\n", e.ConstName(api.ImplicitRegisterIdentifier(r)), api.ImplicitRegister(r))
+		t.Printf("\t\tcase %s: return %s\n", t.table.ImplicitRegisterConst(r), api.ImplicitRegister(r))
 	}
 	t.Printf("\t}\n")
 	t.Printf("}\n\n")
-
-	t.implicitRegister = e
-}
-
-func (t *optab) suffixEnum(is []inst.Instruction) {
-	e := &enum{name: "Suffix"}
-	for _, s := range inst.UniqueSuffixes(is) {
-		e.values = append(e.values, s.String())
-	}
-	e.Print(&t.Generator)
-
-	t.suffix = e
 }
 
 func (t *optab) suffixesType(is []inst.Instruction) {
@@ -152,10 +129,9 @@ func (t *optab) suffixesType(is []inst.Instruction) {
 	var entries []string
 	for _, class := range inst.SuffixesClasses(is) {
 		for _, suffixes := range class {
-			entry := fmt.Sprintf("%s: %#v", t.suffixesConst(suffixes), suffixes.Strings())
+			entry := fmt.Sprintf("%s: %#v", t.table.SuffixesConst(suffixes), suffixes.Strings())
 			entries = append(entries, entry)
 		}
-
 	}
 
 	t.Printf("var %s = map[Suffixes][]string{\n", mapname)
@@ -167,77 +143,43 @@ func (t *optab) suffixesType(is []inst.Instruction) {
 }
 
 func (t *optab) suffixesClassEnum(is []inst.Instruction) {
-	// Gather suffixes classes.
-	classes := inst.SuffixesClasses(is)
-	keys := make([]string, 0, len(classes))
-	for key := range classes {
-		keys = append(keys, key)
-	}
-	sort.Strings(keys)
-
-	// Build enum.
-	e := &enum{name: "SuffixesClass"}
-	for _, key := range keys {
-		e.values = append(e.values, api.SuffixesClassIdentifier(key))
-	}
-	e.Print(&t.Generator)
+	// Suffixes class enum.
+	e := t.table.SuffixesClass()
+	t.enum(e)
 
 	// Mapping method to the set of accepted suffixes.
-	sets := make([]string, 0, len(classes))
-	for _, key := range keys {
+	sets := map[string]string{}
+	for key, class := range inst.SuffixesClasses(is) {
 		var entries []string
-		for _, suffixes := range classes[key] {
-			entry := fmt.Sprintf("%s: true", t.suffixesConst(suffixes))
+		for _, suffixes := range class {
+			entry := fmt.Sprintf("%s: true", t.table.SuffixesConst(suffixes))
 			entries = append(entries, entry)
 		}
 
 		sort.Strings(entries)
-		set := "{" + strings.Join(entries, ", ") + "}"
-		sets = append(sets, set)
+		sets[api.SuffixesClassIdentifier(key)] = "{" + strings.Join(entries, ", ") + "}"
 	}
 
-	e.MapMethod(&t.Generator, "SuffixesSet", "map[Suffixes]bool", "nil", sets)
-
-	t.suffixesClass = e
-}
-
-func (t *optab) suffixesConst(suffixes inst.Suffixes) string {
-	var parts []string
-	for _, suffix := range suffixes {
-		parts = append(parts, t.suffix.ConstName(suffix.String()))
-	}
-	return "{" + strings.Join(parts, ", ") + "}"
+	t.mapping(e, "SuffixesSet", "map[Suffixes]bool", "nil", sets)
 }
 
 func (t *optab) isasEnum(is []inst.Instruction) {
-	combinations := inst.ISACombinations(is)
-
-	// Enum.
-	e := &enum{name: "ISAs"}
-	for _, isas := range combinations {
-		e.values = append(e.values, api.ISAsIdentifier(isas))
-	}
-
-	e.Print(&t.Generator)
+	// ISAs enum.
+	e := t.table.ISAs()
+	t.enum(e)
 
 	// Mapping method to produce the list of ISAs.
-	lists := make([]string, len(combinations))
-	for i, isas := range combinations {
-		lists[i] = fmt.Sprintf("%#v", isas)
+	lists := map[string]string{}
+	for _, isas := range inst.ISACombinations(is) {
+		lists[api.ISAsIdentifier(isas)] = fmt.Sprintf("%#v", isas)
 	}
-	e.MapMethod(&t.Generator, "List", "[]string", "nil", lists)
-
-	t.isas = e
+	t.mapping(e, "List", "[]string", "nil", lists)
 }
 
 func (t *optab) opcodeEnum(is []inst.Instruction) {
-	e := &enum{name: "Opcode"}
-	for _, i := range is {
-		e.values = append(e.values, i.Opcode)
-	}
-	e.Print(&t.Generator)
-	e.StringMethod(&t.Generator)
-	t.opcode = e
+	e := t.table.Opcode()
+	t.enum(e)
+	t.stringmethod(e)
 }
 
 func (t *optab) forms(is []inst.Instruction) {
@@ -247,10 +189,10 @@ func (t *optab) forms(is []inst.Instruction) {
 			t.Printf("{")
 
 			// Basic properties.
-			t.Printf("%s, ", t.opcode.ConstName(i.Opcode))
-			t.Printf("%s, ", t.suffixesClassConst(f))
-			t.Printf("%s, ", features(i, f))
-			t.Printf("%s, ", t.isas.ConstName(api.ISAsIdentifier(f.ISA)))
+			t.Printf("%s, ", t.table.OpcodeConst(i.Opcode))
+			t.Printf("%s, ", t.table.SuffixesClassConst(f.SuffixesClass()))
+			t.Printf("%s, ", Features(i, f))
+			t.Printf("%s, ", t.table.ISAsConst(f.ISA))
 
 			// Operands.
 			t.Printf("%d, ", len(f.Operands))
@@ -258,15 +200,15 @@ func (t *optab) forms(is []inst.Instruction) {
 			for _, op := range f.Operands {
 				t.Printf(
 					"{uint8(%s),false,%s},",
-					t.operandType.ConstName(api.OperandTypeIdentifier(op.Type)),
-					action(op.Action),
+					t.table.OperandTypeConst(op.Type),
+					Action(op.Action),
 				)
 			}
 			for _, op := range f.ImplicitOperands {
 				t.Printf(
 					"{uint8(%s),true,%s},",
-					t.implicitRegister.ConstName(api.ImplicitRegisterIdentifier(op.Register)),
-					action(op.Action),
+					t.table.ImplicitRegisterConst(op.Register),
+					Action(op.Action),
 				)
 			}
 			t.Printf("}")
@@ -277,40 +219,43 @@ func (t *optab) forms(is []inst.Instruction) {
 	t.Printf("}\n\n")
 }
 
-func (t *optab) suffixesClassConst(f inst.Form) string {
-	ident := api.SuffixesClassIdentifier(f.SuffixesClass())
-	if ident == "" {
-		return t.suffixesClass.None()
+func (t *optab) enum(e *Enum) {
+	// Type declaration.
+	t.Comment(e.Doc()...)
+	t.Printf("type %s %s\n\n", e.Name(), e.UnderlyingType())
+
+	// Supported values.
+	t.Printf("const (\n")
+	t.Printf("\t%s %s = iota\n", e.None(), e.name)
+	for _, name := range e.ConstNames() {
+		t.Printf("\t%s\n", name)
 	}
-	return t.suffixesClass.ConstName(ident)
+	t.Printf("\t%s\n", e.MaxName())
+	t.Printf(")\n\n")
 }
 
-func features(i inst.Instruction, f inst.Form) string {
-	var enabled []string
-	for _, feature := range []struct {
-		Name    string
-		Enabled bool
-	}{
-		{"Terminal", i.IsTerminal()},
-		{"Branch", i.IsBranch()},
-		{"ConditionalBranch", i.IsConditionalBranch()},
-		{"CancellingInputs", f.CancellingInputs},
-	} {
-		if feature.Enabled {
-			enabled = append(enabled, "Feature"+feature.Name)
-		}
-	}
+func (t *optab) mapping(e *Enum, name, ret, zero string, to map[string]string) {
+	table := strings.ToLower(e.Name() + name + "table")
 
-	if len(enabled) == 0 {
-		return "0"
+	r := e.Receiver()
+	t.Printf("func (%s %s) %s() %s {\n", r, e.Name(), name, ret)
+	t.Printf("if %s < %s && %s < %s {\n", e.None(), r, r, e.MaxName())
+	t.Printf("return %s[%s-1]\n", table, r)
+	t.Printf("}\n")
+	t.Printf("return %s\n", zero)
+	t.Printf("}\n\n")
+
+	t.Printf("var %s = []%s{\n", table, ret)
+	for _, value := range e.Values() {
+		t.Printf("\t%s,\n", to[value])
 	}
-	return strings.Join(enabled, "|")
+	t.Printf("}\n\n")
 }
 
-func action(a inst.Action) string {
-	c := strings.ToUpper(a.String())
-	if c == "" {
-		c = "None"
+func (t *optab) stringmethod(e *Enum) {
+	s := map[string]string{}
+	for _, value := range e.Values() {
+		s[value] = strconv.Quote(value)
 	}
-	return "Action" + c
+	t.mapping(e, "String", "string", `""`, s)
 }
