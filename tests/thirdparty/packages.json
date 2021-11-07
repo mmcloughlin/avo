@@ -389,5 +389,41 @@
                 ]
             }
         ]
+    },
+    {
+        "repository": {
+            "owner": "ericlagergren",
+            "name": "lwcrypto"
+        },
+        "version": "0c42b05eddc34c58bf8e0cd4250c5cd2c256ea57",
+        "pkg": "ascon",
+        "module": "asm/go.mod",
+        "generate": [
+            {
+                "dir": "asm",
+                "commands": [
+                    "go mod edit -require=github.com/ericlagergren/lwcrypto@v0.0.0-00010101000000-000000000000",
+                    "go generate -v -x"
+                ]
+            }
+        ]
+    },
+    {
+        "repository": {
+            "owner": "ericlagergren",
+            "name": "lwcrypto"
+        },
+        "version": "0c42b05eddc34c58bf8e0cd4250c5cd2c256ea57",
+        "pkg": "grain",
+        "module": "asm/go.mod",
+        "generate": [
+            {
+                "dir": "asm",
+                "commands": [
+                    "go mod edit -require=github.com/ericlagergren/lwcrypto@v0.0.0-00010101000000-000000000000",
+                    "go generate -v -x"
+                ]
+            }
+        ]
     }
 ]
