@@ -425,5 +425,21 @@
                 ]
             }
         ]
+    },
+    {
+        "repository": {
+            "owner": "oasisprotocol",
+            "name": "curve25519-voi"
+        },
+        "version": "d5a936accd94ef9da4c0fe9db0a6342dcdcfeadf",
+        "module": "internal/asm/amd64/go.mod",
+        "generate": [
+            {
+                "dir": "internal/asm/amd64",
+                "commands": [
+                    "bash -ex gen.sh"
+                ]
+            }
+        ]
     }
 ]
