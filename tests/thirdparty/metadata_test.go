@@ -3,7 +3,6 @@ package thirdparty
 import (
 	"context"
 	"flag"
-	"net/http"
 	"testing"
 
 	"github.com/mmcloughlin/avo/internal/github"
@@ -23,7 +22,7 @@ func TestPackagesFileMetadata(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	g := github.NewClient(http.DefaultClient)
+	g := github.NewClient(github.WithTokenFromEnvironment())
 
 	for _, pkg := range pkgs {
 		// Fetch metadata.
@@ -34,13 +33,19 @@ func TestPackagesFileMetadata(t *testing.T) {
 
 		// Update, if requested.
 		if *update {
-			pkg.DefaultBranch = r.DefaultBranch
+			pkg.Metadata.DefaultBranch = r.DefaultBranch
+			pkg.Metadata.Description = r.Description
+			pkg.Metadata.Homepage = r.Homepage
+			pkg.Metadata.Stars = r.StargazersCount
 
 			t.Logf("%s: metadata updated", pkg.ID())
 		}
 
-		// Check up to date.
-		uptodate := pkg.DefaultBranch == r.DefaultBranch
+		// Check up to date. Potentially fast-changing properties not included.
+		uptodate := true
+		uptodate = pkg.Metadata.DefaultBranch == r.DefaultBranch && uptodate
+		uptodate = pkg.Metadata.Description == r.Description && uptodate
+		uptodate = pkg.Metadata.Homepage == r.Homepage && uptodate
 
 		if !uptodate {
 			t.Errorf("%s: metadata out of date (use -update flag to fix)", pkg.ID())

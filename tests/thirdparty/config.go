@@ -27,6 +27,21 @@ func (r GithubRepository) CloneURL() string {
 	return fmt.Sprintf("https://github.com/%s.git", r)
 }
 
+// Metadata about the repository.
+type Metadata struct {
+	// Default git branch. This is used when testing against the latest version.
+	DefaultBranch string `json:"default_branch,omitempty"`
+
+	// Repository description.
+	Description string `json:"description,omitempty"`
+
+	// Homepage URL. Not the same as the Github page.
+	Homepage string `json:"homepage,omitempty"`
+
+	// Number of Github stars.
+	Stars int `json:"stars,omitempty"`
+}
+
 // Step represents a set of commands to run as part of the testing plan for a
 // third-party package.
 type Step struct {
@@ -52,8 +67,8 @@ type Package struct {
 	// available on github.
 	Repository GithubRepository `json:"repository"`
 
-	// Default git branch. This is used when testing against the latest version.
-	DefaultBranch string `json:"default_branch,omitempty"`
+	// Repository metadata.
+	Metadata Metadata `json:"metadata"`
 
 	// Version as a git sha, tag or branch.
 	Version string `json:"version"`
