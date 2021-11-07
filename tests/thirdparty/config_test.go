@@ -1,6 +1,8 @@
 package thirdparty
 
 import (
+	"bytes"
+	"reflect"
 	"strings"
 	"testing"
 )
@@ -132,5 +134,28 @@ func TestPackagesFileStepsValid(t *testing.T) {
 				t.Errorf("package %s: %s", pkg.ID(), err)
 			}
 		}
+	}
+}
+
+func TestPackagesFileRoundtrip(t *testing.T) {
+	pkgs, err := LoadPackagesFile("packages.json")
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	// Write and read back.
+	buf := bytes.NewBuffer(nil)
+	if err := StorePackages(buf, pkgs); err != nil {
+		t.Fatal(err)
+	}
+
+	roundtrip, err := LoadPackages(buf)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	// Should be identical.
+	if !reflect.DeepEqual(pkgs, roundtrip) {
+		t.Fatal("roundtrip mismatch")
 	}
 }
