@@ -29,6 +29,7 @@ jobs:
         echo ${{ runner.workspace }}/bin >> $GITHUB_PATH
     - name: Fail
       run: /bin/false
+      continue-on-error: true
     - name: Go Environment
       run: go env
     - name: Checkout code
