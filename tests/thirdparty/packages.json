@@ -643,5 +643,22 @@
                 ]
             }
         ]
+    },
+    {
+        "repository": {
+            "owner": "golang",
+            "name": "go"
+        },
+        "version": "go1.17.3",
+        "pkg": "src/crypto/ed25519",
+        "module": "internal/edwards25519/field/_asm/go.mod",
+        "generate": [
+            {
+                "dir": "internal/edwards25519/field/_asm",
+                "commands": [
+                    "go generate -v -x"
+                ]
+            }
+        ]
     }
 ]
