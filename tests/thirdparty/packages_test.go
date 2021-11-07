@@ -71,16 +71,16 @@ func (t *PackageTest) Run() {
 
 // checkout the code at the specified version.
 func (t *PackageTest) checkout() {
-	// Clone repo.
-	dst := filepath.Join(t.WorkDir, t.Name())
-	test.Exec(t.T, "git", "clone", "--quiet", t.Repository.CloneURL(), dst)
-	t.repopath = dst
+	t.repopath = filepath.Join(t.WorkDir, t.Name())
 
-	// Checkout specific version.
+	// If latest, do a regular clone.
 	if t.Latest {
-		t.Log("using latest version")
+		test.Exec(t.T, "git", "clone", "--quiet", t.Repository.CloneURL(), t.repopath)
 		return
 	}
+
+	test.Exec(t.T, "git", "init", t.repopath)
+	test.Exec(t.T, "git", "-C", t.repopath, "remote", "add", "origin", t.Repository.CloneURL())
 	test.Exec(t.T, "git", "-C", t.repopath, "checkout", "--quiet", t.Version)
 }
 
