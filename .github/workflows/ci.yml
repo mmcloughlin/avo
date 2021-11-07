@@ -27,6 +27,8 @@ jobs:
       run: |
         echo GOPATH=${{ runner.workspace }} >> $GITHUB_ENV
         echo ${{ runner.workspace }}/bin >> $GITHUB_PATH
+    - name: Fail
+      run: /bin/false
     - name: Go Environment
       run: go env
     - name: Checkout code
