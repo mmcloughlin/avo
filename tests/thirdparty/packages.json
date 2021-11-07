@@ -441,5 +441,22 @@
                 ]
             }
         ]
+    },
+    {
+        "repository": {
+            "owner": "golang",
+            "name": "crypto"
+        },
+        "version": "089bfa5675191fd96a44247682f76ebca03d7916",
+        "pkg": "curve25519",
+        "module": "internal/field/_asm/go.mod",
+        "generate": [
+            {
+                "dir": "internal/field/_asm",
+                "commands": [
+                    "go generate -v -x"
+                ]
+            }
+        ]
     }
 ]
