@@ -2,6 +2,7 @@
 package test
 
 import (
+	"flag"
 	"io"
 	"io/ioutil"
 	"log"
@@ -11,6 +12,17 @@ import (
 	"runtime"
 	"testing"
 )
+
+var network = flag.Bool("net", false, "allow network access")
+
+// RequiresNetwork declares that a test requires network access. The test is
+// skipped if network access isn't enabled with the -net flag.
+func RequiresNetwork(t *testing.T) {
+	t.Helper()
+	if !*network {
+		t.Skip("requires network: enable with -net flag")
+	}
+}
 
 // Assembles asserts that the given assembly code passes the go assembler.
 func Assembles(t *testing.T, asm []byte) {
