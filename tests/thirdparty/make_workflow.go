@@ -17,6 +17,7 @@ import (
 
 var (
 	pkgsfilename = flag.String("pkgs", "", "packages configuration")
+	concurrency  = flag.Int("c", 4, "maximum number of concurrent jobs")
 	output       = flag.String("output", "", "path to output file (default stdout)")
 )
 
@@ -88,11 +89,12 @@ func GenerateWorkflow(pkgs thirdparty.Packages) ([]byte, error) {
 	g.NL()
 	g.Linef("jobs:")
 	g.Indent()
-	for _, pkg := range pkgs {
+	for i, pkg := range pkgs {
 		g.Linef("%s:", pkg.ID())
 		g.Indent()
 
 		g.Linef("runs-on: ubuntu-latest")
+		g.Linef("concurrency: packages-%d", i%*concurrency)
 		g.Linef("steps:")
 		g.Indent()
 
