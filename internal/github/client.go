@@ -5,21 +5,49 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
+	"fmt"
 	"net/http"
+	"os"
 )
 
 // Client for the Github REST API.
 type Client struct {
 	client *http.Client
 	base   string
+	token  string
+}
+
+// Option configures a Github client.
+type Option func(*Client)
+
+// WithHTTPClient configures the HTTP client that should be used for Github API
+// requests.
+func WithHTTPClient(h *http.Client) Option {
+	return func(c *Client) { c.client = h }
+}
+
+// WithToken configures a Client with an authentication token for Github API
+// requests.
+func WithToken(token string) Option {
+	return func(c *Client) { c.token = token }
+}
+
+// WithTokenFromEnvironment configures a Client using the GITHUB_TOKEN
+// environment variable.
+func WithTokenFromEnvironment() Option {
+	return WithToken(os.Getenv("GITHUB_TOKEN"))
 }
 
 // NewClient initializes a client using the given HTTP client.
-func NewClient(c *http.Client) *Client {
-	return &Client{
-		client: c,
+func NewClient(opts ...Option) *Client {
+	c := &Client{
+		client: http.DefaultClient,
 		base:   "https://api.github.com",
 	}
+	for _, opt := range opts {
+		opt(c)
+	}
+	return c
 }
 
 // Repository gets information about the given Github repository.
@@ -42,6 +70,9 @@ func (c *Client) Repository(ctx context.Context, owner, name string) (*Repositor
 
 func (c *Client) request(req *http.Request, payload interface{}) (err error) {
 	// Add common headers.
+	if c.token != "" {
+		req.Header.Set("Authorization", "Bearer "+c.token)
+	}
 	req.Header.Set("Accept", "application/vnd.github.v3+json")
 
 	// Execute the request.
@@ -54,6 +85,11 @@ func (c *Client) request(req *http.Request, payload interface{}) (err error) {
 			err = errc
 		}
 	}()
+
+	// Check status.
+	if res.StatusCode != http.StatusOK {
+		return fmt.Errorf("http status %d: %s", res.StatusCode, http.StatusText(res.StatusCode))
+	}
 
 	// Parse response body.
 	d := json.NewDecoder(res.Body)

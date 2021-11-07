@@ -13,7 +13,7 @@ func TestClientRepository(t *testing.T) {
 	test.RequiresNetwork(t)
 
 	ctx := context.Background()
-	g := NewClient(http.DefaultClient)
+	g := NewClient(WithHTTPClient(http.DefaultClient), WithTokenFromEnvironment())
 	r, err := g.Repository(ctx, "golang", "go")
 	if err != nil {
 		t.Fatal(err)
