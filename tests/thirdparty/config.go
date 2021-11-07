@@ -52,6 +52,9 @@ type Package struct {
 	// available on github.
 	Repository GithubRepository `json:"repository"`
 
+	// Default git branch. This is used when testing against the latest version.
+	DefaultBranch string `json:"default_branch,omitempty"`
+
 	// Version as a git sha, tag or branch.
 	Version string `json:"version"`
 

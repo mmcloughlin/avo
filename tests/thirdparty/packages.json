@@ -4,6 +4,7 @@
             "owner": "zeebo",
             "name": "xxh3"
         },
+        "default_branch": "master",
         "version": "v1.0.0-rc1",
         "module": "avo/go.mod",
         "generate": [
@@ -21,6 +22,7 @@
             "owner": "dgryski",
             "name": "go-sip13"
         },
+        "default_branch": "master",
         "version": "62edffca92457b3a66125c686137cc5f0fe81672",
         "module": "_avo/go.mod",
         "setup": [
@@ -55,6 +57,7 @@
             "owner": "phoreproject",
             "name": "bls"
         },
+        "default_branch": "master",
         "version": "a88a5ae26844d7293359422888d7c7f69f43c845",
         "module": "asm/go.mod",
         "setup": [
@@ -90,6 +93,7 @@
             "owner": "minio",
             "name": "md5-simd"
         },
+        "default_branch": "master",
         "version": "30ad8af83f6868c2a30c615f3edf1a9366bf3f89",
         "module": "_gen/go.mod",
         "generate": [
@@ -106,6 +110,7 @@
             "owner": "zeebo",
             "name": "blake3"
         },
+        "default_branch": "master",
         "version": "25dba572f0e78ec108f0dd79c9c15288f542d7d9",
         "module": "avo/go.mod",
         "generate": [
@@ -123,6 +128,7 @@
             "owner": "klauspost",
             "name": "reedsolomon"
         },
+        "default_branch": "master",
         "version": "922778284547557265cff0f903ab5f4c27e40ae9",
         "module": "_gen/go.mod",
         "generate": [
@@ -139,6 +145,7 @@
             "owner": "orisano",
             "name": "wyhash"
         },
+        "default_branch": "master",
         "version": "32a3f7f6ba4797e2d87dab2969cc9dd63d39cce9",
         "module": "avo/go.mod",
         "setup": [
@@ -164,6 +171,7 @@
             "owner": "klauspost",
             "name": "compress"
         },
+        "default_branch": "master",
         "version": "2adf487b3e02f95ce7efd6e4953fda0ae7ecd080",
         "pkg": "s2",
         "module": "_generate/go.mod",
@@ -181,6 +189,7 @@
             "owner": "dgryski",
             "name": "go-bloomindex"
         },
+        "default_branch": "master",
         "version": "0902316dce158c154b958ee5cfc706c62af29a42",
         "module": "avo/go.mod",
         "setup": [
@@ -221,6 +230,7 @@
             "owner": "dgryski",
             "name": "go-marvin32"
         },
+        "default_branch": "master",
         "version": "7d18f4c6ea7c24b29d1c7a670f8ae40b0812f2e3",
         "module": "avo/go.mod",
         "setup": [
@@ -262,6 +272,7 @@
             "owner": "dgryski",
             "name": "go-speck"
         },
+        "default_branch": "master",
         "version": "5b36d4c08d8840c352a153bf37281434ad550ec0",
         "module": "avo/go.mod",
         "setup": [
@@ -304,6 +315,7 @@
             "owner": "dgryski",
             "name": "go-chaskey"
         },
+        "default_branch": "master",
         "version": "ba454392bc5ab6daae103e15147185f8f4a27dcc",
         "module": "avo/go.mod",
         "setup": [
@@ -346,6 +358,7 @@
             "owner": "lukechampine",
             "name": "us"
         },
+        "default_branch": "master",
         "version": "dff56a80f83653cb14eeeb57ba6ba3c3e942c412",
         "pkg": "merkle/blake2b",
         "module": "avo/go.mod",
@@ -380,6 +393,7 @@
             "owner": "segmentio",
             "name": "asm"
         },
+        "default_branch": "main",
         "version": "v1.0.0",
         "module": "build/go.mod",
         "generate": [
@@ -395,6 +409,7 @@
             "owner": "ericlagergren",
             "name": "lwcrypto"
         },
+        "default_branch": "main",
         "version": "0c42b05eddc34c58bf8e0cd4250c5cd2c256ea57",
         "pkg": "ascon",
         "module": "asm/go.mod",
@@ -413,6 +428,7 @@
             "owner": "ericlagergren",
             "name": "lwcrypto"
         },
+        "default_branch": "main",
         "version": "0c42b05eddc34c58bf8e0cd4250c5cd2c256ea57",
         "pkg": "grain",
         "module": "asm/go.mod",
@@ -431,6 +447,7 @@
             "owner": "oasisprotocol",
             "name": "curve25519-voi"
         },
+        "default_branch": "master",
         "version": "d5a936accd94ef9da4c0fe9db0a6342dcdcfeadf",
         "module": "internal/asm/amd64/go.mod",
         "generate": [
@@ -447,6 +464,7 @@
             "owner": "golang",
             "name": "crypto"
         },
+        "default_branch": "master",
         "version": "089bfa5675191fd96a44247682f76ebca03d7916",
         "pkg": "curve25519",
         "module": "internal/field/_asm/go.mod",
