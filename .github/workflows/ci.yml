@@ -18,6 +18,7 @@ jobs:
         go-version: [1.16.x, 1.17.x]
         platform: [ubuntu-latest]
     runs-on: ${{ matrix.platform }}
+    continue-on-error: true
     steps:
     - name: Install Go
       uses: actions/setup-go@37335c7bb261b353407cff977110895fa0b4f7d8 # v2.1.3
@@ -29,7 +30,6 @@ jobs:
         echo ${{ runner.workspace }}/bin >> $GITHUB_PATH
     - name: Fail
       run: /bin/false
-      continue-on-error: true
     - name: Go Environment
       run: go env
     - name: Checkout code
