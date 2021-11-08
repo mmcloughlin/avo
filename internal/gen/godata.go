@@ -105,6 +105,7 @@ func NewGoDataTest(cfg printer.Config) Interface {
 func (g *godatatest) Generate(is []inst.Instruction) ([]byte, error) {
 	g.Printf("// %s\n\n", g.cfg.GeneratedWarning())
 	g.BuildTag("test")
+	g.NL()
 	g.Printf("package inst_test\n\n")
 
 	g.Printf(`import (
