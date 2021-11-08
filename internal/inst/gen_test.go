@@ -7,4 +7,3 @@
 package inst
 
 //go:generate avogen -bootstrap -data ../data -output ztable_test.go godatatest
-//go:generate go test -tags=test

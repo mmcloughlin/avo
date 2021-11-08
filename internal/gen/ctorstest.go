@@ -24,11 +24,11 @@ func NewCtorsTest(cfg printer.Config) Interface {
 
 func (c *ctorstest) Generate(is []inst.Instruction) ([]byte, error) {
 	c.Printf("// %s\n\n", c.cfg.GeneratedWarning())
-	c.BuildTag("test")
 	c.NL()
 	c.Printf("package x86\n\n")
 	c.Printf("import (\n")
 	c.Printf("\t\"math\"\n")
+	c.Printf("\t\"reflect\"\n")
 	c.Printf("\t\"testing\"\n")
 	c.Printf("\t\"time\"\n")
 	c.NL()
@@ -67,7 +67,7 @@ func (c *ctorstest) function(fn *api.Function) {
 		c.Printf("expect := &%s\n", construct(fn, f, s))
 		c.Printf("got, err := %s(%s)\n", fn.Name(), s.Arguments())
 		c.Printf("if err != nil { t.Fatal(err) }\n")
-		c.Printf("AssertInstructionEqual(t, got, expect)\n")
+		c.Printf("if !reflect.DeepEqual(expect, got) { t.Fatal(\"mismatch\") }\n")
 		c.Printf("})\n")
 	}
 
