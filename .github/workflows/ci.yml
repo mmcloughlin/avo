@@ -36,11 +36,6 @@ jobs:
     - name: Bootstrap
       run: ./script/bootstrap
 
-    - name: Generate Tests
-      run: ./script/gentests
-    - name: Status
-      run: git status
-
     - name: Build
       run: go build ./...
     - name: Test

@@ -1,5 +1,0 @@
-#!/bin/bash -ex
-
-go install ./internal/cmd/avogen
-avogen -bootstrap -data internal/data -output internal/inst/ztable_test.go godatatest
-avogen -output x86/zctors_test.go ctorstest
