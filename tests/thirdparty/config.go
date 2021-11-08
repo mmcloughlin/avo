@@ -29,9 +29,6 @@ func (r GithubRepository) CloneURL() string {
 
 // Metadata about the repository.
 type Metadata struct {
-	// Default git branch. This is used when testing against the latest version.
-	DefaultBranch string `json:"default_branch,omitempty"`
-
 	// Repository description.
 	Description string `json:"description,omitempty"`
 
@@ -69,6 +66,9 @@ type Package struct {
 
 	// Repository metadata.
 	Metadata Metadata `json:"metadata"`
+
+	// Default git branch. This is used when testing against the latest version.
+	DefaultBranch string `json:"default_branch,omitempty"`
 
 	// Version as a git sha, tag or branch.
 	Version string `json:"version"`
@@ -130,7 +130,7 @@ func applydefault(set bool, s, def string) string {
 
 // Validate package definition.
 func (p *Package) Validate() error {
-	if p.Metadata.DefaultBranch == "" {
+	if p.DefaultBranch == "" {
 		return errors.New("missing default branch")
 	}
 	if p.Version == "" {

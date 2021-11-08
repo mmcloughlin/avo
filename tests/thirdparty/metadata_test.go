@@ -31,7 +31,7 @@ func TestPackagesFileMetadata(t *testing.T) {
 
 		// Update, if requested.
 		if *update {
-			pkg.Metadata.DefaultBranch = r.DefaultBranch
+			pkg.DefaultBranch = r.DefaultBranch
 			pkg.Metadata.Description = r.Description
 			pkg.Metadata.Homepage = r.Homepage
 			pkg.Metadata.Stars = r.StargazersCount
@@ -41,7 +41,7 @@ func TestPackagesFileMetadata(t *testing.T) {
 
 		// Check up to date. Potentially fast-changing properties not included.
 		uptodate := true
-		uptodate = pkg.Metadata.DefaultBranch == r.DefaultBranch && uptodate
+		uptodate = pkg.DefaultBranch == r.DefaultBranch && uptodate
 		uptodate = pkg.Metadata.Description == r.Description && uptodate
 		uptodate = pkg.Metadata.Homepage == r.Homepage && uptodate
 

@@ -26,35 +26,46 @@ func TestValidateErrors(t *testing.T) {
 			ErrorSubstring: "missing commands",
 		},
 		{
-			Name: "package_missing_version",
+			Name: "package_missing_default_branch",
 			Item: &Package{
 				Repository: GithubRepository{Owner: "octocat", Name: "hello-world"},
+			},
+			ErrorSubstring: "missing default branch",
+		},
+		{
+			Name: "package_missing_version",
+			Item: &Package{
+				Repository:    GithubRepository{Owner: "octocat", Name: "hello-world"},
+				DefaultBranch: "main",
 			},
 			ErrorSubstring: "missing version",
 		},
 		{
 			Name: "package_missing_module",
 			Item: &Package{
-				Repository: GithubRepository{Owner: "octocat", Name: "hello-world"},
-				Version:    "v1.0.1",
+				Repository:    GithubRepository{Owner: "octocat", Name: "hello-world"},
+				DefaultBranch: "main",
+				Version:       "v1.0.1",
 			},
 			ErrorSubstring: "missing module",
 		},
 		{
 			Name: "package_no_generate_commands",
 			Item: &Package{
-				Repository: GithubRepository{Owner: "octocat", Name: "hello-world"},
-				Version:    "v1.0.1",
-				Module:     "avo/go.mod",
+				Repository:    GithubRepository{Owner: "octocat", Name: "hello-world"},
+				DefaultBranch: "main",
+				Version:       "v1.0.1",
+				Module:        "avo/go.mod",
 			},
 			ErrorSubstring: "no generate commands",
 		},
 		{
 			Name: "package_invalid_generate_commands",
 			Item: &Package{
-				Repository: GithubRepository{Owner: "octocat", Name: "hello-world"},
-				Version:    "v1.0.1",
-				Module:     "avo/go.mod",
+				Repository:    GithubRepository{Owner: "octocat", Name: "hello-world"},
+				DefaultBranch: "main",
+				Version:       "v1.0.1",
+				Module:        "avo/go.mod",
 				Generate: []*Step{
 					{},
 				},
@@ -68,7 +79,7 @@ func TestValidateErrors(t *testing.T) {
 					Repository: GithubRepository{Owner: "octocat", Name: "hello-world"},
 				},
 			},
-			ErrorSubstring: "missing version",
+			ErrorSubstring: "missing default branch",
 		},
 	}
 	for _, c := range cases {

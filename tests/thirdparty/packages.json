@@ -5,10 +5,10 @@
             "name": "xxh3"
         },
         "metadata": {
-            "default_branch": "master",
             "description": "XXH3 algorithm in Go",
             "stars": 198
         },
+        "default_branch": "master",
         "version": "v1.0.0-rc1",
         "module": "avo/go.mod",
         "generate": [
@@ -27,10 +27,10 @@
             "name": "go-sip13"
         },
         "metadata": {
-            "default_branch": "master",
             "description": "siphash 1-3",
             "stars": 31
         },
+        "default_branch": "master",
         "version": "62edffca92457b3a66125c686137cc5f0fe81672",
         "module": "_avo/go.mod",
         "setup": [
@@ -66,10 +66,10 @@
             "name": "bls"
         },
         "metadata": {
-            "default_branch": "master",
             "description": "Go implementation of the BLS12-381 pairing",
             "stars": 81
         },
+        "default_branch": "master",
         "version": "a88a5ae26844d7293359422888d7c7f69f43c845",
         "module": "asm/go.mod",
         "setup": [
@@ -106,10 +106,10 @@
             "name": "md5-simd"
         },
         "metadata": {
-            "default_branch": "master",
             "description": "Accelerate aggregated MD5 hashing performance up to 8x for AVX512 and 4x for AVX2. Useful for server applications that need to compute many MD5 sums in parallel.",
             "stars": 87
         },
+        "default_branch": "master",
         "version": "30ad8af83f6868c2a30c615f3edf1a9366bf3f89",
         "module": "_gen/go.mod",
         "generate": [
@@ -127,10 +127,10 @@
             "name": "blake3"
         },
         "metadata": {
-            "default_branch": "master",
             "description": "Pure Go implementation of BLAKE3 with AVX2 and SSE4.1 acceleration",
             "stars": 252
         },
+        "default_branch": "master",
         "version": "25dba572f0e78ec108f0dd79c9c15288f542d7d9",
         "module": "avo/go.mod",
         "generate": [
@@ -149,10 +149,10 @@
             "name": "reedsolomon"
         },
         "metadata": {
-            "default_branch": "master",
             "description": "Reed-Solomon Erasure Coding in Go",
             "stars": 1343
         },
+        "default_branch": "master",
         "version": "922778284547557265cff0f903ab5f4c27e40ae9",
         "module": "_gen/go.mod",
         "generate": [
@@ -170,10 +170,10 @@
             "name": "wyhash"
         },
         "metadata": {
-            "default_branch": "master",
             "description": "A pure-Go wyhash implementation.",
             "stars": 21
         },
+        "default_branch": "master",
         "version": "32a3f7f6ba4797e2d87dab2969cc9dd63d39cce9",
         "module": "avo/go.mod",
         "setup": [
@@ -200,10 +200,10 @@
             "name": "compress"
         },
         "metadata": {
-            "default_branch": "master",
             "description": "Optimized Go Compression Packages",
             "stars": 2442
         },
+        "default_branch": "master",
         "version": "2adf487b3e02f95ce7efd6e4953fda0ae7ecd080",
         "pkg": "s2",
         "module": "_generate/go.mod",
@@ -222,10 +222,10 @@
             "name": "go-bloomindex"
         },
         "metadata": {
-            "default_branch": "master",
             "description": "Bloom-filter based search index",
             "stars": 107
         },
+        "default_branch": "master",
         "version": "0902316dce158c154b958ee5cfc706c62af29a42",
         "module": "avo/go.mod",
         "setup": [
@@ -267,10 +267,10 @@
             "name": "go-marvin32"
         },
         "metadata": {
-            "default_branch": "master",
             "description": "Assembly-optimized Marvin32 hash function",
             "stars": 12
         },
+        "default_branch": "master",
         "version": "7d18f4c6ea7c24b29d1c7a670f8ae40b0812f2e3",
         "module": "avo/go.mod",
         "setup": [
@@ -313,10 +313,10 @@
             "name": "go-speck"
         },
         "metadata": {
-            "default_branch": "master",
             "description": "SPECK cipher",
             "stars": 10
         },
+        "default_branch": "master",
         "version": "5b36d4c08d8840c352a153bf37281434ad550ec0",
         "module": "avo/go.mod",
         "setup": [
@@ -360,10 +360,10 @@
             "name": "go-chaskey"
         },
         "metadata": {
-            "default_branch": "master",
             "description": "go-chaskey: an implementation of chaskey, an efficient MAC for microcontrollers",
             "stars": 7
         },
+        "default_branch": "master",
         "version": "ba454392bc5ab6daae103e15147185f8f4a27dcc",
         "module": "avo/go.mod",
         "setup": [
@@ -407,10 +407,10 @@
             "name": "us"
         },
         "metadata": {
-            "default_branch": "master",
             "description": "An alternative interface to Sia",
             "stars": 49
         },
+        "default_branch": "master",
         "version": "dff56a80f83653cb14eeeb57ba6ba3c3e942c412",
         "pkg": "merkle/blake2b",
         "module": "avo/go.mod",
@@ -446,10 +446,10 @@
             "name": "asm"
         },
         "metadata": {
-            "default_branch": "main",
             "description": "Go library providing algorithms optimized to leverage the characteristics of modern CPUs",
             "stars": 548
         },
+        "default_branch": "main",
         "version": "v1.0.0",
         "module": "build/go.mod",
         "generate": [
@@ -466,10 +466,10 @@
             "name": "lwcrypto"
         },
         "metadata": {
-            "default_branch": "main",
             "description": "NIST Lightweight Cryptography finalists",
             "stars": 2
         },
+        "default_branch": "main",
         "version": "0c42b05eddc34c58bf8e0cd4250c5cd2c256ea57",
         "pkg": "ascon",
         "module": "asm/go.mod",
@@ -489,10 +489,10 @@
             "name": "lwcrypto"
         },
         "metadata": {
-            "default_branch": "main",
             "description": "NIST Lightweight Cryptography finalists",
             "stars": 2
         },
+        "default_branch": "main",
         "version": "0c42b05eddc34c58bf8e0cd4250c5cd2c256ea57",
         "pkg": "grain",
         "module": "asm/go.mod",
@@ -512,10 +512,10 @@
             "name": "curve25519-voi"
         },
         "metadata": {
-            "default_branch": "master",
             "description": "High-performance Curve25519/ristretto255 for Go",
             "stars": 32
         },
+        "default_branch": "master",
         "version": "d5a936accd94ef9da4c0fe9db0a6342dcdcfeadf",
         "module": "internal/asm/amd64/go.mod",
         "generate": [
@@ -533,11 +533,11 @@
             "name": "crypto"
         },
         "metadata": {
-            "default_branch": "master",
             "description": "[mirror] Go supplementary cryptography libraries",
             "homepage": "https://golang.org/x/crypto",
             "stars": 2283
         },
+        "default_branch": "master",
         "version": "089bfa5675191fd96a44247682f76ebca03d7916",
         "pkg": "curve25519",
         "module": "internal/field/_asm/go.mod",
