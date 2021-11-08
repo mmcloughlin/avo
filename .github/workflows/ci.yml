@@ -36,8 +36,10 @@ jobs:
     - name: Bootstrap
       run: ./script/bootstrap
 
-    - name: Generate Test Files
-      run: go generate -tags=test -v -x ./...
+    - name: Generate
+      run: ./script/generate
+      env:
+        GOFLAGS: -tags=test
     - name: Status
       run: git status
 
