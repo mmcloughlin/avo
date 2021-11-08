@@ -13,6 +13,8 @@ import (
 	"github.com/mmcloughlin/avo/ir"
 )
 
+//go:generate avogen -output zctors_test.go ctorstest
+
 func AssertInstructionEqual(t *testing.T, got, expect *ir.Instruction) {
 	t.Helper()
 	if !reflect.DeepEqual(got, expect) {
