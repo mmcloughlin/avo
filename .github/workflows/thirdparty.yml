@@ -31,4 +31,4 @@ jobs:
           persist-credentials: false
       - name: Run Third-Party Tests
         working-directory: tests/thirdparty
-        run: go test -pkgs packages.json
+        run: go test -net -pkgs packages.json

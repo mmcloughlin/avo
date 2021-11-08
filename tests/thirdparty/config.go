@@ -27,11 +27,23 @@ func (r GithubRepository) CloneURL() string {
 	return fmt.Sprintf("https://github.com/%s.git", r)
 }
 
+// Metadata about the repository.
+type Metadata struct {
+	// Repository description.
+	Description string `json:"description,omitempty"`
+
+	// Homepage URL. Not the same as the Github page.
+	Homepage string `json:"homepage,omitempty"`
+
+	// Number of Github stars.
+	Stars int `json:"stars,omitempty"`
+}
+
 // Step represents a set of commands to run as part of the testing plan for a
 // third-party package.
 type Step struct {
-	Name             string   `json:"name"`
-	WorkingDirectory string   `json:"dir"`
+	Name             string   `json:"name,omitempty"`
+	WorkingDirectory string   `json:"dir,omitempty"`
 	Commands         []string `json:"commands"`
 }
 
@@ -52,13 +64,19 @@ type Package struct {
 	// available on github.
 	Repository GithubRepository `json:"repository"`
 
+	// Repository metadata.
+	Metadata Metadata `json:"metadata"`
+
+	// Default git branch. This is used when testing against the latest version.
+	DefaultBranch string `json:"default_branch,omitempty"`
+
 	// Version as a git sha, tag or branch.
 	Version string `json:"version"`
 
 	// Sub-package within the repository under test. All file path references
 	// will be relative to this directory. If empty the root of the repository
 	// is used.
-	SubPackage string `json:"pkg"`
+	SubPackage string `json:"pkg,omitempty"`
 
 	// Path to the module file for the avo generator package. This is necessary
 	// so the integration test can insert replace directives to point at the avo
@@ -68,13 +86,13 @@ type Package struct {
 	// Setup steps. These run prior to the insertion of avo replace directives,
 	// therefore should be used if it's necessary to initialize new go modules
 	// within the repository.
-	Setup []*Step `json:"setup"`
+	Setup []*Step `json:"setup,omitempty"`
 
 	// Steps to run the avo code generator.
 	Generate []*Step `json:"generate"` // generate commands to run
 
 	// Test steps. If empty, defaults to "go test ./...".
-	Test []*Step `json:"test"`
+	Test []*Step `json:"test,omitempty"`
 }
 
 // ID returns an identifier for the package.
@@ -83,9 +101,8 @@ func (p *Package) ID() string {
 	return strings.ReplaceAll(pkgpath, "/", "-")
 }
 
-// setdefaults fills in missing parameters to help make the input package
-// descriptions less verbose.
-func (p *Package) setdefaults() {
+// defaults sets or removes default field values.
+func (p *Package) defaults(set bool) {
 	for _, stage := range []struct {
 		Steps       []*Step
 		DefaultName string
@@ -94,14 +111,28 @@ func (p *Package) setdefaults() {
 		{p.Generate, "Generate"},
 		{p.Test, "Test"},
 	} {
-		if len(stage.Steps) == 1 && stage.Steps[0].Name == "" {
-			stage.Steps[0].Name = stage.DefaultName
+		if len(stage.Steps) == 1 {
+			stage.Steps[0].Name = applydefault(set, stage.Steps[0].Name, stage.DefaultName)
 		}
+	}
+}
+
+func applydefault(set bool, s, def string) string {
+	switch {
+	case set && s == "":
+		return def
+	case !set && s == def:
+		return ""
+	default:
+		return s
 	}
 }
 
 // Validate package definition.
 func (p *Package) Validate() error {
+	if p.DefaultBranch == "" {
+		return errors.New("missing default branch")
+	}
 	if p.Version == "" {
 		return errors.New("missing version")
 	}
@@ -193,9 +224,9 @@ func (p *Package) Steps(c *Context) []*Step {
 // Packages is a collection of third-party integration tests.
 type Packages []*Package
 
-func (p Packages) setdefaults() {
+func (p Packages) defaults(set bool) {
 	for _, pkg := range p {
-		pkg.setdefaults()
+		pkg.defaults(set)
 	}
 }
 
@@ -217,7 +248,7 @@ func LoadPackages(r io.Reader) (Packages, error) {
 	if err := d.Decode(&pkgs); err != nil {
 		return nil, err
 	}
-	pkgs.setdefaults()
+	pkgs.defaults(true)
 	return pkgs, nil
 }
 
@@ -229,4 +260,24 @@ func LoadPackagesFile(filename string) (Packages, error) {
 	}
 	defer f.Close()
 	return LoadPackages(f)
+}
+
+// StorePackages writes a list of package configurations in JSON format.
+func StorePackages(w io.Writer, pkgs Packages) error {
+	e := json.NewEncoder(w)
+	e.SetIndent("", "    ")
+	pkgs.defaults(false)
+	err := e.Encode(pkgs)
+	pkgs.defaults(true)
+	return err
+}
+
+// StorePackagesFile writes a list of package configurations to a JSON file.
+func StorePackagesFile(filename string, pkgs Packages) error {
+	f, err := os.Create(filename)
+	if err != nil {
+		return err
+	}
+	defer f.Close()
+	return StorePackages(f, pkgs)
 }
