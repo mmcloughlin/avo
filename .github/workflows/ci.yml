@@ -36,10 +36,10 @@ jobs:
     - name: Bootstrap
       run: ./script/bootstrap
 
-    - name: Generate
-      run: ./script/generate
-      env:
-        GOFLAGS: -tags=test
+    - name: Generate Tests
+      run: ./script/gentests
+    - name: Status
+      run: git status
 
     - name: Build
       run: go build ./...
