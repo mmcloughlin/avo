@@ -37,7 +37,7 @@ jobs:
       run: ./script/bootstrap
 
     - name: Generate Test Files
-      run: go generate -tags=test -v -x
+      run: go generate -tags=test -v -x ./...
     - name: Status
       run: git status
 
