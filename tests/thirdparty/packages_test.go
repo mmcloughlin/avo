@@ -71,17 +71,18 @@ func (t *PackageTest) Run() {
 
 // checkout the code at the specified version.
 func (t *PackageTest) checkout() {
-	t.repopath = filepath.Join(t.WorkDir, t.Name())
-
-	// If latest, do a regular clone.
+	// Determine the version we want to checkout.
+	version := t.Version
 	if t.Latest {
-		test.Exec(t.T, "git", "clone", "--quiet", t.Repository.CloneURL(), t.repopath)
-		return
+		version = t.DefaultBranch
 	}
 
+	// Clone. Use a shallow clone to speed up large repositories.
+	t.repopath = filepath.Join(t.WorkDir, t.Name())
 	test.Exec(t.T, "git", "init", t.repopath)
 	test.Exec(t.T, "git", "-C", t.repopath, "remote", "add", "origin", t.Repository.CloneURL())
-	test.Exec(t.T, "git", "-C", t.repopath, "checkout", "--quiet", t.Version)
+	test.Exec(t.T, "git", "-C", t.repopath, "fetch", "--depth=1", "origin", version)
+	test.Exec(t.T, "git", "-C", t.repopath, "checkout", "FETCH_HEAD")
 }
 
 func (t *PackageTest) steps() {
