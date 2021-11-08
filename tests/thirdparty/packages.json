@@ -535,7 +535,7 @@
         "metadata": {
             "description": "[mirror] Go supplementary cryptography libraries",
             "homepage": "https://golang.org/x/crypto",
-            "stars": 2283
+            "stars": 2282
         },
         "default_branch": "master",
         "version": "089bfa5675191fd96a44247682f76ebca03d7916",
@@ -544,6 +544,28 @@
         "generate": [
             {
                 "dir": "internal/field/_asm",
+                "commands": [
+                    "go generate -v -x"
+                ]
+            }
+        ]
+    },
+    {
+        "repository": {
+            "owner": "FiloSottile",
+            "name": "edwards25519"
+        },
+        "metadata": {
+            "description": "filippo.io/edwards25519 — A safer, faster, and more powerful low-level edwards25519 Go implementation.",
+            "homepage": "https://filippo.io/edwards25519",
+            "stars": 71
+        },
+        "default_branch": "main",
+        "version": "v1.0.0-rc.1",
+        "module": "field/_asm/go.mod",
+        "generate": [
+            {
+                "dir": "field/_asm",
                 "commands": [
                     "go generate -v -x"
                 ]
