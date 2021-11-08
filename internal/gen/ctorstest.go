@@ -24,6 +24,7 @@ func NewCtorsTest(cfg printer.Config) Interface {
 
 func (c *ctorstest) Generate(is []inst.Instruction) ([]byte, error) {
 	c.Printf("// %s\n\n", c.cfg.GeneratedWarning())
+	c.BuildTag("test")
 	c.NL()
 	c.Printf("package x86\n\n")
 	c.Printf("import (\n")

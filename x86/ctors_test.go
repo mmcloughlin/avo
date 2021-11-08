@@ -14,6 +14,7 @@ import (
 )
 
 //go:generate avogen -output zctors_test.go ctorstest
+//go:generate go test -tags=test
 
 func AssertInstructionEqual(t *testing.T, got, expect *ir.Instruction) {
 	t.Helper()
