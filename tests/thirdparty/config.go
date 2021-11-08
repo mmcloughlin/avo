@@ -130,6 +130,9 @@ func applydefault(set bool, s, def string) string {
 
 // Validate package definition.
 func (p *Package) Validate() error {
+	if p.Metadata.DefaultBranch == "" {
+		return errors.New("missing default branch")
+	}
 	if p.Version == "" {
 		return errors.New("missing version")
 	}

@@ -9,9 +9,7 @@ import (
 	"github.com/mmcloughlin/avo/internal/test"
 )
 
-var (
-	update = flag.Bool("update", false, "update package metadata")
-)
+var update = flag.Bool("update", false, "update package metadata")
 
 func TestPackagesFileMetadata(t *testing.T) {
 	test.RequiresNetwork(t)
