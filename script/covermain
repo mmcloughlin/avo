@@ -21,7 +21,7 @@ EOF
 # Execute the test with coverage.
 testbin="${workdir}/testbin"
 output="${workdir}/cover.out"
-go test -o ${testbin} -covermode=count -coverpkg="github.com/mmcloughlin/avo/..." ${workdir}/*.go
+go test -tag=integration -o ${testbin} -covermode=count -coverpkg="github.com/mmcloughlin/avo/..." ${workdir}/*.go
 ${testbin} -test.coverprofile=${output}
 cp ${output} ${coverprofile}
 
