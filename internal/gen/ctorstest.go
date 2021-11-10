@@ -28,13 +28,10 @@ func (c *ctorstest) Generate(is []inst.Instruction) ([]byte, error) {
 	c.Printf("package x86\n\n")
 	c.Printf("import (\n")
 	c.Printf("\t\"math\"\n")
-	c.Printf("\t\"reflect\"\n")
 	c.Printf("\t\"testing\"\n")
-	c.Printf("\t\"time\"\n")
 	c.NL()
-	c.Printf("\tintrep \"%s/ir\"\n", api.Package)
-	c.Printf("\t\"%s/reg\"\n", api.Package)
-	c.Printf("\t\"%s/operand\"\n", api.Package)
+	c.Printf("\t%q\n", api.ImportPath(api.OperandPackage))
+	c.Printf("\t%q\n", api.ImportPath(api.RegisterPackage))
 	c.Printf(")\n\n")
 
 	c.args()
@@ -43,8 +40,6 @@ func (c *ctorstest) Generate(is []inst.Instruction) ([]byte, error) {
 	for _, fn := range fns {
 		c.function(fn)
 	}
-
-	c.benchmark(fns)
 
 	return c.Result()
 }
@@ -58,28 +53,86 @@ func (c *ctorstest) args() {
 }
 
 func (c *ctorstest) function(fn *api.Function) {
-	c.Printf("func Test%sValidForms(t *testing.T) {", fn.Name())
+	c.Printf("func Test%sValidFormsNoError(t *testing.T) {", fn.Name())
+	for _, f := range fn.Forms {
+		s := formsig(f)
+		c.Printf("if _, err := %s(%s); err != nil { t.Fatal(err) }\n", fn.Name(), s.Arguments())
+	}
+	c.Printf("}\n\n")
+}
 
+type ctorsstress struct {
+	cfg printer.Config
+	prnt.Generator
+}
+
+// NewCtorsStress autogenerates stress tests for instruction constructors.
+func NewCtorsStress(cfg printer.Config) Interface {
+	return GoFmt(&ctorsstress{cfg: cfg})
+}
+
+func (c *ctorsstress) Generate(is []inst.Instruction) ([]byte, error) {
+	c.Printf("// %s\n\n", c.cfg.GeneratedWarning())
+	c.BuildTag("stress")
+	c.NL()
+	c.Printf("package x86\n\n")
+	c.Printf("import (\n")
+	c.Printf("\t\"reflect\"\n")
+	c.Printf("\t\"testing\"\n")
+	c.NL()
+	c.Printf("\t%q\n", api.ImportPath(api.IRPackage))
+	c.Printf("\t%q\n", api.ImportPath(api.OperandPackage))
+	c.Printf("\t%q\n", api.ImportPath(api.RegisterPackage))
+	c.Printf(")\n\n")
+
+	fns := api.InstructionsFunctions(is)
+	for _, fn := range fns {
+		c.function(fn)
+	}
+
+	return c.Result()
+}
+
+func (c *ctorsstress) function(fn *api.Function) {
+	c.Printf("func Test%sValidFormsCorrectInstruction(t *testing.T) {", fn.Name())
 	for _, f := range fn.Forms {
 		name := strings.Join(f.Signature(), "_")
 		c.Printf("t.Run(\"form=%s\", func(t *testing.T) {\n", name)
 		s := formsig(f)
 		c.Printf("expect := &%s\n", construct(fn, f, s))
-		c.Printf("got, err := %s(%s)\n", fn.Name(), s.Arguments())
+		c.Printf("got, err := %s(%s);\n", fn.Name(), s.Arguments())
 		c.Printf("if err != nil { t.Fatal(err) }\n")
-		c.Printf("if !reflect.DeepEqual(expect, got) { t.Fatal(\"mismatch\") }\n")
+		c.Printf("if !reflect.DeepEqual(got, expect) { t.Fatal(\"mismatch\") }\n")
 		c.Printf("})\n")
 	}
-
 	c.Printf("}\n\n")
 }
 
-func (c *ctorstest) benchmark(fns []*api.Function) {
+type ctorsbench struct {
+	cfg printer.Config
+	prnt.Generator
+}
+
+// NewCtorsBench autogenerates a benchmark for the instruction constructors.
+func NewCtorsBench(cfg printer.Config) Interface {
+	return GoFmt(&ctorsbench{cfg: cfg})
+}
+
+func (c *ctorsbench) Generate(is []inst.Instruction) ([]byte, error) {
+	c.Printf("// %s\n\n", c.cfg.GeneratedWarning())
+	c.BuildTag("stress")
+	c.NL()
+	c.Printf("package x86\n\n")
+	c.Printf("import (\n")
+	c.Printf("\t\"time\"\n")
+	c.Printf("\t\"testing\"\n")
+	c.Printf(")\n\n")
+
 	c.Printf("func BenchmarkConstructors(b *testing.B) {\n")
 	c.Printf("start := time.Now()\n")
 	c.Printf("for i := 0; i < b.N; i++ {\n")
 	n := 0
-	for _, fn := range fns {
+	for _, fn := range api.InstructionsFunctions(is) {
 		for _, f := range fn.Forms {
 			n++
 			c.Printf("%s(%s)\n", fn.Name(), formsig(f).Arguments())
@@ -89,11 +142,12 @@ func (c *ctorstest) benchmark(fns []*api.Function) {
 	c.Printf("elapsed := time.Since(start)\n")
 	c.Printf("\tb.ReportMetric(%d * float64(b.N) / elapsed.Seconds(), \"inst/s\")\n", n)
 	c.Printf("}\n\n")
+	return c.Result()
 }
 
 func construct(fn *api.Function, f inst.Form, s api.Signature) string {
 	buf := bytes.NewBuffer(nil)
-	fmt.Fprintf(buf, "intrep.Instruction{\n")
+	fmt.Fprintf(buf, "ir.Instruction{\n")
 	fmt.Fprintf(buf, "\tOpcode: %#v,\n", fn.Instruction.Opcode)
 	if len(fn.Suffixes) > 0 {
 		fmt.Fprintf(buf, "\tSuffixes: %#v,\n", fn.Suffixes.Strings())
