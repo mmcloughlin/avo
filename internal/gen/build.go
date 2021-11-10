@@ -27,10 +27,18 @@ func (b *build) Generate(is []inst.Instruction) ([]byte, error) {
 	b.Printf("package build\n\n")
 
 	b.Printf("import (\n")
-	b.Printf("\t\"%s/operand\"\n", api.Package)
-	b.Printf("\t\"%s/x86\"\n", api.Package)
+	b.Printf("\t%q\n", api.ImportPath(api.IRPackage))
+	b.Printf("\t%q\n", api.ImportPath(api.OperandPackage))
+	b.Printf("\t%q\n", api.ImportPath("x86"))
 	b.Printf(")\n\n")
 
+	// Helper to reduce source code size a little.
+	b.Printf("func (c *Context) addinstruction(i *ir.Instruction, err error) {\n")
+	b.Printf("if err == nil { c.Instruction(i) }")
+	b.Printf(" else { c.adderror(err) }\n")
+	b.Printf("}\n\n")
+
+	// Generate build functions.
 	fns := api.InstructionsFunctions(is)
 	for _, fn := range fns {
 		b.function(fn)
@@ -48,9 +56,7 @@ func (b *build) function(fn *api.Function) {
 	methoddoc = append(methoddoc, fmt.Sprintf("Construct and append a %s instruction to the active function.", fn.Opcode()))
 	b.Comment(methoddoc...)
 	b.Printf("func (c *Context) %s(%s) {\n", fn.Name(), s.ParameterList())
-	b.Printf("if inst, err := x86.%s(%s); err == nil", fn.Name(), s.Arguments())
-	b.Printf(" { c.Instruction(inst) }")
-	b.Printf(" else { c.adderror(err) }\n")
+	b.Printf("c.addinstruction(x86.%s(%s))", fn.Name(), s.Arguments())
 	b.Printf("}\n\n")
 
 	// Global version.
