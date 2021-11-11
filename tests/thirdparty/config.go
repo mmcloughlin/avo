@@ -93,6 +93,8 @@ type Package struct {
 
 	// Test steps. If empty, defaults to "go test ./...".
 	Test []*Step `json:"test,omitempty"`
+
+	Skip bool `json:"skip,omitempty"`
 }
 
 // ID returns an identifier for the package.
