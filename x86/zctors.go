@@ -1638,6 +1638,87 @@ func BLENDVPS(x, mx, x1 operand.Op) (*intrep.Instruction, error) {
 	return nil, errors.New("BLENDVPS: bad operands")
 }
 
+func REP(cx operand.Op) (*intrep.Instruction, error) {
+	if !operand.IsRCX(cx) {
+		return nil, errors.New("REP: cx must be cx register")
+	}
+	return &intrep.Instruction{
+		Opcode:   "REP",
+		Operands: []operand.Op{},
+		Inputs:   []operand.Op{cx},
+		Outputs:  []operand.Op{},
+	}, nil
+}
+
+func REPE(cx operand.Op) (*intrep.Instruction, error) {
+	if !operand.IsRCX(cx) {
+		return nil, errors.New("REPE: cx must be cx register")
+	}
+	return &intrep.Instruction{
+		Opcode:   "REPE",
+		Operands: []operand.Op{},
+		Inputs:   []operand.Op{cx},
+		Outputs:  []operand.Op{},
+	}, nil
+}
+
+func REPNE(cx operand.Op) (*intrep.Instruction, error) {
+	if !operand.IsRCX(cx) {
+		return nil, errors.New("REPNE: cx must be cx register")
+	}
+	return &intrep.Instruction{
+		Opcode:   "REPNE",
+		Operands: []operand.Op{},
+		Inputs:   []operand.Op{cx},
+		Outputs:  []operand.Op{},
+	}, nil
+}
+
+func MOVSB(si, di operand.Op) (*intrep.Instruction, error) {
+	if !operand.IsRDI(di) {
+		return nil, errors.New("MOVSB: di must be di register")
+	}
+	if !operand.IsRSI(si) {
+		return nil, errors.New("MOVSB: si must be si register")
+	}
+	return &intrep.Instruction{
+		Opcode:   "MOVSB",
+		Operands: []operand.Op{},
+		Inputs:   []operand.Op{si, di},
+		Outputs:  []operand.Op{},
+	}, nil
+}
+
+func MOVSW(si, di operand.Op) (*intrep.Instruction, error) {
+	if !operand.IsRDI(di) {
+		return nil, errors.New("MOVSW: di must be di register")
+	}
+	if !operand.IsRSI(si) {
+		return nil, errors.New("MOVSW: si must be si register")
+	}
+	return &intrep.Instruction{
+		Opcode:   "MOVSW",
+		Operands: []operand.Op{},
+		Inputs:   []operand.Op{si, di},
+		Outputs:  []operand.Op{},
+	}, nil
+}
+
+func MOVSL(si, di operand.Op) (*intrep.Instruction, error) {
+	if !operand.IsRDI(di) {
+		return nil, errors.New("MOVSL: di must be di register")
+	}
+	if !operand.IsRSI(si) {
+		return nil, errors.New("MOVSL: si must be si register")
+	}
+	return &intrep.Instruction{
+		Opcode:   "MOVSL",
+		Operands: []operand.Op{},
+		Inputs:   []operand.Op{si, di},
+		Outputs:  []operand.Op{},
+	}, nil
+}
+
 // BLSIL: Isolate Lowest Set Bit.
 //
 // Forms:

@@ -86,6 +86,21 @@ func IsRAX(op Op) bool {
 	return op == reg.RAX
 }
 
+// IsRCX returns true if op is the 64-bit RCX register.
+func IsRCX(op Op) bool {
+	return op == reg.RCX
+}
+
+// IsRSI returns true if op is the 64-bit RSI register.
+func IsRSI(op Op) bool {
+	return op == reg.RSI
+}
+
+// IsRDI returns true if op is the 64-bit RDI register.
+func IsRDI(op Op) bool {
+	return op == reg.RDI
+}
+
 // IsR8 returns true if op is an 8-bit general-purpose register.
 func IsR8(op Op) bool {
 	return IsGP(op, 1)

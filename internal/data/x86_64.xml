@@ -11299,6 +11299,41 @@
       </Encoding>
     </InstructionForm>
   </Instruction>
+    <Instruction name="REP" summary="Repeat">
+    <InstructionForm gas-name="rep" go-name="REP" nacl-version="33">
+      <Encoding>
+        <Opcode byte="F3"/>
+      </Encoding>
+    </InstructionForm>
+  </Instruction>
+    <Instruction name="REPE" summary="Repeat">
+    <InstructionForm gas-name="repe" go-name="REPE" nacl-version="33">
+      <Encoding>
+        <Opcode byte="F3"/>
+      </Encoding>
+    </InstructionForm>
+  </Instruction>
+    <Instruction name="REPNE" summary="Repeat">
+    <InstructionForm gas-name="repne" go-name="REPNE" nacl-version="33">
+      <Encoding>
+        <Opcode byte="F2"/>
+      </Encoding>
+    </InstructionForm>
+  </Instruction>
+    <Instruction name="MOVSB" summary="Move byte at address at SI to DI">
+    <InstructionForm gas-name="movsb" go-name="MOVSB" nacl-version="33">
+      <Encoding>
+        <Opcode byte="A4"/>
+      </Encoding>
+    </InstructionForm>
+  </Instruction>
+    <Instruction name="MOVSW" summary="Move word at address at SI to DI">
+    <InstructionForm gas-name="movsw" go-name="MOVSW" nacl-version="33">
+      <Encoding>
+        <Opcode byte="A5"/>
+      </Encoding>
+    </InstructionForm>
+  </Instruction>
   <Instruction name="NOT" summary="One's Complement Negation">
     <InstructionForm gas-name="notb" go-name="NOTB" nacl-version="33">
       <Operand type="r8" input="true" output="true"/>
