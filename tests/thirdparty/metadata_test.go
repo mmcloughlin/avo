@@ -48,7 +48,6 @@ func TestPackagesFileMetadata(t *testing.T) {
 		if !uptodate {
 			t.Errorf("%s: metadata out of date (use -update flag to fix)", pkg.ID())
 		}
-
 	}
 
 	if err := StorePackagesFile("packages.json", pkgs); err != nil {
