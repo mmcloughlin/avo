@@ -93,12 +93,28 @@ type Package struct {
 
 	// Test steps. If empty, defaults to "go test ./...".
 	Test []*Step `json:"test,omitempty"`
+
+	// If the package test has a known problem, record it by setting this to a
+	// non-zero avo issue number.  If set, the package will be skipped in
+	// testing.
+	KnownIssue int `json:"known_issue,omitempty"`
 }
 
 // ID returns an identifier for the package.
 func (p *Package) ID() string {
 	pkgpath := path.Join(p.Repository.String(), p.SubPackage)
 	return strings.ReplaceAll(pkgpath, "/", "-")
+}
+
+// Skip reports whether the package test should be skipped. If skipped, a known
+// issue will be set.
+func (p *Package) Skip() bool {
+	return p.KnownIssue != 0
+}
+
+// Reason returns the reason why the test is skipped.
+func (p *Package) Reason() string {
+	return fmt.Sprintf("https://github.com/mmcloughlin/avo/issues/%d", p.KnownIssue)
 }
 
 // defaults sets or removes default field values.

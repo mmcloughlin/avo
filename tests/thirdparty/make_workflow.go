@@ -93,6 +93,9 @@ func GenerateWorkflow(pkgs thirdparty.Packages) ([]byte, error) {
 		g.Indent()
 
 		g.Linef("runs-on: ubuntu-latest")
+		if pkg.Skip() {
+			g.Linef("if: false # skip: %s", pkg.Reason())
+		}
 		g.Linef("steps:")
 		g.Indent()
 

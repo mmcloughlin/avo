@@ -35,6 +35,9 @@ func TestPackages(t *testing.T) {
 	for _, pkg := range pkgs {
 		pkg := pkg // scopelint
 		t.Run(pkg.ID(), func(t *testing.T) {
+			if pkg.Skip() {
+				t.Skipf("skip: %s", pkg.Reason())
+			}
 			dir, clean := test.TempDir(t)
 			if !*preserve {
 				defer clean()

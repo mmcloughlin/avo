@@ -54,3 +54,39 @@ func TestPackagesFileMetadata(t *testing.T) {
 		t.Fatal(err)
 	}
 }
+
+func TestPackagesFileKnownIssues(t *testing.T) {
+	test.RequiresNetwork(t)
+	ctx := context.Background()
+
+	pkgs, err := LoadPackagesFile("packages.json")
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	g := github.NewClient(github.WithTokenFromEnvironment())
+
+	for _, pkg := range pkgs {
+		// Skipped packages must refer to an open issue.
+		if !pkg.Skip() {
+			continue
+		}
+
+		if pkg.KnownIssue == 0 {
+			t.Errorf("%s: skipped package must refer to known issue", pkg.ID())
+		}
+
+		issue, err := g.Issue(ctx, "mmcloughlin", "avo", pkg.KnownIssue)
+		if err != nil {
+			t.Fatal(err)
+		}
+
+		if issue.State != "open" {
+			t.Errorf("%s: known issue in %s state", pkg.ID(), issue.State)
+		}
+
+		if pkg.Reason() != issue.HTMLURL {
+			t.Errorf("%s: expected skip reason to be the issue url %s", pkg.ID(), issue.HTMLURL)
+		}
+	}
+}

@@ -68,6 +68,24 @@ func (c *Client) Repository(ctx context.Context, owner, name string) (*Repositor
 	return repo, nil
 }
 
+// Issue gets information about the given Github issue.
+func (c *Client) Issue(ctx context.Context, owner, name string, number int) (*Issue, error) {
+	// Build request.
+	u := fmt.Sprintf("%s/repos/%s/%s/issues/%d", c.base, owner, name, number)
+	req, err := http.NewRequestWithContext(ctx, http.MethodGet, u, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	// Execute.
+	issue := &Issue{}
+	if err := c.request(req, issue); err != nil {
+		return nil, err
+	}
+
+	return issue, nil
+}
+
 func (c *Client) request(req *http.Request, payload interface{}) (err error) {
 	// Add common headers.
 	if c.token != "" {
