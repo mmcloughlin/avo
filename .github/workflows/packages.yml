@@ -561,7 +561,7 @@ jobs:
         run: go test ./...
   segmentio-asm:
     runs-on: ubuntu-latest
-    if: false
+    if: false # skip: https://github.com/mmcloughlin/avo/issues/20
     steps:
       - name: Install Go
         uses: actions/setup-go@37335c7bb261b353407cff977110895fa0b4f7d8 # v2.1.3
