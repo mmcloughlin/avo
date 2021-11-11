@@ -74,15 +74,29 @@ func (m *mov) instruction(i inst.Instruction) {
 
 // ismov decides whether the given instruction is a plain move instruction.
 func ismov(i inst.Instruction) bool {
-	if i.AliasOf != "" || !strings.HasPrefix(i.Opcode, "MOV") {
+	// Ignore aliases.
+	if i.AliasOf != "" {
 		return false
 	}
+
+	// Accept specific move instruction prefixes.
+	prefixes := []string{"MOV", "KMOV", "VMOV"}
+	accept := false
+	for _, prefix := range prefixes {
+		accept = strings.HasPrefix(i.Opcode, prefix) || accept
+	}
+	if !accept {
+		return false
+	}
+
+	// Exclude some cases based on instruction descriptions.
 	exclude := []string{"Packed", "Duplicate", "Aligned", "Hint", "Swapping"}
 	for _, substring := range exclude {
 		if strings.Contains(i.Summary, substring) {
 			return false
 		}
 	}
+
 	return true
 }
 
@@ -136,9 +150,14 @@ var opsize = map[string]int8{
 	"r32":   4,
 	"r64":   8,
 	"xmm":   16,
+	"ymm":   32,
+	"zmm":   64,
 	"m8":    1,
 	"m16":   2,
 	"m32":   4,
 	"m64":   8,
 	"m128":  16,
+	"m256":  32,
+	"m512":  64,
+	"k":     8,
 }
