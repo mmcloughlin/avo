@@ -458,8 +458,7 @@
                     "make --always-make build"
                 ]
             }
-        ],
-        "known_issue": 20
+        ]
     },
     {
         "repository": {
