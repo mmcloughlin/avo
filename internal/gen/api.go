@@ -110,7 +110,7 @@ func NewTable(is []inst.Instruction) *Table {
 
 func (t *Table) init() {
 	// Operand type.
-	t.operandType = NewEnum("OperandType")
+	t.operandType = NewEnum("oprndtype")
 	types := inst.OperandTypes(t.instructions)
 	for _, typ := range types {
 		t.operandType.AddValue(api.OperandTypeIdentifier(typ))
@@ -118,19 +118,19 @@ func (t *Table) init() {
 
 	// Implicit register.
 	registers := inst.ImplicitRegisters(t.instructions)
-	t.implicitRegister = NewEnum("ImplicitRegister")
+	t.implicitRegister = NewEnum("implreg")
 	for _, r := range registers {
 		t.implicitRegister.AddValue(api.ImplicitRegisterIdentifier(r))
 	}
 
 	// Suffix.
-	t.suffix = NewEnum("Suffix")
+	t.suffix = NewEnum("sffx")
 	for _, s := range inst.UniqueSuffixes(t.instructions) {
 		t.suffix.AddValue(s.String())
 	}
 
 	// Suffixes class.
-	t.suffixesClass = NewEnum("SuffixesClass")
+	t.suffixesClass = NewEnum("sffxscls")
 
 	classes := inst.SuffixesClasses(t.instructions)
 	keys := make([]string, 0, len(classes))
@@ -144,13 +144,13 @@ func (t *Table) init() {
 	}
 
 	// ISAs.
-	t.isas = NewEnum("ISAs")
+	t.isas = NewEnum("isas")
 	for _, isas := range inst.ISACombinations(t.instructions) {
 		t.isas.AddValue(api.ISAsIdentifier(isas))
 	}
 
 	// Opcodes.
-	t.opcode = NewEnum("Opcode")
+	t.opcode = NewEnum("opc")
 	for _, i := range t.instructions {
 		t.opcode.AddValue(i.Opcode)
 	}
@@ -179,6 +179,11 @@ func (t *Table) Suffix() *Enum { return t.suffix }
 // SuffixConst returns the constant name for the given instruction suffix.
 func (t *Table) SuffixConst(s inst.Suffix) string { return t.suffix.ConstName(s.String()) }
 
+// SuffixesTypeName returns the name of the array type for a list of suffixes.
+func (t *Table) SuffixesTypeName() string {
+	return t.Suffix().Name() + "s"
+}
+
 // SuffixesConst returns the constant for a list of suffixes. Suffixes is a
 // generated array type, so the list is a value not slice type.
 func (t *Table) SuffixesConst(suffixes inst.Suffixes) string {
@@ -186,7 +191,7 @@ func (t *Table) SuffixesConst(suffixes inst.Suffixes) string {
 	for _, suffix := range suffixes {
 		parts = append(parts, t.SuffixConst(suffix))
 	}
-	return "Suffixes{" + strings.Join(parts, ", ") + "}"
+	return t.SuffixesTypeName() + "{" + strings.Join(parts, ", ") + "}"
 }
 
 // SuffixesClass returns the enumeration representing all suffixes classes.
@@ -232,7 +237,7 @@ func Features(i inst.Instruction, f inst.Form) string {
 		{"CancellingInputs", f.CancellingInputs},
 	} {
 		if feature.Enabled {
-			enabled = append(enabled, "Feature"+feature.Name)
+			enabled = append(enabled, "feature"+feature.Name)
 		}
 	}
 
@@ -246,7 +251,7 @@ func Features(i inst.Instruction, f inst.Form) string {
 func Action(a inst.Action) string {
 	c := strings.ToUpper(a.String())
 	if c == "" {
-		c = "None"
+		c = "N"
 	}
-	return "Action" + c
+	return "action" + c
 }

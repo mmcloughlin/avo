@@ -68,8 +68,8 @@ func (t *optab) maxOperands(is []inst.Instruction) {
 		}
 	}
 
-	t.Comment("MaxOperands is the maximum number of operands in an instruction form, including implicit operands.")
-	t.Printf("const MaxOperands = %d\n\n", max)
+	t.Comment("maxoperands is the maximum number of operands in an instruction form, including implicit operands.")
+	t.Printf("const maxoperands = %d\n\n", max)
 }
 
 func (t *optab) operandTypeEnum(is []inst.Instruction) {
@@ -118,15 +118,16 @@ func (t *optab) suffixesType(is []inst.Instruction) {
 		}
 	}
 
-	t.Comment("MaxSuffixes is the maximum number of suffixes an instruction can have.")
-	t.Printf("const MaxSuffixes = %d\n\n", max)
+	t.Comment("maxsuffixes is the maximum number of suffixes an instruction can have.")
+	t.Printf("const maxsuffixes = %d\n\n", max)
 
-	t.Printf("type Suffixes [MaxSuffixes]%s\n", t.table.Suffix().Name())
+	name := t.table.SuffixesTypeName()
+	t.Printf("type %s [maxsuffixes]%s\n", name, t.table.Suffix().Name())
 
 	// Conversion function to list of strings.
-	mapname := "suffixesstringsmap"
+	mapname := name + "stringsmap"
 
-	t.Printf("func (s Suffixes) Strings() []string {\n")
+	t.Printf("func (s %s) Strings() []string {\n", name)
 	t.Printf("return %s[s]", mapname)
 	t.Printf("}\n")
 
@@ -138,7 +139,7 @@ func (t *optab) suffixesType(is []inst.Instruction) {
 		}
 	}
 
-	t.Printf("var %s = map[Suffixes][]string{\n", mapname)
+	t.Printf("var %s = map[%s][]string{\n", mapname, name)
 	sort.Strings(entries)
 	for _, entry := range entries {
 		t.Printf("%s,\n", entry)
@@ -164,7 +165,8 @@ func (t *optab) suffixesClassEnum(is []inst.Instruction) {
 		sets[api.SuffixesClassIdentifier(key)] = "{" + strings.Join(entries, ", ") + "}"
 	}
 
-	t.mapping(e, "SuffixesSet", "map[Suffixes]bool", "nil", sets)
+	settype := fmt.Sprintf("map[%s]bool", t.table.SuffixesTypeName())
+	t.mapping(e, "SuffixesSet", settype, "nil", sets)
 }
 
 func (t *optab) isasEnum(is []inst.Instruction) {
@@ -197,7 +199,7 @@ func (t *optab) forms(is []inst.Instruction) {
 
 	// Output instruction forms table.
 	table := "forms"
-	t.Printf("var %s = []Form{\n", table)
+	t.Printf("var %s = []form{\n", table)
 	for _, i := range is {
 		for _, f := range i.Forms {
 			t.Printf("{")
@@ -210,7 +212,7 @@ func (t *optab) forms(is []inst.Instruction) {
 
 			// Operands.
 			t.Printf("%d, ", len(f.Operands))
-			t.Printf("Operands{")
+			t.Printf("oprnds{")
 			for _, op := range f.Operands {
 				t.Printf(
 					"{uint8(%s),false,%s},",
@@ -241,7 +243,7 @@ func (t *optab) forms(is []inst.Instruction) {
 		n = e
 	}
 
-	t.mapping(t.table.Opcode(), "Forms", "[]Form", "nil", forms)
+	t.mapping(t.table.Opcode(), "Forms", "[]form", "nil", forms)
 }
 
 func (t *optab) enum(e *Enum) {

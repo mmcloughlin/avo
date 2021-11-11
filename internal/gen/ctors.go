@@ -43,7 +43,7 @@ func (c *ctors) function(fn *api.Function, table *Table) {
 
 	c.Printf("func %s(%s) (*intrep.Instruction, error) {\n", fn.Name(), s.ParameterList())
 	c.Printf(
-		"return BuildInstruction(%s.Forms(), %s, %s)\n",
+		"return build(%s.Forms(), %s, %s)\n",
 		table.OpcodeConst(fn.Instruction.Opcode),
 		table.SuffixesConst(fn.Suffixes),
 		s.ParameterSlice(),
