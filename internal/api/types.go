@@ -10,13 +10,17 @@ const (
 	// Package is the avo package import path.
 	Package = "github.com/mmcloughlin/avo"
 
-	// Main avo package names.
-	IRPackage       = "ir"
-	OperandPackage  = "operand"
-	RegisterPackage = "reg"
+	// IRPackage is the package that defines intermediate representation types.
+	IRPackage = "ir"
+
+	// OperandPackage is the package for operand types.
+	OperandPackage = "operand"
 
 	// OperandType is the type used for operands.
 	OperandType = OperandPackage + ".Op"
+
+	// RegisterPackage is the name of the package containing register types.
+	RegisterPackage = "reg"
 
 	// RegisterType is the type used for registers.
 	RegisterType = RegisterPackage + ".Register"

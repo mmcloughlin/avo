@@ -20,6 +20,10 @@ type optab struct {
 	table *Table
 }
 
+// NewOptab builds the operator table. This contains a more compact
+// representation of the instruction database, containing the data needed for
+// instruction builders to match against provided operands, and build the
+// selected instruction.
 func NewOptab(cfg printer.Config) Interface {
 	return GoFmt(&optab{cfg: cfg})
 }
@@ -228,7 +232,7 @@ func (t *optab) forms(is []inst.Instruction) {
 	}
 	t.Printf("}\n\n")
 
-	// Build mapping from opcode to corresponsing forms.
+	// Build mapping from opcode to corresponding forms.
 	forms := map[string]string{}
 	n := 0
 	for _, i := range is {

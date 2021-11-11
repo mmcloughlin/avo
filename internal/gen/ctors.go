@@ -12,10 +12,9 @@ type ctors struct {
 	prnt.Generator
 }
 
-// NewCtors will build instruction constructors. Each constructor will check
-// that the provided operands match one of the allowed instruction forms. If so
-// it will return an Instruction object that can be added to an avo Function.
-
+// NewCtors will build instruction constructors.  Each constructor delegates to
+// the optab-based instruction builder, providing it with a candidate list of
+// forms to match against.
 func NewCtors(cfg printer.Config) Interface {
 	return GoFmt(&ctors{cfg: cfg})
 }
