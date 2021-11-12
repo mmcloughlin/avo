@@ -3,9 +3,20 @@ package md5x16
 import (
 	"encoding/hex"
 	"testing"
+
+	"golang.org/x/sys/cpu"
 )
 
+func RequireISA(t *testing.T) {
+	t.Helper()
+	if !cpu.X86.HasAVX512F {
+		t.Skip("requires AVX512F instruction set")
+	}
+}
+
 func TestVectors(t *testing.T) {
+	RequireISA(t)
+
 	cases := []struct {
 		Data      string
 		HexDigest string
