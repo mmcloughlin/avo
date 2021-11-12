@@ -1,6 +1,6 @@
 module github.com/mmcloughlin/avo
 
-go 1.11
+go 1.13
 
 require (
 	golang.org/x/arch v0.0.0-20210923205945-b76863e36670
