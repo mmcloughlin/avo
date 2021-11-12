@@ -4,114 +4,116 @@
 package main
 
 import (
+	"math"
+
 	. "github.com/mmcloughlin/avo/build"
 	. "github.com/mmcloughlin/avo/operand"
 	. "github.com/mmcloughlin/avo/reg"
 )
 
 func main() {
-	TEXT("block", 0, "func(h *[5]uint32, m []byte)")
-	Doc("block SHA-1 hashes the 64-byte message m into the running state h.")
-	h := Mem{Base: Load(Param("h"), GP64())}
-	m := Mem{Base: Load(Param("m").Base(), GP64())}
+	// Define round constants.
+	T := GLOBL("consts", RODATA|NOPTR)
+	for i := 0; i < 64; i++ {
+		k := uint32(math.Floor(math.Ldexp(math.Abs(math.Sin(float64(i+1))), 32)))
+		DATA(4*i, U32(k))
+	}
 
-	// Store message values on the stack.
-	w := AllocLocal(64)
-	W := func(r int) Mem { return w.Offset((r % 16) * 4) }
+	TEXT("block16", 0, "func(h *[256]uint32, base uintptr, offsets *[16]uint32, mask uint16)")
+	// Doc("block16 SHA-1 hashes the 64-byte message m into the running state h.")
+	h := Mem{Base: Load(Param("h"), GP64())}
+	base := Mem{Base: Load(Param("base"), GP64())}
+	offsetsptr := Mem{Base: Load(Param("offsets"), GP64())}
+	mask := Load(Param("mask"), K())
+
+	Comment("Load offsets.")
+	offsets := ZMM()
+	VMOVUPD(offsetsptr, offsets)
 
 	Comment("Load initial hash.")
-	hash := [5]Register{GP32(), GP32(), GP32(), GP32(), GP32()}
+	hash := [4]Register{ZMM(), ZMM(), ZMM(), ZMM()}
 	for i, r := range hash {
-		MOVL(h.Offset(4*i), r)
+		VMOVUPD(h.Offset(64*i), r)
 	}
 
 	Comment("Initialize registers.")
-	a, b, c, d, e := GP32(), GP32(), GP32(), GP32(), GP32()
-	for i, r := range []Register{a, b, c, d, e} {
-		MOVL(hash[i], r)
+	a, b, c, d := ZMM(), ZMM(), ZMM(), ZMM()
+	for i, r := range []Register{a, b, c, d} {
+		VMOVUPD(hash[i], r)
+	}
+
+	// Allocate message registers.
+	m := make([]Register, 16)
+	for i := range m {
+		m[i] = ZMM()
 	}
 
 	// Generate round updates.
+	const (
+		B = uint8(0b11110000)
+		C = uint8(0b11001100)
+		D = uint8(0b10101010)
+	)
 	quarter := []struct {
-		F func(Register, Register, Register) Register
-		K uint32
+		F uint8
+		i func(int) int
+		s []int
 	}{
-		{choose, 0x5a827999},
-		{xor, 0x6ed9eba1},
-		{majority, 0x8f1bbcdc},
-		{xor, 0xca62c1d6},
+		{
+			F: (B & C) | (^B & D),
+			i: func(r int) int { return r % 16 },
+			s: []int{7, 12, 17, 22},
+		},
+		{
+			F: (D & B) | (^D & C),
+			i: func(r int) int { return (5*r + 1) % 16 },
+			s: []int{5, 9, 14, 20},
+		},
+		{
+			F: B ^ C ^ D,
+			i: func(r int) int { return (3*r + 5) % 16 },
+			s: []int{4, 11, 16, 23},
+		},
+		{
+			F: C ^ (B | ^D),
+			i: func(r int) int { return (7 * r) % 16 },
+			s: []int{6, 10, 15, 21},
+		},
 	}
 
-	for r := 0; r < 80; r++ {
+	for r := 0; r < 64; r++ {
 		Commentf("Round %d.", r)
-		q := quarter[r/20]
+		q := quarter[r/16]
 
-		// Load message value.
-		u := GP32()
+		// Load message words.
 		if r < 16 {
-			MOVL(m.Offset(4*r), u)
-			BSWAPL(u)
-		} else {
-			MOVL(W(r-3), u)
-			XORL(W(r-8), u)
-			XORL(W(r-14), u)
-			XORL(W(r-16), u)
-			ROLL(U8(1), u)
+			k := K()
+			KMOVW(mask, k)
+			VPGATHERDD(base.Offset(4*r).Idx(offsets, 1), k, m[r])
 		}
-		MOVL(u, W(r))
 
-		// Compute the next state register.
-		t := GP32()
-		MOVL(a, t)
-		ROLL(U8(5), t)
-		ADDL(q.F(b, c, d), t)
-		ADDL(e, t)
-		ADDL(U32(q.K), t)
-		ADDL(u, t)
-
-		// Update registers.
-		ROLL(Imm(30), b)
-		a, b, c, d, e = t, a, b, c, d
+		VPADDD(m[q.i(r)], a, a)
+		VPADDD_BCST(T.Offset(4*r), a, a)
+		f := ZMM()
+		VMOVUPD(d, f)
+		VPTERNLOGD(U8(q.F), b, c, f)
+		VPADDD(f, a, a)
+		VPROLD(U8(q.s[r%4]), a, a)
+		a, b, c, d = d, a, b, c
 	}
 
 	Comment("Final add.")
-	for i, r := range []Register{a, b, c, d, e} {
-		ADDL(r, hash[i])
+	for i, r := range []Register{a, b, c, d} {
+		VPADDD(r, hash[i], hash[i])
 	}
 
 	Comment("Store results back.")
 	for i, r := range hash {
-		MOVL(r, h.Offset(4*i))
+		VMOVUPD(r, h.Offset(64*i))
 	}
+
+	VZEROUPPER()
 	RET()
 
 	Generate()
-}
-
-func choose(b, c, d Register) Register {
-	r := GP32()
-	MOVL(d, r)
-	XORL(c, r)
-	ANDL(b, r)
-	XORL(d, r)
-	return r
-}
-
-func xor(b, c, d Register) Register {
-	r := GP32()
-	MOVL(b, r)
-	XORL(c, r)
-	XORL(d, r)
-	return r
-}
-
-func majority(b, c, d Register) Register {
-	t, r := GP32(), GP32()
-	MOVL(b, t)
-	ORL(c, t)
-	ANDL(d, t)
-	MOVL(b, r)
-	ANDL(c, r)
-	ORL(t, r)
-	return r
 }
