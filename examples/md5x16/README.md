@@ -1,16 +1,18 @@
-//go:build ignore
-// +build ignore
+# md5x16
 
-package main
+AVX-512 accelerated 16-lane [MD5](https://en.wikipedia.org/wiki/MD5) in `avo`.
 
-import (
-	"math"
+Inspired by [`minio/md5-simd`](https://github.com/minio/md5-simd) and
+[`igneous-systems/md5vec`](https://github.com/igneous-systems/md5vec).
 
-	. "github.com/mmcloughlin/avo/build"
-	. "github.com/mmcloughlin/avo/operand"
-	. "github.com/mmcloughlin/avo/reg"
-)
+Note that the focus of this example is the core assembly `block` function. The
+`Sum` function can only handle parallel hashes of exactly the same length. In
+practice you'd likely need hash server functionality provided by
+[`md5-simd`](https://github.com/minio/md5-simd) to multiplex independent hashes
+of different lengths into the 16 SIMD lanes.
 
+[embedmd]:# (asm.go /func main/ /^}/)
+```go
 func main() {
 	// Define round constants data section.
 	//
@@ -130,3 +132,4 @@ func main() {
 
 	Generate()
 }
+```

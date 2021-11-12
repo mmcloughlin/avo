@@ -38,12 +38,12 @@ func Sum(data [Lanes][]byte) [Lanes][Size]byte {
 	}
 
 	// Initialize hash.
-	var h [4 * Lanes]uint32
+	var h [4][Lanes]uint32
 	for _, l := range cfg.active {
-		h[l] = 0x67452301
-		h[l+16] = 0xefcdab89
-		h[l+32] = 0x98badcfe
-		h[l+48] = 0x10325476
+		h[0][l] = 0x67452301
+		h[1][l] = 0xefcdab89
+		h[2][l] = 0x98badcfe
+		h[3][l] = 0x10325476
 	}
 
 	// Consume full blocks.
@@ -81,21 +81,26 @@ func Sum(data [Lanes][]byte) [Lanes][Size]byte {
 	var digest [Lanes][Size]byte
 	for _, l := range cfg.active {
 		for i := 0; i < 4; i++ {
-			binary.LittleEndian.PutUint32(digest[l][4*i:], h[16*i+l])
+			binary.LittleEndian.PutUint32(digest[l][4*i:], h[i][l])
 		}
 	}
 
 	return digest
 }
 
+// lanes represents the configuration of the 16 data lanes of an MD5
+// computation.
 type lanes struct {
-	n       int
-	active  []int
-	mask    uint16
-	base    uintptr
-	offsets [Lanes]uint32
+	n       int           // length of all active (non-nil) lanes
+	active  []int         // indexes of active lanes
+	mask    uint16        // mask of active lanes
+	base    uintptr       // base pointer
+	offsets [Lanes]uint32 // offset of data lanes relative to base
 }
 
+// config determines the lane configuration for the provided data. Returns an
+// error if there are no active lanes, there's a length mismatch among active
+// lanes, or the data spans a memory region larger than 32-bits.
 func config(data [Lanes][]byte) (*lanes, error) {
 	cfg := &lanes{}
 
@@ -139,6 +144,7 @@ func config(data [Lanes][]byte) (*lanes, error) {
 	return cfg, nil
 }
 
+// dataptr extracts the data pointer from the given slice.
 func dataptr(data []byte) uintptr {
 	hdr := (*reflect.SliceHeader)(unsafe.Pointer(&data))
 	return hdr.Data

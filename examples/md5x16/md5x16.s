@@ -68,7 +68,7 @@ DATA consts<>+248(SB)/4, $0x2ad7d2bb
 DATA consts<>+252(SB)/4, $0xeb86d391
 GLOBL consts<>(SB), RODATA|NOPTR, $256
 
-// func block(h *[64]uint32, base uintptr, offsets *[16]uint32, mask uint16)
+// func block(h *[4][16]uint32, base uintptr, offsets *[16]uint32, mask uint16)
 // Requires: AVX, AVX512F
 TEXT ·block(SB), $0-26
 	MOVQ  h+0(FP), AX

@@ -2,4 +2,8 @@
 
 package md5x16
 
-func block(h *[64]uint32, base uintptr, offsets *[16]uint32, mask uint16)
+// block MD5 hashes 16 messages into the running hash states h. Messages are
+// at the given offsets from the base pointer. The 16-bit mask specifies
+// which lanes are active: when bit i is not set loads will be disabled and
+// the value of the resulting hash is undefined.
+func block(h *[4][16]uint32, base uintptr, offsets *[16]uint32, mask uint16)
