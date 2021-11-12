@@ -1,3 +1,4 @@
+// Package md5x16 implements 16-lane parallel MD5 with AVX-512 instructions.
 package md5x16
 
 import (
