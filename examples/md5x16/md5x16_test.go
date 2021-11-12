@@ -38,6 +38,8 @@ func TestVectors(t *testing.T) {
 }
 
 func TestCmp(t *testing.T) {
+	RequireISA(t)
+
 	sum := func(data []byte) [Size]byte { return Single(t, data) }
 	if err := quick.CheckEqual(sum, md5.Sum, nil); err != nil {
 		t.Fatal(err)
@@ -60,6 +62,8 @@ func TestLengths(t *testing.T) {
 	}
 }
 
+// Single hashes a single data buffer in all 16 lanes and returns the result,
+// after asserting that all lanes are the same.
 func Single(t *testing.T, d []byte) [Size]byte {
 	// Place the same data in every lane.
 	var data [Lanes][]byte
@@ -82,4 +86,49 @@ func Single(t *testing.T, d []byte) [Size]byte {
 	}
 
 	return digest[0]
+}
+
+func TestActiveLanes(t *testing.T) {
+	const trials = 1 << 10
+	const maxlen = BlockSize << 6
+	for trial := 0; trial < trials; trial++ {
+		// Pick active lanes.
+		lanes := 1 + rand.Intn(Lanes-1)
+		active := rand.Perm(Lanes)[:lanes]
+
+		// Fill active lanes with random data.
+		n := rand.Intn(maxlen)
+		buffer := make([]byte, lanes*n)
+		rand.Read(buffer)
+
+		var data [Lanes][]byte
+		for i, l := range active {
+			data[l] = buffer[i*n : (i+1)*n]
+		}
+
+		// Hash.
+		digest := Sum(data)
+
+		// Verify correct result in active lanes.
+		for _, l := range active {
+			expect := md5.Sum(data[l])
+			if digest[l] != expect {
+				t.Fatalf("lane %02d: mismatch", l)
+			}
+		}
+
+		// Verify other lanes are zero.
+		isactive := map[int]bool{}
+		for _, l := range active {
+			isactive[l] = true
+		}
+		for l := 0; l < Lanes; l++ {
+			if !isactive[l] {
+				var zero [Size]byte
+				if digest[l] != zero {
+					t.Fatalf("inactive lane %d is non-zero", l)
+				}
+			}
+		}
+	}
 }
