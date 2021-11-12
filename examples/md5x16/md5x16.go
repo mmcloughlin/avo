@@ -140,6 +140,6 @@ func config(data [Lanes][]byte) (*lanes, error) {
 }
 
 func dataptr(data []byte) uintptr {
-	hdr := (*reflect.StringHeader)(unsafe.Pointer(&data))
+	hdr := (*reflect.SliceHeader)(unsafe.Pointer(&data))
 	return hdr.Data
 }
