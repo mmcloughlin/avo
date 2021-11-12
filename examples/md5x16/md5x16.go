@@ -5,6 +5,7 @@ import (
 	"encoding/binary"
 	"errors"
 	"math"
+	"reflect"
 	"unsafe"
 )
 
@@ -46,16 +47,16 @@ func Sum(data [Lanes][]byte) [Lanes][Size]byte {
 	}
 
 	// Consume full blocks.
-	n := cfg.n
-	for n >= BlockSize {
-		block(&h, cfg.base, &cfg.offsets, cfg.mask)
-		n -= BlockSize
+	base, n := cfg.base, cfg.n
+	for ; n >= BlockSize; n -= BlockSize {
+		block(&h, base, &cfg.offsets, cfg.mask)
+		base += BlockSize
 	}
 
 	// Final block.
 	var last [Lanes][]byte
 	var buffer [Lanes * BlockSize]byte
-	base := uintptr(unsafe.Pointer(&buffer[0]))
+	base = dataptr(buffer[:])
 	var offsets [Lanes]uint32
 	for _, l := range cfg.active {
 		last[l] = buffer[l*BlockSize : (l+1)*BlockSize]
@@ -120,14 +121,14 @@ func config(data [Lanes][]byte) (*lanes, error) {
 	// Compute base pointer and lane offsets.
 	cfg.base = ^uintptr(0)
 	for _, l := range cfg.active {
-		ptr := uintptr(unsafe.Pointer(&data[l]))
+		ptr := dataptr(data[l])
 		if ptr < cfg.base {
 			cfg.base = ptr
 		}
 	}
 
 	for _, l := range cfg.active {
-		ptr := uintptr(unsafe.Pointer(&data[l]))
+		ptr := dataptr(data[l])
 		offset := ptr - cfg.base
 		if offset > math.MaxUint32 {
 			return nil, errors.New("input data exceed 32-bit memory region")
@@ -136,4 +137,9 @@ func config(data [Lanes][]byte) (*lanes, error) {
 	}
 
 	return cfg, nil
+}
+
+func dataptr(data []byte) uintptr {
+	hdr := (*reflect.StringHeader)(unsafe.Pointer(&data))
+	return hdr.Data
 }

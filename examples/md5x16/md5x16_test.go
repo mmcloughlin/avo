@@ -1,6 +1,7 @@
 package md5x16
 
 import (
+	"crypto/md5"
 	"encoding/hex"
 	"testing"
 
@@ -26,24 +27,48 @@ func TestVectors(t *testing.T) {
 		{"The quick brown fox jumps over the lazy dog.", "e4d909c290d0fb1ca068ffaddf22cbd0"},
 	}
 	for _, c := range cases {
-		// Place the same data in every lane.
-		var data [Lanes][]byte
-		for l := range data {
-			data[l] = []byte(c.Data)
-		}
-
-		if err := Validate(data); err != nil {
-			t.Fatal(err)
-		}
-
-		// Hash and check.
-		digest := Sum(data)
-
-		for l := range digest {
-			got := hex.EncodeToString(digest[l][:])
-			if got != c.HexDigest {
-				t.Errorf("Sum(%#v) lane %02d = %s; expect %s", c.Data, l, got, c.HexDigest)
-			}
+		digest := Single(t, []byte(c.Data))
+		got := hex.EncodeToString(digest[:])
+		if got != c.HexDigest {
+			t.Errorf("Sum(%#v) = %s; expect %s", c.Data, got, c.HexDigest)
 		}
 	}
+}
+
+func TestLengths(t *testing.T) {
+	RequireISA(t)
+
+	const max = BlockSize << 6
+	data := make([]byte, max)
+	for n := 0; n <= max; n++ {
+		got := Single(t, data[:n])
+		expect := md5.Sum(data[:n])
+		if got != expect {
+			t.Errorf("failed on length %d", n)
+		}
+	}
+}
+
+func Single(t *testing.T, d []byte) [Size]byte {
+	// Place the same data in every lane.
+	var data [Lanes][]byte
+	for l := range data {
+		data[l] = d
+	}
+
+	if err := Validate(data); err != nil {
+		t.Fatal(err)
+	}
+
+	// Hash and check the lanes are the same.
+	digest := Sum(data)
+	for l := range data {
+		if digest[0] != digest[l] {
+			t.Logf("lane %02d: %x", 0, digest[0])
+			t.Logf("lane %02d: %x", l, digest[l])
+			t.Fatal("lane mismatch")
+		}
+	}
+
+	return digest[0]
 }
