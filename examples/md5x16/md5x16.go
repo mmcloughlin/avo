@@ -61,7 +61,7 @@ func Sum(data [Lanes][]byte) [Lanes][Size]byte {
 	for _, l := range cfg.active {
 		last[l] = buffer[l*BlockSize : (l+1)*BlockSize]
 		offsets[l] = uint32(l * BlockSize)
-		copy(last[l], data[l])
+		copy(last[l], data[l][cfg.n-n:])
 		last[l][n] = 0x80
 	}
 

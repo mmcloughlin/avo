@@ -3,7 +3,9 @@ package md5x16
 import (
 	"crypto/md5"
 	"encoding/hex"
+	"math/rand"
 	"testing"
+	"testing/quick"
 
 	"golang.org/x/sys/cpu"
 )
@@ -35,16 +37,25 @@ func TestVectors(t *testing.T) {
 	}
 }
 
+func TestCmp(t *testing.T) {
+	sum := func(data []byte) [Size]byte { return Single(t, data) }
+	if err := quick.CheckEqual(sum, md5.Sum, nil); err != nil {
+		t.Fatal(err)
+	}
+}
+
 func TestLengths(t *testing.T) {
 	RequireISA(t)
 
 	const max = BlockSize << 6
 	data := make([]byte, max)
+	rand.Read(data)
+
 	for n := 0; n <= max; n++ {
 		got := Single(t, data[:n])
 		expect := md5.Sum(data[:n])
 		if got != expect {
-			t.Errorf("failed on length %d", n)
+			t.Fatalf("failed on length %d", n)
 		}
 	}
 }
