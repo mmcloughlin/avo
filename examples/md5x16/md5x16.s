@@ -68,9 +68,9 @@ DATA consts<>+248(SB)/4, $0x2ad7d2bb
 DATA consts<>+252(SB)/4, $0xeb86d391
 GLOBL consts<>(SB), RODATA|NOPTR, $256
 
-// func block16(h *[256]uint32, base uintptr, offsets *[16]uint32, mask uint16)
+// func block(h *[64]uint32, base uintptr, offsets *[16]uint32, mask uint16)
 // Requires: AVX, AVX512F
-TEXT ·block16(SB), $0-26
+TEXT ·block(SB), $0-26
 	MOVQ  h+0(FP), AX
 	MOVQ  base+8(FP), CX
 	MOVQ  offsets+16(FP), DX
@@ -97,9 +97,10 @@ TEXT ·block16(SB), $0-26
 	VPADDD      Z9, Z5, Z5
 	VPADDD.BCST consts<>+0(SB), Z5, Z5
 	VMOVUPD     Z8, Z25
-	VPTERNLOGD  $0xca, Z6, Z7, Z25
+	VPTERNLOGD  $0xd8, Z6, Z7, Z25
 	VPADDD      Z25, Z5, Z5
 	VPROLD      $0x07, Z5, Z5
+	VPADDD      Z6, Z5, Z5
 
 	// Round 1.
 	KMOVW       K1, K2
@@ -107,9 +108,10 @@ TEXT ·block16(SB), $0-26
 	VPADDD      Z10, Z8, Z8
 	VPADDD.BCST consts<>+4(SB), Z8, Z8
 	VMOVUPD     Z7, Z25
-	VPTERNLOGD  $0xca, Z5, Z6, Z25
+	VPTERNLOGD  $0xd8, Z5, Z6, Z25
 	VPADDD      Z25, Z8, Z8
 	VPROLD      $0x0c, Z8, Z8
+	VPADDD      Z5, Z8, Z8
 
 	// Round 2.
 	KMOVW       K1, K2
@@ -117,9 +119,10 @@ TEXT ·block16(SB), $0-26
 	VPADDD      Z11, Z7, Z7
 	VPADDD.BCST consts<>+8(SB), Z7, Z7
 	VMOVUPD     Z6, Z25
-	VPTERNLOGD  $0xca, Z8, Z5, Z25
+	VPTERNLOGD  $0xd8, Z8, Z5, Z25
 	VPADDD      Z25, Z7, Z7
 	VPROLD      $0x11, Z7, Z7
+	VPADDD      Z8, Z7, Z7
 
 	// Round 3.
 	KMOVW       K1, K2
@@ -127,9 +130,10 @@ TEXT ·block16(SB), $0-26
 	VPADDD      Z12, Z6, Z6
 	VPADDD.BCST consts<>+12(SB), Z6, Z6
 	VMOVUPD     Z5, Z25
-	VPTERNLOGD  $0xca, Z7, Z8, Z25
+	VPTERNLOGD  $0xd8, Z7, Z8, Z25
 	VPADDD      Z25, Z6, Z6
 	VPROLD      $0x16, Z6, Z6
+	VPADDD      Z7, Z6, Z6
 
 	// Round 4.
 	KMOVW       K1, K2
@@ -137,9 +141,10 @@ TEXT ·block16(SB), $0-26
 	VPADDD      Z13, Z5, Z5
 	VPADDD.BCST consts<>+16(SB), Z5, Z5
 	VMOVUPD     Z8, Z25
-	VPTERNLOGD  $0xca, Z6, Z7, Z25
+	VPTERNLOGD  $0xd8, Z6, Z7, Z25
 	VPADDD      Z25, Z5, Z5
 	VPROLD      $0x07, Z5, Z5
+	VPADDD      Z6, Z5, Z5
 
 	// Round 5.
 	KMOVW       K1, K2
@@ -147,9 +152,10 @@ TEXT ·block16(SB), $0-26
 	VPADDD      Z14, Z8, Z8
 	VPADDD.BCST consts<>+20(SB), Z8, Z8
 	VMOVUPD     Z7, Z25
-	VPTERNLOGD  $0xca, Z5, Z6, Z25
+	VPTERNLOGD  $0xd8, Z5, Z6, Z25
 	VPADDD      Z25, Z8, Z8
 	VPROLD      $0x0c, Z8, Z8
+	VPADDD      Z5, Z8, Z8
 
 	// Round 6.
 	KMOVW       K1, K2
@@ -157,9 +163,10 @@ TEXT ·block16(SB), $0-26
 	VPADDD      Z15, Z7, Z7
 	VPADDD.BCST consts<>+24(SB), Z7, Z7
 	VMOVUPD     Z6, Z25
-	VPTERNLOGD  $0xca, Z8, Z5, Z25
+	VPTERNLOGD  $0xd8, Z8, Z5, Z25
 	VPADDD      Z25, Z7, Z7
 	VPROLD      $0x11, Z7, Z7
+	VPADDD      Z8, Z7, Z7
 
 	// Round 7.
 	KMOVW       K1, K2
@@ -167,9 +174,10 @@ TEXT ·block16(SB), $0-26
 	VPADDD      Z16, Z6, Z6
 	VPADDD.BCST consts<>+28(SB), Z6, Z6
 	VMOVUPD     Z5, Z25
-	VPTERNLOGD  $0xca, Z7, Z8, Z25
+	VPTERNLOGD  $0xd8, Z7, Z8, Z25
 	VPADDD      Z25, Z6, Z6
 	VPROLD      $0x16, Z6, Z6
+	VPADDD      Z7, Z6, Z6
 
 	// Round 8.
 	KMOVW       K1, K2
@@ -177,9 +185,10 @@ TEXT ·block16(SB), $0-26
 	VPADDD      Z17, Z5, Z5
 	VPADDD.BCST consts<>+32(SB), Z5, Z5
 	VMOVUPD     Z8, Z25
-	VPTERNLOGD  $0xca, Z6, Z7, Z25
+	VPTERNLOGD  $0xd8, Z6, Z7, Z25
 	VPADDD      Z25, Z5, Z5
 	VPROLD      $0x07, Z5, Z5
+	VPADDD      Z6, Z5, Z5
 
 	// Round 9.
 	KMOVW       K1, K2
@@ -187,9 +196,10 @@ TEXT ·block16(SB), $0-26
 	VPADDD      Z18, Z8, Z8
 	VPADDD.BCST consts<>+36(SB), Z8, Z8
 	VMOVUPD     Z7, Z25
-	VPTERNLOGD  $0xca, Z5, Z6, Z25
+	VPTERNLOGD  $0xd8, Z5, Z6, Z25
 	VPADDD      Z25, Z8, Z8
 	VPROLD      $0x0c, Z8, Z8
+	VPADDD      Z5, Z8, Z8
 
 	// Round 10.
 	KMOVW       K1, K2
@@ -197,9 +207,10 @@ TEXT ·block16(SB), $0-26
 	VPADDD      Z19, Z7, Z7
 	VPADDD.BCST consts<>+40(SB), Z7, Z7
 	VMOVUPD     Z6, Z25
-	VPTERNLOGD  $0xca, Z8, Z5, Z25
+	VPTERNLOGD  $0xd8, Z8, Z5, Z25
 	VPADDD      Z25, Z7, Z7
 	VPROLD      $0x11, Z7, Z7
+	VPADDD      Z8, Z7, Z7
 
 	// Round 11.
 	KMOVW       K1, K2
@@ -207,9 +218,10 @@ TEXT ·block16(SB), $0-26
 	VPADDD      Z20, Z6, Z6
 	VPADDD.BCST consts<>+44(SB), Z6, Z6
 	VMOVUPD     Z5, Z25
-	VPTERNLOGD  $0xca, Z7, Z8, Z25
+	VPTERNLOGD  $0xd8, Z7, Z8, Z25
 	VPADDD      Z25, Z6, Z6
 	VPROLD      $0x16, Z6, Z6
+	VPADDD      Z7, Z6, Z6
 
 	// Round 12.
 	KMOVW       K1, K2
@@ -217,9 +229,10 @@ TEXT ·block16(SB), $0-26
 	VPADDD      Z21, Z5, Z5
 	VPADDD.BCST consts<>+48(SB), Z5, Z5
 	VMOVUPD     Z8, Z25
-	VPTERNLOGD  $0xca, Z6, Z7, Z25
+	VPTERNLOGD  $0xd8, Z6, Z7, Z25
 	VPADDD      Z25, Z5, Z5
 	VPROLD      $0x07, Z5, Z5
+	VPADDD      Z6, Z5, Z5
 
 	// Round 13.
 	KMOVW       K1, K2
@@ -227,9 +240,10 @@ TEXT ·block16(SB), $0-26
 	VPADDD      Z22, Z8, Z8
 	VPADDD.BCST consts<>+52(SB), Z8, Z8
 	VMOVUPD     Z7, Z25
-	VPTERNLOGD  $0xca, Z5, Z6, Z25
+	VPTERNLOGD  $0xd8, Z5, Z6, Z25
 	VPADDD      Z25, Z8, Z8
 	VPROLD      $0x0c, Z8, Z8
+	VPADDD      Z5, Z8, Z8
 
 	// Round 14.
 	KMOVW       K1, K2
@@ -237,9 +251,10 @@ TEXT ·block16(SB), $0-26
 	VPADDD      Z23, Z7, Z7
 	VPADDD.BCST consts<>+56(SB), Z7, Z7
 	VMOVUPD     Z6, Z25
-	VPTERNLOGD  $0xca, Z8, Z5, Z25
+	VPTERNLOGD  $0xd8, Z8, Z5, Z25
 	VPADDD      Z25, Z7, Z7
 	VPROLD      $0x11, Z7, Z7
+	VPADDD      Z8, Z7, Z7
 
 	// Round 15.
 	KMOVW       K1, K1
@@ -247,137 +262,154 @@ TEXT ·block16(SB), $0-26
 	VPADDD      Z24, Z6, Z6
 	VPADDD.BCST consts<>+60(SB), Z6, Z6
 	VMOVUPD     Z5, Z0
-	VPTERNLOGD  $0xca, Z7, Z8, Z0
+	VPTERNLOGD  $0xd8, Z7, Z8, Z0
 	VPADDD      Z0, Z6, Z6
 	VPROLD      $0x16, Z6, Z6
+	VPADDD      Z7, Z6, Z6
 
 	// Round 16.
 	VPADDD      Z10, Z5, Z5
 	VPADDD.BCST consts<>+64(SB), Z5, Z5
 	VMOVUPD     Z8, Z0
-	VPTERNLOGD  $0xe4, Z6, Z7, Z0
+	VPTERNLOGD  $0xac, Z6, Z7, Z0
 	VPADDD      Z0, Z5, Z5
 	VPROLD      $0x05, Z5, Z5
+	VPADDD      Z6, Z5, Z5
 
 	// Round 17.
 	VPADDD      Z15, Z8, Z8
 	VPADDD.BCST consts<>+68(SB), Z8, Z8
 	VMOVUPD     Z7, Z0
-	VPTERNLOGD  $0xe4, Z5, Z6, Z0
+	VPTERNLOGD  $0xac, Z5, Z6, Z0
 	VPADDD      Z0, Z8, Z8
 	VPROLD      $0x09, Z8, Z8
+	VPADDD      Z5, Z8, Z8
 
 	// Round 18.
 	VPADDD      Z20, Z7, Z7
 	VPADDD.BCST consts<>+72(SB), Z7, Z7
 	VMOVUPD     Z6, Z0
-	VPTERNLOGD  $0xe4, Z8, Z5, Z0
+	VPTERNLOGD  $0xac, Z8, Z5, Z0
 	VPADDD      Z0, Z7, Z7
 	VPROLD      $0x0e, Z7, Z7
+	VPADDD      Z8, Z7, Z7
 
 	// Round 19.
 	VPADDD      Z9, Z6, Z6
 	VPADDD.BCST consts<>+76(SB), Z6, Z6
 	VMOVUPD     Z5, Z0
-	VPTERNLOGD  $0xe4, Z7, Z8, Z0
+	VPTERNLOGD  $0xac, Z7, Z8, Z0
 	VPADDD      Z0, Z6, Z6
 	VPROLD      $0x14, Z6, Z6
+	VPADDD      Z7, Z6, Z6
 
 	// Round 20.
 	VPADDD      Z14, Z5, Z5
 	VPADDD.BCST consts<>+80(SB), Z5, Z5
 	VMOVUPD     Z8, Z0
-	VPTERNLOGD  $0xe4, Z6, Z7, Z0
+	VPTERNLOGD  $0xac, Z6, Z7, Z0
 	VPADDD      Z0, Z5, Z5
 	VPROLD      $0x05, Z5, Z5
+	VPADDD      Z6, Z5, Z5
 
 	// Round 21.
 	VPADDD      Z19, Z8, Z8
 	VPADDD.BCST consts<>+84(SB), Z8, Z8
 	VMOVUPD     Z7, Z0
-	VPTERNLOGD  $0xe4, Z5, Z6, Z0
+	VPTERNLOGD  $0xac, Z5, Z6, Z0
 	VPADDD      Z0, Z8, Z8
 	VPROLD      $0x09, Z8, Z8
+	VPADDD      Z5, Z8, Z8
 
 	// Round 22.
 	VPADDD      Z24, Z7, Z7
 	VPADDD.BCST consts<>+88(SB), Z7, Z7
 	VMOVUPD     Z6, Z0
-	VPTERNLOGD  $0xe4, Z8, Z5, Z0
+	VPTERNLOGD  $0xac, Z8, Z5, Z0
 	VPADDD      Z0, Z7, Z7
 	VPROLD      $0x0e, Z7, Z7
+	VPADDD      Z8, Z7, Z7
 
 	// Round 23.
 	VPADDD      Z13, Z6, Z6
 	VPADDD.BCST consts<>+92(SB), Z6, Z6
 	VMOVUPD     Z5, Z0
-	VPTERNLOGD  $0xe4, Z7, Z8, Z0
+	VPTERNLOGD  $0xac, Z7, Z8, Z0
 	VPADDD      Z0, Z6, Z6
 	VPROLD      $0x14, Z6, Z6
+	VPADDD      Z7, Z6, Z6
 
 	// Round 24.
 	VPADDD      Z18, Z5, Z5
 	VPADDD.BCST consts<>+96(SB), Z5, Z5
 	VMOVUPD     Z8, Z0
-	VPTERNLOGD  $0xe4, Z6, Z7, Z0
+	VPTERNLOGD  $0xac, Z6, Z7, Z0
 	VPADDD      Z0, Z5, Z5
 	VPROLD      $0x05, Z5, Z5
+	VPADDD      Z6, Z5, Z5
 
 	// Round 25.
 	VPADDD      Z23, Z8, Z8
 	VPADDD.BCST consts<>+100(SB), Z8, Z8
 	VMOVUPD     Z7, Z0
-	VPTERNLOGD  $0xe4, Z5, Z6, Z0
+	VPTERNLOGD  $0xac, Z5, Z6, Z0
 	VPADDD      Z0, Z8, Z8
 	VPROLD      $0x09, Z8, Z8
+	VPADDD      Z5, Z8, Z8
 
 	// Round 26.
 	VPADDD      Z12, Z7, Z7
 	VPADDD.BCST consts<>+104(SB), Z7, Z7
 	VMOVUPD     Z6, Z0
-	VPTERNLOGD  $0xe4, Z8, Z5, Z0
+	VPTERNLOGD  $0xac, Z8, Z5, Z0
 	VPADDD      Z0, Z7, Z7
 	VPROLD      $0x0e, Z7, Z7
+	VPADDD      Z8, Z7, Z7
 
 	// Round 27.
 	VPADDD      Z17, Z6, Z6
 	VPADDD.BCST consts<>+108(SB), Z6, Z6
 	VMOVUPD     Z5, Z0
-	VPTERNLOGD  $0xe4, Z7, Z8, Z0
+	VPTERNLOGD  $0xac, Z7, Z8, Z0
 	VPADDD      Z0, Z6, Z6
 	VPROLD      $0x14, Z6, Z6
+	VPADDD      Z7, Z6, Z6
 
 	// Round 28.
 	VPADDD      Z22, Z5, Z5
 	VPADDD.BCST consts<>+112(SB), Z5, Z5
 	VMOVUPD     Z8, Z0
-	VPTERNLOGD  $0xe4, Z6, Z7, Z0
+	VPTERNLOGD  $0xac, Z6, Z7, Z0
 	VPADDD      Z0, Z5, Z5
 	VPROLD      $0x05, Z5, Z5
+	VPADDD      Z6, Z5, Z5
 
 	// Round 29.
 	VPADDD      Z11, Z8, Z8
 	VPADDD.BCST consts<>+116(SB), Z8, Z8
 	VMOVUPD     Z7, Z0
-	VPTERNLOGD  $0xe4, Z5, Z6, Z0
+	VPTERNLOGD  $0xac, Z5, Z6, Z0
 	VPADDD      Z0, Z8, Z8
 	VPROLD      $0x09, Z8, Z8
+	VPADDD      Z5, Z8, Z8
 
 	// Round 30.
 	VPADDD      Z16, Z7, Z7
 	VPADDD.BCST consts<>+120(SB), Z7, Z7
 	VMOVUPD     Z6, Z0
-	VPTERNLOGD  $0xe4, Z8, Z5, Z0
+	VPTERNLOGD  $0xac, Z8, Z5, Z0
 	VPADDD      Z0, Z7, Z7
 	VPROLD      $0x0e, Z7, Z7
+	VPADDD      Z8, Z7, Z7
 
 	// Round 31.
 	VPADDD      Z21, Z6, Z6
 	VPADDD.BCST consts<>+124(SB), Z6, Z6
 	VMOVUPD     Z5, Z0
-	VPTERNLOGD  $0xe4, Z7, Z8, Z0
+	VPTERNLOGD  $0xac, Z7, Z8, Z0
 	VPADDD      Z0, Z6, Z6
 	VPROLD      $0x14, Z6, Z6
+	VPADDD      Z7, Z6, Z6
 
 	// Round 32.
 	VPADDD      Z14, Z5, Z5
@@ -386,6 +418,7 @@ TEXT ·block16(SB), $0-26
 	VPTERNLOGD  $0x96, Z6, Z7, Z0
 	VPADDD      Z0, Z5, Z5
 	VPROLD      $0x04, Z5, Z5
+	VPADDD      Z6, Z5, Z5
 
 	// Round 33.
 	VPADDD      Z17, Z8, Z8
@@ -394,6 +427,7 @@ TEXT ·block16(SB), $0-26
 	VPTERNLOGD  $0x96, Z5, Z6, Z0
 	VPADDD      Z0, Z8, Z8
 	VPROLD      $0x0b, Z8, Z8
+	VPADDD      Z5, Z8, Z8
 
 	// Round 34.
 	VPADDD      Z20, Z7, Z7
@@ -402,6 +436,7 @@ TEXT ·block16(SB), $0-26
 	VPTERNLOGD  $0x96, Z8, Z5, Z0
 	VPADDD      Z0, Z7, Z7
 	VPROLD      $0x10, Z7, Z7
+	VPADDD      Z8, Z7, Z7
 
 	// Round 35.
 	VPADDD      Z23, Z6, Z6
@@ -410,6 +445,7 @@ TEXT ·block16(SB), $0-26
 	VPTERNLOGD  $0x96, Z7, Z8, Z0
 	VPADDD      Z0, Z6, Z6
 	VPROLD      $0x17, Z6, Z6
+	VPADDD      Z7, Z6, Z6
 
 	// Round 36.
 	VPADDD      Z10, Z5, Z5
@@ -418,6 +454,7 @@ TEXT ·block16(SB), $0-26
 	VPTERNLOGD  $0x96, Z6, Z7, Z0
 	VPADDD      Z0, Z5, Z5
 	VPROLD      $0x04, Z5, Z5
+	VPADDD      Z6, Z5, Z5
 
 	// Round 37.
 	VPADDD      Z13, Z8, Z8
@@ -426,6 +463,7 @@ TEXT ·block16(SB), $0-26
 	VPTERNLOGD  $0x96, Z5, Z6, Z0
 	VPADDD      Z0, Z8, Z8
 	VPROLD      $0x0b, Z8, Z8
+	VPADDD      Z5, Z8, Z8
 
 	// Round 38.
 	VPADDD      Z16, Z7, Z7
@@ -434,6 +472,7 @@ TEXT ·block16(SB), $0-26
 	VPTERNLOGD  $0x96, Z8, Z5, Z0
 	VPADDD      Z0, Z7, Z7
 	VPROLD      $0x10, Z7, Z7
+	VPADDD      Z8, Z7, Z7
 
 	// Round 39.
 	VPADDD      Z19, Z6, Z6
@@ -442,6 +481,7 @@ TEXT ·block16(SB), $0-26
 	VPTERNLOGD  $0x96, Z7, Z8, Z0
 	VPADDD      Z0, Z6, Z6
 	VPROLD      $0x17, Z6, Z6
+	VPADDD      Z7, Z6, Z6
 
 	// Round 40.
 	VPADDD      Z22, Z5, Z5
@@ -450,6 +490,7 @@ TEXT ·block16(SB), $0-26
 	VPTERNLOGD  $0x96, Z6, Z7, Z0
 	VPADDD      Z0, Z5, Z5
 	VPROLD      $0x04, Z5, Z5
+	VPADDD      Z6, Z5, Z5
 
 	// Round 41.
 	VPADDD      Z9, Z8, Z8
@@ -458,6 +499,7 @@ TEXT ·block16(SB), $0-26
 	VPTERNLOGD  $0x96, Z5, Z6, Z0
 	VPADDD      Z0, Z8, Z8
 	VPROLD      $0x0b, Z8, Z8
+	VPADDD      Z5, Z8, Z8
 
 	// Round 42.
 	VPADDD      Z12, Z7, Z7
@@ -466,6 +508,7 @@ TEXT ·block16(SB), $0-26
 	VPTERNLOGD  $0x96, Z8, Z5, Z0
 	VPADDD      Z0, Z7, Z7
 	VPROLD      $0x10, Z7, Z7
+	VPADDD      Z8, Z7, Z7
 
 	// Round 43.
 	VPADDD      Z15, Z6, Z6
@@ -474,6 +517,7 @@ TEXT ·block16(SB), $0-26
 	VPTERNLOGD  $0x96, Z7, Z8, Z0
 	VPADDD      Z0, Z6, Z6
 	VPROLD      $0x17, Z6, Z6
+	VPADDD      Z7, Z6, Z6
 
 	// Round 44.
 	VPADDD      Z18, Z5, Z5
@@ -482,6 +526,7 @@ TEXT ·block16(SB), $0-26
 	VPTERNLOGD  $0x96, Z6, Z7, Z0
 	VPADDD      Z0, Z5, Z5
 	VPROLD      $0x04, Z5, Z5
+	VPADDD      Z6, Z5, Z5
 
 	// Round 45.
 	VPADDD      Z21, Z8, Z8
@@ -490,6 +535,7 @@ TEXT ·block16(SB), $0-26
 	VPTERNLOGD  $0x96, Z5, Z6, Z0
 	VPADDD      Z0, Z8, Z8
 	VPROLD      $0x0b, Z8, Z8
+	VPADDD      Z5, Z8, Z8
 
 	// Round 46.
 	VPADDD      Z24, Z7, Z7
@@ -498,6 +544,7 @@ TEXT ·block16(SB), $0-26
 	VPTERNLOGD  $0x96, Z8, Z5, Z0
 	VPADDD      Z0, Z7, Z7
 	VPROLD      $0x10, Z7, Z7
+	VPADDD      Z8, Z7, Z7
 
 	// Round 47.
 	VPADDD      Z11, Z6, Z6
@@ -506,134 +553,151 @@ TEXT ·block16(SB), $0-26
 	VPTERNLOGD  $0x96, Z7, Z8, Z0
 	VPADDD      Z0, Z6, Z6
 	VPROLD      $0x17, Z6, Z6
+	VPADDD      Z7, Z6, Z6
 
 	// Round 48.
 	VPADDD      Z9, Z5, Z5
 	VPADDD.BCST consts<>+192(SB), Z5, Z5
 	VMOVUPD     Z8, Z0
-	VPTERNLOGD  $0x39, Z6, Z7, Z0
+	VPTERNLOGD  $0x63, Z6, Z7, Z0
 	VPADDD      Z0, Z5, Z5
 	VPROLD      $0x06, Z5, Z5
+	VPADDD      Z6, Z5, Z5
 
 	// Round 49.
 	VPADDD      Z16, Z8, Z8
 	VPADDD.BCST consts<>+196(SB), Z8, Z8
 	VMOVUPD     Z7, Z0
-	VPTERNLOGD  $0x39, Z5, Z6, Z0
+	VPTERNLOGD  $0x63, Z5, Z6, Z0
 	VPADDD      Z0, Z8, Z8
 	VPROLD      $0x0a, Z8, Z8
+	VPADDD      Z5, Z8, Z8
 
 	// Round 50.
 	VPADDD      Z23, Z7, Z7
 	VPADDD.BCST consts<>+200(SB), Z7, Z7
 	VMOVUPD     Z6, Z0
-	VPTERNLOGD  $0x39, Z8, Z5, Z0
+	VPTERNLOGD  $0x63, Z8, Z5, Z0
 	VPADDD      Z0, Z7, Z7
 	VPROLD      $0x0f, Z7, Z7
+	VPADDD      Z8, Z7, Z7
 
 	// Round 51.
 	VPADDD      Z14, Z6, Z6
 	VPADDD.BCST consts<>+204(SB), Z6, Z6
 	VMOVUPD     Z5, Z0
-	VPTERNLOGD  $0x39, Z7, Z8, Z0
+	VPTERNLOGD  $0x63, Z7, Z8, Z0
 	VPADDD      Z0, Z6, Z6
 	VPROLD      $0x15, Z6, Z6
+	VPADDD      Z7, Z6, Z6
 
 	// Round 52.
 	VPADDD      Z21, Z5, Z5
 	VPADDD.BCST consts<>+208(SB), Z5, Z5
 	VMOVUPD     Z8, Z0
-	VPTERNLOGD  $0x39, Z6, Z7, Z0
+	VPTERNLOGD  $0x63, Z6, Z7, Z0
 	VPADDD      Z0, Z5, Z5
 	VPROLD      $0x06, Z5, Z5
+	VPADDD      Z6, Z5, Z5
 
 	// Round 53.
 	VPADDD      Z12, Z8, Z8
 	VPADDD.BCST consts<>+212(SB), Z8, Z8
 	VMOVUPD     Z7, Z0
-	VPTERNLOGD  $0x39, Z5, Z6, Z0
+	VPTERNLOGD  $0x63, Z5, Z6, Z0
 	VPADDD      Z0, Z8, Z8
 	VPROLD      $0x0a, Z8, Z8
+	VPADDD      Z5, Z8, Z8
 
 	// Round 54.
 	VPADDD      Z19, Z7, Z7
 	VPADDD.BCST consts<>+216(SB), Z7, Z7
 	VMOVUPD     Z6, Z0
-	VPTERNLOGD  $0x39, Z8, Z5, Z0
+	VPTERNLOGD  $0x63, Z8, Z5, Z0
 	VPADDD      Z0, Z7, Z7
 	VPROLD      $0x0f, Z7, Z7
+	VPADDD      Z8, Z7, Z7
 
 	// Round 55.
 	VPADDD      Z10, Z6, Z6
 	VPADDD.BCST consts<>+220(SB), Z6, Z6
 	VMOVUPD     Z5, Z0
-	VPTERNLOGD  $0x39, Z7, Z8, Z0
+	VPTERNLOGD  $0x63, Z7, Z8, Z0
 	VPADDD      Z0, Z6, Z6
 	VPROLD      $0x15, Z6, Z6
+	VPADDD      Z7, Z6, Z6
 
 	// Round 56.
 	VPADDD      Z17, Z5, Z5
 	VPADDD.BCST consts<>+224(SB), Z5, Z5
 	VMOVUPD     Z8, Z0
-	VPTERNLOGD  $0x39, Z6, Z7, Z0
+	VPTERNLOGD  $0x63, Z6, Z7, Z0
 	VPADDD      Z0, Z5, Z5
 	VPROLD      $0x06, Z5, Z5
+	VPADDD      Z6, Z5, Z5
 
 	// Round 57.
 	VPADDD      Z24, Z8, Z8
 	VPADDD.BCST consts<>+228(SB), Z8, Z8
 	VMOVUPD     Z7, Z0
-	VPTERNLOGD  $0x39, Z5, Z6, Z0
+	VPTERNLOGD  $0x63, Z5, Z6, Z0
 	VPADDD      Z0, Z8, Z8
 	VPROLD      $0x0a, Z8, Z8
+	VPADDD      Z5, Z8, Z8
 
 	// Round 58.
 	VPADDD      Z15, Z7, Z7
 	VPADDD.BCST consts<>+232(SB), Z7, Z7
 	VMOVUPD     Z6, Z0
-	VPTERNLOGD  $0x39, Z8, Z5, Z0
+	VPTERNLOGD  $0x63, Z8, Z5, Z0
 	VPADDD      Z0, Z7, Z7
 	VPROLD      $0x0f, Z7, Z7
+	VPADDD      Z8, Z7, Z7
 
 	// Round 59.
 	VPADDD      Z22, Z6, Z6
 	VPADDD.BCST consts<>+236(SB), Z6, Z6
 	VMOVUPD     Z5, Z0
-	VPTERNLOGD  $0x39, Z7, Z8, Z0
+	VPTERNLOGD  $0x63, Z7, Z8, Z0
 	VPADDD      Z0, Z6, Z6
 	VPROLD      $0x15, Z6, Z6
+	VPADDD      Z7, Z6, Z6
 
 	// Round 60.
 	VPADDD      Z13, Z5, Z5
 	VPADDD.BCST consts<>+240(SB), Z5, Z5
 	VMOVUPD     Z8, Z0
-	VPTERNLOGD  $0x39, Z6, Z7, Z0
+	VPTERNLOGD  $0x63, Z6, Z7, Z0
 	VPADDD      Z0, Z5, Z5
 	VPROLD      $0x06, Z5, Z5
+	VPADDD      Z6, Z5, Z5
 
 	// Round 61.
 	VPADDD      Z20, Z8, Z8
 	VPADDD.BCST consts<>+244(SB), Z8, Z8
 	VMOVUPD     Z7, Z0
-	VPTERNLOGD  $0x39, Z5, Z6, Z0
+	VPTERNLOGD  $0x63, Z5, Z6, Z0
 	VPADDD      Z0, Z8, Z8
 	VPROLD      $0x0a, Z8, Z8
+	VPADDD      Z5, Z8, Z8
 
 	// Round 62.
 	VPADDD      Z11, Z7, Z7
 	VPADDD.BCST consts<>+248(SB), Z7, Z7
 	VMOVUPD     Z6, Z0
-	VPTERNLOGD  $0x39, Z8, Z5, Z0
+	VPTERNLOGD  $0x63, Z8, Z5, Z0
 	VPADDD      Z0, Z7, Z7
 	VPROLD      $0x0f, Z7, Z7
+	VPADDD      Z8, Z7, Z7
 
 	// Round 63.
 	VPADDD      Z18, Z6, Z6
 	VPADDD.BCST consts<>+252(SB), Z6, Z6
 	VMOVUPD     Z5, Z0
-	VPTERNLOGD  $0x39, Z7, Z8, Z0
+	VPTERNLOGD  $0x63, Z7, Z8, Z0
 	VPADDD      Z0, Z6, Z6
 	VPROLD      $0x15, Z6, Z6
+	VPADDD      Z7, Z6, Z6
 
 	// Final add.
 	VPADDD Z5, Z1, Z1

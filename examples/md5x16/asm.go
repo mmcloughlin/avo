@@ -19,7 +19,7 @@ func main() {
 		DATA(4*i, U32(k))
 	}
 
-	TEXT("block16", 0, "func(h *[256]uint32, base uintptr, offsets *[16]uint32, mask uint16)")
+	TEXT("block", 0, "func(h *[64]uint32, base uintptr, offsets *[16]uint32, mask uint16)")
 	// Doc("block16 SHA-1 hashes the 64-byte message m into the running state h.")
 	h := Mem{Base: Load(Param("h"), GP64())}
 	base := Mem{Base: Load(Param("base"), GP64())}
@@ -50,9 +50,9 @@ func main() {
 
 	// Generate round updates.
 	const (
-		B = uint8(0b11110000)
+		B = uint8(0b10101010)
 		C = uint8(0b11001100)
-		D = uint8(0b10101010)
+		D = uint8(0b11110000)
 	)
 	quarter := []struct {
 		F uint8
@@ -99,6 +99,7 @@ func main() {
 		VPTERNLOGD(U8(q.F), b, c, f)
 		VPADDD(f, a, a)
 		VPROLD(U8(q.s[r%4]), a, a)
+		VPADDD(b, a, a)
 		a, b, c, d = d, a, b, c
 	}
 

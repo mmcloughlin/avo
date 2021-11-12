@@ -2,4 +2,4 @@
 
 package md5x16
 
-func block16(h *[256]uint32, base uintptr, offsets *[16]uint32, mask uint16)
+func block(h *[64]uint32, base uintptr, offsets *[16]uint32, mask uint16)
