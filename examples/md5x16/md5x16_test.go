@@ -89,6 +89,8 @@ func Single(t *testing.T, d []byte) [Size]byte {
 }
 
 func TestActiveLanes(t *testing.T) {
+	RequireISA(t)
+
 	const trials = 1 << 10
 	const maxlen = BlockSize << 6
 	for trial := 0; trial < trials; trial++ {
