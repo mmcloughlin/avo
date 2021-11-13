@@ -4,12 +4,8 @@ permissions:
   contents: read
 
 on:
-  push:
-    branches:
-      - master
-  pull_request:
   schedule:
-    - cron: '17 12 * * 6'
+    - cron: '33 3 * * 6'
 
 jobs:
   test:
