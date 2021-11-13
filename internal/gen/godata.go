@@ -1,6 +1,7 @@
 package gen
 
 import (
+	"github.com/mmcloughlin/avo/internal/api"
 	"github.com/mmcloughlin/avo/internal/inst"
 	"github.com/mmcloughlin/avo/internal/prnt"
 	"github.com/mmcloughlin/avo/printer"
@@ -57,8 +58,21 @@ func (g *godata) Generate(is []inst.Instruction) ([]byte, error) {
 				g.Printf("},\n")
 			}
 
-			if f.CancellingInputs {
-				g.Printf("CancellingInputs: true,\n")
+			g.Printf("EncodingType: %#v,\n", f.EncodingType)
+
+			for _, flag := range []struct {
+				Field   string
+				Enabled bool
+			}{
+				{"CancellingInputs", f.CancellingInputs},
+				{"Zeroing", f.Zeroing},
+				{"EmbeddedRounding", f.EmbeddedRounding},
+				{"SuppressAllExceptions", f.SuppressAllExceptions},
+				{"Broadcast", f.Broadcast},
+			} {
+				if flag.Enabled {
+					g.Printf("%s: true,\n", flag.Field)
+				}
 			}
 
 			g.Printf("},\n")
@@ -90,6 +104,7 @@ func NewGoDataTest(cfg printer.Config) Interface {
 
 func (g *godatatest) Generate(is []inst.Instruction) ([]byte, error) {
 	g.Printf("// %s\n\n", g.cfg.GeneratedWarning())
+	g.NL()
 	g.Printf("package inst_test\n\n")
 
 	g.Printf(`import (
@@ -98,7 +113,7 @@ func (g *godatatest) Generate(is []inst.Instruction) ([]byte, error) {
 
 		"%s/internal/inst"
 	)
-	`, pkg)
+	`, api.Package)
 
 	g.Printf("var raw = %#v\n\n", is)
 

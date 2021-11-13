@@ -52,3 +52,6 @@ func (c *Collection) ZMM() VecVirtual { return c.Vec(S512) }
 
 // Vec allocates and returns a vector register of the given width.
 func (c *Collection) Vec(s Spec) VecVirtual { return newvecv(c.VirtualRegister(KindVector, s)) }
+
+// K allocates and returns an opmask register.
+func (c *Collection) K() OpmaskVirtual { return newopmaskv(c.VirtualRegister(KindOpmask, S64)) }

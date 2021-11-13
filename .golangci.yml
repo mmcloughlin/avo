@@ -1,3 +1,6 @@
+run:
+  timeout: 5m
+
 linters:
   enable-all: true
   disable:
@@ -27,3 +30,5 @@ issues:
     - Error return value of .((os\.)?std(out|err)\..*|.*Close|.*Flush|os\.Remove(All)?|.*printf?|os\.(Un)?Setenv). is not checked
     # gocritic: https://github.com/go-critic/go-critic/issues/762
     - ' with `(len|cap|real|imag)`'
+    # We want to allow all caps in certain cases.
+    - "ALL_CAPS in Go names"

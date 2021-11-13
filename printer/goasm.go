@@ -132,17 +132,18 @@ func (p *goasm) flush() {
 	// considered in this calculation.
 	width := 0
 	for _, i := range p.instructions {
-		if len(i.Operands) > 0 && len(i.Opcode) > width {
-			width = len(i.Opcode)
+		opcode := i.OpcodeWithSuffixes()
+		if len(i.Operands) > 0 && len(opcode) > width {
+			width = len(opcode)
 		}
 	}
 
 	// Output instruction block.
 	for _, i := range p.instructions {
 		if len(i.Operands) > 0 {
-			p.Printf("\t%-*s%s\n", width+1, i.Opcode, joinOperands(i.Operands))
+			p.Printf("\t%-*s%s\n", width+1, i.OpcodeWithSuffixes(), joinOperands(i.Operands))
 		} else {
-			p.Printf("\t%s\n", i.Opcode)
+			p.Printf("\t%s\n", i.OpcodeWithSuffixes())
 		}
 	}
 

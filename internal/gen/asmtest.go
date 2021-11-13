@@ -37,13 +37,10 @@ func (a *asmtest) Generate(is []inst.Instruction) ([]byte, error) {
 	a.Printf("rel32:\n")
 	a.rel32 = "rel32"
 
-	counts := map[string]int{}
-
 	for _, i := range is {
 		a.Printf("\t// %s %s\n", i.Opcode, i.Summary)
 		if skip, msg := a.skip(i.Opcode); skip {
 			a.Printf("\t// SKIP: %s\n", msg)
-			counts["skip"]++
 			continue
 		}
 
@@ -54,23 +51,22 @@ func (a *asmtest) Generate(is []inst.Instruction) ([]byte, error) {
 		}
 
 		for _, f := range i.Forms {
-			as := a.args(i.Opcode, f.Operands)
-			if as == nil {
-				a.Printf("\t// TODO: %s %#v\n", i.Opcode, f.Operands)
-				counts["todo"]++
-				continue
+			as, err := a.args(i.Opcode, f.Operands)
+			if err != nil {
+				return nil, fmt.Errorf("tests for %s: %w", i.Opcode, err)
 			}
-			a.Printf("\t%s\t%s\n", i.Opcode, strings.Join(as, ", "))
-			counts["total"]++
+			for _, suffixes := range f.SupportedSuffixes() {
+				opcode := i.Opcode
+				if len(suffixes) > 0 {
+					opcode += "." + suffixes.String()
+				}
+				a.Printf("\t%s\t%s\n", opcode, strings.Join(as, ", "))
+			}
 		}
 		a.Printf("\n")
 	}
 
 	a.Printf("\tRET\n")
-
-	for m, c := range counts {
-		a.Printf("// %s: %d\n", m, c)
-	}
 
 	return a.Result()
 }
@@ -88,21 +84,21 @@ func (a asmtest) skip(opcode string) (bool, string) {
 	return false, ""
 }
 
-func (a asmtest) args(opcode string, ops []inst.Operand) []string {
+func (a asmtest) args(opcode string, ops []inst.Operand) ([]string, error) {
 	// Special case for CALL, since it needs a different type of rel32 argument than others.
 	if opcode == "CALL" {
-		return []string{a.sym}
+		return []string{a.sym}, nil
 	}
 
 	as := make([]string, len(ops))
 	for i, op := range ops {
 		a := a.arg(op.Type, i)
 		if a == "" {
-			return nil
+			return nil, fmt.Errorf("unsupported operand type %q", op.Type)
 		}
 		as[i] = a
 	}
-	return as
+	return as, nil
 }
 
 // arg generates an argument for an operand of the given type.
@@ -134,10 +130,10 @@ func (a asmtest) arg(t string, i int) string {
 		"ymm": "Y" + strconv.Itoa(3+i), // <xs:enumeration value="ymm" />
 		// <xs:enumeration value="ymm{k}" />
 		// <xs:enumeration value="ymm{k}{z}" />
-		// <xs:enumeration value="zmm" />
+		"zmm": "Z" + strconv.Itoa(16+i), // <xs:enumeration value="zmm" />
 		// <xs:enumeration value="zmm{k}" />
 		// <xs:enumeration value="zmm{k}{z}" />
-		// <xs:enumeration value="k" />
+		"k": "K" + strconv.Itoa(1+i), // <xs:enumeration value="k" />
 		// <xs:enumeration value="k{k}" />
 		// <xs:enumeration value="moffs32" />
 		// <xs:enumeration value="moffs64" />
@@ -155,15 +151,8 @@ func (a asmtest) arg(t string, i int) string {
 		// <xs:enumeration value="m128{k}{z}" />
 		"m256": "256(AX)(CX*2)", // <xs:enumeration value="m256" />
 		// <xs:enumeration value="m256{k}{z}" />
-		// <xs:enumeration value="m512" />
+		"m512": "512(AX)(CX*2)", // <xs:enumeration value="m512" />
 		// <xs:enumeration value="m512{k}{z}" />
-		// <xs:enumeration value="m64/m32bcst" />
-		// <xs:enumeration value="m128/m32bcst" />
-		// <xs:enumeration value="m256/m32bcst" />
-		// <xs:enumeration value="m512/m32bcst" />
-		// <xs:enumeration value="m128/m64bcst" />
-		// <xs:enumeration value="m256/m64bcst" />
-		// <xs:enumeration value="m512/m64bcst" />
 		"vm32x": "32(X14*8)", // <xs:enumeration value="vm32x" />
 		// <xs:enumeration value="vm32x{k}" />
 		"vm64x": "64(X14*8)", // <xs:enumeration value="vm64x" />
@@ -172,9 +161,9 @@ func (a asmtest) arg(t string, i int) string {
 		// <xs:enumeration value="vm32y{k}" />
 		"vm64y": "64(Y13*8)", // <xs:enumeration value="vm64y" />
 		// <xs:enumeration value="vm64y{k}" />
-		// <xs:enumeration value="vm32z" />
+		"vm32z": "32(Z13*8)", // <xs:enumeration value="vm32z" />
 		// <xs:enumeration value="vm32z{k}" />
-		// <xs:enumeration value="vm64z" />
+		"vm64z": "64(Z13*8)", // <xs:enumeration value="vm64z" />
 		// <xs:enumeration value="vm64z{k}" />
 		"rel8":  a.rel8,  // <xs:enumeration value="rel8" />
 		"rel32": a.rel32, // <xs:enumeration value="rel32" />

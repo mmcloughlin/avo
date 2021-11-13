@@ -75,6 +75,11 @@ func (g *Generator) Comment(lines ...string) {
 	}
 }
 
+// BuildTag outputs a build tag.
+func (g *Generator) BuildTag(tag string) {
+	g.Comment("+build " + tag)
+}
+
 // AddError records an error in code generation. The first non-nil error will
 // prevent printing operations from writing anything else, and the error will be
 // returned from Result().

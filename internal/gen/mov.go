@@ -6,6 +6,7 @@ import (
 	"sort"
 	"strings"
 
+	"github.com/mmcloughlin/avo/internal/api"
 	"github.com/mmcloughlin/avo/internal/inst"
 	"github.com/mmcloughlin/avo/internal/prnt"
 	"github.com/mmcloughlin/avo/printer"
@@ -29,7 +30,7 @@ func (m *mov) Generate(is []inst.Instruction) ([]byte, error) {
 	m.Printf("import (\n")
 	m.Printf("\t\"go/types\"\n")
 	m.NL()
-	m.Printf("\t\"%s/operand\"\n", pkg)
+	m.Printf("\t%q\n", api.ImportPath(api.OperandPackage))
 	m.Printf(")\n\n")
 
 	m.Printf("func (c *Context) mov(a, b operand.Op, an, bn int, t *types.Basic) {\n")
@@ -48,15 +49,17 @@ func (m *mov) Generate(is []inst.Instruction) ([]byte, error) {
 
 func (m *mov) instruction(i inst.Instruction) {
 	f := flags(i)
-	sizes, err := formsizes(i)
+	mfs, err := movforms(i)
 	if err != nil {
 		m.AddError(err)
 		return
 	}
-	for _, size := range sizes {
+	for _, mf := range mfs {
 		conds := []string{
-			fmt.Sprintf("an == %d", size.A),
-			fmt.Sprintf("bn == %d", size.B),
+			fmt.Sprintf("an == %d", opsize[mf.A]),
+			fmt.Sprintf("%s(a)", api.CheckerName(mf.A)),
+			fmt.Sprintf("bn == %d", opsize[mf.B]),
+			fmt.Sprintf("%s(b)", api.CheckerName(mf.B)),
 		}
 		for c, on := range f {
 			cmp := map[bool]string{true: "!=", false: "=="}
@@ -71,15 +74,29 @@ func (m *mov) instruction(i inst.Instruction) {
 
 // ismov decides whether the given instruction is a plain move instruction.
 func ismov(i inst.Instruction) bool {
-	if i.AliasOf != "" || !strings.HasPrefix(i.Opcode, "MOV") {
+	// Ignore aliases.
+	if i.AliasOf != "" {
 		return false
 	}
+
+	// Accept specific move instruction prefixes.
+	prefixes := []string{"MOV", "KMOV", "VMOV"}
+	accept := false
+	for _, prefix := range prefixes {
+		accept = strings.HasPrefix(i.Opcode, prefix) || accept
+	}
+	if !accept {
+		return false
+	}
+
+	// Exclude some cases based on instruction descriptions.
 	exclude := []string{"Packed", "Duplicate", "Aligned", "Hint", "Swapping"}
 	for _, substring := range exclude {
 		if strings.Contains(i.Summary, substring) {
 			return false
 		}
 	}
+
 	return true
 }
 
@@ -100,34 +117,27 @@ func flags(i inst.Instruction) map[string]bool {
 	return f
 }
 
-type movsize struct{ A, B int8 }
+type movform struct{ A, B string }
 
-func (s movsize) sortkey() uint16 { return (uint16(s.A) << 8) | uint16(s.B) }
-
-func formsizes(i inst.Instruction) ([]movsize, error) {
-	set := map[movsize]bool{}
+func movforms(i inst.Instruction) ([]movform, error) {
+	var mfs []movform
 	for _, f := range i.Forms {
 		if f.Arity() != 2 {
 			continue
 		}
-		s := movsize{
-			A: opsize[f.Operands[0].Type],
-			B: opsize[f.Operands[1].Type],
+		mf := movform{
+			A: f.Operands[0].Type,
+			B: f.Operands[1].Type,
 		}
-		if s.A < 0 || s.B < 0 {
+		if opsize[mf.A] < 0 || opsize[mf.B] < 0 {
 			continue
 		}
-		if s.A == 0 || s.B == 0 {
+		if opsize[mf.A] == 0 || opsize[mf.B] == 0 {
 			return nil, errors.New("unknown operand type")
 		}
-		set[s] = true
+		mfs = append(mfs, mf)
 	}
-	var ss []movsize
-	for s := range set {
-		ss = append(ss, s)
-	}
-	sort.Slice(ss, func(i, j int) bool { return ss[i].sortkey() < ss[j].sortkey() })
-	return ss, nil
+	return mfs, nil
 }
 
 var opsize = map[string]int8{
@@ -140,9 +150,14 @@ var opsize = map[string]int8{
 	"r32":   4,
 	"r64":   8,
 	"xmm":   16,
+	"ymm":   32,
+	"zmm":   64,
 	"m8":    1,
 	"m16":   2,
 	"m32":   4,
 	"m64":   8,
 	"m128":  16,
+	"m256":  32,
+	"m512":  64,
+	"k":     8,
 }

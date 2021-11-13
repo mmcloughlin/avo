@@ -189,6 +189,7 @@ Implementations of full algorithms:
 * **[sha1](examples/sha1):** [SHA-1](https://en.wikipedia.org/wiki/SHA-1) cryptographic hash.
 * **[fnv1a](examples/fnv1a):** [FNV-1a](https://en.wikipedia.org/wiki/Fowler%E2%80%93Noll%E2%80%93Vo_hash_function#FNV-1a_hash) hash function.
 * **[dot](examples/dot):** Vector dot product.
+* **[md5x16](examples/md5x16):** AVX-512 accelerated [MD5](https://en.wikipedia.org/wiki/MD5).
 * **[geohash](examples/geohash):** Integer [geohash](https://en.wikipedia.org/wiki/Geohash) encoding.
 * **[stadtx](examples/stadtx):** [`StadtX` hash](https://github.com/demerphq/BeagleHash) port from [dgryski/go-stadtx](https://github.com/dgryski/go-stadtx).
 

@@ -131,6 +131,16 @@ func IsYMM(op Op) bool {
 	return IsRegisterKindSize(op, reg.KindVector, 32)
 }
 
+// IsZMM returns true if op is a 512-bit ZMM register.
+func IsZMM(op Op) bool {
+	return IsRegisterKindSize(op, reg.KindVector, 64)
+}
+
+// IsK returns true if op is an Opmask register.
+func IsK(op Op) bool {
+	return IsRegisterKind(op, reg.KindOpmask)
+}
+
 // IsRegisterKindSize returns true if op is a register of the given kind and size in bytes.
 func IsRegisterKindSize(op Op, k reg.Kind, n uint) bool {
 	r, ok := op.(reg.Register)
@@ -200,6 +210,12 @@ func IsM256(op Op) bool {
 	return IsM64(op)
 }
 
+// IsM512 returns true if op is a 512-bit memory operand.
+func IsM512(op Op) bool {
+	// TODO(mbm): should "m512" be the same as "m64"?
+	return IsM64(op)
+}
+
 // IsVM32X returns true if op is a vector memory operand with 32-bit XMM index.
 func IsVM32X(op Op) bool {
 	return IsVmx(op)
@@ -228,6 +244,21 @@ func IsVM64Y(op Op) bool {
 // IsVmy returns true if op is a vector memory operand with YMM index.
 func IsVmy(op Op) bool {
 	return isvm(op, IsYMM)
+}
+
+// IsVM32Z returns true if op is a vector memory operand with 32-bit ZMM index.
+func IsVM32Z(op Op) bool {
+	return IsVmz(op)
+}
+
+// IsVM64Z returns true if op is a vector memory operand with 64-bit ZMM index.
+func IsVM64Z(op Op) bool {
+	return IsVmz(op)
+}
+
+// IsVmz returns true if op is a vector memory operand with ZMM index.
+func IsVmz(op Op) bool {
+	return isvm(op, IsZMM)
 }
 
 func isvm(op Op, idx func(Op) bool) bool {
