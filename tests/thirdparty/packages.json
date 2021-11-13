@@ -6,7 +6,7 @@
         },
         "metadata": {
             "description": "XXH3 algorithm in Go",
-            "stars": 198
+            "stars": 203
         },
         "default_branch": "master",
         "version": "v1.0.0-rc1",
@@ -107,7 +107,7 @@
         },
         "metadata": {
             "description": "Accelerate aggregated MD5 hashing performance up to 8x for AVX512 and 4x for AVX2. Useful for server applications that need to compute many MD5 sums in parallel.",
-            "stars": 87
+            "stars": 88
         },
         "default_branch": "master",
         "version": "30ad8af83f6868c2a30c615f3edf1a9366bf3f89",
@@ -150,7 +150,7 @@
         },
         "metadata": {
             "description": "Reed-Solomon Erasure Coding in Go",
-            "stars": 1343
+            "stars": 1345
         },
         "default_branch": "master",
         "version": "922778284547557265cff0f903ab5f4c27e40ae9",
@@ -201,7 +201,7 @@
         },
         "metadata": {
             "description": "Optimized Go Compression Packages",
-            "stars": 2442
+            "stars": 2448
         },
         "default_branch": "master",
         "version": "2adf487b3e02f95ce7efd6e4953fda0ae7ecd080",
@@ -408,7 +408,7 @@
         },
         "metadata": {
             "description": "An alternative interface to Sia",
-            "stars": 49
+            "stars": 50
         },
         "default_branch": "master",
         "version": "dff56a80f83653cb14eeeb57ba6ba3c3e942c412",
@@ -447,7 +447,7 @@
         },
         "metadata": {
             "description": "Go library providing algorithms optimized to leverage the characteristics of modern CPUs",
-            "stars": 548
+            "stars": 566
         },
         "default_branch": "main",
         "version": "v1.0.0",
@@ -514,7 +514,7 @@
         },
         "metadata": {
             "description": "High-performance Curve25519/ristretto255 for Go",
-            "stars": 32
+            "stars": 34
         },
         "default_branch": "master",
         "version": "d5a936accd94ef9da4c0fe9db0a6342dcdcfeadf",
@@ -536,7 +536,7 @@
         "metadata": {
             "description": "[mirror] Go supplementary cryptography libraries",
             "homepage": "https://golang.org/x/crypto",
-            "stars": 2282
+            "stars": 2283
         },
         "default_branch": "master",
         "version": "089bfa5675191fd96a44247682f76ebca03d7916",
@@ -569,6 +569,37 @@
                 "dir": "field/_asm",
                 "commands": [
                     "go generate -v -x"
+                ]
+            }
+        ]
+    },
+    {
+        "repository": {
+            "owner": "lukechampine",
+            "name": "blake3"
+        },
+        "metadata": {
+            "description": "A pure-Go implementation of the BLAKE3 cryptographic hash function",
+            "stars": 249
+        },
+        "default_branch": "master",
+        "version": "v1.1.7",
+        "module": "avo/go.mod",
+        "setup": [
+            {
+                "name": "Setup Generator Module",
+                "dir": "avo",
+                "commands": [
+                    "sed -i.bak '/build ignore/d' gen.go",
+                    "go mod init github.com/lukechampine/blake3/avo"
+                ]
+            }
+        ],
+        "generate": [
+            {
+                "dir": "avo",
+                "commands": [
+                    "go run gen.go -out ../blake3_amd64.s"
                 ]
             }
         ]
