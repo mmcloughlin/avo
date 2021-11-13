@@ -127,6 +127,9 @@ func TestChecks(t *testing.T) {
 		{IsM256, Mem{Base: reg.RBX, Index: reg.R12, Scale: 2}, true},
 		{IsM256, Mem{Base: reg.X0}, false},
 
+		{IsM512, Mem{Base: reg.RBX, Index: reg.R12, Scale: 2}, true},
+		{IsM512, Mem{Base: reg.X0}, false},
+
 		// Argument references (special cases of memory operands)
 		{IsM, NewParamAddr("foo", 4), true},
 		{IsM8, NewParamAddr("foo", 4), true},
@@ -150,6 +153,14 @@ func TestChecks(t *testing.T) {
 		{IsVM64Y, Mem{Base: reg.R9, Index: reg.Y11}, true},
 		{IsVM64Y, Mem{Base: reg.R11L, Index: reg.Y11}, false},
 		{IsVM64Y, Mem{Base: reg.R8, Index: reg.Z11}, false},
+
+		{IsVM32Z, Mem{Base: reg.R9, Index: reg.Z11}, true},
+		{IsVM32Z, Mem{Base: reg.R11L, Index: reg.Z11}, false},
+		{IsVM32Z, Mem{Base: reg.R8, Index: reg.Y11}, false},
+
+		{IsVM64Z, Mem{Base: reg.R9, Index: reg.Z11}, true},
+		{IsVM64Z, Mem{Base: reg.R11L, Index: reg.Z11}, false},
+		{IsVM64Z, Mem{Base: reg.R8, Index: reg.X11}, false},
 
 		// Relative operands
 		{IsREL8, Rel(math.MinInt8), true},
