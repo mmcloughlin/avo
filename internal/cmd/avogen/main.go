@@ -24,6 +24,7 @@ var generators = map[string]gen.Builder{
 	"ctorsstress": gen.NewCtorsStress,
 	"ctorsbench":  gen.NewCtorsBench,
 	"build":       gen.NewBuild,
+	"buildtest":   gen.NewBuildTest,
 	"mov":         gen.NewMOV,
 }
 
