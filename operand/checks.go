@@ -131,7 +131,7 @@ func IsYMM(op Op) bool {
 	return IsRegisterKindSize(op, reg.KindVector, 32)
 }
 
-// IsZMM returns true if op is a 512-bit YMM register.
+// IsZMM returns true if op is a 512-bit ZMM register.
 func IsZMM(op Op) bool {
 	return IsRegisterKindSize(op, reg.KindVector, 64)
 }
