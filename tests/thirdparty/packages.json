@@ -447,10 +447,10 @@
         },
         "metadata": {
             "description": "Go library providing algorithms optimized to leverage the characteristics of modern CPUs",
-            "stars": 566
+            "stars": 568
         },
         "default_branch": "main",
-        "version": "v1.0.0",
+        "version": "2bf3fdd47b1cdbe8fe020f032caf14891e10a85f",
         "module": "build/go.mod",
         "generate": [
             {
@@ -458,8 +458,7 @@
                     "make --always-make build"
                 ]
             }
-        ],
-        "known_issue": 229
+        ]
     },
     {
         "repository": {
