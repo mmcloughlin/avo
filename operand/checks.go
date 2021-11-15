@@ -263,7 +263,7 @@ func IsVmz(op Op) bool {
 
 func isvm(op Op, idx func(Op) bool) bool {
 	m, ok := op.(Mem)
-	return ok && IsR64(m.Base) && idx(m.Index)
+	return ok && (m.Base == nil || IsR64(m.Base)) && idx(m.Index)
 }
 
 // IsREL8 returns true if op is an 8-bit offset relative to instruction pointer.
