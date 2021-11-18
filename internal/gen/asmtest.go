@@ -7,7 +7,6 @@ import (
 	"strings"
 
 	"github.com/mmcloughlin/avo/internal/inst"
-	"github.com/mmcloughlin/avo/internal/prnt"
 	"github.com/mmcloughlin/avo/printer"
 )
 
@@ -16,7 +15,7 @@ type asmtest struct {
 	sym   string // reference to the test function symbol
 	rel8  string // label to be used for near jumps
 	rel32 string // label for far jumps
-	prnt.Generator
+	printer.Generator
 }
 
 // NewAsmTest prints one massive assembly function containing a line for every

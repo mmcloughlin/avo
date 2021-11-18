@@ -1,5 +1,5 @@
-// Package prnt provides common functionality for code generators.
-package prnt
+// Package printer implements printing of avo files in various formats.
+package printer
 
 import (
 	"bytes"

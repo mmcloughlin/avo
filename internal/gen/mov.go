@@ -8,13 +8,12 @@ import (
 
 	"github.com/mmcloughlin/avo/internal/api"
 	"github.com/mmcloughlin/avo/internal/inst"
-	"github.com/mmcloughlin/avo/internal/prnt"
 	"github.com/mmcloughlin/avo/printer"
 )
 
 type mov struct {
 	cfg printer.Config
-	prnt.Generator
+	printer.Generator
 }
 
 // NewMOV generates a function that will auto-select the correct MOV instruction

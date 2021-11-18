@@ -2,6 +2,7 @@ package build
 
 import (
 	"flag"
+	"io"
 	"os"
 
 	"github.com/mmcloughlin/avo/attr"
@@ -9,6 +10,7 @@ import (
 	"github.com/mmcloughlin/avo/gotypes"
 	"github.com/mmcloughlin/avo/ir"
 	"github.com/mmcloughlin/avo/operand"
+	"github.com/mmcloughlin/avo/printer"
 
 	"github.com/mmcloughlin/avo/reg"
 )
@@ -36,7 +38,8 @@ func DATA(offset int, v operand.Constant) {
 	ctx.AddDatum(offset, v)
 }
 
-var flags = NewFlags(flag.CommandLine)
+var flagSet = flag.CommandLine
+var flags = NewFlags(flagSet)
 
 // Generate builds and compiles the avo file built with the global context. This
 // should be the final line of any avo program. Configuration is determined from command-line flags.
@@ -162,3 +165,10 @@ func ConstData(name string, v operand.Constant) operand.Mem { return ctx.ConstDa
 
 // Instruction adds an instruction to the active function.
 func Instruction(i *ir.Instruction) { ctx.Instruction(i) }
+
+// AddPrinter registers a custom printer
+func AddPrinter(flag, desc string, pB printer.Builder, dflt io.WriteCloser) {
+	pV := newPrinterValue(pB, dflt)
+	flagSet.Var(pV, flag, desc)
+	flags.printers = append(flags.printers, pV)
+}
