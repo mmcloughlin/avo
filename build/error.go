@@ -1,6 +1,7 @@
 package build
 
 import (
+	"errors"
 	"fmt"
 	"log"
 
@@ -45,7 +46,7 @@ func (e *ErrorList) AddAt(p src.Position, err error) {
 	e.Add(Error{p, err})
 }
 
-// addext appends an error to the list, tagged with the
+// addext appends an error to the list, tagged with the.
 func (e *ErrorList) addext(err error) {
 	e.Add(exterr(err))
 }
@@ -59,7 +60,7 @@ func (e ErrorList) Err() error {
 	return e
 }
 
-// An ErrorList implements the error interface.
+// Error implements the error interface.
 func (e ErrorList) Error() string {
 	switch len(e) {
 	case 0:
@@ -74,7 +75,8 @@ func (e ErrorList) Error() string {
 // an ErrorList. Otherwise it just logs the err string. Reports at most max
 // errors, or unlimited if max is 0.
 func LogError(l *log.Logger, err error, max int) {
-	if list, ok := err.(ErrorList); ok {
+	var list ErrorList
+	if errors.As(err, &list) {
 		for i, e := range list {
 			if max > 0 && i == max {
 				l.Print("too many errors")

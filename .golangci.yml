@@ -26,6 +26,12 @@ linters:
     - golint
     - scopelint
     - interfacer
+    - forcetypeassert
+    - nlreturn
+    - ifshort
+    - cyclop
+    - errname
+    - forbidigo
 
 linters-settings:
   depguard:
@@ -33,6 +39,11 @@ linters-settings:
     packages:
       - github.com/mmcloughlin/avo
       - golang.org/x/
+  gci:
+    sections:
+      - standard
+      - default
+      - prefix(github.com/mmcloughlin/avo)
 
 issues:
   exclude-use-default: false

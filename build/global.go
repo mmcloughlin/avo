@@ -9,7 +9,6 @@ import (
 	"github.com/mmcloughlin/avo/gotypes"
 	"github.com/mmcloughlin/avo/ir"
 	"github.com/mmcloughlin/avo/operand"
-
 	"github.com/mmcloughlin/avo/reg"
 )
 

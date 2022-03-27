@@ -298,7 +298,7 @@ func (d Datum) Interval() (int, int) {
 	return d.Offset, d.Offset + d.Value.Bytes()
 }
 
-// Overlaps returns true
+// Overlaps returns true.
 func (d Datum) Overlaps(other Datum) bool {
 	s, e := d.Interval()
 	so, eo := other.Interval()

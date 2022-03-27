@@ -3,6 +3,7 @@ package main
 
 import (
 	"flag"
+	"fmt"
 	"go/build"
 	"log"
 	"os"
@@ -43,12 +44,17 @@ func main() {
 	log.SetPrefix("avogen: ")
 	log.SetFlags(0)
 	flag.Parse()
+	if err := run(); err != nil {
+		log.Fatal(err)
+	}
+}
 
+func run() error {
 	// Build generator.
 	t := flag.Arg(0)
 	builder := generators[t]
 	if builder == nil {
-		log.Fatalf("unknown generator type '%s'", t)
+		return fmt.Errorf("unknown generator type '%s'", t)
 	}
 
 	g := builder(printer.NewArgvConfig())
@@ -58,7 +64,7 @@ func main() {
 	if *output != "" {
 		f, err := os.Create(*output)
 		if err != nil {
-			log.Fatal(err)
+			return err
 		}
 		defer f.Close()
 		w = f
@@ -71,7 +77,7 @@ func main() {
 		l := load.NewLoaderFromDataDir(*datadir)
 		r, err := l.Load()
 		if err != nil {
-			log.Fatal(err)
+			return err
 		}
 		is = r
 	}
@@ -81,10 +87,12 @@ func main() {
 
 	// Write.
 	if _, err := w.Write(b); err != nil {
-		log.Fatal(err)
+		return err
 	}
 
 	if generr != nil {
-		log.Fatal(generr)
+		return generr
 	}
+
+	return nil
 }

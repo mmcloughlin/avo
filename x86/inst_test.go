@@ -90,6 +90,7 @@ func TestCases(t *testing.T) {
 }
 
 func MustInstruction(t *testing.T) func(*ir.Instruction, error) *ir.Instruction {
+	t.Helper()
 	return func(i *ir.Instruction, err error) *ir.Instruction {
 		t.Helper()
 		if err != nil {
