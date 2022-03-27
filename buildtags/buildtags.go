@@ -209,7 +209,7 @@ func (o Option) ToOption() Option { return o }
 func (o Option) Validate() error {
 	for _, t := range o {
 		if err := t.Validate(); err != nil {
-			return fmt.Errorf("invalid term \"%s\": %s", t, err)
+			return fmt.Errorf("invalid term %q: %w", t, err)
 		}
 	}
 	return nil

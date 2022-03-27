@@ -187,11 +187,17 @@ func (t *Table) SuffixesTypeName() string {
 // SuffixesConst returns the constant for a list of suffixes. Suffixes is a
 // generated array type, so the list is a value not slice type.
 func (t *Table) SuffixesConst(suffixes inst.Suffixes) string {
+	return t.SuffixesTypeName() + t.SuffixesList(suffixes)
+}
+
+// SuffixesList returns the constant literal for a list of suffixes, type name
+// not included. Use SuffxesConst if the type is required.
+func (t *Table) SuffixesList(suffixes inst.Suffixes) string {
 	var parts []string
 	for _, suffix := range suffixes {
 		parts = append(parts, t.SuffixConst(suffix))
 	}
-	return t.SuffixesTypeName() + "{" + strings.Join(parts, ", ") + "}"
+	return "{" + strings.Join(parts, ", ") + "}"
 }
 
 // SuffixesClass returns the enumeration representing all suffixes classes.

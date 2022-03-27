@@ -855,7 +855,7 @@ func dedupe(fs []inst.Form) []inst.Form {
 	return uniq
 }
 
-// sortforms sorts a list of forms
+// sortforms sorts a list of forms.
 func sortforms(fs []inst.Form) {
 	sort.Slice(fs, func(i, j int) bool {
 		return sortkey(fs[i]) < sortkey(fs[j])

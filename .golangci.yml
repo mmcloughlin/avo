@@ -4,17 +4,34 @@ run:
 linters:
   enable-all: true
   disable:
-  - funlen
-  - maligned
-  - lll
-  - gosec
-  - prealloc
-  - unparam
-  - gochecknoglobals
-  - gochecknoinits
-  - gomnd
-  - wsl
-  - godox
+    - cyclop
+    - errname
+    - exhaustivestruct
+    - forbidigo
+    - forcetypeassert
+    - funlen
+    - gochecknoglobals
+    - gochecknoinits
+    - godox
+    - goerr113
+    - golint
+    - gomnd
+    - gosec
+    - ifshort
+    - interfacer
+    - ireturn
+    - lll
+    - maligned
+    - nlreturn
+    - paralleltest
+    - prealloc
+    - scopelint
+    - tagliatelle
+    - testpackage
+    - unparam
+    - varnamelen
+    - wrapcheck
+    - wsl
 
 linters-settings:
   depguard:
@@ -22,6 +39,11 @@ linters-settings:
     packages:
       - github.com/mmcloughlin/avo
       - golang.org/x/
+  gci:
+    sections:
+      - standard
+      - default
+      - prefix(github.com/mmcloughlin/avo)
 
 issues:
   exclude-use-default: false
@@ -29,6 +51,6 @@ issues:
     # errcheck: Almost all programs ignore errors on these functions and in most cases it's ok
     - Error return value of .((os\.)?std(out|err)\..*|.*Close|.*Flush|os\.Remove(All)?|.*printf?|os\.(Un)?Setenv). is not checked
     # gocritic: https://github.com/go-critic/go-critic/issues/762
-    - ' with `(len|cap|real|imag)`'
+    - " with `(len|cap|real|imag)`"
     # We want to allow all caps in certain cases.
     - "ALL_CAPS in Go names"
