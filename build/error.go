@@ -46,7 +46,8 @@ func (e *ErrorList) AddAt(p src.Position, err error) {
 	e.Add(Error{p, err})
 }
 
-// addext appends an error to the list, tagged with the.
+// addext appends an error to the list, tagged with the first external position
+// outside this package.
 func (e *ErrorList) addext(err error) {
 	e.Add(exterr(err))
 }
