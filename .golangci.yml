@@ -4,34 +4,34 @@ run:
 linters:
   enable-all: true
   disable:
-    - funlen
-    - maligned
-    - lll
-    - gosec
-    - prealloc
-    - unparam
-    - gochecknoglobals
-    - gochecknoinits
-    - gomnd
-    - wsl
-    - godox
-    - wrapcheck
-    - varnamelen
-    - testpackage
-    - tagliatelle
-    - paralleltest
-    - ireturn
-    - goerr113
-    - exhaustivestruct
-    - golint
-    - scopelint
-    - interfacer
-    - forcetypeassert
-    - nlreturn
-    - ifshort
     - cyclop
     - errname
+    - exhaustivestruct
     - forbidigo
+    - forcetypeassert
+    - funlen
+    - gochecknoglobals
+    - gochecknoinits
+    - godox
+    - goerr113
+    - golint
+    - gomnd
+    - gosec
+    - ifshort
+    - interfacer
+    - ireturn
+    - lll
+    - maligned
+    - nlreturn
+    - paralleltest
+    - prealloc
+    - scopelint
+    - tagliatelle
+    - testpackage
+    - unparam
+    - varnamelen
+    - wrapcheck
+    - wsl
 
 linters-settings:
   depguard:
