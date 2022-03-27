@@ -228,7 +228,7 @@ var sffxsstringsmap = map[sffxs][]string{
 	{sffxSAE, sffxZ}:    {"SAE", "Z"},
 	{sffxSAE}:           {"SAE"},
 	{sffxZ}:             {"Z"},
-	{}:                  []string(nil),
+	{}:                  nil,
 }
 
 type sffxscls uint8
@@ -327,7 +327,7 @@ func (i isas) List() []string {
 }
 
 var isaslisttable = [][]string{
-	[]string(nil),
+	nil,
 	{"ADX"},
 	{"SSE2"},
 	{"SSE"},

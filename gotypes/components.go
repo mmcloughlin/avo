@@ -31,7 +31,6 @@ type Component interface {
 	// during any previous calls to Component methods, they will be returned at
 	// resolution time.
 	Resolve() (*Basic, error)
-
 	Dereference(r reg.Register) Component // dereference a pointer
 	Base() Component                      // base pointer of a string or slice
 	Len() Component                       // length of a string or slice
