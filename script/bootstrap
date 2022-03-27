@@ -4,7 +4,7 @@
 go install ./internal/cmd/asmvet
 
 # Install golangci-lint
-golangci_lint_version='v1.23.6'
+golangci_lint_version='v1.45.2'
 golangci_install_script="https://raw.githubusercontent.com/golangci/golangci-lint/${golangci_lint_version}/install.sh"
 curl -sfL "${golangci_install_script}" | sh -s -- -b "$GOPATH/bin" "${golangci_lint_version}"
 
@@ -17,5 +17,8 @@ go install github.com/dlespiau/covertool@v0.0.0-20180314162135-b0c4c6d0583a
 # asmfmt for enforcing assembly style
 go install github.com/klauspost/asmfmt/cmd/asmfmt@v1.3.1
 
-# gofumports for stricter formatting
-go install mvdan.cc/gofumpt/gofumports@v0.0.0-20200412215918-a91da47f375c
+# goimports for import grouping.
+go install golang.org/x/tools/cmd/goimports@v0.1.10
+
+# gofumpt for stricter formatting.
+go install mvdan.cc/gofumpt@v0.3.1

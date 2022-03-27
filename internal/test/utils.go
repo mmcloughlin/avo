@@ -32,7 +32,7 @@ func Assembles(t *testing.T, asm []byte) {
 	defer clean()
 
 	asmfilename := filepath.Join(dir, "asm.s")
-	if err := ioutil.WriteFile(asmfilename, asm, 0600); err != nil {
+	if err := ioutil.WriteFile(asmfilename, asm, 0o600); err != nil {
 		t.Fatal(err)
 	}
 

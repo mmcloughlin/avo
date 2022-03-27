@@ -107,7 +107,7 @@ func DownloadGoSourceFile(outpath, v, srcpath string) (err error) {
 		return err
 	}
 
-	if err := ioutil.WriteFile(outpath, buf.Bytes(), 0644); err != nil {
+	if err := ioutil.WriteFile(outpath, buf.Bytes(), 0o644); err != nil {
 		return err
 	}
 
