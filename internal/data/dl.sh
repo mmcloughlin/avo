@@ -55,8 +55,8 @@ addlicense() {
     echo 'Files downloaded:'
     echo
     dl https://raw.githubusercontent.com/${repo}/${ref}/x86/x86.v0.2.csv
-    dl https://raw.githubusercontent.com/${repo}/${ref}/LICENSE
-    addlicense ${repo} ${datadir}/LICENSE
+    dl https://raw.githubusercontent.com/${repo}/${ref}/LICENSE golang-arch-license.txt
+    addlicense ${repo} ${datadir}/golang-arch-license.txt
 
     # golang/go aliases list.
     repo='golang/go'
@@ -66,8 +66,8 @@ addlicense() {
     echo 'Files downloaded:'
     echo
     dl https://raw.githubusercontent.com/${repo}/${ref}/src/cmd/asm/internal/arch/arch.go arch.go.txt
-    dl https://raw.githubusercontent.com/${repo}/${ref}/LICENSE
-    addlicense ${repo} ${datadir}/LICENSE
+    dl https://raw.githubusercontent.com/${repo}/${ref}/LICENSE golang-go-license.txt
+    addlicense ${repo} ${datadir}/golang-go-license.txt
 
     # opcodes
     repo='Maratyszcza/Opcodes'
