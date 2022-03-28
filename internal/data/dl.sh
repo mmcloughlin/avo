@@ -3,8 +3,8 @@
 datadir=$(dirname "${BASH_SOURCE[0]}")
 
 dl() {
-    url=$1
-    name=$(basename ${url})
+    local url=$1
+    local name=${2:-$(basename ${url})}
 
     mkdir -p ${datadir}
     curl --output ${datadir}/${name} ${url}
@@ -19,8 +19,8 @@ hdr() {
 }
 
 addlicense() {
-    repo=$1
-    file=$2
+    local repo=$1
+    local file=$2
 
     tmp=$(mktemp)
     mv ${file} ${tmp}
@@ -49,24 +49,35 @@ addlicense() {
 
     # golang/arch x86 csv
     repo='golang/arch'
-    sha='5a4828bb704534b8a2fa09c791c67d0fb372f472'
+    ref='b76863e36670e165c85261bc41fabaf345376022'
 
     echo "## ${repo}"
     echo 'Files downloaded:'
     echo
-    dl https://raw.githubusercontent.com/${repo}/${sha}/x86/x86.v0.2.csv
-    dl https://raw.githubusercontent.com/${repo}/${sha}/LICENSE
+    dl https://raw.githubusercontent.com/${repo}/${ref}/x86/x86.v0.2.csv
+    dl https://raw.githubusercontent.com/${repo}/${ref}/LICENSE
+    addlicense ${repo} ${datadir}/LICENSE
+
+    # golang/go aliases list.
+    repo='golang/go'
+    ref='go1.17.6'
+
+    echo "## ${repo}"
+    echo 'Files downloaded:'
+    echo
+    dl https://raw.githubusercontent.com/${repo}/${ref}/src/cmd/asm/internal/arch/arch.go arch.go.txt
+    dl https://raw.githubusercontent.com/${repo}/${ref}/LICENSE
     addlicense ${repo} ${datadir}/LICENSE
 
     # opcodes
     repo='Maratyszcza/Opcodes'
-    sha='6e2b0cd9f1403ecaf164dea7019dd54db5aea252'
+    ref='6e2b0cd9f1403ecaf164dea7019dd54db5aea252'
 
     echo "## ${repo}"
     echo 'Files downloaded:'
     echo
-    dl https://raw.githubusercontent.com/${repo}/${sha}/opcodes/x86_64.xml
-    dl https://raw.githubusercontent.com/${repo}/${sha}/license.rst
+    dl https://raw.githubusercontent.com/${repo}/${ref}/opcodes/x86_64.xml
+    dl https://raw.githubusercontent.com/${repo}/${ref}/license.rst
     addlicense ${repo} ${datadir}/license.rst
 
 } > ${datadir}/README.md
