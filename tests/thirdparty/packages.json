@@ -639,7 +639,7 @@
         "generate": [
             {
                 "commands": [
-                    "./script/generate"
+                    "go generate -v -x"
                 ]
             }
         ]
