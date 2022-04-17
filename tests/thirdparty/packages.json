@@ -128,7 +128,7 @@
         },
         "metadata": {
             "description": "Pure Go implementation of BLAKE3 with AVX2 and SSE4.1 acceleration",
-            "stars": 287
+            "stars": 288
         },
         "default_branch": "master",
         "version": "25dba572f0e78ec108f0dd79c9c15288f542d7d9",
@@ -150,7 +150,7 @@
         },
         "metadata": {
             "description": "Reed-Solomon Erasure Coding in Go",
-            "stars": 1424
+            "stars": 1428
         },
         "default_branch": "master",
         "version": "922778284547557265cff0f903ab5f4c27e40ae9",
@@ -201,7 +201,7 @@
         },
         "metadata": {
             "description": "Optimized Go Compression Packages",
-            "stars": 2693
+            "stars": 2701
         },
         "default_branch": "master",
         "version": "2adf487b3e02f95ce7efd6e4953fda0ae7ecd080",
@@ -447,7 +447,7 @@
         },
         "metadata": {
             "description": "Go library providing algorithms optimized to leverage the characteristics of modern CPUs",
-            "stars": 679
+            "stars": 681
         },
         "default_branch": "main",
         "version": "2bf3fdd47b1cdbe8fe020f032caf14891e10a85f",
@@ -513,7 +513,7 @@
         },
         "metadata": {
             "description": "High-performance Curve25519/ristretto255 for Go",
-            "stars": 43
+            "stars": 45
         },
         "default_branch": "master",
         "version": "d5a936accd94ef9da4c0fe9db0a6342dcdcfeadf",
@@ -531,6 +531,10 @@
         "repository": {
             "owner": "oasisprotocol",
             "name": "deoxysii"
+        },
+        "metadata": {
+            "description": "Go Deoxys-II-256-128",
+            "stars": 17
         },
         "default_branch": "master",
         "version": "2091330c22b71dd4e04e15306498e68f3a1b3afc",
@@ -552,7 +556,7 @@
         "metadata": {
             "description": "[mirror] Go supplementary cryptography libraries",
             "homepage": "https://golang.org/x/crypto",
-            "stars": 2385
+            "stars": 2391
         },
         "default_branch": "master",
         "version": "089bfa5675191fd96a44247682f76ebca03d7916",
