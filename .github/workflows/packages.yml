@@ -867,7 +867,7 @@ jobs:
           go mod tidy -modfile=go.mod
       - name: Generate
         working-directory: md4
-        run: ./script/generate
+        run: go generate -v -x
       - name: Diff
         working-directory: md4
         run: git diff
