@@ -529,6 +529,23 @@
     },
     {
         "repository": {
+            "owner": "oasisprotocol",
+            "name": "deoxysii"
+        },
+        "default_branch": "master",
+        "version": "2091330c22b71dd4e04e15306498e68f3a1b3afc",
+        "module": "internal/hardware/asm/go.mod",
+        "generate": [
+            {
+                "dir": "internal/hardware/asm",
+                "commands": [
+                    "bash -ex gen.sh"
+                ]
+            }
+        ]
+    },
+    {
+        "repository": {
             "owner": "golang",
             "name": "crypto"
         },
