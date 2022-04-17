@@ -3,7 +3,6 @@ package main
 import (
 	"bufio"
 	"bytes"
-	"embed"
 	"errors"
 	"flag"
 	"fmt"
@@ -13,6 +12,8 @@ import (
 	"regexp"
 	"strings"
 	"text/template"
+
+	"github.com/mmcloughlin/avo/tests/thirdparty"
 )
 
 func main() {
@@ -24,9 +25,9 @@ func main() {
 }
 
 var (
-	typ    = flag.String("type", "", "documentation type")
-	tmpl   = flag.String("tmpl", "", "explicit template file (overrides -type)")
-	output = flag.String("output", "", "path to output file (default stdout)")
+	tmpl         = flag.String("tmpl", "", "template file")
+	output       = flag.String("output", "", "path to output file (default stdout)")
+	pkgsfilename = flag.String("pkgs", "", "packages configuration")
 )
 
 func mainerr() (err error) {
@@ -38,22 +39,39 @@ func mainerr() (err error) {
 	t.Funcs(template.FuncMap{
 		"include": include,
 		"snippet": snippet,
-		"anchor":  anchor,
 	})
 
 	// Load template.
-	s, err := load()
+	if *tmpl == "" {
+		return errors.New("missing template file")
+	}
+
+	b, err := ioutil.ReadFile(*tmpl)
 	if err != nil {
 		return err
 	}
 
-	if _, err := t.Parse(s); err != nil {
+	if _, err := t.Parse(string(b)); err != nil {
+		return err
+	}
+
+	// Load third-party packages.
+	if *pkgsfilename == "" {
+		return errors.New("missing packages configuration")
+	}
+
+	pkgs, err := thirdparty.LoadPackagesFile(*pkgsfilename)
+	if err != nil {
 		return err
 	}
 
 	// Execute.
+	data := map[string]interface{}{
+		"Packages": pkgs,
+	}
+
 	var buf bytes.Buffer
-	if err := t.Execute(&buf, nil); err != nil {
+	if err := t.Execute(&buf, data); err != nil {
 		return err
 	}
 	body := buf.Bytes()
@@ -70,33 +88,6 @@ func mainerr() (err error) {
 	}
 
 	return nil
-}
-
-//go:embed templates
-var templates embed.FS
-
-// load template.
-func load() (string, error) {
-	// Prefer explicit filename, if provided.
-	if *tmpl != "" {
-		b, err := ioutil.ReadFile(*tmpl)
-		if err != nil {
-			return "", err
-		}
-		return string(b), nil
-	}
-
-	// Otherwise expect a named type.
-	if *typ == "" {
-		return "", errors.New("missing documentation type")
-	}
-	path := fmt.Sprintf("templates/%s.tmpl", *typ)
-	b, err := templates.ReadFile(path)
-	if err != nil {
-		return "", fmt.Errorf("unknown documentation type %q", *typ)
-	}
-
-	return string(b), nil
 }
 
 // include template function.
@@ -145,10 +136,4 @@ func snippet(filename, start, end string) (string, error) {
 	}
 
 	return buf.String(), nil
-}
-
-// anchor returns the anchor for a heading in Github.
-func anchor(heading string) string {
-	r := strings.NewReplacer(" ", "-", "(", "", ")", "", "/", "")
-	return r.Replace(strings.ToLower((heading)))
 }
