@@ -201,7 +201,7 @@
         },
         "metadata": {
             "description": "Optimized Go Compression Packages",
-            "stars": 2701
+            "stars": 2702
         },
         "default_branch": "master",
         "version": "2adf487b3e02f95ce7efd6e4953fda0ae7ecd080",
@@ -620,6 +620,26 @@
                 "dir": "avo",
                 "commands": [
                     "go run gen.go -out ../blake3_amd64.s"
+                ]
+            }
+        ]
+    },
+    {
+        "repository": {
+            "owner": "mmcloughlin",
+            "name": "md4"
+        },
+        "metadata": {
+            "description": "Assembly-optimized MD4 hash algorithm in Go",
+            "stars": 15
+        },
+        "default_branch": "main",
+        "version": "v0.1.2",
+        "module": "asm/go.mod",
+        "generate": [
+            {
+                "commands": [
+                    "go generate -v -x"
                 ]
             }
         ]
