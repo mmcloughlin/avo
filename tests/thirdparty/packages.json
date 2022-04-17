@@ -623,5 +623,21 @@
                 ]
             }
         ]
+    },
+    {
+        "repository": {
+            "owner": "mmcloughlin",
+            "name": "md4"
+        },
+        "default_branch": "main",
+        "version": "v0.1.2",
+        "module": "asm/go.mod",
+        "generate": [
+            {
+                "commands": [
+                    "./script/generate"
+                ]
+            }
+        ]
     }
 ]
