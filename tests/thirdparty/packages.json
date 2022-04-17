@@ -623,5 +623,26 @@
                 ]
             }
         ]
+    },
+    {
+        "repository": {
+            "owner": "probakowski",
+            "name": "curve1174"
+        },
+        "metadata": {
+            "description": "Go implementation of Curve1147 arithemtic",
+            "stars": 3
+        },
+        "default_branch": "main",
+        "version": "0997c2c2577210582cdd99e207a4be81fcdd1f7b",
+        "module": "go.mod",
+        "generate": [
+            {
+                "dir": "gen",
+                "commands": [
+                    "go generate -v -x"
+                ]
+            }
+        ]
     }
 ]
