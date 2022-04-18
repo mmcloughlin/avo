@@ -1,3 +1,9 @@
 #!/bin/bash -ex
 
+# Generate some specific files with docgen.
+go install ./internal/cmd/docgen
+
+docgen -type readme -output README.md
+
+# Process simple file embeddings with embedmd.
 find . -name '*.md' | xargs embedmd -w
