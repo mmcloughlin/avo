@@ -173,7 +173,7 @@ func avatar(owner string) (string, error) {
 	u := fmt.Sprintf("https://github.com/%s.png", owner)
 
 	// Use images.weserv.nl service to resize and apply circle mask.
-	const size = 24
+	const size = 32
 	v := url.Values{}
 	v.Set("url", u)
 	v.Set("w", strconv.Itoa(size))
