@@ -42,6 +42,7 @@ func mainerr() (err error) {
 	t.Funcs(template.FuncMap{
 		"include": include,
 		"snippet": snippet,
+		"avatar":  avatar,
 	})
 
 	// Load template.
@@ -162,4 +163,10 @@ func snippet(filename, start, end string) (string, error) {
 	}
 
 	return buf.String(), nil
+}
+
+// avatar returns HTML for a Github user avatar.
+func avatar(owner string) (string, error) {
+	format := `<img src="https://github.com/%s.png?size=24" width="24" height="24" hspace="4" valign="middle" />`
+	return fmt.Sprintf(format, owner), nil
 }
