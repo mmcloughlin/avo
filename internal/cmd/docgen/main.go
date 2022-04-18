@@ -14,6 +14,8 @@ import (
 	"regexp"
 	"strings"
 	"text/template"
+
+	"github.com/mmcloughlin/avo/tests/thirdparty"
 )
 
 func main() {
@@ -25,9 +27,10 @@ func main() {
 }
 
 var (
-	typ    = flag.String("type", "", "documentation type")
-	tmpl   = flag.String("tmpl", "", "explicit template file (overrides -type)")
-	output = flag.String("output", "", "path to output file (default stdout)")
+	typ          = flag.String("type", "", "documentation type")
+	tmpl         = flag.String("tmpl", "", "explicit template file (overrides -type)")
+	output       = flag.String("output", "", "path to output file (default stdout)")
+	pkgsfilename = flag.String("pkgs", "", "packages configuration")
 )
 
 func mainerr() (err error) {
@@ -51,9 +54,23 @@ func mainerr() (err error) {
 		return err
 	}
 
+	// Load third-party packages.
+	if *pkgsfilename == "" {
+		return errors.New("missing packages configuration")
+	}
+
+	pkgs, err := thirdparty.LoadPackagesFile(*pkgsfilename)
+	if err != nil {
+		return err
+	}
+
 	// Execute.
+	data := map[string]interface{}{
+		"Packages": pkgs,
+	}
+
 	var buf bytes.Buffer
-	if err := t.Execute(&buf, nil); err != nil {
+	if err := t.Execute(&buf, data); err != nil {
 		return err
 	}
 	body := buf.Bytes()

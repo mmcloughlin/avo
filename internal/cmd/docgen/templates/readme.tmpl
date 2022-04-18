@@ -100,6 +100,19 @@ Implementations of full algorithms:
 * **[geohash](examples/geohash):** Integer [geohash](https://en.wikipedia.org/wiki/Geohash) encoding.
 * **[stadtx](examples/stadtx):** [`StadtX` hash](https://github.com/demerphq/BeagleHash) port from [dgryski/go-stadtx](https://github.com/dgryski/go-stadtx).
 
+## Adopters
+
+Popular projects using `avo`:
+
+{{ range .Packages.Top 10 -}}
+{{ if lt .Metadata.Stars 100 }}{{break}}{{ end -}}
+<img src="https://github.com/{{ .Repository.Owner }}.png?size=24" width="24" height="24" hspace="4" valign="middle" /> [{{ .Repository.Owner }} / **{{ .Repository.Name }}**]({{ .Repository.URL }})
+{{- if .SubPackage }} / **{{ .SubPackage}}**{{ end }}
+:star: {{ .Metadata.Stars }}
+> {{ .Metadata.Description }}
+
+{{ end -}}
+
 ## Contributing
 
 Contributions to `avo` are welcome:
