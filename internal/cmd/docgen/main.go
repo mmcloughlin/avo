@@ -3,6 +3,7 @@ package main
 import (
 	"bufio"
 	"bytes"
+	"embed"
 	"errors"
 	"flag"
 	"fmt"
@@ -12,8 +13,6 @@ import (
 	"regexp"
 	"strings"
 	"text/template"
-
-	"github.com/mmcloughlin/avo/tests/thirdparty"
 )
 
 func main() {
@@ -25,9 +24,9 @@ func main() {
 }
 
 var (
-	tmpl         = flag.String("tmpl", "", "template file")
-	output       = flag.String("output", "", "path to output file (default stdout)")
-	pkgsfilename = flag.String("pkgs", "", "packages configuration")
+	typ    = flag.String("type", "", "documentation type")
+	tmpl   = flag.String("tmpl", "", "explicit template file (overrides -type)")
+	output = flag.String("output", "", "path to output file (default stdout)")
 )
 
 func mainerr() (err error) {
@@ -42,36 +41,18 @@ func mainerr() (err error) {
 	})
 
 	// Load template.
-	if *tmpl == "" {
-		return errors.New("missing template file")
-	}
-
-	b, err := ioutil.ReadFile(*tmpl)
+	s, err := load()
 	if err != nil {
 		return err
 	}
 
-	if _, err := t.Parse(string(b)); err != nil {
-		return err
-	}
-
-	// Load third-party packages.
-	if *pkgsfilename == "" {
-		return errors.New("missing packages configuration")
-	}
-
-	pkgs, err := thirdparty.LoadPackagesFile(*pkgsfilename)
-	if err != nil {
+	if _, err := t.Parse(s); err != nil {
 		return err
 	}
 
 	// Execute.
-	data := map[string]interface{}{
-		"Packages": pkgs,
-	}
-
 	var buf bytes.Buffer
-	if err := t.Execute(&buf, data); err != nil {
+	if err := t.Execute(&buf, nil); err != nil {
 		return err
 	}
 	body := buf.Bytes()
@@ -88,6 +69,33 @@ func mainerr() (err error) {
 	}
 
 	return nil
+}
+
+//go:embed templates
+var templates embed.FS
+
+// load template.
+func load() (string, error) {
+	// Prefer explicit filename, if provided.
+	if *tmpl != "" {
+		b, err := ioutil.ReadFile(*tmpl)
+		if err != nil {
+			return "", err
+		}
+		return string(b), nil
+	}
+
+	// Otherwise expect a named type.
+	if *typ == "" {
+		return "", errors.New("missing documentation type")
+	}
+	path := fmt.Sprintf("templates/%s.tmpl", *typ)
+	b, err := templates.ReadFile(path)
+	if err != nil {
+		return "", fmt.Errorf("unknown documentation type %q", *typ)
+	}
+
+	return string(b), nil
 }
 
 // include template function.
