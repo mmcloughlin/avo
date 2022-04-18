@@ -20,6 +20,7 @@ For more about `avo`:
 * Introductory talk ["Better `x86` Assembly Generation with Go"](https://www.youtube.com/watch?v=6Y5CZ7_tyA4) at [dotGo 2019](https://2019.dotgo.eu/) ([slides](https://speakerdeck.com/mmcloughlin/better-x86-assembly-generation-with-go))
 * [Longer tutorial at Gophercon 2019](https://www.youtube.com/watch?v=WaD8sNqroAw) showing a highly-optimized dot product ([slides](https://speakerdeck.com/mmcloughlin/better-x86-assembly-generation-with-go-gophercon-2019))
 * Watch [Filippo Valsorda](https://filippo.io/) live code the [rewrite of `filippo.io/edwards25519` assembly with `avo`](https://vimeo.com/679848853)
+* Explore [projects using `avo`](doc/adopters.md)
 * Discuss `avo` and general Go assembly topics in the [#assembly](https://gophers.slack.com/archives/C6WDZJ70S) channel of [Gophers Slack](https://invite.slack.golangbridge.org/)
 
 _Note: APIs subject to change while `avo` is still in an experimental phase. You can use it to build [real things](examples) but we suggest you pin a version with your package manager of choice._
@@ -226,6 +227,8 @@ Popular projects using `avo`:
 <img src="https://github.com/minio.png?size=24" width="24" height="24" hspace="4" valign="middle" /> [minio / **md5-simd**](https://github.com/minio/md5-simd)
 :star: 107
 > Accelerate aggregated MD5 hashing performance up to 8x for AVX512 and 4x for AVX2. Useful for server applications that need to compute many MD5 sums in parallel.
+
+See the [full list of projects using `avo`](doc/adopters.md).
 
 ## Contributing
 

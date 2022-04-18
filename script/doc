@@ -5,6 +5,7 @@ go install ./internal/cmd/docgen
 
 pkgs="tests/thirdparty/packages.json"
 docgen -pkgs "${pkgs}" -type readme -output README.md
+docgen -pkgs "${pkgs}" -type adopters -output doc/adopters.md
 
 # Process simple file embeddings with embedmd.
 find . -name '*.md' | xargs embedmd -w
