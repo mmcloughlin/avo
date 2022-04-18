@@ -192,39 +192,39 @@ Implementations of full algorithms:
 
 Popular projects using `avo`:
 
-<img src="https://images.weserv.nl?fit=cover&h=32&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Fklauspost.png&w=32" width="32" height="32" hspace="4" valign="middle" /> [klauspost / **compress**](https://github.com/klauspost/compress) / **s2**
+<img src="https://images.weserv.nl?fit=cover&h=24&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Fklauspost.png&w=24" width="24" height="24" hspace="4" valign="middle" /> [klauspost / **compress**](https://github.com/klauspost/compress) / **s2**
 :star: 2702
 > Optimized Go Compression Packages
 
-<img src="https://images.weserv.nl?fit=cover&h=32&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Fgolang.png&w=32" width="32" height="32" hspace="4" valign="middle" /> [golang / **crypto**](https://github.com/golang/crypto) / **curve25519**
+<img src="https://images.weserv.nl?fit=cover&h=24&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Fgolang.png&w=24" width="24" height="24" hspace="4" valign="middle" /> [golang / **crypto**](https://github.com/golang/crypto) / **curve25519**
 :star: 2391
 > [mirror] Go supplementary cryptography libraries
 
-<img src="https://images.weserv.nl?fit=cover&h=32&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Fklauspost.png&w=32" width="32" height="32" hspace="4" valign="middle" /> [klauspost / **reedsolomon**](https://github.com/klauspost/reedsolomon)
+<img src="https://images.weserv.nl?fit=cover&h=24&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Fklauspost.png&w=24" width="24" height="24" hspace="4" valign="middle" /> [klauspost / **reedsolomon**](https://github.com/klauspost/reedsolomon)
 :star: 1428
 > Reed-Solomon Erasure Coding in Go
 
-<img src="https://images.weserv.nl?fit=cover&h=32&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Fsegmentio.png&w=32" width="32" height="32" hspace="4" valign="middle" /> [segmentio / **asm**](https://github.com/segmentio/asm)
+<img src="https://images.weserv.nl?fit=cover&h=24&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Fsegmentio.png&w=24" width="24" height="24" hspace="4" valign="middle" /> [segmentio / **asm**](https://github.com/segmentio/asm)
 :star: 681
 > Go library providing algorithms optimized to leverage the characteristics of modern CPUs
 
-<img src="https://images.weserv.nl?fit=cover&h=32&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Fzeebo.png&w=32" width="32" height="32" hspace="4" valign="middle" /> [zeebo / **blake3**](https://github.com/zeebo/blake3)
+<img src="https://images.weserv.nl?fit=cover&h=24&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Fzeebo.png&w=24" width="24" height="24" hspace="4" valign="middle" /> [zeebo / **blake3**](https://github.com/zeebo/blake3)
 :star: 288
 > Pure Go implementation of BLAKE3 with AVX2 and SSE4.1 acceleration
 
-<img src="https://images.weserv.nl?fit=cover&h=32&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Flukechampine.png&w=32" width="32" height="32" hspace="4" valign="middle" /> [lukechampine / **blake3**](https://github.com/lukechampine/blake3)
+<img src="https://images.weserv.nl?fit=cover&h=24&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Flukechampine.png&w=24" width="24" height="24" hspace="4" valign="middle" /> [lukechampine / **blake3**](https://github.com/lukechampine/blake3)
 :star: 278
 > A pure-Go implementation of the BLAKE3 cryptographic hash function
 
-<img src="https://images.weserv.nl?fit=cover&h=32&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Fzeebo.png&w=32" width="32" height="32" hspace="4" valign="middle" /> [zeebo / **xxh3**](https://github.com/zeebo/xxh3)
+<img src="https://images.weserv.nl?fit=cover&h=24&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Fzeebo.png&w=24" width="24" height="24" hspace="4" valign="middle" /> [zeebo / **xxh3**](https://github.com/zeebo/xxh3)
 :star: 235
 > XXH3 algorithm in Go
 
-<img src="https://images.weserv.nl?fit=cover&h=32&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Fdgryski.png&w=32" width="32" height="32" hspace="4" valign="middle" /> [dgryski / **go-bloomindex**](https://github.com/dgryski/go-bloomindex)
+<img src="https://images.weserv.nl?fit=cover&h=24&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Fdgryski.png&w=24" width="24" height="24" hspace="4" valign="middle" /> [dgryski / **go-bloomindex**](https://github.com/dgryski/go-bloomindex)
 :star: 111
 > Bloom-filter based search index
 
-<img src="https://images.weserv.nl?fit=cover&h=32&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Fminio.png&w=32" width="32" height="32" hspace="4" valign="middle" /> [minio / **md5-simd**](https://github.com/minio/md5-simd)
+<img src="https://images.weserv.nl?fit=cover&h=24&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Fminio.png&w=24" width="24" height="24" hspace="4" valign="middle" /> [minio / **md5-simd**](https://github.com/minio/md5-simd)
 :star: 107
 > Accelerate aggregated MD5 hashing performance up to 8x for AVX512 and 4x for AVX2. Useful for server applications that need to compute many MD5 sums in parallel.
 
