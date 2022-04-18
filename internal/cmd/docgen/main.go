@@ -1,3 +1,4 @@
+// Command docgen generates documentation from templates.
 package main
 
 import (
