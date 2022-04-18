@@ -20,6 +20,7 @@ For more about `avo`:
 * Introductory talk ["Better `x86` Assembly Generation with Go"](https://www.youtube.com/watch?v=6Y5CZ7_tyA4) at [dotGo 2019](https://2019.dotgo.eu/) ([slides](https://speakerdeck.com/mmcloughlin/better-x86-assembly-generation-with-go))
 * [Longer tutorial at Gophercon 2019](https://www.youtube.com/watch?v=WaD8sNqroAw) showing a highly-optimized dot product ([slides](https://speakerdeck.com/mmcloughlin/better-x86-assembly-generation-with-go-gophercon-2019))
 * Watch [Filippo Valsorda](https://filippo.io/) live code the [rewrite of `filippo.io/edwards25519` assembly with `avo`](https://vimeo.com/679848853)
+* Explore [projects using `avo`](doc/adopters.md)
 * Discuss `avo` and general Go assembly topics in the [#assembly](https://gophers.slack.com/archives/C6WDZJ70S) channel of [Gophers Slack](https://invite.slack.golangbridge.org/)
 
 _Note: APIs subject to change while `avo` is still in an experimental phase. You can use it to build [real things](examples) but we suggest you pin a version with your package manager of choice._
@@ -193,39 +194,50 @@ Popular projects using `avo`:
 
 <img src="https://github.com/klauspost.png?size=24" width="24" height="24" hspace="4" valign="middle" /> [klauspost / **compress**](https://github.com/klauspost/compress) / **s2**
 :star: 2702
-> Optimized Go Compression Packages
+
+Optimized Go Compression Packages
 
 <img src="https://github.com/golang.png?size=24" width="24" height="24" hspace="4" valign="middle" /> [golang / **crypto**](https://github.com/golang/crypto) / **curve25519**
 :star: 2391
-> [mirror] Go supplementary cryptography libraries
+
+[mirror] Go supplementary cryptography libraries
 
 <img src="https://github.com/klauspost.png?size=24" width="24" height="24" hspace="4" valign="middle" /> [klauspost / **reedsolomon**](https://github.com/klauspost/reedsolomon)
 :star: 1428
-> Reed-Solomon Erasure Coding in Go
+
+Reed-Solomon Erasure Coding in Go
 
 <img src="https://github.com/segmentio.png?size=24" width="24" height="24" hspace="4" valign="middle" /> [segmentio / **asm**](https://github.com/segmentio/asm)
 :star: 681
-> Go library providing algorithms optimized to leverage the characteristics of modern CPUs
+
+Go library providing algorithms optimized to leverage the characteristics of modern CPUs
 
 <img src="https://github.com/zeebo.png?size=24" width="24" height="24" hspace="4" valign="middle" /> [zeebo / **blake3**](https://github.com/zeebo/blake3)
 :star: 288
-> Pure Go implementation of BLAKE3 with AVX2 and SSE4.1 acceleration
+
+Pure Go implementation of BLAKE3 with AVX2 and SSE4.1 acceleration
 
 <img src="https://github.com/lukechampine.png?size=24" width="24" height="24" hspace="4" valign="middle" /> [lukechampine / **blake3**](https://github.com/lukechampine/blake3)
 :star: 278
-> A pure-Go implementation of the BLAKE3 cryptographic hash function
+
+A pure-Go implementation of the BLAKE3 cryptographic hash function
 
 <img src="https://github.com/zeebo.png?size=24" width="24" height="24" hspace="4" valign="middle" /> [zeebo / **xxh3**](https://github.com/zeebo/xxh3)
 :star: 235
-> XXH3 algorithm in Go
+
+XXH3 algorithm in Go
 
 <img src="https://github.com/dgryski.png?size=24" width="24" height="24" hspace="4" valign="middle" /> [dgryski / **go-bloomindex**](https://github.com/dgryski/go-bloomindex)
 :star: 111
-> Bloom-filter based search index
+
+Bloom-filter based search index
 
 <img src="https://github.com/minio.png?size=24" width="24" height="24" hspace="4" valign="middle" /> [minio / **md5-simd**](https://github.com/minio/md5-simd)
 :star: 107
-> Accelerate aggregated MD5 hashing performance up to 8x for AVX512 and 4x for AVX2. Useful for server applications that need to compute many MD5 sums in parallel.
+
+Accelerate aggregated MD5 hashing performance up to 8x for AVX512 and 4x for AVX2. Useful for server applications that need to compute many MD5 sums in parallel.
+
+See the [full list of projects using `avo`](doc/adopters.md).
 
 ## Contributing
 
