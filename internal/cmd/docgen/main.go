@@ -169,13 +169,18 @@ func snippet(filename, start, end string) (string, error) {
 
 // avatar returns HTML for a Github user avatar.
 func avatar(owner string) (string, error) {
+	// Origin avatar URL from Github.
+	u := fmt.Sprintf("https://github.com/%s.png", owner)
+
+	// Use images.weserv.nl service to resize and apply circle mask.
 	const size = 24
 	v := url.Values{}
-	v.Set("url", fmt.Sprintf("https://github.com/%s.png", owner))
+	v.Set("url", u)
 	v.Set("w", strconv.Itoa(size))
 	v.Set("h", strconv.Itoa(size))
 	v.Set("fit", "cover")
 	v.Set("mask", "circle")
+	v.Set("maxage", "7d")
 
 	src := url.URL{
 		Scheme:   "https",
@@ -183,6 +188,7 @@ func avatar(owner string) (string, error) {
 		RawQuery: v.Encode(),
 	}
 
+	// Build <img> tag.
 	format := `<img src="%s" width="%d" height="%d" hspace="4" valign="middle" />`
 	return fmt.Sprintf(format, src.String(), size, size), nil
 }
