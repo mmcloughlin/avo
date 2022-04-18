@@ -10,8 +10,10 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
+	"net/url"
 	"os"
 	"regexp"
+	"strconv"
 	"strings"
 	"text/template"
 
@@ -167,6 +169,20 @@ func snippet(filename, start, end string) (string, error) {
 
 // avatar returns HTML for a Github user avatar.
 func avatar(owner string) (string, error) {
-	format := `<img src="https://github.com/%s.png?size=24" width="24" height="24" hspace="4" valign="middle" />`
-	return fmt.Sprintf(format, owner), nil
+	const size = 24
+	v := url.Values{}
+	v.Set("url", fmt.Sprintf("https://github.com/%s.png", owner))
+	v.Set("w", strconv.Itoa(size))
+	v.Set("h", strconv.Itoa(size))
+	v.Set("fit", "cover")
+	v.Set("mask", "circle")
+
+	src := url.URL{
+		Scheme:   "https",
+		Host:     "images.weserv.nl",
+		RawQuery: v.Encode(),
+	}
+
+	format := `<img src="%s" width="%d" height="%d" hspace="4" valign="middle" />`
+	return fmt.Sprintf(format, src.String(), size, size), nil
 }
