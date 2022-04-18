@@ -9,6 +9,7 @@ import (
 	"os"
 	"path"
 	"path/filepath"
+	"sort"
 	"strings"
 )
 
@@ -20,6 +21,11 @@ type GithubRepository struct {
 
 func (r GithubRepository) String() string {
 	return path.Join(r.Owner, r.Name)
+}
+
+// URL returns the Github repository URL.
+func (r GithubRepository) URL() string {
+	return fmt.Sprintf("https://github.com/%s", r)
 }
 
 // CloneURL returns the git clone URL.
@@ -254,6 +260,25 @@ func (p Packages) Validate() error {
 		}
 	}
 	return nil
+}
+
+// Ranked returns a copy of the packages list ranked in desending order of
+// popularity.
+func (p Packages) Ranked() Packages {
+	ranked := append(Packages(nil), p...)
+	sort.SliceStable(ranked, func(i, j int) bool {
+		return ranked[i].Metadata.Stars > ranked[j].Metadata.Stars
+	})
+	return ranked
+}
+
+// Top returns the top n most popular packages.
+func (p Packages) Top(n int) Packages {
+	top := p.Ranked()
+	if len(top) > n {
+		top = top[:n]
+	}
+	return top
 }
 
 // LoadPackages loads a list of package configurations from JSON format.
