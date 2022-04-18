@@ -1,11 +1,7 @@
 # Adopters
-
-Projects using `avo`:
-
-{{ range .Packages.Ranked -}}
+{{ range .Packages.Ranked }}
 {{ avatar .Repository.Owner }} [{{ .Repository.Owner }} / **{{ .Repository.Name }}**]({{ .Repository.URL }})
 {{- if .SubPackage }} / **{{ .SubPackage}}**{{ end }}
-:star: {{ .Metadata.Stars }}
-> {{ .Metadata.Description }}
 
+{{ .Metadata.Description }}
 {{ end -}}
