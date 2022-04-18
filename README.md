@@ -189,7 +189,7 @@ Implementations of full algorithms:
 
 ## Adopters
 
-Some of the most widely used `avo` adopters:
+Sample of the most popular projects using `avo`:
 
 <img src="https://github.com/klauspost.png?size=24" width="24" height="24" hspace="4" valign="middle" /> [klauspost / **compress**](https://github.com/klauspost/compress) / **s2**
 :star: 2702
