@@ -21,3 +21,5 @@ jobs:
       - name: Update Package Metadata
         working-directory: tests/thirdparty
         run: go test -run Metadata -update -net -pkgs packages.json
+      - name: Diff
+        run: git diff
