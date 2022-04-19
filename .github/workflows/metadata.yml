@@ -18,12 +18,14 @@ jobs:
         uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f # v2.3.4
         with:
           persist-credentials: false
+      - name: Bootstrap
+        run: ./script/bootstrap
       - name: Update Package Metadata
         working-directory: tests/thirdparty
         run: go test -run Metadata -update -net -pkgs packages.json
       - name: Diff
         run: git diff
-      - name: Generate Documentation
-        run: ./script/doc
+      - name: Generate
+        run: ./script/generate
       - name: Diff
         run: git diff
