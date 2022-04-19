@@ -6,7 +6,7 @@
         },
         "metadata": {
             "description": "XXH3 algorithm in Go",
-            "stars": 235
+            "stars": 236
         },
         "default_branch": "master",
         "version": "v1.0.0-rc1",
@@ -150,7 +150,7 @@
         },
         "metadata": {
             "description": "Reed-Solomon Erasure Coding in Go",
-            "stars": 1428
+            "stars": 1432
         },
         "default_branch": "master",
         "version": "922778284547557265cff0f903ab5f4c27e40ae9",
@@ -201,7 +201,7 @@
         },
         "metadata": {
             "description": "Optimized Go Compression Packages",
-            "stars": 2702
+            "stars": 2704
         },
         "default_branch": "master",
         "version": "2adf487b3e02f95ce7efd6e4953fda0ae7ecd080",
@@ -556,7 +556,7 @@
         "metadata": {
             "description": "[mirror] Go supplementary cryptography libraries",
             "homepage": "https://golang.org/x/crypto",
-            "stars": 2391
+            "stars": 2395
         },
         "default_branch": "master",
         "version": "089bfa5675191fd96a44247682f76ebca03d7916",
@@ -579,7 +579,7 @@
         "metadata": {
             "description": "filippo.io/edwards25519 — A safer, faster, and more powerful low-level edwards25519 Go implementation.",
             "homepage": "https://filippo.io/edwards25519",
-            "stars": 80
+            "stars": 81
         },
         "default_branch": "main",
         "version": "v1.0.0-rc.1",
