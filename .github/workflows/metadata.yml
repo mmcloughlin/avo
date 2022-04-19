@@ -31,10 +31,11 @@ jobs:
         run: git diff
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@bd72e1b7922d417764d27d30768117ad7da78a0e # v4.0.2
-        commit-message: "tests/thirdparty: update package metadata"
-        branch: auto-tests-thirdparty-update-metadata
-        base: master
-        delete-branch: true
-        title: "tests/thirdparty: update package metadata"
-        body: "Auto-generated update of third-party package metadata."
-        reviewers: mmcloughlin
+        with:
+          commit-message: "tests/thirdparty: update package metadata"
+          branch: auto-tests-thirdparty-update-metadata
+          base: master
+          delete-branch: true
+          title: "tests/thirdparty: update package metadata"
+          body: "Auto-generated update of third-party package metadata."
+          reviewers: mmcloughlin
