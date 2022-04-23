@@ -6,7 +6,7 @@
         },
         "metadata": {
             "description": "XXH3 algorithm in Go",
-            "stars": 235
+            "stars": 238
         },
         "default_branch": "master",
         "version": "v1.0.0-rc1",
@@ -107,7 +107,7 @@
         },
         "metadata": {
             "description": "Accelerate aggregated MD5 hashing performance up to 8x for AVX512 and 4x for AVX2. Useful for server applications that need to compute many MD5 sums in parallel.",
-            "stars": 107
+            "stars": 108
         },
         "default_branch": "master",
         "version": "30ad8af83f6868c2a30c615f3edf1a9366bf3f89",
@@ -150,7 +150,7 @@
         },
         "metadata": {
             "description": "Reed-Solomon Erasure Coding in Go",
-            "stars": 1428
+            "stars": 1437
         },
         "default_branch": "master",
         "version": "922778284547557265cff0f903ab5f4c27e40ae9",
@@ -201,7 +201,7 @@
         },
         "metadata": {
             "description": "Optimized Go Compression Packages",
-            "stars": 2702
+            "stars": 2703
         },
         "default_branch": "master",
         "version": "2adf487b3e02f95ce7efd6e4953fda0ae7ecd080",
@@ -447,7 +447,7 @@
         },
         "metadata": {
             "description": "Go library providing algorithms optimized to leverage the characteristics of modern CPUs",
-            "stars": 681
+            "stars": 685
         },
         "default_branch": "main",
         "version": "2bf3fdd47b1cdbe8fe020f032caf14891e10a85f",
@@ -556,7 +556,7 @@
         "metadata": {
             "description": "[mirror] Go supplementary cryptography libraries",
             "homepage": "https://golang.org/x/crypto",
-            "stars": 2391
+            "stars": 2402
         },
         "default_branch": "master",
         "version": "089bfa5675191fd96a44247682f76ebca03d7916",
@@ -579,7 +579,7 @@
         "metadata": {
             "description": "filippo.io/edwards25519 — A safer, faster, and more powerful low-level edwards25519 Go implementation.",
             "homepage": "https://filippo.io/edwards25519",
-            "stars": 80
+            "stars": 81
         },
         "default_branch": "main",
         "version": "v1.0.0-rc.1",
@@ -651,8 +651,8 @@
         },
         "metadata": {
             "description": "The Go programming language",
-            "homepage": "https://golang.org",
-            "stars": 91996
+            "homepage": "https://go.dev",
+            "stars": 98269
         },
         "default_branch": "master",
         "version": "go1.17.3",

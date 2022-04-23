@@ -1,5 +1,9 @@
 # Adopters
 
+<img src="https://images.weserv.nl?fit=cover&h=28&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Fgolang.png&w=28" width="28" height="28" hspace="4" valign="middle" /> [golang / **go**](https://github.com/golang/go)
+
+The Go programming language
+
 <img src="https://images.weserv.nl?fit=cover&h=28&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Fklauspost.png&w=28" width="28" height="28" hspace="4" valign="middle" /> [klauspost / **compress**](https://github.com/klauspost/compress) / **s2**
 
 Optimized Go Compression Packages
