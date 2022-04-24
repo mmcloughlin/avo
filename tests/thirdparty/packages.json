@@ -677,7 +677,7 @@
         "test": [
             {
                 "commands": [
-                    "./bin/go test crypto/ed25519/..."
+                    "env --unset=GOROOT ./bin/go test crypto/ed25519/..."
                 ]
             }
         ]
