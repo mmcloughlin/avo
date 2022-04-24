@@ -101,9 +101,10 @@ func GenerateWorkflow(pkgs thirdparty.Packages) ([]byte, error) {
 
 		// Install Go.
 		g.Linef("- name: Install Go")
-		g.Linef("  uses: actions/setup-go@37335c7bb261b353407cff977110895fa0b4f7d8 # v2.1.3")
+		g.Linef("  uses: actions/setup-go@f6164bd8c8acb4a71fb2791a8b6c4024ff038dab # v3.0.0")
 		g.Linef("  with:")
 		g.Linef("    go-version: 1.18.x")
+		g.Linef("    check-latest: true")
 
 		// Checkout avo.
 		avodir := "avo"
