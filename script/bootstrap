@@ -20,3 +20,6 @@ go install golang.org/x/tools/cmd/goimports@v0.1.10
 
 # gofumpt for stricter formatting.
 go install mvdan.cc/gofumpt@v0.2.1
+
+# yamlfmt for yaml formatting.
+go install github.com/gechr/yamlfmt@v0.0.0-20220216093356-e9288cd48d12

@@ -1,6 +1,5 @@
 run:
   timeout: 5m
-
 linters:
   enable-all: true
   disable:
@@ -32,7 +31,6 @@ linters:
     - varnamelen
     - wrapcheck
     - wsl
-
 linters-settings:
   depguard:
     list-type: whitelist
@@ -44,7 +42,6 @@ linters-settings:
       - standard
       - default
       - prefix(github.com/mmcloughlin/avo)
-
 issues:
   exclude-use-default: false
   exclude:

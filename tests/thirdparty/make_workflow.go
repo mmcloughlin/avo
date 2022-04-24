@@ -85,7 +85,6 @@ func GenerateWorkflow(pkgs thirdparty.Packages) ([]byte, error) {
 	g.Linef("  pull_request:")
 
 	// One job per package.
-	g.NL()
 	g.Linef("jobs:")
 	g.Indent()
 	for _, pkg := range pkgs {

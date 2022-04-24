@@ -8,7 +8,6 @@ on:
     branches:
       - master
   pull_request:
-
 jobs:
   zeebo-xxh3:
     runs-on: ubuntu-latest

@@ -16,3 +16,6 @@ goimports -w -local "${repo}" ${files}
 
 # gofumpt for stricter gofmt-compatible format.
 gofumpt -w ${files}
+
+# yaml formatting.
+find . -name '*.yml' | xargs yamlfmt -w

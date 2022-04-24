@@ -1,8 +1,6 @@
 name: thirdparty
-
 permissions:
   contents: read
-
 on:
   push:
     branches:
@@ -12,7 +10,6 @@ on:
   pull_request:
     paths:
       - "tests/thirdparty/**"
-
 jobs:
   test:
     strategy:
