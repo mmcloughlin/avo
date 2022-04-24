@@ -1,8 +1,6 @@
 name: ci
-
 permissions:
   contents: read
-
 on:
   push:
     branches:
@@ -10,7 +8,6 @@ on:
   pull_request:
   schedule:
     - cron: '17 12 * * 6'
-
 jobs:
   test:
     strategy:
@@ -19,44 +16,41 @@ jobs:
         platform: [ubuntu-latest]
     runs-on: ${{ matrix.platform }}
     steps:
-    - name: Install Go
-      uses: actions/setup-go@f6164bd8c8acb4a71fb2791a8b6c4024ff038dab # v3.0.0
-      with:
-        go-version: ${{ matrix.go-version }}
-        check-latest: true
-    - name: Configure Go Environment
-      run: |
-        echo GOPATH=${{ runner.workspace }} >> $GITHUB_ENV
-        echo ${{ runner.workspace }}/bin >> $GITHUB_PATH
-    - name: Go Environment
-      run: go env
-    - name: Checkout code
-      uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f # v2.3.4
-      with:
-        persist-credentials: false
-    - name: Bootstrap
-      run: ./script/bootstrap
-
-    - name: Build
-      run: go build ./...
-    - name: Test
-      run: go test -bench . ./...
-    - name: Coverage
-      run: ./script/coverage
-
-    - name: Upload Unit Test Coverage
-      uses: codecov/codecov-action@51d810878be5422784e86451c0e7c14e5860ec47 # v2.0.2
-      with:
-        token: ${{ secrets.CODECOV_TOKEN }}
-        files: unittests.coverprofile
-        flags: unittests
-    - name: Upload Integration Test Coverage
-      uses: codecov/codecov-action@51d810878be5422784e86451c0e7c14e5860ec47 # v2.0.2
-      with:
-        token: ${{ secrets.CODECOV_TOKEN }}
-        files: integration.coverprofile
-        flags: integration
-
+      - name: Install Go
+        uses: actions/setup-go@f6164bd8c8acb4a71fb2791a8b6c4024ff038dab # v3.0.0
+        with:
+          go-version: ${{ matrix.go-version }}
+          check-latest: true
+      - name: Configure Go Environment
+        run: |
+          echo GOPATH=${{ runner.workspace }} >> $GITHUB_ENV
+          echo ${{ runner.workspace }}/bin >> $GITHUB_PATH
+      - name: Go Environment
+        run: go env
+      - name: Checkout code
+        uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f # v2.3.4
+        with:
+          persist-credentials: false
+      - name: Bootstrap
+        run: ./script/bootstrap
+      - name: Build
+        run: go build ./...
+      - name: Test
+        run: go test -bench . ./...
+      - name: Coverage
+        run: ./script/coverage
+      - name: Upload Unit Test Coverage
+        uses: codecov/codecov-action@51d810878be5422784e86451c0e7c14e5860ec47 # v2.0.2
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: unittests.coverprofile
+          flags: unittests
+      - name: Upload Integration Test Coverage
+        uses: codecov/codecov-action@51d810878be5422784e86451c0e7c14e5860ec47 # v2.0.2
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: integration.coverprofile
+          flags: integration
   lint:
     strategy:
       matrix:
@@ -64,22 +58,22 @@ jobs:
         platform: [ubuntu-latest]
     runs-on: ${{ matrix.platform }}
     steps:
-    - name: Install Go
-      uses: actions/setup-go@f6164bd8c8acb4a71fb2791a8b6c4024ff038dab # v3.0.0
-      with:
-        go-version: ${{ matrix.go-version }}
-        check-latest: true
-    - name: Configure Go Environment
-      run: |
-        echo GOPATH=${{ runner.workspace }} >> $GITHUB_ENV
-        echo ${{ runner.workspace }}/bin >> $GITHUB_PATH
-    - name: Go Environment
-      run: go env
-    - name: Checkout code
-      uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f # v2.3.4
-      with:
-        persist-credentials: false
-    - name: Bootstrap
-      run: ./script/bootstrap
-    - name: Lint
-      run: ./script/lint
+      - name: Install Go
+        uses: actions/setup-go@f6164bd8c8acb4a71fb2791a8b6c4024ff038dab # v3.0.0
+        with:
+          go-version: ${{ matrix.go-version }}
+          check-latest: true
+      - name: Configure Go Environment
+        run: |
+          echo GOPATH=${{ runner.workspace }} >> $GITHUB_ENV
+          echo ${{ runner.workspace }}/bin >> $GITHUB_PATH
+      - name: Go Environment
+        run: go env
+      - name: Checkout code
+        uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f # v2.3.4
+        with:
+          persist-credentials: false
+      - name: Bootstrap
+        run: ./script/bootstrap
+      - name: Lint
+        run: ./script/lint
