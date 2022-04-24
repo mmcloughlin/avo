@@ -896,3 +896,41 @@ jobs:
       - name: Test
         working-directory: md4
         run: go test ./...
+  golang-go:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Go
+        uses: actions/setup-go@f6164bd8c8acb4a71fb2791a8b6c4024ff038dab # v3.0.0
+        with:
+          go-version: 1.18.x
+          check-latest: true
+      - name: Checkout avo
+        uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f # v2.3.4
+        with:
+          path: avo
+          persist-credentials: false
+      - name: Checkout golang/go
+        uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f # v2.3.4
+        with:
+          repository: golang/go
+          ref: go1.17.3
+          path: go
+          persist-credentials: false
+      - name: Compile Go Toolchain
+        working-directory: go/src
+        run: ./make.bash
+      - name: Avo Module Replacement
+        working-directory: go/src/crypto/ed25519/internal/edwards25519/field/_asm
+        run: |
+          go mod edit -modfile=go.mod -require=github.com/mmcloughlin/avo@v0.0.0-00010101000000-000000000000
+          go mod edit -modfile=go.mod -replace=github.com/mmcloughlin/avo=${{ github.workspace }}/avo
+          go mod tidy -modfile=go.mod
+      - name: Generate
+        working-directory: go/src/crypto/ed25519/internal/edwards25519/field/_asm
+        run: go generate -v -x
+      - name: Diff
+        working-directory: go
+        run: git diff
+      - name: Test
+        working-directory: go
+        run: env --unset=GOROOT ./bin/go test crypto/ed25519/...
