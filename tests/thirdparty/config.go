@@ -303,10 +303,19 @@ func (p Projects) defaults(set bool) {
 
 // Validate the project collection.
 func (p Projects) Validate() error {
+	seen := map[string]bool{}
 	for _, prj := range p {
+		// Project is valid.
 		if err := prj.Validate(); err != nil {
 			return fmt.Errorf("project %s: %w", prj.ID(), err)
 		}
+
+		// No duplicate entries.
+		id := prj.ID()
+		if seen[id] {
+			return fmt.Errorf("duplicate project %q", id)
+		}
+		seen[id] = true
 	}
 	return nil
 }

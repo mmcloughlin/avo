@@ -540,21 +540,7 @@
                         ]
                     }
                 ]
-            }
-        ]
-    },
-    {
-        "repository": {
-            "owner": "ericlagergren",
-            "name": "lwcrypto"
-        },
-        "metadata": {
-            "description": "NIST Lightweight Cryptography finalists",
-            "stars": 4
-        },
-        "default_branch": "main",
-        "version": "0c42b05eddc34c58bf8e0cd4250c5cd2c256ea57",
-        "packages": [
+            },
             {
                 "pkg": "grain",
                 "module": "asm/go.mod",
