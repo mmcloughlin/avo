@@ -312,7 +312,7 @@ jobs:
           go mod tidy -modfile=go.mod
       - name: Generate
         working-directory: compress/s2/_generate
-        run: go run gen.go -out ../encodeblock_amd64.s -stubs ../encodeblock_amd64.go -pkg s2
+        run: go generate -v -x
       - name: Diff
         working-directory: compress/s2
         run: git diff
