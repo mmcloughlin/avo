@@ -288,10 +288,8 @@ type Test struct {
 
 // ID returns an identifier for the test case.
 func (t *Test) ID() string {
-	if t.Package.IsRoot() {
-		return t.Project.ID()
-	}
-	return t.Project.ID() + "-" + t.Package.Name()
+	pkgpath := path.Join(t.Project.Repository.String(), t.Package.SubPackage)
+	return strings.ReplaceAll(pkgpath, "/", "-")
 }
 
 // Projects is a collection of third-party integration tests.

@@ -16,7 +16,7 @@ import (
 )
 
 var (
-	pkgsfilename = flag.String("pkgs", "", "packages configuration")
+	prjsfilename = flag.String("prjs", "", "projects configuration")
 	output       = flag.String("output", "", "path to output file (default stdout)")
 )
 
@@ -29,13 +29,13 @@ func main() {
 func mainerr() error {
 	flag.Parse()
 
-	// Read packages.
-	pkgs, err := thirdparty.LoadPackagesFile(*pkgsfilename)
+	// Read projects.
+	prjs, err := thirdparty.LoadProjectsFile(*prjsfilename)
 	if err != nil {
 		return err
 	}
 
-	if err := pkgs.Validate(); err != nil {
+	if err := prjs.Validate(); err != nil {
 		return err
 	}
 
@@ -51,7 +51,7 @@ func mainerr() error {
 	}
 
 	// Generate workflow file.
-	b, err := GenerateWorkflow(pkgs)
+	b, err := GenerateWorkflow(prjs)
 	if err != nil {
 		return err
 	}
@@ -64,7 +64,7 @@ func mainerr() error {
 	return nil
 }
 
-func GenerateWorkflow(pkgs thirdparty.Packages) ([]byte, error) {
+func GenerateWorkflow(prjs thirdparty.Projects) ([]byte, error) {
 	g := &prnt.Generator{}
 	g.SetIndentString("  ")
 
@@ -84,16 +84,16 @@ func GenerateWorkflow(pkgs thirdparty.Packages) ([]byte, error) {
 	g.Linef("      - master")
 	g.Linef("  pull_request:")
 
-	// One job per package.
+	// One job per test case.
 	g.Linef("jobs:")
 	g.Indent()
-	for _, pkg := range pkgs {
-		g.Linef("%s:", pkg.ID())
+	for _, t := range prjs.Tests() {
+		g.Linef("%s:", t.ID())
 		g.Indent()
 
 		g.Linef("runs-on: ubuntu-latest")
-		if pkg.Skip() {
-			g.Linef("if: false # skip: %s", pkg.Reason())
+		if t.Project.Skip() {
+			g.Linef("if: false # skip: %s", t.Project.Reason())
 		}
 		g.Linef("steps:")
 		g.Indent()
@@ -114,12 +114,12 @@ func GenerateWorkflow(pkgs thirdparty.Packages) ([]byte, error) {
 		g.Linef("    persist-credentials: false")
 
 		// Checkout the third-party package.
-		pkgdir := pkg.Repository.Name
-		g.Linef("- name: Checkout %s", pkg.Repository)
+		pkgdir := t.Project.Repository.Name
+		g.Linef("- name: Checkout %s", t.Project.Repository)
 		g.Linef("  uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f # v2.3.4")
 		g.Linef("  with:")
-		g.Linef("    repository: %s", pkg.Repository)
-		g.Linef("    ref: %s", pkg.Version)
+		g.Linef("    repository: %s", t.Project.Repository)
+		g.Linef("    ref: %s", t.Project.Version)
 		g.Linef("    path: %s", pkgdir)
 		g.Linef("    persist-credentials: false")
 
@@ -129,7 +129,7 @@ func GenerateWorkflow(pkgs thirdparty.Packages) ([]byte, error) {
 			RepositoryDirectory: path.Join("${{ github.workspace }}", pkgdir),
 		}
 
-		for _, step := range pkg.Steps(c) {
+		for _, step := range t.Package.Steps(c) {
 			g.Linef("- name: %s", step.Name)
 			g.Linef("  working-directory: %s", path.Join(pkgdir, step.WorkingDirectory))
 			if len(step.Commands) == 1 {
