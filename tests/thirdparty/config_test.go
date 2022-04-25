@@ -41,6 +41,27 @@ func TestValidateErrors(t *testing.T) {
 			ErrorSubstring: "missing version",
 		},
 		{
+			Name: "project_missing_packages",
+			Item: &Project{
+				Repository:    GithubRepository{Owner: "octocat", Name: "hello-world"},
+				DefaultBranch: "main",
+				Version:       "v0.1.1",
+			},
+			ErrorSubstring: "missing packages",
+		},
+		{
+			Name: "project_package_error",
+			Item: &Project{
+				Repository:    GithubRepository{Owner: "octocat", Name: "hello-world"},
+				DefaultBranch: "main",
+				Version:       "v0.1.1",
+				Packages: []*Package{
+					{},
+				},
+			},
+			ErrorSubstring: "package root: missing module",
+		},
+		{
 			Name:           "package_missing_module",
 			Item:           &Package{},
 			ErrorSubstring: "missing module",
