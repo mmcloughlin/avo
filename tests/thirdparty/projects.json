@@ -119,7 +119,7 @@
         },
         "metadata": {
             "description": "Accelerate aggregated MD5 hashing performance up to 8x for AVX512 and 4x for AVX2. Useful for server applications that need to compute many MD5 sums in parallel.",
-            "stars": 108
+            "stars": 109
         },
         "default_branch": "master",
         "version": "30ad8af83f6868c2a30c615f3edf1a9366bf3f89",
@@ -170,7 +170,7 @@
         },
         "metadata": {
             "description": "Reed-Solomon Erasure Coding in Go",
-            "stars": 1437
+            "stars": 1438
         },
         "default_branch": "master",
         "version": "922778284547557265cff0f903ab5f4c27e40ae9",
@@ -229,7 +229,7 @@
         },
         "metadata": {
             "description": "Optimized Go Compression Packages",
-            "stars": 2703
+            "stars": 2706
         },
         "default_branch": "master",
         "version": "2adf487b3e02f95ce7efd6e4953fda0ae7ecd080",
@@ -499,7 +499,7 @@
         },
         "metadata": {
             "description": "Go library providing algorithms optimized to leverage the characteristics of modern CPUs",
-            "stars": 685
+            "stars": 686
         },
         "default_branch": "main",
         "version": "2bf3fdd47b1cdbe8fe020f032caf14891e10a85f",
@@ -666,7 +666,7 @@
         },
         "metadata": {
             "description": "A pure-Go implementation of the BLAKE3 cryptographic hash function",
-            "stars": 278
+            "stars": 277
         },
         "default_branch": "master",
         "version": "v1.1.7",
@@ -726,7 +726,7 @@
         "metadata": {
             "description": "The Go programming language",
             "homepage": "https://go.dev",
-            "stars": 98269
+            "stars": 98315
         },
         "default_branch": "master",
         "version": "go1.17.3",
