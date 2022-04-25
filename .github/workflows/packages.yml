@@ -353,7 +353,7 @@ jobs:
         run: git diff
       - name: Test
         working-directory: compress/zstd
-        run: go test ./...
+        run: go test -short
   dgryski-go-bloomindex:
     runs-on: ubuntu-latest
     steps:

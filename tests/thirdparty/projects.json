@@ -256,6 +256,13 @@
                             "go generate -v -x"
                         ]
                     }
+                ],
+                "test": [
+                    {
+                        "commands": [
+                            "go test -short"
+                        ]
+                    }
                 ]
             }
         ]
