@@ -10,33 +10,33 @@ import (
 	"github.com/mmcloughlin/avo/internal/test"
 )
 
-//go:generate go run make_workflow.go -pkgs packages.json -output ../../.github/workflows/packages.yml
+//go:generate go run make_workflow.go -prjs projects.json -output ../../.github/workflows/packages.yml
 
 // Custom flags.
 var (
-	pkgsfilename = flag.String("pkgs", "", "packages configuration")
+	prjsfilename = flag.String("prjs", "", "projects configuration")
 	preserve     = flag.Bool("preserve", false, "preserve working directories")
-	latest       = flag.Bool("latest", false, "use latest versions of each package")
+	latest       = flag.Bool("latest", false, "use latest versions of each project")
 )
 
-// TestPackages runs integration tests on all packages specified by packages
+// TestPackages runs integration tests on all packages specified by projects
 // file given on the command line.
 func TestPackages(t *testing.T) {
-	// Load packages.
-	if *pkgsfilename == "" {
-		t.Skip("no packages specified")
+	// Load projects.
+	if *prjsfilename == "" {
+		t.Skip("no projects specified")
 	}
 
-	pkgs, err := LoadPackagesFile(*pkgsfilename)
+	prjs, err := LoadProjectsFile(*prjsfilename)
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	for _, pkg := range pkgs {
-		pkg := pkg // scopelint
-		t.Run(pkg.ID(), func(t *testing.T) {
-			if pkg.Skip() {
-				t.Skipf("skip: %s", pkg.Reason())
+	for _, tst := range prjs.Tests() {
+		tst := tst // scopelint
+		t.Run(tst.ID(), func(t *testing.T) {
+			if tst.Project.Skip() {
+				t.Skipf("skip: %s", tst.Project.Reason())
 			}
 			dir, clean := test.TempDir(t)
 			if !*preserve {
@@ -46,7 +46,7 @@ func TestPackages(t *testing.T) {
 			}
 			pt := PackageTest{
 				T:       t,
-				Package: pkg,
+				Test:    tst,
 				WorkDir: dir,
 				Latest:  *latest,
 			}
@@ -58,10 +58,10 @@ func TestPackages(t *testing.T) {
 // PackageTest executes an integration test based on a given third-party package.
 type PackageTest struct {
 	*testing.T
-	*Package
+	*Test
 
 	WorkDir string // working directory for the test
-	Latest  bool   // use latest version of the package
+	Latest  bool   // use latest version of the project
 
 	repopath string // path the repo is cloned to
 }
@@ -75,15 +75,15 @@ func (t *PackageTest) Run() {
 // checkout the code at the specified version.
 func (t *PackageTest) checkout() {
 	// Determine the version we want to checkout.
-	version := t.Version
+	version := t.Project.Version
 	if t.Latest {
-		version = t.DefaultBranch
+		version = t.Project.DefaultBranch
 	}
 
 	// Clone. Use a shallow clone to speed up large repositories.
 	t.repopath = filepath.Join(t.WorkDir, t.Name())
 	test.Exec(t.T, "git", "init", t.repopath)
-	test.Exec(t.T, "git", "-C", t.repopath, "remote", "add", "origin", t.Repository.CloneURL())
+	test.Exec(t.T, "git", "-C", t.repopath, "remote", "add", "origin", t.Project.Repository.CloneURL())
 	test.Exec(t.T, "git", "-C", t.repopath, "fetch", "--depth=1", "origin", version)
 	test.Exec(t.T, "git", "-C", t.repopath, "checkout", "FETCH_HEAD")
 }
@@ -102,7 +102,7 @@ func (t *PackageTest) steps() {
 		RepositoryDirectory: t.repopath,
 	}
 
-	for _, s := range t.Steps(c) {
+	for _, s := range t.Package.Steps(c) {
 		for _, command := range s.Commands {
 			cmd := exec.Command("sh", "-c", command)
 			cmd.Dir = filepath.Join(t.repopath, s.WorkingDirectory)

@@ -9,84 +9,84 @@ import (
 	"github.com/mmcloughlin/avo/internal/test"
 )
 
-var update = flag.Bool("update", false, "update package metadata")
+var update = flag.Bool("update", false, "update project metadata")
 
-func TestPackagesFileMetadata(t *testing.T) {
+func TestProjectsFileMetadata(t *testing.T) {
 	test.RequiresNetwork(t)
 	ctx := context.Background()
 
-	pkgs, err := LoadPackagesFile("packages.json")
+	prjs, err := LoadProjectsFile("projects.json")
 	if err != nil {
 		t.Fatal(err)
 	}
 
 	g := github.NewClient(github.WithTokenFromEnvironment())
 
-	for _, pkg := range pkgs {
+	for _, prj := range prjs {
 		// Fetch metadata.
-		r, err := g.Repository(ctx, pkg.Repository.Owner, pkg.Repository.Name)
+		r, err := g.Repository(ctx, prj.Repository.Owner, prj.Repository.Name)
 		if err != nil {
 			t.Fatal(err)
 		}
 
 		// Update, if requested.
 		if *update {
-			pkg.DefaultBranch = r.DefaultBranch
-			pkg.Metadata.Description = r.Description
-			pkg.Metadata.Homepage = r.Homepage
-			pkg.Metadata.Stars = r.StargazersCount
+			prj.DefaultBranch = r.DefaultBranch
+			prj.Metadata.Description = r.Description
+			prj.Metadata.Homepage = r.Homepage
+			prj.Metadata.Stars = r.StargazersCount
 
-			t.Logf("%s: metadata updated", pkg.ID())
+			t.Logf("%s: metadata updated", prj.ID())
 		}
 
 		// Check up to date. Potentially fast-changing properties not included.
 		uptodate := true
-		uptodate = pkg.DefaultBranch == r.DefaultBranch && uptodate
-		uptodate = pkg.Metadata.Description == r.Description && uptodate
-		uptodate = pkg.Metadata.Homepage == r.Homepage && uptodate
+		uptodate = prj.DefaultBranch == r.DefaultBranch && uptodate
+		uptodate = prj.Metadata.Description == r.Description && uptodate
+		uptodate = prj.Metadata.Homepage == r.Homepage && uptodate
 
 		if !uptodate {
-			t.Errorf("%s: metadata out of date (use -update flag to fix)", pkg.ID())
+			t.Errorf("%s: metadata out of date (use -update flag to fix)", prj.ID())
 		}
 	}
 
-	if err := StorePackagesFile("packages.json", pkgs); err != nil {
+	if err := StoreProjectsFile("projects.json", prjs); err != nil {
 		t.Fatal(err)
 	}
 }
 
-func TestPackagesFileKnownIssues(t *testing.T) {
+func TestProjectsFileKnownIssues(t *testing.T) {
 	test.RequiresNetwork(t)
 	ctx := context.Background()
 
-	pkgs, err := LoadPackagesFile("packages.json")
+	prjs, err := LoadProjectsFile("projects.json")
 	if err != nil {
 		t.Fatal(err)
 	}
 
 	g := github.NewClient(github.WithTokenFromEnvironment())
 
-	for _, pkg := range pkgs {
+	for _, prj := range prjs {
 		// Skipped packages must refer to an open issue.
-		if !pkg.Skip() {
+		if !prj.Skip() {
 			continue
 		}
 
-		if pkg.KnownIssue == 0 {
-			t.Errorf("%s: skipped package must refer to known issue", pkg.ID())
+		if prj.KnownIssue == 0 {
+			t.Errorf("%s: skipped package must refer to known issue", prj.ID())
 		}
 
-		issue, err := g.Issue(ctx, "mmcloughlin", "avo", pkg.KnownIssue)
+		issue, err := g.Issue(ctx, "mmcloughlin", "avo", prj.KnownIssue)
 		if err != nil {
 			t.Fatal(err)
 		}
 
 		if issue.State != "open" {
-			t.Errorf("%s: known issue in %s state", pkg.ID(), issue.State)
+			t.Errorf("%s: known issue in %s state", prj.ID(), issue.State)
 		}
 
-		if pkg.Reason() != issue.HTMLURL {
-			t.Errorf("%s: expected skip reason to be the issue url %s", pkg.ID(), issue.HTMLURL)
+		if prj.Reason() != issue.HTMLURL {
+			t.Errorf("%s: expected skip reason to be the issue url %s", prj.ID(), issue.HTMLURL)
 		}
 	}
 }
