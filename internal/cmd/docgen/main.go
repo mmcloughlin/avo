@@ -32,7 +32,7 @@ var (
 	typ          = flag.String("type", "", "documentation type")
 	tmpl         = flag.String("tmpl", "", "explicit template file (overrides -type)")
 	output       = flag.String("output", "", "path to output file (default stdout)")
-	pkgsfilename = flag.String("pkgs", "", "packages configuration")
+	prjsfilename = flag.String("prjs", "", "projects configuration")
 )
 
 func mainerr() (err error) {
@@ -57,19 +57,19 @@ func mainerr() (err error) {
 		return err
 	}
 
-	// Load third-party packages.
-	if *pkgsfilename == "" {
-		return errors.New("missing packages configuration")
+	// Load third-party projects.
+	if *prjsfilename == "" {
+		return errors.New("missing projects configuration")
 	}
 
-	pkgs, err := thirdparty.LoadPackagesFile(*pkgsfilename)
+	prjs, err := thirdparty.LoadProjectsFile(*prjsfilename)
 	if err != nil {
 		return err
 	}
 
 	// Execute.
 	data := map[string]interface{}{
-		"Packages": pkgs,
+		"Projects": prjs,
 	}
 
 	var buf bytes.Buffer

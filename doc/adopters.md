@@ -4,11 +4,11 @@
 
 The Go programming language
 
-<img src="https://images.weserv.nl?fit=cover&h=28&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Fklauspost.png&w=28" width="28" height="28" hspace="4" valign="middle" /> [klauspost / **compress**](https://github.com/klauspost/compress) / **s2**
+<img src="https://images.weserv.nl?fit=cover&h=28&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Fklauspost.png&w=28" width="28" height="28" hspace="4" valign="middle" /> [klauspost / **compress**](https://github.com/klauspost/compress)
 
 Optimized Go Compression Packages
 
-<img src="https://images.weserv.nl?fit=cover&h=28&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Fgolang.png&w=28" width="28" height="28" hspace="4" valign="middle" /> [golang / **crypto**](https://github.com/golang/crypto) / **curve25519**
+<img src="https://images.weserv.nl?fit=cover&h=28&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Fgolang.png&w=28" width="28" height="28" hspace="4" valign="middle" /> [golang / **crypto**](https://github.com/golang/crypto)
 
 [mirror] Go supplementary cryptography libraries
 
@@ -48,7 +48,7 @@ Go implementation of the BLS12-381 pairing
 
 filippo.io/edwards25519 — A safer, faster, and more powerful low-level edwards25519 Go implementation.
 
-<img src="https://images.weserv.nl?fit=cover&h=28&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Flukechampine.png&w=28" width="28" height="28" hspace="4" valign="middle" /> [lukechampine / **us**](https://github.com/lukechampine/us) / **merkle/blake2b**
+<img src="https://images.weserv.nl?fit=cover&h=28&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Flukechampine.png&w=28" width="28" height="28" hspace="4" valign="middle" /> [lukechampine / **us**](https://github.com/lukechampine/us)
 
 An alternative interface to Sia
 
@@ -84,10 +84,6 @@ SPECK cipher
 
 go-chaskey: an implementation of chaskey, an efficient MAC for microcontrollers
 
-<img src="https://images.weserv.nl?fit=cover&h=28&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Fericlagergren.png&w=28" width="28" height="28" hspace="4" valign="middle" /> [ericlagergren / **lwcrypto**](https://github.com/ericlagergren/lwcrypto) / **ascon**
-
-NIST Lightweight Cryptography finalists
-
-<img src="https://images.weserv.nl?fit=cover&h=28&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Fericlagergren.png&w=28" width="28" height="28" hspace="4" valign="middle" /> [ericlagergren / **lwcrypto**](https://github.com/ericlagergren/lwcrypto) / **grain**
+<img src="https://images.weserv.nl?fit=cover&h=28&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Fericlagergren.png&w=28" width="28" height="28" hspace="4" valign="middle" /> [ericlagergren / **lwcrypto**](https://github.com/ericlagergren/lwcrypto)
 
 NIST Lightweight Cryptography finalists
