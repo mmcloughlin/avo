@@ -193,11 +193,11 @@ Implementations of full algorithms:
 Popular projects using `avo`:
 
 <img src="https://images.weserv.nl?fit=cover&h=24&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Fgolang.png&w=24" width="24" height="24" hspace="4" valign="middle" /> [golang / **go**](https://github.com/golang/go)
-:star: 98315
+:star: 98322
 > The Go programming language
 
 <img src="https://images.weserv.nl?fit=cover&h=24&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Fklauspost.png&w=24" width="24" height="24" hspace="4" valign="middle" /> [klauspost / **compress**](https://github.com/klauspost/compress)
-:star: 2706
+:star: 2707
 > Optimized Go Compression Packages
 
 <img src="https://images.weserv.nl?fit=cover&h=24&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Fgolang.png&w=24" width="24" height="24" hspace="4" valign="middle" /> [golang / **crypto**](https://github.com/golang/crypto)
@@ -209,8 +209,12 @@ Popular projects using `avo`:
 > Reed-Solomon Erasure Coding in Go
 
 <img src="https://images.weserv.nl?fit=cover&h=24&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Fsegmentio.png&w=24" width="24" height="24" hspace="4" valign="middle" /> [segmentio / **asm**](https://github.com/segmentio/asm)
-:star: 686
+:star: 688
 > Go library providing algorithms optimized to leverage the characteristics of modern CPUs
+
+<img src="https://images.weserv.nl?fit=cover&h=24&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Fcloudflare.png&w=24" width="24" height="24" hspace="4" valign="middle" /> [cloudflare / **circl**](https://github.com/cloudflare/circl)
+:star: 613
+> CIRCL: Cloudflare Interoperable Reusable Cryptographic Library
 
 <img src="https://images.weserv.nl?fit=cover&h=24&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Fzeebo.png&w=24" width="24" height="24" hspace="4" valign="middle" /> [zeebo / **blake3**](https://github.com/zeebo/blake3)
 :star: 288
@@ -227,10 +231,6 @@ Popular projects using `avo`:
 <img src="https://images.weserv.nl?fit=cover&h=24&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Fdgryski.png&w=24" width="24" height="24" hspace="4" valign="middle" /> [dgryski / **go-bloomindex**](https://github.com/dgryski/go-bloomindex)
 :star: 111
 > Bloom-filter based search index
-
-<img src="https://images.weserv.nl?fit=cover&h=24&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Fminio.png&w=24" width="24" height="24" hspace="4" valign="middle" /> [minio / **md5-simd**](https://github.com/minio/md5-simd)
-:star: 109
-> Accelerate aggregated MD5 hashing performance up to 8x for AVX512 and 4x for AVX2. Useful for server applications that need to compute many MD5 sums in parallel.
 
 See the [full list of projects using `avo`](doc/adopters.md).
 

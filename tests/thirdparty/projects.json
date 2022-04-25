@@ -229,7 +229,7 @@
         },
         "metadata": {
             "description": "Optimized Go Compression Packages",
-            "stars": 2706
+            "stars": 2707
         },
         "default_branch": "master",
         "version": "2f236383d7c2faa8ef7e354ccecb926a5b47a24d",
@@ -518,7 +518,7 @@
         },
         "metadata": {
             "description": "Go library providing algorithms optimized to leverage the characteristics of modern CPUs",
-            "stars": 686
+            "stars": 688
         },
         "default_branch": "main",
         "version": "2bf3fdd47b1cdbe8fe020f032caf14891e10a85f",
@@ -745,7 +745,7 @@
         "metadata": {
             "description": "The Go programming language",
             "homepage": "https://go.dev",
-            "stars": 98315
+            "stars": 98322
         },
         "default_branch": "master",
         "version": "go1.17.3",
@@ -773,6 +773,57 @@
                     {
                         "commands": [
                             "env --unset=GOROOT ./bin/go test crypto/ed25519/..."
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "repository": {
+            "owner": "cloudflare",
+            "name": "circl"
+        },
+        "metadata": {
+            "description": "CIRCL: Cloudflare Interoperable Reusable Cryptographic Library",
+            "homepage": "http://blog.cloudflare.com/introducing-circl",
+            "stars": 613
+        },
+        "default_branch": "master",
+        "version": "v1.1.0",
+        "packages": [
+            {
+                "pkg": "sign/dilithium",
+                "module": "internal/common/asm/go.mod",
+                "generate": [
+                    {
+                        "dir": "internal/common/asm",
+                        "commands": [
+                            "go generate -v -x"
+                        ]
+                    }
+                ]
+            },
+            {
+                "pkg": "pke/kyber",
+                "module": "internal/common/asm/go.mod",
+                "generate": [
+                    {
+                        "dir": "internal/common/asm",
+                        "commands": [
+                            "go generate -v -x"
+                        ]
+                    }
+                ]
+            },
+            {
+                "pkg": "simd/keccakf1600",
+                "module": "internal/asm/go.mod",
+                "generate": [
+                    {
+                        "dir": "internal/asm",
+                        "commands": [
+                            "go generate -v -x"
                         ]
                     }
                 ]
