@@ -232,7 +232,7 @@
             "stars": 2706
         },
         "default_branch": "master",
-        "version": "2adf487b3e02f95ce7efd6e4953fda0ae7ecd080",
+        "version": "2f236383d7c2faa8ef7e354ccecb926a5b47a24d",
         "packages": [
             {
                 "pkg": "s2",
@@ -242,6 +242,18 @@
                         "dir": "_generate",
                         "commands": [
                             "go run gen.go -out ../encodeblock_amd64.s -stubs ../encodeblock_amd64.go -pkg s2"
+                        ]
+                    }
+                ]
+            },
+            {
+                "pkg": "zstd",
+                "module": "_generate/go.mod",
+                "generate": [
+                    {
+                        "dir": "_generate",
+                        "commands": [
+                            "go generate -v -x"
                         ]
                     }
                 ]
