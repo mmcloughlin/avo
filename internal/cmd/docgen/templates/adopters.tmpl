@@ -1,7 +1,6 @@
 # Adopters
-{{ range .Packages.Ranked }}
+{{ range .Projects.Ranked }}
 {{ avatar .Repository.Owner 28 }} [{{ .Repository.Owner }} / **{{ .Repository.Name }}**]({{ .Repository.URL }})
-{{- if .SubPackage }} / **{{ .SubPackage}}**{{ end }}
 
 {{ .Metadata.Description }}
 {{ end -}}
