@@ -1,9 +1,10 @@
 name: metadata
 permissions:
-  contents: write
-  pull-requests: write
+  contents: read
 on:
   pull_request:
+  schedule:
+    - cron: "24 5 * * 0"
 jobs:
   update:
     runs-on: ubuntu-latest
