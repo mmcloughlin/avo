@@ -23,7 +23,7 @@ jobs:
         run: ./script/bootstrap
       - name: Update Package Metadata
         working-directory: tests/thirdparty
-        run: go test -v -run Metadata -update -net -pkgs packages.json
+        run: go test -v -run Metadata -update -net -prjs projects.json
       - name: Diff
         run: git diff
       - name: Generate
