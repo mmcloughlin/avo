@@ -44,4 +44,3 @@ jobs:
           delete-branch: true
           title: "tests/thirdparty: update package metadata"
           body: "Auto-generated update of third-party package metadata."
-          reviewers: mmcloughlin
