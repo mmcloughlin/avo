@@ -5,7 +5,7 @@ on:
   pull_request:
 jobs:
   automerge:
-    if: ${{ github.actor == 'cadobot[bot]' }}
+    #if: ${{ github.actor == 'cadobot[bot]' }}
     runs-on: ubuntu-latest
     steps:
       - name: Generate Bot Token
