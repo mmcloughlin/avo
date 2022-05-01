@@ -13,6 +13,7 @@ jobs:
     needs:
       - test
       - lint
+    runs-on: ubuntu-latest
     steps:
       - run: "true"
   test:
