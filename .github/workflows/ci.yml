@@ -9,6 +9,12 @@ on:
   schedule:
     - cron: "17 12 * * 6"
 jobs:
+  required:
+    needs:
+      - test
+      - lint
+    steps:
+      - run: "true"
   test:
     strategy:
       matrix:
@@ -72,7 +78,3 @@ jobs:
         run: ./script/bootstrap
       - name: Lint
         run: ./script/lint
-  required:
-    needs:
-      - test
-      - lint
