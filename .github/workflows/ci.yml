@@ -9,9 +9,10 @@ on:
   schedule:
     - cron: "17 12 * * 6"
 jobs:
+  # Required job is a stub which only runs when other dependencies complete
+  # successfully.  This is intended to be listed as a required check in a branch
+  # protection rule.
   required:
-    # Stub job that aggregates multiple jobs into one which can be listed as a
-    # required check in a branch protection rule.
     needs:
       - test
       - lint
