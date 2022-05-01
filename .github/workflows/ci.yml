@@ -10,6 +10,8 @@ on:
     - cron: "17 12 * * 6"
 jobs:
   required:
+    # Stub job that aggregates multiple jobs into one which can be listed as a
+    # required check in a branch protection rule.
     needs:
       - test
       - lint
