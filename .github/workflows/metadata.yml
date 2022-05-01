@@ -2,6 +2,7 @@ name: metadata
 permissions:
   contents: read
 on:
+  pull_request:
   schedule:
     - cron: "24 5 * * 0"
 jobs:
