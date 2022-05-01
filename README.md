@@ -193,11 +193,11 @@ Implementations of full algorithms:
 Popular projects using `avo`:
 
 <img src="https://images.weserv.nl?fit=cover&h=24&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Fgolang.png&w=24" width="24" height="24" hspace="4" valign="middle" /> [golang / **go**](https://github.com/golang/go)
-:star: 98561
+:star: 98565
 > The Go programming language
 
 <img src="https://images.weserv.nl?fit=cover&h=24&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Fklauspost.png&w=24" width="24" height="24" hspace="4" valign="middle" /> [klauspost / **compress**](https://github.com/klauspost/compress)
-:star: 2873
+:star: 2874
 > Optimized Go Compression Packages
 
 <img src="https://images.weserv.nl?fit=cover&h=24&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Fgolang.png&w=24" width="24" height="24" hspace="4" valign="middle" /> [golang / **crypto**](https://github.com/golang/crypto)
