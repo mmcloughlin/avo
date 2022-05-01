@@ -12,16 +12,12 @@ on:
       - "tests/thirdparty/**"
 jobs:
   test:
-    strategy:
-      matrix:
-        go-version: [1.18.x]
-        platform: [ubuntu-latest]
-    runs-on: ${{ matrix.platform }}
+    runs-on: ubuntu-latest
     steps:
       - name: Install Go
         uses: actions/setup-go@f6164bd8c8acb4a71fb2791a8b6c4024ff038dab # v3.0.0
         with:
-          go-version: ${{ matrix.go-version }}
+          go-version: 1.18.x
           check-latest: true
       - name: Checkout code
         uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f # v2.3.4
