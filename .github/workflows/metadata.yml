@@ -2,7 +2,6 @@ name: metadata
 permissions:
   contents: read
 on:
-  pull_request:
   schedule:
     - cron: "24 5 * * 0"
 jobs:
@@ -35,7 +34,6 @@ jobs:
           app_id: ${{ secrets.APP_ID }}
           private_key: ${{ secrets.APP_PRIVATE_KEY }}
       - name: Create Pull Request
-        id: pr
         uses: peter-evans/create-pull-request@bd72e1b7922d417764d27d30768117ad7da78a0e # v4.0.2
         with:
           token: ${{ steps.bot.outputs.token }}
