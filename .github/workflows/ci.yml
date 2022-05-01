@@ -7,14 +7,13 @@ on:
       - master
   pull_request:
   schedule:
-    - cron: '17 12 * * 6'
+    - cron: "17 12 * * 6"
 jobs:
   test:
     strategy:
       matrix:
         go-version: [1.17.x, 1.18.x]
-        platform: [ubuntu-latest]
-    runs-on: ${{ matrix.platform }}
+    runs-on: ubuntu-latest
     steps:
       - name: Install Go
         uses: actions/setup-go@f6164bd8c8acb4a71fb2791a8b6c4024ff038dab # v3.0.0
@@ -52,16 +51,12 @@ jobs:
           files: integration.coverprofile
           flags: integration
   lint:
-    strategy:
-      matrix:
-        go-version: [1.18.x]
-        platform: [ubuntu-latest]
-    runs-on: ${{ matrix.platform }}
+    runs-on: ubuntu-latest
     steps:
       - name: Install Go
         uses: actions/setup-go@f6164bd8c8acb4a71fb2791a8b6c4024ff038dab # v3.0.0
         with:
-          go-version: ${{ matrix.go-version }}
+          go-version: 1.18.x
           check-latest: true
       - name: Configure Go Environment
         run: |
