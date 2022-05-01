@@ -15,6 +15,6 @@ jobs:
           private_key: ${{ secrets.APP_PRIVATE_KEY }}
       - name: Automerge Bot Pull Requests
         if: ${{ github.actor == 'cadobot[bot]' }}
-        run: gh pr merge --auto --squash ${{ github.event.pull_request.number }}
+        run: gh pr merge --auto --squash "${{ github.event.pull_request.html_url }}"
         env:
           GITHUB_TOKEN: ${{ steps.bot.outputs.token }}
