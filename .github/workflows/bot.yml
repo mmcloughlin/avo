@@ -13,8 +13,6 @@ jobs:
         with:
           debug: true
           script: |
-            const bot = github.rest.users.getByUsername({username: 'cadobot[bot]'});
-            core.setOutput('login', bot.login)
-            core.setOutput('id', bot.id)
+            github.rest.users.getByUsername({username: 'cadobot[bot]'});
       - name: Report
-        run: echo "${{ steps.bot-user.outputs.id }}"
+        run: echo "${{ steps.bot-user.outputs.result }}"
