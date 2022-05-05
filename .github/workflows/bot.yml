@@ -7,15 +7,14 @@ jobs:
   info:
     runs-on: ubuntu-latest
     steps:
-      - name: Generate Bot Token
-        uses: tibdex/github-app-token@586e1a624db6a5a4ac2c53daeeded60c5e3d50fe # v1.5.2
-        id: bot
-        with:
-          app_id: ${{ secrets.APP_ID }}
-          private_key: ${{ secrets.APP_PRIVATE_KEY }}
       - name: Get Bot User
+        id: bot-user
         uses: actions/github-script@v6
         with:
           debug: true
           script: |
-            github.rest.users.getByUsername({username: 'cadobot[bot]'});
+            const bot = github.rest.users.getByUsername({username: 'cadobot[bot]'});
+            core.setOutput('login', bot.login)
+            core.setOutput('id', bot.id)
+      - name: Report
+        run: echo "${{ steps.bot-user.outputs.id }}"
