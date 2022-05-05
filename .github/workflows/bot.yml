@@ -12,6 +12,7 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            return github.rest.users.getByUsername({username: 'cadobot[bot]'});
+            const res = github.rest.users.getByUsername({username: 'cadobot[bot]'});
+            core.setOutput('id', res.data.id)
       - name: Report
-        run: echo "${{ steps.bot-user.outputs.result }}"
+        run: echo "${{ steps.bot-user.outputs.id }}"
