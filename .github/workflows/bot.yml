@@ -16,6 +16,6 @@ jobs:
       - name: Get Bot User
         uses: actions/github-script@v6
         with:
-          github-token: ${{ steps.bot.outputs.token }}
+          debug: true
           script: |
             github.rest.users.getByUsername({username: 'cadobot[bot]'});
