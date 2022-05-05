@@ -13,7 +13,7 @@ jobs:
         with:
           script: |
             const res = await github.rest.users.getByUsername({username: 'cadobot[bot]'});
-            for (const [key, value] in Object.entries(res.data)) {
+            for (const [key, value] of Object.entries(res.data)) {
               core.setOutput(key, value)
             }
       - name: Report
