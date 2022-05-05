@@ -18,4 +18,4 @@ jobs:
         with:
           github-token: ${{ steps.bot.outputs.token }}
           script: |
-            github.rest.users.getAuthenticated();
+            github.rest.users.getByUsername({username: 'cadobot[bot]'});
