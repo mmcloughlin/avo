@@ -10,6 +10,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
+	"math"
 	"net/url"
 	"os"
 	"regexp"
@@ -45,6 +46,7 @@ func mainerr() (err error) {
 		"include": include,
 		"snippet": snippet,
 		"avatar":  avatar,
+		"stars":   stars,
 	})
 
 	// Load template.
@@ -190,4 +192,13 @@ func avatar(owner string, size int) (string, error) {
 	// Build <img> tag.
 	format := `<img src="%s" width="%d" height="%d" hspace="4" valign="middle" />`
 	return fmt.Sprintf(format, src.String(), size, size), nil
+}
+
+// stars formats a Github star count, rounding to thousands in the same style as Github.
+func stars(n int) string {
+	if n < 1000 {
+		return strconv.Itoa(n)
+	}
+	k := math.Round(float64(n)/100.0) / 10.0
+	return strconv.FormatFloat(k, 'f', -1, 64) + "k"
 }

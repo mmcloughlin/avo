@@ -108,7 +108,7 @@ Popular projects using `avo`:
 {{ range .Projects.Top 10 -}}
 {{ if lt .Metadata.Stars 100 }}{{break}}{{ end -}}
 {{ avatar .Repository.Owner 24 }} [{{ .Repository.Owner }} / **{{ .Repository.Name }}**]({{ .Repository.URL }})
-:star: {{ .Metadata.Stars }}
+:star: {{ stars .Metadata.Stars }}
 > {{ .Metadata.Description }}
 
 {{ end -}}
