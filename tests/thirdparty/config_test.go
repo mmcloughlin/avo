@@ -107,17 +107,17 @@ func TestValidateErrors(t *testing.T) {
 	}
 }
 
-func TestLoadProjectsBad(t *testing.T) {
+func TestLoadSuiteBad(t *testing.T) {
 	r := strings.NewReader(`[{"unknown_field": "value"}]`)
-	_, err := LoadProjects(r)
+	_, err := LoadSuite(r)
 	if err == nil {
 		t.Fatal("expected non-nil error")
 	}
 }
 
-func TestLoadProjectsFileNotExist(t *testing.T) {
-	prjs, err := LoadProjectsFile("does_not_exist")
-	if prjs != nil {
+func TestLoadSuiteFileNotExist(t *testing.T) {
+	s, err := LoadSuiteFile("does_not_exist")
+	if s != nil {
 		t.Fatal("expected nil return")
 	}
 	if err == nil {
@@ -125,24 +125,24 @@ func TestLoadProjectsFileNotExist(t *testing.T) {
 	}
 }
 
-func TestProjectsFileValid(t *testing.T) {
-	prjs, err := LoadProjectsFile("projects.json")
+func TestSuiteFileValid(t *testing.T) {
+	s, err := LoadSuiteFile("suite.json")
 	if err != nil {
 		t.Fatal(err)
 	}
-	for _, prj := range prjs {
+	for _, prj := range s.Projects {
 		t.Logf("read: %s", prj.ID())
 	}
-	if len(prjs) == 0 {
+	if len(s.Projects) == 0 {
 		t.Fatal("no packages loaded")
 	}
-	if err := prjs.Validate(); err != nil {
+	if err := s.Validate(); err != nil {
 		t.Fatal(err)
 	}
 }
 
-func TestProjectsFileStepsValid(t *testing.T) {
-	prjs, err := LoadProjectsFile("projects.json")
+func TestSuiteFileStepsValid(t *testing.T) {
+	suite, err := LoadSuiteFile("suite.json")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -150,7 +150,7 @@ func TestProjectsFileStepsValid(t *testing.T) {
 		AvoDirectory:        "avo",
 		RepositoryDirectory: "repo",
 	}
-	for _, prj := range prjs {
+	for _, prj := range suite.Projects {
 		for _, pkg := range prj.Packages {
 			for _, s := range pkg.Steps(c) {
 				if err := s.Validate(); err != nil {
@@ -161,25 +161,25 @@ func TestProjectsFileStepsValid(t *testing.T) {
 	}
 }
 
-func TestProjectsFileRoundtrip(t *testing.T) {
-	prjs, err := LoadProjectsFile("projects.json")
+func TestSuiteFileRoundtrip(t *testing.T) {
+	s, err := LoadSuiteFile("suite.json")
 	if err != nil {
 		t.Fatal(err)
 	}
 
 	// Write and read back.
 	buf := bytes.NewBuffer(nil)
-	if err := StoreProjects(buf, prjs); err != nil {
+	if err := StoreSuite(buf, s); err != nil {
 		t.Fatal(err)
 	}
 
-	roundtrip, err := LoadProjects(buf)
+	roundtrip, err := LoadSuite(buf)
 	if err != nil {
 		t.Fatal(err)
 	}
 
 	// Should be identical.
-	if !reflect.DeepEqual(prjs, roundtrip) {
+	if !reflect.DeepEqual(s, roundtrip) {
 		t.Fatal("roundtrip mismatch")
 	}
 }

@@ -10,29 +10,29 @@ import (
 	"github.com/mmcloughlin/avo/internal/test"
 )
 
-//go:generate go run make_workflow.go -prjs projects.json -output ../../.github/workflows/packages.yml
+//go:generate go run make_workflow.go -suite suite.json -output ../../.github/workflows/packages.yml
 
 // Custom flags.
 var (
-	prjsfilename = flag.String("prjs", "", "projects configuration")
-	preserve     = flag.Bool("preserve", false, "preserve working directories")
-	latest       = flag.Bool("latest", false, "use latest versions of each project")
+	suitefilename = flag.String("suite", "", "projects configuration")
+	preserve      = flag.Bool("preserve", false, "preserve working directories")
+	latest        = flag.Bool("latest", false, "use latest versions of each project")
 )
 
 // TestPackages runs integration tests on all packages specified by projects
 // file given on the command line.
 func TestPackages(t *testing.T) {
-	// Load projects.
-	if *prjsfilename == "" {
-		t.Skip("no projects specified")
+	// Load suite.
+	if *suitefilename == "" {
+		t.Skip("no suite specified")
 	}
 
-	prjs, err := LoadProjectsFile(*prjsfilename)
+	s, err := LoadSuiteFile(*suitefilename)
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	for _, tst := range prjs.Tests() {
+	for _, tst := range s.Projects.Tests() {
 		tst := tst // scopelint
 		t.Run(tst.ID(), func(t *testing.T) {
 			if tst.Project.Skip() {

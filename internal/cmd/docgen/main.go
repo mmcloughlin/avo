@@ -30,10 +30,10 @@ func main() {
 }
 
 var (
-	typ          = flag.String("type", "", "documentation type")
-	tmpl         = flag.String("tmpl", "", "explicit template file (overrides -type)")
-	output       = flag.String("output", "", "path to output file (default stdout)")
-	prjsfilename = flag.String("prjs", "", "projects configuration")
+	typ           = flag.String("type", "", "documentation type")
+	tmpl          = flag.String("tmpl", "", "explicit template file (overrides -type)")
+	output        = flag.String("output", "", "path to output file (default stdout)")
+	suitefilename = flag.String("suite", "", "third-party test suite configuration")
 )
 
 func mainerr() (err error) {
@@ -60,18 +60,18 @@ func mainerr() (err error) {
 	}
 
 	// Load third-party projects.
-	if *prjsfilename == "" {
-		return errors.New("missing projects configuration")
+	if *suitefilename == "" {
+		return errors.New("missing test suite configuration")
 	}
 
-	prjs, err := thirdparty.LoadProjectsFile(*prjsfilename)
+	suite, err := thirdparty.LoadSuiteFile(*suitefilename)
 	if err != nil {
 		return err
 	}
 
 	// Execute.
 	data := map[string]interface{}{
-		"Projects": prjs,
+		"Suite": suite,
 	}
 
 	var buf bytes.Buffer

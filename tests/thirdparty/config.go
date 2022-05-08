@@ -353,44 +353,58 @@ func (p Projects) Top(n int) Projects {
 	return top
 }
 
-// LoadProjects loads a list of project configurations from JSON format.
-func LoadProjects(r io.Reader) (Projects, error) {
-	var prjs Projects
-	d := json.NewDecoder(r)
-	d.DisallowUnknownFields()
-	if err := d.Decode(&prjs); err != nil {
-		return nil, err
-	}
-	prjs.defaults(true)
-	return prjs, nil
+// Suite defines a third-party test suite.
+type Suite struct {
+	Projects Projects `json:"projects"`
 }
 
-// LoadProjectsFile loads a list of project configurations from a JSON file.
-func LoadProjectsFile(filename string) (Projects, error) {
+func (s *Suite) defaults(set bool) {
+	s.Projects.defaults(set)
+}
+
+// Validate the test suite.
+func (s *Suite) Validate() error {
+	return s.Projects.Validate()
+}
+
+// LoadSuite loads a test suite from JSON format.
+func LoadSuite(r io.Reader) (*Suite, error) {
+	var s *Suite
+	d := json.NewDecoder(r)
+	d.DisallowUnknownFields()
+	if err := d.Decode(&s); err != nil {
+		return nil, err
+	}
+	s.defaults(true)
+	return s, nil
+}
+
+// LoadSuiteFile loads a test suite from a JSON file.
+func LoadSuiteFile(filename string) (*Suite, error) {
 	f, err := os.Open(filename)
 	if err != nil {
 		return nil, err
 	}
 	defer f.Close()
-	return LoadProjects(f)
+	return LoadSuite(f)
 }
 
-// StoreProjects writes a list of project configurations in JSON format.
-func StoreProjects(w io.Writer, prjs Projects) error {
+// StoreSuite writes a test suite in JSON format.
+func StoreSuite(w io.Writer, s *Suite) error {
 	e := json.NewEncoder(w)
 	e.SetIndent("", "    ")
-	prjs.defaults(false)
-	err := e.Encode(prjs)
-	prjs.defaults(true)
+	s.defaults(false)
+	err := e.Encode(s)
+	s.defaults(true)
 	return err
 }
 
-// StoreProjectsFile writes a list of project configurations to a JSON file.
-func StoreProjectsFile(filename string, prjs Projects) error {
+// StoreSuiteFile writes a test suite to a JSON file.
+func StoreSuiteFile(filename string, s *Suite) error {
 	f, err := os.Create(filename)
 	if err != nil {
 		return err
 	}
 	defer f.Close()
-	return StoreProjects(f, prjs)
+	return StoreSuite(f, s)
 }
