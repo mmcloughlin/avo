@@ -6,7 +6,7 @@
         },
         "metadata": {
             "description": "XXH3 algorithm in Go",
-            "stars": 240
+            "stars": 241
         },
         "default_branch": "master",
         "version": "v1.0.0-rc1",
@@ -229,7 +229,7 @@
         },
         "metadata": {
             "description": "Optimized Go Compression Packages",
-            "stars": 2894
+            "stars": 2896
         },
         "default_branch": "master",
         "version": "2f236383d7c2faa8ef7e354ccecb926a5b47a24d",
@@ -633,7 +633,7 @@
         "metadata": {
             "description": "[mirror] Go supplementary cryptography libraries",
             "homepage": "https://golang.org/x/crypto",
-            "stars": 2416
+            "stars": 2417
         },
         "default_branch": "master",
         "version": "089bfa5675191fd96a44247682f76ebca03d7916",
@@ -745,7 +745,7 @@
         "metadata": {
             "description": "The Go programming language",
             "homepage": "https://go.dev",
-            "stars": 98831
+            "stars": 98854
         },
         "default_branch": "master",
         "version": "go1.17.3",
@@ -787,7 +787,7 @@
         "metadata": {
             "description": "CIRCL: Cloudflare Interoperable Reusable Cryptographic Library",
             "homepage": "http://blog.cloudflare.com/introducing-circl",
-            "stars": 616
+            "stars": 617
         },
         "default_branch": "master",
         "version": "v1.1.0",
