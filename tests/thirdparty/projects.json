@@ -6,7 +6,7 @@
         },
         "metadata": {
             "description": "XXH3 algorithm in Go",
-            "stars": 239
+            "stars": 240
         },
         "default_branch": "master",
         "version": "v1.0.0-rc1",
@@ -170,7 +170,7 @@
         },
         "metadata": {
             "description": "Reed-Solomon Erasure Coding in Go",
-            "stars": 1442
+            "stars": 1444
         },
         "default_branch": "master",
         "version": "922778284547557265cff0f903ab5f4c27e40ae9",
@@ -229,7 +229,7 @@
         },
         "metadata": {
             "description": "Optimized Go Compression Packages",
-            "stars": 2882
+            "stars": 2894
         },
         "default_branch": "master",
         "version": "2f236383d7c2faa8ef7e354ccecb926a5b47a24d",
@@ -633,7 +633,7 @@
         "metadata": {
             "description": "[mirror] Go supplementary cryptography libraries",
             "homepage": "https://golang.org/x/crypto",
-            "stars": 2407
+            "stars": 2416
         },
         "default_branch": "master",
         "version": "089bfa5675191fd96a44247682f76ebca03d7916",
@@ -685,7 +685,7 @@
         },
         "metadata": {
             "description": "A pure-Go implementation of the BLAKE3 cryptographic hash function",
-            "stars": 277
+            "stars": 279
         },
         "default_branch": "master",
         "version": "v1.1.7",
@@ -745,7 +745,7 @@
         "metadata": {
             "description": "The Go programming language",
             "homepage": "https://go.dev",
-            "stars": 98581
+            "stars": 98831
         },
         "default_branch": "master",
         "version": "go1.17.3",
@@ -787,7 +787,7 @@
         "metadata": {
             "description": "CIRCL: Cloudflare Interoperable Reusable Cryptographic Library",
             "homepage": "http://blog.cloudflare.com/introducing-circl",
-            "stars": 615
+            "stars": 616
         },
         "default_branch": "master",
         "version": "v1.1.0",
