@@ -1,5 +1,5 @@
 # Adopters
-{{ range .Projects.Ranked }}
+{{ range .Suite.Projects.Ranked }}
 {{ avatar .Repository.Owner 28 }} [{{ .Repository.Owner }} / **{{ .Repository.Name }}**]({{ .Repository.URL }})
 
 {{ .Metadata.Description }}

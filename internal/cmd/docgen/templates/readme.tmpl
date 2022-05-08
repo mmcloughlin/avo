@@ -105,7 +105,7 @@ Implementations of full algorithms:
 
 Popular projects using `avo`:
 
-{{ range .Projects.Top 10 -}}
+{{ range .Suite.Projects.Top 10 -}}
 {{ if lt .Metadata.Stars 100 }}{{break}}{{ end -}}
 {{ avatar .Repository.Owner 24 }} [{{ .Repository.Owner }} / **{{ .Repository.Name }}**]({{ .Repository.URL }})
 :star: {{ stars .Metadata.Stars }}

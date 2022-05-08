@@ -3,9 +3,9 @@
 # Generate some specific files with docgen.
 go install ./internal/cmd/docgen
 
-prjs="tests/thirdparty/projects.json"
-docgen -prjs "${prjs}" -type readme -output README.md
-docgen -prjs "${prjs}" -type adopters -output doc/adopters.md
+suite="tests/thirdparty/suite.json"
+docgen -suite "${suite}" -type readme -output README.md
+docgen -suite "${suite}" -type adopters -output doc/adopters.md
 
 # Process simple file embeddings with embedmd.
 find . -name '*.md' | xargs embedmd -w

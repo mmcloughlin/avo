@@ -11,18 +11,18 @@ import (
 
 var update = flag.Bool("update", false, "update project metadata")
 
-func TestProjectsFileMetadata(t *testing.T) {
+func TestSuiteFileMetadata(t *testing.T) {
 	test.RequiresNetwork(t)
 	ctx := context.Background()
 
-	prjs, err := LoadProjectsFile("projects.json")
+	s, err := LoadSuiteFile("suite.json")
 	if err != nil {
 		t.Fatal(err)
 	}
 
 	g := github.NewClient(github.WithTokenFromEnvironment())
 
-	for _, prj := range prjs {
+	for _, prj := range s.Projects {
 		// Fetch metadata.
 		r, err := g.Repository(ctx, prj.Repository.Owner, prj.Repository.Name)
 		if err != nil {
@@ -50,23 +50,23 @@ func TestProjectsFileMetadata(t *testing.T) {
 		}
 	}
 
-	if err := StoreProjectsFile("projects.json", prjs); err != nil {
+	if err := StoreSuiteFile("suite.json", s); err != nil {
 		t.Fatal(err)
 	}
 }
 
-func TestProjectsFileKnownIssues(t *testing.T) {
+func TestSuiteFileKnownIssues(t *testing.T) {
 	test.RequiresNetwork(t)
 	ctx := context.Background()
 
-	prjs, err := LoadProjectsFile("projects.json")
+	s, err := LoadSuiteFile("suite.json")
 	if err != nil {
 		t.Fatal(err)
 	}
 
 	g := github.NewClient(github.WithTokenFromEnvironment())
 
-	for _, prj := range prjs {
+	for _, prj := range s.Projects {
 		// Skipped packages must refer to an open issue.
 		if !prj.Skip() {
 			continue

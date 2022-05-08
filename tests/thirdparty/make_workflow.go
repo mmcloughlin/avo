@@ -16,8 +16,8 @@ import (
 )
 
 var (
-	prjsfilename = flag.String("prjs", "", "projects configuration")
-	output       = flag.String("output", "", "path to output file (default stdout)")
+	suitefilename = flag.String("suite", "", "third-party test suite configuration")
+	output        = flag.String("output", "", "path to output file (default stdout)")
 )
 
 func main() {
@@ -29,13 +29,13 @@ func main() {
 func mainerr() error {
 	flag.Parse()
 
-	// Read projects.
-	prjs, err := thirdparty.LoadProjectsFile(*prjsfilename)
+	// Read third-party test suite.
+	suite, err := thirdparty.LoadSuiteFile(*suitefilename)
 	if err != nil {
 		return err
 	}
 
-	if err := prjs.Validate(); err != nil {
+	if err := suite.Validate(); err != nil {
 		return err
 	}
 
@@ -51,7 +51,7 @@ func mainerr() error {
 	}
 
 	// Generate workflow file.
-	b, err := GenerateWorkflow(prjs)
+	b, err := GenerateWorkflow(suite)
 	if err != nil {
 		return err
 	}
@@ -64,7 +64,7 @@ func mainerr() error {
 	return nil
 }
 
-func GenerateWorkflow(prjs thirdparty.Projects) ([]byte, error) {
+func GenerateWorkflow(s *thirdparty.Suite) ([]byte, error) {
 	g := &prnt.Generator{}
 	g.SetIndentString("  ")
 
@@ -87,7 +87,7 @@ func GenerateWorkflow(prjs thirdparty.Projects) ([]byte, error) {
 	// One job per test case.
 	g.Linef("jobs:")
 	g.Indent()
-	for _, t := range prjs.Tests() {
+	for _, t := range s.Projects.Tests() {
 		g.Linef("%s:", t.ID())
 		g.Indent()
 

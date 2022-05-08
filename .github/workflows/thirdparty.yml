@@ -25,4 +25,4 @@ jobs:
           persist-credentials: false
       - name: Run Third-Party Tests
         working-directory: tests/thirdparty
-        run: go test -net -prjs projects.json
+        run: go test -net -suite suite.json
