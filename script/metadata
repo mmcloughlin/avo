@@ -1,0 +1,4 @@
+#!/bin/bash -ex
+
+# Run metadata test in update mode.
+go test ./tests/thirdparty/ -v -run Metadata -args -update -prjs projects.json -net
