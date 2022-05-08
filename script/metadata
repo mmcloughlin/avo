@@ -1,0 +1,3 @@
+#!/bin/bash -ex
+
+go test ./tests/thirdparty/ -v -run Metadata -args -update -prjs projects.json -net
