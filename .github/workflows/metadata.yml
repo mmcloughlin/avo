@@ -2,7 +2,6 @@ name: metadata
 permissions:
   contents: read
 on:
-  pull_request:
   schedule:
     - cron: "24 5 * * 0"
 jobs:
@@ -40,7 +39,6 @@ jobs:
           commit-message: "tests/thirdparty: update package metadata"
           branch: auto-tests-thirdparty-update-metadata
           base: master
-          draft: true
           delete-branch: true
           title: "tests/thirdparty: update package metadata"
           body: "Auto-generated update of third-party package metadata."
