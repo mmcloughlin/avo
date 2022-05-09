@@ -26,19 +26,11 @@ jobs:
         run: ./script/generate
       - name: Diff
         run: git diff
-      - name: Generate Bot Token
-        uses: tibdex/github-app-token@586e1a624db6a5a4ac2c53daeeded60c5e3d50fe # v1.5.2
-        id: bot
+      - name: Create Pull Request
+        uses: ./.github/actions/create-pull-request
         with:
           app_id: ${{ secrets.APP_ID }}
-          private_key: ${{ secrets.APP_PRIVATE_KEY }}
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@bd72e1b7922d417764d27d30768117ad7da78a0e # v4.0.2
-        with:
-          token: ${{ steps.bot.outputs.token }}
-          commit-message: "tests/thirdparty: update package metadata"
+          app_private_key: ${{ secrets.APP_PRIVATE_KEY }}
           branch: auto-tests-thirdparty-update-metadata
-          base: master
-          delete-branch: true
           title: "tests/thirdparty: update package metadata"
           body: "Auto-generated update of third-party package metadata."

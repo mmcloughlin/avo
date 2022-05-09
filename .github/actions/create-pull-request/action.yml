@@ -1,0 +1,56 @@
+name: create-pull-request
+description: Create Pull Request
+inputs:
+  bot:
+    description: "Bot username"
+    required: false
+    default: "cadobot[bot]"
+  app_id:
+    description: "Bot App ID"
+    required: true
+  app_private_key:
+    description: "Bot App Private Key"
+    required: true
+  title:
+    description: "Pull request title"
+    required: true
+  branch:
+    description: "Branch name"
+    required: true
+  body:
+    description: "Body of the pull request"
+    required: true
+  draft:
+    description: "Create draft pull request"
+    required: false
+    default: false
+runs:
+  using: composite
+  steps:
+    - name: Get Bot User
+      id: bot
+      uses: actions/github-script@9ac08808f993958e9de277fe43a64532a609130e # v6.0.0
+      with:
+        script: |
+          const res = await github.rest.users.getByUsername({username: '${{ inputs.bot }}'});
+          for (const [key, value] of Object.entries(res.data)) {
+            core.setOutput(key, value)
+          }
+    - name: Generate App Token
+      uses: tibdex/github-app-token@586e1a624db6a5a4ac2c53daeeded60c5e3d50fe # v1.5.2
+      id: app
+      with:
+        app_id: ${{ inputs.app_id }}
+        private_key: ${{ inputs.app_private_key }}
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@bd72e1b7922d417764d27d30768117ad7da78a0e # v4.0.2
+      with:
+        token: ${{ steps.app.outputs.token }}
+        commit-message: ${{ inputs.title }}
+        author: "{{ steps.bot.outputs.login }} <${{ steps.bot.outputs.id }}+${{ steps.bot.outputs.login }}@users.noreply.github.com>"
+        branch: ${{ inputs.branch }}
+        base: master
+        delete-branch: true
+        draft: ${{ inputs.draft }}
+        title: ${{ inputs.title }}
+        body: ${{ inputs.body }}
