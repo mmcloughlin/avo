@@ -2,7 +2,6 @@ name: deps
 permissions:
   contents: read
 on:
-  pull_request:
   schedule:
     - cron: "22 5 * * 1"
 jobs:

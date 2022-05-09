@@ -23,7 +23,7 @@ inputs:
   draft:
     description: "Create draft pull request"
     required: false
-    default: true
+    default: false
 runs:
   using: composite
   steps:
