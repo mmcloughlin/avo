@@ -230,7 +230,7 @@
             },
             "metadata": {
                 "description": "Optimized Go Compression Packages",
-                "stars": 2896
+                "stars": 2897
             },
             "default_branch": "master",
             "version": "2f236383d7c2faa8ef7e354ccecb926a5b47a24d",
@@ -746,7 +746,7 @@
             "metadata": {
                 "description": "The Go programming language",
                 "homepage": "https://go.dev",
-                "stars": 98856
+                "stars": 98859
             },
             "default_branch": "master",
             "version": "go1.17.3",
@@ -832,5 +832,5 @@
             ]
         }
     ],
-    "metadata_last_update": "2022-05-09T00:15:10.660584088Z"
+    "metadata_last_update": "2022-05-09T04:18:54.545276737Z"
 }
