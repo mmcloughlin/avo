@@ -42,6 +42,8 @@ func mainerr() (err error) {
 	// Initialize template.
 	t := template.New("doc")
 
+	t.Option("missingkey=error")
+
 	t.Funcs(template.FuncMap{
 		"include": include,
 		"snippet": snippet,
