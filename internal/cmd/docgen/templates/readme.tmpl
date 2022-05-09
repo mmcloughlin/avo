@@ -103,7 +103,10 @@ Implementations of full algorithms:
 
 ## Adopters
 
-Popular projects using `avo`:
+Popular projects[^projects] using `avo`:
+
+[^projects]: Projects drawn from the `avo` third-party test suite. Popularity
+estimated from Github star count collected on {{ .Suite.MetadataLastUpdate.Format "Jan 2, 2006" }}.
 
 {{ range .Suite.Projects.Top 10 -}}
 {{ if lt .Metadata.Stars 100 }}{{break}}{{ end -}}

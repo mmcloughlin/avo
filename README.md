@@ -190,7 +190,10 @@ Implementations of full algorithms:
 
 ## Adopters
 
-Popular projects using `avo`:
+Popular projects[^projects] using `avo`:
+
+[^projects]: Projects drawn from the `avo` third-party test suite. Popularity
+estimated from Github star count collected on May 9, 2022.
 
 <img src="https://images.weserv.nl?fit=cover&h=24&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Fgolang.png&w=24" width="24" height="24" hspace="4" valign="middle" /> [golang / **go**](https://github.com/golang/go)
 :star: 98.9k
