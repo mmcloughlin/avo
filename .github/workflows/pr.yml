@@ -18,22 +18,3 @@ jobs:
         run: gh pr merge --auto --squash "${{ github.event.pull_request.html_url }}"
         env:
           GITHUB_TOKEN: ${{ steps.bot.outputs.token }}
-  create:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f # v2.3.4
-        with:
-          persist-credentials: false
-      - name: Generate
-        run: |
-          date > report.txt
-          git add report.txt
-      - name: Create Pull Request
-        uses: ./.github/actions/create-pull-request
-        with:
-          app_id: ${{ secrets.APP_ID }}
-          app_private_key: ${{ secrets.APP_PRIVATE_KEY }}
-          branch: auto-test-create-pull-request
-          title: "ci: test create-pull-request action"
-          body: "Test for `create-pull-request` action."

@@ -20,6 +20,10 @@ inputs:
   body:
     description: "Body of the pull request"
     required: true
+  draft:
+    description: "Create draft pull request"
+    required: false
+    default: true
 runs:
   using: composite
   steps:
@@ -47,6 +51,6 @@ runs:
         branch: ${{ inputs.branch }}
         base: master
         delete-branch: true
-        draft: true
+        draft: ${{ inputs.draft }}
         title: ${{ inputs.title }}
         body: ${{ inputs.body }}
