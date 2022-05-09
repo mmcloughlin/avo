@@ -4,6 +4,7 @@ import (
 	"context"
 	"flag"
 	"testing"
+	"time"
 
 	"github.com/mmcloughlin/avo/internal/github"
 	"github.com/mmcloughlin/avo/internal/test"
@@ -48,6 +49,10 @@ func TestSuiteFileMetadata(t *testing.T) {
 		if !uptodate {
 			t.Errorf("%s: metadata out of date (use -update flag to fix)", prj.ID())
 		}
+	}
+
+	if *update {
+		s.MetadataLastUpdate = time.Now().UTC()
 	}
 
 	if err := StoreSuiteFile("suite.json", s); err != nil {
