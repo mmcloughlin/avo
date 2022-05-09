@@ -11,6 +11,7 @@ import (
 	"path/filepath"
 	"sort"
 	"strings"
+	"time"
 )
 
 // GithubRepository specifies a repository on github.
@@ -355,7 +356,11 @@ func (p Projects) Top(n int) Projects {
 
 // Suite defines a third-party test suite.
 type Suite struct {
+	// Projects to test.
 	Projects Projects `json:"projects"`
+
+	// Time of the last update to project metadata.
+	MetadataLastUpdate time.Time `json:"metadata_last_update"`
 }
 
 func (s *Suite) defaults(set bool) {
@@ -364,7 +369,19 @@ func (s *Suite) defaults(set bool) {
 
 // Validate the test suite.
 func (s *Suite) Validate() error {
-	return s.Projects.Validate()
+	if s.MetadataLastUpdate.IsZero() {
+		return errors.New("empty metadata update time")
+	}
+
+	if s.MetadataLastUpdate.Location() != time.UTC {
+		return errors.New("metadata update time not in UTC")
+	}
+
+	if err := s.Projects.Validate(); err != nil {
+		return err
+	}
+
+	return nil
 }
 
 // LoadSuite loads a test suite from JSON format.
