@@ -7,7 +7,7 @@
             },
             "metadata": {
                 "description": "XXH3 algorithm in Go",
-                "stars": 253
+                "stars": 258
             },
             "default_branch": "master",
             "version": "v1.0.0-rc1",
@@ -76,7 +76,7 @@
             },
             "metadata": {
                 "description": "Go implementation of the BLS12-381 pairing",
-                "stars": 82
+                "stars": 83
             },
             "default_branch": "master",
             "version": "a88a5ae26844d7293359422888d7c7f69f43c845",
@@ -120,7 +120,7 @@
             },
             "metadata": {
                 "description": "Accelerate aggregated MD5 hashing performance up to 8x for AVX512 and 4x for AVX2. Useful for server applications that need to compute many MD5 sums in parallel.",
-                "stars": 112
+                "stars": 115
             },
             "default_branch": "master",
             "version": "30ad8af83f6868c2a30c615f3edf1a9366bf3f89",
@@ -171,7 +171,7 @@
             },
             "metadata": {
                 "description": "Reed-Solomon Erasure Coding in Go",
-                "stars": 1458
+                "stars": 1460
             },
             "default_branch": "master",
             "version": "922778284547557265cff0f903ab5f4c27e40ae9",
@@ -230,7 +230,7 @@
             },
             "metadata": {
                 "description": "Optimized Go Compression Packages",
-                "stars": 2960
+                "stars": 2975
             },
             "default_branch": "master",
             "version": "2f236383d7c2faa8ef7e354ccecb926a5b47a24d",
@@ -519,7 +519,7 @@
             },
             "metadata": {
                 "description": "Go library providing algorithms optimized to leverage the characteristics of modern CPUs",
-                "stars": 738
+                "stars": 742
             },
             "default_branch": "main",
             "version": "2bf3fdd47b1cdbe8fe020f032caf14891e10a85f",
@@ -583,7 +583,7 @@
             },
             "metadata": {
                 "description": "High-performance Curve25519/ristretto255 for Go",
-                "stars": 47
+                "stars": 48
             },
             "default_branch": "master",
             "version": "d5a936accd94ef9da4c0fe9db0a6342dcdcfeadf",
@@ -634,7 +634,7 @@
             "metadata": {
                 "description": "[mirror] Go supplementary cryptography libraries",
                 "homepage": "https://golang.org/x/crypto",
-                "stars": 2436
+                "stars": 2442
             },
             "default_branch": "master",
             "version": "089bfa5675191fd96a44247682f76ebca03d7916",
@@ -746,7 +746,7 @@
             "metadata": {
                 "description": "The Go programming language",
                 "homepage": "https://go.dev",
-                "stars": 99864
+                "stars": 100484
             },
             "default_branch": "master",
             "version": "go1.17.3",
@@ -832,5 +832,5 @@
             ]
         }
     ],
-    "metadata_last_update": "2022-06-05T05:28:34.53723982Z"
+    "metadata_last_update": "2022-06-12T05:27:54.238107793Z"
 }
