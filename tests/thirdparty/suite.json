@@ -7,7 +7,7 @@
             },
             "metadata": {
                 "description": "XXH3 algorithm in Go",
-                "stars": 259
+                "stars": 263
             },
             "default_branch": "master",
             "version": "v1.0.0-rc1",
@@ -145,7 +145,7 @@
             },
             "metadata": {
                 "description": "Pure Go implementation of BLAKE3 with AVX2 and SSE4.1 acceleration",
-                "stars": 300
+                "stars": 301
             },
             "default_branch": "master",
             "version": "25dba572f0e78ec108f0dd79c9c15288f542d7d9",
@@ -171,7 +171,7 @@
             },
             "metadata": {
                 "description": "Reed-Solomon Erasure Coding in Go",
-                "stars": 1461
+                "stars": 1464
             },
             "default_branch": "master",
             "version": "922778284547557265cff0f903ab5f4c27e40ae9",
@@ -196,7 +196,7 @@
             },
             "metadata": {
                 "description": "A pure-Go wyhash implementation.",
-                "stars": 24
+                "stars": 25
             },
             "default_branch": "master",
             "version": "32a3f7f6ba4797e2d87dab2969cc9dd63d39cce9",
@@ -230,7 +230,7 @@
             },
             "metadata": {
                 "description": "Optimized Go Compression Packages",
-                "stars": 3004
+                "stars": 3013
             },
             "default_branch": "master",
             "version": "2f236383d7c2faa8ef7e354ccecb926a5b47a24d",
@@ -634,7 +634,7 @@
             "metadata": {
                 "description": "[mirror] Go supplementary cryptography libraries",
                 "homepage": "https://golang.org/x/crypto",
-                "stars": 2453
+                "stars": 2456
             },
             "default_branch": "master",
             "version": "089bfa5675191fd96a44247682f76ebca03d7916",
@@ -661,7 +661,7 @@
             "metadata": {
                 "description": "filippo.io/edwards25519 — A safer, faster, and more powerful low-level edwards25519 Go implementation.",
                 "homepage": "https://filippo.io/edwards25519",
-                "stars": 89
+                "stars": 88
             },
             "default_branch": "main",
             "version": "v1.0.0-rc.1",
@@ -746,7 +746,7 @@
             "metadata": {
                 "description": "The Go programming language",
                 "homepage": "https://go.dev",
-                "stars": 100764
+                "stars": 101008
             },
             "default_branch": "master",
             "version": "go1.17.3",
@@ -788,9 +788,9 @@
             "metadata": {
                 "description": "CIRCL: Cloudflare Interoperable Reusable Cryptographic Library",
                 "homepage": "http://blog.cloudflare.com/introducing-circl",
-                "stars": 649
+                "stars": 650
             },
-            "default_branch": "master",
+            "default_branch": "main",
             "version": "v1.1.0",
             "packages": [
                 {
@@ -832,5 +832,5 @@
             ]
         }
     ],
-    "metadata_last_update": "2022-06-19T05:29:08.203750362Z"
+    "metadata_last_update": "2022-06-26T05:28:47.060557318Z"
 }
