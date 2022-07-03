@@ -7,7 +7,7 @@
             },
             "metadata": {
                 "description": "XXH3 algorithm in Go",
-                "stars": 263
+                "stars": 265
             },
             "default_branch": "master",
             "version": "v1.0.0-rc1",
@@ -171,7 +171,7 @@
             },
             "metadata": {
                 "description": "Reed-Solomon Erasure Coding in Go",
-                "stars": 1464
+                "stars": 1466
             },
             "default_branch": "master",
             "version": "922778284547557265cff0f903ab5f4c27e40ae9",
@@ -230,7 +230,7 @@
             },
             "metadata": {
                 "description": "Optimized Go Compression Packages",
-                "stars": 3013
+                "stars": 3017
             },
             "default_branch": "master",
             "version": "2f236383d7c2faa8ef7e354ccecb926a5b47a24d",
@@ -324,7 +324,7 @@
             },
             "metadata": {
                 "description": "Assembly-optimized Marvin32 hash function",
-                "stars": 12
+                "stars": 13
             },
             "default_branch": "master",
             "version": "7d18f4c6ea7c24b29d1c7a670f8ae40b0812f2e3",
@@ -519,7 +519,7 @@
             },
             "metadata": {
                 "description": "Go library providing algorithms optimized to leverage the characteristics of modern CPUs",
-                "stars": 742
+                "stars": 746
             },
             "default_branch": "main",
             "version": "2bf3fdd47b1cdbe8fe020f032caf14891e10a85f",
@@ -746,7 +746,7 @@
             "metadata": {
                 "description": "The Go programming language",
                 "homepage": "https://go.dev",
-                "stars": 101008
+                "stars": 101228
             },
             "default_branch": "master",
             "version": "go1.17.3",
@@ -788,7 +788,7 @@
             "metadata": {
                 "description": "CIRCL: Cloudflare Interoperable Reusable Cryptographic Library",
                 "homepage": "http://blog.cloudflare.com/introducing-circl",
-                "stars": 650
+                "stars": 657
             },
             "default_branch": "main",
             "version": "v1.1.0",
@@ -832,5 +832,5 @@
             ]
         }
     ],
-    "metadata_last_update": "2022-06-26T05:28:47.060557318Z"
+    "metadata_last_update": "2022-07-03T05:28:28.765021931Z"
 }
