@@ -145,7 +145,7 @@
             },
             "metadata": {
                 "description": "Pure Go implementation of BLAKE3 with AVX2 and SSE4.1 acceleration",
-                "stars": 302
+                "stars": 303
             },
             "default_branch": "master",
             "version": "25dba572f0e78ec108f0dd79c9c15288f542d7d9",
@@ -171,7 +171,7 @@
             },
             "metadata": {
                 "description": "Reed-Solomon Erasure Coding in Go",
-                "stars": 1472
+                "stars": 1477
             },
             "default_branch": "master",
             "version": "922778284547557265cff0f903ab5f4c27e40ae9",
@@ -230,7 +230,7 @@
             },
             "metadata": {
                 "description": "Optimized Go Compression Packages",
-                "stars": 3031
+                "stars": 3046
             },
             "default_branch": "master",
             "version": "2f236383d7c2faa8ef7e354ccecb926a5b47a24d",
@@ -324,7 +324,7 @@
             },
             "metadata": {
                 "description": "Assembly-optimized Marvin32 hash function",
-                "stars": 13
+                "stars": 14
             },
             "default_branch": "master",
             "version": "7d18f4c6ea7c24b29d1c7a670f8ae40b0812f2e3",
@@ -519,7 +519,7 @@
             },
             "metadata": {
                 "description": "Go library providing algorithms optimized to leverage the characteristics of modern CPUs",
-                "stars": 750
+                "stars": 751
             },
             "default_branch": "main",
             "version": "2bf3fdd47b1cdbe8fe020f032caf14891e10a85f",
@@ -634,7 +634,7 @@
             "metadata": {
                 "description": "[mirror] Go supplementary cryptography libraries",
                 "homepage": "https://golang.org/x/crypto",
-                "stars": 2461
+                "stars": 2462
             },
             "default_branch": "master",
             "version": "089bfa5675191fd96a44247682f76ebca03d7916",
@@ -661,7 +661,7 @@
             "metadata": {
                 "description": "filippo.io/edwards25519 — A safer, faster, and more powerful low-level edwards25519 Go implementation.",
                 "homepage": "https://filippo.io/edwards25519",
-                "stars": 88
+                "stars": 89
             },
             "default_branch": "main",
             "version": "v1.0.0-rc.1",
@@ -746,7 +746,7 @@
             "metadata": {
                 "description": "The Go programming language",
                 "homepage": "https://go.dev",
-                "stars": 101456
+                "stars": 101684
             },
             "default_branch": "master",
             "version": "go1.17.3",
@@ -788,7 +788,7 @@
             "metadata": {
                 "description": "CIRCL: Cloudflare Interoperable Reusable Cryptographic Library",
                 "homepage": "http://blog.cloudflare.com/introducing-circl",
-                "stars": 683
+                "stars": 697
             },
             "default_branch": "main",
             "version": "v1.1.0",
@@ -832,5 +832,5 @@
             ]
         }
     ],
-    "metadata_last_update": "2022-07-10T05:29:12.287572575Z"
+    "metadata_last_update": "2022-07-17T05:29:30.414735117Z"
 }
