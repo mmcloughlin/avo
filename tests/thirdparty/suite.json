@@ -145,7 +145,7 @@
             },
             "metadata": {
                 "description": "Pure Go implementation of BLAKE3 with AVX2 and SSE4.1 acceleration",
-                "stars": 303
+                "stars": 305
             },
             "default_branch": "master",
             "version": "25dba572f0e78ec108f0dd79c9c15288f542d7d9",
@@ -171,7 +171,7 @@
             },
             "metadata": {
                 "description": "Reed-Solomon Erasure Coding in Go",
-                "stars": 1477
+                "stars": 1483
             },
             "default_branch": "master",
             "version": "922778284547557265cff0f903ab5f4c27e40ae9",
@@ -230,7 +230,7 @@
             },
             "metadata": {
                 "description": "Optimized Go Compression Packages",
-                "stars": 3046
+                "stars": 3065
             },
             "default_branch": "master",
             "version": "2f236383d7c2faa8ef7e354ccecb926a5b47a24d",
@@ -519,7 +519,7 @@
             },
             "metadata": {
                 "description": "Go library providing algorithms optimized to leverage the characteristics of modern CPUs",
-                "stars": 751
+                "stars": 754
             },
             "default_branch": "main",
             "version": "2bf3fdd47b1cdbe8fe020f032caf14891e10a85f",
@@ -634,7 +634,7 @@
             "metadata": {
                 "description": "[mirror] Go supplementary cryptography libraries",
                 "homepage": "https://golang.org/x/crypto",
-                "stars": 2462
+                "stars": 2466
             },
             "default_branch": "master",
             "version": "089bfa5675191fd96a44247682f76ebca03d7916",
@@ -686,7 +686,7 @@
             },
             "metadata": {
                 "description": "A pure-Go implementation of the BLAKE3 cryptographic hash function",
-                "stars": 280
+                "stars": 281
             },
             "default_branch": "master",
             "version": "v1.1.7",
@@ -746,7 +746,7 @@
             "metadata": {
                 "description": "The Go programming language",
                 "homepage": "https://go.dev",
-                "stars": 101684
+                "stars": 101925
             },
             "default_branch": "master",
             "version": "go1.17.3",
@@ -788,7 +788,7 @@
             "metadata": {
                 "description": "CIRCL: Cloudflare Interoperable Reusable Cryptographic Library",
                 "homepage": "http://blog.cloudflare.com/introducing-circl",
-                "stars": 697
+                "stars": 701
             },
             "default_branch": "main",
             "version": "v1.1.0",
@@ -832,5 +832,5 @@
             ]
         }
     ],
-    "metadata_last_update": "2022-07-17T05:29:30.414735117Z"
+    "metadata_last_update": "2022-07-24T05:30:23.068702312Z"
 }
