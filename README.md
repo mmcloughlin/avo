@@ -193,10 +193,10 @@ Implementations of full algorithms:
 Popular projects[^projects] using `avo`:
 
 [^projects]: Projects drawn from the `avo` third-party test suite. Popularity
-estimated from Github star count collected on Aug 28, 2022.
+estimated from Github star count collected on Sep 4, 2022.
 
 <img src="https://images.weserv.nl?fit=cover&h=24&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Fgolang.png&w=24" width="24" height="24" hspace="4" valign="middle" /> [golang / **go**](https://github.com/golang/go)
-:star: 103.2k
+:star: 103.4k
 > The Go programming language
 
 <img src="https://images.weserv.nl?fit=cover&h=24&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Fklauspost.png&w=24" width="24" height="24" hspace="4" valign="middle" /> [klauspost / **compress**](https://github.com/klauspost/compress)
@@ -216,7 +216,7 @@ estimated from Github star count collected on Aug 28, 2022.
 > Go library providing algorithms optimized to leverage the characteristics of modern CPUs
 
 <img src="https://images.weserv.nl?fit=cover&h=24&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Fcloudflare.png&w=24" width="24" height="24" hspace="4" valign="middle" /> [cloudflare / **circl**](https://github.com/cloudflare/circl)
-:star: 724
+:star: 728
 > CIRCL: Cloudflare Interoperable Reusable Cryptographic Library
 
 <img src="https://images.weserv.nl?fit=cover&h=24&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Fzeebo.png&w=24" width="24" height="24" hspace="4" valign="middle" /> [zeebo / **blake3**](https://github.com/zeebo/blake3)
@@ -228,7 +228,7 @@ estimated from Github star count collected on Aug 28, 2022.
 > A pure-Go implementation of the BLAKE3 cryptographic hash function
 
 <img src="https://images.weserv.nl?fit=cover&h=24&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Fzeebo.png&w=24" width="24" height="24" hspace="4" valign="middle" /> [zeebo / **xxh3**](https://github.com/zeebo/xxh3)
-:star: 273
+:star: 277
 > XXH3 algorithm in Go
 
 <img src="https://images.weserv.nl?fit=cover&h=24&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Fminio.png&w=24" width="24" height="24" hspace="4" valign="middle" /> [minio / **md5-simd**](https://github.com/minio/md5-simd)

@@ -7,7 +7,7 @@
             },
             "metadata": {
                 "description": "XXH3 algorithm in Go",
-                "stars": 273
+                "stars": 277
             },
             "default_branch": "master",
             "version": "v1.0.0-rc1",
@@ -171,7 +171,7 @@
             },
             "metadata": {
                 "description": "Reed-Solomon Erasure Coding in Go",
-                "stars": 1498
+                "stars": 1507
             },
             "default_branch": "master",
             "version": "922778284547557265cff0f903ab5f4c27e40ae9",
@@ -230,7 +230,7 @@
             },
             "metadata": {
                 "description": "Optimized Go Compression Packages",
-                "stars": 3167
+                "stars": 3181
             },
             "default_branch": "master",
             "version": "2f236383d7c2faa8ef7e354ccecb926a5b47a24d",
@@ -634,7 +634,7 @@
             "metadata": {
                 "description": "[mirror] Go supplementary cryptography libraries",
                 "homepage": "https://golang.org/x/crypto",
-                "stars": 2499
+                "stars": 2504
             },
             "default_branch": "master",
             "version": "089bfa5675191fd96a44247682f76ebca03d7916",
@@ -746,7 +746,7 @@
             "metadata": {
                 "description": "The Go programming language",
                 "homepage": "https://go.dev",
-                "stars": 103190
+                "stars": 103424
             },
             "default_branch": "master",
             "version": "go1.17.3",
@@ -788,7 +788,7 @@
             "metadata": {
                 "description": "CIRCL: Cloudflare Interoperable Reusable Cryptographic Library",
                 "homepage": "http://blog.cloudflare.com/introducing-circl",
-                "stars": 724
+                "stars": 728
             },
             "default_branch": "main",
             "version": "v1.1.0",
@@ -832,5 +832,5 @@
             ]
         }
     ],
-    "metadata_last_update": "2022-08-28T05:34:06.550211635Z"
+    "metadata_last_update": "2022-09-04T05:35:27.912156862Z"
 }
