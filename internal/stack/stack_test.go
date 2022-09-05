@@ -25,7 +25,6 @@ func TestMatchFirst(t *testing.T) {
 	first := stack.Match(0, func(_ runtime.Frame) bool { return true })
 	if first == nil {
 		t.Fatalf("nil match")
-		return // prevent statickcheck SA5011 lint error
 	}
 	got := first.Function
 	expect := pkg + ".TestMatchFirst"
