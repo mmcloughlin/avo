@@ -3,7 +3,7 @@ permissions:
   contents: read
 on:
   schedule:
-    - cron: "22 5 * * 1"
+    - cron: "22 5 2 * *"
 jobs:
   upgrade:
     runs-on: ubuntu-latest
