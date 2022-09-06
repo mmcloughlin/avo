@@ -3,7 +3,7 @@ permissions:
   contents: read
 on:
   schedule:
-    - cron: '33 3 * * 6'
+    - cron: "33 3 * * 6"
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -13,7 +13,7 @@ jobs:
       - name: Install Go
         uses: actions/setup-go@f6164bd8c8acb4a71fb2791a8b6c4024ff038dab # v3.0.0
         with:
-          go-version: 1.18.x
+          go-version: 1.19.x
           check-latest: true
       - name: Configure Go Environment
         run: |

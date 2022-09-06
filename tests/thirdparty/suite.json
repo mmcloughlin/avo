@@ -749,10 +749,10 @@
                 "stars": 103424
             },
             "default_branch": "master",
-            "version": "go1.17.3",
+            "version": "go1.19",
             "packages": [
                 {
-                    "module": "src/crypto/ed25519/internal/edwards25519/field/_asm/go.mod",
+                    "module": "src/crypto/internal/edwards25519/field/_asm/go.mod",
                     "setup": [
                         {
                             "name": "Compile Go Toolchain",
@@ -764,7 +764,7 @@
                     ],
                     "generate": [
                         {
-                            "dir": "src/crypto/ed25519/internal/edwards25519/field/_asm",
+                            "dir": "src/crypto/internal/edwards25519/field/_asm",
                             "commands": [
                                 "go generate -v -x"
                             ]
