@@ -28,6 +28,7 @@ Note the directive is applied in the generated stub file:
 [embedmd]:# (stub.go go /\/\/ Add/ /func/)
 ```go
 // Add adds the values at x and y and writes the result to z.
+//
 //go:noescape
 func
 ```
