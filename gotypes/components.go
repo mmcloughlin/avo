@@ -99,7 +99,6 @@ func (c *component) Dereference(r reg.Register) Component {
 //		Len  int
 //		Cap  int
 //	}
-//
 var slicehdroffsets = Sizes.Offsetsof([]*types.Var{
 	types.NewField(token.NoPos, nil, "Data", types.Typ[types.Uintptr], false),
 	types.NewField(token.NoPos, nil, "Len", types.Typ[types.Int], false),

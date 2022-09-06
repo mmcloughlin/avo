@@ -4,7 +4,9 @@ linters:
   enable-all: true
   disable:
     - cyclop
+    - deadcode
     - errname
+    - exhaustruct
     - exhaustivestruct
     - forbidigo
     - forcetypeassert
@@ -22,12 +24,16 @@ linters:
     - lll
     - maligned
     - nlreturn
+    - nonamedreturns
+    - nosnakecase
     - paralleltest
     - prealloc
     - scopelint
+    - structcheck
     - tagliatelle
     - testpackage
     - unparam
+    - varcheck
     - varnamelen
     - wrapcheck
     - wsl

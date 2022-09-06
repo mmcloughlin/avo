@@ -4,7 +4,6 @@ package test
 import (
 	"flag"
 	"io"
-	"io/ioutil"
 	"log"
 	"os"
 	"os/exec"
@@ -32,7 +31,7 @@ func Assembles(t *testing.T, asm []byte) {
 	defer clean()
 
 	asmfilename := filepath.Join(dir, "asm.s")
-	if err := ioutil.WriteFile(asmfilename, asm, 0o600); err != nil {
+	if err := os.WriteFile(asmfilename, asm, 0o600); err != nil {
 		t.Fatal(err)
 	}
 
@@ -46,7 +45,7 @@ func Assembles(t *testing.T, asm []byte) {
 func TempDir(t *testing.T) (string, func()) {
 	t.Helper()
 
-	dir, err := ioutil.TempDir("", "avo")
+	dir, err := os.MkdirTemp("", "avo")
 	if err != nil {
 		t.Fatal(err)
 	}

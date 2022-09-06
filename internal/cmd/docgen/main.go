@@ -8,7 +8,6 @@ import (
 	"errors"
 	"flag"
 	"fmt"
-	"io/ioutil"
 	"log"
 	"math"
 	"net/url"
@@ -84,7 +83,7 @@ func mainerr() (err error) {
 
 	// Output.
 	if *output != "" {
-		err = ioutil.WriteFile(*output, body, 0o640)
+		err = os.WriteFile(*output, body, 0o640)
 	} else {
 		_, err = os.Stdout.Write(body)
 	}
@@ -103,7 +102,7 @@ var templates embed.FS
 func load() (string, error) {
 	// Prefer explicit filename, if provided.
 	if *tmpl != "" {
-		b, err := ioutil.ReadFile(*tmpl)
+		b, err := os.ReadFile(*tmpl)
 		if err != nil {
 			return "", err
 		}
@@ -125,7 +124,7 @@ func load() (string, error) {
 
 // include template function.
 func include(filename string) (string, error) {
-	b, err := ioutil.ReadFile(filename)
+	b, err := os.ReadFile(filename)
 	if err != nil {
 		return "", err
 	}
