@@ -7,7 +7,7 @@
             },
             "metadata": {
                 "description": "XXH3 algorithm in Go",
-                "stars": 277
+                "stars": 290
             },
             "default_branch": "master",
             "version": "v1.0.0-rc1",
@@ -76,7 +76,7 @@
             },
             "metadata": {
                 "description": "Go implementation of the BLS12-381 pairing",
-                "stars": 83
+                "stars": 86
             },
             "default_branch": "master",
             "version": "a88a5ae26844d7293359422888d7c7f69f43c845",
@@ -120,7 +120,7 @@
             },
             "metadata": {
                 "description": "Accelerate aggregated MD5 hashing performance up to 8x for AVX512 and 4x for AVX2. Useful for server applications that need to compute many MD5 sums in parallel.",
-                "stars": 123
+                "stars": 125
             },
             "default_branch": "master",
             "version": "30ad8af83f6868c2a30c615f3edf1a9366bf3f89",
@@ -145,7 +145,7 @@
             },
             "metadata": {
                 "description": "Pure Go implementation of BLAKE3 with AVX2 and SSE4.1 acceleration",
-                "stars": 308
+                "stars": 322
             },
             "default_branch": "master",
             "version": "25dba572f0e78ec108f0dd79c9c15288f542d7d9",
@@ -171,7 +171,7 @@
             },
             "metadata": {
                 "description": "Reed-Solomon Erasure Coding in Go",
-                "stars": 1507
+                "stars": 1571
             },
             "default_branch": "master",
             "version": "922778284547557265cff0f903ab5f4c27e40ae9",
@@ -230,7 +230,7 @@
             },
             "metadata": {
                 "description": "Optimized Go Compression Packages",
-                "stars": 3181
+                "stars": 3353
             },
             "default_branch": "master",
             "version": "2f236383d7c2faa8ef7e354ccecb926a5b47a24d",
@@ -275,7 +275,7 @@
             },
             "metadata": {
                 "description": "Bloom-filter based search index",
-                "stars": 112
+                "stars": 114
             },
             "default_branch": "master",
             "version": "0902316dce158c154b958ee5cfc706c62af29a42",
@@ -519,7 +519,7 @@
             },
             "metadata": {
                 "description": "Go library providing algorithms optimized to leverage the characteristics of modern CPUs",
-                "stars": 767
+                "stars": 776
             },
             "default_branch": "main",
             "version": "2bf3fdd47b1cdbe8fe020f032caf14891e10a85f",
@@ -543,7 +543,7 @@
             },
             "metadata": {
                 "description": "NIST Lightweight Cryptography finalists",
-                "stars": 4
+                "stars": 5
             },
             "default_branch": "main",
             "version": "0c42b05eddc34c58bf8e0cd4250c5cd2c256ea57",
@@ -583,7 +583,7 @@
             },
             "metadata": {
                 "description": "High-performance Curve25519/ristretto255 for Go",
-                "stars": 50
+                "stars": 53
             },
             "default_branch": "master",
             "version": "d5a936accd94ef9da4c0fe9db0a6342dcdcfeadf",
@@ -608,7 +608,7 @@
             },
             "metadata": {
                 "description": "Go Deoxys-II-256-128",
-                "stars": 17
+                "stars": 18
             },
             "default_branch": "master",
             "version": "2091330c22b71dd4e04e15306498e68f3a1b3afc",
@@ -634,7 +634,7 @@
             "metadata": {
                 "description": "[mirror] Go supplementary cryptography libraries",
                 "homepage": "https://golang.org/x/crypto",
-                "stars": 2504
+                "stars": 2549
             },
             "default_branch": "master",
             "version": "089bfa5675191fd96a44247682f76ebca03d7916",
@@ -661,7 +661,7 @@
             "metadata": {
                 "description": "filippo.io/edwards25519 — A safer, faster, and more powerful low-level edwards25519 Go implementation.",
                 "homepage": "https://filippo.io/edwards25519",
-                "stars": 94
+                "stars": 95
             },
             "default_branch": "main",
             "version": "v1.0.0-rc.1",
@@ -686,7 +686,7 @@
             },
             "metadata": {
                 "description": "A pure-Go implementation of the BLAKE3 cryptographic hash function",
-                "stars": 286
+                "stars": 288
             },
             "default_branch": "master",
             "version": "v1.1.7",
@@ -746,7 +746,7 @@
             "metadata": {
                 "description": "The Go programming language",
                 "homepage": "https://go.dev",
-                "stars": 103424
+                "stars": 106106
             },
             "default_branch": "master",
             "version": "go1.19",
@@ -788,7 +788,7 @@
             "metadata": {
                 "description": "CIRCL: Cloudflare Interoperable Reusable Cryptographic Library",
                 "homepage": "http://blog.cloudflare.com/introducing-circl",
-                "stars": 728
+                "stars": 764
             },
             "default_branch": "main",
             "version": "v1.1.0",
@@ -832,5 +832,5 @@
             ]
         }
     ],
-    "metadata_last_update": "2022-09-04T05:35:27.912156862Z"
+    "metadata_last_update": "2022-11-26T22:15:09.329488149Z"
 }

@@ -28,13 +28,13 @@ CIRCL: Cloudflare Interoperable Reusable Cryptographic Library
 
 Pure Go implementation of BLAKE3 with AVX2 and SSE4.1 acceleration
 
-<img src="https://images.weserv.nl?fit=cover&h=28&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Flukechampine.png&w=28" width="28" height="28" hspace="4" valign="middle" /> [lukechampine / **blake3**](https://github.com/lukechampine/blake3)
-
-A pure-Go implementation of the BLAKE3 cryptographic hash function
-
 <img src="https://images.weserv.nl?fit=cover&h=28&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Fzeebo.png&w=28" width="28" height="28" hspace="4" valign="middle" /> [zeebo / **xxh3**](https://github.com/zeebo/xxh3)
 
 XXH3 algorithm in Go
+
+<img src="https://images.weserv.nl?fit=cover&h=28&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Flukechampine.png&w=28" width="28" height="28" hspace="4" valign="middle" /> [lukechampine / **blake3**](https://github.com/lukechampine/blake3)
+
+A pure-Go implementation of the BLAKE3 cryptographic hash function
 
 <img src="https://images.weserv.nl?fit=cover&h=28&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Fminio.png&w=28" width="28" height="28" hspace="4" valign="middle" /> [minio / **md5-simd**](https://github.com/minio/md5-simd)
 
