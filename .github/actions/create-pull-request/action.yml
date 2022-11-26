@@ -43,7 +43,7 @@ runs:
         app_id: ${{ inputs.app_id }}
         private_key: ${{ inputs.app_private_key }}
     - name: Create Pull Request
-      uses: peter-evans/create-pull-request@bd72e1b7922d417764d27d30768117ad7da78a0e # v4.0.2
+      uses: peter-evans/create-pull-request@331d02c7e2104af23ad5974d4d5cbc58a3e6dc77 # v4.2.2
       with:
         token: ${{ steps.app.outputs.token }}
         commit-message: ${{ inputs.title }}
