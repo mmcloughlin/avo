@@ -108,7 +108,7 @@ func GenerateWorkflow(s *thirdparty.Suite) ([]byte, error) {
 		// Checkout avo.
 		avodir := "avo"
 		g.Linef("- name: Checkout avo")
-		g.Linef("  uses: actions/checkout@e2f20e631ae6d7dd3b768f56a5d2af784dd54791 # v2.5.0")
+		g.Linef("  uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0")
 		g.Linef("  with:")
 		g.Linef("    path: %s", avodir)
 		g.Linef("    persist-credentials: false")
@@ -116,7 +116,7 @@ func GenerateWorkflow(s *thirdparty.Suite) ([]byte, error) {
 		// Checkout the third-party package.
 		pkgdir := t.Project.Repository.Name
 		g.Linef("- name: Checkout %s", t.Project.Repository)
-		g.Linef("  uses: actions/checkout@e2f20e631ae6d7dd3b768f56a5d2af784dd54791 # v2.5.0")
+		g.Linef("  uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0")
 		g.Linef("  with:")
 		g.Linef("    repository: %s", t.Project.Repository)
 		g.Linef("    ref: %s", t.Project.Version)

@@ -18,12 +18,12 @@ jobs:
           go-version: 1.19.x
           check-latest: true
       - name: Checkout avo
-        uses: actions/checkout@e2f20e631ae6d7dd3b768f56a5d2af784dd54791 # v2.5.0
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
         with:
           path: avo
           persist-credentials: false
       - name: Checkout zeebo/xxh3
-        uses: actions/checkout@e2f20e631ae6d7dd3b768f56a5d2af784dd54791 # v2.5.0
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
         with:
           repository: zeebo/xxh3
           ref: v1.0.0-rc1
@@ -55,12 +55,12 @@ jobs:
           go-version: 1.19.x
           check-latest: true
       - name: Checkout avo
-        uses: actions/checkout@e2f20e631ae6d7dd3b768f56a5d2af784dd54791 # v2.5.0
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
         with:
           path: avo
           persist-credentials: false
       - name: Checkout dgryski/go-sip13
-        uses: actions/checkout@e2f20e631ae6d7dd3b768f56a5d2af784dd54791 # v2.5.0
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
         with:
           repository: dgryski/go-sip13
           ref: 62edffca92457b3a66125c686137cc5f0fe81672
@@ -101,12 +101,12 @@ jobs:
           go-version: 1.19.x
           check-latest: true
       - name: Checkout avo
-        uses: actions/checkout@e2f20e631ae6d7dd3b768f56a5d2af784dd54791 # v2.5.0
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
         with:
           path: avo
           persist-credentials: false
       - name: Checkout phoreproject/bls
-        uses: actions/checkout@e2f20e631ae6d7dd3b768f56a5d2af784dd54791 # v2.5.0
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
         with:
           repository: phoreproject/bls
           ref: a88a5ae26844d7293359422888d7c7f69f43c845
@@ -148,12 +148,12 @@ jobs:
           go-version: 1.19.x
           check-latest: true
       - name: Checkout avo
-        uses: actions/checkout@e2f20e631ae6d7dd3b768f56a5d2af784dd54791 # v2.5.0
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
         with:
           path: avo
           persist-credentials: false
       - name: Checkout minio/md5-simd
-        uses: actions/checkout@e2f20e631ae6d7dd3b768f56a5d2af784dd54791 # v2.5.0
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
         with:
           repository: minio/md5-simd
           ref: 30ad8af83f6868c2a30c615f3edf1a9366bf3f89
@@ -183,12 +183,12 @@ jobs:
           go-version: 1.19.x
           check-latest: true
       - name: Checkout avo
-        uses: actions/checkout@e2f20e631ae6d7dd3b768f56a5d2af784dd54791 # v2.5.0
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
         with:
           path: avo
           persist-credentials: false
       - name: Checkout zeebo/blake3
-        uses: actions/checkout@e2f20e631ae6d7dd3b768f56a5d2af784dd54791 # v2.5.0
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
         with:
           repository: zeebo/blake3
           ref: 25dba572f0e78ec108f0dd79c9c15288f542d7d9
@@ -220,12 +220,12 @@ jobs:
           go-version: 1.19.x
           check-latest: true
       - name: Checkout avo
-        uses: actions/checkout@e2f20e631ae6d7dd3b768f56a5d2af784dd54791 # v2.5.0
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
         with:
           path: avo
           persist-credentials: false
       - name: Checkout klauspost/reedsolomon
-        uses: actions/checkout@e2f20e631ae6d7dd3b768f56a5d2af784dd54791 # v2.5.0
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
         with:
           repository: klauspost/reedsolomon
           ref: 922778284547557265cff0f903ab5f4c27e40ae9
@@ -255,12 +255,12 @@ jobs:
           go-version: 1.19.x
           check-latest: true
       - name: Checkout avo
-        uses: actions/checkout@e2f20e631ae6d7dd3b768f56a5d2af784dd54791 # v2.5.0
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
         with:
           path: avo
           persist-credentials: false
       - name: Checkout orisano/wyhash
-        uses: actions/checkout@e2f20e631ae6d7dd3b768f56a5d2af784dd54791 # v2.5.0
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
         with:
           repository: orisano/wyhash
           ref: 32a3f7f6ba4797e2d87dab2969cc9dd63d39cce9
@@ -293,12 +293,12 @@ jobs:
           go-version: 1.19.x
           check-latest: true
       - name: Checkout avo
-        uses: actions/checkout@e2f20e631ae6d7dd3b768f56a5d2af784dd54791 # v2.5.0
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
         with:
           path: avo
           persist-credentials: false
       - name: Checkout klauspost/compress
-        uses: actions/checkout@e2f20e631ae6d7dd3b768f56a5d2af784dd54791 # v2.5.0
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
         with:
           repository: klauspost/compress
           ref: 2f236383d7c2faa8ef7e354ccecb926a5b47a24d
@@ -328,12 +328,12 @@ jobs:
           go-version: 1.19.x
           check-latest: true
       - name: Checkout avo
-        uses: actions/checkout@e2f20e631ae6d7dd3b768f56a5d2af784dd54791 # v2.5.0
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
         with:
           path: avo
           persist-credentials: false
       - name: Checkout klauspost/compress
-        uses: actions/checkout@e2f20e631ae6d7dd3b768f56a5d2af784dd54791 # v2.5.0
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
         with:
           repository: klauspost/compress
           ref: 2f236383d7c2faa8ef7e354ccecb926a5b47a24d
@@ -363,12 +363,12 @@ jobs:
           go-version: 1.19.x
           check-latest: true
       - name: Checkout avo
-        uses: actions/checkout@e2f20e631ae6d7dd3b768f56a5d2af784dd54791 # v2.5.0
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
         with:
           path: avo
           persist-credentials: false
       - name: Checkout dgryski/go-bloomindex
-        uses: actions/checkout@e2f20e631ae6d7dd3b768f56a5d2af784dd54791 # v2.5.0
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
         with:
           repository: dgryski/go-bloomindex
           ref: 0902316dce158c154b958ee5cfc706c62af29a42
@@ -413,12 +413,12 @@ jobs:
           go-version: 1.19.x
           check-latest: true
       - name: Checkout avo
-        uses: actions/checkout@e2f20e631ae6d7dd3b768f56a5d2af784dd54791 # v2.5.0
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
         with:
           path: avo
           persist-credentials: false
       - name: Checkout dgryski/go-marvin32
-        uses: actions/checkout@e2f20e631ae6d7dd3b768f56a5d2af784dd54791 # v2.5.0
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
         with:
           repository: dgryski/go-marvin32
           ref: 7d18f4c6ea7c24b29d1c7a670f8ae40b0812f2e3
@@ -464,12 +464,12 @@ jobs:
           go-version: 1.19.x
           check-latest: true
       - name: Checkout avo
-        uses: actions/checkout@e2f20e631ae6d7dd3b768f56a5d2af784dd54791 # v2.5.0
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
         with:
           path: avo
           persist-credentials: false
       - name: Checkout dgryski/go-speck
-        uses: actions/checkout@e2f20e631ae6d7dd3b768f56a5d2af784dd54791 # v2.5.0
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
         with:
           repository: dgryski/go-speck
           ref: 5b36d4c08d8840c352a153bf37281434ad550ec0
@@ -517,12 +517,12 @@ jobs:
           go-version: 1.19.x
           check-latest: true
       - name: Checkout avo
-        uses: actions/checkout@e2f20e631ae6d7dd3b768f56a5d2af784dd54791 # v2.5.0
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
         with:
           path: avo
           persist-credentials: false
       - name: Checkout dgryski/go-chaskey
-        uses: actions/checkout@e2f20e631ae6d7dd3b768f56a5d2af784dd54791 # v2.5.0
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
         with:
           repository: dgryski/go-chaskey
           ref: ba454392bc5ab6daae103e15147185f8f4a27dcc
@@ -570,12 +570,12 @@ jobs:
           go-version: 1.19.x
           check-latest: true
       - name: Checkout avo
-        uses: actions/checkout@e2f20e631ae6d7dd3b768f56a5d2af784dd54791 # v2.5.0
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
         with:
           path: avo
           persist-credentials: false
       - name: Checkout lukechampine/us
-        uses: actions/checkout@e2f20e631ae6d7dd3b768f56a5d2af784dd54791 # v2.5.0
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
         with:
           repository: lukechampine/us
           ref: dff56a80f83653cb14eeeb57ba6ba3c3e942c412
@@ -615,12 +615,12 @@ jobs:
           go-version: 1.19.x
           check-latest: true
       - name: Checkout avo
-        uses: actions/checkout@e2f20e631ae6d7dd3b768f56a5d2af784dd54791 # v2.5.0
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
         with:
           path: avo
           persist-credentials: false
       - name: Checkout segmentio/asm
-        uses: actions/checkout@e2f20e631ae6d7dd3b768f56a5d2af784dd54791 # v2.5.0
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
         with:
           repository: segmentio/asm
           ref: 2bf3fdd47b1cdbe8fe020f032caf14891e10a85f
@@ -650,12 +650,12 @@ jobs:
           go-version: 1.19.x
           check-latest: true
       - name: Checkout avo
-        uses: actions/checkout@e2f20e631ae6d7dd3b768f56a5d2af784dd54791 # v2.5.0
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
         with:
           path: avo
           persist-credentials: false
       - name: Checkout ericlagergren/lwcrypto
-        uses: actions/checkout@e2f20e631ae6d7dd3b768f56a5d2af784dd54791 # v2.5.0
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
         with:
           repository: ericlagergren/lwcrypto
           ref: 0c42b05eddc34c58bf8e0cd4250c5cd2c256ea57
@@ -687,12 +687,12 @@ jobs:
           go-version: 1.19.x
           check-latest: true
       - name: Checkout avo
-        uses: actions/checkout@e2f20e631ae6d7dd3b768f56a5d2af784dd54791 # v2.5.0
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
         with:
           path: avo
           persist-credentials: false
       - name: Checkout ericlagergren/lwcrypto
-        uses: actions/checkout@e2f20e631ae6d7dd3b768f56a5d2af784dd54791 # v2.5.0
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
         with:
           repository: ericlagergren/lwcrypto
           ref: 0c42b05eddc34c58bf8e0cd4250c5cd2c256ea57
@@ -724,12 +724,12 @@ jobs:
           go-version: 1.19.x
           check-latest: true
       - name: Checkout avo
-        uses: actions/checkout@e2f20e631ae6d7dd3b768f56a5d2af784dd54791 # v2.5.0
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
         with:
           path: avo
           persist-credentials: false
       - name: Checkout oasisprotocol/curve25519-voi
-        uses: actions/checkout@e2f20e631ae6d7dd3b768f56a5d2af784dd54791 # v2.5.0
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
         with:
           repository: oasisprotocol/curve25519-voi
           ref: d5a936accd94ef9da4c0fe9db0a6342dcdcfeadf
@@ -759,12 +759,12 @@ jobs:
           go-version: 1.19.x
           check-latest: true
       - name: Checkout avo
-        uses: actions/checkout@e2f20e631ae6d7dd3b768f56a5d2af784dd54791 # v2.5.0
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
         with:
           path: avo
           persist-credentials: false
       - name: Checkout oasisprotocol/deoxysii
-        uses: actions/checkout@e2f20e631ae6d7dd3b768f56a5d2af784dd54791 # v2.5.0
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
         with:
           repository: oasisprotocol/deoxysii
           ref: 2091330c22b71dd4e04e15306498e68f3a1b3afc
@@ -794,12 +794,12 @@ jobs:
           go-version: 1.19.x
           check-latest: true
       - name: Checkout avo
-        uses: actions/checkout@e2f20e631ae6d7dd3b768f56a5d2af784dd54791 # v2.5.0
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
         with:
           path: avo
           persist-credentials: false
       - name: Checkout golang/crypto
-        uses: actions/checkout@e2f20e631ae6d7dd3b768f56a5d2af784dd54791 # v2.5.0
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
         with:
           repository: golang/crypto
           ref: 089bfa5675191fd96a44247682f76ebca03d7916
@@ -829,12 +829,12 @@ jobs:
           go-version: 1.19.x
           check-latest: true
       - name: Checkout avo
-        uses: actions/checkout@e2f20e631ae6d7dd3b768f56a5d2af784dd54791 # v2.5.0
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
         with:
           path: avo
           persist-credentials: false
       - name: Checkout FiloSottile/edwards25519
-        uses: actions/checkout@e2f20e631ae6d7dd3b768f56a5d2af784dd54791 # v2.5.0
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
         with:
           repository: FiloSottile/edwards25519
           ref: v1.0.0-rc.1
@@ -864,12 +864,12 @@ jobs:
           go-version: 1.19.x
           check-latest: true
       - name: Checkout avo
-        uses: actions/checkout@e2f20e631ae6d7dd3b768f56a5d2af784dd54791 # v2.5.0
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
         with:
           path: avo
           persist-credentials: false
       - name: Checkout lukechampine/blake3
-        uses: actions/checkout@e2f20e631ae6d7dd3b768f56a5d2af784dd54791 # v2.5.0
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
         with:
           repository: lukechampine/blake3
           ref: v1.1.7
@@ -904,12 +904,12 @@ jobs:
           go-version: 1.19.x
           check-latest: true
       - name: Checkout avo
-        uses: actions/checkout@e2f20e631ae6d7dd3b768f56a5d2af784dd54791 # v2.5.0
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
         with:
           path: avo
           persist-credentials: false
       - name: Checkout mmcloughlin/md4
-        uses: actions/checkout@e2f20e631ae6d7dd3b768f56a5d2af784dd54791 # v2.5.0
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
         with:
           repository: mmcloughlin/md4
           ref: v0.1.2
@@ -939,12 +939,12 @@ jobs:
           go-version: 1.19.x
           check-latest: true
       - name: Checkout avo
-        uses: actions/checkout@e2f20e631ae6d7dd3b768f56a5d2af784dd54791 # v2.5.0
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
         with:
           path: avo
           persist-credentials: false
       - name: Checkout golang/go
-        uses: actions/checkout@e2f20e631ae6d7dd3b768f56a5d2af784dd54791 # v2.5.0
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
         with:
           repository: golang/go
           ref: go1.19
@@ -977,12 +977,12 @@ jobs:
           go-version: 1.19.x
           check-latest: true
       - name: Checkout avo
-        uses: actions/checkout@e2f20e631ae6d7dd3b768f56a5d2af784dd54791 # v2.5.0
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
         with:
           path: avo
           persist-credentials: false
       - name: Checkout cloudflare/circl
-        uses: actions/checkout@e2f20e631ae6d7dd3b768f56a5d2af784dd54791 # v2.5.0
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
         with:
           repository: cloudflare/circl
           ref: v1.1.0
@@ -1012,12 +1012,12 @@ jobs:
           go-version: 1.19.x
           check-latest: true
       - name: Checkout avo
-        uses: actions/checkout@e2f20e631ae6d7dd3b768f56a5d2af784dd54791 # v2.5.0
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
         with:
           path: avo
           persist-credentials: false
       - name: Checkout cloudflare/circl
-        uses: actions/checkout@e2f20e631ae6d7dd3b768f56a5d2af784dd54791 # v2.5.0
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
         with:
           repository: cloudflare/circl
           ref: v1.1.0
@@ -1047,12 +1047,12 @@ jobs:
           go-version: 1.19.x
           check-latest: true
       - name: Checkout avo
-        uses: actions/checkout@e2f20e631ae6d7dd3b768f56a5d2af784dd54791 # v2.5.0
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
         with:
           path: avo
           persist-credentials: false
       - name: Checkout cloudflare/circl
-        uses: actions/checkout@e2f20e631ae6d7dd3b768f56a5d2af784dd54791 # v2.5.0
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
         with:
           repository: cloudflare/circl
           ref: v1.1.0
