@@ -2,6 +2,7 @@ name: metadata
 permissions:
   contents: read
 on:
+  workflow_dispatch:
   schedule:
     - cron: "24 5 1 * *"
 jobs:
