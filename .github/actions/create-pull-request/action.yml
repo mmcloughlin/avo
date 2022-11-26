@@ -29,7 +29,7 @@ runs:
   steps:
     - name: Get Bot User
       id: bot
-      uses: actions/github-script@9ac08808f993958e9de277fe43a64532a609130e # v6.0.0
+      uses: actions/github-script@d556feaca394842dc55e4734bf3bb9f685482fa0 # v6.3.3
       with:
         script: |
           const res = await github.rest.users.getByUsername({username: '${{ inputs.bot }}'});
@@ -37,13 +37,13 @@ runs:
             core.setOutput(key, value)
           }
     - name: Generate App Token
-      uses: tibdex/github-app-token@586e1a624db6a5a4ac2c53daeeded60c5e3d50fe # v1.5.2
+      uses: tibdex/github-app-token@021a2405c7f990db57f5eae5397423dcc554159c # v1.7.0
       id: app
       with:
         app_id: ${{ inputs.app_id }}
         private_key: ${{ inputs.app_private_key }}
     - name: Create Pull Request
-      uses: peter-evans/create-pull-request@bd72e1b7922d417764d27d30768117ad7da78a0e # v4.0.2
+      uses: peter-evans/create-pull-request@331d02c7e2104af23ad5974d4d5cbc58a3e6dc77 # v4.2.2
       with:
         token: ${{ steps.app.outputs.token }}
         commit-message: ${{ inputs.title }}

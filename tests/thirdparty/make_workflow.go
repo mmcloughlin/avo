@@ -100,7 +100,7 @@ func GenerateWorkflow(s *thirdparty.Suite) ([]byte, error) {
 
 		// Install Go.
 		g.Linef("- name: Install Go")
-		g.Linef("  uses: actions/setup-go@f6164bd8c8acb4a71fb2791a8b6c4024ff038dab # v3.0.0")
+		g.Linef("  uses: actions/setup-go@c4a742cab115ed795e34d4513e2cf7d472deb55f # v3.3.1")
 		g.Linef("  with:")
 		g.Linef("    go-version: 1.19.x")
 		g.Linef("    check-latest: true")
@@ -108,7 +108,7 @@ func GenerateWorkflow(s *thirdparty.Suite) ([]byte, error) {
 		// Checkout avo.
 		avodir := "avo"
 		g.Linef("- name: Checkout avo")
-		g.Linef("  uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f # v2.3.4")
+		g.Linef("  uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0")
 		g.Linef("  with:")
 		g.Linef("    path: %s", avodir)
 		g.Linef("    persist-credentials: false")
@@ -116,7 +116,7 @@ func GenerateWorkflow(s *thirdparty.Suite) ([]byte, error) {
 		// Checkout the third-party package.
 		pkgdir := t.Project.Repository.Name
 		g.Linef("- name: Checkout %s", t.Project.Repository)
-		g.Linef("  uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f # v2.3.4")
+		g.Linef("  uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0")
 		g.Linef("  with:")
 		g.Linef("    repository: %s", t.Project.Repository)
 		g.Linef("    ref: %s", t.Project.Version)
