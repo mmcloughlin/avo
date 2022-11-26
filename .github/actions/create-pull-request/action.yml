@@ -29,7 +29,7 @@ runs:
   steps:
     - name: Get Bot User
       id: bot
-      uses: actions/github-script@9ac08808f993958e9de277fe43a64532a609130e # v6.0.0
+      uses: actions/github-script@d556feaca394842dc55e4734bf3bb9f685482fa0 # v6.3.3
       with:
         script: |
           const res = await github.rest.users.getByUsername({username: '${{ inputs.bot }}'});
