@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Generate Bot Token
-        uses: tibdex/github-app-token@586e1a624db6a5a4ac2c53daeeded60c5e3d50fe # v1.5.2
+        uses: tibdex/github-app-token@021a2405c7f990db57f5eae5397423dcc554159c # v1.7.0
         id: bot
         with:
           app_id: ${{ secrets.APP_ID }}
