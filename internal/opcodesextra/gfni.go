@@ -57,7 +57,6 @@ var gfni = []*inst.Instruction{
 //		{zcase: Zevex_i_rm_v_r, zoffset: 0, args: argList{Yu8, Yzm, Yzr, Yzr}},
 //		{zcase: Zevex_i_rm_v_k_r, zoffset: 3, args: argList{Yu8, Yzm, Yzr, Yknot0, Yzr}},
 //	}
-//
 var vgf2p8affineqb = inst.Forms{
 	// VEX.128.66.0F3A.W1 CE /r /ib VGF2P8AFFINEQB xmm1, xmm2, xmm3/m128, imm8
 	{
@@ -313,7 +312,6 @@ var vgf2p8affineqb = inst.Forms{
 //		{zcase: Zevex_rm_v_r, zoffset: 0, args: argList{Yzm, Yzr, Yzr}},
 //		{zcase: Zevex_rm_v_k_r, zoffset: 3, args: argList{Yzm, Yzr, Yknot0, Yzr}},
 //	}
-//
 var vgf2p8mulb = inst.Forms{
 	// VEX.128.66.0F38.W0 CF /r VGF2P8MULB xmm1, xmm2, xmm3/m128
 	{
