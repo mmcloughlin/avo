@@ -120,6 +120,7 @@ func typecases(i inst.Instruction) []typecase {
 	default:
 		return []typecase{
 			{"types.IsInteger", "types.IsInteger"},
+			{"types.IsBoolean", "types.IsBoolean"},
 		}
 	}
 }

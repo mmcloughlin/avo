@@ -4,4 +4,7 @@
 
 // func Not(x bool) bool
 TEXT ·Not(SB), NOSPLIT, $0-9
+	MOVB x+0(FP), AL
+	XORB $0x01, AL
+	MOVB AL, ret+8(FP)
 	RET
