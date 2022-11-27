@@ -1,3 +1,4 @@
+// Package opcodesextra provides curated extensions to the instruction database.
 package opcodesextra
 
 import "github.com/mmcloughlin/avo/internal/inst"
