@@ -80,8 +80,7 @@ func (l *Loader) Load() ([]inst.Instruction, error) {
 						Summary: i.Summary,
 					}
 				}
-				forms := l.forms(opcode, f)
-				im[opcode].Forms = append(im[opcode].Forms, forms...)
+				im[opcode].Forms = append(im[opcode].Forms, l.form(opcode, f))
 			}
 		}
 	}
@@ -89,6 +88,11 @@ func (l *Loader) Load() ([]inst.Instruction, error) {
 	// Add extras to our list.
 	for _, e := range opcodesextra.Instructions() {
 		im[e.Opcode] = e
+	}
+
+	// Generate additional AVX-512 forms.
+	for _, i := range im {
+		i.Forms = avx512forms(i.Opcode, i.Forms)
 	}
 
 	// Merge aliased forms. This is primarily for MOVQ (issue #50).
@@ -309,7 +313,7 @@ func (l Loader) gonames(f opcodesxml.Form) []string {
 	return []string{n}
 }
 
-func (l Loader) forms(opcode string, f opcodesxml.Form) []inst.Form {
+func (l Loader) form(opcode string, f opcodesxml.Form) inst.Form {
 	// Map operands to avo format and ensure correct order.
 	ops := operands(f.Operands)
 
@@ -366,34 +370,14 @@ func (l Loader) forms(opcode string, f opcodesxml.Form) []inst.Form {
 	}
 	sort.Strings(isas)
 
-	// Initialize form.
-	form := inst.Form{
+	// Build form.
+	return inst.Form{
 		ISA:              isas,
 		Operands:         ops,
 		ImplicitOperands: implicits,
 		EncodingType:     enctype(f),
 		CancellingInputs: f.CancellingInputs,
 	}
-
-	// Apply modification stages to produce final list of forms.
-	stages := []func(string, inst.Form) []inst.Form{
-		avx512rounding,
-		avx512sae,
-		avx512bcst,
-		avx512masking,
-		avx512zeroing,
-	}
-
-	forms := []inst.Form{form}
-	for _, stage := range stages {
-		var next []inst.Form
-		for _, f := range forms {
-			next = append(next, stage(opcode, f)...)
-		}
-		forms = next
-	}
-
-	return forms
 }
 
 // operands maps Opcodes XML operands to avo format. Returned in Intel order.
@@ -412,6 +396,31 @@ func operand(op opcodesxml.Operand) inst.Operand {
 		Type:   op.Type,
 		Action: inst.ActionFromReadWrite(op.Input, op.Output),
 	}
+}
+
+// avx512forms processes AVX-512 operands and expands them into additional
+// instruction forms as expected by the Go assembler.
+//
+// See: https://go.dev/wiki/AVX512
+func avx512forms(opcode string, forms []inst.Form) []inst.Form {
+	// Apply modification stages to produce final list of forms.
+	stages := []func(string, inst.Form) []inst.Form{
+		avx512rounding,
+		avx512sae,
+		avx512bcst,
+		avx512masking,
+		avx512zeroing,
+	}
+
+	for _, stage := range stages {
+		var next []inst.Form
+		for _, f := range forms {
+			next = append(next, stage(opcode, f)...)
+		}
+		forms = next
+	}
+
+	return forms
 }
 
 // avx512rounding handles AVX-512 embedded rounding. Opcodes database represents
