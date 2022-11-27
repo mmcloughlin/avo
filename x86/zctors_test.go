@@ -2009,33 +2009,6 @@ func TestEXTRACTPSValidFormsNoError(t *testing.T) {
 	}
 }
 
-func TestGF2P8AFFINEINVQBValidFormsNoError(t *testing.T) {
-	if _, err := GF2P8AFFINEINVQB(opimm8, opm128, opxmm); err != nil {
-		t.Fatal(err)
-	}
-	if _, err := GF2P8AFFINEINVQB(opimm8, opxmm, opxmm); err != nil {
-		t.Fatal(err)
-	}
-}
-
-func TestGF2P8AFFINEQBValidFormsNoError(t *testing.T) {
-	if _, err := GF2P8AFFINEQB(opimm8, opm128, opxmm); err != nil {
-		t.Fatal(err)
-	}
-	if _, err := GF2P8AFFINEQB(opimm8, opxmm, opxmm); err != nil {
-		t.Fatal(err)
-	}
-}
-
-func TestGF2P8MULBValidFormsNoError(t *testing.T) {
-	if _, err := GF2P8MULB(opimm8, opm128, opxmm); err != nil {
-		t.Fatal(err)
-	}
-	if _, err := GF2P8MULB(opimm8, opxmm, opxmm); err != nil {
-		t.Fatal(err)
-	}
-}
-
 func TestHADDPDValidFormsNoError(t *testing.T) {
 	if _, err := HADDPD(opm128, opxmm); err != nil {
 		t.Fatal(err)

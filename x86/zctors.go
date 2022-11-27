@@ -1940,36 +1940,6 @@ func EXTRACTPS(i, x, mr operand.Op) (*intrep.Instruction, error) {
 	return build(opcEXTRACTPS.Forms(), sffxs{}, []operand.Op{i, x, mr})
 }
 
-// GF2P8AFFINEINVQB: Galois Field Affine Transformation Inverse.
-//
-// Forms:
-//
-//	GF2P8AFFINEINVQB imm8 m128 xmm
-//	GF2P8AFFINEINVQB imm8 xmm  xmm
-func GF2P8AFFINEINVQB(i, mx, x operand.Op) (*intrep.Instruction, error) {
-	return build(opcGF2P8AFFINEINVQB.Forms(), sffxs{}, []operand.Op{i, mx, x})
-}
-
-// GF2P8AFFINEQB: Galois Field Affine Transformation.
-//
-// Forms:
-//
-//	GF2P8AFFINEQB imm8 m128 xmm
-//	GF2P8AFFINEQB imm8 xmm  xmm
-func GF2P8AFFINEQB(i, mx, x operand.Op) (*intrep.Instruction, error) {
-	return build(opcGF2P8AFFINEQB.Forms(), sffxs{}, []operand.Op{i, mx, x})
-}
-
-// GF2P8MULB: Galois Field Multiply Bytes.
-//
-// Forms:
-//
-//	GF2P8MULB imm8 m128 xmm
-//	GF2P8MULB imm8 xmm  xmm
-func GF2P8MULB(i, mx, x operand.Op) (*intrep.Instruction, error) {
-	return build(opcGF2P8MULB.Forms(), sffxs{}, []operand.Op{i, mx, x})
-}
-
 // HADDPD: Packed Double-FP Horizontal Add.
 //
 // Forms:

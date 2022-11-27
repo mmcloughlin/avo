@@ -3,32 +3,6 @@ package opcodesextra
 import "github.com/mmcloughlin/avo/internal/inst"
 
 var gfni = []*inst.Instruction{
-	// From https://www.felixcloutier.com/x86/gf2p8affineqb
-	{
-		Opcode:  "GF2P8AFFINEQB",
-		Summary: "Galois Field Affine Transformation",
-		Forms: []inst.Form{
-			// 66 0F3A CE /r /ib GF2P8AFFINEQB xmm1, xmm2/m128, imm8
-			{
-				Operands: []inst.Operand{
-					{Type: "imm8", Action: inst.R},
-					{Type: "xmm", Action: inst.R},
-					{Type: "xmm", Action: inst.W},
-				},
-				EncodingType: inst.EncodingTypeREX,
-				ISA:          []string{"SSE2", "GFNI"},
-			},
-			{
-				Operands: []inst.Operand{
-					{Type: "imm8", Action: inst.R},
-					{Type: "m128", Action: inst.R},
-					{Type: "xmm", Action: inst.W},
-				},
-				EncodingType: inst.EncodingTypeREX,
-				ISA:          []string{"SSE2", "GFNI"},
-			},
-		},
-	},
 	{
 		Opcode:  "VGF2P8AFFINEQB",
 		Summary: "Galois Field Affine Transformation",
@@ -275,32 +249,6 @@ var gfni = []*inst.Instruction{
 			},
 		},
 	},
-	// From https://www.felixcloutier.com/x86/gf2p8affineinvqb
-	{
-		Opcode:  "GF2P8AFFINEINVQB",
-		Summary: "Galois Field Affine Transformation Inverse",
-		Forms: []inst.Form{
-			// 66 0F3A CF /r /ib GF2P8AFFINEINVQB xmm1, xmm2/m128, imm8
-			{
-				Operands: []inst.Operand{
-					{Type: "imm8", Action: inst.R},
-					{Type: "xmm", Action: inst.R},
-					{Type: "xmm", Action: inst.W},
-				},
-				EncodingType: inst.EncodingTypeREX,
-				ISA:          []string{"SSE2", "GFNI"},
-			},
-			{
-				Operands: []inst.Operand{
-					{Type: "imm8", Action: inst.R},
-					{Type: "m128", Action: inst.R},
-					{Type: "xmm", Action: inst.W},
-				},
-				EncodingType: inst.EncodingTypeREX,
-				ISA:          []string{"SSE2", "GFNI"},
-			},
-		},
-	},
 	{
 		Opcode:  "VGF2P8AFFINEINVQB",
 		Summary: "Galois Field Affine Transformation Inverse",
@@ -544,32 +492,6 @@ var gfni = []*inst.Instruction{
 				EncodingType: inst.EncodingTypeEVEX,
 				ISA:          []string{"AVX512F", "GFNI"},
 				Broadcast:    true,
-			},
-		},
-	},
-	// From https://www.felixcloutier.com/x86/gf2p8mulb
-	{
-		Opcode:  "GF2P8MULB",
-		Summary: "Galois Field Multiply Bytes",
-		Forms: []inst.Form{
-			// 66 0F38 CF /r GF2P8MULB xmm1, xmm2/m128
-			{
-				Operands: []inst.Operand{
-					{Type: "imm8", Action: inst.R},
-					{Type: "xmm", Action: inst.R},
-					{Type: "xmm", Action: inst.W},
-				},
-				EncodingType: inst.EncodingTypeREX,
-				ISA:          []string{"SSE2", "GFNI"},
-			},
-			{
-				Operands: []inst.Operand{
-					{Type: "imm8", Action: inst.R},
-					{Type: "m128", Action: inst.R},
-					{Type: "xmm", Action: inst.W},
-				},
-				EncodingType: inst.EncodingTypeREX,
-				ISA:          []string{"SSE2", "GFNI"},
 			},
 		},
 	},
