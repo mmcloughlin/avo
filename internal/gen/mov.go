@@ -3,7 +3,6 @@ package gen
 import (
 	"errors"
 	"fmt"
-	"sort"
 	"strings"
 
 	"github.com/mmcloughlin/avo/internal/api"
@@ -48,7 +47,7 @@ func (m *mov) Generate(is []inst.Instruction) ([]byte, error) {
 }
 
 func (m *mov) instruction(i inst.Instruction) {
-	f := flags(i)
+	tcs := typecases(i)
 	mfs, err := movforms(i)
 	if err != nil {
 		m.AddError(err)
@@ -61,14 +60,12 @@ func (m *mov) instruction(i inst.Instruction) {
 			fmt.Sprintf("bn == %d", opsize[mf.B]),
 			fmt.Sprintf("%s(b)", api.CheckerName(mf.B)),
 		}
-		for c, on := range f {
-			cmp := map[bool]string{true: "!=", false: "=="}
-			cond := fmt.Sprintf("(t.Info() & %s) %s 0", c, cmp[on])
-			conds = append(conds, cond)
+
+		for _, tc := range tcs {
+			typecase := fmt.Sprintf("(t.Info() & %s) == %s", tc.Mask, tc.Match)
+			m.Printf("case %s && %s:\n", strings.Join(conds, " && "), typecase)
+			m.Printf("c.%s(a, b)\n", i.Opcode)
 		}
-		sort.Strings(conds)
-		m.Printf("case %s:\n", strings.Join(conds, " && "))
-		m.Printf("c.%s(a, b)\n", i.Opcode)
 	}
 }
 
@@ -100,21 +97,30 @@ func ismov(i inst.Instruction) bool {
 	return true
 }
 
-func flags(i inst.Instruction) map[string]bool {
-	f := map[string]bool{}
+type typecase struct {
+	Mask  string
+	Match string
+}
+
+func typecases(i inst.Instruction) []typecase {
 	switch {
 	case strings.Contains(i.Summary, "Floating-Point"):
-		f["types.IsFloat"] = true
+		return []typecase{
+			{"types.IsFloat", "types.IsFloat"},
+		}
 	case strings.Contains(i.Summary, "Zero-Extend"):
-		f["types.IsInteger"] = true
-		f["types.IsUnsigned"] = true
+		return []typecase{
+			{"(types.IsInteger|types.IsUnsigned)", "(types.IsInteger|types.IsUnsigned)"},
+		}
 	case strings.Contains(i.Summary, "Sign-Extension"):
-		f["types.IsInteger"] = true
-		f["types.IsUnsigned"] = false
+		return []typecase{
+			{"(types.IsInteger|types.IsUnsigned)", "types.IsInteger"},
+		}
 	default:
-		f["types.IsInteger"] = true
+		return []typecase{
+			{"types.IsInteger", "types.IsInteger"},
+		}
 	}
-	return f
 }
 
 type movform struct{ A, B string }

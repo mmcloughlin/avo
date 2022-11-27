@@ -10,261 +10,261 @@ import (
 
 func (c *Context) mov(a, b operand.Op, an, bn int, t *types.Basic) {
 	switch {
-	case (t.Info()&types.IsInteger) != 0 && an == 8 && bn == 8 && operand.IsK(a) && operand.IsK(b):
+	case an == 8 && operand.IsK(a) && bn == 8 && operand.IsK(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.KMOVB(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 8 && bn == 1 && operand.IsK(a) && operand.IsM8(b):
+	case an == 8 && operand.IsK(a) && bn == 1 && operand.IsM8(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.KMOVB(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 8 && bn == 4 && operand.IsK(a) && operand.IsR32(b):
+	case an == 8 && operand.IsK(a) && bn == 4 && operand.IsR32(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.KMOVB(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 1 && bn == 8 && operand.IsK(b) && operand.IsM8(a):
+	case an == 1 && operand.IsM8(a) && bn == 8 && operand.IsK(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.KMOVB(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 4 && bn == 8 && operand.IsK(b) && operand.IsR32(a):
+	case an == 4 && operand.IsR32(a) && bn == 8 && operand.IsK(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.KMOVB(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 8 && bn == 8 && operand.IsK(a) && operand.IsK(b):
+	case an == 8 && operand.IsK(a) && bn == 8 && operand.IsK(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.KMOVD(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 8 && bn == 4 && operand.IsK(a) && operand.IsM32(b):
+	case an == 8 && operand.IsK(a) && bn == 4 && operand.IsM32(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.KMOVD(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 8 && bn == 4 && operand.IsK(a) && operand.IsR32(b):
+	case an == 8 && operand.IsK(a) && bn == 4 && operand.IsR32(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.KMOVD(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 4 && bn == 8 && operand.IsK(b) && operand.IsM32(a):
+	case an == 4 && operand.IsM32(a) && bn == 8 && operand.IsK(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.KMOVD(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 4 && bn == 8 && operand.IsK(b) && operand.IsR32(a):
+	case an == 4 && operand.IsR32(a) && bn == 8 && operand.IsK(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.KMOVD(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 8 && bn == 8 && operand.IsK(a) && operand.IsK(b):
+	case an == 8 && operand.IsK(a) && bn == 8 && operand.IsK(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.KMOVQ(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 8 && bn == 8 && operand.IsK(a) && operand.IsM64(b):
+	case an == 8 && operand.IsK(a) && bn == 8 && operand.IsM64(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.KMOVQ(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 8 && bn == 8 && operand.IsK(a) && operand.IsR64(b):
+	case an == 8 && operand.IsK(a) && bn == 8 && operand.IsR64(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.KMOVQ(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 8 && bn == 8 && operand.IsK(b) && operand.IsM64(a):
+	case an == 8 && operand.IsM64(a) && bn == 8 && operand.IsK(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.KMOVQ(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 8 && bn == 8 && operand.IsK(b) && operand.IsR64(a):
+	case an == 8 && operand.IsR64(a) && bn == 8 && operand.IsK(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.KMOVQ(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 8 && bn == 8 && operand.IsK(a) && operand.IsK(b):
+	case an == 8 && operand.IsK(a) && bn == 8 && operand.IsK(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.KMOVW(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 8 && bn == 2 && operand.IsK(a) && operand.IsM16(b):
+	case an == 8 && operand.IsK(a) && bn == 2 && operand.IsM16(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.KMOVW(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 8 && bn == 4 && operand.IsK(a) && operand.IsR32(b):
+	case an == 8 && operand.IsK(a) && bn == 4 && operand.IsR32(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.KMOVW(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 2 && bn == 8 && operand.IsK(b) && operand.IsM16(a):
+	case an == 2 && operand.IsM16(a) && bn == 8 && operand.IsK(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.KMOVW(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 4 && bn == 8 && operand.IsK(b) && operand.IsR32(a):
+	case an == 4 && operand.IsR32(a) && bn == 8 && operand.IsK(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.KMOVW(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 1 && bn == 1 && operand.IsM8(a) && operand.IsR8(b):
+	case an == 1 && operand.IsM8(a) && bn == 1 && operand.IsR8(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.MOVB(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 1 && bn == 1 && operand.IsM8(b) && operand.IsR8(a):
+	case an == 1 && operand.IsR8(a) && bn == 1 && operand.IsM8(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.MOVB(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 1 && bn == 1 && operand.IsR8(a) && operand.IsR8(b):
+	case an == 1 && operand.IsR8(a) && bn == 1 && operand.IsR8(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.MOVB(a, b)
-	case (t.Info()&types.IsInteger) != 0 && (t.Info()&types.IsUnsigned) == 0 && an == 1 && bn == 4 && operand.IsM8(a) && operand.IsR32(b):
+	case an == 1 && operand.IsM8(a) && bn == 4 && operand.IsR32(b) && (t.Info()&(types.IsInteger|types.IsUnsigned)) == types.IsInteger:
 		c.MOVBLSX(a, b)
-	case (t.Info()&types.IsInteger) != 0 && (t.Info()&types.IsUnsigned) == 0 && an == 1 && bn == 4 && operand.IsR32(b) && operand.IsR8(a):
+	case an == 1 && operand.IsR8(a) && bn == 4 && operand.IsR32(b) && (t.Info()&(types.IsInteger|types.IsUnsigned)) == types.IsInteger:
 		c.MOVBLSX(a, b)
-	case (t.Info()&types.IsInteger) != 0 && (t.Info()&types.IsUnsigned) != 0 && an == 1 && bn == 4 && operand.IsM8(a) && operand.IsR32(b):
+	case an == 1 && operand.IsM8(a) && bn == 4 && operand.IsR32(b) && (t.Info()&(types.IsInteger|types.IsUnsigned)) == (types.IsInteger|types.IsUnsigned):
 		c.MOVBLZX(a, b)
-	case (t.Info()&types.IsInteger) != 0 && (t.Info()&types.IsUnsigned) != 0 && an == 1 && bn == 4 && operand.IsR32(b) && operand.IsR8(a):
+	case an == 1 && operand.IsR8(a) && bn == 4 && operand.IsR32(b) && (t.Info()&(types.IsInteger|types.IsUnsigned)) == (types.IsInteger|types.IsUnsigned):
 		c.MOVBLZX(a, b)
-	case (t.Info()&types.IsInteger) != 0 && (t.Info()&types.IsUnsigned) == 0 && an == 1 && bn == 8 && operand.IsM8(a) && operand.IsR64(b):
+	case an == 1 && operand.IsM8(a) && bn == 8 && operand.IsR64(b) && (t.Info()&(types.IsInteger|types.IsUnsigned)) == types.IsInteger:
 		c.MOVBQSX(a, b)
-	case (t.Info()&types.IsInteger) != 0 && (t.Info()&types.IsUnsigned) == 0 && an == 1 && bn == 8 && operand.IsR64(b) && operand.IsR8(a):
+	case an == 1 && operand.IsR8(a) && bn == 8 && operand.IsR64(b) && (t.Info()&(types.IsInteger|types.IsUnsigned)) == types.IsInteger:
 		c.MOVBQSX(a, b)
-	case (t.Info()&types.IsInteger) != 0 && (t.Info()&types.IsUnsigned) != 0 && an == 1 && bn == 8 && operand.IsM8(a) && operand.IsR64(b):
+	case an == 1 && operand.IsM8(a) && bn == 8 && operand.IsR64(b) && (t.Info()&(types.IsInteger|types.IsUnsigned)) == (types.IsInteger|types.IsUnsigned):
 		c.MOVBQZX(a, b)
-	case (t.Info()&types.IsInteger) != 0 && (t.Info()&types.IsUnsigned) != 0 && an == 1 && bn == 8 && operand.IsR64(b) && operand.IsR8(a):
+	case an == 1 && operand.IsR8(a) && bn == 8 && operand.IsR64(b) && (t.Info()&(types.IsInteger|types.IsUnsigned)) == (types.IsInteger|types.IsUnsigned):
 		c.MOVBQZX(a, b)
-	case (t.Info()&types.IsInteger) != 0 && (t.Info()&types.IsUnsigned) == 0 && an == 1 && bn == 2 && operand.IsM8(a) && operand.IsR16(b):
+	case an == 1 && operand.IsM8(a) && bn == 2 && operand.IsR16(b) && (t.Info()&(types.IsInteger|types.IsUnsigned)) == types.IsInteger:
 		c.MOVBWSX(a, b)
-	case (t.Info()&types.IsInteger) != 0 && (t.Info()&types.IsUnsigned) == 0 && an == 1 && bn == 2 && operand.IsR16(b) && operand.IsR8(a):
+	case an == 1 && operand.IsR8(a) && bn == 2 && operand.IsR16(b) && (t.Info()&(types.IsInteger|types.IsUnsigned)) == types.IsInteger:
 		c.MOVBWSX(a, b)
-	case (t.Info()&types.IsInteger) != 0 && (t.Info()&types.IsUnsigned) != 0 && an == 1 && bn == 2 && operand.IsM8(a) && operand.IsR16(b):
+	case an == 1 && operand.IsM8(a) && bn == 2 && operand.IsR16(b) && (t.Info()&(types.IsInteger|types.IsUnsigned)) == (types.IsInteger|types.IsUnsigned):
 		c.MOVBWZX(a, b)
-	case (t.Info()&types.IsInteger) != 0 && (t.Info()&types.IsUnsigned) != 0 && an == 1 && bn == 2 && operand.IsR16(b) && operand.IsR8(a):
+	case an == 1 && operand.IsR8(a) && bn == 2 && operand.IsR16(b) && (t.Info()&(types.IsInteger|types.IsUnsigned)) == (types.IsInteger|types.IsUnsigned):
 		c.MOVBWZX(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 4 && bn == 4 && operand.IsM32(a) && operand.IsR32(b):
+	case an == 4 && operand.IsM32(a) && bn == 4 && operand.IsR32(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.MOVL(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 4 && bn == 4 && operand.IsM32(b) && operand.IsR32(a):
+	case an == 4 && operand.IsR32(a) && bn == 4 && operand.IsM32(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.MOVL(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 4 && bn == 4 && operand.IsR32(a) && operand.IsR32(b):
+	case an == 4 && operand.IsR32(a) && bn == 4 && operand.IsR32(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.MOVL(a, b)
-	case (t.Info()&types.IsInteger) != 0 && (t.Info()&types.IsUnsigned) == 0 && an == 4 && bn == 8 && operand.IsM32(a) && operand.IsR64(b):
+	case an == 4 && operand.IsM32(a) && bn == 8 && operand.IsR64(b) && (t.Info()&(types.IsInteger|types.IsUnsigned)) == types.IsInteger:
 		c.MOVLQSX(a, b)
-	case (t.Info()&types.IsInteger) != 0 && (t.Info()&types.IsUnsigned) == 0 && an == 4 && bn == 8 && operand.IsR32(a) && operand.IsR64(b):
+	case an == 4 && operand.IsR32(a) && bn == 8 && operand.IsR64(b) && (t.Info()&(types.IsInteger|types.IsUnsigned)) == types.IsInteger:
 		c.MOVLQSX(a, b)
-	case (t.Info()&types.IsInteger) != 0 && (t.Info()&types.IsUnsigned) != 0 && an == 4 && bn == 8 && operand.IsM32(a) && operand.IsR64(b):
+	case an == 4 && operand.IsM32(a) && bn == 8 && operand.IsR64(b) && (t.Info()&(types.IsInteger|types.IsUnsigned)) == (types.IsInteger|types.IsUnsigned):
 		c.MOVLQZX(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 16 && bn == 16 && operand.IsM128(a) && operand.IsXMM(b):
+	case an == 16 && operand.IsM128(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.MOVOU(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 16 && bn == 16 && operand.IsM128(b) && operand.IsXMM(a):
+	case an == 16 && operand.IsXMM(a) && bn == 16 && operand.IsM128(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.MOVOU(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 16 && bn == 16 && operand.IsXMM(a) && operand.IsXMM(b):
+	case an == 16 && operand.IsXMM(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.MOVOU(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 4 && bn == 16 && operand.IsM32(a) && operand.IsXMM(b):
+	case an == 4 && operand.IsM32(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.MOVQ(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 8 && bn == 16 && operand.IsM64(a) && operand.IsXMM(b):
+	case an == 8 && operand.IsM64(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.MOVQ(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 4 && bn == 16 && operand.IsR32(a) && operand.IsXMM(b):
+	case an == 4 && operand.IsR32(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.MOVQ(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 8 && bn == 16 && operand.IsR64(a) && operand.IsXMM(b):
+	case an == 8 && operand.IsR64(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.MOVQ(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 16 && bn == 4 && operand.IsM32(b) && operand.IsXMM(a):
+	case an == 16 && operand.IsXMM(a) && bn == 4 && operand.IsM32(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.MOVQ(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 16 && bn == 8 && operand.IsM64(b) && operand.IsXMM(a):
+	case an == 16 && operand.IsXMM(a) && bn == 8 && operand.IsM64(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.MOVQ(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 16 && bn == 4 && operand.IsR32(b) && operand.IsXMM(a):
+	case an == 16 && operand.IsXMM(a) && bn == 4 && operand.IsR32(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.MOVQ(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 16 && bn == 8 && operand.IsR64(b) && operand.IsXMM(a):
+	case an == 16 && operand.IsXMM(a) && bn == 8 && operand.IsR64(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.MOVQ(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 16 && bn == 16 && operand.IsXMM(a) && operand.IsXMM(b):
+	case an == 16 && operand.IsXMM(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.MOVQ(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 8 && bn == 8 && operand.IsM64(a) && operand.IsR64(b):
+	case an == 8 && operand.IsM64(a) && bn == 8 && operand.IsR64(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.MOVQ(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 8 && bn == 8 && operand.IsM64(b) && operand.IsR64(a):
+	case an == 8 && operand.IsR64(a) && bn == 8 && operand.IsM64(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.MOVQ(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 8 && bn == 8 && operand.IsR64(a) && operand.IsR64(b):
+	case an == 8 && operand.IsR64(a) && bn == 8 && operand.IsR64(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.MOVQ(a, b)
-	case (t.Info()&types.IsFloat) != 0 && an == 8 && bn == 16 && operand.IsM64(a) && operand.IsXMM(b):
+	case an == 8 && operand.IsM64(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsFloat) == types.IsFloat:
 		c.MOVSD(a, b)
-	case (t.Info()&types.IsFloat) != 0 && an == 16 && bn == 8 && operand.IsM64(b) && operand.IsXMM(a):
+	case an == 16 && operand.IsXMM(a) && bn == 8 && operand.IsM64(b) && (t.Info()&types.IsFloat) == types.IsFloat:
 		c.MOVSD(a, b)
-	case (t.Info()&types.IsFloat) != 0 && an == 16 && bn == 16 && operand.IsXMM(a) && operand.IsXMM(b):
+	case an == 16 && operand.IsXMM(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsFloat) == types.IsFloat:
 		c.MOVSD(a, b)
-	case (t.Info()&types.IsFloat) != 0 && an == 4 && bn == 16 && operand.IsM32(a) && operand.IsXMM(b):
+	case an == 4 && operand.IsM32(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsFloat) == types.IsFloat:
 		c.MOVSS(a, b)
-	case (t.Info()&types.IsFloat) != 0 && an == 16 && bn == 4 && operand.IsM32(b) && operand.IsXMM(a):
+	case an == 16 && operand.IsXMM(a) && bn == 4 && operand.IsM32(b) && (t.Info()&types.IsFloat) == types.IsFloat:
 		c.MOVSS(a, b)
-	case (t.Info()&types.IsFloat) != 0 && an == 16 && bn == 16 && operand.IsXMM(a) && operand.IsXMM(b):
+	case an == 16 && operand.IsXMM(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsFloat) == types.IsFloat:
 		c.MOVSS(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 2 && bn == 2 && operand.IsM16(a) && operand.IsR16(b):
+	case an == 2 && operand.IsM16(a) && bn == 2 && operand.IsR16(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.MOVW(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 2 && bn == 2 && operand.IsM16(b) && operand.IsR16(a):
+	case an == 2 && operand.IsR16(a) && bn == 2 && operand.IsM16(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.MOVW(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 2 && bn == 2 && operand.IsR16(a) && operand.IsR16(b):
+	case an == 2 && operand.IsR16(a) && bn == 2 && operand.IsR16(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.MOVW(a, b)
-	case (t.Info()&types.IsInteger) != 0 && (t.Info()&types.IsUnsigned) == 0 && an == 2 && bn == 4 && operand.IsM16(a) && operand.IsR32(b):
+	case an == 2 && operand.IsM16(a) && bn == 4 && operand.IsR32(b) && (t.Info()&(types.IsInteger|types.IsUnsigned)) == types.IsInteger:
 		c.MOVWLSX(a, b)
-	case (t.Info()&types.IsInteger) != 0 && (t.Info()&types.IsUnsigned) == 0 && an == 2 && bn == 4 && operand.IsR16(a) && operand.IsR32(b):
+	case an == 2 && operand.IsR16(a) && bn == 4 && operand.IsR32(b) && (t.Info()&(types.IsInteger|types.IsUnsigned)) == types.IsInteger:
 		c.MOVWLSX(a, b)
-	case (t.Info()&types.IsInteger) != 0 && (t.Info()&types.IsUnsigned) != 0 && an == 2 && bn == 4 && operand.IsM16(a) && operand.IsR32(b):
+	case an == 2 && operand.IsM16(a) && bn == 4 && operand.IsR32(b) && (t.Info()&(types.IsInteger|types.IsUnsigned)) == (types.IsInteger|types.IsUnsigned):
 		c.MOVWLZX(a, b)
-	case (t.Info()&types.IsInteger) != 0 && (t.Info()&types.IsUnsigned) != 0 && an == 2 && bn == 4 && operand.IsR16(a) && operand.IsR32(b):
+	case an == 2 && operand.IsR16(a) && bn == 4 && operand.IsR32(b) && (t.Info()&(types.IsInteger|types.IsUnsigned)) == (types.IsInteger|types.IsUnsigned):
 		c.MOVWLZX(a, b)
-	case (t.Info()&types.IsInteger) != 0 && (t.Info()&types.IsUnsigned) == 0 && an == 2 && bn == 8 && operand.IsM16(a) && operand.IsR64(b):
+	case an == 2 && operand.IsM16(a) && bn == 8 && operand.IsR64(b) && (t.Info()&(types.IsInteger|types.IsUnsigned)) == types.IsInteger:
 		c.MOVWQSX(a, b)
-	case (t.Info()&types.IsInteger) != 0 && (t.Info()&types.IsUnsigned) == 0 && an == 2 && bn == 8 && operand.IsR16(a) && operand.IsR64(b):
+	case an == 2 && operand.IsR16(a) && bn == 8 && operand.IsR64(b) && (t.Info()&(types.IsInteger|types.IsUnsigned)) == types.IsInteger:
 		c.MOVWQSX(a, b)
-	case (t.Info()&types.IsInteger) != 0 && (t.Info()&types.IsUnsigned) != 0 && an == 2 && bn == 8 && operand.IsM16(a) && operand.IsR64(b):
+	case an == 2 && operand.IsM16(a) && bn == 8 && operand.IsR64(b) && (t.Info()&(types.IsInteger|types.IsUnsigned)) == (types.IsInteger|types.IsUnsigned):
 		c.MOVWQZX(a, b)
-	case (t.Info()&types.IsInteger) != 0 && (t.Info()&types.IsUnsigned) != 0 && an == 2 && bn == 8 && operand.IsR16(a) && operand.IsR64(b):
+	case an == 2 && operand.IsR16(a) && bn == 8 && operand.IsR64(b) && (t.Info()&(types.IsInteger|types.IsUnsigned)) == (types.IsInteger|types.IsUnsigned):
 		c.MOVWQZX(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 4 && bn == 16 && operand.IsM32(a) && operand.IsXMM(b):
+	case an == 4 && operand.IsM32(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.VMOVD(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 4 && bn == 16 && operand.IsR32(a) && operand.IsXMM(b):
+	case an == 4 && operand.IsR32(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.VMOVD(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 16 && bn == 4 && operand.IsM32(b) && operand.IsXMM(a):
+	case an == 16 && operand.IsXMM(a) && bn == 4 && operand.IsM32(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.VMOVD(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 16 && bn == 4 && operand.IsR32(b) && operand.IsXMM(a):
+	case an == 16 && operand.IsXMM(a) && bn == 4 && operand.IsR32(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.VMOVD(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 16 && bn == 16 && operand.IsM128(a) && operand.IsXMM(b):
+	case an == 16 && operand.IsM128(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.VMOVDQU(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 32 && bn == 32 && operand.IsM256(a) && operand.IsYMM(b):
+	case an == 32 && operand.IsM256(a) && bn == 32 && operand.IsYMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.VMOVDQU(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 16 && bn == 16 && operand.IsM128(b) && operand.IsXMM(a):
+	case an == 16 && operand.IsXMM(a) && bn == 16 && operand.IsM128(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.VMOVDQU(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 16 && bn == 16 && operand.IsXMM(a) && operand.IsXMM(b):
+	case an == 16 && operand.IsXMM(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.VMOVDQU(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 32 && bn == 32 && operand.IsM256(b) && operand.IsYMM(a):
+	case an == 32 && operand.IsYMM(a) && bn == 32 && operand.IsM256(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.VMOVDQU(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 32 && bn == 32 && operand.IsYMM(a) && operand.IsYMM(b):
+	case an == 32 && operand.IsYMM(a) && bn == 32 && operand.IsYMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.VMOVDQU(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 16 && bn == 16 && operand.IsM128(a) && operand.IsXMM(b):
+	case an == 16 && operand.IsM128(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.VMOVDQU16(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 32 && bn == 32 && operand.IsM256(a) && operand.IsYMM(b):
+	case an == 32 && operand.IsM256(a) && bn == 32 && operand.IsYMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.VMOVDQU16(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 16 && bn == 16 && operand.IsM128(b) && operand.IsXMM(a):
+	case an == 16 && operand.IsXMM(a) && bn == 16 && operand.IsM128(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.VMOVDQU16(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 16 && bn == 16 && operand.IsXMM(a) && operand.IsXMM(b):
+	case an == 16 && operand.IsXMM(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.VMOVDQU16(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 32 && bn == 32 && operand.IsM256(b) && operand.IsYMM(a):
+	case an == 32 && operand.IsYMM(a) && bn == 32 && operand.IsM256(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.VMOVDQU16(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 32 && bn == 32 && operand.IsYMM(a) && operand.IsYMM(b):
+	case an == 32 && operand.IsYMM(a) && bn == 32 && operand.IsYMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.VMOVDQU16(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 64 && bn == 64 && operand.IsM512(a) && operand.IsZMM(b):
+	case an == 64 && operand.IsM512(a) && bn == 64 && operand.IsZMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.VMOVDQU16(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 64 && bn == 64 && operand.IsM512(b) && operand.IsZMM(a):
+	case an == 64 && operand.IsZMM(a) && bn == 64 && operand.IsM512(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.VMOVDQU16(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 64 && bn == 64 && operand.IsZMM(a) && operand.IsZMM(b):
+	case an == 64 && operand.IsZMM(a) && bn == 64 && operand.IsZMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.VMOVDQU16(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 16 && bn == 16 && operand.IsM128(a) && operand.IsXMM(b):
+	case an == 16 && operand.IsM128(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.VMOVDQU32(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 32 && bn == 32 && operand.IsM256(a) && operand.IsYMM(b):
+	case an == 32 && operand.IsM256(a) && bn == 32 && operand.IsYMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.VMOVDQU32(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 16 && bn == 16 && operand.IsM128(b) && operand.IsXMM(a):
+	case an == 16 && operand.IsXMM(a) && bn == 16 && operand.IsM128(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.VMOVDQU32(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 16 && bn == 16 && operand.IsXMM(a) && operand.IsXMM(b):
+	case an == 16 && operand.IsXMM(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.VMOVDQU32(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 32 && bn == 32 && operand.IsM256(b) && operand.IsYMM(a):
+	case an == 32 && operand.IsYMM(a) && bn == 32 && operand.IsM256(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.VMOVDQU32(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 32 && bn == 32 && operand.IsYMM(a) && operand.IsYMM(b):
+	case an == 32 && operand.IsYMM(a) && bn == 32 && operand.IsYMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.VMOVDQU32(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 64 && bn == 64 && operand.IsM512(a) && operand.IsZMM(b):
+	case an == 64 && operand.IsM512(a) && bn == 64 && operand.IsZMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.VMOVDQU32(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 64 && bn == 64 && operand.IsM512(b) && operand.IsZMM(a):
+	case an == 64 && operand.IsZMM(a) && bn == 64 && operand.IsM512(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.VMOVDQU32(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 64 && bn == 64 && operand.IsZMM(a) && operand.IsZMM(b):
+	case an == 64 && operand.IsZMM(a) && bn == 64 && operand.IsZMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.VMOVDQU32(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 16 && bn == 16 && operand.IsM128(a) && operand.IsXMM(b):
+	case an == 16 && operand.IsM128(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.VMOVDQU64(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 32 && bn == 32 && operand.IsM256(a) && operand.IsYMM(b):
+	case an == 32 && operand.IsM256(a) && bn == 32 && operand.IsYMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.VMOVDQU64(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 16 && bn == 16 && operand.IsM128(b) && operand.IsXMM(a):
+	case an == 16 && operand.IsXMM(a) && bn == 16 && operand.IsM128(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.VMOVDQU64(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 16 && bn == 16 && operand.IsXMM(a) && operand.IsXMM(b):
+	case an == 16 && operand.IsXMM(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.VMOVDQU64(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 32 && bn == 32 && operand.IsM256(b) && operand.IsYMM(a):
+	case an == 32 && operand.IsYMM(a) && bn == 32 && operand.IsM256(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.VMOVDQU64(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 32 && bn == 32 && operand.IsYMM(a) && operand.IsYMM(b):
+	case an == 32 && operand.IsYMM(a) && bn == 32 && operand.IsYMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.VMOVDQU64(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 64 && bn == 64 && operand.IsM512(a) && operand.IsZMM(b):
+	case an == 64 && operand.IsM512(a) && bn == 64 && operand.IsZMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.VMOVDQU64(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 64 && bn == 64 && operand.IsM512(b) && operand.IsZMM(a):
+	case an == 64 && operand.IsZMM(a) && bn == 64 && operand.IsM512(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.VMOVDQU64(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 64 && bn == 64 && operand.IsZMM(a) && operand.IsZMM(b):
+	case an == 64 && operand.IsZMM(a) && bn == 64 && operand.IsZMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.VMOVDQU64(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 16 && bn == 16 && operand.IsM128(a) && operand.IsXMM(b):
+	case an == 16 && operand.IsM128(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.VMOVDQU8(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 32 && bn == 32 && operand.IsM256(a) && operand.IsYMM(b):
+	case an == 32 && operand.IsM256(a) && bn == 32 && operand.IsYMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.VMOVDQU8(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 16 && bn == 16 && operand.IsM128(b) && operand.IsXMM(a):
+	case an == 16 && operand.IsXMM(a) && bn == 16 && operand.IsM128(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.VMOVDQU8(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 16 && bn == 16 && operand.IsXMM(a) && operand.IsXMM(b):
+	case an == 16 && operand.IsXMM(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.VMOVDQU8(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 32 && bn == 32 && operand.IsM256(b) && operand.IsYMM(a):
+	case an == 32 && operand.IsYMM(a) && bn == 32 && operand.IsM256(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.VMOVDQU8(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 32 && bn == 32 && operand.IsYMM(a) && operand.IsYMM(b):
+	case an == 32 && operand.IsYMM(a) && bn == 32 && operand.IsYMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.VMOVDQU8(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 64 && bn == 64 && operand.IsM512(a) && operand.IsZMM(b):
+	case an == 64 && operand.IsM512(a) && bn == 64 && operand.IsZMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.VMOVDQU8(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 64 && bn == 64 && operand.IsM512(b) && operand.IsZMM(a):
+	case an == 64 && operand.IsZMM(a) && bn == 64 && operand.IsM512(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.VMOVDQU8(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 64 && bn == 64 && operand.IsZMM(a) && operand.IsZMM(b):
+	case an == 64 && operand.IsZMM(a) && bn == 64 && operand.IsZMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.VMOVDQU8(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 8 && bn == 16 && operand.IsM64(a) && operand.IsXMM(b):
+	case an == 8 && operand.IsM64(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.VMOVQ(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 8 && bn == 16 && operand.IsR64(a) && operand.IsXMM(b):
+	case an == 8 && operand.IsR64(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.VMOVQ(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 16 && bn == 8 && operand.IsM64(b) && operand.IsXMM(a):
+	case an == 16 && operand.IsXMM(a) && bn == 8 && operand.IsM64(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.VMOVQ(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 16 && bn == 8 && operand.IsR64(b) && operand.IsXMM(a):
+	case an == 16 && operand.IsXMM(a) && bn == 8 && operand.IsR64(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.VMOVQ(a, b)
-	case (t.Info()&types.IsInteger) != 0 && an == 16 && bn == 16 && operand.IsXMM(a) && operand.IsXMM(b):
+	case an == 16 && operand.IsXMM(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.VMOVQ(a, b)
-	case (t.Info()&types.IsFloat) != 0 && an == 8 && bn == 16 && operand.IsM64(a) && operand.IsXMM(b):
+	case an == 8 && operand.IsM64(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsFloat) == types.IsFloat:
 		c.VMOVSD(a, b)
-	case (t.Info()&types.IsFloat) != 0 && an == 16 && bn == 8 && operand.IsM64(b) && operand.IsXMM(a):
+	case an == 16 && operand.IsXMM(a) && bn == 8 && operand.IsM64(b) && (t.Info()&types.IsFloat) == types.IsFloat:
 		c.VMOVSD(a, b)
-	case (t.Info()&types.IsFloat) != 0 && an == 4 && bn == 16 && operand.IsM32(a) && operand.IsXMM(b):
+	case an == 4 && operand.IsM32(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsFloat) == types.IsFloat:
 		c.VMOVSS(a, b)
-	case (t.Info()&types.IsFloat) != 0 && an == 16 && bn == 4 && operand.IsM32(b) && operand.IsXMM(a):
+	case an == 16 && operand.IsXMM(a) && bn == 4 && operand.IsM32(b) && (t.Info()&types.IsFloat) == types.IsFloat:
 		c.VMOVSS(a, b)
 	default:
 		c.adderrormessage("could not deduce mov instruction")
