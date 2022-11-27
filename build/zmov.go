@@ -62,7 +62,11 @@ func (c *Context) mov(a, b operand.Op, an, bn int, t *types.Basic) {
 		c.MOVBLSX(a, b)
 	case an == 1 && operand.IsM8(a) && bn == 4 && operand.IsR32(b) && (t.Info()&(types.IsInteger|types.IsUnsigned)) == (types.IsInteger|types.IsUnsigned):
 		c.MOVBLZX(a, b)
+	case an == 1 && operand.IsM8(a) && bn == 4 && operand.IsR32(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
+		c.MOVBLZX(a, b)
 	case an == 1 && operand.IsR8(a) && bn == 4 && operand.IsR32(b) && (t.Info()&(types.IsInteger|types.IsUnsigned)) == (types.IsInteger|types.IsUnsigned):
+		c.MOVBLZX(a, b)
+	case an == 1 && operand.IsR8(a) && bn == 4 && operand.IsR32(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
 		c.MOVBLZX(a, b)
 	case an == 1 && operand.IsM8(a) && bn == 8 && operand.IsR64(b) && (t.Info()&(types.IsInteger|types.IsUnsigned)) == types.IsInteger:
 		c.MOVBQSX(a, b)
@@ -70,7 +74,11 @@ func (c *Context) mov(a, b operand.Op, an, bn int, t *types.Basic) {
 		c.MOVBQSX(a, b)
 	case an == 1 && operand.IsM8(a) && bn == 8 && operand.IsR64(b) && (t.Info()&(types.IsInteger|types.IsUnsigned)) == (types.IsInteger|types.IsUnsigned):
 		c.MOVBQZX(a, b)
+	case an == 1 && operand.IsM8(a) && bn == 8 && operand.IsR64(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
+		c.MOVBQZX(a, b)
 	case an == 1 && operand.IsR8(a) && bn == 8 && operand.IsR64(b) && (t.Info()&(types.IsInteger|types.IsUnsigned)) == (types.IsInteger|types.IsUnsigned):
+		c.MOVBQZX(a, b)
+	case an == 1 && operand.IsR8(a) && bn == 8 && operand.IsR64(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
 		c.MOVBQZX(a, b)
 	case an == 1 && operand.IsM8(a) && bn == 2 && operand.IsR16(b) && (t.Info()&(types.IsInteger|types.IsUnsigned)) == types.IsInteger:
 		c.MOVBWSX(a, b)
@@ -78,7 +86,11 @@ func (c *Context) mov(a, b operand.Op, an, bn int, t *types.Basic) {
 		c.MOVBWSX(a, b)
 	case an == 1 && operand.IsM8(a) && bn == 2 && operand.IsR16(b) && (t.Info()&(types.IsInteger|types.IsUnsigned)) == (types.IsInteger|types.IsUnsigned):
 		c.MOVBWZX(a, b)
+	case an == 1 && operand.IsM8(a) && bn == 2 && operand.IsR16(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
+		c.MOVBWZX(a, b)
 	case an == 1 && operand.IsR8(a) && bn == 2 && operand.IsR16(b) && (t.Info()&(types.IsInteger|types.IsUnsigned)) == (types.IsInteger|types.IsUnsigned):
+		c.MOVBWZX(a, b)
+	case an == 1 && operand.IsR8(a) && bn == 2 && operand.IsR16(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
 		c.MOVBWZX(a, b)
 	case an == 4 && operand.IsM32(a) && bn == 4 && operand.IsR32(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.MOVL(a, b)
@@ -91,6 +103,8 @@ func (c *Context) mov(a, b operand.Op, an, bn int, t *types.Basic) {
 	case an == 4 && operand.IsR32(a) && bn == 8 && operand.IsR64(b) && (t.Info()&(types.IsInteger|types.IsUnsigned)) == types.IsInteger:
 		c.MOVLQSX(a, b)
 	case an == 4 && operand.IsM32(a) && bn == 8 && operand.IsR64(b) && (t.Info()&(types.IsInteger|types.IsUnsigned)) == (types.IsInteger|types.IsUnsigned):
+		c.MOVLQZX(a, b)
+	case an == 4 && operand.IsM32(a) && bn == 8 && operand.IsR64(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
 		c.MOVLQZX(a, b)
 	case an == 16 && operand.IsM128(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.MOVOU(a, b)
@@ -146,7 +160,11 @@ func (c *Context) mov(a, b operand.Op, an, bn int, t *types.Basic) {
 		c.MOVWLSX(a, b)
 	case an == 2 && operand.IsM16(a) && bn == 4 && operand.IsR32(b) && (t.Info()&(types.IsInteger|types.IsUnsigned)) == (types.IsInteger|types.IsUnsigned):
 		c.MOVWLZX(a, b)
+	case an == 2 && operand.IsM16(a) && bn == 4 && operand.IsR32(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
+		c.MOVWLZX(a, b)
 	case an == 2 && operand.IsR16(a) && bn == 4 && operand.IsR32(b) && (t.Info()&(types.IsInteger|types.IsUnsigned)) == (types.IsInteger|types.IsUnsigned):
+		c.MOVWLZX(a, b)
+	case an == 2 && operand.IsR16(a) && bn == 4 && operand.IsR32(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
 		c.MOVWLZX(a, b)
 	case an == 2 && operand.IsM16(a) && bn == 8 && operand.IsR64(b) && (t.Info()&(types.IsInteger|types.IsUnsigned)) == types.IsInteger:
 		c.MOVWQSX(a, b)
@@ -154,7 +172,11 @@ func (c *Context) mov(a, b operand.Op, an, bn int, t *types.Basic) {
 		c.MOVWQSX(a, b)
 	case an == 2 && operand.IsM16(a) && bn == 8 && operand.IsR64(b) && (t.Info()&(types.IsInteger|types.IsUnsigned)) == (types.IsInteger|types.IsUnsigned):
 		c.MOVWQZX(a, b)
+	case an == 2 && operand.IsM16(a) && bn == 8 && operand.IsR64(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
+		c.MOVWQZX(a, b)
 	case an == 2 && operand.IsR16(a) && bn == 8 && operand.IsR64(b) && (t.Info()&(types.IsInteger|types.IsUnsigned)) == (types.IsInteger|types.IsUnsigned):
+		c.MOVWQZX(a, b)
+	case an == 2 && operand.IsR16(a) && bn == 8 && operand.IsR64(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
 		c.MOVWQZX(a, b)
 	case an == 4 && operand.IsM32(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
 		c.VMOVD(a, b)

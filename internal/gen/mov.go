@@ -111,6 +111,7 @@ func typecases(i inst.Instruction) []typecase {
 	case strings.Contains(i.Summary, "Zero-Extend"):
 		return []typecase{
 			{"(types.IsInteger|types.IsUnsigned)", "(types.IsInteger|types.IsUnsigned)"},
+			{"types.IsBoolean", "types.IsBoolean"},
 		}
 	case strings.Contains(i.Summary, "Sign-Extension"):
 		return []typecase{
