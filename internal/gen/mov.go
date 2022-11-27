@@ -62,7 +62,7 @@ func (m *mov) instruction(i inst.Instruction) {
 		}
 
 		for _, tc := range tcs {
-			typecase := fmt.Sprintf("(t.Info() & %s) == %s", tc.Mask, tc.Match)
+			typecase := fmt.Sprintf("(t.Info() & %s) %s %s", tc.Mask, tc.Op, tc.Value)
 			m.Printf("case %s && %s:\n", strings.Join(conds, " && "), typecase)
 			m.Printf("c.%s(a, b)\n", i.Opcode)
 		}
@@ -99,28 +99,28 @@ func ismov(i inst.Instruction) bool {
 
 type typecase struct {
 	Mask  string
-	Match string
+	Op    string
+	Value string
 }
 
 func typecases(i inst.Instruction) []typecase {
 	switch {
 	case strings.Contains(i.Summary, "Floating-Point"):
 		return []typecase{
-			{"types.IsFloat", "types.IsFloat"},
+			{"types.IsFloat", "!=", "0"},
 		}
 	case strings.Contains(i.Summary, "Zero-Extend"):
 		return []typecase{
-			{"(types.IsInteger|types.IsUnsigned)", "(types.IsInteger|types.IsUnsigned)"},
-			{"types.IsBoolean", "types.IsBoolean"},
+			{"(types.IsInteger|types.IsUnsigned)", "==", "(types.IsInteger|types.IsUnsigned)"},
+			{"types.IsBoolean", "!=", "0"},
 		}
 	case strings.Contains(i.Summary, "Sign-Extension"):
 		return []typecase{
-			{"(types.IsInteger|types.IsUnsigned)", "types.IsInteger"},
+			{"(types.IsInteger|types.IsUnsigned)", "==", "types.IsInteger"},
 		}
 	default:
 		return []typecase{
-			{"types.IsInteger", "types.IsInteger"},
-			{"types.IsBoolean", "types.IsBoolean"},
+			{"(types.IsInteger|types.IsBoolean)", "!=", "0"},
 		}
 	}
 }

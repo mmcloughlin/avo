@@ -10,97 +10,51 @@ import (
 
 func (c *Context) mov(a, b operand.Op, an, bn int, t *types.Basic) {
 	switch {
-	case an == 8 && operand.IsK(a) && bn == 8 && operand.IsK(b) && (t.Info()&types.IsInteger) == types.IsInteger:
+	case an == 8 && operand.IsK(a) && bn == 8 && operand.IsK(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.KMOVB(a, b)
-	case an == 8 && operand.IsK(a) && bn == 8 && operand.IsK(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
+	case an == 8 && operand.IsK(a) && bn == 1 && operand.IsM8(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.KMOVB(a, b)
-	case an == 8 && operand.IsK(a) && bn == 1 && operand.IsM8(b) && (t.Info()&types.IsInteger) == types.IsInteger:
+	case an == 8 && operand.IsK(a) && bn == 4 && operand.IsR32(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.KMOVB(a, b)
-	case an == 8 && operand.IsK(a) && bn == 1 && operand.IsM8(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
+	case an == 1 && operand.IsM8(a) && bn == 8 && operand.IsK(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.KMOVB(a, b)
-	case an == 8 && operand.IsK(a) && bn == 4 && operand.IsR32(b) && (t.Info()&types.IsInteger) == types.IsInteger:
+	case an == 4 && operand.IsR32(a) && bn == 8 && operand.IsK(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.KMOVB(a, b)
-	case an == 8 && operand.IsK(a) && bn == 4 && operand.IsR32(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
-		c.KMOVB(a, b)
-	case an == 1 && operand.IsM8(a) && bn == 8 && operand.IsK(b) && (t.Info()&types.IsInteger) == types.IsInteger:
-		c.KMOVB(a, b)
-	case an == 1 && operand.IsM8(a) && bn == 8 && operand.IsK(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
-		c.KMOVB(a, b)
-	case an == 4 && operand.IsR32(a) && bn == 8 && operand.IsK(b) && (t.Info()&types.IsInteger) == types.IsInteger:
-		c.KMOVB(a, b)
-	case an == 4 && operand.IsR32(a) && bn == 8 && operand.IsK(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
-		c.KMOVB(a, b)
-	case an == 8 && operand.IsK(a) && bn == 8 && operand.IsK(b) && (t.Info()&types.IsInteger) == types.IsInteger:
+	case an == 8 && operand.IsK(a) && bn == 8 && operand.IsK(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.KMOVD(a, b)
-	case an == 8 && operand.IsK(a) && bn == 8 && operand.IsK(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
+	case an == 8 && operand.IsK(a) && bn == 4 && operand.IsM32(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.KMOVD(a, b)
-	case an == 8 && operand.IsK(a) && bn == 4 && operand.IsM32(b) && (t.Info()&types.IsInteger) == types.IsInteger:
+	case an == 8 && operand.IsK(a) && bn == 4 && operand.IsR32(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.KMOVD(a, b)
-	case an == 8 && operand.IsK(a) && bn == 4 && operand.IsM32(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
+	case an == 4 && operand.IsM32(a) && bn == 8 && operand.IsK(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.KMOVD(a, b)
-	case an == 8 && operand.IsK(a) && bn == 4 && operand.IsR32(b) && (t.Info()&types.IsInteger) == types.IsInteger:
+	case an == 4 && operand.IsR32(a) && bn == 8 && operand.IsK(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.KMOVD(a, b)
-	case an == 8 && operand.IsK(a) && bn == 4 && operand.IsR32(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
-		c.KMOVD(a, b)
-	case an == 4 && operand.IsM32(a) && bn == 8 && operand.IsK(b) && (t.Info()&types.IsInteger) == types.IsInteger:
-		c.KMOVD(a, b)
-	case an == 4 && operand.IsM32(a) && bn == 8 && operand.IsK(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
-		c.KMOVD(a, b)
-	case an == 4 && operand.IsR32(a) && bn == 8 && operand.IsK(b) && (t.Info()&types.IsInteger) == types.IsInteger:
-		c.KMOVD(a, b)
-	case an == 4 && operand.IsR32(a) && bn == 8 && operand.IsK(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
-		c.KMOVD(a, b)
-	case an == 8 && operand.IsK(a) && bn == 8 && operand.IsK(b) && (t.Info()&types.IsInteger) == types.IsInteger:
+	case an == 8 && operand.IsK(a) && bn == 8 && operand.IsK(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.KMOVQ(a, b)
-	case an == 8 && operand.IsK(a) && bn == 8 && operand.IsK(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
+	case an == 8 && operand.IsK(a) && bn == 8 && operand.IsM64(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.KMOVQ(a, b)
-	case an == 8 && operand.IsK(a) && bn == 8 && operand.IsM64(b) && (t.Info()&types.IsInteger) == types.IsInteger:
+	case an == 8 && operand.IsK(a) && bn == 8 && operand.IsR64(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.KMOVQ(a, b)
-	case an == 8 && operand.IsK(a) && bn == 8 && operand.IsM64(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
+	case an == 8 && operand.IsM64(a) && bn == 8 && operand.IsK(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.KMOVQ(a, b)
-	case an == 8 && operand.IsK(a) && bn == 8 && operand.IsR64(b) && (t.Info()&types.IsInteger) == types.IsInteger:
+	case an == 8 && operand.IsR64(a) && bn == 8 && operand.IsK(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.KMOVQ(a, b)
-	case an == 8 && operand.IsK(a) && bn == 8 && operand.IsR64(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
-		c.KMOVQ(a, b)
-	case an == 8 && operand.IsM64(a) && bn == 8 && operand.IsK(b) && (t.Info()&types.IsInteger) == types.IsInteger:
-		c.KMOVQ(a, b)
-	case an == 8 && operand.IsM64(a) && bn == 8 && operand.IsK(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
-		c.KMOVQ(a, b)
-	case an == 8 && operand.IsR64(a) && bn == 8 && operand.IsK(b) && (t.Info()&types.IsInteger) == types.IsInteger:
-		c.KMOVQ(a, b)
-	case an == 8 && operand.IsR64(a) && bn == 8 && operand.IsK(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
-		c.KMOVQ(a, b)
-	case an == 8 && operand.IsK(a) && bn == 8 && operand.IsK(b) && (t.Info()&types.IsInteger) == types.IsInteger:
+	case an == 8 && operand.IsK(a) && bn == 8 && operand.IsK(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.KMOVW(a, b)
-	case an == 8 && operand.IsK(a) && bn == 8 && operand.IsK(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
+	case an == 8 && operand.IsK(a) && bn == 2 && operand.IsM16(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.KMOVW(a, b)
-	case an == 8 && operand.IsK(a) && bn == 2 && operand.IsM16(b) && (t.Info()&types.IsInteger) == types.IsInteger:
+	case an == 8 && operand.IsK(a) && bn == 4 && operand.IsR32(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.KMOVW(a, b)
-	case an == 8 && operand.IsK(a) && bn == 2 && operand.IsM16(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
+	case an == 2 && operand.IsM16(a) && bn == 8 && operand.IsK(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.KMOVW(a, b)
-	case an == 8 && operand.IsK(a) && bn == 4 && operand.IsR32(b) && (t.Info()&types.IsInteger) == types.IsInteger:
+	case an == 4 && operand.IsR32(a) && bn == 8 && operand.IsK(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.KMOVW(a, b)
-	case an == 8 && operand.IsK(a) && bn == 4 && operand.IsR32(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
-		c.KMOVW(a, b)
-	case an == 2 && operand.IsM16(a) && bn == 8 && operand.IsK(b) && (t.Info()&types.IsInteger) == types.IsInteger:
-		c.KMOVW(a, b)
-	case an == 2 && operand.IsM16(a) && bn == 8 && operand.IsK(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
-		c.KMOVW(a, b)
-	case an == 4 && operand.IsR32(a) && bn == 8 && operand.IsK(b) && (t.Info()&types.IsInteger) == types.IsInteger:
-		c.KMOVW(a, b)
-	case an == 4 && operand.IsR32(a) && bn == 8 && operand.IsK(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
-		c.KMOVW(a, b)
-	case an == 1 && operand.IsM8(a) && bn == 1 && operand.IsR8(b) && (t.Info()&types.IsInteger) == types.IsInteger:
+	case an == 1 && operand.IsM8(a) && bn == 1 && operand.IsR8(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.MOVB(a, b)
-	case an == 1 && operand.IsM8(a) && bn == 1 && operand.IsR8(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
+	case an == 1 && operand.IsR8(a) && bn == 1 && operand.IsM8(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.MOVB(a, b)
-	case an == 1 && operand.IsR8(a) && bn == 1 && operand.IsM8(b) && (t.Info()&types.IsInteger) == types.IsInteger:
-		c.MOVB(a, b)
-	case an == 1 && operand.IsR8(a) && bn == 1 && operand.IsM8(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
-		c.MOVB(a, b)
-	case an == 1 && operand.IsR8(a) && bn == 1 && operand.IsR8(b) && (t.Info()&types.IsInteger) == types.IsInteger:
-		c.MOVB(a, b)
-	case an == 1 && operand.IsR8(a) && bn == 1 && operand.IsR8(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
+	case an == 1 && operand.IsR8(a) && bn == 1 && operand.IsR8(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.MOVB(a, b)
 	case an == 1 && operand.IsM8(a) && bn == 4 && operand.IsR32(b) && (t.Info()&(types.IsInteger|types.IsUnsigned)) == types.IsInteger:
 		c.MOVBLSX(a, b)
@@ -108,11 +62,11 @@ func (c *Context) mov(a, b operand.Op, an, bn int, t *types.Basic) {
 		c.MOVBLSX(a, b)
 	case an == 1 && operand.IsM8(a) && bn == 4 && operand.IsR32(b) && (t.Info()&(types.IsInteger|types.IsUnsigned)) == (types.IsInteger|types.IsUnsigned):
 		c.MOVBLZX(a, b)
-	case an == 1 && operand.IsM8(a) && bn == 4 && operand.IsR32(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
+	case an == 1 && operand.IsM8(a) && bn == 4 && operand.IsR32(b) && (t.Info()&types.IsBoolean) != 0:
 		c.MOVBLZX(a, b)
 	case an == 1 && operand.IsR8(a) && bn == 4 && operand.IsR32(b) && (t.Info()&(types.IsInteger|types.IsUnsigned)) == (types.IsInteger|types.IsUnsigned):
 		c.MOVBLZX(a, b)
-	case an == 1 && operand.IsR8(a) && bn == 4 && operand.IsR32(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
+	case an == 1 && operand.IsR8(a) && bn == 4 && operand.IsR32(b) && (t.Info()&types.IsBoolean) != 0:
 		c.MOVBLZX(a, b)
 	case an == 1 && operand.IsM8(a) && bn == 8 && operand.IsR64(b) && (t.Info()&(types.IsInteger|types.IsUnsigned)) == types.IsInteger:
 		c.MOVBQSX(a, b)
@@ -120,11 +74,11 @@ func (c *Context) mov(a, b operand.Op, an, bn int, t *types.Basic) {
 		c.MOVBQSX(a, b)
 	case an == 1 && operand.IsM8(a) && bn == 8 && operand.IsR64(b) && (t.Info()&(types.IsInteger|types.IsUnsigned)) == (types.IsInteger|types.IsUnsigned):
 		c.MOVBQZX(a, b)
-	case an == 1 && operand.IsM8(a) && bn == 8 && operand.IsR64(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
+	case an == 1 && operand.IsM8(a) && bn == 8 && operand.IsR64(b) && (t.Info()&types.IsBoolean) != 0:
 		c.MOVBQZX(a, b)
 	case an == 1 && operand.IsR8(a) && bn == 8 && operand.IsR64(b) && (t.Info()&(types.IsInteger|types.IsUnsigned)) == (types.IsInteger|types.IsUnsigned):
 		c.MOVBQZX(a, b)
-	case an == 1 && operand.IsR8(a) && bn == 8 && operand.IsR64(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
+	case an == 1 && operand.IsR8(a) && bn == 8 && operand.IsR64(b) && (t.Info()&types.IsBoolean) != 0:
 		c.MOVBQZX(a, b)
 	case an == 1 && operand.IsM8(a) && bn == 2 && operand.IsR16(b) && (t.Info()&(types.IsInteger|types.IsUnsigned)) == types.IsInteger:
 		c.MOVBWSX(a, b)
@@ -132,23 +86,17 @@ func (c *Context) mov(a, b operand.Op, an, bn int, t *types.Basic) {
 		c.MOVBWSX(a, b)
 	case an == 1 && operand.IsM8(a) && bn == 2 && operand.IsR16(b) && (t.Info()&(types.IsInteger|types.IsUnsigned)) == (types.IsInteger|types.IsUnsigned):
 		c.MOVBWZX(a, b)
-	case an == 1 && operand.IsM8(a) && bn == 2 && operand.IsR16(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
+	case an == 1 && operand.IsM8(a) && bn == 2 && operand.IsR16(b) && (t.Info()&types.IsBoolean) != 0:
 		c.MOVBWZX(a, b)
 	case an == 1 && operand.IsR8(a) && bn == 2 && operand.IsR16(b) && (t.Info()&(types.IsInteger|types.IsUnsigned)) == (types.IsInteger|types.IsUnsigned):
 		c.MOVBWZX(a, b)
-	case an == 1 && operand.IsR8(a) && bn == 2 && operand.IsR16(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
+	case an == 1 && operand.IsR8(a) && bn == 2 && operand.IsR16(b) && (t.Info()&types.IsBoolean) != 0:
 		c.MOVBWZX(a, b)
-	case an == 4 && operand.IsM32(a) && bn == 4 && operand.IsR32(b) && (t.Info()&types.IsInteger) == types.IsInteger:
+	case an == 4 && operand.IsM32(a) && bn == 4 && operand.IsR32(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.MOVL(a, b)
-	case an == 4 && operand.IsM32(a) && bn == 4 && operand.IsR32(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
+	case an == 4 && operand.IsR32(a) && bn == 4 && operand.IsM32(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.MOVL(a, b)
-	case an == 4 && operand.IsR32(a) && bn == 4 && operand.IsM32(b) && (t.Info()&types.IsInteger) == types.IsInteger:
-		c.MOVL(a, b)
-	case an == 4 && operand.IsR32(a) && bn == 4 && operand.IsM32(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
-		c.MOVL(a, b)
-	case an == 4 && operand.IsR32(a) && bn == 4 && operand.IsR32(b) && (t.Info()&types.IsInteger) == types.IsInteger:
-		c.MOVL(a, b)
-	case an == 4 && operand.IsR32(a) && bn == 4 && operand.IsR32(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
+	case an == 4 && operand.IsR32(a) && bn == 4 && operand.IsR32(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.MOVL(a, b)
 	case an == 4 && operand.IsM32(a) && bn == 8 && operand.IsR64(b) && (t.Info()&(types.IsInteger|types.IsUnsigned)) == types.IsInteger:
 		c.MOVLQSX(a, b)
@@ -156,91 +104,55 @@ func (c *Context) mov(a, b operand.Op, an, bn int, t *types.Basic) {
 		c.MOVLQSX(a, b)
 	case an == 4 && operand.IsM32(a) && bn == 8 && operand.IsR64(b) && (t.Info()&(types.IsInteger|types.IsUnsigned)) == (types.IsInteger|types.IsUnsigned):
 		c.MOVLQZX(a, b)
-	case an == 4 && operand.IsM32(a) && bn == 8 && operand.IsR64(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
+	case an == 4 && operand.IsM32(a) && bn == 8 && operand.IsR64(b) && (t.Info()&types.IsBoolean) != 0:
 		c.MOVLQZX(a, b)
-	case an == 16 && operand.IsM128(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
+	case an == 16 && operand.IsM128(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.MOVOU(a, b)
-	case an == 16 && operand.IsM128(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
+	case an == 16 && operand.IsXMM(a) && bn == 16 && operand.IsM128(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.MOVOU(a, b)
-	case an == 16 && operand.IsXMM(a) && bn == 16 && operand.IsM128(b) && (t.Info()&types.IsInteger) == types.IsInteger:
+	case an == 16 && operand.IsXMM(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.MOVOU(a, b)
-	case an == 16 && operand.IsXMM(a) && bn == 16 && operand.IsM128(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
-		c.MOVOU(a, b)
-	case an == 16 && operand.IsXMM(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
-		c.MOVOU(a, b)
-	case an == 16 && operand.IsXMM(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
-		c.MOVOU(a, b)
-	case an == 4 && operand.IsM32(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
+	case an == 4 && operand.IsM32(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.MOVQ(a, b)
-	case an == 4 && operand.IsM32(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
+	case an == 8 && operand.IsM64(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.MOVQ(a, b)
-	case an == 8 && operand.IsM64(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
+	case an == 4 && operand.IsR32(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.MOVQ(a, b)
-	case an == 8 && operand.IsM64(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
+	case an == 8 && operand.IsR64(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.MOVQ(a, b)
-	case an == 4 && operand.IsR32(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
+	case an == 16 && operand.IsXMM(a) && bn == 4 && operand.IsM32(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.MOVQ(a, b)
-	case an == 4 && operand.IsR32(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
+	case an == 16 && operand.IsXMM(a) && bn == 8 && operand.IsM64(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.MOVQ(a, b)
-	case an == 8 && operand.IsR64(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
+	case an == 16 && operand.IsXMM(a) && bn == 4 && operand.IsR32(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.MOVQ(a, b)
-	case an == 8 && operand.IsR64(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
+	case an == 16 && operand.IsXMM(a) && bn == 8 && operand.IsR64(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.MOVQ(a, b)
-	case an == 16 && operand.IsXMM(a) && bn == 4 && operand.IsM32(b) && (t.Info()&types.IsInteger) == types.IsInteger:
+	case an == 16 && operand.IsXMM(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.MOVQ(a, b)
-	case an == 16 && operand.IsXMM(a) && bn == 4 && operand.IsM32(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
+	case an == 8 && operand.IsM64(a) && bn == 8 && operand.IsR64(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.MOVQ(a, b)
-	case an == 16 && operand.IsXMM(a) && bn == 8 && operand.IsM64(b) && (t.Info()&types.IsInteger) == types.IsInteger:
+	case an == 8 && operand.IsR64(a) && bn == 8 && operand.IsM64(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.MOVQ(a, b)
-	case an == 16 && operand.IsXMM(a) && bn == 8 && operand.IsM64(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
+	case an == 8 && operand.IsR64(a) && bn == 8 && operand.IsR64(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.MOVQ(a, b)
-	case an == 16 && operand.IsXMM(a) && bn == 4 && operand.IsR32(b) && (t.Info()&types.IsInteger) == types.IsInteger:
-		c.MOVQ(a, b)
-	case an == 16 && operand.IsXMM(a) && bn == 4 && operand.IsR32(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
-		c.MOVQ(a, b)
-	case an == 16 && operand.IsXMM(a) && bn == 8 && operand.IsR64(b) && (t.Info()&types.IsInteger) == types.IsInteger:
-		c.MOVQ(a, b)
-	case an == 16 && operand.IsXMM(a) && bn == 8 && operand.IsR64(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
-		c.MOVQ(a, b)
-	case an == 16 && operand.IsXMM(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
-		c.MOVQ(a, b)
-	case an == 16 && operand.IsXMM(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
-		c.MOVQ(a, b)
-	case an == 8 && operand.IsM64(a) && bn == 8 && operand.IsR64(b) && (t.Info()&types.IsInteger) == types.IsInteger:
-		c.MOVQ(a, b)
-	case an == 8 && operand.IsM64(a) && bn == 8 && operand.IsR64(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
-		c.MOVQ(a, b)
-	case an == 8 && operand.IsR64(a) && bn == 8 && operand.IsM64(b) && (t.Info()&types.IsInteger) == types.IsInteger:
-		c.MOVQ(a, b)
-	case an == 8 && operand.IsR64(a) && bn == 8 && operand.IsM64(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
-		c.MOVQ(a, b)
-	case an == 8 && operand.IsR64(a) && bn == 8 && operand.IsR64(b) && (t.Info()&types.IsInteger) == types.IsInteger:
-		c.MOVQ(a, b)
-	case an == 8 && operand.IsR64(a) && bn == 8 && operand.IsR64(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
-		c.MOVQ(a, b)
-	case an == 8 && operand.IsM64(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsFloat) == types.IsFloat:
+	case an == 8 && operand.IsM64(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsFloat) != 0:
 		c.MOVSD(a, b)
-	case an == 16 && operand.IsXMM(a) && bn == 8 && operand.IsM64(b) && (t.Info()&types.IsFloat) == types.IsFloat:
+	case an == 16 && operand.IsXMM(a) && bn == 8 && operand.IsM64(b) && (t.Info()&types.IsFloat) != 0:
 		c.MOVSD(a, b)
-	case an == 16 && operand.IsXMM(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsFloat) == types.IsFloat:
+	case an == 16 && operand.IsXMM(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsFloat) != 0:
 		c.MOVSD(a, b)
-	case an == 4 && operand.IsM32(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsFloat) == types.IsFloat:
+	case an == 4 && operand.IsM32(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsFloat) != 0:
 		c.MOVSS(a, b)
-	case an == 16 && operand.IsXMM(a) && bn == 4 && operand.IsM32(b) && (t.Info()&types.IsFloat) == types.IsFloat:
+	case an == 16 && operand.IsXMM(a) && bn == 4 && operand.IsM32(b) && (t.Info()&types.IsFloat) != 0:
 		c.MOVSS(a, b)
-	case an == 16 && operand.IsXMM(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsFloat) == types.IsFloat:
+	case an == 16 && operand.IsXMM(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsFloat) != 0:
 		c.MOVSS(a, b)
-	case an == 2 && operand.IsM16(a) && bn == 2 && operand.IsR16(b) && (t.Info()&types.IsInteger) == types.IsInteger:
+	case an == 2 && operand.IsM16(a) && bn == 2 && operand.IsR16(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.MOVW(a, b)
-	case an == 2 && operand.IsM16(a) && bn == 2 && operand.IsR16(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
+	case an == 2 && operand.IsR16(a) && bn == 2 && operand.IsM16(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.MOVW(a, b)
-	case an == 2 && operand.IsR16(a) && bn == 2 && operand.IsM16(b) && (t.Info()&types.IsInteger) == types.IsInteger:
-		c.MOVW(a, b)
-	case an == 2 && operand.IsR16(a) && bn == 2 && operand.IsM16(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
-		c.MOVW(a, b)
-	case an == 2 && operand.IsR16(a) && bn == 2 && operand.IsR16(b) && (t.Info()&types.IsInteger) == types.IsInteger:
-		c.MOVW(a, b)
-	case an == 2 && operand.IsR16(a) && bn == 2 && operand.IsR16(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
+	case an == 2 && operand.IsR16(a) && bn == 2 && operand.IsR16(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.MOVW(a, b)
 	case an == 2 && operand.IsM16(a) && bn == 4 && operand.IsR32(b) && (t.Info()&(types.IsInteger|types.IsUnsigned)) == types.IsInteger:
 		c.MOVWLSX(a, b)
@@ -248,11 +160,11 @@ func (c *Context) mov(a, b operand.Op, an, bn int, t *types.Basic) {
 		c.MOVWLSX(a, b)
 	case an == 2 && operand.IsM16(a) && bn == 4 && operand.IsR32(b) && (t.Info()&(types.IsInteger|types.IsUnsigned)) == (types.IsInteger|types.IsUnsigned):
 		c.MOVWLZX(a, b)
-	case an == 2 && operand.IsM16(a) && bn == 4 && operand.IsR32(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
+	case an == 2 && operand.IsM16(a) && bn == 4 && operand.IsR32(b) && (t.Info()&types.IsBoolean) != 0:
 		c.MOVWLZX(a, b)
 	case an == 2 && operand.IsR16(a) && bn == 4 && operand.IsR32(b) && (t.Info()&(types.IsInteger|types.IsUnsigned)) == (types.IsInteger|types.IsUnsigned):
 		c.MOVWLZX(a, b)
-	case an == 2 && operand.IsR16(a) && bn == 4 && operand.IsR32(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
+	case an == 2 && operand.IsR16(a) && bn == 4 && operand.IsR32(b) && (t.Info()&types.IsBoolean) != 0:
 		c.MOVWLZX(a, b)
 	case an == 2 && operand.IsM16(a) && bn == 8 && operand.IsR64(b) && (t.Info()&(types.IsInteger|types.IsUnsigned)) == types.IsInteger:
 		c.MOVWQSX(a, b)
@@ -260,223 +172,121 @@ func (c *Context) mov(a, b operand.Op, an, bn int, t *types.Basic) {
 		c.MOVWQSX(a, b)
 	case an == 2 && operand.IsM16(a) && bn == 8 && operand.IsR64(b) && (t.Info()&(types.IsInteger|types.IsUnsigned)) == (types.IsInteger|types.IsUnsigned):
 		c.MOVWQZX(a, b)
-	case an == 2 && operand.IsM16(a) && bn == 8 && operand.IsR64(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
+	case an == 2 && operand.IsM16(a) && bn == 8 && operand.IsR64(b) && (t.Info()&types.IsBoolean) != 0:
 		c.MOVWQZX(a, b)
 	case an == 2 && operand.IsR16(a) && bn == 8 && operand.IsR64(b) && (t.Info()&(types.IsInteger|types.IsUnsigned)) == (types.IsInteger|types.IsUnsigned):
 		c.MOVWQZX(a, b)
-	case an == 2 && operand.IsR16(a) && bn == 8 && operand.IsR64(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
+	case an == 2 && operand.IsR16(a) && bn == 8 && operand.IsR64(b) && (t.Info()&types.IsBoolean) != 0:
 		c.MOVWQZX(a, b)
-	case an == 4 && operand.IsM32(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
+	case an == 4 && operand.IsM32(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.VMOVD(a, b)
-	case an == 4 && operand.IsM32(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
+	case an == 4 && operand.IsR32(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.VMOVD(a, b)
-	case an == 4 && operand.IsR32(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
+	case an == 16 && operand.IsXMM(a) && bn == 4 && operand.IsM32(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.VMOVD(a, b)
-	case an == 4 && operand.IsR32(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
+	case an == 16 && operand.IsXMM(a) && bn == 4 && operand.IsR32(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.VMOVD(a, b)
-	case an == 16 && operand.IsXMM(a) && bn == 4 && operand.IsM32(b) && (t.Info()&types.IsInteger) == types.IsInteger:
-		c.VMOVD(a, b)
-	case an == 16 && operand.IsXMM(a) && bn == 4 && operand.IsM32(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
-		c.VMOVD(a, b)
-	case an == 16 && operand.IsXMM(a) && bn == 4 && operand.IsR32(b) && (t.Info()&types.IsInteger) == types.IsInteger:
-		c.VMOVD(a, b)
-	case an == 16 && operand.IsXMM(a) && bn == 4 && operand.IsR32(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
-		c.VMOVD(a, b)
-	case an == 16 && operand.IsM128(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
+	case an == 16 && operand.IsM128(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.VMOVDQU(a, b)
-	case an == 16 && operand.IsM128(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
+	case an == 32 && operand.IsM256(a) && bn == 32 && operand.IsYMM(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.VMOVDQU(a, b)
-	case an == 32 && operand.IsM256(a) && bn == 32 && operand.IsYMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
+	case an == 16 && operand.IsXMM(a) && bn == 16 && operand.IsM128(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.VMOVDQU(a, b)
-	case an == 32 && operand.IsM256(a) && bn == 32 && operand.IsYMM(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
+	case an == 16 && operand.IsXMM(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.VMOVDQU(a, b)
-	case an == 16 && operand.IsXMM(a) && bn == 16 && operand.IsM128(b) && (t.Info()&types.IsInteger) == types.IsInteger:
+	case an == 32 && operand.IsYMM(a) && bn == 32 && operand.IsM256(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.VMOVDQU(a, b)
-	case an == 16 && operand.IsXMM(a) && bn == 16 && operand.IsM128(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
+	case an == 32 && operand.IsYMM(a) && bn == 32 && operand.IsYMM(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.VMOVDQU(a, b)
-	case an == 16 && operand.IsXMM(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
-		c.VMOVDQU(a, b)
-	case an == 16 && operand.IsXMM(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
-		c.VMOVDQU(a, b)
-	case an == 32 && operand.IsYMM(a) && bn == 32 && operand.IsM256(b) && (t.Info()&types.IsInteger) == types.IsInteger:
-		c.VMOVDQU(a, b)
-	case an == 32 && operand.IsYMM(a) && bn == 32 && operand.IsM256(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
-		c.VMOVDQU(a, b)
-	case an == 32 && operand.IsYMM(a) && bn == 32 && operand.IsYMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
-		c.VMOVDQU(a, b)
-	case an == 32 && operand.IsYMM(a) && bn == 32 && operand.IsYMM(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
-		c.VMOVDQU(a, b)
-	case an == 16 && operand.IsM128(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
+	case an == 16 && operand.IsM128(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.VMOVDQU16(a, b)
-	case an == 16 && operand.IsM128(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
+	case an == 32 && operand.IsM256(a) && bn == 32 && operand.IsYMM(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.VMOVDQU16(a, b)
-	case an == 32 && operand.IsM256(a) && bn == 32 && operand.IsYMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
+	case an == 16 && operand.IsXMM(a) && bn == 16 && operand.IsM128(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.VMOVDQU16(a, b)
-	case an == 32 && operand.IsM256(a) && bn == 32 && operand.IsYMM(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
+	case an == 16 && operand.IsXMM(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.VMOVDQU16(a, b)
-	case an == 16 && operand.IsXMM(a) && bn == 16 && operand.IsM128(b) && (t.Info()&types.IsInteger) == types.IsInteger:
+	case an == 32 && operand.IsYMM(a) && bn == 32 && operand.IsM256(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.VMOVDQU16(a, b)
-	case an == 16 && operand.IsXMM(a) && bn == 16 && operand.IsM128(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
+	case an == 32 && operand.IsYMM(a) && bn == 32 && operand.IsYMM(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.VMOVDQU16(a, b)
-	case an == 16 && operand.IsXMM(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
+	case an == 64 && operand.IsM512(a) && bn == 64 && operand.IsZMM(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.VMOVDQU16(a, b)
-	case an == 16 && operand.IsXMM(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
+	case an == 64 && operand.IsZMM(a) && bn == 64 && operand.IsM512(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.VMOVDQU16(a, b)
-	case an == 32 && operand.IsYMM(a) && bn == 32 && operand.IsM256(b) && (t.Info()&types.IsInteger) == types.IsInteger:
+	case an == 64 && operand.IsZMM(a) && bn == 64 && operand.IsZMM(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.VMOVDQU16(a, b)
-	case an == 32 && operand.IsYMM(a) && bn == 32 && operand.IsM256(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
-		c.VMOVDQU16(a, b)
-	case an == 32 && operand.IsYMM(a) && bn == 32 && operand.IsYMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
-		c.VMOVDQU16(a, b)
-	case an == 32 && operand.IsYMM(a) && bn == 32 && operand.IsYMM(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
-		c.VMOVDQU16(a, b)
-	case an == 64 && operand.IsM512(a) && bn == 64 && operand.IsZMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
-		c.VMOVDQU16(a, b)
-	case an == 64 && operand.IsM512(a) && bn == 64 && operand.IsZMM(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
-		c.VMOVDQU16(a, b)
-	case an == 64 && operand.IsZMM(a) && bn == 64 && operand.IsM512(b) && (t.Info()&types.IsInteger) == types.IsInteger:
-		c.VMOVDQU16(a, b)
-	case an == 64 && operand.IsZMM(a) && bn == 64 && operand.IsM512(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
-		c.VMOVDQU16(a, b)
-	case an == 64 && operand.IsZMM(a) && bn == 64 && operand.IsZMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
-		c.VMOVDQU16(a, b)
-	case an == 64 && operand.IsZMM(a) && bn == 64 && operand.IsZMM(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
-		c.VMOVDQU16(a, b)
-	case an == 16 && operand.IsM128(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
+	case an == 16 && operand.IsM128(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.VMOVDQU32(a, b)
-	case an == 16 && operand.IsM128(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
+	case an == 32 && operand.IsM256(a) && bn == 32 && operand.IsYMM(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.VMOVDQU32(a, b)
-	case an == 32 && operand.IsM256(a) && bn == 32 && operand.IsYMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
+	case an == 16 && operand.IsXMM(a) && bn == 16 && operand.IsM128(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.VMOVDQU32(a, b)
-	case an == 32 && operand.IsM256(a) && bn == 32 && operand.IsYMM(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
+	case an == 16 && operand.IsXMM(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.VMOVDQU32(a, b)
-	case an == 16 && operand.IsXMM(a) && bn == 16 && operand.IsM128(b) && (t.Info()&types.IsInteger) == types.IsInteger:
+	case an == 32 && operand.IsYMM(a) && bn == 32 && operand.IsM256(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.VMOVDQU32(a, b)
-	case an == 16 && operand.IsXMM(a) && bn == 16 && operand.IsM128(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
+	case an == 32 && operand.IsYMM(a) && bn == 32 && operand.IsYMM(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.VMOVDQU32(a, b)
-	case an == 16 && operand.IsXMM(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
+	case an == 64 && operand.IsM512(a) && bn == 64 && operand.IsZMM(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.VMOVDQU32(a, b)
-	case an == 16 && operand.IsXMM(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
+	case an == 64 && operand.IsZMM(a) && bn == 64 && operand.IsM512(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.VMOVDQU32(a, b)
-	case an == 32 && operand.IsYMM(a) && bn == 32 && operand.IsM256(b) && (t.Info()&types.IsInteger) == types.IsInteger:
+	case an == 64 && operand.IsZMM(a) && bn == 64 && operand.IsZMM(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.VMOVDQU32(a, b)
-	case an == 32 && operand.IsYMM(a) && bn == 32 && operand.IsM256(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
-		c.VMOVDQU32(a, b)
-	case an == 32 && operand.IsYMM(a) && bn == 32 && operand.IsYMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
-		c.VMOVDQU32(a, b)
-	case an == 32 && operand.IsYMM(a) && bn == 32 && operand.IsYMM(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
-		c.VMOVDQU32(a, b)
-	case an == 64 && operand.IsM512(a) && bn == 64 && operand.IsZMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
-		c.VMOVDQU32(a, b)
-	case an == 64 && operand.IsM512(a) && bn == 64 && operand.IsZMM(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
-		c.VMOVDQU32(a, b)
-	case an == 64 && operand.IsZMM(a) && bn == 64 && operand.IsM512(b) && (t.Info()&types.IsInteger) == types.IsInteger:
-		c.VMOVDQU32(a, b)
-	case an == 64 && operand.IsZMM(a) && bn == 64 && operand.IsM512(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
-		c.VMOVDQU32(a, b)
-	case an == 64 && operand.IsZMM(a) && bn == 64 && operand.IsZMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
-		c.VMOVDQU32(a, b)
-	case an == 64 && operand.IsZMM(a) && bn == 64 && operand.IsZMM(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
-		c.VMOVDQU32(a, b)
-	case an == 16 && operand.IsM128(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
+	case an == 16 && operand.IsM128(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.VMOVDQU64(a, b)
-	case an == 16 && operand.IsM128(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
+	case an == 32 && operand.IsM256(a) && bn == 32 && operand.IsYMM(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.VMOVDQU64(a, b)
-	case an == 32 && operand.IsM256(a) && bn == 32 && operand.IsYMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
+	case an == 16 && operand.IsXMM(a) && bn == 16 && operand.IsM128(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.VMOVDQU64(a, b)
-	case an == 32 && operand.IsM256(a) && bn == 32 && operand.IsYMM(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
+	case an == 16 && operand.IsXMM(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.VMOVDQU64(a, b)
-	case an == 16 && operand.IsXMM(a) && bn == 16 && operand.IsM128(b) && (t.Info()&types.IsInteger) == types.IsInteger:
+	case an == 32 && operand.IsYMM(a) && bn == 32 && operand.IsM256(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.VMOVDQU64(a, b)
-	case an == 16 && operand.IsXMM(a) && bn == 16 && operand.IsM128(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
+	case an == 32 && operand.IsYMM(a) && bn == 32 && operand.IsYMM(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.VMOVDQU64(a, b)
-	case an == 16 && operand.IsXMM(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
+	case an == 64 && operand.IsM512(a) && bn == 64 && operand.IsZMM(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.VMOVDQU64(a, b)
-	case an == 16 && operand.IsXMM(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
+	case an == 64 && operand.IsZMM(a) && bn == 64 && operand.IsM512(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.VMOVDQU64(a, b)
-	case an == 32 && operand.IsYMM(a) && bn == 32 && operand.IsM256(b) && (t.Info()&types.IsInteger) == types.IsInteger:
+	case an == 64 && operand.IsZMM(a) && bn == 64 && operand.IsZMM(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.VMOVDQU64(a, b)
-	case an == 32 && operand.IsYMM(a) && bn == 32 && operand.IsM256(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
-		c.VMOVDQU64(a, b)
-	case an == 32 && operand.IsYMM(a) && bn == 32 && operand.IsYMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
-		c.VMOVDQU64(a, b)
-	case an == 32 && operand.IsYMM(a) && bn == 32 && operand.IsYMM(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
-		c.VMOVDQU64(a, b)
-	case an == 64 && operand.IsM512(a) && bn == 64 && operand.IsZMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
-		c.VMOVDQU64(a, b)
-	case an == 64 && operand.IsM512(a) && bn == 64 && operand.IsZMM(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
-		c.VMOVDQU64(a, b)
-	case an == 64 && operand.IsZMM(a) && bn == 64 && operand.IsM512(b) && (t.Info()&types.IsInteger) == types.IsInteger:
-		c.VMOVDQU64(a, b)
-	case an == 64 && operand.IsZMM(a) && bn == 64 && operand.IsM512(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
-		c.VMOVDQU64(a, b)
-	case an == 64 && operand.IsZMM(a) && bn == 64 && operand.IsZMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
-		c.VMOVDQU64(a, b)
-	case an == 64 && operand.IsZMM(a) && bn == 64 && operand.IsZMM(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
-		c.VMOVDQU64(a, b)
-	case an == 16 && operand.IsM128(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
+	case an == 16 && operand.IsM128(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.VMOVDQU8(a, b)
-	case an == 16 && operand.IsM128(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
+	case an == 32 && operand.IsM256(a) && bn == 32 && operand.IsYMM(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.VMOVDQU8(a, b)
-	case an == 32 && operand.IsM256(a) && bn == 32 && operand.IsYMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
+	case an == 16 && operand.IsXMM(a) && bn == 16 && operand.IsM128(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.VMOVDQU8(a, b)
-	case an == 32 && operand.IsM256(a) && bn == 32 && operand.IsYMM(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
+	case an == 16 && operand.IsXMM(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.VMOVDQU8(a, b)
-	case an == 16 && operand.IsXMM(a) && bn == 16 && operand.IsM128(b) && (t.Info()&types.IsInteger) == types.IsInteger:
+	case an == 32 && operand.IsYMM(a) && bn == 32 && operand.IsM256(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.VMOVDQU8(a, b)
-	case an == 16 && operand.IsXMM(a) && bn == 16 && operand.IsM128(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
+	case an == 32 && operand.IsYMM(a) && bn == 32 && operand.IsYMM(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.VMOVDQU8(a, b)
-	case an == 16 && operand.IsXMM(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
+	case an == 64 && operand.IsM512(a) && bn == 64 && operand.IsZMM(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.VMOVDQU8(a, b)
-	case an == 16 && operand.IsXMM(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
+	case an == 64 && operand.IsZMM(a) && bn == 64 && operand.IsM512(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.VMOVDQU8(a, b)
-	case an == 32 && operand.IsYMM(a) && bn == 32 && operand.IsM256(b) && (t.Info()&types.IsInteger) == types.IsInteger:
+	case an == 64 && operand.IsZMM(a) && bn == 64 && operand.IsZMM(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.VMOVDQU8(a, b)
-	case an == 32 && operand.IsYMM(a) && bn == 32 && operand.IsM256(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
-		c.VMOVDQU8(a, b)
-	case an == 32 && operand.IsYMM(a) && bn == 32 && operand.IsYMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
-		c.VMOVDQU8(a, b)
-	case an == 32 && operand.IsYMM(a) && bn == 32 && operand.IsYMM(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
-		c.VMOVDQU8(a, b)
-	case an == 64 && operand.IsM512(a) && bn == 64 && operand.IsZMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
-		c.VMOVDQU8(a, b)
-	case an == 64 && operand.IsM512(a) && bn == 64 && operand.IsZMM(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
-		c.VMOVDQU8(a, b)
-	case an == 64 && operand.IsZMM(a) && bn == 64 && operand.IsM512(b) && (t.Info()&types.IsInteger) == types.IsInteger:
-		c.VMOVDQU8(a, b)
-	case an == 64 && operand.IsZMM(a) && bn == 64 && operand.IsM512(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
-		c.VMOVDQU8(a, b)
-	case an == 64 && operand.IsZMM(a) && bn == 64 && operand.IsZMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
-		c.VMOVDQU8(a, b)
-	case an == 64 && operand.IsZMM(a) && bn == 64 && operand.IsZMM(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
-		c.VMOVDQU8(a, b)
-	case an == 8 && operand.IsM64(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
+	case an == 8 && operand.IsM64(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.VMOVQ(a, b)
-	case an == 8 && operand.IsM64(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
+	case an == 8 && operand.IsR64(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.VMOVQ(a, b)
-	case an == 8 && operand.IsR64(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
+	case an == 16 && operand.IsXMM(a) && bn == 8 && operand.IsM64(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.VMOVQ(a, b)
-	case an == 8 && operand.IsR64(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
+	case an == 16 && operand.IsXMM(a) && bn == 8 && operand.IsR64(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.VMOVQ(a, b)
-	case an == 16 && operand.IsXMM(a) && bn == 8 && operand.IsM64(b) && (t.Info()&types.IsInteger) == types.IsInteger:
+	case an == 16 && operand.IsXMM(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&(types.IsInteger|types.IsBoolean)) != 0:
 		c.VMOVQ(a, b)
-	case an == 16 && operand.IsXMM(a) && bn == 8 && operand.IsM64(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
-		c.VMOVQ(a, b)
-	case an == 16 && operand.IsXMM(a) && bn == 8 && operand.IsR64(b) && (t.Info()&types.IsInteger) == types.IsInteger:
-		c.VMOVQ(a, b)
-	case an == 16 && operand.IsXMM(a) && bn == 8 && operand.IsR64(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
-		c.VMOVQ(a, b)
-	case an == 16 && operand.IsXMM(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsInteger) == types.IsInteger:
-		c.VMOVQ(a, b)
-	case an == 16 && operand.IsXMM(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsBoolean) == types.IsBoolean:
-		c.VMOVQ(a, b)
-	case an == 8 && operand.IsM64(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsFloat) == types.IsFloat:
+	case an == 8 && operand.IsM64(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsFloat) != 0:
 		c.VMOVSD(a, b)
-	case an == 16 && operand.IsXMM(a) && bn == 8 && operand.IsM64(b) && (t.Info()&types.IsFloat) == types.IsFloat:
+	case an == 16 && operand.IsXMM(a) && bn == 8 && operand.IsM64(b) && (t.Info()&types.IsFloat) != 0:
 		c.VMOVSD(a, b)
-	case an == 4 && operand.IsM32(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsFloat) == types.IsFloat:
+	case an == 4 && operand.IsM32(a) && bn == 16 && operand.IsXMM(b) && (t.Info()&types.IsFloat) != 0:
 		c.VMOVSS(a, b)
-	case an == 16 && operand.IsXMM(a) && bn == 4 && operand.IsM32(b) && (t.Info()&types.IsFloat) == types.IsFloat:
+	case an == 16 && operand.IsXMM(a) && bn == 4 && operand.IsM32(b) && (t.Info()&types.IsFloat) != 0:
 		c.VMOVSS(a, b)
 	default:
 		c.adderrormessage("could not deduce mov instruction")
