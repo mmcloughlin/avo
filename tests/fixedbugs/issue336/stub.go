@@ -2,5 +2,14 @@
 
 package issue336
 
-// Not returns the boolean negation of x.
-func Not(x bool) bool
+// Not8 returns the boolean negation of x using a 8-bit intermediate.
+func Not8(x bool) bool
+
+// Not16 returns the boolean negation of x using a 16-bit intermediate.
+func Not16(x bool) bool
+
+// Not32 returns the boolean negation of x using a 32-bit intermediate.
+func Not32(x bool) bool
+
+// Not64 returns the boolean negation of x using a 64-bit intermediate.
+func Not64(x bool) bool
