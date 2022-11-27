@@ -1940,6 +1940,36 @@ func EXTRACTPS(i, x, mr operand.Op) (*intrep.Instruction, error) {
 	return build(opcEXTRACTPS.Forms(), sffxs{}, []operand.Op{i, x, mr})
 }
 
+// GF2P8AFFINEINVQB: Galois Field Affine Transformation Inverse.
+//
+// Forms:
+//
+//	GF2P8AFFINEINVQB imm8 m128 xmm
+//	GF2P8AFFINEINVQB imm8 xmm  xmm
+func GF2P8AFFINEINVQB(i, mx, x operand.Op) (*intrep.Instruction, error) {
+	return build(opcGF2P8AFFINEINVQB.Forms(), sffxs{}, []operand.Op{i, mx, x})
+}
+
+// GF2P8AFFINEQB: Galois Field Affine Transformation.
+//
+// Forms:
+//
+//	GF2P8AFFINEQB imm8 m128 xmm
+//	GF2P8AFFINEQB imm8 xmm  xmm
+func GF2P8AFFINEQB(i, mx, x operand.Op) (*intrep.Instruction, error) {
+	return build(opcGF2P8AFFINEQB.Forms(), sffxs{}, []operand.Op{i, mx, x})
+}
+
+// GF2P8MULB: Galois Field Multiply Bytes.
+//
+// Forms:
+//
+//	GF2P8MULB imm8 m128 xmm
+//	GF2P8MULB imm8 xmm  xmm
+func GF2P8MULB(i, mx, x operand.Op) (*intrep.Instruction, error) {
+	return build(opcGF2P8MULB.Forms(), sffxs{}, []operand.Op{i, mx, x})
+}
+
 // HADDPD: Packed Double-FP Horizontal Add.
 //
 // Forms:
@@ -21948,6 +21978,108 @@ func VGETMANTSS_SAE_Z(i, x, x1, k, x2 operand.Op) (*intrep.Instruction, error) {
 //	VGETMANTSS.Z imm8 xmm xmm k xmm
 func VGETMANTSS_Z(i, mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	return build(opcVGETMANTSS.Forms(), sffxs{sffxZ}, []operand.Op{i, mx, x, k, x1})
+}
+
+// VGF2P8AFFINEINVQB: Galois Field Affine Transformation Inverse.
+//
+// Forms:
+//
+//	VGF2P8AFFINEINVQB imm8 m128 xmm xmm
+//	VGF2P8AFFINEINVQB imm8 m256 ymm ymm
+//	VGF2P8AFFINEINVQB imm8 xmm  xmm xmm
+//	VGF2P8AFFINEINVQB imm8 ymm  ymm ymm
+//	VGF2P8AFFINEINVQB imm8 m512 zmm k zmm
+//	VGF2P8AFFINEINVQB imm8 m512 zmm zmm
+//	VGF2P8AFFINEINVQB imm8 zmm  zmm k zmm
+//	VGF2P8AFFINEINVQB imm8 zmm  zmm zmm
+//	VGF2P8AFFINEINVQB imm8 m128 xmm k xmm
+//	VGF2P8AFFINEINVQB imm8 m256 ymm k ymm
+//	VGF2P8AFFINEINVQB imm8 xmm  xmm k xmm
+//	VGF2P8AFFINEINVQB imm8 ymm  ymm k ymm
+func VGF2P8AFFINEINVQB(ops ...operand.Op) (*intrep.Instruction, error) {
+	return build(opcVGF2P8AFFINEINVQB.Forms(), sffxs{}, ops)
+}
+
+// VGF2P8AFFINEINVQB_BCST: Galois Field Affine Transformation Inverse (Broadcast).
+//
+// Forms:
+//
+//	VGF2P8AFFINEINVQB.BCST imm8 m64 zmm k zmm
+//	VGF2P8AFFINEINVQB.BCST imm8 m64 zmm zmm
+//	VGF2P8AFFINEINVQB.BCST imm8 m64 xmm k xmm
+//	VGF2P8AFFINEINVQB.BCST imm8 m64 xmm xmm
+//	VGF2P8AFFINEINVQB.BCST imm8 m64 ymm k ymm
+//	VGF2P8AFFINEINVQB.BCST imm8 m64 ymm ymm
+func VGF2P8AFFINEINVQB_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
+	return build(opcVGF2P8AFFINEINVQB.Forms(), sffxs{sffxBCST}, ops)
+}
+
+// VGF2P8AFFINEQB: Galois Field Affine Transformation.
+//
+// Forms:
+//
+//	VGF2P8AFFINEQB imm8 m128 xmm xmm
+//	VGF2P8AFFINEQB imm8 m256 ymm ymm
+//	VGF2P8AFFINEQB imm8 xmm  xmm xmm
+//	VGF2P8AFFINEQB imm8 ymm  ymm ymm
+//	VGF2P8AFFINEQB imm8 m512 zmm k zmm
+//	VGF2P8AFFINEQB imm8 m512 zmm zmm
+//	VGF2P8AFFINEQB imm8 zmm  zmm k zmm
+//	VGF2P8AFFINEQB imm8 zmm  zmm zmm
+//	VGF2P8AFFINEQB imm8 m128 xmm k xmm
+//	VGF2P8AFFINEQB imm8 m256 ymm k ymm
+//	VGF2P8AFFINEQB imm8 xmm  xmm k xmm
+//	VGF2P8AFFINEQB imm8 ymm  ymm k ymm
+func VGF2P8AFFINEQB(ops ...operand.Op) (*intrep.Instruction, error) {
+	return build(opcVGF2P8AFFINEQB.Forms(), sffxs{}, ops)
+}
+
+// VGF2P8AFFINEQB_BCST: Galois Field Affine Transformation (Broadcast).
+//
+// Forms:
+//
+//	VGF2P8AFFINEQB.BCST imm8 m64 zmm k zmm
+//	VGF2P8AFFINEQB.BCST imm8 m64 zmm zmm
+//	VGF2P8AFFINEQB.BCST imm8 m64 xmm k xmm
+//	VGF2P8AFFINEQB.BCST imm8 m64 xmm xmm
+//	VGF2P8AFFINEQB.BCST imm8 m64 ymm k ymm
+//	VGF2P8AFFINEQB.BCST imm8 m64 ymm ymm
+func VGF2P8AFFINEQB_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
+	return build(opcVGF2P8AFFINEQB.Forms(), sffxs{sffxBCST}, ops)
+}
+
+// VGF2P8MULB: Galois Field Multiply Bytes.
+//
+// Forms:
+//
+//	VGF2P8MULB imm8 m128 xmm xmm
+//	VGF2P8MULB imm8 m256 ymm ymm
+//	VGF2P8MULB imm8 xmm  xmm xmm
+//	VGF2P8MULB imm8 ymm  ymm ymm
+//	VGF2P8MULB imm8 m512 zmm k zmm
+//	VGF2P8MULB imm8 m512 zmm zmm
+//	VGF2P8MULB imm8 zmm  zmm k zmm
+//	VGF2P8MULB imm8 zmm  zmm zmm
+//	VGF2P8MULB imm8 m128 xmm k xmm
+//	VGF2P8MULB imm8 m256 ymm k ymm
+//	VGF2P8MULB imm8 xmm  xmm k xmm
+//	VGF2P8MULB imm8 ymm  ymm k ymm
+func VGF2P8MULB(ops ...operand.Op) (*intrep.Instruction, error) {
+	return build(opcVGF2P8MULB.Forms(), sffxs{}, ops)
+}
+
+// VGF2P8MULB_BCST: Galois Field Multiply Bytes (Broadcast).
+//
+// Forms:
+//
+//	VGF2P8MULB.BCST imm8 m64 zmm k zmm
+//	VGF2P8MULB.BCST imm8 m64 zmm zmm
+//	VGF2P8MULB.BCST imm8 m64 xmm k xmm
+//	VGF2P8MULB.BCST imm8 m64 xmm xmm
+//	VGF2P8MULB.BCST imm8 m64 ymm k ymm
+//	VGF2P8MULB.BCST imm8 m64 ymm ymm
+func VGF2P8MULB_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
+	return build(opcVGF2P8MULB.Forms(), sffxs{sffxBCST}, ops)
 }
 
 // VHADDPD: Packed Double-FP Horizontal Add.

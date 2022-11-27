@@ -4431,6 +4431,75 @@ func (c *Context) EXTRACTPS(i, x, mr operand.Op) {
 // Operates on the global context.
 func EXTRACTPS(i, x, mr operand.Op) { ctx.EXTRACTPS(i, x, mr) }
 
+// GF2P8AFFINEINVQB: Galois Field Affine Transformation Inverse.
+//
+// Forms:
+//
+//	GF2P8AFFINEINVQB imm8 m128 xmm
+//	GF2P8AFFINEINVQB imm8 xmm  xmm
+//
+// Construct and append a GF2P8AFFINEINVQB instruction to the active function.
+func (c *Context) GF2P8AFFINEINVQB(i, mx, x operand.Op) {
+	c.addinstruction(x86.GF2P8AFFINEINVQB(i, mx, x))
+}
+
+// GF2P8AFFINEINVQB: Galois Field Affine Transformation Inverse.
+//
+// Forms:
+//
+//	GF2P8AFFINEINVQB imm8 m128 xmm
+//	GF2P8AFFINEINVQB imm8 xmm  xmm
+//
+// Construct and append a GF2P8AFFINEINVQB instruction to the active function.
+// Operates on the global context.
+func GF2P8AFFINEINVQB(i, mx, x operand.Op) { ctx.GF2P8AFFINEINVQB(i, mx, x) }
+
+// GF2P8AFFINEQB: Galois Field Affine Transformation.
+//
+// Forms:
+//
+//	GF2P8AFFINEQB imm8 m128 xmm
+//	GF2P8AFFINEQB imm8 xmm  xmm
+//
+// Construct and append a GF2P8AFFINEQB instruction to the active function.
+func (c *Context) GF2P8AFFINEQB(i, mx, x operand.Op) {
+	c.addinstruction(x86.GF2P8AFFINEQB(i, mx, x))
+}
+
+// GF2P8AFFINEQB: Galois Field Affine Transformation.
+//
+// Forms:
+//
+//	GF2P8AFFINEQB imm8 m128 xmm
+//	GF2P8AFFINEQB imm8 xmm  xmm
+//
+// Construct and append a GF2P8AFFINEQB instruction to the active function.
+// Operates on the global context.
+func GF2P8AFFINEQB(i, mx, x operand.Op) { ctx.GF2P8AFFINEQB(i, mx, x) }
+
+// GF2P8MULB: Galois Field Multiply Bytes.
+//
+// Forms:
+//
+//	GF2P8MULB imm8 m128 xmm
+//	GF2P8MULB imm8 xmm  xmm
+//
+// Construct and append a GF2P8MULB instruction to the active function.
+func (c *Context) GF2P8MULB(i, mx, x operand.Op) {
+	c.addinstruction(x86.GF2P8MULB(i, mx, x))
+}
+
+// GF2P8MULB: Galois Field Multiply Bytes.
+//
+// Forms:
+//
+//	GF2P8MULB imm8 m128 xmm
+//	GF2P8MULB imm8 xmm  xmm
+//
+// Construct and append a GF2P8MULB instruction to the active function.
+// Operates on the global context.
+func GF2P8MULB(i, mx, x operand.Op) { ctx.GF2P8MULB(i, mx, x) }
+
 // HADDPD: Packed Double-FP Horizontal Add.
 //
 // Forms:
@@ -49988,6 +50057,228 @@ func (c *Context) VGETMANTSS_Z(i, mx, x, k, x1 operand.Op) {
 // Construct and append a VGETMANTSS.Z instruction to the active function.
 // Operates on the global context.
 func VGETMANTSS_Z(i, mx, x, k, x1 operand.Op) { ctx.VGETMANTSS_Z(i, mx, x, k, x1) }
+
+// VGF2P8AFFINEINVQB: Galois Field Affine Transformation Inverse.
+//
+// Forms:
+//
+//	VGF2P8AFFINEINVQB imm8 m128 xmm xmm
+//	VGF2P8AFFINEINVQB imm8 m256 ymm ymm
+//	VGF2P8AFFINEINVQB imm8 xmm  xmm xmm
+//	VGF2P8AFFINEINVQB imm8 ymm  ymm ymm
+//	VGF2P8AFFINEINVQB imm8 m512 zmm k zmm
+//	VGF2P8AFFINEINVQB imm8 m512 zmm zmm
+//	VGF2P8AFFINEINVQB imm8 zmm  zmm k zmm
+//	VGF2P8AFFINEINVQB imm8 zmm  zmm zmm
+//	VGF2P8AFFINEINVQB imm8 m128 xmm k xmm
+//	VGF2P8AFFINEINVQB imm8 m256 ymm k ymm
+//	VGF2P8AFFINEINVQB imm8 xmm  xmm k xmm
+//	VGF2P8AFFINEINVQB imm8 ymm  ymm k ymm
+//
+// Construct and append a VGF2P8AFFINEINVQB instruction to the active function.
+func (c *Context) VGF2P8AFFINEINVQB(ops ...operand.Op) {
+	c.addinstruction(x86.VGF2P8AFFINEINVQB(ops...))
+}
+
+// VGF2P8AFFINEINVQB: Galois Field Affine Transformation Inverse.
+//
+// Forms:
+//
+//	VGF2P8AFFINEINVQB imm8 m128 xmm xmm
+//	VGF2P8AFFINEINVQB imm8 m256 ymm ymm
+//	VGF2P8AFFINEINVQB imm8 xmm  xmm xmm
+//	VGF2P8AFFINEINVQB imm8 ymm  ymm ymm
+//	VGF2P8AFFINEINVQB imm8 m512 zmm k zmm
+//	VGF2P8AFFINEINVQB imm8 m512 zmm zmm
+//	VGF2P8AFFINEINVQB imm8 zmm  zmm k zmm
+//	VGF2P8AFFINEINVQB imm8 zmm  zmm zmm
+//	VGF2P8AFFINEINVQB imm8 m128 xmm k xmm
+//	VGF2P8AFFINEINVQB imm8 m256 ymm k ymm
+//	VGF2P8AFFINEINVQB imm8 xmm  xmm k xmm
+//	VGF2P8AFFINEINVQB imm8 ymm  ymm k ymm
+//
+// Construct and append a VGF2P8AFFINEINVQB instruction to the active function.
+// Operates on the global context.
+func VGF2P8AFFINEINVQB(ops ...operand.Op) { ctx.VGF2P8AFFINEINVQB(ops...) }
+
+// VGF2P8AFFINEINVQB_BCST: Galois Field Affine Transformation Inverse (Broadcast).
+//
+// Forms:
+//
+//	VGF2P8AFFINEINVQB.BCST imm8 m64 zmm k zmm
+//	VGF2P8AFFINEINVQB.BCST imm8 m64 zmm zmm
+//	VGF2P8AFFINEINVQB.BCST imm8 m64 xmm k xmm
+//	VGF2P8AFFINEINVQB.BCST imm8 m64 xmm xmm
+//	VGF2P8AFFINEINVQB.BCST imm8 m64 ymm k ymm
+//	VGF2P8AFFINEINVQB.BCST imm8 m64 ymm ymm
+//
+// Construct and append a VGF2P8AFFINEINVQB.BCST instruction to the active function.
+func (c *Context) VGF2P8AFFINEINVQB_BCST(ops ...operand.Op) {
+	c.addinstruction(x86.VGF2P8AFFINEINVQB_BCST(ops...))
+}
+
+// VGF2P8AFFINEINVQB_BCST: Galois Field Affine Transformation Inverse (Broadcast).
+//
+// Forms:
+//
+//	VGF2P8AFFINEINVQB.BCST imm8 m64 zmm k zmm
+//	VGF2P8AFFINEINVQB.BCST imm8 m64 zmm zmm
+//	VGF2P8AFFINEINVQB.BCST imm8 m64 xmm k xmm
+//	VGF2P8AFFINEINVQB.BCST imm8 m64 xmm xmm
+//	VGF2P8AFFINEINVQB.BCST imm8 m64 ymm k ymm
+//	VGF2P8AFFINEINVQB.BCST imm8 m64 ymm ymm
+//
+// Construct and append a VGF2P8AFFINEINVQB.BCST instruction to the active function.
+// Operates on the global context.
+func VGF2P8AFFINEINVQB_BCST(ops ...operand.Op) { ctx.VGF2P8AFFINEINVQB_BCST(ops...) }
+
+// VGF2P8AFFINEQB: Galois Field Affine Transformation.
+//
+// Forms:
+//
+//	VGF2P8AFFINEQB imm8 m128 xmm xmm
+//	VGF2P8AFFINEQB imm8 m256 ymm ymm
+//	VGF2P8AFFINEQB imm8 xmm  xmm xmm
+//	VGF2P8AFFINEQB imm8 ymm  ymm ymm
+//	VGF2P8AFFINEQB imm8 m512 zmm k zmm
+//	VGF2P8AFFINEQB imm8 m512 zmm zmm
+//	VGF2P8AFFINEQB imm8 zmm  zmm k zmm
+//	VGF2P8AFFINEQB imm8 zmm  zmm zmm
+//	VGF2P8AFFINEQB imm8 m128 xmm k xmm
+//	VGF2P8AFFINEQB imm8 m256 ymm k ymm
+//	VGF2P8AFFINEQB imm8 xmm  xmm k xmm
+//	VGF2P8AFFINEQB imm8 ymm  ymm k ymm
+//
+// Construct and append a VGF2P8AFFINEQB instruction to the active function.
+func (c *Context) VGF2P8AFFINEQB(ops ...operand.Op) {
+	c.addinstruction(x86.VGF2P8AFFINEQB(ops...))
+}
+
+// VGF2P8AFFINEQB: Galois Field Affine Transformation.
+//
+// Forms:
+//
+//	VGF2P8AFFINEQB imm8 m128 xmm xmm
+//	VGF2P8AFFINEQB imm8 m256 ymm ymm
+//	VGF2P8AFFINEQB imm8 xmm  xmm xmm
+//	VGF2P8AFFINEQB imm8 ymm  ymm ymm
+//	VGF2P8AFFINEQB imm8 m512 zmm k zmm
+//	VGF2P8AFFINEQB imm8 m512 zmm zmm
+//	VGF2P8AFFINEQB imm8 zmm  zmm k zmm
+//	VGF2P8AFFINEQB imm8 zmm  zmm zmm
+//	VGF2P8AFFINEQB imm8 m128 xmm k xmm
+//	VGF2P8AFFINEQB imm8 m256 ymm k ymm
+//	VGF2P8AFFINEQB imm8 xmm  xmm k xmm
+//	VGF2P8AFFINEQB imm8 ymm  ymm k ymm
+//
+// Construct and append a VGF2P8AFFINEQB instruction to the active function.
+// Operates on the global context.
+func VGF2P8AFFINEQB(ops ...operand.Op) { ctx.VGF2P8AFFINEQB(ops...) }
+
+// VGF2P8AFFINEQB_BCST: Galois Field Affine Transformation (Broadcast).
+//
+// Forms:
+//
+//	VGF2P8AFFINEQB.BCST imm8 m64 zmm k zmm
+//	VGF2P8AFFINEQB.BCST imm8 m64 zmm zmm
+//	VGF2P8AFFINEQB.BCST imm8 m64 xmm k xmm
+//	VGF2P8AFFINEQB.BCST imm8 m64 xmm xmm
+//	VGF2P8AFFINEQB.BCST imm8 m64 ymm k ymm
+//	VGF2P8AFFINEQB.BCST imm8 m64 ymm ymm
+//
+// Construct and append a VGF2P8AFFINEQB.BCST instruction to the active function.
+func (c *Context) VGF2P8AFFINEQB_BCST(ops ...operand.Op) {
+	c.addinstruction(x86.VGF2P8AFFINEQB_BCST(ops...))
+}
+
+// VGF2P8AFFINEQB_BCST: Galois Field Affine Transformation (Broadcast).
+//
+// Forms:
+//
+//	VGF2P8AFFINEQB.BCST imm8 m64 zmm k zmm
+//	VGF2P8AFFINEQB.BCST imm8 m64 zmm zmm
+//	VGF2P8AFFINEQB.BCST imm8 m64 xmm k xmm
+//	VGF2P8AFFINEQB.BCST imm8 m64 xmm xmm
+//	VGF2P8AFFINEQB.BCST imm8 m64 ymm k ymm
+//	VGF2P8AFFINEQB.BCST imm8 m64 ymm ymm
+//
+// Construct and append a VGF2P8AFFINEQB.BCST instruction to the active function.
+// Operates on the global context.
+func VGF2P8AFFINEQB_BCST(ops ...operand.Op) { ctx.VGF2P8AFFINEQB_BCST(ops...) }
+
+// VGF2P8MULB: Galois Field Multiply Bytes.
+//
+// Forms:
+//
+//	VGF2P8MULB imm8 m128 xmm xmm
+//	VGF2P8MULB imm8 m256 ymm ymm
+//	VGF2P8MULB imm8 xmm  xmm xmm
+//	VGF2P8MULB imm8 ymm  ymm ymm
+//	VGF2P8MULB imm8 m512 zmm k zmm
+//	VGF2P8MULB imm8 m512 zmm zmm
+//	VGF2P8MULB imm8 zmm  zmm k zmm
+//	VGF2P8MULB imm8 zmm  zmm zmm
+//	VGF2P8MULB imm8 m128 xmm k xmm
+//	VGF2P8MULB imm8 m256 ymm k ymm
+//	VGF2P8MULB imm8 xmm  xmm k xmm
+//	VGF2P8MULB imm8 ymm  ymm k ymm
+//
+// Construct and append a VGF2P8MULB instruction to the active function.
+func (c *Context) VGF2P8MULB(ops ...operand.Op) {
+	c.addinstruction(x86.VGF2P8MULB(ops...))
+}
+
+// VGF2P8MULB: Galois Field Multiply Bytes.
+//
+// Forms:
+//
+//	VGF2P8MULB imm8 m128 xmm xmm
+//	VGF2P8MULB imm8 m256 ymm ymm
+//	VGF2P8MULB imm8 xmm  xmm xmm
+//	VGF2P8MULB imm8 ymm  ymm ymm
+//	VGF2P8MULB imm8 m512 zmm k zmm
+//	VGF2P8MULB imm8 m512 zmm zmm
+//	VGF2P8MULB imm8 zmm  zmm k zmm
+//	VGF2P8MULB imm8 zmm  zmm zmm
+//	VGF2P8MULB imm8 m128 xmm k xmm
+//	VGF2P8MULB imm8 m256 ymm k ymm
+//	VGF2P8MULB imm8 xmm  xmm k xmm
+//	VGF2P8MULB imm8 ymm  ymm k ymm
+//
+// Construct and append a VGF2P8MULB instruction to the active function.
+// Operates on the global context.
+func VGF2P8MULB(ops ...operand.Op) { ctx.VGF2P8MULB(ops...) }
+
+// VGF2P8MULB_BCST: Galois Field Multiply Bytes (Broadcast).
+//
+// Forms:
+//
+//	VGF2P8MULB.BCST imm8 m64 zmm k zmm
+//	VGF2P8MULB.BCST imm8 m64 zmm zmm
+//	VGF2P8MULB.BCST imm8 m64 xmm k xmm
+//	VGF2P8MULB.BCST imm8 m64 xmm xmm
+//	VGF2P8MULB.BCST imm8 m64 ymm k ymm
+//	VGF2P8MULB.BCST imm8 m64 ymm ymm
+//
+// Construct and append a VGF2P8MULB.BCST instruction to the active function.
+func (c *Context) VGF2P8MULB_BCST(ops ...operand.Op) {
+	c.addinstruction(x86.VGF2P8MULB_BCST(ops...))
+}
+
+// VGF2P8MULB_BCST: Galois Field Multiply Bytes (Broadcast).
+//
+// Forms:
+//
+//	VGF2P8MULB.BCST imm8 m64 zmm k zmm
+//	VGF2P8MULB.BCST imm8 m64 zmm zmm
+//	VGF2P8MULB.BCST imm8 m64 xmm k xmm
+//	VGF2P8MULB.BCST imm8 m64 xmm xmm
+//	VGF2P8MULB.BCST imm8 m64 ymm k ymm
+//	VGF2P8MULB.BCST imm8 m64 ymm ymm
+//
+// Construct and append a VGF2P8MULB.BCST instruction to the active function.
+// Operates on the global context.
+func VGF2P8MULB_BCST(ops ...operand.Op) { ctx.VGF2P8MULB_BCST(ops...) }
 
 // VHADDPD: Packed Double-FP Horizontal Add.
 //
