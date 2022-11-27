@@ -126,16 +126,13 @@ func (l *Loader) Load() ([]inst.Instruction, error) {
 	// Convert to a slice. Sort instructions and forms for reproducibility.
 	is := make([]inst.Instruction, 0, len(im))
 	for _, i := range im {
+		sortforms(i.Forms)
 		is = append(is, *i)
 	}
 
 	sort.Slice(is, func(i, j int) bool {
 		return is[i].Opcode < is[j].Opcode
 	})
-
-	for _, i := range im {
-		sortforms(i.Forms)
-	}
 
 	return is, nil
 }
@@ -834,7 +831,6 @@ func vexevex(fs []inst.Form) ([]inst.Form, error) {
 		}
 
 		if group[0].EncodingType != inst.EncodingTypeVEX || group[1].EncodingType != inst.EncodingTypeEVEX {
-			fmt.Println(group)
 			return nil, errors.New("expected pair of VEX/EVEX encoded forms")
 		}
 

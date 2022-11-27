@@ -21960,9 +21960,12 @@ func VGETMANTSS_Z(i, mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 //	VGF2P8AFFINEINVQB imm8 ymm  ymm ymm
 //	VGF2P8AFFINEINVQB imm8 m512 zmm k zmm
 //	VGF2P8AFFINEINVQB imm8 m512 zmm zmm
+//	VGF2P8AFFINEINVQB imm8 zmm  zmm k zmm
 //	VGF2P8AFFINEINVQB imm8 zmm  zmm zmm
 //	VGF2P8AFFINEINVQB imm8 m128 xmm k xmm
 //	VGF2P8AFFINEINVQB imm8 m256 ymm k ymm
+//	VGF2P8AFFINEINVQB imm8 xmm  xmm k xmm
+//	VGF2P8AFFINEINVQB imm8 ymm  ymm k ymm
 func VGF2P8AFFINEINVQB(ops ...operand.Op) (*intrep.Instruction, error) {
 	return build(opcVGF2P8AFFINEINVQB.Forms(), sffxs{}, ops)
 }
@@ -21997,10 +22000,13 @@ func VGF2P8AFFINEINVQB_BCST_Z(i, m, xyz, k, xyz1 operand.Op) (*intrep.Instructio
 // Forms:
 //
 //	VGF2P8AFFINEINVQB.Z imm8 m512 zmm k zmm
+//	VGF2P8AFFINEINVQB.Z imm8 zmm  zmm k zmm
 //	VGF2P8AFFINEINVQB.Z imm8 m128 xmm k xmm
 //	VGF2P8AFFINEINVQB.Z imm8 m256 ymm k ymm
-func VGF2P8AFFINEINVQB_Z(i, m, xyz, k, xyz1 operand.Op) (*intrep.Instruction, error) {
-	return build(opcVGF2P8AFFINEINVQB.Forms(), sffxs{sffxZ}, []operand.Op{i, m, xyz, k, xyz1})
+//	VGF2P8AFFINEINVQB.Z imm8 xmm  xmm k xmm
+//	VGF2P8AFFINEINVQB.Z imm8 ymm  ymm k ymm
+func VGF2P8AFFINEINVQB_Z(i, mxyz, xyz, k, xyz1 operand.Op) (*intrep.Instruction, error) {
+	return build(opcVGF2P8AFFINEINVQB.Forms(), sffxs{sffxZ}, []operand.Op{i, mxyz, xyz, k, xyz1})
 }
 
 // VGF2P8AFFINEQB: Galois Field Affine Transformation.

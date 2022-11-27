@@ -49999,9 +49999,12 @@ func VGETMANTSS_Z(i, mx, x, k, x1 operand.Op) { ctx.VGETMANTSS_Z(i, mx, x, k, x1
 //	VGF2P8AFFINEINVQB imm8 ymm  ymm ymm
 //	VGF2P8AFFINEINVQB imm8 m512 zmm k zmm
 //	VGF2P8AFFINEINVQB imm8 m512 zmm zmm
+//	VGF2P8AFFINEINVQB imm8 zmm  zmm k zmm
 //	VGF2P8AFFINEINVQB imm8 zmm  zmm zmm
 //	VGF2P8AFFINEINVQB imm8 m128 xmm k xmm
 //	VGF2P8AFFINEINVQB imm8 m256 ymm k ymm
+//	VGF2P8AFFINEINVQB imm8 xmm  xmm k xmm
+//	VGF2P8AFFINEINVQB imm8 ymm  ymm k ymm
 //
 // Construct and append a VGF2P8AFFINEINVQB instruction to the active function.
 func (c *Context) VGF2P8AFFINEINVQB(ops ...operand.Op) {
@@ -50018,9 +50021,12 @@ func (c *Context) VGF2P8AFFINEINVQB(ops ...operand.Op) {
 //	VGF2P8AFFINEINVQB imm8 ymm  ymm ymm
 //	VGF2P8AFFINEINVQB imm8 m512 zmm k zmm
 //	VGF2P8AFFINEINVQB imm8 m512 zmm zmm
+//	VGF2P8AFFINEINVQB imm8 zmm  zmm k zmm
 //	VGF2P8AFFINEINVQB imm8 zmm  zmm zmm
 //	VGF2P8AFFINEINVQB imm8 m128 xmm k xmm
 //	VGF2P8AFFINEINVQB imm8 m256 ymm k ymm
+//	VGF2P8AFFINEINVQB imm8 xmm  xmm k xmm
+//	VGF2P8AFFINEINVQB imm8 ymm  ymm k ymm
 //
 // Construct and append a VGF2P8AFFINEINVQB instruction to the active function.
 // Operates on the global context.
@@ -50089,12 +50095,15 @@ func VGF2P8AFFINEINVQB_BCST_Z(i, m, xyz, k, xyz1 operand.Op) {
 // Forms:
 //
 //	VGF2P8AFFINEINVQB.Z imm8 m512 zmm k zmm
+//	VGF2P8AFFINEINVQB.Z imm8 zmm  zmm k zmm
 //	VGF2P8AFFINEINVQB.Z imm8 m128 xmm k xmm
 //	VGF2P8AFFINEINVQB.Z imm8 m256 ymm k ymm
+//	VGF2P8AFFINEINVQB.Z imm8 xmm  xmm k xmm
+//	VGF2P8AFFINEINVQB.Z imm8 ymm  ymm k ymm
 //
 // Construct and append a VGF2P8AFFINEINVQB.Z instruction to the active function.
-func (c *Context) VGF2P8AFFINEINVQB_Z(i, m, xyz, k, xyz1 operand.Op) {
-	c.addinstruction(x86.VGF2P8AFFINEINVQB_Z(i, m, xyz, k, xyz1))
+func (c *Context) VGF2P8AFFINEINVQB_Z(i, mxyz, xyz, k, xyz1 operand.Op) {
+	c.addinstruction(x86.VGF2P8AFFINEINVQB_Z(i, mxyz, xyz, k, xyz1))
 }
 
 // VGF2P8AFFINEINVQB_Z: Galois Field Affine Transformation Inverse (Zeroing Masking).
@@ -50102,12 +50111,17 @@ func (c *Context) VGF2P8AFFINEINVQB_Z(i, m, xyz, k, xyz1 operand.Op) {
 // Forms:
 //
 //	VGF2P8AFFINEINVQB.Z imm8 m512 zmm k zmm
+//	VGF2P8AFFINEINVQB.Z imm8 zmm  zmm k zmm
 //	VGF2P8AFFINEINVQB.Z imm8 m128 xmm k xmm
 //	VGF2P8AFFINEINVQB.Z imm8 m256 ymm k ymm
+//	VGF2P8AFFINEINVQB.Z imm8 xmm  xmm k xmm
+//	VGF2P8AFFINEINVQB.Z imm8 ymm  ymm k ymm
 //
 // Construct and append a VGF2P8AFFINEINVQB.Z instruction to the active function.
 // Operates on the global context.
-func VGF2P8AFFINEINVQB_Z(i, m, xyz, k, xyz1 operand.Op) { ctx.VGF2P8AFFINEINVQB_Z(i, m, xyz, k, xyz1) }
+func VGF2P8AFFINEINVQB_Z(i, mxyz, xyz, k, xyz1 operand.Op) {
+	ctx.VGF2P8AFFINEINVQB_Z(i, mxyz, xyz, k, xyz1)
+}
 
 // VGF2P8AFFINEQB: Galois Field Affine Transformation.
 //

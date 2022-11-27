@@ -23292,6 +23292,9 @@ func TestVGF2P8AFFINEINVQBValidFormsNoError(t *testing.T) {
 	if _, err := VGF2P8AFFINEINVQB(opimm8, opm512, opzmm, opzmm); err != nil {
 		t.Fatal(err)
 	}
+	if _, err := VGF2P8AFFINEINVQB(opimm8, opzmm, opzmm, opk, opzmm); err != nil {
+		t.Fatal(err)
+	}
 	if _, err := VGF2P8AFFINEINVQB(opimm8, opzmm, opzmm, opzmm); err != nil {
 		t.Fatal(err)
 	}
@@ -23299,6 +23302,12 @@ func TestVGF2P8AFFINEINVQBValidFormsNoError(t *testing.T) {
 		t.Fatal(err)
 	}
 	if _, err := VGF2P8AFFINEINVQB(opimm8, opm256, opymm, opk, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VGF2P8AFFINEINVQB(opimm8, opxmm, opxmm, opk, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VGF2P8AFFINEINVQB(opimm8, opymm, opymm, opk, opymm); err != nil {
 		t.Fatal(err)
 	}
 }
@@ -23340,10 +23349,19 @@ func TestVGF2P8AFFINEINVQB_ZValidFormsNoError(t *testing.T) {
 	if _, err := VGF2P8AFFINEINVQB_Z(opimm8, opm512, opzmm, opk, opzmm); err != nil {
 		t.Fatal(err)
 	}
+	if _, err := VGF2P8AFFINEINVQB_Z(opimm8, opzmm, opzmm, opk, opzmm); err != nil {
+		t.Fatal(err)
+	}
 	if _, err := VGF2P8AFFINEINVQB_Z(opimm8, opm128, opxmm, opk, opxmm); err != nil {
 		t.Fatal(err)
 	}
 	if _, err := VGF2P8AFFINEINVQB_Z(opimm8, opm256, opymm, opk, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VGF2P8AFFINEINVQB_Z(opimm8, opxmm, opxmm, opk, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VGF2P8AFFINEINVQB_Z(opimm8, opymm, opymm, opk, opymm); err != nil {
 		t.Fatal(err)
 	}
 }
