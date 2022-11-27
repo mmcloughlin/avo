@@ -37,7 +37,6 @@ var gfni = []*inst.Instruction{
 		Summary: "Galois Field Affine Transformation Inverse",
 		Forms:   vgf2p8affineqb,
 	},
-
 	{
 		Opcode:  "VGF2P8MULB",
 		Summary: "Galois Field Multiply Bytes",
@@ -45,6 +44,10 @@ var gfni = []*inst.Instruction{
 	},
 }
 
+// VGF2P8AFFINEQB and VGF2P8AFFINEINVQB forms.
+//
+// See: https://www.felixcloutier.com/x86/gf2p8affineqb
+//
 // Reference: https://github.com/golang/go/blob/go1.19.3/src/cmd/internal/obj/x86/avx_optabs.go#L483-L492
 //
 //	var _yvgf2p8affineinvqb = []ytab{
@@ -106,7 +109,7 @@ var vgf2p8affineqb = inst.Forms{
 			{Type: "imm8", Action: inst.R},
 			{Type: "xmm", Action: inst.R},
 			{Type: "xmm", Action: inst.R},
-			{Type: "xmm", Action: inst.W},
+			{Type: "xmm{k}{z}", Action: inst.W},
 		},
 		EncodingType: inst.EncodingTypeEVEX,
 		ISA:          []string{"AVX512VL", "GFNI"},
@@ -114,57 +117,12 @@ var vgf2p8affineqb = inst.Forms{
 	{
 		Operands: []inst.Operand{
 			{Type: "imm8", Action: inst.R},
+			{Type: "m128/m64bcst", Action: inst.R},
 			{Type: "xmm", Action: inst.R},
-			{Type: "xmm", Action: inst.R},
-			{Type: "k", Action: inst.R},
-			{Type: "xmm", Action: inst.W},
+			{Type: "xmm{k}{z}", Action: inst.W},
 		},
 		EncodingType: inst.EncodingTypeEVEX,
 		ISA:          []string{"AVX512VL", "GFNI"},
-	},
-	{
-		Operands: []inst.Operand{
-			{Type: "imm8", Action: inst.R},
-			{Type: "m128", Action: inst.R},
-			{Type: "xmm", Action: inst.R},
-			{Type: "xmm", Action: inst.W},
-		},
-		EncodingType: inst.EncodingTypeEVEX,
-		ISA:          []string{"AVX512VL", "GFNI"},
-	},
-	{
-		Operands: []inst.Operand{
-			{Type: "imm8", Action: inst.R},
-			{Type: "m128", Action: inst.R},
-			{Type: "xmm", Action: inst.R},
-			{Type: "k", Action: inst.R},
-			{Type: "xmm", Action: inst.W},
-		},
-		EncodingType: inst.EncodingTypeEVEX,
-		ISA:          []string{"AVX512VL", "GFNI"},
-	},
-	{
-		Operands: []inst.Operand{
-			{Type: "imm8", Action: inst.R},
-			{Type: "m64", Action: inst.R},
-			{Type: "xmm", Action: inst.R},
-			{Type: "xmm", Action: inst.W},
-		},
-		EncodingType: inst.EncodingTypeEVEX,
-		ISA:          []string{"AVX512VL", "GFNI"},
-		Broadcast:    true,
-	},
-	{
-		Operands: []inst.Operand{
-			{Type: "imm8", Action: inst.R},
-			{Type: "m64", Action: inst.R},
-			{Type: "xmm", Action: inst.R},
-			{Type: "k", Action: inst.R},
-			{Type: "xmm", Action: inst.W},
-		},
-		EncodingType: inst.EncodingTypeEVEX,
-		ISA:          []string{"AVX512VL", "GFNI"},
-		Broadcast:    true,
 	},
 	// EVEX.256.66.0F3A.W1 CE /r /ib VGF2P8AFFINEQB ymm1{k1}{z}, ymm2, ymm3/m256/m64bcst, imm8
 	{
@@ -172,7 +130,7 @@ var vgf2p8affineqb = inst.Forms{
 			{Type: "imm8", Action: inst.R},
 			{Type: "ymm", Action: inst.R},
 			{Type: "ymm", Action: inst.R},
-			{Type: "ymm", Action: inst.W},
+			{Type: "ymm{k}{z}", Action: inst.W},
 		},
 		EncodingType: inst.EncodingTypeEVEX,
 		ISA:          []string{"AVX512VL", "GFNI"},
@@ -180,57 +138,12 @@ var vgf2p8affineqb = inst.Forms{
 	{
 		Operands: []inst.Operand{
 			{Type: "imm8", Action: inst.R},
+			{Type: "m256/m64bcst", Action: inst.R},
 			{Type: "ymm", Action: inst.R},
-			{Type: "ymm", Action: inst.R},
-			{Type: "k", Action: inst.R},
-			{Type: "ymm", Action: inst.W},
+			{Type: "ymm{k}{z}", Action: inst.W},
 		},
 		EncodingType: inst.EncodingTypeEVEX,
 		ISA:          []string{"AVX512VL", "GFNI"},
-	},
-	{
-		Operands: []inst.Operand{
-			{Type: "imm8", Action: inst.R},
-			{Type: "m256", Action: inst.R},
-			{Type: "ymm", Action: inst.R},
-			{Type: "ymm", Action: inst.W},
-		},
-		EncodingType: inst.EncodingTypeEVEX,
-		ISA:          []string{"AVX512VL", "GFNI"},
-	},
-	{
-		Operands: []inst.Operand{
-			{Type: "imm8", Action: inst.R},
-			{Type: "m256", Action: inst.R},
-			{Type: "ymm", Action: inst.R},
-			{Type: "k", Action: inst.R},
-			{Type: "ymm", Action: inst.W},
-		},
-		EncodingType: inst.EncodingTypeEVEX,
-		ISA:          []string{"AVX512VL", "GFNI"},
-	},
-	{
-		Operands: []inst.Operand{
-			{Type: "imm8", Action: inst.R},
-			{Type: "m64", Action: inst.R},
-			{Type: "ymm", Action: inst.R},
-			{Type: "ymm", Action: inst.W},
-		},
-		EncodingType: inst.EncodingTypeEVEX,
-		ISA:          []string{"AVX512VL", "GFNI"},
-		Broadcast:    true,
-	},
-	{
-		Operands: []inst.Operand{
-			{Type: "imm8", Action: inst.R},
-			{Type: "m64", Action: inst.R},
-			{Type: "ymm", Action: inst.R},
-			{Type: "k", Action: inst.R},
-			{Type: "ymm", Action: inst.W},
-		},
-		EncodingType: inst.EncodingTypeEVEX,
-		ISA:          []string{"AVX512VL", "GFNI"},
-		Broadcast:    true,
 	},
 	// EVEX.512.66.0F3A.W1 CE /r /ib VGF2P8AFFINEQB zmm1{k1}{z}, zmm2, zmm3/m512/m64bcst, imm8
 	{
@@ -238,7 +151,7 @@ var vgf2p8affineqb = inst.Forms{
 			{Type: "imm8", Action: inst.R},
 			{Type: "zmm", Action: inst.R},
 			{Type: "zmm", Action: inst.R},
-			{Type: "zmm", Action: inst.W},
+			{Type: "zmm{k}{z}", Action: inst.W},
 		},
 		EncodingType: inst.EncodingTypeEVEX,
 		ISA:          []string{"AVX512F", "GFNI"},
@@ -246,60 +159,19 @@ var vgf2p8affineqb = inst.Forms{
 	{
 		Operands: []inst.Operand{
 			{Type: "imm8", Action: inst.R},
+			{Type: "m512/m64bcst", Action: inst.R},
 			{Type: "zmm", Action: inst.R},
-			{Type: "zmm", Action: inst.R},
-			{Type: "k", Action: inst.R},
-			{Type: "zmm", Action: inst.W},
+			{Type: "zmm{k}{z}", Action: inst.W},
 		},
 		EncodingType: inst.EncodingTypeEVEX,
 		ISA:          []string{"AVX512F", "GFNI"},
-	},
-	{
-		Operands: []inst.Operand{
-			{Type: "imm8", Action: inst.R},
-			{Type: "m512", Action: inst.R},
-			{Type: "zmm", Action: inst.R},
-			{Type: "zmm", Action: inst.W},
-		},
-		EncodingType: inst.EncodingTypeEVEX,
-		ISA:          []string{"AVX512F", "GFNI"},
-	},
-	{
-		Operands: []inst.Operand{
-			{Type: "imm8", Action: inst.R},
-			{Type: "m512", Action: inst.R},
-			{Type: "zmm", Action: inst.R},
-			{Type: "k", Action: inst.R},
-			{Type: "zmm", Action: inst.W},
-		},
-		EncodingType: inst.EncodingTypeEVEX,
-		ISA:          []string{"AVX512F", "GFNI"},
-	},
-	{
-		Operands: []inst.Operand{
-			{Type: "imm8", Action: inst.R},
-			{Type: "m64", Action: inst.R},
-			{Type: "zmm", Action: inst.R},
-			{Type: "zmm", Action: inst.W},
-		},
-		EncodingType: inst.EncodingTypeEVEX,
-		ISA:          []string{"AVX512F", "GFNI"},
-		Broadcast:    true,
-	},
-	{
-		Operands: []inst.Operand{
-			{Type: "imm8", Action: inst.R},
-			{Type: "m64", Action: inst.R},
-			{Type: "zmm", Action: inst.R},
-			{Type: "k", Action: inst.R},
-			{Type: "zmm", Action: inst.W},
-		},
-		EncodingType: inst.EncodingTypeEVEX,
-		ISA:          []string{"AVX512F", "GFNI"},
-		Broadcast:    true,
 	},
 }
 
+// VGF2P8MULB forms.
+//
+// See: https://www.felixcloutier.com/x86/gf2p8mulb
+//
 // Reference: https://github.com/golang/go/blob/go1.19.3/src/cmd/internal/obj/x86/avx_optabs.go#L137-L146
 //
 //	var _yvandnpd = []ytab{
@@ -316,7 +188,6 @@ var vgf2p8mulb = inst.Forms{
 	// VEX.128.66.0F38.W0 CF /r VGF2P8MULB xmm1, xmm2, xmm3/m128
 	{
 		Operands: []inst.Operand{
-			{Type: "imm8", Action: inst.R},
 			{Type: "xmm", Action: inst.R},
 			{Type: "xmm", Action: inst.R},
 			{Type: "xmm", Action: inst.W},
@@ -326,7 +197,6 @@ var vgf2p8mulb = inst.Forms{
 	},
 	{
 		Operands: []inst.Operand{
-			{Type: "imm8", Action: inst.R},
 			{Type: "m128", Action: inst.R},
 			{Type: "xmm", Action: inst.R},
 			{Type: "xmm", Action: inst.W},
@@ -337,7 +207,6 @@ var vgf2p8mulb = inst.Forms{
 	// VEX.256.66.0F38.W0 CF /r VGF2P8MULB ymm1, ymm2, ymm3/m256
 	{
 		Operands: []inst.Operand{
-			{Type: "imm8", Action: inst.R},
 			{Type: "ymm", Action: inst.R},
 			{Type: "ymm", Action: inst.R},
 			{Type: "ymm", Action: inst.W},
@@ -347,7 +216,6 @@ var vgf2p8mulb = inst.Forms{
 	},
 	{
 		Operands: []inst.Operand{
-			{Type: "imm8", Action: inst.R},
 			{Type: "m256", Action: inst.R},
 			{Type: "ymm", Action: inst.R},
 			{Type: "ymm", Action: inst.W},
@@ -358,199 +226,58 @@ var vgf2p8mulb = inst.Forms{
 	// EVEX.128.66.0F38.W0 CF /r VGF2P8MULB xmm1{k1}{z}, xmm2, xmm3/m128
 	{
 		Operands: []inst.Operand{
-			{Type: "imm8", Action: inst.R},
 			{Type: "xmm", Action: inst.R},
 			{Type: "xmm", Action: inst.R},
-			{Type: "xmm", Action: inst.W},
+			{Type: "xmm{k}{z}", Action: inst.W},
 		},
 		EncodingType: inst.EncodingTypeEVEX,
 		ISA:          []string{"AVX512VL", "GFNI"},
 	},
 	{
 		Operands: []inst.Operand{
-			{Type: "imm8", Action: inst.R},
-			{Type: "xmm", Action: inst.R},
-			{Type: "xmm", Action: inst.R},
-			{Type: "k", Action: inst.R},
-			{Type: "xmm", Action: inst.W},
-		},
-		EncodingType: inst.EncodingTypeEVEX,
-		ISA:          []string{"AVX512VL", "GFNI"},
-	},
-	{
-		Operands: []inst.Operand{
-			{Type: "imm8", Action: inst.R},
 			{Type: "m128", Action: inst.R},
 			{Type: "xmm", Action: inst.R},
-			{Type: "xmm", Action: inst.W},
+			{Type: "xmm{k}{z}", Action: inst.W},
 		},
 		EncodingType: inst.EncodingTypeEVEX,
 		ISA:          []string{"AVX512VL", "GFNI"},
-	},
-	{
-		Operands: []inst.Operand{
-			{Type: "imm8", Action: inst.R},
-			{Type: "m128", Action: inst.R},
-			{Type: "xmm", Action: inst.R},
-			{Type: "k", Action: inst.R},
-			{Type: "xmm", Action: inst.W},
-		},
-		EncodingType: inst.EncodingTypeEVEX,
-		ISA:          []string{"AVX512VL", "GFNI"},
-	},
-	{
-		Operands: []inst.Operand{
-			{Type: "imm8", Action: inst.R},
-			{Type: "m64", Action: inst.R},
-			{Type: "xmm", Action: inst.R},
-			{Type: "xmm", Action: inst.W},
-		},
-		EncodingType: inst.EncodingTypeEVEX,
-		ISA:          []string{"AVX512VL", "GFNI"},
-		Broadcast:    true,
-	},
-	{
-		Operands: []inst.Operand{
-			{Type: "imm8", Action: inst.R},
-			{Type: "m64", Action: inst.R},
-			{Type: "xmm", Action: inst.R},
-			{Type: "k", Action: inst.R},
-			{Type: "xmm", Action: inst.W},
-		},
-		EncodingType: inst.EncodingTypeEVEX,
-		ISA:          []string{"AVX512VL", "GFNI"},
-		Broadcast:    true,
 	},
 	// EVEX.256.66.0F38.W0 CF /r VGF2P8MULB ymm1{k1}{z}, ymm2, ymm3/m256
 	{
 		Operands: []inst.Operand{
-			{Type: "imm8", Action: inst.R},
 			{Type: "ymm", Action: inst.R},
 			{Type: "ymm", Action: inst.R},
-			{Type: "ymm", Action: inst.W},
+			{Type: "ymm{k}{z}", Action: inst.W},
 		},
 		EncodingType: inst.EncodingTypeEVEX,
 		ISA:          []string{"AVX512VL", "GFNI"},
 	},
 	{
 		Operands: []inst.Operand{
-			{Type: "imm8", Action: inst.R},
-			{Type: "ymm", Action: inst.R},
-			{Type: "ymm", Action: inst.R},
-			{Type: "k", Action: inst.R},
-			{Type: "ymm", Action: inst.W},
-		},
-		EncodingType: inst.EncodingTypeEVEX,
-		ISA:          []string{"AVX512VL", "GFNI"},
-	},
-	{
-		Operands: []inst.Operand{
-			{Type: "imm8", Action: inst.R},
 			{Type: "m256", Action: inst.R},
 			{Type: "ymm", Action: inst.R},
-			{Type: "ymm", Action: inst.W},
+			{Type: "ymm{k}{z}", Action: inst.W},
 		},
 		EncodingType: inst.EncodingTypeEVEX,
 		ISA:          []string{"AVX512VL", "GFNI"},
-	},
-	{
-		Operands: []inst.Operand{
-			{Type: "imm8", Action: inst.R},
-			{Type: "m256", Action: inst.R},
-			{Type: "ymm", Action: inst.R},
-			{Type: "k", Action: inst.R},
-			{Type: "ymm", Action: inst.W},
-		},
-		EncodingType: inst.EncodingTypeEVEX,
-		ISA:          []string{"AVX512VL", "GFNI"},
-	},
-	{
-		Operands: []inst.Operand{
-			{Type: "imm8", Action: inst.R},
-			{Type: "m64", Action: inst.R},
-			{Type: "ymm", Action: inst.R},
-			{Type: "ymm", Action: inst.W},
-		},
-		EncodingType: inst.EncodingTypeEVEX,
-		ISA:          []string{"AVX512VL", "GFNI"},
-		Broadcast:    true,
-	},
-	{
-		Operands: []inst.Operand{
-			{Type: "imm8", Action: inst.R},
-			{Type: "m64", Action: inst.R},
-			{Type: "ymm", Action: inst.R},
-			{Type: "k", Action: inst.R},
-			{Type: "ymm", Action: inst.W},
-		},
-		EncodingType: inst.EncodingTypeEVEX,
-		ISA:          []string{"AVX512VL", "GFNI"},
-		Broadcast:    true,
 	},
 	// EVEX.512.66.0F38.W0 CF /r VGF2P8MULB zmm1{k1}{z}, zmm2, zmm3/m512
 	{
 		Operands: []inst.Operand{
-			{Type: "imm8", Action: inst.R},
 			{Type: "zmm", Action: inst.R},
 			{Type: "zmm", Action: inst.R},
-			{Type: "zmm", Action: inst.W},
+			{Type: "zmm{k}{z}", Action: inst.W},
 		},
 		EncodingType: inst.EncodingTypeEVEX,
 		ISA:          []string{"AVX512F", "GFNI"},
 	},
 	{
 		Operands: []inst.Operand{
-			{Type: "imm8", Action: inst.R},
-			{Type: "zmm", Action: inst.R},
-			{Type: "zmm", Action: inst.R},
-			{Type: "k", Action: inst.R},
-			{Type: "zmm", Action: inst.W},
-		},
-		EncodingType: inst.EncodingTypeEVEX,
-		ISA:          []string{"AVX512F", "GFNI"},
-	},
-	{
-		Operands: []inst.Operand{
-			{Type: "imm8", Action: inst.R},
 			{Type: "m512", Action: inst.R},
 			{Type: "zmm", Action: inst.R},
-			{Type: "zmm", Action: inst.W},
+			{Type: "zmm{k}{z}", Action: inst.W},
 		},
 		EncodingType: inst.EncodingTypeEVEX,
 		ISA:          []string{"AVX512F", "GFNI"},
-	},
-	{
-		Operands: []inst.Operand{
-			{Type: "imm8", Action: inst.R},
-			{Type: "m512", Action: inst.R},
-			{Type: "zmm", Action: inst.R},
-			{Type: "k", Action: inst.R},
-			{Type: "zmm", Action: inst.W},
-		},
-		EncodingType: inst.EncodingTypeEVEX,
-		ISA:          []string{"AVX512F", "GFNI"},
-	},
-	{
-		Operands: []inst.Operand{
-			{Type: "imm8", Action: inst.R},
-			{Type: "m64", Action: inst.R},
-			{Type: "zmm", Action: inst.R},
-			{Type: "zmm", Action: inst.W},
-		},
-		EncodingType: inst.EncodingTypeEVEX,
-		ISA:          []string{"AVX512F", "GFNI"},
-		Broadcast:    true,
-	},
-	{
-		Operands: []inst.Operand{
-			{Type: "imm8", Action: inst.R},
-			{Type: "m64", Action: inst.R},
-			{Type: "zmm", Action: inst.R},
-			{Type: "k", Action: inst.R},
-			{Type: "zmm", Action: inst.W},
-		},
-		EncodingType: inst.EncodingTypeEVEX,
-		ISA:          []string{"AVX512F", "GFNI"},
-		Broadcast:    true,
 	},
 }

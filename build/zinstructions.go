@@ -49999,12 +49999,9 @@ func VGETMANTSS_Z(i, mx, x, k, x1 operand.Op) { ctx.VGETMANTSS_Z(i, mx, x, k, x1
 //	VGF2P8AFFINEINVQB imm8 ymm  ymm ymm
 //	VGF2P8AFFINEINVQB imm8 m512 zmm k zmm
 //	VGF2P8AFFINEINVQB imm8 m512 zmm zmm
-//	VGF2P8AFFINEINVQB imm8 zmm  zmm k zmm
 //	VGF2P8AFFINEINVQB imm8 zmm  zmm zmm
 //	VGF2P8AFFINEINVQB imm8 m128 xmm k xmm
 //	VGF2P8AFFINEINVQB imm8 m256 ymm k ymm
-//	VGF2P8AFFINEINVQB imm8 xmm  xmm k xmm
-//	VGF2P8AFFINEINVQB imm8 ymm  ymm k ymm
 //
 // Construct and append a VGF2P8AFFINEINVQB instruction to the active function.
 func (c *Context) VGF2P8AFFINEINVQB(ops ...operand.Op) {
@@ -50021,12 +50018,9 @@ func (c *Context) VGF2P8AFFINEINVQB(ops ...operand.Op) {
 //	VGF2P8AFFINEINVQB imm8 ymm  ymm ymm
 //	VGF2P8AFFINEINVQB imm8 m512 zmm k zmm
 //	VGF2P8AFFINEINVQB imm8 m512 zmm zmm
-//	VGF2P8AFFINEINVQB imm8 zmm  zmm k zmm
 //	VGF2P8AFFINEINVQB imm8 zmm  zmm zmm
 //	VGF2P8AFFINEINVQB imm8 m128 xmm k xmm
 //	VGF2P8AFFINEINVQB imm8 m256 ymm k ymm
-//	VGF2P8AFFINEINVQB imm8 xmm  xmm k xmm
-//	VGF2P8AFFINEINVQB imm8 ymm  ymm k ymm
 //
 // Construct and append a VGF2P8AFFINEINVQB instruction to the active function.
 // Operates on the global context.
@@ -50062,6 +50056,58 @@ func (c *Context) VGF2P8AFFINEINVQB_BCST(ops ...operand.Op) {
 // Construct and append a VGF2P8AFFINEINVQB.BCST instruction to the active function.
 // Operates on the global context.
 func VGF2P8AFFINEINVQB_BCST(ops ...operand.Op) { ctx.VGF2P8AFFINEINVQB_BCST(ops...) }
+
+// VGF2P8AFFINEINVQB_BCST_Z: Galois Field Affine Transformation Inverse (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+//	VGF2P8AFFINEINVQB.BCST.Z imm8 m64 zmm k zmm
+//	VGF2P8AFFINEINVQB.BCST.Z imm8 m64 xmm k xmm
+//	VGF2P8AFFINEINVQB.BCST.Z imm8 m64 ymm k ymm
+//
+// Construct and append a VGF2P8AFFINEINVQB.BCST.Z instruction to the active function.
+func (c *Context) VGF2P8AFFINEINVQB_BCST_Z(i, m, xyz, k, xyz1 operand.Op) {
+	c.addinstruction(x86.VGF2P8AFFINEINVQB_BCST_Z(i, m, xyz, k, xyz1))
+}
+
+// VGF2P8AFFINEINVQB_BCST_Z: Galois Field Affine Transformation Inverse (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+//	VGF2P8AFFINEINVQB.BCST.Z imm8 m64 zmm k zmm
+//	VGF2P8AFFINEINVQB.BCST.Z imm8 m64 xmm k xmm
+//	VGF2P8AFFINEINVQB.BCST.Z imm8 m64 ymm k ymm
+//
+// Construct and append a VGF2P8AFFINEINVQB.BCST.Z instruction to the active function.
+// Operates on the global context.
+func VGF2P8AFFINEINVQB_BCST_Z(i, m, xyz, k, xyz1 operand.Op) {
+	ctx.VGF2P8AFFINEINVQB_BCST_Z(i, m, xyz, k, xyz1)
+}
+
+// VGF2P8AFFINEINVQB_Z: Galois Field Affine Transformation Inverse (Zeroing Masking).
+//
+// Forms:
+//
+//	VGF2P8AFFINEINVQB.Z imm8 m512 zmm k zmm
+//	VGF2P8AFFINEINVQB.Z imm8 m128 xmm k xmm
+//	VGF2P8AFFINEINVQB.Z imm8 m256 ymm k ymm
+//
+// Construct and append a VGF2P8AFFINEINVQB.Z instruction to the active function.
+func (c *Context) VGF2P8AFFINEINVQB_Z(i, m, xyz, k, xyz1 operand.Op) {
+	c.addinstruction(x86.VGF2P8AFFINEINVQB_Z(i, m, xyz, k, xyz1))
+}
+
+// VGF2P8AFFINEINVQB_Z: Galois Field Affine Transformation Inverse (Zeroing Masking).
+//
+// Forms:
+//
+//	VGF2P8AFFINEINVQB.Z imm8 m512 zmm k zmm
+//	VGF2P8AFFINEINVQB.Z imm8 m128 xmm k xmm
+//	VGF2P8AFFINEINVQB.Z imm8 m256 ymm k ymm
+//
+// Construct and append a VGF2P8AFFINEINVQB.Z instruction to the active function.
+// Operates on the global context.
+func VGF2P8AFFINEINVQB_Z(i, m, xyz, k, xyz1 operand.Op) { ctx.VGF2P8AFFINEINVQB_Z(i, m, xyz, k, xyz1) }
 
 // VGF2P8AFFINEQB: Galois Field Affine Transformation.
 //
@@ -50137,22 +50183,80 @@ func (c *Context) VGF2P8AFFINEQB_BCST(ops ...operand.Op) {
 // Operates on the global context.
 func VGF2P8AFFINEQB_BCST(ops ...operand.Op) { ctx.VGF2P8AFFINEQB_BCST(ops...) }
 
+// VGF2P8AFFINEQB_BCST_Z: Galois Field Affine Transformation (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+//	VGF2P8AFFINEQB.BCST.Z imm8 m64 zmm k zmm
+//	VGF2P8AFFINEQB.BCST.Z imm8 m64 xmm k xmm
+//	VGF2P8AFFINEQB.BCST.Z imm8 m64 ymm k ymm
+//
+// Construct and append a VGF2P8AFFINEQB.BCST.Z instruction to the active function.
+func (c *Context) VGF2P8AFFINEQB_BCST_Z(i, m, xyz, k, xyz1 operand.Op) {
+	c.addinstruction(x86.VGF2P8AFFINEQB_BCST_Z(i, m, xyz, k, xyz1))
+}
+
+// VGF2P8AFFINEQB_BCST_Z: Galois Field Affine Transformation (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+//	VGF2P8AFFINEQB.BCST.Z imm8 m64 zmm k zmm
+//	VGF2P8AFFINEQB.BCST.Z imm8 m64 xmm k xmm
+//	VGF2P8AFFINEQB.BCST.Z imm8 m64 ymm k ymm
+//
+// Construct and append a VGF2P8AFFINEQB.BCST.Z instruction to the active function.
+// Operates on the global context.
+func VGF2P8AFFINEQB_BCST_Z(i, m, xyz, k, xyz1 operand.Op) {
+	ctx.VGF2P8AFFINEQB_BCST_Z(i, m, xyz, k, xyz1)
+}
+
+// VGF2P8AFFINEQB_Z: Galois Field Affine Transformation (Zeroing Masking).
+//
+// Forms:
+//
+//	VGF2P8AFFINEQB.Z imm8 m512 zmm k zmm
+//	VGF2P8AFFINEQB.Z imm8 zmm  zmm k zmm
+//	VGF2P8AFFINEQB.Z imm8 m128 xmm k xmm
+//	VGF2P8AFFINEQB.Z imm8 m256 ymm k ymm
+//	VGF2P8AFFINEQB.Z imm8 xmm  xmm k xmm
+//	VGF2P8AFFINEQB.Z imm8 ymm  ymm k ymm
+//
+// Construct and append a VGF2P8AFFINEQB.Z instruction to the active function.
+func (c *Context) VGF2P8AFFINEQB_Z(i, mxyz, xyz, k, xyz1 operand.Op) {
+	c.addinstruction(x86.VGF2P8AFFINEQB_Z(i, mxyz, xyz, k, xyz1))
+}
+
+// VGF2P8AFFINEQB_Z: Galois Field Affine Transformation (Zeroing Masking).
+//
+// Forms:
+//
+//	VGF2P8AFFINEQB.Z imm8 m512 zmm k zmm
+//	VGF2P8AFFINEQB.Z imm8 zmm  zmm k zmm
+//	VGF2P8AFFINEQB.Z imm8 m128 xmm k xmm
+//	VGF2P8AFFINEQB.Z imm8 m256 ymm k ymm
+//	VGF2P8AFFINEQB.Z imm8 xmm  xmm k xmm
+//	VGF2P8AFFINEQB.Z imm8 ymm  ymm k ymm
+//
+// Construct and append a VGF2P8AFFINEQB.Z instruction to the active function.
+// Operates on the global context.
+func VGF2P8AFFINEQB_Z(i, mxyz, xyz, k, xyz1 operand.Op) { ctx.VGF2P8AFFINEQB_Z(i, mxyz, xyz, k, xyz1) }
+
 // VGF2P8MULB: Galois Field Multiply Bytes.
 //
 // Forms:
 //
-//	VGF2P8MULB imm8 m128 xmm xmm
-//	VGF2P8MULB imm8 m256 ymm ymm
-//	VGF2P8MULB imm8 xmm  xmm xmm
-//	VGF2P8MULB imm8 ymm  ymm ymm
-//	VGF2P8MULB imm8 m512 zmm k zmm
-//	VGF2P8MULB imm8 m512 zmm zmm
-//	VGF2P8MULB imm8 zmm  zmm k zmm
-//	VGF2P8MULB imm8 zmm  zmm zmm
-//	VGF2P8MULB imm8 m128 xmm k xmm
-//	VGF2P8MULB imm8 m256 ymm k ymm
-//	VGF2P8MULB imm8 xmm  xmm k xmm
-//	VGF2P8MULB imm8 ymm  ymm k ymm
+//	VGF2P8MULB m128 xmm xmm
+//	VGF2P8MULB m256 ymm ymm
+//	VGF2P8MULB xmm  xmm xmm
+//	VGF2P8MULB ymm  ymm ymm
+//	VGF2P8MULB m512 zmm k zmm
+//	VGF2P8MULB m512 zmm zmm
+//	VGF2P8MULB zmm  zmm k zmm
+//	VGF2P8MULB zmm  zmm zmm
+//	VGF2P8MULB m128 xmm k xmm
+//	VGF2P8MULB m256 ymm k ymm
+//	VGF2P8MULB xmm  xmm k xmm
+//	VGF2P8MULB ymm  ymm k ymm
 //
 // Construct and append a VGF2P8MULB instruction to the active function.
 func (c *Context) VGF2P8MULB(ops ...operand.Op) {
@@ -50163,53 +50267,53 @@ func (c *Context) VGF2P8MULB(ops ...operand.Op) {
 //
 // Forms:
 //
-//	VGF2P8MULB imm8 m128 xmm xmm
-//	VGF2P8MULB imm8 m256 ymm ymm
-//	VGF2P8MULB imm8 xmm  xmm xmm
-//	VGF2P8MULB imm8 ymm  ymm ymm
-//	VGF2P8MULB imm8 m512 zmm k zmm
-//	VGF2P8MULB imm8 m512 zmm zmm
-//	VGF2P8MULB imm8 zmm  zmm k zmm
-//	VGF2P8MULB imm8 zmm  zmm zmm
-//	VGF2P8MULB imm8 m128 xmm k xmm
-//	VGF2P8MULB imm8 m256 ymm k ymm
-//	VGF2P8MULB imm8 xmm  xmm k xmm
-//	VGF2P8MULB imm8 ymm  ymm k ymm
+//	VGF2P8MULB m128 xmm xmm
+//	VGF2P8MULB m256 ymm ymm
+//	VGF2P8MULB xmm  xmm xmm
+//	VGF2P8MULB ymm  ymm ymm
+//	VGF2P8MULB m512 zmm k zmm
+//	VGF2P8MULB m512 zmm zmm
+//	VGF2P8MULB zmm  zmm k zmm
+//	VGF2P8MULB zmm  zmm zmm
+//	VGF2P8MULB m128 xmm k xmm
+//	VGF2P8MULB m256 ymm k ymm
+//	VGF2P8MULB xmm  xmm k xmm
+//	VGF2P8MULB ymm  ymm k ymm
 //
 // Construct and append a VGF2P8MULB instruction to the active function.
 // Operates on the global context.
 func VGF2P8MULB(ops ...operand.Op) { ctx.VGF2P8MULB(ops...) }
 
-// VGF2P8MULB_BCST: Galois Field Multiply Bytes (Broadcast).
+// VGF2P8MULB_Z: Galois Field Multiply Bytes (Zeroing Masking).
 //
 // Forms:
 //
-//	VGF2P8MULB.BCST imm8 m64 zmm k zmm
-//	VGF2P8MULB.BCST imm8 m64 zmm zmm
-//	VGF2P8MULB.BCST imm8 m64 xmm k xmm
-//	VGF2P8MULB.BCST imm8 m64 xmm xmm
-//	VGF2P8MULB.BCST imm8 m64 ymm k ymm
-//	VGF2P8MULB.BCST imm8 m64 ymm ymm
+//	VGF2P8MULB.Z m512 zmm k zmm
+//	VGF2P8MULB.Z zmm  zmm k zmm
+//	VGF2P8MULB.Z m128 xmm k xmm
+//	VGF2P8MULB.Z m256 ymm k ymm
+//	VGF2P8MULB.Z xmm  xmm k xmm
+//	VGF2P8MULB.Z ymm  ymm k ymm
 //
-// Construct and append a VGF2P8MULB.BCST instruction to the active function.
-func (c *Context) VGF2P8MULB_BCST(ops ...operand.Op) {
-	c.addinstruction(x86.VGF2P8MULB_BCST(ops...))
+// Construct and append a VGF2P8MULB.Z instruction to the active function.
+func (c *Context) VGF2P8MULB_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	c.addinstruction(x86.VGF2P8MULB_Z(mxyz, xyz, k, xyz1))
 }
 
-// VGF2P8MULB_BCST: Galois Field Multiply Bytes (Broadcast).
+// VGF2P8MULB_Z: Galois Field Multiply Bytes (Zeroing Masking).
 //
 // Forms:
 //
-//	VGF2P8MULB.BCST imm8 m64 zmm k zmm
-//	VGF2P8MULB.BCST imm8 m64 zmm zmm
-//	VGF2P8MULB.BCST imm8 m64 xmm k xmm
-//	VGF2P8MULB.BCST imm8 m64 xmm xmm
-//	VGF2P8MULB.BCST imm8 m64 ymm k ymm
-//	VGF2P8MULB.BCST imm8 m64 ymm ymm
+//	VGF2P8MULB.Z m512 zmm k zmm
+//	VGF2P8MULB.Z zmm  zmm k zmm
+//	VGF2P8MULB.Z m128 xmm k xmm
+//	VGF2P8MULB.Z m256 ymm k ymm
+//	VGF2P8MULB.Z xmm  xmm k xmm
+//	VGF2P8MULB.Z ymm  ymm k ymm
 //
-// Construct and append a VGF2P8MULB.BCST instruction to the active function.
+// Construct and append a VGF2P8MULB.Z instruction to the active function.
 // Operates on the global context.
-func VGF2P8MULB_BCST(ops ...operand.Op) { ctx.VGF2P8MULB_BCST(ops...) }
+func VGF2P8MULB_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VGF2P8MULB_Z(mxyz, xyz, k, xyz1) }
 
 // VHADDPD: Packed Double-FP Horizontal Add.
 //
