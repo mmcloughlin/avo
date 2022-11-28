@@ -40,6 +40,13 @@ func (i Instruction) IsConditionalBranch() bool {
 	return i.IsBranch() && i.Opcode != "JMP"
 }
 
+// Clone the instruction.
+func (i Instruction) Clone() Instruction {
+	c := i
+	c.Forms = i.Forms.Clone()
+	return c
+}
+
 // Forms is a collection of instruction forms.
 type Forms []Form
 
@@ -76,6 +83,15 @@ func (fs Forms) IsVariadic() bool {
 func (fs Forms) IsNiladic() bool {
 	a := fs.Arities()
 	return len(a) == 1 && a[0] == 0
+}
+
+// Clone the instruction forms.
+func (fs Forms) Clone() Forms {
+	cs := make(Forms, 0, len(fs))
+	for _, f := range fs {
+		cs = append(cs, f.Clone())
+	}
+	return cs
 }
 
 // Form specifies one accepted set of operands for an instruction.
