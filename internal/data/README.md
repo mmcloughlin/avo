@@ -39,8 +39,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ## golang/go
 Files downloaded:
 
-* https://raw.githubusercontent.com/golang/go/go1.19.3/src/cmd/asm/internal/arch/arch.go
-* https://raw.githubusercontent.com/golang/go/go1.19.3/LICENSE
+* https://raw.githubusercontent.com/golang/go/go1.17.6/src/cmd/asm/internal/arch/arch.go
+* https://raw.githubusercontent.com/golang/go/go1.17.6/LICENSE
 ### License
 ```
 Copyright (c) 2009 The Go Authors. All rights reserved.

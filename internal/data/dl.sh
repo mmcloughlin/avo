@@ -62,7 +62,7 @@ rm -f ${datadir}/LICENSE
 
     # golang/go aliases list.
     repo='golang/go'
-    ref='go1.19.3'
+    ref='go1.17.6'
 
     echo "## ${repo}"
     echo 'Files downloaded:'
