@@ -12,6 +12,7 @@ import (
 
 	"github.com/mmcloughlin/avo/internal/inst"
 	"github.com/mmcloughlin/avo/internal/opcodescsv"
+	"github.com/mmcloughlin/avo/internal/opcodesextra"
 	"github.com/mmcloughlin/avo/internal/opcodesxml"
 )
 
@@ -86,7 +87,7 @@ func (l *Loader) Load() ([]inst.Instruction, error) {
 	}
 
 	// Add extras to our list.
-	for _, e := range extras {
+	for _, e := range opcodesextra.Instructions() {
 		im[e.Opcode] = e
 	}
 
