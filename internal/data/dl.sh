@@ -42,6 +42,8 @@ addlicense() {
     rm ${tmp}
 }
 
+rm -f ${datadir}/LICENSE
+
 {
     echo '# data'
     echo 'Underlying data files for instruction database.'
@@ -49,7 +51,7 @@ addlicense() {
 
     # golang/arch x86 csv
     repo='golang/arch'
-    ref='b76863e36670e165c85261bc41fabaf345376022'
+    ref='1bb480fc256aacee6555e668dedebd1f8225c946'
 
     echo "## ${repo}"
     echo 'Files downloaded:'
@@ -71,7 +73,7 @@ addlicense() {
 
     # opcodes
     repo='Maratyszcza/Opcodes'
-    ref='6e2b0cd9f1403ecaf164dea7019dd54db5aea252'
+    ref='b740e24c551a640e8ba4038101027aeffa0e6ee9'
 
     echo "## ${repo}"
     echo 'Files downloaded:'
