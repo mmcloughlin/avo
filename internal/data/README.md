@@ -4,8 +4,8 @@ Underlying data files for instruction database.
 ## golang/arch
 Files downloaded:
 
-* https://raw.githubusercontent.com/golang/arch/b76863e36670e165c85261bc41fabaf345376022/x86/x86.v0.2.csv
-* https://raw.githubusercontent.com/golang/arch/b76863e36670e165c85261bc41fabaf345376022/LICENSE
+* https://raw.githubusercontent.com/golang/arch/1bb480fc256aacee6555e668dedebd1f8225c946/x86/x86.v0.2.csv
+* https://raw.githubusercontent.com/golang/arch/1bb480fc256aacee6555e668dedebd1f8225c946/LICENSE
 ### License
 ```
 Copyright (c) 2015 The Go Authors. All rights reserved.
@@ -39,8 +39,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ## golang/go
 Files downloaded:
 
-* https://raw.githubusercontent.com/golang/go/go1.17.6/src/cmd/asm/internal/arch/arch.go
-* https://raw.githubusercontent.com/golang/go/go1.17.6/LICENSE
+* https://raw.githubusercontent.com/golang/go/go1.19.3/src/cmd/asm/internal/arch/arch.go
+* https://raw.githubusercontent.com/golang/go/go1.19.3/LICENSE
 ### License
 ```
 Copyright (c) 2009 The Go Authors. All rights reserved.
@@ -74,8 +74,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ## Maratyszcza/Opcodes
 Files downloaded:
 
-* https://raw.githubusercontent.com/Maratyszcza/Opcodes/6e2b0cd9f1403ecaf164dea7019dd54db5aea252/opcodes/x86_64.xml
-* https://raw.githubusercontent.com/Maratyszcza/Opcodes/6e2b0cd9f1403ecaf164dea7019dd54db5aea252/license.rst
+* https://raw.githubusercontent.com/Maratyszcza/Opcodes/b740e24c551a640e8ba4038101027aeffa0e6ee9/opcodes/x86_64.xml
+* https://raw.githubusercontent.com/Maratyszcza/Opcodes/b740e24c551a640e8ba4038101027aeffa0e6ee9/license.rst
 ### License
 ```
 =======================================
