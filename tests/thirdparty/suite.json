@@ -7,7 +7,7 @@
             },
             "metadata": {
                 "description": "XXH3 algorithm in Go",
-                "stars": 290
+                "stars": 291
             },
             "default_branch": "master",
             "version": "v1.0.0-rc1",
@@ -145,7 +145,7 @@
             },
             "metadata": {
                 "description": "Pure Go implementation of BLAKE3 with AVX2 and SSE4.1 acceleration",
-                "stars": 322
+                "stars": 325
             },
             "default_branch": "master",
             "version": "25dba572f0e78ec108f0dd79c9c15288f542d7d9",
@@ -171,7 +171,7 @@
             },
             "metadata": {
                 "description": "Reed-Solomon Erasure Coding in Go",
-                "stars": 1571
+                "stars": 1573
             },
             "default_branch": "master",
             "version": "922778284547557265cff0f903ab5f4c27e40ae9",
@@ -230,7 +230,7 @@
             },
             "metadata": {
                 "description": "Optimized Go Compression Packages",
-                "stars": 3353
+                "stars": 3358
             },
             "default_branch": "master",
             "version": "2f236383d7c2faa8ef7e354ccecb926a5b47a24d",
@@ -374,7 +374,7 @@
             },
             "metadata": {
                 "description": "SPECK cipher",
-                "stars": 10
+                "stars": 9
             },
             "default_branch": "master",
             "version": "5b36d4c08d8840c352a153bf37281434ad550ec0",
@@ -519,7 +519,7 @@
             },
             "metadata": {
                 "description": "Go library providing algorithms optimized to leverage the characteristics of modern CPUs",
-                "stars": 776
+                "stars": 777
             },
             "default_branch": "main",
             "version": "2bf3fdd47b1cdbe8fe020f032caf14891e10a85f",
@@ -634,7 +634,7 @@
             "metadata": {
                 "description": "[mirror] Go supplementary cryptography libraries",
                 "homepage": "https://golang.org/x/crypto",
-                "stars": 2549
+                "stars": 2552
             },
             "default_branch": "master",
             "version": "089bfa5675191fd96a44247682f76ebca03d7916",
@@ -746,7 +746,7 @@
             "metadata": {
                 "description": "The Go programming language",
                 "homepage": "https://go.dev",
-                "stars": 106106
+                "stars": 106225
             },
             "default_branch": "master",
             "version": "go1.19",
@@ -832,5 +832,5 @@
             ]
         }
     ],
-    "metadata_last_update": "2022-11-26T22:15:09.329488149Z"
+    "metadata_last_update": "2022-12-01T05:28:23.919904905Z"
 }
