@@ -11,7 +11,6 @@ import (
 	"fmt"
 	"go/format"
 	"io"
-	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
@@ -107,7 +106,7 @@ func DownloadGoSourceFile(outpath, v, srcpath string) (err error) {
 		return err
 	}
 
-	if err := ioutil.WriteFile(outpath, buf.Bytes(), 0644); err != nil {
+	if err := os.WriteFile(outpath, buf.Bytes(), 0o644); err != nil {
 		return err
 	}
 
@@ -169,7 +168,7 @@ func Parse(r io.Reader) ([]Flag, error) {
 
 // ParseFile parses text flags header file.
 func ParseFile(filename string) ([]Flag, error) {
-	b, err := ioutil.ReadFile(filename)
+	b, err := os.ReadFile(filename)
 	if err != nil {
 		return nil, err
 	}

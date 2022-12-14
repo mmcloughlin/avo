@@ -1,0 +1,836 @@
+{
+    "projects": [
+        {
+            "repository": {
+                "owner": "zeebo",
+                "name": "xxh3"
+            },
+            "metadata": {
+                "description": "XXH3 algorithm in Go",
+                "stars": 290
+            },
+            "default_branch": "master",
+            "version": "v1.0.0-rc1",
+            "packages": [
+                {
+                    "module": "avo/go.mod",
+                    "generate": [
+                        {
+                            "dir": "avo",
+                            "commands": [
+                                "go run . -avx -out ../accum_vector_avx_amd64.s",
+                                "go run . -sse -out ../accum_vector_sse_amd64.s"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "repository": {
+                "owner": "dgryski",
+                "name": "go-sip13"
+            },
+            "metadata": {
+                "description": "siphash 1-3",
+                "stars": 33
+            },
+            "default_branch": "master",
+            "version": "62edffca92457b3a66125c686137cc5f0fe81672",
+            "packages": [
+                {
+                    "module": "_avo/go.mod",
+                    "setup": [
+                        {
+                            "name": "Setup Root Module",
+                            "commands": [
+                                "go mod init github.com/dgryski/go-sip13"
+                            ]
+                        },
+                        {
+                            "name": "Setup Generator Module",
+                            "dir": "_avo",
+                            "commands": [
+                                "sed -i.bak '/+build ignore/d' asm.go",
+                                "go mod init github.com/dgryski/go-sip13/_avo"
+                            ]
+                        }
+                    ],
+                    "generate": [
+                        {
+                            "dir": "_avo",
+                            "commands": [
+                                "go mod edit -modfile=go.mod -require=github.com/dgryski/go-sip13@v0.0.0-00010101000000-000000000000",
+                                "go mod edit -modfile=go.mod -replace=github.com/dgryski/go-sip13=../",
+                                "go run . -out ../sip13_amd64.s"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "repository": {
+                "owner": "phoreproject",
+                "name": "bls"
+            },
+            "metadata": {
+                "description": "Go implementation of the BLS12-381 pairing",
+                "stars": 86
+            },
+            "default_branch": "master",
+            "version": "a88a5ae26844d7293359422888d7c7f69f43c845",
+            "packages": [
+                {
+                    "module": "asm/go.mod",
+                    "setup": [
+                        {
+                            "name": "Setup Root Module",
+                            "commands": [
+                                "go mod tidy"
+                            ]
+                        },
+                        {
+                            "name": "Setup Generator Module",
+                            "dir": "asm",
+                            "commands": [
+                                "sed -i.bak '/+build ignore/d' asm.go",
+                                "go mod init github.com/phoreproject/bls/asm"
+                            ]
+                        }
+                    ],
+                    "generate": [
+                        {
+                            "dir": "asm",
+                            "commands": [
+                                "go mod edit -modfile=go.mod -require=github.com/phoreproject/bls@v0.0.0-00010101000000-000000000000",
+                                "go mod edit -modfile=go.mod -replace=github.com/phoreproject/bls=../",
+                                "go mod download",
+                                "go run . -out ../primitivefuncs_amd64.s"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "repository": {
+                "owner": "minio",
+                "name": "md5-simd"
+            },
+            "metadata": {
+                "description": "Accelerate aggregated MD5 hashing performance up to 8x for AVX512 and 4x for AVX2. Useful for server applications that need to compute many MD5 sums in parallel.",
+                "stars": 125
+            },
+            "default_branch": "master",
+            "version": "30ad8af83f6868c2a30c615f3edf1a9366bf3f89",
+            "packages": [
+                {
+                    "module": "_gen/go.mod",
+                    "generate": [
+                        {
+                            "dir": "_gen",
+                            "commands": [
+                                "go run gen.go -out ../md5block_amd64.s -stubs ../md5block_amd64.go -pkg md5simd"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "repository": {
+                "owner": "zeebo",
+                "name": "blake3"
+            },
+            "metadata": {
+                "description": "Pure Go implementation of BLAKE3 with AVX2 and SSE4.1 acceleration",
+                "stars": 322
+            },
+            "default_branch": "master",
+            "version": "25dba572f0e78ec108f0dd79c9c15288f542d7d9",
+            "packages": [
+                {
+                    "module": "avo/go.mod",
+                    "generate": [
+                        {
+                            "dir": "avo",
+                            "commands": [
+                                "go run ./avx2 -out ../avx2/impl.s",
+                                "go run ./sse41 -out ../sse41/impl.s"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "repository": {
+                "owner": "klauspost",
+                "name": "reedsolomon"
+            },
+            "metadata": {
+                "description": "Reed-Solomon Erasure Coding in Go",
+                "stars": 1571
+            },
+            "default_branch": "master",
+            "version": "922778284547557265cff0f903ab5f4c27e40ae9",
+            "packages": [
+                {
+                    "module": "_gen/go.mod",
+                    "generate": [
+                        {
+                            "dir": "_gen",
+                            "commands": [
+                                "go run gen.go -out ../galois_gen_amd64.s -stubs ../galois_gen_amd64.go -pkg reedsolomon"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "repository": {
+                "owner": "orisano",
+                "name": "wyhash"
+            },
+            "metadata": {
+                "description": "A pure-Go wyhash implementation.",
+                "stars": 25
+            },
+            "default_branch": "master",
+            "version": "32a3f7f6ba4797e2d87dab2969cc9dd63d39cce9",
+            "packages": [
+                {
+                    "module": "avo/go.mod",
+                    "setup": [
+                        {
+                            "name": "Setup Generator Module",
+                            "dir": "avo",
+                            "commands": [
+                                "go mod init github.com/orisano/wyhash/avo"
+                            ]
+                        }
+                    ],
+                    "generate": [
+                        {
+                            "dir": "avo",
+                            "commands": [
+                                "go run gen.go -out ../blocks_amd64.s -stubs ../blocks_amd64.go -pkg wyhash"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "repository": {
+                "owner": "klauspost",
+                "name": "compress"
+            },
+            "metadata": {
+                "description": "Optimized Go Compression Packages",
+                "stars": 3353
+            },
+            "default_branch": "master",
+            "version": "2f236383d7c2faa8ef7e354ccecb926a5b47a24d",
+            "packages": [
+                {
+                    "pkg": "s2",
+                    "module": "_generate/go.mod",
+                    "generate": [
+                        {
+                            "dir": "_generate",
+                            "commands": [
+                                "go generate -v -x"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "pkg": "zstd",
+                    "module": "_generate/go.mod",
+                    "generate": [
+                        {
+                            "dir": "_generate",
+                            "commands": [
+                                "go generate -v -x"
+                            ]
+                        }
+                    ],
+                    "test": [
+                        {
+                            "commands": [
+                                "go test -short"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "repository": {
+                "owner": "dgryski",
+                "name": "go-bloomindex"
+            },
+            "metadata": {
+                "description": "Bloom-filter based search index",
+                "stars": 114
+            },
+            "default_branch": "master",
+            "version": "0902316dce158c154b958ee5cfc706c62af29a42",
+            "packages": [
+                {
+                    "module": "avo/go.mod",
+                    "setup": [
+                        {
+                            "name": "Setup Root Module",
+                            "commands": [
+                                "go mod init github.com/dgryski/go-bloomindex",
+                                "go get github.com/dgryski/go-bits@v0.0.0-20180113010104-bd8a69a71dc2"
+                            ]
+                        },
+                        {
+                            "name": "Create Generator Module",
+                            "commands": [
+                                "mkdir avo",
+                                "git mv asm.go avo"
+                            ]
+                        },
+                        {
+                            "name": "Setup Generator Module",
+                            "dir": "avo",
+                            "commands": [
+                                "sed -i.bak '/+build ignore/d' asm.go",
+                                "go mod init github.com/dgryski/go-bloomindex/avo"
+                            ]
+                        }
+                    ],
+                    "generate": [
+                        {
+                            "dir": "avo",
+                            "commands": [
+                                "go run asm.go -out ../query_amd64.s"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "repository": {
+                "owner": "dgryski",
+                "name": "go-marvin32"
+            },
+            "metadata": {
+                "description": "Assembly-optimized Marvin32 hash function",
+                "stars": 14
+            },
+            "default_branch": "master",
+            "version": "7d18f4c6ea7c24b29d1c7a670f8ae40b0812f2e3",
+            "packages": [
+                {
+                    "module": "avo/go.mod",
+                    "setup": [
+                        {
+                            "name": "Setup Root Module",
+                            "commands": [
+                                "go mod init github.com/dgryski/go-marvin32"
+                            ]
+                        },
+                        {
+                            "name": "Create Generator Module",
+                            "commands": [
+                                "mkdir avo",
+                                "git mv asm.go avo"
+                            ]
+                        },
+                        {
+                            "name": "Setup Generator Module",
+                            "dir": "avo",
+                            "commands": [
+                                "sed -i.bak '/+build ignore/d' asm.go",
+                                "go mod init github.com/dgryski/go-marvin32/avo"
+                            ]
+                        }
+                    ],
+                    "generate": [
+                        {
+                            "dir": "avo",
+                            "commands": [
+                                "go mod edit -modfile=go.mod -require=github.com/dgryski/go-marvin32@v0.0.0-00010101000000-000000000000",
+                                "go mod edit -modfile=go.mod -replace=github.com/dgryski/go-marvin32=../",
+                                "go run asm.go -out ../marvin_amd64.s"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "repository": {
+                "owner": "dgryski",
+                "name": "go-speck"
+            },
+            "metadata": {
+                "description": "SPECK cipher",
+                "stars": 10
+            },
+            "default_branch": "master",
+            "version": "5b36d4c08d8840c352a153bf37281434ad550ec0",
+            "packages": [
+                {
+                    "module": "avo/go.mod",
+                    "setup": [
+                        {
+                            "name": "Setup Root Module",
+                            "commands": [
+                                "go mod init github.com/dgryski/go-speck",
+                                "go get github.com/dgryski/go-skipjack@v0.0.0-20150401095227-f3a984a142ab"
+                            ]
+                        },
+                        {
+                            "name": "Create Generator Module",
+                            "commands": [
+                                "mkdir avo",
+                                "git mv asm.go avo"
+                            ]
+                        },
+                        {
+                            "name": "Setup Generator Module",
+                            "dir": "avo",
+                            "commands": [
+                                "sed -i.bak '/+build ignore/d' asm.go",
+                                "go mod init github.com/dgryski/go-speck/avo"
+                            ]
+                        }
+                    ],
+                    "generate": [
+                        {
+                            "dir": "avo",
+                            "commands": [
+                                "go mod edit -modfile=go.mod -require=github.com/dgryski/go-speck@v0.0.0-00010101000000-000000000000",
+                                "go mod edit -modfile=go.mod -replace=github.com/dgryski/go-speck=../",
+                                "go run asm.go -out ../speck_amd64.s"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "repository": {
+                "owner": "dgryski",
+                "name": "go-chaskey"
+            },
+            "metadata": {
+                "description": "go-chaskey: an implementation of chaskey, an efficient MAC for microcontrollers",
+                "stars": 8
+            },
+            "default_branch": "master",
+            "version": "ba454392bc5ab6daae103e15147185f8f4a27dcc",
+            "packages": [
+                {
+                    "module": "avo/go.mod",
+                    "setup": [
+                        {
+                            "name": "Setup Root Module",
+                            "commands": [
+                                "go mod init github.com/dgryski/go-chaskey",
+                                "go get github.com/dchest/siphash@v1.2.2"
+                            ]
+                        },
+                        {
+                            "name": "Create Generator Module",
+                            "commands": [
+                                "mkdir avo",
+                                "git mv asm.go avo"
+                            ]
+                        },
+                        {
+                            "name": "Setup Generator Module",
+                            "dir": "avo",
+                            "commands": [
+                                "sed -i.bak '/+build ignore/d' asm.go",
+                                "go mod init github.com/dgryski/go-chaskey/avo"
+                            ]
+                        }
+                    ],
+                    "generate": [
+                        {
+                            "dir": "avo",
+                            "commands": [
+                                "go mod edit -modfile=go.mod -require=github.com/dgryski/go-chaskey@v0.0.0-00010101000000-000000000000",
+                                "go mod edit -modfile=go.mod -replace=github.com/dgryski/go-chaskey=../",
+                                "go run asm.go -out ../core_amd64.s"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "repository": {
+                "owner": "lukechampine",
+                "name": "us"
+            },
+            "metadata": {
+                "description": "An alternative interface to Sia",
+                "stars": 53
+            },
+            "default_branch": "master",
+            "version": "dff56a80f83653cb14eeeb57ba6ba3c3e942c412",
+            "packages": [
+                {
+                    "pkg": "merkle/blake2b",
+                    "module": "avo/go.mod",
+                    "setup": [
+                        {
+                            "name": "Create Generator Module",
+                            "commands": [
+                                "mkdir avo",
+                                "git mv gen.go avo"
+                            ]
+                        },
+                        {
+                            "name": "Setup Generator Module",
+                            "dir": "avo",
+                            "commands": [
+                                "sed -i.bak '/+build ignore/d' gen.go",
+                                "go mod init github.com/lukechampine/us/merkle/blake2b/avo"
+                            ]
+                        }
+                    ],
+                    "generate": [
+                        {
+                            "dir": "avo",
+                            "commands": [
+                                "go run gen.go -out ../blake2b_amd64.s"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "repository": {
+                "owner": "segmentio",
+                "name": "asm"
+            },
+            "metadata": {
+                "description": "Go library providing algorithms optimized to leverage the characteristics of modern CPUs",
+                "stars": 776
+            },
+            "default_branch": "main",
+            "version": "2bf3fdd47b1cdbe8fe020f032caf14891e10a85f",
+            "packages": [
+                {
+                    "module": "build/go.mod",
+                    "generate": [
+                        {
+                            "commands": [
+                                "make --always-make build"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "repository": {
+                "owner": "ericlagergren",
+                "name": "lwcrypto"
+            },
+            "metadata": {
+                "description": "NIST Lightweight Cryptography finalists",
+                "stars": 5
+            },
+            "default_branch": "main",
+            "version": "0c42b05eddc34c58bf8e0cd4250c5cd2c256ea57",
+            "packages": [
+                {
+                    "pkg": "ascon",
+                    "module": "asm/go.mod",
+                    "generate": [
+                        {
+                            "dir": "asm",
+                            "commands": [
+                                "go mod edit -require=github.com/ericlagergren/lwcrypto@v0.0.0-00010101000000-000000000000",
+                                "go generate -v -x"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "pkg": "grain",
+                    "module": "asm/go.mod",
+                    "generate": [
+                        {
+                            "dir": "asm",
+                            "commands": [
+                                "go mod edit -require=github.com/ericlagergren/lwcrypto@v0.0.0-00010101000000-000000000000",
+                                "go generate -v -x"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "repository": {
+                "owner": "oasisprotocol",
+                "name": "curve25519-voi"
+            },
+            "metadata": {
+                "description": "High-performance Curve25519/ristretto255 for Go",
+                "stars": 53
+            },
+            "default_branch": "master",
+            "version": "d5a936accd94ef9da4c0fe9db0a6342dcdcfeadf",
+            "packages": [
+                {
+                    "module": "internal/asm/amd64/go.mod",
+                    "generate": [
+                        {
+                            "dir": "internal/asm/amd64",
+                            "commands": [
+                                "bash -ex gen.sh"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "repository": {
+                "owner": "oasisprotocol",
+                "name": "deoxysii"
+            },
+            "metadata": {
+                "description": "Go Deoxys-II-256-128",
+                "stars": 18
+            },
+            "default_branch": "master",
+            "version": "2091330c22b71dd4e04e15306498e68f3a1b3afc",
+            "packages": [
+                {
+                    "module": "internal/hardware/asm/go.mod",
+                    "generate": [
+                        {
+                            "dir": "internal/hardware/asm",
+                            "commands": [
+                                "bash -ex gen.sh"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "repository": {
+                "owner": "golang",
+                "name": "crypto"
+            },
+            "metadata": {
+                "description": "[mirror] Go supplementary cryptography libraries",
+                "homepage": "https://golang.org/x/crypto",
+                "stars": 2549
+            },
+            "default_branch": "master",
+            "version": "089bfa5675191fd96a44247682f76ebca03d7916",
+            "packages": [
+                {
+                    "pkg": "curve25519",
+                    "module": "internal/field/_asm/go.mod",
+                    "generate": [
+                        {
+                            "dir": "internal/field/_asm",
+                            "commands": [
+                                "go generate -v -x"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "repository": {
+                "owner": "FiloSottile",
+                "name": "edwards25519"
+            },
+            "metadata": {
+                "description": "filippo.io/edwards25519 — A safer, faster, and more powerful low-level edwards25519 Go implementation.",
+                "homepage": "https://filippo.io/edwards25519",
+                "stars": 95
+            },
+            "default_branch": "main",
+            "version": "v1.0.0-rc.1",
+            "packages": [
+                {
+                    "module": "field/_asm/go.mod",
+                    "generate": [
+                        {
+                            "dir": "field/_asm",
+                            "commands": [
+                                "go generate -v -x"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "repository": {
+                "owner": "lukechampine",
+                "name": "blake3"
+            },
+            "metadata": {
+                "description": "A pure-Go implementation of the BLAKE3 cryptographic hash function",
+                "stars": 288
+            },
+            "default_branch": "master",
+            "version": "v1.1.7",
+            "packages": [
+                {
+                    "module": "avo/go.mod",
+                    "setup": [
+                        {
+                            "name": "Setup Generator Module",
+                            "dir": "avo",
+                            "commands": [
+                                "sed -i.bak '/build ignore/d' gen.go",
+                                "go mod init github.com/lukechampine/blake3/avo"
+                            ]
+                        }
+                    ],
+                    "generate": [
+                        {
+                            "dir": "avo",
+                            "commands": [
+                                "go run gen.go -out ../blake3_amd64.s"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "repository": {
+                "owner": "mmcloughlin",
+                "name": "md4"
+            },
+            "metadata": {
+                "description": "Assembly-optimized MD4 hash algorithm in Go",
+                "stars": 15
+            },
+            "default_branch": "main",
+            "version": "v0.1.2",
+            "packages": [
+                {
+                    "module": "asm/go.mod",
+                    "generate": [
+                        {
+                            "commands": [
+                                "go generate -v -x"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "repository": {
+                "owner": "golang",
+                "name": "go"
+            },
+            "metadata": {
+                "description": "The Go programming language",
+                "homepage": "https://go.dev",
+                "stars": 106106
+            },
+            "default_branch": "master",
+            "version": "go1.19",
+            "packages": [
+                {
+                    "module": "src/crypto/internal/edwards25519/field/_asm/go.mod",
+                    "setup": [
+                        {
+                            "name": "Compile Go Toolchain",
+                            "dir": "src",
+                            "commands": [
+                                "./make.bash"
+                            ]
+                        }
+                    ],
+                    "generate": [
+                        {
+                            "dir": "src/crypto/internal/edwards25519/field/_asm",
+                            "commands": [
+                                "go generate -v -x"
+                            ]
+                        }
+                    ],
+                    "test": [
+                        {
+                            "commands": [
+                                "env --unset=GOROOT ./bin/go test crypto/ed25519/..."
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "repository": {
+                "owner": "cloudflare",
+                "name": "circl"
+            },
+            "metadata": {
+                "description": "CIRCL: Cloudflare Interoperable Reusable Cryptographic Library",
+                "homepage": "http://blog.cloudflare.com/introducing-circl",
+                "stars": 764
+            },
+            "default_branch": "main",
+            "version": "v1.1.0",
+            "packages": [
+                {
+                    "pkg": "sign/dilithium",
+                    "module": "internal/common/asm/go.mod",
+                    "generate": [
+                        {
+                            "dir": "internal/common/asm",
+                            "commands": [
+                                "go generate -v -x"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "pkg": "pke/kyber",
+                    "module": "internal/common/asm/go.mod",
+                    "generate": [
+                        {
+                            "dir": "internal/common/asm",
+                            "commands": [
+                                "go generate -v -x"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "pkg": "simd/keccakf1600",
+                    "module": "internal/asm/go.mod",
+                    "generate": [
+                        {
+                            "dir": "internal/asm",
+                            "commands": [
+                                "go generate -v -x"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "metadata_last_update": "2022-11-26T22:15:09.329488149Z"
+}
