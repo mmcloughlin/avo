@@ -30438,10 +30438,52 @@ func VPMULUDQ_Z(mxyz, xyz, k, xyz1 operand.Op) (*intrep.Instruction, error) {
 	return build(opcVPMULUDQ.Forms(), sffxs{sffxZ}, []operand.Op{mxyz, xyz, k, xyz1})
 }
 
+// VPOPCNTB: Packed Population Count for Byte Integers.
+//
+// Forms:
+//
+//	VPOPCNTB m128 k xmm
+//	VPOPCNTB m128 xmm
+//	VPOPCNTB m256 k ymm
+//	VPOPCNTB m256 ymm
+//	VPOPCNTB xmm  k xmm
+//	VPOPCNTB xmm  xmm
+//	VPOPCNTB ymm  k ymm
+//	VPOPCNTB ymm  ymm
+//	VPOPCNTB m512 k zmm
+//	VPOPCNTB m512 zmm
+//	VPOPCNTB zmm  k zmm
+//	VPOPCNTB zmm  zmm
+func VPOPCNTB(ops ...operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPOPCNTB.Forms(), sffxs{}, ops)
+}
+
+// VPOPCNTB_Z: Packed Population Count for Byte Integers (Zeroing Masking).
+//
+// Forms:
+//
+//	VPOPCNTB.Z m128 k xmm
+//	VPOPCNTB.Z m256 k ymm
+//	VPOPCNTB.Z xmm  k xmm
+//	VPOPCNTB.Z ymm  k ymm
+//	VPOPCNTB.Z m512 k zmm
+//	VPOPCNTB.Z zmm  k zmm
+func VPOPCNTB_Z(mxyz, k, xyz operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPOPCNTB.Forms(), sffxs{sffxZ}, []operand.Op{mxyz, k, xyz})
+}
+
 // VPOPCNTD: Packed Population Count for Doubleword Integers.
 //
 // Forms:
 //
+//	VPOPCNTD m128 k xmm
+//	VPOPCNTD m128 xmm
+//	VPOPCNTD m256 k ymm
+//	VPOPCNTD m256 ymm
+//	VPOPCNTD xmm  k xmm
+//	VPOPCNTD xmm  xmm
+//	VPOPCNTD ymm  k ymm
+//	VPOPCNTD ymm  ymm
 //	VPOPCNTD m512 k zmm
 //	VPOPCNTD m512 zmm
 //	VPOPCNTD zmm  k zmm
@@ -30454,6 +30496,10 @@ func VPOPCNTD(ops ...operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+//	VPOPCNTD.BCST m32 k xmm
+//	VPOPCNTD.BCST m32 k ymm
+//	VPOPCNTD.BCST m32 xmm
+//	VPOPCNTD.BCST m32 ymm
 //	VPOPCNTD.BCST m32 k zmm
 //	VPOPCNTD.BCST m32 zmm
 func VPOPCNTD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
@@ -30464,25 +30510,39 @@ func VPOPCNTD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+//	VPOPCNTD.BCST.Z m32 k xmm
+//	VPOPCNTD.BCST.Z m32 k ymm
 //	VPOPCNTD.BCST.Z m32 k zmm
-func VPOPCNTD_BCST_Z(m, k, z operand.Op) (*intrep.Instruction, error) {
-	return build(opcVPOPCNTD.Forms(), sffxs{sffxBCST, sffxZ}, []operand.Op{m, k, z})
+func VPOPCNTD_BCST_Z(m, k, xyz operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPOPCNTD.Forms(), sffxs{sffxBCST, sffxZ}, []operand.Op{m, k, xyz})
 }
 
 // VPOPCNTD_Z: Packed Population Count for Doubleword Integers (Zeroing Masking).
 //
 // Forms:
 //
+//	VPOPCNTD.Z m128 k xmm
+//	VPOPCNTD.Z m256 k ymm
+//	VPOPCNTD.Z xmm  k xmm
+//	VPOPCNTD.Z ymm  k ymm
 //	VPOPCNTD.Z m512 k zmm
 //	VPOPCNTD.Z zmm  k zmm
-func VPOPCNTD_Z(mz, k, z operand.Op) (*intrep.Instruction, error) {
-	return build(opcVPOPCNTD.Forms(), sffxs{sffxZ}, []operand.Op{mz, k, z})
+func VPOPCNTD_Z(mxyz, k, xyz operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPOPCNTD.Forms(), sffxs{sffxZ}, []operand.Op{mxyz, k, xyz})
 }
 
 // VPOPCNTQ: Packed Population Count for Quadword Integers.
 //
 // Forms:
 //
+//	VPOPCNTQ m128 k xmm
+//	VPOPCNTQ m128 xmm
+//	VPOPCNTQ m256 k ymm
+//	VPOPCNTQ m256 ymm
+//	VPOPCNTQ xmm  k xmm
+//	VPOPCNTQ xmm  xmm
+//	VPOPCNTQ ymm  k ymm
+//	VPOPCNTQ ymm  ymm
 //	VPOPCNTQ m512 k zmm
 //	VPOPCNTQ m512 zmm
 //	VPOPCNTQ zmm  k zmm
@@ -30495,6 +30555,10 @@ func VPOPCNTQ(ops ...operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+//	VPOPCNTQ.BCST m64 k xmm
+//	VPOPCNTQ.BCST m64 k ymm
+//	VPOPCNTQ.BCST m64 xmm
+//	VPOPCNTQ.BCST m64 ymm
 //	VPOPCNTQ.BCST m64 k zmm
 //	VPOPCNTQ.BCST m64 zmm
 func VPOPCNTQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
@@ -30505,19 +30569,59 @@ func VPOPCNTQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+//	VPOPCNTQ.BCST.Z m64 k xmm
+//	VPOPCNTQ.BCST.Z m64 k ymm
 //	VPOPCNTQ.BCST.Z m64 k zmm
-func VPOPCNTQ_BCST_Z(m, k, z operand.Op) (*intrep.Instruction, error) {
-	return build(opcVPOPCNTQ.Forms(), sffxs{sffxBCST, sffxZ}, []operand.Op{m, k, z})
+func VPOPCNTQ_BCST_Z(m, k, xyz operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPOPCNTQ.Forms(), sffxs{sffxBCST, sffxZ}, []operand.Op{m, k, xyz})
 }
 
 // VPOPCNTQ_Z: Packed Population Count for Quadword Integers (Zeroing Masking).
 //
 // Forms:
 //
+//	VPOPCNTQ.Z m128 k xmm
+//	VPOPCNTQ.Z m256 k ymm
+//	VPOPCNTQ.Z xmm  k xmm
+//	VPOPCNTQ.Z ymm  k ymm
 //	VPOPCNTQ.Z m512 k zmm
 //	VPOPCNTQ.Z zmm  k zmm
-func VPOPCNTQ_Z(mz, k, z operand.Op) (*intrep.Instruction, error) {
-	return build(opcVPOPCNTQ.Forms(), sffxs{sffxZ}, []operand.Op{mz, k, z})
+func VPOPCNTQ_Z(mxyz, k, xyz operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPOPCNTQ.Forms(), sffxs{sffxZ}, []operand.Op{mxyz, k, xyz})
+}
+
+// VPOPCNTW: Packed Population Count for Word Integers.
+//
+// Forms:
+//
+//	VPOPCNTW m128 k xmm
+//	VPOPCNTW m128 xmm
+//	VPOPCNTW m256 k ymm
+//	VPOPCNTW m256 ymm
+//	VPOPCNTW xmm  k xmm
+//	VPOPCNTW xmm  xmm
+//	VPOPCNTW ymm  k ymm
+//	VPOPCNTW ymm  ymm
+//	VPOPCNTW m512 k zmm
+//	VPOPCNTW m512 zmm
+//	VPOPCNTW zmm  k zmm
+//	VPOPCNTW zmm  zmm
+func VPOPCNTW(ops ...operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPOPCNTW.Forms(), sffxs{}, ops)
+}
+
+// VPOPCNTW_Z: Packed Population Count for Word Integers (Zeroing Masking).
+//
+// Forms:
+//
+//	VPOPCNTW.Z m128 k xmm
+//	VPOPCNTW.Z m256 k ymm
+//	VPOPCNTW.Z xmm  k xmm
+//	VPOPCNTW.Z ymm  k ymm
+//	VPOPCNTW.Z m512 k zmm
+//	VPOPCNTW.Z zmm  k zmm
+func VPOPCNTW_Z(mxyz, k, xyz operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPOPCNTW.Forms(), sffxs{sffxZ}, []operand.Op{mxyz, k, xyz})
 }
 
 // VPOR: Packed Bitwise Logical OR.
@@ -31198,6 +31302,26 @@ func VPSCATTERQQ(xyz, k, v operand.Op) (*intrep.Instruction, error) {
 //	VPSHUFB zmm  zmm zmm
 func VPSHUFB(ops ...operand.Op) (*intrep.Instruction, error) {
 	return build(opcVPSHUFB.Forms(), sffxs{}, ops)
+}
+
+// VPSHUFBITQMB: Shuffle Bits from Quadword Elements Using Byte Indexes into Mask.
+//
+// Forms:
+//
+//	VPSHUFBITQMB m128 xmm k k
+//	VPSHUFBITQMB m128 xmm k
+//	VPSHUFBITQMB m256 ymm k k
+//	VPSHUFBITQMB m256 ymm k
+//	VPSHUFBITQMB xmm  xmm k k
+//	VPSHUFBITQMB xmm  xmm k
+//	VPSHUFBITQMB ymm  ymm k k
+//	VPSHUFBITQMB ymm  ymm k
+//	VPSHUFBITQMB m512 zmm k k
+//	VPSHUFBITQMB m512 zmm k
+//	VPSHUFBITQMB zmm  zmm k k
+//	VPSHUFBITQMB zmm  zmm k
+func VPSHUFBITQMB(ops ...operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPSHUFBITQMB.Forms(), sffxs{}, ops)
 }
 
 // VPSHUFB_Z: Packed Shuffle Bytes (Zeroing Masking).
