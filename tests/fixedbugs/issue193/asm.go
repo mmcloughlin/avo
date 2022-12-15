@@ -12,7 +12,6 @@ import (
 var offQ Mem
 
 func generateAddSub(useBase bool) {
-
 	funcName := "AddSubPairs"
 	if !useBase {
 		funcName += "NoBase"
@@ -53,7 +52,6 @@ func generateAddSub(useBase bool) {
 }
 
 func main() {
-
 	offQ = GLOBL("offQ", RODATA|NOPTR)
 	for i := 0; i < 4; i++ {
 		DATA(i*8, U64(2*i))
