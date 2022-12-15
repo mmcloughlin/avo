@@ -1,6 +1,8 @@
 package printer
 
 import (
+	"go/format"
+
 	"github.com/mmcloughlin/avo/buildtags"
 	"github.com/mmcloughlin/avo/internal/prnt"
 	"github.com/mmcloughlin/avo/ir"
@@ -38,7 +40,16 @@ func (s *stubs) Print(f *ir.File) ([]byte, error) {
 		}
 		s.Printf("%s\n", fn.Stub())
 	}
-	return s.Result()
+
+	// Apply formatting to the result. This is the simplest way to ensure
+	// comment formatting rules introduced in Go 1.19 are applied.  See
+	// https://go.dev/doc/comment.
+	src, err := s.Result()
+	if err != nil {
+		return nil, err
+	}
+
+	return format.Source(src)
 }
 
 func (s *stubs) pragma(p ir.Pragma) {

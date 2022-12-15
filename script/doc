@@ -1,3 +1,11 @@
 #!/bin/bash -ex
 
+# Generate some specific files with docgen.
+go install ./internal/cmd/docgen
+
+suite="tests/thirdparty/suite.json"
+docgen -suite "${suite}" -type readme -output README.md
+docgen -suite "${suite}" -type adopters -output doc/adopters.md
+
+# Process simple file embeddings with embedmd.
 find . -name '*.md' | xargs embedmd -w

@@ -4,7 +4,6 @@ package test
 import (
 	"flag"
 	"io"
-	"io/ioutil"
 	"log"
 	"os"
 	"os/exec"
@@ -32,7 +31,7 @@ func Assembles(t *testing.T, asm []byte) {
 	defer clean()
 
 	asmfilename := filepath.Join(dir, "asm.s")
-	if err := ioutil.WriteFile(asmfilename, asm, 0600); err != nil {
+	if err := os.WriteFile(asmfilename, asm, 0o600); err != nil {
 		t.Fatal(err)
 	}
 
@@ -46,7 +45,7 @@ func Assembles(t *testing.T, asm []byte) {
 func TempDir(t *testing.T) (string, func()) {
 	t.Helper()
 
-	dir, err := ioutil.TempDir("", "avo")
+	dir, err := os.MkdirTemp("", "avo")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -96,11 +95,13 @@ func GoTool() string {
 
 // goexec runs a "go" command and checks the output.
 func goexec(t *testing.T, arg ...string) {
+	t.Helper()
 	Exec(t, GoTool(), arg...)
 }
 
 // Logger builds a logger that writes to the test object.
 func Logger(tb testing.TB) *log.Logger {
+	tb.Helper()
 	return log.New(Writer(tb), "test", log.LstdFlags)
 }
 
@@ -110,6 +111,7 @@ type writer struct {
 
 // Writer builds a writer that logs all writes to the test object.
 func Writer(tb testing.TB) io.Writer {
+	tb.Helper()
 	return writer{tb}
 }
 

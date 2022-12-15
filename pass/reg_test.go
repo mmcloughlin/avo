@@ -83,6 +83,7 @@ func TestLivenessBasic(t *testing.T) {
 }
 
 func AssertLiveness(t *testing.T, ctx *build.Context, in, out [][]reg.Register) {
+	t.Helper()
 	fn := ConstructLiveness(t, ctx)
 	is := fn.Instructions()
 
@@ -97,12 +98,14 @@ func AssertLiveness(t *testing.T, ctx *build.Context, in, out [][]reg.Register) 
 }
 
 func AssertRegistersMatchSet(t *testing.T, rs []reg.Register, s reg.MaskSet) {
+	t.Helper()
 	if !s.Equals(reg.NewMaskSetFromRegisters(rs)) {
 		t.Fatalf("register slice does not match set: %#v and %#v", rs, s)
 	}
 }
 
 func ConstructLiveness(t *testing.T, ctx *build.Context) *ir.Function {
+	t.Helper()
 	return BuildFunction(t, ctx, pass.LabelTarget, pass.CFG, pass.Liveness)
 }
 

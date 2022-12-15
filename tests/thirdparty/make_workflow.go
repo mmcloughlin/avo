@@ -16,8 +16,8 @@ import (
 )
 
 var (
-	pkgsfilename = flag.String("pkgs", "", "packages configuration")
-	output       = flag.String("output", "", "path to output file (default stdout)")
+	suitefilename = flag.String("suite", "", "third-party test suite configuration")
+	output        = flag.String("output", "", "path to output file (default stdout)")
 )
 
 func main() {
@@ -29,13 +29,13 @@ func main() {
 func mainerr() error {
 	flag.Parse()
 
-	// Read packages.
-	pkgs, err := thirdparty.LoadPackagesFile(*pkgsfilename)
+	// Read third-party test suite.
+	suite, err := thirdparty.LoadSuiteFile(*suitefilename)
 	if err != nil {
 		return err
 	}
 
-	if err := pkgs.Validate(); err != nil {
+	if err := suite.Validate(); err != nil {
 		return err
 	}
 
@@ -51,7 +51,7 @@ func mainerr() error {
 	}
 
 	// Generate workflow file.
-	b, err := GenerateWorkflow(pkgs)
+	b, err := GenerateWorkflow(suite)
 	if err != nil {
 		return err
 	}
@@ -64,7 +64,7 @@ func mainerr() error {
 	return nil
 }
 
-func GenerateWorkflow(pkgs thirdparty.Packages) ([]byte, error) {
+func GenerateWorkflow(s *thirdparty.Suite) ([]byte, error) {
 	g := &prnt.Generator{}
 	g.SetIndentString("  ")
 
@@ -84,42 +84,42 @@ func GenerateWorkflow(pkgs thirdparty.Packages) ([]byte, error) {
 	g.Linef("      - master")
 	g.Linef("  pull_request:")
 
-	// One job per package.
-	g.NL()
+	// One job per test case.
 	g.Linef("jobs:")
 	g.Indent()
-	for _, pkg := range pkgs {
-		g.Linef("%s:", pkg.ID())
+	for _, t := range s.Projects.Tests() {
+		g.Linef("%s:", t.ID())
 		g.Indent()
 
 		g.Linef("runs-on: ubuntu-latest")
-		if pkg.Skip() {
-			g.Linef("if: false # skip: %s", pkg.Reason())
+		if t.Project.Skip() {
+			g.Linef("if: false # skip: %s", t.Project.Reason())
 		}
 		g.Linef("steps:")
 		g.Indent()
 
 		// Install Go.
 		g.Linef("- name: Install Go")
-		g.Linef("  uses: actions/setup-go@37335c7bb261b353407cff977110895fa0b4f7d8 # v2.1.3")
+		g.Linef("  uses: actions/setup-go@c4a742cab115ed795e34d4513e2cf7d472deb55f # v3.3.1")
 		g.Linef("  with:")
-		g.Linef("    go-version: 1.17.x")
+		g.Linef("    go-version: 1.19.x")
+		g.Linef("    check-latest: true")
 
 		// Checkout avo.
 		avodir := "avo"
 		g.Linef("- name: Checkout avo")
-		g.Linef("  uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f # v2.3.4")
+		g.Linef("  uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0")
 		g.Linef("  with:")
 		g.Linef("    path: %s", avodir)
 		g.Linef("    persist-credentials: false")
 
 		// Checkout the third-party package.
-		pkgdir := pkg.Repository.Name
-		g.Linef("- name: Checkout %s", pkg.Repository)
-		g.Linef("  uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f # v2.3.4")
+		pkgdir := t.Project.Repository.Name
+		g.Linef("- name: Checkout %s", t.Project.Repository)
+		g.Linef("  uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0")
 		g.Linef("  with:")
-		g.Linef("    repository: %s", pkg.Repository)
-		g.Linef("    ref: %s", pkg.Version)
+		g.Linef("    repository: %s", t.Project.Repository)
+		g.Linef("    ref: %s", t.Project.Version)
 		g.Linef("    path: %s", pkgdir)
 		g.Linef("    persist-credentials: false")
 
@@ -129,7 +129,7 @@ func GenerateWorkflow(pkgs thirdparty.Packages) ([]byte, error) {
 			RepositoryDirectory: path.Join("${{ github.workspace }}", pkgdir),
 		}
 
-		for _, step := range pkg.Steps(c) {
+		for _, step := range t.Package.Steps(c) {
 			g.Linef("- name: %s", step.Name)
 			g.Linef("  working-directory: %s", path.Join(pkgdir, step.WorkingDirectory))
 			if len(step.Commands) == 1 {
