@@ -2,7 +2,7 @@ package opcodesextra
 
 import "github.com/mmcloughlin/avo/internal/inst"
 
-// bitalg adds the AVX512_BITALG instructions: VPOPCNTB, VPOPCNTW and VPSHUFBITQMB
+// bitalg adds the AVX512_BITALG instructions: VPOPCNTB, VPOPCNTW and VPSHUFBITQMB.
 var bitalg = []*inst.Instruction{
 	// Reference: https://github.com/golang/go/blob/go1.19.3/src/cmd/internal/obj/x86/avx_optabs.go#L3904-L3908
 	//
