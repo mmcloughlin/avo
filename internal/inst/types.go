@@ -304,9 +304,10 @@ type Action uint8
 
 // Possible Action types.
 const (
-	I, R Action = iota, 1 << iota // Immediate, Read
-	W    Action = 1 << iota       // Write
-	RW   Action = R | W           // Read-Write
+	I  Action = iota            // Immediate
+	R  Action = 1 << (iota - 1) // Read
+	W                           // Write
+	RW Action = R | W           // Read-Write
 )
 
 // ActionFromReadWrite builds an Action from boolean flags.

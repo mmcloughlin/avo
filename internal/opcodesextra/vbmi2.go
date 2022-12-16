@@ -124,62 +124,62 @@ var vbmi2 = []*inst.Instruction{
 	{
 		Opcode:  "VPSHLDD",
 		Summary: "Concatenate Dwords and Shift Packed Data Left Logical",
-		Forms:   vbmi2Shift(32),
+		Forms:   immShiftForms(32),
 	},
 	{
 		Opcode:  "VPSHLDQ",
 		Summary: "Concatenate Quadwords and Shift Packed Data Left Logical",
-		Forms:   vbmi2Shift(64),
+		Forms:   immShiftForms(64),
 	},
 	{
 		Opcode:  "VPSHLDVD",
 		Summary: "Concatenate Dwords and Variable Shift Packed Data Left Logical",
-		Forms:   vbmi2VarShift(32),
+		Forms:   varShiftForms(32),
 	},
 	{
 		Opcode:  "VPSHLDVQ",
 		Summary: "Concatenate Quadwords and Variable Shift Packed Data Left Logical",
-		Forms:   vbmi2VarShift(64),
+		Forms:   varShiftForms(64),
 	},
 	{
 		Opcode:  "VPSHLDVW",
 		Summary: "Concatenate Words and Variable Shift Packed Data Left Logical",
-		Forms:   vbmi2VarShift(16),
+		Forms:   varShiftForms(16),
 	},
 	{
 		Opcode:  "VPSHLDW",
 		Summary: "Concatenate Words and Shift Packed Data Left Logical",
-		Forms:   vbmi2Shift(16),
+		Forms:   immShiftForms(16),
 	},
 	{
 		Opcode:  "VPSHRDD",
 		Summary: "Concatenate Dwords and Shift Packed Data Right Logical",
-		Forms:   vbmi2Shift(32),
+		Forms:   immShiftForms(32),
 	},
 	{
 		Opcode:  "VPSHRDQ",
 		Summary: "Concatenate Quadwords and Shift Packed Data Right Logical",
-		Forms:   vbmi2Shift(64),
+		Forms:   immShiftForms(64),
 	},
 	{
 		Opcode:  "VPSHRDVD",
 		Summary: "Concatenate Dwords and Variable Shift Packed Data Right Logical",
-		Forms:   vbmi2VarShift(32),
+		Forms:   varShiftForms(32),
 	},
 	{
 		Opcode:  "VPSHRDVQ",
 		Summary: "Concatenate Quadwords and Variable Shift Packed Data Right Logical",
-		Forms:   vbmi2VarShift(64),
+		Forms:   varShiftForms(64),
 	},
 	{
 		Opcode:  "VPSHRDVW",
 		Summary: "Concatenate Words and Variable Shift Packed Data Right Logical",
-		Forms:   vbmi2VarShift(16),
+		Forms:   varShiftForms(16),
 	},
 	{
 		Opcode:  "VPSHRDW",
 		Summary: "Concatenate Words and Shift Packed Data Right Logical",
-		Forms:   vbmi2Shift(16),
+		Forms:   immShiftForms(16),
 	},
 }
 
@@ -580,7 +580,7 @@ var vbmi2Expand = inst.Forms{
 //		{zcase: Zevex_i_rm_v_r, zoffset: 0, args: argList{Yu8, Yzm, Yzr, Yzr}},
 //		{zcase: Zevex_i_rm_v_k_r, zoffset: 3, args: argList{Yu8, Yzm, Yzr, Yknot0, Yzr}},
 //	}
-func vbmi2Shift(bcastWidth int) inst.Forms {
+func immShiftForms(bcastWidth int) inst.Forms {
 	// EVEX.128.66.0F3A.W1 70 /r /ib VPSHLDW xmm1{k1}{z}, xmm2, xmm3/m128, imm8  AVX512VMBI2 AVX512VL
 	// EVEX.256.66.0F3A.W1 70 /r /ib VPSHLDW ymm1{k1}{z}, ymm2, ymm3/m256, imm8  AVX512VMBI2 AVX512VL
 	// EVEX.512.66.0F3A.W1 70 /r /ib VPSHLDW zmm1{k1}{z}, zmm2, zmm3/m512, imm8  AVX512VMBI2
@@ -932,7 +932,7 @@ func vbmi2Shift(bcastWidth int) inst.Forms {
 //		{zcase: Zevex_rm_v_r, zoffset: 0, args: argList{Yzm, Yzr, Yzr}},
 //		{zcase: Zevex_rm_v_k_r, zoffset: 3, args: argList{Yzm, Yzr, Yknot0, Yzr}},
 //	}
-func vbmi2VarShift(bcastWidth int) inst.Forms {
+func varShiftForms(bcastWidth int) inst.Forms {
 	// EVEX.128.66.0F38.W1 70 /r VPSHLDVW xmm1{k1}{z}, xmm2, xmm3/m128  AVX512VMBI2 AVX512VL
 	// EVEX.256.66.0F38.W1 70 /r VPSHLDVW ymm1{k1}{z}, ymm2, ymm3/m256  AVX512VMBI2 AVX512VL
 	// EVEX.512.66.0F38.W1 70 /r VPSHLDVW zmm1{k1}{z}, zmm2, zmm3/m512  AVX512VMBI2
