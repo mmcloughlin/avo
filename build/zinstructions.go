@@ -16894,10 +16894,14 @@ func VADDSUBPS(mxy, xy, xy1 operand.Op) { ctx.VADDSUBPS(mxy, xy, xy1) }
 //
 //	VAESDEC m128 xmm xmm
 //	VAESDEC xmm  xmm xmm
+//	VAESDEC m256 ymm ymm
+//	VAESDEC ymm  ymm ymm
+//	VAESDEC m512 zmm zmm
+//	VAESDEC zmm  zmm zmm
 //
 // Construct and append a VAESDEC instruction to the active function.
-func (c *Context) VAESDEC(mx, x, x1 operand.Op) {
-	c.addinstruction(x86.VAESDEC(mx, x, x1))
+func (c *Context) VAESDEC(mxyz, xyz, xyz1 operand.Op) {
+	c.addinstruction(x86.VAESDEC(mxyz, xyz, xyz1))
 }
 
 // VAESDEC: Perform One Round of an AES Decryption Flow.
@@ -16906,10 +16910,14 @@ func (c *Context) VAESDEC(mx, x, x1 operand.Op) {
 //
 //	VAESDEC m128 xmm xmm
 //	VAESDEC xmm  xmm xmm
+//	VAESDEC m256 ymm ymm
+//	VAESDEC ymm  ymm ymm
+//	VAESDEC m512 zmm zmm
+//	VAESDEC zmm  zmm zmm
 //
 // Construct and append a VAESDEC instruction to the active function.
 // Operates on the global context.
-func VAESDEC(mx, x, x1 operand.Op) { ctx.VAESDEC(mx, x, x1) }
+func VAESDEC(mxyz, xyz, xyz1 operand.Op) { ctx.VAESDEC(mxyz, xyz, xyz1) }
 
 // VAESDECLAST: Perform Last Round of an AES Decryption Flow.
 //
@@ -16917,10 +16925,14 @@ func VAESDEC(mx, x, x1 operand.Op) { ctx.VAESDEC(mx, x, x1) }
 //
 //	VAESDECLAST m128 xmm xmm
 //	VAESDECLAST xmm  xmm xmm
+//	VAESDECLAST m256 ymm ymm
+//	VAESDECLAST ymm  ymm ymm
+//	VAESDECLAST m512 zmm zmm
+//	VAESDECLAST zmm  zmm zmm
 //
 // Construct and append a VAESDECLAST instruction to the active function.
-func (c *Context) VAESDECLAST(mx, x, x1 operand.Op) {
-	c.addinstruction(x86.VAESDECLAST(mx, x, x1))
+func (c *Context) VAESDECLAST(mxyz, xyz, xyz1 operand.Op) {
+	c.addinstruction(x86.VAESDECLAST(mxyz, xyz, xyz1))
 }
 
 // VAESDECLAST: Perform Last Round of an AES Decryption Flow.
@@ -16929,10 +16941,14 @@ func (c *Context) VAESDECLAST(mx, x, x1 operand.Op) {
 //
 //	VAESDECLAST m128 xmm xmm
 //	VAESDECLAST xmm  xmm xmm
+//	VAESDECLAST m256 ymm ymm
+//	VAESDECLAST ymm  ymm ymm
+//	VAESDECLAST m512 zmm zmm
+//	VAESDECLAST zmm  zmm zmm
 //
 // Construct and append a VAESDECLAST instruction to the active function.
 // Operates on the global context.
-func VAESDECLAST(mx, x, x1 operand.Op) { ctx.VAESDECLAST(mx, x, x1) }
+func VAESDECLAST(mxyz, xyz, xyz1 operand.Op) { ctx.VAESDECLAST(mxyz, xyz, xyz1) }
 
 // VAESENC: Perform One Round of an AES Encryption Flow.
 //
@@ -16940,10 +16956,14 @@ func VAESDECLAST(mx, x, x1 operand.Op) { ctx.VAESDECLAST(mx, x, x1) }
 //
 //	VAESENC m128 xmm xmm
 //	VAESENC xmm  xmm xmm
+//	VAESENC m256 ymm ymm
+//	VAESENC ymm  ymm ymm
+//	VAESENC m512 zmm zmm
+//	VAESENC zmm  zmm zmm
 //
 // Construct and append a VAESENC instruction to the active function.
-func (c *Context) VAESENC(mx, x, x1 operand.Op) {
-	c.addinstruction(x86.VAESENC(mx, x, x1))
+func (c *Context) VAESENC(mxyz, xyz, xyz1 operand.Op) {
+	c.addinstruction(x86.VAESENC(mxyz, xyz, xyz1))
 }
 
 // VAESENC: Perform One Round of an AES Encryption Flow.
@@ -16952,10 +16972,14 @@ func (c *Context) VAESENC(mx, x, x1 operand.Op) {
 //
 //	VAESENC m128 xmm xmm
 //	VAESENC xmm  xmm xmm
+//	VAESENC m256 ymm ymm
+//	VAESENC ymm  ymm ymm
+//	VAESENC m512 zmm zmm
+//	VAESENC zmm  zmm zmm
 //
 // Construct and append a VAESENC instruction to the active function.
 // Operates on the global context.
-func VAESENC(mx, x, x1 operand.Op) { ctx.VAESENC(mx, x, x1) }
+func VAESENC(mxyz, xyz, xyz1 operand.Op) { ctx.VAESENC(mxyz, xyz, xyz1) }
 
 // VAESENCLAST: Perform Last Round of an AES Encryption Flow.
 //
@@ -16963,10 +16987,14 @@ func VAESENC(mx, x, x1 operand.Op) { ctx.VAESENC(mx, x, x1) }
 //
 //	VAESENCLAST m128 xmm xmm
 //	VAESENCLAST xmm  xmm xmm
+//	VAESENCLAST m256 ymm ymm
+//	VAESENCLAST ymm  ymm ymm
+//	VAESENCLAST m512 zmm zmm
+//	VAESENCLAST zmm  zmm zmm
 //
 // Construct and append a VAESENCLAST instruction to the active function.
-func (c *Context) VAESENCLAST(mx, x, x1 operand.Op) {
-	c.addinstruction(x86.VAESENCLAST(mx, x, x1))
+func (c *Context) VAESENCLAST(mxyz, xyz, xyz1 operand.Op) {
+	c.addinstruction(x86.VAESENCLAST(mxyz, xyz, xyz1))
 }
 
 // VAESENCLAST: Perform Last Round of an AES Encryption Flow.
@@ -16975,10 +17003,14 @@ func (c *Context) VAESENCLAST(mx, x, x1 operand.Op) {
 //
 //	VAESENCLAST m128 xmm xmm
 //	VAESENCLAST xmm  xmm xmm
+//	VAESENCLAST m256 ymm ymm
+//	VAESENCLAST ymm  ymm ymm
+//	VAESENCLAST m512 zmm zmm
+//	VAESENCLAST zmm  zmm zmm
 //
 // Construct and append a VAESENCLAST instruction to the active function.
 // Operates on the global context.
-func VAESENCLAST(mx, x, x1 operand.Op) { ctx.VAESENCLAST(mx, x, x1) }
+func VAESENCLAST(mxyz, xyz, xyz1 operand.Op) { ctx.VAESENCLAST(mxyz, xyz, xyz1) }
 
 // VAESIMC: Perform the AES InvMixColumn Transformation.
 //

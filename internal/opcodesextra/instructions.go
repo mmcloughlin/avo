@@ -8,6 +8,10 @@ var sets = [][]*inst.Instruction{
 	movlqzx,
 	gfni,
 	vpclmulqdq,
+	vbmi2,
+	vnni,
+	ifma,
+	vaes,
 }
 
 // Instructions returns a list of extras to add to the instructions database.

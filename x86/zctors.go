@@ -7396,8 +7396,12 @@ func VADDSUBPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 //	VAESDEC m128 xmm xmm
 //	VAESDEC xmm  xmm xmm
-func VAESDEC(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
-	return build(opcVAESDEC.Forms(), sffxs{}, []operand.Op{mx, x, x1})
+//	VAESDEC m256 ymm ymm
+//	VAESDEC ymm  ymm ymm
+//	VAESDEC m512 zmm zmm
+//	VAESDEC zmm  zmm zmm
+func VAESDEC(mxyz, xyz, xyz1 operand.Op) (*intrep.Instruction, error) {
+	return build(opcVAESDEC.Forms(), sffxs{}, []operand.Op{mxyz, xyz, xyz1})
 }
 
 // VAESDECLAST: Perform Last Round of an AES Decryption Flow.
@@ -7406,8 +7410,12 @@ func VAESDEC(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 //
 //	VAESDECLAST m128 xmm xmm
 //	VAESDECLAST xmm  xmm xmm
-func VAESDECLAST(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
-	return build(opcVAESDECLAST.Forms(), sffxs{}, []operand.Op{mx, x, x1})
+//	VAESDECLAST m256 ymm ymm
+//	VAESDECLAST ymm  ymm ymm
+//	VAESDECLAST m512 zmm zmm
+//	VAESDECLAST zmm  zmm zmm
+func VAESDECLAST(mxyz, xyz, xyz1 operand.Op) (*intrep.Instruction, error) {
+	return build(opcVAESDECLAST.Forms(), sffxs{}, []operand.Op{mxyz, xyz, xyz1})
 }
 
 // VAESENC: Perform One Round of an AES Encryption Flow.
@@ -7416,8 +7424,12 @@ func VAESDECLAST(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 //
 //	VAESENC m128 xmm xmm
 //	VAESENC xmm  xmm xmm
-func VAESENC(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
-	return build(opcVAESENC.Forms(), sffxs{}, []operand.Op{mx, x, x1})
+//	VAESENC m256 ymm ymm
+//	VAESENC ymm  ymm ymm
+//	VAESENC m512 zmm zmm
+//	VAESENC zmm  zmm zmm
+func VAESENC(mxyz, xyz, xyz1 operand.Op) (*intrep.Instruction, error) {
+	return build(opcVAESENC.Forms(), sffxs{}, []operand.Op{mxyz, xyz, xyz1})
 }
 
 // VAESENCLAST: Perform Last Round of an AES Encryption Flow.
@@ -7426,8 +7438,12 @@ func VAESENC(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 //
 //	VAESENCLAST m128 xmm xmm
 //	VAESENCLAST xmm  xmm xmm
-func VAESENCLAST(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
-	return build(opcVAESENCLAST.Forms(), sffxs{}, []operand.Op{mx, x, x1})
+//	VAESENCLAST m256 ymm ymm
+//	VAESENCLAST ymm  ymm ymm
+//	VAESENCLAST m512 zmm zmm
+//	VAESENCLAST zmm  zmm zmm
+func VAESENCLAST(mxyz, xyz, xyz1 operand.Op) (*intrep.Instruction, error) {
+	return build(opcVAESENCLAST.Forms(), sffxs{}, []operand.Op{mxyz, xyz, xyz1})
 }
 
 // VAESIMC: Perform the AES InvMixColumn Transformation.
