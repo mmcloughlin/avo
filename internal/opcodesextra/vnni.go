@@ -56,7 +56,7 @@ var vnni = []*inst.Instruction{
 // See: https://www.felixcloutier.com/x86/vpdpbusd
 // 		https://www.felixcloutier.com/x86/vpdpbusds
 // 		https://www.felixcloutier.com/x86/vpdpwssd
-// 		https://www.felixcloutier.com/x86/vpdpwssd
+// 		https://www.felixcloutier.com/x86/vpdpwssds
 //
 // Reference: https://github.com/golang/go/blob/go1.19.3/src/cmd/internal/obj/x86/avx_optabs.go#L148-L155
 //
@@ -145,7 +145,7 @@ var vnniForms = inst.Forms{
 	{
 		ISA: []string{"AVX512VNNI", "AVX512VL"},
 		Operands: []inst.Operand{
-			{Type: "m64", Action: inst.R},
+			{Type: "m32", Action: inst.R},
 			{Type: "xmm", Action: inst.R},
 			{Type: "k", Action: inst.R},
 			{Type: "xmm", Action: inst.RW},
@@ -156,7 +156,7 @@ var vnniForms = inst.Forms{
 	{
 		ISA: []string{"AVX512VNNI", "AVX512VL"},
 		Operands: []inst.Operand{
-			{Type: "m64", Action: inst.R},
+			{Type: "m32", Action: inst.R},
 			{Type: "xmm", Action: inst.R},
 			{Type: "k", Action: inst.R},
 			{Type: "xmm", Action: inst.W},
@@ -168,7 +168,7 @@ var vnniForms = inst.Forms{
 	{
 		ISA: []string{"AVX512VNNI", "AVX512VL"},
 		Operands: []inst.Operand{
-			{Type: "m64", Action: inst.R},
+			{Type: "m32", Action: inst.R},
 			{Type: "xmm", Action: inst.R},
 			{Type: "xmm", Action: inst.W},
 		},
@@ -178,7 +178,7 @@ var vnniForms = inst.Forms{
 	{
 		ISA: []string{"AVX512VNNI", "AVX512VL"},
 		Operands: []inst.Operand{
-			{Type: "m64", Action: inst.R},
+			{Type: "m32", Action: inst.R},
 			{Type: "ymm", Action: inst.R},
 			{Type: "k", Action: inst.R},
 			{Type: "ymm", Action: inst.RW},
@@ -189,7 +189,7 @@ var vnniForms = inst.Forms{
 	{
 		ISA: []string{"AVX512VNNI", "AVX512VL"},
 		Operands: []inst.Operand{
-			{Type: "m64", Action: inst.R},
+			{Type: "m32", Action: inst.R},
 			{Type: "ymm", Action: inst.R},
 			{Type: "k", Action: inst.R},
 			{Type: "ymm", Action: inst.W},
@@ -201,7 +201,7 @@ var vnniForms = inst.Forms{
 	{
 		ISA: []string{"AVX512VNNI", "AVX512VL"},
 		Operands: []inst.Operand{
-			{Type: "m64", Action: inst.R},
+			{Type: "m32", Action: inst.R},
 			{Type: "ymm", Action: inst.R},
 			{Type: "ymm", Action: inst.W},
 		},
@@ -301,7 +301,7 @@ var vnniForms = inst.Forms{
 	{
 		ISA: []string{"AVX512VNNI"},
 		Operands: []inst.Operand{
-			{Type: "m64", Action: inst.R},
+			{Type: "m32", Action: inst.R},
 			{Type: "zmm", Action: inst.R},
 			{Type: "k", Action: inst.R},
 			{Type: "zmm", Action: inst.RW},
@@ -312,7 +312,7 @@ var vnniForms = inst.Forms{
 	{
 		ISA: []string{"AVX512VNNI"},
 		Operands: []inst.Operand{
-			{Type: "m64", Action: inst.R},
+			{Type: "m32", Action: inst.R},
 			{Type: "zmm", Action: inst.R},
 			{Type: "k", Action: inst.R},
 			{Type: "zmm", Action: inst.W},
@@ -324,7 +324,7 @@ var vnniForms = inst.Forms{
 	{
 		ISA: []string{"AVX512VNNI"},
 		Operands: []inst.Operand{
-			{Type: "m64", Action: inst.R},
+			{Type: "m32", Action: inst.R},
 			{Type: "zmm", Action: inst.R},
 			{Type: "zmm", Action: inst.W},
 		},
