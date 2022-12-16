@@ -70007,6 +70007,174 @@ var Instructions = []Instruction{
 		},
 	},
 	{
+		Opcode:  "VPCOMPRESSB",
+		Summary: "Store Sparse Packed Byte Integer Values into Dense Memory/Register",
+		Forms: []Form{
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "m128", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "m128", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "m128", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "m256", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "m256", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "ymm", Action: 0x1},
+					{Type: "m256", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "m512", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "m512", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "m512", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+		},
+	},
+	{
 		Opcode:  "VPCOMPRESSD",
 		Summary: "Store Sparse Packed Doubleword Integer Values into Dense Memory/Register",
 		Forms: []Form{
@@ -70334,6 +70502,174 @@ var Instructions = []Instruction{
 			},
 			{
 				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+		},
+	},
+	{
+		Opcode:  "VPCOMPRESSW",
+		Summary: "Store Sparse Packed Word Integer Values into Dense Memory/Register",
+		Forms: []Form{
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "m128", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "m128", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "m128", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "m256", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "m256", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "ymm", Action: 0x1},
+					{Type: "m256", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "m512", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "m512", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "m512", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
 				Operands: []Operand{
 					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
@@ -70925,7 +71261,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512VNNI", "AVX512VL"},
 				Operands: []Operand{
-					{Type: "m64", Action: 0x1},
+					{Type: "m32", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
@@ -70936,7 +71272,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512VNNI", "AVX512VL"},
 				Operands: []Operand{
-					{Type: "m64", Action: 0x1},
+					{Type: "m32", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
@@ -70948,7 +71284,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512VNNI", "AVX512VL"},
 				Operands: []Operand{
-					{Type: "m64", Action: 0x1},
+					{Type: "m32", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
@@ -70958,7 +71294,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512VNNI", "AVX512VL"},
 				Operands: []Operand{
-					{Type: "m64", Action: 0x1},
+					{Type: "m32", Action: 0x1},
 					{Type: "ymm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "ymm", Action: 0x3},
@@ -70969,7 +71305,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512VNNI", "AVX512VL"},
 				Operands: []Operand{
-					{Type: "m64", Action: 0x1},
+					{Type: "m32", Action: 0x1},
 					{Type: "ymm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "ymm", Action: 0x2},
@@ -70981,7 +71317,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512VNNI", "AVX512VL"},
 				Operands: []Operand{
-					{Type: "m64", Action: 0x1},
+					{Type: "m32", Action: 0x1},
 					{Type: "ymm", Action: 0x1},
 					{Type: "ymm", Action: 0x2},
 				},
@@ -71047,6 +71383,39 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x2},
 				},
 				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VNNI"},
+				Operands: []Operand{
+					{Type: "m32", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VNNI"},
+				Operands: []Operand{
+					{Type: "m32", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VNNI"},
+				Operands: []Operand{
+					{Type: "m32", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
 			},
 			{
 				ISA: []string{"AVX512VNNI"},
@@ -71077,39 +71446,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x2},
 				},
 				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512VNNI"},
-				Operands: []Operand{
-					{Type: "m64", Action: 0x1},
-					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
-				Broadcast:    true,
-			},
-			{
-				ISA: []string{"AVX512VNNI"},
-				Operands: []Operand{
-					{Type: "m64", Action: 0x1},
-					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x2},
-				},
-				EncodingType: 0x4,
-				Zeroing:      true,
-				Broadcast:    true,
-			},
-			{
-				ISA: []string{"AVX512VNNI"},
-				Operands: []Operand{
-					{Type: "m64", Action: 0x1},
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x2},
-				},
-				EncodingType: 0x4,
-				Broadcast:    true,
 			},
 			{
 				ISA: []string{"AVX512VNNI"},
@@ -71210,7 +71546,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512VNNI", "AVX512VL"},
 				Operands: []Operand{
-					{Type: "m64", Action: 0x1},
+					{Type: "m32", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
@@ -71221,7 +71557,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512VNNI", "AVX512VL"},
 				Operands: []Operand{
-					{Type: "m64", Action: 0x1},
+					{Type: "m32", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
@@ -71233,7 +71569,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512VNNI", "AVX512VL"},
 				Operands: []Operand{
-					{Type: "m64", Action: 0x1},
+					{Type: "m32", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
@@ -71243,7 +71579,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512VNNI", "AVX512VL"},
 				Operands: []Operand{
-					{Type: "m64", Action: 0x1},
+					{Type: "m32", Action: 0x1},
 					{Type: "ymm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "ymm", Action: 0x3},
@@ -71254,7 +71590,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512VNNI", "AVX512VL"},
 				Operands: []Operand{
-					{Type: "m64", Action: 0x1},
+					{Type: "m32", Action: 0x1},
 					{Type: "ymm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "ymm", Action: 0x2},
@@ -71266,7 +71602,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512VNNI", "AVX512VL"},
 				Operands: []Operand{
-					{Type: "m64", Action: 0x1},
+					{Type: "m32", Action: 0x1},
 					{Type: "ymm", Action: 0x1},
 					{Type: "ymm", Action: 0x2},
 				},
@@ -71332,6 +71668,39 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x2},
 				},
 				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VNNI"},
+				Operands: []Operand{
+					{Type: "m32", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VNNI"},
+				Operands: []Operand{
+					{Type: "m32", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VNNI"},
+				Operands: []Operand{
+					{Type: "m32", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
 			},
 			{
 				ISA: []string{"AVX512VNNI"},
@@ -71362,39 +71731,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x2},
 				},
 				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512VNNI"},
-				Operands: []Operand{
-					{Type: "m64", Action: 0x1},
-					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
-				Broadcast:    true,
-			},
-			{
-				ISA: []string{"AVX512VNNI"},
-				Operands: []Operand{
-					{Type: "m64", Action: 0x1},
-					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x2},
-				},
-				EncodingType: 0x4,
-				Zeroing:      true,
-				Broadcast:    true,
-			},
-			{
-				ISA: []string{"AVX512VNNI"},
-				Operands: []Operand{
-					{Type: "m64", Action: 0x1},
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x2},
-				},
-				EncodingType: 0x4,
-				Broadcast:    true,
 			},
 			{
 				ISA: []string{"AVX512VNNI"},
@@ -71495,7 +71831,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512VNNI", "AVX512VL"},
 				Operands: []Operand{
-					{Type: "m64", Action: 0x1},
+					{Type: "m32", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
@@ -71506,7 +71842,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512VNNI", "AVX512VL"},
 				Operands: []Operand{
-					{Type: "m64", Action: 0x1},
+					{Type: "m32", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
@@ -71518,7 +71854,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512VNNI", "AVX512VL"},
 				Operands: []Operand{
-					{Type: "m64", Action: 0x1},
+					{Type: "m32", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
@@ -71528,7 +71864,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512VNNI", "AVX512VL"},
 				Operands: []Operand{
-					{Type: "m64", Action: 0x1},
+					{Type: "m32", Action: 0x1},
 					{Type: "ymm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "ymm", Action: 0x3},
@@ -71539,7 +71875,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512VNNI", "AVX512VL"},
 				Operands: []Operand{
-					{Type: "m64", Action: 0x1},
+					{Type: "m32", Action: 0x1},
 					{Type: "ymm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "ymm", Action: 0x2},
@@ -71551,7 +71887,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512VNNI", "AVX512VL"},
 				Operands: []Operand{
-					{Type: "m64", Action: 0x1},
+					{Type: "m32", Action: 0x1},
 					{Type: "ymm", Action: 0x1},
 					{Type: "ymm", Action: 0x2},
 				},
@@ -71617,6 +71953,39 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x2},
 				},
 				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VNNI"},
+				Operands: []Operand{
+					{Type: "m32", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VNNI"},
+				Operands: []Operand{
+					{Type: "m32", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VNNI"},
+				Operands: []Operand{
+					{Type: "m32", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
 			},
 			{
 				ISA: []string{"AVX512VNNI"},
@@ -71647,39 +72016,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x2},
 				},
 				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512VNNI"},
-				Operands: []Operand{
-					{Type: "m64", Action: 0x1},
-					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
-				Broadcast:    true,
-			},
-			{
-				ISA: []string{"AVX512VNNI"},
-				Operands: []Operand{
-					{Type: "m64", Action: 0x1},
-					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x2},
-				},
-				EncodingType: 0x4,
-				Zeroing:      true,
-				Broadcast:    true,
-			},
-			{
-				ISA: []string{"AVX512VNNI"},
-				Operands: []Operand{
-					{Type: "m64", Action: 0x1},
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x2},
-				},
-				EncodingType: 0x4,
-				Broadcast:    true,
 			},
 			{
 				ISA: []string{"AVX512VNNI"},
@@ -71780,7 +72116,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512VNNI", "AVX512VL"},
 				Operands: []Operand{
-					{Type: "m64", Action: 0x1},
+					{Type: "m32", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x3},
@@ -71791,7 +72127,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512VNNI", "AVX512VL"},
 				Operands: []Operand{
-					{Type: "m64", Action: 0x1},
+					{Type: "m32", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
@@ -71803,7 +72139,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512VNNI", "AVX512VL"},
 				Operands: []Operand{
-					{Type: "m64", Action: 0x1},
+					{Type: "m32", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x2},
 				},
@@ -71813,7 +72149,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512VNNI", "AVX512VL"},
 				Operands: []Operand{
-					{Type: "m64", Action: 0x1},
+					{Type: "m32", Action: 0x1},
 					{Type: "ymm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "ymm", Action: 0x3},
@@ -71824,7 +72160,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512VNNI", "AVX512VL"},
 				Operands: []Operand{
-					{Type: "m64", Action: 0x1},
+					{Type: "m32", Action: 0x1},
 					{Type: "ymm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "ymm", Action: 0x2},
@@ -71836,7 +72172,7 @@ var Instructions = []Instruction{
 			{
 				ISA: []string{"AVX512VNNI", "AVX512VL"},
 				Operands: []Operand{
-					{Type: "m64", Action: 0x1},
+					{Type: "m32", Action: 0x1},
 					{Type: "ymm", Action: 0x1},
 					{Type: "ymm", Action: 0x2},
 				},
@@ -71902,6 +72238,39 @@ var Instructions = []Instruction{
 					{Type: "ymm", Action: 0x2},
 				},
 				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VNNI"},
+				Operands: []Operand{
+					{Type: "m32", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VNNI"},
+				Operands: []Operand{
+					{Type: "m32", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VNNI"},
+				Operands: []Operand{
+					{Type: "m32", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
 			},
 			{
 				ISA: []string{"AVX512VNNI"},
@@ -71932,39 +72301,6 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x2},
 				},
 				EncodingType: 0x4,
-			},
-			{
-				ISA: []string{"AVX512VNNI"},
-				Operands: []Operand{
-					{Type: "m64", Action: 0x1},
-					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x3},
-				},
-				EncodingType: 0x4,
-				Broadcast:    true,
-			},
-			{
-				ISA: []string{"AVX512VNNI"},
-				Operands: []Operand{
-					{Type: "m64", Action: 0x1},
-					{Type: "zmm", Action: 0x1},
-					{Type: "k", Action: 0x1},
-					{Type: "zmm", Action: 0x2},
-				},
-				EncodingType: 0x4,
-				Zeroing:      true,
-				Broadcast:    true,
-			},
-			{
-				ISA: []string{"AVX512VNNI"},
-				Operands: []Operand{
-					{Type: "m64", Action: 0x1},
-					{Type: "zmm", Action: 0x1},
-					{Type: "zmm", Action: 0x2},
-				},
-				EncodingType: 0x4,
-				Broadcast:    true,
 			},
 			{
 				ISA: []string{"AVX512VNNI"},
@@ -77715,6 +78051,174 @@ var Instructions = []Instruction{
 		},
 	},
 	{
+		Opcode:  "VPEXPANDB",
+		Summary: "Load Sparse Packed Byte Integer Values from Dense Memory/Register",
+		Forms: []Form{
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m128", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m128", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m128", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m256", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m256", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m256", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "m512", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "m512", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "m512", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+		},
+	},
+	{
 		Opcode:  "VPEXPANDD",
 		Summary: "Load Sparse Packed Doubleword Integer Values from Dense Memory/Register",
 		Forms: []Form{
@@ -78042,6 +78546,174 @@ var Instructions = []Instruction{
 			},
 			{
 				ISA: []string{"AVX512F"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+		},
+	},
+	{
+		Opcode:  "VPEXPANDW",
+		Summary: "Load Sparse Packed Word Integer Values from Dense Memory/Register",
+		Forms: []Form{
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m128", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m128", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m128", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m256", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m256", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m256", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "m512", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "m512", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "m512", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
 				Operands: []Operand{
 					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x2},
@@ -94777,6 +95449,3174 @@ var Instructions = []Instruction{
 					{Type: "zmm", Action: 0x1},
 					{Type: "k", Action: 0x1},
 					{Type: "vm64z", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+		},
+	},
+	{
+		Opcode:  "VPSHLDD",
+		Summary: "Concatenate Dwords and Shift Packed Data Left Logical",
+		Forms: []Form{
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m128", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m128", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m128", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m256", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m256", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m256", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m32", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m32", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m32", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m32", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m32", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m32", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m32", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m32", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m32", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m512", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m512", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m512", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+		},
+	},
+	{
+		Opcode:  "VPSHLDQ",
+		Summary: "Concatenate Quadwords and Shift Packed Data Left Logical",
+		Forms: []Form{
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m128", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m128", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m128", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m256", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m256", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m256", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m64", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m64", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m64", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m64", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m64", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m64", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m512", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m512", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m512", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m64", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m64", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m64", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+		},
+	},
+	{
+		Opcode:  "VPSHLDVD",
+		Summary: "Concatenate Dwords and Variable Shift Packed Data Left Logical",
+		Forms: []Form{
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m128", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m128", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m128", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m256", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m256", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m256", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m32", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m32", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m32", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m32", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m32", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m32", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "m32", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "m32", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "m32", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "m512", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "m512", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "m512", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+		},
+	},
+	{
+		Opcode:  "VPSHLDVQ",
+		Summary: "Concatenate Quadwords and Variable Shift Packed Data Left Logical",
+		Forms: []Form{
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m128", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m128", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m128", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m256", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m256", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m256", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m64", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m64", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m64", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m64", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m64", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m64", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "m512", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "m512", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "m512", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "m64", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "m64", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "m64", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+		},
+	},
+	{
+		Opcode:  "VPSHLDVW",
+		Summary: "Concatenate Words and Variable Shift Packed Data Left Logical",
+		Forms: []Form{
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m128", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m128", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m128", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m256", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m256", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m256", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "m512", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "m512", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "m512", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+		},
+	},
+	{
+		Opcode:  "VPSHLDW",
+		Summary: "Concatenate Words and Shift Packed Data Left Logical",
+		Forms: []Form{
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m128", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m128", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m128", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m256", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m256", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m256", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m512", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m512", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m512", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+		},
+	},
+	{
+		Opcode:  "VPSHRDD",
+		Summary: "Concatenate Dwords and Shift Packed Data Right Logical",
+		Forms: []Form{
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m128", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m128", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m128", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m256", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m256", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m256", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m32", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m32", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m32", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m32", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m32", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m32", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m32", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m32", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m32", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m512", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m512", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m512", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+		},
+	},
+	{
+		Opcode:  "VPSHRDQ",
+		Summary: "Concatenate Quadwords and Shift Packed Data Right Logical",
+		Forms: []Form{
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m128", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m128", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m128", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m256", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m256", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m256", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m64", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m64", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m64", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m64", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m64", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m64", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m512", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m512", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m512", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m64", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m64", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m64", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+		},
+	},
+	{
+		Opcode:  "VPSHRDVD",
+		Summary: "Concatenate Dwords and Variable Shift Packed Data Right Logical",
+		Forms: []Form{
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m128", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m128", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m128", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m256", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m256", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m256", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m32", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m32", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m32", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m32", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m32", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m32", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "m32", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "m32", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "m32", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "m512", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "m512", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "m512", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+		},
+	},
+	{
+		Opcode:  "VPSHRDVQ",
+		Summary: "Concatenate Quadwords and Variable Shift Packed Data Right Logical",
+		Forms: []Form{
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m128", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m128", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m128", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m256", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m256", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m256", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m64", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m64", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m64", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m64", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m64", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m64", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "m512", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "m512", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "m512", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "m64", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "m64", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "m64", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Broadcast:    true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+		},
+	},
+	{
+		Opcode:  "VPSHRDVW",
+		Summary: "Concatenate Words and Variable Shift Packed Data Right Logical",
+		Forms: []Form{
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m128", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m128", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m128", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m256", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m256", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "m256", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "m512", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "m512", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "m512", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+		},
+	},
+	{
+		Opcode:  "VPSHRDW",
+		Summary: "Concatenate Words and Shift Packed Data Right Logical",
+		Forms: []Form{
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m128", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m128", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m128", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m256", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m256", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m256", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x1},
+					{Type: "xmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2", "AVX512VL"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m512", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m512", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m512", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x3},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "k", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+				Zeroing:      true,
+			},
+			{
+				ISA: []string{"AVX512VBMI2"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
 				},
 				EncodingType: 0x4,
 			},
