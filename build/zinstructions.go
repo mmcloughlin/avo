@@ -58373,10 +58373,14 @@ func VPBROADCASTW_Z(mrx, k, xyz operand.Op) { ctx.VPBROADCASTW_Z(mrx, k, xyz) }
 //
 //	VPCLMULQDQ imm8 m128 xmm xmm
 //	VPCLMULQDQ imm8 xmm  xmm xmm
+//	VPCLMULQDQ imm8 m256 ymm ymm
+//	VPCLMULQDQ imm8 ymm  ymm ymm
+//	VPCLMULQDQ imm8 m512 zmm zmm
+//	VPCLMULQDQ imm8 zmm  zmm zmm
 //
 // Construct and append a VPCLMULQDQ instruction to the active function.
-func (c *Context) VPCLMULQDQ(i, mx, x, x1 operand.Op) {
-	c.addinstruction(x86.VPCLMULQDQ(i, mx, x, x1))
+func (c *Context) VPCLMULQDQ(i, mxyz, xyz, xyz1 operand.Op) {
+	c.addinstruction(x86.VPCLMULQDQ(i, mxyz, xyz, xyz1))
 }
 
 // VPCLMULQDQ: Carry-Less Quadword Multiplication.
@@ -58385,10 +58389,14 @@ func (c *Context) VPCLMULQDQ(i, mx, x, x1 operand.Op) {
 //
 //	VPCLMULQDQ imm8 m128 xmm xmm
 //	VPCLMULQDQ imm8 xmm  xmm xmm
+//	VPCLMULQDQ imm8 m256 ymm ymm
+//	VPCLMULQDQ imm8 ymm  ymm ymm
+//	VPCLMULQDQ imm8 m512 zmm zmm
+//	VPCLMULQDQ imm8 zmm  zmm zmm
 //
 // Construct and append a VPCLMULQDQ instruction to the active function.
 // Operates on the global context.
-func VPCLMULQDQ(i, mx, x, x1 operand.Op) { ctx.VPCLMULQDQ(i, mx, x, x1) }
+func VPCLMULQDQ(i, mxyz, xyz, xyz1 operand.Op) { ctx.VPCLMULQDQ(i, mxyz, xyz, xyz1) }
 
 // VPCMPB: Compare Packed Signed Byte Values.
 //

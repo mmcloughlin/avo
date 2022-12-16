@@ -66796,6 +66796,46 @@ var Instructions = []Instruction{
 				},
 				EncodingType: 0x3,
 			},
+			{
+				ISA: []string{"VPCLMULQDQ"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m256", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x3,
+			},
+			{
+				ISA: []string{"VPCLMULQDQ"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x1},
+					{Type: "ymm", Action: 0x2},
+				},
+				EncodingType: 0x3,
+			},
+			{
+				ISA: []string{"AVX512F", "VPCLMULQDQ"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "m512", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
+			{
+				ISA: []string{"AVX512F", "VPCLMULQDQ"},
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x1},
+					{Type: "zmm", Action: 0x2},
+				},
+				EncodingType: 0x4,
+			},
 		},
 	},
 	{

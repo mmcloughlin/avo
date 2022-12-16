@@ -7,6 +7,7 @@ import "github.com/mmcloughlin/avo/internal/inst"
 var sets = [][]*inst.Instruction{
 	movlqzx,
 	gfni,
+	vpclmulqdq,
 }
 
 // Instructions returns a list of extras to add to the instructions database.

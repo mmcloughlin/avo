@@ -25737,8 +25737,12 @@ func VPBROADCASTW_Z(mrx, k, xyz operand.Op) (*intrep.Instruction, error) {
 //
 //	VPCLMULQDQ imm8 m128 xmm xmm
 //	VPCLMULQDQ imm8 xmm  xmm xmm
-func VPCLMULQDQ(i, mx, x, x1 operand.Op) (*intrep.Instruction, error) {
-	return build(opcVPCLMULQDQ.Forms(), sffxs{}, []operand.Op{i, mx, x, x1})
+//	VPCLMULQDQ imm8 m256 ymm ymm
+//	VPCLMULQDQ imm8 ymm  ymm ymm
+//	VPCLMULQDQ imm8 m512 zmm zmm
+//	VPCLMULQDQ imm8 zmm  zmm zmm
+func VPCLMULQDQ(i, mxyz, xyz, xyz1 operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPCLMULQDQ.Forms(), sffxs{}, []operand.Op{i, mxyz, xyz, xyz1})
 }
 
 // VPCMPB: Compare Packed Signed Byte Values.
