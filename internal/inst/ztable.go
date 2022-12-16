@@ -17456,7 +17456,7 @@ var Instructions = []Instruction{
 				EncodingType: 0x3,
 			},
 			{
-				ISA: []string{"VAES", "AVX512F"},
+				ISA: []string{"AVX512F", "VAES"},
 				Operands: []Operand{
 					{Type: "m512", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
@@ -17465,7 +17465,7 @@ var Instructions = []Instruction{
 				EncodingType: 0x4,
 			},
 			{
-				ISA: []string{"VAES", "AVX512F"},
+				ISA: []string{"AVX512F", "VAES"},
 				Operands: []Operand{
 					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
@@ -17516,7 +17516,7 @@ var Instructions = []Instruction{
 				EncodingType: 0x3,
 			},
 			{
-				ISA: []string{"VAES", "AVX512F"},
+				ISA: []string{"AVX512F", "VAES"},
 				Operands: []Operand{
 					{Type: "m512", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
@@ -17525,7 +17525,7 @@ var Instructions = []Instruction{
 				EncodingType: 0x4,
 			},
 			{
-				ISA: []string{"VAES", "AVX512F"},
+				ISA: []string{"AVX512F", "VAES"},
 				Operands: []Operand{
 					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
@@ -17576,7 +17576,7 @@ var Instructions = []Instruction{
 				EncodingType: 0x3,
 			},
 			{
-				ISA: []string{"VAES", "AVX512F"},
+				ISA: []string{"AVX512F", "VAES"},
 				Operands: []Operand{
 					{Type: "m512", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
@@ -17585,7 +17585,7 @@ var Instructions = []Instruction{
 				EncodingType: 0x4,
 			},
 			{
-				ISA: []string{"VAES", "AVX512F"},
+				ISA: []string{"AVX512F", "VAES"},
 				Operands: []Operand{
 					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
@@ -17636,7 +17636,7 @@ var Instructions = []Instruction{
 				EncodingType: 0x3,
 			},
 			{
-				ISA: []string{"VAES", "AVX512F"},
+				ISA: []string{"AVX512F", "VAES"},
 				Operands: []Operand{
 					{Type: "m512", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
@@ -17645,7 +17645,7 @@ var Instructions = []Instruction{
 				EncodingType: 0x4,
 			},
 			{
-				ISA: []string{"VAES", "AVX512F"},
+				ISA: []string{"AVX512F", "VAES"},
 				Operands: []Operand{
 					{Type: "zmm", Action: 0x1},
 					{Type: "zmm", Action: 0x1},
@@ -71199,7 +71199,7 @@ var Instructions = []Instruction{
 		Summary: "Multiply and Add Unsigned and Signed Bytes",
 		Forms: []Form{
 			{
-				ISA: []string{"AVX512VNNI", "AVX512VL"},
+				ISA: []string{"AVX512VL", "AVX512VNNI"},
 				Operands: []Operand{
 					{Type: "m128", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
@@ -71209,7 +71209,7 @@ var Instructions = []Instruction{
 				EncodingType: 0x4,
 			},
 			{
-				ISA: []string{"AVX512VNNI", "AVX512VL"},
+				ISA: []string{"AVX512VL", "AVX512VNNI"},
 				Operands: []Operand{
 					{Type: "m128", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
@@ -71220,7 +71220,7 @@ var Instructions = []Instruction{
 				Zeroing:      true,
 			},
 			{
-				ISA: []string{"AVX512VNNI", "AVX512VL"},
+				ISA: []string{"AVX512VL", "AVX512VNNI"},
 				Operands: []Operand{
 					{Type: "m128", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
@@ -71229,7 +71229,7 @@ var Instructions = []Instruction{
 				EncodingType: 0x4,
 			},
 			{
-				ISA: []string{"AVX512VNNI", "AVX512VL"},
+				ISA: []string{"AVX512VL", "AVX512VNNI"},
 				Operands: []Operand{
 					{Type: "m256", Action: 0x1},
 					{Type: "ymm", Action: 0x1},
@@ -71239,7 +71239,7 @@ var Instructions = []Instruction{
 				EncodingType: 0x4,
 			},
 			{
-				ISA: []string{"AVX512VNNI", "AVX512VL"},
+				ISA: []string{"AVX512VL", "AVX512VNNI"},
 				Operands: []Operand{
 					{Type: "m256", Action: 0x1},
 					{Type: "ymm", Action: 0x1},
@@ -71250,7 +71250,7 @@ var Instructions = []Instruction{
 				Zeroing:      true,
 			},
 			{
-				ISA: []string{"AVX512VNNI", "AVX512VL"},
+				ISA: []string{"AVX512VL", "AVX512VNNI"},
 				Operands: []Operand{
 					{Type: "m256", Action: 0x1},
 					{Type: "ymm", Action: 0x1},
@@ -71259,7 +71259,7 @@ var Instructions = []Instruction{
 				EncodingType: 0x4,
 			},
 			{
-				ISA: []string{"AVX512VNNI", "AVX512VL"},
+				ISA: []string{"AVX512VL", "AVX512VNNI"},
 				Operands: []Operand{
 					{Type: "m32", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
@@ -71270,7 +71270,7 @@ var Instructions = []Instruction{
 				Broadcast:    true,
 			},
 			{
-				ISA: []string{"AVX512VNNI", "AVX512VL"},
+				ISA: []string{"AVX512VL", "AVX512VNNI"},
 				Operands: []Operand{
 					{Type: "m32", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
@@ -71282,7 +71282,7 @@ var Instructions = []Instruction{
 				Broadcast:    true,
 			},
 			{
-				ISA: []string{"AVX512VNNI", "AVX512VL"},
+				ISA: []string{"AVX512VL", "AVX512VNNI"},
 				Operands: []Operand{
 					{Type: "m32", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
@@ -71292,7 +71292,7 @@ var Instructions = []Instruction{
 				Broadcast:    true,
 			},
 			{
-				ISA: []string{"AVX512VNNI", "AVX512VL"},
+				ISA: []string{"AVX512VL", "AVX512VNNI"},
 				Operands: []Operand{
 					{Type: "m32", Action: 0x1},
 					{Type: "ymm", Action: 0x1},
@@ -71303,7 +71303,7 @@ var Instructions = []Instruction{
 				Broadcast:    true,
 			},
 			{
-				ISA: []string{"AVX512VNNI", "AVX512VL"},
+				ISA: []string{"AVX512VL", "AVX512VNNI"},
 				Operands: []Operand{
 					{Type: "m32", Action: 0x1},
 					{Type: "ymm", Action: 0x1},
@@ -71315,7 +71315,7 @@ var Instructions = []Instruction{
 				Broadcast:    true,
 			},
 			{
-				ISA: []string{"AVX512VNNI", "AVX512VL"},
+				ISA: []string{"AVX512VL", "AVX512VNNI"},
 				Operands: []Operand{
 					{Type: "m32", Action: 0x1},
 					{Type: "ymm", Action: 0x1},
@@ -71325,7 +71325,7 @@ var Instructions = []Instruction{
 				Broadcast:    true,
 			},
 			{
-				ISA: []string{"AVX512VNNI", "AVX512VL"},
+				ISA: []string{"AVX512VL", "AVX512VNNI"},
 				Operands: []Operand{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
@@ -71335,7 +71335,7 @@ var Instructions = []Instruction{
 				EncodingType: 0x4,
 			},
 			{
-				ISA: []string{"AVX512VNNI", "AVX512VL"},
+				ISA: []string{"AVX512VL", "AVX512VNNI"},
 				Operands: []Operand{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
@@ -71346,7 +71346,7 @@ var Instructions = []Instruction{
 				Zeroing:      true,
 			},
 			{
-				ISA: []string{"AVX512VNNI", "AVX512VL"},
+				ISA: []string{"AVX512VL", "AVX512VNNI"},
 				Operands: []Operand{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
@@ -71355,7 +71355,7 @@ var Instructions = []Instruction{
 				EncodingType: 0x4,
 			},
 			{
-				ISA: []string{"AVX512VNNI", "AVX512VL"},
+				ISA: []string{"AVX512VL", "AVX512VNNI"},
 				Operands: []Operand{
 					{Type: "ymm", Action: 0x1},
 					{Type: "ymm", Action: 0x1},
@@ -71365,7 +71365,7 @@ var Instructions = []Instruction{
 				EncodingType: 0x4,
 			},
 			{
-				ISA: []string{"AVX512VNNI", "AVX512VL"},
+				ISA: []string{"AVX512VL", "AVX512VNNI"},
 				Operands: []Operand{
 					{Type: "ymm", Action: 0x1},
 					{Type: "ymm", Action: 0x1},
@@ -71376,7 +71376,7 @@ var Instructions = []Instruction{
 				Zeroing:      true,
 			},
 			{
-				ISA: []string{"AVX512VNNI", "AVX512VL"},
+				ISA: []string{"AVX512VL", "AVX512VNNI"},
 				Operands: []Operand{
 					{Type: "ymm", Action: 0x1},
 					{Type: "ymm", Action: 0x1},
@@ -71484,7 +71484,7 @@ var Instructions = []Instruction{
 		Summary: "Multiply and Add Unsigned and Signed Bytes with Saturation",
 		Forms: []Form{
 			{
-				ISA: []string{"AVX512VNNI", "AVX512VL"},
+				ISA: []string{"AVX512VL", "AVX512VNNI"},
 				Operands: []Operand{
 					{Type: "m128", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
@@ -71494,7 +71494,7 @@ var Instructions = []Instruction{
 				EncodingType: 0x4,
 			},
 			{
-				ISA: []string{"AVX512VNNI", "AVX512VL"},
+				ISA: []string{"AVX512VL", "AVX512VNNI"},
 				Operands: []Operand{
 					{Type: "m128", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
@@ -71505,7 +71505,7 @@ var Instructions = []Instruction{
 				Zeroing:      true,
 			},
 			{
-				ISA: []string{"AVX512VNNI", "AVX512VL"},
+				ISA: []string{"AVX512VL", "AVX512VNNI"},
 				Operands: []Operand{
 					{Type: "m128", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
@@ -71514,7 +71514,7 @@ var Instructions = []Instruction{
 				EncodingType: 0x4,
 			},
 			{
-				ISA: []string{"AVX512VNNI", "AVX512VL"},
+				ISA: []string{"AVX512VL", "AVX512VNNI"},
 				Operands: []Operand{
 					{Type: "m256", Action: 0x1},
 					{Type: "ymm", Action: 0x1},
@@ -71524,7 +71524,7 @@ var Instructions = []Instruction{
 				EncodingType: 0x4,
 			},
 			{
-				ISA: []string{"AVX512VNNI", "AVX512VL"},
+				ISA: []string{"AVX512VL", "AVX512VNNI"},
 				Operands: []Operand{
 					{Type: "m256", Action: 0x1},
 					{Type: "ymm", Action: 0x1},
@@ -71535,7 +71535,7 @@ var Instructions = []Instruction{
 				Zeroing:      true,
 			},
 			{
-				ISA: []string{"AVX512VNNI", "AVX512VL"},
+				ISA: []string{"AVX512VL", "AVX512VNNI"},
 				Operands: []Operand{
 					{Type: "m256", Action: 0x1},
 					{Type: "ymm", Action: 0x1},
@@ -71544,7 +71544,7 @@ var Instructions = []Instruction{
 				EncodingType: 0x4,
 			},
 			{
-				ISA: []string{"AVX512VNNI", "AVX512VL"},
+				ISA: []string{"AVX512VL", "AVX512VNNI"},
 				Operands: []Operand{
 					{Type: "m32", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
@@ -71555,7 +71555,7 @@ var Instructions = []Instruction{
 				Broadcast:    true,
 			},
 			{
-				ISA: []string{"AVX512VNNI", "AVX512VL"},
+				ISA: []string{"AVX512VL", "AVX512VNNI"},
 				Operands: []Operand{
 					{Type: "m32", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
@@ -71567,7 +71567,7 @@ var Instructions = []Instruction{
 				Broadcast:    true,
 			},
 			{
-				ISA: []string{"AVX512VNNI", "AVX512VL"},
+				ISA: []string{"AVX512VL", "AVX512VNNI"},
 				Operands: []Operand{
 					{Type: "m32", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
@@ -71577,7 +71577,7 @@ var Instructions = []Instruction{
 				Broadcast:    true,
 			},
 			{
-				ISA: []string{"AVX512VNNI", "AVX512VL"},
+				ISA: []string{"AVX512VL", "AVX512VNNI"},
 				Operands: []Operand{
 					{Type: "m32", Action: 0x1},
 					{Type: "ymm", Action: 0x1},
@@ -71588,7 +71588,7 @@ var Instructions = []Instruction{
 				Broadcast:    true,
 			},
 			{
-				ISA: []string{"AVX512VNNI", "AVX512VL"},
+				ISA: []string{"AVX512VL", "AVX512VNNI"},
 				Operands: []Operand{
 					{Type: "m32", Action: 0x1},
 					{Type: "ymm", Action: 0x1},
@@ -71600,7 +71600,7 @@ var Instructions = []Instruction{
 				Broadcast:    true,
 			},
 			{
-				ISA: []string{"AVX512VNNI", "AVX512VL"},
+				ISA: []string{"AVX512VL", "AVX512VNNI"},
 				Operands: []Operand{
 					{Type: "m32", Action: 0x1},
 					{Type: "ymm", Action: 0x1},
@@ -71610,7 +71610,7 @@ var Instructions = []Instruction{
 				Broadcast:    true,
 			},
 			{
-				ISA: []string{"AVX512VNNI", "AVX512VL"},
+				ISA: []string{"AVX512VL", "AVX512VNNI"},
 				Operands: []Operand{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
@@ -71620,7 +71620,7 @@ var Instructions = []Instruction{
 				EncodingType: 0x4,
 			},
 			{
-				ISA: []string{"AVX512VNNI", "AVX512VL"},
+				ISA: []string{"AVX512VL", "AVX512VNNI"},
 				Operands: []Operand{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
@@ -71631,7 +71631,7 @@ var Instructions = []Instruction{
 				Zeroing:      true,
 			},
 			{
-				ISA: []string{"AVX512VNNI", "AVX512VL"},
+				ISA: []string{"AVX512VL", "AVX512VNNI"},
 				Operands: []Operand{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
@@ -71640,7 +71640,7 @@ var Instructions = []Instruction{
 				EncodingType: 0x4,
 			},
 			{
-				ISA: []string{"AVX512VNNI", "AVX512VL"},
+				ISA: []string{"AVX512VL", "AVX512VNNI"},
 				Operands: []Operand{
 					{Type: "ymm", Action: 0x1},
 					{Type: "ymm", Action: 0x1},
@@ -71650,7 +71650,7 @@ var Instructions = []Instruction{
 				EncodingType: 0x4,
 			},
 			{
-				ISA: []string{"AVX512VNNI", "AVX512VL"},
+				ISA: []string{"AVX512VL", "AVX512VNNI"},
 				Operands: []Operand{
 					{Type: "ymm", Action: 0x1},
 					{Type: "ymm", Action: 0x1},
@@ -71661,7 +71661,7 @@ var Instructions = []Instruction{
 				Zeroing:      true,
 			},
 			{
-				ISA: []string{"AVX512VNNI", "AVX512VL"},
+				ISA: []string{"AVX512VL", "AVX512VNNI"},
 				Operands: []Operand{
 					{Type: "ymm", Action: 0x1},
 					{Type: "ymm", Action: 0x1},
@@ -71769,7 +71769,7 @@ var Instructions = []Instruction{
 		Summary: "Multiply and Add Signed Word Integers",
 		Forms: []Form{
 			{
-				ISA: []string{"AVX512VNNI", "AVX512VL"},
+				ISA: []string{"AVX512VL", "AVX512VNNI"},
 				Operands: []Operand{
 					{Type: "m128", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
@@ -71779,7 +71779,7 @@ var Instructions = []Instruction{
 				EncodingType: 0x4,
 			},
 			{
-				ISA: []string{"AVX512VNNI", "AVX512VL"},
+				ISA: []string{"AVX512VL", "AVX512VNNI"},
 				Operands: []Operand{
 					{Type: "m128", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
@@ -71790,7 +71790,7 @@ var Instructions = []Instruction{
 				Zeroing:      true,
 			},
 			{
-				ISA: []string{"AVX512VNNI", "AVX512VL"},
+				ISA: []string{"AVX512VL", "AVX512VNNI"},
 				Operands: []Operand{
 					{Type: "m128", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
@@ -71799,7 +71799,7 @@ var Instructions = []Instruction{
 				EncodingType: 0x4,
 			},
 			{
-				ISA: []string{"AVX512VNNI", "AVX512VL"},
+				ISA: []string{"AVX512VL", "AVX512VNNI"},
 				Operands: []Operand{
 					{Type: "m256", Action: 0x1},
 					{Type: "ymm", Action: 0x1},
@@ -71809,7 +71809,7 @@ var Instructions = []Instruction{
 				EncodingType: 0x4,
 			},
 			{
-				ISA: []string{"AVX512VNNI", "AVX512VL"},
+				ISA: []string{"AVX512VL", "AVX512VNNI"},
 				Operands: []Operand{
 					{Type: "m256", Action: 0x1},
 					{Type: "ymm", Action: 0x1},
@@ -71820,7 +71820,7 @@ var Instructions = []Instruction{
 				Zeroing:      true,
 			},
 			{
-				ISA: []string{"AVX512VNNI", "AVX512VL"},
+				ISA: []string{"AVX512VL", "AVX512VNNI"},
 				Operands: []Operand{
 					{Type: "m256", Action: 0x1},
 					{Type: "ymm", Action: 0x1},
@@ -71829,7 +71829,7 @@ var Instructions = []Instruction{
 				EncodingType: 0x4,
 			},
 			{
-				ISA: []string{"AVX512VNNI", "AVX512VL"},
+				ISA: []string{"AVX512VL", "AVX512VNNI"},
 				Operands: []Operand{
 					{Type: "m32", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
@@ -71840,7 +71840,7 @@ var Instructions = []Instruction{
 				Broadcast:    true,
 			},
 			{
-				ISA: []string{"AVX512VNNI", "AVX512VL"},
+				ISA: []string{"AVX512VL", "AVX512VNNI"},
 				Operands: []Operand{
 					{Type: "m32", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
@@ -71852,7 +71852,7 @@ var Instructions = []Instruction{
 				Broadcast:    true,
 			},
 			{
-				ISA: []string{"AVX512VNNI", "AVX512VL"},
+				ISA: []string{"AVX512VL", "AVX512VNNI"},
 				Operands: []Operand{
 					{Type: "m32", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
@@ -71862,7 +71862,7 @@ var Instructions = []Instruction{
 				Broadcast:    true,
 			},
 			{
-				ISA: []string{"AVX512VNNI", "AVX512VL"},
+				ISA: []string{"AVX512VL", "AVX512VNNI"},
 				Operands: []Operand{
 					{Type: "m32", Action: 0x1},
 					{Type: "ymm", Action: 0x1},
@@ -71873,7 +71873,7 @@ var Instructions = []Instruction{
 				Broadcast:    true,
 			},
 			{
-				ISA: []string{"AVX512VNNI", "AVX512VL"},
+				ISA: []string{"AVX512VL", "AVX512VNNI"},
 				Operands: []Operand{
 					{Type: "m32", Action: 0x1},
 					{Type: "ymm", Action: 0x1},
@@ -71885,7 +71885,7 @@ var Instructions = []Instruction{
 				Broadcast:    true,
 			},
 			{
-				ISA: []string{"AVX512VNNI", "AVX512VL"},
+				ISA: []string{"AVX512VL", "AVX512VNNI"},
 				Operands: []Operand{
 					{Type: "m32", Action: 0x1},
 					{Type: "ymm", Action: 0x1},
@@ -71895,7 +71895,7 @@ var Instructions = []Instruction{
 				Broadcast:    true,
 			},
 			{
-				ISA: []string{"AVX512VNNI", "AVX512VL"},
+				ISA: []string{"AVX512VL", "AVX512VNNI"},
 				Operands: []Operand{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
@@ -71905,7 +71905,7 @@ var Instructions = []Instruction{
 				EncodingType: 0x4,
 			},
 			{
-				ISA: []string{"AVX512VNNI", "AVX512VL"},
+				ISA: []string{"AVX512VL", "AVX512VNNI"},
 				Operands: []Operand{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
@@ -71916,7 +71916,7 @@ var Instructions = []Instruction{
 				Zeroing:      true,
 			},
 			{
-				ISA: []string{"AVX512VNNI", "AVX512VL"},
+				ISA: []string{"AVX512VL", "AVX512VNNI"},
 				Operands: []Operand{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
@@ -71925,7 +71925,7 @@ var Instructions = []Instruction{
 				EncodingType: 0x4,
 			},
 			{
-				ISA: []string{"AVX512VNNI", "AVX512VL"},
+				ISA: []string{"AVX512VL", "AVX512VNNI"},
 				Operands: []Operand{
 					{Type: "ymm", Action: 0x1},
 					{Type: "ymm", Action: 0x1},
@@ -71935,7 +71935,7 @@ var Instructions = []Instruction{
 				EncodingType: 0x4,
 			},
 			{
-				ISA: []string{"AVX512VNNI", "AVX512VL"},
+				ISA: []string{"AVX512VL", "AVX512VNNI"},
 				Operands: []Operand{
 					{Type: "ymm", Action: 0x1},
 					{Type: "ymm", Action: 0x1},
@@ -71946,7 +71946,7 @@ var Instructions = []Instruction{
 				Zeroing:      true,
 			},
 			{
-				ISA: []string{"AVX512VNNI", "AVX512VL"},
+				ISA: []string{"AVX512VL", "AVX512VNNI"},
 				Operands: []Operand{
 					{Type: "ymm", Action: 0x1},
 					{Type: "ymm", Action: 0x1},
@@ -72054,7 +72054,7 @@ var Instructions = []Instruction{
 		Summary: "Multiply and Add Signed Word Integers with Saturation",
 		Forms: []Form{
 			{
-				ISA: []string{"AVX512VNNI", "AVX512VL"},
+				ISA: []string{"AVX512VL", "AVX512VNNI"},
 				Operands: []Operand{
 					{Type: "m128", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
@@ -72064,7 +72064,7 @@ var Instructions = []Instruction{
 				EncodingType: 0x4,
 			},
 			{
-				ISA: []string{"AVX512VNNI", "AVX512VL"},
+				ISA: []string{"AVX512VL", "AVX512VNNI"},
 				Operands: []Operand{
 					{Type: "m128", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
@@ -72075,7 +72075,7 @@ var Instructions = []Instruction{
 				Zeroing:      true,
 			},
 			{
-				ISA: []string{"AVX512VNNI", "AVX512VL"},
+				ISA: []string{"AVX512VL", "AVX512VNNI"},
 				Operands: []Operand{
 					{Type: "m128", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
@@ -72084,7 +72084,7 @@ var Instructions = []Instruction{
 				EncodingType: 0x4,
 			},
 			{
-				ISA: []string{"AVX512VNNI", "AVX512VL"},
+				ISA: []string{"AVX512VL", "AVX512VNNI"},
 				Operands: []Operand{
 					{Type: "m256", Action: 0x1},
 					{Type: "ymm", Action: 0x1},
@@ -72094,7 +72094,7 @@ var Instructions = []Instruction{
 				EncodingType: 0x4,
 			},
 			{
-				ISA: []string{"AVX512VNNI", "AVX512VL"},
+				ISA: []string{"AVX512VL", "AVX512VNNI"},
 				Operands: []Operand{
 					{Type: "m256", Action: 0x1},
 					{Type: "ymm", Action: 0x1},
@@ -72105,7 +72105,7 @@ var Instructions = []Instruction{
 				Zeroing:      true,
 			},
 			{
-				ISA: []string{"AVX512VNNI", "AVX512VL"},
+				ISA: []string{"AVX512VL", "AVX512VNNI"},
 				Operands: []Operand{
 					{Type: "m256", Action: 0x1},
 					{Type: "ymm", Action: 0x1},
@@ -72114,7 +72114,7 @@ var Instructions = []Instruction{
 				EncodingType: 0x4,
 			},
 			{
-				ISA: []string{"AVX512VNNI", "AVX512VL"},
+				ISA: []string{"AVX512VL", "AVX512VNNI"},
 				Operands: []Operand{
 					{Type: "m32", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
@@ -72125,7 +72125,7 @@ var Instructions = []Instruction{
 				Broadcast:    true,
 			},
 			{
-				ISA: []string{"AVX512VNNI", "AVX512VL"},
+				ISA: []string{"AVX512VL", "AVX512VNNI"},
 				Operands: []Operand{
 					{Type: "m32", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
@@ -72137,7 +72137,7 @@ var Instructions = []Instruction{
 				Broadcast:    true,
 			},
 			{
-				ISA: []string{"AVX512VNNI", "AVX512VL"},
+				ISA: []string{"AVX512VL", "AVX512VNNI"},
 				Operands: []Operand{
 					{Type: "m32", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
@@ -72147,7 +72147,7 @@ var Instructions = []Instruction{
 				Broadcast:    true,
 			},
 			{
-				ISA: []string{"AVX512VNNI", "AVX512VL"},
+				ISA: []string{"AVX512VL", "AVX512VNNI"},
 				Operands: []Operand{
 					{Type: "m32", Action: 0x1},
 					{Type: "ymm", Action: 0x1},
@@ -72158,7 +72158,7 @@ var Instructions = []Instruction{
 				Broadcast:    true,
 			},
 			{
-				ISA: []string{"AVX512VNNI", "AVX512VL"},
+				ISA: []string{"AVX512VL", "AVX512VNNI"},
 				Operands: []Operand{
 					{Type: "m32", Action: 0x1},
 					{Type: "ymm", Action: 0x1},
@@ -72170,7 +72170,7 @@ var Instructions = []Instruction{
 				Broadcast:    true,
 			},
 			{
-				ISA: []string{"AVX512VNNI", "AVX512VL"},
+				ISA: []string{"AVX512VL", "AVX512VNNI"},
 				Operands: []Operand{
 					{Type: "m32", Action: 0x1},
 					{Type: "ymm", Action: 0x1},
@@ -72180,7 +72180,7 @@ var Instructions = []Instruction{
 				Broadcast:    true,
 			},
 			{
-				ISA: []string{"AVX512VNNI", "AVX512VL"},
+				ISA: []string{"AVX512VL", "AVX512VNNI"},
 				Operands: []Operand{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
@@ -72190,7 +72190,7 @@ var Instructions = []Instruction{
 				EncodingType: 0x4,
 			},
 			{
-				ISA: []string{"AVX512VNNI", "AVX512VL"},
+				ISA: []string{"AVX512VL", "AVX512VNNI"},
 				Operands: []Operand{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
@@ -72201,7 +72201,7 @@ var Instructions = []Instruction{
 				Zeroing:      true,
 			},
 			{
-				ISA: []string{"AVX512VNNI", "AVX512VL"},
+				ISA: []string{"AVX512VL", "AVX512VNNI"},
 				Operands: []Operand{
 					{Type: "xmm", Action: 0x1},
 					{Type: "xmm", Action: 0x1},
@@ -72210,7 +72210,7 @@ var Instructions = []Instruction{
 				EncodingType: 0x4,
 			},
 			{
-				ISA: []string{"AVX512VNNI", "AVX512VL"},
+				ISA: []string{"AVX512VL", "AVX512VNNI"},
 				Operands: []Operand{
 					{Type: "ymm", Action: 0x1},
 					{Type: "ymm", Action: 0x1},
@@ -72220,7 +72220,7 @@ var Instructions = []Instruction{
 				EncodingType: 0x4,
 			},
 			{
-				ISA: []string{"AVX512VNNI", "AVX512VL"},
+				ISA: []string{"AVX512VL", "AVX512VNNI"},
 				Operands: []Operand{
 					{Type: "ymm", Action: 0x1},
 					{Type: "ymm", Action: 0x1},
@@ -72231,7 +72231,7 @@ var Instructions = []Instruction{
 				Zeroing:      true,
 			},
 			{
-				ISA: []string{"AVX512VNNI", "AVX512VL"},
+				ISA: []string{"AVX512VL", "AVX512VNNI"},
 				Operands: []Operand{
 					{Type: "ymm", Action: 0x1},
 					{Type: "ymm", Action: 0x1},

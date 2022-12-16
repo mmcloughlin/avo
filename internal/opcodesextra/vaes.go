@@ -119,7 +119,7 @@ var vaesForms = inst.Forms{
 	// EVEX.128.66.0F38.WIG DC /r VAESENC xmm1, xmm2, xmm3/m128  AVX512VL + VAES
 	// EVEX.128.66.0F38.WIG DD /r VAESENCLAST xmm1, xmm2, xmm3/m128  AVX512VL + VAES
 	{
-		ISA: []string{"VAES", "AVX512VL"},
+		ISA: []string{"AVX512VL", "VAES"},
 		Operands: []inst.Operand{
 			{Type: "m128", Action: inst.R},
 			{Type: "xmm", Action: inst.R},
@@ -128,7 +128,7 @@ var vaesForms = inst.Forms{
 		EncodingType: inst.EncodingTypeEVEX,
 	},
 	{
-		ISA: []string{"VAES", "AVX512VL"},
+		ISA: []string{"AVX512VL", "VAES"},
 		Operands: []inst.Operand{
 			{Type: "xmm", Action: inst.R},
 			{Type: "xmm", Action: inst.R},
@@ -141,7 +141,7 @@ var vaesForms = inst.Forms{
 	// EVEX.256.66.0F38.WIG DC /r VAESENC ymm1, ymm2, ymm3/m256  AVX512VL + VAES
 	// EVEX.256.66.0F38.WIG DD /r VAESENCLAST ymm1, ymm2, ymm3/m256  AVX512VL + VAES
 	{
-		ISA: []string{"VAES", "AVX512VL"},
+		ISA: []string{"AVX512VL", "VAES"},
 		Operands: []inst.Operand{
 			{Type: "m256", Action: inst.R},
 			{Type: "ymm", Action: inst.R},
@@ -150,7 +150,7 @@ var vaesForms = inst.Forms{
 		EncodingType: inst.EncodingTypeEVEX,
 	},
 	{
-		ISA: []string{"VAES", "AVX512VL"},
+		ISA: []string{"AVX512VL", "VAES"},
 		Operands: []inst.Operand{
 			{Type: "ymm", Action: inst.R},
 			{Type: "ymm", Action: inst.R},
@@ -163,7 +163,7 @@ var vaesForms = inst.Forms{
 	// EVEX.512.66.0F38.WIG DC /r VAESENC zmm1, zmm2, zmm3/m512  AVX512F + VAES
 	// EVEX.512.66.0F38.WIG DD /r VAESENCLAST zmm1, zmm2, zmm3/m512  AVX512F + VAES
 	{
-		ISA: []string{"VAES", "AVX512F"},
+		ISA: []string{"AVX512F", "VAES"},
 		Operands: []inst.Operand{
 			{Type: "m512", Action: inst.R},
 			{Type: "zmm", Action: inst.R},
@@ -172,7 +172,7 @@ var vaesForms = inst.Forms{
 		EncodingType: inst.EncodingTypeEVEX,
 	},
 	{
-		ISA: []string{"VAES", "AVX512F"},
+		ISA: []string{"AVX512F", "VAES"},
 		Operands: []inst.Operand{
 			{Type: "zmm", Action: inst.R},
 			{Type: "zmm", Action: inst.R},

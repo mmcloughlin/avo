@@ -83,7 +83,7 @@ var vnniForms = inst.Forms{
 	// EVEX.512.66.0F38.W0 52 /r VPDPWSSD zmm1{k1}{z}, zmm2, zmm3/m512/m32bcst  AVX512VNNI
 	// EVEX.512.66.0F38.W0 53 /r VPDPWSSDS zmm1{k1}{z}, zmm2, zmm3/m512/m32bcst  AVX512VNNI
 	{
-		ISA: []string{"AVX512VNNI", "AVX512VL"},
+		ISA: []string{"AVX512VL", "AVX512VNNI"},
 		Operands: []inst.Operand{
 			{Type: "m128", Action: inst.R},
 			{Type: "xmm", Action: inst.R},
@@ -93,7 +93,7 @@ var vnniForms = inst.Forms{
 		EncodingType: inst.EncodingTypeEVEX,
 	},
 	{
-		ISA: []string{"AVX512VNNI", "AVX512VL"},
+		ISA: []string{"AVX512VL", "AVX512VNNI"},
 		Operands: []inst.Operand{
 			{Type: "m128", Action: inst.R},
 			{Type: "xmm", Action: inst.R},
@@ -104,7 +104,7 @@ var vnniForms = inst.Forms{
 		Zeroing:      true,
 	},
 	{
-		ISA: []string{"AVX512VNNI", "AVX512VL"},
+		ISA: []string{"AVX512VL", "AVX512VNNI"},
 		Operands: []inst.Operand{
 			{Type: "m128", Action: inst.R},
 			{Type: "xmm", Action: inst.R},
@@ -113,7 +113,7 @@ var vnniForms = inst.Forms{
 		EncodingType: inst.EncodingTypeEVEX,
 	},
 	{
-		ISA: []string{"AVX512VNNI", "AVX512VL"},
+		ISA: []string{"AVX512VL", "AVX512VNNI"},
 		Operands: []inst.Operand{
 			{Type: "m256", Action: inst.R},
 			{Type: "ymm", Action: inst.R},
@@ -123,7 +123,7 @@ var vnniForms = inst.Forms{
 		EncodingType: inst.EncodingTypeEVEX,
 	},
 	{
-		ISA: []string{"AVX512VNNI", "AVX512VL"},
+		ISA: []string{"AVX512VL", "AVX512VNNI"},
 		Operands: []inst.Operand{
 			{Type: "m256", Action: inst.R},
 			{Type: "ymm", Action: inst.R},
@@ -134,7 +134,7 @@ var vnniForms = inst.Forms{
 		Zeroing:      true,
 	},
 	{
-		ISA: []string{"AVX512VNNI", "AVX512VL"},
+		ISA: []string{"AVX512VL", "AVX512VNNI"},
 		Operands: []inst.Operand{
 			{Type: "m256", Action: inst.R},
 			{Type: "ymm", Action: inst.R},
@@ -143,7 +143,7 @@ var vnniForms = inst.Forms{
 		EncodingType: inst.EncodingTypeEVEX,
 	},
 	{
-		ISA: []string{"AVX512VNNI", "AVX512VL"},
+		ISA: []string{"AVX512VL", "AVX512VNNI"},
 		Operands: []inst.Operand{
 			{Type: "m32", Action: inst.R},
 			{Type: "xmm", Action: inst.R},
@@ -154,7 +154,7 @@ var vnniForms = inst.Forms{
 		Broadcast:    true,
 	},
 	{
-		ISA: []string{"AVX512VNNI", "AVX512VL"},
+		ISA: []string{"AVX512VL", "AVX512VNNI"},
 		Operands: []inst.Operand{
 			{Type: "m32", Action: inst.R},
 			{Type: "xmm", Action: inst.R},
@@ -166,7 +166,7 @@ var vnniForms = inst.Forms{
 		Broadcast:    true,
 	},
 	{
-		ISA: []string{"AVX512VNNI", "AVX512VL"},
+		ISA: []string{"AVX512VL", "AVX512VNNI"},
 		Operands: []inst.Operand{
 			{Type: "m32", Action: inst.R},
 			{Type: "xmm", Action: inst.R},
@@ -176,7 +176,7 @@ var vnniForms = inst.Forms{
 		Broadcast:    true,
 	},
 	{
-		ISA: []string{"AVX512VNNI", "AVX512VL"},
+		ISA: []string{"AVX512VL", "AVX512VNNI"},
 		Operands: []inst.Operand{
 			{Type: "m32", Action: inst.R},
 			{Type: "ymm", Action: inst.R},
@@ -187,7 +187,7 @@ var vnniForms = inst.Forms{
 		Broadcast:    true,
 	},
 	{
-		ISA: []string{"AVX512VNNI", "AVX512VL"},
+		ISA: []string{"AVX512VL", "AVX512VNNI"},
 		Operands: []inst.Operand{
 			{Type: "m32", Action: inst.R},
 			{Type: "ymm", Action: inst.R},
@@ -199,7 +199,7 @@ var vnniForms = inst.Forms{
 		Broadcast:    true,
 	},
 	{
-		ISA: []string{"AVX512VNNI", "AVX512VL"},
+		ISA: []string{"AVX512VL", "AVX512VNNI"},
 		Operands: []inst.Operand{
 			{Type: "m32", Action: inst.R},
 			{Type: "ymm", Action: inst.R},
@@ -209,7 +209,7 @@ var vnniForms = inst.Forms{
 		Broadcast:    true,
 	},
 	{
-		ISA: []string{"AVX512VNNI", "AVX512VL"},
+		ISA: []string{"AVX512VL", "AVX512VNNI"},
 		Operands: []inst.Operand{
 			{Type: "xmm", Action: inst.R},
 			{Type: "xmm", Action: inst.R},
@@ -219,7 +219,7 @@ var vnniForms = inst.Forms{
 		EncodingType: inst.EncodingTypeEVEX,
 	},
 	{
-		ISA: []string{"AVX512VNNI", "AVX512VL"},
+		ISA: []string{"AVX512VL", "AVX512VNNI"},
 		Operands: []inst.Operand{
 			{Type: "xmm", Action: inst.R},
 			{Type: "xmm", Action: inst.R},
@@ -230,7 +230,7 @@ var vnniForms = inst.Forms{
 		Zeroing:      true,
 	},
 	{
-		ISA: []string{"AVX512VNNI", "AVX512VL"},
+		ISA: []string{"AVX512VL", "AVX512VNNI"},
 		Operands: []inst.Operand{
 			{Type: "xmm", Action: inst.R},
 			{Type: "xmm", Action: inst.R},
@@ -239,7 +239,7 @@ var vnniForms = inst.Forms{
 		EncodingType: inst.EncodingTypeEVEX,
 	},
 	{
-		ISA: []string{"AVX512VNNI", "AVX512VL"},
+		ISA: []string{"AVX512VL", "AVX512VNNI"},
 		Operands: []inst.Operand{
 			{Type: "ymm", Action: inst.R},
 			{Type: "ymm", Action: inst.R},
@@ -249,7 +249,7 @@ var vnniForms = inst.Forms{
 		EncodingType: inst.EncodingTypeEVEX,
 	},
 	{
-		ISA: []string{"AVX512VNNI", "AVX512VL"},
+		ISA: []string{"AVX512VL", "AVX512VNNI"},
 		Operands: []inst.Operand{
 			{Type: "ymm", Action: inst.R},
 			{Type: "ymm", Action: inst.R},
@@ -260,7 +260,7 @@ var vnniForms = inst.Forms{
 		Zeroing:      true,
 	},
 	{
-		ISA: []string{"AVX512VNNI", "AVX512VL"},
+		ISA: []string{"AVX512VL", "AVX512VNNI"},
 		Operands: []inst.Operand{
 			{Type: "ymm", Action: inst.R},
 			{Type: "ymm", Action: inst.R},
