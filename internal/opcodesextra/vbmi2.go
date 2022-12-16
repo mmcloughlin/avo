@@ -124,62 +124,62 @@ var vbmi2 = []*inst.Instruction{
 	{
 		Opcode:  "VPSHLDD",
 		Summary: "Concatenate Dwords and Shift Packed Data Left Logical",
-		Forms:   immShift(32),
+		Forms:   append(immShift, immShiftBcast(32)...),
 	},
 	{
 		Opcode:  "VPSHLDQ",
 		Summary: "Concatenate Quadwords and Shift Packed Data Left Logical",
-		Forms:   immShift(64),
+		Forms:   append(immShift, immShiftBcast(64)...),
 	},
 	{
 		Opcode:  "VPSHLDVD",
 		Summary: "Concatenate Dwords and Variable Shift Packed Data Left Logical",
-		Forms:   varShift(32),
+		Forms:   append(varShift, varShiftBcast(32)...),
 	},
 	{
 		Opcode:  "VPSHLDVQ",
 		Summary: "Concatenate Quadwords and Variable Shift Packed Data Left Logical",
-		Forms:   varShift(64),
+		Forms:   append(varShift, varShiftBcast(64)...),
 	},
 	{
 		Opcode:  "VPSHLDVW",
 		Summary: "Concatenate Words and Variable Shift Packed Data Left Logical",
-		Forms:   varShift(16),
+		Forms:   varShift, // No bcast support for Words
 	},
 	{
 		Opcode:  "VPSHLDW",
 		Summary: "Concatenate Words and Shift Packed Data Left Logical",
-		Forms:   immShift(16),
+		Forms:   immShift, // No bcast support for Words
 	},
 	{
 		Opcode:  "VPSHRDD",
 		Summary: "Concatenate Dwords and Shift Packed Data Right Logical",
-		Forms:   immShift(32),
+		Forms:   append(immShift, immShiftBcast(32)...),
 	},
 	{
 		Opcode:  "VPSHRDQ",
 		Summary: "Concatenate Quadwords and Shift Packed Data Right Logical",
-		Forms:   immShift(64),
+		Forms:   append(immShift, immShiftBcast(64)...),
 	},
 	{
 		Opcode:  "VPSHRDVD",
 		Summary: "Concatenate Dwords and Variable Shift Packed Data Right Logical",
-		Forms:   varShift(32),
+		Forms:   append(varShift, varShiftBcast(32)...),
 	},
 	{
 		Opcode:  "VPSHRDVQ",
 		Summary: "Concatenate Quadwords and Variable Shift Packed Data Right Logical",
-		Forms:   varShift(64),
+		Forms:   append(varShift, varShiftBcast(64)...),
 	},
 	{
 		Opcode:  "VPSHRDVW",
 		Summary: "Concatenate Words and Variable Shift Packed Data Right Logical",
-		Forms:   varShift(16),
+		Forms:   varShift, // No bcast support for Words
 	},
 	{
 		Opcode:  "VPSHRDW",
 		Summary: "Concatenate Words and Shift Packed Data Right Logical",
-		Forms:   immShift(16),
+		Forms:   immShift, // No bcast support for Words
 	},
 }
 
@@ -580,7 +580,8 @@ var vbmi2Expand = inst.Forms{
 //		{zcase: Zevex_i_rm_v_r, zoffset: 0, args: argList{Yu8, Yzm, Yzr, Yzr}},
 //		{zcase: Zevex_i_rm_v_k_r, zoffset: 3, args: argList{Yu8, Yzm, Yzr, Yknot0, Yzr}},
 //	}
-func immShift(bcastWidth int) inst.Forms {
+
+var immShift = inst.Forms{
 	// EVEX.128.66.0F3A.W1 70 /r /ib VPSHLDW xmm1{k1}{z}, xmm2, xmm3/m128, imm8  AVX512VMBI2 AVX512VL
 	// EVEX.256.66.0F3A.W1 70 /r /ib VPSHLDW ymm1{k1}{z}, ymm2, ymm3/m256, imm8  AVX512VMBI2 AVX512VL
 	// EVEX.512.66.0F3A.W1 70 /r /ib VPSHLDW zmm1{k1}{z}, zmm2, zmm3/m512, imm8  AVX512VMBI2
@@ -599,322 +600,318 @@ func immShift(bcastWidth int) inst.Forms {
 	// EVEX.128.66.0F3A.W1 73 /r /ib VPSHRDQ xmm1{k1}{z}, xmm2, xmm3/m128/m64bcst, imm8  AVX512VMBI2 AVX512VL
 	// EVEX.256.66.0F3A.W1 73 /r /ib VPSHRDQ ymm1{k1}{z}, ymm2, ymm3/m256/m64bcst, imm8  AVX512VMBI2 AVX512VL
 	// EVEX.512.66.0F3A.W1 73 /r /ib VPSHRDQ zmm1{k1}{z}, zmm2, zmm3/m512/m64bcst, imm8  AVX512VMBI2
+	{
+		ISA: []string{"AVX512VBMI2", "AVX512VL"},
+		Operands: []inst.Operand{
+			{Type: "imm8", Action: inst.I},
+			{Type: "m128", Action: inst.R},
+			{Type: "xmm", Action: inst.R},
+			{Type: "k", Action: inst.R},
+			{Type: "xmm", Action: inst.RW},
+		},
+		EncodingType: inst.EncodingTypeEVEX,
+	},
+	{
+		ISA: []string{"AVX512VBMI2", "AVX512VL"},
+		Operands: []inst.Operand{
+			{Type: "imm8", Action: inst.I},
+			{Type: "m128", Action: inst.R},
+			{Type: "xmm", Action: inst.R},
+			{Type: "k", Action: inst.R},
+			{Type: "xmm", Action: inst.W},
+		},
+		EncodingType: inst.EncodingTypeEVEX,
+		Zeroing:      true,
+	},
+	{
+		ISA: []string{"AVX512VBMI2", "AVX512VL"},
+		Operands: []inst.Operand{
+			{Type: "imm8", Action: inst.I},
+			{Type: "m128", Action: inst.R},
+			{Type: "xmm", Action: inst.R},
+			{Type: "xmm", Action: inst.W},
+		},
+		EncodingType: inst.EncodingTypeEVEX,
+	},
+	{
+		ISA: []string{"AVX512VBMI2", "AVX512VL"},
+		Operands: []inst.Operand{
+			{Type: "imm8", Action: inst.I},
+			{Type: "m256", Action: inst.R},
+			{Type: "ymm", Action: inst.R},
+			{Type: "k", Action: inst.R},
+			{Type: "ymm", Action: inst.RW},
+		},
+		EncodingType: inst.EncodingTypeEVEX,
+	},
+	{
+		ISA: []string{"AVX512VBMI2", "AVX512VL"},
+		Operands: []inst.Operand{
+			{Type: "imm8", Action: inst.I},
+			{Type: "m256", Action: inst.R},
+			{Type: "ymm", Action: inst.R},
+			{Type: "k", Action: inst.R},
+			{Type: "ymm", Action: inst.W},
+		},
+		EncodingType: inst.EncodingTypeEVEX,
+		Zeroing:      true,
+	},
+	{
+		ISA: []string{"AVX512VBMI2", "AVX512VL"},
+		Operands: []inst.Operand{
+			{Type: "imm8", Action: inst.I},
+			{Type: "m256", Action: inst.R},
+			{Type: "ymm", Action: inst.R},
+			{Type: "ymm", Action: inst.W},
+		},
+		EncodingType: inst.EncodingTypeEVEX,
+	},
+	{
+		ISA: []string{"AVX512VBMI2", "AVX512VL"},
+		Operands: []inst.Operand{
+			{Type: "imm8", Action: inst.I},
+			{Type: "xmm", Action: inst.R},
+			{Type: "xmm", Action: inst.R},
+			{Type: "k", Action: inst.R},
+			{Type: "xmm", Action: inst.RW},
+		},
+		EncodingType: inst.EncodingTypeEVEX,
+	},
+	{
+		ISA: []string{"AVX512VBMI2", "AVX512VL"},
+		Operands: []inst.Operand{
+			{Type: "imm8", Action: inst.I},
+			{Type: "xmm", Action: inst.R},
+			{Type: "xmm", Action: inst.R},
+			{Type: "k", Action: inst.R},
+			{Type: "xmm", Action: inst.W},
+		},
+		EncodingType: inst.EncodingTypeEVEX,
+		Zeroing:      true,
+	},
+	{
+		ISA: []string{"AVX512VBMI2", "AVX512VL"},
+		Operands: []inst.Operand{
+			{Type: "imm8", Action: inst.I},
+			{Type: "xmm", Action: inst.R},
+			{Type: "xmm", Action: inst.R},
+			{Type: "xmm", Action: inst.W},
+		},
+		EncodingType: inst.EncodingTypeEVEX,
+	},
+	{
+		ISA: []string{"AVX512VBMI2", "AVX512VL"},
+		Operands: []inst.Operand{
+			{Type: "imm8", Action: inst.I},
+			{Type: "ymm", Action: inst.R},
+			{Type: "ymm", Action: inst.R},
+			{Type: "k", Action: inst.R},
+			{Type: "ymm", Action: inst.RW},
+		},
+		EncodingType: inst.EncodingTypeEVEX,
+	},
+	{
+		ISA: []string{"AVX512VBMI2", "AVX512VL"},
+		Operands: []inst.Operand{
+			{Type: "imm8", Action: inst.I},
+			{Type: "ymm", Action: inst.R},
+			{Type: "ymm", Action: inst.R},
+			{Type: "k", Action: inst.R},
+			{Type: "ymm", Action: inst.W},
+		},
+		EncodingType: inst.EncodingTypeEVEX,
+		Zeroing:      true,
+	},
+	{
+		ISA: []string{"AVX512VBMI2", "AVX512VL"},
+		Operands: []inst.Operand{
+			{Type: "imm8", Action: inst.I},
+			{Type: "ymm", Action: inst.R},
+			{Type: "ymm", Action: inst.R},
+			{Type: "ymm", Action: inst.W},
+		},
+		EncodingType: inst.EncodingTypeEVEX,
+	},
+	{
+		ISA: []string{"AVX512VBMI2"},
+		Operands: []inst.Operand{
+			{Type: "imm8", Action: inst.I},
+			{Type: "m512", Action: inst.R},
+			{Type: "zmm", Action: inst.R},
+			{Type: "k", Action: inst.R},
+			{Type: "zmm", Action: inst.RW},
+		},
+		EncodingType: inst.EncodingTypeEVEX,
+	},
+	{
+		ISA: []string{"AVX512VBMI2"},
+		Operands: []inst.Operand{
+			{Type: "imm8", Action: inst.I},
+			{Type: "m512", Action: inst.R},
+			{Type: "zmm", Action: inst.R},
+			{Type: "k", Action: inst.R},
+			{Type: "zmm", Action: inst.W},
+		},
+		EncodingType: inst.EncodingTypeEVEX,
+		Zeroing:      true,
+	},
+	{
+		ISA: []string{"AVX512VBMI2"},
+		Operands: []inst.Operand{
+			{Type: "imm8", Action: inst.I},
+			{Type: "m512", Action: inst.R},
+			{Type: "zmm", Action: inst.R},
+			{Type: "zmm", Action: inst.W},
+		},
+		EncodingType: inst.EncodingTypeEVEX,
+	},
+	{
+		ISA: []string{"AVX512VBMI2"},
+		Operands: []inst.Operand{
+			{Type: "imm8", Action: inst.I},
+			{Type: "zmm", Action: inst.R},
+			{Type: "zmm", Action: inst.R},
+			{Type: "k", Action: inst.R},
+			{Type: "zmm", Action: inst.RW},
+		},
+		EncodingType: inst.EncodingTypeEVEX,
+	},
+	{
+		ISA: []string{"AVX512VBMI2"},
+		Operands: []inst.Operand{
+			{Type: "imm8", Action: inst.I},
+			{Type: "zmm", Action: inst.R},
+			{Type: "zmm", Action: inst.R},
+			{Type: "k", Action: inst.R},
+			{Type: "zmm", Action: inst.W},
+		},
+		EncodingType: inst.EncodingTypeEVEX,
+		Zeroing:      true,
+	},
+	{
+		ISA: []string{"AVX512VBMI2"},
+		Operands: []inst.Operand{
+			{Type: "imm8", Action: inst.I},
+			{Type: "zmm", Action: inst.R},
+			{Type: "zmm", Action: inst.R},
+			{Type: "zmm", Action: inst.W},
+		},
+		EncodingType: inst.EncodingTypeEVEX,
+	},
+}
 
-	ret := inst.Forms{
+func immShiftBcast(bcastWidth int) inst.Forms {
+	bcastMem := fmt.Sprintf("m%d", bcastWidth)
+	return inst.Forms{
 		{
 			ISA: []string{"AVX512VBMI2", "AVX512VL"},
 			Operands: []inst.Operand{
 				{Type: "imm8", Action: inst.I},
-				{Type: "m128", Action: inst.R},
+				{Type: bcastMem, Action: inst.R},
 				{Type: "xmm", Action: inst.R},
 				{Type: "k", Action: inst.R},
 				{Type: "xmm", Action: inst.RW},
 			},
 			EncodingType: inst.EncodingTypeEVEX,
+			Broadcast:    true,
 		},
 		{
 			ISA: []string{"AVX512VBMI2", "AVX512VL"},
 			Operands: []inst.Operand{
 				{Type: "imm8", Action: inst.I},
-				{Type: "m128", Action: inst.R},
+				{Type: bcastMem, Action: inst.R},
 				{Type: "xmm", Action: inst.R},
 				{Type: "k", Action: inst.R},
 				{Type: "xmm", Action: inst.W},
 			},
 			EncodingType: inst.EncodingTypeEVEX,
 			Zeroing:      true,
+			Broadcast:    true,
 		},
 		{
 			ISA: []string{"AVX512VBMI2", "AVX512VL"},
 			Operands: []inst.Operand{
 				{Type: "imm8", Action: inst.I},
-				{Type: "m128", Action: inst.R},
+				{Type: bcastMem, Action: inst.R},
 				{Type: "xmm", Action: inst.R},
 				{Type: "xmm", Action: inst.W},
 			},
 			EncodingType: inst.EncodingTypeEVEX,
+			Broadcast:    true,
 		},
 		{
 			ISA: []string{"AVX512VBMI2", "AVX512VL"},
 			Operands: []inst.Operand{
 				{Type: "imm8", Action: inst.I},
-				{Type: "m256", Action: inst.R},
+				{Type: bcastMem, Action: inst.R},
 				{Type: "ymm", Action: inst.R},
 				{Type: "k", Action: inst.R},
 				{Type: "ymm", Action: inst.RW},
 			},
 			EncodingType: inst.EncodingTypeEVEX,
+			Broadcast:    true,
 		},
 		{
 			ISA: []string{"AVX512VBMI2", "AVX512VL"},
 			Operands: []inst.Operand{
 				{Type: "imm8", Action: inst.I},
-				{Type: "m256", Action: inst.R},
+				{Type: bcastMem, Action: inst.R},
 				{Type: "ymm", Action: inst.R},
 				{Type: "k", Action: inst.R},
 				{Type: "ymm", Action: inst.W},
 			},
 			EncodingType: inst.EncodingTypeEVEX,
 			Zeroing:      true,
+			Broadcast:    true,
 		},
 		{
 			ISA: []string{"AVX512VBMI2", "AVX512VL"},
 			Operands: []inst.Operand{
 				{Type: "imm8", Action: inst.I},
-				{Type: "m256", Action: inst.R},
+				{Type: bcastMem, Action: inst.R},
 				{Type: "ymm", Action: inst.R},
 				{Type: "ymm", Action: inst.W},
 			},
 			EncodingType: inst.EncodingTypeEVEX,
-		},
-		{
-			ISA: []string{"AVX512VBMI2", "AVX512VL"},
-			Operands: []inst.Operand{
-				{Type: "imm8", Action: inst.I},
-				{Type: "xmm", Action: inst.R},
-				{Type: "xmm", Action: inst.R},
-				{Type: "k", Action: inst.R},
-				{Type: "xmm", Action: inst.RW},
-			},
-			EncodingType: inst.EncodingTypeEVEX,
-		},
-		{
-			ISA: []string{"AVX512VBMI2", "AVX512VL"},
-			Operands: []inst.Operand{
-				{Type: "imm8", Action: inst.I},
-				{Type: "xmm", Action: inst.R},
-				{Type: "xmm", Action: inst.R},
-				{Type: "k", Action: inst.R},
-				{Type: "xmm", Action: inst.W},
-			},
-			EncodingType: inst.EncodingTypeEVEX,
-			Zeroing:      true,
-		},
-		{
-			ISA: []string{"AVX512VBMI2", "AVX512VL"},
-			Operands: []inst.Operand{
-				{Type: "imm8", Action: inst.I},
-				{Type: "xmm", Action: inst.R},
-				{Type: "xmm", Action: inst.R},
-				{Type: "xmm", Action: inst.W},
-			},
-			EncodingType: inst.EncodingTypeEVEX,
-		},
-		{
-			ISA: []string{"AVX512VBMI2", "AVX512VL"},
-			Operands: []inst.Operand{
-				{Type: "imm8", Action: inst.I},
-				{Type: "ymm", Action: inst.R},
-				{Type: "ymm", Action: inst.R},
-				{Type: "k", Action: inst.R},
-				{Type: "ymm", Action: inst.RW},
-			},
-			EncodingType: inst.EncodingTypeEVEX,
-		},
-		{
-			ISA: []string{"AVX512VBMI2", "AVX512VL"},
-			Operands: []inst.Operand{
-				{Type: "imm8", Action: inst.I},
-				{Type: "ymm", Action: inst.R},
-				{Type: "ymm", Action: inst.R},
-				{Type: "k", Action: inst.R},
-				{Type: "ymm", Action: inst.W},
-			},
-			EncodingType: inst.EncodingTypeEVEX,
-			Zeroing:      true,
-		},
-		{
-			ISA: []string{"AVX512VBMI2", "AVX512VL"},
-			Operands: []inst.Operand{
-				{Type: "imm8", Action: inst.I},
-				{Type: "ymm", Action: inst.R},
-				{Type: "ymm", Action: inst.R},
-				{Type: "ymm", Action: inst.W},
-			},
-			EncodingType: inst.EncodingTypeEVEX,
+			Broadcast:    true,
 		},
 		{
 			ISA: []string{"AVX512VBMI2"},
 			Operands: []inst.Operand{
 				{Type: "imm8", Action: inst.I},
-				{Type: "m512", Action: inst.R},
+				{Type: bcastMem, Action: inst.R},
 				{Type: "zmm", Action: inst.R},
 				{Type: "k", Action: inst.R},
 				{Type: "zmm", Action: inst.RW},
 			},
 			EncodingType: inst.EncodingTypeEVEX,
+			Broadcast:    true,
 		},
 		{
 			ISA: []string{"AVX512VBMI2"},
 			Operands: []inst.Operand{
 				{Type: "imm8", Action: inst.I},
-				{Type: "m512", Action: inst.R},
+				{Type: bcastMem, Action: inst.R},
 				{Type: "zmm", Action: inst.R},
 				{Type: "k", Action: inst.R},
 				{Type: "zmm", Action: inst.W},
 			},
 			EncodingType: inst.EncodingTypeEVEX,
 			Zeroing:      true,
+			Broadcast:    true,
 		},
 		{
 			ISA: []string{"AVX512VBMI2"},
 			Operands: []inst.Operand{
 				{Type: "imm8", Action: inst.I},
-				{Type: "m512", Action: inst.R},
+				{Type: bcastMem, Action: inst.R},
 				{Type: "zmm", Action: inst.R},
 				{Type: "zmm", Action: inst.W},
 			},
 			EncodingType: inst.EncodingTypeEVEX,
-		},
-		{
-			ISA: []string{"AVX512VBMI2"},
-			Operands: []inst.Operand{
-				{Type: "imm8", Action: inst.I},
-				{Type: "zmm", Action: inst.R},
-				{Type: "zmm", Action: inst.R},
-				{Type: "k", Action: inst.R},
-				{Type: "zmm", Action: inst.RW},
-			},
-			EncodingType: inst.EncodingTypeEVEX,
-		},
-		{
-			ISA: []string{"AVX512VBMI2"},
-			Operands: []inst.Operand{
-				{Type: "imm8", Action: inst.I},
-				{Type: "zmm", Action: inst.R},
-				{Type: "zmm", Action: inst.R},
-				{Type: "k", Action: inst.R},
-				{Type: "zmm", Action: inst.W},
-			},
-			EncodingType: inst.EncodingTypeEVEX,
-			Zeroing:      true,
-		},
-		{
-			ISA: []string{"AVX512VBMI2"},
-			Operands: []inst.Operand{
-				{Type: "imm8", Action: inst.I},
-				{Type: "zmm", Action: inst.R},
-				{Type: "zmm", Action: inst.R},
-				{Type: "zmm", Action: inst.W},
-			},
-			EncodingType: inst.EncodingTypeEVEX,
+			Broadcast:    true,
 		},
 	}
-
-	if bcastWidth > 16 {
-		bcastMem := fmt.Sprintf("m%d", bcastWidth)
-		ret = append(ret, inst.Forms{
-			{
-				ISA: []string{"AVX512VBMI2", "AVX512VL"},
-				Operands: []inst.Operand{
-					{Type: "imm8", Action: inst.I},
-					{Type: bcastMem, Action: inst.R},
-					{Type: "xmm", Action: inst.R},
-					{Type: "k", Action: inst.R},
-					{Type: "xmm", Action: inst.RW},
-				},
-				EncodingType: inst.EncodingTypeEVEX,
-				Broadcast:    true,
-			},
-			{
-				ISA: []string{"AVX512VBMI2", "AVX512VL"},
-				Operands: []inst.Operand{
-					{Type: "imm8", Action: inst.I},
-					{Type: bcastMem, Action: inst.R},
-					{Type: "xmm", Action: inst.R},
-					{Type: "k", Action: inst.R},
-					{Type: "xmm", Action: inst.W},
-				},
-				EncodingType: inst.EncodingTypeEVEX,
-				Zeroing:      true,
-				Broadcast:    true,
-			},
-			{
-				ISA: []string{"AVX512VBMI2", "AVX512VL"},
-				Operands: []inst.Operand{
-					{Type: "imm8", Action: inst.I},
-					{Type: bcastMem, Action: inst.R},
-					{Type: "xmm", Action: inst.R},
-					{Type: "xmm", Action: inst.W},
-				},
-				EncodingType: inst.EncodingTypeEVEX,
-				Broadcast:    true,
-			},
-			{
-				ISA: []string{"AVX512VBMI2", "AVX512VL"},
-				Operands: []inst.Operand{
-					{Type: "imm8", Action: inst.I},
-					{Type: bcastMem, Action: inst.R},
-					{Type: "ymm", Action: inst.R},
-					{Type: "k", Action: inst.R},
-					{Type: "ymm", Action: inst.RW},
-				},
-				EncodingType: inst.EncodingTypeEVEX,
-				Broadcast:    true,
-			},
-			{
-				ISA: []string{"AVX512VBMI2", "AVX512VL"},
-				Operands: []inst.Operand{
-					{Type: "imm8", Action: inst.I},
-					{Type: bcastMem, Action: inst.R},
-					{Type: "ymm", Action: inst.R},
-					{Type: "k", Action: inst.R},
-					{Type: "ymm", Action: inst.W},
-				},
-				EncodingType: inst.EncodingTypeEVEX,
-				Zeroing:      true,
-				Broadcast:    true,
-			},
-			{
-				ISA: []string{"AVX512VBMI2", "AVX512VL"},
-				Operands: []inst.Operand{
-					{Type: "imm8", Action: inst.I},
-					{Type: bcastMem, Action: inst.R},
-					{Type: "ymm", Action: inst.R},
-					{Type: "ymm", Action: inst.W},
-				},
-				EncodingType: inst.EncodingTypeEVEX,
-				Broadcast:    true,
-			},
-			{
-				ISA: []string{"AVX512VBMI2"},
-				Operands: []inst.Operand{
-					{Type: "imm8", Action: inst.I},
-					{Type: bcastMem, Action: inst.R},
-					{Type: "zmm", Action: inst.R},
-					{Type: "k", Action: inst.R},
-					{Type: "zmm", Action: inst.RW},
-				},
-				EncodingType: inst.EncodingTypeEVEX,
-				Broadcast:    true,
-			},
-			{
-				ISA: []string{"AVX512VBMI2"},
-				Operands: []inst.Operand{
-					{Type: "imm8", Action: inst.I},
-					{Type: bcastMem, Action: inst.R},
-					{Type: "zmm", Action: inst.R},
-					{Type: "k", Action: inst.R},
-					{Type: "zmm", Action: inst.W},
-				},
-				EncodingType: inst.EncodingTypeEVEX,
-				Zeroing:      true,
-				Broadcast:    true,
-			},
-			{
-				ISA: []string{"AVX512VBMI2"},
-				Operands: []inst.Operand{
-					{Type: "imm8", Action: inst.I},
-					{Type: bcastMem, Action: inst.R},
-					{Type: "zmm", Action: inst.R},
-					{Type: "zmm", Action: inst.W},
-				},
-				EncodingType: inst.EncodingTypeEVEX,
-				Broadcast:    true,
-			},
-		}...)
-	}
-	return ret
 }
 
 // VPSHLDVD, VPSHLDVQ, VPSHLDVW, VPSHRDVD, VPSHRDVQ and VPSHRDVW forms
@@ -932,7 +929,7 @@ func immShift(bcastWidth int) inst.Forms {
 //		{zcase: Zevex_rm_v_r, zoffset: 0, args: argList{Yzm, Yzr, Yzr}},
 //		{zcase: Zevex_rm_v_k_r, zoffset: 3, args: argList{Yzm, Yzr, Yknot0, Yzr}},
 //	}
-func varShift(bcastWidth int) inst.Forms {
+var varShift = inst.Forms{
 	// EVEX.128.66.0F38.W1 70 /r VPSHLDVW xmm1{k1}{z}, xmm2, xmm3/m128  AVX512VMBI2 AVX512VL
 	// EVEX.256.66.0F38.W1 70 /r VPSHLDVW ymm1{k1}{z}, ymm2, ymm3/m256  AVX512VMBI2 AVX512VL
 	// EVEX.512.66.0F38.W1 70 /r VPSHLDVW zmm1{k1}{z}, zmm2, zmm3/m512  AVX512VMBI2
@@ -951,292 +948,289 @@ func varShift(bcastWidth int) inst.Forms {
 	// EVEX.128.66.0F38.W1 73 /r VPSHRDVQ xmm1{k1}{z}, xmm2, xmm3/m128/m64bcst  AVX512VMBI2 AVX512VL
 	// EVEX.256.66.0F38.W1 73 /r VPSHRDVQ ymm1{k1}{z}, ymm2, ymm3/m256/m64bcst  AVX512VMBI2 AVX512VL
 	// EVEX.512.66.0F38.W1 73 /r VPSHRDVQ zmm1{k1}{z}, zmm2, zmm3/m512/m64bcst  AVX512VMBI2
-	ret := inst.Forms{
-		{
-			ISA: []string{"AVX512VBMI2", "AVX512VL"},
-			Operands: []inst.Operand{
-				{Type: "m128", Action: inst.R},
-				{Type: "xmm", Action: inst.R},
-				{Type: "k", Action: inst.R},
-				{Type: "xmm", Action: inst.RW},
-			},
-			EncodingType: inst.EncodingTypeEVEX,
+	{
+		ISA: []string{"AVX512VBMI2", "AVX512VL"},
+		Operands: []inst.Operand{
+			{Type: "m128", Action: inst.R},
+			{Type: "xmm", Action: inst.R},
+			{Type: "k", Action: inst.R},
+			{Type: "xmm", Action: inst.RW},
 		},
-		{
-			ISA: []string{"AVX512VBMI2", "AVX512VL"},
-			Operands: []inst.Operand{
-				{Type: "m128", Action: inst.R},
-				{Type: "xmm", Action: inst.R},
-				{Type: "k", Action: inst.R},
-				{Type: "xmm", Action: inst.W},
-			},
-			EncodingType: inst.EncodingTypeEVEX,
-			Zeroing:      true,
+		EncodingType: inst.EncodingTypeEVEX,
+	},
+	{
+		ISA: []string{"AVX512VBMI2", "AVX512VL"},
+		Operands: []inst.Operand{
+			{Type: "m128", Action: inst.R},
+			{Type: "xmm", Action: inst.R},
+			{Type: "k", Action: inst.R},
+			{Type: "xmm", Action: inst.W},
 		},
-		{
-			ISA: []string{"AVX512VBMI2", "AVX512VL"},
-			Operands: []inst.Operand{
-				{Type: "m128", Action: inst.R},
-				{Type: "xmm", Action: inst.R},
-				{Type: "xmm", Action: inst.W},
-			},
-			EncodingType: inst.EncodingTypeEVEX,
+		EncodingType: inst.EncodingTypeEVEX,
+		Zeroing:      true,
+	},
+	{
+		ISA: []string{"AVX512VBMI2", "AVX512VL"},
+		Operands: []inst.Operand{
+			{Type: "m128", Action: inst.R},
+			{Type: "xmm", Action: inst.R},
+			{Type: "xmm", Action: inst.W},
 		},
-		{
-			ISA: []string{"AVX512VBMI2", "AVX512VL"},
-			Operands: []inst.Operand{
-				{Type: "m256", Action: inst.R},
-				{Type: "ymm", Action: inst.R},
-				{Type: "k", Action: inst.R},
-				{Type: "ymm", Action: inst.RW},
-			},
-			EncodingType: inst.EncodingTypeEVEX,
+		EncodingType: inst.EncodingTypeEVEX,
+	},
+	{
+		ISA: []string{"AVX512VBMI2", "AVX512VL"},
+		Operands: []inst.Operand{
+			{Type: "m256", Action: inst.R},
+			{Type: "ymm", Action: inst.R},
+			{Type: "k", Action: inst.R},
+			{Type: "ymm", Action: inst.RW},
 		},
-		{
-			ISA: []string{"AVX512VBMI2", "AVX512VL"},
-			Operands: []inst.Operand{
-				{Type: "m256", Action: inst.R},
-				{Type: "ymm", Action: inst.R},
-				{Type: "k", Action: inst.R},
-				{Type: "ymm", Action: inst.W},
-			},
-			EncodingType: inst.EncodingTypeEVEX,
-			Zeroing:      true,
+		EncodingType: inst.EncodingTypeEVEX,
+	},
+	{
+		ISA: []string{"AVX512VBMI2", "AVX512VL"},
+		Operands: []inst.Operand{
+			{Type: "m256", Action: inst.R},
+			{Type: "ymm", Action: inst.R},
+			{Type: "k", Action: inst.R},
+			{Type: "ymm", Action: inst.W},
 		},
-		{
-			ISA: []string{"AVX512VBMI2", "AVX512VL"},
-			Operands: []inst.Operand{
-				{Type: "m256", Action: inst.R},
-				{Type: "ymm", Action: inst.R},
-				{Type: "ymm", Action: inst.W},
-			},
-			EncodingType: inst.EncodingTypeEVEX,
+		EncodingType: inst.EncodingTypeEVEX,
+		Zeroing:      true,
+	},
+	{
+		ISA: []string{"AVX512VBMI2", "AVX512VL"},
+		Operands: []inst.Operand{
+			{Type: "m256", Action: inst.R},
+			{Type: "ymm", Action: inst.R},
+			{Type: "ymm", Action: inst.W},
 		},
-		{
-			ISA: []string{"AVX512VBMI2", "AVX512VL"},
-			Operands: []inst.Operand{
-				{Type: "xmm", Action: inst.R},
-				{Type: "xmm", Action: inst.R},
-				{Type: "k", Action: inst.R},
-				{Type: "xmm", Action: inst.RW},
-			},
-			EncodingType: inst.EncodingTypeEVEX,
+		EncodingType: inst.EncodingTypeEVEX,
+	},
+	{
+		ISA: []string{"AVX512VBMI2", "AVX512VL"},
+		Operands: []inst.Operand{
+			{Type: "xmm", Action: inst.R},
+			{Type: "xmm", Action: inst.R},
+			{Type: "k", Action: inst.R},
+			{Type: "xmm", Action: inst.RW},
 		},
-		{
-			ISA: []string{"AVX512VBMI2", "AVX512VL"},
-			Operands: []inst.Operand{
-				{Type: "xmm", Action: inst.R},
-				{Type: "xmm", Action: inst.R},
-				{Type: "k", Action: inst.R},
-				{Type: "xmm", Action: inst.W},
-			},
-			EncodingType: inst.EncodingTypeEVEX,
-			Zeroing:      true,
+		EncodingType: inst.EncodingTypeEVEX,
+	},
+	{
+		ISA: []string{"AVX512VBMI2", "AVX512VL"},
+		Operands: []inst.Operand{
+			{Type: "xmm", Action: inst.R},
+			{Type: "xmm", Action: inst.R},
+			{Type: "k", Action: inst.R},
+			{Type: "xmm", Action: inst.W},
 		},
-		{
-			ISA: []string{"AVX512VBMI2", "AVX512VL"},
-			Operands: []inst.Operand{
-				{Type: "xmm", Action: inst.R},
-				{Type: "xmm", Action: inst.R},
-				{Type: "xmm", Action: inst.W},
-			},
-			EncodingType: inst.EncodingTypeEVEX,
+		EncodingType: inst.EncodingTypeEVEX,
+		Zeroing:      true,
+	},
+	{
+		ISA: []string{"AVX512VBMI2", "AVX512VL"},
+		Operands: []inst.Operand{
+			{Type: "xmm", Action: inst.R},
+			{Type: "xmm", Action: inst.R},
+			{Type: "xmm", Action: inst.W},
 		},
-		{
-			ISA: []string{"AVX512VBMI2", "AVX512VL"},
-			Operands: []inst.Operand{
-				{Type: "ymm", Action: inst.R},
-				{Type: "ymm", Action: inst.R},
-				{Type: "k", Action: inst.R},
-				{Type: "ymm", Action: inst.RW},
-			},
-			EncodingType: inst.EncodingTypeEVEX,
+		EncodingType: inst.EncodingTypeEVEX,
+	},
+	{
+		ISA: []string{"AVX512VBMI2", "AVX512VL"},
+		Operands: []inst.Operand{
+			{Type: "ymm", Action: inst.R},
+			{Type: "ymm", Action: inst.R},
+			{Type: "k", Action: inst.R},
+			{Type: "ymm", Action: inst.RW},
 		},
-		{
-			ISA: []string{"AVX512VBMI2", "AVX512VL"},
-			Operands: []inst.Operand{
-				{Type: "ymm", Action: inst.R},
-				{Type: "ymm", Action: inst.R},
-				{Type: "k", Action: inst.R},
-				{Type: "ymm", Action: inst.W},
-			},
-			EncodingType: inst.EncodingTypeEVEX,
-			Zeroing:      true,
+		EncodingType: inst.EncodingTypeEVEX,
+	},
+	{
+		ISA: []string{"AVX512VBMI2", "AVX512VL"},
+		Operands: []inst.Operand{
+			{Type: "ymm", Action: inst.R},
+			{Type: "ymm", Action: inst.R},
+			{Type: "k", Action: inst.R},
+			{Type: "ymm", Action: inst.W},
 		},
-		{
-			ISA: []string{"AVX512VBMI2", "AVX512VL"},
-			Operands: []inst.Operand{
-				{Type: "ymm", Action: inst.R},
-				{Type: "ymm", Action: inst.R},
-				{Type: "ymm", Action: inst.W},
-			},
-			EncodingType: inst.EncodingTypeEVEX,
+		EncodingType: inst.EncodingTypeEVEX,
+		Zeroing:      true,
+	},
+	{
+		ISA: []string{"AVX512VBMI2", "AVX512VL"},
+		Operands: []inst.Operand{
+			{Type: "ymm", Action: inst.R},
+			{Type: "ymm", Action: inst.R},
+			{Type: "ymm", Action: inst.W},
 		},
-		{
-			ISA: []string{"AVX512VBMI2"},
-			Operands: []inst.Operand{
-				{Type: "m512", Action: inst.R},
-				{Type: "zmm", Action: inst.R},
-				{Type: "k", Action: inst.R},
-				{Type: "zmm", Action: inst.RW},
-			},
-			EncodingType: inst.EncodingTypeEVEX,
+		EncodingType: inst.EncodingTypeEVEX,
+	},
+	{
+		ISA: []string{"AVX512VBMI2"},
+		Operands: []inst.Operand{
+			{Type: "m512", Action: inst.R},
+			{Type: "zmm", Action: inst.R},
+			{Type: "k", Action: inst.R},
+			{Type: "zmm", Action: inst.RW},
 		},
-		{
-			ISA: []string{"AVX512VBMI2"},
-			Operands: []inst.Operand{
-				{Type: "m512", Action: inst.R},
-				{Type: "zmm", Action: inst.R},
-				{Type: "k", Action: inst.R},
-				{Type: "zmm", Action: inst.W},
-			},
-			EncodingType: inst.EncodingTypeEVEX,
-			Zeroing:      true,
+		EncodingType: inst.EncodingTypeEVEX,
+	},
+	{
+		ISA: []string{"AVX512VBMI2"},
+		Operands: []inst.Operand{
+			{Type: "m512", Action: inst.R},
+			{Type: "zmm", Action: inst.R},
+			{Type: "k", Action: inst.R},
+			{Type: "zmm", Action: inst.W},
 		},
-		{
-			ISA: []string{"AVX512VBMI2"},
-			Operands: []inst.Operand{
-				{Type: "m512", Action: inst.R},
-				{Type: "zmm", Action: inst.R},
-				{Type: "zmm", Action: inst.W},
-			},
-			EncodingType: inst.EncodingTypeEVEX,
+		EncodingType: inst.EncodingTypeEVEX,
+		Zeroing:      true,
+	},
+	{
+		ISA: []string{"AVX512VBMI2"},
+		Operands: []inst.Operand{
+			{Type: "m512", Action: inst.R},
+			{Type: "zmm", Action: inst.R},
+			{Type: "zmm", Action: inst.W},
 		},
-		{
-			ISA: []string{"AVX512VBMI2"},
-			Operands: []inst.Operand{
-				{Type: "zmm", Action: inst.R},
-				{Type: "zmm", Action: inst.R},
-				{Type: "k", Action: inst.R},
-				{Type: "zmm", Action: inst.RW},
-			},
-			EncodingType: inst.EncodingTypeEVEX,
+		EncodingType: inst.EncodingTypeEVEX,
+	},
+	{
+		ISA: []string{"AVX512VBMI2"},
+		Operands: []inst.Operand{
+			{Type: "zmm", Action: inst.R},
+			{Type: "zmm", Action: inst.R},
+			{Type: "k", Action: inst.R},
+			{Type: "zmm", Action: inst.RW},
 		},
-		{
-			ISA: []string{"AVX512VBMI2"},
-			Operands: []inst.Operand{
-				{Type: "zmm", Action: inst.R},
-				{Type: "zmm", Action: inst.R},
-				{Type: "k", Action: inst.R},
-				{Type: "zmm", Action: inst.W},
-			},
-			EncodingType: inst.EncodingTypeEVEX,
-			Zeroing:      true,
+		EncodingType: inst.EncodingTypeEVEX,
+	},
+	{
+		ISA: []string{"AVX512VBMI2"},
+		Operands: []inst.Operand{
+			{Type: "zmm", Action: inst.R},
+			{Type: "zmm", Action: inst.R},
+			{Type: "k", Action: inst.R},
+			{Type: "zmm", Action: inst.W},
 		},
-		{
-			ISA: []string{"AVX512VBMI2"},
-			Operands: []inst.Operand{
-				{Type: "zmm", Action: inst.R},
-				{Type: "zmm", Action: inst.R},
-				{Type: "zmm", Action: inst.W},
-			},
-			EncodingType: inst.EncodingTypeEVEX,
+		EncodingType: inst.EncodingTypeEVEX,
+		Zeroing:      true,
+	},
+	{
+		ISA: []string{"AVX512VBMI2"},
+		Operands: []inst.Operand{
+			{Type: "zmm", Action: inst.R},
+			{Type: "zmm", Action: inst.R},
+			{Type: "zmm", Action: inst.W},
 		},
-	}
+		EncodingType: inst.EncodingTypeEVEX,
+	},
+}
 
-	if bcastWidth > 16 {
-		bcastMem := fmt.Sprintf("m%d", bcastWidth)
-		ret = append(ret, inst.Forms{
-			{
-				ISA: []string{"AVX512VBMI2", "AVX512VL"},
-				Operands: []inst.Operand{
-					{Type: bcastMem, Action: inst.R},
-					{Type: "xmm", Action: inst.R},
-					{Type: "k", Action: inst.R},
-					{Type: "xmm", Action: inst.RW},
-				},
-				EncodingType: inst.EncodingTypeEVEX,
-				Broadcast:    true,
+func varShiftBcast(bcastWidth int) inst.Forms {
+	bcastMem := fmt.Sprintf("m%d", bcastWidth)
+	return inst.Forms{
+		{
+			ISA: []string{"AVX512VBMI2", "AVX512VL"},
+			Operands: []inst.Operand{
+				{Type: bcastMem, Action: inst.R},
+				{Type: "xmm", Action: inst.R},
+				{Type: "k", Action: inst.R},
+				{Type: "xmm", Action: inst.RW},
 			},
-			{
-				ISA: []string{"AVX512VBMI2", "AVX512VL"},
-				Operands: []inst.Operand{
-					{Type: bcastMem, Action: inst.R},
-					{Type: "xmm", Action: inst.R},
-					{Type: "k", Action: inst.R},
-					{Type: "xmm", Action: inst.W},
-				},
-				EncodingType: inst.EncodingTypeEVEX,
-				Zeroing:      true,
-				Broadcast:    true,
+			EncodingType: inst.EncodingTypeEVEX,
+			Broadcast:    true,
+		},
+		{
+			ISA: []string{"AVX512VBMI2", "AVX512VL"},
+			Operands: []inst.Operand{
+				{Type: bcastMem, Action: inst.R},
+				{Type: "xmm", Action: inst.R},
+				{Type: "k", Action: inst.R},
+				{Type: "xmm", Action: inst.W},
 			},
-			{
-				ISA: []string{"AVX512VBMI2", "AVX512VL"},
-				Operands: []inst.Operand{
-					{Type: bcastMem, Action: inst.R},
-					{Type: "xmm", Action: inst.R},
-					{Type: "xmm", Action: inst.W},
-				},
-				EncodingType: inst.EncodingTypeEVEX,
-				Broadcast:    true,
+			EncodingType: inst.EncodingTypeEVEX,
+			Zeroing:      true,
+			Broadcast:    true,
+		},
+		{
+			ISA: []string{"AVX512VBMI2", "AVX512VL"},
+			Operands: []inst.Operand{
+				{Type: bcastMem, Action: inst.R},
+				{Type: "xmm", Action: inst.R},
+				{Type: "xmm", Action: inst.W},
 			},
-			{
-				ISA: []string{"AVX512VBMI2", "AVX512VL"},
-				Operands: []inst.Operand{
-					{Type: bcastMem, Action: inst.R},
-					{Type: "ymm", Action: inst.R},
-					{Type: "k", Action: inst.R},
-					{Type: "ymm", Action: inst.RW},
-				},
-				EncodingType: inst.EncodingTypeEVEX,
-				Broadcast:    true,
+			EncodingType: inst.EncodingTypeEVEX,
+			Broadcast:    true,
+		},
+		{
+			ISA: []string{"AVX512VBMI2", "AVX512VL"},
+			Operands: []inst.Operand{
+				{Type: bcastMem, Action: inst.R},
+				{Type: "ymm", Action: inst.R},
+				{Type: "k", Action: inst.R},
+				{Type: "ymm", Action: inst.RW},
 			},
-			{
-				ISA: []string{"AVX512VBMI2", "AVX512VL"},
-				Operands: []inst.Operand{
-					{Type: bcastMem, Action: inst.R},
-					{Type: "ymm", Action: inst.R},
-					{Type: "k", Action: inst.R},
-					{Type: "ymm", Action: inst.W},
-				},
-				EncodingType: inst.EncodingTypeEVEX,
-				Zeroing:      true,
-				Broadcast:    true,
+			EncodingType: inst.EncodingTypeEVEX,
+			Broadcast:    true,
+		},
+		{
+			ISA: []string{"AVX512VBMI2", "AVX512VL"},
+			Operands: []inst.Operand{
+				{Type: bcastMem, Action: inst.R},
+				{Type: "ymm", Action: inst.R},
+				{Type: "k", Action: inst.R},
+				{Type: "ymm", Action: inst.W},
 			},
-			{
-				ISA: []string{"AVX512VBMI2", "AVX512VL"},
-				Operands: []inst.Operand{
-					{Type: bcastMem, Action: inst.R},
-					{Type: "ymm", Action: inst.R},
-					{Type: "ymm", Action: inst.W},
-				},
-				EncodingType: inst.EncodingTypeEVEX,
-				Broadcast:    true,
+			EncodingType: inst.EncodingTypeEVEX,
+			Zeroing:      true,
+			Broadcast:    true,
+		},
+		{
+			ISA: []string{"AVX512VBMI2", "AVX512VL"},
+			Operands: []inst.Operand{
+				{Type: bcastMem, Action: inst.R},
+				{Type: "ymm", Action: inst.R},
+				{Type: "ymm", Action: inst.W},
 			},
-			{
-				ISA: []string{"AVX512VBMI2"},
-				Operands: []inst.Operand{
-					{Type: bcastMem, Action: inst.R},
-					{Type: "zmm", Action: inst.R},
-					{Type: "k", Action: inst.R},
-					{Type: "zmm", Action: inst.RW},
-				},
-				EncodingType: inst.EncodingTypeEVEX,
-				Broadcast:    true,
+			EncodingType: inst.EncodingTypeEVEX,
+			Broadcast:    true,
+		},
+		{
+			ISA: []string{"AVX512VBMI2"},
+			Operands: []inst.Operand{
+				{Type: bcastMem, Action: inst.R},
+				{Type: "zmm", Action: inst.R},
+				{Type: "k", Action: inst.R},
+				{Type: "zmm", Action: inst.RW},
 			},
-			{
-				ISA: []string{"AVX512VBMI2"},
-				Operands: []inst.Operand{
-					{Type: bcastMem, Action: inst.R},
-					{Type: "zmm", Action: inst.R},
-					{Type: "k", Action: inst.R},
-					{Type: "zmm", Action: inst.W},
-				},
-				EncodingType: inst.EncodingTypeEVEX,
-				Zeroing:      true,
-				Broadcast:    true,
+			EncodingType: inst.EncodingTypeEVEX,
+			Broadcast:    true,
+		},
+		{
+			ISA: []string{"AVX512VBMI2"},
+			Operands: []inst.Operand{
+				{Type: bcastMem, Action: inst.R},
+				{Type: "zmm", Action: inst.R},
+				{Type: "k", Action: inst.R},
+				{Type: "zmm", Action: inst.W},
 			},
-			{
-				ISA: []string{"AVX512VBMI2"},
-				Operands: []inst.Operand{
-					{Type: bcastMem, Action: inst.R},
-					{Type: "zmm", Action: inst.R},
-					{Type: "zmm", Action: inst.W},
-				},
-				EncodingType: inst.EncodingTypeEVEX,
-				Broadcast:    true,
+			EncodingType: inst.EncodingTypeEVEX,
+			Zeroing:      true,
+			Broadcast:    true,
+		},
+		{
+			ISA: []string{"AVX512VBMI2"},
+			Operands: []inst.Operand{
+				{Type: bcastMem, Action: inst.R},
+				{Type: "zmm", Action: inst.R},
+				{Type: "zmm", Action: inst.W},
 			},
-		}...)
+			EncodingType: inst.EncodingTypeEVEX,
+			Broadcast:    true,
+		},
 	}
-	return ret
 }
