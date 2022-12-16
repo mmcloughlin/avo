@@ -1,4 +1,4 @@
-// Package thirdparty executes integration tests based on third-party packages that use avo.
+// Package thirdparty executes integration tests based on third-party projects that use avo.
 package thirdparty
 
 import (
@@ -9,7 +9,9 @@ import (
 	"os"
 	"path"
 	"path/filepath"
+	"sort"
 	"strings"
+	"time"
 )
 
 // GithubRepository specifies a repository on github.
@@ -20,6 +22,11 @@ type GithubRepository struct {
 
 func (r GithubRepository) String() string {
 	return path.Join(r.Owner, r.Name)
+}
+
+// URL returns the Github repository URL.
+func (r GithubRepository) URL() string {
+	return fmt.Sprintf("https://github.com/%s", r)
 }
 
 // CloneURL returns the git clone URL.
@@ -37,6 +44,71 @@ type Metadata struct {
 
 	// Number of Github stars.
 	Stars int `json:"stars,omitempty"`
+}
+
+// Project defines an integration test based on a third-party project using avo.
+type Project struct {
+	// Repository for the project. At the moment, all projects are available on
+	// github.
+	Repository GithubRepository `json:"repository"`
+
+	// Repository metadata.
+	Metadata Metadata `json:"metadata"`
+
+	// Default git branch. This is used when testing against the latest version.
+	DefaultBranch string `json:"default_branch,omitempty"`
+
+	// Version as a git sha, tag or branch.
+	Version string `json:"version"`
+
+	// If the project test has a known problem, record it by setting this to a
+	// non-zero avo issue number.  If set, the project will be skipped in
+	// testing.
+	KnownIssue int `json:"known_issue,omitempty"`
+
+	// Packages within the project to test.
+	Packages []*Package `json:"packages"`
+}
+
+func (p *Project) defaults(set bool) {
+	for _, pkg := range p.Packages {
+		pkg.defaults(set)
+	}
+}
+
+// Validate project definition.
+func (p *Project) Validate() error {
+	if p.DefaultBranch == "" {
+		return errors.New("missing default branch")
+	}
+	if p.Version == "" {
+		return errors.New("missing version")
+	}
+	if len(p.Packages) == 0 {
+		return errors.New("missing packages")
+	}
+	for _, pkg := range p.Packages {
+		if err := pkg.Validate(); err != nil {
+			return fmt.Errorf("package %s: %w", pkg.Name(), err)
+		}
+	}
+	return nil
+}
+
+// ID returns an identifier for the project.
+func (p *Project) ID() string {
+	return strings.ReplaceAll(p.Repository.String(), "/", "-")
+}
+
+// Skip reports whether the project test should be skipped. If skipped, a known
+// issue will be set.
+func (p *Project) Skip() bool {
+	return p.KnownIssue != 0
+}
+
+// Reason returns the reason why the test is skipped.
+func (p *Project) Reason() string {
+	return fmt.Sprintf("https://github.com/mmcloughlin/avo/issues/%d", p.KnownIssue)
 }
 
 // Step represents a set of commands to run as part of the testing plan for a
@@ -58,24 +130,11 @@ func (s *Step) Validate() error {
 	return nil
 }
 
-// Package defines an integration test based on a third-party package using avo.
+// Package defines an integration test for a package within a project.
 type Package struct {
-	// Repository the package belongs to. At the moment, all packages are
-	// available on github.
-	Repository GithubRepository `json:"repository"`
-
-	// Repository metadata.
-	Metadata Metadata `json:"metadata"`
-
-	// Default git branch. This is used when testing against the latest version.
-	DefaultBranch string `json:"default_branch,omitempty"`
-
-	// Version as a git sha, tag or branch.
-	Version string `json:"version"`
-
-	// Sub-package within the repository under test. All file path references
-	// will be relative to this directory. If empty the root of the repository
-	// is used.
+	// Sub-package within the project under test. All file path references will
+	// be relative to this directory. If empty the root of the repository is
+	// used.
 	SubPackage string `json:"pkg,omitempty"`
 
 	// Path to the module file for the avo generator package. This is necessary
@@ -89,32 +148,10 @@ type Package struct {
 	Setup []*Step `json:"setup,omitempty"`
 
 	// Steps to run the avo code generator.
-	Generate []*Step `json:"generate"` // generate commands to run
+	Generate []*Step `json:"generate"`
 
 	// Test steps. If empty, defaults to "go test ./...".
 	Test []*Step `json:"test,omitempty"`
-
-	// If the package test has a known problem, record it by setting this to a
-	// non-zero avo issue number.  If set, the package will be skipped in
-	// testing.
-	KnownIssue int `json:"known_issue,omitempty"`
-}
-
-// ID returns an identifier for the package.
-func (p *Package) ID() string {
-	pkgpath := path.Join(p.Repository.String(), p.SubPackage)
-	return strings.ReplaceAll(pkgpath, "/", "-")
-}
-
-// Skip reports whether the package test should be skipped. If skipped, a known
-// issue will be set.
-func (p *Package) Skip() bool {
-	return p.KnownIssue != 0
-}
-
-// Reason returns the reason why the test is skipped.
-func (p *Package) Reason() string {
-	return fmt.Sprintf("https://github.com/mmcloughlin/avo/issues/%d", p.KnownIssue)
 }
 
 // defaults sets or removes default field values.
@@ -146,12 +183,6 @@ func applydefault(set bool, s, def string) string {
 
 // Validate package definition.
 func (p *Package) Validate() error {
-	if p.DefaultBranch == "" {
-		return errors.New("missing default branch")
-	}
-	if p.Version == "" {
-		return errors.New("missing version")
-	}
 	if p.Module == "" {
 		return errors.New("missing module")
 	}
@@ -173,6 +204,19 @@ func (p *Package) Validate() error {
 	}
 
 	return nil
+}
+
+// Name of the package.
+func (p *Package) Name() string {
+	if p.IsRoot() {
+		return "root"
+	}
+	return p.SubPackage
+}
+
+// IsRoot reports whether the package is the root of the containing project.
+func (p *Package) IsRoot() bool {
+	return p.SubPackage == ""
 }
 
 // Context specifies execution environment parameters for a third-party test.
@@ -237,63 +281,147 @@ func (p *Package) Steps(c *Context) []*Step {
 	return steps
 }
 
-// Packages is a collection of third-party integration tests.
-type Packages []*Package
+// Test case for a given package within a project.
+type Test struct {
+	Project *Project
+	Package *Package
+}
 
-func (p Packages) defaults(set bool) {
-	for _, pkg := range p {
-		pkg.defaults(set)
+// ID returns an identifier for the test case.
+func (t *Test) ID() string {
+	pkgpath := path.Join(t.Project.Repository.String(), t.Package.SubPackage)
+	return strings.ReplaceAll(pkgpath, "/", "-")
+}
+
+// Projects is a collection of third-party integration tests.
+type Projects []*Project
+
+func (p Projects) defaults(set bool) {
+	for _, prj := range p {
+		prj.defaults(set)
 	}
 }
 
-// Validate the package collection.
-func (p Packages) Validate() error {
-	for _, pkg := range p {
-		if err := pkg.Validate(); err != nil {
-			return fmt.Errorf("package %s: %w", pkg.ID(), err)
+// Validate the project collection.
+func (p Projects) Validate() error {
+	seen := map[string]bool{}
+	for _, prj := range p {
+		// Project is valid.
+		if err := prj.Validate(); err != nil {
+			return fmt.Errorf("project %s: %w", prj.ID(), err)
 		}
+
+		// No duplicate entries.
+		id := prj.ID()
+		if seen[id] {
+			return fmt.Errorf("duplicate project %q", id)
+		}
+		seen[id] = true
 	}
 	return nil
 }
 
-// LoadPackages loads a list of package configurations from JSON format.
-func LoadPackages(r io.Reader) (Packages, error) {
-	var pkgs Packages
-	d := json.NewDecoder(r)
-	d.DisallowUnknownFields()
-	if err := d.Decode(&pkgs); err != nil {
-		return nil, err
+// Tests returns all test cases for the projects collection.
+func (p Projects) Tests() []*Test {
+	var ts []*Test
+	for _, prj := range p {
+		for _, pkg := range prj.Packages {
+			ts = append(ts, &Test{
+				Project: prj,
+				Package: pkg,
+			})
+		}
 	}
-	pkgs.defaults(true)
-	return pkgs, nil
+	return ts
 }
 
-// LoadPackagesFile loads a list of package configurations from a JSON file.
-func LoadPackagesFile(filename string) (Packages, error) {
+// Ranked returns a copy of the projects list ranked in desending order of
+// popularity.
+func (p Projects) Ranked() Projects {
+	ranked := append(Projects(nil), p...)
+	sort.SliceStable(ranked, func(i, j int) bool {
+		return ranked[i].Metadata.Stars > ranked[j].Metadata.Stars
+	})
+	return ranked
+}
+
+// Top returns the top n most popular projects.
+func (p Projects) Top(n int) Projects {
+	top := p.Ranked()
+	if len(top) > n {
+		top = top[:n]
+	}
+	return top
+}
+
+// Suite defines a third-party test suite.
+type Suite struct {
+	// Projects to test.
+	Projects Projects `json:"projects"`
+
+	// Time of the last update to project metadata.
+	MetadataLastUpdate time.Time `json:"metadata_last_update"`
+}
+
+func (s *Suite) defaults(set bool) {
+	s.Projects.defaults(set)
+}
+
+// Validate the test suite.
+func (s *Suite) Validate() error {
+	if s.MetadataLastUpdate.IsZero() {
+		return errors.New("empty metadata update time")
+	}
+
+	if s.MetadataLastUpdate.Location() != time.UTC {
+		return errors.New("metadata update time not in UTC")
+	}
+
+	if err := s.Projects.Validate(); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// LoadSuite loads a test suite from JSON format.
+func LoadSuite(r io.Reader) (*Suite, error) {
+	var s *Suite
+	d := json.NewDecoder(r)
+	d.DisallowUnknownFields()
+	if err := d.Decode(&s); err != nil {
+		return nil, err
+	}
+	s.defaults(true)
+	return s, nil
+}
+
+// LoadSuiteFile loads a test suite from a JSON file.
+func LoadSuiteFile(filename string) (*Suite, error) {
 	f, err := os.Open(filename)
 	if err != nil {
 		return nil, err
 	}
 	defer f.Close()
-	return LoadPackages(f)
+	return LoadSuite(f)
 }
 
-// StorePackages writes a list of package configurations in JSON format.
-func StorePackages(w io.Writer, pkgs Packages) error {
+// StoreSuite writes a test suite in JSON format.
+func StoreSuite(w io.Writer, s *Suite) error {
 	e := json.NewEncoder(w)
 	e.SetIndent("", "    ")
-	pkgs.defaults(false)
-	err := e.Encode(pkgs)
-	pkgs.defaults(true)
+	s.defaults(false)
+	err := e.Encode(s)
+	s.defaults(true)
 	return err
 }
 
-// StorePackagesFile writes a list of package configurations to a JSON file.
-func StorePackagesFile(filename string, pkgs Packages) error {
+// StoreSuiteFile writes a test suite to a JSON file.
+func StoreSuiteFile(filename string, s *Suite) error {
 	f, err := os.Create(filename)
 	if err != nil {
 		return err
 	}
 	defer f.Close()
-	return StorePackages(f, pkgs)
+	return StoreSuite(f, s)
 }

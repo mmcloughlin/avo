@@ -12,6 +12,7 @@ import (
 
 	"github.com/mmcloughlin/avo/internal/inst"
 	"github.com/mmcloughlin/avo/internal/opcodescsv"
+	"github.com/mmcloughlin/avo/internal/opcodesextra"
 	"github.com/mmcloughlin/avo/internal/opcodesxml"
 )
 
@@ -79,15 +80,19 @@ func (l *Loader) Load() ([]inst.Instruction, error) {
 						Summary: i.Summary,
 					}
 				}
-				forms := l.forms(opcode, f)
-				im[opcode].Forms = append(im[opcode].Forms, forms...)
+				im[opcode].Forms = append(im[opcode].Forms, l.form(opcode, f))
 			}
 		}
 	}
 
 	// Add extras to our list.
-	for _, e := range extras {
+	for _, e := range opcodesextra.Instructions() {
 		im[e.Opcode] = e
+	}
+
+	// Generate additional AVX-512 forms.
+	for _, i := range im {
+		i.Forms = avx512forms(i.Opcode, i.Forms)
 	}
 
 	// Merge aliased forms. This is primarily for MOVQ (issue #50).
@@ -121,16 +126,13 @@ func (l *Loader) Load() ([]inst.Instruction, error) {
 	// Convert to a slice. Sort instructions and forms for reproducibility.
 	is := make([]inst.Instruction, 0, len(im))
 	for _, i := range im {
+		sortforms(i.Forms)
 		is = append(is, *i)
 	}
 
 	sort.Slice(is, func(i, j int) bool {
 		return is[i].Opcode < is[j].Opcode
 	})
-
-	for _, i := range im {
-		sortforms(i.Forms)
-	}
 
 	return is, nil
 }
@@ -308,7 +310,7 @@ func (l Loader) gonames(f opcodesxml.Form) []string {
 	return []string{n}
 }
 
-func (l Loader) forms(opcode string, f opcodesxml.Form) []inst.Form {
+func (l Loader) form(opcode string, f opcodesxml.Form) inst.Form {
 	// Map operands to avo format and ensure correct order.
 	ops := operands(f.Operands)
 
@@ -365,34 +367,14 @@ func (l Loader) forms(opcode string, f opcodesxml.Form) []inst.Form {
 	}
 	sort.Strings(isas)
 
-	// Initialize form.
-	form := inst.Form{
+	// Build form.
+	return inst.Form{
 		ISA:              isas,
 		Operands:         ops,
 		ImplicitOperands: implicits,
 		EncodingType:     enctype(f),
 		CancellingInputs: f.CancellingInputs,
 	}
-
-	// Apply modification stages to produce final list of forms.
-	stages := []func(string, inst.Form) []inst.Form{
-		avx512rounding,
-		avx512sae,
-		avx512bcst,
-		avx512masking,
-		avx512zeroing,
-	}
-
-	forms := []inst.Form{form}
-	for _, stage := range stages {
-		var next []inst.Form
-		for _, f := range forms {
-			next = append(next, stage(opcode, f)...)
-		}
-		forms = next
-	}
-
-	return forms
 }
 
 // operands maps Opcodes XML operands to avo format. Returned in Intel order.
@@ -411,6 +393,31 @@ func operand(op opcodesxml.Operand) inst.Operand {
 		Type:   op.Type,
 		Action: inst.ActionFromReadWrite(op.Input, op.Output),
 	}
+}
+
+// avx512forms processes AVX-512 operands and expands them into additional
+// instruction forms as expected by the Go assembler.
+//
+// See: https://go.dev/wiki/AVX512
+func avx512forms(opcode string, forms []inst.Form) []inst.Form {
+	// Apply modification stages to produce final list of forms.
+	stages := []func(string, inst.Form) []inst.Form{
+		avx512rounding,
+		avx512sae,
+		avx512bcst,
+		avx512masking,
+		avx512zeroing,
+	}
+
+	for _, stage := range stages {
+		var next []inst.Form
+		for _, f := range forms {
+			next = append(next, stage(opcode, f)...)
+		}
+		forms = next
+	}
+
+	return forms
 }
 
 // avx512rounding handles AVX-512 embedded rounding. Opcodes database represents
@@ -824,7 +831,6 @@ func vexevex(fs []inst.Form) ([]inst.Form, error) {
 		}
 
 		if group[0].EncodingType != inst.EncodingTypeVEX || group[1].EncodingType != inst.EncodingTypeEVEX {
-			fmt.Println(group)
 			return nil, errors.New("expected pair of VEX/EVEX encoded forms")
 		}
 
@@ -855,7 +861,7 @@ func dedupe(fs []inst.Form) []inst.Form {
 	return uniq
 }
 
-// sortforms sorts a list of forms
+// sortforms sorts a list of forms.
 func sortforms(fs []inst.Form) {
 	sort.Slice(fs, func(i, j int) bool {
 		return sortkey(fs[i]) < sortkey(fs[j])

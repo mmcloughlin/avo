@@ -11,7 +11,6 @@ import (
 	"github.com/mmcloughlin/avo/ir"
 	"github.com/mmcloughlin/avo/operand"
 	"github.com/mmcloughlin/avo/printer"
-
 	"github.com/mmcloughlin/avo/reg"
 )
 

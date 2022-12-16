@@ -133,7 +133,7 @@ func (t *optab) suffixesType(is []inst.Instruction) {
 	var entries []string
 	for _, class := range inst.SuffixesClasses(is) {
 		for _, suffixes := range class {
-			entry := fmt.Sprintf("%s: %#v", t.table.SuffixesConst(suffixes), suffixes.Strings())
+			entry := fmt.Sprintf("%s: %s", t.table.SuffixesList(suffixes), stringsliteral(suffixes.Strings()))
 			entries = append(entries, entry)
 		}
 	}
@@ -176,7 +176,7 @@ func (t *optab) isasEnum(is []inst.Instruction) {
 	// Mapping method to produce the list of ISAs.
 	lists := map[string]string{}
 	for _, isas := range inst.ISACombinations(is) {
-		lists[api.ISAsIdentifier(isas)] = fmt.Sprintf("%#v", isas)
+		lists[api.ISAsIdentifier(isas)] = stringsliteral(isas)
 	}
 	t.mapping(e, "List", "[]string", "nil", lists)
 }
@@ -284,4 +284,15 @@ func (t *optab) stringmethod(e *Enum) {
 		s[value] = strconv.Quote(value)
 	}
 	t.mapping(e, "String", "string", `""`, s)
+}
+
+func stringsliteral(ss []string) string {
+	if ss == nil {
+		return "nil"
+	}
+	var quoted []string
+	for _, s := range ss {
+		quoted = append(quoted, strconv.Quote(s))
+	}
+	return "{" + strings.Join(quoted, ", ") + "}"
 }

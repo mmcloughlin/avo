@@ -257,14 +257,17 @@ func ComputeCFG(t *testing.T, f *ir.Function) error {
 }
 
 func AssertSuccessors(t *testing.T, f *ir.Function, expect map[string][]string) {
+	t.Helper()
 	AssertEqual(t, "successors", OpcodeSuccessorGraph(f), expect)
 }
 
 func AssertPredecessors(t *testing.T, f *ir.Function, expect map[string][]string) {
+	t.Helper()
 	AssertEqual(t, "predecessors", OpcodePredecessorGraph(f), expect)
 }
 
 func AssertEqual(t *testing.T, what string, got, expect interface{}) {
+	t.Helper()
 	t.Logf("%s=%#v\n", what, got)
 	if reflect.DeepEqual(expect, got) {
 		return

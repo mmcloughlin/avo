@@ -100,19 +100,19 @@ func gp(s Spec, id Index, name string, flags ...Info) GPPhysical {
 
 // General purpose registers.
 var (
-	// Low byte
+	// Low byte.
 	AL = gp(S8L, 0, "AL")
 	CL = gp(S8L, 1, "CL")
 	DL = gp(S8L, 2, "DL")
 	BL = gp(S8L, 3, "BL")
 
-	// High byte
+	// High byte.
 	AH = gp(S8H, 0, "AH")
 	CH = gp(S8H, 1, "CH")
 	DH = gp(S8H, 2, "DH")
 	BH = gp(S8H, 3, "BH")
 
-	// 8-bit
+	// 8-bit.
 	SPB  = gp(S8, 4, "SP", Restricted)
 	BPB  = gp(S8, 5, "BP", BasePointer)
 	SIB  = gp(S8, 6, "SI")
@@ -126,7 +126,7 @@ var (
 	R14B = gp(S8, 14, "R14")
 	R15B = gp(S8, 15, "R15")
 
-	// 16-bit
+	// 16-bit.
 	AX   = gp(S16, 0, "AX")
 	CX   = gp(S16, 1, "CX")
 	DX   = gp(S16, 2, "DX")
@@ -144,7 +144,7 @@ var (
 	R14W = gp(S16, 14, "R14")
 	R15W = gp(S16, 15, "R15")
 
-	// 32-bit
+	// 32-bit.
 	EAX  = gp(S32, 0, "AX")
 	ECX  = gp(S32, 1, "CX")
 	EDX  = gp(S32, 2, "DX")
@@ -162,7 +162,7 @@ var (
 	R14L = gp(S32, 14, "R14")
 	R15L = gp(S32, 15, "R15")
 
-	// 64-bit
+	// 64-bit.
 	RAX = gp(S64, 0, "AX")
 	RCX = gp(S64, 1, "CX")
 	RDX = gp(S64, 2, "DX")
@@ -230,7 +230,7 @@ func vec(s Spec, id Index, name string, flags ...Info) VecPhysical {
 
 // Vector registers.
 var (
-	// 128-bit
+	// 128-bit.
 	X0  = vec(S128, 0, "X0")
 	X1  = vec(S128, 1, "X1")
 	X2  = vec(S128, 2, "X2")
@@ -264,7 +264,7 @@ var (
 	X30 = vec(S128, 30, "X30")
 	X31 = vec(S128, 31, "X31")
 
-	// 256-bit
+	// 256-bit.
 	Y0  = vec(S256, 0, "Y0")
 	Y1  = vec(S256, 1, "Y1")
 	Y2  = vec(S256, 2, "Y2")
@@ -298,7 +298,7 @@ var (
 	Y30 = vec(S256, 30, "Y30")
 	Y31 = vec(S256, 31, "Y31")
 
-	// 512-bit
+	// 512-bit.
 	Z0  = vec(S512, 0, "Z0")
 	Z1  = vec(S512, 1, "Z1")
 	Z2  = vec(S512, 2, "Z2")

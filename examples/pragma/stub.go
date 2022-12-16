@@ -3,5 +3,6 @@
 package pragma
 
 // Add adds the values at x and y and writes the result to z.
+//
 //go:noescape
 func Add(z *uint64, x *uint64, y *uint64)

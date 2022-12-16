@@ -1,14 +1,14 @@
 package gotypes
 
 import (
+	"errors"
 	"go/token"
 	"go/types"
 	"strings"
 	"testing"
 
-	"github.com/mmcloughlin/avo/reg"
-
 	"github.com/mmcloughlin/avo/operand"
+	"github.com/mmcloughlin/avo/reg"
 )
 
 func TestBasicKindsArePrimitive(t *testing.T) {
@@ -39,6 +39,7 @@ func TestPointersArePrimitive(t *testing.T) {
 }
 
 func AssertPrimitive(t *testing.T, typ types.Type) {
+	t.Helper()
 	c := NewComponent(typ, operand.NewParamAddr("primitive", 0))
 	if _, err := c.Resolve(); err != nil {
 		t.Errorf("expected type %s to be primitive: got error '%s'", typ, err)
@@ -92,7 +93,7 @@ func TestComponentErrorChaining(t *testing.T) {
 	}
 	for _, c := range cases {
 		_, err := c.Resolve()
-		if err != expect {
+		if !errors.Is(err, expect) {
 			t.Fatal("chaining should preserve error")
 		}
 	}

@@ -7,9 +7,8 @@ import (
 	"go/types"
 	"strconv"
 
-	"github.com/mmcloughlin/avo/reg"
-
 	"github.com/mmcloughlin/avo/operand"
+	"github.com/mmcloughlin/avo/reg"
 )
 
 // Sizes provides type sizes used by the standard Go compiler on amd64.
@@ -31,7 +30,6 @@ type Component interface {
 	// during any previous calls to Component methods, they will be returned at
 	// resolution time.
 	Resolve() (*Basic, error)
-
 	Dereference(r reg.Register) Component // dereference a pointer
 	Base() Component                      // base pointer of a string or slice
 	Len() Component                       // length of a string or slice
@@ -101,7 +99,6 @@ func (c *component) Dereference(r reg.Register) Component {
 //		Len  int
 //		Cap  int
 //	}
-//
 var slicehdroffsets = Sizes.Offsetsof([]*types.Var{
 	types.NewField(token.NoPos, nil, "Data", types.Typ[types.Uintptr], false),
 	types.NewField(token.NoPos, nil, "Len", types.Typ[types.Int], false),

@@ -1,7 +1,7 @@
 package inst_test
 
 import (
-	"io/ioutil"
+	"os"
 	"reflect"
 	"sort"
 	"strings"
@@ -187,7 +187,7 @@ func TestInstructionArities(t *testing.T) {
 }
 
 func TestStdLibOpcodes(t *testing.T) {
-	b, err := ioutil.ReadFile("testdata/stdlibopcodes.txt")
+	b, err := os.ReadFile("testdata/stdlibopcodes.txt")
 	if err != nil {
 		t.Fatal(err)
 	}

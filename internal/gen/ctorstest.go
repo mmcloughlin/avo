@@ -6,9 +6,8 @@ import (
 	"strings"
 
 	"github.com/mmcloughlin/avo/internal/api"
-	"github.com/mmcloughlin/avo/printer"
-
 	"github.com/mmcloughlin/avo/internal/inst"
+	"github.com/mmcloughlin/avo/printer"
 )
 
 type ctorstest struct {

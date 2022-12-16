@@ -63,7 +63,7 @@ func TestLogErrorList(t *testing.T) {
 	for i := 1; i <= m; i++ {
 		expect += fmt.Sprintf("prefix: %s:%d: some kind of error\n", filename, i)
 	}
-	expect += fmt.Sprintf("prefix: too many errors\n")
+	expect += "prefix: too many errors\n"
 
 	got := buf.String()
 	if got != expect {
