@@ -10,7 +10,6 @@ var sets = [][]*inst.Instruction{
 	vpclmulqdq,
 	vbmi2,
 	vnni,
-	ifma,
 	vaes,
 }
 
