@@ -752,6 +752,8 @@
             "version": "go1.20rc2",
             "packages": [
                 {
+                    "pkg": "src/crypto/internal/bigmod",
+                    "root": ".",
                     "module": "src/crypto/internal/bigmod/_asm/go.mod",
                     "setup": [
                         {
@@ -778,6 +780,8 @@
                     ]
                 },
                 {
+                    "pkg": "src/crypto/internal/edwards25519",
+                    "root": ".",
                     "module": "src/crypto/internal/edwards25519/field/_asm/go.mod",
                     "setup": [
                         {
