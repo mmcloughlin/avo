@@ -16,13 +16,13 @@ Optimized Go Compression Packages
 
 Reed-Solomon Erasure Coding in Go
 
-<img src="https://images.weserv.nl?fit=cover&h=28&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Fsegmentio.png&w=28" width="28" height="28" hspace="4" valign="middle" /> [segmentio / **asm**](https://github.com/segmentio/asm)
-
-Go library providing algorithms optimized to leverage the characteristics of modern CPUs
-
 <img src="https://images.weserv.nl?fit=cover&h=28&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Fcloudflare.png&w=28" width="28" height="28" hspace="4" valign="middle" /> [cloudflare / **circl**](https://github.com/cloudflare/circl)
 
 CIRCL: Cloudflare Interoperable Reusable Cryptographic Library
+
+<img src="https://images.weserv.nl?fit=cover&h=28&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Fsegmentio.png&w=28" width="28" height="28" hspace="4" valign="middle" /> [segmentio / **asm**](https://github.com/segmentio/asm)
+
+Go library providing algorithms optimized to leverage the characteristics of modern CPUs
 
 <img src="https://images.weserv.nl?fit=cover&h=28&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Fzeebo.png&w=28" width="28" height="28" hspace="4" valign="middle" /> [zeebo / **blake3**](https://github.com/zeebo/blake3)
 
