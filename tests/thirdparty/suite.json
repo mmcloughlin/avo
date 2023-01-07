@@ -749,7 +749,7 @@
                 "stars": 107376
             },
             "default_branch": "master",
-            "version": "go1.19",
+            "version": "go1.20rc2",
             "packages": [
                 {
                     "module": "src/crypto/internal/edwards25519/field/_asm/go.mod",
