@@ -749,9 +749,39 @@
                 "stars": 107376
             },
             "default_branch": "master",
-            "version": "go1.19",
+            "version": "go1.20rc2",
             "packages": [
                 {
+                    "pkg": "src/crypto/internal/bigmod",
+                    "root": ".",
+                    "module": "src/crypto/internal/bigmod/_asm/go.mod",
+                    "setup": [
+                        {
+                            "name": "Compile Go Toolchain",
+                            "dir": "src",
+                            "commands": [
+                                "./make.bash"
+                            ]
+                        }
+                    ],
+                    "generate": [
+                        {
+                            "commands": [
+                                "env --unset=GOROOT ./bin/go generate -v -x ./src/crypto/internal/bigmod/_asm"
+                            ]
+                        }
+                    ],
+                    "test": [
+                        {
+                            "commands": [
+                                "env --unset=GOROOT ./bin/go test crypto/..."
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "pkg": "src/crypto/internal/edwards25519",
+                    "root": ".",
                     "module": "src/crypto/internal/edwards25519/field/_asm/go.mod",
                     "setup": [
                         {
@@ -764,9 +794,8 @@
                     ],
                     "generate": [
                         {
-                            "dir": "src/crypto/internal/edwards25519/field/_asm",
                             "commands": [
-                                "go generate -v -x"
+                                "env --unset=GOROOT ./bin/go generate -v -x ./src/crypto/internal/edwards25519/field/_asm"
                             ]
                         }
                     ],

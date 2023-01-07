@@ -132,15 +132,19 @@ func (s *Step) Validate() error {
 
 // Package defines an integration test for a package within a project.
 type Package struct {
-	// Sub-package within the project under test. All file path references will
-	// be relative to this directory. If empty the root of the repository is
-	// used.
+	// Sub-package within the project under test. Used as the root directory for
+	// the test unless explicitly overridden.
 	SubPackage string `json:"pkg,omitempty"`
 
 	// Path to the module file for the avo generator package. This is necessary
 	// so the integration test can insert replace directives to point at the avo
 	// version under test.
 	Module string `json:"module"`
+
+	// Root directory for all steps in the test. All file path references will
+	// be relative to this directory. If empty, the sub-package directory is
+	// used, or otherwise the root of the repository.
+	Root string `json:"root,omitempty"`
 
 	// Setup steps. These run prior to the insertion of avo replace directives,
 	// therefore should be used if it's necessary to initialize new go modules
@@ -219,6 +223,17 @@ func (p *Package) IsRoot() bool {
 	return p.SubPackage == ""
 }
 
+// WorkingDirectory returns the base directory for all steps in the test.
+func (p *Package) WorkingDirectory() string {
+	if p.Root != "" {
+		return p.Root
+	}
+	if p.SubPackage != "" {
+		return p.SubPackage
+	}
+	return ""
+}
+
 // Context specifies execution environment parameters for a third-party test.
 type Context struct {
 	// Path to the avo version under test.
@@ -272,9 +287,9 @@ func (p *Package) Steps(c *Context) []*Step {
 	}
 
 	// Prepend sub-directory to every step.
-	if p.SubPackage != "" {
+	if dir := p.WorkingDirectory(); dir != "" {
 		for _, s := range steps {
-			s.WorkingDirectory = filepath.Join(p.SubPackage, s.WorkingDirectory)
+			s.WorkingDirectory = filepath.Join(dir, s.WorkingDirectory)
 		}
 	}
 
@@ -304,20 +319,33 @@ func (p Projects) defaults(set bool) {
 
 // Validate the project collection.
 func (p Projects) Validate() error {
-	seen := map[string]bool{}
+	// Projects are valid.
 	for _, prj := range p {
-		// Project is valid.
 		if err := prj.Validate(); err != nil {
 			return fmt.Errorf("project %s: %w", prj.ID(), err)
 		}
+	}
 
-		// No duplicate entries.
+	// No duplicate project IDs.
+	pid := map[string]bool{}
+	for _, prj := range p {
 		id := prj.ID()
-		if seen[id] {
+		if pid[id] {
 			return fmt.Errorf("duplicate project %q", id)
 		}
-		seen[id] = true
+		pid[id] = true
 	}
+
+	// No duplicate test IDs.
+	tid := map[string]bool{}
+	for _, t := range p.Tests() {
+		id := t.ID()
+		if tid[id] {
+			return fmt.Errorf("duplicate test %q", id)
+		}
+		tid[id] = true
+	}
+
 	return nil
 }
 
