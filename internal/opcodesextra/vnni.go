@@ -72,291 +72,66 @@ var vnniforms = inst.Forms{
 	// EVEX.128.66.0F38.W0 51 /r VPDPBUSDS xmm1{k1}{z}, xmm2, xmm3/m128/m32bcst  AVX512VNNI AVX512VL
 	// EVEX.128.66.0F38.W0 52 /r VPDPWSSD xmm1{k1}{z}, xmm2, xmm3/m128/m32bcst  AVX512VNNI AVX512VL
 	// EVEX.128.66.0F38.W0 53 /r VPDPWSSDS xmm1{k1}{z}, xmm2, xmm3/m128/m32bcst  AVX512VNNI AVX512VL
+	{
+		Operands: []inst.Operand{
+			{Type: "xmm", Action: inst.R},
+			{Type: "xmm", Action: inst.R},
+			{Type: "xmm{k}{z}", Action: inst.RW},
+		},
+		EncodingType: inst.EncodingTypeEVEX,
+		ISA:          []string{"AVX512VL", "AVX512VNNI"},
+	},
+	{
+		Operands: []inst.Operand{
+			{Type: "m128/m32bcst", Action: inst.R},
+			{Type: "xmm", Action: inst.R},
+			{Type: "xmm{k}{z}", Action: inst.RW},
+		},
+		EncodingType: inst.EncodingTypeEVEX,
+		ISA:          []string{"AVX512VL", "AVX512VNNI"},
+	},
 	// EVEX.256.66.0F38.W0 50 /r VPDPBUSD ymm1{k1}{z}, ymm2, ymm3/m256/m32bcst  AVX512VNNI AVX512VL
 	// EVEX.256.66.0F38.W0 51 /r VPDPBUSDS ymm1{k1}{z}, ymm2, ymm3/m256/m32bcst  AVX512VNNI AVX512VL
 	// EVEX.256.66.0F38.W0 52 /r VPDPWSSD ymm1{k1}{z}, ymm2, ymm3/m256/m32bcst  AVX512VNNI AVX512VL
 	// EVEX.256.66.0F38.W0 53 /r VPDPWSSDS ymm1{k1}{z}, ymm2, ymm3/m256/m32bcst  AVX512VNNI AVX512VL
+	{
+		Operands: []inst.Operand{
+			{Type: "ymm", Action: inst.R},
+			{Type: "ymm", Action: inst.R},
+			{Type: "ymm{k}{z}", Action: inst.RW},
+		},
+		EncodingType: inst.EncodingTypeEVEX,
+		ISA:          []string{"AVX512VL", "AVX512VNNI"},
+	},
+	{
+		Operands: []inst.Operand{
+			{Type: "m256/m32bcst", Action: inst.R},
+			{Type: "ymm", Action: inst.R},
+			{Type: "ymm{k}{z}", Action: inst.RW},
+		},
+		EncodingType: inst.EncodingTypeEVEX,
+		ISA:          []string{"AVX512VL", "AVX512VNNI"},
+	},
 	// EVEX.512.66.0F38.W0 50 /r VPDPBUSD zmm1{k1}{z}, zmm2, zmm3/m512/m32bcst  AVX512VNNI
 	// EVEX.512.66.0F38.W0 51 /r VPDPBUSDS zmm1{k1}{z}, zmm2, zmm3/m512/m32bcst  AVX512VNNI
 	// EVEX.512.66.0F38.W0 52 /r VPDPWSSD zmm1{k1}{z}, zmm2, zmm3/m512/m32bcst  AVX512VNNI
 	// EVEX.512.66.0F38.W0 53 /r VPDPWSSDS zmm1{k1}{z}, zmm2, zmm3/m512/m32bcst  AVX512VNNI
 	{
-		ISA: []string{"AVX512VL", "AVX512VNNI"},
-		Operands: []inst.Operand{
-			{Type: "m128", Action: inst.R},
-			{Type: "xmm", Action: inst.R},
-			{Type: "k", Action: inst.R},
-			{Type: "xmm", Action: inst.RW},
-		},
-		EncodingType: inst.EncodingTypeEVEX,
-	},
-	{
-		ISA: []string{"AVX512VL", "AVX512VNNI"},
-		Operands: []inst.Operand{
-			{Type: "m128", Action: inst.R},
-			{Type: "xmm", Action: inst.R},
-			{Type: "k", Action: inst.R},
-			{Type: "xmm", Action: inst.W},
-		},
-		EncodingType: inst.EncodingTypeEVEX,
-		Zeroing:      true,
-	},
-	{
-		ISA: []string{"AVX512VL", "AVX512VNNI"},
-		Operands: []inst.Operand{
-			{Type: "m128", Action: inst.R},
-			{Type: "xmm", Action: inst.R},
-			{Type: "xmm", Action: inst.W},
-		},
-		EncodingType: inst.EncodingTypeEVEX,
-	},
-	{
-		ISA: []string{"AVX512VL", "AVX512VNNI"},
-		Operands: []inst.Operand{
-			{Type: "m256", Action: inst.R},
-			{Type: "ymm", Action: inst.R},
-			{Type: "k", Action: inst.R},
-			{Type: "ymm", Action: inst.RW},
-		},
-		EncodingType: inst.EncodingTypeEVEX,
-	},
-	{
-		ISA: []string{"AVX512VL", "AVX512VNNI"},
-		Operands: []inst.Operand{
-			{Type: "m256", Action: inst.R},
-			{Type: "ymm", Action: inst.R},
-			{Type: "k", Action: inst.R},
-			{Type: "ymm", Action: inst.W},
-		},
-		EncodingType: inst.EncodingTypeEVEX,
-		Zeroing:      true,
-	},
-	{
-		ISA: []string{"AVX512VL", "AVX512VNNI"},
-		Operands: []inst.Operand{
-			{Type: "m256", Action: inst.R},
-			{Type: "ymm", Action: inst.R},
-			{Type: "ymm", Action: inst.W},
-		},
-		EncodingType: inst.EncodingTypeEVEX,
-	},
-	{
-		ISA: []string{"AVX512VL", "AVX512VNNI"},
-		Operands: []inst.Operand{
-			{Type: "m32", Action: inst.R},
-			{Type: "xmm", Action: inst.R},
-			{Type: "k", Action: inst.R},
-			{Type: "xmm", Action: inst.RW},
-		},
-		EncodingType: inst.EncodingTypeEVEX,
-		Broadcast:    true,
-	},
-	{
-		ISA: []string{"AVX512VL", "AVX512VNNI"},
-		Operands: []inst.Operand{
-			{Type: "m32", Action: inst.R},
-			{Type: "xmm", Action: inst.R},
-			{Type: "k", Action: inst.R},
-			{Type: "xmm", Action: inst.W},
-		},
-		EncodingType: inst.EncodingTypeEVEX,
-		Zeroing:      true,
-		Broadcast:    true,
-	},
-	{
-		ISA: []string{"AVX512VL", "AVX512VNNI"},
-		Operands: []inst.Operand{
-			{Type: "m32", Action: inst.R},
-			{Type: "xmm", Action: inst.R},
-			{Type: "xmm", Action: inst.W},
-		},
-		EncodingType: inst.EncodingTypeEVEX,
-		Broadcast:    true,
-	},
-	{
-		ISA: []string{"AVX512VL", "AVX512VNNI"},
-		Operands: []inst.Operand{
-			{Type: "m32", Action: inst.R},
-			{Type: "ymm", Action: inst.R},
-			{Type: "k", Action: inst.R},
-			{Type: "ymm", Action: inst.RW},
-		},
-		EncodingType: inst.EncodingTypeEVEX,
-		Broadcast:    true,
-	},
-	{
-		ISA: []string{"AVX512VL", "AVX512VNNI"},
-		Operands: []inst.Operand{
-			{Type: "m32", Action: inst.R},
-			{Type: "ymm", Action: inst.R},
-			{Type: "k", Action: inst.R},
-			{Type: "ymm", Action: inst.W},
-		},
-		EncodingType: inst.EncodingTypeEVEX,
-		Zeroing:      true,
-		Broadcast:    true,
-	},
-	{
-		ISA: []string{"AVX512VL", "AVX512VNNI"},
-		Operands: []inst.Operand{
-			{Type: "m32", Action: inst.R},
-			{Type: "ymm", Action: inst.R},
-			{Type: "ymm", Action: inst.W},
-		},
-		EncodingType: inst.EncodingTypeEVEX,
-		Broadcast:    true,
-	},
-	{
-		ISA: []string{"AVX512VL", "AVX512VNNI"},
-		Operands: []inst.Operand{
-			{Type: "xmm", Action: inst.R},
-			{Type: "xmm", Action: inst.R},
-			{Type: "k", Action: inst.R},
-			{Type: "xmm", Action: inst.RW},
-		},
-		EncodingType: inst.EncodingTypeEVEX,
-	},
-	{
-		ISA: []string{"AVX512VL", "AVX512VNNI"},
-		Operands: []inst.Operand{
-			{Type: "xmm", Action: inst.R},
-			{Type: "xmm", Action: inst.R},
-			{Type: "k", Action: inst.R},
-			{Type: "xmm", Action: inst.W},
-		},
-		EncodingType: inst.EncodingTypeEVEX,
-		Zeroing:      true,
-	},
-	{
-		ISA: []string{"AVX512VL", "AVX512VNNI"},
-		Operands: []inst.Operand{
-			{Type: "xmm", Action: inst.R},
-			{Type: "xmm", Action: inst.R},
-			{Type: "xmm", Action: inst.W},
-		},
-		EncodingType: inst.EncodingTypeEVEX,
-	},
-	{
-		ISA: []string{"AVX512VL", "AVX512VNNI"},
-		Operands: []inst.Operand{
-			{Type: "ymm", Action: inst.R},
-			{Type: "ymm", Action: inst.R},
-			{Type: "k", Action: inst.R},
-			{Type: "ymm", Action: inst.RW},
-		},
-		EncodingType: inst.EncodingTypeEVEX,
-	},
-	{
-		ISA: []string{"AVX512VL", "AVX512VNNI"},
-		Operands: []inst.Operand{
-			{Type: "ymm", Action: inst.R},
-			{Type: "ymm", Action: inst.R},
-			{Type: "k", Action: inst.R},
-			{Type: "ymm", Action: inst.W},
-		},
-		EncodingType: inst.EncodingTypeEVEX,
-		Zeroing:      true,
-	},
-	{
-		ISA: []string{"AVX512VL", "AVX512VNNI"},
-		Operands: []inst.Operand{
-			{Type: "ymm", Action: inst.R},
-			{Type: "ymm", Action: inst.R},
-			{Type: "ymm", Action: inst.W},
-		},
-		EncodingType: inst.EncodingTypeEVEX,
-	},
-	{
-		ISA: []string{"AVX512VNNI"},
-		Operands: []inst.Operand{
-			{Type: "m512", Action: inst.R},
-			{Type: "zmm", Action: inst.R},
-			{Type: "k", Action: inst.R},
-			{Type: "zmm", Action: inst.RW},
-		},
-		EncodingType: inst.EncodingTypeEVEX,
-	},
-	{
-		ISA: []string{"AVX512VNNI"},
-		Operands: []inst.Operand{
-			{Type: "m512", Action: inst.R},
-			{Type: "zmm", Action: inst.R},
-			{Type: "k", Action: inst.R},
-			{Type: "zmm", Action: inst.W},
-		},
-		EncodingType: inst.EncodingTypeEVEX,
-		Zeroing:      true,
-	},
-	{
-		ISA: []string{"AVX512VNNI"},
-		Operands: []inst.Operand{
-			{Type: "m512", Action: inst.R},
-			{Type: "zmm", Action: inst.R},
-			{Type: "zmm", Action: inst.W},
-		},
-		EncodingType: inst.EncodingTypeEVEX,
-	},
-	{
-		ISA: []string{"AVX512VNNI"},
-		Operands: []inst.Operand{
-			{Type: "m32", Action: inst.R},
-			{Type: "zmm", Action: inst.R},
-			{Type: "k", Action: inst.R},
-			{Type: "zmm", Action: inst.RW},
-		},
-		EncodingType: inst.EncodingTypeEVEX,
-		Broadcast:    true,
-	},
-	{
-		ISA: []string{"AVX512VNNI"},
-		Operands: []inst.Operand{
-			{Type: "m32", Action: inst.R},
-			{Type: "zmm", Action: inst.R},
-			{Type: "k", Action: inst.R},
-			{Type: "zmm", Action: inst.W},
-		},
-		EncodingType: inst.EncodingTypeEVEX,
-		Zeroing:      true,
-		Broadcast:    true,
-	},
-	{
-		ISA: []string{"AVX512VNNI"},
-		Operands: []inst.Operand{
-			{Type: "m32", Action: inst.R},
-			{Type: "zmm", Action: inst.R},
-			{Type: "zmm", Action: inst.W},
-		},
-		EncodingType: inst.EncodingTypeEVEX,
-		Broadcast:    true,
-	},
-	{
-		ISA: []string{"AVX512VNNI"},
 		Operands: []inst.Operand{
 			{Type: "zmm", Action: inst.R},
 			{Type: "zmm", Action: inst.R},
-			{Type: "k", Action: inst.R},
-			{Type: "zmm", Action: inst.RW},
+			{Type: "zmm{k}{z}", Action: inst.RW},
 		},
 		EncodingType: inst.EncodingTypeEVEX,
+		ISA:          []string{"AVX512VNNI"},
 	},
 	{
-		ISA: []string{"AVX512VNNI"},
 		Operands: []inst.Operand{
+			{Type: "m512/m32bcst", Action: inst.R},
 			{Type: "zmm", Action: inst.R},
-			{Type: "zmm", Action: inst.R},
-			{Type: "k", Action: inst.R},
-			{Type: "zmm", Action: inst.W},
+			{Type: "zmm{k}{z}", Action: inst.RW},
 		},
 		EncodingType: inst.EncodingTypeEVEX,
-		Zeroing:      true,
-	},
-	{
-		ISA: []string{"AVX512VNNI"},
-		Operands: []inst.Operand{
-			{Type: "zmm", Action: inst.R},
-			{Type: "zmm", Action: inst.R},
-			{Type: "zmm", Action: inst.W},
-		},
-		EncodingType: inst.EncodingTypeEVEX,
+		ISA:          []string{"AVX512VNNI"},
 	},
 }

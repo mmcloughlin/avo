@@ -59922,6 +59922,526 @@ func (c *Context) VPCONFLICTQ_Z(mxyz, k, xyz operand.Op) {
 // Operates on the global context.
 func VPCONFLICTQ_Z(mxyz, k, xyz operand.Op) { ctx.VPCONFLICTQ_Z(mxyz, k, xyz) }
 
+// VPDPBUSD: Multiply and Add Unsigned and Signed Bytes.
+//
+// Forms:
+//
+//	VPDPBUSD m128 xmm k xmm
+//	VPDPBUSD m128 xmm xmm
+//	VPDPBUSD m256 ymm k ymm
+//	VPDPBUSD m256 ymm ymm
+//	VPDPBUSD xmm  xmm k xmm
+//	VPDPBUSD xmm  xmm xmm
+//	VPDPBUSD ymm  ymm k ymm
+//	VPDPBUSD ymm  ymm ymm
+//	VPDPBUSD m512 zmm k zmm
+//	VPDPBUSD m512 zmm zmm
+//	VPDPBUSD zmm  zmm k zmm
+//	VPDPBUSD zmm  zmm zmm
+//
+// Construct and append a VPDPBUSD instruction to the active function.
+func (c *Context) VPDPBUSD(ops ...operand.Op) {
+	c.addinstruction(x86.VPDPBUSD(ops...))
+}
+
+// VPDPBUSD: Multiply and Add Unsigned and Signed Bytes.
+//
+// Forms:
+//
+//	VPDPBUSD m128 xmm k xmm
+//	VPDPBUSD m128 xmm xmm
+//	VPDPBUSD m256 ymm k ymm
+//	VPDPBUSD m256 ymm ymm
+//	VPDPBUSD xmm  xmm k xmm
+//	VPDPBUSD xmm  xmm xmm
+//	VPDPBUSD ymm  ymm k ymm
+//	VPDPBUSD ymm  ymm ymm
+//	VPDPBUSD m512 zmm k zmm
+//	VPDPBUSD m512 zmm zmm
+//	VPDPBUSD zmm  zmm k zmm
+//	VPDPBUSD zmm  zmm zmm
+//
+// Construct and append a VPDPBUSD instruction to the active function.
+// Operates on the global context.
+func VPDPBUSD(ops ...operand.Op) { ctx.VPDPBUSD(ops...) }
+
+// VPDPBUSDS: Multiply and Add Unsigned and Signed Bytes with Saturation.
+//
+// Forms:
+//
+//	VPDPBUSDS m128 xmm k xmm
+//	VPDPBUSDS m128 xmm xmm
+//	VPDPBUSDS m256 ymm k ymm
+//	VPDPBUSDS m256 ymm ymm
+//	VPDPBUSDS xmm  xmm k xmm
+//	VPDPBUSDS xmm  xmm xmm
+//	VPDPBUSDS ymm  ymm k ymm
+//	VPDPBUSDS ymm  ymm ymm
+//	VPDPBUSDS m512 zmm k zmm
+//	VPDPBUSDS m512 zmm zmm
+//	VPDPBUSDS zmm  zmm k zmm
+//	VPDPBUSDS zmm  zmm zmm
+//
+// Construct and append a VPDPBUSDS instruction to the active function.
+func (c *Context) VPDPBUSDS(ops ...operand.Op) {
+	c.addinstruction(x86.VPDPBUSDS(ops...))
+}
+
+// VPDPBUSDS: Multiply and Add Unsigned and Signed Bytes with Saturation.
+//
+// Forms:
+//
+//	VPDPBUSDS m128 xmm k xmm
+//	VPDPBUSDS m128 xmm xmm
+//	VPDPBUSDS m256 ymm k ymm
+//	VPDPBUSDS m256 ymm ymm
+//	VPDPBUSDS xmm  xmm k xmm
+//	VPDPBUSDS xmm  xmm xmm
+//	VPDPBUSDS ymm  ymm k ymm
+//	VPDPBUSDS ymm  ymm ymm
+//	VPDPBUSDS m512 zmm k zmm
+//	VPDPBUSDS m512 zmm zmm
+//	VPDPBUSDS zmm  zmm k zmm
+//	VPDPBUSDS zmm  zmm zmm
+//
+// Construct and append a VPDPBUSDS instruction to the active function.
+// Operates on the global context.
+func VPDPBUSDS(ops ...operand.Op) { ctx.VPDPBUSDS(ops...) }
+
+// VPDPBUSDS_BCST: Multiply and Add Unsigned and Signed Bytes with Saturation (Broadcast).
+//
+// Forms:
+//
+//	VPDPBUSDS.BCST m32 xmm k xmm
+//	VPDPBUSDS.BCST m32 xmm xmm
+//	VPDPBUSDS.BCST m32 ymm k ymm
+//	VPDPBUSDS.BCST m32 ymm ymm
+//	VPDPBUSDS.BCST m32 zmm k zmm
+//	VPDPBUSDS.BCST m32 zmm zmm
+//
+// Construct and append a VPDPBUSDS.BCST instruction to the active function.
+func (c *Context) VPDPBUSDS_BCST(ops ...operand.Op) {
+	c.addinstruction(x86.VPDPBUSDS_BCST(ops...))
+}
+
+// VPDPBUSDS_BCST: Multiply and Add Unsigned and Signed Bytes with Saturation (Broadcast).
+//
+// Forms:
+//
+//	VPDPBUSDS.BCST m32 xmm k xmm
+//	VPDPBUSDS.BCST m32 xmm xmm
+//	VPDPBUSDS.BCST m32 ymm k ymm
+//	VPDPBUSDS.BCST m32 ymm ymm
+//	VPDPBUSDS.BCST m32 zmm k zmm
+//	VPDPBUSDS.BCST m32 zmm zmm
+//
+// Construct and append a VPDPBUSDS.BCST instruction to the active function.
+// Operates on the global context.
+func VPDPBUSDS_BCST(ops ...operand.Op) { ctx.VPDPBUSDS_BCST(ops...) }
+
+// VPDPBUSDS_BCST_Z: Multiply and Add Unsigned and Signed Bytes with Saturation (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+//	VPDPBUSDS.BCST.Z m32 xmm k xmm
+//	VPDPBUSDS.BCST.Z m32 ymm k ymm
+//	VPDPBUSDS.BCST.Z m32 zmm k zmm
+//
+// Construct and append a VPDPBUSDS.BCST.Z instruction to the active function.
+func (c *Context) VPDPBUSDS_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	c.addinstruction(x86.VPDPBUSDS_BCST_Z(m, xyz, k, xyz1))
+}
+
+// VPDPBUSDS_BCST_Z: Multiply and Add Unsigned and Signed Bytes with Saturation (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+//	VPDPBUSDS.BCST.Z m32 xmm k xmm
+//	VPDPBUSDS.BCST.Z m32 ymm k ymm
+//	VPDPBUSDS.BCST.Z m32 zmm k zmm
+//
+// Construct and append a VPDPBUSDS.BCST.Z instruction to the active function.
+// Operates on the global context.
+func VPDPBUSDS_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VPDPBUSDS_BCST_Z(m, xyz, k, xyz1) }
+
+// VPDPBUSDS_Z: Multiply and Add Unsigned and Signed Bytes with Saturation (Zeroing Masking).
+//
+// Forms:
+//
+//	VPDPBUSDS.Z m128 xmm k xmm
+//	VPDPBUSDS.Z m256 ymm k ymm
+//	VPDPBUSDS.Z xmm  xmm k xmm
+//	VPDPBUSDS.Z ymm  ymm k ymm
+//	VPDPBUSDS.Z m512 zmm k zmm
+//	VPDPBUSDS.Z zmm  zmm k zmm
+//
+// Construct and append a VPDPBUSDS.Z instruction to the active function.
+func (c *Context) VPDPBUSDS_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	c.addinstruction(x86.VPDPBUSDS_Z(mxyz, xyz, k, xyz1))
+}
+
+// VPDPBUSDS_Z: Multiply and Add Unsigned and Signed Bytes with Saturation (Zeroing Masking).
+//
+// Forms:
+//
+//	VPDPBUSDS.Z m128 xmm k xmm
+//	VPDPBUSDS.Z m256 ymm k ymm
+//	VPDPBUSDS.Z xmm  xmm k xmm
+//	VPDPBUSDS.Z ymm  ymm k ymm
+//	VPDPBUSDS.Z m512 zmm k zmm
+//	VPDPBUSDS.Z zmm  zmm k zmm
+//
+// Construct and append a VPDPBUSDS.Z instruction to the active function.
+// Operates on the global context.
+func VPDPBUSDS_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPDPBUSDS_Z(mxyz, xyz, k, xyz1) }
+
+// VPDPBUSD_BCST: Multiply and Add Unsigned and Signed Bytes (Broadcast).
+//
+// Forms:
+//
+//	VPDPBUSD.BCST m32 xmm k xmm
+//	VPDPBUSD.BCST m32 xmm xmm
+//	VPDPBUSD.BCST m32 ymm k ymm
+//	VPDPBUSD.BCST m32 ymm ymm
+//	VPDPBUSD.BCST m32 zmm k zmm
+//	VPDPBUSD.BCST m32 zmm zmm
+//
+// Construct and append a VPDPBUSD.BCST instruction to the active function.
+func (c *Context) VPDPBUSD_BCST(ops ...operand.Op) {
+	c.addinstruction(x86.VPDPBUSD_BCST(ops...))
+}
+
+// VPDPBUSD_BCST: Multiply and Add Unsigned and Signed Bytes (Broadcast).
+//
+// Forms:
+//
+//	VPDPBUSD.BCST m32 xmm k xmm
+//	VPDPBUSD.BCST m32 xmm xmm
+//	VPDPBUSD.BCST m32 ymm k ymm
+//	VPDPBUSD.BCST m32 ymm ymm
+//	VPDPBUSD.BCST m32 zmm k zmm
+//	VPDPBUSD.BCST m32 zmm zmm
+//
+// Construct and append a VPDPBUSD.BCST instruction to the active function.
+// Operates on the global context.
+func VPDPBUSD_BCST(ops ...operand.Op) { ctx.VPDPBUSD_BCST(ops...) }
+
+// VPDPBUSD_BCST_Z: Multiply and Add Unsigned and Signed Bytes (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+//	VPDPBUSD.BCST.Z m32 xmm k xmm
+//	VPDPBUSD.BCST.Z m32 ymm k ymm
+//	VPDPBUSD.BCST.Z m32 zmm k zmm
+//
+// Construct and append a VPDPBUSD.BCST.Z instruction to the active function.
+func (c *Context) VPDPBUSD_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	c.addinstruction(x86.VPDPBUSD_BCST_Z(m, xyz, k, xyz1))
+}
+
+// VPDPBUSD_BCST_Z: Multiply and Add Unsigned and Signed Bytes (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+//	VPDPBUSD.BCST.Z m32 xmm k xmm
+//	VPDPBUSD.BCST.Z m32 ymm k ymm
+//	VPDPBUSD.BCST.Z m32 zmm k zmm
+//
+// Construct and append a VPDPBUSD.BCST.Z instruction to the active function.
+// Operates on the global context.
+func VPDPBUSD_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VPDPBUSD_BCST_Z(m, xyz, k, xyz1) }
+
+// VPDPBUSD_Z: Multiply and Add Unsigned and Signed Bytes (Zeroing Masking).
+//
+// Forms:
+//
+//	VPDPBUSD.Z m128 xmm k xmm
+//	VPDPBUSD.Z m256 ymm k ymm
+//	VPDPBUSD.Z xmm  xmm k xmm
+//	VPDPBUSD.Z ymm  ymm k ymm
+//	VPDPBUSD.Z m512 zmm k zmm
+//	VPDPBUSD.Z zmm  zmm k zmm
+//
+// Construct and append a VPDPBUSD.Z instruction to the active function.
+func (c *Context) VPDPBUSD_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	c.addinstruction(x86.VPDPBUSD_Z(mxyz, xyz, k, xyz1))
+}
+
+// VPDPBUSD_Z: Multiply and Add Unsigned and Signed Bytes (Zeroing Masking).
+//
+// Forms:
+//
+//	VPDPBUSD.Z m128 xmm k xmm
+//	VPDPBUSD.Z m256 ymm k ymm
+//	VPDPBUSD.Z xmm  xmm k xmm
+//	VPDPBUSD.Z ymm  ymm k ymm
+//	VPDPBUSD.Z m512 zmm k zmm
+//	VPDPBUSD.Z zmm  zmm k zmm
+//
+// Construct and append a VPDPBUSD.Z instruction to the active function.
+// Operates on the global context.
+func VPDPBUSD_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPDPBUSD_Z(mxyz, xyz, k, xyz1) }
+
+// VPDPWSSD: Multiply and Add Signed Word Integers.
+//
+// Forms:
+//
+//	VPDPWSSD m128 xmm k xmm
+//	VPDPWSSD m128 xmm xmm
+//	VPDPWSSD m256 ymm k ymm
+//	VPDPWSSD m256 ymm ymm
+//	VPDPWSSD xmm  xmm k xmm
+//	VPDPWSSD xmm  xmm xmm
+//	VPDPWSSD ymm  ymm k ymm
+//	VPDPWSSD ymm  ymm ymm
+//	VPDPWSSD m512 zmm k zmm
+//	VPDPWSSD m512 zmm zmm
+//	VPDPWSSD zmm  zmm k zmm
+//	VPDPWSSD zmm  zmm zmm
+//
+// Construct and append a VPDPWSSD instruction to the active function.
+func (c *Context) VPDPWSSD(ops ...operand.Op) {
+	c.addinstruction(x86.VPDPWSSD(ops...))
+}
+
+// VPDPWSSD: Multiply and Add Signed Word Integers.
+//
+// Forms:
+//
+//	VPDPWSSD m128 xmm k xmm
+//	VPDPWSSD m128 xmm xmm
+//	VPDPWSSD m256 ymm k ymm
+//	VPDPWSSD m256 ymm ymm
+//	VPDPWSSD xmm  xmm k xmm
+//	VPDPWSSD xmm  xmm xmm
+//	VPDPWSSD ymm  ymm k ymm
+//	VPDPWSSD ymm  ymm ymm
+//	VPDPWSSD m512 zmm k zmm
+//	VPDPWSSD m512 zmm zmm
+//	VPDPWSSD zmm  zmm k zmm
+//	VPDPWSSD zmm  zmm zmm
+//
+// Construct and append a VPDPWSSD instruction to the active function.
+// Operates on the global context.
+func VPDPWSSD(ops ...operand.Op) { ctx.VPDPWSSD(ops...) }
+
+// VPDPWSSDS: Multiply and Add Signed Word Integers with Saturation.
+//
+// Forms:
+//
+//	VPDPWSSDS m128 xmm k xmm
+//	VPDPWSSDS m128 xmm xmm
+//	VPDPWSSDS m256 ymm k ymm
+//	VPDPWSSDS m256 ymm ymm
+//	VPDPWSSDS xmm  xmm k xmm
+//	VPDPWSSDS xmm  xmm xmm
+//	VPDPWSSDS ymm  ymm k ymm
+//	VPDPWSSDS ymm  ymm ymm
+//	VPDPWSSDS m512 zmm k zmm
+//	VPDPWSSDS m512 zmm zmm
+//	VPDPWSSDS zmm  zmm k zmm
+//	VPDPWSSDS zmm  zmm zmm
+//
+// Construct and append a VPDPWSSDS instruction to the active function.
+func (c *Context) VPDPWSSDS(ops ...operand.Op) {
+	c.addinstruction(x86.VPDPWSSDS(ops...))
+}
+
+// VPDPWSSDS: Multiply and Add Signed Word Integers with Saturation.
+//
+// Forms:
+//
+//	VPDPWSSDS m128 xmm k xmm
+//	VPDPWSSDS m128 xmm xmm
+//	VPDPWSSDS m256 ymm k ymm
+//	VPDPWSSDS m256 ymm ymm
+//	VPDPWSSDS xmm  xmm k xmm
+//	VPDPWSSDS xmm  xmm xmm
+//	VPDPWSSDS ymm  ymm k ymm
+//	VPDPWSSDS ymm  ymm ymm
+//	VPDPWSSDS m512 zmm k zmm
+//	VPDPWSSDS m512 zmm zmm
+//	VPDPWSSDS zmm  zmm k zmm
+//	VPDPWSSDS zmm  zmm zmm
+//
+// Construct and append a VPDPWSSDS instruction to the active function.
+// Operates on the global context.
+func VPDPWSSDS(ops ...operand.Op) { ctx.VPDPWSSDS(ops...) }
+
+// VPDPWSSDS_BCST: Multiply and Add Signed Word Integers with Saturation (Broadcast).
+//
+// Forms:
+//
+//	VPDPWSSDS.BCST m32 xmm k xmm
+//	VPDPWSSDS.BCST m32 xmm xmm
+//	VPDPWSSDS.BCST m32 ymm k ymm
+//	VPDPWSSDS.BCST m32 ymm ymm
+//	VPDPWSSDS.BCST m32 zmm k zmm
+//	VPDPWSSDS.BCST m32 zmm zmm
+//
+// Construct and append a VPDPWSSDS.BCST instruction to the active function.
+func (c *Context) VPDPWSSDS_BCST(ops ...operand.Op) {
+	c.addinstruction(x86.VPDPWSSDS_BCST(ops...))
+}
+
+// VPDPWSSDS_BCST: Multiply and Add Signed Word Integers with Saturation (Broadcast).
+//
+// Forms:
+//
+//	VPDPWSSDS.BCST m32 xmm k xmm
+//	VPDPWSSDS.BCST m32 xmm xmm
+//	VPDPWSSDS.BCST m32 ymm k ymm
+//	VPDPWSSDS.BCST m32 ymm ymm
+//	VPDPWSSDS.BCST m32 zmm k zmm
+//	VPDPWSSDS.BCST m32 zmm zmm
+//
+// Construct and append a VPDPWSSDS.BCST instruction to the active function.
+// Operates on the global context.
+func VPDPWSSDS_BCST(ops ...operand.Op) { ctx.VPDPWSSDS_BCST(ops...) }
+
+// VPDPWSSDS_BCST_Z: Multiply and Add Signed Word Integers with Saturation (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+//	VPDPWSSDS.BCST.Z m32 xmm k xmm
+//	VPDPWSSDS.BCST.Z m32 ymm k ymm
+//	VPDPWSSDS.BCST.Z m32 zmm k zmm
+//
+// Construct and append a VPDPWSSDS.BCST.Z instruction to the active function.
+func (c *Context) VPDPWSSDS_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	c.addinstruction(x86.VPDPWSSDS_BCST_Z(m, xyz, k, xyz1))
+}
+
+// VPDPWSSDS_BCST_Z: Multiply and Add Signed Word Integers with Saturation (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+//	VPDPWSSDS.BCST.Z m32 xmm k xmm
+//	VPDPWSSDS.BCST.Z m32 ymm k ymm
+//	VPDPWSSDS.BCST.Z m32 zmm k zmm
+//
+// Construct and append a VPDPWSSDS.BCST.Z instruction to the active function.
+// Operates on the global context.
+func VPDPWSSDS_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VPDPWSSDS_BCST_Z(m, xyz, k, xyz1) }
+
+// VPDPWSSDS_Z: Multiply and Add Signed Word Integers with Saturation (Zeroing Masking).
+//
+// Forms:
+//
+//	VPDPWSSDS.Z m128 xmm k xmm
+//	VPDPWSSDS.Z m256 ymm k ymm
+//	VPDPWSSDS.Z xmm  xmm k xmm
+//	VPDPWSSDS.Z ymm  ymm k ymm
+//	VPDPWSSDS.Z m512 zmm k zmm
+//	VPDPWSSDS.Z zmm  zmm k zmm
+//
+// Construct and append a VPDPWSSDS.Z instruction to the active function.
+func (c *Context) VPDPWSSDS_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	c.addinstruction(x86.VPDPWSSDS_Z(mxyz, xyz, k, xyz1))
+}
+
+// VPDPWSSDS_Z: Multiply and Add Signed Word Integers with Saturation (Zeroing Masking).
+//
+// Forms:
+//
+//	VPDPWSSDS.Z m128 xmm k xmm
+//	VPDPWSSDS.Z m256 ymm k ymm
+//	VPDPWSSDS.Z xmm  xmm k xmm
+//	VPDPWSSDS.Z ymm  ymm k ymm
+//	VPDPWSSDS.Z m512 zmm k zmm
+//	VPDPWSSDS.Z zmm  zmm k zmm
+//
+// Construct and append a VPDPWSSDS.Z instruction to the active function.
+// Operates on the global context.
+func VPDPWSSDS_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPDPWSSDS_Z(mxyz, xyz, k, xyz1) }
+
+// VPDPWSSD_BCST: Multiply and Add Signed Word Integers (Broadcast).
+//
+// Forms:
+//
+//	VPDPWSSD.BCST m32 xmm k xmm
+//	VPDPWSSD.BCST m32 xmm xmm
+//	VPDPWSSD.BCST m32 ymm k ymm
+//	VPDPWSSD.BCST m32 ymm ymm
+//	VPDPWSSD.BCST m32 zmm k zmm
+//	VPDPWSSD.BCST m32 zmm zmm
+//
+// Construct and append a VPDPWSSD.BCST instruction to the active function.
+func (c *Context) VPDPWSSD_BCST(ops ...operand.Op) {
+	c.addinstruction(x86.VPDPWSSD_BCST(ops...))
+}
+
+// VPDPWSSD_BCST: Multiply and Add Signed Word Integers (Broadcast).
+//
+// Forms:
+//
+//	VPDPWSSD.BCST m32 xmm k xmm
+//	VPDPWSSD.BCST m32 xmm xmm
+//	VPDPWSSD.BCST m32 ymm k ymm
+//	VPDPWSSD.BCST m32 ymm ymm
+//	VPDPWSSD.BCST m32 zmm k zmm
+//	VPDPWSSD.BCST m32 zmm zmm
+//
+// Construct and append a VPDPWSSD.BCST instruction to the active function.
+// Operates on the global context.
+func VPDPWSSD_BCST(ops ...operand.Op) { ctx.VPDPWSSD_BCST(ops...) }
+
+// VPDPWSSD_BCST_Z: Multiply and Add Signed Word Integers (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+//	VPDPWSSD.BCST.Z m32 xmm k xmm
+//	VPDPWSSD.BCST.Z m32 ymm k ymm
+//	VPDPWSSD.BCST.Z m32 zmm k zmm
+//
+// Construct and append a VPDPWSSD.BCST.Z instruction to the active function.
+func (c *Context) VPDPWSSD_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	c.addinstruction(x86.VPDPWSSD_BCST_Z(m, xyz, k, xyz1))
+}
+
+// VPDPWSSD_BCST_Z: Multiply and Add Signed Word Integers (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+//	VPDPWSSD.BCST.Z m32 xmm k xmm
+//	VPDPWSSD.BCST.Z m32 ymm k ymm
+//	VPDPWSSD.BCST.Z m32 zmm k zmm
+//
+// Construct and append a VPDPWSSD.BCST.Z instruction to the active function.
+// Operates on the global context.
+func VPDPWSSD_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VPDPWSSD_BCST_Z(m, xyz, k, xyz1) }
+
+// VPDPWSSD_Z: Multiply and Add Signed Word Integers (Zeroing Masking).
+//
+// Forms:
+//
+//	VPDPWSSD.Z m128 xmm k xmm
+//	VPDPWSSD.Z m256 ymm k ymm
+//	VPDPWSSD.Z xmm  xmm k xmm
+//	VPDPWSSD.Z ymm  ymm k ymm
+//	VPDPWSSD.Z m512 zmm k zmm
+//	VPDPWSSD.Z zmm  zmm k zmm
+//
+// Construct and append a VPDPWSSD.Z instruction to the active function.
+func (c *Context) VPDPWSSD_Z(mxyz, xyz, k, xyz1 operand.Op) {
+	c.addinstruction(x86.VPDPWSSD_Z(mxyz, xyz, k, xyz1))
+}
+
+// VPDPWSSD_Z: Multiply and Add Signed Word Integers (Zeroing Masking).
+//
+// Forms:
+//
+//	VPDPWSSD.Z m128 xmm k xmm
+//	VPDPWSSD.Z m256 ymm k ymm
+//	VPDPWSSD.Z xmm  xmm k xmm
+//	VPDPWSSD.Z ymm  ymm k ymm
+//	VPDPWSSD.Z m512 zmm k zmm
+//	VPDPWSSD.Z zmm  zmm k zmm
+//
+// Construct and append a VPDPWSSD.Z instruction to the active function.
+// Operates on the global context.
+func VPDPWSSD_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPDPWSSD_Z(mxyz, xyz, k, xyz1) }
+
 // VPERM2F128: Permute Floating-Point Values.
 //
 // Forms:
