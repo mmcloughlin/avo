@@ -8,8 +8,9 @@ on:
     paths:
       - "tests/thirdparty/**"
   pull_request:
-  # paths:
-  #   - "tests/thirdparty/**"
+    paths:
+      - ".github/workflows/thirdparty.yml"
+      - "tests/thirdparty/**"
 jobs:
   test:
     runs-on: ubuntu-latest
