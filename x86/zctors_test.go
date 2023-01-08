@@ -7467,6 +7467,18 @@ func TestVAESDECValidFormsNoError(t *testing.T) {
 	if _, err := VAESDEC(opxmm, opxmm, opxmm); err != nil {
 		t.Fatal(err)
 	}
+	if _, err := VAESDEC(opm256, opymm, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VAESDEC(opymm, opymm, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VAESDEC(opm512, opzmm, opzmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VAESDEC(opzmm, opzmm, opzmm); err != nil {
+		t.Fatal(err)
+	}
 }
 
 func TestVAESDECLASTValidFormsNoError(t *testing.T) {
@@ -7474,6 +7486,18 @@ func TestVAESDECLASTValidFormsNoError(t *testing.T) {
 		t.Fatal(err)
 	}
 	if _, err := VAESDECLAST(opxmm, opxmm, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VAESDECLAST(opm256, opymm, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VAESDECLAST(opymm, opymm, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VAESDECLAST(opm512, opzmm, opzmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VAESDECLAST(opzmm, opzmm, opzmm); err != nil {
 		t.Fatal(err)
 	}
 }
@@ -7485,6 +7509,18 @@ func TestVAESENCValidFormsNoError(t *testing.T) {
 	if _, err := VAESENC(opxmm, opxmm, opxmm); err != nil {
 		t.Fatal(err)
 	}
+	if _, err := VAESENC(opm256, opymm, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VAESENC(opymm, opymm, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VAESENC(opm512, opzmm, opzmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VAESENC(opzmm, opzmm, opzmm); err != nil {
+		t.Fatal(err)
+	}
 }
 
 func TestVAESENCLASTValidFormsNoError(t *testing.T) {
@@ -7492,6 +7528,18 @@ func TestVAESENCLASTValidFormsNoError(t *testing.T) {
 		t.Fatal(err)
 	}
 	if _, err := VAESENCLAST(opxmm, opxmm, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VAESENCLAST(opm256, opymm, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VAESENCLAST(opymm, opymm, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VAESENCLAST(opm512, opzmm, opzmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VAESENCLAST(opzmm, opzmm, opzmm); err != nil {
 		t.Fatal(err)
 	}
 }
