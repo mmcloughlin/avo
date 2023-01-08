@@ -6,34 +6,35 @@ import "github.com/mmcloughlin/avo/internal/inst"
 var vaes = []*inst.Instruction{
 	// Reference: https://github.com/golang/go/blob/go1.19.3/src/cmd/internal/obj/x86/avx_optabs.go#L1217-L1244
 	//
-	//	{as: AVAESDEC, ytab: _yvaesdec, prefix: Pavx, op: opBytes{
-	//		avxEscape | vex128 | vex66 | vex0F38 | vexW0, 0xDE,
-	//		avxEscape | vex256 | vex66 | vex0F38 | vexW0, 0xDE,
-	//		avxEscape | evex128 | evex66 | evex0F38 | evexW0, evexN16, 0xDE,
-	//		avxEscape | evex256 | evex66 | evex0F38 | evexW0, evexN32, 0xDE,
-	//		avxEscape | evex512 | evex66 | evex0F38 | evexW0, evexN64, 0xDE,
-	//	}},
-	//	{as: AVAESDECLAST, ytab: _yvaesdec, prefix: Pavx, op: opBytes{
-	//		avxEscape | vex128 | vex66 | vex0F38 | vexW0, 0xDF,
-	//		avxEscape | vex256 | vex66 | vex0F38 | vexW0, 0xDF,
-	//		avxEscape | evex128 | evex66 | evex0F38 | evexW0, evexN16, 0xDF,
-	//		avxEscape | evex256 | evex66 | evex0F38 | evexW0, evexN32, 0xDF,
-	//		avxEscape | evex512 | evex66 | evex0F38 | evexW0, evexN64, 0xDF,
-	//	}},
-	//	{as: AVAESENC, ytab: _yvaesdec, prefix: Pavx, op: opBytes{
-	//		avxEscape | vex128 | vex66 | vex0F38 | vexW0, 0xDC,
-	//		avxEscape | vex256 | vex66 | vex0F38 | vexW0, 0xDC,
-	//		avxEscape | evex128 | evex66 | evex0F38 | evexW0, evexN16, 0xDC,
-	//		avxEscape | evex256 | evex66 | evex0F38 | evexW0, evexN32, 0xDC,
-	//		avxEscape | evex512 | evex66 | evex0F38 | evexW0, evexN64, 0xDC,
-	//	}},
-	//	{as: AVAESENCLAST, ytab: _yvaesdec, prefix: Pavx, op: opBytes{
-	//		avxEscape | vex128 | vex66 | vex0F38 | vexW0, 0xDD,
-	//		avxEscape | vex256 | vex66 | vex0F38 | vexW0, 0xDD,
-	//		avxEscape | evex128 | evex66 | evex0F38 | evexW0, evexN16, 0xDD,
-	//		avxEscape | evex256 | evex66 | evex0F38 | evexW0, evexN32, 0xDD,
-	//		avxEscape | evex512 | evex66 | evex0F38 | evexW0, evexN64, 0xDD,
-	//	}},
+	//		{as: AVAESDEC, ytab: _yvaesdec, prefix: Pavx, op: opBytes{
+	//			avxEscape | vex128 | vex66 | vex0F38 | vexW0, 0xDE,
+	//			avxEscape | vex256 | vex66 | vex0F38 | vexW0, 0xDE,
+	//			avxEscape | evex128 | evex66 | evex0F38 | evexW0, evexN16, 0xDE,
+	//			avxEscape | evex256 | evex66 | evex0F38 | evexW0, evexN32, 0xDE,
+	//			avxEscape | evex512 | evex66 | evex0F38 | evexW0, evexN64, 0xDE,
+	//		}},
+	//		{as: AVAESDECLAST, ytab: _yvaesdec, prefix: Pavx, op: opBytes{
+	//			avxEscape | vex128 | vex66 | vex0F38 | vexW0, 0xDF,
+	//			avxEscape | vex256 | vex66 | vex0F38 | vexW0, 0xDF,
+	//			avxEscape | evex128 | evex66 | evex0F38 | evexW0, evexN16, 0xDF,
+	//			avxEscape | evex256 | evex66 | evex0F38 | evexW0, evexN32, 0xDF,
+	//			avxEscape | evex512 | evex66 | evex0F38 | evexW0, evexN64, 0xDF,
+	//		}},
+	//		{as: AVAESENC, ytab: _yvaesdec, prefix: Pavx, op: opBytes{
+	//			avxEscape | vex128 | vex66 | vex0F38 | vexW0, 0xDC,
+	//			avxEscape | vex256 | vex66 | vex0F38 | vexW0, 0xDC,
+	//			avxEscape | evex128 | evex66 | evex0F38 | evexW0, evexN16, 0xDC,
+	//			avxEscape | evex256 | evex66 | evex0F38 | evexW0, evexN32, 0xDC,
+	//			avxEscape | evex512 | evex66 | evex0F38 | evexW0, evexN64, 0xDC,
+	//		}},
+	//		{as: AVAESENCLAST, ytab: _yvaesdec, prefix: Pavx, op: opBytes{
+	//			avxEscape | vex128 | vex66 | vex0F38 | vexW0, 0xDD,
+	//			avxEscape | vex256 | vex66 | vex0F38 | vexW0, 0xDD,
+	//			avxEscape | evex128 | evex66 | evex0F38 | evexW0, evexN16, 0xDD,
+	//			avxEscape | evex256 | evex66 | evex0F38 | evexW0, evexN32, 0xDD,
+	//			avxEscape | evex512 | evex66 | evex0F38 | evexW0, evexN64, 0xDD,
+	//		}},
+	//
 	{
 		Opcode:  "VAESDEC",
 		Summary: "Perform One Round of an AES Decryption Flow",
@@ -62,12 +63,12 @@ var vaes = []*inst.Instruction{
 //
 // Reference: https://github.com/golang/go/blob/go1.19.3/src/cmd/internal/obj/x86/avx_optabs.go#L111-L117
 //
-//		var _yvaesdec = []ytab{
-//			{zcase: Zvex_rm_v_r, zoffset: 2, args: argList{Yxm, Yxr, Yxr}},
-//			{zcase: Zvex_rm_v_r, zoffset: 2, args: argList{Yym, Yyr, Yyr}},
-//			{zcase: Zevex_rm_v_r, zoffset: 3, args: argList{YxmEvex, YxrEvex, YxrEvex}},
-//			{zcase: Zevex_rm_v_r, zoffset: 3, args: argList{YymEvex, YyrEvex, YyrEvex}},
-//			{zcase: Zevex_rm_v_r, zoffset: 3, args: argList{Yzm, Yzr, Yzr}},
+//	var _yvaesdec = []ytab{
+//		{zcase: Zvex_rm_v_r, zoffset: 2, args: argList{Yxm, Yxr, Yxr}},
+//		{zcase: Zvex_rm_v_r, zoffset: 2, args: argList{Yym, Yyr, Yyr}},
+//		{zcase: Zevex_rm_v_r, zoffset: 3, args: argList{YxmEvex, YxrEvex, YxrEvex}},
+//		{zcase: Zevex_rm_v_r, zoffset: 3, args: argList{YymEvex, YyrEvex, YyrEvex}},
+//		{zcase: Zevex_rm_v_r, zoffset: 3, args: argList{Yzm, Yzr, Yzr}},
 //	}
 var vaesForms = inst.Forms{
 	// VEX.128.66.0F38.WIG DE /r VAESDEC xmm1, xmm2, xmm3/m128  AVX + AEX
