@@ -71,10 +71,10 @@ var vaes = []*inst.Instruction{
 //		{zcase: Zevex_rm_v_r, zoffset: 3, args: argList{Yzm, Yzr, Yzr}},
 //	}
 var vaesforms = inst.Forms{
-	// VEX.128.66.0F38.WIG DE /r VAESDEC xmm1, xmm2, xmm3/m128  AVX + AEX
-	// VEX.128.66.0F38.WIG DF /r VAESDECLAST xmm1, xmm2, xmm3/m128  AVX + AEX
-	// VEX.128.66.0F38.WIG DC /r VAESENC xmm1, xmm2, xmm3/m128  AVX + AEX
-	// VEX.128.66.0F38.WIG DD /r VAESENCLAST xmm1, xmm2, xmm3/m128  AVX + AEX
+	// VEX.128.66.0F38.WIG DE /r VAESDEC xmm1, xmm2, xmm3/m128  AVX + AES
+	// VEX.128.66.0F38.WIG DF /r VAESDECLAST xmm1, xmm2, xmm3/m128  AVX + AES
+	// VEX.128.66.0F38.WIG DC /r VAESENC xmm1, xmm2, xmm3/m128  AVX + AES
+	// VEX.128.66.0F38.WIG DD /r VAESENCLAST xmm1, xmm2, xmm3/m128  AVX + AES
 	{
 		ISA: []string{"AES", "AVX"},
 		Operands: []inst.Operand{
