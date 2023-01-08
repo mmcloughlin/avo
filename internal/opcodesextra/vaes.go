@@ -38,22 +38,22 @@ var vaes = []*inst.Instruction{
 	{
 		Opcode:  "VAESDEC",
 		Summary: "Perform One Round of an AES Decryption Flow",
-		Forms:   vaesForms,
+		Forms:   vaesforms,
 	},
 	{
 		Opcode:  "VAESDECLAST",
 		Summary: "Perform Last Round of an AES Decryption Flow",
-		Forms:   vaesForms,
+		Forms:   vaesforms,
 	},
 	{
 		Opcode:  "VAESENC",
 		Summary: "Perform One Round of an AES Encryption Flow",
-		Forms:   vaesForms,
+		Forms:   vaesforms,
 	},
 	{
 		Opcode:  "VAESENCLAST",
 		Summary: "Perform Last Round of an AES Encryption Flow",
-		Forms:   vaesForms,
+		Forms:   vaesforms,
 	},
 }
 
@@ -70,7 +70,7 @@ var vaes = []*inst.Instruction{
 //		{zcase: Zevex_rm_v_r, zoffset: 3, args: argList{YymEvex, YyrEvex, YyrEvex}},
 //		{zcase: Zevex_rm_v_r, zoffset: 3, args: argList{Yzm, Yzr, Yzr}},
 //	}
-var vaesForms = inst.Forms{
+var vaesforms = inst.Forms{
 	// VEX.128.66.0F38.WIG DE /r VAESDEC xmm1, xmm2, xmm3/m128  AVX + AEX
 	// VEX.128.66.0F38.WIG DF /r VAESDECLAST xmm1, xmm2, xmm3/m128  AVX + AEX
 	// VEX.128.66.0F38.WIG DC /r VAESENC xmm1, xmm2, xmm3/m128  AVX + AEX
