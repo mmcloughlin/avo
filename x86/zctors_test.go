@@ -29001,6 +29001,18 @@ func TestVPCLMULQDQValidFormsNoError(t *testing.T) {
 	if _, err := VPCLMULQDQ(opimm8, opxmm, opxmm, opxmm); err != nil {
 		t.Fatal(err)
 	}
+	if _, err := VPCLMULQDQ(opimm8, opm256, opymm, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPCLMULQDQ(opimm8, opymm, opymm, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPCLMULQDQ(opimm8, opm512, opzmm, opzmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPCLMULQDQ(opimm8, opzmm, opzmm, opzmm); err != nil {
+		t.Fatal(err)
+	}
 }
 
 func TestVPCMPBValidFormsNoError(t *testing.T) {
