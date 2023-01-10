@@ -35,7 +35,7 @@ var vpclmulqdq = []*inst.Instruction{
 			{
 				ISA: []string{"AVX", "PCLMULQDQ"},
 				Operands: []inst.Operand{
-					{Type: "imm8", Action: inst.I},
+					{Type: "imm8", Action: inst.R},
 					{Type: "m128", Action: inst.R},
 					{Type: "xmm", Action: inst.R},
 					{Type: "xmm", Action: inst.W},
@@ -45,7 +45,7 @@ var vpclmulqdq = []*inst.Instruction{
 			{
 				ISA: []string{"AVX", "PCLMULQDQ"},
 				Operands: []inst.Operand{
-					{Type: "imm8", Action: inst.I},
+					{Type: "imm8", Action: inst.R},
 					{Type: "xmm", Action: inst.R},
 					{Type: "xmm", Action: inst.R},
 					{Type: "xmm", Action: inst.W},
@@ -56,7 +56,7 @@ var vpclmulqdq = []*inst.Instruction{
 			{
 				ISA: []string{"VPCLMULQDQ"},
 				Operands: []inst.Operand{
-					{Type: "imm8", Action: inst.I},
+					{Type: "imm8", Action: inst.R},
 					{Type: "m256", Action: inst.R},
 					{Type: "ymm", Action: inst.R},
 					{Type: "ymm", Action: inst.W},
@@ -66,7 +66,7 @@ var vpclmulqdq = []*inst.Instruction{
 			{
 				ISA: []string{"VPCLMULQDQ"},
 				Operands: []inst.Operand{
-					{Type: "imm8", Action: inst.I},
+					{Type: "imm8", Action: inst.R},
 					{Type: "ymm", Action: inst.R},
 					{Type: "ymm", Action: inst.R},
 					{Type: "ymm", Action: inst.W},
@@ -77,7 +77,7 @@ var vpclmulqdq = []*inst.Instruction{
 			{
 				ISA: []string{"AVX512VL", "VPCLMULQDQ"},
 				Operands: []inst.Operand{
-					{Type: "imm8", Action: inst.I},
+					{Type: "imm8", Action: inst.R},
 					{Type: "m128", Action: inst.R},
 					{Type: "xmm", Action: inst.R},
 					{Type: "xmm", Action: inst.W},
@@ -87,7 +87,7 @@ var vpclmulqdq = []*inst.Instruction{
 			{
 				ISA: []string{"AVX512VL", "VPCLMULQDQ"},
 				Operands: []inst.Operand{
-					{Type: "imm8", Action: inst.I},
+					{Type: "imm8", Action: inst.R},
 					{Type: "xmm", Action: inst.R},
 					{Type: "xmm", Action: inst.R},
 					{Type: "xmm", Action: inst.W},
@@ -98,7 +98,7 @@ var vpclmulqdq = []*inst.Instruction{
 			{
 				ISA: []string{"AVX512VL", "VPCLMULQDQ"},
 				Operands: []inst.Operand{
-					{Type: "imm8", Action: inst.I},
+					{Type: "imm8", Action: inst.R},
 					{Type: "m256", Action: inst.R},
 					{Type: "ymm", Action: inst.R},
 					{Type: "ymm", Action: inst.W},
@@ -108,7 +108,7 @@ var vpclmulqdq = []*inst.Instruction{
 			{
 				ISA: []string{"AVX512VL", "VPCLMULQDQ"},
 				Operands: []inst.Operand{
-					{Type: "imm8", Action: inst.I},
+					{Type: "imm8", Action: inst.R},
 					{Type: "ymm", Action: inst.R},
 					{Type: "ymm", Action: inst.R},
 					{Type: "ymm", Action: inst.W},
@@ -119,7 +119,7 @@ var vpclmulqdq = []*inst.Instruction{
 			{
 				ISA: []string{"AVX512F", "VPCLMULQDQ"},
 				Operands: []inst.Operand{
-					{Type: "imm8", Action: inst.I},
+					{Type: "imm8", Action: inst.R},
 					{Type: "m512", Action: inst.R},
 					{Type: "zmm", Action: inst.R},
 					{Type: "zmm", Action: inst.W},
@@ -129,7 +129,7 @@ var vpclmulqdq = []*inst.Instruction{
 			{
 				ISA: []string{"AVX512F", "VPCLMULQDQ"},
 				Operands: []inst.Operand{
-					{Type: "imm8", Action: inst.I},
+					{Type: "imm8", Action: inst.R},
 					{Type: "zmm", Action: inst.R},
 					{Type: "zmm", Action: inst.R},
 					{Type: "zmm", Action: inst.W},
