@@ -30698,6 +30698,14 @@ func VPMULUDQ_Z(mxyz, xyz, k, xyz1 operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+//	VPOPCNTD m128 k xmm
+//	VPOPCNTD m128 xmm
+//	VPOPCNTD m256 k ymm
+//	VPOPCNTD m256 ymm
+//	VPOPCNTD xmm  k xmm
+//	VPOPCNTD xmm  xmm
+//	VPOPCNTD ymm  k ymm
+//	VPOPCNTD ymm  ymm
 //	VPOPCNTD m512 k zmm
 //	VPOPCNTD m512 zmm
 //	VPOPCNTD zmm  k zmm
@@ -30710,6 +30718,10 @@ func VPOPCNTD(ops ...operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+//	VPOPCNTD.BCST m32 k xmm
+//	VPOPCNTD.BCST m32 k ymm
+//	VPOPCNTD.BCST m32 xmm
+//	VPOPCNTD.BCST m32 ymm
 //	VPOPCNTD.BCST m32 k zmm
 //	VPOPCNTD.BCST m32 zmm
 func VPOPCNTD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
@@ -30720,25 +30732,39 @@ func VPOPCNTD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+//	VPOPCNTD.BCST.Z m32 k xmm
+//	VPOPCNTD.BCST.Z m32 k ymm
 //	VPOPCNTD.BCST.Z m32 k zmm
-func VPOPCNTD_BCST_Z(m, k, z operand.Op) (*intrep.Instruction, error) {
-	return build(opcVPOPCNTD.Forms(), sffxs{sffxBCST, sffxZ}, []operand.Op{m, k, z})
+func VPOPCNTD_BCST_Z(m, k, xyz operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPOPCNTD.Forms(), sffxs{sffxBCST, sffxZ}, []operand.Op{m, k, xyz})
 }
 
 // VPOPCNTD_Z: Packed Population Count for Doubleword Integers (Zeroing Masking).
 //
 // Forms:
 //
+//	VPOPCNTD.Z m128 k xmm
+//	VPOPCNTD.Z m256 k ymm
+//	VPOPCNTD.Z xmm  k xmm
+//	VPOPCNTD.Z ymm  k ymm
 //	VPOPCNTD.Z m512 k zmm
 //	VPOPCNTD.Z zmm  k zmm
-func VPOPCNTD_Z(mz, k, z operand.Op) (*intrep.Instruction, error) {
-	return build(opcVPOPCNTD.Forms(), sffxs{sffxZ}, []operand.Op{mz, k, z})
+func VPOPCNTD_Z(mxyz, k, xyz operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPOPCNTD.Forms(), sffxs{sffxZ}, []operand.Op{mxyz, k, xyz})
 }
 
 // VPOPCNTQ: Packed Population Count for Quadword Integers.
 //
 // Forms:
 //
+//	VPOPCNTQ m128 k xmm
+//	VPOPCNTQ m128 xmm
+//	VPOPCNTQ m256 k ymm
+//	VPOPCNTQ m256 ymm
+//	VPOPCNTQ xmm  k xmm
+//	VPOPCNTQ xmm  xmm
+//	VPOPCNTQ ymm  k ymm
+//	VPOPCNTQ ymm  ymm
 //	VPOPCNTQ m512 k zmm
 //	VPOPCNTQ m512 zmm
 //	VPOPCNTQ zmm  k zmm
@@ -30751,6 +30777,10 @@ func VPOPCNTQ(ops ...operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+//	VPOPCNTQ.BCST m64 k xmm
+//	VPOPCNTQ.BCST m64 k ymm
+//	VPOPCNTQ.BCST m64 xmm
+//	VPOPCNTQ.BCST m64 ymm
 //	VPOPCNTQ.BCST m64 k zmm
 //	VPOPCNTQ.BCST m64 zmm
 func VPOPCNTQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
@@ -30761,19 +30791,25 @@ func VPOPCNTQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+//	VPOPCNTQ.BCST.Z m64 k xmm
+//	VPOPCNTQ.BCST.Z m64 k ymm
 //	VPOPCNTQ.BCST.Z m64 k zmm
-func VPOPCNTQ_BCST_Z(m, k, z operand.Op) (*intrep.Instruction, error) {
-	return build(opcVPOPCNTQ.Forms(), sffxs{sffxBCST, sffxZ}, []operand.Op{m, k, z})
+func VPOPCNTQ_BCST_Z(m, k, xyz operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPOPCNTQ.Forms(), sffxs{sffxBCST, sffxZ}, []operand.Op{m, k, xyz})
 }
 
 // VPOPCNTQ_Z: Packed Population Count for Quadword Integers (Zeroing Masking).
 //
 // Forms:
 //
+//	VPOPCNTQ.Z m128 k xmm
+//	VPOPCNTQ.Z m256 k ymm
+//	VPOPCNTQ.Z xmm  k xmm
+//	VPOPCNTQ.Z ymm  k ymm
 //	VPOPCNTQ.Z m512 k zmm
 //	VPOPCNTQ.Z zmm  k zmm
-func VPOPCNTQ_Z(mz, k, z operand.Op) (*intrep.Instruction, error) {
-	return build(opcVPOPCNTQ.Forms(), sffxs{sffxZ}, []operand.Op{mz, k, z})
+func VPOPCNTQ_Z(mxyz, k, xyz operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPOPCNTQ.Forms(), sffxs{sffxZ}, []operand.Op{mxyz, k, xyz})
 }
 
 // VPOR: Packed Bitwise Logical OR.

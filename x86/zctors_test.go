@@ -37179,6 +37179,30 @@ func TestVPMULUDQ_ZValidFormsNoError(t *testing.T) {
 }
 
 func TestVPOPCNTDValidFormsNoError(t *testing.T) {
+	if _, err := VPOPCNTD(opm128, opk, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPOPCNTD(opm128, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPOPCNTD(opm256, opk, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPOPCNTD(opm256, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPOPCNTD(opxmm, opk, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPOPCNTD(opxmm, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPOPCNTD(opymm, opk, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPOPCNTD(opymm, opymm); err != nil {
+		t.Fatal(err)
+	}
 	if _, err := VPOPCNTD(opm512, opk, opzmm); err != nil {
 		t.Fatal(err)
 	}
@@ -37194,6 +37218,18 @@ func TestVPOPCNTDValidFormsNoError(t *testing.T) {
 }
 
 func TestVPOPCNTD_BCSTValidFormsNoError(t *testing.T) {
+	if _, err := VPOPCNTD_BCST(opm32, opk, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPOPCNTD_BCST(opm32, opk, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPOPCNTD_BCST(opm32, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPOPCNTD_BCST(opm32, opymm); err != nil {
+		t.Fatal(err)
+	}
 	if _, err := VPOPCNTD_BCST(opm32, opk, opzmm); err != nil {
 		t.Fatal(err)
 	}
@@ -37203,12 +37239,30 @@ func TestVPOPCNTD_BCSTValidFormsNoError(t *testing.T) {
 }
 
 func TestVPOPCNTD_BCST_ZValidFormsNoError(t *testing.T) {
+	if _, err := VPOPCNTD_BCST_Z(opm32, opk, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPOPCNTD_BCST_Z(opm32, opk, opymm); err != nil {
+		t.Fatal(err)
+	}
 	if _, err := VPOPCNTD_BCST_Z(opm32, opk, opzmm); err != nil {
 		t.Fatal(err)
 	}
 }
 
 func TestVPOPCNTD_ZValidFormsNoError(t *testing.T) {
+	if _, err := VPOPCNTD_Z(opm128, opk, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPOPCNTD_Z(opm256, opk, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPOPCNTD_Z(opxmm, opk, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPOPCNTD_Z(opymm, opk, opymm); err != nil {
+		t.Fatal(err)
+	}
 	if _, err := VPOPCNTD_Z(opm512, opk, opzmm); err != nil {
 		t.Fatal(err)
 	}
@@ -37218,6 +37272,30 @@ func TestVPOPCNTD_ZValidFormsNoError(t *testing.T) {
 }
 
 func TestVPOPCNTQValidFormsNoError(t *testing.T) {
+	if _, err := VPOPCNTQ(opm128, opk, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPOPCNTQ(opm128, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPOPCNTQ(opm256, opk, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPOPCNTQ(opm256, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPOPCNTQ(opxmm, opk, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPOPCNTQ(opxmm, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPOPCNTQ(opymm, opk, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPOPCNTQ(opymm, opymm); err != nil {
+		t.Fatal(err)
+	}
 	if _, err := VPOPCNTQ(opm512, opk, opzmm); err != nil {
 		t.Fatal(err)
 	}
@@ -37233,6 +37311,18 @@ func TestVPOPCNTQValidFormsNoError(t *testing.T) {
 }
 
 func TestVPOPCNTQ_BCSTValidFormsNoError(t *testing.T) {
+	if _, err := VPOPCNTQ_BCST(opm64, opk, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPOPCNTQ_BCST(opm64, opk, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPOPCNTQ_BCST(opm64, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPOPCNTQ_BCST(opm64, opymm); err != nil {
+		t.Fatal(err)
+	}
 	if _, err := VPOPCNTQ_BCST(opm64, opk, opzmm); err != nil {
 		t.Fatal(err)
 	}
@@ -37242,12 +37332,30 @@ func TestVPOPCNTQ_BCSTValidFormsNoError(t *testing.T) {
 }
 
 func TestVPOPCNTQ_BCST_ZValidFormsNoError(t *testing.T) {
+	if _, err := VPOPCNTQ_BCST_Z(opm64, opk, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPOPCNTQ_BCST_Z(opm64, opk, opymm); err != nil {
+		t.Fatal(err)
+	}
 	if _, err := VPOPCNTQ_BCST_Z(opm64, opk, opzmm); err != nil {
 		t.Fatal(err)
 	}
 }
 
 func TestVPOPCNTQ_ZValidFormsNoError(t *testing.T) {
+	if _, err := VPOPCNTQ_Z(opm128, opk, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPOPCNTQ_Z(opm256, opk, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPOPCNTQ_Z(opxmm, opk, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPOPCNTQ_Z(opymm, opk, opymm); err != nil {
+		t.Fatal(err)
+	}
 	if _, err := VPOPCNTQ_Z(opm512, opk, opzmm); err != nil {
 		t.Fatal(err)
 	}
