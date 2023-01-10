@@ -7,13 +7,14 @@ import "github.com/mmcloughlin/avo/internal/inst"
 var vpclmulqdq = []*inst.Instruction{
 	// Reference: https://github.com/golang/go/blob/go1.19.3/src/cmd/internal/obj/x86/avx_optabs.go#L2911-L2917
 	//
-	//	{as: AVPCLMULQDQ, ytab: _yvpclmulqdq, prefix: Pavx, op: opBytes{
-	//		avxEscape | vex128 | vex66 | vex0F3A | vexW0, 0x44,
-	//		avxEscape | vex256 | vex66 | vex0F3A | vexW0, 0x44,
-	//		avxEscape | evex128 | evex66 | evex0F3A | evexW0, evexN16, 0x44,
-	//		avxEscape | evex256 | evex66 | evex0F3A | evexW0, evexN32, 0x44,
-	//		avxEscape | evex512 | evex66 | evex0F3A | evexW0, evexN64, 0x44,
-	//	}},
+	//		{as: AVPCLMULQDQ, ytab: _yvpclmulqdq, prefix: Pavx, op: opBytes{
+	//			avxEscape | vex128 | vex66 | vex0F3A | vexW0, 0x44,
+	//			avxEscape | vex256 | vex66 | vex0F3A | vexW0, 0x44,
+	//			avxEscape | evex128 | evex66 | evex0F3A | evexW0, evexN16, 0x44,
+	//			avxEscape | evex256 | evex66 | evex0F3A | evexW0, evexN32, 0x44,
+	//			avxEscape | evex512 | evex66 | evex0F3A | evexW0, evexN64, 0x44,
+	//		}},
+	//
 	{
 		Opcode:  "VPCLMULQDQ",
 		Summary: "Carry-Less Quadword Multiplication",
@@ -28,6 +29,7 @@ var vpclmulqdq = []*inst.Instruction{
 		//		{zcase: Zevex_i_rm_v_r, zoffset: 3, args: argList{Yu8, YymEvex, YyrEvex, YyrEvex}},
 		//		{zcase: Zevex_i_rm_v_r, zoffset: 3, args: argList{Yu8, Yzm, Yzr, Yzr}},
 		//	}
+		//
 		Forms: inst.Forms{
 			// VEX.128.66.0F3A.WIG 44 /r ib VPCLMULQDQ xmm1, xmm2, xmm3/m128, imm8
 			{
