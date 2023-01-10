@@ -23,145 +23,84 @@ var vpopcntdq = []*inst.Instruction{
 	{
 		Opcode:  "VPOPCNTD",
 		Summary: "Packed Population Count for Doubleword Integers",
-		// VPOPCNTD forms.
-		//
-		// See: https://www.felixcloutier.com/x86/vpopcnt
-		//
-		// Reference: https://github.com/golang/go/blob/go1.19.3/src/cmd/internal/obj/x86/avx_optabs.go#L376-L383
-		//
-		//	var _yvexpandpd = []ytab{
-		//		{zcase: Zevex_rm_v_r, zoffset: 0, args: argList{YxmEvex, YxrEvex}},
-		//		{zcase: Zevex_rm_k_r, zoffset: 3, args: argList{YxmEvex, Yknot0, YxrEvex}},
-		//		{zcase: Zevex_rm_v_r, zoffset: 0, args: argList{YymEvex, YyrEvex}},
-		//		{zcase: Zevex_rm_k_r, zoffset: 3, args: argList{YymEvex, Yknot0, YyrEvex}},
-		//		{zcase: Zevex_rm_v_r, zoffset: 0, args: argList{Yzm, Yzr}},
-		//		{zcase: Zevex_rm_k_r, zoffset: 3, args: argList{Yzm, Yknot0, Yzr}},
-		//	}
-		//
-		Forms: inst.Forms{
-			// EVEX.128.66.0F38.W0 55 /r VPOPCNTD xmm1{k1}{z}, xmm2/m128/m32bcst
-			{
-				ISA: []string{"AVX512VL", "AVX512VPOPCNTDQ"},
-				Operands: []inst.Operand{
-					{Type: "m128/m32bcst", Action: inst.R},
-					{Type: "xmm{k}{z}", Action: inst.W},
-				},
-				EncodingType: inst.EncodingTypeEVEX,
-			},
-			{
-				ISA: []string{"AVX512VL", "AVX512VPOPCNTDQ"},
-				Operands: []inst.Operand{
-					{Type: "xmm", Action: inst.R},
-					{Type: "xmm{k}{z}", Action: inst.W},
-				},
-				EncodingType: inst.EncodingTypeEVEX,
-			},
-			// EVEX.256.66.0F38.W0 55 /r VPOPCNTD ymm1{k1}{z}, ymm2/m256/m32bcst
-			{
-				ISA: []string{"AVX512VL", "AVX512VPOPCNTDQ"},
-				Operands: []inst.Operand{
-					{Type: "m256/m32bcst", Action: inst.R},
-					{Type: "ymm{k}{z}", Action: inst.W},
-				},
-				EncodingType: inst.EncodingTypeEVEX,
-			},
-			{
-				ISA: []string{"AVX512VL", "AVX512VPOPCNTDQ"},
-				Operands: []inst.Operand{
-					{Type: "ymm", Action: inst.R},
-					{Type: "ymm{k}{z}", Action: inst.W},
-				},
-				EncodingType: inst.EncodingTypeEVEX,
-			},
-			// EVEX.512.66.0F38.W0 55 /r VPOPCNTD zmm1{k1}{z}, zmm2/m512/m32bcst
-			{
-				ISA: []string{"AVX512VPOPCNTDQ"},
-				Operands: []inst.Operand{
-					{Type: "m512/m32bcst", Action: inst.R},
-					{Type: "zmm{k}{z}", Action: inst.W},
-				},
-				EncodingType: inst.EncodingTypeEVEX,
-			},
-			{
-				ISA: []string{"AVX512VPOPCNTDQ"},
-				Operands: []inst.Operand{
-					{Type: "zmm", Action: inst.R},
-					{Type: "zmm{k}{z}", Action: inst.W},
-				},
-				EncodingType: inst.EncodingTypeEVEX,
-			},
-		},
+		Forms:   vpopcntdqforms("m32bcst"),
 	},
 	{
 		Opcode:  "VPOPCNTQ",
 		Summary: "Packed Population Count for Quadword Integers",
-		// VPOPCNTQ forms.
-		//
-		// See: https://www.felixcloutier.com/x86/vpopcnt
-		//
-		// Reference: https://github.com/golang/go/blob/go1.19.3/src/cmd/internal/obj/x86/avx_optabs.go#L376-L383
-		//
-		//	var _yvexpandpd = []ytab{
-		//		{zcase: Zevex_rm_v_r, zoffset: 0, args: argList{YxmEvex, YxrEvex}},
-		//		{zcase: Zevex_rm_k_r, zoffset: 3, args: argList{YxmEvex, Yknot0, YxrEvex}},
-		//		{zcase: Zevex_rm_v_r, zoffset: 0, args: argList{YymEvex, YyrEvex}},
-		//		{zcase: Zevex_rm_k_r, zoffset: 3, args: argList{YymEvex, Yknot0, YyrEvex}},
-		//		{zcase: Zevex_rm_v_r, zoffset: 0, args: argList{Yzm, Yzr}},
-		//		{zcase: Zevex_rm_k_r, zoffset: 3, args: argList{Yzm, Yknot0, Yzr}},
-		//	}
-		//
-		Forms: inst.Forms{
-			// EVEX.128.66.0F38.W1 55 /r VPOPCNTQ xmm1{k1}{z}, xmm2/m128/m64bcst
-			{
-				ISA: []string{"AVX512VL", "AVX512VPOPCNTDQ"},
-				Operands: []inst.Operand{
-					{Type: "m128/m64bcst", Action: inst.R},
-					{Type: "xmm{k}{z}", Action: inst.W},
-				},
-				EncodingType: inst.EncodingTypeEVEX,
-			},
-			{
-				ISA: []string{"AVX512VL", "AVX512VPOPCNTDQ"},
-				Operands: []inst.Operand{
-					{Type: "xmm", Action: inst.R},
-					{Type: "xmm{k}{z}", Action: inst.W},
-				},
-				EncodingType: inst.EncodingTypeEVEX,
-			},
-			// EVEX.256.66.0F38.W1 55 /r VPOPCNTQ ymm1{k1}{z}, ymm2/m256/m64bcst
-			{
-				ISA: []string{"AVX512VL", "AVX512VPOPCNTDQ"},
-				Operands: []inst.Operand{
-					{Type: "m256/m64bcst", Action: inst.R},
-					{Type: "ymm{k}{z}", Action: inst.W},
-				},
-				EncodingType: inst.EncodingTypeEVEX,
-			},
-			{
-				ISA: []string{"AVX512VL", "AVX512VPOPCNTDQ"},
-				Operands: []inst.Operand{
-					{Type: "ymm", Action: inst.R},
-					{Type: "ymm{k}{z}", Action: inst.W},
-				},
-				EncodingType: inst.EncodingTypeEVEX,
-			},
-			// EVEX.512.66.0F38.W1 55 /r VPOPCNTQ zmm1{k1}{z}, zmm2/m512/m64bcst
-			{
-				ISA: []string{"AVX512VPOPCNTDQ"},
-				Operands: []inst.Operand{
-					{Type: "m512/m64bcst", Action: inst.R},
-					{Type: "zmm{k}{z}", Action: inst.W},
-				},
-				EncodingType: inst.EncodingTypeEVEX,
-			},
-			{
-				ISA: []string{"AVX512VPOPCNTDQ"},
-				Operands: []inst.Operand{
-					{Type: "zmm", Action: inst.R},
-					{Type: "zmm{k}{z}", Action: inst.W},
-				},
-				EncodingType: inst.EncodingTypeEVEX,
-			},
-		},
+		Forms:   vpopcntdqforms("m64bcst"),
 	},
+}
+
+// VPOPCNTD and VPOPCNTQ forms.
+//
+// See: https://www.felixcloutier.com/x86/vpopcnt
+//
+// Reference: https://github.com/golang/go/blob/go1.19.3/src/cmd/internal/obj/x86/avx_optabs.go#L376-L383
+//
+//	var _yvexpandpd = []ytab{
+//		{zcase: Zevex_rm_v_r, zoffset: 0, args: argList{YxmEvex, YxrEvex}},
+//		{zcase: Zevex_rm_k_r, zoffset: 3, args: argList{YxmEvex, Yknot0, YxrEvex}},
+//		{zcase: Zevex_rm_v_r, zoffset: 0, args: argList{YymEvex, YyrEvex}},
+//		{zcase: Zevex_rm_k_r, zoffset: 3, args: argList{YymEvex, Yknot0, YyrEvex}},
+//		{zcase: Zevex_rm_v_r, zoffset: 0, args: argList{Yzm, Yzr}},
+//		{zcase: Zevex_rm_k_r, zoffset: 3, args: argList{Yzm, Yknot0, Yzr}},
+//	}
+func vpopcntdqforms(mbcst string) inst.Forms {
+	return inst.Forms{
+		// EVEX.128.66.0F38.W0 55 /r VPOPCNTD xmm1{k1}{z}, xmm2/m128/m32bcst
+		// EVEX.128.66.0F38.W1 55 /r VPOPCNTQ xmm1{k1}{z}, xmm2/m128/m64bcst
+		{
+			ISA: []string{"AVX512VL", "AVX512VPOPCNTDQ"},
+			Operands: []inst.Operand{
+				{Type: "m128/" + mbcst, Action: inst.R},
+				{Type: "xmm{k}{z}", Action: inst.W},
+			},
+			EncodingType: inst.EncodingTypeEVEX,
+		},
+		{
+			ISA: []string{"AVX512VL", "AVX512VPOPCNTDQ"},
+			Operands: []inst.Operand{
+				{Type: "xmm", Action: inst.R},
+				{Type: "xmm{k}{z}", Action: inst.W},
+			},
+			EncodingType: inst.EncodingTypeEVEX,
+		},
+		// EVEX.256.66.0F38.W0 55 /r VPOPCNTD ymm1{k1}{z}, ymm2/m256/m32bcst
+		// EVEX.256.66.0F38.W1 55 /r VPOPCNTQ ymm1{k1}{z}, ymm2/m256/m64bcst
+		{
+			ISA: []string{"AVX512VL", "AVX512VPOPCNTDQ"},
+			Operands: []inst.Operand{
+				{Type: "m256/" + mbcst, Action: inst.R},
+				{Type: "ymm{k}{z}", Action: inst.W},
+			},
+			EncodingType: inst.EncodingTypeEVEX,
+		},
+		{
+			ISA: []string{"AVX512VL", "AVX512VPOPCNTDQ"},
+			Operands: []inst.Operand{
+				{Type: "ymm", Action: inst.R},
+				{Type: "ymm{k}{z}", Action: inst.W},
+			},
+			EncodingType: inst.EncodingTypeEVEX,
+		},
+		// EVEX.512.66.0F38.W0 55 /r VPOPCNTD zmm1{k1}{z}, zmm2/m512/m32bcst
+		// EVEX.512.66.0F38.W1 55 /r VPOPCNTQ zmm1{k1}{z}, zmm2/m512/m64bcst
+		{
+			ISA: []string{"AVX512VPOPCNTDQ"},
+			Operands: []inst.Operand{
+				{Type: "m512/" + mbcst, Action: inst.R},
+				{Type: "zmm{k}{z}", Action: inst.W},
+			},
+			EncodingType: inst.EncodingTypeEVEX,
+		},
+		{
+			ISA: []string{"AVX512VPOPCNTDQ"},
+			Operands: []inst.Operand{
+				{Type: "zmm", Action: inst.R},
+				{Type: "zmm{k}{z}", Action: inst.W},
+			},
+			EncodingType: inst.EncodingTypeEVEX,
+		},
+	}
 }
