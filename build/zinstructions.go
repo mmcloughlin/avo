@@ -63004,6 +63004,80 @@ func (c *Context) VPERMW_Z(mxyz, xyz, k, xyz1 operand.Op) {
 // Operates on the global context.
 func VPERMW_Z(mxyz, xyz, k, xyz1 operand.Op) { ctx.VPERMW_Z(mxyz, xyz, k, xyz1) }
 
+// VPEXPANDB: Load Sparse Packed Byte Integer Values from Dense Memory/Register.
+//
+// Forms:
+//
+//	VPEXPANDB m128 k xmm
+//	VPEXPANDB m128 xmm
+//	VPEXPANDB m256 k ymm
+//	VPEXPANDB m256 ymm
+//	VPEXPANDB xmm  k xmm
+//	VPEXPANDB xmm  xmm
+//	VPEXPANDB ymm  k ymm
+//	VPEXPANDB ymm  ymm
+//	VPEXPANDB m512 k zmm
+//	VPEXPANDB m512 zmm
+//	VPEXPANDB zmm  k zmm
+//	VPEXPANDB zmm  zmm
+//
+// Construct and append a VPEXPANDB instruction to the active function.
+func (c *Context) VPEXPANDB(ops ...operand.Op) {
+	c.addinstruction(x86.VPEXPANDB(ops...))
+}
+
+// VPEXPANDB: Load Sparse Packed Byte Integer Values from Dense Memory/Register.
+//
+// Forms:
+//
+//	VPEXPANDB m128 k xmm
+//	VPEXPANDB m128 xmm
+//	VPEXPANDB m256 k ymm
+//	VPEXPANDB m256 ymm
+//	VPEXPANDB xmm  k xmm
+//	VPEXPANDB xmm  xmm
+//	VPEXPANDB ymm  k ymm
+//	VPEXPANDB ymm  ymm
+//	VPEXPANDB m512 k zmm
+//	VPEXPANDB m512 zmm
+//	VPEXPANDB zmm  k zmm
+//	VPEXPANDB zmm  zmm
+//
+// Construct and append a VPEXPANDB instruction to the active function.
+// Operates on the global context.
+func VPEXPANDB(ops ...operand.Op) { ctx.VPEXPANDB(ops...) }
+
+// VPEXPANDB_Z: Load Sparse Packed Byte Integer Values from Dense Memory/Register (Zeroing Masking).
+//
+// Forms:
+//
+//	VPEXPANDB.Z m128 k xmm
+//	VPEXPANDB.Z m256 k ymm
+//	VPEXPANDB.Z xmm  k xmm
+//	VPEXPANDB.Z ymm  k ymm
+//	VPEXPANDB.Z m512 k zmm
+//	VPEXPANDB.Z zmm  k zmm
+//
+// Construct and append a VPEXPANDB.Z instruction to the active function.
+func (c *Context) VPEXPANDB_Z(mxyz, k, xyz operand.Op) {
+	c.addinstruction(x86.VPEXPANDB_Z(mxyz, k, xyz))
+}
+
+// VPEXPANDB_Z: Load Sparse Packed Byte Integer Values from Dense Memory/Register (Zeroing Masking).
+//
+// Forms:
+//
+//	VPEXPANDB.Z m128 k xmm
+//	VPEXPANDB.Z m256 k ymm
+//	VPEXPANDB.Z xmm  k xmm
+//	VPEXPANDB.Z ymm  k ymm
+//	VPEXPANDB.Z m512 k zmm
+//	VPEXPANDB.Z zmm  k zmm
+//
+// Construct and append a VPEXPANDB.Z instruction to the active function.
+// Operates on the global context.
+func VPEXPANDB_Z(mxyz, k, xyz operand.Op) { ctx.VPEXPANDB_Z(mxyz, k, xyz) }
+
 // VPEXPANDD: Load Sparse Packed Doubleword Integer Values from Dense Memory/Register.
 //
 // Forms:
@@ -63151,6 +63225,80 @@ func (c *Context) VPEXPANDQ_Z(mxyz, k, xyz operand.Op) {
 // Construct and append a VPEXPANDQ.Z instruction to the active function.
 // Operates on the global context.
 func VPEXPANDQ_Z(mxyz, k, xyz operand.Op) { ctx.VPEXPANDQ_Z(mxyz, k, xyz) }
+
+// VPEXPANDW: Load Sparse Packed Word Integer Values from Dense Memory/Register.
+//
+// Forms:
+//
+//	VPEXPANDW m128 k xmm
+//	VPEXPANDW m128 xmm
+//	VPEXPANDW m256 k ymm
+//	VPEXPANDW m256 ymm
+//	VPEXPANDW xmm  k xmm
+//	VPEXPANDW xmm  xmm
+//	VPEXPANDW ymm  k ymm
+//	VPEXPANDW ymm  ymm
+//	VPEXPANDW m512 k zmm
+//	VPEXPANDW m512 zmm
+//	VPEXPANDW zmm  k zmm
+//	VPEXPANDW zmm  zmm
+//
+// Construct and append a VPEXPANDW instruction to the active function.
+func (c *Context) VPEXPANDW(ops ...operand.Op) {
+	c.addinstruction(x86.VPEXPANDW(ops...))
+}
+
+// VPEXPANDW: Load Sparse Packed Word Integer Values from Dense Memory/Register.
+//
+// Forms:
+//
+//	VPEXPANDW m128 k xmm
+//	VPEXPANDW m128 xmm
+//	VPEXPANDW m256 k ymm
+//	VPEXPANDW m256 ymm
+//	VPEXPANDW xmm  k xmm
+//	VPEXPANDW xmm  xmm
+//	VPEXPANDW ymm  k ymm
+//	VPEXPANDW ymm  ymm
+//	VPEXPANDW m512 k zmm
+//	VPEXPANDW m512 zmm
+//	VPEXPANDW zmm  k zmm
+//	VPEXPANDW zmm  zmm
+//
+// Construct and append a VPEXPANDW instruction to the active function.
+// Operates on the global context.
+func VPEXPANDW(ops ...operand.Op) { ctx.VPEXPANDW(ops...) }
+
+// VPEXPANDW_Z: Load Sparse Packed Word Integer Values from Dense Memory/Register (Zeroing Masking).
+//
+// Forms:
+//
+//	VPEXPANDW.Z m128 k xmm
+//	VPEXPANDW.Z m256 k ymm
+//	VPEXPANDW.Z xmm  k xmm
+//	VPEXPANDW.Z ymm  k ymm
+//	VPEXPANDW.Z m512 k zmm
+//	VPEXPANDW.Z zmm  k zmm
+//
+// Construct and append a VPEXPANDW.Z instruction to the active function.
+func (c *Context) VPEXPANDW_Z(mxyz, k, xyz operand.Op) {
+	c.addinstruction(x86.VPEXPANDW_Z(mxyz, k, xyz))
+}
+
+// VPEXPANDW_Z: Load Sparse Packed Word Integer Values from Dense Memory/Register (Zeroing Masking).
+//
+// Forms:
+//
+//	VPEXPANDW.Z m128 k xmm
+//	VPEXPANDW.Z m256 k ymm
+//	VPEXPANDW.Z xmm  k xmm
+//	VPEXPANDW.Z ymm  k ymm
+//	VPEXPANDW.Z m512 k zmm
+//	VPEXPANDW.Z zmm  k zmm
+//
+// Construct and append a VPEXPANDW.Z instruction to the active function.
+// Operates on the global context.
+func VPEXPANDW_Z(mxyz, k, xyz operand.Op) { ctx.VPEXPANDW_Z(mxyz, k, xyz) }
 
 // VPEXTRB: Extract Byte.
 //

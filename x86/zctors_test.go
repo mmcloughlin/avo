@@ -32561,6 +32561,66 @@ func TestVPERMW_ZValidFormsNoError(t *testing.T) {
 	}
 }
 
+func TestVPEXPANDBValidFormsNoError(t *testing.T) {
+	if _, err := VPEXPANDB(opm128, opk, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPEXPANDB(opm128, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPEXPANDB(opm256, opk, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPEXPANDB(opm256, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPEXPANDB(opxmm, opk, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPEXPANDB(opxmm, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPEXPANDB(opymm, opk, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPEXPANDB(opymm, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPEXPANDB(opm512, opk, opzmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPEXPANDB(opm512, opzmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPEXPANDB(opzmm, opk, opzmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPEXPANDB(opzmm, opzmm); err != nil {
+		t.Fatal(err)
+	}
+}
+
+func TestVPEXPANDB_ZValidFormsNoError(t *testing.T) {
+	if _, err := VPEXPANDB_Z(opm128, opk, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPEXPANDB_Z(opm256, opk, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPEXPANDB_Z(opxmm, opk, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPEXPANDB_Z(opymm, opk, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPEXPANDB_Z(opm512, opk, opzmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPEXPANDB_Z(opzmm, opk, opzmm); err != nil {
+		t.Fatal(err)
+	}
+}
+
 func TestVPEXPANDDValidFormsNoError(t *testing.T) {
 	if _, err := VPEXPANDD(opm128, opk, opxmm); err != nil {
 		t.Fatal(err)
@@ -32677,6 +32737,66 @@ func TestVPEXPANDQ_ZValidFormsNoError(t *testing.T) {
 		t.Fatal(err)
 	}
 	if _, err := VPEXPANDQ_Z(opzmm, opk, opzmm); err != nil {
+		t.Fatal(err)
+	}
+}
+
+func TestVPEXPANDWValidFormsNoError(t *testing.T) {
+	if _, err := VPEXPANDW(opm128, opk, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPEXPANDW(opm128, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPEXPANDW(opm256, opk, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPEXPANDW(opm256, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPEXPANDW(opxmm, opk, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPEXPANDW(opxmm, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPEXPANDW(opymm, opk, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPEXPANDW(opymm, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPEXPANDW(opm512, opk, opzmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPEXPANDW(opm512, opzmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPEXPANDW(opzmm, opk, opzmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPEXPANDW(opzmm, opzmm); err != nil {
+		t.Fatal(err)
+	}
+}
+
+func TestVPEXPANDW_ZValidFormsNoError(t *testing.T) {
+	if _, err := VPEXPANDW_Z(opm128, opk, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPEXPANDW_Z(opm256, opk, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPEXPANDW_Z(opxmm, opk, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPEXPANDW_Z(opymm, opk, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPEXPANDW_Z(opm512, opk, opzmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPEXPANDW_Z(opzmm, opk, opzmm); err != nil {
 		t.Fatal(err)
 	}
 }

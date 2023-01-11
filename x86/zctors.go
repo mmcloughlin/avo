@@ -27853,6 +27853,40 @@ func VPERMW_Z(mxyz, xyz, k, xyz1 operand.Op) (*intrep.Instruction, error) {
 	return build(opcVPERMW.Forms(), sffxs{sffxZ}, []operand.Op{mxyz, xyz, k, xyz1})
 }
 
+// VPEXPANDB: Load Sparse Packed Byte Integer Values from Dense Memory/Register.
+//
+// Forms:
+//
+//	VPEXPANDB m128 k xmm
+//	VPEXPANDB m128 xmm
+//	VPEXPANDB m256 k ymm
+//	VPEXPANDB m256 ymm
+//	VPEXPANDB xmm  k xmm
+//	VPEXPANDB xmm  xmm
+//	VPEXPANDB ymm  k ymm
+//	VPEXPANDB ymm  ymm
+//	VPEXPANDB m512 k zmm
+//	VPEXPANDB m512 zmm
+//	VPEXPANDB zmm  k zmm
+//	VPEXPANDB zmm  zmm
+func VPEXPANDB(ops ...operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPEXPANDB.Forms(), sffxs{}, ops)
+}
+
+// VPEXPANDB_Z: Load Sparse Packed Byte Integer Values from Dense Memory/Register (Zeroing Masking).
+//
+// Forms:
+//
+//	VPEXPANDB.Z m128 k xmm
+//	VPEXPANDB.Z m256 k ymm
+//	VPEXPANDB.Z xmm  k xmm
+//	VPEXPANDB.Z ymm  k ymm
+//	VPEXPANDB.Z m512 k zmm
+//	VPEXPANDB.Z zmm  k zmm
+func VPEXPANDB_Z(mxyz, k, xyz operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPEXPANDB.Forms(), sffxs{sffxZ}, []operand.Op{mxyz, k, xyz})
+}
+
 // VPEXPANDD: Load Sparse Packed Doubleword Integer Values from Dense Memory/Register.
 //
 // Forms:
@@ -27919,6 +27953,40 @@ func VPEXPANDQ(ops ...operand.Op) (*intrep.Instruction, error) {
 //	VPEXPANDQ.Z zmm  k zmm
 func VPEXPANDQ_Z(mxyz, k, xyz operand.Op) (*intrep.Instruction, error) {
 	return build(opcVPEXPANDQ.Forms(), sffxs{sffxZ}, []operand.Op{mxyz, k, xyz})
+}
+
+// VPEXPANDW: Load Sparse Packed Word Integer Values from Dense Memory/Register.
+//
+// Forms:
+//
+//	VPEXPANDW m128 k xmm
+//	VPEXPANDW m128 xmm
+//	VPEXPANDW m256 k ymm
+//	VPEXPANDW m256 ymm
+//	VPEXPANDW xmm  k xmm
+//	VPEXPANDW xmm  xmm
+//	VPEXPANDW ymm  k ymm
+//	VPEXPANDW ymm  ymm
+//	VPEXPANDW m512 k zmm
+//	VPEXPANDW m512 zmm
+//	VPEXPANDW zmm  k zmm
+//	VPEXPANDW zmm  zmm
+func VPEXPANDW(ops ...operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPEXPANDW.Forms(), sffxs{}, ops)
+}
+
+// VPEXPANDW_Z: Load Sparse Packed Word Integer Values from Dense Memory/Register (Zeroing Masking).
+//
+// Forms:
+//
+//	VPEXPANDW.Z m128 k xmm
+//	VPEXPANDW.Z m256 k ymm
+//	VPEXPANDW.Z xmm  k xmm
+//	VPEXPANDW.Z ymm  k ymm
+//	VPEXPANDW.Z m512 k zmm
+//	VPEXPANDW.Z zmm  k zmm
+func VPEXPANDW_Z(mxyz, k, xyz operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPEXPANDW.Forms(), sffxs{sffxZ}, []operand.Op{mxyz, k, xyz})
 }
 
 // VPEXTRB: Extract Byte.
