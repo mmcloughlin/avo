@@ -29939,6 +29939,57 @@ func TestVPCMPWValidFormsNoError(t *testing.T) {
 	}
 }
 
+func TestVPCOMPRESSBValidFormsNoError(t *testing.T) {
+	if _, err := VPCOMPRESSB(opxmm, opk, opm128); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPCOMPRESSB(opxmm, opk, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPCOMPRESSB(opxmm, opm128); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPCOMPRESSB(opxmm, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPCOMPRESSB(opymm, opk, opm256); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPCOMPRESSB(opymm, opk, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPCOMPRESSB(opymm, opm256); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPCOMPRESSB(opymm, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPCOMPRESSB(opzmm, opk, opm512); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPCOMPRESSB(opzmm, opk, opzmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPCOMPRESSB(opzmm, opm512); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPCOMPRESSB(opzmm, opzmm); err != nil {
+		t.Fatal(err)
+	}
+}
+
+func TestVPCOMPRESSB_ZValidFormsNoError(t *testing.T) {
+	if _, err := VPCOMPRESSB_Z(opxmm, opk, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPCOMPRESSB_Z(opymm, opk, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPCOMPRESSB_Z(opzmm, opk, opzmm); err != nil {
+		t.Fatal(err)
+	}
+}
+
 func TestVPCOMPRESSDValidFormsNoError(t *testing.T) {
 	if _, err := VPCOMPRESSD(opxmm, opk, opm128); err != nil {
 		t.Fatal(err)
@@ -30055,6 +30106,57 @@ func TestVPCOMPRESSQ_ZValidFormsNoError(t *testing.T) {
 		t.Fatal(err)
 	}
 	if _, err := VPCOMPRESSQ_Z(opzmm, opk, opzmm); err != nil {
+		t.Fatal(err)
+	}
+}
+
+func TestVPCOMPRESSWValidFormsNoError(t *testing.T) {
+	if _, err := VPCOMPRESSW(opxmm, opk, opm128); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPCOMPRESSW(opxmm, opk, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPCOMPRESSW(opxmm, opm128); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPCOMPRESSW(opxmm, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPCOMPRESSW(opymm, opk, opm256); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPCOMPRESSW(opymm, opk, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPCOMPRESSW(opymm, opm256); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPCOMPRESSW(opymm, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPCOMPRESSW(opzmm, opk, opm512); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPCOMPRESSW(opzmm, opk, opzmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPCOMPRESSW(opzmm, opm512); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPCOMPRESSW(opzmm, opzmm); err != nil {
+		t.Fatal(err)
+	}
+}
+
+func TestVPCOMPRESSW_ZValidFormsNoError(t *testing.T) {
+	if _, err := VPCOMPRESSW_Z(opxmm, opk, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPCOMPRESSW_Z(opymm, opk, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPCOMPRESSW_Z(opzmm, opk, opzmm); err != nil {
 		t.Fatal(err)
 	}
 }

@@ -12,6 +12,7 @@ var sets = [][]*inst.Instruction{
 	vpclmulqdq,
 	vpopcntdq,
 	bitalg,
+	vbmi2,
 }
 
 // Instructions returns a list of extras to add to the instructions database.

@@ -26265,6 +26265,37 @@ func VPCMPW(ops ...operand.Op) (*intrep.Instruction, error) {
 	return build(opcVPCMPW.Forms(), sffxs{}, ops)
 }
 
+// VPCOMPRESSB: Store Sparse Packed Byte Integer Values into Dense Memory/Register.
+//
+// Forms:
+//
+//	VPCOMPRESSB xmm k m128
+//	VPCOMPRESSB xmm k xmm
+//	VPCOMPRESSB xmm m128
+//	VPCOMPRESSB xmm xmm
+//	VPCOMPRESSB ymm k m256
+//	VPCOMPRESSB ymm k ymm
+//	VPCOMPRESSB ymm m256
+//	VPCOMPRESSB ymm ymm
+//	VPCOMPRESSB zmm k m512
+//	VPCOMPRESSB zmm k zmm
+//	VPCOMPRESSB zmm m512
+//	VPCOMPRESSB zmm zmm
+func VPCOMPRESSB(ops ...operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPCOMPRESSB.Forms(), sffxs{}, ops)
+}
+
+// VPCOMPRESSB_Z: Store Sparse Packed Byte Integer Values into Dense Memory/Register (Zeroing Masking).
+//
+// Forms:
+//
+//	VPCOMPRESSB.Z xmm k xmm
+//	VPCOMPRESSB.Z ymm k ymm
+//	VPCOMPRESSB.Z zmm k zmm
+func VPCOMPRESSB_Z(xyz, k, xyz1 operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPCOMPRESSB.Forms(), sffxs{sffxZ}, []operand.Op{xyz, k, xyz1})
+}
+
 // VPCOMPRESSD: Store Sparse Packed Doubleword Integer Values into Dense Memory/Register.
 //
 // Forms:
@@ -26331,6 +26362,37 @@ func VPCOMPRESSQ(ops ...operand.Op) (*intrep.Instruction, error) {
 //	VPCOMPRESSQ.Z zmm k zmm
 func VPCOMPRESSQ_Z(xyz, k, mxyz operand.Op) (*intrep.Instruction, error) {
 	return build(opcVPCOMPRESSQ.Forms(), sffxs{sffxZ}, []operand.Op{xyz, k, mxyz})
+}
+
+// VPCOMPRESSW: Store Sparse Packed Word Integer Values into Dense Memory/Register.
+//
+// Forms:
+//
+//	VPCOMPRESSW xmm k m128
+//	VPCOMPRESSW xmm k xmm
+//	VPCOMPRESSW xmm m128
+//	VPCOMPRESSW xmm xmm
+//	VPCOMPRESSW ymm k m256
+//	VPCOMPRESSW ymm k ymm
+//	VPCOMPRESSW ymm m256
+//	VPCOMPRESSW ymm ymm
+//	VPCOMPRESSW zmm k m512
+//	VPCOMPRESSW zmm k zmm
+//	VPCOMPRESSW zmm m512
+//	VPCOMPRESSW zmm zmm
+func VPCOMPRESSW(ops ...operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPCOMPRESSW.Forms(), sffxs{}, ops)
+}
+
+// VPCOMPRESSW_Z: Store Sparse Packed Word Integer Values into Dense Memory/Register (Zeroing Masking).
+//
+// Forms:
+//
+//	VPCOMPRESSW.Z xmm k xmm
+//	VPCOMPRESSW.Z ymm k ymm
+//	VPCOMPRESSW.Z zmm k zmm
+func VPCOMPRESSW_Z(xyz, k, xyz1 operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPCOMPRESSW.Forms(), sffxs{sffxZ}, []operand.Op{xyz, k, xyz1})
 }
 
 // VPCONFLICTD: Detect Conflicts Within a Vector of Packed Doubleword Values into Dense Memory/Register.

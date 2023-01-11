@@ -59522,6 +59522,74 @@ func (c *Context) VPCMPW(ops ...operand.Op) {
 // Operates on the global context.
 func VPCMPW(ops ...operand.Op) { ctx.VPCMPW(ops...) }
 
+// VPCOMPRESSB: Store Sparse Packed Byte Integer Values into Dense Memory/Register.
+//
+// Forms:
+//
+//	VPCOMPRESSB xmm k m128
+//	VPCOMPRESSB xmm k xmm
+//	VPCOMPRESSB xmm m128
+//	VPCOMPRESSB xmm xmm
+//	VPCOMPRESSB ymm k m256
+//	VPCOMPRESSB ymm k ymm
+//	VPCOMPRESSB ymm m256
+//	VPCOMPRESSB ymm ymm
+//	VPCOMPRESSB zmm k m512
+//	VPCOMPRESSB zmm k zmm
+//	VPCOMPRESSB zmm m512
+//	VPCOMPRESSB zmm zmm
+//
+// Construct and append a VPCOMPRESSB instruction to the active function.
+func (c *Context) VPCOMPRESSB(ops ...operand.Op) {
+	c.addinstruction(x86.VPCOMPRESSB(ops...))
+}
+
+// VPCOMPRESSB: Store Sparse Packed Byte Integer Values into Dense Memory/Register.
+//
+// Forms:
+//
+//	VPCOMPRESSB xmm k m128
+//	VPCOMPRESSB xmm k xmm
+//	VPCOMPRESSB xmm m128
+//	VPCOMPRESSB xmm xmm
+//	VPCOMPRESSB ymm k m256
+//	VPCOMPRESSB ymm k ymm
+//	VPCOMPRESSB ymm m256
+//	VPCOMPRESSB ymm ymm
+//	VPCOMPRESSB zmm k m512
+//	VPCOMPRESSB zmm k zmm
+//	VPCOMPRESSB zmm m512
+//	VPCOMPRESSB zmm zmm
+//
+// Construct and append a VPCOMPRESSB instruction to the active function.
+// Operates on the global context.
+func VPCOMPRESSB(ops ...operand.Op) { ctx.VPCOMPRESSB(ops...) }
+
+// VPCOMPRESSB_Z: Store Sparse Packed Byte Integer Values into Dense Memory/Register (Zeroing Masking).
+//
+// Forms:
+//
+//	VPCOMPRESSB.Z xmm k xmm
+//	VPCOMPRESSB.Z ymm k ymm
+//	VPCOMPRESSB.Z zmm k zmm
+//
+// Construct and append a VPCOMPRESSB.Z instruction to the active function.
+func (c *Context) VPCOMPRESSB_Z(xyz, k, xyz1 operand.Op) {
+	c.addinstruction(x86.VPCOMPRESSB_Z(xyz, k, xyz1))
+}
+
+// VPCOMPRESSB_Z: Store Sparse Packed Byte Integer Values into Dense Memory/Register (Zeroing Masking).
+//
+// Forms:
+//
+//	VPCOMPRESSB.Z xmm k xmm
+//	VPCOMPRESSB.Z ymm k ymm
+//	VPCOMPRESSB.Z zmm k zmm
+//
+// Construct and append a VPCOMPRESSB.Z instruction to the active function.
+// Operates on the global context.
+func VPCOMPRESSB_Z(xyz, k, xyz1 operand.Op) { ctx.VPCOMPRESSB_Z(xyz, k, xyz1) }
+
 // VPCOMPRESSD: Store Sparse Packed Doubleword Integer Values into Dense Memory/Register.
 //
 // Forms:
@@ -59669,6 +59737,74 @@ func (c *Context) VPCOMPRESSQ_Z(xyz, k, mxyz operand.Op) {
 // Construct and append a VPCOMPRESSQ.Z instruction to the active function.
 // Operates on the global context.
 func VPCOMPRESSQ_Z(xyz, k, mxyz operand.Op) { ctx.VPCOMPRESSQ_Z(xyz, k, mxyz) }
+
+// VPCOMPRESSW: Store Sparse Packed Word Integer Values into Dense Memory/Register.
+//
+// Forms:
+//
+//	VPCOMPRESSW xmm k m128
+//	VPCOMPRESSW xmm k xmm
+//	VPCOMPRESSW xmm m128
+//	VPCOMPRESSW xmm xmm
+//	VPCOMPRESSW ymm k m256
+//	VPCOMPRESSW ymm k ymm
+//	VPCOMPRESSW ymm m256
+//	VPCOMPRESSW ymm ymm
+//	VPCOMPRESSW zmm k m512
+//	VPCOMPRESSW zmm k zmm
+//	VPCOMPRESSW zmm m512
+//	VPCOMPRESSW zmm zmm
+//
+// Construct and append a VPCOMPRESSW instruction to the active function.
+func (c *Context) VPCOMPRESSW(ops ...operand.Op) {
+	c.addinstruction(x86.VPCOMPRESSW(ops...))
+}
+
+// VPCOMPRESSW: Store Sparse Packed Word Integer Values into Dense Memory/Register.
+//
+// Forms:
+//
+//	VPCOMPRESSW xmm k m128
+//	VPCOMPRESSW xmm k xmm
+//	VPCOMPRESSW xmm m128
+//	VPCOMPRESSW xmm xmm
+//	VPCOMPRESSW ymm k m256
+//	VPCOMPRESSW ymm k ymm
+//	VPCOMPRESSW ymm m256
+//	VPCOMPRESSW ymm ymm
+//	VPCOMPRESSW zmm k m512
+//	VPCOMPRESSW zmm k zmm
+//	VPCOMPRESSW zmm m512
+//	VPCOMPRESSW zmm zmm
+//
+// Construct and append a VPCOMPRESSW instruction to the active function.
+// Operates on the global context.
+func VPCOMPRESSW(ops ...operand.Op) { ctx.VPCOMPRESSW(ops...) }
+
+// VPCOMPRESSW_Z: Store Sparse Packed Word Integer Values into Dense Memory/Register (Zeroing Masking).
+//
+// Forms:
+//
+//	VPCOMPRESSW.Z xmm k xmm
+//	VPCOMPRESSW.Z ymm k ymm
+//	VPCOMPRESSW.Z zmm k zmm
+//
+// Construct and append a VPCOMPRESSW.Z instruction to the active function.
+func (c *Context) VPCOMPRESSW_Z(xyz, k, xyz1 operand.Op) {
+	c.addinstruction(x86.VPCOMPRESSW_Z(xyz, k, xyz1))
+}
+
+// VPCOMPRESSW_Z: Store Sparse Packed Word Integer Values into Dense Memory/Register (Zeroing Masking).
+//
+// Forms:
+//
+//	VPCOMPRESSW.Z xmm k xmm
+//	VPCOMPRESSW.Z ymm k ymm
+//	VPCOMPRESSW.Z zmm k zmm
+//
+// Construct and append a VPCOMPRESSW.Z instruction to the active function.
+// Operates on the global context.
+func VPCOMPRESSW_Z(xyz, k, xyz1 operand.Op) { ctx.VPCOMPRESSW_Z(xyz, k, xyz1) }
 
 // VPCONFLICTD: Detect Conflicts Within a Vector of Packed Doubleword Values into Dense Memory/Register.
 //
