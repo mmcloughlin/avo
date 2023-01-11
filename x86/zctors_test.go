@@ -38852,6 +38852,171 @@ func TestVPSHLDQ_ZValidFormsNoError(t *testing.T) {
 	}
 }
 
+func TestVPSHLDVDValidFormsNoError(t *testing.T) {
+	if _, err := VPSHLDVD(opm128, opxmm, opk, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHLDVD(opm128, opxmm, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHLDVD(opm256, opymm, opk, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHLDVD(opm256, opymm, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHLDVD(opm512, opzmm, opk, opzmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHLDVD(opm512, opzmm, opzmm); err != nil {
+		t.Fatal(err)
+	}
+}
+
+func TestVPSHLDVD_BCSTValidFormsNoError(t *testing.T) {
+	if _, err := VPSHLDVD_BCST(opm32, opxmm, opk, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHLDVD_BCST(opm32, opxmm, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHLDVD_BCST(opm32, opymm, opk, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHLDVD_BCST(opm32, opymm, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHLDVD_BCST(opm32, opzmm, opk, opzmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHLDVD_BCST(opm32, opzmm, opzmm); err != nil {
+		t.Fatal(err)
+	}
+}
+
+func TestVPSHLDVD_BCST_ZValidFormsNoError(t *testing.T) {
+	if _, err := VPSHLDVD_BCST_Z(opm32, opxmm, opk, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHLDVD_BCST_Z(opm32, opymm, opk, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHLDVD_BCST_Z(opm32, opzmm, opk, opzmm); err != nil {
+		t.Fatal(err)
+	}
+}
+
+func TestVPSHLDVD_ZValidFormsNoError(t *testing.T) {
+	if _, err := VPSHLDVD_Z(opm128, opxmm, opk, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHLDVD_Z(opm256, opymm, opk, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHLDVD_Z(opm512, opzmm, opk, opzmm); err != nil {
+		t.Fatal(err)
+	}
+}
+
+func TestVPSHLDVQValidFormsNoError(t *testing.T) {
+	if _, err := VPSHLDVQ(opm128, opxmm, opk, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHLDVQ(opm128, opxmm, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHLDVQ(opm256, opymm, opk, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHLDVQ(opm256, opymm, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHLDVQ(opm512, opzmm, opk, opzmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHLDVQ(opm512, opzmm, opzmm); err != nil {
+		t.Fatal(err)
+	}
+}
+
+func TestVPSHLDVQ_BCSTValidFormsNoError(t *testing.T) {
+	if _, err := VPSHLDVQ_BCST(opm64, opxmm, opk, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHLDVQ_BCST(opm64, opxmm, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHLDVQ_BCST(opm64, opymm, opk, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHLDVQ_BCST(opm64, opymm, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHLDVQ_BCST(opm64, opzmm, opk, opzmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHLDVQ_BCST(opm64, opzmm, opzmm); err != nil {
+		t.Fatal(err)
+	}
+}
+
+func TestVPSHLDVQ_BCST_ZValidFormsNoError(t *testing.T) {
+	if _, err := VPSHLDVQ_BCST_Z(opm64, opxmm, opk, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHLDVQ_BCST_Z(opm64, opymm, opk, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHLDVQ_BCST_Z(opm64, opzmm, opk, opzmm); err != nil {
+		t.Fatal(err)
+	}
+}
+
+func TestVPSHLDVQ_ZValidFormsNoError(t *testing.T) {
+	if _, err := VPSHLDVQ_Z(opm128, opxmm, opk, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHLDVQ_Z(opm256, opymm, opk, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHLDVQ_Z(opm512, opzmm, opk, opzmm); err != nil {
+		t.Fatal(err)
+	}
+}
+
+func TestVPSHLDVWValidFormsNoError(t *testing.T) {
+	if _, err := VPSHLDVW(opm128, opxmm, opk, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHLDVW(opm128, opxmm, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHLDVW(opm256, opymm, opk, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHLDVW(opm256, opymm, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHLDVW(opm512, opzmm, opk, opzmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHLDVW(opm512, opzmm, opzmm); err != nil {
+		t.Fatal(err)
+	}
+}
+
+func TestVPSHLDVW_ZValidFormsNoError(t *testing.T) {
+	if _, err := VPSHLDVW_Z(opm128, opxmm, opk, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHLDVW_Z(opm256, opymm, opk, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHLDVW_Z(opm512, opzmm, opk, opzmm); err != nil {
+		t.Fatal(err)
+	}
+}
+
 func TestVPSHLDWValidFormsNoError(t *testing.T) {
 	if _, err := VPSHLDW(opimm8, opm128, opxmm, opk, opxmm); err != nil {
 		t.Fatal(err)
@@ -39013,6 +39178,171 @@ func TestVPSHRDQ_ZValidFormsNoError(t *testing.T) {
 		t.Fatal(err)
 	}
 	if _, err := VPSHRDQ_Z(opimm8, opm512, opzmm, opk, opzmm); err != nil {
+		t.Fatal(err)
+	}
+}
+
+func TestVPSHRDVDValidFormsNoError(t *testing.T) {
+	if _, err := VPSHRDVD(opm128, opxmm, opk, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHRDVD(opm128, opxmm, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHRDVD(opm256, opymm, opk, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHRDVD(opm256, opymm, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHRDVD(opm512, opzmm, opk, opzmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHRDVD(opm512, opzmm, opzmm); err != nil {
+		t.Fatal(err)
+	}
+}
+
+func TestVPSHRDVD_BCSTValidFormsNoError(t *testing.T) {
+	if _, err := VPSHRDVD_BCST(opm32, opxmm, opk, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHRDVD_BCST(opm32, opxmm, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHRDVD_BCST(opm32, opymm, opk, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHRDVD_BCST(opm32, opymm, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHRDVD_BCST(opm32, opzmm, opk, opzmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHRDVD_BCST(opm32, opzmm, opzmm); err != nil {
+		t.Fatal(err)
+	}
+}
+
+func TestVPSHRDVD_BCST_ZValidFormsNoError(t *testing.T) {
+	if _, err := VPSHRDVD_BCST_Z(opm32, opxmm, opk, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHRDVD_BCST_Z(opm32, opymm, opk, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHRDVD_BCST_Z(opm32, opzmm, opk, opzmm); err != nil {
+		t.Fatal(err)
+	}
+}
+
+func TestVPSHRDVD_ZValidFormsNoError(t *testing.T) {
+	if _, err := VPSHRDVD_Z(opm128, opxmm, opk, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHRDVD_Z(opm256, opymm, opk, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHRDVD_Z(opm512, opzmm, opk, opzmm); err != nil {
+		t.Fatal(err)
+	}
+}
+
+func TestVPSHRDVQValidFormsNoError(t *testing.T) {
+	if _, err := VPSHRDVQ(opm128, opxmm, opk, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHRDVQ(opm128, opxmm, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHRDVQ(opm256, opymm, opk, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHRDVQ(opm256, opymm, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHRDVQ(opm512, opzmm, opk, opzmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHRDVQ(opm512, opzmm, opzmm); err != nil {
+		t.Fatal(err)
+	}
+}
+
+func TestVPSHRDVQ_BCSTValidFormsNoError(t *testing.T) {
+	if _, err := VPSHRDVQ_BCST(opm64, opxmm, opk, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHRDVQ_BCST(opm64, opxmm, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHRDVQ_BCST(opm64, opymm, opk, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHRDVQ_BCST(opm64, opymm, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHRDVQ_BCST(opm64, opzmm, opk, opzmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHRDVQ_BCST(opm64, opzmm, opzmm); err != nil {
+		t.Fatal(err)
+	}
+}
+
+func TestVPSHRDVQ_BCST_ZValidFormsNoError(t *testing.T) {
+	if _, err := VPSHRDVQ_BCST_Z(opm64, opxmm, opk, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHRDVQ_BCST_Z(opm64, opymm, opk, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHRDVQ_BCST_Z(opm64, opzmm, opk, opzmm); err != nil {
+		t.Fatal(err)
+	}
+}
+
+func TestVPSHRDVQ_ZValidFormsNoError(t *testing.T) {
+	if _, err := VPSHRDVQ_Z(opm128, opxmm, opk, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHRDVQ_Z(opm256, opymm, opk, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHRDVQ_Z(opm512, opzmm, opk, opzmm); err != nil {
+		t.Fatal(err)
+	}
+}
+
+func TestVPSHRDVWValidFormsNoError(t *testing.T) {
+	if _, err := VPSHRDVW(opm128, opxmm, opk, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHRDVW(opm128, opxmm, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHRDVW(opm256, opymm, opk, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHRDVW(opm256, opymm, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHRDVW(opm512, opzmm, opk, opzmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHRDVW(opm512, opzmm, opzmm); err != nil {
+		t.Fatal(err)
+	}
+}
+
+func TestVPSHRDVW_ZValidFormsNoError(t *testing.T) {
+	if _, err := VPSHRDVW_Z(opm128, opxmm, opk, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHRDVW_Z(opm256, opymm, opk, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHRDVW_Z(opm512, opzmm, opk, opzmm); err != nil {
 		t.Fatal(err)
 	}
 }

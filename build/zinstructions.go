@@ -71618,6 +71618,286 @@ func (c *Context) VPSHLDQ_Z(i, m, xyz, k, xyz1 operand.Op) {
 // Operates on the global context.
 func VPSHLDQ_Z(i, m, xyz, k, xyz1 operand.Op) { ctx.VPSHLDQ_Z(i, m, xyz, k, xyz1) }
 
+// VPSHLDVD: Concatenate Dwords and Variable Shift Packed Data Left Logical.
+//
+// Forms:
+//
+//	VPSHLDVD m128 xmm k xmm
+//	VPSHLDVD m128 xmm xmm
+//	VPSHLDVD m256 ymm k ymm
+//	VPSHLDVD m256 ymm ymm
+//	VPSHLDVD m512 zmm k zmm
+//	VPSHLDVD m512 zmm zmm
+//
+// Construct and append a VPSHLDVD instruction to the active function.
+func (c *Context) VPSHLDVD(ops ...operand.Op) {
+	c.addinstruction(x86.VPSHLDVD(ops...))
+}
+
+// VPSHLDVD: Concatenate Dwords and Variable Shift Packed Data Left Logical.
+//
+// Forms:
+//
+//	VPSHLDVD m128 xmm k xmm
+//	VPSHLDVD m128 xmm xmm
+//	VPSHLDVD m256 ymm k ymm
+//	VPSHLDVD m256 ymm ymm
+//	VPSHLDVD m512 zmm k zmm
+//	VPSHLDVD m512 zmm zmm
+//
+// Construct and append a VPSHLDVD instruction to the active function.
+// Operates on the global context.
+func VPSHLDVD(ops ...operand.Op) { ctx.VPSHLDVD(ops...) }
+
+// VPSHLDVD_BCST: Concatenate Dwords and Variable Shift Packed Data Left Logical (Broadcast).
+//
+// Forms:
+//
+//	VPSHLDVD.BCST m32 xmm k xmm
+//	VPSHLDVD.BCST m32 xmm xmm
+//	VPSHLDVD.BCST m32 ymm k ymm
+//	VPSHLDVD.BCST m32 ymm ymm
+//	VPSHLDVD.BCST m32 zmm k zmm
+//	VPSHLDVD.BCST m32 zmm zmm
+//
+// Construct and append a VPSHLDVD.BCST instruction to the active function.
+func (c *Context) VPSHLDVD_BCST(ops ...operand.Op) {
+	c.addinstruction(x86.VPSHLDVD_BCST(ops...))
+}
+
+// VPSHLDVD_BCST: Concatenate Dwords and Variable Shift Packed Data Left Logical (Broadcast).
+//
+// Forms:
+//
+//	VPSHLDVD.BCST m32 xmm k xmm
+//	VPSHLDVD.BCST m32 xmm xmm
+//	VPSHLDVD.BCST m32 ymm k ymm
+//	VPSHLDVD.BCST m32 ymm ymm
+//	VPSHLDVD.BCST m32 zmm k zmm
+//	VPSHLDVD.BCST m32 zmm zmm
+//
+// Construct and append a VPSHLDVD.BCST instruction to the active function.
+// Operates on the global context.
+func VPSHLDVD_BCST(ops ...operand.Op) { ctx.VPSHLDVD_BCST(ops...) }
+
+// VPSHLDVD_BCST_Z: Concatenate Dwords and Variable Shift Packed Data Left Logical (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+//	VPSHLDVD.BCST.Z m32 xmm k xmm
+//	VPSHLDVD.BCST.Z m32 ymm k ymm
+//	VPSHLDVD.BCST.Z m32 zmm k zmm
+//
+// Construct and append a VPSHLDVD.BCST.Z instruction to the active function.
+func (c *Context) VPSHLDVD_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	c.addinstruction(x86.VPSHLDVD_BCST_Z(m, xyz, k, xyz1))
+}
+
+// VPSHLDVD_BCST_Z: Concatenate Dwords and Variable Shift Packed Data Left Logical (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+//	VPSHLDVD.BCST.Z m32 xmm k xmm
+//	VPSHLDVD.BCST.Z m32 ymm k ymm
+//	VPSHLDVD.BCST.Z m32 zmm k zmm
+//
+// Construct and append a VPSHLDVD.BCST.Z instruction to the active function.
+// Operates on the global context.
+func VPSHLDVD_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VPSHLDVD_BCST_Z(m, xyz, k, xyz1) }
+
+// VPSHLDVD_Z: Concatenate Dwords and Variable Shift Packed Data Left Logical (Zeroing Masking).
+//
+// Forms:
+//
+//	VPSHLDVD.Z m128 xmm k xmm
+//	VPSHLDVD.Z m256 ymm k ymm
+//	VPSHLDVD.Z m512 zmm k zmm
+//
+// Construct and append a VPSHLDVD.Z instruction to the active function.
+func (c *Context) VPSHLDVD_Z(m, xyz, k, xyz1 operand.Op) {
+	c.addinstruction(x86.VPSHLDVD_Z(m, xyz, k, xyz1))
+}
+
+// VPSHLDVD_Z: Concatenate Dwords and Variable Shift Packed Data Left Logical (Zeroing Masking).
+//
+// Forms:
+//
+//	VPSHLDVD.Z m128 xmm k xmm
+//	VPSHLDVD.Z m256 ymm k ymm
+//	VPSHLDVD.Z m512 zmm k zmm
+//
+// Construct and append a VPSHLDVD.Z instruction to the active function.
+// Operates on the global context.
+func VPSHLDVD_Z(m, xyz, k, xyz1 operand.Op) { ctx.VPSHLDVD_Z(m, xyz, k, xyz1) }
+
+// VPSHLDVQ: Concatenate Quadwords and Variable Shift Packed Data Left Logical.
+//
+// Forms:
+//
+//	VPSHLDVQ m128 xmm k xmm
+//	VPSHLDVQ m128 xmm xmm
+//	VPSHLDVQ m256 ymm k ymm
+//	VPSHLDVQ m256 ymm ymm
+//	VPSHLDVQ m512 zmm k zmm
+//	VPSHLDVQ m512 zmm zmm
+//
+// Construct and append a VPSHLDVQ instruction to the active function.
+func (c *Context) VPSHLDVQ(ops ...operand.Op) {
+	c.addinstruction(x86.VPSHLDVQ(ops...))
+}
+
+// VPSHLDVQ: Concatenate Quadwords and Variable Shift Packed Data Left Logical.
+//
+// Forms:
+//
+//	VPSHLDVQ m128 xmm k xmm
+//	VPSHLDVQ m128 xmm xmm
+//	VPSHLDVQ m256 ymm k ymm
+//	VPSHLDVQ m256 ymm ymm
+//	VPSHLDVQ m512 zmm k zmm
+//	VPSHLDVQ m512 zmm zmm
+//
+// Construct and append a VPSHLDVQ instruction to the active function.
+// Operates on the global context.
+func VPSHLDVQ(ops ...operand.Op) { ctx.VPSHLDVQ(ops...) }
+
+// VPSHLDVQ_BCST: Concatenate Quadwords and Variable Shift Packed Data Left Logical (Broadcast).
+//
+// Forms:
+//
+//	VPSHLDVQ.BCST m64 xmm k xmm
+//	VPSHLDVQ.BCST m64 xmm xmm
+//	VPSHLDVQ.BCST m64 ymm k ymm
+//	VPSHLDVQ.BCST m64 ymm ymm
+//	VPSHLDVQ.BCST m64 zmm k zmm
+//	VPSHLDVQ.BCST m64 zmm zmm
+//
+// Construct and append a VPSHLDVQ.BCST instruction to the active function.
+func (c *Context) VPSHLDVQ_BCST(ops ...operand.Op) {
+	c.addinstruction(x86.VPSHLDVQ_BCST(ops...))
+}
+
+// VPSHLDVQ_BCST: Concatenate Quadwords and Variable Shift Packed Data Left Logical (Broadcast).
+//
+// Forms:
+//
+//	VPSHLDVQ.BCST m64 xmm k xmm
+//	VPSHLDVQ.BCST m64 xmm xmm
+//	VPSHLDVQ.BCST m64 ymm k ymm
+//	VPSHLDVQ.BCST m64 ymm ymm
+//	VPSHLDVQ.BCST m64 zmm k zmm
+//	VPSHLDVQ.BCST m64 zmm zmm
+//
+// Construct and append a VPSHLDVQ.BCST instruction to the active function.
+// Operates on the global context.
+func VPSHLDVQ_BCST(ops ...operand.Op) { ctx.VPSHLDVQ_BCST(ops...) }
+
+// VPSHLDVQ_BCST_Z: Concatenate Quadwords and Variable Shift Packed Data Left Logical (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+//	VPSHLDVQ.BCST.Z m64 xmm k xmm
+//	VPSHLDVQ.BCST.Z m64 ymm k ymm
+//	VPSHLDVQ.BCST.Z m64 zmm k zmm
+//
+// Construct and append a VPSHLDVQ.BCST.Z instruction to the active function.
+func (c *Context) VPSHLDVQ_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	c.addinstruction(x86.VPSHLDVQ_BCST_Z(m, xyz, k, xyz1))
+}
+
+// VPSHLDVQ_BCST_Z: Concatenate Quadwords and Variable Shift Packed Data Left Logical (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+//	VPSHLDVQ.BCST.Z m64 xmm k xmm
+//	VPSHLDVQ.BCST.Z m64 ymm k ymm
+//	VPSHLDVQ.BCST.Z m64 zmm k zmm
+//
+// Construct and append a VPSHLDVQ.BCST.Z instruction to the active function.
+// Operates on the global context.
+func VPSHLDVQ_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VPSHLDVQ_BCST_Z(m, xyz, k, xyz1) }
+
+// VPSHLDVQ_Z: Concatenate Quadwords and Variable Shift Packed Data Left Logical (Zeroing Masking).
+//
+// Forms:
+//
+//	VPSHLDVQ.Z m128 xmm k xmm
+//	VPSHLDVQ.Z m256 ymm k ymm
+//	VPSHLDVQ.Z m512 zmm k zmm
+//
+// Construct and append a VPSHLDVQ.Z instruction to the active function.
+func (c *Context) VPSHLDVQ_Z(m, xyz, k, xyz1 operand.Op) {
+	c.addinstruction(x86.VPSHLDVQ_Z(m, xyz, k, xyz1))
+}
+
+// VPSHLDVQ_Z: Concatenate Quadwords and Variable Shift Packed Data Left Logical (Zeroing Masking).
+//
+// Forms:
+//
+//	VPSHLDVQ.Z m128 xmm k xmm
+//	VPSHLDVQ.Z m256 ymm k ymm
+//	VPSHLDVQ.Z m512 zmm k zmm
+//
+// Construct and append a VPSHLDVQ.Z instruction to the active function.
+// Operates on the global context.
+func VPSHLDVQ_Z(m, xyz, k, xyz1 operand.Op) { ctx.VPSHLDVQ_Z(m, xyz, k, xyz1) }
+
+// VPSHLDVW: Concatenate Words and Variable Shift Packed Data Left Logical.
+//
+// Forms:
+//
+//	VPSHLDVW m128 xmm k xmm
+//	VPSHLDVW m128 xmm xmm
+//	VPSHLDVW m256 ymm k ymm
+//	VPSHLDVW m256 ymm ymm
+//	VPSHLDVW m512 zmm k zmm
+//	VPSHLDVW m512 zmm zmm
+//
+// Construct and append a VPSHLDVW instruction to the active function.
+func (c *Context) VPSHLDVW(ops ...operand.Op) {
+	c.addinstruction(x86.VPSHLDVW(ops...))
+}
+
+// VPSHLDVW: Concatenate Words and Variable Shift Packed Data Left Logical.
+//
+// Forms:
+//
+//	VPSHLDVW m128 xmm k xmm
+//	VPSHLDVW m128 xmm xmm
+//	VPSHLDVW m256 ymm k ymm
+//	VPSHLDVW m256 ymm ymm
+//	VPSHLDVW m512 zmm k zmm
+//	VPSHLDVW m512 zmm zmm
+//
+// Construct and append a VPSHLDVW instruction to the active function.
+// Operates on the global context.
+func VPSHLDVW(ops ...operand.Op) { ctx.VPSHLDVW(ops...) }
+
+// VPSHLDVW_Z: Concatenate Words and Variable Shift Packed Data Left Logical (Zeroing Masking).
+//
+// Forms:
+//
+//	VPSHLDVW.Z m128 xmm k xmm
+//	VPSHLDVW.Z m256 ymm k ymm
+//	VPSHLDVW.Z m512 zmm k zmm
+//
+// Construct and append a VPSHLDVW.Z instruction to the active function.
+func (c *Context) VPSHLDVW_Z(m, xyz, k, xyz1 operand.Op) {
+	c.addinstruction(x86.VPSHLDVW_Z(m, xyz, k, xyz1))
+}
+
+// VPSHLDVW_Z: Concatenate Words and Variable Shift Packed Data Left Logical (Zeroing Masking).
+//
+// Forms:
+//
+//	VPSHLDVW.Z m128 xmm k xmm
+//	VPSHLDVW.Z m256 ymm k ymm
+//	VPSHLDVW.Z m512 zmm k zmm
+//
+// Construct and append a VPSHLDVW.Z instruction to the active function.
+// Operates on the global context.
+func VPSHLDVW_Z(m, xyz, k, xyz1 operand.Op) { ctx.VPSHLDVW_Z(m, xyz, k, xyz1) }
+
 // VPSHLDW: Concatenate Words and Shift Packed Data Left Logical.
 //
 // Forms:
@@ -71897,6 +72177,286 @@ func (c *Context) VPSHRDQ_Z(i, m, xyz, k, xyz1 operand.Op) {
 // Construct and append a VPSHRDQ.Z instruction to the active function.
 // Operates on the global context.
 func VPSHRDQ_Z(i, m, xyz, k, xyz1 operand.Op) { ctx.VPSHRDQ_Z(i, m, xyz, k, xyz1) }
+
+// VPSHRDVD: Concatenate Dwords and Variable Shift Packed Data Right Logical.
+//
+// Forms:
+//
+//	VPSHRDVD m128 xmm k xmm
+//	VPSHRDVD m128 xmm xmm
+//	VPSHRDVD m256 ymm k ymm
+//	VPSHRDVD m256 ymm ymm
+//	VPSHRDVD m512 zmm k zmm
+//	VPSHRDVD m512 zmm zmm
+//
+// Construct and append a VPSHRDVD instruction to the active function.
+func (c *Context) VPSHRDVD(ops ...operand.Op) {
+	c.addinstruction(x86.VPSHRDVD(ops...))
+}
+
+// VPSHRDVD: Concatenate Dwords and Variable Shift Packed Data Right Logical.
+//
+// Forms:
+//
+//	VPSHRDVD m128 xmm k xmm
+//	VPSHRDVD m128 xmm xmm
+//	VPSHRDVD m256 ymm k ymm
+//	VPSHRDVD m256 ymm ymm
+//	VPSHRDVD m512 zmm k zmm
+//	VPSHRDVD m512 zmm zmm
+//
+// Construct and append a VPSHRDVD instruction to the active function.
+// Operates on the global context.
+func VPSHRDVD(ops ...operand.Op) { ctx.VPSHRDVD(ops...) }
+
+// VPSHRDVD_BCST: Concatenate Dwords and Variable Shift Packed Data Right Logical (Broadcast).
+//
+// Forms:
+//
+//	VPSHRDVD.BCST m32 xmm k xmm
+//	VPSHRDVD.BCST m32 xmm xmm
+//	VPSHRDVD.BCST m32 ymm k ymm
+//	VPSHRDVD.BCST m32 ymm ymm
+//	VPSHRDVD.BCST m32 zmm k zmm
+//	VPSHRDVD.BCST m32 zmm zmm
+//
+// Construct and append a VPSHRDVD.BCST instruction to the active function.
+func (c *Context) VPSHRDVD_BCST(ops ...operand.Op) {
+	c.addinstruction(x86.VPSHRDVD_BCST(ops...))
+}
+
+// VPSHRDVD_BCST: Concatenate Dwords and Variable Shift Packed Data Right Logical (Broadcast).
+//
+// Forms:
+//
+//	VPSHRDVD.BCST m32 xmm k xmm
+//	VPSHRDVD.BCST m32 xmm xmm
+//	VPSHRDVD.BCST m32 ymm k ymm
+//	VPSHRDVD.BCST m32 ymm ymm
+//	VPSHRDVD.BCST m32 zmm k zmm
+//	VPSHRDVD.BCST m32 zmm zmm
+//
+// Construct and append a VPSHRDVD.BCST instruction to the active function.
+// Operates on the global context.
+func VPSHRDVD_BCST(ops ...operand.Op) { ctx.VPSHRDVD_BCST(ops...) }
+
+// VPSHRDVD_BCST_Z: Concatenate Dwords and Variable Shift Packed Data Right Logical (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+//	VPSHRDVD.BCST.Z m32 xmm k xmm
+//	VPSHRDVD.BCST.Z m32 ymm k ymm
+//	VPSHRDVD.BCST.Z m32 zmm k zmm
+//
+// Construct and append a VPSHRDVD.BCST.Z instruction to the active function.
+func (c *Context) VPSHRDVD_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	c.addinstruction(x86.VPSHRDVD_BCST_Z(m, xyz, k, xyz1))
+}
+
+// VPSHRDVD_BCST_Z: Concatenate Dwords and Variable Shift Packed Data Right Logical (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+//	VPSHRDVD.BCST.Z m32 xmm k xmm
+//	VPSHRDVD.BCST.Z m32 ymm k ymm
+//	VPSHRDVD.BCST.Z m32 zmm k zmm
+//
+// Construct and append a VPSHRDVD.BCST.Z instruction to the active function.
+// Operates on the global context.
+func VPSHRDVD_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VPSHRDVD_BCST_Z(m, xyz, k, xyz1) }
+
+// VPSHRDVD_Z: Concatenate Dwords and Variable Shift Packed Data Right Logical (Zeroing Masking).
+//
+// Forms:
+//
+//	VPSHRDVD.Z m128 xmm k xmm
+//	VPSHRDVD.Z m256 ymm k ymm
+//	VPSHRDVD.Z m512 zmm k zmm
+//
+// Construct and append a VPSHRDVD.Z instruction to the active function.
+func (c *Context) VPSHRDVD_Z(m, xyz, k, xyz1 operand.Op) {
+	c.addinstruction(x86.VPSHRDVD_Z(m, xyz, k, xyz1))
+}
+
+// VPSHRDVD_Z: Concatenate Dwords and Variable Shift Packed Data Right Logical (Zeroing Masking).
+//
+// Forms:
+//
+//	VPSHRDVD.Z m128 xmm k xmm
+//	VPSHRDVD.Z m256 ymm k ymm
+//	VPSHRDVD.Z m512 zmm k zmm
+//
+// Construct and append a VPSHRDVD.Z instruction to the active function.
+// Operates on the global context.
+func VPSHRDVD_Z(m, xyz, k, xyz1 operand.Op) { ctx.VPSHRDVD_Z(m, xyz, k, xyz1) }
+
+// VPSHRDVQ: Concatenate Quadwords and Variable Shift Packed Data Right Logical.
+//
+// Forms:
+//
+//	VPSHRDVQ m128 xmm k xmm
+//	VPSHRDVQ m128 xmm xmm
+//	VPSHRDVQ m256 ymm k ymm
+//	VPSHRDVQ m256 ymm ymm
+//	VPSHRDVQ m512 zmm k zmm
+//	VPSHRDVQ m512 zmm zmm
+//
+// Construct and append a VPSHRDVQ instruction to the active function.
+func (c *Context) VPSHRDVQ(ops ...operand.Op) {
+	c.addinstruction(x86.VPSHRDVQ(ops...))
+}
+
+// VPSHRDVQ: Concatenate Quadwords and Variable Shift Packed Data Right Logical.
+//
+// Forms:
+//
+//	VPSHRDVQ m128 xmm k xmm
+//	VPSHRDVQ m128 xmm xmm
+//	VPSHRDVQ m256 ymm k ymm
+//	VPSHRDVQ m256 ymm ymm
+//	VPSHRDVQ m512 zmm k zmm
+//	VPSHRDVQ m512 zmm zmm
+//
+// Construct and append a VPSHRDVQ instruction to the active function.
+// Operates on the global context.
+func VPSHRDVQ(ops ...operand.Op) { ctx.VPSHRDVQ(ops...) }
+
+// VPSHRDVQ_BCST: Concatenate Quadwords and Variable Shift Packed Data Right Logical (Broadcast).
+//
+// Forms:
+//
+//	VPSHRDVQ.BCST m64 xmm k xmm
+//	VPSHRDVQ.BCST m64 xmm xmm
+//	VPSHRDVQ.BCST m64 ymm k ymm
+//	VPSHRDVQ.BCST m64 ymm ymm
+//	VPSHRDVQ.BCST m64 zmm k zmm
+//	VPSHRDVQ.BCST m64 zmm zmm
+//
+// Construct and append a VPSHRDVQ.BCST instruction to the active function.
+func (c *Context) VPSHRDVQ_BCST(ops ...operand.Op) {
+	c.addinstruction(x86.VPSHRDVQ_BCST(ops...))
+}
+
+// VPSHRDVQ_BCST: Concatenate Quadwords and Variable Shift Packed Data Right Logical (Broadcast).
+//
+// Forms:
+//
+//	VPSHRDVQ.BCST m64 xmm k xmm
+//	VPSHRDVQ.BCST m64 xmm xmm
+//	VPSHRDVQ.BCST m64 ymm k ymm
+//	VPSHRDVQ.BCST m64 ymm ymm
+//	VPSHRDVQ.BCST m64 zmm k zmm
+//	VPSHRDVQ.BCST m64 zmm zmm
+//
+// Construct and append a VPSHRDVQ.BCST instruction to the active function.
+// Operates on the global context.
+func VPSHRDVQ_BCST(ops ...operand.Op) { ctx.VPSHRDVQ_BCST(ops...) }
+
+// VPSHRDVQ_BCST_Z: Concatenate Quadwords and Variable Shift Packed Data Right Logical (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+//	VPSHRDVQ.BCST.Z m64 xmm k xmm
+//	VPSHRDVQ.BCST.Z m64 ymm k ymm
+//	VPSHRDVQ.BCST.Z m64 zmm k zmm
+//
+// Construct and append a VPSHRDVQ.BCST.Z instruction to the active function.
+func (c *Context) VPSHRDVQ_BCST_Z(m, xyz, k, xyz1 operand.Op) {
+	c.addinstruction(x86.VPSHRDVQ_BCST_Z(m, xyz, k, xyz1))
+}
+
+// VPSHRDVQ_BCST_Z: Concatenate Quadwords and Variable Shift Packed Data Right Logical (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+//	VPSHRDVQ.BCST.Z m64 xmm k xmm
+//	VPSHRDVQ.BCST.Z m64 ymm k ymm
+//	VPSHRDVQ.BCST.Z m64 zmm k zmm
+//
+// Construct and append a VPSHRDVQ.BCST.Z instruction to the active function.
+// Operates on the global context.
+func VPSHRDVQ_BCST_Z(m, xyz, k, xyz1 operand.Op) { ctx.VPSHRDVQ_BCST_Z(m, xyz, k, xyz1) }
+
+// VPSHRDVQ_Z: Concatenate Quadwords and Variable Shift Packed Data Right Logical (Zeroing Masking).
+//
+// Forms:
+//
+//	VPSHRDVQ.Z m128 xmm k xmm
+//	VPSHRDVQ.Z m256 ymm k ymm
+//	VPSHRDVQ.Z m512 zmm k zmm
+//
+// Construct and append a VPSHRDVQ.Z instruction to the active function.
+func (c *Context) VPSHRDVQ_Z(m, xyz, k, xyz1 operand.Op) {
+	c.addinstruction(x86.VPSHRDVQ_Z(m, xyz, k, xyz1))
+}
+
+// VPSHRDVQ_Z: Concatenate Quadwords and Variable Shift Packed Data Right Logical (Zeroing Masking).
+//
+// Forms:
+//
+//	VPSHRDVQ.Z m128 xmm k xmm
+//	VPSHRDVQ.Z m256 ymm k ymm
+//	VPSHRDVQ.Z m512 zmm k zmm
+//
+// Construct and append a VPSHRDVQ.Z instruction to the active function.
+// Operates on the global context.
+func VPSHRDVQ_Z(m, xyz, k, xyz1 operand.Op) { ctx.VPSHRDVQ_Z(m, xyz, k, xyz1) }
+
+// VPSHRDVW: Concatenate Words and Variable Shift Packed Data Right Logical.
+//
+// Forms:
+//
+//	VPSHRDVW m128 xmm k xmm
+//	VPSHRDVW m128 xmm xmm
+//	VPSHRDVW m256 ymm k ymm
+//	VPSHRDVW m256 ymm ymm
+//	VPSHRDVW m512 zmm k zmm
+//	VPSHRDVW m512 zmm zmm
+//
+// Construct and append a VPSHRDVW instruction to the active function.
+func (c *Context) VPSHRDVW(ops ...operand.Op) {
+	c.addinstruction(x86.VPSHRDVW(ops...))
+}
+
+// VPSHRDVW: Concatenate Words and Variable Shift Packed Data Right Logical.
+//
+// Forms:
+//
+//	VPSHRDVW m128 xmm k xmm
+//	VPSHRDVW m128 xmm xmm
+//	VPSHRDVW m256 ymm k ymm
+//	VPSHRDVW m256 ymm ymm
+//	VPSHRDVW m512 zmm k zmm
+//	VPSHRDVW m512 zmm zmm
+//
+// Construct and append a VPSHRDVW instruction to the active function.
+// Operates on the global context.
+func VPSHRDVW(ops ...operand.Op) { ctx.VPSHRDVW(ops...) }
+
+// VPSHRDVW_Z: Concatenate Words and Variable Shift Packed Data Right Logical (Zeroing Masking).
+//
+// Forms:
+//
+//	VPSHRDVW.Z m128 xmm k xmm
+//	VPSHRDVW.Z m256 ymm k ymm
+//	VPSHRDVW.Z m512 zmm k zmm
+//
+// Construct and append a VPSHRDVW.Z instruction to the active function.
+func (c *Context) VPSHRDVW_Z(m, xyz, k, xyz1 operand.Op) {
+	c.addinstruction(x86.VPSHRDVW_Z(m, xyz, k, xyz1))
+}
+
+// VPSHRDVW_Z: Concatenate Words and Variable Shift Packed Data Right Logical (Zeroing Masking).
+//
+// Forms:
+//
+//	VPSHRDVW.Z m128 xmm k xmm
+//	VPSHRDVW.Z m256 ymm k ymm
+//	VPSHRDVW.Z m512 zmm k zmm
+//
+// Construct and append a VPSHRDVW.Z instruction to the active function.
+// Operates on the global context.
+func VPSHRDVW_Z(m, xyz, k, xyz1 operand.Op) { ctx.VPSHRDVW_Z(m, xyz, k, xyz1) }
 
 // VPSHRDW: Concatenate Words and Shift Packed Data Right Logical.
 //

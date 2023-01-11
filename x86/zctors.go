@@ -31770,6 +31770,131 @@ func VPSHLDQ_Z(i, m, xyz, k, xyz1 operand.Op) (*intrep.Instruction, error) {
 	return build(opcVPSHLDQ.Forms(), sffxs{sffxZ}, []operand.Op{i, m, xyz, k, xyz1})
 }
 
+// VPSHLDVD: Concatenate Dwords and Variable Shift Packed Data Left Logical.
+//
+// Forms:
+//
+//	VPSHLDVD m128 xmm k xmm
+//	VPSHLDVD m128 xmm xmm
+//	VPSHLDVD m256 ymm k ymm
+//	VPSHLDVD m256 ymm ymm
+//	VPSHLDVD m512 zmm k zmm
+//	VPSHLDVD m512 zmm zmm
+func VPSHLDVD(ops ...operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPSHLDVD.Forms(), sffxs{}, ops)
+}
+
+// VPSHLDVD_BCST: Concatenate Dwords and Variable Shift Packed Data Left Logical (Broadcast).
+//
+// Forms:
+//
+//	VPSHLDVD.BCST m32 xmm k xmm
+//	VPSHLDVD.BCST m32 xmm xmm
+//	VPSHLDVD.BCST m32 ymm k ymm
+//	VPSHLDVD.BCST m32 ymm ymm
+//	VPSHLDVD.BCST m32 zmm k zmm
+//	VPSHLDVD.BCST m32 zmm zmm
+func VPSHLDVD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPSHLDVD.Forms(), sffxs{sffxBCST}, ops)
+}
+
+// VPSHLDVD_BCST_Z: Concatenate Dwords and Variable Shift Packed Data Left Logical (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+//	VPSHLDVD.BCST.Z m32 xmm k xmm
+//	VPSHLDVD.BCST.Z m32 ymm k ymm
+//	VPSHLDVD.BCST.Z m32 zmm k zmm
+func VPSHLDVD_BCST_Z(m, xyz, k, xyz1 operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPSHLDVD.Forms(), sffxs{sffxBCST, sffxZ}, []operand.Op{m, xyz, k, xyz1})
+}
+
+// VPSHLDVD_Z: Concatenate Dwords and Variable Shift Packed Data Left Logical (Zeroing Masking).
+//
+// Forms:
+//
+//	VPSHLDVD.Z m128 xmm k xmm
+//	VPSHLDVD.Z m256 ymm k ymm
+//	VPSHLDVD.Z m512 zmm k zmm
+func VPSHLDVD_Z(m, xyz, k, xyz1 operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPSHLDVD.Forms(), sffxs{sffxZ}, []operand.Op{m, xyz, k, xyz1})
+}
+
+// VPSHLDVQ: Concatenate Quadwords and Variable Shift Packed Data Left Logical.
+//
+// Forms:
+//
+//	VPSHLDVQ m128 xmm k xmm
+//	VPSHLDVQ m128 xmm xmm
+//	VPSHLDVQ m256 ymm k ymm
+//	VPSHLDVQ m256 ymm ymm
+//	VPSHLDVQ m512 zmm k zmm
+//	VPSHLDVQ m512 zmm zmm
+func VPSHLDVQ(ops ...operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPSHLDVQ.Forms(), sffxs{}, ops)
+}
+
+// VPSHLDVQ_BCST: Concatenate Quadwords and Variable Shift Packed Data Left Logical (Broadcast).
+//
+// Forms:
+//
+//	VPSHLDVQ.BCST m64 xmm k xmm
+//	VPSHLDVQ.BCST m64 xmm xmm
+//	VPSHLDVQ.BCST m64 ymm k ymm
+//	VPSHLDVQ.BCST m64 ymm ymm
+//	VPSHLDVQ.BCST m64 zmm k zmm
+//	VPSHLDVQ.BCST m64 zmm zmm
+func VPSHLDVQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPSHLDVQ.Forms(), sffxs{sffxBCST}, ops)
+}
+
+// VPSHLDVQ_BCST_Z: Concatenate Quadwords and Variable Shift Packed Data Left Logical (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+//	VPSHLDVQ.BCST.Z m64 xmm k xmm
+//	VPSHLDVQ.BCST.Z m64 ymm k ymm
+//	VPSHLDVQ.BCST.Z m64 zmm k zmm
+func VPSHLDVQ_BCST_Z(m, xyz, k, xyz1 operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPSHLDVQ.Forms(), sffxs{sffxBCST, sffxZ}, []operand.Op{m, xyz, k, xyz1})
+}
+
+// VPSHLDVQ_Z: Concatenate Quadwords and Variable Shift Packed Data Left Logical (Zeroing Masking).
+//
+// Forms:
+//
+//	VPSHLDVQ.Z m128 xmm k xmm
+//	VPSHLDVQ.Z m256 ymm k ymm
+//	VPSHLDVQ.Z m512 zmm k zmm
+func VPSHLDVQ_Z(m, xyz, k, xyz1 operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPSHLDVQ.Forms(), sffxs{sffxZ}, []operand.Op{m, xyz, k, xyz1})
+}
+
+// VPSHLDVW: Concatenate Words and Variable Shift Packed Data Left Logical.
+//
+// Forms:
+//
+//	VPSHLDVW m128 xmm k xmm
+//	VPSHLDVW m128 xmm xmm
+//	VPSHLDVW m256 ymm k ymm
+//	VPSHLDVW m256 ymm ymm
+//	VPSHLDVW m512 zmm k zmm
+//	VPSHLDVW m512 zmm zmm
+func VPSHLDVW(ops ...operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPSHLDVW.Forms(), sffxs{}, ops)
+}
+
+// VPSHLDVW_Z: Concatenate Words and Variable Shift Packed Data Left Logical (Zeroing Masking).
+//
+// Forms:
+//
+//	VPSHLDVW.Z m128 xmm k xmm
+//	VPSHLDVW.Z m256 ymm k ymm
+//	VPSHLDVW.Z m512 zmm k zmm
+func VPSHLDVW_Z(m, xyz, k, xyz1 operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPSHLDVW.Forms(), sffxs{sffxZ}, []operand.Op{m, xyz, k, xyz1})
+}
+
 // VPSHLDW: Concatenate Words and Shift Packed Data Left Logical.
 //
 // Forms:
@@ -31893,6 +32018,131 @@ func VPSHRDQ_BCST_Z(i, m, xyz, k, xyz1 operand.Op) (*intrep.Instruction, error) 
 //	VPSHRDQ.Z imm8 m512 zmm k zmm
 func VPSHRDQ_Z(i, m, xyz, k, xyz1 operand.Op) (*intrep.Instruction, error) {
 	return build(opcVPSHRDQ.Forms(), sffxs{sffxZ}, []operand.Op{i, m, xyz, k, xyz1})
+}
+
+// VPSHRDVD: Concatenate Dwords and Variable Shift Packed Data Right Logical.
+//
+// Forms:
+//
+//	VPSHRDVD m128 xmm k xmm
+//	VPSHRDVD m128 xmm xmm
+//	VPSHRDVD m256 ymm k ymm
+//	VPSHRDVD m256 ymm ymm
+//	VPSHRDVD m512 zmm k zmm
+//	VPSHRDVD m512 zmm zmm
+func VPSHRDVD(ops ...operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPSHRDVD.Forms(), sffxs{}, ops)
+}
+
+// VPSHRDVD_BCST: Concatenate Dwords and Variable Shift Packed Data Right Logical (Broadcast).
+//
+// Forms:
+//
+//	VPSHRDVD.BCST m32 xmm k xmm
+//	VPSHRDVD.BCST m32 xmm xmm
+//	VPSHRDVD.BCST m32 ymm k ymm
+//	VPSHRDVD.BCST m32 ymm ymm
+//	VPSHRDVD.BCST m32 zmm k zmm
+//	VPSHRDVD.BCST m32 zmm zmm
+func VPSHRDVD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPSHRDVD.Forms(), sffxs{sffxBCST}, ops)
+}
+
+// VPSHRDVD_BCST_Z: Concatenate Dwords and Variable Shift Packed Data Right Logical (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+//	VPSHRDVD.BCST.Z m32 xmm k xmm
+//	VPSHRDVD.BCST.Z m32 ymm k ymm
+//	VPSHRDVD.BCST.Z m32 zmm k zmm
+func VPSHRDVD_BCST_Z(m, xyz, k, xyz1 operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPSHRDVD.Forms(), sffxs{sffxBCST, sffxZ}, []operand.Op{m, xyz, k, xyz1})
+}
+
+// VPSHRDVD_Z: Concatenate Dwords and Variable Shift Packed Data Right Logical (Zeroing Masking).
+//
+// Forms:
+//
+//	VPSHRDVD.Z m128 xmm k xmm
+//	VPSHRDVD.Z m256 ymm k ymm
+//	VPSHRDVD.Z m512 zmm k zmm
+func VPSHRDVD_Z(m, xyz, k, xyz1 operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPSHRDVD.Forms(), sffxs{sffxZ}, []operand.Op{m, xyz, k, xyz1})
+}
+
+// VPSHRDVQ: Concatenate Quadwords and Variable Shift Packed Data Right Logical.
+//
+// Forms:
+//
+//	VPSHRDVQ m128 xmm k xmm
+//	VPSHRDVQ m128 xmm xmm
+//	VPSHRDVQ m256 ymm k ymm
+//	VPSHRDVQ m256 ymm ymm
+//	VPSHRDVQ m512 zmm k zmm
+//	VPSHRDVQ m512 zmm zmm
+func VPSHRDVQ(ops ...operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPSHRDVQ.Forms(), sffxs{}, ops)
+}
+
+// VPSHRDVQ_BCST: Concatenate Quadwords and Variable Shift Packed Data Right Logical (Broadcast).
+//
+// Forms:
+//
+//	VPSHRDVQ.BCST m64 xmm k xmm
+//	VPSHRDVQ.BCST m64 xmm xmm
+//	VPSHRDVQ.BCST m64 ymm k ymm
+//	VPSHRDVQ.BCST m64 ymm ymm
+//	VPSHRDVQ.BCST m64 zmm k zmm
+//	VPSHRDVQ.BCST m64 zmm zmm
+func VPSHRDVQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPSHRDVQ.Forms(), sffxs{sffxBCST}, ops)
+}
+
+// VPSHRDVQ_BCST_Z: Concatenate Quadwords and Variable Shift Packed Data Right Logical (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+//	VPSHRDVQ.BCST.Z m64 xmm k xmm
+//	VPSHRDVQ.BCST.Z m64 ymm k ymm
+//	VPSHRDVQ.BCST.Z m64 zmm k zmm
+func VPSHRDVQ_BCST_Z(m, xyz, k, xyz1 operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPSHRDVQ.Forms(), sffxs{sffxBCST, sffxZ}, []operand.Op{m, xyz, k, xyz1})
+}
+
+// VPSHRDVQ_Z: Concatenate Quadwords and Variable Shift Packed Data Right Logical (Zeroing Masking).
+//
+// Forms:
+//
+//	VPSHRDVQ.Z m128 xmm k xmm
+//	VPSHRDVQ.Z m256 ymm k ymm
+//	VPSHRDVQ.Z m512 zmm k zmm
+func VPSHRDVQ_Z(m, xyz, k, xyz1 operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPSHRDVQ.Forms(), sffxs{sffxZ}, []operand.Op{m, xyz, k, xyz1})
+}
+
+// VPSHRDVW: Concatenate Words and Variable Shift Packed Data Right Logical.
+//
+// Forms:
+//
+//	VPSHRDVW m128 xmm k xmm
+//	VPSHRDVW m128 xmm xmm
+//	VPSHRDVW m256 ymm k ymm
+//	VPSHRDVW m256 ymm ymm
+//	VPSHRDVW m512 zmm k zmm
+//	VPSHRDVW m512 zmm zmm
+func VPSHRDVW(ops ...operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPSHRDVW.Forms(), sffxs{}, ops)
+}
+
+// VPSHRDVW_Z: Concatenate Words and Variable Shift Packed Data Right Logical (Zeroing Masking).
+//
+// Forms:
+//
+//	VPSHRDVW.Z m128 xmm k xmm
+//	VPSHRDVW.Z m256 ymm k ymm
+//	VPSHRDVW.Z m512 zmm k zmm
+func VPSHRDVW_Z(m, xyz, k, xyz1 operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPSHRDVW.Forms(), sffxs{sffxZ}, []operand.Op{m, xyz, k, xyz1})
 }
 
 // VPSHRDW: Concatenate Words and Shift Packed Data Right Logical.
