@@ -38720,6 +38720,336 @@ func TestVPSCATTERQQValidFormsNoError(t *testing.T) {
 	}
 }
 
+func TestVPSHLDDValidFormsNoError(t *testing.T) {
+	if _, err := VPSHLDD(opimm8, opm128, opxmm, opk, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHLDD(opimm8, opm128, opxmm, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHLDD(opimm8, opm256, opymm, opk, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHLDD(opimm8, opm256, opymm, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHLDD(opimm8, opm512, opzmm, opk, opzmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHLDD(opimm8, opm512, opzmm, opzmm); err != nil {
+		t.Fatal(err)
+	}
+}
+
+func TestVPSHLDD_BCSTValidFormsNoError(t *testing.T) {
+	if _, err := VPSHLDD_BCST(opimm8, opm32, opxmm, opk, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHLDD_BCST(opimm8, opm32, opxmm, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHLDD_BCST(opimm8, opm32, opymm, opk, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHLDD_BCST(opimm8, opm32, opymm, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHLDD_BCST(opimm8, opm32, opzmm, opk, opzmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHLDD_BCST(opimm8, opm32, opzmm, opzmm); err != nil {
+		t.Fatal(err)
+	}
+}
+
+func TestVPSHLDD_BCST_ZValidFormsNoError(t *testing.T) {
+	if _, err := VPSHLDD_BCST_Z(opimm8, opm32, opxmm, opk, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHLDD_BCST_Z(opimm8, opm32, opymm, opk, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHLDD_BCST_Z(opimm8, opm32, opzmm, opk, opzmm); err != nil {
+		t.Fatal(err)
+	}
+}
+
+func TestVPSHLDD_ZValidFormsNoError(t *testing.T) {
+	if _, err := VPSHLDD_Z(opimm8, opm128, opxmm, opk, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHLDD_Z(opimm8, opm256, opymm, opk, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHLDD_Z(opimm8, opm512, opzmm, opk, opzmm); err != nil {
+		t.Fatal(err)
+	}
+}
+
+func TestVPSHLDQValidFormsNoError(t *testing.T) {
+	if _, err := VPSHLDQ(opimm8, opm128, opxmm, opk, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHLDQ(opimm8, opm128, opxmm, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHLDQ(opimm8, opm256, opymm, opk, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHLDQ(opimm8, opm256, opymm, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHLDQ(opimm8, opm512, opzmm, opk, opzmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHLDQ(opimm8, opm512, opzmm, opzmm); err != nil {
+		t.Fatal(err)
+	}
+}
+
+func TestVPSHLDQ_BCSTValidFormsNoError(t *testing.T) {
+	if _, err := VPSHLDQ_BCST(opimm8, opm64, opxmm, opk, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHLDQ_BCST(opimm8, opm64, opxmm, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHLDQ_BCST(opimm8, opm64, opymm, opk, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHLDQ_BCST(opimm8, opm64, opymm, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHLDQ_BCST(opimm8, opm64, opzmm, opk, opzmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHLDQ_BCST(opimm8, opm64, opzmm, opzmm); err != nil {
+		t.Fatal(err)
+	}
+}
+
+func TestVPSHLDQ_BCST_ZValidFormsNoError(t *testing.T) {
+	if _, err := VPSHLDQ_BCST_Z(opimm8, opm64, opxmm, opk, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHLDQ_BCST_Z(opimm8, opm64, opymm, opk, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHLDQ_BCST_Z(opimm8, opm64, opzmm, opk, opzmm); err != nil {
+		t.Fatal(err)
+	}
+}
+
+func TestVPSHLDQ_ZValidFormsNoError(t *testing.T) {
+	if _, err := VPSHLDQ_Z(opimm8, opm128, opxmm, opk, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHLDQ_Z(opimm8, opm256, opymm, opk, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHLDQ_Z(opimm8, opm512, opzmm, opk, opzmm); err != nil {
+		t.Fatal(err)
+	}
+}
+
+func TestVPSHLDWValidFormsNoError(t *testing.T) {
+	if _, err := VPSHLDW(opimm8, opm128, opxmm, opk, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHLDW(opimm8, opm128, opxmm, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHLDW(opimm8, opm256, opymm, opk, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHLDW(opimm8, opm256, opymm, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHLDW(opimm8, opm512, opzmm, opk, opzmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHLDW(opimm8, opm512, opzmm, opzmm); err != nil {
+		t.Fatal(err)
+	}
+}
+
+func TestVPSHLDW_ZValidFormsNoError(t *testing.T) {
+	if _, err := VPSHLDW_Z(opimm8, opm128, opxmm, opk, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHLDW_Z(opimm8, opm256, opymm, opk, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHLDW_Z(opimm8, opm512, opzmm, opk, opzmm); err != nil {
+		t.Fatal(err)
+	}
+}
+
+func TestVPSHRDDValidFormsNoError(t *testing.T) {
+	if _, err := VPSHRDD(opimm8, opm128, opxmm, opk, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHRDD(opimm8, opm128, opxmm, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHRDD(opimm8, opm256, opymm, opk, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHRDD(opimm8, opm256, opymm, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHRDD(opimm8, opm512, opzmm, opk, opzmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHRDD(opimm8, opm512, opzmm, opzmm); err != nil {
+		t.Fatal(err)
+	}
+}
+
+func TestVPSHRDD_BCSTValidFormsNoError(t *testing.T) {
+	if _, err := VPSHRDD_BCST(opimm8, opm32, opxmm, opk, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHRDD_BCST(opimm8, opm32, opxmm, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHRDD_BCST(opimm8, opm32, opymm, opk, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHRDD_BCST(opimm8, opm32, opymm, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHRDD_BCST(opimm8, opm32, opzmm, opk, opzmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHRDD_BCST(opimm8, opm32, opzmm, opzmm); err != nil {
+		t.Fatal(err)
+	}
+}
+
+func TestVPSHRDD_BCST_ZValidFormsNoError(t *testing.T) {
+	if _, err := VPSHRDD_BCST_Z(opimm8, opm32, opxmm, opk, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHRDD_BCST_Z(opimm8, opm32, opymm, opk, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHRDD_BCST_Z(opimm8, opm32, opzmm, opk, opzmm); err != nil {
+		t.Fatal(err)
+	}
+}
+
+func TestVPSHRDD_ZValidFormsNoError(t *testing.T) {
+	if _, err := VPSHRDD_Z(opimm8, opm128, opxmm, opk, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHRDD_Z(opimm8, opm256, opymm, opk, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHRDD_Z(opimm8, opm512, opzmm, opk, opzmm); err != nil {
+		t.Fatal(err)
+	}
+}
+
+func TestVPSHRDQValidFormsNoError(t *testing.T) {
+	if _, err := VPSHRDQ(opimm8, opm128, opxmm, opk, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHRDQ(opimm8, opm128, opxmm, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHRDQ(opimm8, opm256, opymm, opk, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHRDQ(opimm8, opm256, opymm, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHRDQ(opimm8, opm512, opzmm, opk, opzmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHRDQ(opimm8, opm512, opzmm, opzmm); err != nil {
+		t.Fatal(err)
+	}
+}
+
+func TestVPSHRDQ_BCSTValidFormsNoError(t *testing.T) {
+	if _, err := VPSHRDQ_BCST(opimm8, opm64, opxmm, opk, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHRDQ_BCST(opimm8, opm64, opxmm, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHRDQ_BCST(opimm8, opm64, opymm, opk, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHRDQ_BCST(opimm8, opm64, opymm, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHRDQ_BCST(opimm8, opm64, opzmm, opk, opzmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHRDQ_BCST(opimm8, opm64, opzmm, opzmm); err != nil {
+		t.Fatal(err)
+	}
+}
+
+func TestVPSHRDQ_BCST_ZValidFormsNoError(t *testing.T) {
+	if _, err := VPSHRDQ_BCST_Z(opimm8, opm64, opxmm, opk, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHRDQ_BCST_Z(opimm8, opm64, opymm, opk, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHRDQ_BCST_Z(opimm8, opm64, opzmm, opk, opzmm); err != nil {
+		t.Fatal(err)
+	}
+}
+
+func TestVPSHRDQ_ZValidFormsNoError(t *testing.T) {
+	if _, err := VPSHRDQ_Z(opimm8, opm128, opxmm, opk, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHRDQ_Z(opimm8, opm256, opymm, opk, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHRDQ_Z(opimm8, opm512, opzmm, opk, opzmm); err != nil {
+		t.Fatal(err)
+	}
+}
+
+func TestVPSHRDWValidFormsNoError(t *testing.T) {
+	if _, err := VPSHRDW(opimm8, opm128, opxmm, opk, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHRDW(opimm8, opm128, opxmm, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHRDW(opimm8, opm256, opymm, opk, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHRDW(opimm8, opm256, opymm, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHRDW(opimm8, opm512, opzmm, opk, opzmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHRDW(opimm8, opm512, opzmm, opzmm); err != nil {
+		t.Fatal(err)
+	}
+}
+
+func TestVPSHRDW_ZValidFormsNoError(t *testing.T) {
+	if _, err := VPSHRDW_Z(opimm8, opm128, opxmm, opk, opxmm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHRDW_Z(opimm8, opm256, opymm, opk, opymm); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := VPSHRDW_Z(opimm8, opm512, opzmm, opk, opzmm); err != nil {
+		t.Fatal(err)
+	}
+}
+
 func TestVPSHUFBValidFormsNoError(t *testing.T) {
 	if _, err := VPSHUFB(opm256, opymm, opymm); err != nil {
 		t.Fatal(err)
