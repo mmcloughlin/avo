@@ -225,6 +225,16 @@ func vpshld(bcst string) inst.Forms {
 			ISA: []string{"AVX512VBMI2", "AVX512VL"},
 			Operands: []inst.Operand{
 				{Type: "imm8"},
+				{Type: "xmm", Action: inst.R},
+				{Type: "xmm", Action: inst.R},
+				{Type: "xmm{k}{z}", Action: inst.W},
+			},
+			EncodingType: inst.EncodingTypeEVEX,
+		},
+		{
+			ISA: []string{"AVX512VBMI2", "AVX512VL"},
+			Operands: []inst.Operand{
+				{Type: "imm8"},
 				{Type: "m128" + bcst, Action: inst.R},
 				{Type: "xmm", Action: inst.R},
 				{Type: "xmm{k}{z}", Action: inst.W},
@@ -238,6 +248,16 @@ func vpshld(bcst string) inst.Forms {
 			ISA: []string{"AVX512VBMI2", "AVX512VL"},
 			Operands: []inst.Operand{
 				{Type: "imm8"},
+				{Type: "ymm", Action: inst.R},
+				{Type: "ymm", Action: inst.R},
+				{Type: "ymm{k}{z}", Action: inst.W},
+			},
+			EncodingType: inst.EncodingTypeEVEX,
+		},
+		{
+			ISA: []string{"AVX512VBMI2", "AVX512VL"},
+			Operands: []inst.Operand{
+				{Type: "imm8"},
 				{Type: "m256" + bcst, Action: inst.R},
 				{Type: "ymm", Action: inst.R},
 				{Type: "ymm{k}{z}", Action: inst.W},
@@ -247,6 +267,16 @@ func vpshld(bcst string) inst.Forms {
 		// EVEX.512.66.0F3A.W1 70 /r /ib VPSHLDW zmm1{k1}{z}, zmm2, zmm3/m512, imm8	A	V/V	AVX512_VBMI2
 		// EVEX.512.66.0F3A.W0 71 /r /ib VPSHLDD zmm1{k1}{z}, zmm2, zmm3/m512/m32bcst, imm8	B	V/V	AVX512_VBMI2
 		// EVEX.512.66.0F3A.W1 71 /r /ib VPSHLDQ zmm1{k1}{z}, zmm2, zmm3/m512/m64bcst, imm8	B	V/V	AVX512_VBMI2
+		{
+			ISA: []string{"AVX512VBMI2"},
+			Operands: []inst.Operand{
+				{Type: "imm8"},
+				{Type: "zmm", Action: inst.R},
+				{Type: "zmm", Action: inst.R},
+				{Type: "zmm{k}{z}", Action: inst.W},
+			},
+			EncodingType: inst.EncodingTypeEVEX,
+		},
 		{
 			ISA: []string{"AVX512VBMI2"},
 			Operands: []inst.Operand{
@@ -271,6 +301,15 @@ func vpshldv(bcst string) inst.Forms {
 		{
 			ISA: []string{"AVX512VBMI2", "AVX512VL"},
 			Operands: []inst.Operand{
+				{Type: "xmm", Action: inst.R},
+				{Type: "xmm", Action: inst.R},
+				{Type: "xmm{k}{z}", Action: inst.W},
+			},
+			EncodingType: inst.EncodingTypeEVEX,
+		},
+		{
+			ISA: []string{"AVX512VBMI2", "AVX512VL"},
+			Operands: []inst.Operand{
 				{Type: "m128" + bcst, Action: inst.R},
 				{Type: "xmm", Action: inst.R},
 				{Type: "xmm{k}{z}", Action: inst.W},
@@ -283,6 +322,15 @@ func vpshldv(bcst string) inst.Forms {
 		{
 			ISA: []string{"AVX512VBMI2", "AVX512VL"},
 			Operands: []inst.Operand{
+				{Type: "ymm", Action: inst.R},
+				{Type: "ymm", Action: inst.R},
+				{Type: "ymm{k}{z}", Action: inst.W},
+			},
+			EncodingType: inst.EncodingTypeEVEX,
+		},
+		{
+			ISA: []string{"AVX512VBMI2", "AVX512VL"},
+			Operands: []inst.Operand{
 				{Type: "m256" + bcst, Action: inst.R},
 				{Type: "ymm", Action: inst.R},
 				{Type: "ymm{k}{z}", Action: inst.W},
@@ -292,6 +340,15 @@ func vpshldv(bcst string) inst.Forms {
 		// EVEX.512.66.0F38.W1 70 /r VPSHLDVW zmm1{k1}{z}, zmm2, zmm3/m512	A	V/V	AVX512_VBMI2
 		// EVEX.512.66.0F38.W0 71 /r VPSHLDVD zmm1{k1}{z}, zmm2, zmm3/m512/m32bcst	B	V/V	AVX512_VBMI2
 		// EVEX.512.66.0F38.W1 71 /r VPSHLDVQ zmm1{k1}{z}, zmm2, zmm3/m512/m64bcst	B	V/V	AVX512_VBMI2
+		{
+			ISA: []string{"AVX512VBMI2"},
+			Operands: []inst.Operand{
+				{Type: "zmm", Action: inst.R},
+				{Type: "zmm", Action: inst.R},
+				{Type: "zmm{k}{z}", Action: inst.W},
+			},
+			EncodingType: inst.EncodingTypeEVEX,
+		},
 		{
 			ISA: []string{"AVX512VBMI2"},
 			Operands: []inst.Operand{
