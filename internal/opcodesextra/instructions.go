@@ -40,7 +40,7 @@ func Instructions() []*inst.Instruction {
 		}
 	}
 
-	// Sort ISA lists. similarly, this facilitates sharing helper functions for
+	// Sort ISA lists. Similarly, this facilitates sharing helper functions for
 	// building forms lists without worrying about whether the ISA list is in
 	// the right order.
 	for _, i := range is {
