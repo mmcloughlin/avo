@@ -1,7 +1,11 @@
 // Package opcodesextra provides curated extensions to the instruction database.
 package opcodesextra
 
-import "github.com/mmcloughlin/avo/internal/inst"
+import (
+	"sort"
+
+	"github.com/mmcloughlin/avo/internal/inst"
+)
 
 // sets of extra instructions.
 var sets = [][]*inst.Instruction{
@@ -35,5 +39,15 @@ func Instructions() []*inst.Instruction {
 			is = append(is, &c)
 		}
 	}
+
+	// Sort ISA lists. similarly, this facilitates sharing helper functions for
+	// building forms lists without worrying about whether the ISA list is in
+	// the right order.
+	for _, i := range is {
+		for idx := range i.Forms {
+			sort.Strings(i.Forms[idx].ISA)
+		}
+	}
+
 	return is
 }

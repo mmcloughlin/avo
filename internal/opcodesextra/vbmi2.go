@@ -264,62 +264,7 @@ var vpcompressb = inst.Forms{
 //		{zcase: Zevex_rm_v_r, zoffset: 0, args: argList{Yzm, Yzr}},
 //		{zcase: Zevex_rm_k_r, zoffset: 3, args: argList{Yzm, Yknot0, Yzr}},
 //	}
-var vpexpandb = inst.Forms{
-	// EVEX.128.66.0F38.W0 62 /r VPEXPANDB xmm1{k1}{z}, m128	A	V/V	AVX512_VBMI2 AVX512VL
-	{
-		ISA: []string{"AVX512VBMI2", "AVX512VL"},
-		Operands: []inst.Operand{
-			{Type: "m128", Action: inst.R},
-			{Type: "xmm{k}{z}", Action: inst.W},
-		},
-		EncodingType: inst.EncodingTypeEVEX,
-	},
-	// EVEX.128.66.0F38.W0 62 /r VPEXPANDB xmm1{k1}{z}, xmm2	B	V/V	AVX512_VBMI2 AVX512VL
-	{
-		ISA: []string{"AVX512VBMI2", "AVX512VL"},
-		Operands: []inst.Operand{
-			{Type: "xmm", Action: inst.R},
-			{Type: "xmm{k}{z}", Action: inst.W},
-		},
-		EncodingType: inst.EncodingTypeEVEX,
-	},
-	// EVEX.256.66.0F38.W0 62 /r VPEXPANDB ymm1{k1}{z}, m256	A	V/V	AVX512_VBMI2 AVX512VL
-	{
-		ISA: []string{"AVX512VBMI2", "AVX512VL"},
-		Operands: []inst.Operand{
-			{Type: "m256", Action: inst.R},
-			{Type: "ymm{k}{z}", Action: inst.W},
-		},
-		EncodingType: inst.EncodingTypeEVEX,
-	},
-	// EVEX.256.66.0F38.W0 62 /r VPEXPANDB ymm1{k1}{z}, ymm2	B	V/V	AVX512_VBMI2 AVX512VL
-	{
-		ISA: []string{"AVX512VBMI2", "AVX512VL"},
-		Operands: []inst.Operand{
-			{Type: "ymm", Action: inst.R},
-			{Type: "ymm{k}{z}", Action: inst.W},
-		},
-		EncodingType: inst.EncodingTypeEVEX,
-	},
-	// EVEX.512.66.0F38.W0 62 /r VPEXPANDB zmm1{k1}{z}, m512	A	V/V	AVX512_VBMI2
-	{
-		ISA: []string{"AVX512VBMI2"},
-		Operands: []inst.Operand{
-			{Type: "m512", Action: inst.R},
-			{Type: "zmm{k}{z}", Action: inst.W},
-		},
-		EncodingType: inst.EncodingTypeEVEX,
-	},
-	// EVEX.512.66.0F38.W0 62 /r VPEXPANDB zmm1{k1}{z}, zmm2	B	V/V	AVX512_VBMI2
-	{
-		ISA: []string{"AVX512VBMI2"},
-		Operands: []inst.Operand{
-			{Type: "zmm", Action: inst.R},
-			{Type: "zmm{k}{z}", Action: inst.W},
-		},
-		EncodingType: inst.EncodingTypeEVEX,
-	},
-}
+var vpexpandb = _yvexpandpd("AVX512VBMI2", "")
 
 // VPSH{L,R}D{W,D,Q} forms.
 //
