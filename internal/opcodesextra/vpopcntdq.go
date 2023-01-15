@@ -2,8 +2,7 @@ package opcodesextra
 
 import "github.com/mmcloughlin/avo/internal/inst"
 
-// vpopcntdq is the VPOPCNTDQ instruction set, providing packed population count
-// for double and quadword integers.
+// vpopcntdq is the "Vector Population Count" instruction set.
 var vpopcntdq = []*inst.Instruction{
 	// Reference: https://github.com/golang/go/blob/go1.19.3/src/cmd/internal/obj/x86/avx_optabs.go#L3741-L3750
 	//
