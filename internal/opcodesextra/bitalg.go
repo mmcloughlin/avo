@@ -2,7 +2,7 @@ package opcodesextra
 
 import "github.com/mmcloughlin/avo/internal/inst"
 
-// bitalg is the AVX-512 Bit Algorithms instruction set.
+// bitalg is the "Bit Algorithms" instruction set.
 var bitalg = []*inst.Instruction{
 	// Reference: https://github.com/golang/go/blob/go1.19.3/src/cmd/internal/obj/x86/avx_optabs.go#L3904-L3908
 	//

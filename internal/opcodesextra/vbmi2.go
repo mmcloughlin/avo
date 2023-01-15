@@ -185,6 +185,8 @@ var vbmi2 = []*inst.Instruction{
 
 // VPCOMPRESSB and VPCOMPRESSW forms.
 //
+// See: https://www.felixcloutier.com/x86/vpcompressb:vcompressw
+//
 // Reference: https://github.com/golang/go/blob/go1.19.3/src/cmd/internal/obj/x86/avx_optabs.go#L240-L247
 //
 //	var _yvcompresspd = []ytab{
@@ -254,6 +256,8 @@ var vpcompressb = inst.Forms{
 
 // VPEXPANDB and VPEXPANDW forms.
 //
+// See: https://www.felixcloutier.com/x86/vpexpandb:vpexpandw
+//
 // Reference: https://github.com/golang/go/blob/go1.19.3/src/cmd/internal/obj/x86/avx_optabs.go#L376-L383
 //
 //	var _yvexpandpd = []ytab{
@@ -267,6 +271,8 @@ var vpcompressb = inst.Forms{
 var vpexpandb = _yvexpandpd("AVX512VBMI2", "")
 
 // VPSH{L,R}D{W,D,Q} forms.
+//
+// See:	https://www.felixcloutier.com/x86/vpshld https://www.felixcloutier.com/x86/vpshrd
 //
 // Reference: https://github.com/golang/go/blob/go1.19.3/src/cmd/internal/obj/x86/avx_optabs.go#L128-L135
 //
@@ -353,6 +359,8 @@ func vpshld(bcst string) inst.Forms {
 }
 
 // VPSH{L,R}DV{W,D,Q} forms.
+//
+// See:	https://www.felixcloutier.com/x86/vpshldv https://www.felixcloutier.com/x86/vpshrdv
 //
 // Reference: https://github.com/golang/go/blob/go1.19.3/src/cmd/internal/obj/x86/avx_optabs.go#L148-L155
 //

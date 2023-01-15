@@ -2,8 +2,7 @@ package opcodesextra
 
 import "github.com/mmcloughlin/avo/internal/inst"
 
-// vpclmulqdq adds VEX and EVEX encoded versions of the PCLMULQDQ carry-less
-// quadword multiplication instruction.
+// vpclmulqdq is the "Vector Carry-less Multiplication" instruction set.
 var vpclmulqdq = []*inst.Instruction{
 	// Reference: https://github.com/golang/go/blob/go1.19.3/src/cmd/internal/obj/x86/avx_optabs.go#L2911-L2917
 	//
