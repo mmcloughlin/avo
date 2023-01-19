@@ -2,6 +2,7 @@ package thirdparty
 
 import (
 	"flag"
+	"os"
 	"os/exec"
 	"path/filepath"
 	"runtime"
@@ -69,6 +70,7 @@ type PackageTest struct {
 // Run the test.
 func (t *PackageTest) Run() {
 	t.checkout()
+	t.validate()
 	t.steps()
 }
 
@@ -86,6 +88,24 @@ func (t *PackageTest) checkout() {
 	test.Exec(t.T, "git", "-C", t.repopath, "remote", "add", "origin", t.Project.Repository.CloneURL())
 	test.Exec(t.T, "git", "-C", t.repopath, "fetch", "--depth=1", "origin", version)
 	test.Exec(t.T, "git", "-C", t.repopath, "checkout", "FETCH_HEAD")
+}
+
+// validate the test configuration relative to the checked out project.
+func (t *PackageTest) validate() {
+	// Confirm expected directories exist.
+	expect := map[string]string{
+		"package": t.Package.SubPackage,
+		"root":    t.Package.WorkingDirectory(),
+	}
+	for name, subdir := range expect {
+		if subdir == "" {
+			continue
+		}
+		path := filepath.Join(t.repopath, subdir)
+		if _, err := os.Stat(path); err != nil {
+			t.Fatalf("expected %s directory: %s", name, err)
+		}
+	}
 }
 
 func (t *PackageTest) steps() {

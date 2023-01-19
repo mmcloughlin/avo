@@ -47,7 +47,7 @@ runs:
       with:
         token: ${{ steps.app.outputs.token }}
         commit-message: ${{ inputs.title }}
-        author: "{{ steps.bot.outputs.login }} <${{ steps.bot.outputs.id }}+${{ steps.bot.outputs.login }}@users.noreply.github.com>"
+        author: "${{ steps.bot.outputs.login }} <${{ steps.bot.outputs.id }}+${{ steps.bot.outputs.login }}@users.noreply.github.com>"
         branch: ${{ inputs.branch }}
         base: master
         delete-branch: true

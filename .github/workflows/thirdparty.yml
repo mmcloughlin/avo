@@ -9,6 +9,7 @@ on:
       - "tests/thirdparty/**"
   pull_request:
     paths:
+      - ".github/workflows/thirdparty.yml"
       - "tests/thirdparty/**"
 jobs:
   test:
@@ -23,6 +24,14 @@ jobs:
         uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
         with:
           persist-credentials: false
+      - name: Generate App Token
+        uses: tibdex/github-app-token@021a2405c7f990db57f5eae5397423dcc554159c # v1.7.0
+        id: app
+        with:
+          app_id: ${{ secrets.APP_ID }}
+          private_key: ${{ secrets.APP_PRIVATE_KEY }}
       - name: Run Third-Party Tests
         working-directory: tests/thirdparty
-        run: go test -net -suite suite.json
+        env:
+          GITHUB_TOKEN: ${{ steps.app.outputs.token }}
+        run: go test -timeout 15m -args -net -suite suite.json
