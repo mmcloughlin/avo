@@ -930,7 +930,7 @@ jobs:
       - name: Test
         working-directory: md4
         run: go test ./...
-  golang-go:
+  golang-go-src-crypto-internal-bigmod:
     runs-on: ubuntu-latest
     steps:
       - name: Install Go
@@ -947,7 +947,45 @@ jobs:
         uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
         with:
           repository: golang/go
-          ref: go1.19
+          ref: go1.20rc2
+          path: go
+          persist-credentials: false
+      - name: Compile Go Toolchain
+        working-directory: go/src
+        run: ./make.bash
+      - name: Avo Module Replacement
+        working-directory: go/src/crypto/internal/bigmod/_asm
+        run: |
+          go mod edit -modfile=go.mod -require=github.com/mmcloughlin/avo@v0.0.0-00010101000000-000000000000
+          go mod edit -modfile=go.mod -replace=github.com/mmcloughlin/avo=${{ github.workspace }}/avo
+          go mod tidy -modfile=go.mod
+      - name: Generate
+        working-directory: go
+        run: env --unset=GOROOT ./bin/go generate -v -x ./src/crypto/internal/bigmod/_asm
+      - name: Diff
+        working-directory: go
+        run: git diff
+      - name: Test
+        working-directory: go
+        run: env --unset=GOROOT ./bin/go test crypto/...
+  golang-go-src-crypto-internal-edwards25519:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Go
+        uses: actions/setup-go@c4a742cab115ed795e34d4513e2cf7d472deb55f # v3.3.1
+        with:
+          go-version: 1.19.x
+          check-latest: true
+      - name: Checkout avo
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
+        with:
+          path: avo
+          persist-credentials: false
+      - name: Checkout golang/go
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
+        with:
+          repository: golang/go
+          ref: go1.20rc2
           path: go
           persist-credentials: false
       - name: Compile Go Toolchain
@@ -960,8 +998,8 @@ jobs:
           go mod edit -modfile=go.mod -replace=github.com/mmcloughlin/avo=${{ github.workspace }}/avo
           go mod tidy -modfile=go.mod
       - name: Generate
-        working-directory: go/src/crypto/internal/edwards25519/field/_asm
-        run: go generate -v -x
+        working-directory: go
+        run: env --unset=GOROOT ./bin/go generate -v -x ./src/crypto/internal/edwards25519/field/_asm
       - name: Diff
         working-directory: go
         run: git diff

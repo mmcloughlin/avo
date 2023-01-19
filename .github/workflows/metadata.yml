@@ -25,7 +25,15 @@ jobs:
           persist-credentials: false
       - name: Bootstrap
         run: ./script/bootstrap
+      - name: Generate App Token
+        uses: tibdex/github-app-token@021a2405c7f990db57f5eae5397423dcc554159c # v1.7.0
+        id: app
+        with:
+          app_id: ${{ secrets.APP_ID }}
+          private_key: ${{ secrets.APP_PRIVATE_KEY }}
       - name: Update Package Metadata
+        env:
+          GITHUB_TOKEN: ${{ steps.app.outputs.token }}
         run: ./script/metadata
       - name: Diff
         run: git diff

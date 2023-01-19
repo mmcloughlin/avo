@@ -7396,8 +7396,12 @@ func VADDSUBPS(mxy, xy, xy1 operand.Op) (*intrep.Instruction, error) {
 //
 //	VAESDEC m128 xmm xmm
 //	VAESDEC xmm  xmm xmm
-func VAESDEC(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
-	return build(opcVAESDEC.Forms(), sffxs{}, []operand.Op{mx, x, x1})
+//	VAESDEC m256 ymm ymm
+//	VAESDEC ymm  ymm ymm
+//	VAESDEC m512 zmm zmm
+//	VAESDEC zmm  zmm zmm
+func VAESDEC(mxyz, xyz, xyz1 operand.Op) (*intrep.Instruction, error) {
+	return build(opcVAESDEC.Forms(), sffxs{}, []operand.Op{mxyz, xyz, xyz1})
 }
 
 // VAESDECLAST: Perform Last Round of an AES Decryption Flow.
@@ -7406,8 +7410,12 @@ func VAESDEC(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 //
 //	VAESDECLAST m128 xmm xmm
 //	VAESDECLAST xmm  xmm xmm
-func VAESDECLAST(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
-	return build(opcVAESDECLAST.Forms(), sffxs{}, []operand.Op{mx, x, x1})
+//	VAESDECLAST m256 ymm ymm
+//	VAESDECLAST ymm  ymm ymm
+//	VAESDECLAST m512 zmm zmm
+//	VAESDECLAST zmm  zmm zmm
+func VAESDECLAST(mxyz, xyz, xyz1 operand.Op) (*intrep.Instruction, error) {
+	return build(opcVAESDECLAST.Forms(), sffxs{}, []operand.Op{mxyz, xyz, xyz1})
 }
 
 // VAESENC: Perform One Round of an AES Encryption Flow.
@@ -7416,8 +7424,12 @@ func VAESDECLAST(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 //
 //	VAESENC m128 xmm xmm
 //	VAESENC xmm  xmm xmm
-func VAESENC(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
-	return build(opcVAESENC.Forms(), sffxs{}, []operand.Op{mx, x, x1})
+//	VAESENC m256 ymm ymm
+//	VAESENC ymm  ymm ymm
+//	VAESENC m512 zmm zmm
+//	VAESENC zmm  zmm zmm
+func VAESENC(mxyz, xyz, xyz1 operand.Op) (*intrep.Instruction, error) {
+	return build(opcVAESENC.Forms(), sffxs{}, []operand.Op{mxyz, xyz, xyz1})
 }
 
 // VAESENCLAST: Perform Last Round of an AES Encryption Flow.
@@ -7426,8 +7438,12 @@ func VAESENC(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
 //
 //	VAESENCLAST m128 xmm xmm
 //	VAESENCLAST xmm  xmm xmm
-func VAESENCLAST(mx, x, x1 operand.Op) (*intrep.Instruction, error) {
-	return build(opcVAESENCLAST.Forms(), sffxs{}, []operand.Op{mx, x, x1})
+//	VAESENCLAST m256 ymm ymm
+//	VAESENCLAST ymm  ymm ymm
+//	VAESENCLAST m512 zmm zmm
+//	VAESENCLAST zmm  zmm zmm
+func VAESENCLAST(mxyz, xyz, xyz1 operand.Op) (*intrep.Instruction, error) {
+	return build(opcVAESENCLAST.Forms(), sffxs{}, []operand.Op{mxyz, xyz, xyz1})
 }
 
 // VAESIMC: Perform the AES InvMixColumn Transformation.
@@ -21950,6 +21966,158 @@ func VGETMANTSS_Z(i, mx, x, k, x1 operand.Op) (*intrep.Instruction, error) {
 	return build(opcVGETMANTSS.Forms(), sffxs{sffxZ}, []operand.Op{i, mx, x, k, x1})
 }
 
+// VGF2P8AFFINEINVQB: Galois Field Affine Transformation Inverse.
+//
+// Forms:
+//
+//	VGF2P8AFFINEINVQB imm8 m128 xmm xmm
+//	VGF2P8AFFINEINVQB imm8 m256 ymm ymm
+//	VGF2P8AFFINEINVQB imm8 xmm  xmm xmm
+//	VGF2P8AFFINEINVQB imm8 ymm  ymm ymm
+//	VGF2P8AFFINEINVQB imm8 m512 zmm k zmm
+//	VGF2P8AFFINEINVQB imm8 m512 zmm zmm
+//	VGF2P8AFFINEINVQB imm8 zmm  zmm k zmm
+//	VGF2P8AFFINEINVQB imm8 zmm  zmm zmm
+//	VGF2P8AFFINEINVQB imm8 m128 xmm k xmm
+//	VGF2P8AFFINEINVQB imm8 m256 ymm k ymm
+//	VGF2P8AFFINEINVQB imm8 xmm  xmm k xmm
+//	VGF2P8AFFINEINVQB imm8 ymm  ymm k ymm
+func VGF2P8AFFINEINVQB(ops ...operand.Op) (*intrep.Instruction, error) {
+	return build(opcVGF2P8AFFINEINVQB.Forms(), sffxs{}, ops)
+}
+
+// VGF2P8AFFINEINVQB_BCST: Galois Field Affine Transformation Inverse (Broadcast).
+//
+// Forms:
+//
+//	VGF2P8AFFINEINVQB.BCST imm8 m64 zmm k zmm
+//	VGF2P8AFFINEINVQB.BCST imm8 m64 zmm zmm
+//	VGF2P8AFFINEINVQB.BCST imm8 m64 xmm k xmm
+//	VGF2P8AFFINEINVQB.BCST imm8 m64 xmm xmm
+//	VGF2P8AFFINEINVQB.BCST imm8 m64 ymm k ymm
+//	VGF2P8AFFINEINVQB.BCST imm8 m64 ymm ymm
+func VGF2P8AFFINEINVQB_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
+	return build(opcVGF2P8AFFINEINVQB.Forms(), sffxs{sffxBCST}, ops)
+}
+
+// VGF2P8AFFINEINVQB_BCST_Z: Galois Field Affine Transformation Inverse (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+//	VGF2P8AFFINEINVQB.BCST.Z imm8 m64 zmm k zmm
+//	VGF2P8AFFINEINVQB.BCST.Z imm8 m64 xmm k xmm
+//	VGF2P8AFFINEINVQB.BCST.Z imm8 m64 ymm k ymm
+func VGF2P8AFFINEINVQB_BCST_Z(i, m, xyz, k, xyz1 operand.Op) (*intrep.Instruction, error) {
+	return build(opcVGF2P8AFFINEINVQB.Forms(), sffxs{sffxBCST, sffxZ}, []operand.Op{i, m, xyz, k, xyz1})
+}
+
+// VGF2P8AFFINEINVQB_Z: Galois Field Affine Transformation Inverse (Zeroing Masking).
+//
+// Forms:
+//
+//	VGF2P8AFFINEINVQB.Z imm8 m512 zmm k zmm
+//	VGF2P8AFFINEINVQB.Z imm8 zmm  zmm k zmm
+//	VGF2P8AFFINEINVQB.Z imm8 m128 xmm k xmm
+//	VGF2P8AFFINEINVQB.Z imm8 m256 ymm k ymm
+//	VGF2P8AFFINEINVQB.Z imm8 xmm  xmm k xmm
+//	VGF2P8AFFINEINVQB.Z imm8 ymm  ymm k ymm
+func VGF2P8AFFINEINVQB_Z(i, mxyz, xyz, k, xyz1 operand.Op) (*intrep.Instruction, error) {
+	return build(opcVGF2P8AFFINEINVQB.Forms(), sffxs{sffxZ}, []operand.Op{i, mxyz, xyz, k, xyz1})
+}
+
+// VGF2P8AFFINEQB: Galois Field Affine Transformation.
+//
+// Forms:
+//
+//	VGF2P8AFFINEQB imm8 m128 xmm xmm
+//	VGF2P8AFFINEQB imm8 m256 ymm ymm
+//	VGF2P8AFFINEQB imm8 xmm  xmm xmm
+//	VGF2P8AFFINEQB imm8 ymm  ymm ymm
+//	VGF2P8AFFINEQB imm8 m512 zmm k zmm
+//	VGF2P8AFFINEQB imm8 m512 zmm zmm
+//	VGF2P8AFFINEQB imm8 zmm  zmm k zmm
+//	VGF2P8AFFINEQB imm8 zmm  zmm zmm
+//	VGF2P8AFFINEQB imm8 m128 xmm k xmm
+//	VGF2P8AFFINEQB imm8 m256 ymm k ymm
+//	VGF2P8AFFINEQB imm8 xmm  xmm k xmm
+//	VGF2P8AFFINEQB imm8 ymm  ymm k ymm
+func VGF2P8AFFINEQB(ops ...operand.Op) (*intrep.Instruction, error) {
+	return build(opcVGF2P8AFFINEQB.Forms(), sffxs{}, ops)
+}
+
+// VGF2P8AFFINEQB_BCST: Galois Field Affine Transformation (Broadcast).
+//
+// Forms:
+//
+//	VGF2P8AFFINEQB.BCST imm8 m64 zmm k zmm
+//	VGF2P8AFFINEQB.BCST imm8 m64 zmm zmm
+//	VGF2P8AFFINEQB.BCST imm8 m64 xmm k xmm
+//	VGF2P8AFFINEQB.BCST imm8 m64 xmm xmm
+//	VGF2P8AFFINEQB.BCST imm8 m64 ymm k ymm
+//	VGF2P8AFFINEQB.BCST imm8 m64 ymm ymm
+func VGF2P8AFFINEQB_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
+	return build(opcVGF2P8AFFINEQB.Forms(), sffxs{sffxBCST}, ops)
+}
+
+// VGF2P8AFFINEQB_BCST_Z: Galois Field Affine Transformation (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+//	VGF2P8AFFINEQB.BCST.Z imm8 m64 zmm k zmm
+//	VGF2P8AFFINEQB.BCST.Z imm8 m64 xmm k xmm
+//	VGF2P8AFFINEQB.BCST.Z imm8 m64 ymm k ymm
+func VGF2P8AFFINEQB_BCST_Z(i, m, xyz, k, xyz1 operand.Op) (*intrep.Instruction, error) {
+	return build(opcVGF2P8AFFINEQB.Forms(), sffxs{sffxBCST, sffxZ}, []operand.Op{i, m, xyz, k, xyz1})
+}
+
+// VGF2P8AFFINEQB_Z: Galois Field Affine Transformation (Zeroing Masking).
+//
+// Forms:
+//
+//	VGF2P8AFFINEQB.Z imm8 m512 zmm k zmm
+//	VGF2P8AFFINEQB.Z imm8 zmm  zmm k zmm
+//	VGF2P8AFFINEQB.Z imm8 m128 xmm k xmm
+//	VGF2P8AFFINEQB.Z imm8 m256 ymm k ymm
+//	VGF2P8AFFINEQB.Z imm8 xmm  xmm k xmm
+//	VGF2P8AFFINEQB.Z imm8 ymm  ymm k ymm
+func VGF2P8AFFINEQB_Z(i, mxyz, xyz, k, xyz1 operand.Op) (*intrep.Instruction, error) {
+	return build(opcVGF2P8AFFINEQB.Forms(), sffxs{sffxZ}, []operand.Op{i, mxyz, xyz, k, xyz1})
+}
+
+// VGF2P8MULB: Galois Field Multiply Bytes.
+//
+// Forms:
+//
+//	VGF2P8MULB m128 xmm xmm
+//	VGF2P8MULB m256 ymm ymm
+//	VGF2P8MULB xmm  xmm xmm
+//	VGF2P8MULB ymm  ymm ymm
+//	VGF2P8MULB m512 zmm k zmm
+//	VGF2P8MULB m512 zmm zmm
+//	VGF2P8MULB zmm  zmm k zmm
+//	VGF2P8MULB zmm  zmm zmm
+//	VGF2P8MULB m128 xmm k xmm
+//	VGF2P8MULB m256 ymm k ymm
+//	VGF2P8MULB xmm  xmm k xmm
+//	VGF2P8MULB ymm  ymm k ymm
+func VGF2P8MULB(ops ...operand.Op) (*intrep.Instruction, error) {
+	return build(opcVGF2P8MULB.Forms(), sffxs{}, ops)
+}
+
+// VGF2P8MULB_Z: Galois Field Multiply Bytes (Zeroing Masking).
+//
+// Forms:
+//
+//	VGF2P8MULB.Z m512 zmm k zmm
+//	VGF2P8MULB.Z zmm  zmm k zmm
+//	VGF2P8MULB.Z m128 xmm k xmm
+//	VGF2P8MULB.Z m256 ymm k ymm
+//	VGF2P8MULB.Z xmm  xmm k xmm
+//	VGF2P8MULB.Z ymm  ymm k ymm
+func VGF2P8MULB_Z(mxyz, xyz, k, xyz1 operand.Op) (*intrep.Instruction, error) {
+	return build(opcVGF2P8MULB.Forms(), sffxs{sffxZ}, []operand.Op{mxyz, xyz, k, xyz1})
+}
+
 // VHADDPD: Packed Double-FP Horizontal Add.
 //
 // Forms:
@@ -25585,8 +25753,12 @@ func VPBROADCASTW_Z(mrx, k, xyz operand.Op) (*intrep.Instruction, error) {
 //
 //	VPCLMULQDQ imm8 m128 xmm xmm
 //	VPCLMULQDQ imm8 xmm  xmm xmm
-func VPCLMULQDQ(i, mx, x, x1 operand.Op) (*intrep.Instruction, error) {
-	return build(opcVPCLMULQDQ.Forms(), sffxs{}, []operand.Op{i, mx, x, x1})
+//	VPCLMULQDQ imm8 m256 ymm ymm
+//	VPCLMULQDQ imm8 ymm  ymm ymm
+//	VPCLMULQDQ imm8 m512 zmm zmm
+//	VPCLMULQDQ imm8 zmm  zmm zmm
+func VPCLMULQDQ(i, mxyz, xyz, xyz1 operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPCLMULQDQ.Forms(), sffxs{}, []operand.Op{i, mxyz, xyz, xyz1})
 }
 
 // VPCMPB: Compare Packed Signed Byte Values.
@@ -26093,6 +26265,37 @@ func VPCMPW(ops ...operand.Op) (*intrep.Instruction, error) {
 	return build(opcVPCMPW.Forms(), sffxs{}, ops)
 }
 
+// VPCOMPRESSB: Store Sparse Packed Byte Integer Values into Dense Memory/Register.
+//
+// Forms:
+//
+//	VPCOMPRESSB xmm k m128
+//	VPCOMPRESSB xmm k xmm
+//	VPCOMPRESSB xmm m128
+//	VPCOMPRESSB xmm xmm
+//	VPCOMPRESSB ymm k m256
+//	VPCOMPRESSB ymm k ymm
+//	VPCOMPRESSB ymm m256
+//	VPCOMPRESSB ymm ymm
+//	VPCOMPRESSB zmm k m512
+//	VPCOMPRESSB zmm k zmm
+//	VPCOMPRESSB zmm m512
+//	VPCOMPRESSB zmm zmm
+func VPCOMPRESSB(ops ...operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPCOMPRESSB.Forms(), sffxs{}, ops)
+}
+
+// VPCOMPRESSB_Z: Store Sparse Packed Byte Integer Values into Dense Memory/Register (Zeroing Masking).
+//
+// Forms:
+//
+//	VPCOMPRESSB.Z xmm k xmm
+//	VPCOMPRESSB.Z ymm k ymm
+//	VPCOMPRESSB.Z zmm k zmm
+func VPCOMPRESSB_Z(xyz, k, xyz1 operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPCOMPRESSB.Forms(), sffxs{sffxZ}, []operand.Op{xyz, k, xyz1})
+}
+
 // VPCOMPRESSD: Store Sparse Packed Doubleword Integer Values into Dense Memory/Register.
 //
 // Forms:
@@ -26159,6 +26362,37 @@ func VPCOMPRESSQ(ops ...operand.Op) (*intrep.Instruction, error) {
 //	VPCOMPRESSQ.Z zmm k zmm
 func VPCOMPRESSQ_Z(xyz, k, mxyz operand.Op) (*intrep.Instruction, error) {
 	return build(opcVPCOMPRESSQ.Forms(), sffxs{sffxZ}, []operand.Op{xyz, k, mxyz})
+}
+
+// VPCOMPRESSW: Store Sparse Packed Word Integer Values into Dense Memory/Register.
+//
+// Forms:
+//
+//	VPCOMPRESSW xmm k m128
+//	VPCOMPRESSW xmm k xmm
+//	VPCOMPRESSW xmm m128
+//	VPCOMPRESSW xmm xmm
+//	VPCOMPRESSW ymm k m256
+//	VPCOMPRESSW ymm k ymm
+//	VPCOMPRESSW ymm m256
+//	VPCOMPRESSW ymm ymm
+//	VPCOMPRESSW zmm k m512
+//	VPCOMPRESSW zmm k zmm
+//	VPCOMPRESSW zmm m512
+//	VPCOMPRESSW zmm zmm
+func VPCOMPRESSW(ops ...operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPCOMPRESSW.Forms(), sffxs{}, ops)
+}
+
+// VPCOMPRESSW_Z: Store Sparse Packed Word Integer Values into Dense Memory/Register (Zeroing Masking).
+//
+// Forms:
+//
+//	VPCOMPRESSW.Z xmm k xmm
+//	VPCOMPRESSW.Z ymm k ymm
+//	VPCOMPRESSW.Z zmm k zmm
+func VPCOMPRESSW_Z(xyz, k, xyz1 operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPCOMPRESSW.Forms(), sffxs{sffxZ}, []operand.Op{xyz, k, xyz1})
 }
 
 // VPCONFLICTD: Detect Conflicts Within a Vector of Packed Doubleword Values into Dense Memory/Register.
@@ -26277,6 +26511,242 @@ func VPCONFLICTQ_BCST_Z(m, k, xyz operand.Op) (*intrep.Instruction, error) {
 //	VPCONFLICTQ.Z zmm  k zmm
 func VPCONFLICTQ_Z(mxyz, k, xyz operand.Op) (*intrep.Instruction, error) {
 	return build(opcVPCONFLICTQ.Forms(), sffxs{sffxZ}, []operand.Op{mxyz, k, xyz})
+}
+
+// VPDPBUSD: Multiply and Add Unsigned and Signed Bytes.
+//
+// Forms:
+//
+//	VPDPBUSD m128 xmm k xmm
+//	VPDPBUSD m128 xmm xmm
+//	VPDPBUSD m256 ymm k ymm
+//	VPDPBUSD m256 ymm ymm
+//	VPDPBUSD xmm  xmm k xmm
+//	VPDPBUSD xmm  xmm xmm
+//	VPDPBUSD ymm  ymm k ymm
+//	VPDPBUSD ymm  ymm ymm
+//	VPDPBUSD m512 zmm k zmm
+//	VPDPBUSD m512 zmm zmm
+//	VPDPBUSD zmm  zmm k zmm
+//	VPDPBUSD zmm  zmm zmm
+func VPDPBUSD(ops ...operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPDPBUSD.Forms(), sffxs{}, ops)
+}
+
+// VPDPBUSDS: Multiply and Add Unsigned and Signed Bytes with Saturation.
+//
+// Forms:
+//
+//	VPDPBUSDS m128 xmm k xmm
+//	VPDPBUSDS m128 xmm xmm
+//	VPDPBUSDS m256 ymm k ymm
+//	VPDPBUSDS m256 ymm ymm
+//	VPDPBUSDS xmm  xmm k xmm
+//	VPDPBUSDS xmm  xmm xmm
+//	VPDPBUSDS ymm  ymm k ymm
+//	VPDPBUSDS ymm  ymm ymm
+//	VPDPBUSDS m512 zmm k zmm
+//	VPDPBUSDS m512 zmm zmm
+//	VPDPBUSDS zmm  zmm k zmm
+//	VPDPBUSDS zmm  zmm zmm
+func VPDPBUSDS(ops ...operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPDPBUSDS.Forms(), sffxs{}, ops)
+}
+
+// VPDPBUSDS_BCST: Multiply and Add Unsigned and Signed Bytes with Saturation (Broadcast).
+//
+// Forms:
+//
+//	VPDPBUSDS.BCST m32 xmm k xmm
+//	VPDPBUSDS.BCST m32 xmm xmm
+//	VPDPBUSDS.BCST m32 ymm k ymm
+//	VPDPBUSDS.BCST m32 ymm ymm
+//	VPDPBUSDS.BCST m32 zmm k zmm
+//	VPDPBUSDS.BCST m32 zmm zmm
+func VPDPBUSDS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPDPBUSDS.Forms(), sffxs{sffxBCST}, ops)
+}
+
+// VPDPBUSDS_BCST_Z: Multiply and Add Unsigned and Signed Bytes with Saturation (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+//	VPDPBUSDS.BCST.Z m32 xmm k xmm
+//	VPDPBUSDS.BCST.Z m32 ymm k ymm
+//	VPDPBUSDS.BCST.Z m32 zmm k zmm
+func VPDPBUSDS_BCST_Z(m, xyz, k, xyz1 operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPDPBUSDS.Forms(), sffxs{sffxBCST, sffxZ}, []operand.Op{m, xyz, k, xyz1})
+}
+
+// VPDPBUSDS_Z: Multiply and Add Unsigned and Signed Bytes with Saturation (Zeroing Masking).
+//
+// Forms:
+//
+//	VPDPBUSDS.Z m128 xmm k xmm
+//	VPDPBUSDS.Z m256 ymm k ymm
+//	VPDPBUSDS.Z xmm  xmm k xmm
+//	VPDPBUSDS.Z ymm  ymm k ymm
+//	VPDPBUSDS.Z m512 zmm k zmm
+//	VPDPBUSDS.Z zmm  zmm k zmm
+func VPDPBUSDS_Z(mxyz, xyz, k, xyz1 operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPDPBUSDS.Forms(), sffxs{sffxZ}, []operand.Op{mxyz, xyz, k, xyz1})
+}
+
+// VPDPBUSD_BCST: Multiply and Add Unsigned and Signed Bytes (Broadcast).
+//
+// Forms:
+//
+//	VPDPBUSD.BCST m32 xmm k xmm
+//	VPDPBUSD.BCST m32 xmm xmm
+//	VPDPBUSD.BCST m32 ymm k ymm
+//	VPDPBUSD.BCST m32 ymm ymm
+//	VPDPBUSD.BCST m32 zmm k zmm
+//	VPDPBUSD.BCST m32 zmm zmm
+func VPDPBUSD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPDPBUSD.Forms(), sffxs{sffxBCST}, ops)
+}
+
+// VPDPBUSD_BCST_Z: Multiply and Add Unsigned and Signed Bytes (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+//	VPDPBUSD.BCST.Z m32 xmm k xmm
+//	VPDPBUSD.BCST.Z m32 ymm k ymm
+//	VPDPBUSD.BCST.Z m32 zmm k zmm
+func VPDPBUSD_BCST_Z(m, xyz, k, xyz1 operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPDPBUSD.Forms(), sffxs{sffxBCST, sffxZ}, []operand.Op{m, xyz, k, xyz1})
+}
+
+// VPDPBUSD_Z: Multiply and Add Unsigned and Signed Bytes (Zeroing Masking).
+//
+// Forms:
+//
+//	VPDPBUSD.Z m128 xmm k xmm
+//	VPDPBUSD.Z m256 ymm k ymm
+//	VPDPBUSD.Z xmm  xmm k xmm
+//	VPDPBUSD.Z ymm  ymm k ymm
+//	VPDPBUSD.Z m512 zmm k zmm
+//	VPDPBUSD.Z zmm  zmm k zmm
+func VPDPBUSD_Z(mxyz, xyz, k, xyz1 operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPDPBUSD.Forms(), sffxs{sffxZ}, []operand.Op{mxyz, xyz, k, xyz1})
+}
+
+// VPDPWSSD: Multiply and Add Signed Word Integers.
+//
+// Forms:
+//
+//	VPDPWSSD m128 xmm k xmm
+//	VPDPWSSD m128 xmm xmm
+//	VPDPWSSD m256 ymm k ymm
+//	VPDPWSSD m256 ymm ymm
+//	VPDPWSSD xmm  xmm k xmm
+//	VPDPWSSD xmm  xmm xmm
+//	VPDPWSSD ymm  ymm k ymm
+//	VPDPWSSD ymm  ymm ymm
+//	VPDPWSSD m512 zmm k zmm
+//	VPDPWSSD m512 zmm zmm
+//	VPDPWSSD zmm  zmm k zmm
+//	VPDPWSSD zmm  zmm zmm
+func VPDPWSSD(ops ...operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPDPWSSD.Forms(), sffxs{}, ops)
+}
+
+// VPDPWSSDS: Multiply and Add Signed Word Integers with Saturation.
+//
+// Forms:
+//
+//	VPDPWSSDS m128 xmm k xmm
+//	VPDPWSSDS m128 xmm xmm
+//	VPDPWSSDS m256 ymm k ymm
+//	VPDPWSSDS m256 ymm ymm
+//	VPDPWSSDS xmm  xmm k xmm
+//	VPDPWSSDS xmm  xmm xmm
+//	VPDPWSSDS ymm  ymm k ymm
+//	VPDPWSSDS ymm  ymm ymm
+//	VPDPWSSDS m512 zmm k zmm
+//	VPDPWSSDS m512 zmm zmm
+//	VPDPWSSDS zmm  zmm k zmm
+//	VPDPWSSDS zmm  zmm zmm
+func VPDPWSSDS(ops ...operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPDPWSSDS.Forms(), sffxs{}, ops)
+}
+
+// VPDPWSSDS_BCST: Multiply and Add Signed Word Integers with Saturation (Broadcast).
+//
+// Forms:
+//
+//	VPDPWSSDS.BCST m32 xmm k xmm
+//	VPDPWSSDS.BCST m32 xmm xmm
+//	VPDPWSSDS.BCST m32 ymm k ymm
+//	VPDPWSSDS.BCST m32 ymm ymm
+//	VPDPWSSDS.BCST m32 zmm k zmm
+//	VPDPWSSDS.BCST m32 zmm zmm
+func VPDPWSSDS_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPDPWSSDS.Forms(), sffxs{sffxBCST}, ops)
+}
+
+// VPDPWSSDS_BCST_Z: Multiply and Add Signed Word Integers with Saturation (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+//	VPDPWSSDS.BCST.Z m32 xmm k xmm
+//	VPDPWSSDS.BCST.Z m32 ymm k ymm
+//	VPDPWSSDS.BCST.Z m32 zmm k zmm
+func VPDPWSSDS_BCST_Z(m, xyz, k, xyz1 operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPDPWSSDS.Forms(), sffxs{sffxBCST, sffxZ}, []operand.Op{m, xyz, k, xyz1})
+}
+
+// VPDPWSSDS_Z: Multiply and Add Signed Word Integers with Saturation (Zeroing Masking).
+//
+// Forms:
+//
+//	VPDPWSSDS.Z m128 xmm k xmm
+//	VPDPWSSDS.Z m256 ymm k ymm
+//	VPDPWSSDS.Z xmm  xmm k xmm
+//	VPDPWSSDS.Z ymm  ymm k ymm
+//	VPDPWSSDS.Z m512 zmm k zmm
+//	VPDPWSSDS.Z zmm  zmm k zmm
+func VPDPWSSDS_Z(mxyz, xyz, k, xyz1 operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPDPWSSDS.Forms(), sffxs{sffxZ}, []operand.Op{mxyz, xyz, k, xyz1})
+}
+
+// VPDPWSSD_BCST: Multiply and Add Signed Word Integers (Broadcast).
+//
+// Forms:
+//
+//	VPDPWSSD.BCST m32 xmm k xmm
+//	VPDPWSSD.BCST m32 xmm xmm
+//	VPDPWSSD.BCST m32 ymm k ymm
+//	VPDPWSSD.BCST m32 ymm ymm
+//	VPDPWSSD.BCST m32 zmm k zmm
+//	VPDPWSSD.BCST m32 zmm zmm
+func VPDPWSSD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPDPWSSD.Forms(), sffxs{sffxBCST}, ops)
+}
+
+// VPDPWSSD_BCST_Z: Multiply and Add Signed Word Integers (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+//	VPDPWSSD.BCST.Z m32 xmm k xmm
+//	VPDPWSSD.BCST.Z m32 ymm k ymm
+//	VPDPWSSD.BCST.Z m32 zmm k zmm
+func VPDPWSSD_BCST_Z(m, xyz, k, xyz1 operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPDPWSSD.Forms(), sffxs{sffxBCST, sffxZ}, []operand.Op{m, xyz, k, xyz1})
+}
+
+// VPDPWSSD_Z: Multiply and Add Signed Word Integers (Zeroing Masking).
+//
+// Forms:
+//
+//	VPDPWSSD.Z m128 xmm k xmm
+//	VPDPWSSD.Z m256 ymm k ymm
+//	VPDPWSSD.Z xmm  xmm k xmm
+//	VPDPWSSD.Z ymm  ymm k ymm
+//	VPDPWSSD.Z m512 zmm k zmm
+//	VPDPWSSD.Z zmm  zmm k zmm
+func VPDPWSSD_Z(mxyz, xyz, k, xyz1 operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPDPWSSD.Forms(), sffxs{sffxZ}, []operand.Op{mxyz, xyz, k, xyz1})
 }
 
 // VPERM2F128: Permute Floating-Point Values.
@@ -27383,6 +27853,40 @@ func VPERMW_Z(mxyz, xyz, k, xyz1 operand.Op) (*intrep.Instruction, error) {
 	return build(opcVPERMW.Forms(), sffxs{sffxZ}, []operand.Op{mxyz, xyz, k, xyz1})
 }
 
+// VPEXPANDB: Load Sparse Packed Byte Integer Values from Dense Memory/Register.
+//
+// Forms:
+//
+//	VPEXPANDB m128 k xmm
+//	VPEXPANDB m128 xmm
+//	VPEXPANDB m256 k ymm
+//	VPEXPANDB m256 ymm
+//	VPEXPANDB xmm  k xmm
+//	VPEXPANDB xmm  xmm
+//	VPEXPANDB ymm  k ymm
+//	VPEXPANDB ymm  ymm
+//	VPEXPANDB m512 k zmm
+//	VPEXPANDB m512 zmm
+//	VPEXPANDB zmm  k zmm
+//	VPEXPANDB zmm  zmm
+func VPEXPANDB(ops ...operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPEXPANDB.Forms(), sffxs{}, ops)
+}
+
+// VPEXPANDB_Z: Load Sparse Packed Byte Integer Values from Dense Memory/Register (Zeroing Masking).
+//
+// Forms:
+//
+//	VPEXPANDB.Z m128 k xmm
+//	VPEXPANDB.Z m256 k ymm
+//	VPEXPANDB.Z xmm  k xmm
+//	VPEXPANDB.Z ymm  k ymm
+//	VPEXPANDB.Z m512 k zmm
+//	VPEXPANDB.Z zmm  k zmm
+func VPEXPANDB_Z(mxyz, k, xyz operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPEXPANDB.Forms(), sffxs{sffxZ}, []operand.Op{mxyz, k, xyz})
+}
+
 // VPEXPANDD: Load Sparse Packed Doubleword Integer Values from Dense Memory/Register.
 //
 // Forms:
@@ -27449,6 +27953,40 @@ func VPEXPANDQ(ops ...operand.Op) (*intrep.Instruction, error) {
 //	VPEXPANDQ.Z zmm  k zmm
 func VPEXPANDQ_Z(mxyz, k, xyz operand.Op) (*intrep.Instruction, error) {
 	return build(opcVPEXPANDQ.Forms(), sffxs{sffxZ}, []operand.Op{mxyz, k, xyz})
+}
+
+// VPEXPANDW: Load Sparse Packed Word Integer Values from Dense Memory/Register.
+//
+// Forms:
+//
+//	VPEXPANDW m128 k xmm
+//	VPEXPANDW m128 xmm
+//	VPEXPANDW m256 k ymm
+//	VPEXPANDW m256 ymm
+//	VPEXPANDW xmm  k xmm
+//	VPEXPANDW xmm  xmm
+//	VPEXPANDW ymm  k ymm
+//	VPEXPANDW ymm  ymm
+//	VPEXPANDW m512 k zmm
+//	VPEXPANDW m512 zmm
+//	VPEXPANDW zmm  k zmm
+//	VPEXPANDW zmm  zmm
+func VPEXPANDW(ops ...operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPEXPANDW.Forms(), sffxs{}, ops)
+}
+
+// VPEXPANDW_Z: Load Sparse Packed Word Integer Values from Dense Memory/Register (Zeroing Masking).
+//
+// Forms:
+//
+//	VPEXPANDW.Z m128 k xmm
+//	VPEXPANDW.Z m256 k ymm
+//	VPEXPANDW.Z xmm  k xmm
+//	VPEXPANDW.Z ymm  k ymm
+//	VPEXPANDW.Z m512 k zmm
+//	VPEXPANDW.Z zmm  k zmm
+func VPEXPANDW_Z(mxyz, k, xyz operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPEXPANDW.Forms(), sffxs{sffxZ}, []operand.Op{mxyz, k, xyz})
 }
 
 // VPEXTRB: Extract Byte.
@@ -30286,10 +30824,52 @@ func VPMULUDQ_Z(mxyz, xyz, k, xyz1 operand.Op) (*intrep.Instruction, error) {
 	return build(opcVPMULUDQ.Forms(), sffxs{sffxZ}, []operand.Op{mxyz, xyz, k, xyz1})
 }
 
+// VPOPCNTB: Packed Population Count for Byte Integers.
+//
+// Forms:
+//
+//	VPOPCNTB m128 k xmm
+//	VPOPCNTB m128 xmm
+//	VPOPCNTB m256 k ymm
+//	VPOPCNTB m256 ymm
+//	VPOPCNTB xmm  k xmm
+//	VPOPCNTB xmm  xmm
+//	VPOPCNTB ymm  k ymm
+//	VPOPCNTB ymm  ymm
+//	VPOPCNTB m512 k zmm
+//	VPOPCNTB m512 zmm
+//	VPOPCNTB zmm  k zmm
+//	VPOPCNTB zmm  zmm
+func VPOPCNTB(ops ...operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPOPCNTB.Forms(), sffxs{}, ops)
+}
+
+// VPOPCNTB_Z: Packed Population Count for Byte Integers (Zeroing Masking).
+//
+// Forms:
+//
+//	VPOPCNTB.Z m128 k xmm
+//	VPOPCNTB.Z m256 k ymm
+//	VPOPCNTB.Z xmm  k xmm
+//	VPOPCNTB.Z ymm  k ymm
+//	VPOPCNTB.Z m512 k zmm
+//	VPOPCNTB.Z zmm  k zmm
+func VPOPCNTB_Z(mxyz, k, xyz operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPOPCNTB.Forms(), sffxs{sffxZ}, []operand.Op{mxyz, k, xyz})
+}
+
 // VPOPCNTD: Packed Population Count for Doubleword Integers.
 //
 // Forms:
 //
+//	VPOPCNTD m128 k xmm
+//	VPOPCNTD m128 xmm
+//	VPOPCNTD m256 k ymm
+//	VPOPCNTD m256 ymm
+//	VPOPCNTD xmm  k xmm
+//	VPOPCNTD xmm  xmm
+//	VPOPCNTD ymm  k ymm
+//	VPOPCNTD ymm  ymm
 //	VPOPCNTD m512 k zmm
 //	VPOPCNTD m512 zmm
 //	VPOPCNTD zmm  k zmm
@@ -30302,6 +30882,10 @@ func VPOPCNTD(ops ...operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+//	VPOPCNTD.BCST m32 k xmm
+//	VPOPCNTD.BCST m32 k ymm
+//	VPOPCNTD.BCST m32 xmm
+//	VPOPCNTD.BCST m32 ymm
 //	VPOPCNTD.BCST m32 k zmm
 //	VPOPCNTD.BCST m32 zmm
 func VPOPCNTD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
@@ -30312,25 +30896,39 @@ func VPOPCNTD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+//	VPOPCNTD.BCST.Z m32 k xmm
+//	VPOPCNTD.BCST.Z m32 k ymm
 //	VPOPCNTD.BCST.Z m32 k zmm
-func VPOPCNTD_BCST_Z(m, k, z operand.Op) (*intrep.Instruction, error) {
-	return build(opcVPOPCNTD.Forms(), sffxs{sffxBCST, sffxZ}, []operand.Op{m, k, z})
+func VPOPCNTD_BCST_Z(m, k, xyz operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPOPCNTD.Forms(), sffxs{sffxBCST, sffxZ}, []operand.Op{m, k, xyz})
 }
 
 // VPOPCNTD_Z: Packed Population Count for Doubleword Integers (Zeroing Masking).
 //
 // Forms:
 //
+//	VPOPCNTD.Z m128 k xmm
+//	VPOPCNTD.Z m256 k ymm
+//	VPOPCNTD.Z xmm  k xmm
+//	VPOPCNTD.Z ymm  k ymm
 //	VPOPCNTD.Z m512 k zmm
 //	VPOPCNTD.Z zmm  k zmm
-func VPOPCNTD_Z(mz, k, z operand.Op) (*intrep.Instruction, error) {
-	return build(opcVPOPCNTD.Forms(), sffxs{sffxZ}, []operand.Op{mz, k, z})
+func VPOPCNTD_Z(mxyz, k, xyz operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPOPCNTD.Forms(), sffxs{sffxZ}, []operand.Op{mxyz, k, xyz})
 }
 
 // VPOPCNTQ: Packed Population Count for Quadword Integers.
 //
 // Forms:
 //
+//	VPOPCNTQ m128 k xmm
+//	VPOPCNTQ m128 xmm
+//	VPOPCNTQ m256 k ymm
+//	VPOPCNTQ m256 ymm
+//	VPOPCNTQ xmm  k xmm
+//	VPOPCNTQ xmm  xmm
+//	VPOPCNTQ ymm  k ymm
+//	VPOPCNTQ ymm  ymm
 //	VPOPCNTQ m512 k zmm
 //	VPOPCNTQ m512 zmm
 //	VPOPCNTQ zmm  k zmm
@@ -30343,6 +30941,10 @@ func VPOPCNTQ(ops ...operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+//	VPOPCNTQ.BCST m64 k xmm
+//	VPOPCNTQ.BCST m64 k ymm
+//	VPOPCNTQ.BCST m64 xmm
+//	VPOPCNTQ.BCST m64 ymm
 //	VPOPCNTQ.BCST m64 k zmm
 //	VPOPCNTQ.BCST m64 zmm
 func VPOPCNTQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
@@ -30353,19 +30955,59 @@ func VPOPCNTQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+//	VPOPCNTQ.BCST.Z m64 k xmm
+//	VPOPCNTQ.BCST.Z m64 k ymm
 //	VPOPCNTQ.BCST.Z m64 k zmm
-func VPOPCNTQ_BCST_Z(m, k, z operand.Op) (*intrep.Instruction, error) {
-	return build(opcVPOPCNTQ.Forms(), sffxs{sffxBCST, sffxZ}, []operand.Op{m, k, z})
+func VPOPCNTQ_BCST_Z(m, k, xyz operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPOPCNTQ.Forms(), sffxs{sffxBCST, sffxZ}, []operand.Op{m, k, xyz})
 }
 
 // VPOPCNTQ_Z: Packed Population Count for Quadword Integers (Zeroing Masking).
 //
 // Forms:
 //
+//	VPOPCNTQ.Z m128 k xmm
+//	VPOPCNTQ.Z m256 k ymm
+//	VPOPCNTQ.Z xmm  k xmm
+//	VPOPCNTQ.Z ymm  k ymm
 //	VPOPCNTQ.Z m512 k zmm
 //	VPOPCNTQ.Z zmm  k zmm
-func VPOPCNTQ_Z(mz, k, z operand.Op) (*intrep.Instruction, error) {
-	return build(opcVPOPCNTQ.Forms(), sffxs{sffxZ}, []operand.Op{mz, k, z})
+func VPOPCNTQ_Z(mxyz, k, xyz operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPOPCNTQ.Forms(), sffxs{sffxZ}, []operand.Op{mxyz, k, xyz})
+}
+
+// VPOPCNTW: Packed Population Count for Word Integers.
+//
+// Forms:
+//
+//	VPOPCNTW m128 k xmm
+//	VPOPCNTW m128 xmm
+//	VPOPCNTW m256 k ymm
+//	VPOPCNTW m256 ymm
+//	VPOPCNTW xmm  k xmm
+//	VPOPCNTW xmm  xmm
+//	VPOPCNTW ymm  k ymm
+//	VPOPCNTW ymm  ymm
+//	VPOPCNTW m512 k zmm
+//	VPOPCNTW m512 zmm
+//	VPOPCNTW zmm  k zmm
+//	VPOPCNTW zmm  zmm
+func VPOPCNTW(ops ...operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPOPCNTW.Forms(), sffxs{}, ops)
+}
+
+// VPOPCNTW_Z: Packed Population Count for Word Integers (Zeroing Masking).
+//
+// Forms:
+//
+//	VPOPCNTW.Z m128 k xmm
+//	VPOPCNTW.Z m256 k ymm
+//	VPOPCNTW.Z xmm  k xmm
+//	VPOPCNTW.Z ymm  k ymm
+//	VPOPCNTW.Z m512 k zmm
+//	VPOPCNTW.Z zmm  k zmm
+func VPOPCNTW_Z(mxyz, k, xyz operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPOPCNTW.Forms(), sffxs{sffxZ}, []operand.Op{mxyz, k, xyz})
 }
 
 // VPOR: Packed Bitwise Logical OR.
@@ -31028,6 +31670,614 @@ func VPSCATTERQQ(xyz, k, v operand.Op) (*intrep.Instruction, error) {
 	return build(opcVPSCATTERQQ.Forms(), sffxs{}, []operand.Op{xyz, k, v})
 }
 
+// VPSHLDD: Concatenate Dwords and Shift Packed Data Left Logical.
+//
+// Forms:
+//
+//	VPSHLDD imm8 m128 xmm k xmm
+//	VPSHLDD imm8 m128 xmm xmm
+//	VPSHLDD imm8 m256 ymm k ymm
+//	VPSHLDD imm8 m256 ymm ymm
+//	VPSHLDD imm8 xmm  xmm k xmm
+//	VPSHLDD imm8 xmm  xmm xmm
+//	VPSHLDD imm8 ymm  ymm k ymm
+//	VPSHLDD imm8 ymm  ymm ymm
+//	VPSHLDD imm8 m512 zmm k zmm
+//	VPSHLDD imm8 m512 zmm zmm
+//	VPSHLDD imm8 zmm  zmm k zmm
+//	VPSHLDD imm8 zmm  zmm zmm
+func VPSHLDD(ops ...operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPSHLDD.Forms(), sffxs{}, ops)
+}
+
+// VPSHLDD_BCST: Concatenate Dwords and Shift Packed Data Left Logical (Broadcast).
+//
+// Forms:
+//
+//	VPSHLDD.BCST imm8 m32 xmm k xmm
+//	VPSHLDD.BCST imm8 m32 xmm xmm
+//	VPSHLDD.BCST imm8 m32 ymm k ymm
+//	VPSHLDD.BCST imm8 m32 ymm ymm
+//	VPSHLDD.BCST imm8 m32 zmm k zmm
+//	VPSHLDD.BCST imm8 m32 zmm zmm
+func VPSHLDD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPSHLDD.Forms(), sffxs{sffxBCST}, ops)
+}
+
+// VPSHLDD_BCST_Z: Concatenate Dwords and Shift Packed Data Left Logical (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+//	VPSHLDD.BCST.Z imm8 m32 xmm k xmm
+//	VPSHLDD.BCST.Z imm8 m32 ymm k ymm
+//	VPSHLDD.BCST.Z imm8 m32 zmm k zmm
+func VPSHLDD_BCST_Z(i, m, xyz, k, xyz1 operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPSHLDD.Forms(), sffxs{sffxBCST, sffxZ}, []operand.Op{i, m, xyz, k, xyz1})
+}
+
+// VPSHLDD_Z: Concatenate Dwords and Shift Packed Data Left Logical (Zeroing Masking).
+//
+// Forms:
+//
+//	VPSHLDD.Z imm8 m128 xmm k xmm
+//	VPSHLDD.Z imm8 m256 ymm k ymm
+//	VPSHLDD.Z imm8 xmm  xmm k xmm
+//	VPSHLDD.Z imm8 ymm  ymm k ymm
+//	VPSHLDD.Z imm8 m512 zmm k zmm
+//	VPSHLDD.Z imm8 zmm  zmm k zmm
+func VPSHLDD_Z(i, mxyz, xyz, k, xyz1 operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPSHLDD.Forms(), sffxs{sffxZ}, []operand.Op{i, mxyz, xyz, k, xyz1})
+}
+
+// VPSHLDQ: Concatenate Quadwords and Shift Packed Data Left Logical.
+//
+// Forms:
+//
+//	VPSHLDQ imm8 m128 xmm k xmm
+//	VPSHLDQ imm8 m128 xmm xmm
+//	VPSHLDQ imm8 m256 ymm k ymm
+//	VPSHLDQ imm8 m256 ymm ymm
+//	VPSHLDQ imm8 xmm  xmm k xmm
+//	VPSHLDQ imm8 xmm  xmm xmm
+//	VPSHLDQ imm8 ymm  ymm k ymm
+//	VPSHLDQ imm8 ymm  ymm ymm
+//	VPSHLDQ imm8 m512 zmm k zmm
+//	VPSHLDQ imm8 m512 zmm zmm
+//	VPSHLDQ imm8 zmm  zmm k zmm
+//	VPSHLDQ imm8 zmm  zmm zmm
+func VPSHLDQ(ops ...operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPSHLDQ.Forms(), sffxs{}, ops)
+}
+
+// VPSHLDQ_BCST: Concatenate Quadwords and Shift Packed Data Left Logical (Broadcast).
+//
+// Forms:
+//
+//	VPSHLDQ.BCST imm8 m64 xmm k xmm
+//	VPSHLDQ.BCST imm8 m64 xmm xmm
+//	VPSHLDQ.BCST imm8 m64 ymm k ymm
+//	VPSHLDQ.BCST imm8 m64 ymm ymm
+//	VPSHLDQ.BCST imm8 m64 zmm k zmm
+//	VPSHLDQ.BCST imm8 m64 zmm zmm
+func VPSHLDQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPSHLDQ.Forms(), sffxs{sffxBCST}, ops)
+}
+
+// VPSHLDQ_BCST_Z: Concatenate Quadwords and Shift Packed Data Left Logical (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+//	VPSHLDQ.BCST.Z imm8 m64 xmm k xmm
+//	VPSHLDQ.BCST.Z imm8 m64 ymm k ymm
+//	VPSHLDQ.BCST.Z imm8 m64 zmm k zmm
+func VPSHLDQ_BCST_Z(i, m, xyz, k, xyz1 operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPSHLDQ.Forms(), sffxs{sffxBCST, sffxZ}, []operand.Op{i, m, xyz, k, xyz1})
+}
+
+// VPSHLDQ_Z: Concatenate Quadwords and Shift Packed Data Left Logical (Zeroing Masking).
+//
+// Forms:
+//
+//	VPSHLDQ.Z imm8 m128 xmm k xmm
+//	VPSHLDQ.Z imm8 m256 ymm k ymm
+//	VPSHLDQ.Z imm8 xmm  xmm k xmm
+//	VPSHLDQ.Z imm8 ymm  ymm k ymm
+//	VPSHLDQ.Z imm8 m512 zmm k zmm
+//	VPSHLDQ.Z imm8 zmm  zmm k zmm
+func VPSHLDQ_Z(i, mxyz, xyz, k, xyz1 operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPSHLDQ.Forms(), sffxs{sffxZ}, []operand.Op{i, mxyz, xyz, k, xyz1})
+}
+
+// VPSHLDVD: Concatenate Dwords and Variable Shift Packed Data Left Logical.
+//
+// Forms:
+//
+//	VPSHLDVD m128 xmm k xmm
+//	VPSHLDVD m128 xmm xmm
+//	VPSHLDVD m256 ymm k ymm
+//	VPSHLDVD m256 ymm ymm
+//	VPSHLDVD xmm  xmm k xmm
+//	VPSHLDVD xmm  xmm xmm
+//	VPSHLDVD ymm  ymm k ymm
+//	VPSHLDVD ymm  ymm ymm
+//	VPSHLDVD m512 zmm k zmm
+//	VPSHLDVD m512 zmm zmm
+//	VPSHLDVD zmm  zmm k zmm
+//	VPSHLDVD zmm  zmm zmm
+func VPSHLDVD(ops ...operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPSHLDVD.Forms(), sffxs{}, ops)
+}
+
+// VPSHLDVD_BCST: Concatenate Dwords and Variable Shift Packed Data Left Logical (Broadcast).
+//
+// Forms:
+//
+//	VPSHLDVD.BCST m32 xmm k xmm
+//	VPSHLDVD.BCST m32 xmm xmm
+//	VPSHLDVD.BCST m32 ymm k ymm
+//	VPSHLDVD.BCST m32 ymm ymm
+//	VPSHLDVD.BCST m32 zmm k zmm
+//	VPSHLDVD.BCST m32 zmm zmm
+func VPSHLDVD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPSHLDVD.Forms(), sffxs{sffxBCST}, ops)
+}
+
+// VPSHLDVD_BCST_Z: Concatenate Dwords and Variable Shift Packed Data Left Logical (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+//	VPSHLDVD.BCST.Z m32 xmm k xmm
+//	VPSHLDVD.BCST.Z m32 ymm k ymm
+//	VPSHLDVD.BCST.Z m32 zmm k zmm
+func VPSHLDVD_BCST_Z(m, xyz, k, xyz1 operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPSHLDVD.Forms(), sffxs{sffxBCST, sffxZ}, []operand.Op{m, xyz, k, xyz1})
+}
+
+// VPSHLDVD_Z: Concatenate Dwords and Variable Shift Packed Data Left Logical (Zeroing Masking).
+//
+// Forms:
+//
+//	VPSHLDVD.Z m128 xmm k xmm
+//	VPSHLDVD.Z m256 ymm k ymm
+//	VPSHLDVD.Z xmm  xmm k xmm
+//	VPSHLDVD.Z ymm  ymm k ymm
+//	VPSHLDVD.Z m512 zmm k zmm
+//	VPSHLDVD.Z zmm  zmm k zmm
+func VPSHLDVD_Z(mxyz, xyz, k, xyz1 operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPSHLDVD.Forms(), sffxs{sffxZ}, []operand.Op{mxyz, xyz, k, xyz1})
+}
+
+// VPSHLDVQ: Concatenate Quadwords and Variable Shift Packed Data Left Logical.
+//
+// Forms:
+//
+//	VPSHLDVQ m128 xmm k xmm
+//	VPSHLDVQ m128 xmm xmm
+//	VPSHLDVQ m256 ymm k ymm
+//	VPSHLDVQ m256 ymm ymm
+//	VPSHLDVQ xmm  xmm k xmm
+//	VPSHLDVQ xmm  xmm xmm
+//	VPSHLDVQ ymm  ymm k ymm
+//	VPSHLDVQ ymm  ymm ymm
+//	VPSHLDVQ m512 zmm k zmm
+//	VPSHLDVQ m512 zmm zmm
+//	VPSHLDVQ zmm  zmm k zmm
+//	VPSHLDVQ zmm  zmm zmm
+func VPSHLDVQ(ops ...operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPSHLDVQ.Forms(), sffxs{}, ops)
+}
+
+// VPSHLDVQ_BCST: Concatenate Quadwords and Variable Shift Packed Data Left Logical (Broadcast).
+//
+// Forms:
+//
+//	VPSHLDVQ.BCST m64 xmm k xmm
+//	VPSHLDVQ.BCST m64 xmm xmm
+//	VPSHLDVQ.BCST m64 ymm k ymm
+//	VPSHLDVQ.BCST m64 ymm ymm
+//	VPSHLDVQ.BCST m64 zmm k zmm
+//	VPSHLDVQ.BCST m64 zmm zmm
+func VPSHLDVQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPSHLDVQ.Forms(), sffxs{sffxBCST}, ops)
+}
+
+// VPSHLDVQ_BCST_Z: Concatenate Quadwords and Variable Shift Packed Data Left Logical (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+//	VPSHLDVQ.BCST.Z m64 xmm k xmm
+//	VPSHLDVQ.BCST.Z m64 ymm k ymm
+//	VPSHLDVQ.BCST.Z m64 zmm k zmm
+func VPSHLDVQ_BCST_Z(m, xyz, k, xyz1 operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPSHLDVQ.Forms(), sffxs{sffxBCST, sffxZ}, []operand.Op{m, xyz, k, xyz1})
+}
+
+// VPSHLDVQ_Z: Concatenate Quadwords and Variable Shift Packed Data Left Logical (Zeroing Masking).
+//
+// Forms:
+//
+//	VPSHLDVQ.Z m128 xmm k xmm
+//	VPSHLDVQ.Z m256 ymm k ymm
+//	VPSHLDVQ.Z xmm  xmm k xmm
+//	VPSHLDVQ.Z ymm  ymm k ymm
+//	VPSHLDVQ.Z m512 zmm k zmm
+//	VPSHLDVQ.Z zmm  zmm k zmm
+func VPSHLDVQ_Z(mxyz, xyz, k, xyz1 operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPSHLDVQ.Forms(), sffxs{sffxZ}, []operand.Op{mxyz, xyz, k, xyz1})
+}
+
+// VPSHLDVW: Concatenate Words and Variable Shift Packed Data Left Logical.
+//
+// Forms:
+//
+//	VPSHLDVW m128 xmm k xmm
+//	VPSHLDVW m128 xmm xmm
+//	VPSHLDVW m256 ymm k ymm
+//	VPSHLDVW m256 ymm ymm
+//	VPSHLDVW xmm  xmm k xmm
+//	VPSHLDVW xmm  xmm xmm
+//	VPSHLDVW ymm  ymm k ymm
+//	VPSHLDVW ymm  ymm ymm
+//	VPSHLDVW m512 zmm k zmm
+//	VPSHLDVW m512 zmm zmm
+//	VPSHLDVW zmm  zmm k zmm
+//	VPSHLDVW zmm  zmm zmm
+func VPSHLDVW(ops ...operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPSHLDVW.Forms(), sffxs{}, ops)
+}
+
+// VPSHLDVW_Z: Concatenate Words and Variable Shift Packed Data Left Logical (Zeroing Masking).
+//
+// Forms:
+//
+//	VPSHLDVW.Z m128 xmm k xmm
+//	VPSHLDVW.Z m256 ymm k ymm
+//	VPSHLDVW.Z xmm  xmm k xmm
+//	VPSHLDVW.Z ymm  ymm k ymm
+//	VPSHLDVW.Z m512 zmm k zmm
+//	VPSHLDVW.Z zmm  zmm k zmm
+func VPSHLDVW_Z(mxyz, xyz, k, xyz1 operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPSHLDVW.Forms(), sffxs{sffxZ}, []operand.Op{mxyz, xyz, k, xyz1})
+}
+
+// VPSHLDW: Concatenate Words and Shift Packed Data Left Logical.
+//
+// Forms:
+//
+//	VPSHLDW imm8 m128 xmm k xmm
+//	VPSHLDW imm8 m128 xmm xmm
+//	VPSHLDW imm8 m256 ymm k ymm
+//	VPSHLDW imm8 m256 ymm ymm
+//	VPSHLDW imm8 xmm  xmm k xmm
+//	VPSHLDW imm8 xmm  xmm xmm
+//	VPSHLDW imm8 ymm  ymm k ymm
+//	VPSHLDW imm8 ymm  ymm ymm
+//	VPSHLDW imm8 m512 zmm k zmm
+//	VPSHLDW imm8 m512 zmm zmm
+//	VPSHLDW imm8 zmm  zmm k zmm
+//	VPSHLDW imm8 zmm  zmm zmm
+func VPSHLDW(ops ...operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPSHLDW.Forms(), sffxs{}, ops)
+}
+
+// VPSHLDW_Z: Concatenate Words and Shift Packed Data Left Logical (Zeroing Masking).
+//
+// Forms:
+//
+//	VPSHLDW.Z imm8 m128 xmm k xmm
+//	VPSHLDW.Z imm8 m256 ymm k ymm
+//	VPSHLDW.Z imm8 xmm  xmm k xmm
+//	VPSHLDW.Z imm8 ymm  ymm k ymm
+//	VPSHLDW.Z imm8 m512 zmm k zmm
+//	VPSHLDW.Z imm8 zmm  zmm k zmm
+func VPSHLDW_Z(i, mxyz, xyz, k, xyz1 operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPSHLDW.Forms(), sffxs{sffxZ}, []operand.Op{i, mxyz, xyz, k, xyz1})
+}
+
+// VPSHRDD: Concatenate Dwords and Shift Packed Data Right Logical.
+//
+// Forms:
+//
+//	VPSHRDD imm8 m128 xmm k xmm
+//	VPSHRDD imm8 m128 xmm xmm
+//	VPSHRDD imm8 m256 ymm k ymm
+//	VPSHRDD imm8 m256 ymm ymm
+//	VPSHRDD imm8 xmm  xmm k xmm
+//	VPSHRDD imm8 xmm  xmm xmm
+//	VPSHRDD imm8 ymm  ymm k ymm
+//	VPSHRDD imm8 ymm  ymm ymm
+//	VPSHRDD imm8 m512 zmm k zmm
+//	VPSHRDD imm8 m512 zmm zmm
+//	VPSHRDD imm8 zmm  zmm k zmm
+//	VPSHRDD imm8 zmm  zmm zmm
+func VPSHRDD(ops ...operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPSHRDD.Forms(), sffxs{}, ops)
+}
+
+// VPSHRDD_BCST: Concatenate Dwords and Shift Packed Data Right Logical (Broadcast).
+//
+// Forms:
+//
+//	VPSHRDD.BCST imm8 m32 xmm k xmm
+//	VPSHRDD.BCST imm8 m32 xmm xmm
+//	VPSHRDD.BCST imm8 m32 ymm k ymm
+//	VPSHRDD.BCST imm8 m32 ymm ymm
+//	VPSHRDD.BCST imm8 m32 zmm k zmm
+//	VPSHRDD.BCST imm8 m32 zmm zmm
+func VPSHRDD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPSHRDD.Forms(), sffxs{sffxBCST}, ops)
+}
+
+// VPSHRDD_BCST_Z: Concatenate Dwords and Shift Packed Data Right Logical (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+//	VPSHRDD.BCST.Z imm8 m32 xmm k xmm
+//	VPSHRDD.BCST.Z imm8 m32 ymm k ymm
+//	VPSHRDD.BCST.Z imm8 m32 zmm k zmm
+func VPSHRDD_BCST_Z(i, m, xyz, k, xyz1 operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPSHRDD.Forms(), sffxs{sffxBCST, sffxZ}, []operand.Op{i, m, xyz, k, xyz1})
+}
+
+// VPSHRDD_Z: Concatenate Dwords and Shift Packed Data Right Logical (Zeroing Masking).
+//
+// Forms:
+//
+//	VPSHRDD.Z imm8 m128 xmm k xmm
+//	VPSHRDD.Z imm8 m256 ymm k ymm
+//	VPSHRDD.Z imm8 xmm  xmm k xmm
+//	VPSHRDD.Z imm8 ymm  ymm k ymm
+//	VPSHRDD.Z imm8 m512 zmm k zmm
+//	VPSHRDD.Z imm8 zmm  zmm k zmm
+func VPSHRDD_Z(i, mxyz, xyz, k, xyz1 operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPSHRDD.Forms(), sffxs{sffxZ}, []operand.Op{i, mxyz, xyz, k, xyz1})
+}
+
+// VPSHRDQ: Concatenate Quadwords and Shift Packed Data Right Logical.
+//
+// Forms:
+//
+//	VPSHRDQ imm8 m128 xmm k xmm
+//	VPSHRDQ imm8 m128 xmm xmm
+//	VPSHRDQ imm8 m256 ymm k ymm
+//	VPSHRDQ imm8 m256 ymm ymm
+//	VPSHRDQ imm8 xmm  xmm k xmm
+//	VPSHRDQ imm8 xmm  xmm xmm
+//	VPSHRDQ imm8 ymm  ymm k ymm
+//	VPSHRDQ imm8 ymm  ymm ymm
+//	VPSHRDQ imm8 m512 zmm k zmm
+//	VPSHRDQ imm8 m512 zmm zmm
+//	VPSHRDQ imm8 zmm  zmm k zmm
+//	VPSHRDQ imm8 zmm  zmm zmm
+func VPSHRDQ(ops ...operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPSHRDQ.Forms(), sffxs{}, ops)
+}
+
+// VPSHRDQ_BCST: Concatenate Quadwords and Shift Packed Data Right Logical (Broadcast).
+//
+// Forms:
+//
+//	VPSHRDQ.BCST imm8 m64 xmm k xmm
+//	VPSHRDQ.BCST imm8 m64 xmm xmm
+//	VPSHRDQ.BCST imm8 m64 ymm k ymm
+//	VPSHRDQ.BCST imm8 m64 ymm ymm
+//	VPSHRDQ.BCST imm8 m64 zmm k zmm
+//	VPSHRDQ.BCST imm8 m64 zmm zmm
+func VPSHRDQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPSHRDQ.Forms(), sffxs{sffxBCST}, ops)
+}
+
+// VPSHRDQ_BCST_Z: Concatenate Quadwords and Shift Packed Data Right Logical (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+//	VPSHRDQ.BCST.Z imm8 m64 xmm k xmm
+//	VPSHRDQ.BCST.Z imm8 m64 ymm k ymm
+//	VPSHRDQ.BCST.Z imm8 m64 zmm k zmm
+func VPSHRDQ_BCST_Z(i, m, xyz, k, xyz1 operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPSHRDQ.Forms(), sffxs{sffxBCST, sffxZ}, []operand.Op{i, m, xyz, k, xyz1})
+}
+
+// VPSHRDQ_Z: Concatenate Quadwords and Shift Packed Data Right Logical (Zeroing Masking).
+//
+// Forms:
+//
+//	VPSHRDQ.Z imm8 m128 xmm k xmm
+//	VPSHRDQ.Z imm8 m256 ymm k ymm
+//	VPSHRDQ.Z imm8 xmm  xmm k xmm
+//	VPSHRDQ.Z imm8 ymm  ymm k ymm
+//	VPSHRDQ.Z imm8 m512 zmm k zmm
+//	VPSHRDQ.Z imm8 zmm  zmm k zmm
+func VPSHRDQ_Z(i, mxyz, xyz, k, xyz1 operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPSHRDQ.Forms(), sffxs{sffxZ}, []operand.Op{i, mxyz, xyz, k, xyz1})
+}
+
+// VPSHRDVD: Concatenate Dwords and Variable Shift Packed Data Right Logical.
+//
+// Forms:
+//
+//	VPSHRDVD m128 xmm k xmm
+//	VPSHRDVD m128 xmm xmm
+//	VPSHRDVD m256 ymm k ymm
+//	VPSHRDVD m256 ymm ymm
+//	VPSHRDVD xmm  xmm k xmm
+//	VPSHRDVD xmm  xmm xmm
+//	VPSHRDVD ymm  ymm k ymm
+//	VPSHRDVD ymm  ymm ymm
+//	VPSHRDVD m512 zmm k zmm
+//	VPSHRDVD m512 zmm zmm
+//	VPSHRDVD zmm  zmm k zmm
+//	VPSHRDVD zmm  zmm zmm
+func VPSHRDVD(ops ...operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPSHRDVD.Forms(), sffxs{}, ops)
+}
+
+// VPSHRDVD_BCST: Concatenate Dwords and Variable Shift Packed Data Right Logical (Broadcast).
+//
+// Forms:
+//
+//	VPSHRDVD.BCST m32 xmm k xmm
+//	VPSHRDVD.BCST m32 xmm xmm
+//	VPSHRDVD.BCST m32 ymm k ymm
+//	VPSHRDVD.BCST m32 ymm ymm
+//	VPSHRDVD.BCST m32 zmm k zmm
+//	VPSHRDVD.BCST m32 zmm zmm
+func VPSHRDVD_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPSHRDVD.Forms(), sffxs{sffxBCST}, ops)
+}
+
+// VPSHRDVD_BCST_Z: Concatenate Dwords and Variable Shift Packed Data Right Logical (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+//	VPSHRDVD.BCST.Z m32 xmm k xmm
+//	VPSHRDVD.BCST.Z m32 ymm k ymm
+//	VPSHRDVD.BCST.Z m32 zmm k zmm
+func VPSHRDVD_BCST_Z(m, xyz, k, xyz1 operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPSHRDVD.Forms(), sffxs{sffxBCST, sffxZ}, []operand.Op{m, xyz, k, xyz1})
+}
+
+// VPSHRDVD_Z: Concatenate Dwords and Variable Shift Packed Data Right Logical (Zeroing Masking).
+//
+// Forms:
+//
+//	VPSHRDVD.Z m128 xmm k xmm
+//	VPSHRDVD.Z m256 ymm k ymm
+//	VPSHRDVD.Z xmm  xmm k xmm
+//	VPSHRDVD.Z ymm  ymm k ymm
+//	VPSHRDVD.Z m512 zmm k zmm
+//	VPSHRDVD.Z zmm  zmm k zmm
+func VPSHRDVD_Z(mxyz, xyz, k, xyz1 operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPSHRDVD.Forms(), sffxs{sffxZ}, []operand.Op{mxyz, xyz, k, xyz1})
+}
+
+// VPSHRDVQ: Concatenate Quadwords and Variable Shift Packed Data Right Logical.
+//
+// Forms:
+//
+//	VPSHRDVQ m128 xmm k xmm
+//	VPSHRDVQ m128 xmm xmm
+//	VPSHRDVQ m256 ymm k ymm
+//	VPSHRDVQ m256 ymm ymm
+//	VPSHRDVQ xmm  xmm k xmm
+//	VPSHRDVQ xmm  xmm xmm
+//	VPSHRDVQ ymm  ymm k ymm
+//	VPSHRDVQ ymm  ymm ymm
+//	VPSHRDVQ m512 zmm k zmm
+//	VPSHRDVQ m512 zmm zmm
+//	VPSHRDVQ zmm  zmm k zmm
+//	VPSHRDVQ zmm  zmm zmm
+func VPSHRDVQ(ops ...operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPSHRDVQ.Forms(), sffxs{}, ops)
+}
+
+// VPSHRDVQ_BCST: Concatenate Quadwords and Variable Shift Packed Data Right Logical (Broadcast).
+//
+// Forms:
+//
+//	VPSHRDVQ.BCST m64 xmm k xmm
+//	VPSHRDVQ.BCST m64 xmm xmm
+//	VPSHRDVQ.BCST m64 ymm k ymm
+//	VPSHRDVQ.BCST m64 ymm ymm
+//	VPSHRDVQ.BCST m64 zmm k zmm
+//	VPSHRDVQ.BCST m64 zmm zmm
+func VPSHRDVQ_BCST(ops ...operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPSHRDVQ.Forms(), sffxs{sffxBCST}, ops)
+}
+
+// VPSHRDVQ_BCST_Z: Concatenate Quadwords and Variable Shift Packed Data Right Logical (Broadcast, Zeroing Masking).
+//
+// Forms:
+//
+//	VPSHRDVQ.BCST.Z m64 xmm k xmm
+//	VPSHRDVQ.BCST.Z m64 ymm k ymm
+//	VPSHRDVQ.BCST.Z m64 zmm k zmm
+func VPSHRDVQ_BCST_Z(m, xyz, k, xyz1 operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPSHRDVQ.Forms(), sffxs{sffxBCST, sffxZ}, []operand.Op{m, xyz, k, xyz1})
+}
+
+// VPSHRDVQ_Z: Concatenate Quadwords and Variable Shift Packed Data Right Logical (Zeroing Masking).
+//
+// Forms:
+//
+//	VPSHRDVQ.Z m128 xmm k xmm
+//	VPSHRDVQ.Z m256 ymm k ymm
+//	VPSHRDVQ.Z xmm  xmm k xmm
+//	VPSHRDVQ.Z ymm  ymm k ymm
+//	VPSHRDVQ.Z m512 zmm k zmm
+//	VPSHRDVQ.Z zmm  zmm k zmm
+func VPSHRDVQ_Z(mxyz, xyz, k, xyz1 operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPSHRDVQ.Forms(), sffxs{sffxZ}, []operand.Op{mxyz, xyz, k, xyz1})
+}
+
+// VPSHRDVW: Concatenate Words and Variable Shift Packed Data Right Logical.
+//
+// Forms:
+//
+//	VPSHRDVW m128 xmm k xmm
+//	VPSHRDVW m128 xmm xmm
+//	VPSHRDVW m256 ymm k ymm
+//	VPSHRDVW m256 ymm ymm
+//	VPSHRDVW xmm  xmm k xmm
+//	VPSHRDVW xmm  xmm xmm
+//	VPSHRDVW ymm  ymm k ymm
+//	VPSHRDVW ymm  ymm ymm
+//	VPSHRDVW m512 zmm k zmm
+//	VPSHRDVW m512 zmm zmm
+//	VPSHRDVW zmm  zmm k zmm
+//	VPSHRDVW zmm  zmm zmm
+func VPSHRDVW(ops ...operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPSHRDVW.Forms(), sffxs{}, ops)
+}
+
+// VPSHRDVW_Z: Concatenate Words and Variable Shift Packed Data Right Logical (Zeroing Masking).
+//
+// Forms:
+//
+//	VPSHRDVW.Z m128 xmm k xmm
+//	VPSHRDVW.Z m256 ymm k ymm
+//	VPSHRDVW.Z xmm  xmm k xmm
+//	VPSHRDVW.Z ymm  ymm k ymm
+//	VPSHRDVW.Z m512 zmm k zmm
+//	VPSHRDVW.Z zmm  zmm k zmm
+func VPSHRDVW_Z(mxyz, xyz, k, xyz1 operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPSHRDVW.Forms(), sffxs{sffxZ}, []operand.Op{mxyz, xyz, k, xyz1})
+}
+
+// VPSHRDW: Concatenate Words and Shift Packed Data Right Logical.
+//
+// Forms:
+//
+//	VPSHRDW imm8 m128 xmm k xmm
+//	VPSHRDW imm8 m128 xmm xmm
+//	VPSHRDW imm8 m256 ymm k ymm
+//	VPSHRDW imm8 m256 ymm ymm
+//	VPSHRDW imm8 xmm  xmm k xmm
+//	VPSHRDW imm8 xmm  xmm xmm
+//	VPSHRDW imm8 ymm  ymm k ymm
+//	VPSHRDW imm8 ymm  ymm ymm
+//	VPSHRDW imm8 m512 zmm k zmm
+//	VPSHRDW imm8 m512 zmm zmm
+//	VPSHRDW imm8 zmm  zmm k zmm
+//	VPSHRDW imm8 zmm  zmm zmm
+func VPSHRDW(ops ...operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPSHRDW.Forms(), sffxs{}, ops)
+}
+
+// VPSHRDW_Z: Concatenate Words and Shift Packed Data Right Logical (Zeroing Masking).
+//
+// Forms:
+//
+//	VPSHRDW.Z imm8 m128 xmm k xmm
+//	VPSHRDW.Z imm8 m256 ymm k ymm
+//	VPSHRDW.Z imm8 xmm  xmm k xmm
+//	VPSHRDW.Z imm8 ymm  ymm k ymm
+//	VPSHRDW.Z imm8 m512 zmm k zmm
+//	VPSHRDW.Z imm8 zmm  zmm k zmm
+func VPSHRDW_Z(i, mxyz, xyz, k, xyz1 operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPSHRDW.Forms(), sffxs{sffxZ}, []operand.Op{i, mxyz, xyz, k, xyz1})
+}
+
 // VPSHUFB: Packed Shuffle Bytes.
 //
 // Forms:
@@ -31046,6 +32296,26 @@ func VPSCATTERQQ(xyz, k, v operand.Op) (*intrep.Instruction, error) {
 //	VPSHUFB zmm  zmm zmm
 func VPSHUFB(ops ...operand.Op) (*intrep.Instruction, error) {
 	return build(opcVPSHUFB.Forms(), sffxs{}, ops)
+}
+
+// VPSHUFBITQMB: Shuffle Bits from Quadword Elements Using Byte Indexes into Mask.
+//
+// Forms:
+//
+//	VPSHUFBITQMB m128 xmm k k
+//	VPSHUFBITQMB m128 xmm k
+//	VPSHUFBITQMB m256 ymm k k
+//	VPSHUFBITQMB m256 ymm k
+//	VPSHUFBITQMB xmm  xmm k k
+//	VPSHUFBITQMB xmm  xmm k
+//	VPSHUFBITQMB ymm  ymm k k
+//	VPSHUFBITQMB ymm  ymm k
+//	VPSHUFBITQMB zmm  zmm k k
+//	VPSHUFBITQMB zmm  zmm k
+//	VPSHUFBITQMB m512 zmm k k
+//	VPSHUFBITQMB m512 zmm k
+func VPSHUFBITQMB(ops ...operand.Op) (*intrep.Instruction, error) {
+	return build(opcVPSHUFBITQMB.Forms(), sffxs{}, ops)
 }
 
 // VPSHUFB_Z: Packed Shuffle Bytes (Zeroing Masking).
