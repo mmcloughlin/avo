@@ -4,8 +4,11 @@
 go install ./internal/cmd/asmvet
 
 # golangci-lint for linting
+#
+# Note: we pin a different version of the install script to fix
+# https://github.com/golangci/golangci-lint/issues/3509.
 golangci_lint_version='v1.49.0'
-golangci_install_script="https://raw.githubusercontent.com/golangci/golangci-lint/${golangci_lint_version}/install.sh"
+golangci_install_script="https://raw.githubusercontent.com/golangci/golangci-lint/d57156ec228b712ccd429367482771179e3fa050/install.sh"
 curl -sfL "${golangci_install_script}" | sh -s -- -b "$GOPATH/bin" "${golangci_lint_version}"
 
 # embedmd required for documentation generation
