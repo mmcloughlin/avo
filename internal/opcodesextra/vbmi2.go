@@ -372,4 +372,4 @@ func vpshld(bcst string) inst.Forms {
 //		{zcase: Zevex_rm_v_r, zoffset: 0, args: argList{Yzm, Yzr, Yzr}},
 //		{zcase: Zevex_rm_v_k_r, zoffset: 3, args: argList{Yzm, Yzr, Yknot0, Yzr}},
 //	}
-func vpshldv(bcst string) inst.Forms { return _yvblendmpd("AVX512VBMI2", bcst) }
+func vpshldv(bcst string) inst.Forms { return _yvblendmpd("AVX512VBMI2", bcst, inst.RW) }

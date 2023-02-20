@@ -67,4 +67,4 @@ var vnni = []*inst.Instruction{
 //		{zcase: Zevex_rm_v_r, zoffset: 0, args: argList{Yzm, Yzr, Yzr}},
 //		{zcase: Zevex_rm_v_k_r, zoffset: 3, args: argList{Yzm, Yzr, Yknot0, Yzr}},
 //	}
-var vnniforms = _yvblendmpd("AVX512VNNI", "/m32bcst")
+var vnniforms = _yvblendmpd("AVX512VNNI", "/m32bcst", inst.W)
