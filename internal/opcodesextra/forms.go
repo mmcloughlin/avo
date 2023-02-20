@@ -84,7 +84,7 @@ func _yvexpandpd(isa, bcst string) inst.Forms {
 //		{zcase: Zevex_rm_v_r, zoffset: 0, args: argList{Yzm, Yzr, Yzr}},
 //		{zcase: Zevex_rm_v_k_r, zoffset: 3, args: argList{Yzm, Yzr, Yknot0, Yzr}},
 //	}
-func _yvblendmpd(isa, bcst string, destAction inst.Action) inst.Forms {
+func _yvblendmpd(isa, bcst string) inst.Forms {
 	return inst.Forms{
 		// EVEX.128.66.0F38.W1 70 /r VPSHLDVW xmm1{k1}{z}, xmm2, xmm3/m128	A	V/V	AVX512_VBMI2 AVX512VL
 		// EVEX.128.66.0F38.W0 71 /r VPSHLDVD xmm1{k1}{z}, xmm2, xmm3/m128/m32bcst	B	V/V	AVX512_VBMI2 AVX512VL
@@ -94,7 +94,7 @@ func _yvblendmpd(isa, bcst string, destAction inst.Action) inst.Forms {
 			Operands: []inst.Operand{
 				{Type: "xmm", Action: inst.R},
 				{Type: "xmm", Action: inst.R},
-				{Type: "xmm{k}{z}", Action: destAction},
+				{Type: "xmm{k}{z}", Action: inst.RW},
 			},
 			EncodingType: inst.EncodingTypeEVEX,
 		},
@@ -103,7 +103,7 @@ func _yvblendmpd(isa, bcst string, destAction inst.Action) inst.Forms {
 			Operands: []inst.Operand{
 				{Type: "m128" + bcst, Action: inst.R},
 				{Type: "xmm", Action: inst.R},
-				{Type: "xmm{k}{z}", Action: destAction},
+				{Type: "xmm{k}{z}", Action: inst.RW},
 			},
 			EncodingType: inst.EncodingTypeEVEX,
 		},
@@ -115,7 +115,7 @@ func _yvblendmpd(isa, bcst string, destAction inst.Action) inst.Forms {
 			Operands: []inst.Operand{
 				{Type: "ymm", Action: inst.R},
 				{Type: "ymm", Action: inst.R},
-				{Type: "ymm{k}{z}", Action: destAction},
+				{Type: "ymm{k}{z}", Action: inst.RW},
 			},
 			EncodingType: inst.EncodingTypeEVEX,
 		},
@@ -124,7 +124,7 @@ func _yvblendmpd(isa, bcst string, destAction inst.Action) inst.Forms {
 			Operands: []inst.Operand{
 				{Type: "m256" + bcst, Action: inst.R},
 				{Type: "ymm", Action: inst.R},
-				{Type: "ymm{k}{z}", Action: destAction},
+				{Type: "ymm{k}{z}", Action: inst.RW},
 			},
 			EncodingType: inst.EncodingTypeEVEX,
 		},
@@ -136,7 +136,7 @@ func _yvblendmpd(isa, bcst string, destAction inst.Action) inst.Forms {
 			Operands: []inst.Operand{
 				{Type: "zmm", Action: inst.R},
 				{Type: "zmm", Action: inst.R},
-				{Type: "zmm{k}{z}", Action: destAction},
+				{Type: "zmm{k}{z}", Action: inst.RW},
 			},
 			EncodingType: inst.EncodingTypeEVEX,
 		},
@@ -145,7 +145,7 @@ func _yvblendmpd(isa, bcst string, destAction inst.Action) inst.Forms {
 			Operands: []inst.Operand{
 				{Type: "m512" + bcst, Action: inst.R},
 				{Type: "zmm", Action: inst.R},
-				{Type: "zmm{k}{z}", Action: destAction},
+				{Type: "zmm{k}{z}", Action: inst.RW},
 			},
 			EncodingType: inst.EncodingTypeEVEX,
 		},
