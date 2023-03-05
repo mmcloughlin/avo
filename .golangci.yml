@@ -5,6 +5,7 @@ linters:
   disable:
     - cyclop
     - deadcode
+    - dupword
     - errname
     - exhaustruct
     - exhaustivestruct
