@@ -11,9 +11,6 @@ curl -sfL "${golangci_install_script}" | sh -s -- -b "$(go env GOPATH)/bin" "${g
 # embedmd required for documentation generation
 go install github.com/campoy/embedmd@v1.0.0
 
-# covertool for merging coverage reports
-go install github.com/dlespiau/covertool@v0.0.0-20180314162135-b0c4c6d0583a
-
 # asmfmt for enforcing assembly style
 go install github.com/klauspost/asmfmt/cmd/asmfmt@v1.3.2
 
