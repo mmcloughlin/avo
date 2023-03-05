@@ -121,7 +121,7 @@ func TestParseSignatureErrors(t *testing.T) {
 		Expr         string
 		ErrorPattern string
 	}{
-		{"idkjklol", `(undeclared|undefined)`},
+		{"idkjklol", `(undeclared|undefined)`}, // error message changed in go 1.20
 		{"struct{}", `not a function signature`},
 		{"uint32(0xfeedbeef)", `should have nil value`},
 	}
