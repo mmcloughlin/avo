@@ -31,7 +31,7 @@ func NewSignature(pkg *types.Package, sig *types.Signature) *Signature {
 
 // NewSignatureVoid builds the void signature "func()".
 func NewSignatureVoid() *Signature {
-	return NewSignature(nil, types.NewSignature(nil, nil, nil, false))
+	return NewSignature(nil, types.NewSignatureType(nil, nil, nil, nil, nil, false))
 }
 
 // LookupSignature returns the signature of the named function in the provided package.
