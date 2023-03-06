@@ -2,7 +2,6 @@
 // are limited to stress-test mode.
 
 //go:build stress
-// +build stress
 
 package x86
 

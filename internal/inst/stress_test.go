@@ -2,7 +2,6 @@
 // stress-test only build.
 
 //go:build stress
-// +build stress
 
 package inst
 

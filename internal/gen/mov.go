@@ -16,7 +16,7 @@ type mov struct {
 }
 
 // NewMOV generates a function that will auto-select the correct MOV instruction
-// based on operand types and and sizes.
+// based on operand types and sizes.
 func NewMOV(cfg printer.Config) Interface {
 	return GoFmt(&mov{cfg: cfg})
 }

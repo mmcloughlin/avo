@@ -22,7 +22,7 @@ func NewCtorsTest(cfg printer.Config) Interface {
 
 func (c *ctorstest) Generate(is []inst.Instruction) ([]byte, error) {
 	c.Printf("// %s\n\n", c.cfg.GeneratedWarning())
-	c.BuildTag("!integration")
+	c.BuildConstraint("!integration")
 	c.NL()
 	c.Printf("package x86\n\n")
 	c.Printf("import (\n")
@@ -64,7 +64,7 @@ func NewCtorsStress(cfg printer.Config) Interface {
 
 func (c *ctorsstress) Generate(is []inst.Instruction) ([]byte, error) {
 	c.Printf("// %s\n\n", c.cfg.GeneratedWarning())
-	c.BuildTag("stress")
+	c.BuildConstraint("stress")
 	c.NL()
 	c.Printf("package x86\n\n")
 	c.Printf("import (\n")
@@ -111,7 +111,7 @@ func NewCtorsBench(cfg printer.Config) Interface {
 
 func (c *ctorsbench) Generate(is []inst.Instruction) ([]byte, error) {
 	c.Printf("// %s\n\n", c.cfg.GeneratedWarning())
-	c.BuildTag("stress")
+	c.BuildConstraint("stress")
 	c.NL()
 	c.Printf("package x86\n\n")
 	c.Printf("import (\n")

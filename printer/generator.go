@@ -4,6 +4,7 @@ package printer
 import (
 	"bytes"
 	"fmt"
+	"go/build/constraint"
 	"io"
 	"strings"
 )
@@ -75,9 +76,13 @@ func (g *Generator) Comment(lines ...string) {
 	}
 }
 
-// BuildTag outputs a build tag.
-func (g *Generator) BuildTag(tag string) {
-	g.Comment("+build " + tag)
+// BuildConstraint outputs a build constraint.
+func (g *Generator) BuildConstraint(expr string) {
+	line := fmt.Sprintf("//go:build %s", expr)
+	if _, err := constraint.Parse(line); err != nil {
+		g.AddError(err)
+	}
+	g.Linef(line)
 }
 
 // AddError records an error in code generation. The first non-nil error will
