@@ -5,6 +5,7 @@ linters:
   disable:
     - cyclop
     - deadcode
+    - dupword
     - errname
     - exhaustruct
     - exhaustivestruct
@@ -28,6 +29,7 @@ linters:
     - nosnakecase
     - paralleltest
     - prealloc
+    - rowserrcheck
     - scopelint
     - structcheck
     - tagliatelle
@@ -35,6 +37,7 @@ linters:
     - unparam
     - varcheck
     - varnamelen
+    - wastedassign
     - wrapcheck
     - wsl
 linters-settings:
