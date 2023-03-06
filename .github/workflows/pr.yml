@@ -5,6 +5,7 @@ on:
   pull_request:
 jobs:
   automerge:
+    if: github.actor == 'cadobot[bot]' && !github.event.pull_request.draft
     runs-on: ubuntu-latest
     steps:
       - name: Generate Bot Token
@@ -14,7 +15,6 @@ jobs:
           app_id: ${{ secrets.APP_ID }}
           private_key: ${{ secrets.APP_PRIVATE_KEY }}
       - name: Automerge Bot Pull Requests
-        if: github.actor == 'cadobot[bot]' && !github.event.pull_request.draft
         run: gh pr merge --auto --squash "${{ github.event.pull_request.html_url }}"
         env:
           GITHUB_TOKEN: ${{ steps.bot.outputs.token }}
