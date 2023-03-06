@@ -20,7 +20,7 @@ func NewBuildTest(cfg printer.Config) Interface {
 
 func (b *buildtest) Generate(is []inst.Instruction) ([]byte, error) {
 	b.Printf("// %s\n\n", b.cfg.GeneratedWarning())
-	b.BuildTag("!integration")
+	b.BuildConstraint("!integration")
 	b.NL()
 	b.Printf("package build\n\n")
 	b.Printf("import (\n")
