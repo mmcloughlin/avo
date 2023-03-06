@@ -37,7 +37,6 @@ $ go get -u github.com/mmcloughlin/avo
 
 ```go
 //go:build ignore
-// +build ignore
 
 package main
 
