@@ -749,7 +749,7 @@
                 "stars": 108950
             },
             "default_branch": "master",
-            "version": "go1.20rc2",
+            "version": "go1.20.1",
             "packages": [
                 {
                     "pkg": "src/crypto/internal/bigmod",
