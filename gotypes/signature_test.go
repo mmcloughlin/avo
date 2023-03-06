@@ -3,7 +3,7 @@ package gotypes
 import (
 	"go/token"
 	"go/types"
-	"strings"
+	"regexp"
 	"testing"
 
 	"golang.org/x/tools/go/packages"
@@ -118,17 +118,22 @@ func TestParseSignature(t *testing.T) {
 
 func TestParseSignatureErrors(t *testing.T) {
 	cases := []struct {
-		Expr          string
-		ErrorContains string
+		Expr         string
+		ErrorPattern string
 	}{
-		{"idkjklol", "undeclared name"},
-		{"struct{}", "not a function signature"},
-		{"uint32(0xfeedbeef)", "should have nil value"},
+		{"idkjklol", `(undeclared|undefined)`}, // error message changed in go 1.20
+		{"struct{}", `not a function signature`},
+		{"uint32(0xfeedbeef)", `should have nil value`},
 	}
 	for _, c := range cases {
+		errrx, err := regexp.Compile(c.ErrorPattern)
+		if err != nil {
+			t.Fatal(err)
+		}
+
 		s, err := ParseSignature(c.Expr)
-		if s != nil || err == nil || !strings.Contains(err.Error(), c.ErrorContains) {
-			t.Errorf("expect error from expression %s\ngot: %s\nexpect substring: %s\n", c.Expr, err, c.ErrorContains)
+		if s != nil || err == nil || !errrx.MatchString(err.Error()) {
+			t.Errorf("expect error from expression %s\ngot: %s\nexpect match: %s\n", c.Expr, err, c.ErrorPattern)
 		}
 	}
 }

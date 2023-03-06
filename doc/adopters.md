@@ -52,13 +52,13 @@ filippo.io/edwards25519 — A safer, faster, and more powerful low-level edwards
 
 Go implementation of the BLS12-381 pairing
 
-<img src="https://images.weserv.nl?fit=cover&h=28&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Flukechampine.png&w=28" width="28" height="28" hspace="4" valign="middle" /> [lukechampine / **us**](https://github.com/lukechampine/us)
-
-An alternative interface to Sia
-
 <img src="https://images.weserv.nl?fit=cover&h=28&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Foasisprotocol.png&w=28" width="28" height="28" hspace="4" valign="middle" /> [oasisprotocol / **curve25519-voi**](https://github.com/oasisprotocol/curve25519-voi)
 
 High-performance Curve25519/ristretto255 for Go
+
+<img src="https://images.weserv.nl?fit=cover&h=28&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Flukechampine.png&w=28" width="28" height="28" hspace="4" valign="middle" /> [lukechampine / **us**](https://github.com/lukechampine/us)
+
+An alternative interface to Sia
 
 <img src="https://images.weserv.nl?fit=cover&h=28&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Fdgryski.png&w=28" width="28" height="28" hspace="4" valign="middle" /> [dgryski / **go-sip13**](https://github.com/dgryski/go-sip13)
 

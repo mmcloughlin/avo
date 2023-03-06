@@ -4,24 +4,21 @@
 go install ./internal/cmd/asmvet
 
 # golangci-lint for linting
-golangci_lint_version='v1.49.0'
+golangci_lint_version='v1.51.2'
 golangci_install_script="https://raw.githubusercontent.com/golangci/golangci-lint/${golangci_lint_version}/install.sh"
-curl -sfL "${golangci_install_script}" | sh -s -- -b "$GOPATH/bin" "${golangci_lint_version}"
+curl -sfL "${golangci_install_script}" | sh -s -- -b "$(go env GOPATH)/bin" "${golangci_lint_version}"
 
 # embedmd required for documentation generation
 go install github.com/campoy/embedmd@v1.0.0
-
-# covertool for merging coverage reports
-go install github.com/dlespiau/covertool@v0.0.0-20180314162135-b0c4c6d0583a
 
 # asmfmt for enforcing assembly style
 go install github.com/klauspost/asmfmt/cmd/asmfmt@v1.3.2
 
 # goimports for import grouping.
-go install golang.org/x/tools/cmd/goimports@v0.1.10
+go install golang.org/x/tools/cmd/goimports@v0.6.0
 
 # gofumpt for stricter formatting.
-go install mvdan.cc/gofumpt@v0.3.1
+go install mvdan.cc/gofumpt@v0.4.0
 
 # yamlfmt for yaml formatting.
-go install github.com/gechr/yamlfmt@v0.0.0-20220216093356-e9288cd48d12
+go install github.com/gechr/yamlfmt@v0.0.0-20221202235948-8c26683ac3e8
