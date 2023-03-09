@@ -94,7 +94,7 @@ func _yvblendmpd(isa, bcst string) inst.Forms {
 			Operands: []inst.Operand{
 				{Type: "xmm", Action: inst.R},
 				{Type: "xmm", Action: inst.R},
-				{Type: "xmm{k}{z}", Action: inst.W},
+				{Type: "xmm{k}{z}", Action: inst.RW},
 			},
 			EncodingType: inst.EncodingTypeEVEX,
 		},
@@ -103,7 +103,7 @@ func _yvblendmpd(isa, bcst string) inst.Forms {
 			Operands: []inst.Operand{
 				{Type: "m128" + bcst, Action: inst.R},
 				{Type: "xmm", Action: inst.R},
-				{Type: "xmm{k}{z}", Action: inst.W},
+				{Type: "xmm{k}{z}", Action: inst.RW},
 			},
 			EncodingType: inst.EncodingTypeEVEX,
 		},
@@ -115,7 +115,7 @@ func _yvblendmpd(isa, bcst string) inst.Forms {
 			Operands: []inst.Operand{
 				{Type: "ymm", Action: inst.R},
 				{Type: "ymm", Action: inst.R},
-				{Type: "ymm{k}{z}", Action: inst.W},
+				{Type: "ymm{k}{z}", Action: inst.RW},
 			},
 			EncodingType: inst.EncodingTypeEVEX,
 		},
@@ -124,7 +124,7 @@ func _yvblendmpd(isa, bcst string) inst.Forms {
 			Operands: []inst.Operand{
 				{Type: "m256" + bcst, Action: inst.R},
 				{Type: "ymm", Action: inst.R},
-				{Type: "ymm{k}{z}", Action: inst.W},
+				{Type: "ymm{k}{z}", Action: inst.RW},
 			},
 			EncodingType: inst.EncodingTypeEVEX,
 		},
@@ -136,7 +136,7 @@ func _yvblendmpd(isa, bcst string) inst.Forms {
 			Operands: []inst.Operand{
 				{Type: "zmm", Action: inst.R},
 				{Type: "zmm", Action: inst.R},
-				{Type: "zmm{k}{z}", Action: inst.W},
+				{Type: "zmm{k}{z}", Action: inst.RW},
 			},
 			EncodingType: inst.EncodingTypeEVEX,
 		},
@@ -145,7 +145,7 @@ func _yvblendmpd(isa, bcst string) inst.Forms {
 			Operands: []inst.Operand{
 				{Type: "m512" + bcst, Action: inst.R},
 				{Type: "zmm", Action: inst.R},
-				{Type: "zmm{k}{z}", Action: inst.W},
+				{Type: "zmm{k}{z}", Action: inst.RW},
 			},
 			EncodingType: inst.EncodingTypeEVEX,
 		},
