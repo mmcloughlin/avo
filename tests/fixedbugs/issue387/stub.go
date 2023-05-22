@@ -2,4 +2,6 @@
 
 package issue387
 
-func Float32At(i int) float32
+func Float32(i int) float32
+
+func Float64(i int) float64

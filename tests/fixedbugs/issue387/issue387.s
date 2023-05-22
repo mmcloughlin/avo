@@ -14,11 +14,32 @@ DATA f32<>+32(SB)/4, $(8)
 DATA f32<>+36(SB)/4, $(9)
 GLOBL f32<>(SB), RODATA|NOPTR, $40
 
-// func Float32At(i int) float32
+// func Float32(i int) float32
 // Requires: SSE
-TEXT ·Float32At(SB), NOSPLIT, $0-12
+TEXT ·Float32(SB), NOSPLIT, $0-12
 	MOVQ  i+0(FP), AX
 	LEAQ  f32<>+0(SB), CX
 	MOVSS (CX)(AX*4), X0
 	MOVSS X0, ret+8(FP)
+	RET
+
+DATA f64<>+0(SB)/8, $(0)
+DATA f64<>+8(SB)/8, $(1)
+DATA f64<>+16(SB)/8, $(2)
+DATA f64<>+24(SB)/8, $(3)
+DATA f64<>+32(SB)/8, $(4)
+DATA f64<>+40(SB)/8, $(5)
+DATA f64<>+48(SB)/8, $(6)
+DATA f64<>+56(SB)/8, $(7)
+DATA f64<>+64(SB)/8, $(8)
+DATA f64<>+72(SB)/8, $(9)
+GLOBL f64<>(SB), RODATA|NOPTR, $80
+
+// func Float64(i int) float64
+// Requires: SSE2
+TEXT ·Float64(SB), NOSPLIT, $0-16
+	MOVQ  i+0(FP), AX
+	LEAQ  f64<>+0(SB), CX
+	MOVSD (CX)(AX*8), X0
+	MOVSD X0, ret+8(FP)
 	RET
