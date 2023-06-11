@@ -17,6 +17,7 @@ func Float32() {
 	}
 
 	TEXT("Float32", NOSPLIT, "func(i int) float32")
+	Doc("Float32 indexes into an array of single-precision integral floats.")
 	i := Load(Param("i"), GP64())
 	ptr := Mem{Base: GP64()}
 	LEAQ(f32, ptr.Base)
@@ -35,6 +36,7 @@ func Float64() {
 	}
 
 	TEXT("Float64", NOSPLIT, "func(i int) float64")
+	Doc("Float64 indexes into an array of double-precision integral floats.")
 	i := Load(Param("i"), GP64())
 	ptr := Mem{Base: GP64()}
 	LEAQ(f64, ptr.Base)

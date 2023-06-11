@@ -2,6 +2,8 @@
 
 package issue387
 
+// Float32 indexes into an array of single-precision integral floats.
 func Float32(i int) float32
 
+// Float64 indexes into an array of double-precision integral floats.
 func Float64(i int) float64
