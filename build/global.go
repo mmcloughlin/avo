@@ -55,8 +55,15 @@ func Generate() {
 	}
 }
 
+// Include adds an include pre-processor directive for the provided path to the
+// current file, if it is not already present.
+func Include(path string) { ctx.Include(path) }
+
 // Package sets the package the generated file will belong to. Required to be able to reference types in the package.
 func Package(path string) { ctx.Package(path) }
+
+// Preprocessor adds a pre-processor macro to the current function.
+func Preprocessor(macro string) { ctx.Preprocessor(macro) }
 
 // Constraints sets build constraints for the file.
 func Constraints(t buildtags.ConstraintsConvertable) { ctx.Constraints(t) }
