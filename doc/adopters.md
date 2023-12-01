@@ -80,6 +80,10 @@ Assembly-optimized MD4 hash algorithm in Go
 
 Assembly-optimized Marvin32 hash function
 
+<img src="https://images.weserv.nl?fit=cover&h=28&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Fericlagergren.png&w=28" width="28" height="28" hspace="4" valign="middle" /> [ericlagergren / **lwcrypto**](https://github.com/ericlagergren/lwcrypto)
+
+NIST Lightweight Cryptography finalists
+
 <img src="https://images.weserv.nl?fit=cover&h=28&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Fdgryski.png&w=28" width="28" height="28" hspace="4" valign="middle" /> [dgryski / **go-speck**](https://github.com/dgryski/go-speck)
 
 SPECK cipher
@@ -87,7 +91,3 @@ SPECK cipher
 <img src="https://images.weserv.nl?fit=cover&h=28&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Fdgryski.png&w=28" width="28" height="28" hspace="4" valign="middle" /> [dgryski / **go-chaskey**](https://github.com/dgryski/go-chaskey)
 
 go-chaskey: an implementation of chaskey, an efficient MAC for microcontrollers
-
-<img src="https://images.weserv.nl?fit=cover&h=28&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Fericlagergren.png&w=28" width="28" height="28" hspace="4" valign="middle" /> [ericlagergren / **lwcrypto**](https://github.com/ericlagergren/lwcrypto)
-
-NIST Lightweight Cryptography finalists
