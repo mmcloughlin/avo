@@ -7,13 +7,12 @@ import (
 
 	"github.com/mmcloughlin/avo/internal/api"
 	"github.com/mmcloughlin/avo/internal/inst"
-	"github.com/mmcloughlin/avo/internal/prnt"
 	"github.com/mmcloughlin/avo/printer"
 )
 
 type ctorstest struct {
 	cfg printer.Config
-	prnt.Generator
+	printer.Generator
 }
 
 // NewCtorsTest autogenerates tests for the constructors build by NewCtors.
@@ -55,7 +54,7 @@ func (c *ctorstest) function(fn *api.Function) {
 
 type ctorsstress struct {
 	cfg printer.Config
-	prnt.Generator
+	printer.Generator
 }
 
 // NewCtorsStress autogenerates stress tests for instruction constructors.
@@ -102,7 +101,7 @@ func (c *ctorsstress) function(fn *api.Function) {
 
 type ctorsbench struct {
 	cfg printer.Config
-	prnt.Generator
+	printer.Generator
 }
 
 // NewCtorsBench autogenerates a benchmark for the instruction constructors.

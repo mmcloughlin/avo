@@ -3,13 +3,12 @@ package gen
 import (
 	"github.com/mmcloughlin/avo/internal/api"
 	"github.com/mmcloughlin/avo/internal/inst"
-	"github.com/mmcloughlin/avo/internal/prnt"
 	"github.com/mmcloughlin/avo/printer"
 )
 
 type godata struct {
 	cfg printer.Config
-	prnt.Generator
+	printer.Generator
 }
 
 // NewGoData writes a Go variable containing the instructions database. This is
@@ -89,7 +88,7 @@ func (g *godata) Generate(is []inst.Instruction) ([]byte, error) {
 
 type godatatest struct {
 	cfg printer.Config
-	prnt.Generator
+	printer.Generator
 }
 
 // NewGoDataTest writes a test case to confirm that NewGoData faithfully

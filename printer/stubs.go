@@ -4,13 +4,12 @@ import (
 	"go/format"
 
 	"github.com/mmcloughlin/avo/buildtags"
-	"github.com/mmcloughlin/avo/internal/prnt"
 	"github.com/mmcloughlin/avo/ir"
 )
 
 type stubs struct {
 	cfg Config
-	prnt.Generator
+	Generator
 }
 
 // NewStubs constructs a printer for writing stub function declarations.

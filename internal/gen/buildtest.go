@@ -3,13 +3,12 @@ package gen
 import (
 	"github.com/mmcloughlin/avo/internal/api"
 	"github.com/mmcloughlin/avo/internal/inst"
-	"github.com/mmcloughlin/avo/internal/prnt"
 	"github.com/mmcloughlin/avo/printer"
 )
 
 type buildtest struct {
 	cfg printer.Config
-	prnt.Generator
+	printer.Generator
 }
 
 // NewBuildTest autogenerates tests for instruction methods on the build
