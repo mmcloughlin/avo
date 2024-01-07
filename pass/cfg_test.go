@@ -266,7 +266,7 @@ func AssertPredecessors(t *testing.T, f *ir.Function, expect map[string][]string
 	AssertEqual(t, "predecessors", OpcodePredecessorGraph(f), expect)
 }
 
-func AssertEqual(t *testing.T, what string, got, expect interface{}) {
+func AssertEqual(t *testing.T, what string, got, expect any) {
 	t.Helper()
 	t.Logf("%s=%#v\n", what, got)
 	if reflect.DeepEqual(expect, got) {

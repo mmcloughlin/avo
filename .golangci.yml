@@ -93,8 +93,6 @@ linters-settings:
         disabled: true
       - name: unused-receiver
         disabled: true
-      - name: use-any
-        disabled: true
 issues:
   exclude-use-default: false
   exclude:

@@ -86,7 +86,7 @@ func (c *Client) Issue(ctx context.Context, owner, name string, number int) (*Is
 	return issue, nil
 }
 
-func (c *Client) request(req *http.Request, payload interface{}) (err error) {
+func (c *Client) request(req *http.Request, payload any) (err error) {
 	// Add common headers.
 	if c.token != "" {
 		req.Header.Set("Authorization", "Bearer "+c.token)
