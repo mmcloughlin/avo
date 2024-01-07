@@ -45,7 +45,7 @@ type Component interface {
 // methods whilst also allowing method chaining to continue.
 type componenterr string
 
-func errorf(format string, args ...interface{}) Component {
+func errorf(format string, args ...any) Component {
 	return componenterr(fmt.Sprintf(format, args...))
 }
 

@@ -43,13 +43,13 @@ func (g *Generator) Dedent() {
 }
 
 // Linef prints formatted output terminated with a new line.
-func (g *Generator) Linef(format string, args ...interface{}) {
+func (g *Generator) Linef(format string, args ...any) {
 	g.Printf(format, args...)
 	g.NL()
 }
 
 // Printf prints to the internal buffer.
-func (g *Generator) Printf(format string, args ...interface{}) {
+func (g *Generator) Printf(format string, args ...any) {
 	if g.err != nil {
 		return
 	}

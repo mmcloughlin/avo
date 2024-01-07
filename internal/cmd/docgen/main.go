@@ -71,7 +71,7 @@ func mainerr() (err error) {
 	}
 
 	// Execute.
-	data := map[string]interface{}{
+	data := map[string]any{
 		"Suite": suite,
 	}
 
