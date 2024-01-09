@@ -859,6 +859,39 @@
                     ]
                 }
             ]
+        },
+        {
+            "repository": {
+                "owner": "bytedance",
+                "name": "gopkg"
+            },
+            "default_branch": "develop",
+            "version": "a5eedbe96960cf0f801cf970e89f511842daee75",
+            "packages": [
+                {
+                    "pkg": "util/xxhash3",
+                    "module": "internal/avo/go.mod",
+                    "setup": [
+                        {
+                            "name": "Setup Generator Module",
+                            "dir": "internal/avo",
+                            "commands": [
+                                "sed -i.bak '/build ignore/d' *.go",
+                                "go mod init github.com/bytedance/gopkg/util/xxhash3/internal/avo"
+                            ]
+                        }
+                    ],
+                    "generate": [
+                        {
+                            "dir": "internal/avo",
+                            "commands": [
+                                "go run . -avx2 -out ../../avx2_amd64.s",
+                                "go run . -sse2 -out ../../sse2_amd64.s"
+                            ]
+                        }
+                    ]
+                }
+            ]
         }
     ],
     "metadata_last_update": "2024-01-01T05:28:16.191838199Z"
