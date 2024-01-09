@@ -171,7 +171,7 @@
             },
             "metadata": {
                 "description": "Reed-Solomon Erasure Coding in Go",
-                "stars": 1754
+                "stars": 1755
             },
             "default_branch": "master",
             "version": "922778284547557265cff0f903ab5f4c27e40ae9",
@@ -230,7 +230,7 @@
             },
             "metadata": {
                 "description": "Optimized Go Compression Packages",
-                "stars": 4320
+                "stars": 4332
             },
             "default_branch": "master",
             "version": "2f236383d7c2faa8ef7e354ccecb926a5b47a24d",
@@ -275,7 +275,7 @@
             },
             "metadata": {
                 "description": "Bloom-filter based search index",
-                "stars": 116
+                "stars": 118
             },
             "default_branch": "master",
             "version": "0902316dce158c154b958ee5cfc706c62af29a42",
@@ -519,7 +519,7 @@
             },
             "metadata": {
                 "description": "Go library providing algorithms optimized to leverage the characteristics of modern CPUs",
-                "stars": 820
+                "stars": 821
             },
             "default_branch": "main",
             "version": "2bf3fdd47b1cdbe8fe020f032caf14891e10a85f",
@@ -634,7 +634,7 @@
             "metadata": {
                 "description": "[mirror] Go supplementary cryptography libraries",
                 "homepage": "https://golang.org/x/crypto",
-                "stars": 2864
+                "stars": 2869
             },
             "default_branch": "master",
             "version": "089bfa5675191fd96a44247682f76ebca03d7916",
@@ -746,7 +746,7 @@
             "metadata": {
                 "description": "The Go programming language",
                 "homepage": "https://go.dev",
-                "stars": 116689
+                "stars": 116833
             },
             "default_branch": "master",
             "version": "go1.20.1",
@@ -817,7 +817,7 @@
             "metadata": {
                 "description": "CIRCL: Cloudflare Interoperable Reusable Cryptographic Library",
                 "homepage": "http://blog.cloudflare.com/introducing-circl",
-                "stars": 1083
+                "stars": 1088
             },
             "default_branch": "main",
             "version": "v1.1.0",
@@ -859,7 +859,44 @@
                     ]
                 }
             ]
+        },
+        {
+            "repository": {
+                "owner": "bytedance",
+                "name": "gopkg"
+            },
+            "metadata": {
+                "description": "Universal Utilities for Go",
+                "stars": 1405
+            },
+            "default_branch": "develop",
+            "version": "a5eedbe96960cf0f801cf970e89f511842daee75",
+            "packages": [
+                {
+                    "pkg": "util/xxhash3",
+                    "module": "internal/avo/go.mod",
+                    "setup": [
+                        {
+                            "name": "Setup Generator Module",
+                            "dir": "internal/avo",
+                            "commands": [
+                                "sed -i.bak '/build ignore/d' *.go",
+                                "go mod init github.com/bytedance/gopkg/util/xxhash3/internal/avo"
+                            ]
+                        }
+                    ],
+                    "generate": [
+                        {
+                            "dir": "internal/avo",
+                            "commands": [
+                                "go run . -avx2 -out ../../avx2_amd64.s",
+                                "go run . -sse2 -out ../../sse2_amd64.s"
+                            ]
+                        }
+                    ]
+                }
+            ]
         }
     ],
-    "metadata_last_update": "2024-01-01T05:28:16.191838199Z"
+    "metadata_last_update": "2024-01-09T01:47:54.01555539Z"
 }

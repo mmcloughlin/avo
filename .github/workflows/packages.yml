@@ -1111,3 +1111,45 @@ jobs:
       - name: Test
         working-directory: circl/simd/keccakf1600
         run: go test ./...
+  bytedance-gopkg-util-xxhash3:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Go
+        uses: actions/setup-go@c4a742cab115ed795e34d4513e2cf7d472deb55f # v3.3.1
+        with:
+          go-version: 1.21.x
+          check-latest: true
+      - name: Checkout avo
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
+        with:
+          path: avo
+          persist-credentials: false
+      - name: Checkout bytedance/gopkg
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
+        with:
+          repository: bytedance/gopkg
+          ref: a5eedbe96960cf0f801cf970e89f511842daee75
+          path: gopkg
+          persist-credentials: false
+      - name: Setup Generator Module
+        working-directory: gopkg/util/xxhash3/internal/avo
+        run: |
+          sed -i.bak '/build ignore/d' *.go
+          go mod init github.com/bytedance/gopkg/util/xxhash3/internal/avo
+      - name: Avo Module Replacement
+        working-directory: gopkg/util/xxhash3/internal/avo
+        run: |
+          go mod edit -modfile=go.mod -require=github.com/mmcloughlin/avo@v0.0.0-00010101000000-000000000000
+          go mod edit -modfile=go.mod -replace=github.com/mmcloughlin/avo=${{ github.workspace }}/avo
+          go mod tidy -modfile=go.mod
+      - name: Generate
+        working-directory: gopkg/util/xxhash3/internal/avo
+        run: |
+          go run . -avx2 -out ../../avx2_amd64.s
+          go run . -sse2 -out ../../sse2_amd64.s
+      - name: Diff
+        working-directory: gopkg/util/xxhash3
+        run: git diff
+      - name: Test
+        working-directory: gopkg/util/xxhash3
+        run: go test ./...
