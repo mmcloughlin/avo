@@ -164,10 +164,10 @@ func TestPreprocessor(t *testing.T) {
 
 func TestInclude(t *testing.T) {
 	ctx := build.NewContext()
-	ctx.Include("before.h")
+	ctx.IncludeHeader("before.h")
 	ctx.Function("preprocessor")
 	ctx.SignatureExpr("func()")
-	ctx.Include("after.h")
+	ctx.IncludeHeader("after.h")
 	ctx.VZEROUPPER()
 
 	AssertPrintsLines(t, ctx, printer.NewGoAsm, []string{

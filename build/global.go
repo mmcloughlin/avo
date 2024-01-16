@@ -62,7 +62,7 @@ func Generate() {
 
 // Include adds an include pre-processor directive for the provided path to the
 // current file, if it is not already present.
-func Include(path string) { ctx.Include(path) }
+func Include(path string) { ctx.IncludeHeader(path) }
 
 // Package sets the package the generated file will belong to. Required to be able to reference types in the package.
 func Package(path string) { ctx.Package(path) }

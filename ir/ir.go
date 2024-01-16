@@ -204,9 +204,9 @@ func (f *File) Functions() []*Function {
 	return fns
 }
 
-// Include adds an include pre-processor directive for the provided path, if it
-// is not already present.
-func (f *File) Include(path string) {
+// IncludeHeader adds an include pre-processor directive for the provided path,
+// if it is not already present.
+func (f *File) IncludeHeader(path string) {
 	for _, p := range f.Includes {
 		if p == path {
 			return

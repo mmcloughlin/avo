@@ -56,10 +56,10 @@ func (c *Context) Package(path string) {
 	c.pkg = pkg
 }
 
-// Include adds an include pre-processor directive for the provided path, if it
+// IncludeHeader adds an include pre-processor directive for the provided path, if it
 // is not already present.
-func (c *Context) Include(path string) {
-	c.file.Include(path)
+func (c *Context) IncludeHeader(path string) {
+	c.file.IncludeHeader(path)
 }
 
 // Constraints sets build constraints for the file.
