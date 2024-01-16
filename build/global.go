@@ -15,6 +15,11 @@ import (
 // ctx provides a global build context.
 var ctx = NewContext()
 
+// Returns the global context.
+func GlobalContext() *Context {
+	return ctx
+}
+
 // TEXT starts building a new function called name, with attributes a, and sets its signature (see SignatureExpr).
 func TEXT(name string, a attr.Attribute, signature string) {
 	ctx.Function(name)
@@ -61,9 +66,6 @@ func Include(path string) { ctx.Include(path) }
 
 // Package sets the package the generated file will belong to. Required to be able to reference types in the package.
 func Package(path string) { ctx.Package(path) }
-
-// Preprocessor adds a pre-processor macro to the current function.
-func Preprocessor(macro string) { ctx.Preprocessor(macro) }
 
 // Constraints sets build constraints for the file.
 func Constraints(t buildtags.ConstraintsConvertable) { ctx.Constraints(t) }

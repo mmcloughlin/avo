@@ -111,9 +111,18 @@ func (p *goasm) function(f *ir.Function) {
 			for _, line := range n.Lines {
 				p.Printf("\t// %s\n", line)
 			}
-		case ir.Preprocessor:
+		case ir.PreprocIfdef:
 			p.flush()
-			p.Printf("#%s\n", string(n))
+			p.Printf("#ifdef %s\n", string(n))
+		case ir.PreprocIfndef:
+			p.flush()
+			p.Printf("#ifndef %s\n", string(n))
+		case ir.PreprocElse:
+			p.flush()
+			p.Printf("#else\n")
+		case ir.PreprocEndif:
+			p.flush()
+			p.Printf("#endif\n")
 		default:
 			panic("unexpected node type")
 		}

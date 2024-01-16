@@ -166,9 +166,24 @@ func (c *Context) Label(name string) {
 	c.activefunc().AddLabel(ir.Label(name))
 }
 
-// Preprocessor adds a preprocessor macro to the active function.
-func (c *Context) Preprocessor(macro string) {
-	c.activefunc().AddPreprocessor(macro)
+// PreprocIfdef adds an #ifdef macro to the active function.
+func (c *Context) PreprocIfdef(condition string) {
+	c.activefunc().AddPreprocIfdef(condition)
+}
+
+// PreprocIfndef adds an #ifndef macro to the active function.
+func (c *Context) PreprocIfndef(condition string) {
+	c.activefunc().AddPreprocIfndef(condition)
+}
+
+// PreprocElse adds an #else macro to the active function.
+func (c *Context) PreprocElse() {
+	c.activefunc().AddPreprocElse()
+}
+
+// PreprocEndif adds an #endif macro to the active function.
+func (c *Context) PreprocEndif() {
+	c.activefunc().AddPreprocEndif()
 }
 
 // Comment adds comment lines to the active function.

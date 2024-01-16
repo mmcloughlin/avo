@@ -2,6 +2,7 @@ package ir
 
 import (
 	"errors"
+
 	"github.com/mmcloughlin/avo/attr"
 	"github.com/mmcloughlin/avo/buildtags"
 	"github.com/mmcloughlin/avo/gotypes"
@@ -14,14 +15,46 @@ type Node interface {
 	node()
 }
 
-// Preprocessor macro within a function.
-type Preprocessor string
+// PreprocIfDef is the #ifdef preprocessor macro node, represented as its
+// condition expression.
+type PreprocIfdef string
 
-func (p Preprocessor) node() {}
+func (p PreprocIfdef) node() {}
 
-// NewPreprocessor builds a Preprocessor from the provided macro string.
-func NewPreprocessor(macro string) Preprocessor {
-	return Preprocessor(macro)
+// NewPreprocIfdef builds a PreprocIfdef node from the provided condition.
+func NewPreprocIfdef(condition string) PreprocIfdef {
+	return PreprocIfdef(condition)
+}
+
+// PreprocIfndef is the #ifndef preprocessor macro node, represented as its
+// condition expression.
+type PreprocIfndef string
+
+func (p PreprocIfndef) node() {}
+
+// NewPreprocIfndef builds a PreprocIfndef node from the provided condition.
+func NewPreprocIfndef(condition string) PreprocIfndef {
+	return PreprocIfndef(condition)
+}
+
+// PreprocElse is the #else preprocessor macro node.
+type PreprocElse struct{}
+
+func (p PreprocElse) node() {}
+
+// NewPreprocElse builds a PreprocElse node.
+func NewPreprocElse() PreprocElse {
+	return PreprocElse{}
+}
+
+// PreprocEndif is the #endif preprocessor macro node.
+type PreprocEndif struct{}
+
+func (p PreprocEndif) node() {}
+
+// NewPreprocEnd builds a PreprocEnd node.
+func NewPreprocEndif() PreprocEndif {
+	return PreprocEndif{}
 }
 
 // Label within a function.
@@ -250,9 +283,24 @@ func (f *Function) AddLabel(l Label) {
 	f.AddNode(l)
 }
 
-// AddPreprocessor adds a pre-processor macro to f.
-func (f *Function) AddPreprocessor(macro string) {
-	f.AddNode(NewPreprocessor(macro))
+// AddPreprocIfdef adds an #ifdef preprocessor macro to f.
+func (f *Function) AddPreprocIfdef(condition string) {
+	f.AddNode(NewPreprocIfdef(condition))
+}
+
+// AddPreprocIfndef adds an #ifndef preprocessor macro to f.
+func (f *Function) AddPreprocIfndef(condition string) {
+	f.AddNode(NewPreprocIfndef(condition))
+}
+
+// AddPreprocElse adds an #else preprocessor macro to f.
+func (f *Function) AddPreprocElse() {
+	f.AddNode(NewPreprocElse())
+}
+
+// AddPreprocEndif adds an #endif preprocessor macro to f.
+func (f *Function) AddPreprocEndif() {
+	f.AddNode(NewPreprocEndif())
 }
 
 // AddComment adds comment lines to f.
