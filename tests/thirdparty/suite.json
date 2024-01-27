@@ -233,8 +233,20 @@
                 "stars": 4332
             },
             "default_branch": "master",
-            "version": "2f236383d7c2faa8ef7e354ccecb926a5b47a24d",
+            "version": "v1.17.5",
             "packages": [
+                {
+                    "pkg": "huff0",
+                    "module": "_generate/go.mod",
+                    "generate": [
+                        {
+                            "dir": "_generate",
+                            "commands": [
+                                "go generate -v -x"
+                            ]
+                        }
+                    ]
+                },
                 {
                     "pkg": "s2",
                     "module": "_generate/go.mod",

@@ -284,6 +284,41 @@ jobs:
       - name: Test
         working-directory: wyhash
         run: go test ./...
+  klauspost-compress-huff0:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Go
+        uses: actions/setup-go@c4a742cab115ed795e34d4513e2cf7d472deb55f # v3.3.1
+        with:
+          go-version: 1.21.x
+          check-latest: true
+      - name: Checkout avo
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
+        with:
+          path: avo
+          persist-credentials: false
+      - name: Checkout klauspost/compress
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
+        with:
+          repository: klauspost/compress
+          ref: v1.17.5
+          path: compress
+          persist-credentials: false
+      - name: Avo Module Replacement
+        working-directory: compress/huff0/_generate
+        run: |
+          go mod edit -modfile=go.mod -require=github.com/mmcloughlin/avo@v0.0.0-00010101000000-000000000000
+          go mod edit -modfile=go.mod -replace=github.com/mmcloughlin/avo=${{ github.workspace }}/avo
+          go mod tidy -modfile=go.mod
+      - name: Generate
+        working-directory: compress/huff0/_generate
+        run: go generate -v -x
+      - name: Diff
+        working-directory: compress/huff0
+        run: git diff
+      - name: Test
+        working-directory: compress/huff0
+        run: go test ./...
   klauspost-compress-s2:
     runs-on: ubuntu-latest
     steps:
@@ -301,7 +336,7 @@ jobs:
         uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
         with:
           repository: klauspost/compress
-          ref: 2f236383d7c2faa8ef7e354ccecb926a5b47a24d
+          ref: v1.17.5
           path: compress
           persist-credentials: false
       - name: Avo Module Replacement
@@ -336,7 +371,7 @@ jobs:
         uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
         with:
           repository: klauspost/compress
-          ref: 2f236383d7c2faa8ef7e354ccecb926a5b47a24d
+          ref: v1.17.5
           path: compress
           persist-credentials: false
       - name: Avo Module Replacement
