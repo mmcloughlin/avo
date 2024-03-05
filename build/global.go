@@ -15,6 +15,11 @@ import (
 // ctx provides a global build context.
 var ctx = NewContext()
 
+// Returns the global context.
+func GlobalContext() *Context {
+	return ctx
+}
+
 // TEXT starts building a new function called name, with attributes a, and sets its signature (see SignatureExpr).
 func TEXT(name string, a attr.Attribute, signature string) {
 	ctx.Function(name)
@@ -54,6 +59,10 @@ func Generate() {
 		os.Exit(status)
 	}
 }
+
+// IncludeHeader adds an include pre-processor directive for the provided path
+// to the current file, if it is not already present.
+func IncludeHeader(path string) { ctx.IncludeHeader(path) }
 
 // Package sets the package the generated file will belong to. Required to be able to reference types in the package.
 func Package(path string) { ctx.Package(path) }
