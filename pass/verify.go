@@ -20,7 +20,7 @@ func VerifyMemOperands(i *ir.Instruction) error {
 			continue
 		}
 
-		if m.Base == nil {
+		if m.Base == nil && !(operand.IsVmx(m) || operand.IsVmy(m) || operand.IsVmz(m)) {
 			return errors.New("bad memory operand: missing base register")
 		}
 
