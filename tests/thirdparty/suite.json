@@ -7,7 +7,7 @@
             },
             "metadata": {
                 "description": "XXH3 algorithm in Go",
-                "stars": 368
+                "stars": 372
             },
             "default_branch": "master",
             "version": "v1.0.0-rc1",
@@ -145,7 +145,7 @@
             },
             "metadata": {
                 "description": "Pure Go implementation of BLAKE3 with AVX2 and SSE4.1 acceleration",
-                "stars": 359
+                "stars": 362
             },
             "default_branch": "master",
             "version": "25dba572f0e78ec108f0dd79c9c15288f542d7d9",
@@ -171,7 +171,7 @@
             },
             "metadata": {
                 "description": "Reed-Solomon Erasure Coding in Go",
-                "stars": 1774
+                "stars": 1786
             },
             "default_branch": "master",
             "version": "922778284547557265cff0f903ab5f4c27e40ae9",
@@ -196,7 +196,7 @@
             },
             "metadata": {
                 "description": "A pure-Go wyhash implementation.",
-                "stars": 28
+                "stars": 29
             },
             "default_branch": "master",
             "version": "32a3f7f6ba4797e2d87dab2969cc9dd63d39cce9",
@@ -230,7 +230,7 @@
             },
             "metadata": {
                 "description": "Optimized Go Compression Packages",
-                "stars": 4425
+                "stars": 4466
             },
             "default_branch": "master",
             "version": "v1.17.5",
@@ -531,7 +531,7 @@
             },
             "metadata": {
                 "description": "Go library providing algorithms optimized to leverage the characteristics of modern CPUs",
-                "stars": 837
+                "stars": 840
             },
             "default_branch": "main",
             "version": "2bf3fdd47b1cdbe8fe020f032caf14891e10a85f",
@@ -595,7 +595,7 @@
             },
             "metadata": {
                 "description": "High-performance Curve25519/ristretto255 for Go.",
-                "stars": 70
+                "stars": 72
             },
             "default_branch": "master",
             "version": "d5a936accd94ef9da4c0fe9db0a6342dcdcfeadf",
@@ -620,7 +620,7 @@
             },
             "metadata": {
                 "description": "Go Deoxys-II-256-128",
-                "stars": 23
+                "stars": 25
             },
             "default_branch": "master",
             "version": "2091330c22b71dd4e04e15306498e68f3a1b3afc",
@@ -646,7 +646,7 @@
             "metadata": {
                 "description": "[mirror] Go supplementary cryptography libraries",
                 "homepage": "https://golang.org/x/crypto",
-                "stars": 2904
+                "stars": 2922
             },
             "default_branch": "master",
             "version": "089bfa5675191fd96a44247682f76ebca03d7916",
@@ -673,7 +673,7 @@
             "metadata": {
                 "description": "filippo.io/edwards25519 — A safer, faster, and more powerful low-level edwards25519 Go implementation.",
                 "homepage": "https://filippo.io/edwards25519",
-                "stars": 120
+                "stars": 124
             },
             "default_branch": "main",
             "version": "v1.0.0-rc.1",
@@ -698,7 +698,7 @@
             },
             "metadata": {
                 "description": "A pure-Go implementation of the BLAKE3 cryptographic hash function",
-                "stars": 324
+                "stars": 328
             },
             "default_branch": "master",
             "version": "v1.1.7",
@@ -758,7 +758,7 @@
             "metadata": {
                 "description": "The Go programming language",
                 "homepage": "https://go.dev",
-                "stars": 118216
+                "stars": 118989
             },
             "default_branch": "master",
             "version": "go1.20.1",
@@ -829,7 +829,7 @@
             "metadata": {
                 "description": "CIRCL: Cloudflare Interoperable Reusable Cryptographic Library",
                 "homepage": "http://blog.cloudflare.com/introducing-circl",
-                "stars": 1129
+                "stars": 1157
             },
             "default_branch": "main",
             "version": "v1.1.0",
@@ -879,7 +879,7 @@
             },
             "metadata": {
                 "description": "Universal Utilities for Go",
-                "stars": 1464
+                "stars": 1521
             },
             "default_branch": "develop",
             "version": "a5eedbe96960cf0f801cf970e89f511842daee75",
@@ -910,5 +910,5 @@
             ]
         }
     ],
-    "metadata_last_update": "2024-03-01T05:27:15.332564339Z"
+    "metadata_last_update": "2024-04-01T05:28:16.528601599Z"
 }
