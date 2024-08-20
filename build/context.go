@@ -90,6 +90,12 @@ func (c *Context) Function(name string) {
 	c.file.AddSection(c.function)
 }
 
+// InternalFunction starts building a new internal function (not linked to any package) with the given name.
+func (c *Context) InternalFunction(name string) {
+	c.function = ir.NewInternalFunction(name)
+	c.file.AddSection(c.function)
+}
+
 // Doc sets documentation comment lines for the currently active function.
 func (c *Context) Doc(lines ...string) {
 	c.activefunc().Doc = lines
@@ -112,6 +118,11 @@ func (c *Context) Signature(s *gotypes.Signature) {
 
 // SignatureExpr parses the signature expression and sets it as the active function's signature.
 func (c *Context) SignatureExpr(expr string) {
+	if c.activefunc().IsInternal {
+		e := fmt.Sprintf("cannot link SignatureExpr \"%s\" with InternalFunction \"%s\"", expr, c.activefunc().Name)
+		c.adderror(errors.New(e))
+		return
+	}
 	s, err := gotypes.ParseSignatureInPackage(c.types(), expr)
 	if err != nil {
 		c.adderror(err)

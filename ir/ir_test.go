@@ -24,6 +24,20 @@ func TestFunctionLabels(t *testing.T) {
 	}
 }
 
+func TestIsNotInternal(t *testing.T) {
+	f := NewFunction("isNotInternal")
+	if f.IsInternal {
+		t.Fatalf("expected f.IsInternal to be false, got %t", f.IsInternal)
+	}
+}
+
+func TestIsInternal(t *testing.T) {
+	f := NewInternalFunction("isInternal")
+	if !f.IsInternal {
+		t.Fatalf("expected f.IsInternal to be true, got %t", f.IsInternal)
+	}
+}
+
 func TestInputRegisters(t *testing.T) {
 	cases := []struct {
 		Name   string
