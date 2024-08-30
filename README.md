@@ -4,6 +4,7 @@
   <img src="https://img.shields.io/github/actions/workflow/status/mmcloughlin/avo/ci.yml?style=flat-square" alt="Build Status" />
   <a href="https://pkg.go.dev/github.com/mmcloughlin/avo"><img src="https://img.shields.io/badge/doc-reference-007d9b?logo=go&style=flat-square" alt="go.dev" /></a>
   <a href="https://goreportcard.com/report/github.com/mmcloughlin/avo"><img src="https://goreportcard.com/badge/github.com/mmcloughlin/avo?style=flat-square" alt="Go Report Card" /></a>
+  <a href="https://github.com/nikolaydubina/go-recipes"><img src="https://raw.githubusercontent.com/nikolaydubina/go-recipes/main/badge.svg?raw=true" alt="go-recipes" /></a>
 </p>
 
 <p align="center">Generate x86 Assembly with Go</p>
