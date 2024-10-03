@@ -6,7 +6,7 @@ The [code generator](asm.go) is as follows:
 
 [embedmd]:# (asm.go)
 ```go
-// +build ignore
+//go:build ignore
 
 package main
 

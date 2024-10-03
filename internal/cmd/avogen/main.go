@@ -3,6 +3,7 @@ package main
 
 import (
 	"flag"
+	"fmt"
 	"go/build"
 	"log"
 	"os"
@@ -15,13 +16,17 @@ import (
 )
 
 var generators = map[string]gen.Builder{
-	"asmtest":    gen.NewAsmTest,
-	"godata":     gen.NewGoData,
-	"godatatest": gen.NewGoDataTest,
-	"ctors":      gen.NewCtors,
-	"ctorstest":  gen.NewCtorsTest,
-	"build":      gen.NewBuild,
-	"mov":        gen.NewMOV,
+	"asmtest":     gen.NewAsmTest,
+	"godata":      gen.NewGoData,
+	"godatatest":  gen.NewGoDataTest,
+	"optab":       gen.NewOptab,
+	"ctors":       gen.NewCtors,
+	"ctorstest":   gen.NewCtorsTest,
+	"ctorsstress": gen.NewCtorsStress,
+	"ctorsbench":  gen.NewCtorsBench,
+	"build":       gen.NewBuild,
+	"buildtest":   gen.NewBuildTest,
+	"mov":         gen.NewMOV,
 }
 
 // Command-line flags.
@@ -39,12 +44,17 @@ func main() {
 	log.SetPrefix("avogen: ")
 	log.SetFlags(0)
 	flag.Parse()
+	if err := run(); err != nil {
+		log.Fatal(err)
+	}
+}
 
+func run() error {
 	// Build generator.
 	t := flag.Arg(0)
 	builder := generators[t]
 	if builder == nil {
-		log.Fatalf("unknown generator type '%s'", t)
+		return fmt.Errorf("unknown generator type '%s'", t)
 	}
 
 	g := builder(printer.NewArgvConfig())
@@ -54,7 +64,7 @@ func main() {
 	if *output != "" {
 		f, err := os.Create(*output)
 		if err != nil {
-			log.Fatal(err)
+			return err
 		}
 		defer f.Close()
 		w = f
@@ -67,19 +77,22 @@ func main() {
 		l := load.NewLoaderFromDataDir(*datadir)
 		r, err := l.Load()
 		if err != nil {
-			log.Fatal(err)
+			return err
 		}
 		is = r
 	}
 
 	// Generate output.
-	b, err := g.Generate(is)
-	if err != nil {
-		log.Fatal(err)
-	}
+	b, generr := g.Generate(is)
 
 	// Write.
 	if _, err := w.Write(b); err != nil {
-		log.Fatal(err)
+		return err
 	}
+
+	if generr != nil {
+		return generr
+	}
+
+	return nil
 }

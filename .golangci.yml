@@ -1,26 +1,104 @@
+run:
+  timeout: 5m
 linters:
   enable-all: true
   disable:
-  - funlen
-  - maligned
-  - lll
-  - gosec
-  - prealloc
-  - unparam
-  - gochecknoglobals
-  - gochecknoinits
-
+    - cyclop
+    - deadcode
+    - dupword
+    - errname
+    - exhaustruct
+    - exhaustivestruct
+    - forbidigo
+    - forcetypeassert
+    - funlen
+    - gochecknoglobals
+    - gochecknoinits
+    - goconst
+    - godox
+    - goerr113
+    - golint
+    - gomnd
+    - gosec
+    - ifshort
+    - inamedparam
+    - interfacer
+    - ireturn
+    - lll
+    - maligned
+    - nlreturn
+    - nonamedreturns
+    - nosnakecase
+    - paralleltest
+    - prealloc
+    - perfsprint
+    - rowserrcheck
+    - scopelint
+    - structcheck
+    - tagliatelle
+    - testpackage
+    - unparam
+    - varcheck
+    - varnamelen
+    - wastedassign
+    - wrapcheck
+    - wsl
 linters-settings:
   depguard:
-    list-type: whitelist
-    packages:
-      - github.com/mmcloughlin/avo
-      - golang.org/x/
-
+    rules:
+      main:
+        allow:
+          - github.com/mmcloughlin/avo
+          - golang.org/x/
+          - $gostd
+  gci:
+    sections:
+      - standard
+      - default
+      - prefix(github.com/mmcloughlin/avo)
+  revive:
+    enable-all-rules: true
+    rules:
+      - name: add-constant
+        disabled: true
+      - name: confusing-results
+        disabled: true
+      - name: cognitive-complexity
+        disabled: true
+      - name: cyclomatic
+        disabled: true
+      - name: deep-exit
+        disabled: true
+      - name: empty-block
+        disabled: true
+      - name: flag-parameter
+        disabled: true
+      - name: function-length
+        disabled: true
+      - name: if-return
+        disabled: true
+      - name: line-length-limit
+        disabled: true
+      - name: max-public-structs
+        disabled: true
+      - name: modifies-value-receiver
+        disabled: true
+      - name: unexported-naming
+        disabled: true
+      - name: unhandled-error
+        arguments:
+          - 'fmt\.(P|Fp)rint(ln|f)?'
+          - 'text/tabwriter\.Writer\.Flush'
+      - name: unused-parameter
+        disabled: true
+      - name: unused-receiver
+        disabled: true
 issues:
   exclude-use-default: false
   exclude:
     # errcheck: Almost all programs ignore errors on these functions and in most cases it's ok
     - Error return value of .((os\.)?std(out|err)\..*|.*Close|.*Flush|os\.Remove(All)?|.*printf?|os\.(Un)?Setenv). is not checked
     # gocritic: https://github.com/go-critic/go-critic/issues/762
-    - ' with `(len|cap|real|imag)`'
+    - " with `(len|cap|real|imag)`"
+    # We want to allow all caps in certain cases.
+    - "ALL_CAPS in Go names"

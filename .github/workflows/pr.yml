@@ -1,0 +1,20 @@
+name: pr
+permissions:
+  contents: read
+on:
+  pull_request:
+jobs:
+  automerge:
+    if: github.actor == 'cadobot[bot]' && !github.event.pull_request.draft
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate Bot Token
+        uses: tibdex/github-app-token@021a2405c7f990db57f5eae5397423dcc554159c # v1.7.0
+        id: bot
+        with:
+          app_id: ${{ secrets.APP_ID }}
+          private_key: ${{ secrets.APP_PRIVATE_KEY }}
+      - name: Automerge Bot Pull Requests
+        run: gh pr merge --auto --squash "${{ github.event.pull_request.html_url }}"
+        env:
+          GITHUB_TOKEN: ${{ steps.bot.outputs.token }}

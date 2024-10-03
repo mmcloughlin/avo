@@ -1,11 +1,10 @@
 package printer
 
 import (
-	"fmt"
 	"strconv"
 	"strings"
-	"text/tabwriter"
 
+	"github.com/mmcloughlin/avo/buildtags"
 	"github.com/mmcloughlin/avo/internal/prnt"
 	"github.com/mmcloughlin/avo/ir"
 	"github.com/mmcloughlin/avo/operand"
@@ -17,6 +16,9 @@ const dot = "\u00b7"
 type goasm struct {
 	cfg Config
 	prnt.Generator
+
+	instructions []*ir.Instruction
+	clear        bool
 }
 
 // NewGoAsm constructs a printer for writing Go assembly files.
@@ -43,8 +45,12 @@ func (p *goasm) header(f *ir.File) {
 	p.Comment(p.cfg.GeneratedWarning())
 
 	if len(f.Constraints) > 0 {
+		constraints, err := buildtags.Format(f.Constraints)
+		if err != nil {
+			p.AddError(err)
+		}
 		p.NL()
-		p.Printf(f.Constraints.GoString())
+		p.Printf(constraints)
 	}
 
 	if len(f.Includes) > 0 {
@@ -62,6 +68,10 @@ func (p *goasm) includes(paths []string) {
 func (p *goasm) function(f *ir.Function) {
 	p.NL()
 	p.Comment(f.Stub())
+
+	if len(f.ISA) > 0 {
+		p.Comment("Requires: " + strings.Join(f.ISA, ", "))
+	}
 
 	// Reference: https://github.com/golang/go/blob/b115207baf6c2decc3820ada4574ef4e5ad940ec/src/cmd/internal/obj/util.go#L166-L176
 	//
@@ -83,31 +93,21 @@ func (p *goasm) function(f *ir.Function) {
 	}
 	p.Printf(", %s\n", textsize(f))
 
-	w := p.tabwriter()
-	clear := true
-	flush := func() {
-		w.Flush()
-		w = p.tabwriter()
-		if !clear {
-			p.NL()
-			clear = true
-		}
-	}
+	p.clear = true
 	for _, node := range f.Nodes {
 		switch n := node.(type) {
 		case *ir.Instruction:
-			leader := []byte{tabwriter.Escape, '\t', tabwriter.Escape}
-			fmt.Fprint(w, string(leader)+n.Opcode)
-			if len(n.Operands) > 0 {
-				fmt.Fprintf(w, "\t%s", joinOperands(n.Operands))
+			p.instruction(n)
+			if n.IsTerminal || n.IsUnconditionalBranch() {
+				p.flush()
 			}
-			fmt.Fprint(w, "\n")
-			clear = false
 		case ir.Label:
-			flush()
+			p.flush()
+			p.ensureclear()
 			p.Printf("%s:\n", n)
 		case *ir.Comment:
-			flush()
+			p.flush()
+			p.ensureclear()
 			for _, line := range n.Lines {
 				p.Printf("\t// %s\n", line)
 			}
@@ -115,11 +115,46 @@ func (p *goasm) function(f *ir.Function) {
 			panic("unexpected node type")
 		}
 	}
-	w.Flush()
+	p.flush()
 }
 
-func (p *goasm) tabwriter() *tabwriter.Writer {
-	return tabwriter.NewWriter(p.Raw(), 4, 4, 1, ' ', tabwriter.StripEscape)
+func (p *goasm) instruction(i *ir.Instruction) {
+	p.instructions = append(p.instructions, i)
+	p.clear = false
+}
+
+func (p *goasm) flush() {
+	if len(p.instructions) == 0 {
+		return
+	}
+
+	// Determine instruction width. Instructions with no operands are not
+	// considered in this calculation.
+	width := 0
+	for _, i := range p.instructions {
+		opcode := i.OpcodeWithSuffixes()
+		if len(i.Operands) > 0 && len(opcode) > width {
+			width = len(opcode)
+		}
+	}
+
+	// Output instruction block.
+	for _, i := range p.instructions {
+		if len(i.Operands) > 0 {
+			p.Printf("\t%-*s%s\n", width+1, i.OpcodeWithSuffixes(), joinOperands(i.Operands))
+		} else {
+			p.Printf("\t%s\n", i.OpcodeWithSuffixes())
+		}
+	}
+
+	p.instructions = nil
+}
+
+func (p *goasm) ensureclear() {
+	if !p.clear {
+		p.NL()
+		p.clear = true
+	}
 }
 
 func (p *goasm) global(g *ir.Global) {

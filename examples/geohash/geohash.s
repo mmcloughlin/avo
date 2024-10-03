@@ -3,6 +3,7 @@
 #include "textflag.h"
 
 // func EncodeInt(lat float64, lng float64) uint64
+// Requires: BMI2, SSE2
 TEXT ·EncodeInt(SB), NOSPLIT, $0-24
 	MOVSD lat+0(FP), X0
 	MOVSD lng+8(FP), X1

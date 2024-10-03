@@ -1,4 +1,4 @@
-// +build ignore
+//go:build ignore
 
 package main
 
@@ -38,7 +38,8 @@ func PrintConstTypes(w io.Writer) {
 		bs := strconv.Itoa(bits)
 
 		if n >= 4 {
-			PrintConstType(w, "F"+bs, "float"+bs, "(%#v)", n, fmt.Sprintf("F%d is a %d-bit floating point constant.", bits, bits))
+			// Use string format verb to direct to our custom implementation.
+			PrintConstType(w, "F"+bs, "float"+bs, "(%s)", n, fmt.Sprintf("F%d is a %d-bit floating point constant.", bits, bits))
 		}
 		PrintConstType(w, "I"+bs, "int"+bs, "%+d", n, fmt.Sprintf("I%d is a %d-bit signed integer constant.", bits, bits))
 		PrintConstType(w, "U"+bs, "uint"+bs, "%#0"+strconv.Itoa(2*n)+"x", n, fmt.Sprintf("U%d is a %d-bit unsigned integer constant.", bits, bits))

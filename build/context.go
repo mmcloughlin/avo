@@ -15,6 +15,9 @@ import (
 	"github.com/mmcloughlin/avo/reg"
 )
 
+//go:generate avogen -output zinstructions.go build
+//go:generate avogen -output zinstructions_test.go buildtest
+
 // Context maintains state for incrementally building an avo File.
 type Context struct {
 	pkg      *packages.Package
@@ -163,7 +166,7 @@ func (c *Context) Comment(lines ...string) {
 }
 
 // Commentf adds a formtted comment line.
-func (c *Context) Commentf(format string, a ...interface{}) {
+func (c *Context) Commentf(format string, a ...any) {
 	c.Comment(fmt.Sprintf(format, a...))
 }
 
@@ -174,8 +177,6 @@ func (c *Context) activefunc() *ir.Function {
 	}
 	return c.function
 }
-
-//go:generate avogen -output zinstructions.go build
 
 // StaticGlobal adds a new static data section to the file and returns a pointer to it.
 func (c *Context) StaticGlobal(name string) operand.Mem {

@@ -42,3 +42,34 @@ func TestAttributeContainsTextFlags(t *testing.T) {
 		}
 	}
 }
+
+func TestAttributeTestMethods(t *testing.T) {
+	cases := []struct {
+		Attribute Attribute
+		Predicate func(Attribute) bool
+		Expect    bool
+	}{
+		// Confirm logic works as expected.
+		{DUPOK | NOSPLIT, Attribute.DUPOK, true},
+		{DUPOK | NOSPLIT, Attribute.NOSPLIT, true},
+		{DUPOK | NOSPLIT, Attribute.NOFRAME, false},
+
+		// Basic test for every method.
+		{NOPROF, Attribute.NOPROF, true},
+		{DUPOK, Attribute.DUPOK, true},
+		{NOSPLIT, Attribute.NOSPLIT, true},
+		{RODATA, Attribute.RODATA, true},
+		{NOPTR, Attribute.NOPTR, true},
+		{WRAPPER, Attribute.WRAPPER, true},
+		{NEEDCTXT, Attribute.NEEDCTXT, true},
+		{TLSBSS, Attribute.TLSBSS, true},
+		{NOFRAME, Attribute.NOFRAME, true},
+		{REFLECTMETHOD, Attribute.REFLECTMETHOD, true},
+		{TOPFRAME, Attribute.TOPFRAME, true},
+	}
+	for _, c := range cases {
+		if c.Predicate(c.Attribute) != c.Expect {
+			t.Errorf("%s: expected %#v", c.Attribute.Asm(), c.Expect)
+		}
+	}
+}

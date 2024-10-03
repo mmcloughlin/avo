@@ -12,6 +12,7 @@ TEXT ·Interval(SB), NOSPLIT, $0-32
 	RET
 
 // func Butterfly(x0 float64, x1 float64) (y0 float64, y1 float64)
+// Requires: SSE2
 TEXT ·Butterfly(SB), NOSPLIT, $0-32
 	MOVSD x0+0(FP), X0
 	MOVSD x1+8(FP), X1
@@ -36,6 +37,7 @@ TEXT ·Septuple(SB), NOSPLIT, $0-15
 	RET
 
 // func CriticalLine(t float64) complex128
+// Requires: SSE2
 TEXT ·CriticalLine(SB), NOSPLIT, $0-24
 	MOVSD t+0(FP), X0
 	MOVSD half<>+0(SB), X1
@@ -47,6 +49,7 @@ DATA half<>+0(SB)/8, $(0.5)
 GLOBL half<>(SB), RODATA|NOPTR, $8
 
 // func NewStruct(w uint16, p [2]float64, q uint64) Struct
+// Requires: SSE2
 TEXT ·NewStruct(SB), NOSPLIT, $0-64
 	MOVW  w+0(FP), AX
 	MOVSD p_0+8(FP), X0

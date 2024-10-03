@@ -1,4 +1,4 @@
-// +build ignore
+//go:build ignore
 
 package main
 
@@ -21,8 +21,17 @@ func main() {
 
 	// Allocate registers and initialize.
 	x := make([]Register, n)
-	for i := 0; i < n; i++ {
-		x[i] = GP8()
+	i := 0
+
+	// Low byte registers.
+	for ; i < 15; i++ {
+		x[i] = GP8L()
+		MOVB(U8(i+1), x[i])
+	}
+
+	// High byte registers.
+	for ; i < n; i++ {
+		x[i] = GP8H()
 		MOVB(U8(i+1), x[i])
 	}
 

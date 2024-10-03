@@ -5,6 +5,7 @@ const (
 	KindPseudo Kind = iota
 	KindGP
 	KindVector
+	KindOpmask
 )
 
 // Declare register families.
@@ -12,11 +13,13 @@ var (
 	Pseudo         = &Family{Kind: KindPseudo}
 	GeneralPurpose = &Family{Kind: KindGP}
 	Vector         = &Family{Kind: KindVector}
+	Opmask         = &Family{Kind: KindOpmask}
 
 	Families = []*Family{
 		Pseudo,
 		GeneralPurpose,
 		Vector,
+		Opmask,
 	}
 )
 
@@ -42,7 +45,7 @@ func init() {
 	}
 }
 
-// FamilyOfKind returns the Family of registers of the given kind.
+// FamilyOfKind returns the Family of registers of the given kind, or nil if not found.
 func FamilyOfKind(k Kind) *Family {
 	return familiesByKind[k]
 }
@@ -65,17 +68,6 @@ type GP interface {
 	As64() Register
 }
 
-type gpcasts struct {
-	Register
-}
-
-func (c gpcasts) As8() Register  { return c.as(S8) }
-func (c gpcasts) As8L() Register { return c.as(S8L) }
-func (c gpcasts) As8H() Register { return c.as(S8H) }
-func (c gpcasts) As16() Register { return c.as(S16) }
-func (c gpcasts) As32() Register { return c.as(S32) }
-func (c gpcasts) As64() Register { return c.as(S64) }
-
 // GPPhysical is a general-purpose physical register.
 type GPPhysical interface {
 	Physical
@@ -84,10 +76,16 @@ type GPPhysical interface {
 
 type gpp struct {
 	Physical
-	GP
 }
 
-func newgpp(r Physical) GPPhysical { return gpp{Physical: r, GP: gpcasts{r}} }
+func newgpp(r Physical) GPPhysical { return gpp{Physical: r} }
+
+func (p gpp) As8() Register  { return newgpp(p.as(S8).(Physical)) }
+func (p gpp) As8L() Register { return newgpp(p.as(S8L).(Physical)) }
+func (p gpp) As8H() Register { return newgpp(p.as(S8H).(Physical)) }
+func (p gpp) As16() Register { return newgpp(p.as(S16).(Physical)) }
+func (p gpp) As32() Register { return newgpp(p.as(S32).(Physical)) }
+func (p gpp) As64() Register { return newgpp(p.as(S64).(Physical)) }
 
 // GPVirtual is a general-purpose virtual register.
 type GPVirtual interface {
@@ -104,7 +102,7 @@ type gpv struct {
 func newgpv(v Virtual) GPVirtual {
 	g := gpv{
 		Virtual: v,
-		GP:      gpcasts{v},
+		//GP:      gpcasts{v},
 		allocAt: getFnNameFile(1),
 	}
 	if ai, ok := v.(AllocInfoer); ok {
@@ -122,7 +120,14 @@ func (g gpv) AllocInfo() string {
 	return g.allocAt
 }
 
-func gp(s Spec, id PID, name string, flags ...Info) GPPhysical {
+func (v gpv) As8() Register  { return newgpv(v.as(S8).(Virtual)) }
+func (v gpv) As8L() Register { return newgpv(v.as(S8L).(Virtual)) }
+func (v gpv) As8H() Register { return newgpv(v.as(S8H).(Virtual)) }
+func (v gpv) As16() Register { return newgpv(v.as(S16).(Virtual)) }
+func (v gpv) As32() Register { return newgpv(v.as(S32).(Virtual)) }
+func (v gpv) As64() Register { return newgpv(v.as(S64).(Virtual)) }
+
+func gp(s Spec, id Index, name string, flags ...Info) GPPhysical {
 	r := newgpp(newregister(GeneralPurpose, s, id, name, flags...))
 	GeneralPurpose.add(r)
 	return r
@@ -130,21 +135,21 @@ func gp(s Spec, id PID, name string, flags ...Info) GPPhysical {
 
 // General purpose registers.
 var (
-	// Low byte
+	// Low byte.
 	AL = gp(S8L, 0, "AL")
 	CL = gp(S8L, 1, "CL")
 	DL = gp(S8L, 2, "DL")
 	BL = gp(S8L, 3, "BL")
 
-	// High byte
+	// High byte.
 	AH = gp(S8H, 0, "AH")
 	CH = gp(S8H, 1, "CH")
 	DH = gp(S8H, 2, "DH")
 	BH = gp(S8H, 3, "BH")
 
-	// 8-bit
+	// 8-bit.
 	SPB  = gp(S8, 4, "SP", Restricted)
-	BPB  = gp(S8, 5, "BP")
+	BPB  = gp(S8, 5, "BP", BasePointer)
 	SIB  = gp(S8, 6, "SI")
 	DIB  = gp(S8, 7, "DI")
 	R8B  = gp(S8, 8, "R8")
@@ -156,13 +161,13 @@ var (
 	R14B = gp(S8, 14, "R14")
 	R15B = gp(S8, 15, "R15")
 
-	// 16-bit
+	// 16-bit.
 	AX   = gp(S16, 0, "AX")
 	CX   = gp(S16, 1, "CX")
 	DX   = gp(S16, 2, "DX")
 	BX   = gp(S16, 3, "BX")
 	SP   = gp(S16, 4, "SP", Restricted)
-	BP   = gp(S16, 5, "BP")
+	BP   = gp(S16, 5, "BP", BasePointer)
 	SI   = gp(S16, 6, "SI")
 	DI   = gp(S16, 7, "DI")
 	R8W  = gp(S16, 8, "R8")
@@ -174,13 +179,13 @@ var (
 	R14W = gp(S16, 14, "R14")
 	R15W = gp(S16, 15, "R15")
 
-	// 32-bit
+	// 32-bit.
 	EAX  = gp(S32, 0, "AX")
 	ECX  = gp(S32, 1, "CX")
 	EDX  = gp(S32, 2, "DX")
 	EBX  = gp(S32, 3, "BX")
 	ESP  = gp(S32, 4, "SP", Restricted)
-	EBP  = gp(S32, 5, "BP")
+	EBP  = gp(S32, 5, "BP", BasePointer)
 	ESI  = gp(S32, 6, "SI")
 	EDI  = gp(S32, 7, "DI")
 	R8L  = gp(S32, 8, "R8")
@@ -192,13 +197,13 @@ var (
 	R14L = gp(S32, 14, "R14")
 	R15L = gp(S32, 15, "R15")
 
-	// 64-bit
+	// 64-bit.
 	RAX = gp(S64, 0, "AX")
 	RCX = gp(S64, 1, "CX")
 	RDX = gp(S64, 2, "DX")
 	RBX = gp(S64, 3, "BX")
 	RSP = gp(S64, 4, "SP", Restricted)
-	RBP = gp(S64, 5, "BP")
+	RBP = gp(S64, 5, "BP", BasePointer)
 	RSI = gp(S64, 6, "SI")
 	RDI = gp(S64, 7, "DI")
 	R8  = gp(S64, 8, "R8")
@@ -218,14 +223,6 @@ type Vec interface {
 	AsZ() Register
 }
 
-type veccasts struct {
-	Register
-}
-
-func (c veccasts) AsX() Register { return c.as(S128) }
-func (c veccasts) AsY() Register { return c.as(S256) }
-func (c veccasts) AsZ() Register { return c.as(S512) }
-
 // VecPhysical is a physical vector register.
 type VecPhysical interface {
 	Physical
@@ -237,7 +234,11 @@ type vecp struct {
 	Vec
 }
 
-func newvecp(r Physical) VecPhysical { return vecp{Physical: r, Vec: veccasts{r}} }
+func newvecp(r Physical) VecPhysical { return vecp{Physical: r} }
+
+func (p vecp) AsX() Register { return newvecp(p.as(S128).(Physical)) }
+func (p vecp) AsY() Register { return newvecp(p.as(S256).(Physical)) }
+func (p vecp) AsZ() Register { return newvecp(p.as(S512).(Physical)) }
 
 // VecVirtual is a virtual vector register.
 type VecVirtual interface {
@@ -250,9 +251,13 @@ type vecv struct {
 	Vec
 }
 
-func newvecv(v Virtual) VecVirtual { return vecv{Virtual: v, Vec: veccasts{v}} }
+func newvecv(v Virtual) VecVirtual { return vecv{Virtual: v} }
 
-func vec(s Spec, id PID, name string, flags ...Info) VecPhysical {
+func (v vecv) AsX() Register { return newvecv(v.as(S128).(Virtual)) }
+func (v vecv) AsY() Register { return newvecv(v.as(S256).(Virtual)) }
+func (v vecv) AsZ() Register { return newvecv(v.as(S512).(Virtual)) }
+
+func vec(s Spec, id Index, name string, flags ...Info) VecPhysical {
 	r := newvecp(newregister(Vector, s, id, name, flags...))
 	Vector.add(r)
 	return r
@@ -260,7 +265,7 @@ func vec(s Spec, id PID, name string, flags ...Info) VecPhysical {
 
 // Vector registers.
 var (
-	// 128-bit
+	// 128-bit.
 	X0  = vec(S128, 0, "X0")
 	X1  = vec(S128, 1, "X1")
 	X2  = vec(S128, 2, "X2")
@@ -294,7 +299,7 @@ var (
 	X30 = vec(S128, 30, "X30")
 	X31 = vec(S128, 31, "X31")
 
-	// 256-bit
+	// 256-bit.
 	Y0  = vec(S256, 0, "Y0")
 	Y1  = vec(S256, 1, "Y1")
 	Y2  = vec(S256, 2, "Y2")
@@ -328,7 +333,7 @@ var (
 	Y30 = vec(S256, 30, "Y30")
 	Y31 = vec(S256, 31, "Y31")
 
-	// 512-bit
+	// 512-bit.
 	Z0  = vec(S512, 0, "Z0")
 	Z1  = vec(S512, 1, "Z1")
 	Z2  = vec(S512, 2, "Z2")
@@ -361,4 +366,53 @@ var (
 	Z29 = vec(S512, 29, "Z29")
 	Z30 = vec(S512, 30, "Z30")
 	Z31 = vec(S512, 31, "Z31")
+)
+
+// OpmaskPhysical is a opmask physical register.
+type OpmaskPhysical interface {
+	Physical
+}
+
+type opmaskp struct {
+	Physical
+}
+
+func newopmaskp(r Physical) OpmaskPhysical { return opmaskp{Physical: r} }
+
+// OpmaskVirtual is a virtual opmask register.
+type OpmaskVirtual interface {
+	Virtual
+}
+
+type opmaskv struct {
+	Virtual
+}
+
+func newopmaskv(v Virtual) OpmaskVirtual { return opmaskv{Virtual: v} }
+
+func opmask(s Spec, id Index, name string, flags ...Info) OpmaskPhysical {
+	r := newopmaskp(newregister(Opmask, s, id, name, flags...))
+	Opmask.add(r)
+	return r
+}
+
+// Opmask registers.
+//
+// Note that while K0 is a physical opmask register (it is a valid opmask source
+// and destination operand), it cannot be used as an opmask predicate value
+// because in that context K0 means "all true" or "no mask" regardless of the
+// actual contents of the physical register. For that reason, K0 should never be
+// assigned as a "general purpose" opmask register. However, it can be
+// explicitly operated upon by name as non-predicate operand, for example to
+// hold a constant or temporary value during calculations on other opmask
+// registers.
+var (
+	K0 = opmask(S64, 0, "K0", Restricted)
+	K1 = opmask(S64, 1, "K1")
+	K2 = opmask(S64, 2, "K2")
+	K3 = opmask(S64, 3, "K3")
+	K4 = opmask(S64, 4, "K4")
+	K5 = opmask(S64, 5, "K5")
+	K6 = opmask(S64, 6, "K6")
+	K7 = opmask(S64, 7, "K7")
 )

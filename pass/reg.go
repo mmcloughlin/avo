@@ -3,10 +3,29 @@ package pass
 import (
 	"errors"
 
+	"github.com/mmcloughlin/avo/gotypes"
 	"github.com/mmcloughlin/avo/ir"
 	"github.com/mmcloughlin/avo/operand"
 	"github.com/mmcloughlin/avo/reg"
 )
+
+// ZeroExtend32BitOutputs applies the rule that "32-bit operands generate a
+// 32-bit result, zero-extended to a 64-bit result in the destination
+// general-purpose register" (Intel Software Developer’s Manual, Volume 1,
+// 3.4.1.1).
+func ZeroExtend32BitOutputs(i *ir.Instruction) error {
+	for j, op := range i.Outputs {
+		if !operand.IsR32(op) {
+			continue
+		}
+		r, ok := op.(reg.GP)
+		if !ok {
+			panic("r32 operand should satisfy reg.GP")
+		}
+		i.Outputs[j] = r.As64()
+	}
+	return nil
+}
 
 // Liveness computes register liveness.
 func Liveness(fn *ir.Function) error {
@@ -23,8 +42,8 @@ func Liveness(fn *ir.Function) error {
 
 	// Initialize.
 	for _, i := range is {
-		i.LiveIn = reg.NewSetFromSlice(i.InputRegisters())
-		i.LiveOut = reg.NewEmptySet()
+		i.LiveIn = reg.NewMaskSetFromRegisters(i.InputRegisters())
+		i.LiveOut = reg.NewEmptyMaskSet()
 	}
 
 	// Iterative dataflow analysis.
@@ -33,29 +52,16 @@ func Liveness(fn *ir.Function) error {
 
 		for _, i := range is {
 			// out[n] = UNION[s IN succ[n]] in[s]
-			nout := len(i.LiveOut)
 			for _, s := range i.Succ {
 				if s == nil {
 					continue
 				}
-				i.LiveOut.Update(s.LiveIn)
-			}
-			if len(i.LiveOut) != nout {
-				changes = true
+				changes = i.LiveOut.Update(s.LiveIn) || changes
 			}
 
 			// in[n] = use[n] UNION (out[n] - def[n])
-			nin := len(i.LiveIn)
-			def := reg.NewSetFromSlice(i.OutputRegisters())
-			i.LiveIn.Update(i.LiveOut.Difference(def))
-			for r := range i.LiveOut {
-				if _, found := def[r]; !found {
-					i.LiveIn.Add(r)
-				}
-			}
-			if len(i.LiveIn) != nin {
-				changes = true
-			}
+			def := reg.NewMaskSetFromRegisters(i.OutputRegisters())
+			changes = i.LiveIn.Update(i.LiveOut.Difference(def)) || changes
 		}
 
 		if !changes {
@@ -68,7 +74,7 @@ func Liveness(fn *ir.Function) error {
 
 // AllocateRegisters performs register allocation.
 func AllocateRegisters(fn *ir.Function) error {
-	// Populate allocators (one per kind).
+	// Initialize one allocator per kind.
 	as := map[reg.Kind]*Allocator{}
 	for _, i := range fn.Instructions() {
 		for _, r := range i.Registers() {
@@ -80,7 +86,28 @@ func AllocateRegisters(fn *ir.Function) error {
 				}
 				as[k] = a
 			}
-			as[k].Add(r)
+		}
+	}
+
+	// De-prioritize the base pointer register. This can be used as a general
+	// purpose register, but it's callee-save so needs to be saved/restored if
+	// it is clobbered. For this reason we prefer to avoid using it unless
+	// forced to by register pressure.
+	for k, a := range as {
+		f := reg.FamilyOfKind(k)
+		for _, r := range f.Registers() {
+			if (r.Info() & reg.BasePointer) != 0 {
+				// Negative priority penalizes this register relative to all
+				// others (having default zero priority).
+				a.SetPriority(r.ID(), -1)
+			}
+		}
+	}
+
+	// Populate registers to be allocated.
+	for _, i := range fn.Instructions() {
+		for _, r := range i.Registers() {
+			as[r.Kind()].Add(r.ID())
 		}
 	}
 
@@ -89,7 +116,7 @@ func AllocateRegisters(fn *ir.Function) error {
 		for _, d := range i.OutputRegisters() {
 			k := d.Kind()
 			out := i.LiveOut.OfKind(k)
-			out.Discard(d)
+			out.DiscardRegister(d)
 			as[k].AddInterferenceSet(d, out)
 		}
 	}
@@ -115,6 +142,12 @@ func BindRegisters(fn *ir.Function) error {
 		for idx := range i.Operands {
 			i.Operands[idx] = operand.ApplyAllocation(i.Operands[idx], fn.Allocation)
 		}
+		for idx := range i.Inputs {
+			i.Inputs[idx] = operand.ApplyAllocation(i.Inputs[idx], fn.Allocation)
+		}
+		for idx := range i.Outputs {
+			i.Outputs[idx] = operand.ApplyAllocation(i.Outputs[idx], fn.Allocation)
+		}
 	}
 	return nil
 }
@@ -128,6 +161,62 @@ func VerifyAllocation(fn *ir.Function) error {
 				return errors.New("non physical register found")
 			}
 		}
+	}
+
+	return nil
+}
+
+// EnsureBasePointerCalleeSaved ensures that the base pointer register will be
+// saved and restored if it has been clobbered by the function.
+func EnsureBasePointerCalleeSaved(fn *ir.Function) error {
+	// Check to see if the base pointer is written to.
+	clobbered := false
+	for _, i := range fn.Instructions() {
+		for _, r := range i.OutputRegisters() {
+			if p := reg.ToPhysical(r); p != nil && (p.Info()&reg.BasePointer) != 0 {
+				clobbered = true
+			}
+		}
+	}
+
+	if !clobbered {
+		return nil
+	}
+
+	// This function clobbers the base pointer register so we need to ensure it
+	// will be saved and restored. The Go assembler will do this automatically,
+	// with a few exceptions detailed below. In summary, we can usually ensure
+	// this happens by ensuring the function is not frameless (apart from
+	// NOFRAME functions).
+	//
+	// Reference: https://github.com/golang/go/blob/3f4977bd5800beca059defb5de4dc64cd758cbb9/src/cmd/internal/obj/x86/obj6.go#L591-L609
+	//
+	//		var bpsize int
+	//		if ctxt.Arch.Family == sys.AMD64 &&
+	//			!p.From.Sym.NoFrame() && // (1) below
+	//			!(autoffset == 0 && p.From.Sym.NoSplit()) && // (2) below
+	//			!(autoffset == 0 && !hasCall) { // (3) below
+	//			// Make room to save a base pointer.
+	//			// There are 2 cases we must avoid:
+	//			// 1) If noframe is set (which we do for functions which tail call).
+	//			// 2) Scary runtime internals which would be all messed up by frame pointers.
+	//			//    We detect these using a heuristic: frameless nosplit functions.
+	//			//    TODO: Maybe someday we label them all with NOFRAME and get rid of this heuristic.
+	//			// For performance, we also want to avoid:
+	//			// 3) Frameless leaf functions
+	//			bpsize = ctxt.Arch.PtrSize
+	//			autoffset += int32(bpsize)
+	//			p.To.Offset += int64(bpsize)
+	//		} else {
+	//			bpsize = 0
+	//		}
+	//
+	if fn.Attributes.NOFRAME() {
+		return errors.New("NOFRAME function clobbers base pointer register")
+	}
+
+	if fn.LocalSize == 0 {
+		fn.AllocLocal(int(gotypes.PointerSize))
 	}
 
 	return nil

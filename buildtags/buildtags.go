@@ -7,9 +7,9 @@
 //
 // Any terms provided in the filename can be thought of as an implicit extra
 // constraint comment line. Collectively, these are referred to as
-// ``constraints''. Each line is a ``constraint''. Within each constraint the
-// space-separated terms are ``options'', and within that the comma-separated
-// items are ``terms'' which may be negated with at most one exclaimation mark.
+// “constraints”. Each line is a “constraint”. Within each constraint the
+// space-separated terms are “options”, and within that the comma-separated
+// items are “terms” which may be negated with at most one exclaimation mark.
 //
 // These represent a boolean formulae. The constraints are evaluated as the AND
 // of constraint lines; a constraint is evaluated as the OR of its options and
@@ -209,7 +209,7 @@ func (o Option) ToOption() Option { return o }
 func (o Option) Validate() error {
 	for _, t := range o {
 		if err := t.Validate(); err != nil {
-			return fmt.Errorf("invalid term \"%s\": %s", t, err)
+			return fmt.Errorf("invalid term %q: %w", t, err)
 		}
 	}
 	return nil

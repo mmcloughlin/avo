@@ -7,13 +7,15 @@ import (
 	"go/types"
 	"strconv"
 
-	"github.com/mmcloughlin/avo/reg"
-
 	"github.com/mmcloughlin/avo/operand"
+	"github.com/mmcloughlin/avo/reg"
 )
 
 // Sizes provides type sizes used by the standard Go compiler on amd64.
 var Sizes = types.SizesFor("gc", "amd64")
+
+// PointerSize is the size of a pointer on amd64.
+var PointerSize = Sizes.Sizeof(types.Typ[types.UnsafePointer])
 
 // Basic represents a primitive/basic type at a given memory address.
 type Basic struct {
@@ -28,7 +30,6 @@ type Component interface {
 	// during any previous calls to Component methods, they will be returned at
 	// resolution time.
 	Resolve() (*Basic, error)
-
 	Dereference(r reg.Register) Component // dereference a pointer
 	Base() Component                      // base pointer of a string or slice
 	Len() Component                       // length of a string or slice
@@ -44,7 +45,7 @@ type Component interface {
 // methods whilst also allowing method chaining to continue.
 type componenterr string
 
-func errorf(format string, args ...interface{}) Component {
+func errorf(format string, args ...any) Component {
 	return componenterr(fmt.Sprintf(format, args...))
 }
 
@@ -98,7 +99,6 @@ func (c *component) Dereference(r reg.Register) Component {
 //		Len  int
 //		Cap  int
 //	}
-//
 var slicehdroffsets = Sizes.Offsetsof([]*types.Var{
 	types.NewField(token.NoPos, nil, "Data", types.Typ[types.Uintptr], false),
 	types.NewField(token.NoPos, nil, "Len", types.Typ[types.Int], false),

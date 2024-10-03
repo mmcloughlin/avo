@@ -36,6 +36,12 @@ func TestChecks(t *testing.T) {
 
 		{IsIMM64, Imm((1 << 64) - 1), true},
 
+		// Signed Immediates
+		{IsIMM8, I8(-1), true},
+		{IsIMM16, I16(-1), true},
+		{IsIMM32, I32(-1), true},
+		{IsIMM64, I64(-1), true},
+
 		// Specific registers
 		{IsAL, reg.AL, true},
 		{IsAL, reg.CL, false},
@@ -121,6 +127,9 @@ func TestChecks(t *testing.T) {
 		{IsM256, Mem{Base: reg.RBX, Index: reg.R12, Scale: 2}, true},
 		{IsM256, Mem{Base: reg.X0}, false},
 
+		{IsM512, Mem{Base: reg.RBX, Index: reg.R12, Scale: 2}, true},
+		{IsM512, Mem{Base: reg.X0}, false},
+
 		// Argument references (special cases of memory operands)
 		{IsM, NewParamAddr("foo", 4), true},
 		{IsM8, NewParamAddr("foo", 4), true},
@@ -145,6 +154,14 @@ func TestChecks(t *testing.T) {
 		{IsVM64Y, Mem{Base: reg.R11L, Index: reg.Y11}, false},
 		{IsVM64Y, Mem{Base: reg.R8, Index: reg.Z11}, false},
 
+		{IsVM32Z, Mem{Base: reg.R9, Index: reg.Z11}, true},
+		{IsVM32Z, Mem{Base: reg.R11L, Index: reg.Z11}, false},
+		{IsVM32Z, Mem{Base: reg.R8, Index: reg.Y11}, false},
+
+		{IsVM64Z, Mem{Base: reg.R9, Index: reg.Z11}, true},
+		{IsVM64Z, Mem{Base: reg.R11L, Index: reg.Z11}, false},
+		{IsVM64Z, Mem{Base: reg.R8, Index: reg.X11}, false},
+
 		// Relative operands
 		{IsREL8, Rel(math.MinInt8), true},
 		{IsREL8, Rel(math.MaxInt8), true},
@@ -165,6 +182,6 @@ func TestChecks(t *testing.T) {
 	}
 }
 
-func funcname(f interface{}) string {
+func funcname(f any) string {
 	return runtime.FuncForPC(reflect.ValueOf(f).Pointer()).Name()
 }

@@ -1,26 +1,24 @@
 #!/bin/bash -ex
 
-# Install dependencies.
-go mod download
+# Standalone version of the assembly checks in go vet.
+go install ./internal/cmd/asmvet
 
-# Standalone version of the asmdecl analysis tool.
-go install ./internal/cmd/asmdecl
-
-# Install golangci-lint
-golangci_lint_version='v1.18.0'
-curl -sfL https://install.goreleaser.com/github.com/golangci/golangci-lint.sh | sh -s -- -b $GOPATH/bin ${golangci_lint_version}
-
-# Turn off modules for tools install.
-export GO111MODULE=off
+# golangci-lint for linting
+golangci_lint_version='v1.55.2'
+golangci_install_script="https://raw.githubusercontent.com/golangci/golangci-lint/${golangci_lint_version}/install.sh"
+curl -sfL "${golangci_install_script}" | sh -s -- -b "$(go env GOPATH)/bin" "${golangci_lint_version}"
 
 # embedmd required for documentation generation
-go get -u github.com/campoy/embedmd
-
-# covertool for merging coverage reports
-go get -u github.com/dlespiau/covertool
+go install github.com/campoy/embedmd@v1.0.0
 
 # asmfmt for enforcing assembly style
-go get -u github.com/klauspost/asmfmt/cmd/asmfmt
+go install github.com/klauspost/asmfmt/cmd/asmfmt@v1.3.2
 
-# gofumports for stricter formatting
-go get -u mvdan.cc/gofumpt/gofumports
+# goimports for import grouping.
+go install golang.org/x/tools/cmd/goimports@v0.6.0
+
+# gofumpt for stricter formatting.
+go install mvdan.cc/gofumpt@v0.4.0
+
+# yamlfmt for yaml formatting.
+go install github.com/gechr/yamlfmt@v0.0.0-20221202235948-8c26683ac3e8

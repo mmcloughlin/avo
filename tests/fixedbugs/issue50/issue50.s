@@ -3,6 +3,7 @@
 #include "textflag.h"
 
 // func Issue50(x uint32) uint32
+// Requires: SSE2
 TEXT ·Issue50(SB), NOSPLIT, $0-12
 	MOVL x+0(FP), AX
 	MOVQ AX, X0

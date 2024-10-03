@@ -1,6 +1,9 @@
 package printer
 
 import (
+	"go/format"
+
+	"github.com/mmcloughlin/avo/buildtags"
 	"github.com/mmcloughlin/avo/internal/prnt"
 	"github.com/mmcloughlin/avo/ir"
 )
@@ -19,8 +22,12 @@ func (s *stubs) Print(f *ir.File) ([]byte, error) {
 	s.Comment(s.cfg.GeneratedWarning())
 
 	if len(f.Constraints) > 0 {
+		constraints, err := buildtags.Format(f.Constraints)
+		if err != nil {
+			s.AddError(err)
+		}
 		s.NL()
-		s.Printf(f.Constraints.GoString())
+		s.Printf(constraints)
 	}
 
 	s.NL()
@@ -33,7 +40,16 @@ func (s *stubs) Print(f *ir.File) ([]byte, error) {
 		}
 		s.Printf("%s\n", fn.Stub())
 	}
-	return s.Result()
+
+	// Apply formatting to the result. This is the simplest way to ensure
+	// comment formatting rules introduced in Go 1.19 are applied.  See
+	// https://go.dev/doc/comment.
+	src, err := s.Result()
+	if err != nil {
+		return nil, err
+	}
+
+	return format.Source(src)
 }
 
 func (s *stubs) pragma(p ir.Pragma) {

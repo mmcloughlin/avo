@@ -37,6 +37,7 @@ func NewComment(lines ...string) *Comment {
 // Instruction is a single instruction in a function.
 type Instruction struct {
 	Opcode   string
+	Suffixes []string
 	Operands []operand.Op
 
 	Inputs  []operand.Op
@@ -47,16 +48,33 @@ type Instruction struct {
 	IsConditional    bool
 	CancellingInputs bool
 
+	// ISA is the list of required instruction set extensions.
+	ISA []string
+
 	// CFG.
 	Pred []*Instruction
 	Succ []*Instruction
 
 	// LiveIn/LiveOut are sets of live register IDs pre/post execution.
-	LiveIn  reg.Set
-	LiveOut reg.Set
+	LiveIn  reg.MaskSet
+	LiveOut reg.MaskSet
 }
 
 func (i *Instruction) node() {}
+
+// OpcodeWithSuffixes returns the full opcode, including dot-separated suffixes.
+func (i *Instruction) OpcodeWithSuffixes() string {
+	opcode := i.Opcode
+	for _, s := range i.Suffixes {
+		opcode += "." + s
+	}
+	return opcode
+}
+
+// IsUnconditionalBranch reports whether i is an unconditional branch.
+func (i Instruction) IsUnconditionalBranch() bool {
+	return i.IsBranch && !i.IsConditional
+}
 
 // TargetLabel returns the label referenced by this instruction. Returns nil if
 // no label is referenced.
@@ -166,6 +184,9 @@ type Function struct {
 
 	// Register allocation.
 	Allocation reg.Allocation
+
+	// ISA is the list of required instruction set extensions.
+	ISA []string
 }
 
 func (f *Function) section() {}
@@ -277,7 +298,7 @@ func (d Datum) Interval() (int, int) {
 	return d.Offset, d.Offset + d.Value.Bytes()
 }
 
-// Overlaps returns true
+// Overlaps returns whether d overlaps with other.
 func (d Datum) Overlaps(other Datum) bool {
 	s, e := d.Interval()
 	so, eo := other.Interval()

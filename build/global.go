@@ -7,8 +7,8 @@ import (
 	"github.com/mmcloughlin/avo/attr"
 	"github.com/mmcloughlin/avo/buildtags"
 	"github.com/mmcloughlin/avo/gotypes"
+	"github.com/mmcloughlin/avo/ir"
 	"github.com/mmcloughlin/avo/operand"
-
 	"github.com/mmcloughlin/avo/reg"
 )
 
@@ -70,7 +70,13 @@ func Constraint(t buildtags.ConstraintConvertable) { ctx.Constraint(t) }
 // constraint comments.
 func ConstraintExpr(expr string) { ctx.ConstraintExpr(expr) }
 
-// GP8 allocates and returns a general-purpose 8-bit register.
+// GP8L allocates and returns a general-purpose 8-bit register (low byte).
+func GP8L() reg.GPVirtual { return ctx.GP8L() }
+
+// GP8H allocates and returns a general-purpose 8-bit register (high byte).
+func GP8H() reg.GPVirtual { return ctx.GP8H() }
+
+// GP8 allocates and returns a general-purpose 8-bit register (low byte).
 func GP8() reg.GPVirtual { return ctx.GP8() }
 
 // GP16 allocates and returns a general-purpose 16-bit register.
@@ -90,6 +96,9 @@ func YMM() reg.VecVirtual { return ctx.YMM() }
 
 // ZMM allocates and returns a 512-bit vector register.
 func ZMM() reg.VecVirtual { return ctx.ZMM() }
+
+// K allocates and returns an opmask register.
+func K() reg.OpmaskVirtual { return ctx.K() }
 
 // Param returns a the named argument of the active function.
 func Param(name string) gotypes.Component { return ctx.Param(name) }
@@ -115,6 +124,9 @@ func Store(src reg.Register, dst gotypes.Component) { ctx.Store(src, dst) }
 // Dereference loads a pointer and returns its element type.
 func Dereference(ptr gotypes.Component) gotypes.Component { return ctx.Dereference(ptr) }
 
+// Function starts building a new function with the given name.
+func Function(name string) { ctx.Function(name) }
+
 // Doc sets documentation comment lines for the currently active function.
 func Doc(lines ...string) { ctx.Doc(lines...) }
 
@@ -123,6 +135,9 @@ func Pragma(directive string, args ...string) { ctx.Pragma(directive, args...) }
 
 // Attributes sets function attributes for the currently active function.
 func Attributes(a attr.Attribute) { ctx.Attributes(a) }
+
+// SignatureExpr parses the signature expression and sets it as the active function's signature.
+func SignatureExpr(expr string) { ctx.SignatureExpr(expr) }
 
 // Implement starts building a function of the given name, whose type is
 // specified by a stub in the containing package.
@@ -139,7 +154,10 @@ func Label(name string) { ctx.Label(name) }
 func Comment(lines ...string) { ctx.Comment(lines...) }
 
 // Commentf adds a formtted comment line.
-func Commentf(format string, a ...interface{}) { ctx.Commentf(format, a...) }
+func Commentf(format string, a ...any) { ctx.Commentf(format, a...) }
 
 // ConstData builds a static data section containing just the given constant.
 func ConstData(name string, v operand.Constant) operand.Mem { return ctx.ConstData(name, v) }
+
+// Instruction adds an instruction to the active function.
+func Instruction(i *ir.Instruction) { ctx.Instruction(i) }

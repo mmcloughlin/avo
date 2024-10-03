@@ -3,8 +3,8 @@
 self=$(basename $0)
 output=$1
 
-eval $(go env)
-arch=${GOROOT}/src/cmd/asm/internal/arch/arch.go
+# Based on an archived copy of src/cmd/asm/internal/arch/arch.go.
+arch="../data/arch.go.txt"
 
 {
 
@@ -26,7 +26,7 @@ arch=${GOROOT}/src/cmd/asm/internal/arch/arch.go
             sub(/\"\]/, "", from)
             sub(/x86\.A/, "", to)
 
-            if(from != to) { 
+            if(from != to) {
                 printf("\t{\"%s\", \"%s\"},\n", from, to)
             }
         }

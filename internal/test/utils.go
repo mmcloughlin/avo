@@ -2,8 +2,8 @@
 package test
 
 import (
+	"flag"
 	"io"
-	"io/ioutil"
 	"log"
 	"os"
 	"os/exec"
@@ -11,6 +11,17 @@ import (
 	"runtime"
 	"testing"
 )
+
+var network = flag.Bool("net", false, "allow network access")
+
+// RequiresNetwork declares that a test requires network access. The test is
+// skipped if network access isn't enabled with the -net flag.
+func RequiresNetwork(t *testing.T) {
+	t.Helper()
+	if !*network {
+		t.Skip("requires network: enable with -net flag")
+	}
+}
 
 // Assembles asserts that the given assembly code passes the go assembler.
 func Assembles(t *testing.T, asm []byte) {
@@ -20,7 +31,7 @@ func Assembles(t *testing.T, asm []byte) {
 	defer clean()
 
 	asmfilename := filepath.Join(dir, "asm.s")
-	if err := ioutil.WriteFile(asmfilename, asm, 0600); err != nil {
+	if err := os.WriteFile(asmfilename, asm, 0o600); err != nil {
 		t.Fatal(err)
 	}
 
@@ -34,7 +45,7 @@ func Assembles(t *testing.T, asm []byte) {
 func TempDir(t *testing.T) (string, func()) {
 	t.Helper()
 
-	dir, err := ioutil.TempDir("", "avo")
+	dir, err := os.MkdirTemp("", "avo")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -46,8 +57,31 @@ func TempDir(t *testing.T) (string, func()) {
 	}
 }
 
-// gobin returns a best guess path to the "go" binary.
-func gobin() string {
+// ExecCommand executes the command, logging the command and output and failing
+// the test on error.
+func ExecCommand(t *testing.T, cmd *exec.Cmd) {
+	t.Helper()
+	t.Logf("exec: %s", cmd.Args)
+	if cmd.Dir != "" {
+		t.Logf("dir: %s", cmd.Dir)
+	}
+	b, err := cmd.CombinedOutput()
+	t.Logf("output:\n%s\n", string(b))
+	if err != nil {
+		t.Fatal(err)
+	}
+}
+
+// Exec executes the named program with the given arguments, logging the command
+// and output and failing the test on error.
+func Exec(t *testing.T, name string, arg ...string) {
+	t.Helper()
+	cmd := exec.Command(name, arg...)
+	ExecCommand(t, cmd)
+}
+
+// GoTool returns a best guess path to the "go" binary.
+func GoTool() string {
 	var exeSuffix string
 	if runtime.GOOS == "windows" {
 		exeSuffix = ".exe"
@@ -62,17 +96,12 @@ func gobin() string {
 // goexec runs a "go" command and checks the output.
 func goexec(t *testing.T, arg ...string) {
 	t.Helper()
-	cmd := exec.Command(gobin(), arg...)
-	t.Logf("exec: %s", cmd.Args)
-	b, err := cmd.CombinedOutput()
-	t.Logf("output:\n%s\n", string(b))
-	if err != nil {
-		t.Fatal(err)
-	}
+	Exec(t, GoTool(), arg...)
 }
 
 // Logger builds a logger that writes to the test object.
 func Logger(tb testing.TB) *log.Logger {
+	tb.Helper()
 	return log.New(Writer(tb), "test", log.LstdFlags)
 }
 
@@ -82,6 +111,7 @@ type writer struct {
 
 // Writer builds a writer that logs all writes to the test object.
 func Writer(tb testing.TB) io.Writer {
+	tb.Helper()
 	return writer{tb}
 }
 

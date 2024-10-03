@@ -1,16 +1,32 @@
 package load
 
 import (
+	"errors"
+	"fmt"
 	"path/filepath"
 	"reflect"
+	"regexp"
 	"sort"
 	"strconv"
 	"strings"
 
 	"github.com/mmcloughlin/avo/internal/inst"
 	"github.com/mmcloughlin/avo/internal/opcodescsv"
+	"github.com/mmcloughlin/avo/internal/opcodesextra"
 	"github.com/mmcloughlin/avo/internal/opcodesxml"
 )
+
+// This file is a mess. Some of this complexity is unavoidable, since the state
+// of x86 instruction databases is also a mess, especially when it comes to
+// idiosyncrasies of the Go assembler implementation. Some of the complexity is
+// probably avoidable by migrating to using Intel XED
+// (https://github.com/mmcloughlin/avo/issues/23), but for now this is an unholy
+// mix of PeachPy's Opcodes database and Go's x86 CSV file.
+//
+// The goal is simply to keep as much of the uglyness in this file as possible,
+// producing a clean instruction database for the rest of avo to use. Any nasty
+// logic here should be backed up with a test somewhere to ensure the result is
+// correct, even if the code that produced it is awful.
 
 // Expected data source filenames.
 const (
@@ -70,8 +86,13 @@ func (l *Loader) Load() ([]inst.Instruction, error) {
 	}
 
 	// Add extras to our list.
-	for _, e := range extras {
+	for _, e := range opcodesextra.Instructions() {
 		im[e.Opcode] = e
+	}
+
+	// Generate additional AVX-512 forms.
+	for _, i := range im {
+		i.Forms = avx512forms(i.Opcode, i.Forms)
 	}
 
 	// Merge aliased forms. This is primarily for MOVQ (issue #50).
@@ -94,9 +115,18 @@ func (l *Loader) Load() ([]inst.Instruction, error) {
 		i.Forms = dedupe(i.Forms)
 	}
 
-	// Convert to a slice, sorted by opcode.
+	// Resolve forms that have VEX and EVEX encoded forms.
+	for _, i := range im {
+		i.Forms, err = vexevex(i.Forms)
+		if err != nil {
+			return nil, err
+		}
+	}
+
+	// Convert to a slice. Sort instructions and forms for reproducibility.
 	is := make([]inst.Instruction, 0, len(im))
 	for _, i := range im {
+		sortforms(i.Forms)
 		is = append(is, *i)
 	}
 
@@ -132,16 +162,14 @@ func (l Loader) include(f opcodesxml.Form) bool {
 		// AMD-only.
 		case "TBM", "CLZERO", "FMA4", "XOP", "SSE4A", "3dnow!", "3dnow!+":
 			return false
+		// AVX512PF doesn't work without some special case handling, and is only on Knights Landing/Knights Mill.
+		case "AVX512PF":
+			return false
 		// Incomplete support for some prefetching instructions.
 		case "PREFETCH", "PREFETCHW", "PREFETCHWT1", "CLWB":
 			return false
 		// Remaining oddities.
 		case "MONITORX", "FEMMS":
-			return false
-		}
-
-		// TODO(mbm): support AVX512
-		if strings.HasPrefix(isa.ID, "AVX512") {
 			return false
 		}
 	}
@@ -277,27 +305,7 @@ func (l Loader) gonames(f opcodesxml.Form) []string {
 	n := strings.ToUpper(f.GASName)
 
 	// Some need data sizes added to them.
-	// TODO(mbm): is there a better way of determining which ones these are?
-	suffix := map[int]string{16: "W", 32: "L", 64: "Q", 128: "X", 256: "Y"}
-	switch n {
-	case "VCVTUSI2SS", "VCVTSD2USI", "VCVTSS2USI", "VCVTUSI2SD", "VCVTTSS2USI", "VCVTTSD2USI":
-		fallthrough
-	case "MOVBEW", "MOVBEL", "MOVBEQ":
-		// MOVEBE* instructions seem to be inconsistent with x86 CSV.
-		//
-		// Reference: https://github.com/golang/arch/blob/b19384d3c130858bb31a343ea8fce26be71b5998/x86/x86spec/format.go#L282-L287
-		//
-		//		"MOVBE r16, m16": "movbeww",
-		//		"MOVBE m16, r16": "movbeww",
-		//		"MOVBE m32, r32": "movbell",
-		//		"MOVBE r32, m32": "movbell",
-		//		"MOVBE m64, r64": "movbeqq",
-		//		"MOVBE r64, m64": "movbeqq",
-		//
-		fallthrough
-	case "RDRAND", "RDSEED":
-		n += suffix[s]
-	}
+	n += sizesuffix(n, f)
 
 	return []string{n}
 }
@@ -357,11 +365,14 @@ func (l Loader) form(opcode string, f opcodesxml.Form) inst.Form {
 	for _, isa := range f.ISA {
 		isas = append(isas, isa.ID)
 	}
+	sort.Strings(isas)
 
+	// Build form.
 	return inst.Form{
 		ISA:              isas,
 		Operands:         ops,
 		ImplicitOperands: implicits,
+		EncodingType:     enctype(f),
 		CancellingInputs: f.CancellingInputs,
 	}
 }
@@ -381,6 +392,212 @@ func operand(op opcodesxml.Operand) inst.Operand {
 	return inst.Operand{
 		Type:   op.Type,
 		Action: inst.ActionFromReadWrite(op.Input, op.Output),
+	}
+}
+
+// avx512forms processes AVX-512 operands and expands them into additional
+// instruction forms as expected by the Go assembler.
+//
+// See: https://go.dev/wiki/AVX512
+func avx512forms(opcode string, forms []inst.Form) []inst.Form {
+	// Apply modification stages to produce final list of forms.
+	stages := []func(string, inst.Form) []inst.Form{
+		avx512rounding,
+		avx512sae,
+		avx512bcst,
+		avx512masking,
+		avx512zeroing,
+	}
+
+	for _, stage := range stages {
+		var next []inst.Form
+		for _, f := range forms {
+			next = append(next, stage(opcode, f)...)
+		}
+		forms = next
+	}
+
+	return forms
+}
+
+// avx512rounding handles AVX-512 embedded rounding. Opcodes database represents
+// these as {er} operands, whereas Go uses instruction suffixes. Remove the
+// operand if present and set the corresponding flag.
+func avx512rounding(opcode string, f inst.Form) []inst.Form {
+	i, found := findoperand(f.Operands, "{er}")
+	if !found {
+		return []inst.Form{f}
+	}
+
+	// Delete the {er} operand.
+	f.Operands = append(f.Operands[:i], f.Operands[i+1:]...)
+
+	// Create a second form with the rounding flag.
+	er := f.Clone()
+	er.EmbeddedRounding = true
+
+	return []inst.Form{f, er}
+}
+
+// avx512sae handles AVX-512 "suppress all exceptions". Opcodes database
+// represents these as {sae} operands, whereas Go uses instruction suffixes.
+// Remove the operand if present and set the corresponding flag.
+func avx512sae(opcode string, f inst.Form) []inst.Form {
+	i, found := findoperand(f.Operands, "{sae}")
+	if !found {
+		return []inst.Form{f}
+	}
+
+	// Delete the {sae} operand.
+	f.Operands = append(f.Operands[:i], f.Operands[i+1:]...)
+
+	// Create a second form with the rounding flag.
+	sae := f.Clone()
+	sae.SuppressAllExceptions = true
+
+	return []inst.Form{f, sae}
+}
+
+// avx512bcst handles AVX-512 broadcast. Opcodes database uses operands like
+// "m512/m64bcst" to indicate broadcast. Go uses the BCST suffix to enable it.
+// Split the form into two, the regular and broadcast versions.
+func avx512bcst(opcode string, f inst.Form) []inst.Form {
+	// Look for broadcast operand.
+	idx := -1
+	for i, op := range f.Operands {
+		if bcstrx.MatchString(op.Type) {
+			idx = i
+			break
+		}
+	}
+
+	if idx < 0 {
+		return []inst.Form{f}
+	}
+
+	// Create two forms.
+	match := bcstrx.FindStringSubmatch(f.Operands[idx].Type)
+
+	mem := f.Clone()
+	mem.Operands[idx].Type = match[1]
+
+	bcst := f.Clone()
+	bcst.Broadcast = true
+	bcst.Operands[idx].Type = match[2]
+
+	return []inst.Form{mem, bcst}
+}
+
+var bcstrx = regexp.MustCompile(`^(m\d+)/(m\d+)bcst$`)
+
+// avx512masking handles AVX-512 masking forms.
+func avx512masking(opcode string, f inst.Form) []inst.Form {
+	// In order to support implicit masking (with K0), Go has two instruction
+	// forms, one with the mask and one without. The mask register precedes the
+	// output register. The Opcodes database (similar to Intel manuals)
+	// represents masking with the {k} operand suffix, possibly with {z} for
+	// zeroing.
+
+	// Look for masking with possible zeroing. Zeroing is handled by a later
+	// processing stage, but we need to be sure to notice and preserve it here.
+	masking := false
+	zeroing := false
+	idx := -1
+	for i := range f.Operands {
+		op := &f.Operands[i]
+		if strings.HasSuffix(op.Type, "{z}") {
+			zeroing = true
+			op.Type = strings.TrimSuffix(op.Type, "{z}")
+		}
+		if strings.HasSuffix(op.Type, "{k}") {
+			masking = true
+			idx = i
+			op.Type = strings.TrimSuffix(op.Type, "{k}")
+			break
+		}
+	}
+
+	// Bail if no masking.
+	if !masking {
+		return []inst.Form{f}
+	}
+
+	// Unmasked variant.
+	unmasked := f.Clone()
+
+	// Masked form has "k" operand inserted.
+	masked := f.Clone()
+	mask := inst.Operand{Type: "k", Action: inst.R}
+	ops := append([]inst.Operand(nil), masked.Operands[:idx]...)
+	ops = append(ops, mask)
+	ops = append(ops, masked.Operands[idx:]...)
+	masked.Operands = ops
+
+	// Restore zeroing suffix, so it can he handled later.
+	if zeroing {
+		masked.Operands[idx+1].Type += "{z}"
+	}
+
+	// Almost all instructions take an optional mask, apart from a few
+	// special cases.
+	if maskrequired[opcode] {
+		return []inst.Form{masked}
+	}
+	return []inst.Form{unmasked, masked}
+}
+
+// avx512zeroing handles AVX-512 zeroing forms.
+func avx512zeroing(opcode string, f inst.Form) []inst.Form {
+	// Zeroing in Go is handled with the Z opcode suffix. Note that zeroing has
+	// an important effect on the instruction form, since the merge masking form
+	// has an input dependency for the output register, and the zeroing form
+	// does not.
+
+	// Look for zeroing operand.
+	idx := -1
+	for i := range f.Operands {
+		op := &f.Operands[i]
+		if strings.HasSuffix(op.Type, "{z}") {
+			idx = i
+			op.Type = strings.TrimSuffix(op.Type, "{z}")
+		}
+	}
+
+	if idx < 0 {
+		return []inst.Form{f}
+	}
+
+	// Duplicate into two forms for merging and zeroing.
+	merging := f.Clone()
+	merging.Operands[idx].Action |= inst.R
+
+	zeroing := f.Clone()
+	zeroing.Zeroing = true
+
+	return []inst.Form{merging, zeroing}
+}
+
+// findoperand looks for an operand type and returns its index, if found.
+func findoperand(ops []inst.Operand, t string) (int, bool) {
+	for i, op := range ops {
+		if op.Type == t {
+			return i, true
+		}
+	}
+	return 0, false
+}
+
+// enctype selects the encoding type for the instruction form.
+func enctype(f opcodesxml.Form) inst.EncodingType {
+	switch {
+	case f.Encoding.EVEX != nil:
+		return inst.EncodingTypeEVEX
+	case f.Encoding.VEX != nil:
+		return inst.EncodingTypeVEX
+	case f.Encoding.REX != nil:
+		return inst.EncodingTypeREX
+	default:
+		return inst.EncodingTypeLegacy
 	}
 }
 
@@ -413,6 +630,219 @@ func operandsize(op opcodesxml.Operand) int {
 	return 0
 }
 
+// sizesuffix returns an optional size suffix to be added to the opcode name.
+func sizesuffix(n string, f opcodesxml.Form) string {
+	// Reference: https://github.com/golang/arch/blob/5de9028c2478e6cb4e1c1b1f4386f3f0a93e383a/x86/x86avxgen/main.go#L275-L322
+	//
+	//	func addGoSuffixes(ctx *context) {
+	//		var opcodeSuffixMatchers map[string][]string
+	//		{
+	//			opXY := []string{"VL=0", "X", "VL=1", "Y"}
+	//			opXYZ := []string{"VL=0", "X", "VL=1", "Y", "VL=2", "Z"}
+	//			opQ := []string{"REXW=1", "Q"}
+	//			opLQ := []string{"REXW=0", "L", "REXW=1", "Q"}
+	//
+	//			opcodeSuffixMatchers = map[string][]string{
+	//				"VCVTPD2DQ":   opXY,
+	//				"VCVTPD2PS":   opXY,
+	//				"VCVTTPD2DQ":  opXY,
+	//				"VCVTQQ2PS":   opXY,
+	//				"VCVTUQQ2PS":  opXY,
+	//				"VCVTPD2UDQ":  opXY,
+	//				"VCVTTPD2UDQ": opXY,
+	//
+	//				"VFPCLASSPD": opXYZ,
+	//				"VFPCLASSPS": opXYZ,
+	//
+	//				"VCVTSD2SI":  opQ,
+	//				"VCVTTSD2SI": opQ,
+	//				"VCVTTSS2SI": opQ,
+	//				"VCVTSS2SI":  opQ,
+	//
+	//				"VCVTSD2USI":  opLQ,
+	//				"VCVTSS2USI":  opLQ,
+	//				"VCVTTSD2USI": opLQ,
+	//				"VCVTTSS2USI": opLQ,
+	//				"VCVTUSI2SD":  opLQ,
+	//				"VCVTUSI2SS":  opLQ,
+	//				"VCVTSI2SD":   opLQ,
+	//				"VCVTSI2SS":   opLQ,
+	//				"ANDN":        opLQ,
+	//				"BEXTR":       opLQ,
+	//				"BLSI":        opLQ,
+	//				"BLSMSK":      opLQ,
+	//				"BLSR":        opLQ,
+	//				"BZHI":        opLQ,
+	//				"MULX":        opLQ,
+	//				"PDEP":        opLQ,
+	//				"PEXT":        opLQ,
+	//				"RORX":        opLQ,
+	//				"SARX":        opLQ,
+	//				"SHLX":        opLQ,
+	//				"SHRX":        opLQ,
+	//			}
+	//		}
+	//
+
+	type rule struct {
+		Size   func(opcodesxml.Form) int
+		Suffix map[int]string
+	}
+
+	var (
+		XY  = rule{evexLLsize, map[int]string{128: "X", 256: "Y"}}
+		XYZ = rule{evexLLsize, map[int]string{128: "X", 256: "Y", 512: "Z"}}
+		Q   = rule{rexWsize, map[int]string{64: "Q"}}
+		LQ  = rule{rexWsize, map[int]string{32: "L", 64: "Q"}}
+		WLQ = rule{datasize, map[int]string{16: "W", 32: "L", 64: "Q"}}
+	)
+
+	rules := map[string]rule{
+		"VCVTPD2DQ":   XY,
+		"VCVTPD2PS":   XY,
+		"VCVTTPD2DQ":  XY,
+		"VCVTQQ2PS":   XY,
+		"VCVTUQQ2PS":  XY,
+		"VCVTPD2UDQ":  XY,
+		"VCVTTPD2UDQ": XY,
+
+		"VFPCLASSPD": XYZ,
+		"VFPCLASSPS": XYZ,
+
+		"VCVTSD2SI":  Q,
+		"VCVTTSD2SI": Q,
+		"VCVTTSS2SI": Q,
+		"VCVTSS2SI":  Q,
+
+		"VCVTSD2USI":  LQ,
+		"VCVTSS2USI":  LQ,
+		"VCVTTSD2USI": LQ,
+		"VCVTTSS2USI": LQ,
+		"VCVTUSI2SD":  LQ,
+		"VCVTUSI2SS":  LQ,
+		"VCVTSI2SD":   LQ,
+		"VCVTSI2SS":   LQ,
+		"ANDN":        LQ,
+		"BEXTR":       LQ,
+		"BLSI":        LQ,
+		"BLSMSK":      LQ,
+		"BLSR":        LQ,
+		"BZHI":        LQ,
+		"MULX":        LQ,
+		"PDEP":        LQ,
+		"PEXT":        LQ,
+		"RORX":        LQ,
+		"SARX":        LQ,
+		"SHLX":        LQ,
+		"SHRX":        LQ,
+
+		"RDRAND": LQ,
+		"RDSEED": LQ,
+
+		// MOVEBE* instructions seem to be inconsistent with x86 CSV.
+		//
+		// Reference: https://github.com/golang/arch/blob/b19384d3c130858bb31a343ea8fce26be71b5998/x86/x86spec/format.go#L282-L287
+		//
+		//		"MOVBE r16, m16": "movbeww",
+		//		"MOVBE m16, r16": "movbeww",
+		//		"MOVBE m32, r32": "movbell",
+		//		"MOVBE r32, m32": "movbell",
+		//		"MOVBE m64, r64": "movbeqq",
+		//		"MOVBE r64, m64": "movbeqq",
+		//
+		"MOVBEW": WLQ,
+		"MOVBEL": WLQ,
+		"MOVBEQ": WLQ,
+	}
+
+	r, ok := rules[n]
+	if !ok {
+		return ""
+	}
+
+	s := r.Size(f)
+	return r.Suffix[s]
+}
+
+func rexWsize(f opcodesxml.Form) int {
+	e := f.Encoding
+	switch {
+	case e.EVEX != nil && e.EVEX.W != nil:
+		return 32 << *e.EVEX.W
+	default:
+		return 32
+	}
+}
+
+func evexLLsize(f opcodesxml.Form) int {
+	e := f.Encoding
+	if e.EVEX == nil {
+		return 0
+	}
+	size := map[string]int{"00": 128, "01": 256, "10": 512}
+	return size[e.EVEX.LL]
+}
+
+// vexevex fixes instructions that have both VEX and EVEX encoded forms with the
+// same operand types. Go uses the VEX encoded form unless EVEX-only features
+// are used. This function will only keep the VEX encoded version in the case
+// where both exist.
+//
+// Note this is somewhat of a hack. There are real reasons to use the EVEX
+// encoded version even when both exist. The main reason to use the EVEX version
+// rather than VEX is to use the registers Z16, Z17, ... and up. However, avo
+// does not implement the logic to distinguish between the two halfs of the
+// vector registers. So in its current state the only reason to need the EVEX
+// version is to encode suffixes, and these are represented by other instruction
+// forms.
+//
+// TODO(mbm): restrict use of vector registers https://github.com/mmcloughlin/avo/issues/146
+func vexevex(fs []inst.Form) ([]inst.Form, error) {
+	// Group forms by deduping ID.
+	byid := map[string][]inst.Form{}
+	for _, f := range fs {
+		id := fmt.Sprintf(
+			"%s {%t,%t,%t,%t}",
+			strings.Join(f.Signature(), "_"),
+			f.Zeroing,
+			f.EmbeddedRounding,
+			f.SuppressAllExceptions,
+			f.Broadcast,
+		)
+		byid[id] = append(byid[id], f)
+	}
+
+	// Resolve overlaps.
+	var results []inst.Form
+	for id, group := range byid {
+		if len(group) < 2 {
+			results = append(results, group...)
+			continue
+		}
+
+		// We expect these conflicts are caused by VEX/EVEX pairs. Bail if it's
+		// something else.
+		if len(group) > 2 {
+			return nil, fmt.Errorf("more than two forms of type %q", id)
+		}
+
+		if group[0].EncodingType == inst.EncodingTypeEVEX {
+			group[0], group[1] = group[1], group[0]
+		}
+
+		if group[0].EncodingType != inst.EncodingTypeVEX || group[1].EncodingType != inst.EncodingTypeEVEX {
+			return nil, errors.New("expected pair of VEX/EVEX encoded forms")
+		}
+
+		vex := group[0]
+
+		// In this case we only keep the VEX encoded form.
+		results = append(results, vex)
+	}
+
+	return results, nil
+}
+
 // dedupe a list of forms.
 func dedupe(fs []inst.Form) []inst.Form {
 	uniq := make([]inst.Form, 0, len(fs))
@@ -429,4 +859,15 @@ func dedupe(fs []inst.Form) []inst.Form {
 		}
 	}
 	return uniq
+}
+
+// sortforms sorts a list of forms.
+func sortforms(fs []inst.Form) {
+	sort.Slice(fs, func(i, j int) bool {
+		return sortkey(fs[i]) < sortkey(fs[j])
+	})
+}
+
+func sortkey(f inst.Form) string {
+	return fmt.Sprintf("%d %v %v", f.EncodingType, f.ISA, f)
 }

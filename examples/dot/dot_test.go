@@ -3,17 +3,28 @@ package dot
 import (
 	"math/rand"
 	"testing"
+
+	"golang.org/x/sys/cpu"
 )
 
 //go:generate go run asm.go -out dot.s -stubs stub.go
 
+func RequireISAs(t *testing.T) {
+	t.Helper()
+	if !(cpu.X86.HasAVX && cpu.X86.HasFMA) {
+		t.Skip("requires AVX and FMA3 instruction sets")
+	}
+}
+
 func TestEmpty(t *testing.T) {
+	RequireISAs(t)
 	if Dot(nil, nil) != 0.0 {
 		t.Fatal("expect dot product of empty vectors to be zero")
 	}
 }
 
 func TestLengths(t *testing.T) {
+	RequireISAs(t)
 	const epsilon = 0.00001
 	for n := 0; n < 1000; n++ {
 		x, y := RandomVector(n), RandomVector(n)

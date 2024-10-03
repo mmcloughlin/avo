@@ -35,26 +35,30 @@ func IsIMM2U(op Op) bool {
 
 // IsIMM8 returns true is op is an 8-bit immediate.
 func IsIMM8(op Op) bool {
-	_, ok := op.(U8)
-	return ok
+	_, uok := op.(U8)
+	_, iok := op.(I8)
+	return uok || iok
 }
 
 // IsIMM16 returns true is op is a 16-bit immediate.
 func IsIMM16(op Op) bool {
-	_, ok := op.(U16)
-	return ok
+	_, uok := op.(U16)
+	_, iok := op.(I16)
+	return uok || iok
 }
 
 // IsIMM32 returns true is op is a 32-bit immediate.
 func IsIMM32(op Op) bool {
-	_, ok := op.(U32)
-	return ok
+	_, uok := op.(U32)
+	_, iok := op.(I32)
+	return uok || iok
 }
 
 // IsIMM64 returns true is op is a 64-bit immediate.
 func IsIMM64(op Op) bool {
-	_, ok := op.(U64)
-	return ok
+	_, uok := op.(U64)
+	_, iok := op.(I64)
+	return uok || iok
 }
 
 // IsAL returns true if op is the AL register.
@@ -127,6 +131,16 @@ func IsYMM(op Op) bool {
 	return IsRegisterKindSize(op, reg.KindVector, 32)
 }
 
+// IsZMM returns true if op is a 512-bit ZMM register.
+func IsZMM(op Op) bool {
+	return IsRegisterKindSize(op, reg.KindVector, 64)
+}
+
+// IsK returns true if op is an Opmask register.
+func IsK(op Op) bool {
+	return IsRegisterKind(op, reg.KindOpmask)
+}
+
 // IsRegisterKindSize returns true if op is a register of the given kind and size in bytes.
 func IsRegisterKindSize(op Op, k reg.Kind, n uint) bool {
 	r, ok := op.(reg.Register)
@@ -196,6 +210,12 @@ func IsM256(op Op) bool {
 	return IsM64(op)
 }
 
+// IsM512 returns true if op is a 512-bit memory operand.
+func IsM512(op Op) bool {
+	// TODO(mbm): should "m512" be the same as "m64"?
+	return IsM64(op)
+}
+
 // IsVM32X returns true if op is a vector memory operand with 32-bit XMM index.
 func IsVM32X(op Op) bool {
 	return IsVmx(op)
@@ -224,6 +244,21 @@ func IsVM64Y(op Op) bool {
 // IsVmy returns true if op is a vector memory operand with YMM index.
 func IsVmy(op Op) bool {
 	return isvm(op, IsYMM)
+}
+
+// IsVM32Z returns true if op is a vector memory operand with 32-bit ZMM index.
+func IsVM32Z(op Op) bool {
+	return IsVmz(op)
+}
+
+// IsVM64Z returns true if op is a vector memory operand with 64-bit ZMM index.
+func IsVM64Z(op Op) bool {
+	return IsVmz(op)
+}
+
+// IsVmz returns true if op is a vector memory operand with ZMM index.
+func IsVmz(op Op) bool {
+	return isvm(op, IsZMM)
 }
 
 func isvm(op Op, idx func(Op) bool) bool {
