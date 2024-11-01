@@ -127,6 +127,9 @@ func Dereference(ptr gotypes.Component) gotypes.Component { return ctx.Dereferen
 // Function starts building a new function with the given name.
 func Function(name string) { ctx.Function(name) }
 
+// InternalFunction starts building a new internal function (not linked to any package) with the given name.
+func InternalFunction(name string) { ctx.InternalFunction(name) }
+
 // Doc sets documentation comment lines for the currently active function.
 func Doc(lines ...string) { ctx.Doc(lines...) }
 
