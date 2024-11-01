@@ -4261,6 +4261,12 @@ func TestPBLENDWValidFormsNoError(t *testing.T) {
 	}
 }
 
+func TestPCALIGNValidFormsNoError(t *testing.T) {
+	if _, err := PCALIGN(opimm8); err != nil {
+		t.Fatal(err)
+	}
+}
+
 func TestPCLMULQDQValidFormsNoError(t *testing.T) {
 	if _, err := PCLMULQDQ(opimm8, opm128, opxmm); err != nil {
 		t.Fatal(err)
