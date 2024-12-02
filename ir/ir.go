@@ -2,7 +2,6 @@ package ir
 
 import (
 	"errors"
-
 	"github.com/mmcloughlin/avo/attr"
 	"github.com/mmcloughlin/avo/buildtags"
 	"github.com/mmcloughlin/avo/gotypes"
@@ -13,6 +12,16 @@ import (
 // Node is a part of a Function.
 type Node interface {
 	node()
+}
+
+// Preprocessor macro within a function.
+type Preprocessor string
+
+func (p Preprocessor) node() {}
+
+// NewPreprocessor builds a Preprocessor from the provided macro string.
+func NewPreprocessor(macro string) Preprocessor {
+	return Preprocessor(macro)
 }
 
 // Label within a function.
@@ -162,6 +171,17 @@ func (f *File) Functions() []*Function {
 	return fns
 }
 
+// Include adds an include pre-processor directive for the provided path, if it
+// is not already present.
+func (f *File) Include(path string) {
+	for _, p := range f.Includes {
+		if p == path {
+			return
+		}
+	}
+	f.Includes = append(f.Includes, path)
+}
+
 // Pragma represents a function compiler directive.
 type Pragma struct {
 	Directive string
@@ -228,6 +248,11 @@ func (f *Function) AddInstruction(i *Instruction) {
 // AddLabel appends a label to f.
 func (f *Function) AddLabel(l Label) {
 	f.AddNode(l)
+}
+
+// AddPreprocessor adds a pre-processor macro to f.
+func (f *Function) AddPreprocessor(macro string) {
+	f.AddNode(NewPreprocessor(macro))
 }
 
 // AddComment adds comment lines to f.
