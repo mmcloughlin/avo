@@ -649,7 +649,7 @@
                 "stars": 3031
             },
             "default_branch": "master",
-            "version": "270bf2552c05c1943a1c950e3afa3a15663e0277",
+            "version": "v0.24.0",
             "packages": [
                 {
                     "pkg": "curve25519",
