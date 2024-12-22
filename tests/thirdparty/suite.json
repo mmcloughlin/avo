@@ -649,7 +649,7 @@
                 "stars": 3031
             },
             "default_branch": "master",
-            "version": "089bfa5675191fd96a44247682f76ebca03d7916",
+            "version": "270bf2552c05c1943a1c950e3afa3a15663e0277",
             "packages": [
                 {
                     "pkg": "curve25519",
@@ -761,7 +761,7 @@
                 "stars": 124357
             },
             "default_branch": "master",
-            "version": "go1.20.1",
+            "version": "go1.23.4",
             "packages": [
                 {
                     "pkg": "src/crypto/internal/bigmod",
