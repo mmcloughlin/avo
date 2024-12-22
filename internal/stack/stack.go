@@ -7,10 +7,10 @@ import (
 	"strings"
 )
 
-// Frames returns at most m callstack Frames, starting with its caller and
+// Frames returns at most mx callstack Frames, starting with its caller and
 // skipping skip Frames.
-func Frames(skip, m int) []runtime.Frame {
-	pc := make([]uintptr, m)
+func Frames(skip, mx int) []runtime.Frame {
+	pc := make([]uintptr, mx)
 	n := runtime.Callers(skip+2, pc)
 	if n == 0 {
 		return nil
