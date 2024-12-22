@@ -120,7 +120,7 @@ func TestAllocateRegistersBasePointerDeprioritized(t *testing.T) {
 	ctx.SignatureExpr("func() uint64")
 
 	x := make([]reg.GPVirtual, n)
-	for i := 0; i < n; i++ {
+	for i := range n {
 		x[i] = ctx.GP64()
 		ctx.MOVQ(operand.U64(i), x[i])
 	}

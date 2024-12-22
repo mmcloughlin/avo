@@ -44,7 +44,7 @@ func TestFormDupes(t *testing.T) {
 
 func HasFormDupe(i inst.Instruction) bool {
 	n := len(i.Forms)
-	for a := 0; a < n; a++ {
+	for a := range n {
 		for b := a + 1; b < n; b++ {
 			if reflect.DeepEqual(i.Forms[a], i.Forms[b]) {
 				return true

@@ -78,7 +78,7 @@ func TestAllocatorPriority(t *testing.T) {
 		a.Add(x[i].ID())
 	}
 
-	for i := 0; i < n; i++ {
+	for i := range n {
 		for j := i + 1; j < n; j++ {
 			a.AddInterference(x[i].ID(), x[j].ID())
 		}

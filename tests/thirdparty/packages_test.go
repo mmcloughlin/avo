@@ -34,7 +34,6 @@ func TestPackages(t *testing.T) {
 	}
 
 	for _, tst := range s.Projects.Tests() {
-		tst := tst // scopelint
 		t.Run(tst.ID(), func(t *testing.T) {
 			if tst.Project.Skip() {
 				t.Skipf("skip: %s", tst.Project.Reason())

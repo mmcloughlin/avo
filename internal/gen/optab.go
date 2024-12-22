@@ -58,18 +58,18 @@ func (t *optab) Generate(is []inst.Instruction) ([]byte, error) {
 }
 
 func (t *optab) maxOperands(is []inst.Instruction) {
-	max := 0
+	mx := 0
 	for _, i := range inst.Instructions {
 		for _, f := range i.Forms {
 			a := len(f.Operands) + len(f.ImplicitOperands)
-			if a > max {
-				max = a
+			if a > mx {
+				mx = a
 			}
 		}
 	}
 
 	t.Comment("maxoperands is the maximum number of operands in an instruction form, including implicit operands.")
-	t.Printf("const maxoperands = %d\n\n", max)
+	t.Printf("const maxoperands = %d\n\n", mx)
 }
 
 func (t *optab) operandTypeEnum(is []inst.Instruction) {
@@ -109,17 +109,17 @@ func (t *optab) implicitRegisterEnum(is []inst.Instruction) {
 func (t *optab) suffixesType(is []inst.Instruction) {
 	// Declare the type as an array. This requires us to know the maximum number
 	// of suffixes an instruction can have.
-	max := 0
+	mx := 0
 	for _, class := range inst.SuffixesClasses(is) {
 		for _, suffixes := range class {
-			if len(suffixes) > max {
-				max = len(suffixes)
+			if len(suffixes) > mx {
+				mx = len(suffixes)
 			}
 		}
 	}
 
 	t.Comment("maxsuffixes is the maximum number of suffixes an instruction can have.")
-	t.Printf("const maxsuffixes = %d\n\n", max)
+	t.Printf("const maxsuffixes = %d\n\n", mx)
 
 	name := t.table.SuffixesTypeName()
 	t.Printf("type %s [maxsuffixes]%s\n", name, t.table.Suffix().Name())
