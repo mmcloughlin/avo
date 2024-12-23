@@ -39,7 +39,7 @@ func CFG(fn *ir.Function) error {
 	n := len(is)
 
 	// Populate successors.
-	for i := 0; i < n; i++ {
+	for i := range n {
 		cur := is[i]
 		var nxt *ir.Instruction
 		if i+1 < n {

@@ -190,7 +190,7 @@ func (c *component) Field(n string) Component {
 	//			}
 	//
 	fields := make([]*types.Var, s.NumFields())
-	for i := 0; i < s.NumFields(); i++ {
+	for i := range s.NumFields() {
 		fields[i] = s.Field(i)
 	}
 	offsets := Sizes.Offsetsof(fields)

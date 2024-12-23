@@ -4,11 +4,10 @@ linters:
   enable-all: true
   disable:
     - cyclop
-    - deadcode
     - dupword
+    - err113
     - errname
     - exhaustruct
-    - exhaustivestruct
     - forbidigo
     - forcetypeassert
     - funlen
@@ -16,29 +15,22 @@ linters:
     - gochecknoinits
     - goconst
     - godox
-    - goerr113
-    - golint
-    - gomnd
     - gosec
-    - ifshort
+    - iface
     - inamedparam
-    - interfacer
     - ireturn
     - lll
-    - maligned
+    - mnd
     - nlreturn
     - nonamedreturns
-    - nosnakecase
     - paralleltest
-    - prealloc
     - perfsprint
+    - prealloc
+    - recvcheck
     - rowserrcheck
-    - scopelint
-    - structcheck
     - tagliatelle
     - testpackage
     - unparam
-    - varcheck
     - varnamelen
     - wastedassign
     - wrapcheck

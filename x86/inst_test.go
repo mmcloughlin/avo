@@ -78,7 +78,6 @@ func TestCases(t *testing.T) {
 	}
 
 	for _, c := range cases {
-		c := c // scopelint
 		t.Run(c.Name, func(t *testing.T) {
 			if !reflect.DeepEqual(c.Instruction, c.Expect) {
 				t.Logf("   got = %#v", c.Instruction)

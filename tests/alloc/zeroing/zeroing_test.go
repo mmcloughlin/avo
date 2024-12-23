@@ -21,7 +21,7 @@ func TestZeroing(t *testing.T) {
 	var got [8]uint64
 	Zeroing(&got)
 
-	for i := 0; i < 8; i++ {
+	for i := range 8 {
 		if got[i] != expect {
 			t.Errorf("got[%d] = %d; expect %d", i, got[i], expect)
 		}

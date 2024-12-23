@@ -7,7 +7,7 @@ import (
 //go:generate go run asm.go -out issue387.s -stubs stub.go
 
 func TestFloat32(t *testing.T) {
-	for i := 0; i < 10; i++ {
+	for i := range 10 {
 		got := Float32(i)
 		expect := float32(i)
 		if got != expect {
@@ -17,7 +17,7 @@ func TestFloat32(t *testing.T) {
 }
 
 func TestFloat64(t *testing.T) {
-	for i := 0; i < 10; i++ {
+	for i := range 10 {
 		got := Float64(i)
 		expect := float64(i)
 		if got != expect {
