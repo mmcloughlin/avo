@@ -7,7 +7,7 @@
             },
             "metadata": {
                 "description": "XXH3 algorithm in Go",
-                "stars": 412
+                "stars": 423
             },
             "default_branch": "master",
             "version": "v1.0.0-rc1",
@@ -120,7 +120,7 @@
             },
             "metadata": {
                 "description": "Accelerate aggregated MD5 hashing performance up to 8x for AVX512 and 4x for AVX2. Useful for server applications that need to compute many MD5 sums in parallel.",
-                "stars": 184
+                "stars": 185
             },
             "default_branch": "master",
             "version": "30ad8af83f6868c2a30c615f3edf1a9366bf3f89",
@@ -145,7 +145,7 @@
             },
             "metadata": {
                 "description": "Pure Go implementation of BLAKE3 with AVX2 and SSE4.1 acceleration",
-                "stars": 407
+                "stars": 411
             },
             "default_branch": "master",
             "version": "25dba572f0e78ec108f0dd79c9c15288f542d7d9",
@@ -171,7 +171,7 @@
             },
             "metadata": {
                 "description": "Reed-Solomon Erasure Coding in Go",
-                "stars": 1909
+                "stars": 1915
             },
             "default_branch": "master",
             "version": "922778284547557265cff0f903ab5f4c27e40ae9",
@@ -230,7 +230,7 @@
             },
             "metadata": {
                 "description": "Optimized Go Compression Packages",
-                "stars": 4859
+                "stars": 4894
             },
             "default_branch": "master",
             "version": "v1.17.5",
@@ -531,7 +531,7 @@
             },
             "metadata": {
                 "description": "Go library providing algorithms optimized to leverage the characteristics of modern CPUs",
-                "stars": 875
+                "stars": 879
             },
             "default_branch": "main",
             "version": "2bf3fdd47b1cdbe8fe020f032caf14891e10a85f",
@@ -646,7 +646,7 @@
             "metadata": {
                 "description": "[mirror] Go supplementary cryptography libraries",
                 "homepage": "https://golang.org/x/crypto",
-                "stars": 3057
+                "stars": 3067
             },
             "default_branch": "master",
             "version": "v0.24.0",
@@ -673,7 +673,7 @@
             "metadata": {
                 "description": "filippo.io/edwards25519 — A safer, faster, and more powerful low-level edwards25519 Go implementation.",
                 "homepage": "https://filippo.io/edwards25519",
-                "stars": 140
+                "stars": 143
             },
             "default_branch": "main",
             "version": "v1.0.0-rc.1",
@@ -698,7 +698,7 @@
             },
             "metadata": {
                 "description": "An AVX-512 accelerated implementation of the BLAKE3 cryptographic hash function",
-                "stars": 365
+                "stars": 366
             },
             "default_branch": "master",
             "version": "v1.1.7",
@@ -758,7 +758,7 @@
             "metadata": {
                 "description": "The Go programming language",
                 "homepage": "https://go.dev",
-                "stars": 124866
+                "stars": 125408
             },
             "default_branch": "master",
             "version": "go1.23.4",
@@ -829,7 +829,7 @@
             "metadata": {
                 "description": "CIRCL: Cloudflare Interoperable Reusable Cryptographic Library",
                 "homepage": "http://blog.cloudflare.com/introducing-circl",
-                "stars": 1345
+                "stars": 1359
             },
             "default_branch": "main",
             "version": "v1.1.0",
@@ -879,7 +879,7 @@
             },
             "metadata": {
                 "description": "Universal Utilities for Go",
-                "stars": 1759
+                "stars": 1788
             },
             "default_branch": "main",
             "version": "a5eedbe96960cf0f801cf970e89f511842daee75",
@@ -910,5 +910,5 @@
             ]
         }
     ],
-    "metadata_last_update": "2025-01-01T05:29:44.030229246Z"
+    "metadata_last_update": "2025-02-01T05:28:42.261771302Z"
 }
