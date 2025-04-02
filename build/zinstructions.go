@@ -10013,6 +10013,27 @@ func (c *Context) PBLENDW(i, mx, x operand.Op) {
 // Operates on the global context.
 func PBLENDW(i, mx, x operand.Op) { ctx.PBLENDW(i, mx, x) }
 
+// PCALIGN: Align the next instruction to the specified boundary.
+//
+// Forms:
+//
+//	PCALIGN imm8
+//
+// Construct and append a PCALIGN instruction to the active function.
+func (c *Context) PCALIGN(i operand.Op) {
+	c.addinstruction(x86.PCALIGN(i))
+}
+
+// PCALIGN: Align the next instruction to the specified boundary.
+//
+// Forms:
+//
+//	PCALIGN imm8
+//
+// Construct and append a PCALIGN instruction to the active function.
+// Operates on the global context.
+func PCALIGN(i operand.Op) { ctx.PCALIGN(i) }
+
 // PCLMULQDQ: Carry-Less Quadword Multiplication.
 //
 // Forms:
