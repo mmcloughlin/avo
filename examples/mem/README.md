@@ -118,7 +118,7 @@ each int64 is 8 bytes wide.
         int64Base := Load(Param("i").Base(), GP64())
         int64Offset := Load(Param("offset"), GP64())
 
-        int64Data := Mem{Base: int64Base, Index: int64Offset, Scale: 4}
+        int64Data := Mem{Base: int64Base, Index: int64Offset, Scale: 8}
         int64Byte := GP64()
         MOVQ(int64Data, int64Byte)
 
@@ -132,7 +132,7 @@ each int64 is 8 bytes wide.
 TEXT ·Int64FromSlice(SB), NOSPLIT, $0-40
         MOVQ i_base+0(FP), AX
         MOVQ offset+24(FP), CX
-        MOVQ (AX)(CX*4), AX
+        MOVQ (AX)(CX*8), AX
         MOVQ AX, ret+32(FP)
         RET
 ```
