@@ -192,14 +192,14 @@ Implementations of full algorithms:
 Popular projects[^projects] using `avo`:
 
 [^projects]: Projects drawn from the `avo` third-party test suite. Popularity
-estimated from Github star count collected on Sep 1, 2025.
+estimated from Github star count collected on Oct 1, 2025.
 
 <img src="https://images.weserv.nl?fit=cover&h=24&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Fgolang.png&w=24" width="24" height="24" hspace="4" valign="middle" /> [golang / **go**](https://github.com/golang/go)
-:star: 129.7k
+:star: 130.1k
 > The Go programming language
 
 <img src="https://images.weserv.nl?fit=cover&h=24&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Fklauspost.png&w=24" width="24" height="24" hspace="4" valign="middle" /> [klauspost / **compress**](https://github.com/klauspost/compress)
-:star: 5.2k
+:star: 5.3k
 > Optimized Go Compression Packages
 
 <img src="https://images.weserv.nl?fit=cover&h=24&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Fgolang.png&w=24" width="24" height="24" hspace="4" valign="middle" /> [golang / **crypto**](https://github.com/golang/crypto)
@@ -223,15 +223,15 @@ estimated from Github star count collected on Sep 1, 2025.
 > Go library providing algorithms optimized to leverage the characteristics of modern CPUs
 
 <img src="https://images.weserv.nl?fit=cover&h=24&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Fzeebo.png&w=24" width="24" height="24" hspace="4" valign="middle" /> [zeebo / **xxh3**](https://github.com/zeebo/xxh3)
-:star: 476
+:star: 485
 > XXH3 algorithm in Go
 
 <img src="https://images.weserv.nl?fit=cover&h=24&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Fzeebo.png&w=24" width="24" height="24" hspace="4" valign="middle" /> [zeebo / **blake3**](https://github.com/zeebo/blake3)
-:star: 434
+:star: 439
 > Pure Go implementation of BLAKE3 with AVX2 and SSE4.1 acceleration
 
 <img src="https://images.weserv.nl?fit=cover&h=24&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Flukechampine.png&w=24" width="24" height="24" hspace="4" valign="middle" /> [lukechampine / **blake3**](https://github.com/lukechampine/blake3)
-:star: 394
+:star: 398
 > An AVX-512 accelerated implementation of the BLAKE3 cryptographic hash function
 
 See the [full list of projects using `avo`](doc/adopters.md).
