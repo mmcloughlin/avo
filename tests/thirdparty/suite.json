@@ -7,7 +7,7 @@
             },
             "metadata": {
                 "description": "XXH3 algorithm in Go",
-                "stars": 485
+                "stars": 491
             },
             "default_branch": "master",
             "version": "v1.0.0-rc1",
@@ -120,7 +120,7 @@
             },
             "metadata": {
                 "description": "Accelerate aggregated MD5 hashing performance up to 8x for AVX512 and 4x for AVX2. Useful for server applications that need to compute many MD5 sums in parallel.",
-                "stars": 207
+                "stars": 209
             },
             "default_branch": "master",
             "version": "30ad8af83f6868c2a30c615f3edf1a9366bf3f89",
@@ -145,7 +145,7 @@
             },
             "metadata": {
                 "description": "Pure Go implementation of BLAKE3 with AVX2 and SSE4.1 acceleration",
-                "stars": 439
+                "stars": 442
             },
             "default_branch": "master",
             "version": "25dba572f0e78ec108f0dd79c9c15288f542d7d9",
@@ -171,7 +171,7 @@
             },
             "metadata": {
                 "description": "Reed-Solomon Erasure Coding in Go",
-                "stars": 1995
+                "stars": 2006
             },
             "default_branch": "master",
             "version": "922778284547557265cff0f903ab5f4c27e40ae9",
@@ -230,7 +230,7 @@
             },
             "metadata": {
                 "description": "Optimized Go Compression Packages",
-                "stars": 5250
+                "stars": 5285
             },
             "default_branch": "master",
             "version": "v1.17.5",
@@ -287,7 +287,7 @@
             },
             "metadata": {
                 "description": "Bloom-filter based search index",
-                "stars": 124
+                "stars": 125
             },
             "default_branch": "master",
             "version": "0902316dce158c154b958ee5cfc706c62af29a42",
@@ -531,7 +531,7 @@
             },
             "metadata": {
                 "description": "Go library providing algorithms optimized to leverage the characteristics of modern CPUs",
-                "stars": 896
+                "stars": 901
             },
             "default_branch": "main",
             "version": "2bf3fdd47b1cdbe8fe020f032caf14891e10a85f",
@@ -620,7 +620,7 @@
             },
             "metadata": {
                 "description": "Go Deoxys-II-256-128",
-                "stars": 25
+                "stars": 24
             },
             "default_branch": "master",
             "version": "2091330c22b71dd4e04e15306498e68f3a1b3afc",
@@ -646,7 +646,7 @@
             "metadata": {
                 "description": "[mirror] Go supplementary cryptography libraries",
                 "homepage": "https://golang.org/x/crypto",
-                "stars": 3235
+                "stars": 3242
             },
             "default_branch": "master",
             "version": "v0.24.0",
@@ -698,7 +698,7 @@
             },
             "metadata": {
                 "description": "An AVX-512 accelerated implementation of the BLAKE3 cryptographic hash function",
-                "stars": 398
+                "stars": 401
             },
             "default_branch": "master",
             "version": "v1.1.7",
@@ -758,7 +758,7 @@
             "metadata": {
                 "description": "The Go programming language",
                 "homepage": "https://go.dev",
-                "stars": 130084
+                "stars": 130606
             },
             "default_branch": "master",
             "version": "go1.23.4",
@@ -829,7 +829,7 @@
             "metadata": {
                 "description": "CIRCL: Cloudflare Interoperable Reusable Cryptographic Library",
                 "homepage": "http://blog.cloudflare.com/introducing-circl",
-                "stars": 1535
+                "stars": 1552
             },
             "default_branch": "main",
             "version": "v1.1.0",
@@ -879,7 +879,7 @@
             },
             "metadata": {
                 "description": "Universal Utilities for Go",
-                "stars": 1948
+                "stars": 1957
             },
             "default_branch": "main",
             "version": "a5eedbe96960cf0f801cf970e89f511842daee75",
@@ -910,5 +910,5 @@
             ]
         }
     ],
-    "metadata_last_update": "2025-10-01T05:30:59.146369634Z"
+    "metadata_last_update": "2025-11-01T05:30:35.933475958Z"
 }
