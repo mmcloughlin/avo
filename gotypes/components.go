@@ -74,7 +74,7 @@ func NewComponent(t types.Type, addr operand.Mem) Component {
 }
 
 func (c *component) Resolve() (*Basic, error) {
-	b := toprimitive(c.typ)
+	b := toprimitive(c.typ.Underlying())
 	if b == nil {
 		return nil, errors.New("component is not primitive")
 	}
