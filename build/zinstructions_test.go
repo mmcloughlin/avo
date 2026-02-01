@@ -478,6 +478,7 @@ func TestContextInstructions(t *testing.T) {
 	ctx.PAVGW(opm128, opxmm)
 	ctx.PBLENDVB(opxmm0, opm128, opxmm)
 	ctx.PBLENDW(opimm8, opm128, opxmm)
+	ctx.PCALIGN(opimm8)
 	ctx.PCLMULQDQ(opimm8, opm128, opxmm)
 	ctx.PCMPEQB(opm128, opxmm)
 	ctx.PCMPEQL(opm128, opxmm)
