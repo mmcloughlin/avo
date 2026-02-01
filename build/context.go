@@ -39,7 +39,7 @@ func NewContext() *Context {
 // Package sets the package the generated file will belong to. Required to be able to reference types in the package.
 func (c *Context) Package(path string) {
 	cfg := &packages.Config{
-		Mode: packages.NeedTypes | packages.NeedDeps | packages.NeedImports,
+		Mode: packages.NeedTypes | packages.NeedDeps | packages.NeedImports | packages.NeedModule,
 	}
 	pkgs, err := packages.Load(cfg, path)
 	if err != nil {
