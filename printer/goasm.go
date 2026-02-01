@@ -67,10 +67,20 @@ func (p *goasm) includes(paths []string) {
 
 func (p *goasm) function(f *ir.Function) {
 	p.NL()
-	p.Comment(f.Stub())
+	if !f.IsInternal {
+		p.Comment(f.Stub())
+	} else {
+		p.Comment("Internal Function (not linked to any package)")
+	}
 
 	if len(f.ISA) > 0 {
 		p.Comment("Requires: " + strings.Join(f.ISA, ", "))
+	}
+
+	if f.IsInternal {
+		p.Printf("TEXT %s(SB)", f.Name)
+	} else {
+		p.Printf("TEXT %s%s(SB)", dot, f.Name)
 	}
 
 	// Reference: https://github.com/golang/go/blob/b115207baf6c2decc3820ada4574ef4e5ad940ec/src/cmd/internal/obj/util.go#L166-L176
@@ -87,7 +97,6 @@ func (p *goasm) function(f *ir.Function) {
 	//			}
 	//		}
 	//
-	p.Printf("TEXT %s%s(SB)", dot, f.Name)
 	if f.Attributes != 0 {
 		p.Printf(", %s", f.Attributes.Asm())
 	}
