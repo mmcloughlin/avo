@@ -49,14 +49,13 @@ func CFG(fn *ir.Function) error {
 		// If it's a branch, locate the target.
 		if cur.IsBranch {
 			lbl := cur.TargetLabel()
-			if lbl == nil {
-				return errors.New("no label for branch instruction")
+			if lbl != nil {
+				target, found := fn.LabelTarget[*lbl]
+				if !found {
+					return fmt.Errorf("unknown label %q", *lbl)
+				}
+				cur.Succ = append(cur.Succ, target)
 			}
-			target, found := fn.LabelTarget[*lbl]
-			if !found {
-				return fmt.Errorf("unknown label %q", *lbl)
-			}
-			cur.Succ = append(cur.Succ, target)
 		}
 
 		// Otherwise, could continue to the following instruction.

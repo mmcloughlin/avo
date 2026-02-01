@@ -56,6 +56,12 @@ func (c *Context) Package(path string) {
 	c.pkg = pkg
 }
 
+// Include adds an include pre-processor directive for the provided path, if it
+// is not already present.
+func (c *Context) Include(path string) {
+	c.file.Include(path)
+}
+
 // Constraints sets build constraints for the file.
 func (c *Context) Constraints(t buildtags.ConstraintsConvertable) {
 	cs := t.ToConstraints()
@@ -158,6 +164,11 @@ func (c *Context) Instruction(i *ir.Instruction) {
 // Label adds a label to the active function.
 func (c *Context) Label(name string) {
 	c.activefunc().AddLabel(ir.Label(name))
+}
+
+// Preprocessor adds a preprocessor macro to the active function.
+func (c *Context) Preprocessor(macro string) {
+	c.activefunc().AddPreprocessor(macro)
 }
 
 // Comment adds comment lines to the active function.
