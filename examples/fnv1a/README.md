@@ -13,7 +13,8 @@ func main() {
 	TEXT("Hash64", NOSPLIT, "func(data []byte) uint64")
 	Doc("Hash64 computes the FNV-1a hash of data.")
 	ptr := Load(Param("data").Base(), GP64())
-	n := Load(Param("data").Len(), GP64())
+	endPtr := Load(Param("data").Len(), GP64())
+	ADDQ(ptr, endPtr)
 
 	h := RAX
 	MOVQ(Imm(OffsetBasis), h)
@@ -21,14 +22,13 @@ func main() {
 	MOVQ(Imm(Prime), p)
 
 	Label("loop")
-	CMPQ(n, Imm(0))
+	CMPQ(ptr, endPtr)
 	JE(LabelRef("done"))
 	b := GP64()
 	MOVBQZX(Mem{Base: ptr}, b)
 	XORQ(b, h)
 	MULQ(p)
 	INCQ(ptr)
-	DECQ(n)
 
 	JMP(LabelRef("loop"))
 	Label("done")
