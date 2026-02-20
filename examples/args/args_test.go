@@ -21,7 +21,7 @@ func TestFunctionsEqual(t *testing.T) {
 		{FieldInt8, func(s Struct) int8 { return s.Int8 }},
 		{FieldUint16, func(s Struct) uint16 { return s.Uint16 }},
 		{FieldInt32, func(s Struct) int32 { return s.Int32 }},
-		{FieldUint64, func(s Struct) uint64 { return s.Uint64 }},
+		{FieldUint64, func(s Struct) uint64 { return uint64(s.Uint64) }},
 		{FieldFloat32, func(s Struct) float32 { return s.Float32 }},
 		{FieldFloat64, func(s Struct) float64 { return s.Float64 }},
 		{FieldStringLen, func(s Struct) int { return len(s.String) }},

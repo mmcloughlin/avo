@@ -71,7 +71,7 @@ type Struct struct {
 	Int8       int8
 	Uint16     uint16
 	Int32      int32
-	Uint64     uint64
+	Uint64     NamedUint64
 	Float32    float32
 	Float64    float64
 	String     string
