@@ -85,6 +85,15 @@ func PruneSelfMoves(fn *ir.Function) error {
 	})
 }
 
+// PrunePseudo removes pseudo-instructions that were used only for analysis
+// purposes (such as register definition points) and should not appear in the
+// final assembly output.
+func PrunePseudo(fn *ir.Function) error {
+	return removeinstructions(fn, func(i *ir.Instruction) bool {
+		return i.IsPseudo
+	})
+}
+
 // removeinstructions deletes instructions from the given function which match predicate.
 func removeinstructions(fn *ir.Function, predicate func(*ir.Instruction) bool) error {
 	// Removal of instructions has the potential to invalidate CFG structures.
