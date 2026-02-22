@@ -82,7 +82,7 @@ func TestLivenessBasic(t *testing.T) {
 	)
 }
 
-func AssertLiveness(t *testing.T, ctx *build.Context, in, out [][]reg.Register) {
+func AssertLiveness(t *testing.T, ctx *build.Context, in, out [][]reg.Register) *ir.Function {
 	t.Helper()
 	fn := ConstructLiveness(t, ctx)
 	is := fn.Instructions()
@@ -95,12 +95,18 @@ func AssertLiveness(t *testing.T, ctx *build.Context, in, out [][]reg.Register) 
 		AssertRegistersMatchSet(t, in[idx], i.LiveIn)
 		AssertRegistersMatchSet(t, out[idx], i.LiveOut)
 	}
+
+	return fn
 }
 
 func AssertRegistersMatchSet(t *testing.T, rs []reg.Register, s reg.MaskSet) {
 	t.Helper()
 	if !s.Equals(reg.NewMaskSetFromRegisters(rs)) {
-		t.Fatalf("register slice does not match set: %#v and %#v", rs, s)
+		var got []reg.ID
+		for _, r := range rs {
+			got = append(got, r.ID())
+		}
+		t.Fatalf("register slice does not match set: %#v and %#v", got, s)
 	}
 }
 
@@ -144,7 +150,7 @@ func TestAllocateRegistersBasePointerDeprioritized(t *testing.T) {
 	}
 
 	if len(ps) != n {
-		t.Fatalf("expected function to require %d registers", n)
+		t.Fatalf("expected function to require %d registers, got %d", n, len(ps))
 	}
 
 	for p := range ps {
@@ -152,6 +158,53 @@ func TestAllocateRegistersBasePointerDeprioritized(t *testing.T) {
 			t.Fatal("base pointer used")
 		}
 	}
+}
+
+func TestDefinedness(t *testing.T) {
+	ctx := build.NewContext()
+	ctx.Function("test")
+	a := ctx.GP64()
+	b := ctx.GP64()
+	c := ctx.GP64()
+	d := ctx.GP64()
+	ctx.MOVQ(operand.U64(1), a)
+	ctx.MOVQ(c, b)
+	ctx.ADDQ(a, b)
+	ctx.ADDQ(a, d)
+	// RAX and RBX haven't been written to by us, but they might've been assigned
+	// meaningful values before the function got called. Virtual registers
+	// shouldn't clobber them.
+	ctx.ADDQ(reg.RAX, reg.RBX)
+	ctx.NOP()
+
+	// Ensure that 'b' is only live after it has been written to, and that 'd'
+	// is never live.
+	fn := AssertLiveness(t, ctx,
+		[][]reg.Register{
+			{reg.RAX, reg.RBX},
+			{reg.RAX, reg.RBX, a},
+			{reg.RAX, reg.RBX, a, b},
+			{reg.RAX, reg.RBX, a},
+			{reg.RAX, reg.RBX},
+			{},
+		},
+		[][]reg.Register{
+			{reg.RAX, reg.RBX, a},
+			{reg.RAX, reg.RBX, a, b},
+			{reg.RAX, reg.RBX, a},
+			{reg.RAX, reg.RBX},
+			{},
+			{},
+		},
+	)
+
+	is := fn.Instructions()
+
+	AssertRegistersMatchSet(t, []reg.Register{}, is[0].Defined)
+	AssertRegistersMatchSet(t, []reg.Register{a}, is[1].Defined)
+	AssertRegistersMatchSet(t, []reg.Register{a, b}, is[2].Defined)
+	AssertRegistersMatchSet(t, []reg.Register{a, b}, is[3].Defined)
+	AssertRegistersMatchSet(t, []reg.Register{a, b, d}, is[4].Defined)
 }
 
 func TestEnsureBasePointerCalleeSavedFrameless(t *testing.T) {

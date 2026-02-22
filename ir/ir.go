@@ -58,6 +58,11 @@ type Instruction struct {
 	// LiveIn/LiveOut are sets of live register IDs pre/post execution.
 	LiveIn  reg.MaskSet
 	LiveOut reg.MaskSet
+
+	// Set of registers that have been written to by the time this instruction
+	// executes. Doesn't consider physical registers that may have been set
+	// before function entry.
+	Defined reg.MaskSet
 }
 
 func (i *Instruction) node() {}
