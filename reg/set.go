@@ -87,6 +87,10 @@ func (s MaskSet) DifferenceUpdate(t MaskSet) bool {
 	return change
 }
 
+func (s MaskSet) Has(id ID) bool {
+	return s[id] != 0
+}
+
 // Equals returns true if s and t contain the same masks.
 func (s MaskSet) Equals(t MaskSet) bool {
 	if len(s) != len(t) {
