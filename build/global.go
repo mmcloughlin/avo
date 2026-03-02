@@ -159,5 +159,10 @@ func Commentf(format string, a ...any) { ctx.Commentf(format, a...) }
 // ConstData builds a static data section containing just the given constant.
 func ConstData(name string, v operand.Constant) operand.Mem { return ctx.ConstData(name, v) }
 
+// MarkUndefined marks the given registers as having undefined values at this
+// point, without emitting any actual instructions. This is used for bounding
+// the live range of registers.
+func MarkUndefined(regs ...reg.Register) { ctx.MarkUndefined(regs...) }
+
 // Instruction adds an instruction to the active function.
 func Instruction(i *ir.Instruction) { ctx.Instruction(i) }
