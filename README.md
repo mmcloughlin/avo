@@ -192,14 +192,14 @@ Implementations of full algorithms:
 Popular projects[^projects] using `avo`:
 
 [^projects]: Projects drawn from the `avo` third-party test suite. Popularity
-estimated from Github star count collected on Mar 1, 2026.
+estimated from Github star count collected on Apr 1, 2026.
 
 <img src="https://images.weserv.nl?fit=cover&h=24&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Fgolang.png&w=24" width="24" height="24" hspace="4" valign="middle" /> [golang / **go**](https://github.com/golang/go)
-:star: 132.8k
+:star: 133.2k
 > The Go programming language
 
 <img src="https://images.weserv.nl?fit=cover&h=24&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Fklauspost.png&w=24" width="24" height="24" hspace="4" valign="middle" /> [klauspost / **compress**](https://github.com/klauspost/compress)
-:star: 5.4k
+:star: 5.5k
 > Optimized Go Compression Packages
 
 <img src="https://images.weserv.nl?fit=cover&h=24&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Fgolang.png&w=24" width="24" height="24" hspace="4" valign="middle" /> [golang / **crypto**](https://github.com/golang/crypto)
@@ -207,7 +207,7 @@ estimated from Github star count collected on Mar 1, 2026.
 > [mirror] Go supplementary cryptography libraries
 
 <img src="https://images.weserv.nl?fit=cover&h=24&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Fklauspost.png&w=24" width="24" height="24" hspace="4" valign="middle" /> [klauspost / **reedsolomon**](https://github.com/klauspost/reedsolomon)
-:star: 2k
+:star: 2.1k
 > Reed-Solomon Erasure Coding in Go
 
 <img src="https://images.weserv.nl?fit=cover&h=24&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Fbytedance.png&w=24" width="24" height="24" hspace="4" valign="middle" /> [bytedance / **gopkg**](https://github.com/bytedance/gopkg)
@@ -219,19 +219,19 @@ estimated from Github star count collected on Mar 1, 2026.
 > CIRCL: Cloudflare Interoperable Reusable Cryptographic Library
 
 <img src="https://images.weserv.nl?fit=cover&h=24&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Fsegmentio.png&w=24" width="24" height="24" hspace="4" valign="middle" /> [segmentio / **asm**](https://github.com/segmentio/asm)
-:star: 911
+:star: 918
 > Go library providing algorithms optimized to leverage the characteristics of modern CPUs
 
 <img src="https://images.weserv.nl?fit=cover&h=24&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Fzeebo.png&w=24" width="24" height="24" hspace="4" valign="middle" /> [zeebo / **xxh3**](https://github.com/zeebo/xxh3)
-:star: 538
+:star: 544
 > XXH3 algorithm in Go
 
 <img src="https://images.weserv.nl?fit=cover&h=24&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Fzeebo.png&w=24" width="24" height="24" hspace="4" valign="middle" /> [zeebo / **blake3**](https://github.com/zeebo/blake3)
-:star: 463
+:star: 465
 > Pure Go implementation of BLAKE3 with AVX2 and SSE4.1 acceleration
 
 <img src="https://images.weserv.nl?fit=cover&h=24&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Flukechampine.png&w=24" width="24" height="24" hspace="4" valign="middle" /> [lukechampine / **blake3**](https://github.com/lukechampine/blake3)
-:star: 411
+:star: 412
 > An AVX-512 accelerated implementation of the BLAKE3 cryptographic hash function
 
 See the [full list of projects using `avo`](doc/adopters.md).
