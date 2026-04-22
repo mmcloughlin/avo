@@ -131,7 +131,7 @@ func newTuple(t *types.Tuple, offsets []int64, size int64, defaultprefix string)
 		byname: map[string]Component{},
 		size:   int(size),
 	}
-	for i := 0; i < t.Len(); i++ {
+	for i := range t.Len() {
 		v := t.At(i)
 		name := v.Name()
 		if name == "" {
@@ -172,7 +172,7 @@ func (t *Tuple) Bytes() int { return t.size }
 
 func tuplevars(t *types.Tuple) []*types.Var {
 	vs := make([]*types.Var, t.Len())
-	for i := 0; i < t.Len(); i++ {
+	for i := range t.Len() {
 		vs[i] = t.At(i)
 	}
 	return vs

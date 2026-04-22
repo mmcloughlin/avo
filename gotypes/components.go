@@ -45,7 +45,7 @@ type Component interface {
 // methods whilst also allowing method chaining to continue.
 type componenterr string
 
-func errorf(format string, args ...interface{}) Component {
+func errorf(format string, args ...any) Component {
 	return componenterr(fmt.Sprintf(format, args...))
 }
 
@@ -190,7 +190,7 @@ func (c *component) Field(n string) Component {
 	//			}
 	//
 	fields := make([]*types.Var, s.NumFields())
-	for i := 0; i < s.NumFields(); i++ {
+	for i := range s.NumFields() {
 		fields[i] = s.Field(i)
 	}
 	offsets := Sizes.Offsetsof(fields)

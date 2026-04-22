@@ -73,13 +73,13 @@ func (e ErrorList) Error() string {
 }
 
 // LogError logs a list of errors, one error per line, if the err parameter is
-// an ErrorList. Otherwise it just logs the err string. Reports at most max
-// errors, or unlimited if max is 0.
-func LogError(l *log.Logger, err error, max int) {
+// an ErrorList. Otherwise it just logs the err string. Reports at most mx
+// errors, or unlimited if mx is 0.
+func LogError(l *log.Logger, err error, mx int) {
 	var list ErrorList
 	if errors.As(err, &list) {
 		for i, e := range list {
-			if max > 0 && i == max {
+			if mx > 0 && i == mx {
 				l.Print("too many errors")
 				return
 			}

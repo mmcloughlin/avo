@@ -15,7 +15,7 @@ jobs:
       - name: Install Go
         uses: actions/setup-go@c4a742cab115ed795e34d4513e2cf7d472deb55f # v3.3.1
         with:
-          go-version: 1.20.x
+          go-version: 1.23.x
           check-latest: true
       - name: Checkout avo
         uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
@@ -52,7 +52,7 @@ jobs:
       - name: Install Go
         uses: actions/setup-go@c4a742cab115ed795e34d4513e2cf7d472deb55f # v3.3.1
         with:
-          go-version: 1.20.x
+          go-version: 1.23.x
           check-latest: true
       - name: Checkout avo
         uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
@@ -98,7 +98,7 @@ jobs:
       - name: Install Go
         uses: actions/setup-go@c4a742cab115ed795e34d4513e2cf7d472deb55f # v3.3.1
         with:
-          go-version: 1.20.x
+          go-version: 1.23.x
           check-latest: true
       - name: Checkout avo
         uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
@@ -145,7 +145,7 @@ jobs:
       - name: Install Go
         uses: actions/setup-go@c4a742cab115ed795e34d4513e2cf7d472deb55f # v3.3.1
         with:
-          go-version: 1.20.x
+          go-version: 1.23.x
           check-latest: true
       - name: Checkout avo
         uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
@@ -180,7 +180,7 @@ jobs:
       - name: Install Go
         uses: actions/setup-go@c4a742cab115ed795e34d4513e2cf7d472deb55f # v3.3.1
         with:
-          go-version: 1.20.x
+          go-version: 1.23.x
           check-latest: true
       - name: Checkout avo
         uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
@@ -217,7 +217,7 @@ jobs:
       - name: Install Go
         uses: actions/setup-go@c4a742cab115ed795e34d4513e2cf7d472deb55f # v3.3.1
         with:
-          go-version: 1.20.x
+          go-version: 1.23.x
           check-latest: true
       - name: Checkout avo
         uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
@@ -252,7 +252,7 @@ jobs:
       - name: Install Go
         uses: actions/setup-go@c4a742cab115ed795e34d4513e2cf7d472deb55f # v3.3.1
         with:
-          go-version: 1.20.x
+          go-version: 1.23.x
           check-latest: true
       - name: Checkout avo
         uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
@@ -284,13 +284,13 @@ jobs:
       - name: Test
         working-directory: wyhash
         run: go test ./...
-  klauspost-compress-s2:
+  klauspost-compress-huff0:
     runs-on: ubuntu-latest
     steps:
       - name: Install Go
         uses: actions/setup-go@c4a742cab115ed795e34d4513e2cf7d472deb55f # v3.3.1
         with:
-          go-version: 1.20.x
+          go-version: 1.23.x
           check-latest: true
       - name: Checkout avo
         uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
@@ -301,7 +301,42 @@ jobs:
         uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
         with:
           repository: klauspost/compress
-          ref: 2f236383d7c2faa8ef7e354ccecb926a5b47a24d
+          ref: v1.17.5
+          path: compress
+          persist-credentials: false
+      - name: Avo Module Replacement
+        working-directory: compress/huff0/_generate
+        run: |
+          go mod edit -modfile=go.mod -require=github.com/mmcloughlin/avo@v0.0.0-00010101000000-000000000000
+          go mod edit -modfile=go.mod -replace=github.com/mmcloughlin/avo=${{ github.workspace }}/avo
+          go mod tidy -modfile=go.mod
+      - name: Generate
+        working-directory: compress/huff0/_generate
+        run: go generate -v -x
+      - name: Diff
+        working-directory: compress/huff0
+        run: git diff
+      - name: Test
+        working-directory: compress/huff0
+        run: go test ./...
+  klauspost-compress-s2:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Go
+        uses: actions/setup-go@c4a742cab115ed795e34d4513e2cf7d472deb55f # v3.3.1
+        with:
+          go-version: 1.23.x
+          check-latest: true
+      - name: Checkout avo
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
+        with:
+          path: avo
+          persist-credentials: false
+      - name: Checkout klauspost/compress
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
+        with:
+          repository: klauspost/compress
+          ref: v1.17.5
           path: compress
           persist-credentials: false
       - name: Avo Module Replacement
@@ -325,7 +360,7 @@ jobs:
       - name: Install Go
         uses: actions/setup-go@c4a742cab115ed795e34d4513e2cf7d472deb55f # v3.3.1
         with:
-          go-version: 1.20.x
+          go-version: 1.23.x
           check-latest: true
       - name: Checkout avo
         uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
@@ -336,7 +371,7 @@ jobs:
         uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
         with:
           repository: klauspost/compress
-          ref: 2f236383d7c2faa8ef7e354ccecb926a5b47a24d
+          ref: v1.17.5
           path: compress
           persist-credentials: false
       - name: Avo Module Replacement
@@ -360,7 +395,7 @@ jobs:
       - name: Install Go
         uses: actions/setup-go@c4a742cab115ed795e34d4513e2cf7d472deb55f # v3.3.1
         with:
-          go-version: 1.20.x
+          go-version: 1.23.x
           check-latest: true
       - name: Checkout avo
         uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
@@ -410,7 +445,7 @@ jobs:
       - name: Install Go
         uses: actions/setup-go@c4a742cab115ed795e34d4513e2cf7d472deb55f # v3.3.1
         with:
-          go-version: 1.20.x
+          go-version: 1.23.x
           check-latest: true
       - name: Checkout avo
         uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
@@ -461,7 +496,7 @@ jobs:
       - name: Install Go
         uses: actions/setup-go@c4a742cab115ed795e34d4513e2cf7d472deb55f # v3.3.1
         with:
-          go-version: 1.20.x
+          go-version: 1.23.x
           check-latest: true
       - name: Checkout avo
         uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
@@ -514,7 +549,7 @@ jobs:
       - name: Install Go
         uses: actions/setup-go@c4a742cab115ed795e34d4513e2cf7d472deb55f # v3.3.1
         with:
-          go-version: 1.20.x
+          go-version: 1.23.x
           check-latest: true
       - name: Checkout avo
         uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
@@ -567,7 +602,7 @@ jobs:
       - name: Install Go
         uses: actions/setup-go@c4a742cab115ed795e34d4513e2cf7d472deb55f # v3.3.1
         with:
-          go-version: 1.20.x
+          go-version: 1.23.x
           check-latest: true
       - name: Checkout avo
         uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
@@ -612,7 +647,7 @@ jobs:
       - name: Install Go
         uses: actions/setup-go@c4a742cab115ed795e34d4513e2cf7d472deb55f # v3.3.1
         with:
-          go-version: 1.20.x
+          go-version: 1.23.x
           check-latest: true
       - name: Checkout avo
         uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
@@ -647,7 +682,7 @@ jobs:
       - name: Install Go
         uses: actions/setup-go@c4a742cab115ed795e34d4513e2cf7d472deb55f # v3.3.1
         with:
-          go-version: 1.20.x
+          go-version: 1.23.x
           check-latest: true
       - name: Checkout avo
         uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
@@ -684,7 +719,7 @@ jobs:
       - name: Install Go
         uses: actions/setup-go@c4a742cab115ed795e34d4513e2cf7d472deb55f # v3.3.1
         with:
-          go-version: 1.20.x
+          go-version: 1.23.x
           check-latest: true
       - name: Checkout avo
         uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
@@ -721,7 +756,7 @@ jobs:
       - name: Install Go
         uses: actions/setup-go@c4a742cab115ed795e34d4513e2cf7d472deb55f # v3.3.1
         with:
-          go-version: 1.20.x
+          go-version: 1.23.x
           check-latest: true
       - name: Checkout avo
         uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
@@ -756,7 +791,7 @@ jobs:
       - name: Install Go
         uses: actions/setup-go@c4a742cab115ed795e34d4513e2cf7d472deb55f # v3.3.1
         with:
-          go-version: 1.20.x
+          go-version: 1.23.x
           check-latest: true
       - name: Checkout avo
         uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
@@ -791,7 +826,7 @@ jobs:
       - name: Install Go
         uses: actions/setup-go@c4a742cab115ed795e34d4513e2cf7d472deb55f # v3.3.1
         with:
-          go-version: 1.20.x
+          go-version: 1.23.x
           check-latest: true
       - name: Checkout avo
         uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
@@ -802,7 +837,7 @@ jobs:
         uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
         with:
           repository: golang/crypto
-          ref: 089bfa5675191fd96a44247682f76ebca03d7916
+          ref: v0.24.0
           path: crypto
           persist-credentials: false
       - name: Avo Module Replacement
@@ -826,7 +861,7 @@ jobs:
       - name: Install Go
         uses: actions/setup-go@c4a742cab115ed795e34d4513e2cf7d472deb55f # v3.3.1
         with:
-          go-version: 1.20.x
+          go-version: 1.23.x
           check-latest: true
       - name: Checkout avo
         uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
@@ -861,7 +896,7 @@ jobs:
       - name: Install Go
         uses: actions/setup-go@c4a742cab115ed795e34d4513e2cf7d472deb55f # v3.3.1
         with:
-          go-version: 1.20.x
+          go-version: 1.23.x
           check-latest: true
       - name: Checkout avo
         uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
@@ -901,7 +936,7 @@ jobs:
       - name: Install Go
         uses: actions/setup-go@c4a742cab115ed795e34d4513e2cf7d472deb55f # v3.3.1
         with:
-          go-version: 1.20.x
+          go-version: 1.23.x
           check-latest: true
       - name: Checkout avo
         uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
@@ -936,7 +971,7 @@ jobs:
       - name: Install Go
         uses: actions/setup-go@c4a742cab115ed795e34d4513e2cf7d472deb55f # v3.3.1
         with:
-          go-version: 1.20.x
+          go-version: 1.23.x
           check-latest: true
       - name: Checkout avo
         uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
@@ -947,7 +982,7 @@ jobs:
         uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
         with:
           repository: golang/go
-          ref: go1.20.1
+          ref: go1.23.4
           path: go
           persist-credentials: false
       - name: Compile Go Toolchain
@@ -974,7 +1009,7 @@ jobs:
       - name: Install Go
         uses: actions/setup-go@c4a742cab115ed795e34d4513e2cf7d472deb55f # v3.3.1
         with:
-          go-version: 1.20.x
+          go-version: 1.23.x
           check-latest: true
       - name: Checkout avo
         uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
@@ -985,7 +1020,7 @@ jobs:
         uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
         with:
           repository: golang/go
-          ref: go1.20.1
+          ref: go1.23.4
           path: go
           persist-credentials: false
       - name: Compile Go Toolchain
@@ -1012,7 +1047,7 @@ jobs:
       - name: Install Go
         uses: actions/setup-go@c4a742cab115ed795e34d4513e2cf7d472deb55f # v3.3.1
         with:
-          go-version: 1.20.x
+          go-version: 1.23.x
           check-latest: true
       - name: Checkout avo
         uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
@@ -1047,7 +1082,7 @@ jobs:
       - name: Install Go
         uses: actions/setup-go@c4a742cab115ed795e34d4513e2cf7d472deb55f # v3.3.1
         with:
-          go-version: 1.20.x
+          go-version: 1.23.x
           check-latest: true
       - name: Checkout avo
         uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
@@ -1082,7 +1117,7 @@ jobs:
       - name: Install Go
         uses: actions/setup-go@c4a742cab115ed795e34d4513e2cf7d472deb55f # v3.3.1
         with:
-          go-version: 1.20.x
+          go-version: 1.23.x
           check-latest: true
       - name: Checkout avo
         uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
@@ -1110,4 +1145,46 @@ jobs:
         run: git diff
       - name: Test
         working-directory: circl/simd/keccakf1600
+        run: go test ./...
+  bytedance-gopkg-util-xxhash3:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Go
+        uses: actions/setup-go@c4a742cab115ed795e34d4513e2cf7d472deb55f # v3.3.1
+        with:
+          go-version: 1.23.x
+          check-latest: true
+      - name: Checkout avo
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
+        with:
+          path: avo
+          persist-credentials: false
+      - name: Checkout bytedance/gopkg
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
+        with:
+          repository: bytedance/gopkg
+          ref: a5eedbe96960cf0f801cf970e89f511842daee75
+          path: gopkg
+          persist-credentials: false
+      - name: Setup Generator Module
+        working-directory: gopkg/util/xxhash3/internal/avo
+        run: |
+          sed -i.bak '/build ignore/d' *.go
+          go mod init github.com/bytedance/gopkg/util/xxhash3/internal/avo
+      - name: Avo Module Replacement
+        working-directory: gopkg/util/xxhash3/internal/avo
+        run: |
+          go mod edit -modfile=go.mod -require=github.com/mmcloughlin/avo@v0.0.0-00010101000000-000000000000
+          go mod edit -modfile=go.mod -replace=github.com/mmcloughlin/avo=${{ github.workspace }}/avo
+          go mod tidy -modfile=go.mod
+      - name: Generate
+        working-directory: gopkg/util/xxhash3/internal/avo
+        run: |
+          go run . -avx2 -out ../../avx2_amd64.s
+          go run . -sse2 -out ../../sse2_amd64.s
+      - name: Diff
+        working-directory: gopkg/util/xxhash3
+        run: git diff
+      - name: Test
+        working-directory: gopkg/util/xxhash3
         run: go test ./...

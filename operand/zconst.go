@@ -35,7 +35,7 @@ func (u U16) constant()   {}
 // F32 is a 32-bit floating point constant.
 type F32 float32
 
-func (f F32) Asm() string { return fmt.Sprintf("$(%#v)", f) }
+func (f F32) Asm() string { return fmt.Sprintf("$(%s)", f) }
 func (f F32) Bytes() int  { return 4 }
 func (f F32) constant()   {}
 
@@ -56,7 +56,7 @@ func (u U32) constant()   {}
 // F64 is a 64-bit floating point constant.
 type F64 float64
 
-func (f F64) Asm() string { return fmt.Sprintf("$(%#v)", f) }
+func (f F64) Asm() string { return fmt.Sprintf("$(%s)", f) }
 func (f F64) Bytes() int  { return 8 }
 func (f F64) constant()   {}
 

@@ -97,7 +97,7 @@ func (f *Function) Signature() Signature {
 	n := f.Arity()
 	ops := make([]string, n)
 	count := map[string]int{}
-	for j := 0; j < n; j++ {
+	for j := range n {
 		// Collect unique lowercase bytes from first characters of operand types.
 		s := map[byte]bool{}
 		for _, form := range f.Forms {
