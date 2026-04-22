@@ -5,7 +5,6 @@ import (
 	"strings"
 
 	"github.com/mmcloughlin/avo/buildtags"
-	"github.com/mmcloughlin/avo/internal/prnt"
 	"github.com/mmcloughlin/avo/ir"
 	"github.com/mmcloughlin/avo/operand"
 )
@@ -15,7 +14,7 @@ const dot = "\u00b7"
 
 type goasm struct {
 	cfg Config
-	prnt.Generator
+	Generator
 
 	instructions []*ir.Instruction
 	clear        bool
