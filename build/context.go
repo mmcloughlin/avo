@@ -166,7 +166,7 @@ func (c *Context) Comment(lines ...string) {
 }
 
 // Commentf adds a formtted comment line.
-func (c *Context) Commentf(format string, a ...interface{}) {
+func (c *Context) Commentf(format string, a ...any) {
 	c.Comment(fmt.Sprintf(format, a...))
 }
 

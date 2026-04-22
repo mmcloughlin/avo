@@ -25,6 +25,7 @@ func TestMatchFirst(t *testing.T) {
 	first := stack.Match(0, func(_ runtime.Frame) bool { return true })
 	if first == nil {
 		t.Fatalf("nil match")
+		return
 	}
 	got := first.Function
 	expect := pkg + ".TestMatchFirst"

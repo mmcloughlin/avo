@@ -143,7 +143,7 @@ func TypesTuplesEqual(a, b *types.Tuple) bool {
 		return false
 	}
 	n := a.Len()
-	for i := 0; i < n; i++ {
+	for i := range n {
 		if !TypesVarsEqual(a.At(i), b.At(i)) {
 			return false
 		}

@@ -182,6 +182,6 @@ func TestChecks(t *testing.T) {
 	}
 }
 
-func funcname(f interface{}) string {
+func funcname(f any) string {
 	return runtime.FuncForPC(reflect.ValueOf(f).Pointer()).Name()
 }
