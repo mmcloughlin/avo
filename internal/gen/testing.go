@@ -3,12 +3,12 @@ package gen
 import (
 	"github.com/mmcloughlin/avo/internal/api"
 	"github.com/mmcloughlin/avo/internal/inst"
-	"github.com/mmcloughlin/avo/internal/prnt"
+	"github.com/mmcloughlin/avo/printer"
 )
 
 // DeclareTestArguments prints a block of variables declaring a valid operand of
 // each operand type.
-func DeclareTestArguments(g *prnt.Generator) {
+func DeclareTestArguments(g *printer.Generator) {
 	g.Printf("var (\n")
 	for _, arg := range validArgs {
 		g.Printf("\t%s operand.Op = %s\n", TestArgumentName(arg.Type), arg.Code)

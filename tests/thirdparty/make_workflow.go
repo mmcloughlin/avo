@@ -10,7 +10,7 @@ import (
 	"path/filepath"
 	"runtime"
 
-	"github.com/mmcloughlin/avo/internal/prnt"
+	"github.com/mmcloughlin/avo/printer"
 	"github.com/mmcloughlin/avo/tests/thirdparty"
 )
 
@@ -64,7 +64,7 @@ func mainerr() error {
 }
 
 func GenerateWorkflow(s *thirdparty.Suite) ([]byte, error) {
-	g := &prnt.Generator{}
+	g := &printer.Generator{}
 	g.SetIndentString("  ")
 
 	_, self, _, _ := runtime.Caller(0)
