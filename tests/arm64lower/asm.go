@@ -1476,6 +1476,49 @@ func main() {
 		RET()
 	}
 
+	// StackAccum forces a promotable frame slot: the accumulator lives in an
+	// explicit AllocLocal that is loaded and stored every loop iteration, plus
+	// a second slot (bound) also carried across the loop. With
+	// -arm64-promote-stack-slots the arm64 lowering must keep both in registers
+	// and still compute sum(x .. x+n-1) with uint64 wraparound; without it the
+	// same result is produced through memory. Either way the differential test
+	// checks it against the Go reference.
+	TEXT("StackAccum", NOSPLIT, "func(x, n uint64) uint64")
+	{
+		acc := AllocLocal(8)
+		bound := AllocLocal(8)
+		x := GP64()
+		Load(Param("x"), x)
+		n := GP64()
+		Load(Param("n"), n)
+		zero := GP64()
+		XORQ(zero, zero)
+		MOVQ(zero, acc) // acc = 0
+		MOVQ(n, bound)  // bound = n (carried through the loop via the slot)
+
+		Label("accum_loop")
+		cnt := GP64()
+		MOVQ(bound, cnt)
+		TESTQ(cnt, cnt)
+		JZ(operand.LabelRef("accum_done"))
+
+		t := GP64()
+		MOVQ(acc, t) // load accumulator slot
+		ADDQ(x, t)
+		MOVQ(t, acc) // store accumulator slot
+		INCQ(x)
+
+		DECQ(cnt)
+		MOVQ(cnt, bound) // store decremented bound
+		JMP(operand.LabelRef("accum_loop"))
+
+		Label("accum_done")
+		r := GP64()
+		MOVQ(acc, r)
+		Store(r, ReturnIndex(0))
+		RET()
+	}
+
 	Generate()
 }
 

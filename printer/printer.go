@@ -39,6 +39,15 @@ type Config struct {
 	// measure before setting this. A function with only a BMI2 variant (no
 	// generic twin) is unaffected and always lowered.
 	ARM64PreferBMI2 bool
+
+	// ARM64PromoteStackSlots enables the EXPERIMENTAL arm64 lowering printer's
+	// stack-slot promotion: frame slots the x86 register allocator spilled
+	// under its 14-register budget are kept in otherwise-unused arm64 registers
+	// (which have 30), turning per-access loads/stores in the hot path into
+	// register moves. Only slots proven to be accessed exclusively as whole
+	// 8-byte values are promoted; see stackSlotPromotions. Safe and semantics-
+	// preserving, but off by default so the transform is opt-in per generator.
+	ARM64PromoteStackSlots bool
 }
 
 // NewDefaultConfig produces a config with Name "avo".
