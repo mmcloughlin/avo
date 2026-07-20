@@ -357,3 +357,5 @@ func SetGeZeroMov(a uint64, b uint64) uint64
 func SetGeRefusedRead(a uint64, b uint64) uint64
 
 func StackAccum(x uint64, n uint64) uint64
+
+func ManySlotAccum(x uint64) uint64

@@ -1519,6 +1519,55 @@ func main() {
 		RET()
 	}
 
+	// ManySlotAccum exercises the ranking/eviction path of stack-slot promotion,
+	// which StackAccum's 2 slots never trigger (both fit under the 8-register
+	// budget). 12 frame slots compete for R19-R26; slot i gets exactly
+	// (manySlots-i) extra load/add/store rounds, so reference counts strictly
+	// decrease from slot 0 (hottest) to slot 11 (coldest) with no ties -- an
+	// unambiguous ranking order, so the top 8 by reference count are the ones
+	// that must be promoted. The checksum must match the pure-Go reference
+	// regardless of which slots actually land in registers vs. the stack.
+	const manySlots = 12
+	TEXT("ManySlotAccum", NOSPLIT, "func(x uint64) uint64")
+	{
+		x := Load(Param("x"), GP64())
+
+		slots := make([]operand.Mem, manySlots)
+		for i := range slots {
+			slots[i] = AllocLocal(8)
+		}
+
+		// Seed each slot to x+i.
+		for i, s := range slots {
+			v := GP64()
+			MOVQ(x, v)
+			ADDQ(operand.U32(uint64(i)), v)
+			MOVQ(v, s)
+		}
+
+		// Slot i gets (manySlots-i) load/add/store rounds: slot 0 the most,
+		// slot manySlots-1 the fewest.
+		for i, s := range slots {
+			rounds := manySlots - i
+			for r := 0; r < rounds; r++ {
+				v := GP64()
+				MOVQ(s, v)
+				ADDQ(operand.U32(uint64(r+1)), v)
+				MOVQ(v, s)
+			}
+		}
+
+		acc := GP64()
+		XORQ(acc, acc)
+		for _, s := range slots {
+			v := GP64()
+			MOVQ(s, v)
+			ADDQ(v, acc)
+		}
+		Store(acc, ReturnIndex(0))
+		RET()
+	}
+
 	Generate()
 }
 

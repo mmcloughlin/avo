@@ -1257,3 +1257,33 @@ func TestStackAccum(t *testing.T) {
 		}
 	}
 }
+
+// TestManySlotAccum covers the ranking/eviction path of stack-slot promotion:
+// 12 frame slots compete for the 8 available registers, so some must be
+// evicted back to the stack. The checksum must match the pure-Go reference
+// regardless of which slots land in registers vs. the stack.
+func TestManySlotAccum(t *testing.T) {
+	const manySlots = 12
+	ref := func(x uint64) uint64 {
+		slots := make([]uint64, manySlots)
+		for i := range slots {
+			slots[i] = x + uint64(i)
+		}
+		for i := range slots {
+			rounds := manySlots - i
+			for r := 0; r < rounds; r++ {
+				slots[i] += uint64(r + 1)
+			}
+		}
+		var acc uint64
+		for _, s := range slots {
+			acc += s
+		}
+		return acc
+	}
+	for _, x := range []uint64{0, 1, 12345, ^uint64(0), 0x8000000000000000} {
+		if got, want := ManySlotAccum(x), ref(x); got != want {
+			t.Errorf("ManySlotAccum(%#x) = %#x, want %#x", x, got, want)
+		}
+	}
+}
