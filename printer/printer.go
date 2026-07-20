@@ -46,7 +46,11 @@ type Config struct {
 	// (which have 30), turning per-access loads/stores in the hot path into
 	// register moves. Only slots proven to be accessed exclusively as whole
 	// 8-byte values are promoted; see stackSlotPromotions. Safe and semantics-
-	// preserving, but off by default so the transform is opt-in per generator.
+	// preserving, but off by default so the transform is opt-in per generator --
+	// measure before setting this. It is a real win on Cortex-A72 (-1.46%
+	// geomean, up to -6.9%, on klauspost/compress's zstd sequence decoder) but
+	// a wash to a slight regression (+0.2% to +0.4% geomean) on both Neoverse
+	// N1 and V2, so the benefit does not generalize across arm64 cores.
 	ARM64PromoteStackSlots bool
 }
 
