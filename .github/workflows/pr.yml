@@ -5,7 +5,10 @@ on:
   pull_request:
 jobs:
   automerge:
-    if: github.actor == 'cadobot[bot]' && !github.event.pull_request.draft
+    # Identify the bot by account ID rather than by actor name. The name is
+    # attacker-controlled: an account can be renamed to impersonate another,
+    # whereas the ID is stable and unique.
+    if: github.event.pull_request.user.id == 104697117 && !github.event.pull_request.draft
     runs-on: ubuntu-latest
     steps:
       - name: Generate Bot Token
@@ -14,7 +17,13 @@ jobs:
         with:
           app-id: ${{ secrets.APP_ID }}
           private-key: ${{ secrets.APP_PRIVATE_KEY }}
+          # Only what is needed to enable auto-merge on a pull request.
+          permission-contents: write
+          permission-pull-requests: write
       - name: Automerge Bot Pull Requests
-        run: gh pr merge --auto --squash "${{ github.event.pull_request.html_url }}"
+        run: gh pr merge --auto --squash "${PR_URL}"
         env:
           GITHUB_TOKEN: ${{ steps.bot.outputs.token }}
+          # Passed through the environment rather than interpolated into the
+          # script, so its contents cannot be treated as shell syntax.
+          PR_URL: ${{ github.event.pull_request.html_url }}
