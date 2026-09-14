@@ -110,8 +110,7 @@ linters:
         - name: use-slices-sort
           disabled: true
     staticcheck:
-      # The QF ("quickfix") checks are new in golangci-lint v2 and suggest
-      # wide-reaching stylistic rewrites; stay with the previous check set.
+      # The QF (quickfix) checks suggest stylistic rewrites.
       checks:
         - all
         - -QF*
@@ -133,23 +132,16 @@ linters:
       # We want to allow all caps in certain cases.
       - path: (.+)\.go$
         text: ALL_CAPS in Go names
-      # Examples are illustrative and intentionally terse. Under v1 the
-      # examples directory was covered by the default path exclusions even
-      # when passed explicitly on the command line.
+      # Examples are illustrative and intentionally terse.
       - linters:
           - revive
         path: examples/
         text: '(bare-return|redefines-builtin-id):'
-      # Pre-existing deprecated stdlib uses, reported now that staticcheck
-      # subsumes gosimple and stylecheck.
+      # Pre-existing deprecated stdlib uses.
       - linters:
           - staticcheck
         path: (examples/md5x16/|internal/test/utils\.go)
         text: 'SA1019:'
-    paths:
-      - third_party$
-      - builtin$
-      - examples$
 formatters:
   enable:
     - gci
@@ -164,7 +156,3 @@ formatters:
         - prefix(github.com/mmcloughlin/avo)
   exclusions:
     generated: lax
-    paths:
-      - third_party$
-      - builtin$
-      - examples$
