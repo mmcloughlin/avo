@@ -1,16 +1,5 @@
 version: 2
 updates:
-  # Dependabot updates SHA pins in place, including the version comment.
-  - package-ecosystem: github-actions
-    directory: /
-    schedule:
-      interval: weekly
-    commit-message:
-      prefix: .github
-    groups:
-      actions:
-        patterns:
-          - "*"
   # Group golang.org/x modules, which are released together.
   - package-ecosystem: gomod
     directory: /
