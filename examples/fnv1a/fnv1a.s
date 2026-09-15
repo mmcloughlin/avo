@@ -6,17 +6,17 @@
 TEXT ·Hash64(SB), NOSPLIT, $0-32
 	MOVQ data_base+0(FP), CX
 	MOVQ data_len+8(FP), BX
+	ADDQ CX, BX
 	MOVQ $0xcbf29ce484222325, AX
 	MOVQ $0x00000100000001b3, SI
 
 loop:
-	CMPQ    BX, $0x00
+	CMPQ    CX, BX
 	JE      done
 	MOVBQZX (CX), DX
 	XORQ    DX, AX
 	MULQ    SI
 	INCQ    CX
-	DECQ    BX
 	JMP     loop
 
 done:
