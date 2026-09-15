@@ -2,10 +2,13 @@ package build
 
 import (
 	"flag"
+	"fmt"
 	"io"
 	"log"
 	"os"
+	"path/filepath"
 	"runtime/pprof"
+	"strings"
 
 	"github.com/mmcloughlin/avo/pass"
 	"github.com/mmcloughlin/avo/printer"
@@ -55,7 +58,20 @@ type Flags struct {
 	allerrors bool
 	cpuprof   *outputValue
 	pkg       string
+	arch      string
+	arm64BMI2 bool
+	goasm     *printerValue
+	arm64     *printerValue
+	stubs     *printerValue
 	printers  []*printerValue
+}
+
+// archPrinter maps a GOARCH to the printer that produces its assembly. amd64 is
+// emitted by the standard goasm printer; arm64 by the EXPERIMENTAL lowering
+// printer (which lowers the amd64 instruction stream).
+var archPrinter = map[string]printer.Builder{
+	"amd64": printer.NewGoAsm,
+	"arm64": printer.NewARM64Asm,
 }
 
 // NewFlags initializes avo flags for the given FlagSet.
@@ -72,13 +88,20 @@ func NewFlags(fs *flag.FlagSet) *Flags {
 
 	fs.StringVar(&f.pkg, "pkg", "", "package name (defaults to current directory name)")
 
-	goasm := newPrinterValue(printer.NewGoAsm, os.Stdout)
-	fs.Var(goasm, "out", "assembly output")
-	f.printers = append(f.printers, goasm)
+	fs.StringVar(&f.arch, "arch", "", "comma-separated list of GOARCH values to emit; treats -out as a base path and writes <base>_GOARCH.s for each (amd64 via goasm, arm64 via the EXPERIMENTAL lowering printer)")
 
-	stubs := newPrinterValue(printer.NewStubs, nil)
-	fs.Var(stubs, "stubs", "go stub file")
-	f.printers = append(f.printers, stubs)
+	fs.BoolVar(&f.arm64BMI2, "arm64-prefer-bmi2", false, "EXPERIMENTAL arm64 lowering: prefer a function's BMI2 twin over its generic one when both exist (default prefers generic; BMI2 x86 code is tuned for x86 and is not reliably faster once lowered -- measure before enabling)")
+
+	f.goasm = newLazyPrinterValue(printer.NewGoAsm, os.Stdout)
+	fs.Var(f.goasm, "out", "assembly output (or, with -arch, the base path)")
+
+	f.arm64 = newLazyPrinterValue(printer.NewARM64Asm, nil)
+	fs.Var(f.arm64, "arm64", "EXPERIMENTAL arm64 assembly output (lowered from amd64); prefer -arch")
+
+	f.stubs = newLazyPrinterValue(printer.NewStubs, nil)
+	fs.Var(f.stubs, "stubs", "go stub file")
+
+	f.printers = []*printerValue{f.goasm, f.arm64, f.stubs}
 
 	return f
 }
@@ -89,11 +112,16 @@ func (f *Flags) Config() *Config {
 	if f.pkg != "" {
 		pc.Pkg = f.pkg
 	}
+	pc.ARM64PreferBMI2 = f.arm64BMI2
+
 	passes := []pass.Interface{pass.Compile}
-	for _, pv := range f.printers {
-		p := pv.Build(pc)
-		if p != nil {
-			passes = append(passes, p)
+	if f.arch != "" {
+		passes = append(passes, f.archPasses(pc)...)
+	} else {
+		for _, pv := range f.printers {
+			if p := pv.Build(pc); p != nil {
+				passes = append(passes, p)
+			}
 		}
 	}
 
@@ -111,9 +139,43 @@ func (f *Flags) Config() *Config {
 	return cfg
 }
 
+// archPasses builds one output pass per GOARCH listed in -arch, deriving the
+// output filename from the -out base (e.g. base "x.s" + "arm64" -> "x_arm64.s").
+func (f *Flags) archPasses(pc printer.Config) []pass.Interface {
+	base := f.goasm.filename
+	var passes []pass.Interface
+	for _, arch := range strings.Split(f.arch, ",") {
+		arch = strings.TrimSpace(arch)
+		if arch == "" {
+			continue
+		}
+		build, ok := archPrinter[arch]
+		if !ok {
+			panic(fmt.Sprintf("avo: -arch %q not supported (have amd64, arm64)", arch))
+		}
+		w, err := createOutput(archFilename(base, arch))
+		if err != nil {
+			panic(err)
+		}
+		passes = append(passes, &pass.Output{Writer: w, Printer: build(pc)})
+	}
+	// Stubs are architecture-independent; emit them once if requested.
+	if p := f.stubs.Build(pc); p != nil {
+		passes = append(passes, p)
+	}
+	return passes
+}
+
+// archFilename inserts _GOARCH before the extension of base.
+func archFilename(base, arch string) string {
+	ext := filepath.Ext(base)
+	return base[:len(base)-len(ext)] + "_" + arch + ext
+}
+
 type outputValue struct {
 	w        io.WriteCloser
 	filename string
+	lazy     bool // defer file creation to Build (so the path can be reused, e.g. as an -arch base)
 }
 
 func newOutputValue(dflt io.WriteCloser) *outputValue {
@@ -129,16 +191,23 @@ func (o *outputValue) String() string {
 
 func (o *outputValue) Set(s string) error {
 	o.filename = s
-	if s == "-" {
-		o.w = nopwritecloser{os.Stdout}
-		return nil
+	if o.lazy && s != "-" {
+		return nil // created later in Build / archPasses
 	}
-	f, err := os.Create(s)
+	w, err := createOutput(s)
 	if err != nil {
 		return err
 	}
-	o.w = f
+	o.w = w
 	return nil
+}
+
+// createOutput opens a writer for the given filename ("-" means stdout).
+func createOutput(filename string) (io.WriteCloser, error) {
+	if filename == "-" {
+		return nopwritecloser{os.Stdout}, nil
+	}
+	return os.Create(filename)
 }
 
 type printerValue struct {
@@ -153,7 +222,33 @@ func newPrinterValue(b printer.Builder, dflt io.WriteCloser) *printerValue {
 	}
 }
 
+// newLazyPrinterValue is like newPrinterValue but defers file creation until
+// Build, so the filename can also serve as a base path for -arch.
+func newLazyPrinterValue(b printer.Builder, dflt io.WriteCloser) *printerValue {
+	pv := newPrinterValue(b, dflt)
+	pv.lazy = true
+	return pv
+}
+
 func (p *printerValue) Build(cfg printer.Config) pass.Interface {
+	// Materialize a deferred -out filename. A lazy printer leaves its writer as
+	// the default (goasm defaults to stdout) during Set so the path can double as
+	// an -arch base; an explicit -out must still win over that default, so the
+	// file is opened here rather than falling back to the (non-nil) default.
+	if p.lazy && p.filename != "" && p.filename != "-" {
+		w, err := createOutput(p.filename)
+		if err != nil {
+			panic(err)
+		}
+		p.outputValue.w = w
+		p.lazy = false // materialized; a second Build must not reopen it
+	} else if p.outputValue.w == nil && p.outputValue.filename != "" {
+		w, err := createOutput(p.outputValue.filename)
+		if err != nil {
+			panic(err)
+		}
+		p.outputValue.w = w
+	}
 	if p.outputValue.w == nil {
 		return nil
 	}

@@ -41,6 +41,12 @@ jobs:
         run: go build ./...
       - name: Test
         run: go test -bench . ./...
+      - name: Install qemu (arm64 user emulation)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y qemu-user-static
+      - name: Test arm64 lowering under qemu
+        run: CGO_ENABLED=0 GOARCH=arm64 go test -exec=qemu-aarch64-static ./tests/arm64lower/
   coverage:
     needs:
       - test

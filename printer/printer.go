@@ -30,6 +30,15 @@ type Config struct {
 
 	// Name of Go package the generated code will belong to.
 	Pkg string
+
+	// ARM64PreferBMI2 controls the EXPERIMENTAL arm64 lowering printer's choice
+	// when a function has both a generic and a BMI2 twin: true lowers the BMI2
+	// twin, false (the default) lowers the generic one. BMI2 x86 code is tuned
+	// for x86 (e.g. BEXTR packs what arm64 needs two UBFX instructions to
+	// unpack), so mechanically lowering it is not reliably faster on arm64 --
+	// measure before setting this. A function with only a BMI2 variant (no
+	// generic twin) is unaffected and always lowered.
+	ARM64PreferBMI2 bool
 }
 
 // NewDefaultConfig produces a config with Name "avo".
