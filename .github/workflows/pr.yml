@@ -9,11 +9,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Generate Bot Token
-        uses: tibdex/github-app-token@021a2405c7f990db57f5eae5397423dcc554159c # v1.7.0
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
         id: bot
         with:
-          app_id: ${{ secrets.APP_ID }}
-          private_key: ${{ secrets.APP_PRIVATE_KEY }}
+          app-id: ${{ secrets.APP_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
       - name: Automerge Bot Pull Requests
         run: gh pr merge --auto --squash "${{ github.event.pull_request.html_url }}"
         env:

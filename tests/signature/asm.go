@@ -22,11 +22,11 @@ var (
 func main() {
 	flag.Parse()
 
-	rand.Seed(*seed)
+	rng := rand.New(rand.NewSource(*seed))
 
 	for i := 0; i < *num; i++ {
 		name := fmt.Sprintf("Signature%d", i)
-		sig := RandomSignature()
+		sig := RandomSignature(rng)
 		SignatureFunction(name, sig)
 	}
 
@@ -49,26 +49,26 @@ func SignatureFunction(name string, sig *types.Signature) {
 	RET()
 }
 
-func RandomSignature() *types.Signature {
-	p := RandomTuple()
-	r := RandomTuple()
+func RandomSignature(rng *rand.Rand) *types.Signature {
+	p := RandomTuple(rng)
+	r := RandomTuple(rng)
 	return types.NewSignature(nil, p, r, false)
 }
 
-func RandomTuple() *types.Tuple {
-	n := rand.Intn(5)
+func RandomTuple(rng *rand.Rand) *types.Tuple {
+	n := rng.Intn(5)
 	vs := make([]*types.Var, n)
 	for i := 0; i < n; i++ {
-		t := RandomType()
+		t := RandomType(rng)
 		vs[i] = types.NewVar(token.NoPos, nil, "", t)
 	}
 	return types.NewTuple(vs...)
 }
 
-func RandomType() types.Type {
+func RandomType(rng *rand.Rand) types.Type {
 	accept := types.IsInteger | types.IsUnsigned
 	for {
-		t := types.Typ[rand.Intn(len(types.Typ))]
+		t := types.Typ[rng.Intn(len(types.Typ))]
 		info := t.Info()
 		if info != 0 && (info&^accept) == 0 {
 			return t

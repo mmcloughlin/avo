@@ -99,15 +99,15 @@ func GenerateWorkflow(s *thirdparty.Suite) ([]byte, error) {
 
 		// Install Go.
 		g.Linef("- name: Install Go")
-		g.Linef("  uses: actions/setup-go@c4a742cab115ed795e34d4513e2cf7d472deb55f # v3.3.1")
+		g.Linef("  uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0")
 		g.Linef("  with:")
-		g.Linef("    go-version: 1.23.x")
+		g.Linef("    go-version: 1.26.x")
 		g.Linef("    check-latest: true")
 
 		// Checkout avo.
 		avodir := "avo"
 		g.Linef("- name: Checkout avo")
-		g.Linef("  uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0")
+		g.Linef("  uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1")
 		g.Linef("  with:")
 		g.Linef("    path: %s", avodir)
 		g.Linef("    persist-credentials: false")
@@ -115,7 +115,7 @@ func GenerateWorkflow(s *thirdparty.Suite) ([]byte, error) {
 		// Checkout the third-party package.
 		pkgdir := t.Project.Repository.Name
 		g.Linef("- name: Checkout %s", t.Project.Repository)
-		g.Linef("  uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0")
+		g.Linef("  uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1")
 		g.Linef("  with:")
 		g.Linef("    repository: %s", t.Project.Repository)
 		g.Linef("    ref: %s", t.Project.Version)
@@ -126,6 +126,14 @@ func GenerateWorkflow(s *thirdparty.Suite) ([]byte, error) {
 		c := &thirdparty.Context{
 			AvoDirectory:        path.Join("${{ github.workspace }}", avodir),
 			RepositoryDirectory: path.Join("${{ github.workspace }}", pkgdir),
+		}
+
+		// Use the Go toolchain provided by the package, if any.
+		if goroot := t.Package.GOROOT(c); goroot != "" {
+			g.Linef("- name: Configure Go Toolchain")
+			g.Linef("  run: |")
+			g.Linef(`    echo "GOROOT=%s" >> "$GITHUB_ENV"`, goroot)
+			g.Linef(`    echo "%s" >> "$GITHUB_PATH"`, path.Join(goroot, "bin"))
 		}
 
 		for _, step := range t.Package.Steps(c) {
