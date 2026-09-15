@@ -9,6 +9,7 @@ import (
 
 // sets of extra instructions.
 var sets = [][]*inst.Instruction{
+	pseudo,
 	movlqzx,
 	gfni,
 	vaes,
