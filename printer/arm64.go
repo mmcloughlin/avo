@@ -301,8 +301,38 @@ func (p *arm64) function(f *ir.Function, twins map[string]twinPair) {
 
 	p.clear = true
 	nodes := f.Nodes
+	a := analyzeFunction(nodes)
+	p.constOK = false
+	for idx := 0; idx < len(nodes); idx++ {
+		if a.byteFold[idx] {
+			p.emitShiftExtractFold(nodes[idx].(*ir.Instruction), nodes[idx+1].(*ir.Instruction), nodes[idx+2].(*ir.Instruction))
+			idx += 2
+			continue
+		}
+		p.emitNode(nodes, idx, a)
+	}
+	p.flush()
+}
+
+// functionAnalysis holds the whole-function analyses function's emission loop
+// needs: which instructions must be lowered as flag producers, which subword
+// compares can use the EQ/NE-only fallback, which BTL/branch pairs fuse into
+// one test-and-branch (and which branches that absorbs), which shift-copy
+// triples fold into one shift, which copies a fold absorbed, and which SETcc
+// folds fully determine their destination.
+type functionAnalysis struct {
+	setflags    map[int]bool
+	subwordSafe map[int]bool
+	bt          map[int]btFusion
+	fusedBranch map[int]bool
+	byteFold    map[int]bool
+	shifts      map[int]shiftFold
+	dropped     map[int]bool
+	setFull     map[int]bool
+}
+
+func analyzeFunction(nodes []ir.Node) functionAnalysis {
 	setflags := flagProducers(nodes)
-	subwordSafe := subwordSafeEqNe(nodes)
 	bt := btPairs(nodes)
 	// The branch half of each fused pair emits nothing of its own: the TBNZ
 	// stands in for both. Skipping it by index rather than by advancing past
@@ -311,120 +341,124 @@ func (p *arm64) function(f *ir.Function, twins map[string]twinPair) {
 	for _, f := range bt {
 		fusedBranch[f.branch] = true
 	}
-	byteFold := shiftExtractFold(nodes)
 	shifts, dropped := shiftFolds(nodes)
-	setFull := setccFolds(nodes, setflags, dropped)
-	p.constOK = false
-	for idx := 0; idx < len(nodes); idx++ {
-		if byteFold[idx] {
-			p.emitShiftExtractFold(nodes[idx].(*ir.Instruction), nodes[idx+1].(*ir.Instruction), nodes[idx+2].(*ir.Instruction))
-			idx += 2
-			continue
-		}
-		switch n := nodes[idx].(type) {
-		case ir.Label:
-			// The only other text from the IR that reaches the file verbatim.
-			// Not exploitable today -- a payload label emits a trailing colon
-			// that both assemblers reject -- but it is the same shape as the
-			// comment injection, and the check costs nothing.
-			checkSingleLine("label", string(n))
-			p.constOK = false
-			p.flush()
-			p.ensureclear()
-			p.Printf("%s:\n", n)
-		case *ir.Comment:
-			p.flush()
-			p.ensureclear()
-			checkNoDirective(n)
-			for _, line := range n.Lines {
-				p.Printf("\t// %s\n", line)
-			}
-		case *ir.Instruction:
-			if fusedBranch[idx] {
-				continue
-			}
-			if dropped[idx] {
-				// A register copy some later instruction absorbed (see
-				// shiftFolds and setccFolds). Nothing is emitted; the constant
-				// window closes as it would for any register move.
-				p.constOK = false
-				continue
-			}
-			if len(n.Suffixes) != 0 {
-				// The dispatch keys on the opcode alone, so a suffix's meaning
-				// (zeroing, broadcast, rounding) would simply be discarded. Only
-				// EVEX forms carry them and all of those are unsupported anyway,
-				// but that is an argument about avo's instruction database, not
-				// something this file enforces.
-				panic(fmt.Sprintf("arm64: %s carries suffixes %v, which this lowering ignores",
-					n.Opcode, n.Suffixes))
-			}
-			p.inTransparent, p.transparentOp = isFlagTransparent(n.Opcode), n.Opcode
-			p.inProducer, p.producerOp, p.writerCount = setflags[idx], n.Opcode, 0
-			p.shift = shifts[idx]
-			switch {
-			case n.Opcode == "JMP":
-				// Only a label target is translatable. A register or memory
-				// operand is rendered in x86 syntax and passed through, and the
-				// arm64 assembler accepts "JMP (R12)" as a branch through a
-				// register: the memory load x86 would do is silently dropped, and
-				// x86's R12 is a different physical register after renaming, so it
-				// branches through the wrong one. Only bases outside R8-R15 fail
-				// loudly, so this has to be rejected here.
-				if _, ok := n.Operands[0].(operand.LabelRef); !ok {
-					panic(fmt.Sprintf("arm64: JMP to a non-label target (%s) is not supported", n.Operands[0].Asm()))
-				}
-				p.emitf("JMP %s", n.Operands[0].Asm())
-			case bt[idx].mnemonic != "":
-				// BTL + adjacent carry branch, emitted as one test-and-branch.
-				// TBNZ/TBZ have a 14-bit branch range where B.cond has 19;
-				// Go's arm64 assembler rewrites an out-of-range one into an
-				// inverted skip over an unconditional branch during its span
-				// pass, so a long function needs no handling here. A non-Go
-				// assembler would reject it outright rather than mis-branch.
-				f := bt[idx]
-				p.emitf("%s %s, %s, %s", f.mnemonic,
-					n.Operands[0].Asm(),
-					operandReg(n.Operands[1]),
-					nodes[f.branch].(*ir.Instruction).Operands[0].Asm())
-			case strings.HasPrefix(n.Opcode, "CMOV"):
-				p.lowerCMOV(n)
-			case strings.HasPrefix(n.Opcode, "SET"):
-				p.lowerSET(n, setFull[idx])
-			case isConditionalBranch(n):
-				// Same reasoning as JMP: a relative target is a byte offset, and
-				// a byte offset cannot mean the same thing on two instruction
-				// sets. Both assemblers happen to reject the rendering, but that
-				// is not something to depend on.
-				if _, ok := n.Operands[0].(operand.LabelRef); !ok {
-					panic(fmt.Sprintf("arm64: %s to a non-label target (%s) is not supported",
-						n.Opcode, n.Operands[0].Asm()))
-				}
-				p.emitf("%s %s", branchMnemonic(n.Opcode), n.Operands[0].Asm())
-			default:
-				p.lower(n, setflags[idx], subwordSafe[idx])
-			}
-			if p.inProducer && p.writerCount != 1 {
-				// The mirror of the transparency check. A producer the analysis
-				// marked must actually supply the flags its consumer reads: none
-				// leaves the branch running on whatever survived, which is the
-				// worst failure available here, and more than one means a second
-				// writer clobbered the first.
-				panic(fmt.Sprintf("arm64: %s was marked as a flag producer but its lowering emitted "+
-					"%d flag-writing instructions, not 1", p.producerOp, p.writerCount))
-			}
-			p.inTransparent, p.transparentOp = false, ""
-			p.inProducer, p.producerOp, p.writerCount = false, "", 0
-			p.shift = shiftFold{}
-			p.trackConst(n)
-			if n.IsTerminal || n.IsUnconditionalBranch() {
-				p.flush()
-			}
-		default:
-			panic("unexpected node type")
-		}
+	return functionAnalysis{
+		setflags:    setflags,
+		subwordSafe: subwordSafeEqNe(nodes),
+		bt:          bt,
+		fusedBranch: fusedBranch,
+		byteFold:    shiftExtractFold(nodes),
+		shifts:      shifts,
+		dropped:     dropped,
+		setFull:     setccFolds(nodes, setflags, dropped),
 	}
-	p.flush()
+}
+
+// emitNode lowers the node at idx, using the whole-function analysis a to
+// resolve what a jump, conditional or flag-touching instruction folds into.
+func (p *arm64) emitNode(nodes []ir.Node, idx int, a functionAnalysis) {
+	switch n := nodes[idx].(type) {
+	case ir.Label:
+		// The only other text from the IR that reaches the file verbatim.
+		// Not exploitable today -- a payload label emits a trailing colon
+		// that both assemblers reject -- but it is the same shape as the
+		// comment injection, and the check costs nothing.
+		checkSingleLine("label", string(n))
+		p.constOK = false
+		p.flush()
+		p.ensureclear()
+		p.Printf("%s:\n", n)
+	case *ir.Comment:
+		p.flush()
+		p.ensureclear()
+		checkNoDirective(n)
+		for _, line := range n.Lines {
+			p.Printf("\t// %s\n", line)
+		}
+	case *ir.Instruction:
+		if a.fusedBranch[idx] {
+			return
+		}
+		if a.dropped[idx] {
+			// A register copy some later instruction absorbed (see
+			// shiftFolds and setccFolds). Nothing is emitted; the constant
+			// window closes as it would for any register move.
+			p.constOK = false
+			return
+		}
+		if len(n.Suffixes) != 0 {
+			// The dispatch keys on the opcode alone, so a suffix's meaning
+			// (zeroing, broadcast, rounding) would simply be discarded. Only
+			// EVEX forms carry them and all of those are unsupported anyway,
+			// but that is an argument about avo's instruction database, not
+			// something this file enforces.
+			panic(fmt.Sprintf("arm64: %s carries suffixes %v, which this lowering ignores",
+				n.Opcode, n.Suffixes))
+		}
+		p.inTransparent, p.transparentOp = isFlagTransparent(n.Opcode), n.Opcode
+		p.inProducer, p.producerOp, p.writerCount = a.setflags[idx], n.Opcode, 0
+		p.shift = a.shifts[idx]
+		switch {
+		case n.Opcode == "JMP":
+			// Only a label target is translatable. A register or memory
+			// operand is rendered in x86 syntax and passed through, and the
+			// arm64 assembler accepts "JMP (R12)" as a branch through a
+			// register: the memory load x86 would do is silently dropped, and
+			// x86's R12 is a different physical register after renaming, so it
+			// branches through the wrong one. Only bases outside R8-R15 fail
+			// loudly, so this has to be rejected here.
+			if _, ok := n.Operands[0].(operand.LabelRef); !ok {
+				panic(fmt.Sprintf("arm64: JMP to a non-label target (%s) is not supported", n.Operands[0].Asm()))
+			}
+			p.emitf("JMP %s", n.Operands[0].Asm())
+		case a.bt[idx].mnemonic != "":
+			// BTL + adjacent carry branch, emitted as one test-and-branch.
+			// TBNZ/TBZ have a 14-bit branch range where B.cond has 19;
+			// Go's arm64 assembler rewrites an out-of-range one into an
+			// inverted skip over an unconditional branch during its span
+			// pass, so a long function needs no handling here. A non-Go
+			// assembler would reject it outright rather than mis-branch.
+			f := a.bt[idx]
+			p.emitf("%s %s, %s, %s", f.mnemonic,
+				n.Operands[0].Asm(),
+				operandReg(n.Operands[1]),
+				nodes[f.branch].(*ir.Instruction).Operands[0].Asm())
+		case strings.HasPrefix(n.Opcode, "CMOV"):
+			p.lowerCMOV(n)
+		case strings.HasPrefix(n.Opcode, "SET"):
+			p.lowerSET(n, a.setFull[idx])
+		case isConditionalBranch(n):
+			// Same reasoning as JMP: a relative target is a byte offset, and
+			// a byte offset cannot mean the same thing on two instruction
+			// sets. Both assemblers happen to reject the rendering, but that
+			// is not something to depend on.
+			if _, ok := n.Operands[0].(operand.LabelRef); !ok {
+				panic(fmt.Sprintf("arm64: %s to a non-label target (%s) is not supported",
+					n.Opcode, n.Operands[0].Asm()))
+			}
+			p.emitf("%s %s", branchMnemonic(n.Opcode), n.Operands[0].Asm())
+		default:
+			p.lower(n, a.setflags[idx], a.subwordSafe[idx])
+		}
+		if p.inProducer && p.writerCount != 1 {
+			// The mirror of the transparency check. A producer the analysis
+			// marked must actually supply the flags its consumer reads: none
+			// leaves the branch running on whatever survived, which is the
+			// worst failure available here, and more than one means a second
+			// writer clobbered the first.
+			panic(fmt.Sprintf("arm64: %s was marked as a flag producer but its lowering emitted "+
+				"%d flag-writing instructions, not 1", p.producerOp, p.writerCount))
+		}
+		p.inTransparent, p.transparentOp = false, ""
+		p.inProducer, p.producerOp, p.writerCount = false, "", 0
+		p.shift = shiftFold{}
+		p.trackConst(n)
+		if n.IsTerminal || n.IsUnconditionalBranch() {
+			p.flush()
+		}
+	default:
+		panic("unexpected node type")
+	}
 }
 
 // arm64WritesNZCV classifies every mnemonic this printer can emit as to whether
@@ -906,13 +940,50 @@ func (p *arm64) lowerPrefetch(op string, src operand.Op) {
 	}
 }
 
+// lower dispatches an instruction to the section of the opcode table that
+// handles it. The sections mirror the "----" divisions the table used to
+// carry as one switch: moves/loads, arithmetic/logic (split across two
+// functions -- the 64/32-bit ALU ops and the INC/DEC/unary/shift/rotate
+// ops -- purely to keep each dispatch function's own complexity down; the
+// split carries no semantic weight), BMI2 flag-free shifts/rotate, the
+// ungrouped middle section (LEA/IMULL/POPCNTQ/XCHGQ/BT*/BSF*/BSR*), BMI2
+// bit-field ops, multiplication, and comparisons.
 func (p *arm64) lower(i *ir.Instruction, flags, subwordEqNeSafe bool) {
 	ops := i.Operands
-	switch i.Opcode {
-	case "RET":
+	if i.Opcode == "RET" {
 		p.emitf("RET")
+		return
+	}
+	if p.lowerMoveOrLoad(i, ops) {
+		return
+	}
+	if p.lowerArithOrLogic(i, ops, flags) {
+		return
+	}
+	if p.lowerIncDecShiftOp(i, ops, flags) {
+		return
+	}
+	if p.lowerShiftXOp(i, ops) {
+		return
+	}
+	if p.lowerMiscOp(i, ops) {
+		return
+	}
+	if p.lowerBitFieldOp(i, ops) {
+		return
+	}
+	if p.lowerMultiply(i, ops) {
+		return
+	}
+	if p.lowerCompareOp(i, ops, subwordEqNeSafe) {
+		return
+	}
+	panic(fmt.Sprintf("arm64: unsupported opcode %q (operands: %s)", i.Opcode, joinOperands(ops)))
+}
 
-	// ---- moves and loads ----
+// lowerMoveOrLoad lowers the moves and loads.
+func (p *arm64) lowerMoveOrLoad(i *ir.Instruction, ops []operand.Op) bool {
+	switch i.Opcode {
 	case "MOVQ":
 		p.lowerMove("MOVD", ops[0], ops[1])
 	case "PREFETCHT0", "PREFETCHT1", "PREFETCHT2", "PREFETCHNTA":
@@ -957,7 +1028,7 @@ func (p *arm64) lower(i *ir.Instruction, flags, subwordEqNeSafe bool) {
 			if i.Opcode == "MOVBLSX" {
 				p.emitf("MOVWU %s, %s", d, d) // sign-extended: clear the upper half
 			}
-			return
+			return true
 		}
 		switch i.Opcode {
 		case "MOVBQZX", "MOVBLZX":
@@ -991,8 +1062,16 @@ func (p *arm64) lower(i *ir.Instruction, flags, subwordEqNeSafe bool) {
 		// 128-bit bitwise XOR of two vector registers.
 		a, b := operandReg(ops[0]), operandReg(ops[1])
 		p.emitf("VEOR %s.B16, %s.B16, %s.B16", a, b, b)
+	default:
+		return false
+	}
+	return true
+}
 
-	// ---- arithmetic / logic (dst is last operand) ----
+// lowerArithOrLogic lowers the 64- and 32-bit arithmetic and logic
+// instructions (dst is the last operand).
+func (p *arm64) lowerArithOrLogic(i *ir.Instruction, ops []operand.Op, flags bool) bool {
+	switch i.Opcode {
 	case "ADDQ":
 		p.lowerArith("ADD", "ADDS", ops[0], ops[1], flags)
 	case "SUBQ":
@@ -1016,7 +1095,7 @@ func (p *arm64) lower(i *ir.Instruction, flags, subwordEqNeSafe bool) {
 		if ra, ok := ops[0].(reg.Register); ok {
 			if rb, ok := ops[1].(reg.Register); ok && rename(ra) == rename(rb) {
 				p.zeroSelf(rename(rb), "TST", flags)
-				return
+				return true
 			}
 		}
 		p.lowerArith("EOR", "", ops[0], ops[1], flags)
@@ -1024,7 +1103,7 @@ func (p *arm64) lower(i *ir.Instruction, flags, subwordEqNeSafe bool) {
 		if ra, ok := ops[0].(reg.Register); ok {
 			if rb, ok := ops[1].(reg.Register); ok && rename(ra) == rename(rb) {
 				p.zeroSelf(rename(rb), "TSTW", flags)
-				return
+				return true
 			}
 		}
 		// Note the W: XORL is a 32-bit operation, so it needs the 32-bit lowering
@@ -1046,7 +1125,7 @@ func (p *arm64) lower(i *ir.Instruction, flags, subwordEqNeSafe bool) {
 			p.emitf("UBFX $8, %s, $8, %s", d, scratchAddr)
 			p.emitf("ADD %s, %s, %s", v, scratchAddr, scratchAddr)
 			p.emitf("BFI $8, %s, $8, %s", scratchAddr, d)
-			return
+			return true
 		}
 		v := p.byteVal(ops[0])
 		d := operandReg(ops[1])
@@ -1081,6 +1160,14 @@ func (p *arm64) lower(i *ir.Instruction, flags, subwordEqNeSafe bool) {
 		// Byte-reverse the low 32 bits; the 32-bit result zero-extends, as on x86.
 		r := operandReg(ops[0])
 		p.emitf("REVW %s, %s", r, r)
+	default:
+		return false
+	}
+	return true
+}
+
+func (p *arm64) lowerIncDecShiftOp(i *ir.Instruction, ops []operand.Op, flags bool) bool {
+	switch i.Opcode {
 	case "INCQ":
 		p.lowerIncDec("ADD", "ADDS", ops[0], 8, flags)
 	case "INCL":
@@ -1131,10 +1218,17 @@ func (p *arm64) lower(i *ir.Instruction, flags, subwordEqNeSafe bool) {
 		p.lowerShift("ROR", ops[0], ops[1], 64)
 	case "RORL":
 		p.lowerShift("RORW", ops[0], ops[1], 32)
+	default:
+		return false
+	}
+	return true
+}
 
-	// ---- BMI2 flag-free shifts/rotate: SHIFTX count, src, dst ----
-	// arm64 register shifts are already flag-free and take an arbitrary count
-	// register, so these map one-to-one (the count is masked mod 64, matching x86).
+// ---- BMI2 flag-free shifts/rotate: SHIFTX count, src, dst ----
+// arm64 register shifts are already flag-free and take an arbitrary count
+// register, so these map one-to-one (the count is masked mod 64, matching x86).
+func (p *arm64) lowerShiftXOp(i *ir.Instruction, ops []operand.Op) bool {
+	switch i.Opcode {
 	case "SHLXQ":
 		p.lowerShiftX("LSL", ops[0], ops[1], ops[2])
 	case "SHRXQ":
@@ -1143,7 +1237,14 @@ func (p *arm64) lower(i *ir.Instruction, flags, subwordEqNeSafe bool) {
 		p.lowerShiftX("ASR", ops[0], ops[1], ops[2])
 	case "RORXQ":
 		p.lowerRORX(ops[0], ops[1], ops[2])
+	default:
+		return false
+	}
+	return true
+}
 
+func (p *arm64) lowerMiscOp(i *ir.Instruction, ops []operand.Op) bool {
+	switch i.Opcode {
 	case "LEAQ":
 		p.lowerLEA(ops[0].(operand.Mem), operandReg(ops[1]))
 	case "LEAL":
@@ -1227,14 +1328,29 @@ func (p *arm64) lower(i *ir.Instruction, flags, subwordEqNeSafe bool) {
 		p.emitf("CLZ %s, %s", src, scratchVal)
 		p.emitf("MOVD $63, %s", dst)
 		p.emitf("SUB %s, %s, %s", scratchVal, dst, dst)
+	default:
+		return false
+	}
+	return true
+}
 
-	// ---- BMI2 bit-field ops: BZHI/BEXTR (counts assumed < 64, as in zstd) ----
+// lowerBitFieldOp lowers the BMI2 bit-field ops BZHI/BEXTR (counts assumed
+// < 64, as in zstd).
+func (p *arm64) lowerBitFieldOp(i *ir.Instruction, ops []operand.Op) bool {
+	switch i.Opcode {
 	case "BZHIQ":
 		p.lowerBZHI(ops[0], ops[1], ops[2])
 	case "BEXTRQ":
 		p.lowerBEXTR(ops[0], ops[1], ops[2])
+	default:
+		return false
+	}
+	return true
+}
 
-	// ---- multiplication ----
+// lowerMultiply lowers the multiplication instructions.
+func (p *arm64) lowerMultiply(i *ir.Instruction, ops []operand.Op) bool {
+	switch i.Opcode {
 	case "MULXQ":
 		p.lowerMULX(ops[0], ops[1], ops[2])
 	case "IMUL3Q":
@@ -1243,18 +1359,25 @@ func (p *arm64) lower(i *ir.Instruction, flags, subwordEqNeSafe bool) {
 		p.lowerIMUL(ops)
 	case "MULQ":
 		p.lowerWideMul("UMULH", ops[0])
+	default:
+		return false
+	}
+	return true
+}
 
-	// ---- comparisons: always emit an arm64 flag-setter ----
-	// The compare must run at the operand width: a 64-bit CMP of registers whose
-	// upper bits are not provably zero sets flags from the wrong bits. arm64 has
-	// a native 32-bit form (CMPW/TSTW); sub-32-bit widths would generally need the
-	// operands extended for the consuming condition's signedness, which is not
-	// modelled. The one exception is when every consumer is EQ/NE (checked by
-	// subwordEqNeSafe, from subwordSafeEqNe): equality doesn't depend on sign, so
-	// zero-extending both operands to the compared width before a full-width
-	// compare is correct unconditionally, with no need to prove the operands were
-	// already clean above that width. Anything else fails loudly rather than
-	// silently comparing full 64-bit registers.
+// ---- comparisons: always emit an arm64 flag-setter ----
+// The compare must run at the operand width: a 64-bit CMP of registers whose
+// upper bits are not provably zero sets flags from the wrong bits. arm64 has
+// a native 32-bit form (CMPW/TSTW); sub-32-bit widths would generally need the
+// operands extended for the consuming condition's signedness, which is not
+// modelled. The one exception is when every consumer is EQ/NE (checked by
+// subwordEqNeSafe, from subwordSafeEqNe): equality doesn't depend on sign, so
+// zero-extending both operands to the compared width before a full-width
+// compare is correct unconditionally, with no need to prove the operands were
+// already clean above that width. Anything else fails loudly rather than
+// silently comparing full 64-bit registers.
+func (p *arm64) lowerCompareOp(i *ir.Instruction, ops []operand.Op, subwordEqNeSafe bool) bool {
+	switch i.Opcode {
 	case "CMPQ":
 		p.lowerCompare("CMP", "CMN", ops[0], ops[1], 8)
 	case "CMPL":
@@ -1281,10 +1404,10 @@ func (p *arm64) lower(i *ir.Instruction, flags, subwordEqNeSafe bool) {
 			bits = 8
 		}
 		p.lowerSubwordTestEqNe(bits, ops[0], ops[1])
-
 	default:
-		panic(fmt.Sprintf("arm64: unsupported opcode %q (operands: %s)", i.Opcode, joinOperands(ops)))
+		return false
 	}
+	return true
 }
 
 func (p *arm64) regOrImm(op operand.Op) string {
@@ -2302,76 +2425,84 @@ func btPairs(nodes []ir.Node) map[int]btFusion {
 			// own lowerings; only the pure test lands here.
 			continue
 		}
-		if ins.Opcode != "BTL" {
-			panic(fmt.Sprintf("arm64: %s is not supported; only BTL, whose bit index this checks is "+
-				"below the operand width, has a lowering", ins.Opcode))
-		}
-		bit, isImm := immVal(ins.Operands[0])
-		if !isImm {
-			panic("arm64: BTL with a register bit index is not supported; " +
-				"x86 masks that index modulo the operand size and TBNZ cannot express it")
-		}
-		if bit < 0 || bit >= 32 {
-			panic(fmt.Sprintf("arm64: BTL bit index %d is not below the 32-bit operand width; "+
-				"x86 would mask it modulo 32 rather than test that bit", bit))
-		}
-		if _, isReg := ins.Operands[1].(reg.Register); !isReg {
-			panic("arm64: BTL against a memory operand is not supported; " +
-				"x86 addresses the bit string beyond the addressed word and TBNZ reads one register")
-		}
-		k := j + 1
-		for k < len(nodes) {
-			if _, isComment := nodes[k].(*ir.Comment); !isComment {
-				break
-			}
-			k++
-		}
-		var branch *ir.Instruction
-		isInstr := false
-		if k < len(nodes) {
-			branch, isInstr = nodes[k].(*ir.Instruction)
-		}
-		// Naming what actually follows matters here: a label between the pair
-		// is the interesting rejection (it would let a jump reach the branch
-		// without executing the BTL), and reporting it as "end of function"
-		// sends whoever hits this looking in the wrong place.
-		next := "end of function"
-		if k < len(nodes) {
-			switch n := nodes[k].(type) {
-			case *ir.Instruction:
-				next = n.Opcode
-			case ir.Label:
-				next = fmt.Sprintf("label %q", string(n))
-			default:
-				next = fmt.Sprintf("%T", n)
-			}
-		}
-		// Only a carry branch says anything about the bit BT selected; every
-		// other condition reads a flag x86 leaves undefined afterwards. JC and
-		// JCS are one instruction under two names, as are JNC and JCC, and avo
-		// keeps whichever spelling the generator wrote. The comparison-named
-		// aliases for those same encodings (JB, JNAE, JAE, JNB) are left to the
-		// panic: they mean the same thing here, but a borrow name after a BT
-		// reads like the compare-derived carry this lowering deliberately
-		// refuses, and no generator has needed them.
-		var mnemonic string
-		switch {
-		case isInstr && (branch.Opcode == "JC" || branch.Opcode == "JCS"):
-			mnemonic = "TBNZ"
-		case isInstr && (branch.Opcode == "JNC" || branch.Opcode == "JCC"):
-			mnemonic = "TBZ"
-		default:
-			panic(fmt.Sprintf("arm64: BTL is followed by %s, but is only supported when the next "+
-				"instruction is a carry branch (JC/JCS or JNC/JCC), so the two can be fused into one "+
-				"test-and-branch; on its own BT sets a carry flag this lowering cannot represent", next))
-		}
-		if _, ok := branch.Operands[0].(operand.LabelRef); !ok {
-			panic(fmt.Sprintf("arm64: %s fused with BTL targets %s, not a label",
-				branch.Opcode, branch.Operands[0].Asm()))
-		}
-		pairs[j] = btFusion{branch: k, mnemonic: mnemonic}
+		pairs[j] = btPairFor(nodes, j, ins)
 	}
 	return pairs
+}
+
+// btPairFor validates the BTL at node j -- opcode, bit index, operand -- and
+// finds the carry branch it fuses with per btPairs' adjacency rule, or
+// panics. Every BT-prefixed instruction btPairs routes here either pairs or
+// refuses; there is no other outcome.
+func btPairFor(nodes []ir.Node, j int, ins *ir.Instruction) btFusion {
+	if ins.Opcode != "BTL" {
+		panic(fmt.Sprintf("arm64: %s is not supported; only BTL, whose bit index this checks is "+
+			"below the operand width, has a lowering", ins.Opcode))
+	}
+	bit, isImm := immVal(ins.Operands[0])
+	if !isImm {
+		panic("arm64: BTL with a register bit index is not supported; " +
+			"x86 masks that index modulo the operand size and TBNZ cannot express it")
+	}
+	if bit < 0 || bit >= 32 {
+		panic(fmt.Sprintf("arm64: BTL bit index %d is not below the 32-bit operand width; "+
+			"x86 would mask it modulo 32 rather than test that bit", bit))
+	}
+	if _, isReg := ins.Operands[1].(reg.Register); !isReg {
+		panic("arm64: BTL against a memory operand is not supported; " +
+			"x86 addresses the bit string beyond the addressed word and TBNZ reads one register")
+	}
+	k := j + 1
+	for k < len(nodes) {
+		if _, isComment := nodes[k].(*ir.Comment); !isComment {
+			break
+		}
+		k++
+	}
+	var branch *ir.Instruction
+	isInstr := false
+	if k < len(nodes) {
+		branch, isInstr = nodes[k].(*ir.Instruction)
+	}
+	// Naming what actually follows matters here: a label between the pair
+	// is the interesting rejection (it would let a jump reach the branch
+	// without executing the BTL), and reporting it as "end of function"
+	// sends whoever hits this looking in the wrong place.
+	next := "end of function"
+	if k < len(nodes) {
+		switch n := nodes[k].(type) {
+		case *ir.Instruction:
+			next = n.Opcode
+		case ir.Label:
+			next = fmt.Sprintf("label %q", string(n))
+		default:
+			next = fmt.Sprintf("%T", n)
+		}
+	}
+	// Only a carry branch says anything about the bit BT selected; every
+	// other condition reads a flag x86 leaves undefined afterwards. JC and
+	// JCS are one instruction under two names, as are JNC and JCC, and avo
+	// keeps whichever spelling the generator wrote. The comparison-named
+	// aliases for those same encodings (JB, JNAE, JAE, JNB) are left to the
+	// panic: they mean the same thing here, but a borrow name after a BT
+	// reads like the compare-derived carry this lowering deliberately
+	// refuses, and no generator has needed them.
+	var mnemonic string
+	switch {
+	case isInstr && (branch.Opcode == "JC" || branch.Opcode == "JCS"):
+		mnemonic = "TBNZ"
+	case isInstr && (branch.Opcode == "JNC" || branch.Opcode == "JCC"):
+		mnemonic = "TBZ"
+	default:
+		panic(fmt.Sprintf("arm64: BTL is followed by %s, but is only supported when the next "+
+			"instruction is a carry branch (JC/JCS or JNC/JCC), so the two can be fused into one "+
+			"test-and-branch; on its own BT sets a carry flag this lowering cannot represent", next))
+	}
+	if _, ok := branch.Operands[0].(operand.LabelRef); !ok {
+		panic(fmt.Sprintf("arm64: %s fused with BTL targets %s, not a label",
+			branch.Opcode, branch.Operands[0].Asm()))
+	}
+	return btFusion{branch: k, mnemonic: mnemonic}
 }
 
 func flagProducers(nodes []ir.Node) map[int]bool {
@@ -2392,75 +2523,7 @@ func flagProducers(nodes []ir.Node) map[int]bool {
 		if fused[j] {
 			continue
 		}
-		found := false
-		for k := j - 1; k >= 0; k-- {
-			if _, isComment := nodes[k].(*ir.Comment); isComment {
-				// Comments carry no code and no directives -- those are refused
-				// before they reach any analysis -- so nothing here affects flags.
-				continue
-			}
-			prev, isInstr := nodes[k].(*ir.Instruction)
-			if !isInstr {
-				// A label: the flags this consumer reads were produced on some
-				// predecessor edge, which this printer does not model. Leaving
-				// the producer unmarked would emit a non-flag-setting op and let
-				// the branch run on whatever NZCV happened to survive --
-				// plausible-looking but wrong assembly -- so fail generation.
-				panic(fmt.Sprintf("arm64: %s reads flags produced across a label; "+
-					"the lowering tracks flags only within a straight-line run", ins.Opcode))
-			}
-			if isFlagTransparent(prev.Opcode) {
-				continue
-			}
-			mark, ok := flagSetter(prev.Opcode)
-			if !ok {
-				panic(fmt.Sprintf("arm64: %s consumes flags from %s, which the lowering cannot emit as a flag-setter", ins.Opcode, prev.Opcode))
-			}
-			cond, isCondConsumer := consumerCondition(ins.Opcode)
-			if isLogicalFlagOp(prev.Opcode) && isCondConsumer {
-				// x86's logical ops force CF=0 and OF=0, and their arm64
-				// counterparts force C=0 too. The raw bits agree, so armCond's
-				// meaning-inverting map (right for CMP/SUB, where the two ISAs
-				// use opposite borrow conventions) is wrong here: "JB" after a
-				// TEST is never taken on x86 but "BLO" always is. Only the Z/N
-				// conditions carry information after these, plus the signed ones
-				// since V is zero on both sides.
-				switch cond {
-				case "EQ", "NE", "MI", "PL", "LT", "LE", "GT", "GE":
-				default:
-					panic(fmt.Sprintf("arm64: %s consumes condition %s from %s, but after a logical op only the ZF/SF conditions mean the same thing on both architectures", ins.Opcode, cond, prev.Opcode))
-				}
-			}
-			if strings.HasPrefix(ins.Opcode, "ADC") && !isBorrowProducer(prev.Opcode) {
-				// The ADC lowering (CSINC on HS) hardcodes the borrow convention,
-				// which only matches when the producer is a compare or subtract.
-				// After an addition both ISAs use the same carry-out convention,
-				// so the same CSINC would increment on exactly the wrong input.
-				panic(fmt.Sprintf("arm64: %s reads carry from %s; the lowering assumes a borrow-producing compare or subtract", ins.Opcode, prev.Opcode))
-			}
-			if isCondConsumer && carryCondition(cond) && !isBorrowProducer(prev.Opcode) &&
-				!isCarryPreservingOp(prev.Opcode) && !isLogicalFlagOp(prev.Opcode) {
-				// armCond maps carry conditions by their post-compare meaning,
-				// where x86 and arm64 use opposite borrow conventions. After an
-				// addition both set carry-out with the SAME sense, so that map
-				// inverts the test; and "above"/"below or equal" combine carry
-				// with zero in a way no single arm64 condition expresses. Only a
-				// compare or subtract can be translated.
-				panic(fmt.Sprintf("arm64: %s reads carry condition %s from %s; only a compare or subtract produces the borrow sense this lowering assumes", ins.Opcode, cond, prev.Opcode))
-			}
-			if isCarryPreservingOp(prev.Opcode) && isCondConsumer && carryCondition(cond) {
-				// x86 INC/DEC deliberately preserve CF so they can appear inside
-				// a carry-driven loop; arm64 has no such form, and the ADDS/SUBS
-				// this lowers to overwrites C with the increment's own carry.
-				panic(fmt.Sprintf("arm64: %s reads carry condition %s across %s, which preserves CF on x86 but not once lowered", ins.Opcode, cond, prev.Opcode))
-			}
-			if mark {
-				setflags[k] = true
-			}
-			found = true
-			break
-		}
-		if !found {
+		if !findFlagProducer(nodes, j, ins, setflags) {
 			// The scan ran off the start of the function without finding a
 			// producer. amd64's entry EFLAGS is undefined too, so a program in
 			// this shape is already broken there -- but it is the one remaining
@@ -2471,6 +2534,82 @@ func flagProducers(nodes []ir.Node) map[int]bool {
 		}
 	}
 	return setflags
+}
+
+// findFlagProducer scans backward from consumer j for the instruction whose
+// flags it reads, validating the ISA-translation invariants flagProducers
+// depends on along the way (panicking on any that don't hold), and marks the
+// producer in setflags if it must be lowered to a flag-setting form. It
+// reports whether a producer was found before the scan ran off the start of
+// the function.
+func findFlagProducer(nodes []ir.Node, j int, ins *ir.Instruction, setflags map[int]bool) bool {
+	for k := j - 1; k >= 0; k-- {
+		if _, isComment := nodes[k].(*ir.Comment); isComment {
+			// Comments carry no code and no directives -- those are refused
+			// before they reach any analysis -- so nothing here affects flags.
+			continue
+		}
+		prev, isInstr := nodes[k].(*ir.Instruction)
+		if !isInstr {
+			// A label: the flags this consumer reads were produced on some
+			// predecessor edge, which this printer does not model. Leaving
+			// the producer unmarked would emit a non-flag-setting op and let
+			// the branch run on whatever NZCV happened to survive --
+			// plausible-looking but wrong assembly -- so fail generation.
+			panic(fmt.Sprintf("arm64: %s reads flags produced across a label; "+
+				"the lowering tracks flags only within a straight-line run", ins.Opcode))
+		}
+		if isFlagTransparent(prev.Opcode) {
+			continue
+		}
+		mark, ok := flagSetter(prev.Opcode)
+		if !ok {
+			panic(fmt.Sprintf("arm64: %s consumes flags from %s, which the lowering cannot emit as a flag-setter", ins.Opcode, prev.Opcode))
+		}
+		cond, isCondConsumer := consumerCondition(ins.Opcode)
+		if isLogicalFlagOp(prev.Opcode) && isCondConsumer {
+			// x86's logical ops force CF=0 and OF=0, and their arm64
+			// counterparts force C=0 too. The raw bits agree, so armCond's
+			// meaning-inverting map (right for CMP/SUB, where the two ISAs
+			// use opposite borrow conventions) is wrong here: "JB" after a
+			// TEST is never taken on x86 but "BLO" always is. Only the Z/N
+			// conditions carry information after these, plus the signed ones
+			// since V is zero on both sides.
+			switch cond {
+			case "EQ", "NE", "MI", "PL", "LT", "LE", "GT", "GE":
+			default:
+				panic(fmt.Sprintf("arm64: %s consumes condition %s from %s, but after a logical op only the ZF/SF conditions mean the same thing on both architectures", ins.Opcode, cond, prev.Opcode))
+			}
+		}
+		if strings.HasPrefix(ins.Opcode, "ADC") && !isBorrowProducer(prev.Opcode) {
+			// The ADC lowering (CSINC on HS) hardcodes the borrow convention,
+			// which only matches when the producer is a compare or subtract.
+			// After an addition both ISAs use the same carry-out convention,
+			// so the same CSINC would increment on exactly the wrong input.
+			panic(fmt.Sprintf("arm64: %s reads carry from %s; the lowering assumes a borrow-producing compare or subtract", ins.Opcode, prev.Opcode))
+		}
+		if isCondConsumer && carryCondition(cond) && !isBorrowProducer(prev.Opcode) &&
+			!isCarryPreservingOp(prev.Opcode) && !isLogicalFlagOp(prev.Opcode) {
+			// armCond maps carry conditions by their post-compare meaning,
+			// where x86 and arm64 use opposite borrow conventions. After an
+			// addition both set carry-out with the SAME sense, so that map
+			// inverts the test; and "above"/"below or equal" combine carry
+			// with zero in a way no single arm64 condition expresses. Only a
+			// compare or subtract can be translated.
+			panic(fmt.Sprintf("arm64: %s reads carry condition %s from %s; only a compare or subtract produces the borrow sense this lowering assumes", ins.Opcode, cond, prev.Opcode))
+		}
+		if isCarryPreservingOp(prev.Opcode) && isCondConsumer && carryCondition(cond) {
+			// x86 INC/DEC deliberately preserve CF so they can appear inside
+			// a carry-driven loop; arm64 has no such form, and the ADDS/SUBS
+			// this lowers to overwrites C with the increment's own carry.
+			panic(fmt.Sprintf("arm64: %s reads carry condition %s across %s, which preserves CF on x86 but not once lowered", ins.Opcode, cond, prev.Opcode))
+		}
+		if mark {
+			setflags[k] = true
+		}
+		return true
+	}
+	return false
 }
 
 // isFlagTransparent reports whether an opcode's lowering leaves NZCV unchanged.
@@ -3005,44 +3144,65 @@ func sourceFold(nodes []ir.Node, next func(int) int, j, src, dst int) (int, stri
 func setccFolds(nodes []ir.Node, setflags map[int]bool, dropped map[int]bool) map[int]bool {
 	full := make(map[int]bool)
 	for j, n := range nodes {
-		zero, ok := n.(*ir.Instruction)
-		if !ok || len(zero.Operands) != 2 || setflags[j] {
+		r, ok := setccFoldZeroRegister(n, setflags, j)
+		if !ok {
 			continue
 		}
-		r := regFamily(zero.Operands[1])
-		if r < 0 {
-			continue
-		}
-		switch zero.Opcode {
-		case "XORQ", "XORL":
-			if regFamily(zero.Operands[0]) != r {
-				continue
-			}
-		case "MOVQ", "MOVL":
-			if v, isImm := immVal(zero.Operands[0]); !isImm || v != 0 {
-				continue
-			}
-		default:
-			continue
-		}
-		for k := j + 1; k < len(nodes); k++ {
-			ins, isInstr := nodes[k].(*ir.Instruction)
-			if _, isComment := nodes[k].(*ir.Comment); isComment {
-				continue
-			}
-			if !isInstr || endsBlock(ins) {
-				break
-			}
-			if !readsFamily(ins, r) && !writesFamily(ins, r) {
-				continue
-			}
-			if strings.HasPrefix(ins.Opcode, "SET") && !isHighByte(ins.Operands[0]) &&
-				regFamily(ins.Operands[0]) == r && !readsFamily(ins, r) {
-				full[k] = true
-				dropped[j] = true
-			}
-			break
+		if k, ok := setccFoldConsumer(nodes, j, r); ok {
+			full[k] = true
+			dropped[j] = true
 		}
 	}
 	return full
+}
+
+// setccFoldZeroRegister reports the full-width register that node j zeroes,
+// if it's eligible for the setcc fold: XORQ/XORL r, r or MOVQ/MOVL $0, r,
+// with its own flags not consumed elsewhere (setflags[j]).
+func setccFoldZeroRegister(n ir.Node, setflags map[int]bool, j int) (int, bool) {
+	zero, ok := n.(*ir.Instruction)
+	if !ok || len(zero.Operands) != 2 || setflags[j] {
+		return -1, false
+	}
+	r := regFamily(zero.Operands[1])
+	if r < 0 {
+		return -1, false
+	}
+	switch zero.Opcode {
+	case "XORQ", "XORL":
+		if regFamily(zero.Operands[0]) != r {
+			return -1, false
+		}
+	case "MOVQ", "MOVL":
+		if v, isImm := immVal(zero.Operands[0]); !isImm || v != 0 {
+			return -1, false
+		}
+	default:
+		return -1, false
+	}
+	return r, true
+}
+
+// setccFoldConsumer scans forward from j+1 for the SETcc that fully
+// determines register r's value, refusing the fold if anything else reads or
+// writes r first.
+func setccFoldConsumer(nodes []ir.Node, j, r int) (int, bool) {
+	for k := j + 1; k < len(nodes); k++ {
+		ins, isInstr := nodes[k].(*ir.Instruction)
+		if _, isComment := nodes[k].(*ir.Comment); isComment {
+			continue
+		}
+		if !isInstr || endsBlock(ins) {
+			return -1, false
+		}
+		if !readsFamily(ins, r) && !writesFamily(ins, r) {
+			continue
+		}
+		if strings.HasPrefix(ins.Opcode, "SET") && !isHighByte(ins.Operands[0]) &&
+			regFamily(ins.Operands[0]) == r && !readsFamily(ins, r) {
+			return k, true
+		}
+		return -1, false
+	}
+	return -1, false
 }

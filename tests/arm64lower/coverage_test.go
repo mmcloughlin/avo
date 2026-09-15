@@ -113,10 +113,21 @@ func namedOpcodes(t *testing.T, f *ast.File, fnName string) []string {
 	return out
 }
 
+// lowerDispatchFuncs lists the functions lower calls to dispatch an opcode,
+// one per opcode-table section (see the "----" comments in arm64.go). Keep
+// this in sync with lower's if-chain: dispatchedOpcodes reads the top-level
+// switch on i.Opcode in each of these rather than in lower itself, since
+// lower no longer contains one switch -- it delegates to these.
+var lowerDispatchFuncs = []string{
+	"lowerMoveOrLoad", "lowerArithOrLogic", "lowerIncDecShiftOp", "lowerShiftXOp",
+	"lowerMiscOp", "lowerBitFieldOp", "lowerMultiply", "lowerCompareOp",
+}
+
 // dispatchedOpcodes returns the opcodes the printer's instruction dispatch
-// handles: the cases of the top-level switch on i.Opcode in lower, plus any
-// named outside it (see namedOpcodes). Nested switches inside a case are
-// ignored -- they refine a lowering rather than add an entry point.
+// handles: the cases of the top-level switch on i.Opcode in each of
+// lowerDispatchFuncs, plus any named outside them (see namedOpcodes). Nested
+// switches inside a case are ignored -- they refine a lowering rather than
+// add an entry point.
 func dispatchedOpcodes(t *testing.T) []string {
 	t.Helper()
 	f := parsePrinter(t)
@@ -124,20 +135,27 @@ func dispatchedOpcodes(t *testing.T) []string {
 	for _, fnName := range []string{"btPairs", "function"} {
 		out = append(out, namedOpcodes(t, f, fnName)...)
 	}
-	fn := findFunc(t, f, "lower")
-	for _, stmt := range fn.Body.List {
-		sw, ok := stmt.(*ast.SwitchStmt)
-		if !ok {
-			continue
+	for _, fnName := range lowerDispatchFuncs {
+		fn := findFunc(t, f, fnName)
+		found := false
+		for _, stmt := range fn.Body.List {
+			sw, ok := stmt.(*ast.SwitchStmt)
+			if !ok {
+				continue
+			}
+			sel, ok := sw.Tag.(*ast.SelectorExpr)
+			if !ok || sel.Sel.Name != "Opcode" {
+				continue
+			}
+			out = append(out, caseStrings(sw)...)
+			found = true
+			break
 		}
-		sel, ok := sw.Tag.(*ast.SelectorExpr)
-		if !ok || sel.Sel.Name != "Opcode" {
-			continue
+		if !found {
+			t.Fatalf("%s: no switch on i.Opcode in %s; the coverage gate needs updating", printerSource, fnName)
 		}
-		return append(out, caseStrings(sw)...)
 	}
-	t.Fatalf("%s: no switch on i.Opcode in lower; the coverage gate needs updating", printerSource)
-	return nil
+	return out
 }
 
 // mnemonics returns the distinct instruction mnemonics in the generated amd64
