@@ -15,7 +15,7 @@ import (
 	"math/bits"
 	"math/rand"
 
-	. "github.com/mmcloughlin/avo/build"
+	"github.com/mmcloughlin/avo/build"
 	"github.com/mmcloughlin/avo/operand"
 	"github.com/mmcloughlin/avo/reg"
 )
@@ -37,110 +37,110 @@ type Op struct {
 var Ops = []Op{
 	{
 		Name: "AddQ",
-		Emit: func(acc, y reg.GPVirtual) { ADDQ(y, acc) },
+		Emit: func(acc, y reg.GPVirtual) { build.ADDQ(y, acc) },
 		Ref:  func(acc, y uint64) uint64 { return acc + y },
 	},
 	{
 		Name: "SubQ",
-		Emit: func(acc, y reg.GPVirtual) { SUBQ(y, acc) },
+		Emit: func(acc, y reg.GPVirtual) { build.SUBQ(y, acc) },
 		Ref:  func(acc, y uint64) uint64 { return acc - y },
 	},
 	{
 		Name: "AndQ",
-		Emit: func(acc, y reg.GPVirtual) { ANDQ(y, acc) },
+		Emit: func(acc, y reg.GPVirtual) { build.ANDQ(y, acc) },
 		Ref:  func(acc, y uint64) uint64 { return acc & y },
 	},
 	{
 		Name: "OrQ",
-		Emit: func(acc, y reg.GPVirtual) { ORQ(y, acc) },
+		Emit: func(acc, y reg.GPVirtual) { build.ORQ(y, acc) },
 		Ref:  func(acc, y uint64) uint64 { return acc | y },
 	},
 	{
 		Name: "XorQ",
-		Emit: func(acc, y reg.GPVirtual) { XORQ(y, acc) },
+		Emit: func(acc, y reg.GPVirtual) { build.XORQ(y, acc) },
 		Ref:  func(acc, y uint64) uint64 { return acc ^ y },
 	},
 	{
 		Name: "ImulQ",
-		Emit: func(acc, y reg.GPVirtual) { IMULQ(y, acc) },
+		Emit: func(acc, y reg.GPVirtual) { build.IMULQ(y, acc) },
 		Ref:  func(acc, y uint64) uint64 { return acc * y },
 	},
 	// 32-bit ALU: the result zero-extends into the 64-bit register.
 	{
 		Name: "AddL",
-		Emit: func(acc, y reg.GPVirtual) { ADDL(y.As32(), acc.As32()) },
+		Emit: func(acc, y reg.GPVirtual) { build.ADDL(y.As32(), acc.As32()) },
 		Ref:  func(acc, y uint64) uint64 { return uint64(uint32(acc) + uint32(y)) },
 	},
 	{
 		Name: "SubL",
-		Emit: func(acc, y reg.GPVirtual) { SUBL(y.As32(), acc.As32()) },
+		Emit: func(acc, y reg.GPVirtual) { build.SUBL(y.As32(), acc.As32()) },
 		Ref:  func(acc, y uint64) uint64 { return uint64(uint32(acc) - uint32(y)) },
 	},
 	{
 		Name: "AndL",
-		Emit: func(acc, y reg.GPVirtual) { ANDL(y.As32(), acc.As32()) },
+		Emit: func(acc, y reg.GPVirtual) { build.ANDL(y.As32(), acc.As32()) },
 		Ref:  func(acc, y uint64) uint64 { return uint64(uint32(acc) & uint32(y)) },
 	},
 	{
 		Name: "ImulL",
-		Emit: func(acc, y reg.GPVirtual) { IMULL(y.As32(), acc.As32()) },
+		Emit: func(acc, y reg.GPVirtual) { build.IMULL(y.As32(), acc.As32()) },
 		Ref:  func(acc, y uint64) uint64 { return uint64(uint32(acc) * uint32(y)) },
 	},
 	// Shifts and rotates, immediate forms.
 	{
 		Name: "ShlQ3",
-		Emit: func(acc, y reg.GPVirtual) { SHLQ(operand.U8(3), acc) },
+		Emit: func(acc, y reg.GPVirtual) { build.SHLQ(operand.U8(3), acc) },
 		Ref:  func(acc, y uint64) uint64 { return acc << 3 },
 	},
 	{
 		Name: "ShrQ7",
-		Emit: func(acc, y reg.GPVirtual) { SHRQ(operand.U8(7), acc) },
+		Emit: func(acc, y reg.GPVirtual) { build.SHRQ(operand.U8(7), acc) },
 		Ref:  func(acc, y uint64) uint64 { return acc >> 7 },
 	},
 	{
 		Name: "SarQ5",
-		Emit: func(acc, y reg.GPVirtual) { SARQ(operand.U8(5), acc) },
+		Emit: func(acc, y reg.GPVirtual) { build.SARQ(operand.U8(5), acc) },
 		Ref:  func(acc, y uint64) uint64 { return uint64(int64(acc) >> 5) },
 	},
 	{
 		Name: "ShlL9",
-		Emit: func(acc, y reg.GPVirtual) { SHLL(operand.U8(9), acc.As32()) },
+		Emit: func(acc, y reg.GPVirtual) { build.SHLL(operand.U8(9), acc.As32()) },
 		Ref:  func(acc, y uint64) uint64 { return uint64(uint32(acc) << 9) },
 	},
 	{
 		Name: "RolQ13",
-		Emit: func(acc, y reg.GPVirtual) { ROLQ(operand.U8(13), acc) },
+		Emit: func(acc, y reg.GPVirtual) { build.ROLQ(operand.U8(13), acc) },
 		Ref:  func(acc, y uint64) uint64 { return bits.RotateLeft64(acc, 13) },
 	},
 	{
 		Name: "RolL5",
-		Emit: func(acc, y reg.GPVirtual) { ROLL(operand.U8(5), acc.As32()) },
+		Emit: func(acc, y reg.GPVirtual) { build.ROLL(operand.U8(5), acc.As32()) },
 		Ref:  func(acc, y uint64) uint64 { return uint64(bits.RotateLeft32(uint32(acc), 5)) },
 	},
 	// Unary.
 	{
 		Name: "NotQ",
-		Emit: func(acc, y reg.GPVirtual) { NOTQ(acc) },
+		Emit: func(acc, y reg.GPVirtual) { build.NOTQ(acc) },
 		Ref:  func(acc, y uint64) uint64 { return ^acc },
 	},
 	{
 		Name: "NegQ",
-		Emit: func(acc, y reg.GPVirtual) { NEGQ(acc) },
+		Emit: func(acc, y reg.GPVirtual) { build.NEGQ(acc) },
 		Ref:  func(acc, y uint64) uint64 { return -acc },
 	},
 	{
 		Name: "PopcntQ",
-		Emit: func(acc, y reg.GPVirtual) { POPCNTQ(acc, acc) },
+		Emit: func(acc, y reg.GPVirtual) { build.POPCNTQ(acc, acc) },
 		Ref:  func(acc, y uint64) uint64 { return uint64(bits.OnesCount64(acc)) },
 	},
 	{
 		Name: "TzcntQ",
-		Emit: func(acc, y reg.GPVirtual) { TZCNTQ(acc, acc) },
+		Emit: func(acc, y reg.GPVirtual) { build.TZCNTQ(acc, acc) },
 		Ref:  func(acc, y uint64) uint64 { return uint64(bits.TrailingZeros64(acc)) },
 	},
 	{
 		Name: "BswapL",
-		Emit: func(acc, y reg.GPVirtual) { BSWAPL(acc.As32()) },
+		Emit: func(acc, y reg.GPVirtual) { build.BSWAPL(acc.As32()) },
 		Ref:  func(acc, y uint64) uint64 { return uint64(bits.ReverseBytes32(uint32(acc))) },
 	},
 	// Width truncation and extension.
@@ -149,33 +149,33 @@ var Ops = []Op{
 		// self-move: avo elides "MOVL AX, AX" as redundant, even though on x86
 		// it clears the upper 32 bits.
 		Name: "MovLFromY",
-		Emit: func(acc, y reg.GPVirtual) { MOVL(y.As32(), acc.As32()) },
+		Emit: func(acc, y reg.GPVirtual) { build.MOVL(y.As32(), acc.As32()) },
 		Ref:  func(acc, y uint64) uint64 { return uint64(uint32(y)) },
 	},
 	{
 		Name: "SxL",
-		Emit: func(acc, y reg.GPVirtual) { MOVLQSX(acc.As32(), acc) },
+		Emit: func(acc, y reg.GPVirtual) { build.MOVLQSX(acc.As32(), acc) },
 		Ref:  func(acc, y uint64) uint64 { return uint64(int64(int32(acc))) },
 	},
 	{
 		Name: "ZxW",
-		Emit: func(acc, y reg.GPVirtual) { MOVWQZX(acc.As16(), acc) },
+		Emit: func(acc, y reg.GPVirtual) { build.MOVWQZX(acc.As16(), acc) },
 		Ref:  func(acc, y uint64) uint64 { return uint64(uint16(acc)) },
 	},
 	// Partial-register writes: only the addressed byte changes.
 	{
 		Name: "MovBLow",
-		Emit: func(acc, y reg.GPVirtual) { MOVB(y.As8(), acc.As8()) },
+		Emit: func(acc, y reg.GPVirtual) { build.MOVB(y.As8(), acc.As8()) },
 		Ref:  func(acc, y uint64) uint64 { return acc&^0xff | y&0xff },
 	},
 	{
 		Name: "AddB",
-		Emit: func(acc, y reg.GPVirtual) { ADDB(y.As8(), acc.As8()) },
+		Emit: func(acc, y reg.GPVirtual) { build.ADDB(y.As8(), acc.As8()) },
 		Ref:  func(acc, y uint64) uint64 { return acc&^0xff | (acc+y)&0xff },
 	},
 	{
 		Name: "ShlB2",
-		Emit: func(acc, y reg.GPVirtual) { SHLB(operand.U8(2), acc.As8()) },
+		Emit: func(acc, y reg.GPVirtual) { build.SHLB(operand.U8(2), acc.As8()) },
 		Ref:  func(acc, y uint64) uint64 { return acc&^0xff | (acc&0xff)<<2&0xff },
 	},
 	// Flag producer/consumer pairs. Two of the three miscompiles found in this
@@ -183,8 +183,8 @@ var Ops = []Op{
 	{
 		Name: "CmovBelow",
 		Emit: func(acc, y reg.GPVirtual) {
-			CMPQ(acc, y)
-			CMOVQCS(y, acc) // acc = acc < y ? y : acc
+			build.CMPQ(acc, y)
+			build.CMOVQCS(y, acc) // acc = acc < y ? y : acc
 		},
 		Ref: func(acc, y uint64) uint64 {
 			if acc < y {
@@ -196,16 +196,16 @@ var Ops = []Op{
 	{
 		Name: "CmovEq",
 		Emit: func(acc, y reg.GPVirtual) {
-			CMPQ(acc, y)
-			CMOVQEQ(y, acc)
+			build.CMPQ(acc, y)
+			build.CMOVQEQ(y, acc)
 		},
 		Ref: func(acc, y uint64) uint64 { return acc },
 	},
 	{
 		Name: "SetLess",
 		Emit: func(acc, y reg.GPVirtual) {
-			CMPQ(acc, y)
-			SETLT(acc.As8()) // signed <, written into acc's low byte
+			build.CMPQ(acc, y)
+			build.SETLT(acc.As8()) // signed <, written into acc's low byte
 		},
 		Ref: func(acc, y uint64) uint64 {
 			v := uint64(0)
@@ -217,7 +217,7 @@ var Ops = []Op{
 	},
 	{
 		Name: "XorSelfZero",
-		Emit: func(acc, y reg.GPVirtual) { XORQ(acc, acc) },
+		Emit: func(acc, y reg.GPVirtual) { build.XORQ(acc, acc) },
 		Ref:  func(acc, y uint64) uint64 { return 0 },
 	},
 }
@@ -253,21 +253,21 @@ var MemOps = []MemOp{
 	{
 		Name: "AddQMemIdx",
 		Emit: func(acc, y, p, idx reg.GPVirtual) {
-			ADDQ(operand.Mem{Base: p, Index: idx, Scale: 8}, acc)
+			build.ADDQ(operand.Mem{Base: p, Index: idx, Scale: 8}, acc)
 		},
 		Ref: func(acc, y uint64, mem *[8]uint64, idx *uint64) uint64 { return acc + mem[*idx] },
 	},
 	{
 		Name: "XorQMemIdx",
 		Emit: func(acc, y, p, idx reg.GPVirtual) {
-			XORQ(operand.Mem{Base: p, Index: idx, Scale: 8}, acc)
+			build.XORQ(operand.Mem{Base: p, Index: idx, Scale: 8}, acc)
 		},
 		Ref: func(acc, y uint64, mem *[8]uint64, idx *uint64) uint64 { return acc ^ mem[*idx] },
 	},
 	{
 		Name: "ImulQMemDisp",
 		Emit: func(acc, y, p, idx reg.GPVirtual) {
-			IMULQ(operand.Mem{Base: p, Disp: 16}, acc)
+			build.IMULQ(operand.Mem{Base: p, Disp: 16}, acc)
 		},
 		Ref: func(acc, y uint64, mem *[8]uint64, idx *uint64) uint64 { return acc * mem[2] },
 	},
@@ -276,14 +276,14 @@ var MemOps = []MemOp{
 		// bytes, and the result must zero-extend.
 		Name: "MovLMemDisp",
 		Emit: func(acc, y, p, idx reg.GPVirtual) {
-			MOVL(operand.Mem{Base: p, Disp: 4}, acc.As32())
+			build.MOVL(operand.Mem{Base: p, Disp: 4}, acc.As32())
 		},
 		Ref: func(acc, y uint64, mem *[8]uint64, idx *uint64) uint64 { return uint64(uint32(mem[0] >> 32)) },
 	},
 	{
 		Name: "AddLMemIdx",
 		Emit: func(acc, y, p, idx reg.GPVirtual) {
-			ADDL(operand.Mem{Base: p, Index: idx, Scale: 8}, acc.As32())
+			build.ADDL(operand.Mem{Base: p, Index: idx, Scale: 8}, acc.As32())
 		},
 		Ref: func(acc, y uint64, mem *[8]uint64, idx *uint64) uint64 {
 			return uint64(uint32(acc) + uint32(mem[*idx]))
@@ -293,7 +293,7 @@ var MemOps = []MemOp{
 		// A byte load into the low byte of acc, leaving the rest alone.
 		Name: "MovBMemDisp",
 		Emit: func(acc, y, p, idx reg.GPVirtual) {
-			MOVB(operand.Mem{Base: p, Disp: 1}, acc.As8())
+			build.MOVB(operand.Mem{Base: p, Disp: 1}, acc.As8())
 		},
 		Ref: func(acc, y uint64, mem *[8]uint64, idx *uint64) uint64 {
 			return acc&^0xff | mem[0]>>8&0xff
@@ -302,14 +302,14 @@ var MemOps = []MemOp{
 	{
 		Name: "MovWZXMemDisp",
 		Emit: func(acc, y, p, idx reg.GPVirtual) {
-			MOVWQZX(operand.Mem{Base: p, Disp: 2}, acc)
+			build.MOVWQZX(operand.Mem{Base: p, Disp: 2}, acc)
 		},
 		Ref: func(acc, y uint64, mem *[8]uint64, idx *uint64) uint64 { return mem[0] >> 16 & 0xffff },
 	},
 	{
 		Name: "MovLSXMemDisp",
 		Emit: func(acc, y, p, idx reg.GPVirtual) {
-			MOVLQSX(operand.Mem{Base: p, Disp: 8}, acc)
+			build.MOVLQSX(operand.Mem{Base: p, Disp: 8}, acc)
 		},
 		Ref: func(acc, y uint64, mem *[8]uint64, idx *uint64) uint64 {
 			return uint64(int64(int32(uint32(mem[1]))))
@@ -321,8 +321,8 @@ var MemOps = []MemOp{
 		// has to insert.
 		Name: "CmpMemSelect",
 		Emit: func(acc, y, p, idx reg.GPVirtual) {
-			CMPQ(acc, operand.Mem{Base: p, Index: idx, Scale: 8})
-			CMOVQCS(y, acc)
+			build.CMPQ(acc, operand.Mem{Base: p, Index: idx, Scale: 8})
+			build.CMOVQCS(y, acc)
 		},
 		Ref: func(acc, y uint64, mem *[8]uint64, idx *uint64) uint64 {
 			if acc < mem[*idx] {
@@ -336,10 +336,10 @@ var MemOps = []MemOp{
 		// answer does not depend on where the array happens to live.
 		Name: "LeaIdxOffset",
 		Emit: func(acc, y, p, idx reg.GPVirtual) {
-			t := GP64()
-			LEAQ(operand.Mem{Base: p, Index: idx, Scale: 8, Disp: 8}, t)
-			SUBQ(p, t)
-			MOVQ(t, acc)
+			t := build.GP64()
+			build.LEAQ(operand.Mem{Base: p, Index: idx, Scale: 8, Disp: 8}, t)
+			build.SUBQ(p, t)
+			build.MOVQ(t, acc)
 		},
 		Ref: func(acc, y uint64, mem *[8]uint64, idx *uint64) uint64 { return *idx*8 + 8 },
 	},
@@ -348,7 +348,7 @@ var MemOps = []MemOp{
 		// must leave the upper half of the destination word untouched.
 		Name: "StoreQIdx",
 		Emit: func(acc, y, p, idx reg.GPVirtual) {
-			MOVQ(acc, operand.Mem{Base: p, Index: idx, Scale: 8})
+			build.MOVQ(acc, operand.Mem{Base: p, Index: idx, Scale: 8})
 		},
 		Ref: func(acc, y uint64, mem *[8]uint64, idx *uint64) uint64 {
 			mem[*idx] = acc
@@ -358,7 +358,7 @@ var MemOps = []MemOp{
 	{
 		Name: "StoreLDisp",
 		Emit: func(acc, y, p, idx reg.GPVirtual) {
-			MOVL(acc.As32(), operand.Mem{Base: p, Disp: 24})
+			build.MOVL(acc.As32(), operand.Mem{Base: p, Disp: 24})
 		},
 		Ref: func(acc, y uint64, mem *[8]uint64, idx *uint64) uint64 {
 			mem[3] = mem[3]&0xffffffff00000000 | uint64(uint32(acc))
@@ -372,8 +372,8 @@ var MemOps = []MemOp{
 		Name: "ReadModifyWriteIdx",
 		Emit: func(acc, y, p, idx reg.GPVirtual) {
 			m := operand.Mem{Base: p, Index: idx, Scale: 8}
-			ADDQ(m, acc)
-			MOVQ(acc, m)
+			build.ADDQ(m, acc)
+			build.MOVQ(acc, m)
 		},
 		Ref: func(acc, y uint64, mem *[8]uint64, idx *uint64) uint64 {
 			acc += mem[*idx]
@@ -397,10 +397,10 @@ var MemOps = []MemOp{
 		Name: "StaleIdxAccess",
 		Emit: func(acc, y, p, idx reg.GPVirtual) {
 			m := operand.Mem{Base: p, Index: idx, Scale: 8}
-			ADDL(m, acc.As32())
-			INCQ(idx)
-			ANDQ(operand.U32(3), idx)
-			ADDL(m, acc.As32())
+			build.ADDL(m, acc.As32())
+			build.INCQ(idx)
+			build.ANDQ(operand.U32(3), idx)
+			build.ADDL(m, acc.As32())
 		},
 		Ref: func(acc, y uint64, mem *[8]uint64, idx *uint64) uint64 {
 			a := uint64(uint32(acc) + uint32(mem[*idx]))
@@ -412,7 +412,7 @@ var MemOps = []MemOp{
 		// A displacement alongside a scaled index, which also cannot be folded.
 		Name: "AddQMemIdxDisp",
 		Emit: func(acc, y, p, idx reg.GPVirtual) {
-			ADDQ(operand.Mem{Base: p, Index: idx, Scale: 8, Disp: 8}, acc)
+			build.ADDQ(operand.Mem{Base: p, Index: idx, Scale: 8, Disp: 8}, acc)
 		},
 		Ref: func(acc, y uint64, mem *[8]uint64, idx *uint64) uint64 {
 			return acc + mem[*idx+1]
@@ -426,8 +426,8 @@ var MemOps = []MemOp{
 		// and this is what notices.
 		Name: "AdvanceIdx",
 		Emit: func(acc, y, p, idx reg.GPVirtual) {
-			INCQ(idx)
-			ANDQ(operand.U32(3), idx)
+			build.INCQ(idx)
+			build.ANDQ(operand.U32(3), idx)
 		},
 		Ref: func(acc, y uint64, mem *[8]uint64, idx *uint64) uint64 {
 			*idx = (*idx + 1) & 3
@@ -439,17 +439,17 @@ var MemOps = []MemOp{
 	// them in real code.
 	{
 		Name: "AddQReg",
-		Emit: func(acc, y, p, idx reg.GPVirtual) { ADDQ(y, acc) },
+		Emit: func(acc, y, p, idx reg.GPVirtual) { build.ADDQ(y, acc) },
 		Ref:  func(acc, y uint64, mem *[8]uint64, idx *uint64) uint64 { return acc + y },
 	},
 	{
 		Name: "RolQ11",
-		Emit: func(acc, y, p, idx reg.GPVirtual) { ROLQ(operand.U8(11), acc) },
+		Emit: func(acc, y, p, idx reg.GPVirtual) { build.ROLQ(operand.U8(11), acc) },
 		Ref:  func(acc, y uint64, mem *[8]uint64, idx *uint64) uint64 { return bits.RotateLeft64(acc, 11) },
 	},
 	{
 		Name: "SubQReg",
-		Emit: func(acc, y, p, idx reg.GPVirtual) { SUBQ(y, acc) },
+		Emit: func(acc, y, p, idx reg.GPVirtual) { build.SUBQ(y, acc) },
 		Ref:  func(acc, y uint64, mem *[8]uint64, idx *uint64) uint64 { return acc - y },
 	},
 }

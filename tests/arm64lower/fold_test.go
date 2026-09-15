@@ -11,6 +11,8 @@ import (
 // TestCopyFolds runs the copy-fold shapes (see shiftFolds and setccFolds in
 // printer/arm64.go) against pure-Go references, including the shapes the
 // folds must refuse.
+//
+//nolint:gocognit // table-driven differential test; splitting the cases would only add indirection, not clarity.
 func TestCopyFolds(t *testing.T) {
 	xs := []uint64{0, 1, 3, 63, 64, 65, 0xdeadbeefcafef00d, ^uint64(0), 0x8000000000000000, 127}
 	for _, x := range xs {

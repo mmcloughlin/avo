@@ -17,6 +17,7 @@ import (
 )
 
 //go:generate go run asm.go -out lower_amd64.s -arm64 lower_arm64.s -stubs stub.go
+//go:generate sh prop_table.sh
 
 func TestArith(t *testing.T) {
 	cases := []struct {
@@ -55,10 +56,18 @@ func TestConditions(t *testing.T) {
 		return 0
 	}
 	pairs := []struct{ a, b uint64 }{
-		{0, 0}, {1, 0}, {0, 1}, {5, 5}, {5, 6}, {6, 5},
-		{^uint64(0), 0}, {0, ^uint64(0)}, // -1 vs 0 (signed) / max vs 0 (unsigned)
-		{^uint64(0), 1}, {1, ^uint64(0)},
-		{1 << 63, 1}, {1, 1 << 63}, // sign-bit boundaries
+		{0, 0},
+		{1, 0},
+		{0, 1},
+		{5, 5},
+		{5, 6},
+		{6, 5},
+		{^uint64(0), 0},
+		{0, ^uint64(0)}, // -1 vs 0 (signed) / max vs 0 (unsigned)
+		{^uint64(0), 1},
+		{1, ^uint64(0)},
+		{1 << 63, 1},
+		{1, 1 << 63}, // sign-bit boundaries
 	}
 	conds := []struct {
 		name string
@@ -129,6 +138,8 @@ func TestFlagGap(t *testing.T) {
 // TestCompareWidth covers 32-bit CMPL/TESTL on operands whose upper 32 bits
 // differ. A correct lowering compares only the low 32 bits; folding to a 64-bit
 // compare is observably wrong here, for signed and unsigned conditions alike.
+//
+//nolint:gocognit // table-driven differential test; splitting the cases would only add indirection, not clarity.
 func TestCompareWidth(t *testing.T) {
 	b2u := func(b bool) uint64 {
 		if b {
@@ -244,9 +255,14 @@ func bzhiRef(x, n uint64) uint64 {
 // TestMultiply covers IMULQ (2- and 1-operand), IMUL3Q, MULQ, and BMI2 MULXQ.
 func TestMultiply(t *testing.T) {
 	pairs := []struct{ x, y uint64 }{
-		{0, 0}, {1, 1}, {3, 5}, {0xdeadbeef, 0x1234},
-		{^uint64(0), 2}, {^uint64(0), ^uint64(0)},
-		{1 << 40, 1 << 40}, {0x9E3779B97F4A7C15, 0x100000001},
+		{0, 0},
+		{1, 1},
+		{3, 5},
+		{0xdeadbeef, 0x1234},
+		{^uint64(0), 2},
+		{^uint64(0), ^uint64(0)},
+		{1 << 40, 1 << 40},
+		{0x9E3779B97F4A7C15, 0x100000001},
 	}
 	for _, p := range pairs {
 		if got, want := IMul2(p.x, p.y), p.x*p.y; got != want {
@@ -272,6 +288,8 @@ func TestMultiply(t *testing.T) {
 }
 
 // TestBMI2 covers the BMI2 flag-free shifts/rotate and bit-field ops.
+//
+//nolint:gocognit // table-driven differential test; splitting the cases would only add indirection, not clarity.
 func TestBMI2(t *testing.T) {
 	xs := []uint64{0, 1, 0xdeadbeefcafef00d, ^uint64(0), 0x8000000000000000, 0x00ff00ff00ff00ff}
 	for _, x := range xs {
@@ -461,6 +479,8 @@ func TestCopy16(t *testing.T) {
 
 // TestOpcodeCoverage exercises the extension, 32-bit ALU, rotate, bit-manipulation
 // and 128-bit move lowerings against pure-Go references.
+//
+//nolint:gocognit // table-driven differential test; splitting the cases would only add indirection, not clarity.
 func TestOpcodeCoverage(t *testing.T) {
 	xs := []uint64{
 		0, 1, 2, 5, 32, 127, 128, 255, 256, 65535, 65536,
@@ -687,6 +707,8 @@ func TestRandomPrograms(t *testing.T) {
 // read as the low byte, a 32-bit conditional move that skipped x86's
 // unconditional zero-extension, and BEXTR clobbering its own staged control
 // field with a memory operand's address.
+//
+//nolint:gocognit // table-driven differential test; splitting the cases would only add indirection, not clarity.
 func TestReviewRegressions(t *testing.T) {
 	xs := []uint64{0, 1, 0xff, 0x1234, 0xdeadbeefcafef00d, ^uint64(0), 1 << 63, 0xffffffff00000000}
 
@@ -862,8 +884,13 @@ func TestRandomMemPrograms(t *testing.T) {
 		0x8000000000000000, 0x00ff00ff00ff00ff, ^uint64(0), 0x123456789abcdef0,
 	}
 	inputs := []struct{ x, y uint64 }{
-		{0, 0}, {1, 1}, {0xdeadbeef, 2}, {^uint64(0), 3},
-		{1 << 63, 5}, {0x0123456789abcdef, 7}, {0xffffffff, 4},
+		{0, 0},
+		{1, 1},
+		{0xdeadbeef, 2},
+		{^uint64(0), 3},
+		{1 << 63, 5},
+		{0x0123456789abcdef, 7},
+		{0xffffffff, 4},
 	}
 	for n := 0; n < propspec.NumMemPrograms; n++ {
 		prog := propspec.MemProgram(n, propspec.MemProgramLength)
@@ -898,6 +925,8 @@ func TestRandomMemPrograms(t *testing.T) {
 // x86 operand form that the in-tree generators happen never to use, which is
 // what makes them the interesting class: the printer had been exercised for
 // years by code that never took these paths.
+//
+//nolint:gocognit // table-driven differential test; splitting the cases would only add indirection, not clarity.
 func TestReviewRound4Regressions(t *testing.T) {
 	// A 32-bit read-modify-write on memory must touch four bytes. The lowering
 	// loaded and stored eight, and since the W-form arithmetic zeroes the upper
@@ -930,8 +959,12 @@ func TestReviewRound4Regressions(t *testing.T) {
 	// XORL is 32-bit, so a sign test after it reads bit 31, not bit 63.
 	t.Run("XorlSign", func(t *testing.T) {
 		for _, c := range []struct{ x, y uint64 }{
-			{0x80000000, 0}, {0, 0x80000000}, {0x80000000, 0x80000000},
-			{0xffffffff00000000, 0}, {1, 2}, {0x7fffffff, 0},
+			{0x80000000, 0},
+			{0, 0x80000000},
+			{0x80000000, 0x80000000},
+			{0xffffffff00000000, 0},
+			{1, 2},
+			{0x7fffffff, 0},
 		} {
 			want := uint64(0)
 			if (uint32(c.x)^uint32(c.y))&0x80000000 != 0 {
@@ -1034,6 +1067,8 @@ func TestReviewRound4Regressions(t *testing.T) {
 // means 0xffffffff80000000 -- and Go's assembler takes the unsigned spelling
 // without complaint, which is what made this invisible. Every case is chosen so
 // the literal and sign-extended readings disagree.
+//
+//nolint:gocognit // table-driven differential test; splitting the cases would only add indirection, not clarity.
 func TestQWidthImmediates(t *testing.T) {
 	const se = uint64(0xffffffff80000000) // what $0x80000000 means at Q width
 
