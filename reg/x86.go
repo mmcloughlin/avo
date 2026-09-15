@@ -333,6 +333,20 @@ var (
 	Z31 = vec(S512, 31, "Z31")
 )
 
+// VecRegisters returns the first n vector registers with the given spec,
+// indexed by physical register number. Returns nil if there are not that many.
+func VecRegisters(s Spec, n int) []VecPhysical {
+	vs := make([]VecPhysical, n)
+	for i := range vs {
+		r := Vector.Lookup(Index(i), s)
+		if r == nil {
+			return nil
+		}
+		vs[i] = r.(VecPhysical)
+	}
+	return vs
+}
+
 // OpmaskPhysical is a opmask physical register.
 type OpmaskPhysical interface {
 	Physical

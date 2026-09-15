@@ -86,3 +86,57 @@ func TestAsPreservesVecVirtual(t *testing.T) {
 		}
 	}
 }
+
+func TestVecRegisters(t *testing.T) {
+	cases := []struct {
+		Spec   Spec
+		N      int
+		Index  Index
+		Expect VecPhysical
+	}{
+		{S128, 16, 0, X0},
+		{S128, 32, 31, X31},
+		{S256, 16, 13, Y13},
+		{S256, 32, 20, Y20},
+		{S512, 32, 27, Z27},
+		{S512, 8, 7, Z7},
+	}
+	for _, c := range cases {
+		vs := VecRegisters(c.Spec, c.N)
+		if len(vs) != c.N {
+			t.Fatalf("spec=%v n=%d: got %d registers", c.Spec, c.N, len(vs))
+		}
+		if got := vs[c.Index]; got != c.Expect {
+			t.Errorf("spec=%v idx=%v: got %v expect %v", c.Spec, c.Index, got, c.Expect)
+		}
+	}
+}
+
+func TestVecRegistersIndexes(t *testing.T) {
+	for _, s := range []Spec{S128, S256, S512} {
+		for i, r := range VecRegisters(s, 32) {
+			if int(r.PhysicalIndex()) != i {
+				t.Errorf("spec=%v: register %v at index %d", s, r, i)
+			}
+			if r.Mask() != s.Mask() {
+				t.Errorf("spec=%v: register %v has mask %#x", s, r, r.Mask())
+			}
+		}
+	}
+}
+
+func TestVecRegistersTooMany(t *testing.T) {
+	for _, s := range []Spec{S128, S256, S512} {
+		if vs := VecRegisters(s, 33); vs != nil {
+			t.Errorf("spec=%v n=33: got %v expect nil", s, vs)
+		}
+	}
+}
+
+func TestVecRegistersNonVectorSpec(t *testing.T) {
+	for _, s := range []Spec{S0, S8L, S8H, S16, S32, S64} {
+		if vs := VecRegisters(s, 1); vs != nil {
+			t.Errorf("spec=%v: got %v expect nil", s, vs)
+		}
+	}
+}
