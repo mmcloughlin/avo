@@ -767,6 +767,7 @@
                     "pkg": "src/crypto/internal/fips140/bigmod",
                     "module": "src/crypto/internal/fips140/bigmod/_asm/go.mod",
                     "root": ".",
+                    "toolchain": ".",
                     "setup": [
                         {
                             "name": "Compile Go Toolchain",
@@ -779,14 +780,14 @@
                     "generate": [
                         {
                             "commands": [
-                                "env --unset=GOROOT ./bin/go generate -v -x ./src/crypto/internal/fips140/bigmod/_asm"
+                                "go generate -v -x ./src/crypto/internal/fips140/bigmod/_asm"
                             ]
                         }
                     ],
                     "test": [
                         {
                             "commands": [
-                                "env --unset=GOROOT ./bin/go test crypto/..."
+                                "go test -short crypto/..."
                             ]
                         }
                     ]
@@ -795,6 +796,7 @@
                     "pkg": "src/crypto/internal/fips140/edwards25519",
                     "module": "src/crypto/internal/fips140/edwards25519/field/_asm/go.mod",
                     "root": ".",
+                    "toolchain": ".",
                     "setup": [
                         {
                             "name": "Compile Go Toolchain",
@@ -807,14 +809,14 @@
                     "generate": [
                         {
                             "commands": [
-                                "env --unset=GOROOT ./bin/go generate -v -x ./src/crypto/internal/fips140/edwards25519/field/_asm"
+                                "go generate -v -x ./src/crypto/internal/fips140/edwards25519/field/_asm"
                             ]
                         }
                     ],
                     "test": [
                         {
                             "commands": [
-                                "env --unset=GOROOT ./bin/go test crypto/ed25519/..."
+                                "go test -short crypto/ed25519/..."
                             ]
                         }
                     ]

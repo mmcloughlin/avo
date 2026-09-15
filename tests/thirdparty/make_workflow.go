@@ -128,6 +128,14 @@ func GenerateWorkflow(s *thirdparty.Suite) ([]byte, error) {
 			RepositoryDirectory: path.Join("${{ github.workspace }}", pkgdir),
 		}
 
+		// Use the Go toolchain provided by the package, if any.
+		if goroot := t.Package.GOROOT(c); goroot != "" {
+			g.Linef("- name: Configure Go Toolchain")
+			g.Linef("  run: |")
+			g.Linef(`    echo "GOROOT=%s" >> "$GITHUB_ENV"`, goroot)
+			g.Linef(`    echo "%s" >> "$GITHUB_PATH"`, path.Join(goroot, "bin"))
+		}
+
 		for _, step := range t.Package.Steps(c) {
 			g.Linef("- name: %s", step.Name)
 			g.Linef("  working-directory: %s", path.Join(pkgdir, step.WorkingDirectory))

@@ -2,6 +2,7 @@ package thirdparty
 
 import (
 	"bytes"
+	"path/filepath"
 	"reflect"
 	"strings"
 	"testing"
@@ -84,6 +85,17 @@ func TestValidateErrors(t *testing.T) {
 			ErrorSubstring: "generate step: missing name",
 		},
 		{
+			Name: "package_absolute_toolchain",
+			Item: &Package{
+				Module:    "avo/go.mod",
+				Toolchain: "/usr/local/go",
+				Generate: []*Step{
+					{Name: "Generate", Commands: []string{"go generate ./..."}},
+				},
+			},
+			ErrorSubstring: "toolchain must be relative",
+		},
+		{
 			Name: "projects_invalid_package",
 			Item: Projects{
 				{
@@ -101,6 +113,46 @@ func TestValidateErrors(t *testing.T) {
 			}
 			if !strings.Contains(err.Error(), c.ErrorSubstring) {
 				t.Fatalf("expected error message to contain %q; got %q", c.ErrorSubstring, err)
+			}
+		})
+	}
+}
+
+func TestPackageGOROOT(t *testing.T) {
+	c := &Context{
+		AvoDirectory:        "avo",
+		RepositoryDirectory: "repo",
+	}
+	cases := []struct {
+		Name    string
+		Package *Package
+		Expect  string
+	}{
+		{
+			Name:    "ambient",
+			Package: &Package{},
+			Expect:  "",
+		},
+		{
+			Name:    "repository_root",
+			Package: &Package{Root: ".", Toolchain: "."},
+			Expect:  "repo",
+		},
+		{
+			Name:    "relative_to_root",
+			Package: &Package{Root: "sub", Toolchain: "toolchain"},
+			Expect:  filepath.Join("repo", "sub", "toolchain"),
+		},
+		{
+			Name:    "relative_to_sub_package",
+			Package: &Package{SubPackage: "pkg", Toolchain: "toolchain"},
+			Expect:  filepath.Join("repo", "pkg", "toolchain"),
+		},
+	}
+	for _, tc := range cases {
+		t.Run(tc.Name, func(t *testing.T) {
+			if got := tc.Package.GOROOT(c); got != tc.Expect {
+				t.Fatalf("got %q; expect %q", got, tc.Expect)
 			}
 		})
 	}

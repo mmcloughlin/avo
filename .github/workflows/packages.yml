@@ -985,6 +985,10 @@ jobs:
           ref: go1.26.5
           path: go
           persist-credentials: false
+      - name: Configure Go Toolchain
+        run: |
+          echo "GOROOT=${{ github.workspace }}/go" >> "$GITHUB_ENV"
+          echo "${{ github.workspace }}/go/bin" >> "$GITHUB_PATH"
       - name: Compile Go Toolchain
         working-directory: go/src
         run: ./make.bash
@@ -996,13 +1000,13 @@ jobs:
           go mod tidy -modfile=go.mod
       - name: Generate
         working-directory: go
-        run: env --unset=GOROOT ./bin/go generate -v -x ./src/crypto/internal/fips140/bigmod/_asm
+        run: go generate -v -x ./src/crypto/internal/fips140/bigmod/_asm
       - name: Diff
         working-directory: go
         run: git diff
       - name: Test
         working-directory: go
-        run: env --unset=GOROOT ./bin/go test crypto/...
+        run: go test -short crypto/...
   golang-go-src-crypto-internal-fips140-edwards25519:
     runs-on: ubuntu-latest
     steps:
@@ -1023,6 +1027,10 @@ jobs:
           ref: go1.26.5
           path: go
           persist-credentials: false
+      - name: Configure Go Toolchain
+        run: |
+          echo "GOROOT=${{ github.workspace }}/go" >> "$GITHUB_ENV"
+          echo "${{ github.workspace }}/go/bin" >> "$GITHUB_PATH"
       - name: Compile Go Toolchain
         working-directory: go/src
         run: ./make.bash
@@ -1034,13 +1042,13 @@ jobs:
           go mod tidy -modfile=go.mod
       - name: Generate
         working-directory: go
-        run: env --unset=GOROOT ./bin/go generate -v -x ./src/crypto/internal/fips140/edwards25519/field/_asm
+        run: go generate -v -x ./src/crypto/internal/fips140/edwards25519/field/_asm
       - name: Diff
         working-directory: go
         run: git diff
       - name: Test
         working-directory: go
-        run: env --unset=GOROOT ./bin/go test crypto/ed25519/...
+        run: go test -short crypto/ed25519/...
   cloudflare-circl-sign-dilithium:
     runs-on: ubuntu-latest
     steps:
