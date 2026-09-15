@@ -46,6 +46,7 @@ type Instruction struct {
 	IsTerminal       bool
 	IsBranch         bool
 	IsConditional    bool
+	IsPseudo         bool
 	CancellingInputs bool
 
 	// ISA is the list of required instruction set extensions.

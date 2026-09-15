@@ -155,6 +155,17 @@ func (c *Context) Instruction(i *ir.Instruction) {
 	c.activefunc().AddInstruction(i)
 }
 
+// MarkUndefined marks the given registers as having undefined values at this
+// point, without emitting any actual instructions. This is used for bounding
+// the live range of registers.
+func (c *Context) MarkUndefined(regs ...reg.Register) {
+	i := &ir.Instruction{IsPseudo: true}
+	for _, r := range regs {
+		i.Outputs = append(i.Outputs, r)
+	}
+	c.Instruction(i)
+}
+
 // Label adds a label to the active function.
 func (c *Context) Label(name string) {
 	c.activefunc().AddLabel(ir.Label(name))
