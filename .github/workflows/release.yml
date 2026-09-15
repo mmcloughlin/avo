@@ -1,0 +1,61 @@
+name: release
+permissions:
+  contents: read
+on:
+  release:
+    types:
+      - published
+  # Allow a dry run against the default branch, which builds the documents but
+  # has no release to attach them to.
+  workflow_dispatch:
+jobs:
+  sbom:
+    runs-on: ubuntu-latest
+    permissions:
+      # Required to attach the documents to the release.
+      contents: write
+      # Required to record the attestations.
+      id-token: write
+      attestations: write
+    steps:
+      - name: Install Go
+        uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
+        with:
+          go-version: 1.26.x
+          check-latest: true
+          # This job publishes artifacts, so do not let a poisoned module
+          # cache contribute to them.
+          cache: false
+      - name: Checkout code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      # Resolve the module graph up front so the dependencies recorded in the
+      # documents below are the ones the release actually builds against.
+      - name: Download Modules
+        run: go mod download
+      - name: Generate SPDX Document
+        uses: anchore/sbom-action@e22c389904149dbc22b58101806040fa8d37a610 # v0.24.0
+        with:
+          path: .
+          format: spdx-json
+          output-file: avo.spdx.json
+          artifact-name: avo.spdx.json
+          upload-release-assets: true
+      - name: Generate CycloneDX Document
+        uses: anchore/sbom-action@e22c389904149dbc22b58101806040fa8d37a610 # v0.24.0
+        with:
+          path: .
+          format: cyclonedx-json
+          output-file: avo.cdx.json
+          artifact-name: avo.cdx.json
+          upload-release-assets: true
+      # avo is consumed as a module rather than as a binary, so there is no
+      # release artifact to attest. Record provenance for the documents
+      # themselves, which is what a consumer can independently verify.
+      - name: Attest Provenance
+        uses: actions/attest-build-provenance@0f67c3f4856b2e3261c31976d6725780e5e4c373 # v4.1.1
+        with:
+          subject-path: |
+            avo.spdx.json
+            avo.cdx.json
