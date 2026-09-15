@@ -22,7 +22,7 @@ var (
 	num    = flag.Int("num", 32, "number of attributes to generate")
 )
 
-func GenerateAttributes(n int) []attr.Attribute {
+func GenerateAttributes(rng *rand.Rand, n int) []attr.Attribute {
 	as := make([]attr.Attribute, 0, n)
 
 	// Include each bitlevel.
@@ -33,7 +33,7 @@ func GenerateAttributes(n int) []attr.Attribute {
 
 	// Add randomly generated attributes.
 	for len(as) < n {
-		a := attr.Attribute(rand.Uint32())
+		a := attr.Attribute(rng.Uint32())
 		as = append(as, a)
 	}
 
@@ -76,8 +76,8 @@ func main() {
 		w = f
 	}
 
-	rand.Seed(*seed)
-	as := GenerateAttributes(*num)
+	rng := rand.New(rand.NewSource(*seed))
+	as := GenerateAttributes(rng, *num)
 
 	buf := bytes.NewBuffer(nil)
 	PrintAttributesTest(buf, as)

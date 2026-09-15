@@ -1,0 +1,13 @@
+version: 2
+updates:
+  # Group golang.org/x modules, which are released together.
+  - package-ecosystem: gomod
+    directory: /
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: all
+    groups:
+      golang-x:
+        patterns:
+          - golang.org/x/*

@@ -7,7 +7,7 @@
             },
             "metadata": {
                 "description": "XXH3 algorithm in Go",
-                "stars": 557
+                "stars": 582
             },
             "default_branch": "master",
             "version": "v1.0.0-rc1",
@@ -76,7 +76,7 @@
             },
             "metadata": {
                 "description": "Go implementation of the BLS12-381 pairing",
-                "stars": 91
+                "stars": 92
             },
             "default_branch": "master",
             "version": "a88a5ae26844d7293359422888d7c7f69f43c845",
@@ -120,7 +120,7 @@
             },
             "metadata": {
                 "description": "Accelerate aggregated MD5 hashing performance up to 8x for AVX512 and 4x for AVX2. Useful for server applications that need to compute many MD5 sums in parallel.",
-                "stars": 212
+                "stars": 217
             },
             "default_branch": "master",
             "version": "30ad8af83f6868c2a30c615f3edf1a9366bf3f89",
@@ -145,7 +145,7 @@
             },
             "metadata": {
                 "description": "Pure Go implementation of BLAKE3 with AVX2 and SSE4.1 acceleration",
-                "stars": 479
+                "stars": 494
             },
             "default_branch": "master",
             "version": "25dba572f0e78ec108f0dd79c9c15288f542d7d9",
@@ -171,7 +171,7 @@
             },
             "metadata": {
                 "description": "Reed-Solomon Erasure Coding in Go",
-                "stars": 2077
+                "stars": 2091
             },
             "default_branch": "master",
             "version": "922778284547557265cff0f903ab5f4c27e40ae9",
@@ -196,7 +196,7 @@
             },
             "metadata": {
                 "description": "A pure-Go wyhash implementation.",
-                "stars": 34
+                "stars": 35
             },
             "default_branch": "master",
             "version": "32a3f7f6ba4797e2d87dab2969cc9dd63d39cce9",
@@ -230,7 +230,7 @@
             },
             "metadata": {
                 "description": "Optimized Go Compression Packages",
-                "stars": 5510
+                "stars": 5624
             },
             "default_branch": "master",
             "version": "v1.17.5",
@@ -287,10 +287,11 @@
             },
             "metadata": {
                 "description": "Bloom-filter based search index",
-                "stars": 127
+                "stars": 128
             },
             "default_branch": "master",
             "version": "0902316dce158c154b958ee5cfc706c62af29a42",
+            "known_issue": 494,
             "packages": [
                 {
                     "module": "avo/go.mod",
@@ -531,7 +532,7 @@
             },
             "metadata": {
                 "description": "Go library providing algorithms optimized to leverage the characteristics of modern CPUs",
-                "stars": 916
+                "stars": 925
             },
             "default_branch": "main",
             "version": "2bf3fdd47b1cdbe8fe020f032caf14891e10a85f",
@@ -620,7 +621,7 @@
             },
             "metadata": {
                 "description": "Go Deoxys-II-256-128",
-                "stars": 24
+                "stars": 26
             },
             "default_branch": "master",
             "version": "2091330c22b71dd4e04e15306498e68f3a1b3afc",
@@ -646,7 +647,7 @@
             "metadata": {
                 "description": "[mirror] Go supplementary cryptography libraries",
                 "homepage": "https://golang.org/x/crypto",
-                "stars": 3318
+                "stars": 3346
             },
             "default_branch": "master",
             "version": "v0.24.0",
@@ -673,7 +674,7 @@
             "metadata": {
                 "description": "filippo.io/edwards25519 — A safer, faster, and more powerful low-level edwards25519 Go implementation.",
                 "homepage": "https://filippo.io/edwards25519",
-                "stars": 182
+                "stars": 187
             },
             "default_branch": "main",
             "version": "v1.0.0-rc.1",
@@ -698,7 +699,7 @@
             },
             "metadata": {
                 "description": "An AVX-512 accelerated implementation of the BLAKE3 cryptographic hash function",
-                "stars": 421
+                "stars": 423
             },
             "default_branch": "master",
             "version": "v1.1.7",
@@ -758,15 +759,16 @@
             "metadata": {
                 "description": "The Go programming language",
                 "homepage": "https://go.dev",
-                "stars": 134158
+                "stars": 136984
             },
             "default_branch": "master",
-            "version": "go1.23.4",
+            "version": "go1.26.5",
             "packages": [
                 {
-                    "pkg": "src/crypto/internal/bigmod",
-                    "module": "src/crypto/internal/bigmod/_asm/go.mod",
+                    "pkg": "src/crypto/internal/fips140/bigmod",
+                    "module": "src/crypto/internal/fips140/bigmod/_asm/go.mod",
                     "root": ".",
+                    "toolchain": ".",
                     "setup": [
                         {
                             "name": "Compile Go Toolchain",
@@ -779,22 +781,23 @@
                     "generate": [
                         {
                             "commands": [
-                                "env --unset=GOROOT ./bin/go generate -v -x ./src/crypto/internal/bigmod/_asm"
+                                "go generate -v -x ./src/crypto/internal/fips140/bigmod/_asm"
                             ]
                         }
                     ],
                     "test": [
                         {
                             "commands": [
-                                "env --unset=GOROOT ./bin/go test crypto/..."
+                                "go test -short crypto/..."
                             ]
                         }
                     ]
                 },
                 {
-                    "pkg": "src/crypto/internal/edwards25519",
-                    "module": "src/crypto/internal/edwards25519/field/_asm/go.mod",
+                    "pkg": "src/crypto/internal/fips140/edwards25519",
+                    "module": "src/crypto/internal/fips140/edwards25519/field/_asm/go.mod",
                     "root": ".",
+                    "toolchain": ".",
                     "setup": [
                         {
                             "name": "Compile Go Toolchain",
@@ -807,14 +810,14 @@
                     "generate": [
                         {
                             "commands": [
-                                "env --unset=GOROOT ./bin/go generate -v -x ./src/crypto/internal/edwards25519/field/_asm"
+                                "go generate -v -x ./src/crypto/internal/fips140/edwards25519/field/_asm"
                             ]
                         }
                     ],
                     "test": [
                         {
                             "commands": [
-                                "env --unset=GOROOT ./bin/go test crypto/ed25519/..."
+                                "go test -short crypto/ed25519/..."
                             ]
                         }
                     ]
@@ -829,7 +832,7 @@
             "metadata": {
                 "description": "CIRCL: Cloudflare Interoperable Reusable Cryptographic Library",
                 "homepage": "http://blog.cloudflare.com/introducing-circl",
-                "stars": 1671
+                "stars": 1714
             },
             "default_branch": "main",
             "version": "v1.1.0",
@@ -879,7 +882,7 @@
             },
             "metadata": {
                 "description": "Universal Utilities for Go",
-                "stars": 2040
+                "stars": 2049
             },
             "default_branch": "main",
             "version": "a5eedbe96960cf0f801cf970e89f511842daee75",
@@ -910,5 +913,5 @@
             ]
         }
     ],
-    "metadata_last_update": "2026-06-01T07:05:07.768616791Z"
+    "metadata_last_update": "2026-09-01T05:30:47.927043852Z"
 }

@@ -121,10 +121,19 @@ func (t *PackageTest) steps() {
 		RepositoryDirectory: t.repopath,
 	}
 
+	// Use the Go toolchain provided by the package, if any.
+	var env []string
+	if goroot := t.Package.GOROOT(c); goroot != "" {
+		gobin := filepath.Join(goroot, "bin")
+		path := gobin + string(os.PathListSeparator) + os.Getenv("PATH")
+		env = append(os.Environ(), "GOROOT="+goroot, "PATH="+path)
+	}
+
 	for _, s := range t.Package.Steps(c) {
 		for _, command := range s.Commands {
 			cmd := exec.Command("sh", "-c", command)
 			cmd.Dir = filepath.Join(t.repopath, s.WorkingDirectory)
+			cmd.Env = env
 			test.ExecCommand(t.T, cmd)
 		}
 	}

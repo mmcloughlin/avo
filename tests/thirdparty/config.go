@@ -146,6 +146,12 @@ type Package struct {
 	// used, or otherwise the root of the repository.
 	Root string `json:"root,omitempty"`
 
+	// Root directory of the Go toolchain used to run the steps in the test,
+	// relative to the root directory. If set, every step runs with GOROOT
+	// pointing at it and its bin directory first in PATH. If empty, the
+	// ambient Go toolchain is used.
+	Toolchain string `json:"toolchain,omitempty"`
+
 	// Setup steps. These run prior to the insertion of avo replace directives,
 	// therefore should be used if it's necessary to initialize new go modules
 	// within the repository.
@@ -192,6 +198,9 @@ func (p *Package) Validate() error {
 	}
 	if len(p.Generate) == 0 {
 		return errors.New("no generate commands")
+	}
+	if filepath.IsAbs(p.Toolchain) {
+		return errors.New("toolchain must be relative")
 	}
 
 	stages := map[string][]*Step{
@@ -241,6 +250,15 @@ type Context struct {
 
 	// Path to the checked out third-party repository.
 	RepositoryDirectory string
+}
+
+// GOROOT returns the root directory of the Go toolchain used to run the steps
+// in the test, or the empty string if the ambient toolchain is used.
+func (p *Package) GOROOT(c *Context) string {
+	if p.Toolchain == "" {
+		return ""
+	}
+	return filepath.Join(c.RepositoryDirectory, p.WorkingDirectory(), p.Toolchain)
 }
 
 // Steps generates the list of steps required to execute the integration test
