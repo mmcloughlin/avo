@@ -233,7 +233,7 @@
                 "stars": 5624
             },
             "default_branch": "master",
-            "version": "v1.17.5",
+            "version": "v1.20.0",
             "packages": [
                 {
                     "pkg": "huff0",
@@ -243,6 +243,34 @@
                             "dir": "_generate",
                             "commands": [
                                 "go generate -v -x"
+                            ]
+                        }
+                    ],
+                    "test": [
+                        {
+                            "commands": [
+                                "go test -short"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "pkg": "huff0",
+                    "label": "arm64",
+                    "runs_on": "ubuntu-24.04-arm",
+                    "module": "_generate/go.mod",
+                    "generate": [
+                        {
+                            "dir": "_generate",
+                            "commands": [
+                                "go generate -v -x"
+                            ]
+                        }
+                    ],
+                    "test": [
+                        {
+                            "commands": [
+                                "go test -short"
                             ]
                         }
                     ]
@@ -257,10 +285,59 @@
                                 "go generate -v -x"
                             ]
                         }
+                    ],
+                    "test": [
+                        {
+                            "commands": [
+                                "go test -short"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "pkg": "s2",
+                    "label": "arm64",
+                    "runs_on": "ubuntu-24.04-arm",
+                    "module": "_generate/go.mod",
+                    "generate": [
+                        {
+                            "dir": "_generate",
+                            "commands": [
+                                "go generate -v -x"
+                            ]
+                        }
+                    ],
+                    "test": [
+                        {
+                            "commands": [
+                                "go test -short"
+                            ]
+                        }
                     ]
                 },
                 {
                     "pkg": "zstd",
+                    "module": "_generate/go.mod",
+                    "generate": [
+                        {
+                            "dir": "_generate",
+                            "commands": [
+                                "go generate -v -x"
+                            ]
+                        }
+                    ],
+                    "test": [
+                        {
+                            "commands": [
+                                "go test -short"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "pkg": "zstd",
+                    "label": "arm64",
+                    "runs_on": "ubuntu-24.04-arm",
                     "module": "_generate/go.mod",
                     "generate": [
                         {
