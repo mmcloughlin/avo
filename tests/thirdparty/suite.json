@@ -895,7 +895,7 @@
                             "name": "Setup Generator Module",
                             "dir": "internal/avo",
                             "commands": [
-                                "sed -i.bak '/build ignore/d' *.go",
+                                "sed -i.bak '/build ignore/d' ./*.go",
                                 "go mod init github.com/bytedance/gopkg/util/xxhash3/internal/avo"
                             ]
                         }
