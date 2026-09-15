@@ -8,6 +8,7 @@ linters:
     - err113
     - errname
     - exhaustruct
+    - exhaustruct_v5
     - forbidigo
     - forcetypeassert
     - funcorder
