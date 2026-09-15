@@ -101,7 +101,7 @@ func GenerateWorkflow(s *thirdparty.Suite) ([]byte, error) {
 		g.Linef("- name: Install Go")
 		g.Linef("  uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0")
 		g.Linef("  with:")
-		g.Linef("    go-version: 1.26.x")
+		g.Linef("    go-version: 1.27.x")
 		g.Linef("    check-latest: true")
 
 		// Checkout avo.
