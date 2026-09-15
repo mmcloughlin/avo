@@ -4,6 +4,7 @@ Simple functions:
 
 * **[add](add):** Add two numbers. The "Hello World!" of `avo`.
 * **[sum](sum):** Sum an array of numbers.
+* **[mem](mem):** Load and return data, using pointers and offsets
 
 Features:
 
