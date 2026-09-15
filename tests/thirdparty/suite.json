@@ -291,6 +291,7 @@
             },
             "default_branch": "master",
             "version": "0902316dce158c154b958ee5cfc706c62af29a42",
+            "known_issue": 494,
             "packages": [
                 {
                     "module": "avo/go.mod",

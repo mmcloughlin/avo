@@ -391,6 +391,7 @@ jobs:
         run: go test -short
   dgryski-go-bloomindex:
     runs-on: ubuntu-latest
+    if: false # skip: https://github.com/mmcloughlin/avo/issues/494
     steps:
       - name: Install Go
         uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
