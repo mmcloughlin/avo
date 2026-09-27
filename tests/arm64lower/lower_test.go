@@ -6,8 +6,11 @@ package arm64lower
 
 import (
 	"bytes"
+	"debug/elf"
+	"debug/gosym"
 	"fmt"
 	"math/bits"
+	"os"
 	"strings"
 	"testing"
 	"testing/quick"
@@ -435,6 +438,57 @@ func TestPCAlign(t *testing.T) {
 		if got := PCAlign(c.n); got != c.want {
 			t.Errorf("PCAlign(%d) = %d, want %d", c.n, got, c.want)
 		}
+	}
+}
+
+// TestPCAlignSymbolAlignment checks that PCALIGN $1024 reached the assembler
+// on this architecture: the assembler raises the enclosing function's symbol
+// alignment to match, where it would otherwise be the default (32 on amd64,
+// 16 on arm64). The Go func value points at the ABIInternal wrapper rather
+// than the assembly, so the address comes from the test binary's own function
+// table. "go test" strips the ELF symbol table, but not .gopclntab, which the
+// runtime needs. Any load-time relocation is page-aligned, so the linked
+// address modulo 1024 is the runtime one.
+func TestPCAlignSymbolAlignment(t *testing.T) {
+	const (
+		name  = "github.com/mmcloughlin/avo/tests/arm64lower.PCAlign"
+		align = 1024
+	)
+	exe, err := os.Executable()
+	if err != nil {
+		t.Fatal(err)
+	}
+	f, err := elf.Open(exe)
+	if err != nil {
+		t.Skipf("test binary is not ELF: %v", err)
+	}
+	defer f.Close()
+	pcln, text := f.Section(".gopclntab"), f.Section(".text")
+	if pcln == nil || text == nil {
+		t.Fatalf("%s has no .gopclntab or .text section", exe)
+	}
+	data, err := pcln.Data()
+	if err != nil {
+		t.Fatal(err)
+	}
+	tab, err := gosym.NewTable(nil, gosym.NewLineTable(data, text.Addr))
+	if err != nil {
+		t.Fatal(err)
+	}
+	// The ABI0 body is the only function by this name; the compiler-generated
+	// wrapper, if any, is not in the table under it. Insist on exactly one so a
+	// toolchain change there fails loudly rather than checking the wrong one.
+	var entries []uint64
+	for _, fn := range tab.Funcs {
+		if fn.Name == name {
+			entries = append(entries, fn.Entry)
+		}
+	}
+	if len(entries) != 1 {
+		t.Fatalf("expected one function %s in the function table, found %d: %#x", name, len(entries), entries)
+	}
+	if entries[0]%align != 0 {
+		t.Fatalf("%s is at %#x; expect %d-byte alignment", name, entries[0], align)
 	}
 }
 
