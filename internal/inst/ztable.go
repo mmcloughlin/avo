@@ -10036,6 +10036,12 @@ var Instructions = []Instruction{
 		Forms: []Form{
 			{
 				Operands: []Operand{
+					{Type: "imm16", Action: 0x0},
+				},
+				EncodingType: 0x0,
+			},
+			{
+				Operands: []Operand{
 					{Type: "imm8", Action: 0x0},
 				},
 				EncodingType: 0x0,

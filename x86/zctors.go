@@ -4375,6 +4375,7 @@ func PBLENDW(i, mx, x operand.Op) (*intrep.Instruction, error) {
 //
 // Forms:
 //
+//	PCALIGN imm16
 //	PCALIGN imm8
 func PCALIGN(i operand.Op) (*intrep.Instruction, error) {
 	return build(opcPCALIGN.Forms(), sffxs{}, []operand.Op{i})
