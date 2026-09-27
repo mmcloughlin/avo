@@ -34,6 +34,8 @@ func Copy16(dst *[16]byte, src *[16]byte)
 
 func Prefetch(p *[64]uint64, i uint64) uint64
 
+func PCAlign(n uint64) uint64
+
 func LessS(a uint64, b uint64) uint64
 
 func GreaterEqS(a uint64, b uint64) uint64

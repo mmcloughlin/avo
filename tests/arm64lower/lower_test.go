@@ -418,6 +418,26 @@ func TestPrefetch(t *testing.T) {
 	}
 }
 
+// TestPCAlign covers the PCALIGN pass-through: both immediate forms must
+// assemble, and the padding must leave the loop and the flags a following
+// branch reads untouched.
+func TestPCAlign(t *testing.T) {
+	cases := []struct {
+		n    uint64
+		want uint64
+	}{
+		{n: 0, want: 0},
+		{n: 1, want: 1},
+		{n: 2, want: 3},
+		{n: 100, want: 5050},
+	}
+	for _, c := range cases {
+		if got := PCAlign(c.n); got != c.want {
+			t.Errorf("PCAlign(%d) = %d, want %d", c.n, got, c.want)
+		}
+	}
+}
+
 // TestCMOVConditions covers the CMOVcc conditions enabled by the completed table.
 func TestCMOVConditions(t *testing.T) {
 	const c, d = uint64(0x1111), uint64(0x2222)

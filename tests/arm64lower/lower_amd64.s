@@ -158,6 +158,25 @@ prefetch_done:
 	MOVQ DX, ret+16(FP)
 	RET
 
+// func PCAlign(n uint64) uint64
+TEXT ·PCAlign(SB), NOSPLIT, $0-16
+	PCALIGN $0x0400
+	MOVQ    n+0(FP), AX
+	XORQ    CX, CX
+	TESTQ   AX, AX
+	PCALIGN $0x10
+	JZ      pcalign_done
+	PCALIGN $0x20
+
+pcalign_loop:
+	ADDQ AX, CX
+	DECQ AX
+	JNZ  pcalign_loop
+
+pcalign_done:
+	MOVQ CX, ret+8(FP)
+	RET
+
 // func LessS(a uint64, b uint64) uint64
 TEXT ·LessS(SB), NOSPLIT, $0-24
 	MOVQ a+0(FP), AX

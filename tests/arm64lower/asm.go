@@ -226,6 +226,30 @@ func main() {
 		RET()
 	}
 
+	// PCAlign: PCALIGN is a pseudo-op both assemblers implement, so the
+	// reference is the loop it pads. It covers both immediate forms (imm8 for
+	// 32, imm16 for 1024), the usual placement before a loop label, and a
+	// PCALIGN between a flag producer and its consumer, which must be
+	// transparent on both architectures.
+	TEXT("PCAlign", NOSPLIT, "func(n uint64) uint64")
+	{
+		PCALIGN(operand.Imm(1024))
+		n := Load(Param("n"), GP64())
+		s := GP64()
+		XORQ(s, s)
+		TESTQ(n, n)
+		PCALIGN(operand.Imm(16))
+		JZ(operand.LabelRef("pcalign_done"))
+		PCALIGN(operand.Imm(32))
+		Label("pcalign_loop")
+		ADDQ(n, s)
+		DECQ(n)
+		JNZ(operand.LabelRef("pcalign_loop"))
+		Label("pcalign_done")
+		Store(s, ReturnIndex(0))
+		RET()
+	}
+
 	// Condition helpers: each returns 1 if the condition holds, else 0,
 	// exercising a distinct branch mnemonic (including JGE, unused by zstd).
 	branch := func(name string, jmp func(operand.Op)) {

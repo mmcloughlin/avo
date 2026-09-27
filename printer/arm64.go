@@ -512,6 +512,10 @@ var arm64WritesNZCV = map[string]bool{
 	"BGT": false, "BGE": false, "BLO": false, "BHS": false,
 	"BHI": false, "BLS": false, "BMI": false, "BPL": false,
 	"BVS": false, "BVC": false,
+
+	// Assembler pseudo-op: the padding is NOOP, with no register, memory or
+	// flag effects.
+	"PCALIGN": false,
 }
 
 // checkSingleLine refuses text that would span more than one output line.
@@ -1245,6 +1249,15 @@ func (p *arm64) lowerShiftXOp(i *ir.Instruction, ops []operand.Op) bool {
 
 func (p *arm64) lowerMiscOp(i *ir.Instruction, ops []operand.Op) bool {
 	switch i.Opcode {
+	case "PCALIGN":
+		// An assembler pseudo-op that both backends implement, with the same
+		// power-of-two range, so it passes through unchanged. It aligns the next
+		// arm64 instruction emitted, which is the first of the next x86
+		// instruction's lowering -- or of a later one, if a fold absorbed the
+		// next (see shiftFolds and setccFolds). Either way it precedes the same
+		// label, which is what alignment is normally for.
+		p.emitf("PCALIGN %s", ops[0].Asm())
+
 	case "LEAQ":
 		p.lowerLEA(ops[0].(operand.Mem), operandReg(ops[1]))
 	case "LEAL":
@@ -2631,6 +2644,10 @@ func isFlagTransparent(op string) bool {
 	// BSF/BSR and TZCNT all write flags on x86, so a consumer reading them has
 	// no arm64 equivalent and must keep failing loudly.
 	case "NOTQ", "NOTL", "BSWAPL", "XCHGQ", "PXOR":
+		return true
+	// An assembler pseudo-op: the padding is NOPs on x86 and NOOP on arm64,
+	// neither of which touches flags.
+	case "PCALIGN":
 		return true
 	}
 	switch {
