@@ -24,6 +24,31 @@ func TestVerifyMemOperands(t *testing.T) {
 	}
 }
 
+func TestVerifyNoLabelOnPCALIGN(t *testing.T) {
+	pcalign := func() ir.Node { return &ir.Instruction{Opcode: "PCALIGN", Operands: []operand.Op{operand.U8(64)}} }
+	ret := func() ir.Node { return &ir.Instruction{Opcode: "RET"} }
+	cases := []struct {
+		Name    string
+		Nodes   []ir.Node
+		WantErr bool
+	}{
+		{"label on pcalign", []ir.Node{ir.Label("skip"), pcalign(), ret()}, true},
+		{"comment between", []ir.Node{ir.Label("skip"), ir.NewComment("x"), pcalign(), ret()}, true},
+		{"pcalign before label", []ir.Node{pcalign(), ir.Label("loop"), ret()}, false},
+		{"instruction between", []ir.Node{ir.Label("skip"), ret(), pcalign(), ret()}, false},
+	}
+	for _, c := range cases {
+		t.Run(c.Name, func(t *testing.T) {
+			fn := ir.NewFunction("f")
+			fn.Nodes = c.Nodes
+			err := VerifyNoLabelOnPCALIGN(fn)
+			if (err != nil) != c.WantErr {
+				t.Fatalf("got error %v, want error %v", err, c.WantErr)
+			}
+		})
+	}
+}
+
 func TestVerifyMemOperandsErrors(t *testing.T) {
 	cases := []struct {
 		Operands       []operand.Op
