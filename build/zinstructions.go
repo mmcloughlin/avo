@@ -10017,6 +10017,7 @@ func PBLENDW(i, mx, x operand.Op) { ctx.PBLENDW(i, mx, x) }
 //
 // Forms:
 //
+//	PCALIGN imm16
 //	PCALIGN imm8
 //
 // Construct and append a PCALIGN instruction to the active function.
@@ -10028,6 +10029,7 @@ func (c *Context) PCALIGN(i operand.Op) {
 //
 // Forms:
 //
+//	PCALIGN imm16
 //	PCALIGN imm8
 //
 // Construct and append a PCALIGN instruction to the active function.
