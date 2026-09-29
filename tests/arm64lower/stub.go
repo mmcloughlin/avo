@@ -234,6 +234,102 @@ func MemProp6(x uint64, y uint64, p *[8]uint64) uint64
 
 func MemProp7(x uint64, y uint64, p *[8]uint64) uint64
 
+func SlotProp0(x uint64, y uint64) uint64
+
+func SlotProp1(x uint64, y uint64) uint64
+
+func SlotProp2(x uint64, y uint64) uint64
+
+func SlotProp3(x uint64, y uint64) uint64
+
+func SlotProp4(x uint64, y uint64) uint64
+
+func SlotProp5(x uint64, y uint64) uint64
+
+func SlotProp6(x uint64, y uint64) uint64
+
+func SlotProp7(x uint64, y uint64) uint64
+
+func SlotProp8(x uint64, y uint64) uint64
+
+func SlotProp9(x uint64, y uint64) uint64
+
+func SlotProp10(x uint64, y uint64) uint64
+
+func SlotProp11(x uint64, y uint64) uint64
+
+func SlotProp12(x uint64, y uint64) uint64
+
+func SlotProp13(x uint64, y uint64) uint64
+
+func SlotProp14(x uint64, y uint64) uint64
+
+func SlotProp15(x uint64, y uint64) uint64
+
+func SlotProp16(x uint64, y uint64) uint64
+
+func SlotProp17(x uint64, y uint64) uint64
+
+func SlotProp18(x uint64, y uint64) uint64
+
+func SlotProp19(x uint64, y uint64) uint64
+
+func SlotProp20(x uint64, y uint64) uint64
+
+func SlotProp21(x uint64, y uint64) uint64
+
+func SlotProp22(x uint64, y uint64) uint64
+
+func SlotProp23(x uint64, y uint64) uint64
+
+func SlotProp24(x uint64, y uint64) uint64
+
+func SlotProp25(x uint64, y uint64) uint64
+
+func SlotProp26(x uint64, y uint64) uint64
+
+func SlotProp27(x uint64, y uint64) uint64
+
+func SlotProp28(x uint64, y uint64) uint64
+
+func SlotProp29(x uint64, y uint64) uint64
+
+func SlotProp30(x uint64, y uint64) uint64
+
+func SlotProp31(x uint64, y uint64) uint64
+
+func SlotProp32(x uint64, y uint64) uint64
+
+func SlotProp33(x uint64, y uint64) uint64
+
+func SlotProp34(x uint64, y uint64) uint64
+
+func SlotProp35(x uint64, y uint64) uint64
+
+func SlotProp36(x uint64, y uint64) uint64
+
+func SlotProp37(x uint64, y uint64) uint64
+
+func SlotProp38(x uint64, y uint64) uint64
+
+func SlotProp39(x uint64, y uint64) uint64
+
+func SlotProp40(x uint64, y uint64) uint64
+
+func SlotProp41(x uint64, y uint64) uint64
+
+func SlotProp42(x uint64, y uint64) uint64
+
+func SlotProp43(x uint64, y uint64) uint64
+
+func SlotProp44(x uint64, y uint64) uint64
+
+func SlotProp45(x uint64, y uint64) uint64
+
+func SlotProp46(x uint64, y uint64) uint64
+
+func SlotProp47(x uint64, y uint64) uint64
+
 func BtBranch(x uint64) uint64
 
 func BtBranchHigh(x uint64) uint64

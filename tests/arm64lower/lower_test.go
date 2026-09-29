@@ -1309,3 +1309,43 @@ func TestSlotPromotionHazards(t *testing.T) {
 		}
 	}
 }
+
+// TestRandomSlotPrograms runs the frame-slot family. Stack-slot promotion
+// keeps eligible slots in registers, so each program checks that the value
+// read back from every slot matches the x86 model whichever subset of slots a
+// given op mix leaves eligible.
+func TestRandomSlotPrograms(t *testing.T) {
+	inputs := []struct{ x, y uint64 }{
+		{0, 0},
+		{1, 2},
+		{2, 1},
+		{0xdeadbeefcafef00d, 0x0123456789abcdef},
+		{^uint64(0), 3},
+		{1 << 63, 1<<63 + 5},
+		{0xffffffff, 0xffffffff00000000},
+	}
+	for n := 0; n < propspec.NumSlotPrograms; n++ {
+		prog := propspec.SlotProgram(n, propspec.SlotProgramLength)
+		names := make([]string, len(prog))
+		for i, st := range prog {
+			names[i] = fmt.Sprintf("%s[%d]", propspec.SlotOps[st.Op].Name, st.Slot)
+		}
+		for _, in := range inputs {
+			var s [4]uint64
+			for k := range s {
+				s[k] = in.y + uint64(k)
+			}
+			want := in.x
+			for _, st := range prog {
+				want = propspec.SlotOps[st.Op].Ref(want, in.y, &s, st.Slot)
+			}
+			for k := range s {
+				want += s[k]
+			}
+			if got := slotPropPrograms[n](in.x, in.y); got != want {
+				t.Errorf("SlotProp%d(%#x, %#x) = %#x, want %#x\nprogram: %s",
+					n, in.x, in.y, got, want, strings.Join(names, " -> "))
+			}
+		}
+	}
+}

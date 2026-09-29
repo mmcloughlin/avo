@@ -489,3 +489,110 @@ const NumPrograms = 12
 // interleave widths and flag pairs, short enough to point at a culprit when a
 // program fails.
 const ProgramLength = 12
+
+// SlotOp is one step of a frame-slot program. Four adjacent 8-byte frame
+// slots s[0..3] (one AllocLocal) hold state alongside acc; k picks the slot an
+// op works on and lbl is a label prefix unique to this step. The mix decides
+// which slots stack-slot promotion may keep in registers: whole-slot MOVQs
+// keep a slot eligible, and a read-modify-write or a narrower write disqualifies
+// it, so different programs promote different subsets.
+type SlotOp struct {
+	Name string
+	Emit func(acc, y reg.GPVirtual, s [4]operand.Mem, k int, lbl string)
+	Ref  func(acc, y uint64, s *[4]uint64, k int) uint64
+}
+
+// SlotOps is the frame-slot vocabulary.
+var SlotOps = []SlotOp{
+	{
+		Name: "Store",
+		Emit: func(acc, y reg.GPVirtual, s [4]operand.Mem, k int, lbl string) { build.MOVQ(acc, s[k]) },
+		Ref:  func(acc, y uint64, s *[4]uint64, k int) uint64 { s[k] = acc; return acc },
+	},
+	{
+		Name: "LoadAdd",
+		Emit: func(acc, y reg.GPVirtual, s [4]operand.Mem, k int, lbl string) {
+			t := build.GP64()
+			build.MOVQ(s[k], t)
+			build.ADDQ(t, acc)
+		},
+		Ref: func(acc, y uint64, s *[4]uint64, k int) uint64 { return acc + s[k] },
+	},
+	{
+		Name: "Swap",
+		Emit: func(acc, y reg.GPVirtual, s [4]operand.Mem, k int, lbl string) {
+			t := build.GP64()
+			build.MOVQ(s[k], t)
+			build.MOVQ(acc, s[k])
+			build.MOVQ(t, acc)
+		},
+		Ref: func(acc, y uint64, s *[4]uint64, k int) uint64 { acc, s[k] = s[k], acc; return acc },
+	},
+	{
+		Name: "StoreImm",
+		Emit: func(acc, y reg.GPVirtual, s [4]operand.Mem, k int, lbl string) {
+			build.MOVQ(operand.U32(0x80000000|uint64(k)), s[k])
+		},
+		Ref: func(acc, y uint64, s *[4]uint64, k int) uint64 {
+			s[k] = uint64(int64(int32(uint32(0x80000000 | k))))
+			return acc
+		},
+	},
+	{
+		Name: "RmwAdd",
+		Emit: func(acc, y reg.GPVirtual, s [4]operand.Mem, k int, lbl string) { build.ADDQ(acc, s[k]) },
+		Ref:  func(acc, y uint64, s *[4]uint64, k int) uint64 { s[k] += acc; return acc },
+	},
+	{
+		Name: "StoreHighL",
+		Emit: func(acc, y reg.GPVirtual, s [4]operand.Mem, k int, lbl string) {
+			build.MOVL(y.As32(), s[k].Offset(4))
+		},
+		Ref: func(acc, y uint64, s *[4]uint64, k int) uint64 {
+			s[k] = s[k]&0xffffffff | uint64(uint32(y))<<32
+			return acc
+		},
+	},
+	{
+		Name: "CondStore",
+		Emit: func(acc, y reg.GPVirtual, s [4]operand.Mem, k int, lbl string) {
+			build.CMPQ(acc, y)
+			build.JCS(operand.LabelRef(lbl + "_skip"))
+			build.MOVQ(y, s[k])
+			build.Label(lbl + "_skip")
+		},
+		Ref: func(acc, y uint64, s *[4]uint64, k int) uint64 {
+			if !(acc < y) {
+				s[k] = y
+			}
+			return acc
+		},
+	},
+	{
+		Name: "Mix",
+		Emit: func(acc, y reg.GPVirtual, s [4]operand.Mem, k int, lbl string) {
+			build.ROLQ(operand.U8(7), acc)
+			build.XORQ(y, acc)
+		},
+		Ref: func(acc, y uint64, s *[4]uint64, k int) uint64 { return bits.RotateLeft64(acc, 7) ^ y },
+	},
+}
+
+// SlotStep is one op of a frame-slot program and the slot it works on.
+type SlotStep struct{ Op, Slot int }
+
+// SlotProgram is Program for the frame-slot vocabulary.
+func SlotProgram(n, length int) []SlotStep {
+	r := rand.New(rand.NewSource(int64(n)*7919 + 15485863))
+	out := make([]SlotStep, length)
+	for i := range out {
+		out[i] = SlotStep{r.Intn(len(SlotOps)), r.Intn(4)}
+	}
+	return out
+}
+
+// NumSlotPrograms and SlotProgramLength size the frame-slot family.
+const (
+	NumSlotPrograms   = 48
+	SlotProgramLength = 14
+)

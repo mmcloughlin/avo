@@ -805,6 +805,36 @@ func main() {
 		RET()
 	}
 
+	// The frame-slot family: four adjacent 8-byte slots in one AllocLocal,
+	// worked on by a random mix of whole-slot moves, read-modify-writes and
+	// narrower writes, so stack-slot promotion keeps a different subset of
+	// them in registers in each program. Every slot is initialized first and
+	// read back at the end, so a stale promoted register cannot hide.
+	for n := 0; n < propspec.NumSlotPrograms; n++ {
+		TEXT(fmt.Sprintf("SlotProp%d", n), NOSPLIT, "func(x, y uint64) uint64")
+		acc, y := GP64(), GP64()
+		Load(Param("x"), acc)
+		Load(Param("y"), y)
+		buf := AllocLocal(32)
+		s := [4]operand.Mem{buf, buf.Offset(8), buf.Offset(16), buf.Offset(24)}
+		for k := range s {
+			t := GP64()
+			MOVQ(y, t)
+			ADDQ(operand.U32(uint64(k)), t)
+			MOVQ(t, s[k])
+		}
+		for i, st := range propspec.SlotProgram(n, propspec.SlotProgramLength) {
+			propspec.SlotOps[st.Op].Emit(acc, y, s, st.Slot, fmt.Sprintf("slotprop%d_%d", n, i))
+		}
+		for k := range s {
+			t := GP64()
+			MOVQ(s[k], t)
+			ADDQ(t, acc)
+		}
+		Store(acc, ReturnIndex(0))
+		RET()
+	}
+
 	// BtBranch/BtBranchClear: BTL followed immediately by a carry branch,
 	// which lowers to a single arm64 TBNZ or TBZ rather than to anything that
 	// materializes CF. Setting CF and letting the generic branch path run would
