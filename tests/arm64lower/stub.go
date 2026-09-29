@@ -359,3 +359,13 @@ func SetGeRefusedRead(a uint64, b uint64) uint64
 func StackAccum(x uint64, n uint64) uint64
 
 func ManySlotAccum(x uint64) uint64
+
+func SlotImmSext() uint64
+
+func SlotPartialInner(x uint64, y uint64) uint64
+
+func SlotVecOverlap(x uint64) uint64
+
+func SlotIndexed(x uint64, i uint64) uint64
+
+func SlotAddrOf(x uint64) uint64

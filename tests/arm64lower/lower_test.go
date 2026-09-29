@@ -1287,3 +1287,25 @@ func TestManySlotAccum(t *testing.T) {
 		}
 	}
 }
+
+// TestSlotPromotionHazards covers frame accesses a promoted register cannot
+// stand in for: each function writes a slot's bytes other than through a
+// whole-slot MOVQ at its displacement, then reads the slot back.
+func TestSlotPromotionHazards(t *testing.T) {
+	const x, y = uint64(0xaaaaaaaa11111111), uint64(0x22222222)
+	cases := []struct {
+		name      string
+		got, want uint64
+	}{
+		{"SlotImmSext", SlotImmSext(), 0xffffffff80000000},
+		{"SlotPartialInner", SlotPartialInner(x, y), 0x2222222211111111},
+		{"SlotVecOverlap", SlotVecOverlap(x), 0},
+		{"SlotIndexed", SlotIndexed(x, 1), x},
+		{"SlotAddrOf", SlotAddrOf(x), x},
+	}
+	for _, c := range cases {
+		if c.got != c.want {
+			t.Errorf("%s = %#x, want %#x", c.name, c.got, c.want)
+		}
+	}
+}

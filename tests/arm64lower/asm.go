@@ -1568,6 +1568,82 @@ func main() {
 		RET()
 	}
 
+	// Promotion hazards: each writes a slot's bytes in a way a promoted
+	// register would not see, then reads the slot with a whole MOVQ.
+
+	// SlotImmSext: a 64-bit store of an imm32 sign-extends it.
+	TEXT("SlotImmSext", NOSPLIT, "func() uint64")
+	{
+		s := AllocLocal(8)
+		MOVQ(operand.U32(0x80000000), s)
+		r := GP64()
+		MOVQ(s, r)
+		Store(r, ReturnIndex(0))
+		RET()
+	}
+
+	// SlotPartialInner: a 4-byte store into the high half of a slot.
+	TEXT("SlotPartialInner", NOSPLIT, "func(x, y uint64) uint64")
+	{
+		s := AllocLocal(8)
+		x, y := GP64(), GP64()
+		Load(Param("x"), x)
+		Load(Param("y"), y)
+		MOVQ(x, s)
+		MOVL(y.As32(), s.Offset(4))
+		r := GP64()
+		MOVQ(s, r)
+		Store(r, ReturnIndex(0))
+		RET()
+	}
+
+	// SlotVecOverlap: a 16-byte store spanning two slots.
+	TEXT("SlotVecOverlap", NOSPLIT, "func(x uint64) uint64")
+	{
+		b := AllocLocal(16)
+		x := GP64()
+		Load(Param("x"), x)
+		MOVQ(x, b.Offset(8))
+		z := XMM()
+		PXOR(z, z)
+		MOVOU(z, b)
+		r := GP64()
+		MOVQ(b.Offset(8), r)
+		Store(r, ReturnIndex(0))
+		RET()
+	}
+
+	// SlotIndexed: an indexed store reaching a slot (called with i=1).
+	TEXT("SlotIndexed", NOSPLIT, "func(x, i uint64) uint64")
+	{
+		b := AllocLocal(16)
+		x, i := GP64(), GP64()
+		Load(Param("x"), x)
+		Load(Param("i"), i)
+		MOVQ(operand.U32(5), b.Offset(8))
+		MOVQ(x, b.Idx(i, 8))
+		r := GP64()
+		MOVQ(b.Offset(8), r)
+		Store(r, ReturnIndex(0))
+		RET()
+	}
+
+	// SlotAddrOf: a store through the frame's address reaching a slot.
+	TEXT("SlotAddrOf", NOSPLIT, "func(x uint64) uint64")
+	{
+		b := AllocLocal(16)
+		x := GP64()
+		Load(Param("x"), x)
+		MOVQ(operand.U32(3), b.Offset(8))
+		p := GP64()
+		LEAQ(b, p)
+		MOVQ(x, operand.Mem{Base: p, Disp: 8})
+		r := GP64()
+		MOVQ(b.Offset(8), r)
+		Store(r, ReturnIndex(0))
+		RET()
+	}
+
 	Generate()
 }
 

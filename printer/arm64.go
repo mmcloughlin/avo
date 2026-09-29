@@ -151,14 +151,14 @@ const (
 // stackSlotPromotions). They sit above the x86-mapped range (R0-R14) and the
 // two scratch registers (R15/R16), and below the reserved trio R18 (platform),
 // R27 (linker REGTMP) and R28 (g). The lowering may clobber them without
-// save/restore: these functions are call-free NOSPLIT leaves, and Go's ABI
-// treats every integer register except g as clobbered across the call into
-// them, exactly as the existing lowering already assumes for R0-R16.
+// save/restore: promotion is refused for any function containing a CALL, and
+// Go's ABI treats every integer register except g as clobbered across the call
+// into these leaves, exactly as the existing lowering already assumes for
+// R0-R16.
 var promoRegs = []string{"R19", "R20", "R21", "R22", "R23", "R24", "R25", "R26"}
 
-// frameSlot reports whether op is a fixed RSP-relative frame slot and, if so,
-// its byte displacement. Symbol-based, indexed, and non-SP-based memory
-// operands are not frame slots.
+// frameSlot reports whether op is a plain RSP-relative frame operand
+// (disp(SP): no symbol, no index) and, if so, its byte displacement.
 func frameSlot(op operand.Op) (disp int, ok bool) {
 	m, isMem := op.(operand.Mem)
 	if !isMem || m.Symbol.Name != "" || m.Base == nil || m.Index != nil {
@@ -170,76 +170,131 @@ func frameSlot(op operand.Op) (disp int, ok bool) {
 	return m.Disp, true
 }
 
-// cleanSlotMove reports, for a MOVQ instruction, whether it moves a whole frame
-// slot to or from a register (or stores an immediate into one) -- the only
-// access shape under which a slot can be faithfully replaced by a register. It
-// returns the slot displacement and whether the access was clean; a false ok
-// with a valid disp means "this instruction touches that slot uncleanly", which
-// the caller uses to poison it.
-func cleanSlotMove(in *ir.Instruction) (disp int, clean, touches bool) {
+// isGPReg reports whether op is a general-purpose register other than SP.
+func isGPReg(op operand.Op) bool {
+	r, ok := op.(reg.Register)
+	return ok && r.Kind() == reg.KindGP && r.Asm() != "SP"
+}
+
+// cleanSlotMove reports whether in is a whole-slot MOVQ between an 8-aligned
+// frame slot and a general-purpose register (or an immediate store into one),
+// the only access a promoted register can stand in for, and the slot's
+// displacement.
+func cleanSlotMove(in *ir.Instruction) (disp int, clean bool) {
 	if in.Opcode != "MOVQ" || len(in.Operands) != 2 {
-		return 0, false, false
+		return 0, false
 	}
 	src, dst := in.Operands[0], in.Operands[1]
-	if d, ok := frameSlot(dst); ok {
-		// store into slot: src must be a register or an immediate.
-		if _, isReg := src.(reg.Register); isReg {
-			return d, true, true
+	if d, ok := frameSlot(dst); ok && d%8 == 0 {
+		if _, isImm := src.(operand.Constant); isImm || isGPReg(src) {
+			return d, true
 		}
-		if _, isImm := src.(operand.Constant); isImm {
-			return d, true, true
-		}
-		return d, false, true
+		return 0, false
 	}
-	if d, ok := frameSlot(src); ok {
-		// load from slot: dst must be a register.
-		if _, isReg := dst.(reg.Register); isReg {
-			return d, true, true
-		}
-		return d, false, true
+	if d, ok := frameSlot(src); ok && d%8 == 0 && isGPReg(dst) {
+		return d, true
 	}
-	return 0, false, false
+	return 0, false
+}
+
+// frameAccessWidth is the number of bytes an integer x86 instruction reads or
+// writes through its memory operand, for the opcodes whose width is spelled by
+// their size suffix. ok is false for anything else (vector, string, and all
+// unlisted forms), which stackSlotPromotions treats as an unknown-extent access.
+func frameAccessWidth(opcode string) (width int, ok bool) {
+	size := map[byte]int{'B': 1, 'W': 2, 'L': 4, 'Q': 8}
+	if strings.HasPrefix(opcode, "SET") {
+		return 1, true
+	}
+	if strings.HasPrefix(opcode, "CMOV") && len(opcode) > 5 {
+		w, ok := size[opcode[4]]
+		return w, ok
+	}
+	// MOVBQZX, MOVWLSX, MOVLQZX, ...: the memory operand is the source, sized by
+	// the letter after MOV.
+	if len(opcode) == 7 && strings.HasPrefix(opcode, "MOV") &&
+		(strings.HasSuffix(opcode, "ZX") || strings.HasSuffix(opcode, "SX")) {
+		w, ok := size[opcode[3]]
+		return w, ok
+	}
+	for _, base := range []string{
+		"ADD", "SUB", "AND", "OR", "XOR", "CMP", "TEST", "INC", "DEC", "NEG",
+		"NOT", "ADC", "SBB", "MOV", "XCHG", "IMUL", "SHL", "SHR", "SAR", "ROL",
+		"ROR", "BT", "BTS", "BTR", "BTC",
+	} {
+		if len(opcode) == len(base)+1 && strings.HasPrefix(opcode, base) {
+			w, ok := size[opcode[len(base)]]
+			return w, ok
+		}
+	}
+	return 0, false
 }
 
 // stackSlotPromotions selects frame slots to keep in registers for the duration
-// of f, eliminating the per-access loads/stores the x86 register allocator
-// emitted under its 14-register budget. A slot (keyed by its RSP-relative byte
-// displacement) is eligible only when *every* reference to it is a whole-8-byte
-// MOVQ to or from a register (or an immediate store): any partial-width access,
-// address-of, indexed access, or use as a read-modify-write memory operand
-// disqualifies it, so a promoted register is always a faithful stand-in for the
-// slot's full 64 bits. The most-referenced eligible slots are assigned registers
-// from promoRegs (up to its length); the rest stay on the stack. Spill slots are
-// written before they are read, so no entry initialization is needed. Returns
-// nil when promotion is disabled or nothing qualifies.
+// of f. The slots are the generator's explicit AllocLocal memory, which it uses
+// where x86 runs out of registers; arm64 has more, so each promoted slot's
+// loads and stores become register moves.
+//
+// A slot [d, d+8) is promoted only if every access that touches any of its
+// bytes is a whole-slot MOVQ at exactly d (cleanSlotMove), so the register is a
+// faithful stand-in for the slot's 64 bits. Accesses are compared as byte
+// ranges, so a narrower access inside the slot or a wider one spanning it
+// disqualifies it. Promotion is refused for the whole function when frame
+// memory could be reached in a way this analysis cannot see: an indexed or
+// symbol-based SP operand, an address of the frame (LEAQ) or SP read as a
+// value, an access of unknown width, a CALL, or a push/pop. The most-referenced eligible
+// slots get registers from promoRegs; the rest stay on the stack. A slot is
+// written before it is read, so no entry initialization is needed. Returns nil
+// when promotion is disabled or nothing qualifies.
 func (p *arm64) stackSlotPromotions(f *ir.Function) map[int]string {
 	if !p.cfg.ARM64PromoteStackSlots {
 		return nil
 	}
-	counts := map[int]int{}
-	poison := map[int]bool{}
+	type access struct {
+		disp, width int
+		clean       bool
+	}
+	var accesses []access
 	for _, n := range f.Nodes {
 		in, ok := n.(*ir.Instruction)
 		if !ok {
 			continue
 		}
-		if d, clean, touches := cleanSlotMove(in); touches {
-			if clean {
-				counts[d]++
-			} else {
-				poison[d] = true
-			}
+		switch in.Opcode {
+		case "CALL", "PUSHQ", "PUSHL", "PUSHW", "PUSHFQ", "POPQ", "POPL", "POPW", "POPFQ":
+			// A callee may clobber the promoted registers; a push or pop moves
+			// SP implicitly, so a later disp(SP) names different bytes.
+			return nil
+		}
+		if d, clean := cleanSlotMove(in); clean {
+			accesses = append(accesses, access{d, 8, true})
 			continue
 		}
-		// Any frame slot reached through a non-MOVQ instruction (RMW arithmetic,
-		// a partial-width move, an address-of) cannot be promoted.
 		for _, op := range in.Operands {
-			if d, ok := frameSlot(op); ok {
-				poison[d] = true
+			if r, isReg := op.(reg.Register); isReg && r.Asm() == "SP" {
+				return nil // SP as a value: the frame's address escapes
 			}
+			m, isMem := op.(operand.Mem)
+			if !isMem || m.Base == nil || m.Base.Asm() != "SP" {
+				continue
+			}
+			if m.Symbol.Name != "" || m.Index != nil || in.Opcode == "LEAQ" {
+				return nil
+			}
+			w, known := frameAccessWidth(in.Opcode)
+			if !known {
+				return nil
+			}
+			accesses = append(accesses, access{m.Disp, w, false})
 		}
 	}
 
+	counts := map[int]int{}
+	for _, a := range accesses {
+		if a.clean {
+			counts[a.disp]++
+		}
+	}
 	// Rank eligible slots by reference count so the hottest win the scarce
 	// registers. Ties break by displacement for deterministic output.
 	type slot struct {
@@ -247,7 +302,15 @@ func (p *arm64) stackSlotPromotions(f *ir.Function) map[int]string {
 	}
 	var elig []slot
 	for d, c := range counts {
-		if !poison[d] {
+		ok := true
+		for _, a := range accesses {
+			overlaps := a.disp < d+8 && d < a.disp+a.width
+			if overlaps && !(a.clean && a.disp == d) {
+				ok = false
+				break
+			}
+		}
+		if ok {
 			elig = append(elig, slot{d, c})
 		}
 	}
@@ -1144,7 +1207,8 @@ func (p *arm64) lowerMoveOrLoad(i *ir.Instruction, ops []operand.Op) bool {
 			return true
 		}
 		if r, ok := p.promoted(ops[1]); ok {
-			if imm, isImm := immAsm(ops[0]); isImm {
+			// A 64-bit store of an imm32 sign-extends it, like the memory path.
+			if imm, isImm := immAsmQ(ops[0]); isImm {
 				p.emitf("MOVD %s, %s", imm, r)
 				return true
 			}

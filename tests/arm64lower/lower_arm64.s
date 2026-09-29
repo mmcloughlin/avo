@@ -2705,3 +2705,54 @@ TEXT ·ManySlotAccum(SB), NOSPLIT, $96-16
 	ADD  R1, R0, R0
 	MOVD R0, ret+8(FP)
 	RET
+
+// func SlotImmSext() uint64
+TEXT ·SlotImmSext(SB), NOSPLIT, $8-8
+	MOVD $-2147483648, R19
+	MOVD R19, R0
+	MOVD R0, ret+0(FP)
+	RET
+
+// func SlotPartialInner(x uint64, y uint64) uint64
+TEXT ·SlotPartialInner(SB), NOSPLIT, $8-24
+	MOVD x+0(FP), R0
+	MOVD y+8(FP), R1
+	MOVD R0, 8(RSP)
+	MOVW R1, 12(RSP)
+	MOVD 8(RSP), R0
+	MOVD R0, ret+16(FP)
+	RET
+
+// func SlotVecOverlap(x uint64) uint64
+// Requires: SSE2
+TEXT ·SlotVecOverlap(SB), NOSPLIT, $16-16
+	MOVD  x+0(FP), R0
+	MOVD  R0, 16(RSP)
+	VEOR  V0.B16, V0.B16, V0.B16
+	FMOVQ F0, 8(RSP)
+	MOVD  16(RSP), R0
+	MOVD  R0, ret+8(FP)
+	RET
+
+// func SlotIndexed(x uint64, i uint64) uint64
+TEXT ·SlotIndexed(SB), NOSPLIT, $16-24
+	MOVD x+0(FP), R0
+	MOVD i+8(FP), R1
+	MOVD $0x00000005, R16
+	MOVD R16, 16(RSP)
+	ADD  R1<<3, RSP, R15
+	MOVD R0, 8(R15)
+	MOVD 16(RSP), R0
+	MOVD R0, ret+16(FP)
+	RET
+
+// func SlotAddrOf(x uint64) uint64
+TEXT ·SlotAddrOf(SB), NOSPLIT, $16-16
+	MOVD x+0(FP), R0
+	MOVD $0x00000003, R16
+	MOVD R16, 16(RSP)
+	ADD  $8, RSP, R1
+	MOVD R0, 8(R1)
+	MOVD 16(RSP), R0
+	MOVD R0, ret+8(FP)
+	RET

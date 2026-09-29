@@ -41,13 +41,14 @@ type Config struct {
 	ARM64PreferBMI2 bool
 
 	// ARM64PromoteStackSlots enables the EXPERIMENTAL arm64 lowering printer's
-	// stack-slot promotion: frame slots the x86 register allocator spilled
-	// under its 14-register budget are kept in otherwise-unused arm64 registers
-	// (which have 30), turning per-access loads/stores in the hot path into
-	// register moves. Only slots proven to be accessed exclusively as whole
-	// 8-byte values are promoted; see stackSlotPromotions. Safe and semantics-
-	// preserving, but off by default so the transform is opt-in per generator --
-	// measure before setting this. It is a real win on Cortex-A72 (-1.46%
+	// stack-slot promotion: frame slots (AllocLocal memory, which generators use
+	// where x86's registers run out) are kept in otherwise-unused arm64
+	// registers, turning per-access loads/stores in the hot path into register
+	// moves. A slot is promoted only if every access overlapping its bytes is a
+	// whole 8-byte MOVQ at its displacement, and not at all in a function that
+	// takes the frame's address, indexes into it, calls out, or touches it with
+	// an instruction of unknown width; see stackSlotPromotions. Off by default
+	// so the transform is opt-in per generator -- measure before setting this. It is a real win on Cortex-A72 (-1.46%
 	// geomean, up to -6.9%, on klauspost/compress's zstd sequence decoder) but
 	// a wash to a slight regression (+0.2% to +0.4% geomean) on both Neoverse
 	// N1 and V2, so the benefit does not generalize across arm64 cores.

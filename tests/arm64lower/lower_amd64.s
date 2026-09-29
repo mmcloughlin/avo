@@ -2576,3 +2576,51 @@ TEXT ·ManySlotAccum(SB), NOSPLIT, $96-16
 	ADDQ CX, AX
 	MOVQ AX, ret+8(FP)
 	RET
+
+// func SlotImmSext() uint64
+TEXT ·SlotImmSext(SB), NOSPLIT, $8-8
+	MOVQ $0x80000000, (SP)
+	MOVQ (SP), AX
+	MOVQ AX, ret+0(FP)
+	RET
+
+// func SlotPartialInner(x uint64, y uint64) uint64
+TEXT ·SlotPartialInner(SB), NOSPLIT, $8-24
+	MOVQ x+0(FP), AX
+	MOVQ y+8(FP), CX
+	MOVQ AX, (SP)
+	MOVL CX, 4(SP)
+	MOVQ (SP), AX
+	MOVQ AX, ret+16(FP)
+	RET
+
+// func SlotVecOverlap(x uint64) uint64
+// Requires: SSE2
+TEXT ·SlotVecOverlap(SB), NOSPLIT, $16-16
+	MOVQ  x+0(FP), AX
+	MOVQ  AX, 8(SP)
+	PXOR  X0, X0
+	MOVOU X0, (SP)
+	MOVQ  8(SP), AX
+	MOVQ  AX, ret+8(FP)
+	RET
+
+// func SlotIndexed(x uint64, i uint64) uint64
+TEXT ·SlotIndexed(SB), NOSPLIT, $16-24
+	MOVQ x+0(FP), AX
+	MOVQ i+8(FP), CX
+	MOVQ $0x00000005, 8(SP)
+	MOVQ AX, (SP)(CX*8)
+	MOVQ 8(SP), AX
+	MOVQ AX, ret+16(FP)
+	RET
+
+// func SlotAddrOf(x uint64) uint64
+TEXT ·SlotAddrOf(SB), NOSPLIT, $16-16
+	MOVQ x+0(FP), AX
+	MOVQ $0x00000003, 8(SP)
+	LEAQ (SP), CX
+	MOVQ AX, 8(CX)
+	MOVQ 8(SP), AX
+	MOVQ AX, ret+8(FP)
+	RET
