@@ -94,6 +94,13 @@ type arm64 struct {
 	// arm64 has spare registers, so eligible 8-byte slots become registers and
 	// their loads/stores become register moves.
 	slotReg map[int]string
+
+	// coalesce is the current function's coalescing plan (see coalesceSlots),
+	// and renames its entry for the instruction being lowered: the register
+	// families that instruction names in a promoted slot's register instead of
+	// their own.
+	coalesce coalescePlan
+	renames  map[int]string
 }
 
 // NewARM64Asm constructs a printer for writing Go arm64 assembly files by
@@ -524,6 +531,11 @@ func (p *arm64) function(f *ir.Function, twins map[string]twinPair) {
 	nodes := f.Nodes
 	a := analyzeFunction(nodes)
 	p.slotReg = p.stackSlotPromotions(f)
+	groups := a.foldGroups(nodes)
+	p.coalesce = coalesceSlots(nodes, p.slotReg, groups)
+	if err := validateCoalesce(nodes, p.slotReg, p.coalesce, groups); err != nil {
+		panic(fmt.Sprintf("arm64: %s: stack-slot promotion failed validation: %v", f.Name, err))
+	}
 	p.constOK = false
 	for idx := 0; idx < len(nodes); idx++ {
 		if a.byteFold[idx] {
@@ -535,6 +547,7 @@ func (p *arm64) function(f *ir.Function, twins map[string]twinPair) {
 	}
 	p.flush()
 	p.slotReg = nil
+	p.coalesce = nil
 }
 
 // functionAnalysis holds the whole-function analyses function's emission loop
@@ -575,6 +588,21 @@ func analyzeFunction(nodes []ir.Node) functionAnalysis {
 		dropped:     dropped,
 		setFull:     setccFolds(nodes, setflags, dropped),
 	}
+}
+
+// foldGroups returns the node indices a cross-instruction fold rewrites: their
+// register names are fixed at analysis time, so coalescing must not rename them.
+func (a functionAnalysis) foldGroups(nodes []ir.Node) map[int]bool {
+	g := map[int]bool{}
+	for idx := range nodes {
+		if a.byteFold[idx] {
+			g[idx], g[idx+1], g[idx+2] = true, true, true
+		}
+		if a.dropped[idx] || a.setFull[idx] || a.shifts[idx] != (shiftFold{}) {
+			g[idx] = true
+		}
+	}
+	return g
 }
 
 // emitNode lowers the node at idx, using the whole-function analysis a to
@@ -621,6 +649,7 @@ func (p *arm64) emitNode(nodes []ir.Node, idx int, a functionAnalysis) {
 		p.inTransparent, p.transparentOp = isFlagTransparent(n.Opcode), n.Opcode
 		p.inProducer, p.producerOp, p.writerCount = a.setflags[idx], n.Opcode, 0
 		p.shift = a.shifts[idx]
+		p.renames = p.coalesce[idx]
 		switch {
 		case n.Opcode == "JMP":
 			// Only a label target is translatable. A register or memory
@@ -644,7 +673,7 @@ func (p *arm64) emitNode(nodes []ir.Node, idx int, a functionAnalysis) {
 			f := a.bt[idx]
 			p.emitf("%s %s, %s, %s", f.mnemonic,
 				n.Operands[0].Asm(),
-				operandReg(n.Operands[1]),
+				p.operandReg(n.Operands[1]),
 				nodes[f.branch].(*ir.Instruction).Operands[0].Asm())
 		case strings.HasPrefix(n.Opcode, "CMOV"):
 			p.lowerCMOV(n)
@@ -676,6 +705,7 @@ func (p *arm64) emitNode(nodes []ir.Node, idx int, a functionAnalysis) {
 		p.inProducer, p.producerOp, p.writerCount = false, "", 0
 		p.shift = shiftFold{}
 		p.trackConst(n)
+		p.renames = nil
 		if n.IsTerminal || n.IsUnconditionalBranch() {
 			p.flush()
 		}
@@ -912,6 +942,27 @@ func isHighByte(op operand.Op) bool {
 	return false
 }
 
+// rename is the package-level rename with the current instruction's
+// coalescing applied (see coalesceSlots).
+func (p *arm64) rename(r reg.Register) string {
+	if f := regFamily(r); f >= 0 {
+		if name, ok := p.renames[f]; ok {
+			return name
+		}
+	}
+	return rename(r)
+}
+
+// operandReg is the package-level operandReg with the current instruction's
+// coalescing applied.
+func (p *arm64) operandReg(op operand.Op) string {
+	r, ok := op.(reg.Register)
+	if !ok {
+		panic(fmt.Sprintf("arm64: expected register operand, got %T", op))
+	}
+	return p.rename(r)
+}
+
 func operandReg(op operand.Op) string {
 	r, ok := op.(reg.Register)
 	if !ok {
@@ -948,7 +999,7 @@ func (p *arm64) trackConst(n *ir.Instruction) {
 	if !ok {
 		return
 	}
-	p.constReg = rename(r)
+	p.constReg = p.rename(r)
 	p.constVal = v
 	p.constOK = true
 }
@@ -957,7 +1008,7 @@ func (p *arm64) trackConst(n *ir.Instruction) {
 // immediately preceding instruction loaded it with an immediate.
 func (p *arm64) knownConst(op operand.Op) (int64, bool) {
 	r, ok := op.(reg.Register)
-	if !ok || !p.constOK || rename(r) != p.constReg {
+	if !ok || !p.constOK || p.rename(r) != p.constReg {
 		return 0, false
 	}
 	return p.constVal, true
@@ -999,7 +1050,7 @@ func (p *arm64) regOrImmQ(op operand.Op) string {
 	if imm, ok := immAsmQ(op); ok {
 		return imm
 	}
-	return operandReg(op)
+	return p.operandReg(op)
 }
 
 func immVal(op operand.Op) (int64, bool) {
@@ -1069,7 +1120,7 @@ func (p *arm64) memAsmW(m operand.Mem, width int) string {
 	if m.Symbol.Name != "" {
 		s := m.Symbol.String() + fmt.Sprintf("%+d", m.Disp)
 		if m.Base != nil {
-			s += fmt.Sprintf("(%s)", rename(m.Base))
+			s += fmt.Sprintf("(%s)", p.rename(m.Base))
 		}
 		if m.Index != nil {
 			panic("arm64: indexed symbol operand not supported")
@@ -1078,12 +1129,12 @@ func (p *arm64) memAsmW(m operand.Mem, width int) string {
 	}
 	if m.Index == nil || m.Scale == 0 {
 		if m.Disp != 0 {
-			return fmt.Sprintf("%d(%s)", m.Disp, rename(m.Base))
+			return fmt.Sprintf("%d(%s)", m.Disp, p.rename(m.Base))
 		}
-		return fmt.Sprintf("(%s)", rename(m.Base))
+		return fmt.Sprintf("(%s)", p.rename(m.Base))
 	}
 	sh := log2scale(m.Scale)
-	base, index := rename(m.Base), rename(m.Index)
+	base, index := p.rename(m.Base), p.rename(m.Index)
 	// arm64 scalar loads/stores can fold base+index addressing into the
 	// instruction, saving the separate effective-address ADD that x86's richer
 	// addressing otherwise costs us on every access. The architecture allows it
@@ -1147,12 +1198,12 @@ func (p *arm64) lowerPrefetch(op string, src operand.Op) {
 	if m.Symbol.Name != "" {
 		panic(fmt.Sprintf("arm64: %s of a symbol operand (%s) is not supported", op, src.Asm()))
 	}
-	base := rename(m.Base)
+	base := p.rename(m.Base)
 	if m.Index != nil && m.Scale != 0 {
 		if sh := log2scale(m.Scale); sh == 0 {
-			p.emitf("ADD %s, %s, %s", rename(m.Index), base, scratchAddr)
+			p.emitf("ADD %s, %s, %s", p.rename(m.Index), base, scratchAddr)
 		} else {
-			p.emitf("ADD %s<<%d, %s, %s", rename(m.Index), sh, base, scratchAddr)
+			p.emitf("ADD %s<<%d, %s, %s", p.rename(m.Index), sh, base, scratchAddr)
 		}
 		base = scratchAddr
 	}
@@ -1216,8 +1267,13 @@ func (p *arm64) lowerMoveOrLoad(i *ir.Instruction, ops []operand.Op) bool {
 		// becomes a register move: the slot's register stands in for its memory.
 		// Eligibility guarantees the other operand is a register or immediate,
 		// never memory, so at most one side is a slot.
+		// A move between a slot and a register coalesced into it (see
+		// coalesceSlots) is a self-move and emits nothing; so is a register
+		// copy between two webs coalesced into one slot.
 		if r, ok := p.promoted(ops[0]); ok {
-			p.emitf("MOVD %s, %s", r, operandReg(ops[1]))
+			if d := p.operandReg(ops[1]); d != r {
+				p.emitf("MOVD %s, %s", r, d)
+			}
 			return true
 		}
 		if r, ok := p.promoted(ops[1]); ok {
@@ -1226,7 +1282,13 @@ func (p *arm64) lowerMoveOrLoad(i *ir.Instruction, ops []operand.Op) bool {
 				p.emitf("MOVD %s, %s", imm, r)
 				return true
 			}
-			p.emitf("MOVD %s, %s", operandReg(ops[0]), r)
+			if s := p.operandReg(ops[0]); s != r {
+				p.emitf("MOVD %s, %s", s, r)
+			}
+			return true
+		}
+		if isGPReg(ops[0]) && isGPReg(ops[1]) && p.renames != nil &&
+			p.operandReg(ops[0]) == p.operandReg(ops[1]) {
 			return true
 		}
 		p.lowerMove("MOVD", ops[0], ops[1])
@@ -1239,7 +1301,7 @@ func (p *arm64) lowerMoveOrLoad(i *ir.Instruction, ops []operand.Op) bool {
 	case "MOVB":
 		p.lowerMOVB(ops[0], ops[1])
 	case "MOVWQSX": // load/extend int16, sign-extend (mem or reg source)
-		p.emitf("MOVH %s, %s", p.srcAsmW(ops[0], 2), operandReg(ops[1]))
+		p.emitf("MOVH %s, %s", p.srcAsmW(ops[0], 2), p.operandReg(ops[1]))
 	case "MOVWQZX", "MOVWLZX": // load/extend uint16, zero-extend
 		// The two differ only in named destination width, not in result: x86
 		// zeroes bits 63:32 on any 32-bit destination write, so the L form
@@ -1247,7 +1309,7 @@ func (p *arm64) lowerMoveOrLoad(i *ir.Instruction, ops []operand.Op) bool {
 		// MOVHU zero-extends to the whole register either way. This is the
 		// same reasoning that lets MOVBQZX and MOVBLZX share a lowering below.
 		// No high-byte case exists at this width, so none is checked.
-		p.emitf("MOVHU %s, %s", p.srcAsmW(ops[0], 2), operandReg(ops[1]))
+		p.emitf("MOVHU %s, %s", p.srcAsmW(ops[0], 2), p.operandReg(ops[1]))
 	case "MOVBQZX", "MOVBQSX", "MOVBLSX", "MOVBLZX":
 		// A high-byte source (AH/BH/CH/DH) names bits 15:8 but renames to the
 		// same arm64 register as the low byte, so a plain load would read 7:0.
@@ -1267,8 +1329,8 @@ func (p *arm64) lowerMoveOrLoad(i *ir.Instruction, ops []operand.Op) bool {
 			if i.Opcode == "MOVBLSX" {
 				ext = "SBFX"
 			}
-			d := operandReg(ops[1])
-			p.emitf("%s $8, %s, $8, %s", ext, rename(ops[0].(reg.Register)), d)
+			d := p.operandReg(ops[1])
+			p.emitf("%s $8, %s, $8, %s", ext, p.rename(ops[0].(reg.Register)), d)
 			if i.Opcode == "MOVBLSX" {
 				p.emitf("MOVWU %s, %s", d, d) // sign-extended: clear the upper half
 			}
@@ -1278,23 +1340,23 @@ func (p *arm64) lowerMoveOrLoad(i *ir.Instruction, ops []operand.Op) bool {
 		case "MOVBQZX", "MOVBLZX":
 			// Zero-extending a byte already leaves the upper bits clear, so the
 			// 32-bit form needs no extra truncation.
-			p.emitf("MOVBU %s, %s", p.srcAsmW(ops[0], 1), operandReg(ops[1]))
+			p.emitf("MOVBU %s, %s", p.srcAsmW(ops[0], 1), p.operandReg(ops[1]))
 		case "MOVBQSX":
-			p.emitf("MOVB %s, %s", p.srcAsmW(ops[0], 1), operandReg(ops[1]))
+			p.emitf("MOVB %s, %s", p.srcAsmW(ops[0], 1), p.operandReg(ops[1]))
 		default: // MOVBLSX
-			d := operandReg(ops[1])
+			d := p.operandReg(ops[1])
 			p.emitf("MOVB %s, %s", p.srcAsmW(ops[0], 1), d)
 			p.emitf("MOVWU %s, %s", d, d)
 		}
 
 	case "MOVLQSX": // load/extend int32, sign-extend
-		p.emitf("MOVW %s, %s", p.srcAsmW(ops[0], 4), operandReg(ops[1]))
+		p.emitf("MOVW %s, %s", p.srcAsmW(ops[0], 4), p.operandReg(ops[1]))
 	case "MOVLQZX": // load/extend uint32, zero-extend
-		p.emitf("MOVWU %s, %s", p.srcAsmW(ops[0], 4), operandReg(ops[1]))
+		p.emitf("MOVWU %s, %s", p.srcAsmW(ops[0], 4), p.operandReg(ops[1]))
 	case "MOVWLSX":
 		// Sign-extend a halfword into a 32-bit destination: x86 leaves the upper
 		// 32 bits zeroed, so extend to 64 and then clear the top half.
-		d := operandReg(ops[1])
+		d := p.operandReg(ops[1])
 		p.emitf("MOVH %s, %s", p.srcAsmW(ops[0], 2), d)
 		p.emitf("MOVWU %s, %s", d, d)
 	case "MOVUPS", "MOVOU", "MOVOA":
@@ -1304,7 +1366,7 @@ func (p *arm64) lowerMoveOrLoad(i *ir.Instruction, ops []operand.Op) bool {
 		p.lowerMOVUPS(ops[0], ops[1])
 	case "PXOR":
 		// 128-bit bitwise XOR of two vector registers.
-		a, b := operandReg(ops[0]), operandReg(ops[1])
+		a, b := p.operandReg(ops[0]), p.operandReg(ops[1])
 		p.emitf("VEOR %s.B16, %s.B16, %s.B16", a, b, b)
 	default:
 		return false
@@ -1337,16 +1399,16 @@ func (p *arm64) lowerArithOrLogic(i *ir.Instruction, ops []operand.Op, flags boo
 		p.lowerArithW("ORRW", "", ops[0], ops[1], flags)
 	case "XORQ":
 		if ra, ok := ops[0].(reg.Register); ok {
-			if rb, ok := ops[1].(reg.Register); ok && rename(ra) == rename(rb) {
-				p.zeroSelf(rename(rb), "TST", flags)
+			if rb, ok := ops[1].(reg.Register); ok && p.rename(ra) == p.rename(rb) {
+				p.zeroSelf(p.rename(rb), "TST", flags)
 				return true
 			}
 		}
 		p.lowerArith("EOR", "", ops[0], ops[1], flags)
 	case "XORL":
 		if ra, ok := ops[0].(reg.Register); ok {
-			if rb, ok := ops[1].(reg.Register); ok && rename(ra) == rename(rb) {
-				p.zeroSelf(rename(rb), "TSTW", flags)
+			if rb, ok := ops[1].(reg.Register); ok && p.rename(ra) == p.rename(rb) {
+				p.zeroSelf(p.rename(rb), "TSTW", flags)
 				return true
 			}
 		}
@@ -1365,14 +1427,14 @@ func (p *arm64) lowerArithOrLogic(i *ir.Instruction, ops []operand.Op, flags boo
 		// affect bits 7:0 — and insert exactly those 8 bits.
 		if isHighByte(ops[1]) {
 			v := p.byteVal(ops[0])
-			d := operandReg(ops[1])
+			d := p.operandReg(ops[1])
 			p.emitf("UBFX $8, %s, $8, %s", d, scratchAddr)
 			p.emitf("ADD %s, %s, %s", v, scratchAddr, scratchAddr)
 			p.emitf("BFI $8, %s, $8, %s", scratchAddr, d)
 			return true
 		}
 		v := p.byteVal(ops[0])
-		d := operandReg(ops[1])
+		d := p.operandReg(ops[1])
 		p.emitf("ADD %s, %s, %s", v, d, scratchAddr)
 		p.emitf("BFI $0, %s, $8, %s", scratchAddr, d)
 	case "ADCB":
@@ -1388,7 +1450,7 @@ func (p *arm64) lowerArithOrLogic(i *ir.Instruction, ops []operand.Op, flags boo
 		if isHighByte(ops[1]) {
 			panic("arm64: ADCB high-byte destination not supported")
 		}
-		d := operandReg(ops[1])
+		d := p.operandReg(ops[1])
 		p.emitf("CSINC HS, %s, %s, %s", d, d, scratchVal)
 		p.emitf("BFI $0, %s, $8, %s", scratchVal, d)
 	case "ADCQ":
@@ -1398,11 +1460,11 @@ func (p *arm64) lowerArithOrLogic(i *ir.Instruction, ops []operand.Op, flags boo
 		if v, ok := immVal(ops[0]); !ok || v != 0 {
 			panic("arm64: ADCQ only supported with a $0 immediate source")
 		}
-		d := operandReg(ops[1])
+		d := p.operandReg(ops[1])
 		p.emitf("CSINC HS, %s, %s, %s", d, d, d)
 	case "BSWAPL":
 		// Byte-reverse the low 32 bits; the 32-bit result zero-extends, as on x86.
-		r := operandReg(ops[0])
+		r := p.operandReg(ops[0])
 		p.emitf("REVW %s, %s", r, r)
 	default:
 		return false
@@ -1421,13 +1483,13 @@ func (p *arm64) lowerIncDecShiftOp(i *ir.Instruction, ops []operand.Op, flags bo
 	case "DECL":
 		p.lowerIncDec("SUBW", "SUBSW", ops[0], 4, flags)
 	case "NEGQ":
-		p.emitf("NEG %s, %s", operandReg(ops[0]), operandReg(ops[0]))
+		p.emitf("NEG %s, %s", p.operandReg(ops[0]), p.operandReg(ops[0]))
 	case "NEGL":
-		p.emitf("NEGW %s, %s", operandReg(ops[0]), operandReg(ops[0]))
+		p.emitf("NEGW %s, %s", p.operandReg(ops[0]), p.operandReg(ops[0]))
 	case "NOTQ":
-		p.emitf("MVN %s, %s", operandReg(ops[0]), operandReg(ops[0]))
+		p.emitf("MVN %s, %s", p.operandReg(ops[0]), p.operandReg(ops[0]))
 	case "NOTL":
-		p.emitf("MVNW %s, %s", operandReg(ops[0]), operandReg(ops[0]))
+		p.emitf("MVNW %s, %s", p.operandReg(ops[0]), p.operandReg(ops[0]))
 	case "SHRQ":
 		checkNotDoubleShift(i)
 		p.lowerShift("LSR", ops[0], ops[1], 64)
@@ -1451,7 +1513,7 @@ func (p *arm64) lowerIncDecShiftOp(i *ir.Instruction, ops []operand.Op, flags bo
 		if isHighByte(ops[1]) {
 			panic("arm64: SHLB high-byte destination not supported")
 		}
-		d := operandReg(ops[1])
+		d := p.operandReg(ops[1])
 		p.emitf("LSLW %s, %s, %s", p.regOrImm(ops[0]), d, scratchVal)
 		p.emitf("BFI $0, %s, $8, %s", scratchVal, d)
 	case "ROLQ":
@@ -1499,23 +1561,23 @@ func (p *arm64) lowerMiscOp(i *ir.Instruction, ops []operand.Op) bool {
 		p.emitf("PCALIGN %s", ops[0].Asm())
 
 	case "LEAQ":
-		p.lowerLEA(ops[0].(operand.Mem), operandReg(ops[1]))
+		p.lowerLEA(ops[0].(operand.Mem), p.operandReg(ops[1]))
 	case "LEAL":
 		// 32-bit LEA: the address arithmetic is computed modulo 2^32 and the
 		// result zero-extends into the 64-bit destination.
-		d := operandReg(ops[1])
+		d := p.operandReg(ops[1])
 		p.lowerLEA(ops[0].(operand.Mem), d)
 		p.emitf("MOVWU %s, %s", d, d)
 
 	case "IMULL":
 		// 32-bit two-operand multiply; the W-form zeroes the upper half as x86 does.
-		p.emitf("MULW %s, %s, %s", p.valRegW(ops[0], 4), operandReg(ops[1]), operandReg(ops[1]))
+		p.emitf("MULW %s, %s, %s", p.valRegW(ops[0], 4), p.operandReg(ops[1]), p.operandReg(ops[1]))
 
 	case "POPCNTQ":
 		// arm64 has no scalar population count: move to a vector register, count
 		// bits per byte, then sum the bytes across the vector.
 		src := p.valReg(ops[0])
-		dst := operandReg(ops[1])
+		dst := p.operandReg(ops[1])
 		f := "F" + scratchVec[1:]
 		p.emitf("FMOVD %s, %s", src, f)
 		p.emitf("VCNT %s.B8, %s.B8", scratchVec, scratchVec)
@@ -1531,7 +1593,7 @@ func (p *arm64) lowerMiscOp(i *ir.Instruction, ops []operand.Op) bool {
 		if _, ok := ops[1].(operand.Mem); ok {
 			panic("arm64: XCHGQ with a memory operand is atomic on x86 and is not supported")
 		}
-		a, b := operandReg(ops[0]), operandReg(ops[1])
+		a, b := p.operandReg(ops[0]), p.operandReg(ops[1])
 		if a != b {
 			p.emitf("MOVD %s, %s", a, scratchVal)
 			p.emitf("MOVD %s, %s", b, a)
@@ -1545,15 +1607,15 @@ func (p *arm64) lowerMiscOp(i *ir.Instruction, ops []operand.Op) bool {
 		if i.Opcode == "BTCQ" {
 			op = "EOR"
 		}
-		a := operandReg(ops[0])
-		b := operandReg(ops[1])
+		a := p.operandReg(ops[0])
+		b := p.operandReg(ops[1])
 		p.emitf("MOVD $1, %s", scratchVal)
 		p.emitf("LSL %s, %s, %s", a, scratchVal, scratchVal)
 		p.emitf("%s %s, %s, %s", op, scratchVal, b, b)
 
 	case "BTSQ":
-		a := operandReg(ops[0])
-		b := operandReg(ops[1])
+		a := p.operandReg(ops[0])
+		b := p.operandReg(ops[1])
 		p.emitf("MOVD $1, %s", scratchVal)
 		p.emitf("LSL %s, %s, %s", a, scratchVal, scratchVal)
 		p.emitf("ORR %s, %s, %s", scratchVal, b, b)
@@ -1565,8 +1627,8 @@ func (p *arm64) lowerMiscOp(i *ir.Instruction, ops []operand.Op) bool {
 		// undefined there, so returning 64 is a valid refinement. The generators
 		// emit both mnemonics guarded by #ifdef GOAMD64_v3, and both lower here
 		// to the same sequence.
-		src := operandReg(ops[0])
-		dst := operandReg(ops[1])
+		src := p.operandReg(ops[0])
+		dst := p.operandReg(ops[1])
 		p.emitf("RBIT %s, %s", src, dst)
 		p.emitf("CLZ %s, %s", dst, dst)
 
@@ -1576,8 +1638,8 @@ func (p *arm64) lowerMiscOp(i *ir.Instruction, ops []operand.Op) bool {
 		// yields -1, since CLZ gives 64 and the subtraction runs past zero. That
 		// is a refinement of undefined, like the BSF case above -- but it means a
 		// differential test must not feed BSR a zero input and expect agreement.
-		src := operandReg(ops[0])
-		dst := operandReg(ops[1])
+		src := p.operandReg(ops[0])
+		dst := p.operandReg(ops[1])
 		p.emitf("CLZ %s, %s", src, scratchVal)
 		p.emitf("MOVD $63, %s", dst)
 		p.emitf("SUB %s, %s, %s", scratchVal, dst, dst)
@@ -1667,7 +1729,7 @@ func (p *arm64) regOrImm(op operand.Op) string {
 	if imm, ok := immAsm(op); ok {
 		return imm
 	}
-	return operandReg(op)
+	return p.operandReg(op)
 }
 
 // srcAsmW renders a source operand that may be a memory reference, immediate,
@@ -1707,7 +1769,7 @@ func (p *arm64) valRegW(op operand.Op, width int) string {
 		p.emitf("%s %s, %s", ld, p.memAsmW(m, width), scratchVal)
 		return scratchVal
 	}
-	return operandReg(op)
+	return p.operandReg(op)
 }
 
 // lowerMove handles MOV* of reg/imm/mem to reg/mem.
@@ -1728,15 +1790,15 @@ func (p *arm64) lowerMove(op string, src, dst operand.Op) {
 			p.emitf("%s %s, %s", op, scratchVal, p.memAsmW(dmem, w))
 			return
 		}
-		p.emitf("%s %s, %s", op, operandReg(src), p.memAsmW(dmem, w))
+		p.emitf("%s %s, %s", op, p.operandReg(src), p.memAsmW(dmem, w))
 	case srcIsMem:
-		p.emitf("%s %s, %s", op, p.memAsmW(smem, w), operandReg(dst))
+		p.emitf("%s %s, %s", op, p.memAsmW(smem, w), p.operandReg(dst))
 	default:
 		if imm, ok := immAsm(src); ok {
-			p.emitf("%s %s, %s", op, imm, operandReg(dst))
+			p.emitf("%s %s, %s", op, imm, p.operandReg(dst))
 			return
 		}
-		p.emitf("%s %s, %s", op, operandReg(src), operandReg(dst))
+		p.emitf("%s %s, %s", op, p.operandReg(src), p.operandReg(dst))
 	}
 }
 
@@ -1746,7 +1808,7 @@ func (p *arm64) lowerMove(op string, src, dst operand.Op) {
 // extracted/loaded into scratch). Callers must consume only bits 7:0.
 func (p *arm64) byteVal(op operand.Op) string {
 	if isHighByte(op) {
-		p.emitf("UBFX $8, %s, $8, %s", rename(op.(reg.Register)), scratchVal)
+		p.emitf("UBFX $8, %s, $8, %s", p.rename(op.(reg.Register)), scratchVal)
 		return scratchVal
 	}
 	if imm, ok := immAsm(op); ok {
@@ -1757,7 +1819,7 @@ func (p *arm64) byteVal(op operand.Op) string {
 		p.emitf("MOVBU %s, %s", p.memAsmW(m, 1), scratchVal)
 		return scratchVal
 	}
-	return operandReg(op)
+	return p.operandReg(op)
 }
 
 // lowerMOVB lowers x86 MOVB with exact partial-register semantics: a byte store
@@ -1780,7 +1842,7 @@ func (p *arm64) lowerMOVB(src, dst operand.Op) {
 	if isHighByte(dst) {
 		lsb = 8
 	}
-	p.emitf("BFI $%d, %s, $8, %s", lsb, v, operandReg(dst))
+	p.emitf("BFI $%d, %s, $8, %s", lsb, v, p.operandReg(dst))
 }
 
 // lowerMOVW lowers a 16-bit move. Every form writes exactly bits 15:0 of its
@@ -1795,21 +1857,21 @@ func (p *arm64) lowerMOVW(src, dst operand.Op) {
 			p.emitf("MOVH %s, %s", scratchVal, p.memAsmW(dmem, 2))
 			return
 		}
-		p.emitf("MOVH %s, %s", operandReg(src), p.memAsmW(dmem, 2))
+		p.emitf("MOVH %s, %s", p.operandReg(src), p.memAsmW(dmem, 2))
 		return
 	}
 	if smem, ok := src.(operand.Mem); ok {
 		p.emitf("MOVHU %s, %s", p.memAsmW(smem, 2), scratchVal)
-		p.emitf("BFI $0, %s, $16, %s", scratchVal, operandReg(dst))
+		p.emitf("BFI $0, %s, $16, %s", scratchVal, p.operandReg(dst))
 		return
 	}
-	v := operandReg(dst)
+	v := p.operandReg(dst)
 	if imm, ok := immAsm(src); ok {
 		p.emitf("MOVD %s, %s", imm, scratchVal)
 		p.emitf("BFI $0, %s, $16, %s", scratchVal, v)
 		return
 	}
-	p.emitf("BFI $0, %s, $16, %s", operandReg(src), v)
+	p.emitf("BFI $0, %s, $16, %s", p.operandReg(src), v)
 }
 
 // accessWidth is the width in bytes a Go arm64 load/store mnemonic touches,
@@ -1838,11 +1900,11 @@ func (p *arm64) lowerMOVL(src, dst operand.Op) {
 			p.emitf("MOVW %s, %s", scratchVal, p.memAsmW(dmem, 4))
 			return
 		}
-		p.emitf("MOVW %s, %s", operandReg(src), p.memAsmW(dmem, 4))
+		p.emitf("MOVW %s, %s", p.operandReg(src), p.memAsmW(dmem, 4))
 		return
 	}
 	if smem, ok := src.(operand.Mem); ok {
-		p.emitf("MOVWU %s, %s", p.memAsmW(smem, 4), operandReg(dst))
+		p.emitf("MOVWU %s, %s", p.memAsmW(smem, 4), p.operandReg(dst))
 		return
 	}
 	if _, isImm := immAsm(src); isImm {
@@ -1855,10 +1917,10 @@ func (p *arm64) lowerMOVL(src, dst operand.Op) {
 		}
 		// Rendered in avo's own hex style so an unaffected immediate keeps its
 		// existing spelling and regeneration stays byte-for-byte stable.
-		p.emitf("MOVD $0x%08x, %s", uint32(v), operandReg(dst))
+		p.emitf("MOVD $0x%08x, %s", uint32(v), p.operandReg(dst))
 		return
 	}
-	p.emitf("MOVWU %s, %s", operandReg(src), operandReg(dst))
+	p.emitf("MOVWU %s, %s", p.operandReg(src), p.operandReg(dst))
 }
 
 // lowerMOVUPS lowers a 16-byte unaligned move between memory and a vector reg.
@@ -1878,7 +1940,7 @@ func (p *arm64) lowerMOVUPS(src, dst operand.Op) {
 		p.emitf("FMOVQ %s, %s", p.memAsm(smem), vecAsF(dst))
 		return
 	}
-	p.emitf("VMOV %s.B16, %s.B16", operandReg(src), operandReg(dst))
+	p.emitf("VMOV %s.B16, %s.B16", p.operandReg(src), p.operandReg(dst))
 }
 
 // vecAsF renders a vector register under its F name, which the scalar FMOVQ
@@ -1920,7 +1982,7 @@ func (p *arm64) lowerArith(op, sop string, src, dst operand.Op, flags bool) {
 		}
 		return
 	}
-	d := operandReg(dst)
+	d := p.operandReg(dst)
 	var s string
 	if imm, ok := immAsmQ(src); ok {
 		s = imm
@@ -1957,7 +2019,7 @@ func (p *arm64) lowerArithW(op, sop string, src, dst operand.Op, flags bool) {
 		}
 		return
 	}
-	d := operandReg(dst)
+	d := p.operandReg(dst)
 	var s string
 	if imm, ok := immAsm(src); ok {
 		s = imm
@@ -1965,7 +2027,7 @@ func (p *arm64) lowerArithW(op, sop string, src, dst operand.Op, flags bool) {
 		p.emitf("MOVWU %s, %s", p.memAsm(m), scratchVal)
 		s = scratchVal
 	} else {
-		s = operandReg(src)
+		s = p.operandReg(src)
 	}
 	p.emitf("%s %s, %s, %s", mnem, s, d, d)
 	if synth != "" {
@@ -1995,7 +2057,7 @@ func (p *arm64) lowerIncDec(op, sop string, dst operand.Op, width int, flags boo
 		p.emitf("%s %s, %s", st, scratchVal, m)
 		return
 	}
-	d := operandReg(dst)
+	d := p.operandReg(dst)
 	p.emitf("%s $1, %s, %s", mnem, d, d)
 }
 
@@ -2017,7 +2079,7 @@ func checkNotDoubleShift(i *ir.Instruction) {
 
 // lowerShift lowers "SHIFT count, dst" (count imm or register).
 func (p *arm64) lowerShift(op string, count, dst operand.Op, width int) {
-	d := operandReg(dst)
+	d := p.operandReg(dst)
 	// shiftFolds may have absorbed the copy that fed this shift's source or
 	// its count, in which case the arm64 three-operand form reads the
 	// original registers directly (see shiftFolds).
@@ -2060,7 +2122,7 @@ func (p *arm64) lowerROL(count, dst operand.Op, width int) {
 	if width == 32 {
 		ror, neg = "RORW", "NEGW"
 	}
-	d := operandReg(dst)
+	d := p.operandReg(dst)
 	s := d // see lowerShift
 	if p.shift.src != "" {
 		s = p.shift.src
@@ -2087,7 +2149,7 @@ func (p *arm64) srcRegInto(op operand.Op, scratch string) string {
 		p.emitf("MOVD %s, %s", p.memAsm(m), scratch)
 		return scratch
 	}
-	return operandReg(op)
+	return p.operandReg(op)
 }
 
 // lowerShiftX lowers a BMI2 flag-free shift "SHIFTX count, src, dst":
@@ -2096,10 +2158,10 @@ func (p *arm64) srcRegInto(op operand.Op, scratch string) string {
 func (p *arm64) lowerShiftX(op string, count, src, dst operand.Op) {
 	s := p.srcRegInto(src, scratchVal)
 	if n, ok := p.knownConst(count); ok {
-		p.emitf("%s $%d, %s, %s", op, n&63, s, operandReg(dst))
+		p.emitf("%s $%d, %s, %s", op, n&63, s, p.operandReg(dst))
 		return
 	}
-	p.emitf("%s %s, %s, %s", op, operandReg(count), s, operandReg(dst))
+	p.emitf("%s %s, %s, %s", op, p.operandReg(count), s, p.operandReg(dst))
 }
 
 // lowerRORX lowers "RORXQ imm, src, dst": dst = ror(src, imm) (flag-free).
@@ -2113,7 +2175,7 @@ func (p *arm64) lowerRORX(imm, src, dst operand.Op) {
 		panic("arm64: bad RORX immediate " + c)
 	}
 	s := p.srcRegInto(src, scratchVal)
-	p.emitf("ROR $%d, %s, %s", n&63, s, operandReg(dst))
+	p.emitf("ROR $%d, %s, %s", n&63, s, p.operandReg(dst))
 }
 
 // lowerBZHI lowers "BZHIQ count, src, dst": dst = src & ((1<<count)-1). count is
@@ -2122,7 +2184,7 @@ func (p *arm64) lowerRORX(imm, src, dst operand.Op) {
 // count register was just loaded with a constant, the mask is folded to an
 // immediate AND (with x86's full n==0 / n>=64 semantics, which are exact).
 func (p *arm64) lowerBZHI(count, src, dst operand.Op) {
-	d := operandReg(dst)
+	d := p.operandReg(dst)
 	if n, ok := p.knownConst(count); ok {
 		// x86 reads the bit count from the low 8 bits of the control operand and
 		// ignores the rest, so the whole constant is the wrong thing to classify:
@@ -2145,7 +2207,7 @@ func (p *arm64) lowerBZHI(count, src, dst operand.Op) {
 		return
 	}
 	s := p.srcRegInto(src, scratchAddr)
-	n := operandReg(count)
+	n := p.operandReg(count)
 	p.emitf("MOVD $1, %s", scratchVal)
 	p.emitf("LSL %s, %s, %s", n, scratchVal, scratchVal) // 1 << count
 	p.emitf("SUB $1, %s, %s", scratchVal, scratchVal)    // mask = (1<<count)-1
@@ -2159,7 +2221,7 @@ func (p *arm64) lowerBZHI(count, src, dst operand.Op) {
 // ctrl register was just loaded with a constant, the extract folds to a single
 // UBFX (or LSR when the field reaches bit 63, or a zero move when empty).
 func (p *arm64) lowerBEXTR(ctrl, src, dst operand.Op) {
-	d := operandReg(dst)
+	d := p.operandReg(dst)
 	if c, ok := p.knownConst(ctrl); ok {
 		start := c & 0xff
 		length := (c >> 8) & 0xff
@@ -2174,7 +2236,7 @@ func (p *arm64) lowerBEXTR(ctrl, src, dst operand.Op) {
 		}
 		return
 	}
-	c := operandReg(ctrl)
+	c := p.operandReg(ctrl)
 	// Staging order matters here. The value is materialized first, because an
 	// indexed memory source computes its address through scratchAddr and would
 	// otherwise destroy a field already staged there. ctrl is then read twice,
@@ -2184,7 +2246,7 @@ func (p *arm64) lowerBEXTR(ctrl, src, dst operand.Op) {
 	if m, ok := src.(operand.Mem); ok {
 		p.emitf("MOVD %s, %s", p.memAsm(m), scratchVal)
 	} else {
-		p.emitf("MOVD %s, %s", operandReg(src), scratchVal)
+		p.emitf("MOVD %s, %s", p.operandReg(src), scratchVal)
 	}
 	p.emitf("UBFX $0, %s, $8, %s", c, scratchAddr)                 // start = ctrl[7:0]
 	p.emitf("LSR %s, %s, %s", scratchAddr, scratchVal, scratchVal) // value >>= start
@@ -2199,17 +2261,17 @@ func (p *arm64) lowerBEXTR(ctrl, src, dst operand.Op) {
 // src * RDX has its low half written to lo and its high half to hi. The low half
 // is staged in scratch so lo/hi may alias src or RDX.
 func (p *arm64) lowerMULX(src, lo, hi operand.Op) {
-	dx := rename(reg.RDX)
+	dx := p.rename(reg.RDX)
 	s := p.srcRegInto(src, scratchAddr)
-	p.emitf("MUL %s, %s, %s", s, dx, scratchVal)       // low  -> scratch
-	p.emitf("UMULH %s, %s, %s", s, dx, operandReg(hi)) // high -> hi (s, dx intact)
-	if rename(lo.(reg.Register)) == rename(hi.(reg.Register)) {
+	p.emitf("MUL %s, %s, %s", s, dx, scratchVal)         // low  -> scratch
+	p.emitf("UMULH %s, %s, %s", s, dx, p.operandReg(hi)) // high -> hi (s, dx intact)
+	if p.rename(lo.(reg.Register)) == p.rename(hi.(reg.Register)) {
 		// x86 allows the two destinations to name the same register and defines
 		// the high half as written second, so the high half is what survives.
 		// Copying the staged low half here would leave the wrong one.
 		return
 	}
-	p.emitf("MOVD %s, %s", scratchVal, operandReg(lo)) // low  -> lo
+	p.emitf("MOVD %s, %s", scratchVal, p.operandReg(lo)) // low  -> lo
 }
 
 // lowerIMUL3 lowers "IMUL3Q imm, src, dst": dst = src * imm. x86 sign-extends the
@@ -2227,7 +2289,7 @@ func (p *arm64) lowerIMUL3(imm, src, dst operand.Op) {
 	}
 	s := p.srcRegInto(src, scratchAddr)
 	p.emitf("MOVD $%d, %s", int64(int32(v)), scratchVal) // materialize sign-extended imm32
-	p.emitf("MUL %s, %s, %s", scratchVal, s, operandReg(dst))
+	p.emitf("MUL %s, %s, %s", scratchVal, s, p.operandReg(dst))
 }
 
 // lowerIMUL lowers IMULQ in its 2-operand ("src, dst": dst *= src) and 1-operand
@@ -2236,7 +2298,7 @@ func (p *arm64) lowerIMUL(ops []operand.Op) {
 	switch len(ops) {
 	case 2:
 		s := p.valReg(ops[0])
-		d := operandReg(ops[1])
+		d := p.operandReg(ops[1])
 		p.emitf("MUL %s, %s, %s", s, d, d)
 	case 1:
 		p.lowerWideMul("SMULH", ops[0])
@@ -2249,8 +2311,8 @@ func (p *arm64) lowerIMUL(ops []operand.Op) {
 // hiOp = UMULH (unsigned) or SMULH (signed). The source is staged when it aliases
 // RDX so writing the result cannot clobber it.
 func (p *arm64) lowerWideMul(hiOp string, src operand.Op) {
-	rax := rename(reg.RAX)
-	rdx := rename(reg.RDX)
+	rax := p.rename(reg.RAX)
+	rdx := p.rename(reg.RDX)
 	s := p.srcRegInto(src, scratchVal)
 	if s == rdx {
 		p.emitf("MOVD %s, %s", s, scratchVal)
@@ -2265,13 +2327,13 @@ func (p *arm64) lowerLEA(m operand.Mem, dst string) {
 	if m.Symbol.Name != "" {
 		panic("arm64: LEA of symbol not supported")
 	}
-	base := rename(m.Base)
+	base := p.rename(m.Base)
 	if m.Index != nil && m.Scale != 0 {
 		sh := log2scale(m.Scale)
 		if sh == 0 {
-			p.emitf("ADD %s, %s, %s", rename(m.Index), base, dst)
+			p.emitf("ADD %s, %s, %s", p.rename(m.Index), base, dst)
 		} else {
-			p.emitf("ADD %s<<%d, %s, %s", rename(m.Index), sh, base, dst)
+			p.emitf("ADD %s<<%d, %s, %s", p.rename(m.Index), sh, base, dst)
 		}
 		base = dst
 	}
@@ -2322,10 +2384,10 @@ func (p *arm64) lowerCompare(cmp, cmn string, a, b operand.Op, width int) {
 	// arm64 CMP Rm, Rn computes Rn - Rm; we want a - b, so Rn=a, Rm=b.
 	if _, ok := a.(operand.Mem); ok {
 		aReg := p.valRegW(a, width)
-		p.emitf("%s %s, %s", cmp, operandReg(b), aReg)
+		p.emitf("%s %s, %s", cmp, p.operandReg(b), aReg)
 		return
 	}
-	p.emitf("%s %s, %s", cmp, p.valRegW(b, width), operandReg(a))
+	p.emitf("%s %s, %s", cmp, p.valRegW(b, width), p.operandReg(a))
 }
 
 // lowerTest emits an arm64 bitwise-test flag-setter for "TEST a, b" using the
@@ -2383,10 +2445,10 @@ func (p *arm64) lowerSubwordTestEqNe(bits int, a, b operand.Op) {
 			if isHighByte(a) {
 				// AH/BH/CH/DH occupy bits 15:8 of the arm64 register the low byte
 				// renames to (see isHighByte); shift the mask to match.
-				p.emitf("TST $0x%x, %s", mask<<8, rename(ra))
+				p.emitf("TST $0x%x, %s", mask<<8, p.rename(ra))
 				return
 			}
-			p.emitf("TST $0x%x, %s", mask, operandReg(a))
+			p.emitf("TST $0x%x, %s", mask, p.operandReg(a))
 			return
 		}
 	}
@@ -2421,10 +2483,10 @@ func (p *arm64) zeroExtendEqNe(bits int, op operand.Op, scratch string) string {
 		// rename to, so masking the renamed register would compare the low byte
 		// instead -- and wrongly in both directions, since either byte can be
 		// the larger.
-		p.emitf("UBFX $8, %s, $8, %s", rename(op.(reg.Register)), scratch)
+		p.emitf("UBFX $8, %s, $8, %s", p.rename(op.(reg.Register)), scratch)
 		return scratch
 	}
-	p.emitf("AND %s, %s, %s", mask, operandReg(op), scratch)
+	p.emitf("AND %s, %s, %s", mask, p.operandReg(op), scratch)
 	return scratch
 }
 
@@ -2504,18 +2566,18 @@ func (p *arm64) lowerSET(i *ir.Instruction, full bool) {
 		panic("arm64: SETcc high-byte destination not supported")
 	}
 	if full {
-		p.emitf("CSET %s, %s", cc, operandReg(i.Operands[0]))
+		p.emitf("CSET %s, %s", cc, p.operandReg(i.Operands[0]))
 		return
 	}
 	p.emitf("CSET %s, %s", cc, scratchVal)
-	p.emitf("BFI $0, %s, $8, %s", scratchVal, operandReg(i.Operands[0]))
+	p.emitf("BFI $0, %s, $8, %s", scratchVal, p.operandReg(i.Operands[0]))
 }
 
 // lowerCMOV lowers "CMOVcc src, dst" to "CSEL cc, src, dst, dst".
 func (p *arm64) lowerCMOV(i *ir.Instruction) {
 	cond := cmovCond(i.Opcode)
-	src := operandReg(i.Operands[0])
-	dst := operandReg(i.Operands[1])
+	src := p.operandReg(i.Operands[0])
+	dst := p.operandReg(i.Operands[1])
 	switch {
 	case strings.HasPrefix(i.Opcode, "CMOVW"):
 		// x86 CMOVW inserts 16 bits, leaving the upper 48 untouched on both
@@ -3142,7 +3204,7 @@ func (p *arm64) emitShiftExtractFold(mov, shr, ext *ir.Instruction) {
 	// values.
 	p.inTransparent, p.transparentOp = false, ""
 	p.inProducer, p.producerOp, p.writerCount = false, "", 0
-	p.emitf("UBFX $%d, %s, $8, %s", shiftAmt, operandReg(mov.Operands[0]), operandReg(ext.Operands[1]))
+	p.emitf("UBFX $%d, %s, $8, %s", shiftAmt, p.operandReg(mov.Operands[0]), p.operandReg(ext.Operands[1]))
 	p.constOK = false
 }
 

@@ -596,3 +596,302 @@ const (
 	NumSlotPrograms   = 48
 	SlotProgramLength = 14
 )
+
+// FoldOps is a frame-slot vocabulary aimed at stack-slot coalescing: every
+// slot access is a whole-slot MOVQ, so all four slots stay promotable, and the
+// ops put temporaries in the shapes coalescing must fold (a read-modify-write
+// through a temporary, a copy chain, a slot-held loop counter across a back
+// edge) and the ones it must refuse (a temporary live across a store to its
+// slot, inside a loop too; a value loaded on one path only; two live copies of
+// one slot).
+var FoldOps = []SlotOp{
+	{
+		Name: "IncVia",
+		Emit: func(acc, y reg.GPVirtual, s [4]operand.Mem, k int, lbl string) {
+			t := build.GP64()
+			build.MOVQ(s[k], t)
+			build.ADDQ(y, t)
+			build.MOVQ(t, s[k])
+		},
+		Ref: func(acc, y uint64, s *[4]uint64, k int) uint64 { s[k] += y; return acc },
+	},
+	{
+		Name: "LoopDec",
+		Emit: func(acc, y reg.GPVirtual, s [4]operand.Mem, k int, lbl string) {
+			c := build.GP64()
+			build.MOVQ(s[k], c)
+			build.ANDQ(operand.U32(3), c)
+			build.MOVQ(c, s[k])
+			build.Label(lbl + "_loop")
+			t := build.GP64()
+			build.MOVQ(s[k], t)
+			build.CMPQ(t, operand.U32(0))
+			build.JEQ(operand.LabelRef(lbl + "_done"))
+			build.ADDQ(t, acc)
+			build.ROLQ(operand.U8(3), acc)
+			u := build.GP64()
+			build.MOVQ(s[k], u)
+			build.SUBQ(operand.U32(1), u)
+			build.MOVQ(u, s[k])
+			build.JMP(operand.LabelRef(lbl + "_loop"))
+			build.Label(lbl + "_done")
+		},
+		Ref: func(acc, y uint64, s *[4]uint64, k int) uint64 {
+			for s[k] &= 3; s[k] != 0; s[k]-- {
+				acc = bits.RotateLeft64(acc+s[k], 3)
+			}
+			return acc
+		},
+	},
+	{
+		Name: "ReadOldAfterStore",
+		Emit: func(acc, y reg.GPVirtual, s [4]operand.Mem, k int, lbl string) {
+			t := build.GP64()
+			build.MOVQ(s[k], t)
+			build.MOVQ(acc, s[k])
+			build.ADDQ(t, acc)
+		},
+		Ref: func(acc, y uint64, s *[4]uint64, k int) uint64 {
+			old := s[k]
+			s[k] = acc
+			return acc + old
+		},
+	},
+	{
+		Name: "LoadTwice",
+		Emit: func(acc, y reg.GPVirtual, s [4]operand.Mem, k int, lbl string) {
+			t, u := build.GP64(), build.GP64()
+			build.MOVQ(s[k], t)
+			build.MOVQ(s[k], u)
+			build.ROLQ(operand.U8(9), u)
+			build.ADDQ(t, u)
+			build.XORQ(u, acc)
+		},
+		Ref: func(acc, y uint64, s *[4]uint64, k int) uint64 {
+			return acc ^ (bits.RotateLeft64(s[k], 9) + s[k])
+		},
+	},
+	{
+		Name: "CopyChain",
+		Emit: func(acc, y reg.GPVirtual, s [4]operand.Mem, k int, lbl string) {
+			t, u := build.GP64(), build.GP64()
+			build.MOVQ(s[k], t)
+			build.MOVQ(t, u)
+			build.ADDQ(y, u)
+			build.MOVQ(u, s[k])
+			build.ADDQ(t, acc)
+		},
+		Ref: func(acc, y uint64, s *[4]uint64, k int) uint64 {
+			old := s[k]
+			s[k] = old + y
+			return acc + old
+		},
+	},
+	{
+		Name: "CondRmw",
+		Emit: func(acc, y reg.GPVirtual, s [4]operand.Mem, k int, lbl string) {
+			t := build.GP64()
+			build.MOVQ(s[k], t)
+			build.CMPQ(acc, y)
+			build.JCS(operand.LabelRef(lbl + "_skip"))
+			build.ADDQ(y, t)
+			build.Label(lbl + "_skip")
+			build.MOVQ(t, s[k])
+		},
+		Ref: func(acc, y uint64, s *[4]uint64, k int) uint64 {
+			if !(acc < y) {
+				s[k] += y
+			}
+			return acc
+		},
+	},
+	{
+		Name: "CrossCopy",
+		Emit: func(acc, y reg.GPVirtual, s [4]operand.Mem, k int, lbl string) {
+			t := build.GP64()
+			build.MOVQ(s[k], t)
+			build.MOVQ(t, s[(k+1)%4])
+			build.ADDQ(t, acc)
+		},
+		Ref: func(acc, y uint64, s *[4]uint64, k int) uint64 {
+			s[(k+1)%4] = s[k]
+			return acc + s[k]
+		},
+	},
+	{
+		Name: "CondLoadUse",
+		Emit: func(acc, y reg.GPVirtual, s [4]operand.Mem, k int, lbl string) {
+			t := build.GP64()
+			build.MOVQ(y, t)
+			build.CMPQ(acc, y)
+			build.JCS(operand.LabelRef(lbl + "_skip"))
+			build.MOVQ(s[k], t)
+			build.Label(lbl + "_skip")
+			build.ADDQ(t, acc)
+		},
+		Ref: func(acc, y uint64, s *[4]uint64, k int) uint64 {
+			v := y
+			if !(acc < y) {
+				v = s[k]
+			}
+			return acc + v
+		},
+	},
+	{
+		Name: "StoreAcc",
+		Emit: func(acc, y reg.GPVirtual, s [4]operand.Mem, k int, lbl string) { build.MOVQ(acc, s[k]) },
+		Ref:  func(acc, y uint64, s *[4]uint64, k int) uint64 { s[k] = acc; return acc },
+	},
+	{
+		Name: "SwapSlots",
+		Emit: func(acc, y reg.GPVirtual, s [4]operand.Mem, k int, lbl string) {
+			t, u := build.GP64(), build.GP64()
+			j := (k + 2) % 4
+			build.MOVQ(s[k], t)
+			build.MOVQ(s[j], u)
+			build.MOVQ(u, s[k])
+			build.MOVQ(t, s[j])
+		},
+		Ref: func(acc, y uint64, s *[4]uint64, k int) uint64 {
+			j := (k + 2) % 4
+			s[k], s[j] = s[j], s[k]
+			return acc
+		},
+	},
+	{
+		Name: "Mix",
+		Emit: func(acc, y reg.GPVirtual, s [4]operand.Mem, k int, lbl string) {
+			build.ROLQ(operand.U8(7), acc)
+			build.XORQ(y, acc)
+		},
+		Ref: func(acc, y uint64, s *[4]uint64, k int) uint64 { return bits.RotateLeft64(acc, 7) ^ y },
+	},
+	{
+		Name: "LoopCarry",
+		Emit: func(acc, y reg.GPVirtual, s [4]operand.Mem, k int, lbl string) {
+			t, c := build.GP64(), build.GP64()
+			build.MOVQ(s[k], t)
+			build.MOVQ(operand.U32(2), c)
+			build.Label(lbl + "_loop")
+			build.MOVQ(acc, s[k])
+			build.ADDQ(c, acc)
+			build.SUBQ(operand.U32(1), c)
+			build.JNE(operand.LabelRef(lbl + "_loop"))
+			build.ADDQ(t, acc)
+		},
+		Ref: func(acc, y uint64, s *[4]uint64, k int) uint64 {
+			old := s[k]
+			for c := uint64(2); c > 0; c-- {
+				s[k] = acc
+				acc += c
+			}
+			return acc + old
+		},
+	},
+	{
+		Name: "ImmThenLoad",
+		Emit: func(acc, y reg.GPVirtual, s [4]operand.Mem, k int, lbl string) {
+			build.MOVQ(operand.U32(0x80000000|uint64(k)), s[k])
+			t := build.GP64()
+			build.MOVQ(s[k], t)
+			build.ADDQ(t, acc)
+		},
+		Ref: func(acc, y uint64, s *[4]uint64, k int) uint64 {
+			s[k] = uint64(int64(int32(uint32(0x80000000 | k))))
+			return acc + s[k]
+		},
+	},
+	{
+		// The loaded value is live only around the back edge when the slot
+		// is stored: forward-only liveness would miss the interference.
+		Name: "LoopBackEdgeUse",
+		Emit: func(acc, y reg.GPVirtual, s [4]operand.Mem, k int, lbl string) {
+			t, c := build.GP64(), build.GP64()
+			build.MOVQ(s[k], t)
+			build.MOVQ(operand.U32(2), c)
+			build.Label(lbl + "_loop")
+			build.ADDQ(t, acc)
+			build.MOVQ(acc, s[k])
+			build.SUBQ(operand.U32(1), c)
+			build.JNE(operand.LabelRef(lbl + "_loop"))
+		},
+		Ref: func(acc, y uint64, s *[4]uint64, k int) uint64 {
+			t := s[k]
+			for c := 2; c > 0; c-- {
+				acc += t
+				s[k] = acc
+			}
+			return acc
+		},
+	},
+	{
+		// The slot is live only around the back edge where the value later
+		// stored to it is computed.
+		Name: "LoopSlotBackEdge",
+		Emit: func(acc, y reg.GPVirtual, s [4]operand.Mem, k int, lbl string) {
+			c, t := build.GP64(), build.GP64()
+			build.MOVQ(operand.U32(2), c)
+			build.Label(lbl + "_loop")
+			u := build.GP64()
+			build.MOVQ(s[k], u)
+			build.ADDQ(u, acc)
+			build.MOVQ(y, t)
+			build.ADDQ(acc, t)
+			build.SUBQ(operand.U32(1), c)
+			build.JNE(operand.LabelRef(lbl + "_loop"))
+			build.MOVQ(t, s[k])
+		},
+		Ref: func(acc, y uint64, s *[4]uint64, k int) uint64 {
+			var t uint64
+			for c := 2; c > 0; c-- {
+				acc += s[k]
+				t = y + acc
+			}
+			s[k] = t
+			return acc
+		},
+	},
+	{
+		// A copy shiftFolds absorbs into a three-operand shift.
+		Name: "ShiftFromSlot",
+		Emit: func(acc, y reg.GPVirtual, s [4]operand.Mem, k int, lbl string) {
+			t, u := build.GP64(), build.GP64()
+			build.MOVQ(s[k], t)
+			build.MOVQ(t, u)
+			build.SHLQ(operand.U8(5), u)
+			build.XORQ(u, acc)
+			build.ADDQ(t, acc) // keeps t live, so the copy stays a copy
+		},
+		Ref: func(acc, y uint64, s *[4]uint64, k int) uint64 { return acc ^ s[k]<<5 + s[k] },
+	},
+	{
+		// A triple shiftExtractFold turns into one UBFX.
+		Name: "ExtractFromSlot",
+		Emit: func(acc, y reg.GPVirtual, s [4]operand.Mem, k int, lbl string) {
+			t, u := build.GP64(), build.GP64()
+			build.MOVQ(s[k], t)
+			build.MOVQ(t, u)
+			build.SHRQ(operand.U8(8), u)
+			build.MOVBQZX(u.As8(), u)
+			build.ADDQ(u, acc)
+			build.XORQ(t, acc) // keeps t live, so the copy stays a copy
+		},
+		Ref: func(acc, y uint64, s *[4]uint64, k int) uint64 { return (acc + s[k]>>8&0xff) ^ s[k] },
+	},
+}
+
+// FoldProgram is SlotProgram for the FoldOps vocabulary.
+func FoldProgram(n, length int) []SlotStep {
+	r := rand.New(rand.NewSource(int64(n)*104729 + 1299709))
+	out := make([]SlotStep, length)
+	for i := range out {
+		out[i] = SlotStep{r.Intn(len(FoldOps)), r.Intn(4)}
+	}
+	return out
+}
+
+// NumFoldPrograms and FoldProgramLength size the coalescing family.
+const (
+	NumFoldPrograms   = 64
+	FoldProgramLength = 12
+)

@@ -835,6 +835,34 @@ func main() {
 		RET()
 	}
 
+	// FoldProp<n>: the same scaffold over the FoldOps vocabulary, whose slot
+	// accesses are all whole-slot MOVQs, so every slot is promoted and the
+	// programs exercise coalescing (see printer/arm64_coalesce.go).
+	for n := 0; n < propspec.NumFoldPrograms; n++ {
+		TEXT(fmt.Sprintf("FoldProp%d", n), NOSPLIT, "func(x, y uint64) uint64")
+		acc, y := GP64(), GP64()
+		Load(Param("x"), acc)
+		Load(Param("y"), y)
+		buf := AllocLocal(32)
+		s := [4]operand.Mem{buf, buf.Offset(8), buf.Offset(16), buf.Offset(24)}
+		for k := range s {
+			t := GP64()
+			MOVQ(y, t)
+			ADDQ(operand.U32(uint64(k)), t)
+			MOVQ(t, s[k])
+		}
+		for i, st := range propspec.FoldProgram(n, propspec.FoldProgramLength) {
+			propspec.FoldOps[st.Op].Emit(acc, y, s, st.Slot, fmt.Sprintf("foldprop%d_%d", n, i))
+		}
+		for k := range s {
+			t := GP64()
+			MOVQ(s[k], t)
+			ADDQ(t, acc)
+		}
+		Store(acc, ReturnIndex(0))
+		RET()
+	}
+
 	// BtBranch/BtBranchClear: BTL followed immediately by a carry branch,
 	// which lowers to a single arm64 TBNZ or TBZ rather than to anything that
 	// materializes CF. Setting CF and letting the generic branch path run would

@@ -1315,6 +1315,20 @@ func TestSlotPromotionHazards(t *testing.T) {
 // read back from every slot matches the x86 model whichever subset of slots a
 // given op mix leaves eligible.
 func TestRandomSlotPrograms(t *testing.T) {
+	testSlotPrograms(t, "SlotProp", propspec.SlotOps, propspec.SlotProgram,
+		propspec.SlotProgramLength, slotPropPrograms[:])
+}
+
+// TestRandomFoldPrograms is TestRandomSlotPrograms for the coalescing
+// vocabulary.
+func TestRandomFoldPrograms(t *testing.T) {
+	testSlotPrograms(t, "FoldProp", propspec.FoldOps, propspec.FoldProgram,
+		propspec.FoldProgramLength, foldPropPrograms[:])
+}
+
+func testSlotPrograms(t *testing.T, name string, ops []propspec.SlotOp,
+	gen func(n, length int) []propspec.SlotStep, length int, progs []func(x, y uint64) uint64) {
+	t.Helper()
 	inputs := []struct{ x, y uint64 }{
 		{0, 0},
 		{1, 2},
@@ -1324,11 +1338,11 @@ func TestRandomSlotPrograms(t *testing.T) {
 		{1 << 63, 1<<63 + 5},
 		{0xffffffff, 0xffffffff00000000},
 	}
-	for n := 0; n < propspec.NumSlotPrograms; n++ {
-		prog := propspec.SlotProgram(n, propspec.SlotProgramLength)
+	for n, fn := range progs {
+		prog := gen(n, length)
 		names := make([]string, len(prog))
 		for i, st := range prog {
-			names[i] = fmt.Sprintf("%s[%d]", propspec.SlotOps[st.Op].Name, st.Slot)
+			names[i] = fmt.Sprintf("%s[%d]", ops[st.Op].Name, st.Slot)
 		}
 		for _, in := range inputs {
 			var s [4]uint64
@@ -1337,14 +1351,14 @@ func TestRandomSlotPrograms(t *testing.T) {
 			}
 			want := in.x
 			for _, st := range prog {
-				want = propspec.SlotOps[st.Op].Ref(want, in.y, &s, st.Slot)
+				want = ops[st.Op].Ref(want, in.y, &s, st.Slot)
 			}
 			for k := range s {
 				want += s[k]
 			}
-			if got := slotPropPrograms[n](in.x, in.y); got != want {
-				t.Errorf("SlotProp%d(%#x, %#x) = %#x, want %#x\nprogram: %s",
-					n, in.x, in.y, got, want, strings.Join(names, " -> "))
+			if got := fn(in.x, in.y); got != want {
+				t.Errorf("%s%d(%#x, %#x) = %#x, want %#x\nprogram: %s",
+					name, n, in.x, in.y, got, want, strings.Join(names, " -> "))
 			}
 		}
 	}

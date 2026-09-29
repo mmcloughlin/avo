@@ -330,6 +330,134 @@ func SlotProp46(x uint64, y uint64) uint64
 
 func SlotProp47(x uint64, y uint64) uint64
 
+func FoldProp0(x uint64, y uint64) uint64
+
+func FoldProp1(x uint64, y uint64) uint64
+
+func FoldProp2(x uint64, y uint64) uint64
+
+func FoldProp3(x uint64, y uint64) uint64
+
+func FoldProp4(x uint64, y uint64) uint64
+
+func FoldProp5(x uint64, y uint64) uint64
+
+func FoldProp6(x uint64, y uint64) uint64
+
+func FoldProp7(x uint64, y uint64) uint64
+
+func FoldProp8(x uint64, y uint64) uint64
+
+func FoldProp9(x uint64, y uint64) uint64
+
+func FoldProp10(x uint64, y uint64) uint64
+
+func FoldProp11(x uint64, y uint64) uint64
+
+func FoldProp12(x uint64, y uint64) uint64
+
+func FoldProp13(x uint64, y uint64) uint64
+
+func FoldProp14(x uint64, y uint64) uint64
+
+func FoldProp15(x uint64, y uint64) uint64
+
+func FoldProp16(x uint64, y uint64) uint64
+
+func FoldProp17(x uint64, y uint64) uint64
+
+func FoldProp18(x uint64, y uint64) uint64
+
+func FoldProp19(x uint64, y uint64) uint64
+
+func FoldProp20(x uint64, y uint64) uint64
+
+func FoldProp21(x uint64, y uint64) uint64
+
+func FoldProp22(x uint64, y uint64) uint64
+
+func FoldProp23(x uint64, y uint64) uint64
+
+func FoldProp24(x uint64, y uint64) uint64
+
+func FoldProp25(x uint64, y uint64) uint64
+
+func FoldProp26(x uint64, y uint64) uint64
+
+func FoldProp27(x uint64, y uint64) uint64
+
+func FoldProp28(x uint64, y uint64) uint64
+
+func FoldProp29(x uint64, y uint64) uint64
+
+func FoldProp30(x uint64, y uint64) uint64
+
+func FoldProp31(x uint64, y uint64) uint64
+
+func FoldProp32(x uint64, y uint64) uint64
+
+func FoldProp33(x uint64, y uint64) uint64
+
+func FoldProp34(x uint64, y uint64) uint64
+
+func FoldProp35(x uint64, y uint64) uint64
+
+func FoldProp36(x uint64, y uint64) uint64
+
+func FoldProp37(x uint64, y uint64) uint64
+
+func FoldProp38(x uint64, y uint64) uint64
+
+func FoldProp39(x uint64, y uint64) uint64
+
+func FoldProp40(x uint64, y uint64) uint64
+
+func FoldProp41(x uint64, y uint64) uint64
+
+func FoldProp42(x uint64, y uint64) uint64
+
+func FoldProp43(x uint64, y uint64) uint64
+
+func FoldProp44(x uint64, y uint64) uint64
+
+func FoldProp45(x uint64, y uint64) uint64
+
+func FoldProp46(x uint64, y uint64) uint64
+
+func FoldProp47(x uint64, y uint64) uint64
+
+func FoldProp48(x uint64, y uint64) uint64
+
+func FoldProp49(x uint64, y uint64) uint64
+
+func FoldProp50(x uint64, y uint64) uint64
+
+func FoldProp51(x uint64, y uint64) uint64
+
+func FoldProp52(x uint64, y uint64) uint64
+
+func FoldProp53(x uint64, y uint64) uint64
+
+func FoldProp54(x uint64, y uint64) uint64
+
+func FoldProp55(x uint64, y uint64) uint64
+
+func FoldProp56(x uint64, y uint64) uint64
+
+func FoldProp57(x uint64, y uint64) uint64
+
+func FoldProp58(x uint64, y uint64) uint64
+
+func FoldProp59(x uint64, y uint64) uint64
+
+func FoldProp60(x uint64, y uint64) uint64
+
+func FoldProp61(x uint64, y uint64) uint64
+
+func FoldProp62(x uint64, y uint64) uint64
+
+func FoldProp63(x uint64, y uint64) uint64
+
 func BtBranch(x uint64) uint64
 
 func BtBranchHigh(x uint64) uint64
