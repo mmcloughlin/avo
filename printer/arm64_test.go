@@ -841,3 +841,40 @@ func TestARM64UnknownMnemonicRejected(t *testing.T) {
 		}
 	}
 }
+
+// TestARM64PromotionFrameBounds checks that stack-slot promotion only treats
+// displacements inside the function's frame as slots. Past the frame, disp(SP)
+// is the return address or a caller's argument, which a register that nothing
+// in the function writes cannot stand in for.
+func TestARM64PromotionFrameBounds(t *testing.T) {
+	cases := []struct {
+		name     string
+		disp     int
+		promoted bool
+	}{
+		{"in frame", 0, true},
+		{"past frame", 8, false},
+		{"negative", -8, false},
+	}
+	for _, c := range cases {
+		t.Run(c.name, func(t *testing.T) {
+			ctx := build.NewContext()
+			ctx.Function("slots")
+			ctx.SignatureExpr("func() uint64")
+			local := ctx.AllocLocal(8)
+			slot := operand.Mem{Base: local.Base, Disp: c.disp}
+			x := reg.RAX
+			ctx.MOVQ(operand.U32(7), local)
+			ctx.MOVQ(slot, x)
+			ctx.Store(x, ctx.ReturnIndex(0))
+			ctx.RET()
+
+			cfg := printer.NewDefaultConfig()
+			cfg.ARM64PromoteStackSlots = true
+			out := printARM64(t, ctx, cfg)
+			if got := strings.Contains(out, "R19"); got != c.promoted {
+				t.Errorf("promoted = %v, want %v:\n%s", got, c.promoted, out)
+			}
+		})
+	}
+}

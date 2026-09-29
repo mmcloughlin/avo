@@ -219,8 +219,10 @@ func frameAccessWidth(opcode string) (width int, ok bool) {
 	}
 	for _, base := range []string{
 		"ADD", "SUB", "AND", "OR", "XOR", "CMP", "TEST", "INC", "DEC", "NEG",
+		// Not the BT family: with a register bit offset its memory operand
+		// is the start of a bit string that can extend past the operand.
 		"NOT", "ADC", "SBB", "MOV", "XCHG", "IMUL", "SHL", "SHR", "SAR", "ROL",
-		"ROR", "BT", "BTS", "BTR", "BTC",
+		"ROR",
 	} {
 		if len(opcode) == len(base)+1 && strings.HasPrefix(opcode, base) {
 			w, ok := size[opcode[len(base)]]
@@ -242,8 +244,9 @@ func frameAccessWidth(opcode string) (width int, ok bool) {
 // disqualifies it. Promotion is refused for the whole function when frame
 // memory could be reached in a way this analysis cannot see: an indexed or
 // symbol-based SP operand, an address of the frame (LEAQ) or SP read as a
-// value, an access of unknown width, a CALL, or a push/pop. The most-referenced eligible
-// slots get registers from promoRegs; the rest stay on the stack. A slot is
+// value, an access of unknown width or outside the frame, a CALL, or a
+// push/pop. The most-referenced eligible slots get registers from promoRegs;
+// the rest stay on the stack. A slot is
 // written before it is read, so no entry initialization is needed. Returns nil
 // when promotion is disabled or nothing qualifies.
 func (p *arm64) stackSlotPromotions(f *ir.Function) map[int]string {
@@ -286,6 +289,14 @@ func (p *arm64) stackSlotPromotions(f *ir.Function) map[int]string {
 				return nil
 			}
 			accesses = append(accesses, access{m.Disp, w, false})
+		}
+	}
+	// Outside [0, FrameBytes) disp(SP) is the return address or the caller's
+	// arguments, not a local: refuse rather than treat it as a slot.
+	frame := f.FrameBytes()
+	for _, a := range accesses {
+		if a.disp < 0 || a.disp+a.width > frame {
+			return nil
 		}
 	}
 
