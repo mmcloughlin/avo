@@ -878,3 +878,84 @@ func TestARM64PromotionFrameBounds(t *testing.T) {
 		})
 	}
 }
+
+// TestARM64PromotionRules pins stack-slot promotion's eligibility contract one
+// rule at a time. Every case starts from two clean slots (+0 and +8), each
+// written and read only by whole-slot MOVQs and so each promotable, then adds
+// one access; want is how many slots may still be kept in registers. A slot
+// that is promoted wrongly reads a register some access did not update, so
+// these are the shapes a generic avo program can produce that the pass must
+// refuse, per slot or for the whole function.
+func TestARM64PromotionRules(t *testing.T) {
+	cases := []struct {
+		name  string
+		extra func(ctx *build.Context, s0, s8 operand.Mem)
+		want  int
+	}{
+		{"baseline", func(ctx *build.Context, s0, s8 operand.Mem) {}, 2},
+		{"imm store stays promotable", func(ctx *build.Context, s0, s8 operand.Mem) {
+			ctx.MOVQ(operand.I32(-5), s0)
+		}, 2},
+		{"rmw poisons its slot", func(ctx *build.Context, s0, s8 operand.Mem) {
+			ctx.ADDQ(reg.RAX, s0)
+		}, 1},
+		{"compare poisons its slot", func(ctx *build.Context, s0, s8 operand.Mem) {
+			ctx.CMPQ(s8, reg.RAX)
+		}, 1},
+		{"narrow write inside a slot", func(ctx *build.Context, s0, s8 operand.Mem) {
+			ctx.MOVL(reg.EAX, s0.Offset(4))
+		}, 1},
+		{"byte read inside a slot", func(ctx *build.Context, s0, s8 operand.Mem) {
+			ctx.MOVBQZX(s8.Offset(7), reg.RAX)
+		}, 1},
+		{"misaligned whole-width access spans both", func(ctx *build.Context, s0, s8 operand.Mem) {
+			ctx.MOVQ(reg.RAX, s0.Offset(4))
+		}, 0},
+		{"vector register MOVQ is not clean", func(ctx *build.Context, s0, s8 operand.Mem) {
+			ctx.MOVQ(reg.X1, s0)
+		}, 1},
+		{"unknown width refuses the function", func(ctx *build.Context, s0, s8 operand.Mem) {
+			ctx.MOVOU(reg.X1, s0)
+		}, 0},
+		{"indexed frame access refuses the function", func(ctx *build.Context, s0, s8 operand.Mem) {
+			ctx.MOVQ(reg.RAX, operand.Mem{Base: s0.Base, Disp: s0.Disp, Index: reg.RBX, Scale: 8})
+		}, 0},
+		{"frame address refuses the function", func(ctx *build.Context, s0, s8 operand.Mem) {
+			ctx.LEAQ(s0, reg.RAX)
+		}, 0},
+		{"symbol SP operand refuses the function", func(ctx *build.Context, s0, s8 operand.Mem) {
+			ctx.MOVQ(operand.Mem{Symbol: operand.Symbol{Name: "x"}, Base: s0.Base}, reg.RAX)
+		}, 0},
+		{"access past the frame refuses the function", func(ctx *build.Context, s0, s8 operand.Mem) {
+			ctx.MOVQ(operand.Mem{Base: s0.Base, Disp: 16}, reg.RAX)
+		}, 0},
+	}
+	for _, c := range cases {
+		t.Run(c.name, func(t *testing.T) {
+			ctx := build.NewContext()
+			ctx.Function("slots")
+			ctx.SignatureExpr("func()")
+			local := ctx.AllocLocal(16)
+			s0, s8 := local, local.Offset(8)
+			ctx.MOVQ(reg.RAX, s0)
+			ctx.MOVQ(reg.RBX, s8)
+			c.extra(ctx, s0, s8)
+			ctx.MOVQ(s0, reg.RCX)
+			ctx.MOVQ(s8, reg.RDX)
+			ctx.RET()
+
+			cfg := printer.NewDefaultConfig()
+			cfg.ARM64PromoteStackSlots = true
+			out := printARM64(t, ctx, cfg)
+			got := 0
+			for _, r := range []string{"R19", "R20", "R21", "R22", "R23", "R24", "R25", "R26"} {
+				if strings.Contains(out, r) {
+					got++
+				}
+			}
+			if got != c.want {
+				t.Errorf("promoted %d slots, want %d:\n%s", got, c.want, out)
+			}
+		})
+	}
+}
