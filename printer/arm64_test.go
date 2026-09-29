@@ -959,3 +959,34 @@ func TestARM64PromotionRules(t *testing.T) {
 		})
 	}
 }
+
+// TestARM64PromotionKeepsAcceptance checks that enabling stack-slot promotion
+// does not change which programs the lowering accepts. A frame access through
+// the physical RSP (rather than AllocLocal's pseudo stack pointer) is not
+// lowered; with promotion on, a whole-slot MOVQ through it must still be
+// rejected rather than turned into a register move.
+func TestARM64PromotionKeepsAcceptance(t *testing.T) {
+	for _, promote := range []bool{false, true} {
+		t.Run(fmt.Sprintf("promote=%v", promote), func(t *testing.T) {
+			ctx := build.NewContext()
+			ctx.Function("rsp")
+			ctx.SignatureExpr("func()")
+			local := ctx.AllocLocal(8)
+			ctx.MOVQ(reg.RAX, local)
+			ctx.MOVQ(operand.Mem{Base: reg.RSP, Disp: 0}, reg.RCX)
+			ctx.RET()
+			f, errs := ctx.Result()
+			if errs != nil {
+				t.Fatal(errs)
+			}
+			cfg := printer.NewDefaultConfig()
+			cfg.ARM64PromoteStackSlots = promote
+			defer func() {
+				if r := recover(); r == nil {
+					t.Fatal("expected the lowering to reject a physical RSP base")
+				}
+			}()
+			_, _ = printer.NewARM64Asm(cfg).Print(f)
+		})
+	}
+}

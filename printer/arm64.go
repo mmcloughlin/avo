@@ -157,14 +157,17 @@ const (
 // R0-R16.
 var promoRegs = []string{"R19", "R20", "R21", "R22", "R23", "R24", "R25", "R26"}
 
-// frameSlot reports whether op is a plain RSP-relative frame operand
-// (disp(SP): no symbol, no index) and, if so, its byte displacement.
+// frameSlot reports whether op is a plain frame operand, disp(SP) through the
+// pseudo stack pointer that AllocLocal uses (no symbol, no index), and if so
+// its byte displacement. The physical RSP also prints as SP, but the lowering
+// cannot render it, so it must not make a slot promotable; the stack-slot scan
+// still sees such accesses as touching the frame.
 func frameSlot(op operand.Op) (disp int, ok bool) {
 	m, isMem := op.(operand.Mem)
 	if !isMem || m.Symbol.Name != "" || m.Base == nil || m.Index != nil {
 		return 0, false
 	}
-	if m.Base.Asm() != "SP" {
+	if m.Base.ID() != reg.StackPointer.ID() {
 		return 0, false
 	}
 	return m.Disp, true
