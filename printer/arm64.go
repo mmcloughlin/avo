@@ -176,7 +176,9 @@ func frameSlot(op operand.Op) (disp int, ok bool) {
 	if !isMem || m.Symbol.Name != "" || m.Base == nil || m.Index != nil {
 		return 0, false
 	}
-	if m.Base.ID() != reg.StackPointer.ID() {
+	// By kind and name, not ID: every pseudo register (FP, PC, SB, SP) has
+	// the same ID, and the physical RSP also prints as SP.
+	if m.Base.Kind() != reg.KindPseudo || m.Base.Asm() != "SP" {
 		return 0, false
 	}
 	return m.Disp, true
