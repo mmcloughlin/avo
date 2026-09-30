@@ -155,14 +155,16 @@ const (
 )
 
 // promoRegs are the arm64 registers a stack slot may be promoted into (see
-// stackSlotPromotions). They sit above the x86-mapped range (R0-R14) and the
-// two scratch registers (R15/R16), and below the reserved trio R18 (platform),
-// R27 (linker REGTMP) and R28 (g). The lowering may clobber them without
-// save/restore: promotion is refused for any function containing a CALL, and
-// Go's ABI treats every integer register except g as clobbered across the call
-// into these leaves, exactly as the existing lowering already assumes for
-// R0-R16.
-var promoRegs = []string{"R19", "R20", "R21", "R22", "R23", "R24", "R25", "R26"}
+// stackSlotPromotions): R19-R26, above the x86-mapped range (R0-R14) and the
+// two scratch registers (R15/R16), and R17. R17 (IP1) is reserved only as a
+// scratch register for linker-inserted trampolines, which exist only at call
+// sites; R18 (the platform register, which darwin/arm64 reserves), R27
+// (REGTMP) and R28 (g) are never used. The lowering may clobber all of them
+// without save/restore: promotion is refused for any function containing a
+// CALL, and Go's ABI treats every integer register except g as clobbered
+// across the call into these leaves, exactly as the existing lowering already
+// assumes for R0-R16. R17 comes last so it is the ninth choice.
+var promoRegs = []string{"R19", "R20", "R21", "R22", "R23", "R24", "R25", "R26", "R17"}
 
 // frameSlot reports whether op is a plain frame operand, disp(SP) through the
 // pseudo stack pointer that AllocLocal uses (no symbol, no index), and if so

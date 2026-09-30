@@ -37,6 +37,25 @@ func TestARM64RegisterMapAvoidsReserved(t *testing.T) {
 			t.Errorf("scratch register %s is reserved (%s)", s, why)
 		}
 	}
+	// Promoted stack slots live in promoRegs for a whole function, so they
+	// must be neither reserved nor shared with the mapped or scratch registers.
+	mapped := map[string]bool{scratchAddr: true, scratchVal: true}
+	for _, name := range armReg {
+		mapped[name] = true
+	}
+	seen := map[string]bool{}
+	for _, r := range promoRegs {
+		if why, bad := reservedARM64[r]; bad {
+			t.Errorf("promotion register %s is reserved (%s)", r, why)
+		}
+		if mapped[r] {
+			t.Errorf("promotion register %s is also a mapped or scratch register", r)
+		}
+		if seen[r] {
+			t.Errorf("promotion register %s is listed twice", r)
+		}
+		seen[r] = true
+	}
 
 	// The scratch registers must also be distinct from every mapped register,
 	// or a lowering would silently corrupt an allocated value.
