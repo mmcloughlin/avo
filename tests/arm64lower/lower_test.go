@@ -1246,7 +1246,11 @@ func TestStackAccum(t *testing.T) {
 		return acc
 	}
 	cases := []struct{ x, n uint64 }{
-		{0, 0}, {5, 0}, {5, 1}, {1, 10}, {1000, 1000},
+		{0, 0},
+		{5, 0},
+		{5, 1},
+		{1, 10},
+		{1000, 1000},
 		{^uint64(0), 3}, // wraps
 		{0x8000000000000000, 5},
 		{123456789, 4096},
@@ -1327,7 +1331,8 @@ func TestRandomFoldPrograms(t *testing.T) {
 }
 
 func testSlotPrograms(t *testing.T, name string, ops []propspec.SlotOp,
-	gen func(n, length int) []propspec.SlotStep, length int, progs []func(x, y uint64) uint64) {
+	gen func(n, length int) []propspec.SlotStep, length int, progs []func(x, y uint64) uint64,
+) {
 	t.Helper()
 	inputs := []struct{ x, y uint64 }{
 		{0, 0},

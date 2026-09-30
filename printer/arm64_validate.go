@@ -199,7 +199,7 @@ func validateCoalesce(nodes []ir.Node, slotReg map[int]string, plan coalescePlan
 				return nil, fmt.Errorf("reads family %d from %s, which does not hold it", f, locs[l])
 			}
 		}
-		var slotDef = -1
+		slotDef := -1
 		if d, use, def, ok := slotEffect(ins); ok {
 			if v, promoted := slotVar[d]; promoted {
 				l := locIdx[slotReg[d]]
