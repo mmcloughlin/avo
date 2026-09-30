@@ -92,7 +92,7 @@ func NewFlags(fs *flag.FlagSet) *Flags {
 	fs.StringVar(&f.arch, "arch", "", "comma-separated list of GOARCH values to emit; treats -out as a base path and writes <base>_GOARCH.s for each (amd64 via goasm, arm64 via the EXPERIMENTAL lowering printer)")
 
 	fs.BoolVar(&f.arm64BMI2, "arm64-prefer-bmi2", false, "EXPERIMENTAL arm64 lowering: prefer a function's BMI2 twin over its generic one when both exist (default prefers generic; BMI2 x86 code is tuned for x86 and is not reliably faster once lowered -- measure before enabling)")
-	fs.BoolVar(&f.arm64PromoSlot, "arm64-promote-stack-slots", false, "EXPERIMENTAL arm64 lowering: keep whole-8-byte frame slots in spare arm64 registers instead of the stack, turning hot-path frame loads/stores into register moves (measure)")
+	fs.BoolVar(&f.arm64PromoSlot, "arm64-promote-stack-slots", false, "EXPERIMENTAL arm64 lowering: keep whole-8-byte frame slots in spare arm64 registers instead of the stack, folding away most of their loads and stores (measure)")
 
 	f.goasm = newLazyPrinterValue(printer.NewGoAsm, os.Stdout)
 	fs.Var(f.goasm, "out", "assembly output (or, with -arch, the base path)")
