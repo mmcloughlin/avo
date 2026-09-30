@@ -55,6 +55,57 @@ import (
 // instruction: family (x86 physical index) to arm64 register.
 type coalescePlan map[int]map[int]string
 
+// numFamilies is the number of x86 general-purpose register families.
+const numFamilies = 16
+
+// noSlot stands for "not a slot" where a variable is either a web or a slot.
+const noSlot = -1
+
+// web is a set of definitions of one register family joined by the uses they
+// reach (see coalesceSlots).
+type web struct {
+	f        int
+	mentions []int // instructions naming the family in this web
+	defs     []int // instructions defining it
+	ok       bool  // eligible for coalescing
+}
+
+// slotAccess is one instruction's access to a promoted slot.
+type slotAccess struct {
+	use, def bool
+	copyWeb  *web // the other side of a MOVQ copy; nil otherwise
+}
+
+// famDef is one definition of a register family: instruction k, or the
+// function entry for k == -1.
+type famDef struct{ k, f int }
+
+// coalescer holds the analyses coalesceSlots builds for one function.
+type coalescer struct {
+	g       cfg
+	n       int
+	slotReg map[int]string
+
+	// Per instruction: families read, written, and mentioned in a way that
+	// makes their web ineligible.
+	uses, defs, bad []uint16
+
+	// Definitions, numbered globally; per family, instruction -> def id, and
+	// the id of the entry definition.
+	allDefs []famDef
+	defID   []map[int]int
+	entryID []int
+	uf      unionFind
+
+	useWeb     []map[int]int  // instruction -> family -> a def id in the web the use reads
+	webs       map[int]*web   // union-find root -> web
+	mentionWeb []map[int]*web // instruction -> family -> web
+	access     []map[int]slotAccess
+
+	webLive  map[*web][]bool
+	slotLive map[int][]bool
+}
+
 // coalesceSlots computes the coalescing plan for one function. slotReg is the
 // promotion map; excluded marks node indices a cross-instruction fold rewrites.
 func coalesceSlots(nodes []ir.Node, slotReg map[int]string, excluded map[int]bool) coalescePlan {
@@ -65,263 +116,306 @@ func coalesceSlots(nodes []ir.Node, slotReg map[int]string, excluded map[int]boo
 	if !ok {
 		return nil
 	}
-	n := len(g.ins)
+	c := &coalescer{
+		g: g, n: len(g.ins), slotReg: slotReg,
+		webLive: map[*web][]bool{}, slotLive: map[int][]bool{},
+	}
+	c.effects(excluded)
+	c.numberDefs()
+	for f := 0; f < numFamilies; f++ {
+		c.joinFamily(f)
+	}
+	c.collectWebs()
+	c.markIneligible()
+	c.collectAccesses()
+	return c.assign(c.candidates())
+}
 
-	// Per-instruction family effects.
-	const nfam = 16
-	uses := make([]uint16, n)
-	defs := make([]uint16, n)
-	bad := make([]uint16, n) // mentions that make the family's web ineligible
-	for k, ins := range g.ins {
+// effects records each instruction's family effects.
+func (c *coalescer) effects(excluded map[int]bool) {
+	c.uses = make([]uint16, c.n)
+	c.defs = make([]uint16, c.n)
+	c.bad = make([]uint16, c.n)
+	for k, ins := range c.g.ins {
 		e := familyEffects(ins)
-		uses[k], defs[k] = e.uses, e.defs
-		bad[k] = e.implicit | e.high
-		if excluded[g.node[k]] {
-			bad[k] |= e.explicit
+		c.uses[k], c.defs[k] = e.uses, e.defs
+		c.bad[k] = e.implicit | e.high
+		if excluded[c.g.node[k]] {
+			c.bad[k] |= e.explicit
 		}
 	}
+}
 
-	// Reaching definitions, one family at a time. Definition 0 of each family
-	// is the function entry.
-	type def struct{ k, f int }
-	var allDefs []def
-	defID := make([]map[int]int, nfam) // family -> instruction -> global def id
-	entryID := make([]int, nfam)
-	for f := 0; f < nfam; f++ {
-		defID[f] = map[int]int{}
-		entryID[f] = len(allDefs)
-		allDefs = append(allDefs, def{-1, f})
-		for k := 0; k < n; k++ {
-			if defs[k]&(1<<f) != 0 {
-				defID[f][k] = len(allDefs)
-				allDefs = append(allDefs, def{k, f})
+// numberDefs numbers every definition, family by family, each family's entry
+// definition first.
+func (c *coalescer) numberDefs() {
+	c.defID = make([]map[int]int, numFamilies)
+	c.entryID = make([]int, numFamilies)
+	for f := 0; f < numFamilies; f++ {
+		c.defID[f] = map[int]int{}
+		c.entryID[f] = len(c.allDefs)
+		c.allDefs = append(c.allDefs, famDef{-1, f})
+		for k := 0; k < c.n; k++ {
+			if c.defs[k]&(1<<f) != 0 {
+				c.defID[f][k] = len(c.allDefs)
+				c.allDefs = append(c.allDefs, famDef{k, f})
 			}
 		}
 	}
-	uf := newUnionFind(len(allDefs))
-	useWeb := make([]map[int]int, n) // instruction -> family -> a def id in the web the use reads
-	for f := 0; f < nfam; f++ {
-		local := []int{entryID[f]}
-		for k := 0; k < n; k++ {
-			if id, ok := defID[f][k]; ok {
-				local = append(local, id)
-			}
+	c.uf = newUnionFind(len(c.allDefs))
+	c.useWeb = make([]map[int]int, c.n)
+}
+
+// joinFamily solves reaching definitions for family f and joins, for every
+// use, the definitions that reach it (and the instruction's own definition,
+// if it also writes f) into one web.
+func (c *coalescer) joinFamily(f int) {
+	local := []int{c.entryID[f]}
+	for k := 0; k < c.n; k++ {
+		if id, ok := c.defID[f][k]; ok {
+			local = append(local, id)
 		}
-		in := reachingDefs(g, len(local), func(k int) (int, bool) {
-			if defs[k]&(1<<f) == 0 {
-				return 0, false
-			}
-			return sort.SearchInts(local, defID[f][k]), true
-		})
-		for k := 0; k < n; k++ {
-			if uses[k]&(1<<f) == 0 {
+	}
+	in := reachingDefs(c.g, len(local), func(k int) (int, bool) {
+		if c.defs[k]&(1<<f) == 0 {
+			return 0, false
+		}
+		return sort.SearchInts(local, c.defID[f][k]), true
+	})
+	for k := 0; k < c.n; k++ {
+		if c.uses[k]&(1<<f) == 0 {
+			continue
+		}
+		first := c.joinReaching(in[k], local)
+		if first < 0 {
+			continue // unreachable: no definition reaches the use
+		}
+		if id, ok := c.defID[f][k]; ok {
+			c.uf.union(first, id)
+		}
+		if c.useWeb[k] == nil {
+			c.useWeb[k] = map[int]int{}
+		}
+		c.useWeb[k][f] = first
+	}
+}
+
+// joinReaching unions the definitions in reach (indices into local) and
+// returns the first one's id, or -1 if none reach.
+func (c *coalescer) joinReaching(reach bitset, local []int) int {
+	first := -1
+	reach.each(func(i int) {
+		if first < 0 {
+			first = local[i]
+		} else {
+			c.uf.union(first, local[i])
+		}
+	})
+	return first
+}
+
+// webOf returns the web holding definition id, creating it on first sight.
+func (c *coalescer) webOf(id int) *web {
+	root := c.uf.find(id)
+	w := c.webs[root]
+	if w == nil {
+		w = &web{f: c.allDefs[id].f, ok: true}
+		c.webs[root] = w
+	}
+	return w
+}
+
+// mentionAt returns the web of family f's mention at instruction k, if any.
+func (c *coalescer) mentionAt(k, f int) (*web, bool) {
+	if id, ok := c.useWeb[k][f]; ok {
+		return c.webOf(id), true
+	}
+	if id, ok := c.defID[f][k]; ok {
+		return c.webOf(id), true
+	}
+	return nil, false
+}
+
+// collectWebs assigns every mention to its web and records the web's mentions,
+// definitions and eligibility.
+func (c *coalescer) collectWebs() {
+	c.webs = map[int]*web{}
+	c.mentionWeb = make([]map[int]*web, c.n)
+	for k := 0; k < c.n; k++ {
+		for f := 0; f < numFamilies; f++ {
+			w, ok := c.mentionAt(k, f)
+			if !ok {
 				continue
 			}
-			first := -1
-			in[k].each(func(i int) {
-				if first < 0 {
-					first = local[i]
-				} else {
-					uf.union(first, local[i])
-				}
-			})
-			if first < 0 {
-				continue // unreachable: no definition reaches the use
+			if c.mentionWeb[k] == nil {
+				c.mentionWeb[k] = map[int]*web{}
 			}
-			if id, ok := defID[f][k]; ok {
-				uf.union(first, id)
-			}
-			if useWeb[k] == nil {
-				useWeb[k] = map[int]int{}
-			}
-			useWeb[k][f] = first
-		}
-	}
-
-	// Collect webs: their mentions, and whether they are eligible.
-	type web struct {
-		f        int
-		mentions []int // instructions naming the family in this web
-		defs     []int // instructions defining it
-		ok       bool
-	}
-	webs := map[int]*web{}
-	webOf := func(id int) *web {
-		root := uf.find(id)
-		w := webs[root]
-		if w == nil {
-			w = &web{f: allDefs[id].f, ok: true}
-			webs[root] = w
-		}
-		return w
-	}
-	mentionWeb := make([]map[int]*web, n)
-	for k := 0; k < n; k++ {
-		for f := 0; f < nfam; f++ {
-			var w *web
-			if id, ok := useWeb[k][f]; ok {
-				w = webOf(id)
-			} else if id, ok := defID[f][k]; ok {
-				w = webOf(id)
-			} else {
-				continue
-			}
-			if mentionWeb[k] == nil {
-				mentionWeb[k] = map[int]*web{}
-			}
-			mentionWeb[k][f] = w
+			c.mentionWeb[k][f] = w
 			w.mentions = append(w.mentions, k)
-			if defs[k]&(1<<f) != 0 {
+			if c.defs[k]&(1<<f) != 0 {
 				w.defs = append(w.defs, k)
 			}
-			if bad[k]&(1<<f) != 0 {
+			if c.bad[k]&(1<<f) != 0 {
 				w.ok = false
 			}
 		}
 	}
-	for f := 0; f < nfam; f++ {
-		if w := webs[uf.find(entryID[f])]; w != nil {
-			w.ok = false // may carry a value from the caller
+}
+
+// markIneligible rules out webs that may carry a value from the caller and
+// webs that touch unreachable code. Unreachable code is never renamed, so the
+// validator, which only walks reachable instructions, checks everything that
+// is.
+func (c *coalescer) markIneligible() {
+	for f := 0; f < numFamilies; f++ {
+		if w := c.webs[c.uf.find(c.entryID[f])]; w != nil {
+			w.ok = false
 		}
 	}
-	// Unreachable code is never renamed, so the validator, which only walks
-	// reachable instructions, checks everything that is.
-	reach := g.reachable()
-	for _, w := range webs {
+	reach := c.g.reachable()
+	for _, w := range c.webs {
 		for _, k := range w.mentions {
 			if !reach[k] {
 				w.ok = false
 			}
 		}
 	}
+}
 
-	// Slot accesses. Promotion guarantees every access to a promoted slot is a
-	// slotEffect: a clean MOVQ load or store (a copy between the slot and a
-	// register, or an immediate store) or an ALU operation on the slot.
-	type slotAccess struct {
-		use, def bool
-		copyWeb  *web // the other side of a MOVQ copy; nil otherwise
-	}
-	access := make([]map[int]slotAccess, n) // instruction -> slot disp -> access
-	for k, ins := range g.ins {
-		d, use, def, ok := slotEffect(ins)
+// collectAccesses records the promoted-slot accesses. Promotion guarantees
+// every access to a promoted slot is a slotEffect: a clean MOVQ load or store
+// (a copy between the slot and a register, or an immediate store) or an ALU
+// operation on the slot.
+func (c *coalescer) collectAccesses() {
+	c.access = make([]map[int]slotAccess, c.n)
+	for k, ins := range c.g.ins {
+		s, ok := slotEffect(ins)
 		if !ok {
 			continue
 		}
-		if _, promoted := slotReg[d]; !promoted {
+		if _, promoted := c.slotReg[s.disp]; !promoted {
 			continue
 		}
-		a := slotAccess{use: use, def: def}
+		a := slotAccess{use: s.use, def: s.def}
 		if ins.Opcode == "MOVQ" {
 			src, dst := ins.Operands[0], ins.Operands[1]
-			if use {
-				a.copyWeb = mentionWeb[k][regFamily(dst)]
+			if s.use {
+				a.copyWeb = c.mentionWeb[k][regFamily(dst)]
 			} else if f := regFamily(src); f >= 0 {
-				a.copyWeb = mentionWeb[k][f]
+				a.copyWeb = c.mentionWeb[k][f]
 			}
 		}
-		access[k] = map[int]slotAccess{d: a}
+		c.access[k] = map[int]slotAccess{s.disp: a}
 	}
+}
 
-	// Liveness, computed on demand per variable. A variable is a web or a
-	// slot; live[k] is whether it is live out of instruction k.
-	webLive := map[*web][]bool{}
-	liveOfWeb := func(w *web) []bool {
-		if l, ok := webLive[w]; ok {
-			return l
-		}
-		l := liveOut(g, func(k int) (use, kill bool) {
-			use = uses[k]&(1<<w.f) != 0 && mentionWeb[k][w.f] == w
-			return use, defs[k]&(1<<w.f) != 0
-		})
-		webLive[w] = l
+// liveOfWeb returns whether web w is live out of each instruction.
+func (c *coalescer) liveOfWeb(w *web) []bool {
+	if l, ok := c.webLive[w]; ok {
 		return l
 	}
-	slotLive := map[int][]bool{}
-	liveOfSlot := func(d int) []bool {
-		if l, ok := slotLive[d]; ok {
-			return l
-		}
-		l := liveOut(g, func(k int) (use, kill bool) {
-			a := access[k][d]
-			return a.use, a.def
-		})
-		slotLive[d] = l
+	l := liveOut(c.g, func(k int) (use, kill bool) {
+		use = c.uses[k]&(1<<w.f) != 0 && c.mentionWeb[k][w.f] == w
+		return use, c.defs[k]&(1<<w.f) != 0
+	})
+	c.webLive[w] = l
+	return l
+}
+
+// liveOfSlot returns whether slot d is live out of each instruction.
+func (c *coalescer) liveOfSlot(d int) []bool {
+	if l, ok := c.slotLive[d]; ok {
 		return l
 	}
-	// isCopy reports whether instruction k is a MOVQ from web or slot "from"
-	// into web or slot "to" (exactly one of each pair is set).
-	isCopy := func(k int, fromW *web, fromS int, toW *web, toS int) bool {
-		ins := g.ins[k]
-		if ins.Opcode != "MOVQ" || len(ins.Operands) != 2 {
-			return false
-		}
-		side := func(op operand.Op, w *web, s int) bool {
-			if w != nil {
-				f := regFamily(op)
-				return f >= 0 && isFullGP(op) && mentionWeb[k][f] == w
-			}
-			d, ok := frameSlot(op)
-			return ok && d == s
-		}
-		return side(ins.Operands[0], fromW, fromS) && side(ins.Operands[1], toW, toS)
-	}
-	const noSlot = -1
-	webSlotInterfere := func(w *web, s int) bool {
-		sl := liveOfSlot(s)
-		for _, k := range w.defs {
-			if sl[k] && !isCopy(k, nil, s, w, noSlot) {
-				return true
-			}
-		}
-		wl := liveOfWeb(w)
-		for k := 0; k < n; k++ {
-			if a, ok := access[k][s]; ok && a.def && wl[k] && !isCopy(k, w, noSlot, nil, s) {
-				return true
-			}
-		}
-		// An ALU operation on the slot naming the web too would name one
-		// register twice.
-		for _, k := range w.mentions {
-			if a, ok := access[k][s]; ok && a.copyWeb == nil {
-				return true
-			}
-		}
-		return false
-	}
-	webWebInterfere := func(a, b *web) bool {
-		la, lb := liveOfWeb(a), liveOfWeb(b)
-		for _, k := range a.defs {
-			if lb[k] && !isCopy(k, b, noSlot, a, noSlot) {
-				return true
-			}
-		}
-		for _, k := range b.defs {
-			if la[k] && !isCopy(k, a, noSlot, b, noSlot) {
-				return true
-			}
-		}
-		// Both named by one instruction: only a copy between them is safe.
-		for _, k := range a.mentions {
-			if mentionWeb[k][b.f] == b && !isCopy(k, a, noSlot, b, noSlot) && !isCopy(k, b, noSlot, a, noSlot) {
-				return true
-			}
-		}
-		return false
-	}
+	l := liveOut(c.g, func(k int) (use, kill bool) {
+		a := c.access[k][d]
+		return a.use, a.def
+	})
+	c.slotLive[d] = l
+	return l
+}
 
-	// Candidates: an eligible web and a slot it is copied to or from, scored by
-	// the moves coalescing would remove.
-	type cand struct {
-		w     *web
-		slot  int
-		score int
-		first int
+// copySide reports whether op, an operand of instruction k, is web w (when w
+// is set) or slot s.
+func (c *coalescer) copySide(k int, op operand.Op, w *web, s int) bool {
+	if w != nil {
+		f := regFamily(op)
+		return f >= 0 && isFullGP(op) && c.mentionWeb[k][f] == w
 	}
-	var cands []cand
+	d, ok := frameSlot(op)
+	return ok && d == s
+}
+
+// isCopy reports whether instruction k is a MOVQ from web or slot "from" into
+// web or slot "to" (exactly one of each pair is set).
+func (c *coalescer) isCopy(k int, fromW *web, fromS int, toW *web, toS int) bool {
+	ins := c.g.ins[k]
+	if ins.Opcode != "MOVQ" || len(ins.Operands) != 2 {
+		return false
+	}
+	return c.copySide(k, ins.Operands[0], fromW, fromS) && c.copySide(k, ins.Operands[1], toW, toS)
+}
+
+// webSlotInterfere reports whether web w and slot s interfere.
+func (c *coalescer) webSlotInterfere(w *web, s int) bool {
+	sl := c.liveOfSlot(s)
+	for _, k := range w.defs {
+		if sl[k] && !c.isCopy(k, nil, s, w, noSlot) {
+			return true
+		}
+	}
+	wl := c.liveOfWeb(w)
+	for k := 0; k < c.n; k++ {
+		if a, ok := c.access[k][s]; ok && a.def && wl[k] && !c.isCopy(k, w, noSlot, nil, s) {
+			return true
+		}
+	}
+	// An ALU operation on the slot naming the web too would name one
+	// register twice.
+	for _, k := range w.mentions {
+		if a, ok := c.access[k][s]; ok && a.copyWeb == nil {
+			return true
+		}
+	}
+	return false
+}
+
+// webWebInterfere reports whether webs a and b interfere.
+func (c *coalescer) webWebInterfere(a, b *web) bool {
+	la, lb := c.liveOfWeb(a), c.liveOfWeb(b)
+	for _, k := range a.defs {
+		if lb[k] && !c.isCopy(k, b, noSlot, a, noSlot) {
+			return true
+		}
+	}
+	for _, k := range b.defs {
+		if la[k] && !c.isCopy(k, a, noSlot, b, noSlot) {
+			return true
+		}
+	}
+	// Both named by one instruction: only a copy between them is safe.
+	for _, k := range a.mentions {
+		if c.mentionWeb[k][b.f] == b && !c.isCopy(k, a, noSlot, b, noSlot) && !c.isCopy(k, b, noSlot, a, noSlot) {
+			return true
+		}
+	}
+	return false
+}
+
+// candidate is an eligible web and a slot it is copied to or from, scored by
+// the moves coalescing would remove.
+type candidate struct {
+	w     *web
+	slot  int
+	score int
+	first int
+}
+
+// candidates returns the candidates, best first.
+func (c *coalescer) candidates() []candidate {
 	score := map[*web]map[int]int{}
-	for k := 0; k < n; k++ {
-		for d, a := range access[k] {
+	for k := 0; k < c.n; k++ {
+		for d, a := range c.access[k] {
 			if a.copyWeb == nil || !a.copyWeb.ok {
 				continue
 			}
@@ -331,9 +425,10 @@ func coalesceSlots(nodes []ir.Node, slotReg map[int]string, excluded map[int]boo
 			score[a.copyWeb][d]++
 		}
 	}
+	var cands []candidate
 	for w, m := range score {
-		for d, c := range m {
-			cands = append(cands, cand{w, d, c, w.mentions[0]*nfam + w.f})
+		for d, n := range m {
+			cands = append(cands, candidate{w, d, n, w.mentions[0]*numFamilies + w.f})
 		}
 	}
 	sort.Slice(cands, func(i, j int) bool {
@@ -346,38 +441,43 @@ func coalesceSlots(nodes []ir.Node, slotReg map[int]string, excluded map[int]boo
 		}
 		return a.slot < b.slot
 	})
+	return cands
+}
 
+// assign coalesces candidates greedily, best first, into their slot's class
+// when they interfere with neither the slot nor any web already in the class.
+func (c *coalescer) assign(cands []candidate) coalescePlan {
 	class := map[int][]*web{}
 	taken := map[*web]bool{}
 	plan := coalescePlan{}
-	for _, c := range cands {
-		if taken[c.w] || webSlotInterfere(c.w, c.slot) {
+	for _, cand := range cands {
+		if taken[cand.w] || c.webSlotInterfere(cand.w, cand.slot) || c.clashesWithClass(cand.w, class[cand.slot]) {
 			continue
 		}
-		clash := false
-		for _, o := range class[c.slot] {
-			if webWebInterfere(c.w, o) {
-				clash = true
-				break
-			}
-		}
-		if clash {
-			continue
-		}
-		taken[c.w] = true
-		class[c.slot] = append(class[c.slot], c.w)
-		for _, k := range c.w.mentions {
-			idx := g.node[k]
+		taken[cand.w] = true
+		class[cand.slot] = append(class[cand.slot], cand.w)
+		for _, k := range cand.w.mentions {
+			idx := c.g.node[k]
 			if plan[idx] == nil {
 				plan[idx] = map[int]string{}
 			}
-			plan[idx][c.w.f] = slotReg[c.slot]
+			plan[idx][cand.w.f] = c.slotReg[cand.slot]
 		}
 	}
 	if len(plan) == 0 {
 		return nil
 	}
 	return plan
+}
+
+// clashesWithClass reports whether w interferes with any web in class.
+func (c *coalescer) clashesWithClass(w *web, class []*web) bool {
+	for _, o := range class {
+		if c.webWebInterfere(w, o) {
+			return true
+		}
+	}
+	return false
 }
 
 // famEffects are the register families an instruction reads and writes, as

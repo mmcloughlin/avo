@@ -3,7 +3,9 @@ package printer
 import (
 	"flag"
 	"fmt"
+	"maps"
 	"math/rand"
+	"sort"
 	"strings"
 	"testing"
 
@@ -116,8 +118,8 @@ func randomSlotProgram(r *rand.Rand) (*ir.Function, string) {
 		labelAt[r.Intn(length+1)] = fmt.Sprintf("L%d", i)
 	}
 	var labels []string
-	for _, l := range labelAt {
-		labels = append(labels, l)
+	for _, k := range sortedKeys(labelAt) {
+		labels = append(labels, labelAt[k])
 	}
 	lbl := func() operand.LabelRef { return operand.LabelRef(labels[r.Intn(len(labels))]) }
 	for k := 0; k <= length; k++ {
@@ -185,7 +187,8 @@ func coalesceCaseFor(fn *ir.Function) (coalesceCase, bool) {
 // occasionally into ordinary ones (which the validator must refuse).
 func randomPlan(r *rand.Rand, c coalesceCase) coalescePlan {
 	targets := []string{"R0", "R1", "R2"}
-	for _, v := range c.slotReg {
+	for _, d := range sortedKeys(c.slotReg) {
+		v := c.slotReg[d]
 		targets = append(targets, v, v, v)
 	}
 	var instrs []int
@@ -201,14 +204,14 @@ func randomPlan(r *rand.Rand, c coalesceCase) coalescePlan {
 	switch r.Intn(3) {
 	case 0: // a family renamed over a random range of instructions
 		f := r.Intn(len(checkRegs))
-		reg := targets[r.Intn(len(targets))]
+		target := targets[r.Intn(len(targets))]
 		a := r.Intn(len(instrs))
 		b := a + r.Intn(len(instrs)-a)
 		for _, idx := range instrs[a : b+1] {
 			if p[idx] == nil {
 				p[idx] = map[int]string{}
 			}
-			p[idx][f] = reg
+			p[idx][f] = target
 		}
 	case 1: // a few random single entries
 		for i := r.Intn(4); i >= 0; i-- {
@@ -218,9 +221,10 @@ func randomPlan(r *rand.Rand, c coalesceCase) coalescePlan {
 			}
 			p[idx][r.Intn(len(checkRegs))] = targets[r.Intn(len(targets))]
 		}
-	case 2: // drop random entries
-		for idx, m := range p {
-			for f := range m {
+	case 2: // drop random entries (in sorted order, so a seed is reproducible)
+		for _, idx := range sortedKeys(p) {
+			m := p[idx]
+			for _, f := range sortedKeys(m) {
 				if r.Intn(3) == 0 {
 					delete(m, f)
 				}
@@ -241,104 +245,152 @@ func checkPlan(c coalesceCase, plan coalescePlan) string {
 	if !ok {
 		return ""
 	}
-	const maxSteps = 40
-	var disps []int
-	for d := range c.slotReg {
-		disps = append(disps, d)
+	pc := &planChecker{c: c, plan: plan, g: g, budget: 20000}
+	pc.walk(0, 0, pc.initial())
+	return pc.bad
+}
+
+// checkWorld is one execution state: the original program's variables ("f<n>"
+// for a family, "s<disp>" for a slot) and the renamed program's registers.
+type checkWorld struct {
+	vars map[string]uint64
+	locs map[string]uint64
+}
+
+// checkRef is a variable accessed through a location.
+type checkRef struct{ v, l string }
+
+// planChecker walks paths for checkPlan.
+type planChecker struct {
+	c      coalesceCase
+	plan   coalescePlan
+	g      cfg
+	bad    string
+	budget int // instructions executed over all paths
+}
+
+const checkMaxSteps = 40
+
+func (pc *planChecker) famLoc(k, f int) string {
+	if name, ok := pc.plan[pc.g.node[k]][f]; ok {
+		return name
 	}
-	famLoc := func(k, f int) string {
-		if name, ok := plan[g.node[k]][f]; ok {
-			return name
-		}
-		return armReg[reg.Index(f)]
-	}
-	type world struct {
-		vars map[string]uint64 // original: "f<n>" or "s<disp>"
-		locs map[string]uint64 // renamed: arm64 register
-	}
-	init := world{vars: map[string]uint64{}, locs: map[string]uint64{}}
+	return armReg[reg.Index(f)]
+}
+
+func (pc *planChecker) initial() checkWorld {
+	w := checkWorld{vars: map[string]uint64{}, locs: map[string]uint64{}}
 	for f := 0; f < 16; f++ {
 		if name, ok := armReg[reg.Index(f)]; ok {
 			v := uint64(1000 + f)
-			init.vars[fmt.Sprintf("f%d", f)] = v
-			init.locs[name] = v
+			w.vars[fmt.Sprintf("f%d", f)] = v
+			w.locs[name] = v
 		}
 	}
-	for _, d := range disps {
+	for d, r := range pc.c.slotReg {
 		v := uint64(2000 + d)
-		init.vars[fmt.Sprintf("s%d", d)] = v
-		init.locs[c.slotReg[d]] = v
+		w.vars[fmt.Sprintf("s%d", d)] = v
+		w.locs[r] = v
 	}
-	var bad string
-	budget := 20000 // instructions executed over all paths
-	var walk func(k, steps int, w world)
-	walk = func(k, steps int, w world) {
-		if bad != "" || k >= len(g.ins) || steps > maxSteps || budget == 0 {
-			return
+	return w
+}
+
+// refs lists the variables instruction k reads and writes, with the
+// locations the renamed program uses for them.
+func (pc *planChecker) refs(k int) (reads, writes []checkRef) {
+	ins := pc.g.ins[k]
+	e := familyEffects(ins)
+	for f := 0; f < 16; f++ {
+		if e.uses&(1<<f) != 0 {
+			reads = append(reads, checkRef{fmt.Sprintf("f%d", f), pc.famLoc(k, f)})
 		}
-		budget--
-		ins := g.ins[k]
-		e := familyEffects(ins)
-		type ref struct{ v, l string }
-		var reads, writes []ref
-		for f := 0; f < 16; f++ {
-			if e.uses&(1<<f) != 0 {
-				reads = append(reads, ref{fmt.Sprintf("f%d", f), famLoc(k, f)})
-			}
-			if e.defs&(1<<f) != 0 {
-				writes = append(writes, ref{fmt.Sprintf("f%d", f), famLoc(k, f)})
-			}
-		}
-		if d, use, def, ok := slotEffect(ins); ok {
-			if l, promoted := c.slotReg[d]; promoted {
-				if use {
-					reads = append(reads, ref{fmt.Sprintf("s%d", d), l})
-				}
-				if def {
-					writes = append(writes, ref{fmt.Sprintf("s%d", d), l})
-				}
-			}
-		}
-		// Distinct variables named by one location in a non-copy
-		// instruction: the lowering may write one before reading the other.
-		if ins.Opcode != "MOVQ" {
-			byLoc := map[string]string{}
-			for _, x := range append(append([]ref{}, reads...), writes...) {
-				if o, dup := byLoc[x.l]; dup && o != x.v {
-					bad = fmt.Sprintf("instruction %d (%s) names %s and %s as %s", k, ins.Opcode, o, x.v, x.l)
-					return
-				}
-				byLoc[x.l] = x.v
-			}
-		}
-		h := uint64(k+1) * 0x9e3779b97f4a7c15
-		for _, x := range reads {
-			ov, rv := w.vars[x.v], w.locs[x.l]
-			if ov != rv {
-				bad = fmt.Sprintf("instruction %d (%s) reads %s=%d from %s, which holds %d", k, ins.Opcode, x.v, ov, x.l, rv)
-				return
-			}
-			h = (h ^ ov) * 0x100000001b3
-		}
-		nw := world{vars: map[string]uint64{}, locs: map[string]uint64{}}
-		for kk, v := range w.vars {
-			nw.vars[kk] = v
-		}
-		for kk, v := range w.locs {
-			nw.locs[kk] = v
-		}
-		for _, x := range writes {
-			v := h ^ uint64(len(x.v))
-			if ins.Opcode == "MOVQ" && len(reads) == 1 {
-				v = w.vars[reads[0].v]
-			}
-			nw.vars[x.v] = v
-			nw.locs[x.l] = v
-		}
-		for _, s := range g.succ[k] {
-			walk(s, steps+1, nw)
+		if e.defs&(1<<f) != 0 {
+			writes = append(writes, checkRef{fmt.Sprintf("f%d", f), pc.famLoc(k, f)})
 		}
 	}
-	walk(0, 0, init)
-	return bad
+	su, ok := slotEffect(ins)
+	if !ok {
+		return reads, writes
+	}
+	l, promoted := pc.c.slotReg[su.disp]
+	if !promoted {
+		return reads, writes
+	}
+	if su.use {
+		reads = append(reads, checkRef{fmt.Sprintf("s%d", su.disp), l})
+	}
+	if su.def {
+		writes = append(writes, checkRef{fmt.Sprintf("s%d", su.disp), l})
+	}
+	return reads, writes
+}
+
+// aliased describes distinct variables named by one location in a non-copy
+// instruction (the lowering may write one before reading the other), or
+// returns "".
+func aliased(reads, writes []checkRef) string {
+	byLoc := map[string]string{}
+	for _, x := range append(append([]checkRef{}, reads...), writes...) {
+		if prev, dup := byLoc[x.l]; dup && prev != x.v {
+			return fmt.Sprintf("%s and %s as %s", prev, x.v, x.l)
+		}
+		byLoc[x.l] = x.v
+	}
+	return ""
+}
+
+// step executes instruction k in both programs, returning the next world, or
+// false after recording a disagreement.
+func (pc *planChecker) step(k int, w checkWorld) (checkWorld, bool) {
+	ins := pc.g.ins[k]
+	reads, writes := pc.refs(k)
+	if ins.Opcode != "MOVQ" {
+		if d := aliased(reads, writes); d != "" {
+			pc.bad = fmt.Sprintf("instruction %d (%s) names %s", k, ins.Opcode, d)
+			return w, false
+		}
+	}
+	h := uint64(k+1) * 0x9e3779b97f4a7c15
+	for _, x := range reads {
+		ov, rv := w.vars[x.v], w.locs[x.l]
+		if ov != rv {
+			pc.bad = fmt.Sprintf("instruction %d (%s) reads %s=%d from %s, which holds %d", k, ins.Opcode, x.v, ov, x.l, rv)
+			return w, false
+		}
+		h = (h ^ ov) * 0x100000001b3
+	}
+	nw := checkWorld{vars: maps.Clone(w.vars), locs: maps.Clone(w.locs)}
+	for _, x := range writes {
+		v := h ^ uint64(len(x.v))
+		if ins.Opcode == "MOVQ" && len(reads) == 1 {
+			v = w.vars[reads[0].v]
+		}
+		nw.vars[x.v] = v
+		nw.locs[x.l] = v
+	}
+	return nw, true
+}
+
+func (pc *planChecker) walk(k, steps int, w checkWorld) {
+	if pc.bad != "" || k >= len(pc.g.ins) || steps > checkMaxSteps || pc.budget == 0 {
+		return
+	}
+	pc.budget--
+	nw, ok := pc.step(k, w)
+	if !ok {
+		return
+	}
+	for _, s := range pc.g.succ[k] {
+		pc.walk(s, steps+1, nw)
+	}
+}
+
+// sortedKeys returns m's keys in increasing order.
+func sortedKeys[V any](m map[int]V) []int {
+	keys := make([]int, 0, len(m))
+	for k := range m {
+		keys = append(keys, k)
+	}
+	sort.Ints(keys)
+	return keys
 }

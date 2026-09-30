@@ -173,28 +173,36 @@ func TestCoalesceRules(t *testing.T) {
 					t.Errorf("family %d coalesced, want it kept", f)
 				}
 			}
-			// No family is renamed where it is also an implicit operand, and
-			// no instruction names two families by one register unless it is
-			// a copy between them.
-			for idx, m := range cc.plan {
-				ins := cc.nodes[idx].(*ir.Instruction)
-				for f := range m {
-					if familyEffects(ins).implicit&(1<<f) != 0 {
-						t.Errorf("%s renames family %d, an implicit operand", ins.Opcode, f)
-					}
-				}
-				if ins.Opcode == "MOVQ" {
-					continue
-				}
-				seen := map[string]bool{}
-				for _, r := range m {
-					if seen[r] {
-						t.Errorf("%s names two families as %s", ins.Opcode, r)
-					}
-					seen[r] = true
-				}
-			}
+			checkPlanInvariants(t, cc)
 		})
+	}
+}
+
+// checkPlanInvariants checks that no family is renamed where it is also an
+// implicit operand, and that no instruction names two families by one
+// register unless it is a copy between them.
+func checkPlanInvariants(t *testing.T, cc coalesceCase) {
+	t.Helper()
+	for idx, m := range cc.plan {
+		ins, ok := cc.nodes[idx].(*ir.Instruction)
+		if !ok {
+			t.Fatalf("plan renames node %d, which is not an instruction", idx)
+		}
+		for f := range m {
+			if familyEffects(ins).implicit&(1<<f) != 0 {
+				t.Errorf("%s renames family %d, an implicit operand", ins.Opcode, f)
+			}
+		}
+		if ins.Opcode == "MOVQ" {
+			continue
+		}
+		seen := map[string]bool{}
+		for _, r := range m {
+			if seen[r] {
+				t.Errorf("%s names two families as %s", ins.Opcode, r)
+			}
+			seen[r] = true
+		}
 	}
 }
 

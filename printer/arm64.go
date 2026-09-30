@@ -246,23 +246,31 @@ func aluSlotAccess(in *ir.Instruction) (disp int, ok bool) {
 	return disp, found
 }
 
+// slotUse is how an instruction accesses a frame slot: its displacement, and
+// whether the slot is read (use) and written (def).
+type slotUse struct {
+	disp     int
+	use, def bool
+}
+
 // slotEffect is how in accesses a frame slot a promoted register can stand in
 // for: a clean MOVQ load (use) or store (def), or an aluSlotAccess (use, and
 // def unless the slot is only read). ok is false for any other instruction.
-func slotEffect(in *ir.Instruction) (disp int, use, def, ok bool) {
+func slotEffect(in *ir.Instruction) (slotUse, bool) {
 	if d, clean := cleanSlotMove(in); clean {
 		_, load := frameSlot(in.Operands[0])
-		return d, load, !load, true
+		return slotUse{d, load, !load}, true
 	}
 	if d, alu := aluSlotAccess(in); alu {
+		def := false
 		for _, op := range in.Outputs {
 			if _, isMem := op.(operand.Mem); isMem {
 				def = true
 			}
 		}
-		return d, true, def, true
+		return slotUse{d, true, def}, true
 	}
-	return 0, false, false, false
+	return slotUse{}, false
 }
 
 // frameAccessWidth is the number of bytes an integer x86 instruction reads or
@@ -321,12 +329,33 @@ func (p *arm64) stackSlotPromotions(f *ir.Function) map[int]string {
 	if !p.cfg.ARM64PromoteStackSlots {
 		return nil
 	}
-	type access struct {
-		disp, width int
-		clean       bool
-		weight      int
+	accesses, ok := frameAccesses(f)
+	if !ok {
+		return nil
 	}
-	var accesses []access
+	// Outside [0, FrameBytes) disp(SP) is the return address or the caller's
+	// arguments, not a local: refuse rather than treat it as a slot.
+	frame := f.FrameBytes()
+	for _, a := range accesses {
+		if a.disp < 0 || a.disp+a.width > frame {
+			return nil
+		}
+	}
+	return rankSlots(accesses)
+}
+
+// frameAccess is one access to frame memory: its byte range, whether it is a
+// clean whole-slot access (slotEffect), and its ranking weight.
+type frameAccess struct {
+	disp, width int
+	clean       bool
+	weight      int
+}
+
+// frameAccesses lists every frame access in f, or reports false if frame
+// memory can be reached in a way the analysis cannot see.
+func frameAccesses(f *ir.Function) ([]frameAccess, bool) {
+	var accesses []frameAccess
 	depth := loopDepths(f.Nodes)
 	for idx, n := range f.Nodes {
 		in, ok := n.(*ir.Instruction)
@@ -337,62 +366,63 @@ func (p *arm64) stackSlotPromotions(f *ir.Function) map[int]string {
 		case "CALL", "PUSHQ", "PUSHL", "PUSHW", "PUSHFQ", "POPQ", "POPL", "POPW", "POPFQ":
 			// A callee may clobber the promoted registers; a push or pop moves
 			// SP implicitly, so a later disp(SP) names different bytes.
-			return nil
+			return nil, false
 		}
-		if d, _, _, clean := slotEffect(in); clean {
-			accesses = append(accesses, access{d, 8, true, 1 << (4 * min(depth[idx], 3))})
+		if su, clean := slotEffect(in); clean {
+			accesses = append(accesses, frameAccess{su.disp, 8, true, 1 << (4 * min(depth[idx], 3))})
 			continue
 		}
-		for _, op := range in.Operands {
-			if r, isReg := op.(reg.Register); isReg && r.Asm() == "SP" {
-				return nil // SP as a value: the frame's address escapes
-			}
-			m, isMem := op.(operand.Mem)
-			if !isMem || m.Base == nil || m.Base.Asm() != "SP" {
-				continue
-			}
-			if m.Symbol.Name != "" || m.Index != nil || in.Opcode == "LEAQ" {
-				return nil
-			}
-			w, known := frameAccessWidth(in.Opcode)
-			if !known {
-				return nil
-			}
-			accesses = append(accesses, access{m.Disp, w, false, 0})
+		more, ok := uncleanFrameAccesses(in)
+		if !ok {
+			return nil, false
 		}
+		accesses = append(accesses, more...)
 	}
-	// Outside [0, FrameBytes) disp(SP) is the return address or the caller's
-	// arguments, not a local: refuse rather than treat it as a slot.
-	frame := f.FrameBytes()
-	for _, a := range accesses {
-		if a.disp < 0 || a.disp+a.width > frame {
-			return nil
-		}
-	}
+	return accesses, true
+}
 
+// uncleanFrameAccesses lists the frame accesses of an instruction that is not
+// a slotEffect, or reports false if one cannot be analysed.
+func uncleanFrameAccesses(in *ir.Instruction) ([]frameAccess, bool) {
+	var accesses []frameAccess
+	for _, op := range in.Operands {
+		if r, isReg := op.(reg.Register); isReg && r.Asm() == "SP" {
+			return nil, false // SP as a value: the frame's address escapes
+		}
+		m, isMem := op.(operand.Mem)
+		if !isMem || m.Base == nil || m.Base.Asm() != "SP" {
+			continue
+		}
+		if m.Symbol.Name != "" || m.Index != nil || in.Opcode == "LEAQ" {
+			return nil, false
+		}
+		w, known := frameAccessWidth(in.Opcode)
+		if !known {
+			return nil, false
+		}
+		accesses = append(accesses, frameAccess{m.Disp, w, false, 0})
+	}
+	return accesses, true
+}
+
+// rankSlots picks the slots to promote. A slot is eligible if every access
+// overlapping it is a clean access at exactly its displacement. Eligible slots
+// are ranked by reference count, a reference inside k loops counting 16^k, so
+// the hottest win the scarce registers; ties break by displacement for
+// deterministic output.
+func rankSlots(accesses []frameAccess) map[int]string {
 	counts := map[int]int{}
 	for _, a := range accesses {
 		if a.clean {
 			counts[a.disp] += a.weight
 		}
 	}
-	// Rank eligible slots by reference count, a reference inside k loops
-	// counting 16^k, so the hottest win the scarce registers. Ties break by
-	// displacement for deterministic output.
 	type slot struct {
 		disp, count int
 	}
 	var elig []slot
 	for d, c := range counts {
-		ok := true
-		for _, a := range accesses {
-			overlaps := a.disp < d+8 && d < a.disp+a.width
-			if overlaps && !(a.clean && a.disp == d) {
-				ok = false
-				break
-			}
-		}
-		if ok {
+		if slotEligible(d, accesses) {
 			elig = append(elig, slot{d, c})
 		}
 	}
@@ -413,6 +443,18 @@ func (p *arm64) stackSlotPromotions(f *ir.Function) map[int]string {
 		out[s.disp] = promoRegs[i]
 	}
 	return out
+}
+
+// slotEligible reports whether every access overlapping slot [d, d+8) is a
+// clean access at exactly d.
+func slotEligible(d int, accesses []frameAccess) bool {
+	for _, a := range accesses {
+		overlaps := a.disp < d+8 && d < a.disp+a.width
+		if overlaps && !(a.clean && a.disp == d) {
+			return false
+		}
+	}
+	return true
 }
 
 // gpByFamily are the 64-bit x86 registers by physical index.
@@ -1398,39 +1440,44 @@ func (p *arm64) lower(i *ir.Instruction, flags, subwordEqNeSafe bool) {
 	panic(fmt.Sprintf("arm64: unsupported opcode %q (operands: %s)", i.Opcode, joinOperands(ops)))
 }
 
+// lowerMOVQ lowers a 64-bit move.
+func (p *arm64) lowerMOVQ(ops []operand.Op) {
+	// A MOVQ touching a promoted frame slot (see stackSlotPromotions)
+	// becomes a register move: the slot's register stands in for its memory.
+	// Eligibility guarantees the other operand is a register or immediate,
+	// never memory, so at most one side is a slot.
+	// A move between a slot and a register coalesced into it (see
+	// coalesceSlots) is a self-move and emits nothing; so is a register
+	// copy between two webs coalesced into one slot.
+	if r, ok := p.promoted(ops[0]); ok {
+		if d := p.operandReg(ops[1]); d != r {
+			p.emitf("MOVD %s, %s", r, d)
+		}
+		return
+	}
+	if r, ok := p.promoted(ops[1]); ok {
+		// A 64-bit store of an imm32 sign-extends it, like the memory path.
+		if imm, isImm := immAsmQ(ops[0]); isImm {
+			p.emitf("MOVD %s, %s", imm, r)
+			return
+		}
+		if s := p.operandReg(ops[0]); s != r {
+			p.emitf("MOVD %s, %s", s, r)
+		}
+		return
+	}
+	if isGPReg(ops[0]) && isGPReg(ops[1]) && p.renames != nil &&
+		p.operandReg(ops[0]) == p.operandReg(ops[1]) {
+		return
+	}
+	p.lowerMove("MOVD", ops[0], ops[1])
+}
+
 // lowerMoveOrLoad lowers the moves and loads.
 func (p *arm64) lowerMoveOrLoad(i *ir.Instruction, ops []operand.Op) bool {
 	switch i.Opcode {
 	case "MOVQ":
-		// A MOVQ touching a promoted frame slot (see stackSlotPromotions)
-		// becomes a register move: the slot's register stands in for its memory.
-		// Eligibility guarantees the other operand is a register or immediate,
-		// never memory, so at most one side is a slot.
-		// A move between a slot and a register coalesced into it (see
-		// coalesceSlots) is a self-move and emits nothing; so is a register
-		// copy between two webs coalesced into one slot.
-		if r, ok := p.promoted(ops[0]); ok {
-			if d := p.operandReg(ops[1]); d != r {
-				p.emitf("MOVD %s, %s", r, d)
-			}
-			return true
-		}
-		if r, ok := p.promoted(ops[1]); ok {
-			// A 64-bit store of an imm32 sign-extends it, like the memory path.
-			if imm, isImm := immAsmQ(ops[0]); isImm {
-				p.emitf("MOVD %s, %s", imm, r)
-				return true
-			}
-			if s := p.operandReg(ops[0]); s != r {
-				p.emitf("MOVD %s, %s", s, r)
-			}
-			return true
-		}
-		if isGPReg(ops[0]) && isGPReg(ops[1]) && p.renames != nil &&
-			p.operandReg(ops[0]) == p.operandReg(ops[1]) {
-			return true
-		}
-		p.lowerMove("MOVD", ops[0], ops[1])
+		p.lowerMOVQ(ops)
 	case "PREFETCHT0", "PREFETCHT1", "PREFETCHT2", "PREFETCHNTA":
 		p.lowerPrefetch(i.Opcode, ops[0])
 	case "MOVL":

@@ -1,6 +1,7 @@
 package printer
 
 import (
+	"errors"
 	"fmt"
 	"sort"
 
@@ -34,18 +35,49 @@ import (
 // the instruction also touches implicitly (renaming reaches only explicit
 // operands).
 func validateCoalesce(nodes []ir.Node, slotReg map[int]string, plan coalescePlan, excluded map[int]bool) error {
+	if err := checkPlanShape(nodes, slotReg, plan, excluded); err != nil {
+		return err
+	}
+	if len(slotReg) == 0 {
+		return nil
+	}
+	g, ok := buildCFG(nodes)
+	if !ok {
+		if plan != nil {
+			return errors.New("coalescing planned for a function whose control flow cannot be followed")
+		}
+		return nil // move-only promotion; nothing here to check
+	}
+	reach := g.reachable()
+	for k := range g.ins {
+		if !reach[k] && plan[g.node[k]] != nil {
+			return fmt.Errorf("%s (instruction %d): renamed in unreachable code, which is not checked",
+				g.ins[k].Opcode, g.node[k])
+		}
+	}
+	v := newValidator(g, slotReg, plan)
+	return v.run()
+}
+
+// checkPlanShape rejects plans that rename where renaming is never allowed:
+// inside a cross-instruction fold, to anything but a promoted slot's register,
+// or a family the instruction does not name.
+func checkPlanShape(nodes []ir.Node, slotReg map[int]string, plan coalescePlan, excluded map[int]bool) error {
 	for idx := range plan {
 		if excluded[idx] {
 			// A cross-instruction fold reads registers at another instruction
 			// than the one naming them, which the per-instruction check below
 			// does not see; renaming never reaches those instructions.
-			return fmt.Errorf("%s (instruction %d): renamed inside a cross-instruction fold",
-				nodes[idx].(*ir.Instruction).Opcode, idx)
+			op := "?"
+			if ins, ok := nodes[idx].(*ir.Instruction); ok {
+				op = ins.Opcode
+			}
+			return fmt.Errorf("%s (instruction %d): renamed inside a cross-instruction fold", op, idx)
 		}
 	}
 	if len(slotReg) == 0 {
 		if len(plan) != 0 {
-			return fmt.Errorf("coalescing planned with no promoted slots")
+			return errors.New("coalescing planned with no promoted slots")
 		}
 		return nil
 	}
@@ -58,53 +90,52 @@ func validateCoalesce(nodes []ir.Node, slotReg map[int]string, plan coalescePlan
 		if !ok {
 			return fmt.Errorf("node %d: renamed, but not an instruction", idx)
 		}
-		e := familyEffects(ins)
-		for f, r := range m {
-			if !slotRegs[r] {
-				return fmt.Errorf("%s (instruction %d): family %d renamed to %s, not a promoted slot's register",
-					ins.Opcode, idx, f, r)
-			}
-			if (e.uses|e.defs)&(1<<f) == 0 {
-				// Nothing below would model it, and emission may use an
-				// unmentioned family for its own purposes (slotAsRegister).
-				return fmt.Errorf("%s (instruction %d): renames family %d, which it does not name",
-					ins.Opcode, idx, f)
-			}
+		if err := checkRenames(ins, idx, m, slotRegs); err != nil {
+			return err
 		}
 	}
-	g, ok := buildCFG(nodes)
-	if !ok {
-		if plan != nil {
-			return fmt.Errorf("coalescing planned for a function whose control flow cannot be followed")
-		}
-		return nil // move-only promotion; nothing here to check
-	}
-	n := len(g.ins)
-	reach := g.reachable()
-	for k := range g.ins {
-		if !reach[k] && plan[g.node[k]] != nil {
-			return fmt.Errorf("%s (instruction %d): renamed in unreachable code, which is not checked",
-				g.ins[k].Opcode, g.node[k])
-		}
-	}
+	return nil
+}
 
-	// Variables: families 0-15, then promoted slots.
-	const nfam = 16
-	slotVar := map[int]int{}
-	var locs []string
-	locIdx := map[string]int{}
-	loc := func(name string) int {
-		i, ok := locIdx[name]
-		if !ok {
-			i = len(locs)
-			locIdx[name] = i
-			locs = append(locs, name)
+// checkRenames checks one instruction's renames against the promoted slot
+// registers and the families the instruction names.
+func checkRenames(ins *ir.Instruction, idx int, m map[int]string, slotRegs map[string]bool) error {
+	e := familyEffects(ins)
+	for f, r := range m {
+		if !slotRegs[r] {
+			return fmt.Errorf("%s (instruction %d): family %d renamed to %s, not a promoted slot's register",
+				ins.Opcode, idx, f, r)
 		}
-		return i
+		if (e.uses|e.defs)&(1<<f) == 0 {
+			// Nothing below would model it, and emission may use an
+			// unmentioned family for its own purposes (slotAsRegister).
+			return fmt.Errorf("%s (instruction %d): renames family %d, which it does not name",
+				ins.Opcode, idx, f)
+		}
 	}
-	for f := 0; f < nfam; f++ {
+	return nil
+}
+
+// valState is, per location, the set of variables whose value it holds.
+type valState = []uint64
+
+// validator is the must-equality analysis of validateCoalesce. Variables are
+// register families 0-15, then promoted slots; locations are arm64 registers.
+type validator struct {
+	g       cfg
+	slotReg map[int]string
+	plan    coalescePlan
+	slotVar map[int]int // slot displacement -> variable
+	locs    []string
+	locIdx  map[string]int
+	init    valState
+}
+
+func newValidator(g cfg, slotReg map[int]string, plan coalescePlan) *validator {
+	v := &validator{g: g, slotReg: slotReg, plan: plan, slotVar: map[int]int{}, locIdx: map[string]int{}}
+	for f := 0; f < numFamilies; f++ {
 		if name, ok := armReg[reg.Index(f)]; ok {
-			loc(name)
+			v.loc(name)
 		}
 	}
 	var disps []int
@@ -113,176 +144,232 @@ func validateCoalesce(nodes []ir.Node, slotReg map[int]string, plan coalescePlan
 	}
 	sort.Ints(disps)
 	for i, d := range disps {
-		slotVar[d] = nfam + i
-		loc(slotReg[d])
+		v.slotVar[d] = numFamilies + i
+		v.loc(slotReg[d])
 	}
-	nl := len(locs)
-	type state = []uint64 // location -> variable set
-	init := make(state, nl)
-	for f := 0; f < nfam; f++ {
+	v.init = make(valState, len(v.locs))
+	for f := 0; f < numFamilies; f++ {
 		if name, ok := armReg[reg.Index(f)]; ok {
-			init[locIdx[name]] |= 1 << f
+			v.init[v.locIdx[name]] |= 1 << f
 		}
 	}
-	for d, v := range slotVar {
-		init[locIdx[slotReg[d]]] |= 1 << v
+	for d, sv := range v.slotVar {
+		v.init[v.locIdx[slotReg[d]]] |= 1 << sv
 	}
+	return v
+}
 
-	famLoc := func(k, f int) (int, error) {
-		if name, ok := plan[g.node[k]][f]; ok {
-			return loc(name), nil
-		}
-		name, ok := armReg[reg.Index(f)]
-		if !ok {
-			return 0, fmt.Errorf("family %d has no arm64 register", f)
-		}
-		return locIdx[name], nil
+// loc returns the index of location name, adding it if new.
+func (v *validator) loc(name string) int {
+	i, ok := v.locIdx[name]
+	if !ok {
+		i = len(v.locs)
+		v.locIdx[name] = i
+		v.locs = append(v.locs, name)
 	}
+	return i
+}
 
-	// transfer applies instruction k to in, returning the out state, or an
-	// error for a read that would see the wrong value.
-	transfer := func(k int, in state) (state, error) {
-		ins := g.ins[k]
-		e := familyEffects(ins)
-		out := append(state(nil), in...)
-		renamed := plan[g.node[k]]
-		for f := range renamed {
-			if e.implicit&(1<<f) != 0 {
-				return nil, fmt.Errorf("renamed family %d is also an implicit operand", f)
-			}
-		}
-
-		// A MOVQ between two tracked variables (whole registers or promoted
-		// slots) is a copy: its destination then holds whatever its source did.
-		isCopy := false
-		var srcVar, srcLoc int
-		tracked := func(op operand.Op) (v, l int, ok bool, err error) {
-			if isFullGP(op) {
-				f := regFamily(op)
-				l, err := famLoc(k, f)
-				return f, l, err == nil, err
-			}
-			if d, isSlot := frameSlot(op); isSlot {
-				if v, promoted := slotVar[d]; promoted {
-					return v, locIdx[slotReg[d]], true, nil
-				}
-			}
-			return 0, 0, false, nil
-		}
-		if ins.Opcode == "MOVQ" && len(ins.Operands) == 2 {
-			sv, sl, sok, err := tracked(ins.Operands[0])
-			if err != nil {
-				return nil, err
-			}
-			_, _, dok, err := tracked(ins.Operands[1])
-			if err != nil {
-				return nil, err
-			}
-			isCopy, srcVar, srcLoc = sok && dok, sv, sl
-		}
-
-		// Reads.
-		seen := map[int]int{} // location -> family, for the aliasing check
-		for f := 0; f < nfam; f++ {
-			if (e.uses|e.defs)&(1<<f) == 0 {
-				continue
-			}
-			l, err := famLoc(k, f)
-			if err != nil {
-				return nil, err
-			}
-			if o, dup := seen[l]; dup && !isCopy {
-				return nil, fmt.Errorf("families %d and %d both named %s", o, f, locs[l])
-			}
-			seen[l] = f
-			if e.uses&(1<<f) != 0 && in[l]&(1<<f) == 0 {
-				return nil, fmt.Errorf("reads family %d from %s, which does not hold it", f, locs[l])
-			}
-		}
-		slotDef := -1
-		if d, use, def, ok := slotEffect(ins); ok {
-			if v, promoted := slotVar[d]; promoted {
-				l := locIdx[slotReg[d]]
-				if use && in[l]&(1<<v) == 0 {
-					return nil, fmt.Errorf("reads slot %d from %s, which does not hold it", d, slotReg[d])
-				}
-				if o, dup := seen[l]; dup && !isCopy {
-					return nil, fmt.Errorf("family %d and slot %d both named %s", o, d, locs[l])
-				}
-				if def {
-					slotDef = d
-				}
-			}
-		}
-
-		// Writes: every written variable leaves every set, then each written
-		// location holds exactly what was written to it.
-		var written uint64
-		for f := 0; f < nfam; f++ {
-			if e.defs&(1<<f) != 0 {
-				written |= 1 << f
-			}
-		}
-		if slotDef >= 0 {
-			written |= 1 << slotVar[slotDef]
-		}
-		for l := range out {
-			out[l] &^= written
-		}
-		put := func(l, v int) {
-			if isCopy {
-				out[l] = in[srcLoc]&^written | 1<<srcVar | 1<<v
-			} else {
-				out[l] = 1 << v
-			}
-		}
-		for f := 0; f < nfam; f++ {
-			if e.defs&(1<<f) != 0 {
-				l, _ := famLoc(k, f)
-				put(l, f)
-			}
-		}
-		if slotDef >= 0 {
-			put(locIdx[slotReg[slotDef]], slotVar[slotDef])
-		}
-		return out, nil
+// famLoc is the location instruction k names for family f.
+func (v *validator) famLoc(k, f int) (int, error) {
+	if name, ok := v.plan[v.g.node[k]][f]; ok {
+		return v.loc(name), nil
 	}
+	name, ok := armReg[reg.Index(f)]
+	if !ok {
+		return 0, fmt.Errorf("family %d has no arm64 register", f)
+	}
+	return v.locIdx[name], nil
+}
 
-	// Forward must-analysis to a fixed point. nil is "not yet reached" (top).
-	in := make([]state, n)
-	out := make([]state, n)
+// varLoc is a variable and the location holding it.
+type varLoc struct{ v, l int }
+
+// tracked reports the variable and location of op, an operand of instruction
+// k, when it is a whole register or a promoted slot.
+func (v *validator) tracked(k int, op operand.Op) (varLoc, bool, error) {
+	if isFullGP(op) {
+		f := regFamily(op)
+		l, err := v.famLoc(k, f)
+		return varLoc{f, l}, err == nil, err
+	}
+	if d, isSlot := frameSlot(op); isSlot {
+		if sv, promoted := v.slotVar[d]; promoted {
+			return varLoc{sv, v.locIdx[v.slotReg[d]]}, true, nil
+		}
+	}
+	return varLoc{}, false, nil
+}
+
+// copyOf describes instruction k as a copy, if it is a MOVQ between two
+// tracked variables: its destination then holds whatever its source did.
+type copyOf struct {
+	is       bool
+	src, loc int // source variable and location
+}
+
+func (v *validator) copyAt(k int) (copyOf, error) {
+	ins := v.g.ins[k]
+	if ins.Opcode != "MOVQ" || len(ins.Operands) != 2 {
+		return copyOf{}, nil
+	}
+	src, sok, err := v.tracked(k, ins.Operands[0])
+	if err != nil {
+		return copyOf{}, err
+	}
+	_, dok, err := v.tracked(k, ins.Operands[1])
+	if err != nil {
+		return copyOf{}, err
+	}
+	return copyOf{sok && dok, src.v, src.l}, nil
+}
+
+// readFamilies checks every family instruction k reads is held by the
+// location it is read from, and that no two families share a location unless
+// k is a copy. It returns the location -> family map it used for the check.
+func (v *validator) readFamilies(k int, e famEffects, in valState, cp copyOf) (map[int]int, error) {
+	seen := map[int]int{}
+	for f := 0; f < numFamilies; f++ {
+		if (e.uses|e.defs)&(1<<f) == 0 {
+			continue
+		}
+		l, err := v.famLoc(k, f)
+		if err != nil {
+			return nil, err
+		}
+		if o, dup := seen[l]; dup && !cp.is {
+			return nil, fmt.Errorf("families %d and %d both named %s", o, f, v.locs[l])
+		}
+		seen[l] = f
+		if e.uses&(1<<f) != 0 && in[l]&(1<<f) == 0 {
+			return nil, fmt.Errorf("reads family %d from %s, which does not hold it", f, v.locs[l])
+		}
+	}
+	return seen, nil
+}
+
+// readSlot checks a promoted slot instruction k reads is held by its register
+// and that its register is not also named for a family. It returns the slot
+// the instruction writes, or -1.
+func (v *validator) readSlot(ins *ir.Instruction, in valState, seen map[int]int, cp copyOf) (int, error) {
+	su, ok := slotEffect(ins)
+	if !ok {
+		return -1, nil
+	}
+	sv, promoted := v.slotVar[su.disp]
+	if !promoted {
+		return -1, nil
+	}
+	l := v.locIdx[v.slotReg[su.disp]]
+	if su.use && in[l]&(1<<sv) == 0 {
+		return -1, fmt.Errorf("reads slot %d from %s, which does not hold it", su.disp, v.slotReg[su.disp])
+	}
+	if o, dup := seen[l]; dup && !cp.is {
+		return -1, fmt.Errorf("family %d and slot %d both named %s", o, su.disp, v.locs[l])
+	}
+	if su.def {
+		return su.disp, nil
+	}
+	return -1, nil
+}
+
+// write applies instruction k's writes to in: every written variable leaves
+// every set, then each written location holds exactly what was written to it.
+func (v *validator) write(k int, e famEffects, in valState, slotDef int, cp copyOf) valState {
+	var written uint64
+	for f := 0; f < numFamilies; f++ {
+		if e.defs&(1<<f) != 0 {
+			written |= 1 << f
+		}
+	}
+	if slotDef >= 0 {
+		written |= 1 << v.slotVar[slotDef]
+	}
+	out := append(valState(nil), in...)
+	for l := range out {
+		out[l] &^= written
+	}
+	put := func(l, vr int) {
+		if cp.is {
+			out[l] = in[cp.loc]&^written | 1<<cp.src | 1<<vr
+		} else {
+			out[l] = 1 << vr
+		}
+	}
+	for f := 0; f < numFamilies; f++ {
+		if e.defs&(1<<f) != 0 {
+			l, _ := v.famLoc(k, f)
+			put(l, f)
+		}
+	}
+	if slotDef >= 0 {
+		put(v.locIdx[v.slotReg[slotDef]], v.slotVar[slotDef])
+	}
+	return out
+}
+
+// transfer applies instruction k to in, returning the out state, or an error
+// for a read that would see the wrong value.
+func (v *validator) transfer(k int, in valState) (valState, error) {
+	ins := v.g.ins[k]
+	e := familyEffects(ins)
+	for f := range v.plan[v.g.node[k]] {
+		if e.implicit&(1<<f) != 0 {
+			return nil, fmt.Errorf("renamed family %d is also an implicit operand", f)
+		}
+	}
+	cp, err := v.copyAt(k)
+	if err != nil {
+		return nil, err
+	}
+	seen, err := v.readFamilies(k, e, in, cp)
+	if err != nil {
+		return nil, err
+	}
+	slotDef, err := v.readSlot(ins, in, seen, cp)
+	if err != nil {
+		return nil, err
+	}
+	return v.write(k, e, in, slotDef, cp), nil
+}
+
+// meet intersects s into cur; nil is "not yet reached" (top).
+func meet(cur, s valState) valState {
+	if s == nil {
+		return cur
+	}
+	if cur == nil {
+		return append(valState(nil), s...)
+	}
+	for l := range cur {
+		cur[l] &= s[l]
+	}
+	return cur
+}
+
+// run solves the forward must-analysis to a fixed point, checking every read.
+func (v *validator) run() error {
+	n := len(v.g.ins)
+	out := make([]valState, n)
 	for changed := true; changed; {
 		changed = false
 		for k := 0; k < n; k++ {
-			var cur state
-			meet := func(s state) {
-				if s == nil {
-					return
-				}
-				if cur == nil {
-					cur = append(state(nil), s...)
-					return
-				}
-				for l := range cur {
-					cur[l] &= s[l]
-				}
-			}
+			var cur valState
 			if k == 0 {
-				meet(init)
+				cur = meet(cur, v.init)
 			}
-			for _, p := range g.pred[k] {
-				meet(out[p])
+			for _, p := range v.g.pred[k] {
+				cur = meet(cur, out[p])
 			}
 			if cur == nil {
 				continue
 			}
-			in[k] = cur
-			o, err := transfer(k, cur)
+			o, err := v.transfer(k, cur)
 			if err != nil {
 				// A read that fails in an intermediate state may succeed
 				// once the analysis settles only if sets grew, and a
 				// must-analysis from top only shrinks them; so this is final.
-				return fmt.Errorf("%s (instruction %d): %v", g.ins[k].Opcode, g.node[k], err)
+				return fmt.Errorf("%s (instruction %d): %w", v.g.ins[k].Opcode, v.g.node[k], err)
 			}
 			if !equalState(o, out[k]) {
 				out[k] = o
