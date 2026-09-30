@@ -182,7 +182,7 @@ func coalesceCaseFor(fn *ir.Function) (coalesceCase, bool) {
 
 // randomPlan returns the planner's plan with random entries added or
 // removed, or an entirely random one, renaming into the slot registers and
-// occasionally into ordinary ones.
+// occasionally into ordinary ones (which the validator must refuse).
 func randomPlan(r *rand.Rand, c coalesceCase) coalescePlan {
 	targets := []string{"R0", "R1", "R2"}
 	for _, v := range c.slotReg {

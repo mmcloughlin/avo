@@ -442,10 +442,14 @@ func (p *arm64) slotAsRegister(in *ir.Instruction, r string) *ir.Instruction {
 	}
 	c := *in
 	c.Operands, c.Inputs, c.Outputs = swap(in.Operands), swap(in.Inputs), swap(in.Outputs)
-	renames := map[int]string{f: r}
+	renames := map[int]string{}
 	for k, v := range p.renames {
 		renames[k] = v
 	}
+	if _, clash := renames[f]; clash {
+		panic(fmt.Sprintf("arm64: %s: placeholder family %d is already renamed", in.Opcode, f))
+	}
+	renames[f] = r
 	p.renames = renames
 	return &c
 }

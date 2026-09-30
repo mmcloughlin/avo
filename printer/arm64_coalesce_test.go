@@ -262,6 +262,25 @@ func TestValidateCoalesceRejects(t *testing.T) {
 			}
 			return p
 		}, "both named"},
+		{"family the instruction does not name", func(ctx *fnBuilder, s0, s8 operand.Mem) {
+			ctx.add(x86.MOVQ(reg.RAX, s0))
+			ctx.add(x86.MOVQ(reg.RAX, s8))
+			ctx.add(x86.ADDQ(reg.RBX, s8))
+			ctx.add(x86.MOVQ(s8, reg.RDX))
+			ctx.add(x86.ADDQ(reg.RDX, reg.RAX))
+		}, func(c coalesceCase) coalescePlan {
+			p := clonePlan(c.plan)
+			if p[c.at(3)] == nil {
+				p[c.at(3)] = map[int]string{}
+			}
+			p[c.at(3)][famAX] = c.slotReg[0]
+			return p
+		}, "does not name"},
+		{"register outside the slot registers", rmw, func(c coalesceCase) coalescePlan {
+			p := clonePlan(c.plan)
+			p[c.at(loadCX)] = map[int]string{famCX: "R16"}
+			return p
+		}, "not a promoted slot's register"},
 		{"implicit operand renamed", func(ctx *fnBuilder, s0, s8 operand.Mem) {
 			ctx.add(x86.MOVQ(reg.RAX, s0))
 			ctx.add(x86.MOVQ(s0, reg.RCX))

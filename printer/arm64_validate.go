@@ -26,7 +26,8 @@ import (
 // register holds its slot (both undefined, and equally so).
 //
 // It also rejects renaming at an instruction a cross-instruction fold rewrites,
-// and the two renamings that equal values do not make safe: two
+// renaming to anything but a promoted slot's register, renaming a family the
+// instruction does not name, and the two renamings that equal values do not make safe: two
 // families named by one register in a non-copy instruction (lowerings assume
 // distinct x86 registers are distinct arm64 registers), and a renamed family
 // the instruction also touches implicitly (renaming reaches only explicit
@@ -42,7 +43,33 @@ func validateCoalesce(nodes []ir.Node, slotReg map[int]string, plan coalescePlan
 		}
 	}
 	if len(slotReg) == 0 {
+		if len(plan) != 0 {
+			return fmt.Errorf("coalescing planned with no promoted slots")
+		}
 		return nil
+	}
+	slotRegs := map[string]bool{}
+	for _, r := range slotReg {
+		slotRegs[r] = true
+	}
+	for idx, m := range plan {
+		ins, ok := nodes[idx].(*ir.Instruction)
+		if !ok {
+			return fmt.Errorf("node %d: renamed, but not an instruction", idx)
+		}
+		e := familyEffects(ins)
+		for f, r := range m {
+			if !slotRegs[r] {
+				return fmt.Errorf("%s (instruction %d): family %d renamed to %s, not a promoted slot's register",
+					ins.Opcode, idx, f, r)
+			}
+			if (e.uses|e.defs)&(1<<f) == 0 {
+				// Nothing below would model it, and emission may use an
+				// unmentioned family for its own purposes (slotAsRegister).
+				return fmt.Errorf("%s (instruction %d): renames family %d, which it does not name",
+					ins.Opcode, idx, f)
+			}
+		}
 	}
 	g, ok := buildCFG(nodes)
 	if !ok {

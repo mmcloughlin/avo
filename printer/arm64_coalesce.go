@@ -47,6 +47,10 @@ import (
 // rewrites: those fix register names at analysis time, before any renaming.
 // Control flow the graph cannot follow (a branch to anything but a local label)
 // disables coalescing for the whole function.
+//
+// A definition nothing reads may vanish: a web whose only instruction is a load
+// from its slot is coalesced, and the load is a self-move. Registers carry no
+// results out of an ABI0 function, so no caller can observe the difference.
 
 // coalescePlan maps a node index to the renamed register families at that
 // instruction: family (x86 physical index) to arm64 register.
