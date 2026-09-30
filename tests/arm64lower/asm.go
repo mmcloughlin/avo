@@ -1202,6 +1202,29 @@ func main() {
 		RET()
 	}
 
+	// CountFoldPartial<n>: "MOVQ a, CX; SHRQ CL, b" folds the copy into the
+	// shift only if CX is dead afterwards. A later write to CL or CX alone
+	// keeps the rest of RCX from the copy, so the copy must stay: the result
+	// mixes the shifted value with all of RCX to catch a dropped copy.
+	for n, write := range []func(){
+		func() { MOVB(operand.U8(1), reg.CL) },
+		func() { MOVW(operand.U16(1), reg.CX) },
+		func() { SETEQ(reg.CL) },
+	} {
+		TEXT(fmt.Sprintf("CountFoldPartial%d", n), NOSPLIT, "func(a, b uint64) uint64")
+		a, b := GP64(), GP64()
+		Load(Param("a"), a)
+		Load(Param("b"), b)
+		MOVQ(a, reg.RCX)
+		SHRQ(reg.CL, b)
+		TESTQ(b, b)
+		write()
+		XORQ(reg.RCX, b)
+		ADDQ(a, b) // keeps a live, so the allocator cannot place it in RCX
+		Store(b, ReturnIndex(0))
+		RET()
+	}
+
 	// CmpLIntMin: "CMP a, -b" lowers to "CMN a, b" because subtracting a
 	// negative adds its magnitude -- but at the signed minimum the negated
 	// magnitude is not representable as a positive at that width, so arm64 would

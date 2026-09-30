@@ -70,6 +70,35 @@ func TestARM64ShiftCountFold(t *testing.T) {
 		}), printer.NewARM64Asm)
 		expectLines(t, out, []string{"LSRW R7, R3, R3"}, []string{"MOVD R7, R1"})
 	})
+	t.Run("Folded32BitRedefinition", func(t *testing.T) {
+		out := Print(t, foldContext(func(ctx *build.Context) {
+			ctx.MOVQ(reg.R8, reg.RCX)
+			ctx.SHLQ(reg.CL, reg.RBX)
+			ctx.MOVL(operand.U32(1), reg.ECX) // zero-extends: all of RCX replaced
+		}), printer.NewARM64Asm)
+		expectLines(t, out, []string{"LSL R7, R3, R3"}, []string{"MOVD R7, R1"})
+	})
+	// A narrower write keeps the rest of RCX, so the copy is still observable.
+	for _, c := range []struct {
+		name  string
+		write func(ctx *build.Context)
+	}{
+		{"RefusedByteRedefinition", func(ctx *build.Context) { ctx.MOVB(operand.U8(1), reg.CL) }},
+		{"RefusedWordRedefinition", func(ctx *build.Context) { ctx.MOVW(operand.U16(1), reg.CX) }},
+		{"RefusedSetccRedefinition", func(ctx *build.Context) {
+			ctx.TESTQ(reg.RBX, reg.RBX)
+			ctx.SETPL(reg.CL)
+		}},
+	} {
+		t.Run(c.name, func(t *testing.T) {
+			out := Print(t, foldContext(func(ctx *build.Context) {
+				ctx.MOVQ(reg.R8, reg.RCX)
+				ctx.SHLQ(reg.CL, reg.RBX)
+				c.write(ctx)
+			}), printer.NewARM64Asm)
+			expectLines(t, out, []string{"MOVD R7, R1", "LSL R1, R3, R3"}, nil)
+		})
+	}
 	t.Run("RefusedLabelBeforeRedefinition", func(t *testing.T) {
 		out := Print(t, foldContext(func(ctx *build.Context) {
 			ctx.MOVQ(reg.R8, reg.RCX)

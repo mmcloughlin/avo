@@ -516,6 +516,12 @@ func MovQBit31Mem(p *uint64)
 
 func MovQBit31Reg() uint64
 
+func CountFoldPartial0(a uint64, b uint64) uint64
+
+func CountFoldPartial1(a uint64, b uint64) uint64
+
+func CountFoldPartial2(a uint64, b uint64) uint64
+
 func CmpLIntMin(x uint64) uint64
 
 func ShrQ64(x uint64) uint64

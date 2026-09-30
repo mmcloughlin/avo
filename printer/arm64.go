@@ -3360,7 +3360,9 @@ func (p *arm64) emitShiftExtractFold(mov, shr, ext *ir.Instruction) {
 // Outputs, which include implicit operands (CL for a shift, RAX/RDX for a
 // widening multiply) and the base and index of memory operands, and
 // registers are compared as families, so a write to CL or ECX counts as a
-// write to RCX.
+// write to RCX. A write counts as replacing the whole register only if it is
+// 32 or 64 bits wide and unconditional (see fullyWrites): x86 keeps the rest
+// of RCX under a write to CL or CX.
 
 // shiftFold is the operand rewrite shiftFolds decided for one shift: the arm64
 // register to read as the count and/or as the source instead of the copy the
@@ -3413,6 +3415,23 @@ func writesFamily(ins *ir.Instruction, family int) bool {
 		}
 	}
 	return false
+}
+
+// fullyWrites reports whether every write ins makes to the given family
+// replaces the whole register: 32- and 64-bit writes do (x86 zero-extends a
+// 32-bit destination), 8- and 16-bit writes keep the bits above them, and a
+// conditional move or bit scan may leave the destination untouched.
+func fullyWrites(ins *ir.Instruction, family int) bool {
+	if strings.HasPrefix(ins.Opcode, "CMOV") || strings.HasPrefix(ins.Opcode, "BSF") ||
+		strings.HasPrefix(ins.Opcode, "BSR") {
+		return false
+	}
+	for _, r := range ins.OutputRegisters() {
+		if regFamily(r) == family && r.Size() < 4 {
+			return false
+		}
+	}
+	return true
 }
 
 // endsBlock reports whether control may leave the straight-line run at ins:
@@ -3552,7 +3571,7 @@ func countFold(nodes []ir.Node, next func(int) int, j, src int) (int, string) {
 		if endsBlock(ins) {
 			return -1, ""
 		}
-		if writesFamily(ins, rcx) && !readsFamily(ins, rcx) {
+		if writesFamily(ins, rcx) && !readsFamily(ins, rcx) && fullyWrites(ins, rcx) {
 			return k, rename(nodes[j].(*ir.Instruction).Operands[0].(reg.Register))
 		}
 		if readsFamily(ins, rcx) || writesFamily(ins, rcx) {

@@ -1363,3 +1363,35 @@ func testSlotPrograms(t *testing.T, name string, ops []propspec.SlotOp,
 		}
 	}
 }
+
+// TestCountFoldPartialKill checks that a write to CL or CX after a
+// count-folded shift keeps the copy into RCX, whose upper bits it preserves.
+func TestCountFoldPartialKill(t *testing.T) {
+	progs := []struct {
+		fn   func(a, b uint64) uint64
+		mask uint64
+		val  func(a, shifted uint64) uint64
+	}{
+		{CountFoldPartial0, 0xff, func(a, shifted uint64) uint64 { return 1 }},
+		{CountFoldPartial1, 0xffff, func(a, shifted uint64) uint64 { return 1 }},
+		{CountFoldPartial2, 0xff, func(a, shifted uint64) uint64 {
+			if shifted == 0 {
+				return 1
+			}
+			return 0
+		}},
+	}
+	for n, p := range progs {
+		for _, in := range []struct{ a, b uint64 }{
+			{0x1122334455667788, ^uint64(0)},
+			{0x1122334455667703, 0xf0},
+			{0xffffffffffffff3f, 1 << 63},
+		} {
+			shifted := in.b >> (in.a & 63)
+			rcx := in.a&^p.mask | p.val(in.a, shifted)
+			if got, want := p.fn(in.a, in.b), shifted^rcx+in.a; got != want {
+				t.Errorf("CountFoldPartial%d(%#x, %#x) = %#x, want %#x", n, in.a, in.b, got, want)
+			}
+		}
+	}
+}

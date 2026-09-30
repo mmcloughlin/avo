@@ -10234,6 +10234,45 @@ TEXT ·MovQBit31Reg(SB), NOSPLIT, $0-8
 	MOVQ AX, ret+0(FP)
 	RET
 
+// func CountFoldPartial0(a uint64, b uint64) uint64
+TEXT ·CountFoldPartial0(SB), NOSPLIT, $0-24
+	MOVQ  a+0(FP), AX
+	MOVQ  b+8(FP), DX
+	MOVQ  AX, CX
+	SHRQ  CL, DX
+	TESTQ DX, DX
+	MOVB  $0x01, CL
+	XORQ  CX, DX
+	ADDQ  AX, DX
+	MOVQ  DX, ret+16(FP)
+	RET
+
+// func CountFoldPartial1(a uint64, b uint64) uint64
+TEXT ·CountFoldPartial1(SB), NOSPLIT, $0-24
+	MOVQ  a+0(FP), AX
+	MOVQ  b+8(FP), DX
+	MOVQ  AX, CX
+	SHRQ  CL, DX
+	TESTQ DX, DX
+	MOVW  $0x0001, CX
+	XORQ  CX, DX
+	ADDQ  AX, DX
+	MOVQ  DX, ret+16(FP)
+	RET
+
+// func CountFoldPartial2(a uint64, b uint64) uint64
+TEXT ·CountFoldPartial2(SB), NOSPLIT, $0-24
+	MOVQ  a+0(FP), AX
+	MOVQ  b+8(FP), DX
+	MOVQ  AX, CX
+	SHRQ  CL, DX
+	TESTQ DX, DX
+	SETEQ CL
+	XORQ  CX, DX
+	ADDQ  AX, DX
+	MOVQ  DX, ret+16(FP)
+	RET
+
 // func CmpLIntMin(x uint64) uint64
 TEXT ·CmpLIntMin(SB), NOSPLIT, $0-16
 	MOVQ  x+0(FP), AX
