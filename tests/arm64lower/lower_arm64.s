@@ -3870,66 +3870,72 @@ TEXT ·FoldProp0(SB), NOSPLIT, $32-24
 	MOVD y+8(FP), R1
 	MOVD R1, R19
 	ADD  $0x00000000, R19, R19
-	MOVD R1, R20
-	ADD  $0x00000001, R20, R20
 	MOVD R1, R22
-	ADD  $0x00000002, R22, R22
+	ADD  $0x00000001, R22, R22
 	MOVD R1, R21
-	ADD  $0x00000003, R21, R21
-	CMP  R22, R1
-	BLO  foldprop0_0_skip
-	EOR  R1, R0, R0
-
-foldprop0_0_skip:
-	MOVD $-2147483648, R19
-	ADD  R19, R0, R0
-	MOVD R19, R2
-	ADD  R2, R19, R19
+	ADD  $0x00000002, R21, R21
+	MOVD R1, R20
+	ADD  $0x00000003, R20, R20
+	MOVD R21, R2
+	MOVD R0, R21
 	ADD  R2, R0, R0
-	NEG  R19, R19
-	MVN  R20, R20
-	ROR  $57, R0, R0
-	EOR  R1, R0, R0
-	MOVD R20, R2
+	MOVD R19, R2
+	UBFX $8, R2, $8, R3
+	ADD  R3, R0, R0
+	EOR  R2, R0, R0
+	MOVD R19, R2
+	LSL  $0x05, R2, R3
+	EOR  R3, R0, R0
+	ADD  R2, R0, R0
+	MOVD R19, R2
 	MOVD $0x00000002, R3
 
-foldprop0_5_loop:
-	ADD  R2, R0, R0
-	MOVD R0, R20
+foldprop0_3_loop:
+	MOVD R0, R19
+	ADD  R3, R0, R0
 	SUBS $0x00000001, R3, R3
-	BNE  foldprop0_5_loop
+	BNE  foldprop0_3_loop
+	ADD  R2, R0, R0
+	MOVD R19, R2
+	MOVD $0x00000002, R3
+
+foldprop0_4_loop:
+	MOVD R0, R19
+	ADD  R3, R0, R0
+	SUBS $0x00000001, R3, R3
+	BNE  foldprop0_4_loop
+	ADD  R2, R0, R0
+	MOVD R22, R2
+	LSL  $0x05, R2, R3
+	EOR  R3, R0, R0
+	ADD  R2, R0, R0
+	MOVD R19, R2
+	MOVD R21, R19
+	MOVD R2, R21
+	MOVD R19, R2
+	MOVD R0, R19
+	ADD  R2, R0, R0
 	MOVD $0x00000002, R2
 
-foldprop0_6_loop:
-	ADD  R19, R0, R0
+foldprop0_8_loop:
+	ADD  R20, R0, R0
 	MOVD R1, R3
 	ADD  R0, R3, R3
 	SUBS $0x00000001, R2, R2
-	BNE  foldprop0_6_loop
-	MOVD R3, R19
+	BNE  foldprop0_8_loop
+	MOVD R3, R20
 	ROR  $57, R0, R0
 	EOR  R1, R0, R0
-	MOVD R21, R2
-	MOVD R20, R21
-	MOVD R2, R20
-	MOVD R21, R2
-	MOVD $0x00000002, R3
-
-foldprop0_9_loop:
-	ADD  R2, R0, R0
-	MOVD R0, R21
-	SUBS $0x00000001, R3, R3
-	BNE  foldprop0_9_loop
-	MOVD R20, R3
-	ROR  $55, R3, R3
-	ADD  R20, R3, R3
-	EOR  R3, R0, R0
-	ROR  $57, R0, R0
-	EOR  R1, R0, R0
-	ADD  R19, R0, R0
+	MOVD R22, R1
+	LSL  $0x05, R1, R2
+	EOR  R2, R0, R0
+	ADD  R1, R0, R0
+	MOVD $-2147483645, R20
 	ADD  R20, R0, R0
+	ADD  R19, R0, R0
 	ADD  R22, R0, R0
 	ADD  R21, R0, R0
+	ADD  R20, R0, R0
 	MOVD R0, ret+16(FP)
 	RET
 
@@ -3937,70 +3943,84 @@ foldprop0_9_loop:
 TEXT ·FoldProp1(SB), NOSPLIT, $32-24
 	MOVD x+0(FP), R0
 	MOVD y+8(FP), R1
-	MOVD R1, R20
-	ADD  $0x00000000, R20, R20
+	MOVD R1, R21
+	ADD  $0x00000000, R21, R21
 	MOVD R1, R22
 	ADD  $0x00000001, R22, R22
-	MOVD R1, R21
-	ADD  $0x00000002, R21, R21
 	MOVD R1, R19
-	ADD  $0x00000003, R19, R19
-	MOVD R19, R20
-	ADD  R20, R0, R0
-	MOVD R21, R19
-	ADD  R21, R0, R0
+	ADD  $0x00000002, R19, R19
+	MOVD R1, R20
+	ADD  $0x00000003, R20, R20
 	MOVD R20, R2
-	MOVD R2, R20
-	ADD  R1, R20, R20
+	ADD  R2, R20, R20
 	ADD  R2, R0, R0
-	CMP  R1, R0
-	BLO  foldprop1_3_skip
-	ADD  R1, R19, R19
-
-foldprop1_3_skip:
-	MOVD R22, R21
-	ADD  R22, R0, R0
-	MOVD R19, R2
-	UBFX $8, R2, $8, R3
-	ADD  R3, R0, R0
-	EOR  R2, R0, R0
-	MOVD R19, R2
-	MOVD $0x00000002, R3
-
-foldprop1_6_loop:
-	ADD  R2, R0, R0
-	MOVD R0, R19
-	SUBS $0x00000001, R3, R3
-	BNE  foldprop1_6_loop
 	MOVD R1, R2
 	CMP  R1, R0
+	BLO  foldprop1_1_skip
+	MOVD R19, R2
+
+foldprop1_1_skip:
+	ADD R2, R0, R0
+	CMP R21, R1
+	BLO foldprop1_2_skip
+	EOR R1, R0, R0
+
+foldprop1_2_skip:
+	MOVD R1, R2
+	CMP  R1, R0
+	BLO  foldprop1_3_skip
+	MOVD R20, R2
+
+foldprop1_3_skip:
+	ADD R2, R0, R0
+	CMP R22, R1
+	BLO foldprop1_4_skip
+	EOR R1, R0, R0
+
+foldprop1_4_skip:
+	MOVD $-2147483645, R20
+	ADD  R20, R0, R0
+	MOVD R20, R2
+	MOVD R0, R20
+	ADD  R2, R0, R0
+	CMP  R1, R0
 	BLO  foldprop1_7_skip
-	MOVD R21, R2
+	ADD  R1, R19, R19
 
 foldprop1_7_skip:
-	ADD  R2, R0, R0
+	MOVD R1, R2
+	CMP  R1, R0
+	BLO  foldprop1_8_skip
 	MOVD R22, R2
-	UBFX $8, R2, $8, R3
-	ADD  R3, R0, R0
-	EOR  R2, R0, R0
-	ROR  $57, R0, R0
-	EOR  R1, R0, R0
+
+foldprop1_8_skip:
+	ADD  R2, R0, R0
 	MOVD R20, R1
 	MOVD $0x00000002, R2
 
-foldprop1_10_loop:
-	MOVD R0, R20
-	ADD  R2, R0, R0
-	SUBS $0x00000001, R2, R2
-	BNE  foldprop1_10_loop
+foldprop1_9_loop:
 	ADD  R1, R0, R0
+	MOVD R0, R20
+	SUBS $0x00000001, R2, R2
+	BNE  foldprop1_9_loop
 	MOVD R21, R1
 	MOVD R0, R21
 	ADD  R1, R0, R0
-	ADD  R20, R0, R0
-	ADD  R22, R0, R0
+	AND  $0x00000003, R19, R19
+
+foldprop1_11_loop:
+	CMP $0x00000000, R19
+	BEQ foldprop1_11_done
+	ADD R19, R0, R0
+	ROR $61, R0, R0
+	SUB $0x00000001, R19, R19
+	JMP foldprop1_11_loop
+
+foldprop1_11_done:
 	ADD  R21, R0, R0
+	ADD  R22, R0, R0
 	ADD  R19, R0, R0
+	ADD  R20, R0, R0
 	MOVD R0, ret+16(FP)
 	RET
 
@@ -4008,103 +4028,67 @@ foldprop1_10_loop:
 TEXT ·FoldProp2(SB), NOSPLIT, $32-24
 	MOVD x+0(FP), R0
 	MOVD y+8(FP), R1
-	MOVD R1, R19
-	ADD  $0x00000000, R19, R19
 	MOVD R1, R20
-	ADD  $0x00000001, R20, R20
-	MOVD R1, R21
-	ADD  $0x00000002, R21, R21
+	ADD  $0x00000000, R20, R20
+	MOVD R1, R19
+	ADD  $0x00000001, R19, R19
 	MOVD R1, R22
-	ADD  $0x00000003, R22, R22
-	AND  $0x00000003, R22, R22
-
-foldprop2_0_loop:
-	CMP $0x00000000, R22
-	BEQ foldprop2_0_done
-	ADD R22, R0, R0
-	ROR $61, R0, R0
-	SUB $1, R22, R22
-	JMP foldprop2_0_loop
-
-foldprop2_0_done:
-	MOVD R22, R2
-	LSL  $0x05, R2, R3
-	EOR  R3, R0, R0
+	ADD  $0x00000002, R22, R22
+	MOVD R1, R21
+	ADD  $0x00000003, R21, R21
+	MOVD R21, R2
+	ADD  R2, R21, R21
 	ADD  R2, R0, R0
-	ADD  R1, R20, R20
+	MOVD R21, R2
+	MOVD R0, R21
+	ADD  R2, R0, R0
+	MOVD R19, R2
+	MOVD $0x00000002, R3
+
+foldprop2_2_loop:
+	ADD  R2, R0, R0
+	MOVD R0, R19
+	SUBS $0x00000001, R3, R3
+	BNE  foldprop2_2_loop
+	MOVD R20, R3
+	ROR  $55, R3, R3
+	ADD  R20, R3, R3
+	EOR  R3, R0, R0
+	CMP  R1, R0
+	BLO  foldprop2_4_skip
+	ADD  R1, R22, R22
+
+foldprop2_4_skip:
+	MOVD R21, R2
+	ADD  R2, R21, R21
+	ADD  R2, R0, R0
+	MOVD R20, R2
+	MOVD R22, R20
+	MOVD R2, R22
+	MOVD R22, R21
+	ADD  R22, R0, R0
 	MOVD $0x00000002, R2
 
-foldprop2_3_loop:
+foldprop2_8_loop:
 	ADD  R19, R0, R0
 	MOVD R1, R3
 	ADD  R0, R3, R3
 	SUBS $0x00000001, R2, R2
-	BNE  foldprop2_3_loop
+	BNE  foldprop2_8_loop
 	MOVD R3, R19
-	AND  $0x00000003, R21, R21
+	CMP  R20, R1
+	BLO  foldprop2_9_skip
+	EOR  R1, R0, R0
 
-foldprop2_4_loop:
-	CMP $0x00000000, R21
-	BEQ foldprop2_4_done
-	ADD R21, R0, R0
-	ROR $61, R0, R0
-	SUB $0x00000001, R21, R21
-	JMP foldprop2_4_loop
-
-foldprop2_4_done:
-	MOVD R0, R22
-	AND  $0x00000003, R19, R19
-
-foldprop2_6_loop:
-	CMP $0x00000000, R19
-	BEQ foldprop2_6_done
-	ADD R19, R0, R0
-	ROR $61, R0, R0
-	SUB $0x00000001, R19, R19
-	JMP foldprop2_6_loop
-
-foldprop2_6_done:
-	MOVD R21, R1
-	LSL  $0x05, R1, R2
-	EOR  R2, R0, R0
-	ADD  R1, R0, R0
-	AND  $0x00000003, R20, R20
-
-foldprop2_8_loop:
-	CMP $0x00000000, R20
-	BEQ foldprop2_8_done
-	ADD R20, R0, R0
-	ROR $61, R0, R0
-	SUB $1, R20, R20
-	JMP foldprop2_8_loop
-
-foldprop2_8_done:
-	MOVD R19, R1
-	MOVD $0x00000002, R2
-
-foldprop2_9_loop:
-	ADD  R1, R0, R0
-	MOVD R0, R19
-	SUBS $0x00000001, R2, R2
-	BNE  foldprop2_9_loop
-	MOVD R19, R1
-	ADD  R1, R19, R19
-	ADD  R1, R0, R0
-	AND  $0x00000003, R19, R19
-
-foldprop2_11_loop:
-	CMP $0x00000000, R19
-	BEQ foldprop2_11_done
-	ADD R19, R0, R0
-	ROR $61, R0, R0
-	SUB $1, R19, R19
-	JMP foldprop2_11_loop
-
-foldprop2_11_done:
-	ADD  R19, R0, R0
+foldprop2_9_skip:
+	MOVD $-2147483648, R20
 	ADD  R20, R0, R0
-	ADD  R21, R0, R0
+	MOVD $-2147483648, R20
+	ADD  R20, R0, R0
+	ADD  R20, R0, R0
+	ADD  R19, R0, R0
 	ADD  R22, R0, R0
+	ADD  R21, R0, R0
 	MOVD R0, ret+16(FP)
 	RET
 
@@ -4120,50 +4104,73 @@ TEXT ·FoldProp3(SB), NOSPLIT, $32-24
 	ADD  $0x00000002, R20, R20
 	MOVD R1, R21
 	ADD  $0x00000003, R21, R21
-	ROR  $57, R0, R0
-	EOR  R1, R0, R0
+	MOVD $0x00000002, R2
+
+foldprop3_0_loop:
+	ADD  R22, R0, R0
+	MOVD R1, R3
+	ADD  R0, R3, R3
+	SUBS $0x00000001, R2, R2
+	BNE  foldprop3_0_loop
+	MOVD R3, R22
 	MOVD R19, R2
-	LSL  $0x05, R2, R3
-	EOR  R3, R0, R0
+	ADD  R2, R19, R19
 	ADD  R2, R0, R0
-	MOVD R20, R3
-	ROR  $55, R3, R3
-	ADD  R20, R3, R3
-	EOR  R3, R0, R0
+	AND  $0x00000003, R20, R20
+
+foldprop3_2_loop:
+	CMP $0x00000000, R20
+	BEQ foldprop3_2_done
+	ADD R20, R0, R0
+	ROR $61, R0, R0
+	SUB $0x00000001, R20, R20
+	JMP foldprop3_2_loop
+
+foldprop3_2_done:
+	MOVD R19, R2
+	ADD  R2, R19, R19
+	ADD  R2, R0, R0
+	AND  $0x00000003, R21, R21
+
+foldprop3_4_loop:
+	CMP $0x00000000, R21
+	BEQ foldprop3_4_done
+	ADD R21, R0, R0
+	ROR $61, R0, R0
+	SUB $1, R21, R21
+	JMP foldprop3_4_loop
+
+foldprop3_4_done:
+	MOVD R20, R21
+	ADD  R20, R0, R0
+	MOVD R20, R2
+	MOVD R2, R20
+	ADD  R1, R20, R20
+	ADD  R2, R0, R0
+	MOVD R1, R2
+	CMP  R1, R0
+	BLO  foldprop3_7_skip
+	MOVD R19, R2
+
+foldprop3_7_skip:
+	ADD  R2, R0, R0
+	ADD  R0, R21, R21
+	ADD  R1, R21, R21
+	MOVD R19, R2
+	MOVD R2, R19
+	ADD  R1, R19, R19
+	ADD  R2, R0, R0
 	AND  $0x00000003, R19, R19
 
-foldprop3_3_loop:
+foldprop3_11_loop:
 	CMP $0x00000000, R19
-	BEQ foldprop3_3_done
+	BEQ foldprop3_11_done
 	ADD R19, R0, R0
 	ROR $61, R0, R0
 	SUB $0x00000001, R19, R19
-	JMP foldprop3_3_loop
+	JMP foldprop3_11_loop
 
-foldprop3_3_done:
-	MOVD R21, R2
-	MOVD R22, R21
-	MOVD R2, R22
-	MOVD $-2147483646, R20
-	ADD  R20, R0, R0
-	ADD  R0, R20, R20
-	MOVD R19, R2
-	MOVD R0, R19
-	ADD  R2, R0, R0
-	CMP  R21, R1
-	BLO  foldprop3_8_skip
-	EOR  R1, R0, R0
-
-foldprop3_8_skip:
-	NEG  R21, R21
-	MVN  R19, R19
-	MOVD R19, R1
-	MOVD R20, R19
-	MOVD R1, R20
-	MOVD R19, R1
-	UBFX $8, R1, $8, R2
-	ADD  R2, R0, R0
-	EOR  R1, R0, R0
+foldprop3_11_done:
 	ADD  R19, R0, R0
 	ADD  R22, R0, R0
 	ADD  R20, R0, R0
@@ -4175,241 +4182,6 @@ foldprop3_8_skip:
 TEXT ·FoldProp4(SB), NOSPLIT, $32-24
 	MOVD x+0(FP), R0
 	MOVD y+8(FP), R1
-	MOVD R1, R21
-	ADD  $0x00000000, R21, R21
-	MOVD R1, R22
-	ADD  $0x00000001, R22, R22
-	MOVD R1, R20
-	ADD  $0x00000002, R20, R20
-	MOVD R1, R19
-	ADD  $0x00000003, R19, R19
-	MOVD $0x00000002, R2
-
-foldprop4_0_loop:
-	ADD  R20, R0, R0
-	MOVD R1, R3
-	ADD  R0, R3, R3
-	SUBS $0x00000001, R2, R2
-	BNE  foldprop4_0_loop
-	MOVD R3, R20
-	MOVD R1, R2
-	CMP  R1, R0
-	BLO  foldprop4_1_skip
-	MOVD R20, R2
-
-foldprop4_1_skip:
-	ADD R2, R0, R0
-	CMP R1, R0
-	BLO foldprop4_2_skip
-	ADD R1, R19, R19
-
-foldprop4_2_skip:
-	MOVD R22, R2
-	LSL  $0x05, R2, R3
-	EOR  R3, R0, R0
-	ADD  R2, R0, R0
-	CMP  R21, R1
-	BLO  foldprop4_4_skip
-	EOR  R1, R0, R0
-
-foldprop4_4_skip:
-	MOVD R0, R22
-	MOVD R19, R21
-	ADD  R21, R0, R0
-	MOVD R20, R2
-	MOVD R2, R20
-	ADD  R1, R20, R20
-	ADD  R2, R0, R0
-	ADD  R1, R20, R20
-	MOVD R20, R19
-	ADD  R20, R0, R0
-	AND  $0x00000003, R19, R19
-
-foldprop4_10_loop:
-	CMP $0x00000000, R19
-	BEQ foldprop4_10_done
-	ADD R19, R0, R0
-	ROR $61, R0, R0
-	SUB $1, R19, R19
-	JMP foldprop4_10_loop
-
-foldprop4_10_done:
-	MOVD R19, R21
-	ADD  R21, R0, R0
-	ADD  R21, R0, R0
-	ADD  R22, R0, R0
-	ADD  R20, R0, R0
-	ADD  R19, R0, R0
-	MOVD R0, ret+16(FP)
-	RET
-
-// func FoldProp5(x uint64, y uint64) uint64
-TEXT ·FoldProp5(SB), NOSPLIT, $32-24
-	MOVD x+0(FP), R0
-	MOVD y+8(FP), R1
-	MOVD R1, R19
-	ADD  $0x00000000, R19, R19
-	MOVD R1, R21
-	ADD  $0x00000001, R21, R21
-	MOVD R1, R22
-	ADD  $0x00000002, R22, R22
-	MOVD R1, R20
-	ADD  $0x00000003, R20, R20
-	MOVD R20, R2
-	LSL  $0x05, R2, R3
-	EOR  R3, R0, R0
-	ADD  R2, R0, R0
-	AND  $0x00000003, R20, R20
-
-foldprop5_1_loop:
-	CMP $0x00000000, R20
-	BEQ foldprop5_1_done
-	ADD R20, R0, R0
-	ROR $61, R0, R0
-	SUB $1, R20, R20
-	JMP foldprop5_1_loop
-
-foldprop5_1_done:
-	MOVD R20, R19
-	ADD  R19, R0, R0
-	MOVD R21, R2
-	LSL  $0x05, R2, R3
-	EOR  R3, R0, R0
-	ADD  R2, R0, R0
-	ROR  $57, R0, R0
-	EOR  R1, R0, R0
-	AND  $0x00000003, R19, R19
-
-foldprop5_5_loop:
-	CMP $0x00000000, R19
-	BEQ foldprop5_5_done
-	ADD R19, R0, R0
-	ROR $61, R0, R0
-	SUB $0x00000001, R19, R19
-	JMP foldprop5_5_loop
-
-foldprop5_5_done:
-	MOVD R21, R2
-	MOVD R0, R21
-	ADD  R2, R0, R0
-	MOVD R19, R3
-	ROR  $55, R3, R3
-	ADD  R19, R3, R3
-	EOR  R3, R0, R0
-	MOVD $0x00000002, R2
-
-foldprop5_8_loop:
-	ADD  R19, R0, R0
-	MOVD R1, R3
-	ADD  R0, R3, R3
-	SUBS $0x00000001, R2, R2
-	BNE  foldprop5_8_loop
-	MOVD R3, R19
-	TST  R19, R0
-	BEQ  foldprop5_9_skip
-	ADD  R1, R0, R0
-
-foldprop5_9_skip:
-	TST R22, R0
-	BEQ foldprop5_10_skip
-	ADD R1, R0, R0
-
-foldprop5_10_skip:
-	MOVD R21, R1
-	MOVD $0x00000002, R2
-
-foldprop5_11_loop:
-	MOVD R0, R21
-	ADD  R2, R0, R0
-	SUBS $0x00000001, R2, R2
-	BNE  foldprop5_11_loop
-	ADD  R1, R0, R0
-	ADD  R19, R0, R0
-	ADD  R21, R0, R0
-	ADD  R22, R0, R0
-	ADD  R20, R0, R0
-	MOVD R0, ret+16(FP)
-	RET
-
-// func FoldProp6(x uint64, y uint64) uint64
-TEXT ·FoldProp6(SB), NOSPLIT, $32-24
-	MOVD x+0(FP), R0
-	MOVD y+8(FP), R1
-	MOVD R1, R19
-	ADD  $0x00000000, R19, R19
-	MOVD R1, R20
-	ADD  $0x00000001, R20, R20
-	MOVD R1, R21
-	ADD  $0x00000002, R21, R21
-	MOVD R1, R22
-	ADD  $0x00000003, R22, R22
-	ROR  $57, R0, R0
-	EOR  R1, R0, R0
-	AND  $0x00000003, R19, R19
-
-foldprop6_1_loop:
-	CMP $0x00000000, R19
-	BEQ foldprop6_1_done
-	ADD R19, R0, R0
-	ROR $61, R0, R0
-	SUB $1, R19, R19
-	JMP foldprop6_1_loop
-
-foldprop6_1_done:
-	MOVD R19, R2
-	ADD  R2, R19, R19
-	ADD  R2, R0, R0
-	MOVD R20, R2
-	MOVD $0x00000002, R3
-
-foldprop6_3_loop:
-	MOVD R0, R20
-	ADD  R3, R0, R0
-	SUBS $0x00000001, R3, R3
-	BNE  foldprop6_3_loop
-	ADD  R2, R0, R0
-	ADD  R0, R20, R20
-	ROR  $57, R0, R0
-	EOR  R1, R0, R0
-	MOVD R20, R21
-	ADD  R20, R0, R0
-	MOVD R21, R2
-	MOVD R0, R21
-	ADD  R2, R0, R0
-	MOVD R21, R2
-	ADD  R2, R21, R21
-	ADD  R2, R0, R0
-	CMP  R20, R1
-	BLO  foldprop6_9_skip
-	EOR  R1, R0, R0
-
-foldprop6_9_skip:
-	AND $0x00000003, R19, R19
-
-foldprop6_10_loop:
-	CMP $0x00000000, R19
-	BEQ foldprop6_10_done
-	ADD R19, R0, R0
-	ROR $61, R0, R0
-	SUB $1, R19, R19
-	JMP foldprop6_10_loop
-
-foldprop6_10_done:
-	MOVD R22, R1
-	LSL  $0x05, R1, R2
-	EOR  R2, R0, R0
-	ADD  R1, R0, R0
-	ADD  R19, R0, R0
-	ADD  R20, R0, R0
-	ADD  R21, R0, R0
-	ADD  R22, R0, R0
-	MOVD R0, ret+16(FP)
-	RET
-
-// func FoldProp7(x uint64, y uint64) uint64
-TEXT ·FoldProp7(SB), NOSPLIT, $32-24
-	MOVD x+0(FP), R0
-	MOVD y+8(FP), R1
 	MOVD R1, R19
 	ADD  $0x00000000, R19, R19
 	MOVD R1, R22
@@ -4418,72 +4190,304 @@ TEXT ·FoldProp7(SB), NOSPLIT, $32-24
 	ADD  $0x00000002, R20, R20
 	MOVD R1, R21
 	ADD  $0x00000003, R21, R21
-	MOVD R19, R3
-	ROR  $55, R3, R3
-	ADD  R19, R3, R3
-	EOR  R3, R0, R0
-	MOVD R20, R2
-	MOVD $0x00000002, R3
-
-foldprop7_1_loop:
-	MOVD R0, R20
-	ADD  R3, R0, R0
-	SUBS $0x00000001, R3, R3
-	BNE  foldprop7_1_loop
-	ADD  R2, R0, R0
-	CMP  R1, R0
-	BLO  foldprop7_2_skip
-	ADD  R1, R22, R22
-
-foldprop7_2_skip:
-	MOVD $-2147483648, R19
-	ADD  R19, R0, R0
-	MOVD R21, R2
-	MOVD $0x00000002, R3
-
-foldprop7_4_loop:
-	MOVD R0, R21
-	ADD  R3, R0, R0
-	SUBS $0x00000001, R3, R3
-	BNE  foldprop7_4_loop
-	ADD  R2, R0, R0
-	MOVD R22, R20
-	ADD  R22, R0, R0
-	MOVD R1, R2
-	CMP  R1, R0
-	BLO  foldprop7_6_skip
-	MOVD R19, R2
-
-foldprop7_6_skip:
-	ADD R2, R0, R0
-	AND $0x00000003, R19, R19
-
-foldprop7_7_loop:
-	CMP $0x00000000, R19
-	BEQ foldprop7_7_done
-	ADD R19, R0, R0
-	ROR $61, R0, R0
-	SUB $0x00000001, R19, R19
-	JMP foldprop7_7_loop
-
-foldprop7_7_done:
-	MOVD R1, R2
-	CMP  R1, R0
-	BLO  foldprop7_8_skip
-	MOVD R22, R2
-
-foldprop7_8_skip:
-	ADD  R2, R0, R0
-	MOVD R20, R1
-	UBFX $8, R1, $8, R2
-	ADD  R2, R0, R0
+	ROR  $57, R0, R0
 	EOR  R1, R0, R0
-	ADD  R0, R22, R22
-	MOVD R21, R19
-	ADD  R19, R0, R0
+	MOVD R20, R2
+	MOVD R19, R20
+	MOVD R2, R19
+	MOVD R21, R2
+	UBFX $8, R2, $8, R3
+	ADD  R3, R0, R0
+	EOR  R2, R0, R0
+	MOVD R0, R22
+	MOVD R19, R2
+	MOVD $0x00000002, R3
+
+foldprop4_4_loop:
+	MOVD R0, R19
+	ADD  R3, R0, R0
+	SUBS $0x00000001, R3, R3
+	BNE  foldprop4_4_loop
+	ADD  R2, R0, R0
+	MOVD R22, R3
+	ROR  $55, R3, R3
+	ADD  R22, R3, R3
+	EOR  R3, R0, R0
+	MOVD R21, R2
+	UBFX $8, R2, $8, R3
+	ADD  R3, R0, R0
+	EOR  R2, R0, R0
+	MOVD R20, R2
+	MOVD R19, R20
+	MOVD R2, R19
+	MOVD R20, R3
+	ROR  $55, R3, R3
+	ADD  R20, R3, R3
+	EOR  R3, R0, R0
+	ADD  R1, R20, R20
+	MOVD R21, R2
+	MOVD R2, R21
+	ADD  R1, R21, R21
+	ADD  R2, R0, R0
+	CMP  R21, R1
+	BLO  foldprop4_11_skip
+	EOR  R1, R0, R0
+
+foldprop4_11_skip:
 	ADD  R19, R0, R0
 	ADD  R22, R0, R0
 	ADD  R20, R0, R0
+	ADD  R21, R0, R0
+	MOVD R0, ret+16(FP)
+	RET
+
+// func FoldProp5(x uint64, y uint64) uint64
+TEXT ·FoldProp5(SB), NOSPLIT, $32-24
+	MOVD x+0(FP), R0
+	MOVD y+8(FP), R1
+	MOVD R1, R20
+	ADD  $0x00000000, R20, R20
+	MOVD R1, R21
+	ADD  $0x00000001, R21, R21
+	MOVD R1, R22
+	ADD  $0x00000002, R22, R22
+	MOVD R1, R19
+	ADD  $0x00000003, R19, R19
+	AND  $0x00000003, R19, R19
+
+foldprop5_0_loop:
+	CMP $0x00000000, R19
+	BEQ foldprop5_0_done
+	ADD R19, R0, R0
+	ROR $61, R0, R0
+	SUB $1, R19, R19
+	JMP foldprop5_0_loop
+
+foldprop5_0_done:
+	MOVD $0x00000002, R2
+
+foldprop5_1_loop:
+	ADD  R19, R0, R0
+	MOVD R1, R3
+	ADD  R0, R3, R3
+	SUBS $0x00000001, R2, R2
+	BNE  foldprop5_1_loop
+	MOVD R3, R19
+	MOVD R19, R2
+	MOVD $0x00000002, R3
+
+foldprop5_2_loop:
+	MOVD R0, R19
+	ADD  R3, R0, R0
+	SUBS $0x00000001, R3, R3
+	BNE  foldprop5_2_loop
+	ADD  R2, R0, R0
+	ADD  R1, R21, R21
+	MOVD R0, R21
+	MOVD R20, R2
+	MOVD $0x00000002, R3
+
+foldprop5_5_loop:
+	ADD  R2, R0, R0
+	MOVD R0, R20
+	SUBS $0x00000001, R3, R3
+	BNE  foldprop5_5_loop
+	MOVD R0, R21
+	MOVD R1, R2
+	CMP  R1, R0
+	BLO  foldprop5_7_skip
+	MOVD R20, R2
+
+foldprop5_7_skip:
+	ADD R2, R0, R0
+	CMP R20, R1
+	BLO foldprop5_8_skip
+	EOR R1, R0, R0
+
+foldprop5_8_skip:
+	MOVD R20, R1
+	MOVD $0x00000002, R2
+
+foldprop5_9_loop:
+	MOVD R0, R20
+	ADD  R2, R0, R0
+	SUBS $0x00000001, R2, R2
+	BNE  foldprop5_9_loop
+	ADD  R1, R0, R0
+	MOVD R22, R1
+	MOVD R0, R22
+	ADD  R1, R0, R0
+	MOVD R21, R1
+	LSL  $0x05, R1, R2
+	EOR  R2, R0, R0
+	ADD  R1, R0, R0
+	ADD  R20, R0, R0
+	ADD  R21, R0, R0
+	ADD  R22, R0, R0
+	ADD  R19, R0, R0
+	MOVD R0, ret+16(FP)
+	RET
+
+// func FoldProp6(x uint64, y uint64) uint64
+TEXT ·FoldProp6(SB), NOSPLIT, $32-24
+	MOVD x+0(FP), R0
+	MOVD y+8(FP), R1
+	MOVD R1, R20
+	ADD  $0x00000000, R20, R20
+	MOVD R1, R19
+	ADD  $0x00000001, R19, R19
+	MOVD R1, R22
+	ADD  $0x00000002, R22, R22
+	MOVD R1, R21
+	ADD  $0x00000003, R21, R21
+	CMP  R1, R0
+	BLO  foldprop6_0_skip
+	ADD  R1, R20, R20
+
+foldprop6_0_skip:
+	MOVD R20, R2
+	MOVD R2, R20
+	ADD  R1, R20, R20
+	ADD  R2, R0, R0
+	ROR  $57, R0, R0
+	EOR  R1, R0, R0
+	AND  $0x00000003, R19, R19
+
+foldprop6_3_loop:
+	CMP $0x00000000, R19
+	BEQ foldprop6_3_done
+	ADD R19, R0, R0
+	ROR $61, R0, R0
+	SUB $0x00000001, R19, R19
+	JMP foldprop6_3_loop
+
+foldprop6_3_done:
+	AND $0x00000003, R19, R19
+
+foldprop6_4_loop:
+	CMP $0x00000000, R19
+	BEQ foldprop6_4_done
+	ADD R19, R0, R0
+	ROR $61, R0, R0
+	SUB $1, R19, R19
+	JMP foldprop6_4_loop
+
+foldprop6_4_done:
+	MOVD R21, R2
+	MOVD R0, R21
+	ADD  R2, R0, R0
+	MOVD R19, R2
+	LSL  $0x05, R2, R3
+	EOR  R3, R0, R0
+	ADD  R2, R0, R0
+	MOVD $-2147483646, R22
+	ADD  R22, R0, R0
+	ROR  $57, R0, R0
+	EOR  R1, R0, R0
+	MOVD R19, R1
+	MOVD $0x00000002, R2
+
+foldprop6_9_loop:
+	ADD  R1, R0, R0
+	MOVD R0, R19
+	SUBS $0x00000001, R2, R2
+	BNE  foldprop6_9_loop
+	AND  $0x00000003, R20, R20
+
+foldprop6_10_loop:
+	CMP $0x00000000, R20
+	BEQ foldprop6_10_done
+	ADD R20, R0, R0
+	ROR $61, R0, R0
+	SUB $0x00000001, R20, R20
+	JMP foldprop6_10_loop
+
+foldprop6_10_done:
+	MOVD R0, R21
+	ADD  R20, R0, R0
+	ADD  R19, R0, R0
+	ADD  R22, R0, R0
+	ADD  R21, R0, R0
+	MOVD R0, ret+16(FP)
+	RET
+
+// func FoldProp7(x uint64, y uint64) uint64
+TEXT ·FoldProp7(SB), NOSPLIT, $32-24
+	MOVD x+0(FP), R0
+	MOVD y+8(FP), R1
+	MOVD R1, R20
+	ADD  $0x00000000, R20, R20
+	MOVD R1, R19
+	ADD  $0x00000001, R19, R19
+	MOVD R1, R22
+	ADD  $0x00000002, R22, R22
+	MOVD R1, R21
+	ADD  $0x00000003, R21, R21
+	MOVD $0x00000002, R2
+
+foldprop7_0_loop:
+	ADD  R20, R0, R0
+	MOVD R1, R3
+	ADD  R0, R3, R3
+	SUBS $0x00000001, R2, R2
+	BNE  foldprop7_0_loop
+	MOVD R3, R20
+	MOVD R0, R22
+	MOVD R19, R2
+	MOVD $0x00000002, R3
+
+foldprop7_2_loop:
+	ADD  R2, R0, R0
+	MOVD R0, R19
+	SUBS $0x00000001, R3, R3
+	BNE  foldprop7_2_loop
+	MOVD R20, R2
+	MOVD $0x00000002, R3
+
+foldprop7_3_loop:
+	ADD  R2, R0, R0
+	MOVD R0, R20
+	SUBS $0x00000001, R3, R3
+	BNE  foldprop7_3_loop
+	MOVD R21, R2
+	MOVD R19, R21
+	MOVD R2, R19
+	MOVD R19, R2
+	MOVD R21, R19
+	MOVD R2, R21
+	CMP  R1, R0
+	BLO  foldprop7_6_skip
+	ADD  R1, R20, R20
+
+foldprop7_6_skip:
+	MOVD R20, R2
+	MOVD $0x00000002, R3
+
+foldprop7_7_loop:
+	MOVD R0, R20
+	ADD  R3, R0, R0
+	SUBS $0x00000001, R3, R3
+	BNE  foldprop7_7_loop
+	ADD  R2, R0, R0
+	AND  $0x00000003, R19, R19
+
+foldprop7_8_loop:
+	CMP $0x00000000, R19
+	BEQ foldprop7_8_done
+	ADD R19, R0, R0
+	ROR $61, R0, R0
+	SUB $1, R19, R19
+	JMP foldprop7_8_loop
+
+foldprop7_8_done:
+	ADD  R1, R22, R22
+	MOVD R19, R22
+	ADD  R19, R0, R0
+	MOVD R21, R20
+	ADD  R20, R0, R0
+	ADD  R20, R0, R0
+	ADD  R19, R0, R0
+	ADD  R22, R0, R0
 	ADD  R21, R0, R0
 	MOVD R0, ret+16(FP)
 	RET
@@ -4492,78 +4496,75 @@ foldprop7_8_skip:
 TEXT ·FoldProp8(SB), NOSPLIT, $32-24
 	MOVD x+0(FP), R0
 	MOVD y+8(FP), R1
-	MOVD R1, R20
-	ADD  $0x00000000, R20, R20
-	MOVD R1, R19
-	ADD  $0x00000001, R19, R19
 	MOVD R1, R21
-	ADD  $0x00000002, R21, R21
+	ADD  $0x00000000, R21, R21
+	MOVD R1, R20
+	ADD  $0x00000001, R20, R20
+	MOVD R1, R19
+	ADD  $0x00000002, R19, R19
 	MOVD R1, R22
 	ADD  $0x00000003, R22, R22
-	ADD  R0, R19, R19
-	NEG  R21, R21
-	MVN  R22, R22
+	MOVD R20, R2
+	MOVD R2, R20
+	ADD  R1, R20, R20
+	ADD  R2, R0, R0
 	AND  $0x00000003, R19, R19
 
-foldprop8_2_loop:
+foldprop8_1_loop:
 	CMP $0x00000000, R19
-	BEQ foldprop8_2_done
+	BEQ foldprop8_1_done
 	ADD R19, R0, R0
 	ROR $61, R0, R0
-	SUB $0x00000001, R19, R19
-	JMP foldprop8_2_loop
+	SUB $1, R19, R19
+	JMP foldprop8_1_loop
 
-foldprop8_2_done:
-	MOVD R1, R2
-	CMP  R1, R0
-	BLO  foldprop8_3_skip
-	MOVD R19, R2
-
-foldprop8_3_skip:
-	ADD R2, R0, R0
-	ROR $57, R0, R0
-	EOR R1, R0, R0
-	AND $0x00000003, R19, R19
+foldprop8_1_done:
+	MOVD R20, R2
+	MOVD R2, R20
+	ADD  R1, R20, R20
+	ADD  R2, R0, R0
+	MOVD R20, R2
+	UBFX $8, R2, $8, R3
+	ADD  R3, R0, R0
+	EOR  R2, R0, R0
+	MOVD R22, R2
+	UBFX $8, R2, $8, R3
+	ADD  R3, R0, R0
+	EOR  R2, R0, R0
+	MOVD R20, R2
+	MOVD $0x00000002, R3
 
 foldprop8_5_loop:
+	ADD  R2, R0, R0
+	MOVD R0, R20
+	SUBS $0x00000001, R3, R3
+	BNE  foldprop8_5_loop
+	ADD  R1, R21, R21
+	AND  $0x00000003, R19, R19
+
+foldprop8_7_loop:
 	CMP $0x00000000, R19
-	BEQ foldprop8_5_done
+	BEQ foldprop8_7_done
 	ADD R19, R0, R0
 	ROR $61, R0, R0
-	SUB $0x00000001, R19, R19
-	JMP foldprop8_5_loop
+	SUB $1, R19, R19
+	JMP foldprop8_7_loop
 
-foldprop8_5_done:
-	MOVD R20, R19
-	ADD  R20, R0, R0
-	CMP  R1, R0
-	BLO  foldprop8_7_skip
-	ADD  R1, R21, R21
-
-foldprop8_7_skip:
-	MOVD R20, R1
-	ADD  R1, R20, R20
-	ADD  R1, R0, R0
-	AND  $0x00000003, R20, R20
-
-foldprop8_9_loop:
-	CMP $0x00000000, R20
-	BEQ foldprop8_9_done
-	ADD R20, R0, R0
-	ROR $61, R0, R0
-	SUB $1, R20, R20
-	JMP foldprop8_9_loop
-
-foldprop8_9_done:
+foldprop8_7_done:
+	ADD  R0, R21, R21
 	MOVD R21, R1
-	MOVD R0, R21
-	ADD  R1, R0, R0
-	MOVD R22, R1
-	MOVD R19, R22
+	MOVD R19, R21
 	MOVD R1, R19
+	MOVD R19, R1
+	MOVD R21, R19
+	MOVD R1, R21
+	MOVD R22, R1
+	UBFX $8, R1, $8, R2
+	ADD  R2, R0, R0
+	EOR  R1, R0, R0
+	ADD  R21, R0, R0
 	ADD  R20, R0, R0
 	ADD  R19, R0, R0
-	ADD  R21, R0, R0
 	ADD  R22, R0, R0
 	MOVD R0, ret+16(FP)
 	RET
@@ -4574,685 +4575,69 @@ TEXT ·FoldProp9(SB), NOSPLIT, $32-24
 	MOVD y+8(FP), R1
 	MOVD R1, R19
 	ADD  $0x00000000, R19, R19
-	MOVD R1, R22
-	ADD  $0x00000001, R22, R22
 	MOVD R1, R20
-	ADD  $0x00000002, R20, R20
+	ADD  $0x00000001, R20, R20
 	MOVD R1, R21
-	ADD  $0x00000003, R21, R21
+	ADD  $0x00000002, R21, R21
+	MOVD R1, R22
+	ADD  $0x00000003, R22, R22
+	MOVD R19, R2
+	MOVD R21, R19
+	MOVD R2, R21
+	MOVD R19, R2
+	MOVD R2, R19
+	ADD  R1, R19, R19
+	ADD  R2, R0, R0
+	MOVD R21, R22
+	ADD  R21, R0, R0
 	MOVD $0x00000002, R2
 
-foldprop9_0_loop:
-	ADD  R19, R0, R0
+foldprop9_3_loop:
+	ADD  R20, R0, R0
 	MOVD R1, R3
 	ADD  R0, R3, R3
 	SUBS $0x00000001, R2, R2
-	BNE  foldprop9_0_loop
-	MOVD R3, R19
-	ADD  R1, R19, R19
-	NEG  R20, R20
-	MVN  R21, R21
-	MOVD R22, R2
-	MOVD R0, R22
-	ADD  R2, R0, R0
+	BNE  foldprop9_3_loop
+	MOVD R3, R20
+	MOVD R19, R20
+	ADD  R19, R0, R0
+	ADD  R1, R22, R22
+	ADD  R0, R20, R20
 	AND  $0x00000003, R19, R19
-
-foldprop9_4_loop:
-	CMP $0x00000000, R19
-	BEQ foldprop9_4_done
-	ADD R19, R0, R0
-	ROR $61, R0, R0
-	SUB $1, R19, R19
-	JMP foldprop9_4_loop
-
-foldprop9_4_done:
-	MOVD R21, R2
-	MOVD R0, R21
-	ADD  R2, R0, R0
-	CMP  R22, R1
-	BLO  foldprop9_6_skip
-	EOR  R1, R0, R0
-
-foldprop9_6_skip:
-	MOVD R19, R2
-	MOVD $0x00000002, R3
 
 foldprop9_7_loop:
-	ADD  R2, R0, R0
-	MOVD R0, R19
-	SUBS $0x00000001, R3, R3
-	BNE  foldprop9_7_loop
-	MOVD R1, R2
-	CMP  R1, R0
-	BLO  foldprop9_8_skip
-	MOVD R21, R2
-
-foldprop9_8_skip:
-	ADD  R2, R0, R0
-	MOVD R19, R1
-	UBFX $8, R1, $8, R2
-	ADD  R2, R0, R0
-	EOR  R1, R0, R0
-	AND  $0x00000003, R19, R19
-
-foldprop9_10_loop:
 	CMP $0x00000000, R19
-	BEQ foldprop9_10_done
+	BEQ foldprop9_7_done
 	ADD R19, R0, R0
 	ROR $61, R0, R0
-	SUB $1, R19, R19
-	JMP foldprop9_10_loop
+	SUB $0x00000001, R19, R19
+	JMP foldprop9_7_loop
 
-foldprop9_10_done:
-	AND $0x00000003, R20, R20
+foldprop9_7_done:
+	MOVD R22, R2
+	ADD  R2, R22, R22
+	ADD  R2, R0, R0
+	MOVD R1, R2
+	CMP  R1, R0
+	BLO  foldprop9_9_skip
+	MOVD R19, R2
 
-foldprop9_11_loop:
-	CMP $0x00000000, R20
-	BEQ foldprop9_11_done
-	ADD R20, R0, R0
-	ROR $61, R0, R0
-	SUB $1, R20, R20
-	JMP foldprop9_11_loop
-
-foldprop9_11_done:
+foldprop9_9_skip:
+	ADD  R2, R0, R0
+	MOVD R19, R1
+	MOVD R21, R19
+	MOVD R1, R21
+	MOVD $-2147483646, R21
+	ADD  R21, R0, R0
 	ADD  R19, R0, R0
-	ADD  R22, R0, R0
 	ADD  R20, R0, R0
 	ADD  R21, R0, R0
+	ADD  R22, R0, R0
 	MOVD R0, ret+16(FP)
 	RET
 
 // func FoldProp10(x uint64, y uint64) uint64
 TEXT ·FoldProp10(SB), NOSPLIT, $32-24
-	MOVD x+0(FP), R0
-	MOVD y+8(FP), R1
-	MOVD R1, R19
-	ADD  $0x00000000, R19, R19
-	MOVD R1, R21
-	ADD  $0x00000001, R21, R21
-	MOVD R1, R20
-	ADD  $0x00000002, R20, R20
-	MOVD R1, R22
-	ADD  $0x00000003, R22, R22
-	MOVD R1, R2
-	CMP  R1, R0
-	BLO  foldprop10_0_skip
-	MOVD R20, R2
-
-foldprop10_0_skip:
-	ADD  R2, R0, R0
-	MOVD $-2147483648, R19
-	ADD  R19, R0, R0
-	MOVD R22, R2
-	UBFX $8, R2, $8, R3
-	ADD  R3, R0, R0
-	EOR  R2, R0, R0
-	ADD  R1, R21, R21
-	MOVD R1, R2
-	CMP  R1, R0
-	BLO  foldprop10_4_skip
-	MOVD R20, R2
-
-foldprop10_4_skip:
-	ADD  R2, R0, R0
-	MOVD $-2147483648, R19
-	ADD  R19, R0, R0
-	ADD  R0, R19, R19
-	MOVD $-2147483646, R20
-	ADD  R20, R0, R0
-	CMP  R1, R0
-	BLO  foldprop10_8_skip
-	ADD  R1, R19, R19
-
-foldprop10_8_skip:
-	MOVD R20, R1
-	LSL  $0x05, R1, R2
-	EOR  R2, R0, R0
-	ADD  R1, R0, R0
-	MOVD R19, R1
-	ADD  R1, R19, R19
-	ADD  R1, R0, R0
-	MOVD R19, R2
-	ROR  $55, R2, R2
-	ADD  R19, R2, R2
-	EOR  R2, R0, R0
-	ADD  R19, R0, R0
-	ADD  R21, R0, R0
-	ADD  R20, R0, R0
-	ADD  R22, R0, R0
-	MOVD R0, ret+16(FP)
-	RET
-
-// func FoldProp11(x uint64, y uint64) uint64
-TEXT ·FoldProp11(SB), NOSPLIT, $32-24
-	MOVD x+0(FP), R0
-	MOVD y+8(FP), R1
-	MOVD R1, R21
-	ADD  $0x00000000, R21, R21
-	MOVD R1, R22
-	ADD  $0x00000001, R22, R22
-	MOVD R1, R19
-	ADD  $0x00000002, R19, R19
-	MOVD R1, R20
-	ADD  $0x00000003, R20, R20
-	MOVD R20, R2
-	MOVD R22, R20
-	MOVD R2, R22
-	ROR  $57, R0, R0
-	EOR  R1, R0, R0
-	ADD  R0, R22, R22
-	NEG  R22, R22
-	MVN  R19, R19
-	MOVD R19, R2
-	LSL  $0x05, R2, R3
-	EOR  R3, R0, R0
-	ADD  R2, R0, R0
-	ADD  R1, R22, R22
-	TST  R22, R0
-	BEQ  foldprop11_6_skip
-	ADD  R1, R0, R0
-
-foldprop11_6_skip:
-	MOVD R21, R2
-	MOVD $0x00000002, R3
-
-foldprop11_7_loop:
-	MOVD R0, R21
-	ADD  R3, R0, R0
-	SUBS $0x00000001, R3, R3
-	BNE  foldprop11_7_loop
-	ADD  R2, R0, R0
-	ADD  R0, R22, R22
-	AND  $0x00000003, R20, R20
-
-foldprop11_9_loop:
-	CMP $0x00000000, R20
-	BEQ foldprop11_9_done
-	ADD R20, R0, R0
-	ROR $61, R0, R0
-	SUB $1, R20, R20
-	JMP foldprop11_9_loop
-
-foldprop11_9_done:
-	MOVD R22, R2
-	MOVD R2, R22
-	ADD  R1, R22, R22
-	ADD  R2, R0, R0
-	AND  $0x00000003, R19, R19
-
-foldprop11_11_loop:
-	CMP $0x00000000, R19
-	BEQ foldprop11_11_done
-	ADD R19, R0, R0
-	ROR $61, R0, R0
-	SUB $1, R19, R19
-	JMP foldprop11_11_loop
-
-foldprop11_11_done:
-	ADD  R21, R0, R0
-	ADD  R22, R0, R0
-	ADD  R19, R0, R0
-	ADD  R20, R0, R0
-	MOVD R0, ret+16(FP)
-	RET
-
-// func FoldProp12(x uint64, y uint64) uint64
-TEXT ·FoldProp12(SB), NOSPLIT, $32-24
-	MOVD x+0(FP), R0
-	MOVD y+8(FP), R1
-	MOVD R1, R20
-	ADD  $0x00000000, R20, R20
-	MOVD R1, R19
-	ADD  $0x00000001, R19, R19
-	MOVD R1, R21
-	ADD  $0x00000002, R21, R21
-	MOVD R1, R22
-	ADD  $0x00000003, R22, R22
-	MOVD R21, R2
-	MOVD R20, R21
-	MOVD R2, R20
-	CMP  R22, R1
-	BLO  foldprop12_1_skip
-	EOR  R1, R0, R0
-
-foldprop12_1_skip:
-	MOVD R20, R2
-	MOVD R21, R20
-	MOVD R2, R21
-	TST  R19, R0
-	BEQ  foldprop12_3_skip
-	ADD  R1, R0, R0
-
-foldprop12_3_skip:
-	AND $0x00000003, R20, R20
-
-foldprop12_4_loop:
-	CMP $0x00000000, R20
-	BEQ foldprop12_4_done
-	ADD R20, R0, R0
-	ROR $61, R0, R0
-	SUB $1, R20, R20
-	JMP foldprop12_4_loop
-
-foldprop12_4_done:
-	TST R19, R0
-	BEQ foldprop12_5_skip
-	ADD R1, R0, R0
-
-foldprop12_5_skip:
-	MOVD R22, R2
-	MOVD R19, R22
-	MOVD R2, R19
-	MOVD R21, R2
-	ADD  R2, R21, R21
-	ADD  R2, R0, R0
-	MOVD R0, R22
-	MOVD R22, R2
-	MOVD R2, R22
-	ADD  R1, R22, R22
-	ADD  R2, R0, R0
-	MOVD R21, R22
-	ADD  R21, R0, R0
-	AND  $0x00000003, R19, R19
-
-foldprop12_11_loop:
-	CMP $0x00000000, R19
-	BEQ foldprop12_11_done
-	ADD R19, R0, R0
-	ROR $61, R0, R0
-	SUB $0x00000001, R19, R19
-	JMP foldprop12_11_loop
-
-foldprop12_11_done:
-	ADD  R20, R0, R0
-	ADD  R19, R0, R0
-	ADD  R21, R0, R0
-	ADD  R22, R0, R0
-	MOVD R0, ret+16(FP)
-	RET
-
-// func FoldProp13(x uint64, y uint64) uint64
-TEXT ·FoldProp13(SB), NOSPLIT, $32-24
-	MOVD x+0(FP), R0
-	MOVD y+8(FP), R1
-	MOVD R1, R20
-	ADD  $0x00000000, R20, R20
-	MOVD R1, R19
-	ADD  $0x00000001, R19, R19
-	MOVD R1, R21
-	ADD  $0x00000002, R21, R21
-	MOVD R1, R22
-	ADD  $0x00000003, R22, R22
-	MOVD R19, R2
-	MOVD R2, R19
-	ADD  R1, R19, R19
-	ADD  R2, R0, R0
-	MOVD R20, R3
-	ROR  $55, R3, R3
-	ADD  R20, R3, R3
-	EOR  R3, R0, R0
-	MOVD R21, R2
-	MOVD R2, R21
-	ADD  R1, R21, R21
-	ADD  R2, R0, R0
-	AND  $0x00000003, R19, R19
-
-foldprop13_3_loop:
-	CMP $0x00000000, R19
-	BEQ foldprop13_3_done
-	ADD R19, R0, R0
-	ROR $61, R0, R0
-	SUB $0x00000001, R19, R19
-	JMP foldprop13_3_loop
-
-foldprop13_3_done:
-	MOVD R21, R2
-	ADD  R2, R21, R21
-	ADD  R2, R0, R0
-	CMP  R1, R0
-	BLO  foldprop13_5_skip
-	ADD  R1, R20, R20
-
-foldprop13_5_skip:
-	MOVD R20, R2
-	MOVD $0x00000002, R3
-
-foldprop13_6_loop:
-	ADD  R2, R0, R0
-	MOVD R0, R20
-	SUBS $0x00000001, R3, R3
-	BNE  foldprop13_6_loop
-	ROR  $57, R0, R0
-	EOR  R1, R0, R0
-	ADD  R1, R21, R21
-	MOVD R19, R2
-	MOVD R2, R19
-	ADD  R1, R19, R19
-	ADD  R2, R0, R0
-	CMP  R22, R1
-	BLO  foldprop13_10_skip
-	EOR  R1, R0, R0
-
-foldprop13_10_skip:
-	MOVD R21, R1
-	LSL  $0x05, R1, R2
-	EOR  R2, R0, R0
-	ADD  R1, R0, R0
-	ADD  R20, R0, R0
-	ADD  R19, R0, R0
-	ADD  R21, R0, R0
-	ADD  R22, R0, R0
-	MOVD R0, ret+16(FP)
-	RET
-
-// func FoldProp14(x uint64, y uint64) uint64
-TEXT ·FoldProp14(SB), NOSPLIT, $32-24
-	MOVD x+0(FP), R0
-	MOVD y+8(FP), R1
-	MOVD R1, R21
-	ADD  $0x00000000, R21, R21
-	MOVD R1, R19
-	ADD  $0x00000001, R19, R19
-	MOVD R1, R20
-	ADD  $0x00000002, R20, R20
-	MOVD R1, R22
-	ADD  $0x00000003, R22, R22
-	MOVD $0x00000002, R2
-
-foldprop14_0_loop:
-	ADD  R21, R0, R0
-	MOVD R1, R3
-	ADD  R0, R3, R3
-	SUBS $0x00000001, R2, R2
-	BNE  foldprop14_0_loop
-	MOVD R3, R21
-	MOVD R20, R2
-	MOVD $0x00000002, R3
-
-foldprop14_1_loop:
-	ADD  R2, R0, R0
-	MOVD R0, R20
-	SUBS $0x00000001, R3, R3
-	BNE  foldprop14_1_loop
-	MOVD R0, R22
-	MOVD R19, R2
-	MOVD R2, R19
-	ADD  R1, R19, R19
-	ADD  R2, R0, R0
-	CMP  R22, R1
-	BLO  foldprop14_4_skip
-	EOR  R1, R0, R0
-
-foldprop14_4_skip:
-	MOVD R20, R2
-	MOVD R21, R20
-	MOVD R2, R21
-	ROR  $57, R0, R0
-	EOR  R1, R0, R0
-	CMP  R1, R0
-	BLO  foldprop14_7_skip
-	ADD  R1, R20, R20
-
-foldprop14_7_skip:
-	MOVD R19, R2
-	MOVD R2, R19
-	ADD  R1, R19, R19
-	ADD  R2, R0, R0
-	AND  $0x00000003, R19, R19
-
-foldprop14_9_loop:
-	CMP $0x00000000, R19
-	BEQ foldprop14_9_done
-	ADD R19, R0, R0
-	ROR $61, R0, R0
-	SUB $1, R19, R19
-	JMP foldprop14_9_loop
-
-foldprop14_9_done:
-	TST R20, R0
-	BEQ foldprop14_10_skip
-	ADD R1, R0, R0
-
-foldprop14_10_skip:
-	MOVD R19, R1
-	MOVD R22, R19
-	MOVD R1, R22
-	ADD  R21, R0, R0
-	ADD  R19, R0, R0
-	ADD  R20, R0, R0
-	ADD  R22, R0, R0
-	MOVD R0, ret+16(FP)
-	RET
-
-// func FoldProp15(x uint64, y uint64) uint64
-TEXT ·FoldProp15(SB), NOSPLIT, $32-24
-	MOVD x+0(FP), R0
-	MOVD y+8(FP), R1
-	MOVD R1, R22
-	ADD  $0x00000000, R22, R22
-	MOVD R1, R19
-	ADD  $0x00000001, R19, R19
-	MOVD R1, R21
-	ADD  $0x00000002, R21, R21
-	MOVD R1, R20
-	ADD  $0x00000003, R20, R20
-	MOVD R21, R2
-	MOVD R0, R21
-	ADD  R2, R0, R0
-	MOVD $0x00000002, R2
-
-foldprop15_1_loop:
-	ADD  R20, R0, R0
-	MOVD R1, R3
-	ADD  R0, R3, R3
-	SUBS $0x00000001, R2, R2
-	BNE  foldprop15_1_loop
-	MOVD R3, R20
-	MOVD R21, R2
-	MOVD R0, R21
-	ADD  R2, R0, R0
-	AND  $0x00000003, R19, R19
-
-foldprop15_3_loop:
-	CMP $0x00000000, R19
-	BEQ foldprop15_3_done
-	ADD R19, R0, R0
-	ROR $61, R0, R0
-	SUB $0x00000001, R19, R19
-	JMP foldprop15_3_loop
-
-foldprop15_3_done:
-	ADD  R0, R22, R22
-	MOVD R19, R2
-	ADD  R2, R19, R19
-	ADD  R2, R0, R0
-	MOVD R21, R2
-	LSL  $0x05, R2, R3
-	EOR  R3, R0, R0
-	ADD  R2, R0, R0
-	MOVD R1, R2
-	CMP  R1, R0
-	BLO  foldprop15_7_skip
-	MOVD R22, R2
-
-foldprop15_7_skip:
-	ADD R2, R0, R0
-	CMP R1, R0
-	BLO foldprop15_8_skip
-	ADD R1, R22, R22
-
-foldprop15_8_skip:
-	CMP R1, R0
-	BLO foldprop15_9_skip
-	ADD R1, R20, R20
-
-foldprop15_9_skip:
-	MOVD R19, R1
-	LSL  $0x05, R1, R2
-	EOR  R2, R0, R0
-	ADD  R1, R0, R0
-	MOVD R0, R21
-	ADD  R22, R0, R0
-	ADD  R19, R0, R0
-	ADD  R21, R0, R0
-	ADD  R20, R0, R0
-	MOVD R0, ret+16(FP)
-	RET
-
-// func FoldProp16(x uint64, y uint64) uint64
-TEXT ·FoldProp16(SB), NOSPLIT, $32-24
-	MOVD x+0(FP), R0
-	MOVD y+8(FP), R1
-	MOVD R1, R20
-	ADD  $0x00000000, R20, R20
-	MOVD R1, R19
-	ADD  $0x00000001, R19, R19
-	MOVD R1, R21
-	ADD  $0x00000002, R21, R21
-	MOVD R1, R22
-	ADD  $0x00000003, R22, R22
-	MOVD $-2147483645, R22
-	ADD  R22, R0, R0
-	CMP  R1, R0
-	BLO  foldprop16_1_skip
-	ADD  R1, R20, R20
-
-foldprop16_1_skip:
-	MOVD R22, R2
-	UBFX $8, R2, $8, R3
-	ADD  R3, R0, R0
-	EOR  R2, R0, R0
-	MOVD R21, R2
-	LSL  $0x05, R2, R3
-	EOR  R3, R0, R0
-	ADD  R2, R0, R0
-	CMP  R19, R1
-	BLO  foldprop16_4_skip
-	EOR  R1, R0, R0
-
-foldprop16_4_skip:
-	ROR $57, R0, R0
-	EOR R1, R0, R0
-	CMP R19, R1
-	BLO foldprop16_6_skip
-	EOR R1, R0, R0
-
-foldprop16_6_skip:
-	TST R21, R0
-	BEQ foldprop16_7_skip
-	ADD R1, R0, R0
-
-foldprop16_7_skip:
-	MOVD $-2147483646, R21
-	ADD  R21, R0, R0
-	MOVD R20, R2
-	MOVD R2, R20
-	ADD  R1, R20, R20
-	ADD  R2, R0, R0
-	ROR  $57, R0, R0
-	EOR  R1, R0, R0
-	AND  $0x00000003, R19, R19
-
-foldprop16_11_loop:
-	CMP $0x00000000, R19
-	BEQ foldprop16_11_done
-	ADD R19, R0, R0
-	ROR $61, R0, R0
-	SUB $1, R19, R19
-	JMP foldprop16_11_loop
-
-foldprop16_11_done:
-	ADD  R20, R0, R0
-	ADD  R19, R0, R0
-	ADD  R21, R0, R0
-	ADD  R22, R0, R0
-	MOVD R0, ret+16(FP)
-	RET
-
-// func FoldProp17(x uint64, y uint64) uint64
-TEXT ·FoldProp17(SB), NOSPLIT, $32-24
-	MOVD x+0(FP), R0
-	MOVD y+8(FP), R1
-	MOVD R1, R22
-	ADD  $0x00000000, R22, R22
-	MOVD R1, R19
-	ADD  $0x00000001, R19, R19
-	MOVD R1, R20
-	ADD  $0x00000002, R20, R20
-	MOVD R1, R21
-	ADD  $0x00000003, R21, R21
-	ADD  R0, R20, R20
-	MOVD R20, R2
-	MOVD $0x00000002, R3
-
-foldprop17_1_loop:
-	ADD  R2, R0, R0
-	MOVD R0, R20
-	SUBS $0x00000001, R3, R3
-	BNE  foldprop17_1_loop
-	ADD  R1, R20, R20
-	AND  $0x00000003, R19, R19
-
-foldprop17_3_loop:
-	CMP $0x00000000, R19
-	BEQ foldprop17_3_done
-	ADD R19, R0, R0
-	ROR $61, R0, R0
-	SUB $0x00000001, R19, R19
-	JMP foldprop17_3_loop
-
-foldprop17_3_done:
-	MOVD R1, R2
-	CMP  R1, R0
-	BLO  foldprop17_4_skip
-	MOVD R20, R2
-
-foldprop17_4_skip:
-	ADD  R2, R0, R0
-	MOVD R21, R2
-	MOVD $0x00000002, R3
-
-foldprop17_5_loop:
-	ADD  R2, R0, R0
-	MOVD R0, R21
-	SUBS $0x00000001, R3, R3
-	BNE  foldprop17_5_loop
-	MOVD R19, R2
-	UBFX $8, R2, $8, R3
-	ADD  R3, R0, R0
-	EOR  R2, R0, R0
-	MOVD R22, R19
-	ADD  R22, R0, R0
-	MOVD R19, R2
-	MOVD $0x00000002, R3
-
-foldprop17_8_loop:
-	ADD  R2, R0, R0
-	MOVD R0, R19
-	SUBS $0x00000001, R3, R3
-	BNE  foldprop17_8_loop
-	CMP  R1, R0
-	BLO  foldprop17_9_skip
-	ADD  R1, R22, R22
-
-foldprop17_9_skip:
-	MOVD R19, R2
-	ADD  R2, R19, R19
-	ADD  R2, R0, R0
-	TST  R19, R0
-	BEQ  foldprop17_11_skip
-	ADD  R1, R0, R0
-
-foldprop17_11_skip:
-	ADD  R22, R0, R0
-	ADD  R19, R0, R0
-	ADD  R20, R0, R0
-	ADD  R21, R0, R0
-	MOVD R0, ret+16(FP)
-	RET
-
-// func FoldProp18(x uint64, y uint64) uint64
-TEXT ·FoldProp18(SB), NOSPLIT, $32-24
 	MOVD x+0(FP), R0
 	MOVD y+8(FP), R1
 	MOVD R1, R21
@@ -5263,53 +4648,77 @@ TEXT ·FoldProp18(SB), NOSPLIT, $32-24
 	ADD  $0x00000002, R19, R19
 	MOVD R1, R22
 	ADD  $0x00000003, R22, R22
-	MOVD R21, R2
-	UBFX $8, R2, $8, R3
-	ADD  R3, R0, R0
-	EOR  R2, R0, R0
 	ADD  R1, R19, R19
-	ADD  R0, R19, R19
-	MOVD R19, R2
-	LSL  $0x05, R2, R3
-	EOR  R3, R0, R0
+	MOVD R21, R2
+	MOVD $0x00000002, R3
+
+foldprop10_1_loop:
+	MOVD R0, R21
+	ADD  R3, R0, R0
+	SUBS $0x00000001, R3, R3
+	BNE  foldprop10_1_loop
 	ADD  R2, R0, R0
+	MOVD R1, R2
+	CMP  R1, R0
+	BLO  foldprop10_2_skip
 	MOVD R22, R2
-	MOVD R20, R22
-	MOVD R2, R20
+
+foldprop10_2_skip:
+	ADD R2, R0, R0
+	AND $0x00000003, R20, R20
+
+foldprop10_3_loop:
+	CMP $0x00000000, R20
+	BEQ foldprop10_3_done
+	ADD R20, R0, R0
+	ROR $61, R0, R0
+	SUB $0x00000001, R20, R20
+	JMP foldprop10_3_loop
+
+foldprop10_3_done:
+	MOVD R19, R2
+	MOVD $0x00000002, R3
+
+foldprop10_4_loop:
+	MOVD R0, R19
+	ADD  R3, R0, R0
+	SUBS $0x00000001, R3, R3
+	BNE  foldprop10_4_loop
+	ADD  R2, R0, R0
+	CMP  R21, R1
+	BLO  foldprop10_5_skip
+	EOR  R1, R0, R0
+
+foldprop10_5_skip:
+	MOVD R21, R20
+	ADD  R21, R0, R0
+	ADD  R1, R19, R19
+	MOVD R21, R2
+	MOVD $0x00000002, R3
+
+foldprop10_8_loop:
+	MOVD R0, R21
+	ADD  R3, R0, R0
+	SUBS $0x00000001, R3, R3
+	BNE  foldprop10_8_loop
+	ADD  R2, R0, R0
 	AND  $0x00000003, R19, R19
 
-foldprop18_5_loop:
+foldprop10_9_loop:
 	CMP $0x00000000, R19
-	BEQ foldprop18_5_done
+	BEQ foldprop10_9_done
 	ADD R19, R0, R0
 	ROR $61, R0, R0
-	SUB $0x00000001, R19, R19
-	JMP foldprop18_5_loop
+	SUB $1, R19, R19
+	JMP foldprop10_9_loop
 
-foldprop18_5_done:
-	TST R21, R0
-	BEQ foldprop18_6_skip
-	ADD R1, R0, R0
+foldprop10_9_done:
+	ADD R0, R21, R21
+	CMP R21, R1
+	BLO foldprop10_11_skip
+	EOR R1, R0, R0
 
-foldprop18_6_skip:
-	MOVD R19, R2
-	LSL  $0x05, R2, R3
-	EOR  R3, R0, R0
-	ADD  R2, R0, R0
-	MOVD $-2147483648, R21
-	ADD  R21, R0, R0
-	ADD  R1, R19, R19
-	MOVD $-2147483648, R21
-	ADD  R21, R0, R0
-	MOVD $0x00000002, R2
-
-foldprop18_11_loop:
-	ADD  R20, R0, R0
-	MOVD R1, R3
-	ADD  R0, R3, R3
-	SUBS $0x00000001, R2, R2
-	BNE  foldprop18_11_loop
-	MOVD R3, R20
+foldprop10_11_skip:
 	ADD  R21, R0, R0
 	ADD  R20, R0, R0
 	ADD  R19, R0, R0
@@ -5317,153 +4726,544 @@ foldprop18_11_loop:
 	MOVD R0, ret+16(FP)
 	RET
 
-// func FoldProp19(x uint64, y uint64) uint64
-TEXT ·FoldProp19(SB), NOSPLIT, $32-24
+// func FoldProp11(x uint64, y uint64) uint64
+TEXT ·FoldProp11(SB), NOSPLIT, $32-24
+	MOVD x+0(FP), R0
+	MOVD y+8(FP), R1
+	MOVD R1, R22
+	ADD  $0x00000000, R22, R22
+	MOVD R1, R21
+	ADD  $0x00000001, R21, R21
+	MOVD R1, R19
+	ADD  $0x00000002, R19, R19
+	MOVD R1, R20
+	ADD  $0x00000003, R20, R20
+	MOVD R20, R2
+	MOVD R21, R20
+	MOVD R2, R21
+	AND  $0x00000003, R19, R19
+
+foldprop11_1_loop:
+	CMP $0x00000000, R19
+	BEQ foldprop11_1_done
+	ADD R19, R0, R0
+	ROR $61, R0, R0
+	SUB $1, R19, R19
+	JMP foldprop11_1_loop
+
+foldprop11_1_done:
+	MOVD R21, R2
+	MOVD R20, R21
+	MOVD R2, R20
+	MOVD R21, R3
+	ROR  $55, R3, R3
+	ADD  R21, R3, R3
+	EOR  R3, R0, R0
+	MOVD R1, R2
+	CMP  R1, R0
+	BLO  foldprop11_4_skip
+	MOVD R19, R2
+
+foldprop11_4_skip:
+	ADD  R2, R0, R0
+	ADD  R0, R21, R21
+	MOVD $-2147483647, R21
+	ADD  R21, R0, R0
+	ADD  R1, R22, R22
+	MOVD R21, R19
+	ADD  R21, R0, R0
+	MOVD R20, R1
+	MOVD $0x00000002, R2
+
+foldprop11_9_loop:
+	ADD  R1, R0, R0
+	MOVD R0, R20
+	SUBS $0x00000001, R2, R2
+	BNE  foldprop11_9_loop
+	MOVD R21, R1
+	UBFX $8, R1, $8, R2
+	ADD  R2, R0, R0
+	EOR  R1, R0, R0
+	MOVD R19, R1
+	LSL  $0x05, R1, R2
+	EOR  R2, R0, R0
+	ADD  R1, R0, R0
+	ADD  R22, R0, R0
+	ADD  R21, R0, R0
+	ADD  R19, R0, R0
+	ADD  R20, R0, R0
+	MOVD R0, ret+16(FP)
+	RET
+
+// func FoldProp12(x uint64, y uint64) uint64
+TEXT ·FoldProp12(SB), NOSPLIT, $32-24
+	MOVD x+0(FP), R0
+	MOVD y+8(FP), R1
+	MOVD R1, R22
+	ADD  $0x00000000, R22, R22
+	MOVD R1, R21
+	ADD  $0x00000001, R21, R21
+	MOVD R1, R19
+	ADD  $0x00000002, R19, R19
+	MOVD R1, R20
+	ADD  $0x00000003, R20, R20
+	MOVD R19, R2
+	ADD  R2, R19, R19
+	ADD  R2, R0, R0
+	CMP  R1, R0
+	BLO  foldprop12_1_skip
+	ADD  R1, R20, R20
+
+foldprop12_1_skip:
+	MOVD R22, R2
+	MOVD R0, R22
+	ADD  R2, R0, R0
+	MOVD R21, R2
+	UBFX $8, R2, $8, R3
+	ADD  R3, R0, R0
+	EOR  R2, R0, R0
+	MOVD R22, R2
+	UBFX $8, R2, $8, R3
+	ADD  R3, R0, R0
+	EOR  R2, R0, R0
+	MOVD R21, R2
+	MOVD R0, R21
+	ADD  R2, R0, R0
+	MOVD R20, R2
+	MOVD $0x00000002, R3
+
+foldprop12_6_loop:
+	ADD  R2, R0, R0
+	MOVD R0, R20
+	SUBS $0x00000001, R3, R3
+	BNE  foldprop12_6_loop
+	MOVD R19, R2
+	MOVD $0x00000002, R3
+
+foldprop12_7_loop:
+	MOVD R0, R19
+	ADD  R3, R0, R0
+	SUBS $0x00000001, R3, R3
+	BNE  foldprop12_7_loop
+	ADD  R2, R0, R0
+	ROR  $57, R0, R0
+	EOR  R1, R0, R0
+	ADD  R1, R20, R20
+	AND  $0x00000003, R19, R19
+
+foldprop12_10_loop:
+	CMP $0x00000000, R19
+	BEQ foldprop12_10_done
+	ADD R19, R0, R0
+	ROR $61, R0, R0
+	SUB $0x00000001, R19, R19
+	JMP foldprop12_10_loop
+
+foldprop12_10_done:
+	CMP R21, R1
+	BLO foldprop12_11_skip
+	EOR R1, R0, R0
+
+foldprop12_11_skip:
+	ADD  R22, R0, R0
+	ADD  R21, R0, R0
+	ADD  R19, R0, R0
+	ADD  R20, R0, R0
+	MOVD R0, ret+16(FP)
+	RET
+
+// func FoldProp13(x uint64, y uint64) uint64
+TEXT ·FoldProp13(SB), NOSPLIT, $32-24
+	MOVD x+0(FP), R0
+	MOVD y+8(FP), R1
+	MOVD R1, R21
+	ADD  $0x00000000, R21, R21
+	MOVD R1, R20
+	ADD  $0x00000001, R20, R20
+	MOVD R1, R19
+	ADD  $0x00000002, R19, R19
+	MOVD R1, R22
+	ADD  $0x00000003, R22, R22
+	CMP  R20, R1
+	BLO  foldprop13_0_skip
+	EOR  R1, R0, R0
+
+foldprop13_0_skip:
+	MOVD R21, R2
+	MOVD R0, R21
+	ADD  R2, R0, R0
+	MOVD $0x00000002, R2
+
+foldprop13_2_loop:
+	ADD  R19, R0, R0
+	MOVD R1, R3
+	ADD  R0, R3, R3
+	SUBS $0x00000001, R2, R2
+	BNE  foldprop13_2_loop
+	MOVD R3, R19
+	MOVD R20, R2
+	MOVD $0x00000002, R3
+
+foldprop13_3_loop:
+	MOVD R0, R20
+	ADD  R3, R0, R0
+	SUBS $0x00000001, R3, R3
+	BNE  foldprop13_3_loop
+	ADD  R2, R0, R0
+	MOVD R0, R19
+	MOVD R21, R2
+	UBFX $8, R2, $8, R3
+	ADD  R3, R0, R0
+	EOR  R2, R0, R0
+	MOVD $-2147483648, R21
+	ADD  R21, R0, R0
+	ADD  R0, R21, R21
+	CMP  R1, R0
+	BLO  foldprop13_8_skip
+	ADD  R1, R19, R19
+
+foldprop13_8_skip:
+	ADD R0, R20, R20
+	CMP R1, R0
+	BLO foldprop13_10_skip
+	ADD R1, R22, R22
+
+foldprop13_10_skip:
+	MOVD R19, R1
+	MOVD R0, R19
+	ADD  R1, R0, R0
+	ADD  R21, R0, R0
+	ADD  R20, R0, R0
+	ADD  R19, R0, R0
+	ADD  R22, R0, R0
+	MOVD R0, ret+16(FP)
+	RET
+
+// func FoldProp14(x uint64, y uint64) uint64
+TEXT ·FoldProp14(SB), NOSPLIT, $32-24
+	MOVD x+0(FP), R0
+	MOVD y+8(FP), R1
+	MOVD R1, R22
+	ADD  $0x00000000, R22, R22
+	MOVD R1, R20
+	ADD  $0x00000001, R20, R20
+	MOVD R1, R19
+	ADD  $0x00000002, R19, R19
+	MOVD R1, R21
+	ADD  $0x00000003, R21, R21
+	ADD  R1, R22, R22
+	MOVD R0, R19
+	MOVD $0x00000002, R2
+
+foldprop14_2_loop:
+	ADD  R21, R0, R0
+	MOVD R1, R3
+	ADD  R0, R3, R3
+	SUBS $0x00000001, R2, R2
+	BNE  foldprop14_2_loop
+	MOVD R3, R21
+	MOVD R20, R2
+	ADD  R2, R20, R20
+	ADD  R2, R0, R0
+	MOVD R21, R2
+	LSL  $0x05, R2, R3
+	EOR  R3, R0, R0
+	ADD  R2, R0, R0
+	AND  $0x00000003, R19, R19
+
+foldprop14_5_loop:
+	CMP $0x00000000, R19
+	BEQ foldprop14_5_done
+	ADD R19, R0, R0
+	ROR $61, R0, R0
+	SUB $0x00000001, R19, R19
+	JMP foldprop14_5_loop
+
+foldprop14_5_done:
+	MOVD R19, R2
+	MOVD R2, R19
+	ADD  R1, R19, R19
+	ADD  R2, R0, R0
+	MOVD R19, R2
+	LSL  $0x05, R2, R3
+	EOR  R3, R0, R0
+	ADD  R2, R0, R0
+	MOVD R0, R20
+	MOVD R20, R2
+	LSL  $0x05, R2, R3
+	EOR  R3, R0, R0
+	ADD  R2, R0, R0
+	ADD  R1, R19, R19
+	MOVD $0x00000002, R2
+
+foldprop14_11_loop:
+	ADD  R20, R0, R0
+	MOVD R1, R3
+	ADD  R0, R3, R3
+	SUBS $0x00000001, R2, R2
+	BNE  foldprop14_11_loop
+	MOVD R3, R20
+	ADD  R22, R0, R0
+	ADD  R20, R0, R0
+	ADD  R19, R0, R0
+	ADD  R21, R0, R0
+	MOVD R0, ret+16(FP)
+	RET
+
+// func FoldProp15(x uint64, y uint64) uint64
+TEXT ·FoldProp15(SB), NOSPLIT, $32-24
+	MOVD x+0(FP), R0
+	MOVD y+8(FP), R1
+	MOVD R1, R19
+	ADD  $0x00000000, R19, R19
+	MOVD R1, R21
+	ADD  $0x00000001, R21, R21
+	MOVD R1, R20
+	ADD  $0x00000002, R20, R20
+	MOVD R1, R22
+	ADD  $0x00000003, R22, R22
+	MOVD R20, R2
+	MOVD R19, R20
+	MOVD R2, R19
+	MOVD R1, R2
+	CMP  R1, R0
+	BLO  foldprop15_1_skip
+	MOVD R22, R2
+
+foldprop15_1_skip:
+	ADD  R2, R0, R0
+	ADD  R1, R20, R20
+	MOVD R0, R21
+	AND  $0x00000003, R19, R19
+
+foldprop15_4_loop:
+	CMP $0x00000000, R19
+	BEQ foldprop15_4_done
+	ADD R19, R0, R0
+	ROR $61, R0, R0
+	SUB $0x00000001, R19, R19
+	JMP foldprop15_4_loop
+
+foldprop15_4_done:
+	ADD  R1, R21, R21
+	MOVD R20, R2
+	LSL  $0x05, R2, R3
+	EOR  R3, R0, R0
+	ADD  R2, R0, R0
+	MOVD R19, R2
+	MOVD R0, R19
+	ADD  R2, R0, R0
+	MOVD R19, R2
+	MOVD R20, R19
+	MOVD R2, R20
+	MOVD R22, R2
+	MOVD R21, R22
+	MOVD R2, R21
+	ADD  R1, R21, R21
+	ADD  R0, R20, R20
+	ADD  R19, R0, R0
+	ADD  R21, R0, R0
+	ADD  R20, R0, R0
+	ADD  R22, R0, R0
+	MOVD R0, ret+16(FP)
+	RET
+
+// func FoldProp16(x uint64, y uint64) uint64
+TEXT ·FoldProp16(SB), NOSPLIT, $32-24
+	MOVD x+0(FP), R0
+	MOVD y+8(FP), R1
+	MOVD R1, R20
+	ADD  $0x00000000, R20, R20
+	MOVD R1, R21
+	ADD  $0x00000001, R21, R21
+	MOVD R1, R19
+	ADD  $0x00000002, R19, R19
+	MOVD R1, R22
+	ADD  $0x00000003, R22, R22
+	MOVD R22, R2
+	MOVD R0, R22
+	ADD  R2, R0, R0
+	MOVD R20, R2
+	ADD  R2, R20, R20
+	ADD  R2, R0, R0
+	MOVD R22, R2
+	LSL  $0x05, R2, R3
+	EOR  R3, R0, R0
+	ADD  R2, R0, R0
+	MOVD R19, R2
+	UBFX $8, R2, $8, R3
+	ADD  R3, R0, R0
+	EOR  R2, R0, R0
+	MOVD R21, R19
+	ADD  R21, R0, R0
+	MOVD $-2147483647, R21
+	ADD  R21, R0, R0
+	MOVD $-2147483647, R21
+	ADD  R21, R0, R0
+	MOVD R19, R2
+	ADD  R2, R19, R19
+	ADD  R2, R0, R0
+	MOVD R19, R2
+	MOVD $0x00000002, R3
+
+foldprop16_8_loop:
+	MOVD R0, R19
+	ADD  R3, R0, R0
+	SUBS $0x00000001, R3, R3
+	BNE  foldprop16_8_loop
+	ADD  R2, R0, R0
+	MOVD R20, R2
+	MOVD $0x00000002, R3
+
+foldprop16_9_loop:
+	MOVD R0, R20
+	ADD  R3, R0, R0
+	SUBS $0x00000001, R3, R3
+	BNE  foldprop16_9_loop
+	ADD  R2, R0, R0
+	MOVD $0x00000002, R2
+
+foldprop16_10_loop:
+	ADD  R19, R0, R0
+	MOVD R1, R3
+	ADD  R0, R3, R3
+	SUBS $0x00000001, R2, R2
+	BNE  foldprop16_10_loop
+	MOVD R3, R19
+	ROR  $57, R0, R0
+	EOR  R1, R0, R0
+	ADD  R20, R0, R0
+	ADD  R21, R0, R0
+	ADD  R19, R0, R0
+	ADD  R22, R0, R0
+	MOVD R0, ret+16(FP)
+	RET
+
+// func FoldProp17(x uint64, y uint64) uint64
+TEXT ·FoldProp17(SB), NOSPLIT, $32-24
 	MOVD x+0(FP), R0
 	MOVD y+8(FP), R1
 	MOVD R1, R19
 	ADD  $0x00000000, R19, R19
 	MOVD R1, R22
 	ADD  $0x00000001, R22, R22
-	MOVD R1, R20
-	ADD  $0x00000002, R20, R20
 	MOVD R1, R21
-	ADD  $0x00000003, R21, R21
-	MOVD R1, R2
-	CMP  R1, R0
-	BLO  foldprop19_0_skip
+	ADD  $0x00000002, R21, R21
+	MOVD R1, R20
+	ADD  $0x00000003, R20, R20
 	MOVD R21, R2
-
-foldprop19_0_skip:
-	ADD  R2, R0, R0
-	MOVD R19, R2
+	MOVD R19, R21
 	MOVD R2, R19
-	ADD  R1, R19, R19
-	ADD  R2, R0, R0
-	MOVD R20, R3
-	ROR  $55, R3, R3
-	ADD  R20, R3, R3
-	EOR  R3, R0, R0
-	MOVD R20, R2
-	LSL  $0x05, R2, R3
-	EOR  R3, R0, R0
-	ADD  R2, R0, R0
-	NEG  R21, R21
-	MVN  R19, R19
+	MOVD R0, R21
+	CMP  R21, R1
+	BLO  foldprop17_2_skip
+	EOR  R1, R0, R0
+
+foldprop17_2_skip:
+	ROR  $57, R0, R0
+	EOR  R1, R0, R0
+	ADD  R1, R21, R21
+	MOVD $0x00000002, R2
+
+foldprop17_5_loop:
+	ADD  R20, R0, R0
+	MOVD R1, R3
+	ADD  R0, R3, R3
+	SUBS $0x00000001, R2, R2
+	BNE  foldprop17_5_loop
+	MOVD R3, R20
 	MOVD R22, R2
 	LSL  $0x05, R2, R3
 	EOR  R3, R0, R0
 	ADD  R2, R0, R0
-	MOVD R19, R2
-	MOVD R2, R19
 	ADD  R1, R19, R19
-	ADD  R2, R0, R0
-	TST  R19, R0
-	BEQ  foldprop19_7_skip
-	ADD  R1, R0, R0
-
-foldprop19_7_skip:
+	ROR  $57, R0, R0
+	EOR  R1, R0, R0
+	MOVD R19, R1
 	MOVD $0x00000002, R2
 
-foldprop19_8_loop:
-	ADD  R19, R0, R0
-	MOVD R1, R3
-	ADD  R0, R3, R3
-	SUBS $0x00000001, R2, R2
-	BNE  foldprop19_8_loop
-	MOVD R3, R19
-	ADD  R1, R20, R20
-	AND  $0x00000003, R19, R19
-
-foldprop19_10_loop:
-	CMP $0x00000000, R19
-	BEQ foldprop19_10_done
-	ADD R19, R0, R0
-	ROR $61, R0, R0
-	SUB $0x00000001, R19, R19
-	JMP foldprop19_10_loop
-
-foldprop19_10_done:
-	CMP R1, R0
-	BLO foldprop19_11_skip
-	ADD R1, R21, R21
-
-foldprop19_11_skip:
-	ADD  R19, R0, R0
-	ADD  R22, R0, R0
-	ADD  R20, R0, R0
-	ADD  R21, R0, R0
-	MOVD R0, ret+16(FP)
-	RET
-
-// func FoldProp20(x uint64, y uint64) uint64
-TEXT ·FoldProp20(SB), NOSPLIT, $32-24
-	MOVD x+0(FP), R0
-	MOVD y+8(FP), R1
-	MOVD R1, R20
-	ADD  $0x00000000, R20, R20
-	MOVD R1, R19
-	ADD  $0x00000001, R19, R19
-	MOVD R1, R21
-	ADD  $0x00000002, R21, R21
-	MOVD R1, R22
-	ADD  $0x00000003, R22, R22
-	MOVD R20, R2
-	MOVD R2, R20
-	ADD  R1, R20, R20
-	ADD  R2, R0, R0
-	MOVD $-2147483648, R20
-	ADD  R20, R0, R0
-	MOVD R22, R20
-	ADD  R20, R0, R0
-	MOVD R21, R2
-	MOVD R0, R21
-	ADD  R2, R0, R0
-	MOVD R20, R2
-	ADD  R2, R20, R20
-	ADD  R2, R0, R0
-	MOVD R19, R2
-	MOVD $0x00000002, R3
-
-foldprop20_5_loop:
-	ADD  R2, R0, R0
+foldprop17_9_loop:
+	ADD  R1, R0, R0
 	MOVD R0, R19
-	SUBS $0x00000001, R3, R3
-	BNE  foldprop20_5_loop
-	CMP  R22, R1
-	BLO  foldprop20_6_skip
-	EOR  R1, R0, R0
-
-foldprop20_6_skip:
-	ROR $57, R0, R0
-	EOR R1, R0, R0
-	CMP R20, R1
-	BLO foldprop20_8_skip
-	EOR R1, R0, R0
-
-foldprop20_8_skip:
-	MOVD R1, R2
-	CMP  R1, R0
-	BLO  foldprop20_9_skip
-	MOVD R20, R2
-
-foldprop20_9_skip:
-	ADD  R2, R0, R0
-	MOVD R20, R1
+	SUBS $0x00000001, R2, R2
+	BNE  foldprop17_9_loop
+	MOVD $-2147483647, R22
+	ADD  R22, R0, R0
+	MOVD R22, R1
 	LSL  $0x05, R1, R2
 	EOR  R2, R0, R0
 	ADD  R1, R0, R0
+	ADD  R19, R0, R0
+	ADD  R22, R0, R0
+	ADD  R21, R0, R0
+	ADD  R20, R0, R0
+	MOVD R0, ret+16(FP)
+	RET
+
+// func FoldProp18(x uint64, y uint64) uint64
+TEXT ·FoldProp18(SB), NOSPLIT, $32-24
+	MOVD x+0(FP), R0
+	MOVD y+8(FP), R1
+	MOVD R1, R19
+	ADD  $0x00000000, R19, R19
+	MOVD R1, R21
+	ADD  $0x00000001, R21, R21
+	MOVD R1, R20
+	ADD  $0x00000002, R20, R20
+	MOVD R1, R22
+	ADD  $0x00000003, R22, R22
+	CMP  R1, R0
+	BLO  foldprop18_0_skip
+	ADD  R1, R19, R19
+
+foldprop18_0_skip:
+	ROR  $57, R0, R0
+	EOR  R1, R0, R0
+	MOVD R20, R3
+	ROR  $55, R3, R3
+	ADD  R20, R3, R3
+	EOR  R3, R0, R0
+	CMP  R20, R1
+	BLO  foldprop18_3_skip
+	EOR  R1, R0, R0
+
+foldprop18_3_skip:
+	MOVD $-2147483645, R22
+	ADD  R22, R0, R0
+	CMP  R20, R1
+	BLO  foldprop18_5_skip
+	EOR  R1, R0, R0
+
+foldprop18_5_skip:
+	ADD  R0, R19, R19
+	MOVD R20, R2
+	MOVD R19, R20
+	MOVD R2, R19
+	MOVD R19, R2
+	UBFX $8, R2, $8, R3
+	ADD  R3, R0, R0
+	EOR  R2, R0, R0
+	CMP  R20, R1
+	BLO  foldprop18_9_skip
+	EOR  R1, R0, R0
+
+foldprop18_9_skip:
 	MOVD R19, R21
 	ADD  R19, R0, R0
-	ADD  R20, R0, R0
+	CMP  R21, R1
+	BLO  foldprop18_11_skip
+	EOR  R1, R0, R0
+
+foldprop18_11_skip:
 	ADD  R19, R0, R0
 	ADD  R21, R0, R0
+	ADD  R20, R0, R0
 	ADD  R22, R0, R0
 	MOVD R0, ret+16(FP)
 	RET
 
-// func FoldProp21(x uint64, y uint64) uint64
-TEXT ·FoldProp21(SB), NOSPLIT, $32-24
+// func FoldProp19(x uint64, y uint64) uint64
+TEXT ·FoldProp19(SB), NOSPLIT, $32-24
 	MOVD x+0(FP), R0
 	MOVD y+8(FP), R1
 	MOVD R1, R20
@@ -5474,66 +5274,245 @@ TEXT ·FoldProp21(SB), NOSPLIT, $32-24
 	ADD  $0x00000002, R22, R22
 	MOVD R1, R19
 	ADD  $0x00000003, R19, R19
-	MOVD R19, R20
-	ADD  R20, R0, R0
-	NEG  R22, R22
-	MVN  R19, R19
-	TST  R21, R0
-	BEQ  foldprop21_2_skip
-	ADD  R1, R0, R0
-
-foldprop21_2_skip:
-	ROR  $57, R0, R0
-	EOR  R1, R0, R0
-	MOVD R21, R2
-	UBFX $8, R2, $8, R3
-	ADD  R3, R0, R0
-	EOR  R2, R0, R0
-	MOVD R20, R2
-	MOVD R22, R20
-	MOVD R2, R22
+	ADD  R1, R19, R19
 	AND  $0x00000003, R20, R20
 
-foldprop21_6_loop:
+foldprop19_1_loop:
 	CMP $0x00000000, R20
-	BEQ foldprop21_6_done
+	BEQ foldprop19_1_done
 	ADD R20, R0, R0
 	ROR $61, R0, R0
-	SUB $1, R20, R20
-	JMP foldprop21_6_loop
+	SUB $0x00000001, R20, R20
+	JMP foldprop19_1_loop
 
-foldprop21_6_done:
-	MOVD $0x00000002, R2
+foldprop19_1_done:
+	MOVD R22, R2
+	ADD  R2, R22, R22
+	ADD  R2, R0, R0
+	ADD  R1, R22, R22
+	MOVD R19, R2
+	MOVD $0x00000002, R3
 
-foldprop21_7_loop:
-	ADD  R19, R0, R0
-	MOVD R1, R3
-	ADD  R0, R3, R3
-	SUBS $0x00000001, R2, R2
-	BNE  foldprop21_7_loop
-	MOVD R3, R19
+foldprop19_4_loop:
+	MOVD R0, R19
+	ADD  R3, R0, R0
+	SUBS $0x00000001, R3, R3
+	BNE  foldprop19_4_loop
+	ADD  R2, R0, R0
+	MOVD R21, R2
+	MOVD $0x00000002, R3
+
+foldprop19_5_loop:
+	MOVD R0, R21
+	ADD  R3, R0, R0
+	SUBS $0x00000001, R3, R3
+	BNE  foldprop19_5_loop
+	ADD  R2, R0, R0
+	MOVD R20, R21
+	ADD  R20, R0, R0
+	CMP  R20, R1
+	BLO  foldprop19_7_skip
+	EOR  R1, R0, R0
+
+foldprop19_7_skip:
+	CMP R1, R0
+	BLO foldprop19_8_skip
+	ADD R1, R20, R20
+
+foldprop19_8_skip:
+	MOVD R22, R1
+	LSL  $0x05, R1, R2
+	EOR  R2, R0, R0
+	ADD  R1, R0, R0
+	MOVD R20, R21
+	ADD  R20, R0, R0
 	AND  $0x00000003, R19, R19
 
-foldprop21_8_loop:
+foldprop19_11_loop:
 	CMP $0x00000000, R19
-	BEQ foldprop21_8_done
+	BEQ foldprop19_11_done
 	ADD R19, R0, R0
 	ROR $61, R0, R0
-	SUB $0x00000001, R19, R19
-	JMP foldprop21_8_loop
+	SUB $1, R19, R19
+	JMP foldprop19_11_loop
 
-foldprop21_8_done:
-	ROR  $57, R0, R0
-	EOR  R1, R0, R0
-	MOVD R21, R2
-	LSL  $0x05, R2, R3
-	EOR  R3, R0, R0
-	ADD  R2, R0, R0
-	ADD  R1, R20, R20
+foldprop19_11_done:
 	ADD  R20, R0, R0
 	ADD  R21, R0, R0
 	ADD  R22, R0, R0
 	ADD  R19, R0, R0
+	MOVD R0, ret+16(FP)
+	RET
+
+// func FoldProp20(x uint64, y uint64) uint64
+TEXT ·FoldProp20(SB), NOSPLIT, $32-24
+	MOVD x+0(FP), R0
+	MOVD y+8(FP), R1
+	MOVD R1, R20
+	ADD  $0x00000000, R20, R20
+	MOVD R1, R22
+	ADD  $0x00000001, R22, R22
+	MOVD R1, R19
+	ADD  $0x00000002, R19, R19
+	MOVD R1, R21
+	ADD  $0x00000003, R21, R21
+	AND  $0x00000003, R20, R20
+
+foldprop20_0_loop:
+	CMP $0x00000000, R20
+	BEQ foldprop20_0_done
+	ADD R20, R0, R0
+	ROR $61, R0, R0
+	SUB $0x00000001, R20, R20
+	JMP foldprop20_0_loop
+
+foldprop20_0_done:
+	MOVD $-2147483648, R20
+	ADD  R20, R0, R0
+	ADD  R0, R21, R21
+	AND  $0x00000003, R19, R19
+
+foldprop20_3_loop:
+	CMP $0x00000000, R19
+	BEQ foldprop20_3_done
+	ADD R19, R0, R0
+	ROR $61, R0, R0
+	SUB $1, R19, R19
+	JMP foldprop20_3_loop
+
+foldprop20_3_done:
+	MOVD R20, R2
+	UBFX $8, R2, $8, R3
+	ADD  R3, R0, R0
+	EOR  R2, R0, R0
+	MOVD R22, R2
+	UBFX $8, R2, $8, R3
+	ADD  R3, R0, R0
+	EOR  R2, R0, R0
+	MOVD $0x00000002, R2
+
+foldprop20_6_loop:
+	ADD  R21, R0, R0
+	MOVD R1, R3
+	ADD  R0, R3, R3
+	SUBS $0x00000001, R2, R2
+	BNE  foldprop20_6_loop
+	MOVD R3, R21
+	AND  $0x00000003, R19, R19
+
+foldprop20_7_loop:
+	CMP $0x00000000, R19
+	BEQ foldprop20_7_done
+	ADD R19, R0, R0
+	ROR $61, R0, R0
+	SUB $0x00000001, R19, R19
+	JMP foldprop20_7_loop
+
+foldprop20_7_done:
+	MOVD R20, R3
+	ROR  $55, R3, R3
+	ADD  R20, R3, R3
+	EOR  R3, R0, R0
+	MOVD $-2147483648, R20
+	ADD  R20, R0, R0
+	MOVD $0x00000002, R2
+
+foldprop20_10_loop:
+	ADD  R20, R0, R0
+	MOVD R1, R3
+	ADD  R0, R3, R3
+	SUBS $0x00000001, R2, R2
+	BNE  foldprop20_10_loop
+	MOVD R3, R20
+	CMP  R1, R0
+	BLO  foldprop20_11_skip
+	ADD  R1, R22, R22
+
+foldprop20_11_skip:
+	ADD  R20, R0, R0
+	ADD  R22, R0, R0
+	ADD  R19, R0, R0
+	ADD  R21, R0, R0
+	MOVD R0, ret+16(FP)
+	RET
+
+// func FoldProp21(x uint64, y uint64) uint64
+TEXT ·FoldProp21(SB), NOSPLIT, $32-24
+	MOVD x+0(FP), R0
+	MOVD y+8(FP), R1
+	MOVD R1, R22
+	ADD  $0x00000000, R22, R22
+	MOVD R1, R19
+	ADD  $0x00000001, R19, R19
+	MOVD R1, R20
+	ADD  $0x00000002, R20, R20
+	MOVD R1, R21
+	ADD  $0x00000003, R21, R21
+	MOVD R21, R2
+	MOVD R0, R21
+	ADD  R2, R0, R0
+	MOVD $0x00000002, R2
+
+foldprop21_1_loop:
+	ADD  R20, R0, R0
+	MOVD R1, R3
+	ADD  R0, R3, R3
+	SUBS $0x00000001, R2, R2
+	BNE  foldprop21_1_loop
+	MOVD R3, R20
+	AND  $0x00000003, R19, R19
+
+foldprop21_2_loop:
+	CMP $0x00000000, R19
+	BEQ foldprop21_2_done
+	ADD R19, R0, R0
+	ROR $61, R0, R0
+	SUB $1, R19, R19
+	JMP foldprop21_2_loop
+
+foldprop21_2_done:
+	MOVD R1, R2
+	CMP  R1, R0
+	BLO  foldprop21_3_skip
+	MOVD R20, R2
+
+foldprop21_3_skip:
+	ADD  R2, R0, R0
+	MOVD $0x00000002, R2
+
+foldprop21_4_loop:
+	ADD  R19, R0, R0
+	MOVD R1, R3
+	ADD  R0, R3, R3
+	SUBS $0x00000001, R2, R2
+	BNE  foldprop21_4_loop
+	MOVD R3, R19
+	MOVD R22, R2
+	MOVD R20, R22
+	MOVD R2, R20
+	ADD  R1, R22, R22
+	CMP  R21, R1
+	BLO  foldprop21_7_skip
+	EOR  R1, R0, R0
+
+foldprop21_7_skip:
+	MOVD R21, R2
+	MOVD $0x00000002, R3
+
+foldprop21_8_loop:
+	ADD  R2, R0, R0
+	MOVD R0, R21
+	SUBS $0x00000001, R3, R3
+	BNE  foldprop21_8_loop
+	ADD  R0, R20, R20
+	MOVD R19, R2
+	ADD  R2, R19, R19
+	ADD  R2, R0, R0
+	ADD  R1, R22, R22
+	ADD  R22, R0, R0
+	ADD  R19, R0, R0
+	ADD  R20, R0, R0
+	ADD  R21, R0, R0
 	MOVD R0, ret+16(FP)
 	RET
 
@@ -5545,66 +5524,60 @@ TEXT ·FoldProp22(SB), NOSPLIT, $32-24
 	ADD  $0x00000000, R21, R21
 	MOVD R1, R22
 	ADD  $0x00000001, R22, R22
-	MOVD R1, R19
-	ADD  $0x00000002, R19, R19
 	MOVD R1, R20
-	ADD  $0x00000003, R20, R20
-	MOVD $0x00000002, R2
+	ADD  $0x00000002, R20, R20
+	MOVD R1, R19
+	ADD  $0x00000003, R19, R19
+	ADD  R1, R20, R20
+	CMP  R19, R1
+	BLO  foldprop22_1_skip
+	EOR  R1, R0, R0
 
-foldprop22_0_loop:
-	ADD  R19, R0, R0
-	MOVD R1, R3
-	ADD  R0, R3, R3
-	SUBS $0x00000001, R2, R2
-	BNE  foldprop22_0_loop
-	MOVD R3, R19
+foldprop22_1_skip:
+	CMP R1, R0
+	BLO foldprop22_2_skip
+	ADD R1, R21, R21
+
+foldprop22_2_skip:
+	MOVD R20, R19
+	ADD  R20, R0, R0
+	MOVD R19, R21
+	ADD  R21, R0, R0
 	MOVD R20, R2
-	ADD  R2, R20, R20
-	ADD  R2, R0, R0
-	ADD  R1, R21, R21
-	MOVD R19, R2
 	LSL  $0x05, R2, R3
 	EOR  R3, R0, R0
 	ADD  R2, R0, R0
-	NEG  R20, R20
-	MVN  R21, R21
-	AND  $0x00000003, R19, R19
-
-foldprop22_5_loop:
-	CMP $0x00000000, R19
-	BEQ foldprop22_5_done
-	ADD R19, R0, R0
-	ROR $61, R0, R0
-	SUB $0x00000001, R19, R19
-	JMP foldprop22_5_loop
-
-foldprop22_5_done:
-	MOVD R19, R2
-	MOVD $0x00000002, R3
-
-foldprop22_6_loop:
+	MOVD R20, R2
+	LSL  $0x05, R2, R3
+	EOR  R3, R0, R0
 	ADD  R2, R0, R0
-	MOVD R0, R19
-	SUBS $0x00000001, R3, R3
-	BNE  foldprop22_6_loop
-	NEG  R22, R22
-	MVN  R19, R19
-	MOVD R19, R2
-	MOVD R2, R19
-	ADD  R1, R19, R19
-	ADD  R2, R0, R0
-	MOVD R19, R2
-	ROR  $55, R2, R2
-	ADD  R19, R2, R2
+	ADD  R0, R22, R22
+	MOVD R20, R2
+	UBFX $8, R2, $8, R3
+	ADD  R3, R0, R0
 	EOR  R2, R0, R0
-	ADD  R0, R20, R20
-	MOVD R20, R1
-	ADD  R1, R20, R20
+	CMP  R20, R1
+	BLO  foldprop22_9_skip
+	EOR  R1, R0, R0
+
+foldprop22_9_skip:
+	MOVD R19, R1
+	MOVD $0x00000002, R2
+
+foldprop22_10_loop:
+	MOVD R0, R19
+	ADD  R2, R0, R0
+	SUBS $0x00000001, R2, R2
+	BNE  foldprop22_10_loop
+	ADD  R1, R0, R0
+	MOVD R19, R1
+	LSL  $0x05, R1, R2
+	EOR  R2, R0, R0
 	ADD  R1, R0, R0
 	ADD  R21, R0, R0
 	ADD  R22, R0, R0
-	ADD  R19, R0, R0
 	ADD  R20, R0, R0
+	ADD  R19, R0, R0
 	MOVD R0, ret+16(FP)
 	RET
 
@@ -5612,76 +5585,71 @@ foldprop22_6_loop:
 TEXT ·FoldProp23(SB), NOSPLIT, $32-24
 	MOVD x+0(FP), R0
 	MOVD y+8(FP), R1
-	MOVD R1, R21
-	ADD  $0x00000000, R21, R21
-	MOVD R1, R20
-	ADD  $0x00000001, R20, R20
 	MOVD R1, R19
-	ADD  $0x00000002, R19, R19
+	ADD  $0x00000000, R19, R19
+	MOVD R1, R21
+	ADD  $0x00000001, R21, R21
+	MOVD R1, R20
+	ADD  $0x00000002, R20, R20
 	MOVD R1, R22
 	ADD  $0x00000003, R22, R22
-	MOVD R21, R2
+	MOVD R19, R21
+	ADD  R19, R0, R0
+	MOVD R19, R2
 	UBFX $8, R2, $8, R3
 	ADD  R3, R0, R0
 	EOR  R2, R0, R0
-	MOVD R21, R2
-	MOVD R2, R21
-	ADD  R1, R21, R21
+	MOVD R20, R2
+	UBFX $8, R2, $8, R3
+	ADD  R3, R0, R0
+	EOR  R2, R0, R0
+	MOVD R20, R2
+	MOVD R2, R20
+	ADD  R1, R20, R20
 	ADD  R2, R0, R0
-	MOVD R19, R2
-	MOVD R0, R19
+	MOVD R22, R2
+	LSL  $0x05, R2, R3
+	EOR  R3, R0, R0
 	ADD  R2, R0, R0
-	ADD  R1, R19, R19
-	CMP  R22, R1
-	BLO  foldprop23_4_skip
+	CMP  R21, R1
+	BLO  foldprop23_5_skip
 	EOR  R1, R0, R0
 
-foldprop23_4_skip:
-	CMP R20, R1
-	BLO foldprop23_5_skip
-	EOR R1, R0, R0
-
 foldprop23_5_skip:
-	MOVD $0x00000002, R2
-
-foldprop23_6_loop:
-	ADD  R20, R0, R0
-	MOVD R1, R3
-	ADD  R0, R3, R3
-	SUBS $0x00000001, R2, R2
-	BNE  foldprop23_6_loop
-	MOVD R3, R20
 	MOVD R21, R2
 	MOVD R0, R21
 	ADD  R2, R0, R0
-	TST  R21, R0
-	BEQ  foldprop23_8_skip
-	ADD  R1, R0, R0
+	ADD  R1, R19, R19
+	AND  $0x00000003, R19, R19
 
-foldprop23_8_skip:
-	TST R21, R0
-	BEQ foldprop23_9_skip
-	ADD R1, R0, R0
-
-foldprop23_9_skip:
-	AND $0x00000003, R19, R19
-
-foldprop23_10_loop:
+foldprop23_8_loop:
 	CMP $0x00000000, R19
-	BEQ foldprop23_10_done
+	BEQ foldprop23_8_done
 	ADD R19, R0, R0
 	ROR $61, R0, R0
 	SUB $0x00000001, R19, R19
-	JMP foldprop23_10_loop
+	JMP foldprop23_8_loop
 
-foldprop23_10_done:
-	MOVD R21, R1
-	LSL  $0x05, R1, R2
-	EOR  R2, R0, R0
-	ADD  R1, R0, R0
+foldprop23_8_done:
+	CMP R1, R0
+	BLO foldprop23_9_skip
+	ADD R1, R19, R19
+
+foldprop23_9_skip:
+	MOVD R20, R3
+	ROR  $55, R3, R3
+	ADD  R20, R3, R3
+	EOR  R3, R0, R0
+	MOVD R1, R2
+	CMP  R1, R0
+	BLO  foldprop23_11_skip
+	MOVD R19, R2
+
+foldprop23_11_skip:
+	ADD  R2, R0, R0
+	ADD  R19, R0, R0
 	ADD  R21, R0, R0
 	ADD  R20, R0, R0
-	ADD  R19, R0, R0
 	ADD  R22, R0, R0
 	MOVD R0, ret+16(FP)
 	RET
@@ -5694,73 +5662,46 @@ TEXT ·FoldProp24(SB), NOSPLIT, $32-24
 	ADD  $0x00000000, R21, R21
 	MOVD R1, R19
 	ADD  $0x00000001, R19, R19
-	MOVD R1, R20
-	ADD  $0x00000002, R20, R20
 	MOVD R1, R22
-	ADD  $0x00000003, R22, R22
-	NEG  R22, R22
-	MVN  R21, R21
-	MOVD R20, R2
-	ADD  R2, R20, R20
-	ADD  R2, R0, R0
-	MOVD R22, R21
+	ADD  $0x00000002, R22, R22
+	MOVD R1, R20
+	ADD  $0x00000003, R20, R20
+	ADD  R1, R20, R20
+	CMP  R22, R1
+	BLO  foldprop24_1_skip
+	EOR  R1, R0, R0
+
+foldprop24_1_skip:
+	MOVD R20, R21
 	ADD  R21, R0, R0
-	MOVD R22, R2
-	MOVD R0, R22
-	ADD  R2, R0, R0
-	MOVD R19, R2
+	MOVD R0, R20
+	MOVD $-2147483647, R19
+	ADD  R19, R0, R0
+	MOVD R0, R21
+	ROR  $57, R0, R0
+	EOR  R1, R0, R0
+	ADD  R1, R19, R19
+	MOVD R21, R1
+	MOVD R22, R21
+	MOVD R1, R22
+	MOVD R19, R1
+	MOVD $0x00000002, R2
+
+foldprop24_9_loop:
 	MOVD R0, R19
 	ADD  R2, R0, R0
-	MOVD R21, R2
-	MOVD $0x00000002, R3
-
-foldprop24_5_loop:
-	MOVD R0, R21
-	ADD  R3, R0, R0
-	SUBS $0x00000001, R3, R3
-	BNE  foldprop24_5_loop
-	ADD  R2, R0, R0
-	AND  $0x00000003, R20, R20
-
-foldprop24_6_loop:
-	CMP $0x00000000, R20
-	BEQ foldprop24_6_done
-	ADD R20, R0, R0
-	ROR $61, R0, R0
-	SUB $1, R20, R20
-	JMP foldprop24_6_loop
-
-foldprop24_6_done:
-	AND $0x00000003, R19, R19
-
-foldprop24_7_loop:
-	CMP $0x00000000, R19
-	BEQ foldprop24_7_done
-	ADD R19, R0, R0
-	ROR $61, R0, R0
-	SUB $0x00000001, R19, R19
-	JMP foldprop24_7_loop
-
-foldprop24_7_done:
-	MOVD R0, R21
-	MOVD R1, R2
-	CMP  R1, R0
-	BLO  foldprop24_9_skip
-	MOVD R19, R2
-
-foldprop24_9_skip:
-	ADD  R2, R0, R0
+	SUBS $0x00000001, R2, R2
+	BNE  foldprop24_9_loop
+	ADD  R1, R0, R0
 	MOVD R19, R1
-	UBFX $8, R1, $8, R2
-	ADD  R2, R0, R0
-	EOR  R1, R0, R0
-	MOVD R19, R1
-	MOVD R22, R19
-	MOVD R1, R22
+	MOVD R20, R19
+	MOVD R1, R20
+	MOVD $-2147483647, R19
+	ADD  R19, R0, R0
 	ADD  R21, R0, R0
 	ADD  R19, R0, R0
-	ADD  R20, R0, R0
 	ADD  R22, R0, R0
+	ADD  R20, R0, R0
 	MOVD R0, ret+16(FP)
 	RET
 
@@ -5768,99 +5709,87 @@ foldprop24_9_skip:
 TEXT ·FoldProp25(SB), NOSPLIT, $32-24
 	MOVD x+0(FP), R0
 	MOVD y+8(FP), R1
+	MOVD R1, R20
+	ADD  $0x00000000, R20, R20
 	MOVD R1, R22
-	ADD  $0x00000000, R22, R22
-	MOVD R1, R21
-	ADD  $0x00000001, R21, R21
+	ADD  $0x00000001, R22, R22
 	MOVD R1, R19
 	ADD  $0x00000002, R19, R19
-	MOVD R1, R20
-	ADD  $0x00000003, R20, R20
-	MOVD R21, R2
+	MOVD R1, R21
+	ADD  $0x00000003, R21, R21
+	MOVD R22, R2
+	MOVD R21, R22
+	MOVD R2, R21
+	MOVD R21, R20
+	ADD  R20, R0, R0
+	MOVD R20, R2
 	MOVD $0x00000002, R3
 
-foldprop25_0_loop:
+foldprop25_2_loop:
 	ADD  R2, R0, R0
-	MOVD R0, R21
+	MOVD R0, R20
 	SUBS $0x00000001, R3, R3
-	BNE  foldprop25_0_loop
-	MOVD R20, R22
-	ADD  R22, R0, R0
-	MOVD R22, R2
-	MOVD R2, R22
-	ADD  R1, R22, R22
-	ADD  R2, R0, R0
-	TST  R19, R0
-	BEQ  foldprop25_3_skip
-	ADD  R1, R0, R0
+	BNE  foldprop25_2_loop
+	AND  $0x00000003, R19, R19
 
-foldprop25_3_skip:
-	AND $0x00000003, R19, R19
-
-foldprop25_4_loop:
+foldprop25_3_loop:
 	CMP $0x00000000, R19
-	BEQ foldprop25_4_done
+	BEQ foldprop25_3_done
 	ADD R19, R0, R0
 	ROR $61, R0, R0
 	SUB $0x00000001, R19, R19
-	JMP foldprop25_4_loop
+	JMP foldprop25_3_loop
 
-foldprop25_4_done:
-	AND $0x00000003, R20, R20
+foldprop25_3_done:
+	MOVD R19, R2
+	ADD  R2, R19, R19
+	ADD  R2, R0, R0
+	ADD  R1, R21, R21
+	CMP  R22, R1
+	BLO  foldprop25_6_skip
+	EOR  R1, R0, R0
 
-foldprop25_5_loop:
-	CMP $0x00000000, R20
-	BEQ foldprop25_5_done
-	ADD R20, R0, R0
-	ROR $61, R0, R0
-	SUB $0x00000001, R20, R20
-	JMP foldprop25_5_loop
-
-foldprop25_5_done:
-	AND $0x00000003, R21, R21
-
-foldprop25_6_loop:
-	CMP $0x00000000, R21
-	BEQ foldprop25_6_done
-	ADD R21, R0, R0
-	ROR $61, R0, R0
-	SUB $1, R21, R21
-	JMP foldprop25_6_loop
-
-foldprop25_6_done:
+foldprop25_6_skip:
+	MOVD R21, R1
 	MOVD $0x00000002, R2
 
 foldprop25_7_loop:
-	ADD  R20, R0, R0
-	MOVD R1, R3
-	ADD  R0, R3, R3
+	MOVD R0, R21
+	ADD  R2, R0, R0
 	SUBS $0x00000001, R2, R2
 	BNE  foldprop25_7_loop
-	MOVD R3, R20
-	ADD  R0, R19, R19
-	ROR  $57, R0, R0
+	ADD  R1, R0, R0
+	MOVD R19, R1
+	MOVD R0, R19
+	ADD  R1, R0, R0
+	MOVD R22, R1
+	UBFX $8, R1, $8, R2
+	ADD  R2, R0, R0
 	EOR  R1, R0, R0
 	MOVD R19, R1
 	MOVD $0x00000002, R2
 
 foldprop25_10_loop:
-	ADD  R1, R0, R0
 	MOVD R0, R19
-	SUBS $0x00000001, R2, R2
-	BNE  foldprop25_10_loop
-	MOVD R22, R1
-	MOVD $0x00000002, R2
-
-foldprop25_11_loop:
-	MOVD R0, R22
 	ADD  R2, R0, R0
 	SUBS $0x00000001, R2, R2
-	BNE  foldprop25_11_loop
+	BNE  foldprop25_10_loop
 	ADD  R1, R0, R0
-	ADD  R22, R0, R0
-	ADD  R21, R0, R0
-	ADD  R19, R0, R0
+	AND  $0x00000003, R20, R20
+
+foldprop25_11_loop:
+	CMP $0x00000000, R20
+	BEQ foldprop25_11_done
+	ADD R20, R0, R0
+	ROR $61, R0, R0
+	SUB $0x00000001, R20, R20
+	JMP foldprop25_11_loop
+
+foldprop25_11_done:
 	ADD  R20, R0, R0
+	ADD  R22, R0, R0
+	ADD  R19, R0, R0
+	ADD  R21, R0, R0
 	MOVD R0, ret+16(FP)
 	RET
 
@@ -5876,75 +5805,62 @@ TEXT ·FoldProp26(SB), NOSPLIT, $32-24
 	ADD  $0x00000002, R21, R21
 	MOVD R1, R22
 	ADD  $0x00000003, R22, R22
-	NEG  R21, R21
-	MVN  R22, R22
+	MOVD $-2147483646, R21
+	ADD  R21, R0, R0
+	CMP  R1, R0
+	BLO  foldprop26_1_skip
+	ADD  R1, R19, R19
+
+foldprop26_1_skip:
+	MOVD R20, R2
+	MOVD R0, R20
+	ADD  R2, R0, R0
+	MOVD R22, R2
+	ADD  R2, R22, R22
+	ADD  R2, R0, R0
+	ADD  R1, R20, R20
+	MOVD R21, R2
+	MOVD R0, R21
+	ADD  R2, R0, R0
+	MOVD R19, R2
+	MOVD R0, R19
+	ADD  R2, R0, R0
+	MOVD R19, R2
+	MOVD R2, R19
+	ADD  R1, R19, R19
+	ADD  R2, R0, R0
 	AND  $0x00000003, R19, R19
 
-foldprop26_1_loop:
+foldprop26_8_loop:
 	CMP $0x00000000, R19
-	BEQ foldprop26_1_done
+	BEQ foldprop26_8_done
 	ADD R19, R0, R0
 	ROR $61, R0, R0
 	SUB $0x00000001, R19, R19
-	JMP foldprop26_1_loop
+	JMP foldprop26_8_loop
 
-foldprop26_1_done:
+foldprop26_8_done:
 	MOVD R20, R2
-	MOVD R2, R20
-	ADD  R1, R20, R20
+	MOVD $0x00000002, R3
+
+foldprop26_9_loop:
+	MOVD R0, R20
+	ADD  R3, R0, R0
+	SUBS $0x00000001, R3, R3
+	BNE  foldprop26_9_loop
 	ADD  R2, R0, R0
-	MOVD R22, R3
-	ROR  $55, R3, R3
-	ADD  R22, R3, R3
-	EOR  R3, R0, R0
-	AND  $0x00000003, R20, R20
-
-foldprop26_4_loop:
-	CMP $0x00000000, R20
-	BEQ foldprop26_4_done
-	ADD R20, R0, R0
-	ROR $61, R0, R0
-	SUB $0x00000001, R20, R20
-	JMP foldprop26_4_loop
-
-foldprop26_4_done:
-	MOVD R21, R2
-	MOVD R20, R21
-	MOVD R2, R20
-	ADD  R0, R19, R19
+	MOVD R19, R2
+	MOVD R0, R19
+	ADD  R2, R0, R0
 	MOVD $0x00000002, R2
 
-foldprop26_7_loop:
-	ADD  R19, R0, R0
+foldprop26_11_loop:
+	ADD  R20, R0, R0
 	MOVD R1, R3
 	ADD  R0, R3, R3
 	SUBS $0x00000001, R2, R2
-	BNE  foldprop26_7_loop
-	MOVD R3, R19
-	MOVD R1, R2
-	CMP  R1, R0
-	BLO  foldprop26_8_skip
-	MOVD R19, R2
-
-foldprop26_8_skip:
-	ADD R2, R0, R0
-	ADD R0, R20, R20
-	AND $0x00000003, R19, R19
-
-foldprop26_10_loop:
-	CMP $0x00000000, R19
-	BEQ foldprop26_10_done
-	ADD R19, R0, R0
-	ROR $61, R0, R0
-	SUB $1, R19, R19
-	JMP foldprop26_10_loop
-
-foldprop26_10_done:
-	CMP R1, R0
-	BLO foldprop26_11_skip
-	ADD R1, R20, R20
-
-foldprop26_11_skip:
+	BNE  foldprop26_11_loop
+	MOVD R3, R20
 	ADD  R20, R0, R0
 	ADD  R19, R0, R0
 	ADD  R21, R0, R0
@@ -5956,95 +5872,76 @@ foldprop26_11_skip:
 TEXT ·FoldProp27(SB), NOSPLIT, $32-24
 	MOVD x+0(FP), R0
 	MOVD y+8(FP), R1
-	MOVD R1, R20
-	ADD  $0x00000000, R20, R20
 	MOVD R1, R19
-	ADD  $0x00000001, R19, R19
-	MOVD R1, R22
-	ADD  $0x00000002, R22, R22
+	ADD  $0x00000000, R19, R19
+	MOVD R1, R20
+	ADD  $0x00000001, R20, R20
 	MOVD R1, R21
-	ADD  $0x00000003, R21, R21
-	AND  $0x00000003, R19, R19
+	ADD  $0x00000002, R21, R21
+	MOVD R1, R22
+	ADD  $0x00000003, R22, R22
+	MOVD R20, R21
+	ADD  R20, R0, R0
+	MOVD R1, R2
+	CMP  R1, R0
+	BLO  foldprop27_1_skip
+	MOVD R20, R2
 
-foldprop27_0_loop:
-	CMP $0x00000000, R19
-	BEQ foldprop27_0_done
-	ADD R19, R0, R0
-	ROR $61, R0, R0
-	SUB $0x00000001, R19, R19
-	JMP foldprop27_0_loop
-
-foldprop27_0_done:
-	MOVD R19, R2
-	MOVD $0x00000002, R3
-
-foldprop27_1_loop:
-	MOVD R0, R19
-	ADD  R3, R0, R0
-	SUBS $0x00000001, R3, R3
-	BNE  foldprop27_1_loop
+foldprop27_1_skip:
 	ADD  R2, R0, R0
-	CMP  R20, R1
-	BLO  foldprop27_2_skip
+	MOVD R19, R2
+	MOVD R21, R19
+	MOVD R2, R21
+	CMP  R22, R1
+	BLO  foldprop27_3_skip
 	EOR  R1, R0, R0
 
-foldprop27_2_skip:
-	ADD R0, R21, R21
-	AND $0x00000003, R19, R19
+foldprop27_3_skip:
+	MOVD R20, R21
+	ADD  R20, R0, R0
+	MOVD R1, R2
+	CMP  R1, R0
+	BLO  foldprop27_5_skip
+	MOVD R20, R2
 
-foldprop27_4_loop:
-	CMP $0x00000000, R19
-	BEQ foldprop27_4_done
-	ADD R19, R0, R0
-	ROR $61, R0, R0
-	SUB $0x00000001, R19, R19
-	JMP foldprop27_4_loop
-
-foldprop27_4_done:
+foldprop27_5_skip:
+	ADD  R2, R0, R0
+	MOVD R19, R3
+	ROR  $55, R3, R3
+	ADD  R19, R3, R3
+	EOR  R3, R0, R0
+	MOVD R22, R19
+	ADD  R19, R0, R0
 	MOVD R19, R2
 	UBFX $8, R2, $8, R3
 	ADD  R3, R0, R0
 	EOR  R2, R0, R0
-	MOVD $0x00000002, R2
+	MOVD R19, R2
+	UBFX $8, R2, $8, R3
+	ADD  R3, R0, R0
+	EOR  R2, R0, R0
+	AND  $0x00000003, R19, R19
 
-foldprop27_6_loop:
-	ADD  R20, R0, R0
-	MOVD R1, R3
-	ADD  R0, R3, R3
-	SUBS $0x00000001, R2, R2
-	BNE  foldprop27_6_loop
-	MOVD R3, R20
-	TST  R21, R0
-	BEQ  foldprop27_7_skip
-	ADD  R1, R0, R0
-
-foldprop27_7_skip:
-	AND $0x00000003, R20, R20
-
-foldprop27_8_loop:
-	CMP $0x00000000, R20
-	BEQ foldprop27_8_done
-	ADD R20, R0, R0
+foldprop27_10_loop:
+	CMP $0x00000000, R19
+	BEQ foldprop27_10_done
+	ADD R19, R0, R0
 	ROR $61, R0, R0
-	SUB $1, R20, R20
-	JMP foldprop27_8_loop
+	SUB $0x00000001, R19, R19
+	JMP foldprop27_10_loop
 
-foldprop27_8_done:
-	MOVD R20, R2
-	LSL  $0x05, R2, R3
-	EOR  R3, R0, R0
-	ADD  R2, R0, R0
-	MOVD $-2147483648, R20
-	ADD  R20, R0, R0
-	CMP  R21, R1
+foldprop27_10_done:
+	MOVD R1, R2
+	CMP  R1, R0
 	BLO  foldprop27_11_skip
-	EOR  R1, R0, R0
+	MOVD R22, R2
 
 foldprop27_11_skip:
-	ADD  R20, R0, R0
+	ADD  R2, R0, R0
 	ADD  R19, R0, R0
-	ADD  R22, R0, R0
+	ADD  R20, R0, R0
 	ADD  R21, R0, R0
+	ADD  R22, R0, R0
 	MOVD R0, ret+16(FP)
 	RET
 
@@ -6052,82 +5949,68 @@ foldprop27_11_skip:
 TEXT ·FoldProp28(SB), NOSPLIT, $32-24
 	MOVD x+0(FP), R0
 	MOVD y+8(FP), R1
-	MOVD R1, R20
-	ADD  $0x00000000, R20, R20
-	MOVD R1, R19
-	ADD  $0x00000001, R19, R19
 	MOVD R1, R21
-	ADD  $0x00000002, R21, R21
+	ADD  $0x00000000, R21, R21
 	MOVD R1, R22
-	ADD  $0x00000003, R22, R22
-	MOVD R21, R2
-	MOVD R20, R21
-	MOVD R2, R20
-	MOVD R22, R2
-	MOVD R2, R22
-	ADD  R1, R22, R22
-	ADD  R2, R0, R0
-	MOVD R21, R2
-	MOVD $0x00000002, R3
-
-foldprop28_2_loop:
-	MOVD R0, R21
-	ADD  R3, R0, R0
-	SUBS $0x00000001, R3, R3
-	BNE  foldprop28_2_loop
-	ADD  R2, R0, R0
-	MOVD R22, R2
-	MOVD $0x00000002, R3
-
-foldprop28_3_loop:
-	ADD  R2, R0, R0
-	MOVD R0, R22
-	SUBS $0x00000001, R3, R3
-	BNE  foldprop28_3_loop
-	MOVD R21, R2
-	LSL  $0x05, R2, R3
-	EOR  R3, R0, R0
-	ADD  R2, R0, R0
+	ADD  $0x00000001, R22, R22
+	MOVD R1, R19
+	ADD  $0x00000002, R19, R19
+	MOVD R1, R20
+	ADD  $0x00000003, R20, R20
+	MOVD R1, R2
+	CMP  R1, R0
+	BLO  foldprop28_0_skip
 	MOVD R19, R2
-	MOVD $0x00000002, R3
 
-foldprop28_5_loop:
+foldprop28_0_skip:
 	ADD  R2, R0, R0
-	MOVD R0, R19
-	SUBS $0x00000001, R3, R3
-	BNE  foldprop28_5_loop
 	MOVD R20, R2
 	MOVD $0x00000002, R3
 
-foldprop28_6_loop:
+foldprop28_1_loop:
 	MOVD R0, R20
 	ADD  R3, R0, R0
 	SUBS $0x00000001, R3, R3
-	BNE  foldprop28_6_loop
+	BNE  foldprop28_1_loop
 	ADD  R2, R0, R0
-	ADD  R0, R19, R19
-	TST  R22, R0
-	BEQ  foldprop28_8_skip
-	ADD  R1, R0, R0
-
-foldprop28_8_skip:
-	AND $0x00000003, R19, R19
-
-foldprop28_9_loop:
-	CMP $0x00000000, R19
-	BEQ foldprop28_9_done
-	ADD R19, R0, R0
-	ROR $61, R0, R0
-	SUB $1, R19, R19
-	JMP foldprop28_9_loop
-
-foldprop28_9_done:
-	ADD  R1, R20, R20
-	MOVD R0, R21
-	ADD  R20, R0, R0
+	MOVD R19, R20
 	ADD  R19, R0, R0
+	MOVD R20, R21
+	ADD  R21, R0, R0
+	MOVD R19, R2
+	ADD  R2, R19, R19
+	ADD  R2, R0, R0
+	MOVD R22, R2
+	UBFX $8, R2, $8, R3
+	ADD  R3, R0, R0
+	EOR  R2, R0, R0
+	ADD  R1, R21, R21
+	MOVD R22, R3
+	ROR  $55, R3, R3
+	ADD  R22, R3, R3
+	EOR  R3, R0, R0
+	ADD  R1, R20, R20
+	ADD  R1, R22, R22
+	MOVD R21, R1
+	MOVD $0x00000002, R2
+
+foldprop28_10_loop:
+	ADD  R1, R0, R0
+	MOVD R0, R21
+	SUBS $0x00000001, R2, R2
+	BNE  foldprop28_10_loop
+	MOVD R19, R1
+	MOVD $0x00000002, R2
+
+foldprop28_11_loop:
+	ADD  R1, R0, R0
+	MOVD R0, R19
+	SUBS $0x00000001, R2, R2
+	BNE  foldprop28_11_loop
 	ADD  R21, R0, R0
 	ADD  R22, R0, R0
+	ADD  R19, R0, R0
+	ADD  R20, R0, R0
 	MOVD R0, ret+16(FP)
 	RET
 
@@ -6135,77 +6018,39 @@ foldprop28_9_done:
 TEXT ·FoldProp29(SB), NOSPLIT, $32-24
 	MOVD x+0(FP), R0
 	MOVD y+8(FP), R1
-	MOVD R1, R20
-	ADD  $0x00000000, R20, R20
-	MOVD R1, R22
-	ADD  $0x00000001, R22, R22
-	MOVD R1, R21
-	ADD  $0x00000002, R21, R21
-	MOVD R1, R19
-	ADD  $0x00000003, R19, R19
-	MOVD R21, R2
-	LSL  $0x05, R2, R3
-	EOR  R3, R0, R0
-	ADD  R2, R0, R0
-	MOVD $-2147483648, R20
-	ADD  R20, R0, R0
-	TST  R21, R0
-	BEQ  foldprop29_2_skip
-	ADD  R1, R0, R0
-
-foldprop29_2_skip:
-	MOVD R0, R19
-	ADD  R1, R19, R19
-	MOVD R19, R2
-	MOVD $0x00000002, R3
-
-foldprop29_5_loop:
-	ADD  R2, R0, R0
-	MOVD R0, R19
-	SUBS $0x00000001, R3, R3
-	BNE  foldprop29_5_loop
-	ADD  R0, R21, R21
-	TST  R19, R0
-	BEQ  foldprop29_7_skip
-	ADD  R1, R0, R0
-
-foldprop29_7_skip:
-	ADD R0, R22, R22
-	ROR $57, R0, R0
-	EOR R1, R0, R0
-	CMP R20, R1
-	BLO foldprop29_10_skip
-	EOR R1, R0, R0
-
-foldprop29_10_skip:
-	MOVD R20, R2
-	ROR  $55, R2, R2
-	ADD  R20, R2, R2
-	EOR  R2, R0, R0
-	ADD  R20, R0, R0
-	ADD  R22, R0, R0
-	ADD  R21, R0, R0
-	ADD  R19, R0, R0
-	MOVD R0, ret+16(FP)
-	RET
-
-// func FoldProp30(x uint64, y uint64) uint64
-TEXT ·FoldProp30(SB), NOSPLIT, $32-24
-	MOVD x+0(FP), R0
-	MOVD y+8(FP), R1
 	MOVD R1, R21
 	ADD  $0x00000000, R21, R21
-	MOVD R1, R19
-	ADD  $0x00000001, R19, R19
 	MOVD R1, R22
-	ADD  $0x00000002, R22, R22
+	ADD  $0x00000001, R22, R22
+	MOVD R1, R19
+	ADD  $0x00000002, R19, R19
 	MOVD R1, R20
 	ADD  $0x00000003, R20, R20
-	MOVD R19, R2
-	MOVD R2, R19
-	ADD  R1, R19, R19
+	AND  $0x00000003, R19, R19
+
+foldprop29_0_loop:
+	CMP $0x00000000, R19
+	BEQ foldprop29_0_done
+	ADD R19, R0, R0
+	ROR $61, R0, R0
+	SUB $0x00000001, R19, R19
+	JMP foldprop29_0_loop
+
+foldprop29_0_done:
+	MOVD R21, R2
+	ADD  R2, R21, R21
 	ADD  R2, R0, R0
-	ADD  R0, R19, R19
+	AND  $0x00000003, R19, R19
+
+foldprop29_2_loop:
+	CMP $0x00000000, R19
+	BEQ foldprop29_2_done
+	ADD R19, R0, R0
+	ROR $61, R0, R0
+	SUB $0x00000001, R19, R19
+	JMP foldprop29_2_loop
+
+foldprop29_2_done:
 	MOVD R20, R2
 	ADD  R2, R20, R20
 	ADD  R2, R0, R0
@@ -6213,303 +6058,138 @@ TEXT ·FoldProp30(SB), NOSPLIT, $32-24
 	UBFX $8, R2, $8, R3
 	ADD  R3, R0, R0
 	EOR  R2, R0, R0
-	MOVD R21, R2
-	LSL  $0x05, R2, R3
-	EOR  R3, R0, R0
-	ADD  R2, R0, R0
-	MOVD $-2147483646, R22
-	ADD  R22, R0, R0
-	TST  R20, R0
-	BEQ  foldprop30_6_skip
-	ADD  R1, R0, R0
+	MOVD R20, R2
+	MOVD $0x00000002, R3
 
-foldprop30_6_skip:
+foldprop29_5_loop:
+	MOVD R0, R20
+	ADD  R3, R0, R0
+	SUBS $0x00000001, R3, R3
+	BNE  foldprop29_5_loop
+	ADD  R2, R0, R0
 	MOVD R19, R2
-	ADD  R2, R19, R19
+	MOVD R2, R19
+	ADD  R1, R19, R19
 	ADD  R2, R0, R0
-	MOVD R0, R19
-	CMP  R1, R0
-	BLO  foldprop30_9_skip
-	ADD  R1, R20, R20
-
-foldprop30_9_skip:
-	ROR  $57, R0, R0
+	MOVD $-2147483645, R20
+	ADD  R20, R0, R0
+	CMP  R22, R1
+	BLO  foldprop29_8_skip
 	EOR  R1, R0, R0
-	MOVD R21, R2
-	ROR  $55, R2, R2
-	ADD  R21, R2, R2
+
+foldprop29_8_skip:
+	MOVD R20, R1
+	MOVD $0x00000002, R2
+
+foldprop29_9_loop:
+	MOVD R0, R20
+	ADD  R2, R0, R0
+	SUBS $0x00000001, R2, R2
+	BNE  foldprop29_9_loop
+	ADD  R1, R0, R0
+	MOVD R21, R1
+	LSL  $0x05, R1, R2
 	EOR  R2, R0, R0
+	ADD  R1, R0, R0
+	MOVD R21, R1
+	UBFX $8, R1, $8, R2
+	ADD  R2, R0, R0
+	EOR  R1, R0, R0
 	ADD  R21, R0, R0
+	ADD  R22, R0, R0
 	ADD  R19, R0, R0
+	ADD  R20, R0, R0
+	MOVD R0, ret+16(FP)
+	RET
+
+// func FoldProp30(x uint64, y uint64) uint64
+TEXT ·FoldProp30(SB), NOSPLIT, $32-24
+	MOVD x+0(FP), R0
+	MOVD y+8(FP), R1
+	MOVD R1, R22
+	ADD  $0x00000000, R22, R22
+	MOVD R1, R20
+	ADD  $0x00000001, R20, R20
+	MOVD R1, R19
+	ADD  $0x00000002, R19, R19
+	MOVD R1, R21
+	ADD  $0x00000003, R21, R21
+	MOVD R20, R2
+	MOVD $0x00000002, R3
+
+foldprop30_0_loop:
+	ADD  R2, R0, R0
+	MOVD R0, R20
+	SUBS $0x00000001, R3, R3
+	BNE  foldprop30_0_loop
+	ADD  R0, R20, R20
+	CMP  R21, R1
+	BLO  foldprop30_2_skip
+	EOR  R1, R0, R0
+
+foldprop30_2_skip:
+	MOVD R21, R2
+	MOVD $0x00000002, R3
+
+foldprop30_3_loop:
+	ADD  R2, R0, R0
+	MOVD R0, R21
+	SUBS $0x00000001, R3, R3
+	BNE  foldprop30_3_loop
+	ADD  R1, R22, R22
+	MOVD R1, R2
+	CMP  R1, R0
+	BLO  foldprop30_5_skip
+	MOVD R19, R2
+
+foldprop30_5_skip:
+	ADD  R2, R0, R0
+	MOVD R21, R3
+	ROR  $55, R3, R3
+	ADD  R21, R3, R3
+	EOR  R3, R0, R0
+	MOVD R20, R2
+	MOVD R2, R20
+	ADD  R1, R20, R20
+	ADD  R2, R0, R0
+	MOVD $0x00000002, R2
+
+foldprop30_8_loop:
+	ADD  R20, R0, R0
+	MOVD R1, R3
+	ADD  R0, R3, R3
+	SUBS $0x00000001, R2, R2
+	BNE  foldprop30_8_loop
+	MOVD R3, R20
+	MOVD R21, R2
+	UBFX $8, R2, $8, R3
+	ADD  R3, R0, R0
+	EOR  R2, R0, R0
+	AND  $0x00000003, R19, R19
+
+foldprop30_10_loop:
+	CMP $0x00000000, R19
+	BEQ foldprop30_10_done
+	ADD R19, R0, R0
+	ROR $61, R0, R0
+	SUB $0x00000001, R19, R19
+	JMP foldprop30_10_loop
+
+foldprop30_10_done:
+	CMP R22, R1
+	BLO foldprop30_11_skip
+	EOR R1, R0, R0
+
+foldprop30_11_skip:
 	ADD  R22, R0, R0
 	ADD  R20, R0, R0
+	ADD  R19, R0, R0
+	ADD  R21, R0, R0
 	MOVD R0, ret+16(FP)
 	RET
 
 // func FoldProp31(x uint64, y uint64) uint64
 TEXT ·FoldProp31(SB), NOSPLIT, $32-24
-	MOVD x+0(FP), R0
-	MOVD y+8(FP), R1
-	MOVD R1, R20
-	ADD  $0x00000000, R20, R20
-	MOVD R1, R22
-	ADD  $0x00000001, R22, R22
-	MOVD R1, R21
-	ADD  $0x00000002, R21, R21
-	MOVD R1, R19
-	ADD  $0x00000003, R19, R19
-	MOVD R21, R2
-	ADD  R2, R21, R21
-	ADD  R2, R0, R0
-	CMP  R1, R0
-	BLO  foldprop31_1_skip
-	ADD  R1, R19, R19
-
-foldprop31_1_skip:
-	MOVD R20, R2
-	MOVD $0x00000002, R3
-
-foldprop31_2_loop:
-	MOVD R0, R20
-	ADD  R3, R0, R0
-	SUBS $0x00000001, R3, R3
-	BNE  foldprop31_2_loop
-	ADD  R2, R0, R0
-	MOVD R1, R2
-	CMP  R1, R0
-	BLO  foldprop31_3_skip
-	MOVD R19, R2
-
-foldprop31_3_skip:
-	ADD  R2, R0, R0
-	ROR  $57, R0, R0
-	EOR  R1, R0, R0
-	NEG  R21, R21
-	MVN  R19, R19
-	MOVD R22, R21
-	ADD  R22, R0, R0
-	MOVD R19, R2
-	MOVD $0x00000002, R3
-
-foldprop31_7_loop:
-	MOVD R0, R19
-	ADD  R3, R0, R0
-	SUBS $0x00000001, R3, R3
-	BNE  foldprop31_7_loop
-	ADD  R2, R0, R0
-	MOVD R21, R19
-	ADD  R21, R0, R0
-	ADD  R0, R22, R22
-	ADD  R0, R21, R21
-	ADD  R1, R21, R21
-	ADD  R20, R0, R0
-	ADD  R22, R0, R0
-	ADD  R21, R0, R0
-	ADD  R19, R0, R0
-	MOVD R0, ret+16(FP)
-	RET
-
-// func FoldProp32(x uint64, y uint64) uint64
-TEXT ·FoldProp32(SB), NOSPLIT, $32-24
-	MOVD x+0(FP), R0
-	MOVD y+8(FP), R1
-	MOVD R1, R22
-	ADD  $0x00000000, R22, R22
-	MOVD R1, R19
-	ADD  $0x00000001, R19, R19
-	MOVD R1, R20
-	ADD  $0x00000002, R20, R20
-	MOVD R1, R21
-	ADD  $0x00000003, R21, R21
-	MOVD R19, R2
-	MOVD R21, R19
-	MOVD R2, R21
-	MOVD R0, R22
-	MOVD R0, R19
-	ADD  R1, R21, R21
-	MOVD R20, R2
-	UBFX $8, R2, $8, R3
-	ADD  R3, R0, R0
-	EOR  R2, R0, R0
-	MOVD R19, R2
-	LSL  $0x05, R2, R3
-	EOR  R3, R0, R0
-	ADD  R2, R0, R0
-	MOVD R20, R2
-	MOVD $0x00000002, R3
-
-foldprop32_6_loop:
-	MOVD R0, R20
-	ADD  R3, R0, R0
-	SUBS $0x00000001, R3, R3
-	BNE  foldprop32_6_loop
-	ADD  R2, R0, R0
-	AND  $0x00000003, R19, R19
-
-foldprop32_7_loop:
-	CMP $0x00000000, R19
-	BEQ foldprop32_7_done
-	ADD R19, R0, R0
-	ROR $61, R0, R0
-	SUB $0x00000001, R19, R19
-	JMP foldprop32_7_loop
-
-foldprop32_7_done:
-	TST R20, R0
-	BEQ foldprop32_8_skip
-	ADD R1, R0, R0
-
-foldprop32_8_skip:
-	MOVD R19, R1
-	MOVD $0x00000002, R2
-
-foldprop32_9_loop:
-	ADD  R1, R0, R0
-	MOVD R0, R19
-	SUBS $0x00000001, R2, R2
-	BNE  foldprop32_9_loop
-	MOVD R22, R19
-	ADD  R22, R0, R0
-	ADD  R0, R20, R20
-	ADD  R22, R0, R0
-	ADD  R19, R0, R0
-	ADD  R20, R0, R0
-	ADD  R21, R0, R0
-	MOVD R0, ret+16(FP)
-	RET
-
-// func FoldProp33(x uint64, y uint64) uint64
-TEXT ·FoldProp33(SB), NOSPLIT, $32-24
-	MOVD x+0(FP), R0
-	MOVD y+8(FP), R1
-	MOVD R1, R19
-	ADD  $0x00000000, R19, R19
-	MOVD R1, R21
-	ADD  $0x00000001, R21, R21
-	MOVD R1, R22
-	ADD  $0x00000002, R22, R22
-	MOVD R1, R20
-	ADD  $0x00000003, R20, R20
-	CMP  R1, R0
-	BLO  foldprop33_0_skip
-	ADD  R1, R20, R20
-
-foldprop33_0_skip:
-	MOVD $0x00000002, R2
-
-foldprop33_1_loop:
-	ADD  R19, R0, R0
-	MOVD R1, R3
-	ADD  R0, R3, R3
-	SUBS $0x00000001, R2, R2
-	BNE  foldprop33_1_loop
-	MOVD R3, R19
-	NEG  R21, R21
-	MVN  R22, R22
-	MOVD $-2147483645, R20
-	ADD  R20, R0, R0
-	MOVD R22, R20
-	ADD  R22, R0, R0
-	MOVD R19, R21
-	ADD  R19, R0, R0
-	AND  $0x00000003, R19, R19
-
-foldprop33_6_loop:
-	CMP $0x00000000, R19
-	BEQ foldprop33_6_done
-	ADD R19, R0, R0
-	ROR $61, R0, R0
-	SUB $0x00000001, R19, R19
-	JMP foldprop33_6_loop
-
-foldprop33_6_done:
-	CMP R1, R0
-	BLO foldprop33_7_skip
-	ADD R1, R20, R20
-
-foldprop33_7_skip:
-	MOVD R21, R2
-	ADD  R2, R21, R21
-	ADD  R2, R0, R0
-	MOVD R22, R2
-	MOVD R0, R22
-	ADD  R2, R0, R0
-	ADD  R1, R21, R21
-	MOVD R20, R1
-	ADD  R1, R20, R20
-	ADD  R1, R0, R0
-	ADD  R19, R0, R0
-	ADD  R21, R0, R0
-	ADD  R22, R0, R0
-	ADD  R20, R0, R0
-	MOVD R0, ret+16(FP)
-	RET
-
-// func FoldProp34(x uint64, y uint64) uint64
-TEXT ·FoldProp34(SB), NOSPLIT, $32-24
-	MOVD x+0(FP), R0
-	MOVD y+8(FP), R1
-	MOVD R1, R22
-	ADD  $0x00000000, R22, R22
-	MOVD R1, R21
-	ADD  $0x00000001, R21, R21
-	MOVD R1, R20
-	ADD  $0x00000002, R20, R20
-	MOVD R1, R19
-	ADD  $0x00000003, R19, R19
-	ADD  R0, R20, R20
-	MOVD R20, R2
-	MOVD R22, R20
-	MOVD R2, R22
-	ROR  $57, R0, R0
-	EOR  R1, R0, R0
-	AND  $0x00000003, R19, R19
-
-foldprop34_3_loop:
-	CMP $0x00000000, R19
-	BEQ foldprop34_3_done
-	ADD R19, R0, R0
-	ROR $61, R0, R0
-	SUB $1, R19, R19
-	JMP foldprop34_3_loop
-
-foldprop34_3_done:
-	NEG R19, R19
-	MVN R22, R22
-	CMP R1, R0
-	BLO foldprop34_5_skip
-	ADD R1, R20, R20
-
-foldprop34_5_skip:
-	CMP R1, R0
-	BLO foldprop34_6_skip
-	ADD R1, R21, R21
-
-foldprop34_6_skip:
-	MOVD R21, R20
-	ADD  R21, R0, R0
-	ROR  $57, R0, R0
-	EOR  R1, R0, R0
-	TST  R21, R0
-	BEQ  foldprop34_9_skip
-	ADD  R1, R0, R0
-
-foldprop34_9_skip:
-	CMP R1, R0
-	BLO foldprop34_10_skip
-	ADD R1, R20, R20
-
-foldprop34_10_skip:
-	MOVD R0, R19
-	ADD  R22, R0, R0
-	ADD  R21, R0, R0
-	ADD  R20, R0, R0
-	ADD  R19, R0, R0
-	MOVD R0, ret+16(FP)
-	RET
-
-// func FoldProp35(x uint64, y uint64) uint64
-TEXT ·FoldProp35(SB), NOSPLIT, $32-24
 	MOVD x+0(FP), R0
 	MOVD y+8(FP), R1
 	MOVD R1, R22
@@ -6520,55 +6200,53 @@ TEXT ·FoldProp35(SB), NOSPLIT, $32-24
 	ADD  $0x00000002, R19, R19
 	MOVD R1, R20
 	ADD  $0x00000003, R20, R20
-	MOVD R22, R3
-	ROR  $55, R3, R3
-	ADD  R22, R3, R3
-	EOR  R3, R0, R0
-	CMP  R20, R1
-	BLO  foldprop35_1_skip
+	MOVD R19, R20
+	ADD  R19, R0, R0
+	ROR  $57, R0, R0
 	EOR  R1, R0, R0
-
-foldprop35_1_skip:
-	CMP R22, R1
-	BLO foldprop35_2_skip
-	EOR R1, R0, R0
-
-foldprop35_2_skip:
+	MOVD R22, R2
+	ADD  R2, R22, R22
+	ADD  R2, R0, R0
 	MOVD R20, R2
-	MOVD R21, R20
-	MOVD R2, R21
-	ADD  R1, R21, R21
-	AND  $0x00000003, R19, R19
+	MOVD $0x00000002, R3
 
-foldprop35_5_loop:
-	CMP $0x00000000, R19
-	BEQ foldprop35_5_done
-	ADD R19, R0, R0
-	ROR $61, R0, R0
-	SUB $0x00000001, R19, R19
-	JMP foldprop35_5_loop
-
-foldprop35_5_done:
-	ADD  R1, R22, R22
-	ADD  R0, R20, R20
-	MOVD $-2147483647, R21
-	ADD  R21, R0, R0
+foldprop31_3_loop:
+	ADD  R2, R0, R0
+	MOVD R0, R20
+	SUBS $0x00000001, R3, R3
+	BNE  foldprop31_3_loop
+	MOVD R21, R2
+	UBFX $8, R2, $8, R3
+	ADD  R3, R0, R0
+	EOR  R2, R0, R0
+	ADD  R1, R19, R19
 	CMP  R1, R0
-	BLO  foldprop35_9_skip
+	BLO  foldprop31_6_skip
 	ADD  R1, R21, R21
 
-foldprop35_9_skip:
-	MOVD $-2147483647, R21
-	ADD  R21, R0, R0
-	MOVD R20, R1
+foldprop31_6_skip:
+	CMP R1, R0
+	BLO foldprop31_7_skip
+	ADD R1, R20, R20
+
+foldprop31_7_skip:
+	CMP R1, R0
+	BLO foldprop31_8_skip
+	ADD R1, R19, R19
+
+foldprop31_8_skip:
+	ROR  $57, R0, R0
+	EOR  R1, R0, R0
 	MOVD $0x00000002, R2
 
-foldprop35_11_loop:
-	MOVD R0, R20
-	ADD  R2, R0, R0
+foldprop31_10_loop:
+	ADD  R19, R0, R0
+	MOVD R1, R3
+	ADD  R0, R3, R3
 	SUBS $0x00000001, R2, R2
-	BNE  foldprop35_11_loop
-	ADD  R1, R0, R0
+	BNE  foldprop31_10_loop
+	MOVD R3, R19
+	MOVD R0, R19
 	ADD  R22, R0, R0
 	ADD  R21, R0, R0
 	ADD  R19, R0, R0
@@ -6576,8 +6254,8 @@ foldprop35_11_loop:
 	MOVD R0, ret+16(FP)
 	RET
 
-// func FoldProp36(x uint64, y uint64) uint64
-TEXT ·FoldProp36(SB), NOSPLIT, $32-24
+// func FoldProp32(x uint64, y uint64) uint64
+TEXT ·FoldProp32(SB), NOSPLIT, $32-24
 	MOVD x+0(FP), R0
 	MOVD y+8(FP), R1
 	MOVD R1, R19
@@ -6588,60 +6266,332 @@ TEXT ·FoldProp36(SB), NOSPLIT, $32-24
 	ADD  $0x00000002, R21, R21
 	MOVD R1, R22
 	ADD  $0x00000003, R22, R22
-	CMP  R1, R0
-	BLO  foldprop36_0_skip
-	ADD  R1, R20, R20
-
-foldprop36_0_skip:
-	MOVD R0, R19
-	MOVD R19, R2
-	LSL  $0x05, R2, R3
-	EOR  R3, R0, R0
-	ADD  R2, R0, R0
-	MOVD R22, R3
-	ROR  $55, R3, R3
-	ADD  R22, R3, R3
-	EOR  R3, R0, R0
 	MOVD R20, R21
 	ADD  R20, R0, R0
-	MOVD R19, R2
-	MOVD R21, R19
-	MOVD R2, R21
-	MOVD $0x00000002, R2
+	AND  $0x00000003, R19, R19
 
-foldprop36_6_loop:
-	ADD  R19, R0, R0
-	MOVD R1, R3
-	ADD  R0, R3, R3
-	SUBS $0x00000001, R2, R2
-	BNE  foldprop36_6_loop
-	MOVD R3, R19
-	MOVD R20, R2
-	MOVD $0x00000002, R3
+foldprop32_1_loop:
+	CMP $0x00000000, R19
+	BEQ foldprop32_1_done
+	ADD R19, R0, R0
+	ROR $61, R0, R0
+	SUB $1, R19, R19
+	JMP foldprop32_1_loop
 
-foldprop36_7_loop:
+foldprop32_1_done:
+	CMP R1, R0
+	BLO foldprop32_2_skip
+	ADD R1, R20, R20
+
+foldprop32_2_skip:
+	MOVD R22, R2
+	MOVD R2, R22
+	ADD  R1, R22, R22
 	ADD  R2, R0, R0
-	MOVD R0, R20
-	SUBS $0x00000001, R3, R3
-	BNE  foldprop36_7_loop
-	MOVD R19, R2
-	LSL  $0x05, R2, R3
-	EOR  R3, R0, R0
-	ADD  R2, R0, R0
+	MOVD R21, R2
+	MOVD R19, R21
+	MOVD R2, R19
+	ADD  R1, R20, R20
+	CMP  R1, R0
+	BLO  foldprop32_6_skip
+	ADD  R1, R21, R21
+
+foldprop32_6_skip:
+	ADD  R0, R20, R20
 	ROR  $57, R0, R0
 	EOR  R1, R0, R0
-	MOVD R19, R2
-	ROR  $55, R2, R2
-	ADD  R19, R2, R2
-	EOR  R2, R0, R0
+	MOVD R20, R1
+	MOVD R22, R20
+	MOVD R1, R22
+	ADD  R0, R19, R19
 	MOVD R21, R1
-	UBFX $8, R1, $8, R2
-	ADD  R2, R0, R0
-	EOR  R1, R0, R0
+	LSL  $0x05, R1, R2
+	EOR  R2, R0, R0
+	ADD  R1, R0, R0
 	ADD  R19, R0, R0
 	ADD  R20, R0, R0
 	ADD  R21, R0, R0
 	ADD  R22, R0, R0
+	MOVD R0, ret+16(FP)
+	RET
+
+// func FoldProp33(x uint64, y uint64) uint64
+TEXT ·FoldProp33(SB), NOSPLIT, $32-24
+	MOVD x+0(FP), R0
+	MOVD y+8(FP), R1
+	MOVD R1, R21
+	ADD  $0x00000000, R21, R21
+	MOVD R1, R20
+	ADD  $0x00000001, R20, R20
+	MOVD R1, R22
+	ADD  $0x00000002, R22, R22
+	MOVD R1, R19
+	ADD  $0x00000003, R19, R19
+	MOVD R19, R2
+	MOVD $0x00000002, R3
+
+foldprop33_0_loop:
+	ADD  R2, R0, R0
+	MOVD R0, R19
+	SUBS $0x00000001, R3, R3
+	BNE  foldprop33_0_loop
+	ADD  R1, R21, R21
+	MOVD R0, R20
+	MOVD R19, R2
+	ADD  R2, R19, R19
+	ADD  R2, R0, R0
+	MOVD R22, R2
+	MOVD R21, R22
+	MOVD R2, R21
+	MOVD R1, R2
+	CMP  R1, R0
+	BLO  foldprop33_5_skip
+	MOVD R21, R2
+
+foldprop33_5_skip:
+	ADD  R2, R0, R0
+	MOVD R1, R2
+	CMP  R1, R0
+	BLO  foldprop33_6_skip
+	MOVD R21, R2
+
+foldprop33_6_skip:
+	ADD  R2, R0, R0
+	MOVD R19, R2
+	MOVD $0x00000002, R3
+
+foldprop33_7_loop:
+	ADD  R2, R0, R0
+	MOVD R0, R19
+	SUBS $0x00000001, R3, R3
+	BNE  foldprop33_7_loop
+	CMP  R1, R0
+	BLO  foldprop33_8_skip
+	ADD  R1, R20, R20
+
+foldprop33_8_skip:
+	MOVD R22, R19
+	ADD  R22, R0, R0
+	MOVD R20, R1
+	MOVD $0x00000002, R2
+
+foldprop33_10_loop:
+	ADD  R1, R0, R0
+	MOVD R0, R20
+	SUBS $0x00000001, R2, R2
+	BNE  foldprop33_10_loop
+	MOVD R19, R1
+	LSL  $0x05, R1, R2
+	EOR  R2, R0, R0
+	ADD  R1, R0, R0
+	ADD  R21, R0, R0
+	ADD  R20, R0, R0
+	ADD  R22, R0, R0
+	ADD  R19, R0, R0
+	MOVD R0, ret+16(FP)
+	RET
+
+// func FoldProp34(x uint64, y uint64) uint64
+TEXT ·FoldProp34(SB), NOSPLIT, $32-24
+	MOVD x+0(FP), R0
+	MOVD y+8(FP), R1
+	MOVD R1, R22
+	ADD  $0x00000000, R22, R22
+	MOVD R1, R20
+	ADD  $0x00000001, R20, R20
+	MOVD R1, R19
+	ADD  $0x00000002, R19, R19
+	MOVD R1, R21
+	ADD  $0x00000003, R21, R21
+	ADD  R0, R19, R19
+	MOVD R1, R2
+	CMP  R1, R0
+	BLO  foldprop34_1_skip
+	MOVD R19, R2
+
+foldprop34_1_skip:
+	ADD  R2, R0, R0
+	MOVD R0, R19
+	MOVD R0, R21
+	MOVD R21, R22
+	ADD  R22, R0, R0
+	MOVD R19, R2
+	MOVD R0, R19
+	ADD  R2, R0, R0
+	MOVD R20, R2
+	UBFX $8, R2, $8, R3
+	ADD  R3, R0, R0
+	EOR  R2, R0, R0
+	MOVD $-2147483647, R20
+	ADD  R20, R0, R0
+	AND  $0x00000003, R19, R19
+
+foldprop34_8_loop:
+	CMP $0x00000000, R19
+	BEQ foldprop34_8_done
+	ADD R19, R0, R0
+	ROR $61, R0, R0
+	SUB $1, R19, R19
+	JMP foldprop34_8_loop
+
+foldprop34_8_done:
+	ADD  R0, R20, R20
+	ADD  R1, R19, R19
+	MOVD R21, R1
+	MOVD R20, R21
+	MOVD R1, R20
+	ADD  R22, R0, R0
+	ADD  R20, R0, R0
+	ADD  R19, R0, R0
+	ADD  R21, R0, R0
+	MOVD R0, ret+16(FP)
+	RET
+
+// func FoldProp35(x uint64, y uint64) uint64
+TEXT ·FoldProp35(SB), NOSPLIT, $32-24
+	MOVD x+0(FP), R0
+	MOVD y+8(FP), R1
+	MOVD R1, R20
+	ADD  $0x00000000, R20, R20
+	MOVD R1, R19
+	ADD  $0x00000001, R19, R19
+	MOVD R1, R22
+	ADD  $0x00000002, R22, R22
+	MOVD R1, R21
+	ADD  $0x00000003, R21, R21
+	ADD  R1, R20, R20
+	MOVD R21, R2
+	ADD  R2, R21, R21
+	ADD  R2, R0, R0
+	ADD  R1, R20, R20
+	MOVD R0, R21
+	MOVD R19, R2
+	MOVD $0x00000002, R3
+
+foldprop35_4_loop:
+	ADD  R2, R0, R0
+	MOVD R0, R19
+	SUBS $0x00000001, R3, R3
+	BNE  foldprop35_4_loop
+	MOVD R22, R2
+	MOVD R2, R22
+	ADD  R1, R22, R22
+	ADD  R2, R0, R0
+	ADD  R0, R20, R20
+	MOVD R21, R2
+	UBFX $8, R2, $8, R3
+	ADD  R3, R0, R0
+	EOR  R2, R0, R0
+	MOVD R19, R2
+	ADD  R2, R19, R19
+	ADD  R2, R0, R0
+	MOVD R19, R2
+	LSL  $0x05, R2, R3
+	EOR  R3, R0, R0
+	ADD  R2, R0, R0
+	ADD  R0, R19, R19
+	ROR  $57, R0, R0
+	EOR  R1, R0, R0
+	ADD  R20, R0, R0
+	ADD  R19, R0, R0
+	ADD  R22, R0, R0
+	ADD  R21, R0, R0
+	MOVD R0, ret+16(FP)
+	RET
+
+// func FoldProp36(x uint64, y uint64) uint64
+TEXT ·FoldProp36(SB), NOSPLIT, $32-24
+	MOVD x+0(FP), R0
+	MOVD y+8(FP), R1
+	MOVD R1, R19
+	ADD  $0x00000000, R19, R19
+	MOVD R1, R22
+	ADD  $0x00000001, R22, R22
+	MOVD R1, R20
+	ADD  $0x00000002, R20, R20
+	MOVD R1, R21
+	ADD  $0x00000003, R21, R21
+	MOVD $-2147483647, R22
+	ADD  R22, R0, R0
+	AND  $0x00000003, R19, R19
+
+foldprop36_1_loop:
+	CMP $0x00000000, R19
+	BEQ foldprop36_1_done
+	ADD R19, R0, R0
+	ROR $61, R0, R0
+	SUB $0x00000001, R19, R19
+	JMP foldprop36_1_loop
+
+foldprop36_1_done:
+	MOVD R19, R2
+	LSL  $0x05, R2, R3
+	EOR  R3, R0, R0
+	ADD  R2, R0, R0
+	MOVD R21, R2
+	LSL  $0x05, R2, R3
+	EOR  R3, R0, R0
+	ADD  R2, R0, R0
+	MOVD R22, R2
+	LSL  $0x05, R2, R3
+	EOR  R3, R0, R0
+	ADD  R2, R0, R0
+	AND  $0x00000003, R19, R19
+
+foldprop36_5_loop:
+	CMP $0x00000000, R19
+	BEQ foldprop36_5_done
+	ADD R19, R0, R0
+	ROR $61, R0, R0
+	SUB $1, R19, R19
+	JMP foldprop36_5_loop
+
+foldprop36_5_done:
+	AND $0x00000003, R19, R19
+
+foldprop36_6_loop:
+	CMP $0x00000000, R19
+	BEQ foldprop36_6_done
+	ADD R19, R0, R0
+	ROR $61, R0, R0
+	SUB $1, R19, R19
+	JMP foldprop36_6_loop
+
+foldprop36_6_done:
+	MOVD R0, R22
+	MOVD R1, R2
+	CMP  R1, R0
+	BLO  foldprop36_8_skip
+	MOVD R19, R2
+
+foldprop36_8_skip:
+	ADD  R2, R0, R0
+	MOVD R21, R1
+	MOVD $0x00000002, R2
+
+foldprop36_9_loop:
+	MOVD R0, R21
+	ADD  R2, R0, R0
+	SUBS $0x00000001, R2, R2
+	BNE  foldprop36_9_loop
+	ADD  R1, R0, R0
+	MOVD R19, R22
+	ADD  R19, R0, R0
+	AND  $0x00000003, R20, R20
+
+foldprop36_11_loop:
+	CMP $0x00000000, R20
+	BEQ foldprop36_11_done
+	ADD R20, R0, R0
+	ROR $61, R0, R0
+	SUB $0x00000001, R20, R20
+	JMP foldprop36_11_loop
+
+foldprop36_11_done:
+	ADD  R19, R0, R0
+	ADD  R22, R0, R0
+	ADD  R20, R0, R0
+	ADD  R21, R0, R0
 	MOVD R0, ret+16(FP)
 	RET
 
@@ -6657,49 +6607,53 @@ TEXT ·FoldProp37(SB), NOSPLIT, $32-24
 	ADD  $0x00000002, R21, R21
 	MOVD R1, R20
 	ADD  $0x00000003, R20, R20
-	AND  $0x00000003, R19, R19
+	MOVD R0, R19
+	MOVD R21, R3
+	ROR  $55, R3, R3
+	ADD  R21, R3, R3
+	EOR  R3, R0, R0
+	MOVD R0, R19
+	MOVD R1, R2
+	CMP  R1, R0
+	BLO  foldprop37_3_skip
+	MOVD R20, R2
 
-foldprop37_0_loop:
+foldprop37_3_skip:
+	ADD  R2, R0, R0
+	MOVD R21, R2
+	MOVD R19, R21
+	MOVD R2, R19
+	MOVD R0, R20
+	AND  $0x00000003, R20, R20
+
+foldprop37_6_loop:
+	CMP $0x00000000, R20
+	BEQ foldprop37_6_done
+	ADD R20, R0, R0
+	ROR $61, R0, R0
+	SUB $1, R20, R20
+	JMP foldprop37_6_loop
+
+foldprop37_6_done:
+	ROR $57, R0, R0
+	EOR R1, R0, R0
+	AND $0x00000003, R19, R19
+
+foldprop37_8_loop:
 	CMP $0x00000000, R19
-	BEQ foldprop37_0_done
+	BEQ foldprop37_8_done
 	ADD R19, R0, R0
 	ROR $61, R0, R0
 	SUB $1, R19, R19
-	JMP foldprop37_0_loop
+	JMP foldprop37_8_loop
 
-foldprop37_0_done:
-	MOVD R21, R2
-	ADD  R2, R21, R21
-	ADD  R2, R0, R0
-	MOVD R19, R22
-	ADD  R19, R0, R0
-	MOVD R20, R19
-	ADD  R19, R0, R0
-	ADD  R0, R21, R21
-	MOVD R0, R20
-	MOVD R20, R2
-	MOVD R2, R20
-	ADD  R1, R20, R20
-	ADD  R2, R0, R0
-	CMP  R20, R1
-	BLO  foldprop37_7_skip
-	EOR  R1, R0, R0
-
-foldprop37_7_skip:
-	TST R19, R0
-	BEQ foldprop37_8_skip
-	ADD R1, R0, R0
-
-foldprop37_8_skip:
+foldprop37_8_done:
 	MOVD R19, R2
-	UBFX $8, R2, $8, R3
-	ADD  R3, R0, R0
-	EOR  R2, R0, R0
-	CMP  R19, R1
-	BLO  foldprop37_10_skip
+	MOVD R2, R19
+	ADD  R1, R19, R19
+	ADD  R2, R0, R0
+	ROR  $57, R0, R0
 	EOR  R1, R0, R0
-
-foldprop37_10_skip:
 	MOVD R20, R1
 	UBFX $8, R1, $8, R2
 	ADD  R2, R0, R0
@@ -6715,74 +6669,68 @@ foldprop37_10_skip:
 TEXT ·FoldProp38(SB), NOSPLIT, $32-24
 	MOVD x+0(FP), R0
 	MOVD y+8(FP), R1
-	MOVD R1, R22
-	ADD  $0x00000000, R22, R22
 	MOVD R1, R19
-	ADD  $0x00000001, R19, R19
-	MOVD R1, R20
-	ADD  $0x00000002, R20, R20
+	ADD  $0x00000000, R19, R19
 	MOVD R1, R21
-	ADD  $0x00000003, R21, R21
-	MOVD R19, R2
-	MOVD R21, R19
-	MOVD R2, R21
-	NEG  R21, R21
-	MVN  R22, R22
-	CMP  R20, R1
-	BLO  foldprop38_2_skip
-	EOR  R1, R0, R0
-
-foldprop38_2_skip:
-	CMP R1, R0
-	BLO foldprop38_3_skip
-	ADD R1, R22, R22
-
-foldprop38_3_skip:
-	MOVD R22, R2
-	UBFX $8, R2, $8, R3
-	ADD  R3, R0, R0
-	EOR  R2, R0, R0
-	MOVD R21, R2
-	UBFX $8, R2, $8, R3
-	ADD  R3, R0, R0
-	EOR  R2, R0, R0
-	CMP  R1, R0
-	BLO  foldprop38_6_skip
-	ADD  R1, R21, R21
-
-foldprop38_6_skip:
-	MOVD R19, R2
+	ADD  $0x00000001, R21, R21
+	MOVD R1, R22
+	ADD  $0x00000002, R22, R22
+	MOVD R1, R20
+	ADD  $0x00000003, R20, R20
+	MOVD R0, R21
+	MOVD R20, R2
 	MOVD $0x00000002, R3
 
-foldprop38_7_loop:
-	MOVD R0, R19
+foldprop38_1_loop:
+	MOVD R0, R20
 	ADD  R3, R0, R0
 	SUBS $0x00000001, R3, R3
-	BNE  foldprop38_7_loop
+	BNE  foldprop38_1_loop
 	ADD  R2, R0, R0
+	MOVD R22, R2
+	MOVD R19, R22
+	MOVD R2, R19
 	MOVD R19, R2
-	LSL  $0x05, R2, R3
-	EOR  R3, R0, R0
+	ADD  R2, R19, R19
 	ADD  R2, R0, R0
-	MOVD R21, R2
-	UBFX $8, R2, $8, R3
-	ADD  R3, R0, R0
-	EOR  R2, R0, R0
-	NEG  R22, R22
-	MVN  R19, R19
 	MOVD $0x00000002, R2
 
-foldprop38_11_loop:
-	ADD  R20, R0, R0
+foldprop38_4_loop:
+	ADD  R19, R0, R0
 	MOVD R1, R3
 	ADD  R0, R3, R3
 	SUBS $0x00000001, R2, R2
-	BNE  foldprop38_11_loop
-	MOVD R3, R20
-	ADD  R22, R0, R0
+	BNE  foldprop38_4_loop
+	MOVD R3, R19
+	MOVD R20, R19
 	ADD  R19, R0, R0
+	MOVD R20, R2
+	ADD  R2, R20, R20
+	ADD  R2, R0, R0
+	MOVD R21, R2
+	MOVD R20, R21
+	MOVD R2, R20
+	MOVD R21, R2
+	MOVD R2, R21
+	ADD  R1, R21, R21
+	ADD  R2, R0, R0
+	MOVD $-2147483645, R20
 	ADD  R20, R0, R0
+	MOVD R19, R3
+	ROR  $55, R3, R3
+	ADD  R19, R3, R3
+	EOR  R3, R0, R0
+	MOVD R1, R2
+	CMP  R1, R0
+	BLO  foldprop38_11_skip
+	MOVD R22, R2
+
+foldprop38_11_skip:
+	ADD  R2, R0, R0
+	ADD  R19, R0, R0
 	ADD  R21, R0, R0
+	ADD  R22, R0, R0
+	ADD  R20, R0, R0
 	MOVD R0, ret+16(FP)
 	RET
 
@@ -6790,75 +6738,55 @@ foldprop38_11_loop:
 TEXT ·FoldProp39(SB), NOSPLIT, $32-24
 	MOVD x+0(FP), R0
 	MOVD y+8(FP), R1
-	MOVD R1, R22
-	ADD  $0x00000000, R22, R22
 	MOVD R1, R21
-	ADD  $0x00000001, R21, R21
+	ADD  $0x00000000, R21, R21
+	MOVD R1, R22
+	ADD  $0x00000001, R22, R22
 	MOVD R1, R20
 	ADD  $0x00000002, R20, R20
 	MOVD R1, R19
 	ADD  $0x00000003, R19, R19
 	MOVD R19, R2
-	MOVD R21, R19
-	MOVD R2, R21
-	MOVD R0, R22
-	MOVD R19, R2
-	MOVD $0x00000002, R3
-
-foldprop39_2_loop:
-	ADD  R2, R0, R0
 	MOVD R0, R19
-	SUBS $0x00000001, R3, R3
-	BNE  foldprop39_2_loop
-	MOVD R19, R2
-	LSL  $0x05, R2, R3
-	EOR  R3, R0, R0
 	ADD  R2, R0, R0
-	MOVD $-2147483646, R20
-	ADD  R20, R0, R0
-	CMP  R20, R1
-	BLO  foldprop39_5_skip
+	MOVD R21, R3
+	ROR  $55, R3, R3
+	ADD  R21, R3, R3
+	EOR  R3, R0, R0
+	CMP  R19, R1
+	BLO  foldprop39_2_skip
 	EOR  R1, R0, R0
 
-foldprop39_5_skip:
-	MOVD $0x00000002, R2
-
-foldprop39_6_loop:
-	ADD  R20, R0, R0
-	MOVD R1, R3
-	ADD  R0, R3, R3
-	SUBS $0x00000001, R2, R2
-	BNE  foldprop39_6_loop
-	MOVD R3, R20
-	MOVD $0x00000002, R2
-
-foldprop39_7_loop:
-	ADD  R19, R0, R0
-	MOVD R1, R3
-	ADD  R0, R3, R3
-	SUBS $0x00000001, R2, R2
-	BNE  foldprop39_7_loop
-	MOVD R3, R19
+foldprop39_2_skip:
+	MOVD R19, R3
+	ROR  $55, R3, R3
+	ADD  R19, R3, R3
+	EOR  R3, R0, R0
+	MOVD R1, R2
+	CMP  R1, R0
+	BLO  foldprop39_4_skip
 	MOVD R20, R2
+
+foldprop39_4_skip:
+	ADD  R2, R0, R0
+	ADD  R0, R20, R20
+	MOVD R20, R2
+	MOVD R2, R20
+	ADD  R1, R20, R20
+	ADD  R2, R0, R0
+	MOVD R0, R19
+	ADD  R0, R20, R20
+	MOVD R22, R2
 	LSL  $0x05, R2, R3
 	EOR  R3, R0, R0
 	ADD  R2, R0, R0
-	MOVD R21, R2
-	ADD  R2, R21, R21
+	ADD  R0, R19, R19
+	MOVD R19, R2
+	MOVD R2, R19
+	ADD  R1, R19, R19
 	ADD  R2, R0, R0
-	MOVD R19, R22
-	ADD  R22, R0, R0
-	MOVD $0x00000002, R2
-
-foldprop39_11_loop:
-	ADD  R19, R0, R0
-	MOVD R1, R3
-	ADD  R0, R3, R3
-	SUBS $0x00000001, R2, R2
-	BNE  foldprop39_11_loop
-	MOVD R3, R19
-	ADD  R22, R0, R0
 	ADD  R21, R0, R0
+	ADD  R22, R0, R0
 	ADD  R20, R0, R0
 	ADD  R19, R0, R0
 	MOVD R0, ret+16(FP)
@@ -6868,82 +6796,81 @@ foldprop39_11_loop:
 TEXT ·FoldProp40(SB), NOSPLIT, $32-24
 	MOVD x+0(FP), R0
 	MOVD y+8(FP), R1
-	MOVD R1, R21
-	ADD  $0x00000000, R21, R21
-	MOVD R1, R20
-	ADD  $0x00000001, R20, R20
-	MOVD R1, R22
-	ADD  $0x00000002, R22, R22
 	MOVD R1, R19
-	ADD  $0x00000003, R19, R19
-	MOVD $0x00000002, R2
+	ADD  $0x00000000, R19, R19
+	MOVD R1, R22
+	ADD  $0x00000001, R22, R22
+	MOVD R1, R21
+	ADD  $0x00000002, R21, R21
+	MOVD R1, R20
+	ADD  $0x00000003, R20, R20
+	MOVD R19, R2
+	UBFX $8, R2, $8, R3
+	ADD  R3, R0, R0
+	EOR  R2, R0, R0
+	MOVD R21, R2
+	MOVD R19, R21
+	MOVD R2, R19
+	MOVD R20, R2
+	MOVD $0x00000002, R3
 
-foldprop40_0_loop:
-	ADD  R21, R0, R0
-	MOVD R1, R3
-	ADD  R0, R3, R3
-	SUBS $0x00000001, R2, R2
-	BNE  foldprop40_0_loop
-	MOVD R3, R21
+foldprop40_2_loop:
+	MOVD R0, R20
+	ADD  R3, R0, R0
+	SUBS $0x00000001, R3, R3
+	BNE  foldprop40_2_loop
+	ADD  R2, R0, R0
+	AND  $0x00000003, R19, R19
+
+foldprop40_3_loop:
+	CMP $0x00000000, R19
+	BEQ foldprop40_3_done
+	ADD R19, R0, R0
+	ROR $61, R0, R0
+	SUB $0x00000001, R19, R19
+	JMP foldprop40_3_loop
+
+foldprop40_3_done:
+	MOVD R20, R2
+	MOVD $0x00000002, R3
+
+foldprop40_4_loop:
+	MOVD R0, R20
+	ADD  R3, R0, R0
+	SUBS $0x00000001, R3, R3
+	BNE  foldprop40_4_loop
+	ADD  R2, R0, R0
+	MOVD R19, R2
+	LSL  $0x05, R2, R3
+	EOR  R3, R0, R0
+	ADD  R2, R0, R0
+	MOVD R1, R2
+	CMP  R1, R0
+	BLO  foldprop40_6_skip
+	MOVD R21, R2
+
+foldprop40_6_skip:
+	ADD  R2, R0, R0
 	MOVD R22, R2
 	UBFX $8, R2, $8, R3
 	ADD  R3, R0, R0
 	EOR  R2, R0, R0
-	MOVD R19, R2
-	MOVD $0x00000002, R3
-
-foldprop40_2_loop:
-	ADD  R2, R0, R0
-	MOVD R0, R19
-	SUBS $0x00000001, R3, R3
-	BNE  foldprop40_2_loop
-	MOVD R0, R21
-	MOVD R19, R2
-	MOVD R2, R19
-	ADD  R1, R19, R19
-	ADD  R2, R0, R0
-	NEG  R21, R21
-	MVN  R20, R20
-	MOVD R1, R2
 	CMP  R1, R0
-	BLO  foldprop40_6_skip
-	MOVD R22, R2
+	BLO  foldprop40_8_skip
+	ADD  R1, R20, R20
 
-foldprop40_6_skip:
-	ADD  R2, R0, R0
+foldprop40_8_skip:
+	MOVD R22, R21
+	ADD  R22, R0, R0
 	MOVD R20, R2
-	MOVD $0x00000002, R3
-
-foldprop40_7_loop:
-	ADD  R2, R0, R0
-	MOVD R0, R20
-	SUBS $0x00000001, R3, R3
-	BNE  foldprop40_7_loop
-	MOVD R19, R2
-	MOVD $0x00000002, R3
-
-foldprop40_8_loop:
-	MOVD R0, R19
+	UBFX $8, R2, $8, R3
 	ADD  R3, R0, R0
-	SUBS $0x00000001, R3, R3
-	BNE  foldprop40_8_loop
-	ADD  R2, R0, R0
-	MOVD R20, R2
-	MOVD R0, R20
-	ADD  R2, R0, R0
-	CMP  R19, R1
-	BLO  foldprop40_10_skip
-	EOR  R1, R0, R0
-
-foldprop40_10_skip:
-	MOVD R22, R2
-	ROR  $55, R2, R2
-	ADD  R22, R2, R2
 	EOR  R2, R0, R0
+	ADD  R1, R21, R21
+	ADD  R19, R0, R0
+	ADD  R22, R0, R0
 	ADD  R21, R0, R0
 	ADD  R20, R0, R0
-	ADD  R22, R0, R0
-	ADD  R19, R0, R0
 	MOVD R0, ret+16(FP)
 	RET
 
@@ -6959,69 +6886,64 @@ TEXT ·FoldProp41(SB), NOSPLIT, $32-24
 	ADD  $0x00000002, R21, R21
 	MOVD R1, R20
 	ADD  $0x00000003, R20, R20
-	CMP  R22, R1
-	BLO  foldprop41_0_skip
+	MOVD R0, R22
+	MOVD R21, R3
+	ROR  $55, R3, R3
+	ADD  R21, R3, R3
+	EOR  R3, R0, R0
+	MOVD R19, R2
+	ADD  R2, R19, R19
+	ADD  R2, R0, R0
+	MOVD R19, R2
+	MOVD R0, R19
+	ADD  R2, R0, R0
+	CMP  R19, R1
+	BLO  foldprop41_4_skip
 	EOR  R1, R0, R0
 
-foldprop41_0_skip:
-	ADD  R0, R21, R21
-	MOVD $-2147483648, R19
-	ADD  R19, R0, R0
-	AND  $0x00000003, R19, R19
+foldprop41_4_skip:
+	AND $0x00000003, R19, R19
 
-foldprop41_3_loop:
+foldprop41_5_loop:
 	CMP $0x00000000, R19
-	BEQ foldprop41_3_done
+	BEQ foldprop41_5_done
 	ADD R19, R0, R0
 	ROR $61, R0, R0
 	SUB $0x00000001, R19, R19
-	JMP foldprop41_3_loop
+	JMP foldprop41_5_loop
 
-foldprop41_3_done:
-	MOVD R19, R2
-	UBFX $8, R2, $8, R3
-	ADD  R3, R0, R0
-	EOR  R2, R0, R0
-	MOVD R1, R2
-	CMP  R1, R0
-	BLO  foldprop41_5_skip
-	MOVD R19, R2
-
-foldprop41_5_skip:
-	ADD  R2, R0, R0
-	MOVD R20, R1
-	MOVD $0x00000002, R2
+foldprop41_5_done:
+	MOVD R20, R2
+	MOVD $0x00000002, R3
 
 foldprop41_6_loop:
-	ADD  R1, R0, R0
-	MOVD R0, R20
-	SUBS $0x00000001, R2, R2
-	BNE  foldprop41_6_loop
-	MOVD R20, R1
-	UBFX $8, R1, $8, R2
 	ADD  R2, R0, R0
-	EOR  R1, R0, R0
-	MOVD R21, R1
+	MOVD R0, R20
+	SUBS $0x00000001, R3, R3
+	BNE  foldprop41_6_loop
+	MOVD R20, R2
+	MOVD R2, R20
+	ADD  R1, R20, R20
+	ADD  R2, R0, R0
+	MOVD R21, R2
+	MOVD R2, R21
+	ADD  R1, R21, R21
+	ADD  R2, R0, R0
+	MOVD R20, R1
 	MOVD $0x00000002, R2
 
-foldprop41_8_loop:
-	ADD  R1, R0, R0
-	MOVD R0, R21
-	SUBS $0x00000001, R2, R2
-	BNE  foldprop41_8_loop
+foldprop41_9_loop:
 	MOVD R0, R20
-	ADD  R0, R19, R19
-	AND  $0x00000003, R19, R19
-
-foldprop41_11_loop:
-	CMP $0x00000000, R19
-	BEQ foldprop41_11_done
-	ADD R19, R0, R0
-	ROR $61, R0, R0
-	SUB $1, R19, R19
-	JMP foldprop41_11_loop
-
-foldprop41_11_done:
+	ADD  R2, R0, R0
+	SUBS $0x00000001, R2, R2
+	BNE  foldprop41_9_loop
+	ADD  R1, R0, R0
+	MOVD R19, R1
+	MOVD R0, R19
+	ADD  R1, R0, R0
+	MOVD R19, R1
+	MOVD R21, R19
+	MOVD R1, R21
 	ADD  R19, R0, R0
 	ADD  R22, R0, R0
 	ADD  R21, R0, R0
@@ -7033,80 +6955,64 @@ foldprop41_11_done:
 TEXT ·FoldProp42(SB), NOSPLIT, $32-24
 	MOVD x+0(FP), R0
 	MOVD y+8(FP), R1
-	MOVD R1, R21
-	ADD  $0x00000000, R21, R21
 	MOVD R1, R19
-	ADD  $0x00000001, R19, R19
+	ADD  $0x00000000, R19, R19
+	MOVD R1, R21
+	ADD  $0x00000001, R21, R21
 	MOVD R1, R20
 	ADD  $0x00000002, R20, R20
 	MOVD R1, R22
 	ADD  $0x00000003, R22, R22
+	ADD  R0, R19, R19
+	MOVD R19, R2
+	MOVD R20, R19
+	MOVD R2, R20
+	MOVD R20, R22
+	ADD  R20, R0, R0
+	MOVD $0x00000002, R2
+
+foldprop42_3_loop:
+	ADD  R19, R0, R0
+	MOVD R1, R3
+	ADD  R0, R3, R3
+	SUBS $0x00000001, R2, R2
+	BNE  foldprop42_3_loop
+	MOVD R3, R19
+	MOVD R0, R21
+	MOVD $-2147483646, R20
+	ADD  R20, R0, R0
 	MOVD R1, R2
 	CMP  R1, R0
-	BLO  foldprop42_0_skip
-	MOVD R21, R2
-
-foldprop42_0_skip:
-	ADD  R2, R0, R0
-	MOVD R0, R21
-	CMP  R1, R0
-	BLO  foldprop42_2_skip
-	ADD  R1, R20, R20
-
-foldprop42_2_skip:
-	MOVD R21, R2
-	UBFX $8, R2, $8, R3
-	ADD  R3, R0, R0
-	EOR  R2, R0, R0
-	ADD  R0, R19, R19
-	AND  $0x00000003, R20, R20
-
-foldprop42_5_loop:
-	CMP $0x00000000, R20
-	BEQ foldprop42_5_done
-	ADD R20, R0, R0
-	ROR $61, R0, R0
-	SUB $0x00000001, R20, R20
-	JMP foldprop42_5_loop
-
-foldprop42_5_done:
-	CMP R1, R0
-	BLO foldprop42_6_skip
-	ADD R1, R20, R20
+	BLO  foldprop42_6_skip
+	MOVD R20, R2
 
 foldprop42_6_skip:
-	AND $0x00000003, R19, R19
+	ADD R2, R0, R0
+	CMP R21, R1
+	BLO foldprop42_7_skip
+	EOR R1, R0, R0
 
-foldprop42_7_loop:
-	CMP $0x00000000, R19
-	BEQ foldprop42_7_done
-	ADD R19, R0, R0
-	ROR $61, R0, R0
-	SUB $0x00000001, R19, R19
-	JMP foldprop42_7_loop
-
-foldprop42_7_done:
-	MOVD R19, R2
-	UBFX $8, R2, $8, R3
-	ADD  R3, R0, R0
-	EOR  R2, R0, R0
-	AND  $0x00000003, R19, R19
-
-foldprop42_9_loop:
-	CMP $0x00000000, R19
-	BEQ foldprop42_9_done
-	ADD R19, R0, R0
-	ROR $61, R0, R0
-	SUB $1, R19, R19
-	JMP foldprop42_9_loop
-
-foldprop42_9_done:
-	MOVD R19, R2
-	MOVD R0, R19
-	ADD  R2, R0, R0
-	ADD  R1, R20, R20
+foldprop42_7_skip:
+	MOVD R21, R20
 	ADD  R21, R0, R0
+	CMP  R1, R0
+	BLO  foldprop42_9_skip
+	ADD  R1, R21, R21
+
+foldprop42_9_skip:
+	MOVD R21, R2
+	MOVD R2, R21
+	ADD  R1, R21, R21
+	ADD  R2, R0, R0
+	MOVD R1, R2
+	CMP  R1, R0
+	BLO  foldprop42_11_skip
+	MOVD R20, R2
+
+foldprop42_11_skip:
+	ADD  R2, R0, R0
 	ADD  R19, R0, R0
+	ADD  R21, R0, R0
 	ADD  R20, R0, R0
 	ADD  R22, R0, R0
 	MOVD R0, ret+16(FP)
@@ -7116,64 +7022,85 @@ foldprop42_9_done:
 TEXT ·FoldProp43(SB), NOSPLIT, $32-24
 	MOVD x+0(FP), R0
 	MOVD y+8(FP), R1
-	MOVD R1, R21
-	ADD  $0x00000000, R21, R21
-	MOVD R1, R19
-	ADD  $0x00000001, R19, R19
 	MOVD R1, R20
-	ADD  $0x00000002, R20, R20
+	ADD  $0x00000000, R20, R20
+	MOVD R1, R21
+	ADD  $0x00000001, R21, R21
+	MOVD R1, R19
+	ADD  $0x00000002, R19, R19
 	MOVD R1, R22
 	ADD  $0x00000003, R22, R22
-	AND  $0x00000003, R19, R19
-
-foldprop43_0_loop:
-	CMP $0x00000000, R19
-	BEQ foldprop43_0_done
-	ADD R19, R0, R0
-	ROR $61, R0, R0
-	SUB $0x00000001, R19, R19
-	JMP foldprop43_0_loop
-
-foldprop43_0_done:
-	CMP R19, R1
-	BLO foldprop43_1_skip
-	EOR R1, R0, R0
-
-foldprop43_1_skip:
-	MOVD R19, R3
-	ROR  $55, R3, R3
-	ADD  R19, R3, R3
-	EOR  R3, R0, R0
 	MOVD R21, R2
-	UBFX $8, R2, $8, R3
-	ADD  R3, R0, R0
-	EOR  R2, R0, R0
-	MOVD R20, R2
-	MOVD $0x00000002, R3
-
-foldprop43_4_loop:
-	MOVD R0, R20
-	ADD  R3, R0, R0
-	SUBS $0x00000001, R3, R3
-	BNE  foldprop43_4_loop
-	ADD  R2, R0, R0
-	MOVD R20, R2
 	LSL  $0x05, R2, R3
 	EOR  R3, R0, R0
 	ADD  R2, R0, R0
-	ROR  $57, R0, R0
+	ADD  R1, R21, R21
+	CMP  R1, R0
+	BLO  foldprop43_2_skip
+	ADD  R1, R21, R21
+
+foldprop43_2_skip:
+	MOVD $0x00000002, R2
+
+foldprop43_3_loop:
+	ADD  R20, R0, R0
+	MOVD R1, R3
+	ADD  R0, R3, R3
+	SUBS $0x00000001, R2, R2
+	BNE  foldprop43_3_loop
+	MOVD R3, R20
+	AND  $0x00000003, R19, R19
+
+foldprop43_4_loop:
+	CMP $0x00000000, R19
+	BEQ foldprop43_4_done
+	ADD R19, R0, R0
+	ROR $61, R0, R0
+	SUB $0x00000001, R19, R19
+	JMP foldprop43_4_loop
+
+foldprop43_4_done:
+	AND $0x00000003, R19, R19
+
+foldprop43_5_loop:
+	CMP $0x00000000, R19
+	BEQ foldprop43_5_done
+	ADD R19, R0, R0
+	ROR $61, R0, R0
+	SUB $1, R19, R19
+	JMP foldprop43_5_loop
+
+foldprop43_5_done:
+	MOVD R19, R2
+	MOVD R0, R19
+	ADD  R2, R0, R0
+	MOVD R22, R2
+	MOVD R2, R22
+	ADD  R1, R22, R22
+	ADD  R2, R0, R0
+	ADD  R1, R21, R21
+	MOVD R21, R1
+	LSL  $0x05, R1, R2
+	EOR  R2, R0, R0
+	ADD  R1, R0, R0
+	AND  $0x00000003, R19, R19
+
+foldprop43_10_loop:
+	CMP $0x00000000, R19
+	BEQ foldprop43_10_done
+	ADD R19, R0, R0
+	ROR $61, R0, R0
+	SUB $0x00000001, R19, R19
+	JMP foldprop43_10_loop
+
+foldprop43_10_done:
+	MOVD R19, R1
+	UBFX $8, R1, $8, R2
+	ADD  R2, R0, R0
 	EOR  R1, R0, R0
-	ADD  R0, R22, R22
-	MOVD $-2147483647, R19
-	ADD  R19, R0, R0
-	NEG  R19, R19
-	MVN  R20, R20
-	MOVD R0, R20
-	ROR  $57, R0, R0
-	EOR  R1, R0, R0
+	ADD  R20, R0, R0
 	ADD  R21, R0, R0
 	ADD  R19, R0, R0
-	ADD  R20, R0, R0
 	ADD  R22, R0, R0
 	MOVD R0, ret+16(FP)
 	RET
@@ -7184,64 +7111,71 @@ TEXT ·FoldProp44(SB), NOSPLIT, $32-24
 	MOVD y+8(FP), R1
 	MOVD R1, R22
 	ADD  $0x00000000, R22, R22
-	MOVD R1, R21
-	ADD  $0x00000001, R21, R21
+	MOVD R1, R19
+	ADD  $0x00000001, R19, R19
 	MOVD R1, R20
 	ADD  $0x00000002, R20, R20
-	MOVD R1, R19
-	ADD  $0x00000003, R19, R19
-	MOVD R21, R2
-	MOVD R0, R21
-	ADD  R2, R0, R0
-	ROR  $57, R0, R0
-	EOR  R1, R0, R0
+	MOVD R1, R21
+	ADD  $0x00000003, R21, R21
+	AND  $0x00000003, R19, R19
+
+foldprop44_0_loop:
+	CMP $0x00000000, R19
+	BEQ foldprop44_0_done
+	ADD R19, R0, R0
+	ROR $61, R0, R0
+	SUB $0x00000001, R19, R19
+	JMP foldprop44_0_loop
+
+foldprop44_0_done:
+	MOVD $-2147483645, R21
+	ADD  R21, R0, R0
 	MOVD R20, R2
-	UBFX $8, R2, $8, R3
-	ADD  R3, R0, R0
-	EOR  R2, R0, R0
-	CMP  R1, R0
-	BLO  foldprop44_3_skip
+	MOVD R22, R20
+	MOVD R2, R22
 	ADD  R1, R22, R22
-
-foldprop44_3_skip:
-	MOVD R19, R2
-	MOVD $0x00000002, R3
-
-foldprop44_4_loop:
-	MOVD R0, R19
-	ADD  R3, R0, R0
-	SUBS $0x00000001, R3, R3
-	BNE  foldprop44_4_loop
-	ADD  R2, R0, R0
-	MOVD R20, R2
-	MOVD R0, R20
-	ADD  R2, R0, R0
-	MOVD R21, R2
-	MOVD R0, R21
-	ADD  R2, R0, R0
-	ADD  R0, R21, R21
-	MOVD R20, R2
-	MOVD R2, R20
-	ADD  R1, R20, R20
-	ADD  R2, R0, R0
-	CMP  R19, R1
-	BLO  foldprop44_9_skip
-	EOR  R1, R0, R0
-
-foldprop44_9_skip:
-	MOVD R21, R20
+	MOVD $-2147483645, R21
 	ADD  R21, R0, R0
 	MOVD R1, R2
 	CMP  R1, R0
-	BLO  foldprop44_11_skip
+	BLO  foldprop44_5_skip
 	MOVD R20, R2
 
-foldprop44_11_skip:
+foldprop44_5_skip:
 	ADD  R2, R0, R0
+	MOVD R19, R2
+	LSL  $0x05, R2, R3
+	EOR  R3, R0, R0
+	ADD  R2, R0, R0
+	MOVD R19, R2
+	MOVD R21, R19
+	MOVD R2, R21
+	MOVD R20, R2
+	MOVD $0x00000002, R3
+
+foldprop44_8_loop:
+	MOVD R0, R20
+	ADD  R3, R0, R0
+	SUBS $0x00000001, R3, R3
+	BNE  foldprop44_8_loop
+	ADD  R2, R0, R0
+	MOVD R21, R2
+	MOVD R2, R21
+	ADD  R1, R21, R21
+	ADD  R2, R0, R0
+	MOVD R19, R2
+	LSL  $0x05, R2, R3
+	EOR  R3, R0, R0
+	ADD  R2, R0, R0
+	CMP  R1, R0
+	BLO  foldprop44_11_skip
+	ADD  R1, R20, R20
+
+foldprop44_11_skip:
 	ADD  R22, R0, R0
-	ADD  R21, R0, R0
-	ADD  R20, R0, R0
 	ADD  R19, R0, R0
+	ADD  R20, R0, R0
+	ADD  R21, R0, R0
 	MOVD R0, ret+16(FP)
 	RET
 
@@ -7257,54 +7191,78 @@ TEXT ·FoldProp45(SB), NOSPLIT, $32-24
 	ADD  $0x00000002, R22, R22
 	MOVD R1, R19
 	ADD  $0x00000003, R19, R19
-	ADD  R1, R22, R22
-	MOVD R19, R2
-	LSL  $0x05, R2, R3
+	MOVD R22, R3
+	ROR  $55, R3, R3
+	ADD  R22, R3, R3
 	EOR  R3, R0, R0
-	ADD  R2, R0, R0
-	MOVD R19, R2
-	MOVD $0x00000002, R3
+	MOVD R0, R19
+	AND  $0x00000003, R19, R19
 
 foldprop45_2_loop:
-	ADD  R2, R0, R0
-	MOVD R0, R19
-	SUBS $0x00000001, R3, R3
-	BNE  foldprop45_2_loop
-	TST  R20, R0
-	BEQ  foldprop45_3_skip
-	ADD  R1, R0, R0
+	CMP $0x00000000, R19
+	BEQ foldprop45_2_done
+	ADD R19, R0, R0
+	ROR $61, R0, R0
+	SUB $0x00000001, R19, R19
+	JMP foldprop45_2_loop
 
-foldprop45_3_skip:
-	MOVD R20, R2
-	MOVD $0x00000002, R3
+foldprop45_2_done:
+	AND $0x00000003, R20, R20
 
-foldprop45_4_loop:
-	MOVD R0, R20
-	ADD  R3, R0, R0
-	SUBS $0x00000001, R3, R3
-	BNE  foldprop45_4_loop
-	ADD  R2, R0, R0
-	MOVD $-2147483648, R20
-	ADD  R20, R0, R0
-	MOVD R21, R2
-	LSL  $0x05, R2, R3
+foldprop45_3_loop:
+	CMP $0x00000000, R20
+	BEQ foldprop45_3_done
+	ADD R20, R0, R0
+	ROR $61, R0, R0
+	SUB $1, R20, R20
+	JMP foldprop45_3_loop
+
+foldprop45_3_done:
+	CMP R1, R0
+	BLO foldprop45_4_skip
+	ADD R1, R20, R20
+
+foldprop45_4_skip:
+	MOVD R20, R3
+	ROR  $55, R3, R3
+	ADD  R20, R3, R3
 	EOR  R3, R0, R0
-	ADD  R2, R0, R0
-	MOVD R19, R2
-	MOVD R2, R19
-	ADD  R1, R19, R19
-	ADD  R2, R0, R0
-	MOVD R19, R2
+	MOVD R21, R2
 	UBFX $8, R2, $8, R3
 	ADD  R3, R0, R0
 	EOR  R2, R0, R0
-	CMP  R1, R0
-	BLO  foldprop45_9_skip
-	ADD  R1, R19, R19
+	MOVD R0, R19
+	MOVD R19, R2
+	MOVD $0x00000002, R3
 
-foldprop45_9_skip:
-	ADD  R1, R20, R20
+foldprop45_8_loop:
+	MOVD R0, R19
+	ADD  R3, R0, R0
+	SUBS $0x00000001, R3, R3
+	BNE  foldprop45_8_loop
+	ADD  R2, R0, R0
+	MOVD $0x00000002, R2
+
+foldprop45_9_loop:
+	ADD  R19, R0, R0
+	MOVD R1, R3
+	ADD  R0, R3, R3
+	SUBS $0x00000001, R2, R2
+	BNE  foldprop45_9_loop
+	MOVD R3, R19
+	CMP  R20, R1
+	BLO  foldprop45_10_skip
+	EOR  R1, R0, R0
+
+foldprop45_10_skip:
+	MOVD R21, R1
+	MOVD $0x00000002, R2
+
+foldprop45_11_loop:
+	ADD  R1, R0, R0
 	MOVD R0, R21
+	SUBS $0x00000001, R2, R2
+	BNE  foldprop45_11_loop
 	ADD  R20, R0, R0
 	ADD  R21, R0, R0
 	ADD  R22, R0, R0
@@ -7318,82 +7276,66 @@ TEXT ·FoldProp46(SB), NOSPLIT, $32-24
 	MOVD y+8(FP), R1
 	MOVD R1, R21
 	ADD  $0x00000000, R21, R21
-	MOVD R1, R20
-	ADD  $0x00000001, R20, R20
+	MOVD R1, R19
+	ADD  $0x00000001, R19, R19
 	MOVD R1, R22
 	ADD  $0x00000002, R22, R22
-	MOVD R1, R19
-	ADD  $0x00000003, R19, R19
-	AND  $0x00000003, R19, R19
+	MOVD R1, R20
+	ADD  $0x00000003, R20, R20
+	MOVD R20, R2
+	MOVD $0x00000002, R3
 
 foldprop46_0_loop:
-	CMP $0x00000000, R19
-	BEQ foldprop46_0_done
-	ADD R19, R0, R0
-	ROR $61, R0, R0
-	SUB $0x00000001, R19, R19
-	JMP foldprop46_0_loop
-
-foldprop46_0_done:
-	ROR  $57, R0, R0
-	EOR  R1, R0, R0
+	ADD  R2, R0, R0
+	MOVD R0, R20
+	SUBS $0x00000001, R3, R3
+	BNE  foldprop46_0_loop
+	MOVD R21, R2
+	MOVD R2, R21
+	ADD  R1, R21, R21
+	ADD  R2, R0, R0
+	MOVD R21, R2
+	LSL  $0x05, R2, R3
+	EOR  R3, R0, R0
+	ADD  R2, R0, R0
 	MOVD R21, R2
 	UBFX $8, R2, $8, R3
 	ADD  R3, R0, R0
 	EOR  R2, R0, R0
-	CMP  R1, R0
-	BLO  foldprop46_3_skip
-	ADD  R1, R21, R21
-
-foldprop46_3_skip:
-	AND $0x00000003, R20, R20
+	AND  $0x00000003, R19, R19
 
 foldprop46_4_loop:
-	CMP $0x00000000, R20
+	CMP $0x00000000, R19
 	BEQ foldprop46_4_done
-	ADD R20, R0, R0
+	ADD R19, R0, R0
 	ROR $61, R0, R0
-	SUB $0x00000001, R20, R20
+	SUB $0x00000001, R19, R19
 	JMP foldprop46_4_loop
 
 foldprop46_4_done:
-	MOVD R19, R21
-	ADD  R21, R0, R0
-	AND  $0x00000003, R19, R19
-
-foldprop46_6_loop:
-	CMP $0x00000000, R19
-	BEQ foldprop46_6_done
-	ADD R19, R0, R0
-	ROR $61, R0, R0
-	SUB $1, R19, R19
-	JMP foldprop46_6_loop
-
-foldprop46_6_done:
+	ROR  $57, R0, R0
+	EOR  R1, R0, R0
 	MOVD R20, R2
-	MOVD $0x00000002, R3
-
-foldprop46_7_loop:
+	MOVD R2, R20
+	ADD  R1, R20, R20
 	ADD  R2, R0, R0
-	MOVD R0, R20
-	SUBS $0x00000001, R3, R3
-	BNE  foldprop46_7_loop
-	MOVD R0, R21
+	MOVD R19, R2
+	MOVD R20, R19
+	MOVD R2, R20
 	MOVD R21, R2
-	MOVD R22, R21
-	MOVD R2, R22
-	MOVD R20, R2
-	MOVD R0, R20
+	ADD  R2, R21, R21
 	ADD  R2, R0, R0
-	CMP  R22, R1
-	BLO  foldprop46_11_skip
+	ADD  R1, R21, R21
+	CMP  R19, R1
+	BLO  foldprop46_10_skip
 	EOR  R1, R0, R0
 
-foldprop46_11_skip:
+foldprop46_10_skip:
+	MOVD R0, R22
 	ADD  R21, R0, R0
-	ADD  R20, R0, R0
-	ADD  R22, R0, R0
 	ADD  R19, R0, R0
+	ADD  R22, R0, R0
+	ADD  R20, R0, R0
 	MOVD R0, ret+16(FP)
 	RET
 
@@ -7409,68 +7351,67 @@ TEXT ·FoldProp47(SB), NOSPLIT, $32-24
 	ADD  $0x00000002, R21, R21
 	MOVD R1, R22
 	ADD  $0x00000003, R22, R22
-	ROR  $57, R0, R0
-	EOR  R1, R0, R0
-	MOVD R21, R2
+	AND  $0x00000003, R19, R19
+
+foldprop47_0_loop:
+	CMP $0x00000000, R19
+	BEQ foldprop47_0_done
+	ADD R19, R0, R0
+	ROR $61, R0, R0
+	SUB $0x00000001, R19, R19
+	JMP foldprop47_0_loop
+
+foldprop47_0_done:
+	ADD  R1, R21, R21
+	MOVD R19, R2
 	UBFX $8, R2, $8, R3
 	ADD  R3, R0, R0
 	EOR  R2, R0, R0
+	MOVD $-2147483647, R19
+	ADD  R19, R0, R0
 	AND  $0x00000003, R19, R19
 
-foldprop47_2_loop:
+foldprop47_4_loop:
 	CMP $0x00000000, R19
-	BEQ foldprop47_2_done
+	BEQ foldprop47_4_done
 	ADD R19, R0, R0
 	ROR $61, R0, R0
-	SUB $0x00000001, R19, R19
-	JMP foldprop47_2_loop
+	SUB $1, R19, R19
+	JMP foldprop47_4_loop
 
-foldprop47_2_done:
-	AND $0x00000003, R19, R19
-
-foldprop47_3_loop:
-	CMP $0x00000000, R19
-	BEQ foldprop47_3_done
-	ADD R19, R0, R0
-	ROR $61, R0, R0
-	SUB $0x00000001, R19, R19
-	JMP foldprop47_3_loop
-
-foldprop47_3_done:
-	CMP R19, R1
-	BLO foldprop47_4_skip
-	EOR R1, R0, R0
-
-foldprop47_4_skip:
-	ROR  $57, R0, R0
-	EOR  R1, R0, R0
-	MOVD R20, R1
-	MOVD R21, R20
-	MOVD R1, R21
-	MOVD R0, R22
+foldprop47_4_done:
+	ADD  R1, R22, R22
+	ADD  R0, R20, R20
+	MOVD R22, R1
+	ADD  R1, R22, R22
+	ADD  R1, R0, R0
 	MOVD R19, R1
 	MOVD $0x00000002, R2
 
 foldprop47_8_loop:
+	ADD  R1, R0, R0
 	MOVD R0, R19
-	ADD  R2, R0, R0
 	SUBS $0x00000001, R2, R2
 	BNE  foldprop47_8_loop
-	ADD  R1, R0, R0
-	MOVD R21, R1
-	UBFX $8, R1, $8, R2
-	ADD  R2, R0, R0
-	EOR  R1, R0, R0
-	MOVD R20, R1
-	MOVD $0x00000002, R2
+	MOVD R21, R2
+	ROR  $55, R2, R2
+	ADD  R21, R2, R2
+	EOR  R2, R0, R0
+	AND  $0x00000003, R20, R20
 
 foldprop47_10_loop:
-	MOVD R0, R20
-	ADD  R2, R0, R0
-	SUBS $0x00000001, R2, R2
-	BNE  foldprop47_10_loop
-	ADD  R1, R0, R0
-	MOVD R0, R19
+	CMP $0x00000000, R20
+	BEQ foldprop47_10_done
+	ADD R20, R0, R0
+	ROR $61, R0, R0
+	SUB $1, R20, R20
+	JMP foldprop47_10_loop
+
+foldprop47_10_done:
+	MOVD R19, R2
+	ROR  $55, R2, R2
+	ADD  R19, R2, R2
+	EOR  R2, R0, R0
 	ADD  R20, R0, R0
 	ADD  R19, R0, R0
 	ADD  R21, R0, R0
@@ -7484,65 +7425,85 @@ TEXT ·FoldProp48(SB), NOSPLIT, $32-24
 	MOVD y+8(FP), R1
 	MOVD R1, R22
 	ADD  $0x00000000, R22, R22
-	MOVD R1, R19
-	ADD  $0x00000001, R19, R19
 	MOVD R1, R21
-	ADD  $0x00000002, R21, R21
+	ADD  $0x00000001, R21, R21
 	MOVD R1, R20
-	ADD  $0x00000003, R20, R20
-	ADD  R1, R21, R21
-	MOVD $-2147483645, R20
-	ADD  R20, R0, R0
-	CMP  R1, R0
-	BLO  foldprop48_2_skip
-	ADD  R1, R21, R21
-
-foldprop48_2_skip:
-	MOVD R19, R2
-	MOVD R20, R19
-	MOVD R2, R20
-	MOVD R20, R22
-	ADD  R22, R0, R0
-	MOVD R19, R2
-	MOVD R0, R19
-	ADD  R2, R0, R0
+	ADD  $0x00000002, R20, R20
+	MOVD R1, R19
+	ADD  $0x00000003, R19, R19
 	MOVD R20, R2
-	UBFX $8, R2, $8, R3
-	ADD  R3, R0, R0
-	EOR  R2, R0, R0
-	MOVD R19, R2
 	MOVD $0x00000002, R3
 
-foldprop48_7_loop:
-	MOVD R0, R19
+foldprop48_0_loop:
+	MOVD R0, R20
 	ADD  R3, R0, R0
 	SUBS $0x00000001, R3, R3
-	BNE  foldprop48_7_loop
+	BNE  foldprop48_0_loop
 	ADD  R2, R0, R0
-	CMP  R19, R1
-	BLO  foldprop48_8_skip
-	EOR  R1, R0, R0
+	AND  $0x00000003, R19, R19
 
-foldprop48_8_skip:
-	MOVD R21, R2
-	MOVD R2, R21
+foldprop48_1_loop:
+	CMP $0x00000000, R19
+	BEQ foldprop48_1_done
+	ADD R19, R0, R0
+	ROR $61, R0, R0
+	SUB $1, R19, R19
+	JMP foldprop48_1_loop
+
+foldprop48_1_done:
+	AND $0x00000003, R20, R20
+
+foldprop48_2_loop:
+	CMP $0x00000000, R20
+	BEQ foldprop48_2_done
+	ADD R20, R0, R0
+	ROR $61, R0, R0
+	SUB $1, R20, R20
+	JMP foldprop48_2_loop
+
+foldprop48_2_done:
+	CMP R1, R0
+	BLO foldprop48_3_skip
+	ADD R1, R21, R21
+
+foldprop48_3_skip:
+	MOVD $0x00000002, R2
+
+foldprop48_4_loop:
+	ADD  R19, R0, R0
+	MOVD R1, R3
+	ADD  R0, R3, R3
+	SUBS $0x00000001, R2, R2
+	BNE  foldprop48_4_loop
+	MOVD R3, R19
 	ADD  R1, R21, R21
+	MOVD R1, R2
+	CMP  R1, R0
+	BLO  foldprop48_6_skip
+	MOVD R19, R2
+
+foldprop48_6_skip:
+	ADD  R2, R0, R0
+	ADD  R0, R21, R21
+	MOVD R21, R2
+	MOVD R19, R21
+	MOVD R2, R19
+	MOVD R20, R2
+	MOVD R0, R20
 	ADD  R2, R0, R0
 	MOVD R1, R2
 	CMP  R1, R0
 	BLO  foldprop48_10_skip
-	MOVD R20, R2
+	MOVD R19, R2
 
 foldprop48_10_skip:
 	ADD  R2, R0, R0
-	MOVD R19, R1
-	LSL  $0x05, R1, R2
-	EOR  R2, R0, R0
-	ADD  R1, R0, R0
+	ROR  $57, R0, R0
+	EOR  R1, R0, R0
 	ADD  R22, R0, R0
-	ADD  R19, R0, R0
 	ADD  R21, R0, R0
 	ADD  R20, R0, R0
+	ADD  R19, R0, R0
 	MOVD R0, ret+16(FP)
 	RET
 
@@ -7550,72 +7511,72 @@ foldprop48_10_skip:
 TEXT ·FoldProp49(SB), NOSPLIT, $32-24
 	MOVD x+0(FP), R0
 	MOVD y+8(FP), R1
-	MOVD R1, R22
-	ADD  $0x00000000, R22, R22
-	MOVD R1, R19
-	ADD  $0x00000001, R19, R19
 	MOVD R1, R21
-	ADD  $0x00000002, R21, R21
+	ADD  $0x00000000, R21, R21
 	MOVD R1, R20
-	ADD  $0x00000003, R20, R20
-	MOVD R21, R2
-	MOVD $0x00000002, R3
-
-foldprop49_0_loop:
+	ADD  $0x00000001, R20, R20
+	MOVD R1, R22
+	ADD  $0x00000002, R22, R22
+	MOVD R1, R19
+	ADD  $0x00000003, R19, R19
+	MOVD R22, R2
+	ADD  R2, R22, R22
 	ADD  R2, R0, R0
-	MOVD R0, R21
-	SUBS $0x00000001, R3, R3
-	BNE  foldprop49_0_loop
-	AND  $0x00000003, R19, R19
-
-foldprop49_1_loop:
-	CMP $0x00000000, R19
-	BEQ foldprop49_1_done
-	ADD R19, R0, R0
-	ROR $61, R0, R0
-	SUB $0x00000001, R19, R19
-	JMP foldprop49_1_loop
-
-foldprop49_1_done:
-	MOVD $-2147483645, R20
-	ADD  R20, R0, R0
-	TST  R19, R0
-	BEQ  foldprop49_3_skip
-	ADD  R1, R0, R0
-
-foldprop49_3_skip:
-	MOVD R20, R22
-	ADD  R22, R0, R0
-	ADD  R1, R22, R22
-	ADD  R0, R20, R20
+	MOVD R20, R2
+	UBFX $8, R2, $8, R3
+	ADD  R3, R0, R0
+	EOR  R2, R0, R0
 	ROR  $57, R0, R0
 	EOR  R1, R0, R0
-	ADD  R0, R20, R20
-	MOVD $-2147483648, R22
-	ADD  R22, R0, R0
-	AND  $0x00000003, R20, R20
+	MOVD R0, R20
+	MOVD R19, R2
+	LSL  $0x05, R2, R3
+	EOR  R3, R0, R0
+	ADD  R2, R0, R0
+	MOVD R21, R2
+	UBFX $8, R2, $8, R3
+	ADD  R3, R0, R0
+	EOR  R2, R0, R0
+	MOVD R19, R2
+	ADD  R2, R19, R19
+	ADD  R2, R0, R0
+	ROR  $57, R0, R0
+	EOR  R1, R0, R0
+	CMP  R1, R0
+	BLO  foldprop49_8_skip
+	ADD  R1, R19, R19
+
+foldprop49_8_skip:
+	MOVD R21, R2
+	MOVD R2, R21
+	ADD  R1, R21, R21
+	ADD  R2, R0, R0
+	AND  $0x00000003, R19, R19
 
 foldprop49_10_loop:
-	CMP $0x00000000, R20
+	CMP $0x00000000, R19
 	BEQ foldprop49_10_done
-	ADD R20, R0, R0
+	ADD R19, R0, R0
 	ROR $61, R0, R0
-	SUB $1, R20, R20
+	SUB $1, R19, R19
 	JMP foldprop49_10_loop
 
 foldprop49_10_done:
-	MOVD R19, R1
-	MOVD $0x00000002, R2
+	AND $0x00000003, R20, R20
 
 foldprop49_11_loop:
-	ADD  R1, R0, R0
-	MOVD R0, R19
-	SUBS $0x00000001, R2, R2
-	BNE  foldprop49_11_loop
-	ADD  R22, R0, R0
-	ADD  R19, R0, R0
+	CMP $0x00000000, R20
+	BEQ foldprop49_11_done
+	ADD R20, R0, R0
+	ROR $61, R0, R0
+	SUB $1, R20, R20
+	JMP foldprop49_11_loop
+
+foldprop49_11_done:
 	ADD  R21, R0, R0
 	ADD  R20, R0, R0
+	ADD  R22, R0, R0
+	ADD  R19, R0, R0
 	MOVD R0, ret+16(FP)
 	RET
 
@@ -7623,67 +7584,103 @@ foldprop49_11_loop:
 TEXT ·FoldProp50(SB), NOSPLIT, $32-24
 	MOVD x+0(FP), R0
 	MOVD y+8(FP), R1
-	MOVD R1, R21
-	ADD  $0x00000000, R21, R21
-	MOVD R1, R22
-	ADD  $0x00000001, R22, R22
 	MOVD R1, R20
-	ADD  $0x00000002, R20, R20
+	ADD  $0x00000000, R20, R20
+	MOVD R1, R21
+	ADD  $0x00000001, R21, R21
 	MOVD R1, R19
-	ADD  $0x00000003, R19, R19
-	MOVD R19, R2
-	MOVD $0x00000002, R3
-
-foldprop50_0_loop:
-	MOVD R0, R19
-	ADD  R3, R0, R0
-	SUBS $0x00000001, R3, R3
-	BNE  foldprop50_0_loop
-	ADD  R2, R0, R0
-	ADD  R0, R20, R20
-	MOVD R19, R2
-	MOVD $0x00000002, R3
-
-foldprop50_2_loop:
-	MOVD R0, R19
-	ADD  R3, R0, R0
-	SUBS $0x00000001, R3, R3
-	BNE  foldprop50_2_loop
-	ADD  R2, R0, R0
+	ADD  $0x00000002, R19, R19
+	MOVD R1, R22
+	ADD  $0x00000003, R22, R22
+	MOVD R1, R2
+	CMP  R1, R0
+	BLO  foldprop50_0_skip
 	MOVD R22, R2
-	MOVD R0, R22
-	ADD  R2, R0, R0
+
+foldprop50_0_skip:
+	ADD R2, R0, R0
+	AND $0x00000003, R19, R19
+
+foldprop50_1_loop:
+	CMP $0x00000000, R19
+	BEQ foldprop50_1_done
+	ADD R19, R0, R0
+	ROR $61, R0, R0
+	SUB $1, R19, R19
+	JMP foldprop50_1_loop
+
+foldprop50_1_done:
+	CMP R22, R1
+	BLO foldprop50_2_skip
+	EOR R1, R0, R0
+
+foldprop50_2_skip:
 	MOVD R21, R2
 	ADD  R2, R21, R21
 	ADD  R2, R0, R0
-	MOVD R21, R2
-	LSL  $0x05, R2, R3
-	EOR  R3, R0, R0
-	ADD  R2, R0, R0
-	MOVD R20, R3
-	ROR  $55, R3, R3
-	ADD  R20, R3, R3
-	EOR  R3, R0, R0
+	AND  $0x00000003, R20, R20
+
+foldprop50_4_loop:
+	CMP $0x00000000, R20
+	BEQ foldprop50_4_done
+	ADD R20, R0, R0
+	ROR $61, R0, R0
+	SUB $1, R20, R20
+	JMP foldprop50_4_loop
+
+foldprop50_4_done:
+	MOVD R1, R2
+	CMP  R1, R0
+	BLO  foldprop50_5_skip
 	MOVD R20, R2
-	UBFX $8, R2, $8, R3
-	ADD  R3, R0, R0
-	EOR  R2, R0, R0
-	MOVD R20, R3
+
+foldprop50_5_skip:
+	ADD R2, R0, R0
+	AND $0x00000003, R19, R19
+
+foldprop50_6_loop:
+	CMP $0x00000000, R19
+	BEQ foldprop50_6_done
+	ADD R19, R0, R0
+	ROR $61, R0, R0
+	SUB $0x00000001, R19, R19
+	JMP foldprop50_6_loop
+
+foldprop50_6_done:
+	CMP R1, R0
+	BLO foldprop50_7_skip
+	ADD R1, R19, R19
+
+foldprop50_7_skip:
+	MOVD R19, R3
 	ROR  $55, R3, R3
-	ADD  R20, R3, R3
+	ADD  R19, R3, R3
 	EOR  R3, R0, R0
-	MOVD $-2147483646, R20
-	ADD  R20, R0, R0
-	MOVD R21, R2
-	MOVD R2, R21
-	ADD  R1, R21, R21
+	MOVD R19, R2
+	ADD  R2, R19, R19
 	ADD  R2, R0, R0
-	MOVD $-2147483646, R20
+	AND  $0x00000003, R20, R20
+
+foldprop50_10_loop:
+	CMP $0x00000000, R20
+	BEQ foldprop50_10_done
+	ADD R20, R0, R0
+	ROR $61, R0, R0
+	SUB $0x00000001, R20, R20
+	JMP foldprop50_10_loop
+
+foldprop50_10_done:
+	MOVD R1, R2
+	CMP  R1, R0
+	BLO  foldprop50_11_skip
+	MOVD R19, R2
+
+foldprop50_11_skip:
+	ADD  R2, R0, R0
 	ADD  R20, R0, R0
 	ADD  R21, R0, R0
-	ADD  R22, R0, R0
-	ADD  R20, R0, R0
 	ADD  R19, R0, R0
+	ADD  R22, R0, R0
 	MOVD R0, ret+16(FP)
 	RET
 
@@ -7691,78 +7688,57 @@ foldprop50_2_loop:
 TEXT ·FoldProp51(SB), NOSPLIT, $32-24
 	MOVD x+0(FP), R0
 	MOVD y+8(FP), R1
-	MOVD R1, R21
-	ADD  $0x00000000, R21, R21
+	MOVD R1, R22
+	ADD  $0x00000000, R22, R22
 	MOVD R1, R19
 	ADD  $0x00000001, R19, R19
 	MOVD R1, R20
 	ADD  $0x00000002, R20, R20
-	MOVD R1, R22
-	ADD  $0x00000003, R22, R22
-	TST  R22, R0
-	BEQ  foldprop51_0_skip
-	ADD  R1, R0, R0
-
-foldprop51_0_skip:
-	CMP R1, R0
-	BLO foldprop51_1_skip
-	ADD R1, R22, R22
-
-foldprop51_1_skip:
-	MOVD R21, R19
-	ADD  R21, R0, R0
-	MOVD R19, R2
-	LSL  $0x05, R2, R3
-	EOR  R3, R0, R0
-	ADD  R2, R0, R0
-	MOVD $0x00000002, R2
-
-foldprop51_4_loop:
-	ADD  R19, R0, R0
-	MOVD R1, R3
-	ADD  R0, R3, R3
-	SUBS $0x00000001, R2, R2
-	BNE  foldprop51_4_loop
-	MOVD R3, R19
-	MOVD $0x00000002, R2
-
-foldprop51_5_loop:
-	ADD  R19, R0, R0
-	MOVD R1, R3
-	ADD  R0, R3, R3
-	SUBS $0x00000001, R2, R2
-	BNE  foldprop51_5_loop
-	MOVD R3, R19
-	MOVD R20, R2
-	MOVD R21, R20
-	MOVD R2, R21
-	MOVD R19, R2
-	LSL  $0x05, R2, R3
-	EOR  R3, R0, R0
-	ADD  R2, R0, R0
-	MOVD R19, R3
-	ROR  $55, R3, R3
-	ADD  R19, R3, R3
-	EOR  R3, R0, R0
-	CMP  R20, R1
-	BLO  foldprop51_9_skip
+	MOVD R1, R21
+	ADD  $0x00000003, R21, R21
+	CMP  R21, R1
+	BLO  foldprop51_0_skip
 	EOR  R1, R0, R0
 
-foldprop51_9_skip:
-	MOVD R1, R2
-	CMP  R1, R0
-	BLO  foldprop51_10_skip
-	MOVD R19, R2
-
-foldprop51_10_skip:
+foldprop51_0_skip:
+	MOVD R21, R2
+	MOVD R0, R21
 	ADD  R2, R0, R0
+	MOVD R22, R19
+	ADD  R22, R0, R0
+	MOVD R0, R19
+	CMP  R1, R0
+	BLO  foldprop51_4_skip
+	ADD  R1, R19, R19
+
+foldprop51_4_skip:
+	ROR $57, R0, R0
+	EOR R1, R0, R0
+	CMP R20, R1
+	BLO foldprop51_6_skip
+	EOR R1, R0, R0
+
+foldprop51_6_skip:
+	MOVD R19, R2
+	ROR  $55, R2, R2
+	ADD  R19, R2, R2
+	EOR  R2, R0, R0
+	ADD  R0, R19, R19
 	MOVD R20, R1
 	ADD  R1, R20, R20
 	ADD  R1, R0, R0
-	ADD  R21, R0, R0
+	MOVD R19, R1
+	UBFX $8, R1, $8, R2
+	ADD  R2, R0, R0
+	EOR  R1, R0, R0
+	MOVD R20, R1
+	LSL  $0x05, R1, R2
+	EOR  R2, R0, R0
+	ADD  R1, R0, R0
+	ADD  R22, R0, R0
 	ADD  R19, R0, R0
 	ADD  R20, R0, R0
-	ADD  R22, R0, R0
+	ADD  R21, R0, R0
 	MOVD R0, ret+16(FP)
 	RET
 
@@ -7770,12 +7746,12 @@ foldprop51_10_skip:
 TEXT ·FoldProp52(SB), NOSPLIT, $32-24
 	MOVD x+0(FP), R0
 	MOVD y+8(FP), R1
-	MOVD R1, R21
-	ADD  $0x00000000, R21, R21
 	MOVD R1, R19
-	ADD  $0x00000001, R19, R19
+	ADD  $0x00000000, R19, R19
 	MOVD R1, R20
-	ADD  $0x00000002, R20, R20
+	ADD  $0x00000001, R20, R20
+	MOVD R1, R21
+	ADD  $0x00000002, R21, R21
 	MOVD R1, R22
 	ADD  $0x00000003, R22, R22
 	CMP  R22, R1
@@ -7783,61 +7759,62 @@ TEXT ·FoldProp52(SB), NOSPLIT, $32-24
 	EOR  R1, R0, R0
 
 foldprop52_0_skip:
-	MOVD $-2147483648, R21
-	ADD  R21, R0, R0
-	MOVD R19, R3
-	ROR  $55, R3, R3
-	ADD  R19, R3, R3
-	EOR  R3, R0, R0
-	NEG  R19, R19
-	MVN  R20, R20
-	TST  R21, R0
-	BEQ  foldprop52_4_skip
-	ADD  R1, R0, R0
+	MOVD R19, R2
+	MOVD $0x00000002, R3
 
-foldprop52_4_skip:
-	MOVD R21, R2
-	MOVD R20, R21
-	MOVD R2, R20
-	AND  $0x00000003, R19, R19
+foldprop52_1_loop:
+	ADD  R2, R0, R0
+	MOVD R0, R19
+	SUBS $0x00000001, R3, R3
+	BNE  foldprop52_1_loop
+	CMP  R20, R1
+	BLO  foldprop52_2_skip
+	EOR  R1, R0, R0
+
+foldprop52_2_skip:
+	MOVD R20, R2
+	LSL  $0x05, R2, R3
+	EOR  R3, R0, R0
+	ADD  R2, R0, R0
+	MOVD R0, R19
+	CMP  R1, R0
+	BLO  foldprop52_5_skip
+	ADD  R1, R19, R19
+
+foldprop52_5_skip:
+	MOVD R20, R2
+	MOVD $0x00000002, R3
 
 foldprop52_6_loop:
-	CMP $0x00000000, R19
-	BEQ foldprop52_6_done
-	ADD R19, R0, R0
-	ROR $61, R0, R0
-	SUB $0x00000001, R19, R19
-	JMP foldprop52_6_loop
-
-foldprop52_6_done:
-	TST R22, R0
-	BEQ foldprop52_7_skip
-	ADD R1, R0, R0
-
-foldprop52_7_skip:
-	MOVD R21, R1
-	UBFX $8, R1, $8, R2
-	ADD  R2, R0, R0
-	EOR  R1, R0, R0
-	MOVD R21, R2
-	ROR  $55, R2, R2
-	ADD  R21, R2, R2
-	EOR  R2, R0, R0
-	MOVD R20, R1
-	MOVD $0x00000002, R2
-
-foldprop52_10_loop:
 	MOVD R0, R20
+	ADD  R3, R0, R0
+	SUBS $0x00000001, R3, R3
+	BNE  foldprop52_6_loop
 	ADD  R2, R0, R0
-	SUBS $0x00000001, R2, R2
-	BNE  foldprop52_10_loop
-	ADD  R1, R0, R0
-	MOVD R19, R1
-	MOVD R22, R19
-	MOVD R1, R22
-	ADD  R21, R0, R0
+	ADD  R0, R22, R22
+	MOVD R19, R2
+	MOVD $0x00000002, R3
+
+foldprop52_8_loop:
+	MOVD R0, R19
+	ADD  R3, R0, R0
+	SUBS $0x00000001, R3, R3
+	BNE  foldprop52_8_loop
+	ADD  R2, R0, R0
+	CMP  R1, R0
+	BLO  foldprop52_9_skip
+	ADD  R1, R19, R19
+
+foldprop52_9_skip:
+	MOVD R21, R2
+	MOVD R2, R21
+	ADD  R1, R21, R21
+	ADD  R2, R0, R0
+	MOVD R20, R21
+	ADD  R20, R0, R0
 	ADD  R19, R0, R0
 	ADD  R20, R0, R0
+	ADD  R21, R0, R0
 	ADD  R22, R0, R0
 	MOVD R0, ret+16(FP)
 	RET
@@ -7854,35 +7831,43 @@ TEXT ·FoldProp53(SB), NOSPLIT, $32-24
 	ADD  $0x00000002, R22, R22
 	MOVD R1, R20
 	ADD  $0x00000003, R20, R20
-	ADD  R0, R19, R19
 	MOVD R19, R2
-	MOVD R20, R19
-	MOVD R2, R20
-	AND  $0x00000003, R20, R20
+	LSL  $0x05, R2, R3
+	EOR  R3, R0, R0
+	ADD  R2, R0, R0
+	MOVD R1, R2
+	CMP  R1, R0
+	BLO  foldprop53_1_skip
+	MOVD R19, R2
+
+foldprop53_1_skip:
+	ADD R2, R0, R0
+	AND $0x00000003, R20, R20
 
 foldprop53_2_loop:
 	CMP $0x00000000, R20
 	BEQ foldprop53_2_done
 	ADD R20, R0, R0
 	ROR $61, R0, R0
-	SUB $0x00000001, R20, R20
+	SUB $1, R20, R20
 	JMP foldprop53_2_loop
 
 foldprop53_2_done:
-	MOVD R0, R19
-	MOVD R19, R22
-	ADD  R19, R0, R0
 	MOVD R19, R2
-	MOVD $0x00000002, R3
-
-foldprop53_5_loop:
+	LSL  $0x05, R2, R3
+	EOR  R3, R0, R0
 	ADD  R2, R0, R0
-	MOVD R0, R19
-	SUBS $0x00000001, R3, R3
-	BNE  foldprop53_5_loop
-	ADD  R0, R22, R22
+	ADD  R0, R19, R19
+	MOVD R1, R2
+	CMP  R1, R0
+	BLO  foldprop53_5_skip
+	MOVD R19, R2
+
+foldprop53_5_skip:
+	ADD  R2, R0, R0
+	MOVD R0, R22
 	MOVD R21, R2
-	ADD  R2, R21, R21
+	MOVD R0, R21
 	ADD  R2, R0, R0
 	AND  $0x00000003, R19, R19
 
@@ -7895,17 +7880,20 @@ foldprop53_8_loop:
 	JMP foldprop53_8_loop
 
 foldprop53_8_done:
-	CMP R1, R0
-	BLO foldprop53_9_skip
-	ADD R1, R21, R21
+	MOVD $0x00000002, R2
 
-foldprop53_9_skip:
-	MOVD R20, R1
-	MOVD R19, R20
-	MOVD R1, R19
+foldprop53_9_loop:
+	ADD  R21, R0, R0
+	MOVD R1, R3
+	ADD  R0, R3, R3
+	SUBS $0x00000001, R2, R2
+	BNE  foldprop53_9_loop
+	MOVD R3, R21
+	MOVD R0, R20
 	MOVD R21, R1
-	MOVD R22, R21
-	MOVD R1, R22
+	UBFX $8, R1, $8, R2
+	ADD  R2, R0, R0
+	EOR  R1, R0, R0
 	ADD  R21, R0, R0
 	ADD  R19, R0, R0
 	ADD  R22, R0, R0
@@ -7917,80 +7905,168 @@ foldprop53_9_skip:
 TEXT ·FoldProp54(SB), NOSPLIT, $32-24
 	MOVD x+0(FP), R0
 	MOVD y+8(FP), R1
-	MOVD R1, R20
-	ADD  $0x00000000, R20, R20
+	MOVD R1, R21
+	ADD  $0x00000000, R21, R21
 	MOVD R1, R22
 	ADD  $0x00000001, R22, R22
-	MOVD R1, R21
-	ADD  $0x00000002, R21, R21
+	MOVD R1, R20
+	ADD  $0x00000002, R20, R20
 	MOVD R1, R19
 	ADD  $0x00000003, R19, R19
-	MOVD $-2147483648, R20
-	ADD  R20, R0, R0
-	ADD  R1, R19, R19
-	MOVD R21, R3
-	ROR  $55, R3, R3
-	ADD  R21, R3, R3
-	EOR  R3, R0, R0
 	MOVD R21, R2
 	MOVD $0x00000002, R3
 
-foldprop54_3_loop:
+foldprop54_0_loop:
+	ADD  R2, R0, R0
 	MOVD R0, R21
+	SUBS $0x00000001, R3, R3
+	BNE  foldprop54_0_loop
+	MOVD R19, R2
+	MOVD $0x00000002, R3
+
+foldprop54_1_loop:
+	MOVD R0, R19
 	ADD  R3, R0, R0
 	SUBS $0x00000001, R3, R3
-	BNE  foldprop54_3_loop
+	BNE  foldprop54_1_loop
 	ADD  R2, R0, R0
-	MOVD R1, R2
-	CMP  R1, R0
-	BLO  foldprop54_4_skip
-	MOVD R21, R2
+	MOVD R20, R2
+	ADD  R2, R20, R20
+	ADD  R2, R0, R0
+	MOVD $0x00000002, R2
 
-foldprop54_4_skip:
-	ADD R2, R0, R0
-	NEG R19, R19
-	MVN R20, R20
-	AND $0x00000003, R20, R20
+foldprop54_3_loop:
+	ADD  R20, R0, R0
+	MOVD R1, R3
+	ADD  R0, R3, R3
+	SUBS $0x00000001, R2, R2
+	BNE  foldprop54_3_loop
+	MOVD R3, R20
+	MOVD R20, R2
+	MOVD R2, R20
+	ADD  R1, R20, R20
+	ADD  R2, R0, R0
+	MOVD R19, R2
+	MOVD $0x00000002, R3
+
+foldprop54_5_loop:
+	MOVD R0, R19
+	ADD  R3, R0, R0
+	SUBS $0x00000001, R3, R3
+	BNE  foldprop54_5_loop
+	ADD  R2, R0, R0
+	MOVD $0x00000002, R2
 
 foldprop54_6_loop:
+	ADD  R21, R0, R0
+	MOVD R1, R3
+	ADD  R0, R3, R3
+	SUBS $0x00000001, R2, R2
+	BNE  foldprop54_6_loop
+	MOVD R3, R21
+	MOVD R19, R1
+	MOVD R22, R19
+	MOVD R1, R22
+	MOVD R19, R1
+	ADD  R1, R19, R19
+	ADD  R1, R0, R0
+	AND  $0x00000003, R20, R20
+
+foldprop54_9_loop:
 	CMP $0x00000000, R20
-	BEQ foldprop54_6_done
+	BEQ foldprop54_9_done
 	ADD R20, R0, R0
 	ROR $61, R0, R0
 	SUB $1, R20, R20
-	JMP foldprop54_6_loop
+	JMP foldprop54_9_loop
 
-foldprop54_6_done:
-	NEG R19, R19
-	MVN R20, R20
+foldprop54_9_done:
 	AND $0x00000003, R19, R19
 
-foldprop54_8_loop:
+foldprop54_10_loop:
 	CMP $0x00000000, R19
-	BEQ foldprop54_8_done
+	BEQ foldprop54_10_done
 	ADD R19, R0, R0
 	ROR $61, R0, R0
-	SUB $1, R19, R19
-	JMP foldprop54_8_loop
+	SUB $0x00000001, R19, R19
+	JMP foldprop54_10_loop
 
-foldprop54_8_done:
-	ADD  R1, R21, R21
-	MOVD R19, R2
-	MOVD R0, R19
-	ADD  R2, R0, R0
-	MOVD R22, R2
-	MOVD R2, R22
+foldprop54_10_done:
+	MOVD R22, R1
 	ADD  R1, R22, R22
-	ADD  R2, R0, R0
-	ADD  R20, R0, R0
-	ADD  R22, R0, R0
+	ADD  R1, R0, R0
 	ADD  R21, R0, R0
+	ADD  R22, R0, R0
+	ADD  R20, R0, R0
 	ADD  R19, R0, R0
 	MOVD R0, ret+16(FP)
 	RET
 
 // func FoldProp55(x uint64, y uint64) uint64
 TEXT ·FoldProp55(SB), NOSPLIT, $32-24
+	MOVD x+0(FP), R0
+	MOVD y+8(FP), R1
+	MOVD R1, R21
+	ADD  $0x00000000, R21, R21
+	MOVD R1, R20
+	ADD  $0x00000001, R20, R20
+	MOVD R1, R22
+	ADD  $0x00000002, R22, R22
+	MOVD R1, R19
+	ADD  $0x00000003, R19, R19
+	ROR  $57, R0, R0
+	EOR  R1, R0, R0
+	ADD  R1, R21, R21
+	MOVD R19, R2
+	ADD  R2, R19, R19
+	ADD  R2, R0, R0
+	MOVD R20, R2
+	MOVD R2, R20
+	ADD  R1, R20, R20
+	ADD  R2, R0, R0
+	MOVD R19, R2
+	LSL  $0x05, R2, R3
+	EOR  R3, R0, R0
+	ADD  R2, R0, R0
+	MOVD R20, R2
+	UBFX $8, R2, $8, R3
+	ADD  R3, R0, R0
+	EOR  R2, R0, R0
+	CMP  R20, R1
+	BLO  foldprop55_6_skip
+	EOR  R1, R0, R0
+
+foldprop55_6_skip:
+	ADD  R0, R21, R21
+	MOVD R21, R2
+	MOVD R2, R21
+	ADD  R1, R21, R21
+	ADD  R2, R0, R0
+	AND  $0x00000003, R19, R19
+
+foldprop55_9_loop:
+	CMP $0x00000000, R19
+	BEQ foldprop55_9_done
+	ADD R19, R0, R0
+	ROR $61, R0, R0
+	SUB $0x00000001, R19, R19
+	JMP foldprop55_9_loop
+
+foldprop55_9_done:
+	MOVD R20, R2
+	MOVD R0, R20
+	ADD  R2, R0, R0
+	ROR  $57, R0, R0
+	EOR  R1, R0, R0
+	ADD  R21, R0, R0
+	ADD  R20, R0, R0
+	ADD  R22, R0, R0
+	ADD  R19, R0, R0
+	MOVD R0, ret+16(FP)
+	RET
+
+// func FoldProp56(x uint64, y uint64) uint64
+TEXT ·FoldProp56(SB), NOSPLIT, $32-24
 	MOVD x+0(FP), R0
 	MOVD y+8(FP), R1
 	MOVD R1, R19
@@ -8001,147 +8077,66 @@ TEXT ·FoldProp55(SB), NOSPLIT, $32-24
 	ADD  $0x00000002, R22, R22
 	MOVD R1, R21
 	ADD  $0x00000003, R21, R21
-	MOVD $0x00000002, R2
-
-foldprop55_0_loop:
-	ADD  R20, R0, R0
-	MOVD R1, R3
-	ADD  R0, R3, R3
-	SUBS $0x00000001, R2, R2
-	BNE  foldprop55_0_loop
-	MOVD R3, R20
-	MOVD R19, R2
-	MOVD $0x00000002, R3
-
-foldprop55_1_loop:
-	ADD  R2, R0, R0
-	MOVD R0, R19
-	SUBS $0x00000001, R3, R3
-	BNE  foldprop55_1_loop
-	CMP  R21, R1
-	BLO  foldprop55_2_skip
-	EOR  R1, R0, R0
-
-foldprop55_2_skip:
-	MOVD R20, R2
-	UBFX $8, R2, $8, R3
-	ADD  R3, R0, R0
-	EOR  R2, R0, R0
-	MOVD R21, R2
-	MOVD R20, R21
-	MOVD R2, R20
-	ADD  R1, R20, R20
-	CMP  R1, R0
-	BLO  foldprop55_6_skip
-	ADD  R1, R20, R20
-
-foldprop55_6_skip:
-	MOVD R19, R2
-	MOVD $0x00000002, R3
-
-foldprop55_7_loop:
-	ADD  R2, R0, R0
-	MOVD R0, R19
-	SUBS $0x00000001, R3, R3
-	BNE  foldprop55_7_loop
-	CMP  R1, R0
-	BLO  foldprop55_8_skip
 	ADD  R1, R19, R19
-
-foldprop55_8_skip:
-	CMP R21, R1
-	BLO foldprop55_9_skip
-	EOR R1, R0, R0
-
-foldprop55_9_skip:
-	MOVD R20, R1
-	MOVD R0, R20
-	ADD  R1, R0, R0
-	MOVD R0, R20
-	ADD  R19, R0, R0
+	MOVD $-2147483647, R20
 	ADD  R20, R0, R0
-	ADD  R22, R0, R0
-	ADD  R21, R0, R0
-	MOVD R0, ret+16(FP)
-	RET
-
-// func FoldProp56(x uint64, y uint64) uint64
-TEXT ·FoldProp56(SB), NOSPLIT, $32-24
-	MOVD x+0(FP), R0
-	MOVD y+8(FP), R1
-	MOVD R1, R20
-	ADD  $0x00000000, R20, R20
-	MOVD R1, R21
-	ADD  $0x00000001, R21, R21
-	MOVD R1, R19
-	ADD  $0x00000002, R19, R19
-	MOVD R1, R22
-	ADD  $0x00000003, R22, R22
+	ROR  $57, R0, R0
+	EOR  R1, R0, R0
+	ROR  $57, R0, R0
+	EOR  R1, R0, R0
+	MOVD R1, R2
 	CMP  R1, R0
-	BLO  foldprop56_0_skip
-	ADD  R1, R20, R20
+	BLO  foldprop56_4_skip
+	MOVD R19, R2
 
-foldprop56_0_skip:
-	CMP R21, R1
-	BLO foldprop56_1_skip
-	EOR R1, R0, R0
+foldprop56_4_skip:
+	ADD  R2, R0, R0
+	MOVD R19, R2
+	MOVD $0x00000002, R3
 
-foldprop56_1_skip:
-	TST R20, R0
-	BEQ foldprop56_2_skip
-	ADD R1, R0, R0
-
-foldprop56_2_skip:
-	AND $0x00000003, R19, R19
-
-foldprop56_3_loop:
-	CMP $0x00000000, R19
-	BEQ foldprop56_3_done
-	ADD R19, R0, R0
-	ROR $61, R0, R0
-	SUB $1, R19, R19
-	JMP foldprop56_3_loop
-
-foldprop56_3_done:
-	NEG  R20, R20
-	MVN  R21, R21
+foldprop56_5_loop:
+	MOVD R0, R19
+	ADD  R3, R0, R0
+	SUBS $0x00000001, R3, R3
+	BNE  foldprop56_5_loop
+	ADD  R2, R0, R0
 	MOVD R20, R2
-	MOVD R0, R20
+	ADD  R2, R20, R20
 	ADD  R2, R0, R0
-	MOVD R21, R2
-	LSL  $0x05, R2, R3
-	EOR  R3, R0, R0
-	ADD  R2, R0, R0
-	AND  $0x00000003, R19, R19
-
-foldprop56_7_loop:
-	CMP $0x00000000, R19
-	BEQ foldprop56_7_done
-	ADD R19, R0, R0
-	ROR $61, R0, R0
-	SUB $1, R19, R19
-	JMP foldprop56_7_loop
-
-foldprop56_7_done:
-	ROR $57, R0, R0
-	EOR R1, R0, R0
-	CMP R20, R1
-	BLO foldprop56_9_skip
-	EOR R1, R0, R0
+	ADD  R0, R22, R22
+	MOVD $-2147483645, R21
+	ADD  R21, R0, R0
+	MOVD R1, R2
+	CMP  R1, R0
+	BLO  foldprop56_9_skip
+	MOVD R19, R2
 
 foldprop56_9_skip:
+	ADD R2, R0, R0
+	AND $0x00000003, R19, R19
+
+foldprop56_10_loop:
+	CMP $0x00000000, R19
+	BEQ foldprop56_10_done
+	ADD R19, R0, R0
+	ROR $61, R0, R0
+	SUB $1, R19, R19
+	JMP foldprop56_10_loop
+
+foldprop56_10_done:
 	MOVD R20, R1
-	LSL  $0x05, R1, R2
-	EOR  R2, R0, R0
+	MOVD $0x00000002, R2
+
+foldprop56_11_loop:
+	MOVD R0, R20
+	ADD  R2, R0, R0
+	SUBS $0x00000001, R2, R2
+	BNE  foldprop56_11_loop
 	ADD  R1, R0, R0
-	MOVD R21, R1
-	LSL  $0x05, R1, R2
-	EOR  R2, R0, R0
-	ADD  R1, R0, R0
-	ADD  R20, R0, R0
-	ADD  R21, R0, R0
 	ADD  R19, R0, R0
+	ADD  R20, R0, R0
 	ADD  R22, R0, R0
+	ADD  R21, R0, R0
 	MOVD R0, ret+16(FP)
 	RET
 
@@ -8149,69 +8144,79 @@ foldprop56_9_skip:
 TEXT ·FoldProp57(SB), NOSPLIT, $32-24
 	MOVD x+0(FP), R0
 	MOVD y+8(FP), R1
-	MOVD R1, R19
-	ADD  $0x00000000, R19, R19
-	MOVD R1, R22
-	ADD  $0x00000001, R22, R22
-	MOVD R1, R20
-	ADD  $0x00000002, R20, R20
 	MOVD R1, R21
-	ADD  $0x00000003, R21, R21
-	MOVD R21, R2
-	UBFX $8, R2, $8, R3
-	ADD  R3, R0, R0
-	EOR  R2, R0, R0
-	CMP  R20, R1
-	BLO  foldprop57_1_skip
-	EOR  R1, R0, R0
+	ADD  $0x00000000, R21, R21
+	MOVD R1, R20
+	ADD  $0x00000001, R20, R20
+	MOVD R1, R19
+	ADD  $0x00000002, R19, R19
+	MOVD R1, R22
+	ADD  $0x00000003, R22, R22
+	MOVD R22, R2
+	MOVD $0x00000002, R3
 
-foldprop57_1_skip:
-	CMP R19, R1
-	BLO foldprop57_2_skip
-	EOR R1, R0, R0
-
-foldprop57_2_skip:
-	MOVD R20, R2
-	MOVD R2, R20
-	ADD  R1, R20, R20
+foldprop57_0_loop:
 	ADD  R2, R0, R0
-	ADD  R0, R22, R22
-	ROR  $57, R0, R0
-	EOR  R1, R0, R0
-	CMP  R19, R1
-	BLO  foldprop57_6_skip
-	EOR  R1, R0, R0
+	MOVD R0, R22
+	SUBS $0x00000001, R3, R3
+	BNE  foldprop57_0_loop
+	AND  $0x00000003, R19, R19
 
-foldprop57_6_skip:
-	MOVD R19, R2
-	MOVD R20, R19
-	MOVD R2, R20
-	MOVD $0x00000002, R2
+foldprop57_1_loop:
+	CMP $0x00000000, R19
+	BEQ foldprop57_1_done
+	ADD R19, R0, R0
+	ROR $61, R0, R0
+	SUB $0x00000001, R19, R19
+	JMP foldprop57_1_loop
 
-foldprop57_8_loop:
-	ADD  R19, R0, R0
-	MOVD R1, R3
-	ADD  R0, R3, R3
-	SUBS $0x00000001, R2, R2
-	BNE  foldprop57_8_loop
-	MOVD R3, R19
+foldprop57_1_done:
+	MOVD R21, R2
+	MOVD $0x00000002, R3
+
+foldprop57_2_loop:
+	ADD  R2, R0, R0
+	MOVD R0, R21
+	SUBS $0x00000001, R3, R3
+	BNE  foldprop57_2_loop
 	CMP  R1, R0
-	BLO  foldprop57_9_skip
-	ADD  R1, R20, R20
+	BLO  foldprop57_3_skip
+	ADD  R1, R19, R19
 
-foldprop57_9_skip:
+foldprop57_3_skip:
+	AND $0x00000003, R20, R20
+
+foldprop57_4_loop:
+	CMP $0x00000000, R20
+	BEQ foldprop57_4_done
+	ADD R20, R0, R0
+	ROR $61, R0, R0
+	SUB $1, R20, R20
+	JMP foldprop57_4_loop
+
+foldprop57_4_done:
+	ADD  R1, R22, R22
 	MOVD R21, R2
 	ADD  R2, R21, R21
 	ADD  R2, R0, R0
-	TST  R19, R0
-	BEQ  foldprop57_11_skip
-	ADD  R1, R0, R0
+	ADD  R1, R21, R21
+	MOVD R21, R2
+	LSL  $0x05, R2, R3
+	EOR  R3, R0, R0
+	ADD  R2, R0, R0
+	MOVD $-2147483646, R19
+	ADD  R19, R0, R0
+	MOVD $-2147483645, R22
+	ADD  R22, R0, R0
+	CMP  R1, R0
+	BLO  foldprop57_11_skip
+	ADD  R1, R21, R21
 
 foldprop57_11_skip:
+	ADD  R21, R0, R0
+	ADD  R20, R0, R0
 	ADD  R19, R0, R0
 	ADD  R22, R0, R0
-	ADD  R20, R0, R0
-	ADD  R21, R0, R0
 	MOVD R0, ret+16(FP)
 	RET
 
@@ -8221,77 +8226,66 @@ TEXT ·FoldProp58(SB), NOSPLIT, $32-24
 	MOVD y+8(FP), R1
 	MOVD R1, R22
 	ADD  $0x00000000, R22, R22
-	MOVD R1, R19
-	ADD  $0x00000001, R19, R19
 	MOVD R1, R20
-	ADD  $0x00000002, R20, R20
+	ADD  $0x00000001, R20, R20
+	MOVD R1, R19
+	ADD  $0x00000002, R19, R19
 	MOVD R1, R21
 	ADD  $0x00000003, R21, R21
-	AND  $0x00000003, R19, R19
-
-foldprop58_0_loop:
-	CMP $0x00000000, R19
-	BEQ foldprop58_0_done
-	ADD R19, R0, R0
-	ROR $61, R0, R0
-	SUB $1, R19, R19
-	JMP foldprop58_0_loop
-
-foldprop58_0_done:
-	MOVD R21, R2
-	ADD  R2, R21, R21
+	MOVD R20, R2
+	MOVD R0, R20
 	ADD  R2, R0, R0
+	CMP  R21, R1
+	BLO  foldprop58_1_skip
+	EOR  R1, R0, R0
+
+foldprop58_1_skip:
+	CMP R20, R1
+	BLO foldprop58_2_skip
+	EOR R1, R0, R0
+
+foldprop58_2_skip:
+	CMP R19, R1
+	BLO foldprop58_3_skip
+	EOR R1, R0, R0
+
+foldprop58_3_skip:
 	MOVD R19, R2
 	LSL  $0x05, R2, R3
 	EOR  R3, R0, R0
 	ADD  R2, R0, R0
-	MOVD R20, R2
-	MOVD R2, R20
-	ADD  R1, R20, R20
-	ADD  R2, R0, R0
-	AND  $0x00000003, R20, R20
+	AND  $0x00000003, R19, R19
 
-foldprop58_4_loop:
-	CMP $0x00000000, R20
-	BEQ foldprop58_4_done
-	ADD R20, R0, R0
-	ROR $61, R0, R0
-	SUB $0x00000001, R20, R20
-	JMP foldprop58_4_loop
-
-foldprop58_4_done:
-	ADD R0, R20, R20
-	AND $0x00000003, R19, R19
-
-foldprop58_6_loop:
+foldprop58_5_loop:
 	CMP $0x00000000, R19
-	BEQ foldprop58_6_done
+	BEQ foldprop58_5_done
 	ADD R19, R0, R0
 	ROR $61, R0, R0
 	SUB $0x00000001, R19, R19
-	JMP foldprop58_6_loop
+	JMP foldprop58_5_loop
 
-foldprop58_6_done:
+foldprop58_5_done:
 	MOVD R20, R2
-	MOVD R2, R20
-	ADD  R1, R20, R20
-	ADD  R2, R0, R0
-	NEG  R20, R20
-	MVN  R21, R21
-	MOVD R0, R20
-	ADD  R0, R20, R20
-	MOVD $0x00000002, R2
-
-foldprop58_11_loop:
-	ADD  R20, R0, R0
-	MOVD R1, R3
-	ADD  R0, R3, R3
-	SUBS $0x00000001, R2, R2
-	BNE  foldprop58_11_loop
-	MOVD R3, R20
-	ADD  R22, R0, R0
+	MOVD R21, R20
+	MOVD R2, R21
+	MOVD R19, R21
 	ADD  R19, R0, R0
+	MOVD R19, R2
+	MOVD R2, R19
+	ADD  R1, R19, R19
+	ADD  R2, R0, R0
+	MOVD R1, R2
+	CMP  R1, R0
+	BLO  foldprop58_9_skip
+	MOVD R19, R2
+
+foldprop58_9_skip:
+	ADD  R2, R0, R0
+	ADD  R0, R19, R19
+	MOVD R0, R19
+	ADD  R22, R0, R0
 	ADD  R20, R0, R0
+	ADD  R19, R0, R0
 	ADD  R21, R0, R0
 	MOVD R0, ret+16(FP)
 	RET
@@ -8300,156 +8294,15 @@ foldprop58_11_loop:
 TEXT ·FoldProp59(SB), NOSPLIT, $32-24
 	MOVD x+0(FP), R0
 	MOVD y+8(FP), R1
-	MOVD R1, R19
-	ADD  $0x00000000, R19, R19
 	MOVD R1, R20
-	ADD  $0x00000001, R20, R20
-	MOVD R1, R22
-	ADD  $0x00000002, R22, R22
-	MOVD R1, R21
-	ADD  $0x00000003, R21, R21
-	AND  $0x00000003, R19, R19
-
-foldprop59_0_loop:
-	CMP $0x00000000, R19
-	BEQ foldprop59_0_done
-	ADD R19, R0, R0
-	ROR $61, R0, R0
-	SUB $0x00000001, R19, R19
-	JMP foldprop59_0_loop
-
-foldprop59_0_done:
-	ADD  R1, R19, R19
-	MOVD $-2147483645, R21
-	ADD  R21, R0, R0
-	NEG  R22, R22
-	MVN  R21, R21
-	CMP  R21, R1
-	BLO  foldprop59_4_skip
-	EOR  R1, R0, R0
-
-foldprop59_4_skip:
-	AND $0x00000003, R20, R20
-
-foldprop59_5_loop:
-	CMP $0x00000000, R20
-	BEQ foldprop59_5_done
-	ADD R20, R0, R0
-	ROR $61, R0, R0
-	SUB $1, R20, R20
-	JMP foldprop59_5_loop
-
-foldprop59_5_done:
-	MOVD R0, R21
-	MOVD R19, R2
-	MOVD $0x00000002, R3
-
-foldprop59_7_loop:
-	MOVD R0, R19
-	ADD  R3, R0, R0
-	SUBS $0x00000001, R3, R3
-	BNE  foldprop59_7_loop
-	ADD  R2, R0, R0
-	MOVD R22, R2
-	ADD  R2, R22, R22
-	ADD  R2, R0, R0
-	CMP  R1, R0
-	BLO  foldprop59_9_skip
-	ADD  R1, R21, R21
-
-foldprop59_9_skip:
-	MOVD R19, R2
-	MOVD R2, R19
-	ADD  R1, R19, R19
-	ADD  R2, R0, R0
-	MOVD R19, R2
-	ROR  $55, R2, R2
-	ADD  R19, R2, R2
-	EOR  R2, R0, R0
-	ADD  R19, R0, R0
-	ADD  R20, R0, R0
-	ADD  R22, R0, R0
-	ADD  R21, R0, R0
-	MOVD R0, ret+16(FP)
-	RET
-
-// func FoldProp60(x uint64, y uint64) uint64
-TEXT ·FoldProp60(SB), NOSPLIT, $32-24
-	MOVD x+0(FP), R0
-	MOVD y+8(FP), R1
-	MOVD R1, R22
-	ADD  $0x00000000, R22, R22
-	MOVD R1, R20
-	ADD  $0x00000001, R20, R20
-	MOVD R1, R19
-	ADD  $0x00000002, R19, R19
-	MOVD R1, R21
-	ADD  $0x00000003, R21, R21
-	MOVD $-2147483646, R19
-	ADD  R19, R0, R0
-	MOVD R19, R2
-	ADD  R2, R19, R19
-	ADD  R2, R0, R0
-	ADD  R1, R22, R22
-	MOVD R19, R1
-	MOVD R0, R19
-	ADD  R1, R0, R0
-	MOVD R21, R1
-	ADD  R1, R21, R21
-	ADD  R1, R0, R0
-	MOVD R20, R19
-	ADD  R20, R0, R0
-	MOVD R21, R2
-	ROR  $55, R2, R2
-	ADD  R21, R2, R2
-	EOR  R2, R0, R0
-	MOVD R19, R1
-	LSL  $0x05, R1, R2
-	EOR  R2, R0, R0
-	ADD  R1, R0, R0
-	AND  $0x00000003, R19, R19
-
-foldprop60_8_loop:
-	CMP $0x00000000, R19
-	BEQ foldprop60_8_done
-	ADD R19, R0, R0
-	ROR $61, R0, R0
-	SUB $0x00000001, R19, R19
-	JMP foldprop60_8_loop
-
-foldprop60_8_done:
-	ADD  R0, R20, R20
-	MOVD R19, R1
-	MOVD $0x00000002, R2
-
-foldprop60_10_loop:
-	ADD  R1, R0, R0
-	MOVD R0, R19
-	SUBS $0x00000001, R2, R2
-	BNE  foldprop60_10_loop
-	MOVD R20, R1
-	ADD  R1, R20, R20
-	ADD  R1, R0, R0
-	ADD  R22, R0, R0
-	ADD  R20, R0, R0
-	ADD  R19, R0, R0
-	ADD  R21, R0, R0
-	MOVD R0, ret+16(FP)
-	RET
-
-// func FoldProp61(x uint64, y uint64) uint64
-TEXT ·FoldProp61(SB), NOSPLIT, $32-24
-	MOVD x+0(FP), R0
-	MOVD y+8(FP), R1
-	MOVD R1, R19
-	ADD  $0x00000000, R19, R19
+	ADD  $0x00000000, R20, R20
 	MOVD R1, R21
 	ADD  $0x00000001, R21, R21
 	MOVD R1, R22
 	ADD  $0x00000002, R22, R22
-	MOVD R1, R20
-	ADD  $0x00000003, R20, R20
-	MOVD R22, R2
+	MOVD R1, R19
+	ADD  $0x00000003, R19, R19
+	MOVD R20, R2
 	UBFX $8, R2, $8, R3
 	ADD  R3, R0, R0
 	EOR  R2, R0, R0
@@ -8457,57 +8310,201 @@ TEXT ·FoldProp61(SB), NOSPLIT, $32-24
 	MOVD R2, R20
 	ADD  R1, R20, R20
 	ADD  R2, R0, R0
-	AND  $0x00000003, R19, R19
+	MOVD R19, R2
+	MOVD $0x00000002, R3
 
-foldprop61_2_loop:
+foldprop59_2_loop:
+	MOVD R0, R19
+	ADD  R3, R0, R0
+	SUBS $0x00000001, R3, R3
+	BNE  foldprop59_2_loop
+	ADD  R2, R0, R0
+	MOVD R1, R2
+	CMP  R1, R0
+	BLO  foldprop59_3_skip
+	MOVD R22, R2
+
+foldprop59_3_skip:
+	ADD  R2, R0, R0
+	ROR  $57, R0, R0
+	EOR  R1, R0, R0
+	MOVD $-2147483647, R21
+	ADD  R21, R0, R0
+	MOVD R19, R2
+	MOVD R2, R19
+	ADD  R1, R19, R19
+	ADD  R2, R0, R0
+	MOVD R20, R2
+	MOVD $0x00000002, R3
+
+foldprop59_7_loop:
+	ADD  R2, R0, R0
+	MOVD R0, R20
+	SUBS $0x00000001, R3, R3
+	BNE  foldprop59_7_loop
+	MOVD R1, R2
+	CMP  R1, R0
+	BLO  foldprop59_8_skip
+	MOVD R22, R2
+
+foldprop59_8_skip:
+	ADD R2, R0, R0
+	AND $0x00000003, R19, R19
+
+foldprop59_9_loop:
 	CMP $0x00000000, R19
-	BEQ foldprop61_2_done
+	BEQ foldprop59_9_done
 	ADD R19, R0, R0
 	ROR $61, R0, R0
 	SUB $0x00000001, R19, R19
-	JMP foldprop61_2_loop
+	JMP foldprop59_9_loop
 
-foldprop61_2_done:
-	MOVD R22, R20
-	ADD  R22, R0, R0
-	MOVD R21, R2
-	ADD  R2, R21, R21
+foldprop59_9_done:
+	ADD  R1, R20, R20
+	MOVD R20, R1
+	UBFX $8, R1, $8, R2
 	ADD  R2, R0, R0
-	AND  $0x00000003, R20, R20
+	EOR  R1, R0, R0
+	ADD  R20, R0, R0
+	ADD  R21, R0, R0
+	ADD  R22, R0, R0
+	ADD  R19, R0, R0
+	MOVD R0, ret+16(FP)
+	RET
 
-foldprop61_5_loop:
-	CMP $0x00000000, R20
-	BEQ foldprop61_5_done
-	ADD R20, R0, R0
-	ROR $61, R0, R0
-	SUB $0x00000001, R20, R20
-	JMP foldprop61_5_loop
-
-foldprop61_5_done:
-	TST R22, R0
-	BEQ foldprop61_6_skip
-	ADD R1, R0, R0
-
-foldprop61_6_skip:
+// func FoldProp60(x uint64, y uint64) uint64
+TEXT ·FoldProp60(SB), NOSPLIT, $32-24
+	MOVD x+0(FP), R0
+	MOVD y+8(FP), R1
+	MOVD R1, R21
+	ADD  $0x00000000, R21, R21
+	MOVD R1, R22
+	ADD  $0x00000001, R22, R22
+	MOVD R1, R19
+	ADD  $0x00000002, R19, R19
+	MOVD R1, R20
+	ADD  $0x00000003, R20, R20
+	MOVD R19, R2
+	UBFX $8, R2, $8, R3
+	ADD  R3, R0, R0
+	EOR  R2, R0, R0
+	MOVD R19, R2
 	MOVD R0, R19
+	ADD  R2, R0, R0
+	MOVD R21, R2
+	MOVD R2, R21
+	ADD  R1, R21, R21
+	ADD  R2, R0, R0
+	MOVD R19, R2
+	MOVD R21, R19
+	MOVD R2, R21
+	MOVD R20, R2
+	MOVD $0x00000002, R3
+
+foldprop60_4_loop:
+	ADD  R2, R0, R0
+	MOVD R0, R20
+	SUBS $0x00000001, R3, R3
+	BNE  foldprop60_4_loop
 	MOVD R1, R2
 	CMP  R1, R0
-	BLO  foldprop61_8_skip
-	MOVD R21, R2
+	BLO  foldprop60_5_skip
+	MOVD R22, R2
 
-foldprop61_8_skip:
+foldprop60_5_skip:
 	ADD  R2, R0, R0
-	MOVD $-2147483647, R21
+	MOVD $-2147483645, R20
+	ADD  R20, R0, R0
+	AND  $0x00000003, R19, R19
+
+foldprop60_7_loop:
+	CMP $0x00000000, R19
+	BEQ foldprop60_7_done
+	ADD R19, R0, R0
+	ROR $61, R0, R0
+	SUB $0x00000001, R19, R19
+	JMP foldprop60_7_loop
+
+foldprop60_7_done:
+	MOVD R19, R2
+	UBFX $8, R2, $8, R3
+	ADD  R3, R0, R0
+	EOR  R2, R0, R0
+	MOVD $-2147483647, R22
+	ADD  R22, R0, R0
+	MOVD R19, R2
+	MOVD R2, R19
+	ADD  R1, R19, R19
+	ADD  R2, R0, R0
+	MOVD R22, R1
+	UBFX $8, R1, $8, R2
+	ADD  R2, R0, R0
+	EOR  R1, R0, R0
 	ADD  R21, R0, R0
+	ADD  R22, R0, R0
+	ADD  R19, R0, R0
+	ADD  R20, R0, R0
+	MOVD R0, ret+16(FP)
+	RET
+
+// func FoldProp61(x uint64, y uint64) uint64
+TEXT ·FoldProp61(SB), NOSPLIT, $32-24
+	MOVD x+0(FP), R0
+	MOVD y+8(FP), R1
+	MOVD R1, R20
+	ADD  $0x00000000, R20, R20
+	MOVD R1, R19
+	ADD  $0x00000001, R19, R19
+	MOVD R1, R21
+	ADD  $0x00000002, R21, R21
+	MOVD R1, R22
+	ADD  $0x00000003, R22, R22
+	MOVD R0, R21
+	MOVD $-2147483645, R22
+	ADD  R22, R0, R0
+	ADD  R0, R20, R20
+	MOVD R21, R2
+	MOVD R20, R21
+	MOVD R2, R20
+	MOVD R1, R2
+	CMP  R1, R0
+	BLO  foldprop61_4_skip
+	MOVD R19, R2
+
+foldprop61_4_skip:
+	ADD  R2, R0, R0
+	MOVD R22, R2
+	MOVD R2, R22
+	ADD  R1, R22, R22
+	ADD  R2, R0, R0
 	MOVD R21, R2
 	LSL  $0x05, R2, R3
 	EOR  R3, R0, R0
 	ADD  R2, R0, R0
+	MOVD R20, R2
+	MOVD R2, R20
+	ADD  R1, R20, R20
+	ADD  R2, R0, R0
+	ROR  $57, R0, R0
+	EOR  R1, R0, R0
 	ADD  R1, R19, R19
+	MOVD R19, R1
+	MOVD $0x00000002, R2
+
+foldprop61_10_loop:
+	MOVD R0, R19
+	ADD  R2, R0, R0
+	SUBS $0x00000001, R2, R2
+	BNE  foldprop61_10_loop
+	ADD  R1, R0, R0
+	MOVD R20, R2
+	ROR  $55, R2, R2
+	ADD  R20, R2, R2
+	EOR  R2, R0, R0
+	ADD  R20, R0, R0
 	ADD  R19, R0, R0
 	ADD  R21, R0, R0
 	ADD  R22, R0, R0
-	ADD  R20, R0, R0
 	MOVD R0, ret+16(FP)
 	RET
 
@@ -8519,73 +8516,60 @@ TEXT ·FoldProp62(SB), NOSPLIT, $32-24
 	ADD  $0x00000000, R22, R22
 	MOVD R1, R20
 	ADD  $0x00000001, R20, R20
-	MOVD R1, R19
-	ADD  $0x00000002, R19, R19
 	MOVD R1, R21
-	ADD  $0x00000003, R21, R21
+	ADD  $0x00000002, R21, R21
+	MOVD R1, R19
+	ADD  $0x00000003, R19, R19
+	CMP  R21, R1
+	BLO  foldprop62_0_skip
+	EOR  R1, R0, R0
+
+foldprop62_0_skip:
+	ADD  R1, R22, R22
+	MOVD R20, R2
+	UBFX $8, R2, $8, R3
+	ADD  R3, R0, R0
+	EOR  R2, R0, R0
+	MOVD R21, R2
+	UBFX $8, R2, $8, R3
+	ADD  R3, R0, R0
+	EOR  R2, R0, R0
+	MOVD R20, R21
+	ADD  R20, R0, R0
+	MOVD R1, R2
+	CMP  R1, R0
+	BLO  foldprop62_5_skip
+	MOVD R21, R2
+
+foldprop62_5_skip:
+	ADD  R2, R0, R0
+	MOVD R19, R2
+	MOVD R20, R19
+	MOVD R2, R20
+	MOVD R21, R2
+	ADD  R2, R21, R21
+	ADD  R2, R0, R0
+	MOVD R20, R2
+	MOVD R2, R20
+	ADD  R1, R20, R20
+	ADD  R2, R0, R0
 	MOVD $0x00000002, R2
 
-foldprop62_0_loop:
+foldprop62_9_loop:
 	ADD  R19, R0, R0
 	MOVD R1, R3
 	ADD  R0, R3, R3
 	SUBS $0x00000001, R2, R2
-	BNE  foldprop62_0_loop
+	BNE  foldprop62_9_loop
 	MOVD R3, R19
-	MOVD R22, R20
-	ADD  R22, R0, R0
-	AND  $0x00000003, R20, R20
-
-foldprop62_2_loop:
-	CMP $0x00000000, R20
-	BEQ foldprop62_2_done
-	ADD R20, R0, R0
-	ROR $61, R0, R0
-	SUB $1, R20, R20
-	JMP foldprop62_2_loop
-
-foldprop62_2_done:
-	ROR  $57, R0, R0
-	EOR  R1, R0, R0
-	MOVD R0, R20
-	AND  $0x00000003, R19, R19
-
-foldprop62_5_loop:
-	CMP $0x00000000, R19
-	BEQ foldprop62_5_done
-	ADD R19, R0, R0
-	ROR $61, R0, R0
-	SUB $0x00000001, R19, R19
-	JMP foldprop62_5_loop
-
-foldprop62_5_done:
-	MOVD R21, R2
-	MOVD $0x00000002, R3
-
-foldprop62_6_loop:
-	ADD  R2, R0, R0
-	MOVD R0, R21
-	SUBS $0x00000001, R3, R3
-	BNE  foldprop62_6_loop
-	MOVD R19, R2
-	UBFX $8, R2, $8, R3
-	ADD  R3, R0, R0
-	EOR  R2, R0, R0
-	ADD  R1, R20, R20
-	MOVD R21, R2
-	MOVD R20, R21
-	MOVD R2, R20
-	MOVD R21, R2
-	MOVD R2, R21
-	ADD  R1, R21, R21
-	ADD  R2, R0, R0
-	MOVD R21, R1
-	ADD  R1, R21, R21
+	MOVD R19, R1
+	MOVD R0, R19
 	ADD  R1, R0, R0
+	ADD  R0, R19, R19
 	ADD  R22, R0, R0
 	ADD  R20, R0, R0
-	ADD  R19, R0, R0
 	ADD  R21, R0, R0
+	ADD  R19, R0, R0
 	MOVD R0, ret+16(FP)
 	RET
 
@@ -8601,53 +8585,56 @@ TEXT ·FoldProp63(SB), NOSPLIT, $32-24
 	ADD  $0x00000002, R22, R22
 	MOVD R1, R21
 	ADD  $0x00000003, R21, R21
-	MOVD R0, R21
+	MOVD R21, R2
+	ADD  R2, R21, R21
+	ADD  R2, R0, R0
+	ADD  R1, R20, R20
 	ROR  $57, R0, R0
 	EOR  R1, R0, R0
 	MOVD R22, R2
-	UBFX $8, R2, $8, R3
-	ADD  R3, R0, R0
-	EOR  R2, R0, R0
-	ADD  R1, R22, R22
+	LSL  $0x05, R2, R3
+	EOR  R3, R0, R0
+	ADD  R2, R0, R0
+	MOVD R1, R2
+	CMP  R1, R0
+	BLO  foldprop63_4_skip
+	MOVD R22, R2
+
+foldprop63_4_skip:
+	ADD  R2, R0, R0
 	ROR  $57, R0, R0
 	EOR  R1, R0, R0
-	ADD  R0, R20, R20
-	MOVD R20, R1
-	MOVD $0x00000002, R2
+	MOVD R20, R2
+	LSL  $0x05, R2, R3
+	EOR  R3, R0, R0
+	ADD  R2, R0, R0
+	MOVD R1, R2
+	CMP  R1, R0
+	BLO  foldprop63_7_skip
+	MOVD R19, R2
 
-foldprop63_6_loop:
-	ADD  R1, R0, R0
-	MOVD R0, R20
-	SUBS $0x00000001, R2, R2
-	BNE  foldprop63_6_loop
+foldprop63_7_skip:
+	ADD  R2, R0, R0
+	MOVD R1, R2
+	CMP  R1, R0
+	BLO  foldprop63_8_skip
+	MOVD R20, R2
+
+foldprop63_8_skip:
+	ADD  R2, R0, R0
+	MOVD $-2147483648, R19
+	ADD  R19, R0, R0
+	MOVD R1, R2
+	CMP  R1, R0
+	BLO  foldprop63_10_skip
+	MOVD R21, R2
+
+foldprop63_10_skip:
+	ADD  R2, R0, R0
 	MOVD R19, R1
 	UBFX $8, R1, $8, R2
 	ADD  R2, R0, R0
 	EOR  R1, R0, R0
-	MOVD R20, R2
-	ROR  $55, R2, R2
-	ADD  R20, R2, R2
-	EOR  R2, R0, R0
-	MOVD R0, R19
-	MOVD R21, R1
-	MOVD $0x00000002, R2
-
-foldprop63_10_loop:
-	ADD  R1, R0, R0
-	MOVD R0, R21
-	SUBS $0x00000001, R2, R2
-	BNE  foldprop63_10_loop
-	AND  $0x00000003, R19, R19
-
-foldprop63_11_loop:
-	CMP $0x00000000, R19
-	BEQ foldprop63_11_done
-	ADD R19, R0, R0
-	ROR $61, R0, R0
-	SUB $1, R19, R19
-	JMP foldprop63_11_loop
-
-foldprop63_11_done:
 	ADD  R19, R0, R0
 	ADD  R20, R0, R0
 	ADD  R22, R0, R0

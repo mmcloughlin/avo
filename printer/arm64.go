@@ -210,11 +210,12 @@ func cleanSlotMove(in *ir.Instruction) (disp int, clean bool) {
 // slotALUOps are the 64-bit integer instructions whose frame-slot operand a
 // promoted register can stand in for: each reads exactly the slot's 8 bytes,
 // and writes them unless it only sets flags, with the same result on a
-// register as on memory.
+// register as on memory. Each must also lower with the slot left in memory,
+// so that promotion never decides whether a program generates: TESTQ, NEGQ
+// and NOTQ are absent because the memory forms do not lower.
 var slotALUOps = map[string]bool{
 	"ADDQ": true, "SUBQ": true, "ANDQ": true, "ORQ": true, "XORQ": true,
-	"CMPQ": true, "TESTQ": true,
-	"INCQ": true, "DECQ": true, "NEGQ": true, "NOTQ": true,
+	"CMPQ": true, "INCQ": true, "DECQ": true,
 }
 
 // aluSlotAccess reports whether in is one of slotALUOps whose only memory

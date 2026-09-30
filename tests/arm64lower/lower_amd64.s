@@ -3952,74 +3952,84 @@ slotprop47_12_skip:
 
 // func FoldProp0(x uint64, y uint64) uint64
 TEXT ·FoldProp0(SB), NOSPLIT, $32-24
-	MOVQ x+0(FP), AX
-	MOVQ y+8(FP), CX
-	MOVQ CX, DX
-	ADDQ $0x00000000, DX
-	MOVQ DX, (SP)
-	MOVQ CX, DX
-	ADDQ $0x00000001, DX
-	MOVQ DX, 8(SP)
-	MOVQ CX, DX
-	ADDQ $0x00000002, DX
-	MOVQ DX, 16(SP)
-	MOVQ CX, DX
-	ADDQ $0x00000003, DX
-	MOVQ DX, 24(SP)
-	CMPQ CX, 16(SP)
-	JCS  foldprop0_0_skip
-	XORQ CX, AX
+	MOVQ    x+0(FP), AX
+	MOVQ    y+8(FP), CX
+	MOVQ    CX, DX
+	ADDQ    $0x00000000, DX
+	MOVQ    DX, (SP)
+	MOVQ    CX, DX
+	ADDQ    $0x00000001, DX
+	MOVQ    DX, 8(SP)
+	MOVQ    CX, DX
+	ADDQ    $0x00000002, DX
+	MOVQ    DX, 16(SP)
+	MOVQ    CX, DX
+	ADDQ    $0x00000003, DX
+	MOVQ    DX, 24(SP)
+	MOVQ    16(SP), DX
+	MOVQ    AX, 16(SP)
+	ADDQ    DX, AX
+	MOVQ    (SP), DX
+	MOVQ    DX, BX
+	SHRQ    $0x08, BX
+	MOVBQZX BL, BX
+	ADDQ    BX, AX
+	XORQ    DX, AX
+	MOVQ    (SP), DX
+	MOVQ    DX, BX
+	SHLQ    $0x05, BX
+	XORQ    BX, AX
+	ADDQ    DX, AX
+	MOVQ    (SP), DX
+	MOVQ    $0x00000002, BX
 
-foldprop0_0_skip:
-	MOVQ $0x80000000, (SP)
-	MOVQ (SP), DX
+foldprop0_3_loop:
+	MOVQ AX, (SP)
+	ADDQ BX, AX
+	SUBQ $0x00000001, BX
+	JNE  foldprop0_3_loop
 	ADDQ DX, AX
 	MOVQ (SP), DX
-	ADDQ DX, (SP)
-	ADDQ DX, AX
-	NEGQ (SP)
-	NOTQ 8(SP)
-	ROLQ $0x07, AX
-	XORQ CX, AX
-	MOVQ 8(SP), DX
 	MOVQ $0x00000002, BX
 
-foldprop0_5_loop:
-	ADDQ DX, AX
-	MOVQ AX, 8(SP)
+foldprop0_4_loop:
+	MOVQ AX, (SP)
+	ADDQ BX, AX
 	SUBQ $0x00000001, BX
-	JNE  foldprop0_5_loop
+	JNE  foldprop0_4_loop
+	ADDQ DX, AX
+	MOVQ 8(SP), DX
+	MOVQ DX, BX
+	SHLQ $0x05, BX
+	XORQ BX, AX
+	ADDQ DX, AX
+	MOVQ (SP), DX
+	MOVQ 16(SP), BX
+	MOVQ BX, (SP)
+	MOVQ DX, 16(SP)
+	MOVQ (SP), DX
+	MOVQ AX, (SP)
+	ADDQ DX, AX
 	MOVQ $0x00000002, DX
 
-foldprop0_6_loop:
-	MOVQ (SP), BX
+foldprop0_8_loop:
+	MOVQ 24(SP), BX
 	ADDQ BX, AX
 	MOVQ CX, BX
 	ADDQ AX, BX
 	SUBQ $0x00000001, DX
-	JNE  foldprop0_6_loop
-	MOVQ BX, (SP)
-	ROLQ $0x07, AX
-	XORQ CX, AX
-	MOVQ 24(SP), DX
-	MOVQ 8(SP), BX
+	JNE  foldprop0_8_loop
 	MOVQ BX, 24(SP)
-	MOVQ DX, 8(SP)
-	MOVQ 24(SP), DX
-	MOVQ $0x00000002, BX
-
-foldprop0_9_loop:
-	ADDQ DX, AX
-	MOVQ AX, 24(SP)
-	SUBQ $0x00000001, BX
-	JNE  foldprop0_9_loop
-	MOVQ 8(SP), DX
-	MOVQ 8(SP), BX
-	ROLQ $0x09, BX
-	ADDQ DX, BX
-	XORQ BX, AX
 	ROLQ $0x07, AX
 	XORQ CX, AX
+	MOVQ 8(SP), CX
+	MOVQ CX, DX
+	SHLQ $0x05, DX
+	XORQ DX, AX
+	ADDQ CX, AX
+	MOVQ $0x80000003, 24(SP)
+	MOVQ 24(SP), CX
+	ADDQ CX, AX
 	MOVQ (SP), CX
 	ADDQ CX, AX
 	MOVQ 8(SP), CX
@@ -4048,67 +4058,79 @@ TEXT ·FoldProp1(SB), NOSPLIT, $32-24
 	ADDQ $0x00000003, DX
 	MOVQ DX, 24(SP)
 	MOVQ 24(SP), DX
-	MOVQ DX, (SP)
+	ADDQ DX, 24(SP)
 	ADDQ DX, AX
-	MOVQ 16(SP), DX
-	MOVQ DX, 24(SP)
-	ADDQ DX, AX
-	MOVQ (SP), DX
-	MOVQ DX, BX
-	ADDQ CX, BX
-	MOVQ BX, (SP)
-	ADDQ DX, AX
-	MOVQ 24(SP), DX
-	CMPQ AX, CX
-	JCS  foldprop1_3_skip
-	ADDQ CX, DX
-
-foldprop1_3_skip:
-	MOVQ    DX, 24(SP)
-	MOVQ    8(SP), DX
-	MOVQ    DX, 16(SP)
-	ADDQ    DX, AX
-	MOVQ    24(SP), DX
-	MOVQ    DX, BX
-	SHRQ    $0x08, BX
-	MOVBQZX BL, BX
-	ADDQ    BX, AX
-	XORQ    DX, AX
-	MOVQ    24(SP), DX
-	MOVQ    $0x00000002, BX
-
-foldprop1_6_loop:
-	ADDQ DX, AX
-	MOVQ AX, 24(SP)
-	SUBQ $0x00000001, BX
-	JNE  foldprop1_6_loop
 	MOVQ CX, DX
 	CMPQ AX, CX
-	JCS  foldprop1_7_skip
+	JCS  foldprop1_1_skip
 	MOVQ 16(SP), DX
 
-foldprop1_7_skip:
-	ADDQ    DX, AX
-	MOVQ    8(SP), DX
-	MOVQ    DX, BX
-	SHRQ    $0x08, BX
-	MOVBQZX BL, BX
-	ADDQ    BX, AX
-	XORQ    DX, AX
-	ROLQ    $0x07, AX
-	XORQ    CX, AX
-	MOVQ    (SP), CX
-	MOVQ    $0x00000002, DX
-
-foldprop1_10_loop:
-	MOVQ AX, (SP)
+foldprop1_1_skip:
 	ADDQ DX, AX
+	CMPQ CX, (SP)
+	JCS  foldprop1_2_skip
+	XORQ CX, AX
+
+foldprop1_2_skip:
+	MOVQ CX, DX
+	CMPQ AX, CX
+	JCS  foldprop1_3_skip
+	MOVQ 24(SP), DX
+
+foldprop1_3_skip:
+	ADDQ DX, AX
+	CMPQ CX, 8(SP)
+	JCS  foldprop1_4_skip
+	XORQ CX, AX
+
+foldprop1_4_skip:
+	MOVQ $0x80000003, 24(SP)
+	MOVQ 24(SP), DX
+	ADDQ DX, AX
+	MOVQ 24(SP), DX
+	MOVQ AX, 24(SP)
+	ADDQ DX, AX
+	MOVQ 16(SP), DX
+	CMPQ AX, CX
+	JCS  foldprop1_7_skip
+	ADDQ CX, DX
+
+foldprop1_7_skip:
+	MOVQ DX, 16(SP)
+	MOVQ CX, DX
+	CMPQ AX, CX
+	JCS  foldprop1_8_skip
+	MOVQ 8(SP), DX
+
+foldprop1_8_skip:
+	ADDQ DX, AX
+	MOVQ 24(SP), CX
+	MOVQ $0x00000002, DX
+
+foldprop1_9_loop:
+	ADDQ CX, AX
+	MOVQ AX, 24(SP)
 	SUBQ $0x00000001, DX
-	JNE  foldprop1_10_loop
+	JNE  foldprop1_9_loop
+	MOVQ (SP), CX
+	MOVQ AX, (SP)
 	ADDQ CX, AX
 	MOVQ 16(SP), CX
-	MOVQ AX, 16(SP)
+	ANDQ $0x00000003, CX
+	MOVQ CX, 16(SP)
+
+foldprop1_11_loop:
+	MOVQ 16(SP), CX
+	CMPQ CX, $0x00000000
+	JEQ  foldprop1_11_done
 	ADDQ CX, AX
+	ROLQ $0x03, AX
+	MOVQ 16(SP), CX
+	SUBQ $0x00000001, CX
+	MOVQ CX, 16(SP)
+	JMP  foldprop1_11_loop
+
+foldprop1_11_done:
 	MOVQ (SP), CX
 	ADDQ CX, AX
 	MOVQ 8(SP), CX
@@ -4136,106 +4158,63 @@ TEXT ·FoldProp2(SB), NOSPLIT, $32-24
 	MOVQ CX, DX
 	ADDQ $0x00000003, DX
 	MOVQ DX, 24(SP)
-	ANDQ $0x00000003, 24(SP)
-
-foldprop2_0_loop:
-	CMPQ 24(SP), $0x00000000
-	JEQ  foldprop2_0_done
-	ADDQ 24(SP), AX
-	ROLQ $0x03, AX
-	DECQ 24(SP)
-	JMP  foldprop2_0_loop
-
-foldprop2_0_done:
 	MOVQ 24(SP), DX
-	MOVQ DX, BX
-	SHLQ $0x05, BX
-	XORQ BX, AX
+	ADDQ DX, 24(SP)
+	ADDQ DX, AX
+	MOVQ 24(SP), DX
+	MOVQ AX, 24(SP)
 	ADDQ DX, AX
 	MOVQ 8(SP), DX
+	MOVQ $0x00000002, BX
+
+foldprop2_2_loop:
+	ADDQ DX, AX
+	MOVQ AX, 8(SP)
+	SUBQ $0x00000001, BX
+	JNE  foldprop2_2_loop
+	MOVQ (SP), DX
+	MOVQ (SP), BX
+	ROLQ $0x09, BX
+	ADDQ DX, BX
+	XORQ BX, AX
+	MOVQ 16(SP), DX
+	CMPQ AX, CX
+	JCS  foldprop2_4_skip
 	ADDQ CX, DX
-	MOVQ DX, 8(SP)
+
+foldprop2_4_skip:
+	MOVQ DX, 16(SP)
+	MOVQ 24(SP), DX
+	ADDQ DX, 24(SP)
+	ADDQ DX, AX
+	MOVQ (SP), DX
+	MOVQ 16(SP), BX
+	MOVQ BX, (SP)
+	MOVQ DX, 16(SP)
+	MOVQ 16(SP), DX
+	MOVQ DX, 24(SP)
+	ADDQ DX, AX
 	MOVQ $0x00000002, DX
 
-foldprop2_3_loop:
-	MOVQ (SP), BX
+foldprop2_8_loop:
+	MOVQ 8(SP), BX
 	ADDQ BX, AX
 	MOVQ CX, BX
 	ADDQ AX, BX
 	SUBQ $0x00000001, DX
-	JNE  foldprop2_3_loop
-	MOVQ BX, (SP)
-	MOVQ 16(SP), CX
-	ANDQ $0x00000003, CX
-	MOVQ CX, 16(SP)
+	JNE  foldprop2_8_loop
+	MOVQ BX, 8(SP)
+	CMPQ CX, (SP)
+	JCS  foldprop2_9_skip
+	XORQ CX, AX
 
-foldprop2_4_loop:
-	MOVQ 16(SP), CX
-	CMPQ CX, $0x00000000
-	JEQ  foldprop2_4_done
-	ADDQ CX, AX
-	ROLQ $0x03, AX
-	MOVQ 16(SP), CX
-	SUBQ $0x00000001, CX
-	MOVQ CX, 16(SP)
-	JMP  foldprop2_4_loop
-
-foldprop2_4_done:
-	MOVQ AX, 24(SP)
+foldprop2_9_skip:
+	MOVQ $0x80000000, (SP)
 	MOVQ (SP), CX
-	ANDQ $0x00000003, CX
-	MOVQ CX, (SP)
-
-foldprop2_6_loop:
-	MOVQ (SP), CX
-	CMPQ CX, $0x00000000
-	JEQ  foldprop2_6_done
 	ADDQ CX, AX
-	ROLQ $0x03, AX
+	MOVQ $0x80000000, (SP)
 	MOVQ (SP), CX
-	SUBQ $0x00000001, CX
-	MOVQ CX, (SP)
-	JMP  foldprop2_6_loop
-
-foldprop2_6_done:
-	MOVQ 16(SP), CX
-	MOVQ CX, DX
-	SHLQ $0x05, DX
-	XORQ DX, AX
 	ADDQ CX, AX
-	ANDQ $0x00000003, 8(SP)
-
-foldprop2_8_loop:
-	CMPQ 8(SP), $0x00000000
-	JEQ  foldprop2_8_done
-	ADDQ 8(SP), AX
-	ROLQ $0x03, AX
-	DECQ 8(SP)
-	JMP  foldprop2_8_loop
-
-foldprop2_8_done:
-	MOVQ (SP), CX
-	MOVQ $0x00000002, DX
-
-foldprop2_9_loop:
-	ADDQ CX, AX
-	MOVQ AX, (SP)
-	SUBQ $0x00000001, DX
-	JNE  foldprop2_9_loop
-	MOVQ (SP), CX
-	ADDQ CX, (SP)
-	ADDQ CX, AX
-	ANDQ $0x00000003, (SP)
-
-foldprop2_11_loop:
-	CMPQ (SP), $0x00000000
-	JEQ  foldprop2_11_done
-	ADDQ (SP), AX
-	ROLQ $0x03, AX
-	DECQ (SP)
-	JMP  foldprop2_11_loop
-
-foldprop2_11_done:
 	MOVQ (SP), CX
 	ADDQ CX, AX
 	MOVQ 8(SP), CX
@@ -4263,152 +4242,171 @@ TEXT ·FoldProp3(SB), NOSPLIT, $32-24
 	MOVQ CX, DX
 	ADDQ $0x00000003, DX
 	MOVQ DX, 24(SP)
-	ROLQ $0x07, AX
-	XORQ CX, AX
-	MOVQ (SP), DX
-	MOVQ DX, BX
-	SHLQ $0x05, BX
-	XORQ BX, AX
-	ADDQ DX, AX
-	MOVQ 16(SP), DX
-	MOVQ 16(SP), BX
-	ROLQ $0x09, BX
-	ADDQ DX, BX
-	XORQ BX, AX
-	MOVQ (SP), DX
-	ANDQ $0x00000003, DX
-	MOVQ DX, (SP)
-
-foldprop3_3_loop:
-	MOVQ (SP), DX
-	CMPQ DX, $0x00000000
-	JEQ  foldprop3_3_done
-	ADDQ DX, AX
-	ROLQ $0x03, AX
-	MOVQ (SP), DX
-	SUBQ $0x00000001, DX
-	MOVQ DX, (SP)
-	JMP  foldprop3_3_loop
-
-foldprop3_3_done:
-	MOVQ 24(SP), DX
-	MOVQ 8(SP), BX
-	MOVQ BX, 24(SP)
-	MOVQ DX, 8(SP)
-	MOVQ $0x80000002, 16(SP)
-	MOVQ 16(SP), DX
-	ADDQ DX, AX
-	ADDQ AX, 16(SP)
-	MOVQ (SP), DX
-	MOVQ AX, (SP)
-	ADDQ DX, AX
-	CMPQ CX, 24(SP)
-	JCS  foldprop3_8_skip
-	XORQ CX, AX
-
-foldprop3_8_skip:
-	NEGQ    24(SP)
-	NOTQ    (SP)
-	MOVQ    (SP), CX
-	MOVQ    16(SP), DX
-	MOVQ    DX, (SP)
-	MOVQ    CX, 16(SP)
-	MOVQ    (SP), CX
-	MOVQ    CX, DX
-	SHRQ    $0x08, DX
-	MOVBQZX DL, DX
-	ADDQ    DX, AX
-	XORQ    CX, AX
-	MOVQ    (SP), CX
-	ADDQ    CX, AX
-	MOVQ    8(SP), CX
-	ADDQ    CX, AX
-	MOVQ    16(SP), CX
-	ADDQ    CX, AX
-	MOVQ    24(SP), CX
-	ADDQ    CX, AX
-	MOVQ    AX, ret+16(FP)
-	RET
-
-// func FoldProp4(x uint64, y uint64) uint64
-TEXT ·FoldProp4(SB), NOSPLIT, $32-24
-	MOVQ x+0(FP), AX
-	MOVQ y+8(FP), CX
-	MOVQ CX, DX
-	ADDQ $0x00000000, DX
-	MOVQ DX, (SP)
-	MOVQ CX, DX
-	ADDQ $0x00000001, DX
-	MOVQ DX, 8(SP)
-	MOVQ CX, DX
-	ADDQ $0x00000002, DX
-	MOVQ DX, 16(SP)
-	MOVQ CX, DX
-	ADDQ $0x00000003, DX
-	MOVQ DX, 24(SP)
 	MOVQ $0x00000002, DX
 
-foldprop4_0_loop:
-	MOVQ 16(SP), BX
+foldprop3_0_loop:
+	MOVQ 8(SP), BX
 	ADDQ BX, AX
 	MOVQ CX, BX
 	ADDQ AX, BX
 	SUBQ $0x00000001, DX
-	JNE  foldprop4_0_loop
-	MOVQ BX, 16(SP)
-	MOVQ CX, DX
-	CMPQ AX, CX
-	JCS  foldprop4_1_skip
+	JNE  foldprop3_0_loop
+	MOVQ BX, 8(SP)
+	MOVQ (SP), DX
+	ADDQ DX, (SP)
+	ADDQ DX, AX
 	MOVQ 16(SP), DX
+	ANDQ $0x00000003, DX
+	MOVQ DX, 16(SP)
 
-foldprop4_1_skip:
+foldprop3_2_loop:
+	MOVQ 16(SP), DX
+	CMPQ DX, $0x00000000
+	JEQ  foldprop3_2_done
 	ADDQ DX, AX
-	MOVQ 24(SP), DX
-	CMPQ AX, CX
-	JCS  foldprop4_2_skip
-	ADDQ CX, DX
+	ROLQ $0x03, AX
+	MOVQ 16(SP), DX
+	SUBQ $0x00000001, DX
+	MOVQ DX, 16(SP)
+	JMP  foldprop3_2_loop
 
-foldprop4_2_skip:
+foldprop3_2_done:
+	MOVQ (SP), DX
+	ADDQ DX, (SP)
+	ADDQ DX, AX
+	ANDQ $0x00000003, 24(SP)
+
+foldprop3_4_loop:
+	CMPQ 24(SP), $0x00000000
+	JEQ  foldprop3_4_done
+	ADDQ 24(SP), AX
+	ROLQ $0x03, AX
+	DECQ 24(SP)
+	JMP  foldprop3_4_loop
+
+foldprop3_4_done:
+	MOVQ 16(SP), DX
 	MOVQ DX, 24(SP)
-	MOVQ 8(SP), DX
-	MOVQ DX, BX
-	SHLQ $0x05, BX
-	XORQ BX, AX
-	ADDQ DX, AX
-	CMPQ CX, (SP)
-	JCS  foldprop4_4_skip
-	XORQ CX, AX
-
-foldprop4_4_skip:
-	MOVQ AX, 8(SP)
-	MOVQ 24(SP), DX
-	MOVQ DX, (SP)
 	ADDQ DX, AX
 	MOVQ 16(SP), DX
 	MOVQ DX, BX
 	ADDQ CX, BX
 	MOVQ BX, 16(SP)
 	ADDQ DX, AX
-	MOVQ 16(SP), DX
+	MOVQ CX, DX
+	CMPQ AX, CX
+	JCS  foldprop3_7_skip
+	MOVQ (SP), DX
+
+foldprop3_7_skip:
+	ADDQ DX, AX
+	ADDQ AX, 24(SP)
+	MOVQ 24(SP), DX
 	ADDQ CX, DX
-	MOVQ DX, 16(SP)
-	MOVQ 16(SP), CX
-	MOVQ CX, 24(SP)
-	ADDQ CX, AX
-	ANDQ $0x00000003, 24(SP)
-
-foldprop4_10_loop:
-	CMPQ 24(SP), $0x00000000
-	JEQ  foldprop4_10_done
-	ADDQ 24(SP), AX
-	ROLQ $0x03, AX
-	DECQ 24(SP)
-	JMP  foldprop4_10_loop
-
-foldprop4_10_done:
-	MOVQ 24(SP), CX
+	MOVQ DX, 24(SP)
+	MOVQ (SP), DX
+	MOVQ DX, BX
+	ADDQ CX, BX
+	MOVQ BX, (SP)
+	ADDQ DX, AX
+	MOVQ (SP), CX
+	ANDQ $0x00000003, CX
 	MOVQ CX, (SP)
+
+foldprop3_11_loop:
+	MOVQ (SP), CX
+	CMPQ CX, $0x00000000
+	JEQ  foldprop3_11_done
 	ADDQ CX, AX
+	ROLQ $0x03, AX
+	MOVQ (SP), CX
+	SUBQ $0x00000001, CX
+	MOVQ CX, (SP)
+	JMP  foldprop3_11_loop
+
+foldprop3_11_done:
+	MOVQ (SP), CX
+	ADDQ CX, AX
+	MOVQ 8(SP), CX
+	ADDQ CX, AX
+	MOVQ 16(SP), CX
+	ADDQ CX, AX
+	MOVQ 24(SP), CX
+	ADDQ CX, AX
+	MOVQ AX, ret+16(FP)
+	RET
+
+// func FoldProp4(x uint64, y uint64) uint64
+TEXT ·FoldProp4(SB), NOSPLIT, $32-24
+	MOVQ    x+0(FP), AX
+	MOVQ    y+8(FP), CX
+	MOVQ    CX, DX
+	ADDQ    $0x00000000, DX
+	MOVQ    DX, (SP)
+	MOVQ    CX, DX
+	ADDQ    $0x00000001, DX
+	MOVQ    DX, 8(SP)
+	MOVQ    CX, DX
+	ADDQ    $0x00000002, DX
+	MOVQ    DX, 16(SP)
+	MOVQ    CX, DX
+	ADDQ    $0x00000003, DX
+	MOVQ    DX, 24(SP)
+	ROLQ    $0x07, AX
+	XORQ    CX, AX
+	MOVQ    16(SP), DX
+	MOVQ    (SP), BX
+	MOVQ    BX, 16(SP)
+	MOVQ    DX, (SP)
+	MOVQ    24(SP), DX
+	MOVQ    DX, BX
+	SHRQ    $0x08, BX
+	MOVBQZX BL, BX
+	ADDQ    BX, AX
+	XORQ    DX, AX
+	MOVQ    AX, 8(SP)
+	MOVQ    (SP), DX
+	MOVQ    $0x00000002, BX
+
+foldprop4_4_loop:
+	MOVQ    AX, (SP)
+	ADDQ    BX, AX
+	SUBQ    $0x00000001, BX
+	JNE     foldprop4_4_loop
+	ADDQ    DX, AX
+	MOVQ    8(SP), DX
+	MOVQ    8(SP), BX
+	ROLQ    $0x09, BX
+	ADDQ    DX, BX
+	XORQ    BX, AX
+	MOVQ    24(SP), DX
+	MOVQ    DX, BX
+	SHRQ    $0x08, BX
+	MOVBQZX BL, BX
+	ADDQ    BX, AX
+	XORQ    DX, AX
+	MOVQ    16(SP), DX
+	MOVQ    (SP), BX
+	MOVQ    BX, 16(SP)
+	MOVQ    DX, (SP)
+	MOVQ    16(SP), DX
+	MOVQ    16(SP), BX
+	ROLQ    $0x09, BX
+	ADDQ    DX, BX
+	XORQ    BX, AX
+	MOVQ    16(SP), DX
+	ADDQ    CX, DX
+	MOVQ    DX, 16(SP)
+	MOVQ    24(SP), DX
+	MOVQ    DX, BX
+	ADDQ    CX, BX
+	MOVQ    BX, 24(SP)
+	ADDQ    DX, AX
+	CMPQ    CX, 24(SP)
+	JCS     foldprop4_11_skip
+	XORQ    CX, AX
+
+foldprop4_11_skip:
 	MOVQ (SP), CX
 	ADDQ CX, AX
 	MOVQ 8(SP), CX
@@ -4436,84 +4434,77 @@ TEXT ·FoldProp5(SB), NOSPLIT, $32-24
 	MOVQ CX, DX
 	ADDQ $0x00000003, DX
 	MOVQ DX, 24(SP)
-	MOVQ 24(SP), DX
-	MOVQ DX, BX
-	SHLQ $0x05, BX
-	XORQ BX, AX
-	ADDQ DX, AX
 	ANDQ $0x00000003, 24(SP)
 
-foldprop5_1_loop:
+foldprop5_0_loop:
 	CMPQ 24(SP), $0x00000000
-	JEQ  foldprop5_1_done
+	JEQ  foldprop5_0_done
 	ADDQ 24(SP), AX
 	ROLQ $0x03, AX
 	DECQ 24(SP)
-	JMP  foldprop5_1_loop
+	JMP  foldprop5_0_loop
 
-foldprop5_1_done:
+foldprop5_0_done:
+	MOVQ $0x00000002, DX
+
+foldprop5_1_loop:
+	MOVQ 24(SP), BX
+	ADDQ BX, AX
+	MOVQ CX, BX
+	ADDQ AX, BX
+	SUBQ $0x00000001, DX
+	JNE  foldprop5_1_loop
+	MOVQ BX, 24(SP)
 	MOVQ 24(SP), DX
-	MOVQ DX, (SP)
+	MOVQ $0x00000002, BX
+
+foldprop5_2_loop:
+	MOVQ AX, 24(SP)
+	ADDQ BX, AX
+	SUBQ $0x00000001, BX
+	JNE  foldprop5_2_loop
 	ADDQ DX, AX
 	MOVQ 8(SP), DX
-	MOVQ DX, BX
-	SHLQ $0x05, BX
-	XORQ BX, AX
-	ADDQ DX, AX
-	ROLQ $0x07, AX
-	XORQ CX, AX
+	ADDQ CX, DX
+	MOVQ DX, 8(SP)
+	MOVQ AX, 8(SP)
 	MOVQ (SP), DX
-	ANDQ $0x00000003, DX
-	MOVQ DX, (SP)
+	MOVQ $0x00000002, BX
 
 foldprop5_5_loop:
-	MOVQ (SP), DX
-	CMPQ DX, $0x00000000
-	JEQ  foldprop5_5_done
 	ADDQ DX, AX
-	ROLQ $0x03, AX
-	MOVQ (SP), DX
-	SUBQ $0x00000001, DX
-	MOVQ DX, (SP)
-	JMP  foldprop5_5_loop
-
-foldprop5_5_done:
-	MOVQ 8(SP), DX
+	MOVQ AX, (SP)
+	SUBQ $0x00000001, BX
+	JNE  foldprop5_5_loop
 	MOVQ AX, 8(SP)
-	ADDQ DX, AX
+	MOVQ CX, DX
+	CMPQ AX, CX
+	JCS  foldprop5_7_skip
 	MOVQ (SP), DX
-	MOVQ (SP), BX
-	ROLQ $0x09, BX
-	ADDQ DX, BX
-	XORQ BX, AX
+
+foldprop5_7_skip:
+	ADDQ DX, AX
+	CMPQ CX, (SP)
+	JCS  foldprop5_8_skip
+	XORQ CX, AX
+
+foldprop5_8_skip:
+	MOVQ (SP), CX
 	MOVQ $0x00000002, DX
 
-foldprop5_8_loop:
-	MOVQ  (SP), BX
-	ADDQ  BX, AX
-	MOVQ  CX, BX
-	ADDQ  AX, BX
-	SUBQ  $0x00000001, DX
-	JNE   foldprop5_8_loop
-	MOVQ  BX, (SP)
-	TESTQ AX, (SP)
-	JEQ   foldprop5_9_skip
-	ADDQ  CX, AX
-
-foldprop5_9_skip:
-	TESTQ AX, 16(SP)
-	JEQ   foldprop5_10_skip
-	ADDQ  CX, AX
-
-foldprop5_10_skip:
+foldprop5_9_loop:
+	MOVQ AX, (SP)
+	ADDQ DX, AX
+	SUBQ $0x00000001, DX
+	JNE  foldprop5_9_loop
+	ADDQ CX, AX
+	MOVQ 16(SP), CX
+	MOVQ AX, 16(SP)
+	ADDQ CX, AX
 	MOVQ 8(SP), CX
-	MOVQ $0x00000002, DX
-
-foldprop5_11_loop:
-	MOVQ AX, 8(SP)
-	ADDQ DX, AX
-	SUBQ $0x00000001, DX
-	JNE  foldprop5_11_loop
+	MOVQ CX, DX
+	SHLQ $0x05, DX
+	XORQ DX, AX
 	ADDQ CX, AX
 	MOVQ (SP), CX
 	ADDQ CX, AX
@@ -4542,64 +4533,85 @@ TEXT ·FoldProp6(SB), NOSPLIT, $32-24
 	MOVQ CX, DX
 	ADDQ $0x00000003, DX
 	MOVQ DX, 24(SP)
+	MOVQ (SP), DX
+	CMPQ AX, CX
+	JCS  foldprop6_0_skip
+	ADDQ CX, DX
+
+foldprop6_0_skip:
+	MOVQ DX, (SP)
+	MOVQ (SP), DX
+	MOVQ DX, BX
+	ADDQ CX, BX
+	MOVQ BX, (SP)
+	ADDQ DX, AX
 	ROLQ $0x07, AX
 	XORQ CX, AX
-	ANDQ $0x00000003, (SP)
-
-foldprop6_1_loop:
-	CMPQ (SP), $0x00000000
-	JEQ  foldprop6_1_done
-	ADDQ (SP), AX
-	ROLQ $0x03, AX
-	DECQ (SP)
-	JMP  foldprop6_1_loop
-
-foldprop6_1_done:
-	MOVQ (SP), DX
-	ADDQ DX, (SP)
-	ADDQ DX, AX
 	MOVQ 8(SP), DX
-	MOVQ $0x00000002, BX
+	ANDQ $0x00000003, DX
+	MOVQ DX, 8(SP)
 
 foldprop6_3_loop:
-	MOVQ AX, 8(SP)
-	ADDQ BX, AX
-	SUBQ $0x00000001, BX
-	JNE  foldprop6_3_loop
+	MOVQ 8(SP), DX
+	CMPQ DX, $0x00000000
+	JEQ  foldprop6_3_done
 	ADDQ DX, AX
-	ADDQ AX, 8(SP)
+	ROLQ $0x03, AX
+	MOVQ 8(SP), DX
+	SUBQ $0x00000001, DX
+	MOVQ DX, 8(SP)
+	JMP  foldprop6_3_loop
+
+foldprop6_3_done:
+	ANDQ $0x00000003, 8(SP)
+
+foldprop6_4_loop:
+	CMPQ 8(SP), $0x00000000
+	JEQ  foldprop6_4_done
+	ADDQ 8(SP), AX
+	ROLQ $0x03, AX
+	DECQ 8(SP)
+	JMP  foldprop6_4_loop
+
+foldprop6_4_done:
+	MOVQ 24(SP), DX
+	MOVQ AX, 24(SP)
+	ADDQ DX, AX
+	MOVQ 8(SP), DX
+	MOVQ DX, BX
+	SHLQ $0x05, BX
+	XORQ BX, AX
+	ADDQ DX, AX
+	MOVQ $0x80000002, 16(SP)
+	MOVQ 16(SP), DX
+	ADDQ DX, AX
 	ROLQ $0x07, AX
 	XORQ CX, AX
-	MOVQ 8(SP), DX
-	MOVQ DX, 16(SP)
-	ADDQ DX, AX
-	MOVQ 16(SP), DX
-	MOVQ AX, 16(SP)
-	ADDQ DX, AX
-	MOVQ 16(SP), DX
-	ADDQ DX, 16(SP)
-	ADDQ DX, AX
-	CMPQ CX, 8(SP)
-	JCS  foldprop6_9_skip
-	XORQ CX, AX
+	MOVQ 8(SP), CX
+	MOVQ $0x00000002, DX
 
-foldprop6_9_skip:
-	ANDQ $0x00000003, (SP)
+foldprop6_9_loop:
+	ADDQ CX, AX
+	MOVQ AX, 8(SP)
+	SUBQ $0x00000001, DX
+	JNE  foldprop6_9_loop
+	MOVQ (SP), CX
+	ANDQ $0x00000003, CX
+	MOVQ CX, (SP)
 
 foldprop6_10_loop:
-	CMPQ (SP), $0x00000000
+	MOVQ (SP), CX
+	CMPQ CX, $0x00000000
 	JEQ  foldprop6_10_done
-	ADDQ (SP), AX
+	ADDQ CX, AX
 	ROLQ $0x03, AX
-	DECQ (SP)
+	MOVQ (SP), CX
+	SUBQ $0x00000001, CX
+	MOVQ CX, (SP)
 	JMP  foldprop6_10_loop
 
 foldprop6_10_done:
-	MOVQ 24(SP), CX
-	MOVQ CX, DX
-	SHLQ $0x05, DX
-	XORQ DX, AX
-	ADDQ CX, AX
+	MOVQ AX, 24(SP)
 	MOVQ (SP), CX
 	ADDQ CX, AX
 	MOVQ 8(SP), CX
@@ -4627,91 +4639,86 @@ TEXT ·FoldProp7(SB), NOSPLIT, $32-24
 	MOVQ CX, DX
 	ADDQ $0x00000003, DX
 	MOVQ DX, 24(SP)
-	MOVQ (SP), DX
+	MOVQ $0x00000002, DX
+
+foldprop7_0_loop:
 	MOVQ (SP), BX
-	ROLQ $0x09, BX
-	ADDQ DX, BX
-	XORQ BX, AX
-	MOVQ 16(SP), DX
-	MOVQ $0x00000002, BX
-
-foldprop7_1_loop:
+	ADDQ BX, AX
+	MOVQ CX, BX
+	ADDQ AX, BX
+	SUBQ $0x00000001, DX
+	JNE  foldprop7_0_loop
+	MOVQ BX, (SP)
 	MOVQ AX, 16(SP)
-	ADDQ BX, AX
-	SUBQ $0x00000001, BX
-	JNE  foldprop7_1_loop
-	ADDQ DX, AX
 	MOVQ 8(SP), DX
-	CMPQ AX, CX
-	JCS  foldprop7_2_skip
-	ADDQ CX, DX
-
-foldprop7_2_skip:
-	MOVQ DX, 8(SP)
-	MOVQ $0x80000000, (SP)
-	MOVQ (SP), DX
-	ADDQ DX, AX
-	MOVQ 24(SP), DX
 	MOVQ $0x00000002, BX
 
-foldprop7_4_loop:
-	MOVQ AX, 24(SP)
-	ADDQ BX, AX
+foldprop7_2_loop:
+	ADDQ DX, AX
+	MOVQ AX, 8(SP)
 	SUBQ $0x00000001, BX
-	JNE  foldprop7_4_loop
+	JNE  foldprop7_2_loop
+	MOVQ (SP), DX
+	MOVQ $0x00000002, BX
+
+foldprop7_3_loop:
 	ADDQ DX, AX
+	MOVQ AX, (SP)
+	SUBQ $0x00000001, BX
+	JNE  foldprop7_3_loop
+	MOVQ 24(SP), DX
+	MOVQ 8(SP), BX
+	MOVQ BX, 24(SP)
+	MOVQ DX, 8(SP)
 	MOVQ 8(SP), DX
-	MOVQ DX, 16(SP)
-	ADDQ DX, AX
-	MOVQ CX, DX
+	MOVQ 24(SP), BX
+	MOVQ BX, 8(SP)
+	MOVQ DX, 24(SP)
+	MOVQ (SP), DX
 	CMPQ AX, CX
 	JCS  foldprop7_6_skip
-	MOVQ (SP), DX
+	ADDQ CX, DX
 
 foldprop7_6_skip:
-	ADDQ DX, AX
-	MOVQ (SP), DX
-	ANDQ $0x00000003, DX
 	MOVQ DX, (SP)
+	MOVQ (SP), DX
+	MOVQ $0x00000002, BX
 
 foldprop7_7_loop:
-	MOVQ (SP), DX
-	CMPQ DX, $0x00000000
-	JEQ  foldprop7_7_done
+	MOVQ AX, (SP)
+	ADDQ BX, AX
+	SUBQ $0x00000001, BX
+	JNE  foldprop7_7_loop
 	ADDQ DX, AX
+	ANDQ $0x00000003, 8(SP)
+
+foldprop7_8_loop:
+	CMPQ 8(SP), $0x00000000
+	JEQ  foldprop7_8_done
+	ADDQ 8(SP), AX
 	ROLQ $0x03, AX
-	MOVQ (SP), DX
-	SUBQ $0x00000001, DX
-	MOVQ DX, (SP)
-	JMP  foldprop7_7_loop
+	DECQ 8(SP)
+	JMP  foldprop7_8_loop
 
-foldprop7_7_done:
-	MOVQ CX, DX
-	CMPQ AX, CX
-	JCS  foldprop7_8_skip
-	MOVQ 8(SP), DX
-
-foldprop7_8_skip:
-	ADDQ    DX, AX
-	MOVQ    16(SP), CX
-	MOVQ    CX, DX
-	SHRQ    $0x08, DX
-	MOVBQZX DL, DX
-	ADDQ    DX, AX
-	XORQ    CX, AX
-	ADDQ    AX, 8(SP)
-	MOVQ    24(SP), CX
-	MOVQ    CX, (SP)
-	ADDQ    CX, AX
-	MOVQ    (SP), CX
-	ADDQ    CX, AX
-	MOVQ    8(SP), CX
-	ADDQ    CX, AX
-	MOVQ    16(SP), CX
-	ADDQ    CX, AX
-	MOVQ    24(SP), CX
-	ADDQ    CX, AX
-	MOVQ    AX, ret+16(FP)
+foldprop7_8_done:
+	MOVQ 16(SP), DX
+	ADDQ CX, DX
+	MOVQ DX, 16(SP)
+	MOVQ 8(SP), CX
+	MOVQ CX, 16(SP)
+	ADDQ CX, AX
+	MOVQ 24(SP), CX
+	MOVQ CX, (SP)
+	ADDQ CX, AX
+	MOVQ (SP), CX
+	ADDQ CX, AX
+	MOVQ 8(SP), CX
+	ADDQ CX, AX
+	MOVQ 16(SP), CX
+	ADDQ CX, AX
+	MOVQ 24(SP), CX
+	ADDQ CX, AX
+	MOVQ AX, ret+16(FP)
 	RET
 
 // func FoldProp8(x uint64, y uint64) uint64
@@ -4730,90 +4737,85 @@ TEXT ·FoldProp8(SB), NOSPLIT, $32-24
 	MOVQ CX, DX
 	ADDQ $0x00000003, DX
 	MOVQ DX, 24(SP)
-	ADDQ AX, 8(SP)
-	NEGQ 16(SP)
-	NOTQ 24(SP)
 	MOVQ 8(SP), DX
-	ANDQ $0x00000003, DX
-	MOVQ DX, 8(SP)
-
-foldprop8_2_loop:
-	MOVQ 8(SP), DX
-	CMPQ DX, $0x00000000
-	JEQ  foldprop8_2_done
+	MOVQ DX, BX
+	ADDQ CX, BX
+	MOVQ BX, 8(SP)
 	ADDQ DX, AX
+	ANDQ $0x00000003, 16(SP)
+
+foldprop8_1_loop:
+	CMPQ 16(SP), $0x00000000
+	JEQ  foldprop8_1_done
+	ADDQ 16(SP), AX
 	ROLQ $0x03, AX
-	MOVQ 8(SP), DX
-	SUBQ $0x00000001, DX
-	MOVQ DX, 8(SP)
-	JMP  foldprop8_2_loop
+	DECQ 16(SP)
+	JMP  foldprop8_1_loop
 
-foldprop8_2_done:
-	MOVQ CX, DX
-	CMPQ AX, CX
-	JCS  foldprop8_3_skip
-	MOVQ 8(SP), DX
-
-foldprop8_3_skip:
-	ADDQ DX, AX
-	ROLQ $0x07, AX
-	XORQ CX, AX
-	MOVQ 8(SP), DX
-	ANDQ $0x00000003, DX
-	MOVQ DX, 8(SP)
+foldprop8_1_done:
+	MOVQ    8(SP), DX
+	MOVQ    DX, BX
+	ADDQ    CX, BX
+	MOVQ    BX, 8(SP)
+	ADDQ    DX, AX
+	MOVQ    8(SP), DX
+	MOVQ    DX, BX
+	SHRQ    $0x08, BX
+	MOVBQZX BL, BX
+	ADDQ    BX, AX
+	XORQ    DX, AX
+	MOVQ    24(SP), DX
+	MOVQ    DX, BX
+	SHRQ    $0x08, BX
+	MOVBQZX BL, BX
+	ADDQ    BX, AX
+	XORQ    DX, AX
+	MOVQ    8(SP), DX
+	MOVQ    $0x00000002, BX
 
 foldprop8_5_loop:
-	MOVQ 8(SP), DX
-	CMPQ DX, $0x00000000
-	JEQ  foldprop8_5_done
 	ADDQ DX, AX
-	ROLQ $0x03, AX
-	MOVQ 8(SP), DX
-	SUBQ $0x00000001, DX
-	MOVQ DX, 8(SP)
-	JMP  foldprop8_5_loop
-
-foldprop8_5_done:
+	MOVQ AX, 8(SP)
+	SUBQ $0x00000001, BX
+	JNE  foldprop8_5_loop
 	MOVQ (SP), DX
-	MOVQ DX, 8(SP)
-	ADDQ DX, AX
-	MOVQ 16(SP), DX
-	CMPQ AX, CX
-	JCS  foldprop8_7_skip
 	ADDQ CX, DX
+	MOVQ DX, (SP)
+	ANDQ $0x00000003, 16(SP)
 
-foldprop8_7_skip:
-	MOVQ DX, 16(SP)
-	MOVQ (SP), CX
-	ADDQ CX, (SP)
-	ADDQ CX, AX
-	ANDQ $0x00000003, (SP)
-
-foldprop8_9_loop:
-	CMPQ (SP), $0x00000000
-	JEQ  foldprop8_9_done
-	ADDQ (SP), AX
+foldprop8_7_loop:
+	CMPQ 16(SP), $0x00000000
+	JEQ  foldprop8_7_done
+	ADDQ 16(SP), AX
 	ROLQ $0x03, AX
-	DECQ (SP)
-	JMP  foldprop8_9_loop
+	DECQ 16(SP)
+	JMP  foldprop8_7_loop
 
-foldprop8_9_done:
-	MOVQ 16(SP), CX
-	MOVQ AX, 16(SP)
-	ADDQ CX, AX
-	MOVQ 24(SP), CX
-	MOVQ 8(SP), DX
-	MOVQ DX, 24(SP)
-	MOVQ CX, 8(SP)
-	MOVQ (SP), CX
-	ADDQ CX, AX
-	MOVQ 8(SP), CX
-	ADDQ CX, AX
-	MOVQ 16(SP), CX
-	ADDQ CX, AX
-	MOVQ 24(SP), CX
-	ADDQ CX, AX
-	MOVQ AX, ret+16(FP)
+foldprop8_7_done:
+	ADDQ    AX, (SP)
+	MOVQ    (SP), CX
+	MOVQ    16(SP), DX
+	MOVQ    DX, (SP)
+	MOVQ    CX, 16(SP)
+	MOVQ    16(SP), CX
+	MOVQ    (SP), DX
+	MOVQ    DX, 16(SP)
+	MOVQ    CX, (SP)
+	MOVQ    24(SP), CX
+	MOVQ    CX, DX
+	SHRQ    $0x08, DX
+	MOVBQZX DL, DX
+	ADDQ    DX, AX
+	XORQ    CX, AX
+	MOVQ    (SP), CX
+	ADDQ    CX, AX
+	MOVQ    8(SP), CX
+	ADDQ    CX, AX
+	MOVQ    16(SP), CX
+	ADDQ    CX, AX
+	MOVQ    24(SP), CX
+	ADDQ    CX, AX
+	MOVQ    AX, ret+16(FP)
 	RET
 
 // func FoldProp9(x uint64, y uint64) uint64
@@ -4832,86 +4834,68 @@ TEXT ·FoldProp9(SB), NOSPLIT, $32-24
 	MOVQ CX, DX
 	ADDQ $0x00000003, DX
 	MOVQ DX, 24(SP)
+	MOVQ (SP), DX
+	MOVQ 16(SP), BX
+	MOVQ BX, (SP)
+	MOVQ DX, 16(SP)
+	MOVQ (SP), DX
+	MOVQ DX, BX
+	ADDQ CX, BX
+	MOVQ BX, (SP)
+	ADDQ DX, AX
+	MOVQ 16(SP), DX
+	MOVQ DX, 24(SP)
+	ADDQ DX, AX
 	MOVQ $0x00000002, DX
 
-foldprop9_0_loop:
-	MOVQ (SP), BX
+foldprop9_3_loop:
+	MOVQ 8(SP), BX
 	ADDQ BX, AX
 	MOVQ CX, BX
 	ADDQ AX, BX
 	SUBQ $0x00000001, DX
-	JNE  foldprop9_0_loop
-	MOVQ BX, (SP)
+	JNE  foldprop9_3_loop
+	MOVQ BX, 8(SP)
 	MOVQ (SP), DX
-	ADDQ CX, DX
-	MOVQ DX, (SP)
-	NEGQ 16(SP)
-	NOTQ 24(SP)
-	MOVQ 8(SP), DX
-	MOVQ AX, 8(SP)
+	MOVQ DX, 8(SP)
 	ADDQ DX, AX
-	ANDQ $0x00000003, (SP)
-
-foldprop9_4_loop:
-	CMPQ (SP), $0x00000000
-	JEQ  foldprop9_4_done
-	ADDQ (SP), AX
-	ROLQ $0x03, AX
-	DECQ (SP)
-	JMP  foldprop9_4_loop
-
-foldprop9_4_done:
 	MOVQ 24(SP), DX
-	MOVQ AX, 24(SP)
-	ADDQ DX, AX
-	CMPQ CX, 8(SP)
-	JCS  foldprop9_6_skip
-	XORQ CX, AX
-
-foldprop9_6_skip:
+	ADDQ CX, DX
+	MOVQ DX, 24(SP)
+	ADDQ AX, 8(SP)
 	MOVQ (SP), DX
-	MOVQ $0x00000002, BX
+	ANDQ $0x00000003, DX
+	MOVQ DX, (SP)
 
 foldprop9_7_loop:
+	MOVQ (SP), DX
+	CMPQ DX, $0x00000000
+	JEQ  foldprop9_7_done
 	ADDQ DX, AX
-	MOVQ AX, (SP)
-	SUBQ $0x00000001, BX
-	JNE  foldprop9_7_loop
+	ROLQ $0x03, AX
+	MOVQ (SP), DX
+	SUBQ $0x00000001, DX
+	MOVQ DX, (SP)
+	JMP  foldprop9_7_loop
+
+foldprop9_7_done:
+	MOVQ 24(SP), DX
+	ADDQ DX, 24(SP)
+	ADDQ DX, AX
 	MOVQ CX, DX
 	CMPQ AX, CX
-	JCS  foldprop9_8_skip
-	MOVQ 24(SP), DX
+	JCS  foldprop9_9_skip
+	MOVQ (SP), DX
 
-foldprop9_8_skip:
-	ADDQ    DX, AX
-	MOVQ    (SP), CX
-	MOVQ    CX, DX
-	SHRQ    $0x08, DX
-	MOVBQZX DL, DX
-	ADDQ    DX, AX
-	XORQ    CX, AX
-	ANDQ    $0x00000003, (SP)
-
-foldprop9_10_loop:
-	CMPQ (SP), $0x00000000
-	JEQ  foldprop9_10_done
-	ADDQ (SP), AX
-	ROLQ $0x03, AX
-	DECQ (SP)
-	JMP  foldprop9_10_loop
-
-foldprop9_10_done:
-	ANDQ $0x00000003, 16(SP)
-
-foldprop9_11_loop:
-	CMPQ 16(SP), $0x00000000
-	JEQ  foldprop9_11_done
-	ADDQ 16(SP), AX
-	ROLQ $0x03, AX
-	DECQ 16(SP)
-	JMP  foldprop9_11_loop
-
-foldprop9_11_done:
+foldprop9_9_skip:
+	ADDQ DX, AX
+	MOVQ (SP), CX
+	MOVQ 16(SP), DX
+	MOVQ DX, (SP)
+	MOVQ CX, 16(SP)
+	MOVQ $0x80000002, 16(SP)
+	MOVQ 16(SP), CX
+	ADDQ CX, AX
 	MOVQ (SP), CX
 	ADDQ CX, AX
 	MOVQ 8(SP), CX
@@ -4939,59 +4923,87 @@ TEXT ·FoldProp10(SB), NOSPLIT, $32-24
 	MOVQ CX, DX
 	ADDQ $0x00000003, DX
 	MOVQ DX, 24(SP)
+	MOVQ 16(SP), DX
+	ADDQ CX, DX
+	MOVQ DX, 16(SP)
+	MOVQ (SP), DX
+	MOVQ $0x00000002, BX
+
+foldprop10_1_loop:
+	MOVQ AX, (SP)
+	ADDQ BX, AX
+	SUBQ $0x00000001, BX
+	JNE  foldprop10_1_loop
+	ADDQ DX, AX
 	MOVQ CX, DX
 	CMPQ AX, CX
-	JCS  foldprop10_0_skip
+	JCS  foldprop10_2_skip
+	MOVQ 24(SP), DX
+
+foldprop10_2_skip:
+	ADDQ DX, AX
+	MOVQ 8(SP), DX
+	ANDQ $0x00000003, DX
+	MOVQ DX, 8(SP)
+
+foldprop10_3_loop:
+	MOVQ 8(SP), DX
+	CMPQ DX, $0x00000000
+	JEQ  foldprop10_3_done
+	ADDQ DX, AX
+	ROLQ $0x03, AX
+	MOVQ 8(SP), DX
+	SUBQ $0x00000001, DX
+	MOVQ DX, 8(SP)
+	JMP  foldprop10_3_loop
+
+foldprop10_3_done:
 	MOVQ 16(SP), DX
+	MOVQ $0x00000002, BX
 
-foldprop10_0_skip:
-	ADDQ    DX, AX
-	MOVQ    $0x80000000, (SP)
-	MOVQ    (SP), DX
-	ADDQ    DX, AX
-	MOVQ    24(SP), DX
-	MOVQ    DX, BX
-	SHRQ    $0x08, BX
-	MOVBQZX BL, BX
-	ADDQ    BX, AX
-	XORQ    DX, AX
-	MOVQ    8(SP), DX
-	ADDQ    CX, DX
-	MOVQ    DX, 8(SP)
-	MOVQ    CX, DX
-	CMPQ    AX, CX
-	JCS     foldprop10_4_skip
-	MOVQ    16(SP), DX
-
-foldprop10_4_skip:
+foldprop10_4_loop:
+	MOVQ AX, 16(SP)
+	ADDQ BX, AX
+	SUBQ $0x00000001, BX
+	JNE  foldprop10_4_loop
 	ADDQ DX, AX
-	MOVQ $0x80000000, (SP)
+	CMPQ CX, (SP)
+	JCS  foldprop10_5_skip
+	XORQ CX, AX
+
+foldprop10_5_skip:
 	MOVQ (SP), DX
+	MOVQ DX, 8(SP)
 	ADDQ DX, AX
+	MOVQ 16(SP), DX
+	ADDQ CX, DX
+	MOVQ DX, 16(SP)
+	MOVQ (SP), DX
+	MOVQ $0x00000002, BX
+
+foldprop10_8_loop:
+	MOVQ AX, (SP)
+	ADDQ BX, AX
+	SUBQ $0x00000001, BX
+	JNE  foldprop10_8_loop
+	ADDQ DX, AX
+	ANDQ $0x00000003, 16(SP)
+
+foldprop10_9_loop:
+	CMPQ 16(SP), $0x00000000
+	JEQ  foldprop10_9_done
+	ADDQ 16(SP), AX
+	ROLQ $0x03, AX
+	DECQ 16(SP)
+	JMP  foldprop10_9_loop
+
+foldprop10_9_done:
 	ADDQ AX, (SP)
-	MOVQ $0x80000002, 16(SP)
-	MOVQ 16(SP), DX
-	ADDQ DX, AX
-	MOVQ (SP), DX
-	CMPQ AX, CX
-	JCS  foldprop10_8_skip
-	ADDQ CX, DX
+	CMPQ CX, (SP)
+	JCS  foldprop10_11_skip
+	XORQ CX, AX
 
-foldprop10_8_skip:
-	MOVQ DX, (SP)
-	MOVQ 16(SP), CX
-	MOVQ CX, DX
-	SHLQ $0x05, DX
-	XORQ DX, AX
-	ADDQ CX, AX
-	MOVQ (SP), CX
-	ADDQ CX, (SP)
-	ADDQ CX, AX
-	MOVQ (SP), CX
-	MOVQ (SP), DX
-	ROLQ $0x09, DX
-	ADDQ CX, DX
-	XORQ DX, AX
+foldprop10_11_skip:
 	MOVQ (SP), CX
 	ADDQ CX, AX
 	MOVQ 8(SP), CX
@@ -5005,88 +5017,89 @@ foldprop10_8_skip:
 
 // func FoldProp11(x uint64, y uint64) uint64
 TEXT ·FoldProp11(SB), NOSPLIT, $32-24
-	MOVQ  x+0(FP), AX
-	MOVQ  y+8(FP), CX
-	MOVQ  CX, DX
-	ADDQ  $0x00000000, DX
-	MOVQ  DX, (SP)
-	MOVQ  CX, DX
-	ADDQ  $0x00000001, DX
-	MOVQ  DX, 8(SP)
-	MOVQ  CX, DX
-	ADDQ  $0x00000002, DX
-	MOVQ  DX, 16(SP)
-	MOVQ  CX, DX
-	ADDQ  $0x00000003, DX
-	MOVQ  DX, 24(SP)
-	MOVQ  24(SP), DX
-	MOVQ  8(SP), BX
-	MOVQ  BX, 24(SP)
-	MOVQ  DX, 8(SP)
-	ROLQ  $0x07, AX
-	XORQ  CX, AX
-	ADDQ  AX, 8(SP)
-	NEGQ  8(SP)
-	NOTQ  16(SP)
-	MOVQ  16(SP), DX
-	MOVQ  DX, BX
-	SHLQ  $0x05, BX
-	XORQ  BX, AX
-	ADDQ  DX, AX
-	MOVQ  8(SP), DX
-	ADDQ  CX, DX
-	MOVQ  DX, 8(SP)
-	TESTQ AX, 8(SP)
-	JEQ   foldprop11_6_skip
-	ADDQ  CX, AX
-
-foldprop11_6_skip:
-	MOVQ (SP), DX
-	MOVQ $0x00000002, BX
-
-foldprop11_7_loop:
-	MOVQ AX, (SP)
-	ADDQ BX, AX
-	SUBQ $0x00000001, BX
-	JNE  foldprop11_7_loop
-	ADDQ DX, AX
-	ADDQ AX, 8(SP)
-	ANDQ $0x00000003, 24(SP)
-
-foldprop11_9_loop:
-	CMPQ 24(SP), $0x00000000
-	JEQ  foldprop11_9_done
-	ADDQ 24(SP), AX
-	ROLQ $0x03, AX
-	DECQ 24(SP)
-	JMP  foldprop11_9_loop
-
-foldprop11_9_done:
-	MOVQ 8(SP), DX
-	MOVQ DX, BX
-	ADDQ CX, BX
-	MOVQ BX, 8(SP)
-	ADDQ DX, AX
+	MOVQ x+0(FP), AX
+	MOVQ y+8(FP), CX
+	MOVQ CX, DX
+	ADDQ $0x00000000, DX
+	MOVQ DX, (SP)
+	MOVQ CX, DX
+	ADDQ $0x00000001, DX
+	MOVQ DX, 8(SP)
+	MOVQ CX, DX
+	ADDQ $0x00000002, DX
+	MOVQ DX, 16(SP)
+	MOVQ CX, DX
+	ADDQ $0x00000003, DX
+	MOVQ DX, 24(SP)
+	MOVQ 24(SP), DX
+	MOVQ 8(SP), BX
+	MOVQ BX, 24(SP)
+	MOVQ DX, 8(SP)
 	ANDQ $0x00000003, 16(SP)
 
-foldprop11_11_loop:
+foldprop11_1_loop:
 	CMPQ 16(SP), $0x00000000
-	JEQ  foldprop11_11_done
+	JEQ  foldprop11_1_done
 	ADDQ 16(SP), AX
 	ROLQ $0x03, AX
 	DECQ 16(SP)
-	JMP  foldprop11_11_loop
+	JMP  foldprop11_1_loop
 
-foldprop11_11_done:
-	MOVQ (SP), CX
-	ADDQ CX, AX
+foldprop11_1_done:
+	MOVQ 8(SP), DX
+	MOVQ 24(SP), BX
+	MOVQ BX, 8(SP)
+	MOVQ DX, 24(SP)
+	MOVQ 8(SP), DX
+	MOVQ 8(SP), BX
+	ROLQ $0x09, BX
+	ADDQ DX, BX
+	XORQ BX, AX
+	MOVQ CX, DX
+	CMPQ AX, CX
+	JCS  foldprop11_4_skip
+	MOVQ 16(SP), DX
+
+foldprop11_4_skip:
+	ADDQ DX, AX
+	ADDQ AX, 8(SP)
+	MOVQ $0x80000001, 8(SP)
+	MOVQ 8(SP), DX
+	ADDQ DX, AX
+	MOVQ (SP), DX
+	ADDQ CX, DX
+	MOVQ DX, (SP)
 	MOVQ 8(SP), CX
-	ADDQ CX, AX
-	MOVQ 16(SP), CX
+	MOVQ CX, 16(SP)
 	ADDQ CX, AX
 	MOVQ 24(SP), CX
-	ADDQ CX, AX
-	MOVQ AX, ret+16(FP)
+	MOVQ $0x00000002, DX
+
+foldprop11_9_loop:
+	ADDQ    CX, AX
+	MOVQ    AX, 24(SP)
+	SUBQ    $0x00000001, DX
+	JNE     foldprop11_9_loop
+	MOVQ    8(SP), CX
+	MOVQ    CX, DX
+	SHRQ    $0x08, DX
+	MOVBQZX DL, DX
+	ADDQ    DX, AX
+	XORQ    CX, AX
+	MOVQ    16(SP), CX
+	MOVQ    CX, DX
+	SHLQ    $0x05, DX
+	XORQ    DX, AX
+	ADDQ    CX, AX
+	MOVQ    (SP), CX
+	ADDQ    CX, AX
+	MOVQ    8(SP), CX
+	ADDQ    CX, AX
+	MOVQ    16(SP), CX
+	ADDQ    CX, AX
+	MOVQ    24(SP), CX
+	ADDQ    CX, AX
+	MOVQ    AX, ret+16(FP)
 	RET
 
 // func FoldProp12(x uint64, y uint64) uint64
@@ -5106,71 +5119,76 @@ TEXT ·FoldProp12(SB), NOSPLIT, $32-24
 	ADDQ $0x00000003, DX
 	MOVQ DX, 24(SP)
 	MOVQ 16(SP), DX
-	MOVQ (SP), BX
-	MOVQ BX, 16(SP)
-	MOVQ DX, (SP)
-	CMPQ CX, 24(SP)
-	JCS  foldprop12_1_skip
-	XORQ CX, AX
-
-foldprop12_1_skip:
-	MOVQ  (SP), DX
-	MOVQ  16(SP), BX
-	MOVQ  BX, (SP)
-	MOVQ  DX, 16(SP)
-	TESTQ AX, 8(SP)
-	JEQ   foldprop12_3_skip
-	ADDQ  CX, AX
-
-foldprop12_3_skip:
-	ANDQ $0x00000003, (SP)
-
-foldprop12_4_loop:
-	CMPQ (SP), $0x00000000
-	JEQ  foldprop12_4_done
-	ADDQ (SP), AX
-	ROLQ $0x03, AX
-	DECQ (SP)
-	JMP  foldprop12_4_loop
-
-foldprop12_4_done:
-	TESTQ AX, 8(SP)
-	JEQ   foldprop12_5_skip
-	ADDQ  CX, AX
-
-foldprop12_5_skip:
-	MOVQ 24(SP), DX
-	MOVQ 8(SP), BX
-	MOVQ BX, 24(SP)
-	MOVQ DX, 8(SP)
-	MOVQ 16(SP), DX
 	ADDQ DX, 16(SP)
 	ADDQ DX, AX
-	MOVQ AX, 24(SP)
 	MOVQ 24(SP), DX
-	MOVQ DX, BX
-	ADDQ CX, BX
-	MOVQ BX, 24(SP)
+	CMPQ AX, CX
+	JCS  foldprop12_1_skip
+	ADDQ CX, DX
+
+foldprop12_1_skip:
+	MOVQ    DX, 24(SP)
+	MOVQ    (SP), DX
+	MOVQ    AX, (SP)
+	ADDQ    DX, AX
+	MOVQ    8(SP), DX
+	MOVQ    DX, BX
+	SHRQ    $0x08, BX
+	MOVBQZX BL, BX
+	ADDQ    BX, AX
+	XORQ    DX, AX
+	MOVQ    (SP), DX
+	MOVQ    DX, BX
+	SHRQ    $0x08, BX
+	MOVBQZX BL, BX
+	ADDQ    BX, AX
+	XORQ    DX, AX
+	MOVQ    8(SP), DX
+	MOVQ    AX, 8(SP)
+	ADDQ    DX, AX
+	MOVQ    24(SP), DX
+	MOVQ    $0x00000002, BX
+
+foldprop12_6_loop:
 	ADDQ DX, AX
-	MOVQ 16(SP), CX
-	MOVQ CX, 24(SP)
-	ADDQ CX, AX
-	MOVQ 8(SP), CX
-	ANDQ $0x00000003, CX
-	MOVQ CX, 8(SP)
+	MOVQ AX, 24(SP)
+	SUBQ $0x00000001, BX
+	JNE  foldprop12_6_loop
+	MOVQ 16(SP), DX
+	MOVQ $0x00000002, BX
 
-foldprop12_11_loop:
-	MOVQ 8(SP), CX
-	CMPQ CX, $0x00000000
-	JEQ  foldprop12_11_done
-	ADDQ CX, AX
+foldprop12_7_loop:
+	MOVQ AX, 16(SP)
+	ADDQ BX, AX
+	SUBQ $0x00000001, BX
+	JNE  foldprop12_7_loop
+	ADDQ DX, AX
+	ROLQ $0x07, AX
+	XORQ CX, AX
+	MOVQ 24(SP), DX
+	ADDQ CX, DX
+	MOVQ DX, 24(SP)
+	MOVQ 16(SP), DX
+	ANDQ $0x00000003, DX
+	MOVQ DX, 16(SP)
+
+foldprop12_10_loop:
+	MOVQ 16(SP), DX
+	CMPQ DX, $0x00000000
+	JEQ  foldprop12_10_done
+	ADDQ DX, AX
 	ROLQ $0x03, AX
-	MOVQ 8(SP), CX
-	SUBQ $0x00000001, CX
-	MOVQ CX, 8(SP)
-	JMP  foldprop12_11_loop
+	MOVQ 16(SP), DX
+	SUBQ $0x00000001, DX
+	MOVQ DX, 16(SP)
+	JMP  foldprop12_10_loop
 
-foldprop12_11_done:
+foldprop12_10_done:
+	CMPQ CX, 8(SP)
+	JCS  foldprop12_11_skip
+	XORQ CX, AX
+
+foldprop12_11_skip:
 	MOVQ (SP), CX
 	ADDQ CX, AX
 	MOVQ 8(SP), CX
@@ -5198,74 +5216,61 @@ TEXT ·FoldProp13(SB), NOSPLIT, $32-24
 	MOVQ CX, DX
 	ADDQ $0x00000003, DX
 	MOVQ DX, 24(SP)
-	MOVQ 8(SP), DX
-	MOVQ DX, BX
-	ADDQ CX, BX
-	MOVQ BX, 8(SP)
-	ADDQ DX, AX
-	MOVQ (SP), DX
-	MOVQ (SP), BX
-	ROLQ $0x09, BX
-	ADDQ DX, BX
-	XORQ BX, AX
-	MOVQ 16(SP), DX
-	MOVQ DX, BX
-	ADDQ CX, BX
-	MOVQ BX, 16(SP)
-	ADDQ DX, AX
-	MOVQ 8(SP), DX
-	ANDQ $0x00000003, DX
-	MOVQ DX, 8(SP)
+	CMPQ CX, 8(SP)
+	JCS  foldprop13_0_skip
+	XORQ CX, AX
 
-foldprop13_3_loop:
-	MOVQ 8(SP), DX
-	CMPQ DX, $0x00000000
-	JEQ  foldprop13_3_done
+foldprop13_0_skip:
+	MOVQ (SP), DX
+	MOVQ AX, (SP)
 	ADDQ DX, AX
-	ROLQ $0x03, AX
-	MOVQ 8(SP), DX
+	MOVQ $0x00000002, DX
+
+foldprop13_2_loop:
+	MOVQ 16(SP), BX
+	ADDQ BX, AX
+	MOVQ CX, BX
+	ADDQ AX, BX
 	SUBQ $0x00000001, DX
-	MOVQ DX, 8(SP)
-	JMP  foldprop13_3_loop
-
-foldprop13_3_done:
-	MOVQ 16(SP), DX
-	ADDQ DX, 16(SP)
-	ADDQ DX, AX
-	MOVQ (SP), DX
-	CMPQ AX, CX
-	JCS  foldprop13_5_skip
-	ADDQ CX, DX
-
-foldprop13_5_skip:
-	MOVQ DX, (SP)
-	MOVQ (SP), DX
+	JNE  foldprop13_2_loop
+	MOVQ BX, 16(SP)
+	MOVQ 8(SP), DX
 	MOVQ $0x00000002, BX
 
-foldprop13_6_loop:
-	ADDQ DX, AX
-	MOVQ AX, (SP)
-	SUBQ $0x00000001, BX
-	JNE  foldprop13_6_loop
-	ROLQ $0x07, AX
-	XORQ CX, AX
-	MOVQ 16(SP), DX
-	ADDQ CX, DX
+foldprop13_3_loop:
+	MOVQ    AX, 8(SP)
+	ADDQ    BX, AX
+	SUBQ    $0x00000001, BX
+	JNE     foldprop13_3_loop
+	ADDQ    DX, AX
+	MOVQ    AX, 16(SP)
+	MOVQ    (SP), DX
+	MOVQ    DX, BX
+	SHRQ    $0x08, BX
+	MOVBQZX BL, BX
+	ADDQ    BX, AX
+	XORQ    DX, AX
+	MOVQ    $0x80000000, (SP)
+	MOVQ    (SP), DX
+	ADDQ    DX, AX
+	ADDQ    AX, (SP)
+	MOVQ    16(SP), DX
+	CMPQ    AX, CX
+	JCS     foldprop13_8_skip
+	ADDQ    CX, DX
+
+foldprop13_8_skip:
 	MOVQ DX, 16(SP)
-	MOVQ 8(SP), DX
-	MOVQ DX, BX
-	ADDQ CX, BX
-	MOVQ BX, 8(SP)
-	ADDQ DX, AX
-	CMPQ CX, 24(SP)
+	ADDQ AX, 8(SP)
+	MOVQ 24(SP), DX
+	CMPQ AX, CX
 	JCS  foldprop13_10_skip
-	XORQ CX, AX
+	ADDQ CX, DX
 
 foldprop13_10_skip:
+	MOVQ DX, 24(SP)
 	MOVQ 16(SP), CX
-	MOVQ CX, DX
-	SHLQ $0x05, DX
-	XORQ DX, AX
+	MOVQ AX, 16(SP)
 	ADDQ CX, AX
 	MOVQ (SP), CX
 	ADDQ CX, AX
@@ -5294,73 +5299,73 @@ TEXT ·FoldProp14(SB), NOSPLIT, $32-24
 	MOVQ CX, DX
 	ADDQ $0x00000003, DX
 	MOVQ DX, 24(SP)
+	MOVQ (SP), DX
+	ADDQ CX, DX
+	MOVQ DX, (SP)
+	MOVQ AX, 16(SP)
 	MOVQ $0x00000002, DX
 
-foldprop14_0_loop:
-	MOVQ (SP), BX
+foldprop14_2_loop:
+	MOVQ 24(SP), BX
 	ADDQ BX, AX
 	MOVQ CX, BX
 	ADDQ AX, BX
 	SUBQ $0x00000001, DX
-	JNE  foldprop14_0_loop
-	MOVQ BX, (SP)
-	MOVQ 16(SP), DX
-	MOVQ $0x00000002, BX
-
-foldprop14_1_loop:
-	ADDQ DX, AX
-	MOVQ AX, 16(SP)
-	SUBQ $0x00000001, BX
-	JNE  foldprop14_1_loop
-	MOVQ AX, 24(SP)
+	JNE  foldprop14_2_loop
+	MOVQ BX, 24(SP)
 	MOVQ 8(SP), DX
-	MOVQ DX, BX
-	ADDQ CX, BX
-	MOVQ BX, 8(SP)
+	ADDQ DX, 8(SP)
 	ADDQ DX, AX
-	CMPQ CX, 24(SP)
-	JCS  foldprop14_4_skip
-	XORQ CX, AX
-
-foldprop14_4_skip:
-	MOVQ 16(SP), DX
-	MOVQ (SP), BX
-	MOVQ BX, 16(SP)
-	MOVQ DX, (SP)
-	ROLQ $0x07, AX
-	XORQ CX, AX
-	MOVQ 16(SP), DX
-	CMPQ AX, CX
-	JCS  foldprop14_7_skip
-	ADDQ CX, DX
-
-foldprop14_7_skip:
-	MOVQ DX, 16(SP)
-	MOVQ 8(SP), DX
-	MOVQ DX, BX
-	ADDQ CX, BX
-	MOVQ BX, 8(SP)
-	ADDQ DX, AX
-	ANDQ $0x00000003, 8(SP)
-
-foldprop14_9_loop:
-	CMPQ 8(SP), $0x00000000
-	JEQ  foldprop14_9_done
-	ADDQ 8(SP), AX
-	ROLQ $0x03, AX
-	DECQ 8(SP)
-	JMP  foldprop14_9_loop
-
-foldprop14_9_done:
-	TESTQ AX, 16(SP)
-	JEQ   foldprop14_10_skip
-	ADDQ  CX, AX
-
-foldprop14_10_skip:
-	MOVQ 8(SP), CX
 	MOVQ 24(SP), DX
-	MOVQ DX, 8(SP)
-	MOVQ CX, 24(SP)
+	MOVQ DX, BX
+	SHLQ $0x05, BX
+	XORQ BX, AX
+	ADDQ DX, AX
+	MOVQ 16(SP), DX
+	ANDQ $0x00000003, DX
+	MOVQ DX, 16(SP)
+
+foldprop14_5_loop:
+	MOVQ 16(SP), DX
+	CMPQ DX, $0x00000000
+	JEQ  foldprop14_5_done
+	ADDQ DX, AX
+	ROLQ $0x03, AX
+	MOVQ 16(SP), DX
+	SUBQ $0x00000001, DX
+	MOVQ DX, 16(SP)
+	JMP  foldprop14_5_loop
+
+foldprop14_5_done:
+	MOVQ 16(SP), DX
+	MOVQ DX, BX
+	ADDQ CX, BX
+	MOVQ BX, 16(SP)
+	ADDQ DX, AX
+	MOVQ 16(SP), DX
+	MOVQ DX, BX
+	SHLQ $0x05, BX
+	XORQ BX, AX
+	ADDQ DX, AX
+	MOVQ AX, 8(SP)
+	MOVQ 8(SP), DX
+	MOVQ DX, BX
+	SHLQ $0x05, BX
+	XORQ BX, AX
+	ADDQ DX, AX
+	MOVQ 16(SP), DX
+	ADDQ CX, DX
+	MOVQ DX, 16(SP)
+	MOVQ $0x00000002, DX
+
+foldprop14_11_loop:
+	MOVQ 8(SP), BX
+	ADDQ BX, AX
+	MOVQ CX, BX
+	ADDQ AX, BX
+	SUBQ $0x00000001, DX
+	JNE  foldprop14_11_loop
+	MOVQ BX, 8(SP)
 	MOVQ (SP), CX
 	ADDQ CX, AX
 	MOVQ 8(SP), CX
@@ -5389,73 +5394,59 @@ TEXT ·FoldProp15(SB), NOSPLIT, $32-24
 	ADDQ $0x00000003, DX
 	MOVQ DX, 24(SP)
 	MOVQ 16(SP), DX
-	MOVQ AX, 16(SP)
-	ADDQ DX, AX
-	MOVQ $0x00000002, DX
+	MOVQ (SP), BX
+	MOVQ BX, 16(SP)
+	MOVQ DX, (SP)
+	MOVQ CX, DX
+	CMPQ AX, CX
+	JCS  foldprop15_1_skip
+	MOVQ 24(SP), DX
 
-foldprop15_1_loop:
-	MOVQ 24(SP), BX
-	ADDQ BX, AX
-	MOVQ CX, BX
-	ADDQ AX, BX
-	SUBQ $0x00000001, DX
-	JNE  foldprop15_1_loop
-	MOVQ BX, 24(SP)
+foldprop15_1_skip:
+	ADDQ DX, AX
 	MOVQ 16(SP), DX
-	MOVQ AX, 16(SP)
-	ADDQ DX, AX
-	MOVQ 8(SP), DX
+	ADDQ CX, DX
+	MOVQ DX, 16(SP)
+	MOVQ AX, 8(SP)
+	MOVQ (SP), DX
 	ANDQ $0x00000003, DX
-	MOVQ DX, 8(SP)
+	MOVQ DX, (SP)
 
-foldprop15_3_loop:
-	MOVQ 8(SP), DX
+foldprop15_4_loop:
+	MOVQ (SP), DX
 	CMPQ DX, $0x00000000
-	JEQ  foldprop15_3_done
+	JEQ  foldprop15_4_done
 	ADDQ DX, AX
 	ROLQ $0x03, AX
-	MOVQ 8(SP), DX
+	MOVQ (SP), DX
 	SUBQ $0x00000001, DX
-	MOVQ DX, 8(SP)
-	JMP  foldprop15_3_loop
+	MOVQ DX, (SP)
+	JMP  foldprop15_4_loop
 
-foldprop15_3_done:
-	ADDQ AX, (SP)
+foldprop15_4_done:
 	MOVQ 8(SP), DX
-	ADDQ DX, 8(SP)
-	ADDQ DX, AX
+	ADDQ CX, DX
+	MOVQ DX, 8(SP)
 	MOVQ 16(SP), DX
 	MOVQ DX, BX
 	SHLQ $0x05, BX
 	XORQ BX, AX
 	ADDQ DX, AX
-	MOVQ CX, DX
-	CMPQ AX, CX
-	JCS  foldprop15_7_skip
 	MOVQ (SP), DX
-
-foldprop15_7_skip:
+	MOVQ AX, (SP)
 	ADDQ DX, AX
 	MOVQ (SP), DX
-	CMPQ AX, CX
-	JCS  foldprop15_8_skip
-	ADDQ CX, DX
-
-foldprop15_8_skip:
-	MOVQ DX, (SP)
+	MOVQ 16(SP), BX
+	MOVQ BX, (SP)
+	MOVQ DX, 16(SP)
 	MOVQ 24(SP), DX
-	CMPQ AX, CX
-	JCS  foldprop15_9_skip
+	MOVQ 8(SP), BX
+	MOVQ BX, 24(SP)
+	MOVQ DX, 8(SP)
+	MOVQ 8(SP), DX
 	ADDQ CX, DX
-
-foldprop15_9_skip:
-	MOVQ DX, 24(SP)
-	MOVQ 8(SP), CX
-	MOVQ CX, DX
-	SHLQ $0x05, DX
-	XORQ DX, AX
-	ADDQ CX, AX
-	MOVQ AX, 16(SP)
+	MOVQ DX, 8(SP)
+	ADDQ AX, 16(SP)
 	MOVQ (SP), CX
 	ADDQ CX, AX
 	MOVQ 8(SP), CX
@@ -5469,79 +5460,79 @@ foldprop15_9_skip:
 
 // func FoldProp16(x uint64, y uint64) uint64
 TEXT ·FoldProp16(SB), NOSPLIT, $32-24
-	MOVQ x+0(FP), AX
-	MOVQ y+8(FP), CX
-	MOVQ CX, DX
-	ADDQ $0x00000000, DX
-	MOVQ DX, (SP)
-	MOVQ CX, DX
-	ADDQ $0x00000001, DX
-	MOVQ DX, 8(SP)
-	MOVQ CX, DX
-	ADDQ $0x00000002, DX
-	MOVQ DX, 16(SP)
-	MOVQ CX, DX
-	ADDQ $0x00000003, DX
-	MOVQ DX, 24(SP)
-	MOVQ $0x80000003, 24(SP)
-	MOVQ 24(SP), DX
-	ADDQ DX, AX
-	MOVQ (SP), DX
-	CMPQ AX, CX
-	JCS  foldprop16_1_skip
-	ADDQ CX, DX
-
-foldprop16_1_skip:
+	MOVQ    x+0(FP), AX
+	MOVQ    y+8(FP), CX
+	MOVQ    CX, DX
+	ADDQ    $0x00000000, DX
 	MOVQ    DX, (SP)
+	MOVQ    CX, DX
+	ADDQ    $0x00000001, DX
+	MOVQ    DX, 8(SP)
+	MOVQ    CX, DX
+	ADDQ    $0x00000002, DX
+	MOVQ    DX, 16(SP)
+	MOVQ    CX, DX
+	ADDQ    $0x00000003, DX
+	MOVQ    DX, 24(SP)
 	MOVQ    24(SP), DX
+	MOVQ    AX, 24(SP)
+	ADDQ    DX, AX
+	MOVQ    (SP), DX
+	ADDQ    DX, (SP)
+	ADDQ    DX, AX
+	MOVQ    24(SP), DX
+	MOVQ    DX, BX
+	SHLQ    $0x05, BX
+	XORQ    BX, AX
+	ADDQ    DX, AX
+	MOVQ    16(SP), DX
 	MOVQ    DX, BX
 	SHRQ    $0x08, BX
 	MOVBQZX BL, BX
 	ADDQ    BX, AX
 	XORQ    DX, AX
-	MOVQ    16(SP), DX
-	MOVQ    DX, BX
-	SHLQ    $0x05, BX
-	XORQ    BX, AX
+	MOVQ    8(SP), DX
+	MOVQ    DX, 16(SP)
 	ADDQ    DX, AX
-	CMPQ    CX, 8(SP)
-	JCS     foldprop16_4_skip
-	XORQ    CX, AX
+	MOVQ    $0x80000001, 8(SP)
+	MOVQ    8(SP), DX
+	ADDQ    DX, AX
+	MOVQ    $0x80000001, 8(SP)
+	MOVQ    8(SP), DX
+	ADDQ    DX, AX
+	MOVQ    16(SP), DX
+	ADDQ    DX, 16(SP)
+	ADDQ    DX, AX
+	MOVQ    16(SP), DX
+	MOVQ    $0x00000002, BX
 
-foldprop16_4_skip:
-	ROLQ $0x07, AX
-	XORQ CX, AX
-	CMPQ CX, 8(SP)
-	JCS  foldprop16_6_skip
-	XORQ CX, AX
-
-foldprop16_6_skip:
-	TESTQ AX, 16(SP)
-	JEQ   foldprop16_7_skip
-	ADDQ  CX, AX
-
-foldprop16_7_skip:
-	MOVQ $0x80000002, 16(SP)
-	MOVQ 16(SP), DX
+foldprop16_8_loop:
+	MOVQ AX, 16(SP)
+	ADDQ BX, AX
+	SUBQ $0x00000001, BX
+	JNE  foldprop16_8_loop
 	ADDQ DX, AX
 	MOVQ (SP), DX
-	MOVQ DX, BX
-	ADDQ CX, BX
-	MOVQ BX, (SP)
+	MOVQ $0x00000002, BX
+
+foldprop16_9_loop:
+	MOVQ AX, (SP)
+	ADDQ BX, AX
+	SUBQ $0x00000001, BX
+	JNE  foldprop16_9_loop
 	ADDQ DX, AX
+	MOVQ $0x00000002, DX
+
+foldprop16_10_loop:
+	MOVQ 16(SP), BX
+	ADDQ BX, AX
+	MOVQ CX, BX
+	ADDQ AX, BX
+	SUBQ $0x00000001, DX
+	JNE  foldprop16_10_loop
+	MOVQ BX, 16(SP)
 	ROLQ $0x07, AX
 	XORQ CX, AX
-	ANDQ $0x00000003, 8(SP)
-
-foldprop16_11_loop:
-	CMPQ 8(SP), $0x00000000
-	JEQ  foldprop16_11_done
-	ADDQ 8(SP), AX
-	ROLQ $0x03, AX
-	DECQ 8(SP)
-	JMP  foldprop16_11_loop
-
-foldprop16_11_done:
 	MOVQ (SP), CX
 	ADDQ CX, AX
 	MOVQ 8(SP), CX
@@ -5569,81 +5560,57 @@ TEXT ·FoldProp17(SB), NOSPLIT, $32-24
 	MOVQ CX, DX
 	ADDQ $0x00000003, DX
 	MOVQ DX, 24(SP)
-	ADDQ AX, 16(SP)
 	MOVQ 16(SP), DX
-	MOVQ $0x00000002, BX
-
-foldprop17_1_loop:
-	ADDQ DX, AX
+	MOVQ (SP), BX
+	MOVQ BX, 16(SP)
+	MOVQ DX, (SP)
 	MOVQ AX, 16(SP)
-	SUBQ $0x00000001, BX
-	JNE  foldprop17_1_loop
+	CMPQ CX, 16(SP)
+	JCS  foldprop17_2_skip
+	XORQ CX, AX
+
+foldprop17_2_skip:
+	ROLQ $0x07, AX
+	XORQ CX, AX
 	MOVQ 16(SP), DX
 	ADDQ CX, DX
 	MOVQ DX, 16(SP)
-	MOVQ 8(SP), DX
-	ANDQ $0x00000003, DX
-	MOVQ DX, 8(SP)
-
-foldprop17_3_loop:
-	MOVQ 8(SP), DX
-	CMPQ DX, $0x00000000
-	JEQ  foldprop17_3_done
-	ADDQ DX, AX
-	ROLQ $0x03, AX
-	MOVQ 8(SP), DX
-	SUBQ $0x00000001, DX
-	MOVQ DX, 8(SP)
-	JMP  foldprop17_3_loop
-
-foldprop17_3_done:
-	MOVQ CX, DX
-	CMPQ AX, CX
-	JCS  foldprop17_4_skip
-	MOVQ 16(SP), DX
-
-foldprop17_4_skip:
-	ADDQ DX, AX
-	MOVQ 24(SP), DX
-	MOVQ $0x00000002, BX
+	MOVQ $0x00000002, DX
 
 foldprop17_5_loop:
-	ADDQ    DX, AX
-	MOVQ    AX, 24(SP)
-	SUBQ    $0x00000001, BX
-	JNE     foldprop17_5_loop
-	MOVQ    8(SP), DX
-	MOVQ    DX, BX
-	SHRQ    $0x08, BX
-	MOVBQZX BL, BX
-	ADDQ    BX, AX
-	XORQ    DX, AX
-	MOVQ    (SP), DX
-	MOVQ    DX, 8(SP)
-	ADDQ    DX, AX
-	MOVQ    8(SP), DX
-	MOVQ    $0x00000002, BX
-
-foldprop17_8_loop:
+	MOVQ 24(SP), BX
+	ADDQ BX, AX
+	MOVQ CX, BX
+	ADDQ AX, BX
+	SUBQ $0x00000001, DX
+	JNE  foldprop17_5_loop
+	MOVQ BX, 24(SP)
+	MOVQ 8(SP), DX
+	MOVQ DX, BX
+	SHLQ $0x05, BX
+	XORQ BX, AX
 	ADDQ DX, AX
-	MOVQ AX, 8(SP)
-	SUBQ $0x00000001, BX
-	JNE  foldprop17_8_loop
 	MOVQ (SP), DX
-	CMPQ AX, CX
-	JCS  foldprop17_9_skip
 	ADDQ CX, DX
+	MOVQ DX, (SP)
+	ROLQ $0x07, AX
+	XORQ CX, AX
+	MOVQ (SP), CX
+	MOVQ $0x00000002, DX
 
-foldprop17_9_skip:
-	MOVQ  DX, (SP)
-	MOVQ  8(SP), DX
-	ADDQ  DX, 8(SP)
-	ADDQ  DX, AX
-	TESTQ AX, 8(SP)
-	JEQ   foldprop17_11_skip
-	ADDQ  CX, AX
-
-foldprop17_11_skip:
+foldprop17_9_loop:
+	ADDQ CX, AX
+	MOVQ AX, (SP)
+	SUBQ $0x00000001, DX
+	JNE  foldprop17_9_loop
+	MOVQ $0x80000001, 8(SP)
+	MOVQ 8(SP), CX
+	ADDQ CX, AX
+	MOVQ 8(SP), CX
+	MOVQ CX, DX
+	SHLQ $0x05, DX
+	XORQ DX, AX
+	ADDQ CX, AX
 	MOVQ (SP), CX
 	ADDQ CX, AX
 	MOVQ 8(SP), CX
@@ -5657,84 +5624,71 @@ foldprop17_11_skip:
 
 // func FoldProp18(x uint64, y uint64) uint64
 TEXT ·FoldProp18(SB), NOSPLIT, $32-24
-	MOVQ    x+0(FP), AX
-	MOVQ    y+8(FP), CX
-	MOVQ    CX, DX
-	ADDQ    $0x00000000, DX
+	MOVQ x+0(FP), AX
+	MOVQ y+8(FP), CX
+	MOVQ CX, DX
+	ADDQ $0x00000000, DX
+	MOVQ DX, (SP)
+	MOVQ CX, DX
+	ADDQ $0x00000001, DX
+	MOVQ DX, 8(SP)
+	MOVQ CX, DX
+	ADDQ $0x00000002, DX
+	MOVQ DX, 16(SP)
+	MOVQ CX, DX
+	ADDQ $0x00000003, DX
+	MOVQ DX, 24(SP)
+	MOVQ (SP), DX
+	CMPQ AX, CX
+	JCS  foldprop18_0_skip
+	ADDQ CX, DX
+
+foldprop18_0_skip:
+	MOVQ DX, (SP)
+	ROLQ $0x07, AX
+	XORQ CX, AX
+	MOVQ 16(SP), DX
+	MOVQ 16(SP), BX
+	ROLQ $0x09, BX
+	ADDQ DX, BX
+	XORQ BX, AX
+	CMPQ CX, 16(SP)
+	JCS  foldprop18_3_skip
+	XORQ CX, AX
+
+foldprop18_3_skip:
+	MOVQ $0x80000003, 24(SP)
+	MOVQ 24(SP), DX
+	ADDQ DX, AX
+	CMPQ CX, 16(SP)
+	JCS  foldprop18_5_skip
+	XORQ CX, AX
+
+foldprop18_5_skip:
+	ADDQ    AX, (SP)
+	MOVQ    16(SP), DX
+	MOVQ    (SP), BX
+	MOVQ    BX, 16(SP)
 	MOVQ    DX, (SP)
-	MOVQ    CX, DX
-	ADDQ    $0x00000001, DX
-	MOVQ    DX, 8(SP)
-	MOVQ    CX, DX
-	ADDQ    $0x00000002, DX
-	MOVQ    DX, 16(SP)
-	MOVQ    CX, DX
-	ADDQ    $0x00000003, DX
-	MOVQ    DX, 24(SP)
 	MOVQ    (SP), DX
 	MOVQ    DX, BX
 	SHRQ    $0x08, BX
 	MOVBQZX BL, BX
 	ADDQ    BX, AX
 	XORQ    DX, AX
-	MOVQ    16(SP), DX
-	ADDQ    CX, DX
-	MOVQ    DX, 16(SP)
-	ADDQ    AX, 16(SP)
-	MOVQ    16(SP), DX
-	MOVQ    DX, BX
-	SHLQ    $0x05, BX
-	XORQ    BX, AX
-	ADDQ    DX, AX
-	MOVQ    24(SP), DX
-	MOVQ    8(SP), BX
-	MOVQ    BX, 24(SP)
-	MOVQ    DX, 8(SP)
-	MOVQ    16(SP), DX
-	ANDQ    $0x00000003, DX
-	MOVQ    DX, 16(SP)
+	CMPQ    CX, 16(SP)
+	JCS     foldprop18_9_skip
+	XORQ    CX, AX
 
-foldprop18_5_loop:
-	MOVQ 16(SP), DX
-	CMPQ DX, $0x00000000
-	JEQ  foldprop18_5_done
-	ADDQ DX, AX
-	ROLQ $0x03, AX
-	MOVQ 16(SP), DX
-	SUBQ $0x00000001, DX
-	MOVQ DX, 16(SP)
-	JMP  foldprop18_5_loop
-
-foldprop18_5_done:
-	TESTQ AX, (SP)
-	JEQ   foldprop18_6_skip
-	ADDQ  CX, AX
-
-foldprop18_6_skip:
-	MOVQ 16(SP), DX
-	MOVQ DX, BX
-	SHLQ $0x05, BX
-	XORQ BX, AX
-	ADDQ DX, AX
-	MOVQ $0x80000000, (SP)
+foldprop18_9_skip:
 	MOVQ (SP), DX
+	MOVQ DX, 8(SP)
 	ADDQ DX, AX
-	MOVQ 16(SP), DX
-	ADDQ CX, DX
-	MOVQ DX, 16(SP)
-	MOVQ $0x80000000, (SP)
-	MOVQ (SP), DX
-	ADDQ DX, AX
-	MOVQ $0x00000002, DX
+	CMPQ CX, 8(SP)
+	JCS  foldprop18_11_skip
+	XORQ CX, AX
 
-foldprop18_11_loop:
-	MOVQ 8(SP), BX
-	ADDQ BX, AX
-	MOVQ CX, BX
-	ADDQ AX, BX
-	SUBQ $0x00000001, DX
-	JNE  foldprop18_11_loop
-	MOVQ BX, 8(SP)
+foldprop18_11_skip:
 	MOVQ (SP), CX
 	ADDQ CX, AX
 	MOVQ 8(SP), CX
@@ -5762,81 +5716,83 @@ TEXT ·FoldProp19(SB), NOSPLIT, $32-24
 	MOVQ CX, DX
 	ADDQ $0x00000003, DX
 	MOVQ DX, 24(SP)
-	MOVQ CX, DX
-	CMPQ AX, CX
-	JCS  foldprop19_0_skip
 	MOVQ 24(SP), DX
-
-foldprop19_0_skip:
-	ADDQ  DX, AX
-	MOVQ  (SP), DX
-	MOVQ  DX, BX
-	ADDQ  CX, BX
-	MOVQ  BX, (SP)
-	ADDQ  DX, AX
-	MOVQ  16(SP), DX
-	MOVQ  16(SP), BX
-	ROLQ  $0x09, BX
-	ADDQ  DX, BX
-	XORQ  BX, AX
-	MOVQ  16(SP), DX
-	MOVQ  DX, BX
-	SHLQ  $0x05, BX
-	XORQ  BX, AX
-	ADDQ  DX, AX
-	NEGQ  24(SP)
-	NOTQ  (SP)
-	MOVQ  8(SP), DX
-	MOVQ  DX, BX
-	SHLQ  $0x05, BX
-	XORQ  BX, AX
-	ADDQ  DX, AX
-	MOVQ  (SP), DX
-	MOVQ  DX, BX
-	ADDQ  CX, BX
-	MOVQ  BX, (SP)
-	ADDQ  DX, AX
-	TESTQ AX, (SP)
-	JEQ   foldprop19_7_skip
-	ADDQ  CX, AX
-
-foldprop19_7_skip:
-	MOVQ $0x00000002, DX
-
-foldprop19_8_loop:
-	MOVQ (SP), BX
-	ADDQ BX, AX
-	MOVQ CX, BX
-	ADDQ AX, BX
-	SUBQ $0x00000001, DX
-	JNE  foldprop19_8_loop
-	MOVQ BX, (SP)
-	MOVQ 16(SP), DX
 	ADDQ CX, DX
-	MOVQ DX, 16(SP)
+	MOVQ DX, 24(SP)
 	MOVQ (SP), DX
 	ANDQ $0x00000003, DX
 	MOVQ DX, (SP)
 
-foldprop19_10_loop:
+foldprop19_1_loop:
 	MOVQ (SP), DX
 	CMPQ DX, $0x00000000
-	JEQ  foldprop19_10_done
+	JEQ  foldprop19_1_done
 	ADDQ DX, AX
 	ROLQ $0x03, AX
 	MOVQ (SP), DX
 	SUBQ $0x00000001, DX
 	MOVQ DX, (SP)
-	JMP  foldprop19_10_loop
+	JMP  foldprop19_1_loop
 
-foldprop19_10_done:
+foldprop19_1_done:
+	MOVQ 16(SP), DX
+	ADDQ DX, 16(SP)
+	ADDQ DX, AX
+	MOVQ 16(SP), DX
+	ADDQ CX, DX
+	MOVQ DX, 16(SP)
 	MOVQ 24(SP), DX
+	MOVQ $0x00000002, BX
+
+foldprop19_4_loop:
+	MOVQ AX, 24(SP)
+	ADDQ BX, AX
+	SUBQ $0x00000001, BX
+	JNE  foldprop19_4_loop
+	ADDQ DX, AX
+	MOVQ 8(SP), DX
+	MOVQ $0x00000002, BX
+
+foldprop19_5_loop:
+	MOVQ AX, 8(SP)
+	ADDQ BX, AX
+	SUBQ $0x00000001, BX
+	JNE  foldprop19_5_loop
+	ADDQ DX, AX
+	MOVQ (SP), DX
+	MOVQ DX, 8(SP)
+	ADDQ DX, AX
+	CMPQ CX, (SP)
+	JCS  foldprop19_7_skip
+	XORQ CX, AX
+
+foldprop19_7_skip:
+	MOVQ (SP), DX
 	CMPQ AX, CX
-	JCS  foldprop19_11_skip
+	JCS  foldprop19_8_skip
 	ADDQ CX, DX
 
-foldprop19_11_skip:
-	MOVQ DX, 24(SP)
+foldprop19_8_skip:
+	MOVQ DX, (SP)
+	MOVQ 16(SP), CX
+	MOVQ CX, DX
+	SHLQ $0x05, DX
+	XORQ DX, AX
+	ADDQ CX, AX
+	MOVQ (SP), CX
+	MOVQ CX, 8(SP)
+	ADDQ CX, AX
+	ANDQ $0x00000003, 24(SP)
+
+foldprop19_11_loop:
+	CMPQ 24(SP), $0x00000000
+	JEQ  foldprop19_11_done
+	ADDQ 24(SP), AX
+	ROLQ $0x03, AX
+	DECQ 24(SP)
+	JMP  foldprop19_11_loop
+
+foldprop19_11_done:
 	MOVQ (SP), CX
 	ADDQ CX, AX
 	MOVQ 8(SP), CX
@@ -5865,57 +5821,99 @@ TEXT ·FoldProp20(SB), NOSPLIT, $32-24
 	ADDQ $0x00000003, DX
 	MOVQ DX, 24(SP)
 	MOVQ (SP), DX
-	MOVQ DX, BX
-	ADDQ CX, BX
-	MOVQ BX, (SP)
+	ANDQ $0x00000003, DX
+	MOVQ DX, (SP)
+
+foldprop20_0_loop:
+	MOVQ (SP), DX
+	CMPQ DX, $0x00000000
+	JEQ  foldprop20_0_done
 	ADDQ DX, AX
+	ROLQ $0x03, AX
+	MOVQ (SP), DX
+	SUBQ $0x00000001, DX
+	MOVQ DX, (SP)
+	JMP  foldprop20_0_loop
+
+foldprop20_0_done:
 	MOVQ $0x80000000, (SP)
 	MOVQ (SP), DX
 	ADDQ DX, AX
-	MOVQ 24(SP), DX
-	MOVQ DX, (SP)
-	ADDQ DX, AX
+	ADDQ AX, 24(SP)
+	ANDQ $0x00000003, 16(SP)
+
+foldprop20_3_loop:
+	CMPQ 16(SP), $0x00000000
+	JEQ  foldprop20_3_done
+	ADDQ 16(SP), AX
+	ROLQ $0x03, AX
+	DECQ 16(SP)
+	JMP  foldprop20_3_loop
+
+foldprop20_3_done:
+	MOVQ    (SP), DX
+	MOVQ    DX, BX
+	SHRQ    $0x08, BX
+	MOVBQZX BL, BX
+	ADDQ    BX, AX
+	XORQ    DX, AX
+	MOVQ    8(SP), DX
+	MOVQ    DX, BX
+	SHRQ    $0x08, BX
+	MOVBQZX BL, BX
+	ADDQ    BX, AX
+	XORQ    DX, AX
+	MOVQ    $0x00000002, DX
+
+foldprop20_6_loop:
+	MOVQ 24(SP), BX
+	ADDQ BX, AX
+	MOVQ CX, BX
+	ADDQ AX, BX
+	SUBQ $0x00000001, DX
+	JNE  foldprop20_6_loop
+	MOVQ BX, 24(SP)
 	MOVQ 16(SP), DX
-	MOVQ AX, 16(SP)
+	ANDQ $0x00000003, DX
+	MOVQ DX, 16(SP)
+
+foldprop20_7_loop:
+	MOVQ 16(SP), DX
+	CMPQ DX, $0x00000000
+	JEQ  foldprop20_7_done
 	ADDQ DX, AX
+	ROLQ $0x03, AX
+	MOVQ 16(SP), DX
+	SUBQ $0x00000001, DX
+	MOVQ DX, 16(SP)
+	JMP  foldprop20_7_loop
+
+foldprop20_7_done:
 	MOVQ (SP), DX
-	ADDQ DX, (SP)
+	MOVQ (SP), BX
+	ROLQ $0x09, BX
+	ADDQ DX, BX
+	XORQ BX, AX
+	MOVQ $0x80000000, (SP)
+	MOVQ (SP), DX
 	ADDQ DX, AX
+	MOVQ $0x00000002, DX
+
+foldprop20_10_loop:
+	MOVQ (SP), BX
+	ADDQ BX, AX
+	MOVQ CX, BX
+	ADDQ AX, BX
+	SUBQ $0x00000001, DX
+	JNE  foldprop20_10_loop
+	MOVQ BX, (SP)
 	MOVQ 8(SP), DX
-	MOVQ $0x00000002, BX
-
-foldprop20_5_loop:
-	ADDQ DX, AX
-	MOVQ AX, 8(SP)
-	SUBQ $0x00000001, BX
-	JNE  foldprop20_5_loop
-	CMPQ CX, 24(SP)
-	JCS  foldprop20_6_skip
-	XORQ CX, AX
-
-foldprop20_6_skip:
-	ROLQ $0x07, AX
-	XORQ CX, AX
-	CMPQ CX, (SP)
-	JCS  foldprop20_8_skip
-	XORQ CX, AX
-
-foldprop20_8_skip:
-	MOVQ CX, DX
 	CMPQ AX, CX
-	JCS  foldprop20_9_skip
-	MOVQ (SP), DX
+	JCS  foldprop20_11_skip
+	ADDQ CX, DX
 
-foldprop20_9_skip:
-	ADDQ DX, AX
-	MOVQ (SP), CX
-	MOVQ CX, DX
-	SHLQ $0x05, DX
-	XORQ DX, AX
-	ADDQ CX, AX
-	MOVQ 8(SP), CX
-	MOVQ CX, 16(SP)
-	ADDQ CX, AX
+foldprop20_11_skip:
+	MOVQ DX, 8(SP)
 	MOVQ (SP), CX
 	ADDQ CX, AX
 	MOVQ 8(SP), CX
@@ -5929,85 +5927,84 @@ foldprop20_9_skip:
 
 // func FoldProp21(x uint64, y uint64) uint64
 TEXT ·FoldProp21(SB), NOSPLIT, $32-24
-	MOVQ  x+0(FP), AX
-	MOVQ  y+8(FP), CX
-	MOVQ  CX, DX
-	ADDQ  $0x00000000, DX
-	MOVQ  DX, (SP)
-	MOVQ  CX, DX
-	ADDQ  $0x00000001, DX
-	MOVQ  DX, 8(SP)
-	MOVQ  CX, DX
-	ADDQ  $0x00000002, DX
-	MOVQ  DX, 16(SP)
-	MOVQ  CX, DX
-	ADDQ  $0x00000003, DX
-	MOVQ  DX, 24(SP)
-	MOVQ  24(SP), DX
-	MOVQ  DX, (SP)
-	ADDQ  DX, AX
-	NEGQ  16(SP)
-	NOTQ  24(SP)
-	TESTQ AX, 8(SP)
-	JEQ   foldprop21_2_skip
-	ADDQ  CX, AX
-
-foldprop21_2_skip:
-	ROLQ    $0x07, AX
-	XORQ    CX, AX
-	MOVQ    8(SP), DX
-	MOVQ    DX, BX
-	SHRQ    $0x08, BX
-	MOVBQZX BL, BX
-	ADDQ    BX, AX
-	XORQ    DX, AX
-	MOVQ    (SP), DX
-	MOVQ    16(SP), BX
-	MOVQ    BX, (SP)
-	MOVQ    DX, 16(SP)
-	ANDQ    $0x00000003, (SP)
-
-foldprop21_6_loop:
-	CMPQ (SP), $0x00000000
-	JEQ  foldprop21_6_done
-	ADDQ (SP), AX
-	ROLQ $0x03, AX
-	DECQ (SP)
-	JMP  foldprop21_6_loop
-
-foldprop21_6_done:
+	MOVQ x+0(FP), AX
+	MOVQ y+8(FP), CX
+	MOVQ CX, DX
+	ADDQ $0x00000000, DX
+	MOVQ DX, (SP)
+	MOVQ CX, DX
+	ADDQ $0x00000001, DX
+	MOVQ DX, 8(SP)
+	MOVQ CX, DX
+	ADDQ $0x00000002, DX
+	MOVQ DX, 16(SP)
+	MOVQ CX, DX
+	ADDQ $0x00000003, DX
+	MOVQ DX, 24(SP)
+	MOVQ 24(SP), DX
+	MOVQ AX, 24(SP)
+	ADDQ DX, AX
 	MOVQ $0x00000002, DX
 
-foldprop21_7_loop:
-	MOVQ 24(SP), BX
+foldprop21_1_loop:
+	MOVQ 16(SP), BX
 	ADDQ BX, AX
 	MOVQ CX, BX
 	ADDQ AX, BX
 	SUBQ $0x00000001, DX
-	JNE  foldprop21_7_loop
-	MOVQ BX, 24(SP)
+	JNE  foldprop21_1_loop
+	MOVQ BX, 16(SP)
+	ANDQ $0x00000003, 8(SP)
+
+foldprop21_2_loop:
+	CMPQ 8(SP), $0x00000000
+	JEQ  foldprop21_2_done
+	ADDQ 8(SP), AX
+	ROLQ $0x03, AX
+	DECQ 8(SP)
+	JMP  foldprop21_2_loop
+
+foldprop21_2_done:
+	MOVQ CX, DX
+	CMPQ AX, CX
+	JCS  foldprop21_3_skip
+	MOVQ 16(SP), DX
+
+foldprop21_3_skip:
+	ADDQ DX, AX
+	MOVQ $0x00000002, DX
+
+foldprop21_4_loop:
+	MOVQ 8(SP), BX
+	ADDQ BX, AX
+	MOVQ CX, BX
+	ADDQ AX, BX
+	SUBQ $0x00000001, DX
+	JNE  foldprop21_4_loop
+	MOVQ BX, 8(SP)
+	MOVQ (SP), DX
+	MOVQ 16(SP), BX
+	MOVQ BX, (SP)
+	MOVQ DX, 16(SP)
+	MOVQ (SP), DX
+	ADDQ CX, DX
+	MOVQ DX, (SP)
+	CMPQ CX, 24(SP)
+	JCS  foldprop21_7_skip
+	XORQ CX, AX
+
+foldprop21_7_skip:
 	MOVQ 24(SP), DX
-	ANDQ $0x00000003, DX
-	MOVQ DX, 24(SP)
+	MOVQ $0x00000002, BX
 
 foldprop21_8_loop:
-	MOVQ 24(SP), DX
-	CMPQ DX, $0x00000000
-	JEQ  foldprop21_8_done
 	ADDQ DX, AX
-	ROLQ $0x03, AX
-	MOVQ 24(SP), DX
-	SUBQ $0x00000001, DX
-	MOVQ DX, 24(SP)
-	JMP  foldprop21_8_loop
-
-foldprop21_8_done:
-	ROLQ $0x07, AX
-	XORQ CX, AX
+	MOVQ AX, 24(SP)
+	SUBQ $0x00000001, BX
+	JNE  foldprop21_8_loop
+	ADDQ AX, 16(SP)
 	MOVQ 8(SP), DX
-	MOVQ DX, BX
-	SHLQ $0x05, BX
-	XORQ BX, AX
+	ADDQ DX, 8(SP)
 	ADDQ DX, AX
 	MOVQ (SP), DX
 	ADDQ CX, DX
@@ -6039,68 +6036,62 @@ TEXT ·FoldProp22(SB), NOSPLIT, $32-24
 	MOVQ CX, DX
 	ADDQ $0x00000003, DX
 	MOVQ DX, 24(SP)
+	MOVQ 16(SP), DX
+	ADDQ CX, DX
+	MOVQ DX, 16(SP)
+	CMPQ CX, 24(SP)
+	JCS  foldprop22_1_skip
+	XORQ CX, AX
+
+foldprop22_1_skip:
+	MOVQ (SP), DX
+	CMPQ AX, CX
+	JCS  foldprop22_2_skip
+	ADDQ CX, DX
+
+foldprop22_2_skip:
+	MOVQ    DX, (SP)
+	MOVQ    16(SP), DX
+	MOVQ    DX, 24(SP)
+	ADDQ    DX, AX
+	MOVQ    24(SP), DX
+	MOVQ    DX, (SP)
+	ADDQ    DX, AX
+	MOVQ    16(SP), DX
+	MOVQ    DX, BX
+	SHLQ    $0x05, BX
+	XORQ    BX, AX
+	ADDQ    DX, AX
+	MOVQ    16(SP), DX
+	MOVQ    DX, BX
+	SHLQ    $0x05, BX
+	XORQ    BX, AX
+	ADDQ    DX, AX
+	ADDQ    AX, 8(SP)
+	MOVQ    16(SP), DX
+	MOVQ    DX, BX
+	SHRQ    $0x08, BX
+	MOVBQZX BL, BX
+	ADDQ    BX, AX
+	XORQ    DX, AX
+	CMPQ    CX, 16(SP)
+	JCS     foldprop22_9_skip
+	XORQ    CX, AX
+
+foldprop22_9_skip:
+	MOVQ 24(SP), CX
 	MOVQ $0x00000002, DX
 
-foldprop22_0_loop:
-	MOVQ 16(SP), BX
-	ADDQ BX, AX
-	MOVQ CX, BX
-	ADDQ AX, BX
+foldprop22_10_loop:
+	MOVQ AX, 24(SP)
+	ADDQ DX, AX
 	SUBQ $0x00000001, DX
-	JNE  foldprop22_0_loop
-	MOVQ BX, 16(SP)
-	MOVQ 24(SP), DX
-	ADDQ DX, 24(SP)
-	ADDQ DX, AX
-	MOVQ (SP), DX
-	ADDQ CX, DX
-	MOVQ DX, (SP)
-	MOVQ 16(SP), DX
-	MOVQ DX, BX
-	SHLQ $0x05, BX
-	XORQ BX, AX
-	ADDQ DX, AX
-	NEGQ 24(SP)
-	NOTQ (SP)
-	MOVQ 16(SP), DX
-	ANDQ $0x00000003, DX
-	MOVQ DX, 16(SP)
-
-foldprop22_5_loop:
-	MOVQ 16(SP), DX
-	CMPQ DX, $0x00000000
-	JEQ  foldprop22_5_done
-	ADDQ DX, AX
-	ROLQ $0x03, AX
-	MOVQ 16(SP), DX
-	SUBQ $0x00000001, DX
-	MOVQ DX, 16(SP)
-	JMP  foldprop22_5_loop
-
-foldprop22_5_done:
-	MOVQ 16(SP), DX
-	MOVQ $0x00000002, BX
-
-foldprop22_6_loop:
-	ADDQ DX, AX
-	MOVQ AX, 16(SP)
-	SUBQ $0x00000001, BX
-	JNE  foldprop22_6_loop
-	NEGQ 8(SP)
-	NOTQ 16(SP)
-	MOVQ 16(SP), DX
-	MOVQ DX, BX
-	ADDQ CX, BX
-	MOVQ BX, 16(SP)
-	ADDQ DX, AX
-	MOVQ 16(SP), CX
-	MOVQ 16(SP), DX
-	ROLQ $0x09, DX
-	ADDQ CX, DX
-	XORQ DX, AX
-	ADDQ AX, 24(SP)
+	JNE  foldprop22_10_loop
+	ADDQ CX, AX
 	MOVQ 24(SP), CX
-	ADDQ CX, 24(SP)
+	MOVQ CX, DX
+	SHLQ $0x05, DX
+	XORQ DX, AX
 	ADDQ CX, AX
 	MOVQ (SP), CX
 	ADDQ CX, AX
@@ -6130,76 +6121,76 @@ TEXT ·FoldProp23(SB), NOSPLIT, $32-24
 	ADDQ    $0x00000003, DX
 	MOVQ    DX, 24(SP)
 	MOVQ    (SP), DX
+	MOVQ    DX, 8(SP)
+	ADDQ    DX, AX
+	MOVQ    (SP), DX
 	MOVQ    DX, BX
 	SHRQ    $0x08, BX
 	MOVBQZX BL, BX
 	ADDQ    BX, AX
 	XORQ    DX, AX
-	MOVQ    (SP), DX
+	MOVQ    16(SP), DX
+	MOVQ    DX, BX
+	SHRQ    $0x08, BX
+	MOVBQZX BL, BX
+	ADDQ    BX, AX
+	XORQ    DX, AX
+	MOVQ    16(SP), DX
 	MOVQ    DX, BX
 	ADDQ    CX, BX
-	MOVQ    BX, (SP)
+	MOVQ    BX, 16(SP)
 	ADDQ    DX, AX
-	MOVQ    16(SP), DX
-	MOVQ    AX, 16(SP)
+	MOVQ    24(SP), DX
+	MOVQ    DX, BX
+	SHLQ    $0x05, BX
+	XORQ    BX, AX
 	ADDQ    DX, AX
-	MOVQ    16(SP), DX
-	ADDQ    CX, DX
-	MOVQ    DX, 16(SP)
-	CMPQ    CX, 24(SP)
-	JCS     foldprop23_4_skip
+	CMPQ    CX, 8(SP)
+	JCS     foldprop23_5_skip
 	XORQ    CX, AX
 
-foldprop23_4_skip:
-	CMPQ CX, 8(SP)
-	JCS  foldprop23_5_skip
-	XORQ CX, AX
-
 foldprop23_5_skip:
-	MOVQ $0x00000002, DX
+	MOVQ 8(SP), DX
+	MOVQ AX, 8(SP)
+	ADDQ DX, AX
+	MOVQ (SP), DX
+	ADDQ CX, DX
+	MOVQ DX, (SP)
+	MOVQ (SP), DX
+	ANDQ $0x00000003, DX
+	MOVQ DX, (SP)
 
-foldprop23_6_loop:
-	MOVQ  8(SP), BX
-	ADDQ  BX, AX
-	MOVQ  CX, BX
-	ADDQ  AX, BX
-	SUBQ  $0x00000001, DX
-	JNE   foldprop23_6_loop
-	MOVQ  BX, 8(SP)
-	MOVQ  (SP), DX
-	MOVQ  AX, (SP)
-	ADDQ  DX, AX
-	TESTQ AX, (SP)
-	JEQ   foldprop23_8_skip
-	ADDQ  CX, AX
+foldprop23_8_loop:
+	MOVQ (SP), DX
+	CMPQ DX, $0x00000000
+	JEQ  foldprop23_8_done
+	ADDQ DX, AX
+	ROLQ $0x03, AX
+	MOVQ (SP), DX
+	SUBQ $0x00000001, DX
+	MOVQ DX, (SP)
+	JMP  foldprop23_8_loop
 
-foldprop23_8_skip:
-	TESTQ AX, (SP)
-	JEQ   foldprop23_9_skip
-	ADDQ  CX, AX
+foldprop23_8_done:
+	MOVQ (SP), DX
+	CMPQ AX, CX
+	JCS  foldprop23_9_skip
+	ADDQ CX, DX
 
 foldprop23_9_skip:
-	MOVQ 16(SP), CX
-	ANDQ $0x00000003, CX
-	MOVQ CX, 16(SP)
-
-foldprop23_10_loop:
-	MOVQ 16(SP), CX
-	CMPQ CX, $0x00000000
-	JEQ  foldprop23_10_done
-	ADDQ CX, AX
-	ROLQ $0x03, AX
-	MOVQ 16(SP), CX
-	SUBQ $0x00000001, CX
-	MOVQ CX, 16(SP)
-	JMP  foldprop23_10_loop
-
-foldprop23_10_done:
-	MOVQ (SP), CX
+	MOVQ DX, (SP)
+	MOVQ 16(SP), DX
+	MOVQ 16(SP), BX
+	ROLQ $0x09, BX
+	ADDQ DX, BX
+	XORQ BX, AX
 	MOVQ CX, DX
-	SHLQ $0x05, DX
-	XORQ DX, AX
-	ADDQ CX, AX
+	CMPQ AX, CX
+	JCS  foldprop23_11_skip
+	MOVQ (SP), DX
+
+foldprop23_11_skip:
+	ADDQ DX, AX
 	MOVQ (SP), CX
 	ADDQ CX, AX
 	MOVQ 8(SP), CX
@@ -6227,83 +6218,56 @@ TEXT ·FoldProp24(SB), NOSPLIT, $32-24
 	MOVQ CX, DX
 	ADDQ $0x00000003, DX
 	MOVQ DX, 24(SP)
-	NEGQ 24(SP)
-	NOTQ (SP)
-	MOVQ 16(SP), DX
-	ADDQ DX, 16(SP)
-	ADDQ DX, AX
+	MOVQ 24(SP), DX
+	ADDQ CX, DX
+	MOVQ DX, 24(SP)
+	CMPQ CX, 16(SP)
+	JCS  foldprop24_1_skip
+	XORQ CX, AX
+
+foldprop24_1_skip:
 	MOVQ 24(SP), DX
 	MOVQ DX, (SP)
 	ADDQ DX, AX
-	MOVQ 24(SP), DX
 	MOVQ AX, 24(SP)
-	ADDQ DX, AX
+	MOVQ $0x80000001, 8(SP)
 	MOVQ 8(SP), DX
+	ADDQ DX, AX
+	MOVQ AX, (SP)
+	ROLQ $0x07, AX
+	XORQ CX, AX
+	MOVQ 8(SP), DX
+	ADDQ CX, DX
+	MOVQ DX, 8(SP)
+	MOVQ (SP), CX
+	MOVQ 16(SP), DX
+	MOVQ DX, (SP)
+	MOVQ CX, 16(SP)
+	MOVQ 8(SP), CX
+	MOVQ $0x00000002, DX
+
+foldprop24_9_loop:
 	MOVQ AX, 8(SP)
 	ADDQ DX, AX
-	MOVQ (SP), DX
-	MOVQ $0x00000002, BX
-
-foldprop24_5_loop:
-	MOVQ AX, (SP)
-	ADDQ BX, AX
-	SUBQ $0x00000001, BX
-	JNE  foldprop24_5_loop
-	ADDQ DX, AX
-	ANDQ $0x00000003, 16(SP)
-
-foldprop24_6_loop:
-	CMPQ 16(SP), $0x00000000
-	JEQ  foldprop24_6_done
-	ADDQ 16(SP), AX
-	ROLQ $0x03, AX
-	DECQ 16(SP)
-	JMP  foldprop24_6_loop
-
-foldprop24_6_done:
-	MOVQ 8(SP), DX
-	ANDQ $0x00000003, DX
-	MOVQ DX, 8(SP)
-
-foldprop24_7_loop:
-	MOVQ 8(SP), DX
-	CMPQ DX, $0x00000000
-	JEQ  foldprop24_7_done
-	ADDQ DX, AX
-	ROLQ $0x03, AX
-	MOVQ 8(SP), DX
 	SUBQ $0x00000001, DX
+	JNE  foldprop24_9_loop
+	ADDQ CX, AX
+	MOVQ 8(SP), CX
+	MOVQ 24(SP), DX
 	MOVQ DX, 8(SP)
-	JMP  foldprop24_7_loop
-
-foldprop24_7_done:
-	MOVQ AX, (SP)
-	MOVQ CX, DX
-	CMPQ AX, CX
-	JCS  foldprop24_9_skip
-	MOVQ 8(SP), DX
-
-foldprop24_9_skip:
-	ADDQ    DX, AX
-	MOVQ    8(SP), CX
-	MOVQ    CX, DX
-	SHRQ    $0x08, DX
-	MOVBQZX DL, DX
-	ADDQ    DX, AX
-	XORQ    CX, AX
-	MOVQ    8(SP), CX
-	MOVQ    24(SP), DX
-	MOVQ    DX, 8(SP)
-	MOVQ    CX, 24(SP)
-	MOVQ    (SP), CX
-	ADDQ    CX, AX
-	MOVQ    8(SP), CX
-	ADDQ    CX, AX
-	MOVQ    16(SP), CX
-	ADDQ    CX, AX
-	MOVQ    24(SP), CX
-	ADDQ    CX, AX
-	MOVQ    AX, ret+16(FP)
+	MOVQ CX, 24(SP)
+	MOVQ $0x80000001, 8(SP)
+	MOVQ 8(SP), CX
+	ADDQ CX, AX
+	MOVQ (SP), CX
+	ADDQ CX, AX
+	MOVQ 8(SP), CX
+	ADDQ CX, AX
+	MOVQ 16(SP), CX
+	ADDQ CX, AX
+	MOVQ 24(SP), CX
+	ADDQ CX, AX
+	MOVQ AX, ret+16(FP)
 	RET
 
 // func FoldProp25(x uint64, y uint64) uint64
@@ -6323,99 +6287,90 @@ TEXT ·FoldProp25(SB), NOSPLIT, $32-24
 	ADDQ $0x00000003, DX
 	MOVQ DX, 24(SP)
 	MOVQ 8(SP), DX
+	MOVQ 24(SP), BX
+	MOVQ BX, 8(SP)
+	MOVQ DX, 24(SP)
+	MOVQ 24(SP), DX
+	MOVQ DX, (SP)
+	ADDQ DX, AX
+	MOVQ (SP), DX
 	MOVQ $0x00000002, BX
 
-foldprop25_0_loop:
-	ADDQ  DX, AX
-	MOVQ  AX, 8(SP)
-	SUBQ  $0x00000001, BX
-	JNE   foldprop25_0_loop
-	MOVQ  24(SP), DX
-	MOVQ  DX, (SP)
-	ADDQ  DX, AX
-	MOVQ  (SP), DX
-	MOVQ  DX, BX
-	ADDQ  CX, BX
-	MOVQ  BX, (SP)
-	ADDQ  DX, AX
-	TESTQ AX, 16(SP)
-	JEQ   foldprop25_3_skip
-	ADDQ  CX, AX
-
-foldprop25_3_skip:
+foldprop25_2_loop:
+	ADDQ DX, AX
+	MOVQ AX, (SP)
+	SUBQ $0x00000001, BX
+	JNE  foldprop25_2_loop
 	MOVQ 16(SP), DX
 	ANDQ $0x00000003, DX
 	MOVQ DX, 16(SP)
 
-foldprop25_4_loop:
+foldprop25_3_loop:
 	MOVQ 16(SP), DX
 	CMPQ DX, $0x00000000
-	JEQ  foldprop25_4_done
+	JEQ  foldprop25_3_done
 	ADDQ DX, AX
 	ROLQ $0x03, AX
 	MOVQ 16(SP), DX
 	SUBQ $0x00000001, DX
 	MOVQ DX, 16(SP)
-	JMP  foldprop25_4_loop
+	JMP  foldprop25_3_loop
 
-foldprop25_4_done:
-	MOVQ 24(SP), DX
-	ANDQ $0x00000003, DX
-	MOVQ DX, 24(SP)
-
-foldprop25_5_loop:
-	MOVQ 24(SP), DX
-	CMPQ DX, $0x00000000
-	JEQ  foldprop25_5_done
+foldprop25_3_done:
+	MOVQ 16(SP), DX
+	ADDQ DX, 16(SP)
 	ADDQ DX, AX
-	ROLQ $0x03, AX
 	MOVQ 24(SP), DX
-	SUBQ $0x00000001, DX
+	ADDQ CX, DX
 	MOVQ DX, 24(SP)
-	JMP  foldprop25_5_loop
+	CMPQ CX, 8(SP)
+	JCS  foldprop25_6_skip
+	XORQ CX, AX
 
-foldprop25_5_done:
-	ANDQ $0x00000003, 8(SP)
-
-foldprop25_6_loop:
-	CMPQ 8(SP), $0x00000000
-	JEQ  foldprop25_6_done
-	ADDQ 8(SP), AX
-	ROLQ $0x03, AX
-	DECQ 8(SP)
-	JMP  foldprop25_6_loop
-
-foldprop25_6_done:
+foldprop25_6_skip:
+	MOVQ 24(SP), CX
 	MOVQ $0x00000002, DX
 
 foldprop25_7_loop:
-	MOVQ 24(SP), BX
-	ADDQ BX, AX
-	MOVQ CX, BX
-	ADDQ AX, BX
-	SUBQ $0x00000001, DX
-	JNE  foldprop25_7_loop
-	MOVQ BX, 24(SP)
-	ADDQ AX, 16(SP)
-	ROLQ $0x07, AX
-	XORQ CX, AX
-	MOVQ 16(SP), CX
-	MOVQ $0x00000002, DX
+	MOVQ    AX, 24(SP)
+	ADDQ    DX, AX
+	SUBQ    $0x00000001, DX
+	JNE     foldprop25_7_loop
+	ADDQ    CX, AX
+	MOVQ    16(SP), CX
+	MOVQ    AX, 16(SP)
+	ADDQ    CX, AX
+	MOVQ    8(SP), CX
+	MOVQ    CX, DX
+	SHRQ    $0x08, DX
+	MOVBQZX DL, DX
+	ADDQ    DX, AX
+	XORQ    CX, AX
+	MOVQ    16(SP), CX
+	MOVQ    $0x00000002, DX
 
 foldprop25_10_loop:
-	ADDQ CX, AX
 	MOVQ AX, 16(SP)
-	SUBQ $0x00000001, DX
-	JNE  foldprop25_10_loop
-	MOVQ (SP), CX
-	MOVQ $0x00000002, DX
-
-foldprop25_11_loop:
-	MOVQ AX, (SP)
 	ADDQ DX, AX
 	SUBQ $0x00000001, DX
-	JNE  foldprop25_11_loop
+	JNE  foldprop25_10_loop
 	ADDQ CX, AX
+	MOVQ (SP), CX
+	ANDQ $0x00000003, CX
+	MOVQ CX, (SP)
+
+foldprop25_11_loop:
+	MOVQ (SP), CX
+	CMPQ CX, $0x00000000
+	JEQ  foldprop25_11_done
+	ADDQ CX, AX
+	ROLQ $0x03, AX
+	MOVQ (SP), CX
+	SUBQ $0x00000001, CX
+	MOVQ CX, (SP)
+	JMP  foldprop25_11_loop
+
+foldprop25_11_done:
 	MOVQ (SP), CX
 	ADDQ CX, AX
 	MOVQ 8(SP), CX
@@ -6443,91 +6398,74 @@ TEXT ·FoldProp26(SB), NOSPLIT, $32-24
 	MOVQ CX, DX
 	ADDQ $0x00000003, DX
 	MOVQ DX, 24(SP)
-	NEGQ 16(SP)
-	NOTQ 24(SP)
-	MOVQ 8(SP), DX
-	ANDQ $0x00000003, DX
-	MOVQ DX, 8(SP)
-
-foldprop26_1_loop:
-	MOVQ 8(SP), DX
-	CMPQ DX, $0x00000000
-	JEQ  foldprop26_1_done
+	MOVQ $0x80000002, 16(SP)
+	MOVQ 16(SP), DX
 	ADDQ DX, AX
-	ROLQ $0x03, AX
 	MOVQ 8(SP), DX
-	SUBQ $0x00000001, DX
-	MOVQ DX, 8(SP)
-	JMP  foldprop26_1_loop
+	CMPQ AX, CX
+	JCS  foldprop26_1_skip
+	ADDQ CX, DX
 
-foldprop26_1_done:
+foldprop26_1_skip:
+	MOVQ DX, 8(SP)
 	MOVQ (SP), DX
-	MOVQ DX, BX
-	ADDQ CX, BX
-	MOVQ BX, (SP)
+	MOVQ AX, (SP)
 	ADDQ DX, AX
 	MOVQ 24(SP), DX
-	MOVQ 24(SP), BX
-	ROLQ $0x09, BX
-	ADDQ DX, BX
-	XORQ BX, AX
+	ADDQ DX, 24(SP)
+	ADDQ DX, AX
 	MOVQ (SP), DX
-	ANDQ $0x00000003, DX
+	ADDQ CX, DX
 	MOVQ DX, (SP)
+	MOVQ 16(SP), DX
+	MOVQ AX, 16(SP)
+	ADDQ DX, AX
+	MOVQ 8(SP), DX
+	MOVQ AX, 8(SP)
+	ADDQ DX, AX
+	MOVQ 8(SP), DX
+	MOVQ DX, BX
+	ADDQ CX, BX
+	MOVQ BX, 8(SP)
+	ADDQ DX, AX
+	MOVQ 8(SP), DX
+	ANDQ $0x00000003, DX
+	MOVQ DX, 8(SP)
 
-foldprop26_4_loop:
-	MOVQ (SP), DX
+foldprop26_8_loop:
+	MOVQ 8(SP), DX
 	CMPQ DX, $0x00000000
-	JEQ  foldprop26_4_done
+	JEQ  foldprop26_8_done
 	ADDQ DX, AX
 	ROLQ $0x03, AX
-	MOVQ (SP), DX
+	MOVQ 8(SP), DX
 	SUBQ $0x00000001, DX
-	MOVQ DX, (SP)
-	JMP  foldprop26_4_loop
+	MOVQ DX, 8(SP)
+	JMP  foldprop26_8_loop
 
-foldprop26_4_done:
-	MOVQ 16(SP), DX
-	MOVQ (SP), BX
-	MOVQ BX, 16(SP)
-	MOVQ DX, (SP)
-	ADDQ AX, 8(SP)
+foldprop26_8_done:
+	MOVQ (SP), DX
+	MOVQ $0x00000002, BX
+
+foldprop26_9_loop:
+	MOVQ AX, (SP)
+	ADDQ BX, AX
+	SUBQ $0x00000001, BX
+	JNE  foldprop26_9_loop
+	ADDQ DX, AX
+	MOVQ 8(SP), DX
+	MOVQ AX, 8(SP)
+	ADDQ DX, AX
 	MOVQ $0x00000002, DX
 
-foldprop26_7_loop:
-	MOVQ 8(SP), BX
+foldprop26_11_loop:
+	MOVQ (SP), BX
 	ADDQ BX, AX
 	MOVQ CX, BX
 	ADDQ AX, BX
 	SUBQ $0x00000001, DX
-	JNE  foldprop26_7_loop
-	MOVQ BX, 8(SP)
-	MOVQ CX, DX
-	CMPQ AX, CX
-	JCS  foldprop26_8_skip
-	MOVQ 8(SP), DX
-
-foldprop26_8_skip:
-	ADDQ DX, AX
-	ADDQ AX, (SP)
-	ANDQ $0x00000003, 8(SP)
-
-foldprop26_10_loop:
-	CMPQ 8(SP), $0x00000000
-	JEQ  foldprop26_10_done
-	ADDQ 8(SP), AX
-	ROLQ $0x03, AX
-	DECQ 8(SP)
-	JMP  foldprop26_10_loop
-
-foldprop26_10_done:
-	MOVQ (SP), DX
-	CMPQ AX, CX
-	JCS  foldprop26_11_skip
-	ADDQ CX, DX
-
-foldprop26_11_skip:
-	MOVQ DX, (SP)
+	JNE  foldprop26_11_loop
+	MOVQ BX, (SP)
 	MOVQ (SP), CX
 	ADDQ CX, AX
 	MOVQ 8(SP), CX
@@ -6556,97 +6494,77 @@ TEXT ·FoldProp27(SB), NOSPLIT, $32-24
 	ADDQ $0x00000003, DX
 	MOVQ DX, 24(SP)
 	MOVQ 8(SP), DX
-	ANDQ $0x00000003, DX
-	MOVQ DX, 8(SP)
-
-foldprop27_0_loop:
-	MOVQ 8(SP), DX
-	CMPQ DX, $0x00000000
-	JEQ  foldprop27_0_done
+	MOVQ DX, 16(SP)
 	ADDQ DX, AX
-	ROLQ $0x03, AX
+	MOVQ CX, DX
+	CMPQ AX, CX
+	JCS  foldprop27_1_skip
 	MOVQ 8(SP), DX
-	SUBQ $0x00000001, DX
-	MOVQ DX, 8(SP)
-	JMP  foldprop27_0_loop
 
-foldprop27_0_done:
-	MOVQ 8(SP), DX
-	MOVQ $0x00000002, BX
-
-foldprop27_1_loop:
-	MOVQ AX, 8(SP)
-	ADDQ BX, AX
-	SUBQ $0x00000001, BX
-	JNE  foldprop27_1_loop
+foldprop27_1_skip:
 	ADDQ DX, AX
-	CMPQ CX, (SP)
-	JCS  foldprop27_2_skip
+	MOVQ (SP), DX
+	MOVQ 16(SP), BX
+	MOVQ BX, (SP)
+	MOVQ DX, 16(SP)
+	CMPQ CX, 24(SP)
+	JCS  foldprop27_3_skip
 	XORQ CX, AX
 
-foldprop27_2_skip:
-	ADDQ AX, 24(SP)
+foldprop27_3_skip:
 	MOVQ 8(SP), DX
-	ANDQ $0x00000003, DX
-	MOVQ DX, 8(SP)
-
-foldprop27_4_loop:
-	MOVQ 8(SP), DX
-	CMPQ DX, $0x00000000
-	JEQ  foldprop27_4_done
+	MOVQ DX, 16(SP)
 	ADDQ DX, AX
-	ROLQ $0x03, AX
+	MOVQ CX, DX
+	CMPQ AX, CX
+	JCS  foldprop27_5_skip
 	MOVQ 8(SP), DX
-	SUBQ $0x00000001, DX
-	MOVQ DX, 8(SP)
-	JMP  foldprop27_4_loop
 
-foldprop27_4_done:
-	MOVQ    8(SP), DX
+foldprop27_5_skip:
+	ADDQ    DX, AX
+	MOVQ    (SP), DX
+	MOVQ    (SP), BX
+	ROLQ    $0x09, BX
+	ADDQ    DX, BX
+	XORQ    BX, AX
+	MOVQ    24(SP), DX
+	MOVQ    DX, (SP)
+	ADDQ    DX, AX
+	MOVQ    (SP), DX
 	MOVQ    DX, BX
 	SHRQ    $0x08, BX
 	MOVBQZX BL, BX
 	ADDQ    BX, AX
 	XORQ    DX, AX
-	MOVQ    $0x00000002, DX
+	MOVQ    (SP), DX
+	MOVQ    DX, BX
+	SHRQ    $0x08, BX
+	MOVBQZX BL, BX
+	ADDQ    BX, AX
+	XORQ    DX, AX
+	MOVQ    (SP), DX
+	ANDQ    $0x00000003, DX
+	MOVQ    DX, (SP)
 
-foldprop27_6_loop:
-	MOVQ  (SP), BX
-	ADDQ  BX, AX
-	MOVQ  CX, BX
-	ADDQ  AX, BX
-	SUBQ  $0x00000001, DX
-	JNE   foldprop27_6_loop
-	MOVQ  BX, (SP)
-	TESTQ AX, 24(SP)
-	JEQ   foldprop27_7_skip
-	ADDQ  CX, AX
-
-foldprop27_7_skip:
-	ANDQ $0x00000003, (SP)
-
-foldprop27_8_loop:
-	CMPQ (SP), $0x00000000
-	JEQ  foldprop27_8_done
-	ADDQ (SP), AX
+foldprop27_10_loop:
+	MOVQ (SP), DX
+	CMPQ DX, $0x00000000
+	JEQ  foldprop27_10_done
+	ADDQ DX, AX
 	ROLQ $0x03, AX
-	DECQ (SP)
-	JMP  foldprop27_8_loop
+	MOVQ (SP), DX
+	SUBQ $0x00000001, DX
+	MOVQ DX, (SP)
+	JMP  foldprop27_10_loop
 
-foldprop27_8_done:
-	MOVQ (SP), DX
-	MOVQ DX, BX
-	SHLQ $0x05, BX
-	XORQ BX, AX
-	ADDQ DX, AX
-	MOVQ $0x80000000, (SP)
-	MOVQ (SP), DX
-	ADDQ DX, AX
-	CMPQ CX, 24(SP)
+foldprop27_10_done:
+	MOVQ CX, DX
+	CMPQ AX, CX
 	JCS  foldprop27_11_skip
-	XORQ CX, AX
+	MOVQ 24(SP), DX
 
 foldprop27_11_skip:
+	ADDQ DX, AX
 	MOVQ (SP), CX
 	ADDQ CX, AX
 	MOVQ 8(SP), CX
@@ -6674,75 +6592,67 @@ TEXT ·FoldProp28(SB), NOSPLIT, $32-24
 	MOVQ CX, DX
 	ADDQ $0x00000003, DX
 	MOVQ DX, 24(SP)
+	MOVQ CX, DX
+	CMPQ AX, CX
+	JCS  foldprop28_0_skip
 	MOVQ 16(SP), DX
-	MOVQ (SP), BX
-	MOVQ BX, 16(SP)
-	MOVQ DX, (SP)
-	MOVQ 24(SP), DX
-	MOVQ DX, BX
-	ADDQ CX, BX
-	MOVQ BX, 24(SP)
-	ADDQ DX, AX
-	MOVQ 16(SP), DX
-	MOVQ $0x00000002, BX
 
-foldprop28_2_loop:
-	MOVQ AX, 16(SP)
-	ADDQ BX, AX
-	SUBQ $0x00000001, BX
-	JNE  foldprop28_2_loop
+foldprop28_0_skip:
 	ADDQ DX, AX
 	MOVQ 24(SP), DX
 	MOVQ $0x00000002, BX
 
-foldprop28_3_loop:
-	ADDQ DX, AX
-	MOVQ AX, 24(SP)
-	SUBQ $0x00000001, BX
-	JNE  foldprop28_3_loop
-	MOVQ 16(SP), DX
-	MOVQ DX, BX
-	SHLQ $0x05, BX
-	XORQ BX, AX
-	ADDQ DX, AX
-	MOVQ 8(SP), DX
-	MOVQ $0x00000002, BX
+foldprop28_1_loop:
+	MOVQ    AX, 24(SP)
+	ADDQ    BX, AX
+	SUBQ    $0x00000001, BX
+	JNE     foldprop28_1_loop
+	ADDQ    DX, AX
+	MOVQ    16(SP), DX
+	MOVQ    DX, 24(SP)
+	ADDQ    DX, AX
+	MOVQ    24(SP), DX
+	MOVQ    DX, (SP)
+	ADDQ    DX, AX
+	MOVQ    16(SP), DX
+	ADDQ    DX, 16(SP)
+	ADDQ    DX, AX
+	MOVQ    8(SP), DX
+	MOVQ    DX, BX
+	SHRQ    $0x08, BX
+	MOVBQZX BL, BX
+	ADDQ    BX, AX
+	XORQ    DX, AX
+	MOVQ    (SP), DX
+	ADDQ    CX, DX
+	MOVQ    DX, (SP)
+	MOVQ    8(SP), DX
+	MOVQ    8(SP), BX
+	ROLQ    $0x09, BX
+	ADDQ    DX, BX
+	XORQ    BX, AX
+	MOVQ    24(SP), DX
+	ADDQ    CX, DX
+	MOVQ    DX, 24(SP)
+	MOVQ    8(SP), DX
+	ADDQ    CX, DX
+	MOVQ    DX, 8(SP)
+	MOVQ    (SP), CX
+	MOVQ    $0x00000002, DX
 
-foldprop28_5_loop:
-	ADDQ DX, AX
-	MOVQ AX, 8(SP)
-	SUBQ $0x00000001, BX
-	JNE  foldprop28_5_loop
-	MOVQ (SP), DX
-	MOVQ $0x00000002, BX
+foldprop28_10_loop:
+	ADDQ CX, AX
+	MOVQ AX, (SP)
+	SUBQ $0x00000001, DX
+	JNE  foldprop28_10_loop
+	MOVQ 16(SP), CX
+	MOVQ $0x00000002, DX
 
-foldprop28_6_loop:
-	MOVQ  AX, (SP)
-	ADDQ  BX, AX
-	SUBQ  $0x00000001, BX
-	JNE   foldprop28_6_loop
-	ADDQ  DX, AX
-	ADDQ  AX, 8(SP)
-	TESTQ AX, 24(SP)
-	JEQ   foldprop28_8_skip
-	ADDQ  CX, AX
-
-foldprop28_8_skip:
-	ANDQ $0x00000003, 8(SP)
-
-foldprop28_9_loop:
-	CMPQ 8(SP), $0x00000000
-	JEQ  foldprop28_9_done
-	ADDQ 8(SP), AX
-	ROLQ $0x03, AX
-	DECQ 8(SP)
-	JMP  foldprop28_9_loop
-
-foldprop28_9_done:
-	MOVQ (SP), DX
-	ADDQ CX, DX
-	MOVQ DX, (SP)
+foldprop28_11_loop:
+	ADDQ CX, AX
 	MOVQ AX, 16(SP)
+	SUBQ $0x00000001, DX
+	JNE  foldprop28_11_loop
 	MOVQ (SP), CX
 	ADDQ CX, AX
 	MOVQ 8(SP), CX
@@ -6756,97 +6666,55 @@ foldprop28_9_done:
 
 // func FoldProp29(x uint64, y uint64) uint64
 TEXT ·FoldProp29(SB), NOSPLIT, $32-24
-	MOVQ  x+0(FP), AX
-	MOVQ  y+8(FP), CX
-	MOVQ  CX, DX
-	ADDQ  $0x00000000, DX
-	MOVQ  DX, (SP)
-	MOVQ  CX, DX
-	ADDQ  $0x00000001, DX
-	MOVQ  DX, 8(SP)
-	MOVQ  CX, DX
-	ADDQ  $0x00000002, DX
-	MOVQ  DX, 16(SP)
-	MOVQ  CX, DX
-	ADDQ  $0x00000003, DX
-	MOVQ  DX, 24(SP)
-	MOVQ  16(SP), DX
-	MOVQ  DX, BX
-	SHLQ  $0x05, BX
-	XORQ  BX, AX
-	ADDQ  DX, AX
-	MOVQ  $0x80000000, (SP)
-	MOVQ  (SP), DX
-	ADDQ  DX, AX
-	TESTQ AX, 16(SP)
-	JEQ   foldprop29_2_skip
-	ADDQ  CX, AX
-
-foldprop29_2_skip:
-	MOVQ AX, 24(SP)
-	MOVQ 24(SP), DX
-	ADDQ CX, DX
+	MOVQ x+0(FP), AX
+	MOVQ y+8(FP), CX
+	MOVQ CX, DX
+	ADDQ $0x00000000, DX
+	MOVQ DX, (SP)
+	MOVQ CX, DX
+	ADDQ $0x00000001, DX
+	MOVQ DX, 8(SP)
+	MOVQ CX, DX
+	ADDQ $0x00000002, DX
+	MOVQ DX, 16(SP)
+	MOVQ CX, DX
+	ADDQ $0x00000003, DX
 	MOVQ DX, 24(SP)
-	MOVQ 24(SP), DX
-	MOVQ $0x00000002, BX
+	MOVQ 16(SP), DX
+	ANDQ $0x00000003, DX
+	MOVQ DX, 16(SP)
 
-foldprop29_5_loop:
-	ADDQ  DX, AX
-	MOVQ  AX, 24(SP)
-	SUBQ  $0x00000001, BX
-	JNE   foldprop29_5_loop
-	ADDQ  AX, 16(SP)
-	TESTQ AX, 24(SP)
-	JEQ   foldprop29_7_skip
-	ADDQ  CX, AX
+foldprop29_0_loop:
+	MOVQ 16(SP), DX
+	CMPQ DX, $0x00000000
+	JEQ  foldprop29_0_done
+	ADDQ DX, AX
+	ROLQ $0x03, AX
+	MOVQ 16(SP), DX
+	SUBQ $0x00000001, DX
+	MOVQ DX, 16(SP)
+	JMP  foldprop29_0_loop
 
-foldprop29_7_skip:
-	ADDQ AX, 8(SP)
-	ROLQ $0x07, AX
-	XORQ CX, AX
-	CMPQ CX, (SP)
-	JCS  foldprop29_10_skip
-	XORQ CX, AX
-
-foldprop29_10_skip:
-	MOVQ (SP), CX
+foldprop29_0_done:
 	MOVQ (SP), DX
-	ROLQ $0x09, DX
-	ADDQ CX, DX
-	XORQ DX, AX
-	MOVQ (SP), CX
-	ADDQ CX, AX
-	MOVQ 8(SP), CX
-	ADDQ CX, AX
-	MOVQ 16(SP), CX
-	ADDQ CX, AX
-	MOVQ 24(SP), CX
-	ADDQ CX, AX
-	MOVQ AX, ret+16(FP)
-	RET
+	ADDQ DX, (SP)
+	ADDQ DX, AX
+	MOVQ 16(SP), DX
+	ANDQ $0x00000003, DX
+	MOVQ DX, 16(SP)
 
-// func FoldProp30(x uint64, y uint64) uint64
-TEXT ·FoldProp30(SB), NOSPLIT, $32-24
-	MOVQ    x+0(FP), AX
-	MOVQ    y+8(FP), CX
-	MOVQ    CX, DX
-	ADDQ    $0x00000000, DX
-	MOVQ    DX, (SP)
-	MOVQ    CX, DX
-	ADDQ    $0x00000001, DX
-	MOVQ    DX, 8(SP)
-	MOVQ    CX, DX
-	ADDQ    $0x00000002, DX
-	MOVQ    DX, 16(SP)
-	MOVQ    CX, DX
-	ADDQ    $0x00000003, DX
-	MOVQ    DX, 24(SP)
-	MOVQ    8(SP), DX
-	MOVQ    DX, BX
-	ADDQ    CX, BX
-	MOVQ    BX, 8(SP)
-	ADDQ    DX, AX
-	ADDQ    AX, 8(SP)
+foldprop29_2_loop:
+	MOVQ 16(SP), DX
+	CMPQ DX, $0x00000000
+	JEQ  foldprop29_2_done
+	ADDQ DX, AX
+	ROLQ $0x03, AX
+	MOVQ 16(SP), DX
+	SUBQ $0x00000001, DX
+	MOVQ DX, 16(SP)
+	JMP  foldprop29_2_loop
+
+foldprop29_2_done:
 	MOVQ    24(SP), DX
 	ADDQ    DX, 24(SP)
 	ADDQ    DX, AX
@@ -6856,37 +6724,154 @@ TEXT ·FoldProp30(SB), NOSPLIT, $32-24
 	MOVBQZX BL, BX
 	ADDQ    BX, AX
 	XORQ    DX, AX
-	MOVQ    (SP), DX
-	MOVQ    DX, BX
-	SHLQ    $0x05, BX
-	XORQ    BX, AX
-	ADDQ    DX, AX
-	MOVQ    $0x80000002, 16(SP)
-	MOVQ    16(SP), DX
-	ADDQ    DX, AX
-	TESTQ   AX, 24(SP)
-	JEQ     foldprop30_6_skip
-	ADDQ    CX, AX
+	MOVQ    24(SP), DX
+	MOVQ    $0x00000002, BX
 
-foldprop30_6_skip:
+foldprop29_5_loop:
+	MOVQ AX, 24(SP)
+	ADDQ BX, AX
+	SUBQ $0x00000001, BX
+	JNE  foldprop29_5_loop
+	ADDQ DX, AX
+	MOVQ 16(SP), DX
+	MOVQ DX, BX
+	ADDQ CX, BX
+	MOVQ BX, 16(SP)
+	ADDQ DX, AX
+	MOVQ $0x80000003, 24(SP)
+	MOVQ 24(SP), DX
+	ADDQ DX, AX
+	CMPQ CX, 8(SP)
+	JCS  foldprop29_8_skip
+	XORQ CX, AX
+
+foldprop29_8_skip:
+	MOVQ 24(SP), CX
+	MOVQ $0x00000002, DX
+
+foldprop29_9_loop:
+	MOVQ    AX, 24(SP)
+	ADDQ    DX, AX
+	SUBQ    $0x00000001, DX
+	JNE     foldprop29_9_loop
+	ADDQ    CX, AX
+	MOVQ    (SP), CX
+	MOVQ    CX, DX
+	SHLQ    $0x05, DX
+	XORQ    DX, AX
+	ADDQ    CX, AX
+	MOVQ    (SP), CX
+	MOVQ    CX, DX
+	SHRQ    $0x08, DX
+	MOVBQZX DL, DX
+	ADDQ    DX, AX
+	XORQ    CX, AX
+	MOVQ    (SP), CX
+	ADDQ    CX, AX
+	MOVQ    8(SP), CX
+	ADDQ    CX, AX
+	MOVQ    16(SP), CX
+	ADDQ    CX, AX
+	MOVQ    24(SP), CX
+	ADDQ    CX, AX
+	MOVQ    AX, ret+16(FP)
+	RET
+
+// func FoldProp30(x uint64, y uint64) uint64
+TEXT ·FoldProp30(SB), NOSPLIT, $32-24
+	MOVQ x+0(FP), AX
+	MOVQ y+8(FP), CX
+	MOVQ CX, DX
+	ADDQ $0x00000000, DX
+	MOVQ DX, (SP)
+	MOVQ CX, DX
+	ADDQ $0x00000001, DX
+	MOVQ DX, 8(SP)
+	MOVQ CX, DX
+	ADDQ $0x00000002, DX
+	MOVQ DX, 16(SP)
+	MOVQ CX, DX
+	ADDQ $0x00000003, DX
+	MOVQ DX, 24(SP)
 	MOVQ 8(SP), DX
-	ADDQ DX, 8(SP)
+	MOVQ $0x00000002, BX
+
+foldprop30_0_loop:
 	ADDQ DX, AX
 	MOVQ AX, 8(SP)
-	MOVQ 24(SP), DX
-	CMPQ AX, CX
-	JCS  foldprop30_9_skip
-	ADDQ CX, DX
-
-foldprop30_9_skip:
-	MOVQ DX, 24(SP)
-	ROLQ $0x07, AX
+	SUBQ $0x00000001, BX
+	JNE  foldprop30_0_loop
+	ADDQ AX, 8(SP)
+	CMPQ CX, 24(SP)
+	JCS  foldprop30_2_skip
 	XORQ CX, AX
-	MOVQ (SP), CX
+
+foldprop30_2_skip:
+	MOVQ 24(SP), DX
+	MOVQ $0x00000002, BX
+
+foldprop30_3_loop:
+	ADDQ DX, AX
+	MOVQ AX, 24(SP)
+	SUBQ $0x00000001, BX
+	JNE  foldprop30_3_loop
 	MOVQ (SP), DX
-	ROLQ $0x09, DX
 	ADDQ CX, DX
-	XORQ DX, AX
+	MOVQ DX, (SP)
+	MOVQ CX, DX
+	CMPQ AX, CX
+	JCS  foldprop30_5_skip
+	MOVQ 16(SP), DX
+
+foldprop30_5_skip:
+	ADDQ DX, AX
+	MOVQ 24(SP), DX
+	MOVQ 24(SP), BX
+	ROLQ $0x09, BX
+	ADDQ DX, BX
+	XORQ BX, AX
+	MOVQ 8(SP), DX
+	MOVQ DX, BX
+	ADDQ CX, BX
+	MOVQ BX, 8(SP)
+	ADDQ DX, AX
+	MOVQ $0x00000002, DX
+
+foldprop30_8_loop:
+	MOVQ    8(SP), BX
+	ADDQ    BX, AX
+	MOVQ    CX, BX
+	ADDQ    AX, BX
+	SUBQ    $0x00000001, DX
+	JNE     foldprop30_8_loop
+	MOVQ    BX, 8(SP)
+	MOVQ    24(SP), DX
+	MOVQ    DX, BX
+	SHRQ    $0x08, BX
+	MOVBQZX BL, BX
+	ADDQ    BX, AX
+	XORQ    DX, AX
+	MOVQ    16(SP), DX
+	ANDQ    $0x00000003, DX
+	MOVQ    DX, 16(SP)
+
+foldprop30_10_loop:
+	MOVQ 16(SP), DX
+	CMPQ DX, $0x00000000
+	JEQ  foldprop30_10_done
+	ADDQ DX, AX
+	ROLQ $0x03, AX
+	MOVQ 16(SP), DX
+	SUBQ $0x00000001, DX
+	MOVQ DX, 16(SP)
+	JMP  foldprop30_10_loop
+
+foldprop30_10_done:
+	CMPQ CX, (SP)
+	JCS  foldprop30_11_skip
+	XORQ CX, AX
+
+foldprop30_11_skip:
 	MOVQ (SP), CX
 	ADDQ CX, AX
 	MOVQ 8(SP), CX
@@ -6915,55 +6900,64 @@ TEXT ·FoldProp31(SB), NOSPLIT, $32-24
 	ADDQ $0x00000003, DX
 	MOVQ DX, 24(SP)
 	MOVQ 16(SP), DX
-	ADDQ DX, 16(SP)
-	ADDQ DX, AX
-	MOVQ 24(SP), DX
-	CMPQ AX, CX
-	JCS  foldprop31_1_skip
-	ADDQ CX, DX
-
-foldprop31_1_skip:
 	MOVQ DX, 24(SP)
-	MOVQ (SP), DX
-	MOVQ $0x00000002, BX
-
-foldprop31_2_loop:
-	MOVQ AX, (SP)
-	ADDQ BX, AX
-	SUBQ $0x00000001, BX
-	JNE  foldprop31_2_loop
-	ADDQ DX, AX
-	MOVQ CX, DX
-	CMPQ AX, CX
-	JCS  foldprop31_3_skip
-	MOVQ 24(SP), DX
-
-foldprop31_3_skip:
 	ADDQ DX, AX
 	ROLQ $0x07, AX
 	XORQ CX, AX
-	NEGQ 16(SP)
-	NOTQ 24(SP)
-	MOVQ 8(SP), DX
-	MOVQ DX, 16(SP)
+	MOVQ (SP), DX
+	ADDQ DX, (SP)
 	ADDQ DX, AX
 	MOVQ 24(SP), DX
 	MOVQ $0x00000002, BX
 
-foldprop31_7_loop:
-	MOVQ AX, 24(SP)
-	ADDQ BX, AX
-	SUBQ $0x00000001, BX
-	JNE  foldprop31_7_loop
-	ADDQ DX, AX
-	MOVQ 16(SP), DX
-	MOVQ DX, 24(SP)
-	ADDQ DX, AX
-	ADDQ AX, 8(SP)
-	ADDQ AX, 16(SP)
-	MOVQ 16(SP), DX
+foldprop31_3_loop:
+	ADDQ    DX, AX
+	MOVQ    AX, 24(SP)
+	SUBQ    $0x00000001, BX
+	JNE     foldprop31_3_loop
+	MOVQ    8(SP), DX
+	MOVQ    DX, BX
+	SHRQ    $0x08, BX
+	MOVBQZX BL, BX
+	ADDQ    BX, AX
+	XORQ    DX, AX
+	MOVQ    16(SP), DX
+	ADDQ    CX, DX
+	MOVQ    DX, 16(SP)
+	MOVQ    8(SP), DX
+	CMPQ    AX, CX
+	JCS     foldprop31_6_skip
+	ADDQ    CX, DX
+
+foldprop31_6_skip:
+	MOVQ DX, 8(SP)
+	MOVQ 24(SP), DX
+	CMPQ AX, CX
+	JCS  foldprop31_7_skip
 	ADDQ CX, DX
+
+foldprop31_7_skip:
+	MOVQ DX, 24(SP)
+	MOVQ 16(SP), DX
+	CMPQ AX, CX
+	JCS  foldprop31_8_skip
+	ADDQ CX, DX
+
+foldprop31_8_skip:
 	MOVQ DX, 16(SP)
+	ROLQ $0x07, AX
+	XORQ CX, AX
+	MOVQ $0x00000002, DX
+
+foldprop31_10_loop:
+	MOVQ 16(SP), BX
+	ADDQ BX, AX
+	MOVQ CX, BX
+	ADDQ AX, BX
+	SUBQ $0x00000001, DX
+	JNE  foldprop31_10_loop
+	MOVQ BX, 16(SP)
+	MOVQ AX, 16(SP)
 	MOVQ (SP), CX
 	ADDQ CX, AX
 	MOVQ 8(SP), CX
@@ -6977,82 +6971,73 @@ foldprop31_7_loop:
 
 // func FoldProp32(x uint64, y uint64) uint64
 TEXT ·FoldProp32(SB), NOSPLIT, $32-24
-	MOVQ    x+0(FP), AX
-	MOVQ    y+8(FP), CX
-	MOVQ    CX, DX
-	ADDQ    $0x00000000, DX
-	MOVQ    DX, (SP)
-	MOVQ    CX, DX
-	ADDQ    $0x00000001, DX
-	MOVQ    DX, 8(SP)
-	MOVQ    CX, DX
-	ADDQ    $0x00000002, DX
-	MOVQ    DX, 16(SP)
-	MOVQ    CX, DX
-	ADDQ    $0x00000003, DX
-	MOVQ    DX, 24(SP)
-	MOVQ    8(SP), DX
-	MOVQ    24(SP), BX
-	MOVQ    BX, 8(SP)
-	MOVQ    DX, 24(SP)
-	MOVQ    AX, (SP)
-	MOVQ    AX, 8(SP)
-	MOVQ    24(SP), DX
-	ADDQ    CX, DX
-	MOVQ    DX, 24(SP)
-	MOVQ    16(SP), DX
-	MOVQ    DX, BX
-	SHRQ    $0x08, BX
-	MOVBQZX BL, BX
-	ADDQ    BX, AX
-	XORQ    DX, AX
-	MOVQ    8(SP), DX
-	MOVQ    DX, BX
-	SHLQ    $0x05, BX
-	XORQ    BX, AX
-	ADDQ    DX, AX
-	MOVQ    16(SP), DX
-	MOVQ    $0x00000002, BX
-
-foldprop32_6_loop:
-	MOVQ AX, 16(SP)
-	ADDQ BX, AX
-	SUBQ $0x00000001, BX
-	JNE  foldprop32_6_loop
-	ADDQ DX, AX
-	MOVQ 8(SP), DX
-	ANDQ $0x00000003, DX
+	MOVQ x+0(FP), AX
+	MOVQ y+8(FP), CX
+	MOVQ CX, DX
+	ADDQ $0x00000000, DX
+	MOVQ DX, (SP)
+	MOVQ CX, DX
+	ADDQ $0x00000001, DX
 	MOVQ DX, 8(SP)
-
-foldprop32_7_loop:
+	MOVQ CX, DX
+	ADDQ $0x00000002, DX
+	MOVQ DX, 16(SP)
+	MOVQ CX, DX
+	ADDQ $0x00000003, DX
+	MOVQ DX, 24(SP)
 	MOVQ 8(SP), DX
-	CMPQ DX, $0x00000000
-	JEQ  foldprop32_7_done
+	MOVQ DX, 16(SP)
 	ADDQ DX, AX
+	ANDQ $0x00000003, (SP)
+
+foldprop32_1_loop:
+	CMPQ (SP), $0x00000000
+	JEQ  foldprop32_1_done
+	ADDQ (SP), AX
 	ROLQ $0x03, AX
+	DECQ (SP)
+	JMP  foldprop32_1_loop
+
+foldprop32_1_done:
 	MOVQ 8(SP), DX
-	SUBQ $0x00000001, DX
+	CMPQ AX, CX
+	JCS  foldprop32_2_skip
+	ADDQ CX, DX
+
+foldprop32_2_skip:
 	MOVQ DX, 8(SP)
-	JMP  foldprop32_7_loop
+	MOVQ 24(SP), DX
+	MOVQ DX, BX
+	ADDQ CX, BX
+	MOVQ BX, 24(SP)
+	ADDQ DX, AX
+	MOVQ 16(SP), DX
+	MOVQ (SP), BX
+	MOVQ BX, 16(SP)
+	MOVQ DX, (SP)
+	MOVQ 8(SP), DX
+	ADDQ CX, DX
+	MOVQ DX, 8(SP)
+	MOVQ 16(SP), DX
+	CMPQ AX, CX
+	JCS  foldprop32_6_skip
+	ADDQ CX, DX
 
-foldprop32_7_done:
-	TESTQ AX, 16(SP)
-	JEQ   foldprop32_8_skip
-	ADDQ  CX, AX
-
-foldprop32_8_skip:
+foldprop32_6_skip:
+	MOVQ DX, 16(SP)
+	ADDQ AX, 8(SP)
+	ROLQ $0x07, AX
+	XORQ CX, AX
 	MOVQ 8(SP), CX
-	MOVQ $0x00000002, DX
-
-foldprop32_9_loop:
+	MOVQ 24(SP), DX
+	MOVQ DX, 8(SP)
+	MOVQ CX, 24(SP)
+	ADDQ AX, (SP)
+	MOVQ 16(SP), CX
+	MOVQ CX, DX
+	SHLQ $0x05, DX
+	XORQ DX, AX
 	ADDQ CX, AX
-	MOVQ AX, 8(SP)
-	SUBQ $0x00000001, DX
-	JNE  foldprop32_9_loop
-	MOVQ (SP), CX
-	MOVQ CX, 8(SP)
-	ADDQ CX, AX
-	ADDQ AX, 16(SP)
 	MOVQ (SP), CX
 	ADDQ CX, AX
 	MOVQ 8(SP), CX
@@ -7081,67 +7066,68 @@ TEXT ·FoldProp33(SB), NOSPLIT, $32-24
 	ADDQ $0x00000003, DX
 	MOVQ DX, 24(SP)
 	MOVQ 24(SP), DX
+	MOVQ $0x00000002, BX
+
+foldprop33_0_loop:
+	ADDQ DX, AX
+	MOVQ AX, 24(SP)
+	SUBQ $0x00000001, BX
+	JNE  foldprop33_0_loop
+	MOVQ (SP), DX
+	ADDQ CX, DX
+	MOVQ DX, (SP)
+	MOVQ AX, 8(SP)
+	MOVQ 24(SP), DX
+	ADDQ DX, 24(SP)
+	ADDQ DX, AX
+	MOVQ 16(SP), DX
+	MOVQ (SP), BX
+	MOVQ BX, 16(SP)
+	MOVQ DX, (SP)
+	MOVQ CX, DX
 	CMPQ AX, CX
-	JCS  foldprop33_0_skip
+	JCS  foldprop33_5_skip
+	MOVQ (SP), DX
+
+foldprop33_5_skip:
+	ADDQ DX, AX
+	MOVQ CX, DX
+	CMPQ AX, CX
+	JCS  foldprop33_6_skip
+	MOVQ (SP), DX
+
+foldprop33_6_skip:
+	ADDQ DX, AX
+	MOVQ 24(SP), DX
+	MOVQ $0x00000002, BX
+
+foldprop33_7_loop:
+	ADDQ DX, AX
+	MOVQ AX, 24(SP)
+	SUBQ $0x00000001, BX
+	JNE  foldprop33_7_loop
+	MOVQ 8(SP), DX
+	CMPQ AX, CX
+	JCS  foldprop33_8_skip
 	ADDQ CX, DX
 
-foldprop33_0_skip:
-	MOVQ DX, 24(SP)
+foldprop33_8_skip:
+	MOVQ DX, 8(SP)
+	MOVQ 16(SP), CX
+	MOVQ CX, 24(SP)
+	ADDQ CX, AX
+	MOVQ 8(SP), CX
 	MOVQ $0x00000002, DX
 
-foldprop33_1_loop:
-	MOVQ (SP), BX
-	ADDQ BX, AX
-	MOVQ CX, BX
-	ADDQ AX, BX
+foldprop33_10_loop:
+	ADDQ CX, AX
+	MOVQ AX, 8(SP)
 	SUBQ $0x00000001, DX
-	JNE  foldprop33_1_loop
-	MOVQ BX, (SP)
-	NEGQ 8(SP)
-	NOTQ 16(SP)
-	MOVQ $0x80000003, 24(SP)
-	MOVQ 24(SP), DX
-	ADDQ DX, AX
-	MOVQ 16(SP), DX
-	MOVQ DX, 24(SP)
-	ADDQ DX, AX
-	MOVQ (SP), DX
-	MOVQ DX, 8(SP)
-	ADDQ DX, AX
-	MOVQ (SP), DX
-	ANDQ $0x00000003, DX
-	MOVQ DX, (SP)
-
-foldprop33_6_loop:
-	MOVQ (SP), DX
-	CMPQ DX, $0x00000000
-	JEQ  foldprop33_6_done
-	ADDQ DX, AX
-	ROLQ $0x03, AX
-	MOVQ (SP), DX
-	SUBQ $0x00000001, DX
-	MOVQ DX, (SP)
-	JMP  foldprop33_6_loop
-
-foldprop33_6_done:
-	MOVQ 24(SP), DX
-	CMPQ AX, CX
-	JCS  foldprop33_7_skip
-	ADDQ CX, DX
-
-foldprop33_7_skip:
-	MOVQ DX, 24(SP)
-	MOVQ 8(SP), DX
-	ADDQ DX, 8(SP)
-	ADDQ DX, AX
-	MOVQ 16(SP), DX
-	MOVQ AX, 16(SP)
-	ADDQ DX, AX
-	MOVQ 8(SP), DX
-	ADDQ CX, DX
-	MOVQ DX, 8(SP)
+	JNE  foldprop33_10_loop
 	MOVQ 24(SP), CX
-	ADDQ CX, 24(SP)
+	MOVQ CX, DX
+	SHLQ $0x05, DX
+	XORQ DX, AX
 	ADDQ CX, AX
 	MOVQ (SP), CX
 	ADDQ CX, AX
@@ -7171,57 +7157,49 @@ TEXT ·FoldProp34(SB), NOSPLIT, $32-24
 	ADDQ $0x00000003, DX
 	MOVQ DX, 24(SP)
 	ADDQ AX, 16(SP)
+	MOVQ CX, DX
+	CMPQ AX, CX
+	JCS  foldprop34_1_skip
 	MOVQ 16(SP), DX
-	MOVQ (SP), BX
-	MOVQ BX, 16(SP)
-	MOVQ DX, (SP)
-	ROLQ $0x07, AX
-	XORQ CX, AX
-	ANDQ $0x00000003, 24(SP)
 
-foldprop34_3_loop:
-	CMPQ 24(SP), $0x00000000
-	JEQ  foldprop34_3_done
-	ADDQ 24(SP), AX
+foldprop34_1_skip:
+	ADDQ    DX, AX
+	MOVQ    AX, 16(SP)
+	MOVQ    AX, 24(SP)
+	MOVQ    24(SP), DX
+	MOVQ    DX, (SP)
+	ADDQ    DX, AX
+	MOVQ    16(SP), DX
+	MOVQ    AX, 16(SP)
+	ADDQ    DX, AX
+	MOVQ    8(SP), DX
+	MOVQ    DX, BX
+	SHRQ    $0x08, BX
+	MOVBQZX BL, BX
+	ADDQ    BX, AX
+	XORQ    DX, AX
+	MOVQ    $0x80000001, 8(SP)
+	MOVQ    8(SP), DX
+	ADDQ    DX, AX
+	ANDQ    $0x00000003, 16(SP)
+
+foldprop34_8_loop:
+	CMPQ 16(SP), $0x00000000
+	JEQ  foldprop34_8_done
+	ADDQ 16(SP), AX
 	ROLQ $0x03, AX
-	DECQ 24(SP)
-	JMP  foldprop34_3_loop
+	DECQ 16(SP)
+	JMP  foldprop34_8_loop
 
-foldprop34_3_done:
-	NEGQ 24(SP)
-	NOTQ (SP)
+foldprop34_8_done:
+	ADDQ AX, 8(SP)
 	MOVQ 16(SP), DX
-	CMPQ AX, CX
-	JCS  foldprop34_5_skip
 	ADDQ CX, DX
-
-foldprop34_5_skip:
 	MOVQ DX, 16(SP)
+	MOVQ 24(SP), CX
 	MOVQ 8(SP), DX
-	CMPQ AX, CX
-	JCS  foldprop34_6_skip
-	ADDQ CX, DX
-
-foldprop34_6_skip:
-	MOVQ  DX, 8(SP)
-	MOVQ  8(SP), DX
-	MOVQ  DX, 16(SP)
-	ADDQ  DX, AX
-	ROLQ  $0x07, AX
-	XORQ  CX, AX
-	TESTQ AX, 8(SP)
-	JEQ   foldprop34_9_skip
-	ADDQ  CX, AX
-
-foldprop34_9_skip:
-	MOVQ 16(SP), DX
-	CMPQ AX, CX
-	JCS  foldprop34_10_skip
-	ADDQ CX, DX
-
-foldprop34_10_skip:
-	MOVQ DX, 16(SP)
-	MOVQ AX, 24(SP)
+	MOVQ DX, 24(SP)
+	MOVQ CX, 8(SP)
 	MOVQ (SP), CX
 	ADDQ CX, AX
 	MOVQ 8(SP), CX
@@ -7250,78 +7228,55 @@ TEXT ·FoldProp35(SB), NOSPLIT, $32-24
 	ADDQ $0x00000003, DX
 	MOVQ DX, 24(SP)
 	MOVQ (SP), DX
-	MOVQ (SP), BX
-	ROLQ $0x09, BX
-	ADDQ DX, BX
-	XORQ BX, AX
-	CMPQ CX, 24(SP)
-	JCS  foldprop35_1_skip
-	XORQ CX, AX
-
-foldprop35_1_skip:
-	CMPQ CX, (SP)
-	JCS  foldprop35_2_skip
-	XORQ CX, AX
-
-foldprop35_2_skip:
-	MOVQ 24(SP), DX
-	MOVQ 8(SP), BX
-	MOVQ BX, 24(SP)
-	MOVQ DX, 8(SP)
-	MOVQ 8(SP), DX
 	ADDQ CX, DX
-	MOVQ DX, 8(SP)
-	MOVQ 16(SP), DX
-	ANDQ $0x00000003, DX
-	MOVQ DX, 16(SP)
-
-foldprop35_5_loop:
-	MOVQ 16(SP), DX
-	CMPQ DX, $0x00000000
-	JEQ  foldprop35_5_done
+	MOVQ DX, (SP)
+	MOVQ 24(SP), DX
+	ADDQ DX, 24(SP)
 	ADDQ DX, AX
-	ROLQ $0x03, AX
-	MOVQ 16(SP), DX
-	SUBQ $0x00000001, DX
-	MOVQ DX, 16(SP)
-	JMP  foldprop35_5_loop
-
-foldprop35_5_done:
 	MOVQ (SP), DX
 	ADDQ CX, DX
 	MOVQ DX, (SP)
-	ADDQ AX, 24(SP)
-	MOVQ $0x80000001, 8(SP)
-	MOVQ 8(SP), DX
-	ADDQ DX, AX
-	MOVQ 8(SP), DX
-	CMPQ AX, CX
-	JCS  foldprop35_9_skip
-	ADDQ CX, DX
-
-foldprop35_9_skip:
-	MOVQ DX, 8(SP)
-	MOVQ $0x80000001, 8(SP)
-	MOVQ 8(SP), CX
-	ADDQ CX, AX
-	MOVQ 24(SP), CX
-	MOVQ $0x00000002, DX
-
-foldprop35_11_loop:
 	MOVQ AX, 24(SP)
-	ADDQ DX, AX
-	SUBQ $0x00000001, DX
-	JNE  foldprop35_11_loop
-	ADDQ CX, AX
-	MOVQ (SP), CX
-	ADDQ CX, AX
-	MOVQ 8(SP), CX
-	ADDQ CX, AX
-	MOVQ 16(SP), CX
-	ADDQ CX, AX
-	MOVQ 24(SP), CX
-	ADDQ CX, AX
-	MOVQ AX, ret+16(FP)
+	MOVQ 8(SP), DX
+	MOVQ $0x00000002, BX
+
+foldprop35_4_loop:
+	ADDQ    DX, AX
+	MOVQ    AX, 8(SP)
+	SUBQ    $0x00000001, BX
+	JNE     foldprop35_4_loop
+	MOVQ    16(SP), DX
+	MOVQ    DX, BX
+	ADDQ    CX, BX
+	MOVQ    BX, 16(SP)
+	ADDQ    DX, AX
+	ADDQ    AX, (SP)
+	MOVQ    24(SP), DX
+	MOVQ    DX, BX
+	SHRQ    $0x08, BX
+	MOVBQZX BL, BX
+	ADDQ    BX, AX
+	XORQ    DX, AX
+	MOVQ    8(SP), DX
+	ADDQ    DX, 8(SP)
+	ADDQ    DX, AX
+	MOVQ    8(SP), DX
+	MOVQ    DX, BX
+	SHLQ    $0x05, BX
+	XORQ    BX, AX
+	ADDQ    DX, AX
+	ADDQ    AX, 8(SP)
+	ROLQ    $0x07, AX
+	XORQ    CX, AX
+	MOVQ    (SP), CX
+	ADDQ    CX, AX
+	MOVQ    8(SP), CX
+	ADDQ    CX, AX
+	MOVQ    16(SP), CX
+	ADDQ    CX, AX
+	MOVQ    24(SP), CX
+	ADDQ    CX, AX
+	MOVQ    AX, ret+16(FP)
 	RET
 
 // func FoldProp36(x uint64, y uint64) uint64
@@ -7340,76 +7295,107 @@ TEXT ·FoldProp36(SB), NOSPLIT, $32-24
 	MOVQ CX, DX
 	ADDQ $0x00000003, DX
 	MOVQ DX, 24(SP)
+	MOVQ $0x80000001, 8(SP)
 	MOVQ 8(SP), DX
-	CMPQ AX, CX
-	JCS  foldprop36_0_skip
-	ADDQ CX, DX
+	ADDQ DX, AX
+	MOVQ (SP), DX
+	ANDQ $0x00000003, DX
+	MOVQ DX, (SP)
 
-foldprop36_0_skip:
-	MOVQ DX, 8(SP)
-	MOVQ AX, (SP)
+foldprop36_1_loop:
+	MOVQ (SP), DX
+	CMPQ DX, $0x00000000
+	JEQ  foldprop36_1_done
+	ADDQ DX, AX
+	ROLQ $0x03, AX
+	MOVQ (SP), DX
+	SUBQ $0x00000001, DX
+	MOVQ DX, (SP)
+	JMP  foldprop36_1_loop
+
+foldprop36_1_done:
 	MOVQ (SP), DX
 	MOVQ DX, BX
 	SHLQ $0x05, BX
 	XORQ BX, AX
 	ADDQ DX, AX
 	MOVQ 24(SP), DX
-	MOVQ 24(SP), BX
-	ROLQ $0x09, BX
-	ADDQ DX, BX
+	MOVQ DX, BX
+	SHLQ $0x05, BX
 	XORQ BX, AX
-	MOVQ 8(SP), DX
-	MOVQ DX, 16(SP)
 	ADDQ DX, AX
-	MOVQ (SP), DX
-	MOVQ 16(SP), BX
-	MOVQ BX, (SP)
-	MOVQ DX, 16(SP)
-	MOVQ $0x00000002, DX
+	MOVQ 8(SP), DX
+	MOVQ DX, BX
+	SHLQ $0x05, BX
+	XORQ BX, AX
+	ADDQ DX, AX
+	ANDQ $0x00000003, (SP)
+
+foldprop36_5_loop:
+	CMPQ (SP), $0x00000000
+	JEQ  foldprop36_5_done
+	ADDQ (SP), AX
+	ROLQ $0x03, AX
+	DECQ (SP)
+	JMP  foldprop36_5_loop
+
+foldprop36_5_done:
+	ANDQ $0x00000003, (SP)
 
 foldprop36_6_loop:
-	MOVQ (SP), BX
-	ADDQ BX, AX
-	MOVQ CX, BX
-	ADDQ AX, BX
-	SUBQ $0x00000001, DX
-	JNE  foldprop36_6_loop
-	MOVQ BX, (SP)
-	MOVQ 8(SP), DX
-	MOVQ $0x00000002, BX
+	CMPQ (SP), $0x00000000
+	JEQ  foldprop36_6_done
+	ADDQ (SP), AX
+	ROLQ $0x03, AX
+	DECQ (SP)
+	JMP  foldprop36_6_loop
 
-foldprop36_7_loop:
-	ADDQ    DX, AX
-	MOVQ    AX, 8(SP)
-	SUBQ    $0x00000001, BX
-	JNE     foldprop36_7_loop
-	MOVQ    (SP), DX
-	MOVQ    DX, BX
-	SHLQ    $0x05, BX
-	XORQ    BX, AX
-	ADDQ    DX, AX
-	ROLQ    $0x07, AX
-	XORQ    CX, AX
-	MOVQ    (SP), CX
-	MOVQ    (SP), DX
-	ROLQ    $0x09, DX
-	ADDQ    CX, DX
-	XORQ    DX, AX
-	MOVQ    16(SP), CX
-	MOVQ    CX, DX
-	SHRQ    $0x08, DX
-	MOVBQZX DL, DX
-	ADDQ    DX, AX
-	XORQ    CX, AX
-	MOVQ    (SP), CX
-	ADDQ    CX, AX
-	MOVQ    8(SP), CX
-	ADDQ    CX, AX
-	MOVQ    16(SP), CX
-	ADDQ    CX, AX
-	MOVQ    24(SP), CX
-	ADDQ    CX, AX
-	MOVQ    AX, ret+16(FP)
+foldprop36_6_done:
+	MOVQ AX, 8(SP)
+	MOVQ CX, DX
+	CMPQ AX, CX
+	JCS  foldprop36_8_skip
+	MOVQ (SP), DX
+
+foldprop36_8_skip:
+	ADDQ DX, AX
+	MOVQ 24(SP), CX
+	MOVQ $0x00000002, DX
+
+foldprop36_9_loop:
+	MOVQ AX, 24(SP)
+	ADDQ DX, AX
+	SUBQ $0x00000001, DX
+	JNE  foldprop36_9_loop
+	ADDQ CX, AX
+	MOVQ (SP), CX
+	MOVQ CX, 8(SP)
+	ADDQ CX, AX
+	MOVQ 16(SP), CX
+	ANDQ $0x00000003, CX
+	MOVQ CX, 16(SP)
+
+foldprop36_11_loop:
+	MOVQ 16(SP), CX
+	CMPQ CX, $0x00000000
+	JEQ  foldprop36_11_done
+	ADDQ CX, AX
+	ROLQ $0x03, AX
+	MOVQ 16(SP), CX
+	SUBQ $0x00000001, CX
+	MOVQ CX, 16(SP)
+	JMP  foldprop36_11_loop
+
+foldprop36_11_done:
+	MOVQ (SP), CX
+	ADDQ CX, AX
+	MOVQ 8(SP), CX
+	ADDQ CX, AX
+	MOVQ 16(SP), CX
+	ADDQ CX, AX
+	MOVQ 24(SP), CX
+	ADDQ CX, AX
+	MOVQ AX, ret+16(FP)
 	RET
 
 // func FoldProp37(x uint64, y uint64) uint64
@@ -7428,54 +7414,56 @@ TEXT ·FoldProp37(SB), NOSPLIT, $32-24
 	MOVQ CX, DX
 	ADDQ $0x00000003, DX
 	MOVQ DX, 24(SP)
+	MOVQ AX, (SP)
+	MOVQ 16(SP), DX
+	MOVQ 16(SP), BX
+	ROLQ $0x09, BX
+	ADDQ DX, BX
+	XORQ BX, AX
+	MOVQ AX, (SP)
+	MOVQ CX, DX
+	CMPQ AX, CX
+	JCS  foldprop37_3_skip
+	MOVQ 24(SP), DX
+
+foldprop37_3_skip:
+	ADDQ DX, AX
+	MOVQ 16(SP), DX
+	MOVQ (SP), BX
+	MOVQ BX, 16(SP)
+	MOVQ DX, (SP)
+	MOVQ AX, 24(SP)
+	ANDQ $0x00000003, 24(SP)
+
+foldprop37_6_loop:
+	CMPQ 24(SP), $0x00000000
+	JEQ  foldprop37_6_done
+	ADDQ 24(SP), AX
+	ROLQ $0x03, AX
+	DECQ 24(SP)
+	JMP  foldprop37_6_loop
+
+foldprop37_6_done:
+	ROLQ $0x07, AX
+	XORQ CX, AX
 	ANDQ $0x00000003, (SP)
 
-foldprop37_0_loop:
+foldprop37_8_loop:
 	CMPQ (SP), $0x00000000
-	JEQ  foldprop37_0_done
+	JEQ  foldprop37_8_done
 	ADDQ (SP), AX
 	ROLQ $0x03, AX
 	DECQ (SP)
-	JMP  foldprop37_0_loop
+	JMP  foldprop37_8_loop
 
-foldprop37_0_done:
-	MOVQ 16(SP), DX
-	ADDQ DX, 16(SP)
-	ADDQ DX, AX
-	MOVQ (SP), DX
-	MOVQ DX, 8(SP)
-	ADDQ DX, AX
-	MOVQ 24(SP), DX
-	MOVQ DX, (SP)
-	ADDQ DX, AX
-	ADDQ AX, 16(SP)
-	MOVQ AX, 24(SP)
-	MOVQ 24(SP), DX
-	MOVQ DX, BX
-	ADDQ CX, BX
-	MOVQ BX, 24(SP)
-	ADDQ DX, AX
-	CMPQ CX, 24(SP)
-	JCS  foldprop37_7_skip
-	XORQ CX, AX
-
-foldprop37_7_skip:
-	TESTQ AX, (SP)
-	JEQ   foldprop37_8_skip
-	ADDQ  CX, AX
-
-foldprop37_8_skip:
+foldprop37_8_done:
 	MOVQ    (SP), DX
 	MOVQ    DX, BX
-	SHRQ    $0x08, BX
-	MOVBQZX BL, BX
-	ADDQ    BX, AX
-	XORQ    DX, AX
-	CMPQ    CX, (SP)
-	JCS     foldprop37_10_skip
+	ADDQ    CX, BX
+	MOVQ    BX, (SP)
+	ADDQ    DX, AX
+	ROLQ    $0x07, AX
 	XORQ    CX, AX
-
-foldprop37_10_skip:
 	MOVQ    24(SP), CX
 	MOVQ    CX, DX
 	SHRQ    $0x08, DX
@@ -7509,75 +7497,63 @@ TEXT ·FoldProp38(SB), NOSPLIT, $32-24
 	MOVQ CX, DX
 	ADDQ $0x00000003, DX
 	MOVQ DX, 24(SP)
-	MOVQ 8(SP), DX
-	MOVQ 24(SP), BX
-	MOVQ BX, 8(SP)
-	MOVQ DX, 24(SP)
-	NEGQ 24(SP)
-	NOTQ (SP)
-	CMPQ CX, 16(SP)
-	JCS  foldprop38_2_skip
-	XORQ CX, AX
-
-foldprop38_2_skip:
-	MOVQ (SP), DX
-	CMPQ AX, CX
-	JCS  foldprop38_3_skip
-	ADDQ CX, DX
-
-foldprop38_3_skip:
-	MOVQ    DX, (SP)
-	MOVQ    (SP), DX
-	MOVQ    DX, BX
-	SHRQ    $0x08, BX
-	MOVBQZX BL, BX
-	ADDQ    BX, AX
-	XORQ    DX, AX
-	MOVQ    24(SP), DX
-	MOVQ    DX, BX
-	SHRQ    $0x08, BX
-	MOVBQZX BL, BX
-	ADDQ    BX, AX
-	XORQ    DX, AX
-	MOVQ    24(SP), DX
-	CMPQ    AX, CX
-	JCS     foldprop38_6_skip
-	ADDQ    CX, DX
-
-foldprop38_6_skip:
-	MOVQ DX, 24(SP)
-	MOVQ 8(SP), DX
+	MOVQ AX, 8(SP)
+	MOVQ 24(SP), DX
 	MOVQ $0x00000002, BX
 
-foldprop38_7_loop:
-	MOVQ    AX, 8(SP)
-	ADDQ    BX, AX
-	SUBQ    $0x00000001, BX
-	JNE     foldprop38_7_loop
-	ADDQ    DX, AX
-	MOVQ    8(SP), DX
-	MOVQ    DX, BX
-	SHLQ    $0x05, BX
-	XORQ    BX, AX
-	ADDQ    DX, AX
-	MOVQ    24(SP), DX
-	MOVQ    DX, BX
-	SHRQ    $0x08, BX
-	MOVBQZX BL, BX
-	ADDQ    BX, AX
-	XORQ    DX, AX
-	NEGQ    (SP)
-	NOTQ    8(SP)
-	MOVQ    $0x00000002, DX
+foldprop38_1_loop:
+	MOVQ AX, 24(SP)
+	ADDQ BX, AX
+	SUBQ $0x00000001, BX
+	JNE  foldprop38_1_loop
+	ADDQ DX, AX
+	MOVQ 16(SP), DX
+	MOVQ (SP), BX
+	MOVQ BX, 16(SP)
+	MOVQ DX, (SP)
+	MOVQ (SP), DX
+	ADDQ DX, (SP)
+	ADDQ DX, AX
+	MOVQ $0x00000002, DX
 
-foldprop38_11_loop:
-	MOVQ 16(SP), BX
+foldprop38_4_loop:
+	MOVQ (SP), BX
 	ADDQ BX, AX
 	MOVQ CX, BX
 	ADDQ AX, BX
 	SUBQ $0x00000001, DX
-	JNE  foldprop38_11_loop
-	MOVQ BX, 16(SP)
+	JNE  foldprop38_4_loop
+	MOVQ BX, (SP)
+	MOVQ 24(SP), DX
+	MOVQ DX, (SP)
+	ADDQ DX, AX
+	MOVQ 24(SP), DX
+	ADDQ DX, 24(SP)
+	ADDQ DX, AX
+	MOVQ 8(SP), DX
+	MOVQ 24(SP), BX
+	MOVQ BX, 8(SP)
+	MOVQ DX, 24(SP)
+	MOVQ 8(SP), DX
+	MOVQ DX, BX
+	ADDQ CX, BX
+	MOVQ BX, 8(SP)
+	ADDQ DX, AX
+	MOVQ $0x80000003, 24(SP)
+	MOVQ 24(SP), DX
+	ADDQ DX, AX
+	MOVQ (SP), DX
+	MOVQ (SP), BX
+	ROLQ $0x09, BX
+	ADDQ DX, BX
+	XORQ BX, AX
+	MOVQ CX, DX
+	CMPQ AX, CX
+	JCS  foldprop38_11_skip
+	MOVQ 16(SP), DX
+
+foldprop38_11_skip:
+	ADDQ DX, AX
 	MOVQ (SP), CX
 	ADDQ CX, AX
 	MOVQ 8(SP), CX
@@ -7606,72 +7582,49 @@ TEXT ·FoldProp39(SB), NOSPLIT, $32-24
 	ADDQ $0x00000003, DX
 	MOVQ DX, 24(SP)
 	MOVQ 24(SP), DX
-	MOVQ 8(SP), BX
-	MOVQ BX, 24(SP)
-	MOVQ DX, 8(SP)
-	MOVQ AX, (SP)
-	MOVQ 24(SP), DX
-	MOVQ $0x00000002, BX
-
-foldprop39_2_loop:
-	ADDQ DX, AX
 	MOVQ AX, 24(SP)
-	SUBQ $0x00000001, BX
-	JNE  foldprop39_2_loop
-	MOVQ 24(SP), DX
-	MOVQ DX, BX
-	SHLQ $0x05, BX
+	ADDQ DX, AX
+	MOVQ (SP), DX
+	MOVQ (SP), BX
+	ROLQ $0x09, BX
+	ADDQ DX, BX
 	XORQ BX, AX
-	ADDQ DX, AX
-	MOVQ $0x80000002, 16(SP)
-	MOVQ 16(SP), DX
-	ADDQ DX, AX
-	CMPQ CX, 16(SP)
-	JCS  foldprop39_5_skip
+	CMPQ CX, 24(SP)
+	JCS  foldprop39_2_skip
 	XORQ CX, AX
 
-foldprop39_5_skip:
-	MOVQ $0x00000002, DX
-
-foldprop39_6_loop:
-	MOVQ 16(SP), BX
-	ADDQ BX, AX
-	MOVQ CX, BX
-	ADDQ AX, BX
-	SUBQ $0x00000001, DX
-	JNE  foldprop39_6_loop
-	MOVQ BX, 16(SP)
-	MOVQ $0x00000002, DX
-
-foldprop39_7_loop:
+foldprop39_2_skip:
+	MOVQ 24(SP), DX
 	MOVQ 24(SP), BX
-	ADDQ BX, AX
-	MOVQ CX, BX
-	ADDQ AX, BX
-	SUBQ $0x00000001, DX
-	JNE  foldprop39_7_loop
-	MOVQ BX, 24(SP)
+	ROLQ $0x09, BX
+	ADDQ DX, BX
+	XORQ BX, AX
+	MOVQ CX, DX
+	CMPQ AX, CX
+	JCS  foldprop39_4_skip
 	MOVQ 16(SP), DX
+
+foldprop39_4_skip:
+	ADDQ DX, AX
+	ADDQ AX, 16(SP)
+	MOVQ 16(SP), DX
+	MOVQ DX, BX
+	ADDQ CX, BX
+	MOVQ BX, 16(SP)
+	ADDQ DX, AX
+	MOVQ AX, 24(SP)
+	ADDQ AX, 16(SP)
+	MOVQ 8(SP), DX
 	MOVQ DX, BX
 	SHLQ $0x05, BX
 	XORQ BX, AX
 	ADDQ DX, AX
-	MOVQ 8(SP), DX
-	ADDQ DX, 8(SP)
-	ADDQ DX, AX
+	ADDQ AX, 24(SP)
 	MOVQ 24(SP), DX
-	MOVQ DX, (SP)
-	ADDQ DX, AX
-	MOVQ $0x00000002, DX
-
-foldprop39_11_loop:
-	MOVQ 24(SP), BX
-	ADDQ BX, AX
-	MOVQ CX, BX
-	ADDQ AX, BX
-	SUBQ $0x00000001, DX
-	JNE  foldprop39_11_loop
+	MOVQ DX, BX
+	ADDQ CX, BX
 	MOVQ BX, 24(SP)
+	ADDQ DX, AX
 	MOVQ (SP), CX
 	ADDQ CX, AX
 	MOVQ 8(SP), CX
@@ -7685,98 +7638,110 @@ foldprop39_11_loop:
 
 // func FoldProp40(x uint64, y uint64) uint64
 TEXT ·FoldProp40(SB), NOSPLIT, $32-24
-	MOVQ x+0(FP), AX
-	MOVQ y+8(FP), CX
-	MOVQ CX, DX
-	ADDQ $0x00000000, DX
-	MOVQ DX, (SP)
-	MOVQ CX, DX
-	ADDQ $0x00000001, DX
-	MOVQ DX, 8(SP)
-	MOVQ CX, DX
-	ADDQ $0x00000002, DX
-	MOVQ DX, 16(SP)
-	MOVQ CX, DX
-	ADDQ $0x00000003, DX
-	MOVQ DX, 24(SP)
-	MOVQ $0x00000002, DX
-
-foldprop40_0_loop:
-	MOVQ    (SP), BX
-	ADDQ    BX, AX
-	MOVQ    CX, BX
-	ADDQ    AX, BX
-	SUBQ    $0x00000001, DX
-	JNE     foldprop40_0_loop
-	MOVQ    BX, (SP)
-	MOVQ    16(SP), DX
+	MOVQ    x+0(FP), AX
+	MOVQ    y+8(FP), CX
+	MOVQ    CX, DX
+	ADDQ    $0x00000000, DX
+	MOVQ    DX, (SP)
+	MOVQ    CX, DX
+	ADDQ    $0x00000001, DX
+	MOVQ    DX, 8(SP)
+	MOVQ    CX, DX
+	ADDQ    $0x00000002, DX
+	MOVQ    DX, 16(SP)
+	MOVQ    CX, DX
+	ADDQ    $0x00000003, DX
+	MOVQ    DX, 24(SP)
+	MOVQ    (SP), DX
 	MOVQ    DX, BX
 	SHRQ    $0x08, BX
 	MOVBQZX BL, BX
 	ADDQ    BX, AX
 	XORQ    DX, AX
+	MOVQ    16(SP), DX
+	MOVQ    (SP), BX
+	MOVQ    BX, 16(SP)
+	MOVQ    DX, (SP)
 	MOVQ    24(SP), DX
 	MOVQ    $0x00000002, BX
 
 foldprop40_2_loop:
-	ADDQ DX, AX
 	MOVQ AX, 24(SP)
+	ADDQ BX, AX
 	SUBQ $0x00000001, BX
 	JNE  foldprop40_2_loop
-	MOVQ AX, (SP)
-	MOVQ 24(SP), DX
-	MOVQ DX, BX
-	ADDQ CX, BX
-	MOVQ BX, 24(SP)
 	ADDQ DX, AX
-	NEGQ (SP)
-	NOTQ 8(SP)
+	MOVQ (SP), DX
+	ANDQ $0x00000003, DX
+	MOVQ DX, (SP)
+
+foldprop40_3_loop:
+	MOVQ (SP), DX
+	CMPQ DX, $0x00000000
+	JEQ  foldprop40_3_done
+	ADDQ DX, AX
+	ROLQ $0x03, AX
+	MOVQ (SP), DX
+	SUBQ $0x00000001, DX
+	MOVQ DX, (SP)
+	JMP  foldprop40_3_loop
+
+foldprop40_3_done:
+	MOVQ 24(SP), DX
+	MOVQ $0x00000002, BX
+
+foldprop40_4_loop:
+	MOVQ AX, 24(SP)
+	ADDQ BX, AX
+	SUBQ $0x00000001, BX
+	JNE  foldprop40_4_loop
+	ADDQ DX, AX
+	MOVQ (SP), DX
+	MOVQ DX, BX
+	SHLQ $0x05, BX
+	XORQ BX, AX
+	ADDQ DX, AX
 	MOVQ CX, DX
 	CMPQ AX, CX
 	JCS  foldprop40_6_skip
 	MOVQ 16(SP), DX
 
 foldprop40_6_skip:
-	ADDQ DX, AX
-	MOVQ 8(SP), DX
-	MOVQ $0x00000002, BX
+	ADDQ    DX, AX
+	MOVQ    8(SP), DX
+	MOVQ    DX, BX
+	SHRQ    $0x08, BX
+	MOVBQZX BL, BX
+	ADDQ    BX, AX
+	XORQ    DX, AX
+	MOVQ    24(SP), DX
+	CMPQ    AX, CX
+	JCS     foldprop40_8_skip
+	ADDQ    CX, DX
 
-foldprop40_7_loop:
-	ADDQ DX, AX
-	MOVQ AX, 8(SP)
-	SUBQ $0x00000001, BX
-	JNE  foldprop40_7_loop
-	MOVQ 24(SP), DX
-	MOVQ $0x00000002, BX
-
-foldprop40_8_loop:
-	MOVQ AX, 24(SP)
-	ADDQ BX, AX
-	SUBQ $0x00000001, BX
-	JNE  foldprop40_8_loop
-	ADDQ DX, AX
-	MOVQ 8(SP), DX
-	MOVQ AX, 8(SP)
-	ADDQ DX, AX
-	CMPQ CX, 24(SP)
-	JCS  foldprop40_10_skip
-	XORQ CX, AX
-
-foldprop40_10_skip:
-	MOVQ 16(SP), CX
-	MOVQ 16(SP), DX
-	ROLQ $0x09, DX
-	ADDQ CX, DX
-	XORQ DX, AX
-	MOVQ (SP), CX
-	ADDQ CX, AX
-	MOVQ 8(SP), CX
-	ADDQ CX, AX
-	MOVQ 16(SP), CX
-	ADDQ CX, AX
-	MOVQ 24(SP), CX
-	ADDQ CX, AX
-	MOVQ AX, ret+16(FP)
+foldprop40_8_skip:
+	MOVQ    DX, 24(SP)
+	MOVQ    8(SP), DX
+	MOVQ    DX, 16(SP)
+	ADDQ    DX, AX
+	MOVQ    24(SP), DX
+	MOVQ    DX, BX
+	SHRQ    $0x08, BX
+	MOVBQZX BL, BX
+	ADDQ    BX, AX
+	XORQ    DX, AX
+	MOVQ    16(SP), DX
+	ADDQ    CX, DX
+	MOVQ    DX, 16(SP)
+	MOVQ    (SP), CX
+	ADDQ    CX, AX
+	MOVQ    8(SP), CX
+	ADDQ    CX, AX
+	MOVQ    16(SP), CX
+	ADDQ    CX, AX
+	MOVQ    24(SP), CX
+	ADDQ    CX, AX
+	MOVQ    AX, ret+16(FP)
 	RET
 
 // func FoldProp41(x uint64, y uint64) uint64
@@ -7795,79 +7760,73 @@ TEXT ·FoldProp41(SB), NOSPLIT, $32-24
 	MOVQ CX, DX
 	ADDQ $0x00000003, DX
 	MOVQ DX, 24(SP)
-	CMPQ CX, 8(SP)
-	JCS  foldprop41_0_skip
+	MOVQ AX, 8(SP)
+	MOVQ 16(SP), DX
+	MOVQ 16(SP), BX
+	ROLQ $0x09, BX
+	ADDQ DX, BX
+	XORQ BX, AX
+	MOVQ (SP), DX
+	ADDQ DX, (SP)
+	ADDQ DX, AX
+	MOVQ (SP), DX
+	MOVQ AX, (SP)
+	ADDQ DX, AX
+	CMPQ CX, (SP)
+	JCS  foldprop41_4_skip
 	XORQ CX, AX
 
-foldprop41_0_skip:
-	ADDQ AX, 16(SP)
-	MOVQ $0x80000000, (SP)
-	MOVQ (SP), DX
-	ADDQ DX, AX
+foldprop41_4_skip:
 	MOVQ (SP), DX
 	ANDQ $0x00000003, DX
 	MOVQ DX, (SP)
 
-foldprop41_3_loop:
+foldprop41_5_loop:
 	MOVQ (SP), DX
 	CMPQ DX, $0x00000000
-	JEQ  foldprop41_3_done
+	JEQ  foldprop41_5_done
 	ADDQ DX, AX
 	ROLQ $0x03, AX
 	MOVQ (SP), DX
 	SUBQ $0x00000001, DX
 	MOVQ DX, (SP)
-	JMP  foldprop41_3_loop
+	JMP  foldprop41_5_loop
 
-foldprop41_3_done:
-	MOVQ    (SP), DX
-	MOVQ    DX, BX
-	SHRQ    $0x08, BX
-	MOVBQZX BL, BX
-	ADDQ    BX, AX
-	XORQ    DX, AX
-	MOVQ    CX, DX
-	CMPQ    AX, CX
-	JCS     foldprop41_5_skip
-	MOVQ    (SP), DX
+foldprop41_5_done:
+	MOVQ 24(SP), DX
+	MOVQ $0x00000002, BX
 
-foldprop41_5_skip:
+foldprop41_6_loop:
+	ADDQ DX, AX
+	MOVQ AX, 24(SP)
+	SUBQ $0x00000001, BX
+	JNE  foldprop41_6_loop
+	MOVQ 24(SP), DX
+	MOVQ DX, BX
+	ADDQ CX, BX
+	MOVQ BX, 24(SP)
+	ADDQ DX, AX
+	MOVQ 16(SP), DX
+	MOVQ DX, BX
+	ADDQ CX, BX
+	MOVQ BX, 16(SP)
 	ADDQ DX, AX
 	MOVQ 24(SP), CX
 	MOVQ $0x00000002, DX
 
-foldprop41_6_loop:
-	ADDQ    CX, AX
-	MOVQ    AX, 24(SP)
-	SUBQ    $0x00000001, DX
-	JNE     foldprop41_6_loop
-	MOVQ    24(SP), CX
-	MOVQ    CX, DX
-	SHRQ    $0x08, DX
-	MOVBQZX DL, DX
-	ADDQ    DX, AX
-	XORQ    CX, AX
-	MOVQ    16(SP), CX
-	MOVQ    $0x00000002, DX
-
-foldprop41_8_loop:
-	ADDQ CX, AX
-	MOVQ AX, 16(SP)
-	SUBQ $0x00000001, DX
-	JNE  foldprop41_8_loop
+foldprop41_9_loop:
 	MOVQ AX, 24(SP)
-	ADDQ AX, (SP)
-	ANDQ $0x00000003, (SP)
-
-foldprop41_11_loop:
-	CMPQ (SP), $0x00000000
-	JEQ  foldprop41_11_done
-	ADDQ (SP), AX
-	ROLQ $0x03, AX
-	DECQ (SP)
-	JMP  foldprop41_11_loop
-
-foldprop41_11_done:
+	ADDQ DX, AX
+	SUBQ $0x00000001, DX
+	JNE  foldprop41_9_loop
+	ADDQ CX, AX
+	MOVQ (SP), CX
+	MOVQ AX, (SP)
+	ADDQ CX, AX
+	MOVQ (SP), CX
+	MOVQ 16(SP), DX
+	MOVQ DX, (SP)
+	MOVQ CX, 16(SP)
 	MOVQ (SP), CX
 	ADDQ CX, AX
 	MOVQ 8(SP), CX
@@ -7895,90 +7854,62 @@ TEXT ·FoldProp42(SB), NOSPLIT, $32-24
 	MOVQ CX, DX
 	ADDQ $0x00000003, DX
 	MOVQ DX, 24(SP)
+	ADDQ AX, (SP)
+	MOVQ (SP), DX
+	MOVQ 16(SP), BX
+	MOVQ BX, (SP)
+	MOVQ DX, 16(SP)
+	MOVQ 16(SP), DX
+	MOVQ DX, 24(SP)
+	ADDQ DX, AX
+	MOVQ $0x00000002, DX
+
+foldprop42_3_loop:
+	MOVQ (SP), BX
+	ADDQ BX, AX
+	MOVQ CX, BX
+	ADDQ AX, BX
+	SUBQ $0x00000001, DX
+	JNE  foldprop42_3_loop
+	MOVQ BX, (SP)
+	MOVQ AX, 8(SP)
+	MOVQ $0x80000002, 16(SP)
+	MOVQ 16(SP), DX
+	ADDQ DX, AX
 	MOVQ CX, DX
 	CMPQ AX, CX
-	JCS  foldprop42_0_skip
-	MOVQ (SP), DX
-
-foldprop42_0_skip:
-	ADDQ DX, AX
-	MOVQ AX, (SP)
-	MOVQ 16(SP), DX
-	CMPQ AX, CX
-	JCS  foldprop42_2_skip
-	ADDQ CX, DX
-
-foldprop42_2_skip:
-	MOVQ    DX, 16(SP)
-	MOVQ    (SP), DX
-	MOVQ    DX, BX
-	SHRQ    $0x08, BX
-	MOVBQZX BL, BX
-	ADDQ    BX, AX
-	XORQ    DX, AX
-	ADDQ    AX, 8(SP)
-	MOVQ    16(SP), DX
-	ANDQ    $0x00000003, DX
-	MOVQ    DX, 16(SP)
-
-foldprop42_5_loop:
-	MOVQ 16(SP), DX
-	CMPQ DX, $0x00000000
-	JEQ  foldprop42_5_done
-	ADDQ DX, AX
-	ROLQ $0x03, AX
-	MOVQ 16(SP), DX
-	SUBQ $0x00000001, DX
-	MOVQ DX, 16(SP)
-	JMP  foldprop42_5_loop
-
-foldprop42_5_done:
-	MOVQ 16(SP), DX
-	CMPQ AX, CX
 	JCS  foldprop42_6_skip
-	ADDQ CX, DX
+	MOVQ 16(SP), DX
 
 foldprop42_6_skip:
+	ADDQ DX, AX
+	CMPQ CX, 8(SP)
+	JCS  foldprop42_7_skip
+	XORQ CX, AX
+
+foldprop42_7_skip:
+	MOVQ 8(SP), DX
 	MOVQ DX, 16(SP)
-	MOVQ 8(SP), DX
-	ANDQ $0x00000003, DX
-	MOVQ DX, 8(SP)
-
-foldprop42_7_loop:
-	MOVQ 8(SP), DX
-	CMPQ DX, $0x00000000
-	JEQ  foldprop42_7_done
 	ADDQ DX, AX
-	ROLQ $0x03, AX
 	MOVQ 8(SP), DX
-	SUBQ $0x00000001, DX
-	MOVQ DX, 8(SP)
-	JMP  foldprop42_7_loop
-
-foldprop42_7_done:
-	MOVQ    8(SP), DX
-	MOVQ    DX, BX
-	SHRQ    $0x08, BX
-	MOVBQZX BL, BX
-	ADDQ    BX, AX
-	XORQ    DX, AX
-	ANDQ    $0x00000003, 8(SP)
-
-foldprop42_9_loop:
-	CMPQ 8(SP), $0x00000000
-	JEQ  foldprop42_9_done
-	ADDQ 8(SP), AX
-	ROLQ $0x03, AX
-	DECQ 8(SP)
-	JMP  foldprop42_9_loop
-
-foldprop42_9_done:
-	MOVQ 8(SP), DX
-	MOVQ AX, 8(SP)
-	ADDQ DX, AX
-	MOVQ 16(SP), DX
+	CMPQ AX, CX
+	JCS  foldprop42_9_skip
 	ADDQ CX, DX
-	MOVQ DX, 16(SP)
+
+foldprop42_9_skip:
+	MOVQ DX, 8(SP)
+	MOVQ 8(SP), DX
+	MOVQ DX, BX
+	ADDQ CX, BX
+	MOVQ BX, 8(SP)
+	ADDQ DX, AX
+	MOVQ CX, DX
+	CMPQ AX, CX
+	JCS  foldprop42_11_skip
+	MOVQ 16(SP), DX
+
+foldprop42_11_skip:
+	ADDQ DX, AX
 	MOVQ (SP), CX
 	ADDQ CX, AX
 	MOVQ 8(SP), CX
@@ -8007,143 +7938,193 @@ TEXT ·FoldProp43(SB), NOSPLIT, $32-24
 	ADDQ $0x00000003, DX
 	MOVQ DX, 24(SP)
 	MOVQ 8(SP), DX
+	MOVQ DX, BX
+	SHLQ $0x05, BX
+	XORQ BX, AX
+	ADDQ DX, AX
+	MOVQ 8(SP), DX
+	ADDQ CX, DX
+	MOVQ DX, 8(SP)
+	MOVQ 8(SP), DX
+	CMPQ AX, CX
+	JCS  foldprop43_2_skip
+	ADDQ CX, DX
+
+foldprop43_2_skip:
+	MOVQ DX, 8(SP)
+	MOVQ $0x00000002, DX
+
+foldprop43_3_loop:
+	MOVQ (SP), BX
+	ADDQ BX, AX
+	MOVQ CX, BX
+	ADDQ AX, BX
+	SUBQ $0x00000001, DX
+	JNE  foldprop43_3_loop
+	MOVQ BX, (SP)
+	MOVQ 16(SP), DX
+	ANDQ $0x00000003, DX
+	MOVQ DX, 16(SP)
+
+foldprop43_4_loop:
+	MOVQ 16(SP), DX
+	CMPQ DX, $0x00000000
+	JEQ  foldprop43_4_done
+	ADDQ DX, AX
+	ROLQ $0x03, AX
+	MOVQ 16(SP), DX
+	SUBQ $0x00000001, DX
+	MOVQ DX, 16(SP)
+	JMP  foldprop43_4_loop
+
+foldprop43_4_done:
+	ANDQ $0x00000003, 16(SP)
+
+foldprop43_5_loop:
+	CMPQ 16(SP), $0x00000000
+	JEQ  foldprop43_5_done
+	ADDQ 16(SP), AX
+	ROLQ $0x03, AX
+	DECQ 16(SP)
+	JMP  foldprop43_5_loop
+
+foldprop43_5_done:
+	MOVQ 16(SP), DX
+	MOVQ AX, 16(SP)
+	ADDQ DX, AX
+	MOVQ 24(SP), DX
+	MOVQ DX, BX
+	ADDQ CX, BX
+	MOVQ BX, 24(SP)
+	ADDQ DX, AX
+	MOVQ 8(SP), DX
+	ADDQ CX, DX
+	MOVQ DX, 8(SP)
+	MOVQ 8(SP), CX
+	MOVQ CX, DX
+	SHLQ $0x05, DX
+	XORQ DX, AX
+	ADDQ CX, AX
+	MOVQ 16(SP), CX
+	ANDQ $0x00000003, CX
+	MOVQ CX, 16(SP)
+
+foldprop43_10_loop:
+	MOVQ 16(SP), CX
+	CMPQ CX, $0x00000000
+	JEQ  foldprop43_10_done
+	ADDQ CX, AX
+	ROLQ $0x03, AX
+	MOVQ 16(SP), CX
+	SUBQ $0x00000001, CX
+	MOVQ CX, 16(SP)
+	JMP  foldprop43_10_loop
+
+foldprop43_10_done:
+	MOVQ    16(SP), CX
+	MOVQ    CX, DX
+	SHRQ    $0x08, DX
+	MOVBQZX DL, DX
+	ADDQ    DX, AX
+	XORQ    CX, AX
+	MOVQ    (SP), CX
+	ADDQ    CX, AX
+	MOVQ    8(SP), CX
+	ADDQ    CX, AX
+	MOVQ    16(SP), CX
+	ADDQ    CX, AX
+	MOVQ    24(SP), CX
+	ADDQ    CX, AX
+	MOVQ    AX, ret+16(FP)
+	RET
+
+// func FoldProp44(x uint64, y uint64) uint64
+TEXT ·FoldProp44(SB), NOSPLIT, $32-24
+	MOVQ x+0(FP), AX
+	MOVQ y+8(FP), CX
+	MOVQ CX, DX
+	ADDQ $0x00000000, DX
+	MOVQ DX, (SP)
+	MOVQ CX, DX
+	ADDQ $0x00000001, DX
+	MOVQ DX, 8(SP)
+	MOVQ CX, DX
+	ADDQ $0x00000002, DX
+	MOVQ DX, 16(SP)
+	MOVQ CX, DX
+	ADDQ $0x00000003, DX
+	MOVQ DX, 24(SP)
+	MOVQ 8(SP), DX
 	ANDQ $0x00000003, DX
 	MOVQ DX, 8(SP)
 
-foldprop43_0_loop:
+foldprop44_0_loop:
 	MOVQ 8(SP), DX
 	CMPQ DX, $0x00000000
-	JEQ  foldprop43_0_done
+	JEQ  foldprop44_0_done
 	ADDQ DX, AX
 	ROLQ $0x03, AX
 	MOVQ 8(SP), DX
 	SUBQ $0x00000001, DX
 	MOVQ DX, 8(SP)
-	JMP  foldprop43_0_loop
+	JMP  foldprop44_0_loop
 
-foldprop43_0_done:
-	CMPQ CX, 8(SP)
-	JCS  foldprop43_1_skip
-	XORQ CX, AX
-
-foldprop43_1_skip:
-	MOVQ    8(SP), DX
-	MOVQ    8(SP), BX
-	ROLQ    $0x09, BX
-	ADDQ    DX, BX
-	XORQ    BX, AX
-	MOVQ    (SP), DX
-	MOVQ    DX, BX
-	SHRQ    $0x08, BX
-	MOVBQZX BL, BX
-	ADDQ    BX, AX
-	XORQ    DX, AX
-	MOVQ    16(SP), DX
-	MOVQ    $0x00000002, BX
-
-foldprop43_4_loop:
-	MOVQ AX, 16(SP)
-	ADDQ BX, AX
-	SUBQ $0x00000001, BX
-	JNE  foldprop43_4_loop
+foldprop44_0_done:
+	MOVQ $0x80000003, 24(SP)
+	MOVQ 24(SP), DX
 	ADDQ DX, AX
 	MOVQ 16(SP), DX
+	MOVQ (SP), BX
+	MOVQ BX, 16(SP)
+	MOVQ DX, (SP)
+	MOVQ (SP), DX
+	ADDQ CX, DX
+	MOVQ DX, (SP)
+	MOVQ $0x80000003, 24(SP)
+	MOVQ 24(SP), DX
+	ADDQ DX, AX
+	MOVQ CX, DX
+	CMPQ AX, CX
+	JCS  foldprop44_5_skip
+	MOVQ 16(SP), DX
+
+foldprop44_5_skip:
+	ADDQ DX, AX
+	MOVQ 8(SP), DX
 	MOVQ DX, BX
 	SHLQ $0x05, BX
 	XORQ BX, AX
 	ADDQ DX, AX
-	ROLQ $0x07, AX
-	XORQ CX, AX
-	ADDQ AX, 24(SP)
-	MOVQ $0x80000001, 8(SP)
 	MOVQ 8(SP), DX
-	ADDQ DX, AX
-	NEGQ 8(SP)
-	NOTQ 16(SP)
-	MOVQ AX, 16(SP)
-	ROLQ $0x07, AX
-	XORQ CX, AX
-	MOVQ (SP), CX
-	ADDQ CX, AX
-	MOVQ 8(SP), CX
-	ADDQ CX, AX
-	MOVQ 16(SP), CX
-	ADDQ CX, AX
-	MOVQ 24(SP), CX
-	ADDQ CX, AX
-	MOVQ AX, ret+16(FP)
-	RET
-
-// func FoldProp44(x uint64, y uint64) uint64
-TEXT ·FoldProp44(SB), NOSPLIT, $32-24
-	MOVQ    x+0(FP), AX
-	MOVQ    y+8(FP), CX
-	MOVQ    CX, DX
-	ADDQ    $0x00000000, DX
-	MOVQ    DX, (SP)
-	MOVQ    CX, DX
-	ADDQ    $0x00000001, DX
-	MOVQ    DX, 8(SP)
-	MOVQ    CX, DX
-	ADDQ    $0x00000002, DX
-	MOVQ    DX, 16(SP)
-	MOVQ    CX, DX
-	ADDQ    $0x00000003, DX
-	MOVQ    DX, 24(SP)
-	MOVQ    8(SP), DX
-	MOVQ    AX, 8(SP)
-	ADDQ    DX, AX
-	ROLQ    $0x07, AX
-	XORQ    CX, AX
-	MOVQ    16(SP), DX
-	MOVQ    DX, BX
-	SHRQ    $0x08, BX
-	MOVBQZX BL, BX
-	ADDQ    BX, AX
-	XORQ    DX, AX
-	MOVQ    (SP), DX
-	CMPQ    AX, CX
-	JCS     foldprop44_3_skip
-	ADDQ    CX, DX
-
-foldprop44_3_skip:
-	MOVQ DX, (SP)
-	MOVQ 24(SP), DX
+	MOVQ 24(SP), BX
+	MOVQ BX, 8(SP)
+	MOVQ DX, 24(SP)
+	MOVQ 16(SP), DX
 	MOVQ $0x00000002, BX
 
-foldprop44_4_loop:
-	MOVQ AX, 24(SP)
+foldprop44_8_loop:
+	MOVQ AX, 16(SP)
 	ADDQ BX, AX
 	SUBQ $0x00000001, BX
-	JNE  foldprop44_4_loop
+	JNE  foldprop44_8_loop
 	ADDQ DX, AX
-	MOVQ 16(SP), DX
-	MOVQ AX, 16(SP)
-	ADDQ DX, AX
-	MOVQ 8(SP), DX
-	MOVQ AX, 8(SP)
-	ADDQ DX, AX
-	ADDQ AX, 8(SP)
-	MOVQ 16(SP), DX
+	MOVQ 24(SP), DX
 	MOVQ DX, BX
 	ADDQ CX, BX
-	MOVQ BX, 16(SP)
+	MOVQ BX, 24(SP)
 	ADDQ DX, AX
-	CMPQ CX, 24(SP)
-	JCS  foldprop44_9_skip
-	XORQ CX, AX
-
-foldprop44_9_skip:
 	MOVQ 8(SP), DX
-	MOVQ DX, 16(SP)
+	MOVQ DX, BX
+	SHLQ $0x05, BX
+	XORQ BX, AX
 	ADDQ DX, AX
-	MOVQ CX, DX
+	MOVQ 16(SP), DX
 	CMPQ AX, CX
 	JCS  foldprop44_11_skip
-	MOVQ 16(SP), DX
+	ADDQ CX, DX
 
 foldprop44_11_skip:
-	ADDQ DX, AX
+	MOVQ DX, 16(SP)
 	MOVQ (SP), CX
 	ADDQ CX, AX
 	MOVQ 8(SP), CX
@@ -8172,65 +8153,89 @@ TEXT ·FoldProp45(SB), NOSPLIT, $32-24
 	ADDQ $0x00000003, DX
 	MOVQ DX, 24(SP)
 	MOVQ 16(SP), DX
-	ADDQ CX, DX
-	MOVQ DX, 16(SP)
-	MOVQ 24(SP), DX
-	MOVQ DX, BX
-	SHLQ $0x05, BX
+	MOVQ 16(SP), BX
+	ROLQ $0x09, BX
+	ADDQ DX, BX
 	XORQ BX, AX
-	ADDQ DX, AX
+	MOVQ AX, 24(SP)
 	MOVQ 24(SP), DX
-	MOVQ $0x00000002, BX
+	ANDQ $0x00000003, DX
+	MOVQ DX, 24(SP)
 
 foldprop45_2_loop:
-	ADDQ  DX, AX
-	MOVQ  AX, 24(SP)
-	SUBQ  $0x00000001, BX
-	JNE   foldprop45_2_loop
-	TESTQ AX, (SP)
-	JEQ   foldprop45_3_skip
-	ADDQ  CX, AX
+	MOVQ 24(SP), DX
+	CMPQ DX, $0x00000000
+	JEQ  foldprop45_2_done
+	ADDQ DX, AX
+	ROLQ $0x03, AX
+	MOVQ 24(SP), DX
+	SUBQ $0x00000001, DX
+	MOVQ DX, 24(SP)
+	JMP  foldprop45_2_loop
 
-foldprop45_3_skip:
+foldprop45_2_done:
+	ANDQ $0x00000003, (SP)
+
+foldprop45_3_loop:
+	CMPQ (SP), $0x00000000
+	JEQ  foldprop45_3_done
+	ADDQ (SP), AX
+	ROLQ $0x03, AX
+	DECQ (SP)
+	JMP  foldprop45_3_loop
+
+foldprop45_3_done:
 	MOVQ (SP), DX
-	MOVQ $0x00000002, BX
+	CMPQ AX, CX
+	JCS  foldprop45_4_skip
+	ADDQ CX, DX
 
-foldprop45_4_loop:
-	MOVQ    AX, (SP)
-	ADDQ    BX, AX
-	SUBQ    $0x00000001, BX
-	JNE     foldprop45_4_loop
-	ADDQ    DX, AX
-	MOVQ    $0x80000000, (SP)
+foldprop45_4_skip:
+	MOVQ    DX, (SP)
 	MOVQ    (SP), DX
-	ADDQ    DX, AX
-	MOVQ    8(SP), DX
-	MOVQ    DX, BX
-	SHLQ    $0x05, BX
+	MOVQ    (SP), BX
+	ROLQ    $0x09, BX
+	ADDQ    DX, BX
 	XORQ    BX, AX
-	ADDQ    DX, AX
-	MOVQ    24(SP), DX
-	MOVQ    DX, BX
-	ADDQ    CX, BX
-	MOVQ    BX, 24(SP)
-	ADDQ    DX, AX
-	MOVQ    24(SP), DX
+	MOVQ    8(SP), DX
 	MOVQ    DX, BX
 	SHRQ    $0x08, BX
 	MOVBQZX BL, BX
 	ADDQ    BX, AX
 	XORQ    DX, AX
+	MOVQ    AX, 24(SP)
 	MOVQ    24(SP), DX
-	CMPQ    AX, CX
-	JCS     foldprop45_9_skip
-	ADDQ    CX, DX
+	MOVQ    $0x00000002, BX
 
-foldprop45_9_skip:
-	MOVQ DX, 24(SP)
-	MOVQ (SP), DX
-	ADDQ CX, DX
-	MOVQ DX, (SP)
+foldprop45_8_loop:
+	MOVQ AX, 24(SP)
+	ADDQ BX, AX
+	SUBQ $0x00000001, BX
+	JNE  foldprop45_8_loop
+	ADDQ DX, AX
+	MOVQ $0x00000002, DX
+
+foldprop45_9_loop:
+	MOVQ 24(SP), BX
+	ADDQ BX, AX
+	MOVQ CX, BX
+	ADDQ AX, BX
+	SUBQ $0x00000001, DX
+	JNE  foldprop45_9_loop
+	MOVQ BX, 24(SP)
+	CMPQ CX, (SP)
+	JCS  foldprop45_10_skip
+	XORQ CX, AX
+
+foldprop45_10_skip:
+	MOVQ 8(SP), CX
+	MOVQ $0x00000002, DX
+
+foldprop45_11_loop:
+	ADDQ CX, AX
 	MOVQ AX, 8(SP)
+	SUBQ $0x00000001, DX
+	JNE  foldprop45_11_loop
 	MOVQ (SP), CX
 	ADDQ CX, AX
 	MOVQ 8(SP), CX
@@ -8259,39 +8264,32 @@ TEXT ·FoldProp46(SB), NOSPLIT, $32-24
 	ADDQ $0x00000003, DX
 	MOVQ DX, 24(SP)
 	MOVQ 24(SP), DX
-	ANDQ $0x00000003, DX
-	MOVQ DX, 24(SP)
+	MOVQ $0x00000002, BX
 
 foldprop46_0_loop:
-	MOVQ 24(SP), DX
-	CMPQ DX, $0x00000000
-	JEQ  foldprop46_0_done
-	ADDQ DX, AX
-	ROLQ $0x03, AX
-	MOVQ 24(SP), DX
-	SUBQ $0x00000001, DX
-	MOVQ DX, 24(SP)
-	JMP  foldprop46_0_loop
-
-foldprop46_0_done:
-	ROLQ    $0x07, AX
-	XORQ    CX, AX
+	ADDQ    DX, AX
+	MOVQ    AX, 24(SP)
+	SUBQ    $0x00000001, BX
+	JNE     foldprop46_0_loop
+	MOVQ    (SP), DX
+	MOVQ    DX, BX
+	ADDQ    CX, BX
+	MOVQ    BX, (SP)
+	ADDQ    DX, AX
+	MOVQ    (SP), DX
+	MOVQ    DX, BX
+	SHLQ    $0x05, BX
+	XORQ    BX, AX
+	ADDQ    DX, AX
 	MOVQ    (SP), DX
 	MOVQ    DX, BX
 	SHRQ    $0x08, BX
 	MOVBQZX BL, BX
 	ADDQ    BX, AX
 	XORQ    DX, AX
-	MOVQ    (SP), DX
-	CMPQ    AX, CX
-	JCS     foldprop46_3_skip
-	ADDQ    CX, DX
-
-foldprop46_3_skip:
-	MOVQ DX, (SP)
-	MOVQ 8(SP), DX
-	ANDQ $0x00000003, DX
-	MOVQ DX, 8(SP)
+	MOVQ    8(SP), DX
+	ANDQ    $0x00000003, DX
+	MOVQ    DX, 8(SP)
 
 foldprop46_4_loop:
 	MOVQ 8(SP), DX
@@ -8305,41 +8303,29 @@ foldprop46_4_loop:
 	JMP  foldprop46_4_loop
 
 foldprop46_4_done:
+	ROLQ $0x07, AX
+	XORQ CX, AX
 	MOVQ 24(SP), DX
-	MOVQ DX, (SP)
+	MOVQ DX, BX
+	ADDQ CX, BX
+	MOVQ BX, 24(SP)
 	ADDQ DX, AX
-	ANDQ $0x00000003, 24(SP)
-
-foldprop46_6_loop:
-	CMPQ 24(SP), $0x00000000
-	JEQ  foldprop46_6_done
-	ADDQ 24(SP), AX
-	ROLQ $0x03, AX
-	DECQ 24(SP)
-	JMP  foldprop46_6_loop
-
-foldprop46_6_done:
 	MOVQ 8(SP), DX
-	MOVQ $0x00000002, BX
-
-foldprop46_7_loop:
-	ADDQ DX, AX
-	MOVQ AX, 8(SP)
-	SUBQ $0x00000001, BX
-	JNE  foldprop46_7_loop
-	MOVQ AX, (SP)
+	MOVQ 24(SP), BX
+	MOVQ BX, 8(SP)
+	MOVQ DX, 24(SP)
 	MOVQ (SP), DX
-	MOVQ 16(SP), BX
-	MOVQ BX, (SP)
-	MOVQ DX, 16(SP)
-	MOVQ 8(SP), DX
-	MOVQ AX, 8(SP)
+	ADDQ DX, (SP)
 	ADDQ DX, AX
-	CMPQ CX, 16(SP)
-	JCS  foldprop46_11_skip
+	MOVQ (SP), DX
+	ADDQ CX, DX
+	MOVQ DX, (SP)
+	CMPQ CX, 8(SP)
+	JCS  foldprop46_10_skip
 	XORQ CX, AX
 
-foldprop46_11_skip:
+foldprop46_10_skip:
+	MOVQ AX, 16(SP)
 	MOVQ (SP), CX
 	ADDQ CX, AX
 	MOVQ 8(SP), CX
@@ -8353,97 +8339,95 @@ foldprop46_11_skip:
 
 // func FoldProp47(x uint64, y uint64) uint64
 TEXT ·FoldProp47(SB), NOSPLIT, $32-24
-	MOVQ    x+0(FP), AX
-	MOVQ    y+8(FP), CX
-	MOVQ    CX, DX
-	ADDQ    $0x00000000, DX
-	MOVQ    DX, (SP)
-	MOVQ    CX, DX
-	ADDQ    $0x00000001, DX
-	MOVQ    DX, 8(SP)
-	MOVQ    CX, DX
-	ADDQ    $0x00000002, DX
-	MOVQ    DX, 16(SP)
-	MOVQ    CX, DX
-	ADDQ    $0x00000003, DX
-	MOVQ    DX, 24(SP)
-	ROLQ    $0x07, AX
-	XORQ    CX, AX
+	MOVQ x+0(FP), AX
+	MOVQ y+8(FP), CX
+	MOVQ CX, DX
+	ADDQ $0x00000000, DX
+	MOVQ DX, (SP)
+	MOVQ CX, DX
+	ADDQ $0x00000001, DX
+	MOVQ DX, 8(SP)
+	MOVQ CX, DX
+	ADDQ $0x00000002, DX
+	MOVQ DX, 16(SP)
+	MOVQ CX, DX
+	ADDQ $0x00000003, DX
+	MOVQ DX, 24(SP)
+	MOVQ 8(SP), DX
+	ANDQ $0x00000003, DX
+	MOVQ DX, 8(SP)
+
+foldprop47_0_loop:
+	MOVQ 8(SP), DX
+	CMPQ DX, $0x00000000
+	JEQ  foldprop47_0_done
+	ADDQ DX, AX
+	ROLQ $0x03, AX
+	MOVQ 8(SP), DX
+	SUBQ $0x00000001, DX
+	MOVQ DX, 8(SP)
+	JMP  foldprop47_0_loop
+
+foldprop47_0_done:
 	MOVQ    16(SP), DX
+	ADDQ    CX, DX
+	MOVQ    DX, 16(SP)
+	MOVQ    8(SP), DX
 	MOVQ    DX, BX
 	SHRQ    $0x08, BX
 	MOVBQZX BL, BX
 	ADDQ    BX, AX
 	XORQ    DX, AX
+	MOVQ    $0x80000001, 8(SP)
 	MOVQ    8(SP), DX
-	ANDQ    $0x00000003, DX
-	MOVQ    DX, 8(SP)
+	ADDQ    DX, AX
+	ANDQ    $0x00000003, 8(SP)
 
-foldprop47_2_loop:
-	MOVQ 8(SP), DX
-	CMPQ DX, $0x00000000
-	JEQ  foldprop47_2_done
-	ADDQ DX, AX
+foldprop47_4_loop:
+	CMPQ 8(SP), $0x00000000
+	JEQ  foldprop47_4_done
+	ADDQ 8(SP), AX
 	ROLQ $0x03, AX
-	MOVQ 8(SP), DX
-	SUBQ $0x00000001, DX
-	MOVQ DX, 8(SP)
-	JMP  foldprop47_2_loop
+	DECQ 8(SP)
+	JMP  foldprop47_4_loop
 
-foldprop47_2_done:
-	MOVQ 8(SP), DX
-	ANDQ $0x00000003, DX
-	MOVQ DX, 8(SP)
-
-foldprop47_3_loop:
-	MOVQ 8(SP), DX
-	CMPQ DX, $0x00000000
-	JEQ  foldprop47_3_done
-	ADDQ DX, AX
-	ROLQ $0x03, AX
-	MOVQ 8(SP), DX
-	SUBQ $0x00000001, DX
-	MOVQ DX, 8(SP)
-	JMP  foldprop47_3_loop
-
-foldprop47_3_done:
-	CMPQ CX, 8(SP)
-	JCS  foldprop47_4_skip
-	XORQ CX, AX
-
-foldprop47_4_skip:
-	ROLQ $0x07, AX
-	XORQ CX, AX
-	MOVQ (SP), CX
-	MOVQ 16(SP), DX
-	MOVQ DX, (SP)
-	MOVQ CX, 16(SP)
-	MOVQ AX, 24(SP)
+foldprop47_4_done:
+	MOVQ 24(SP), DX
+	ADDQ CX, DX
+	MOVQ DX, 24(SP)
+	ADDQ AX, (SP)
+	MOVQ 24(SP), CX
+	ADDQ CX, 24(SP)
+	ADDQ CX, AX
 	MOVQ 8(SP), CX
 	MOVQ $0x00000002, DX
 
 foldprop47_8_loop:
-	MOVQ    AX, 8(SP)
-	ADDQ    DX, AX
-	SUBQ    $0x00000001, DX
-	JNE     foldprop47_8_loop
-	ADDQ    CX, AX
-	MOVQ    16(SP), CX
-	MOVQ    CX, DX
-	SHRQ    $0x08, DX
-	MOVBQZX DL, DX
-	ADDQ    DX, AX
-	XORQ    CX, AX
-	MOVQ    (SP), CX
-	MOVQ    $0x00000002, DX
-
-foldprop47_10_loop:
-	MOVQ AX, (SP)
-	ADDQ DX, AX
-	SUBQ $0x00000001, DX
-	JNE  foldprop47_10_loop
 	ADDQ CX, AX
 	MOVQ AX, 8(SP)
+	SUBQ $0x00000001, DX
+	JNE  foldprop47_8_loop
+	MOVQ 16(SP), CX
+	MOVQ 16(SP), DX
+	ROLQ $0x09, DX
+	ADDQ CX, DX
+	XORQ DX, AX
+	ANDQ $0x00000003, (SP)
+
+foldprop47_10_loop:
+	CMPQ (SP), $0x00000000
+	JEQ  foldprop47_10_done
+	ADDQ (SP), AX
+	ROLQ $0x03, AX
+	DECQ (SP)
+	JMP  foldprop47_10_loop
+
+foldprop47_10_done:
+	MOVQ 8(SP), CX
+	MOVQ 8(SP), DX
+	ROLQ $0x09, DX
+	ADDQ CX, DX
+	XORQ DX, AX
 	MOVQ (SP), CX
 	ADDQ CX, AX
 	MOVQ 8(SP), CX
@@ -8472,52 +8456,70 @@ TEXT ·FoldProp48(SB), NOSPLIT, $32-24
 	ADDQ $0x00000003, DX
 	MOVQ DX, 24(SP)
 	MOVQ 16(SP), DX
-	ADDQ CX, DX
-	MOVQ DX, 16(SP)
-	MOVQ $0x80000003, 24(SP)
-	MOVQ 24(SP), DX
-	ADDQ DX, AX
-	MOVQ 16(SP), DX
-	CMPQ AX, CX
-	JCS  foldprop48_2_skip
-	ADDQ CX, DX
+	MOVQ $0x00000002, BX
 
-foldprop48_2_skip:
-	MOVQ    DX, 16(SP)
-	MOVQ    8(SP), DX
-	MOVQ    24(SP), BX
-	MOVQ    BX, 8(SP)
-	MOVQ    DX, 24(SP)
-	MOVQ    24(SP), DX
-	MOVQ    DX, (SP)
-	ADDQ    DX, AX
-	MOVQ    8(SP), DX
-	MOVQ    AX, 8(SP)
-	ADDQ    DX, AX
-	MOVQ    24(SP), DX
-	MOVQ    DX, BX
-	SHRQ    $0x08, BX
-	MOVBQZX BL, BX
-	ADDQ    BX, AX
-	XORQ    DX, AX
-	MOVQ    8(SP), DX
-	MOVQ    $0x00000002, BX
-
-foldprop48_7_loop:
-	MOVQ AX, 8(SP)
+foldprop48_0_loop:
+	MOVQ AX, 16(SP)
 	ADDQ BX, AX
 	SUBQ $0x00000001, BX
-	JNE  foldprop48_7_loop
+	JNE  foldprop48_0_loop
 	ADDQ DX, AX
-	CMPQ CX, 8(SP)
-	JCS  foldprop48_8_skip
-	XORQ CX, AX
+	ANDQ $0x00000003, 24(SP)
 
-foldprop48_8_skip:
+foldprop48_1_loop:
+	CMPQ 24(SP), $0x00000000
+	JEQ  foldprop48_1_done
+	ADDQ 24(SP), AX
+	ROLQ $0x03, AX
+	DECQ 24(SP)
+	JMP  foldprop48_1_loop
+
+foldprop48_1_done:
+	ANDQ $0x00000003, 16(SP)
+
+foldprop48_2_loop:
+	CMPQ 16(SP), $0x00000000
+	JEQ  foldprop48_2_done
+	ADDQ 16(SP), AX
+	ROLQ $0x03, AX
+	DECQ 16(SP)
+	JMP  foldprop48_2_loop
+
+foldprop48_2_done:
+	MOVQ 8(SP), DX
+	CMPQ AX, CX
+	JCS  foldprop48_3_skip
+	ADDQ CX, DX
+
+foldprop48_3_skip:
+	MOVQ DX, 8(SP)
+	MOVQ $0x00000002, DX
+
+foldprop48_4_loop:
+	MOVQ 24(SP), BX
+	ADDQ BX, AX
+	MOVQ CX, BX
+	ADDQ AX, BX
+	SUBQ $0x00000001, DX
+	JNE  foldprop48_4_loop
+	MOVQ BX, 24(SP)
+	MOVQ 8(SP), DX
+	ADDQ CX, DX
+	MOVQ DX, 8(SP)
+	MOVQ CX, DX
+	CMPQ AX, CX
+	JCS  foldprop48_6_skip
+	MOVQ 24(SP), DX
+
+foldprop48_6_skip:
+	ADDQ DX, AX
+	ADDQ AX, 8(SP)
+	MOVQ 8(SP), DX
+	MOVQ 24(SP), BX
+	MOVQ BX, 8(SP)
+	MOVQ DX, 24(SP)
 	MOVQ 16(SP), DX
-	MOVQ DX, BX
-	ADDQ CX, BX
-	MOVQ BX, 16(SP)
+	MOVQ AX, 16(SP)
 	ADDQ DX, AX
 	MOVQ CX, DX
 	CMPQ AX, CX
@@ -8526,11 +8528,8 @@ foldprop48_8_skip:
 
 foldprop48_10_skip:
 	ADDQ DX, AX
-	MOVQ 8(SP), CX
-	MOVQ CX, DX
-	SHLQ $0x05, DX
-	XORQ DX, AX
-	ADDQ CX, AX
+	ROLQ $0x07, AX
+	XORQ CX, AX
 	MOVQ (SP), CX
 	ADDQ CX, AX
 	MOVQ 8(SP), CX
@@ -8544,65 +8543,60 @@ foldprop48_10_skip:
 
 // func FoldProp49(x uint64, y uint64) uint64
 TEXT ·FoldProp49(SB), NOSPLIT, $32-24
-	MOVQ x+0(FP), AX
-	MOVQ y+8(FP), CX
-	MOVQ CX, DX
-	ADDQ $0x00000000, DX
-	MOVQ DX, (SP)
-	MOVQ CX, DX
-	ADDQ $0x00000001, DX
-	MOVQ DX, 8(SP)
-	MOVQ CX, DX
-	ADDQ $0x00000002, DX
-	MOVQ DX, 16(SP)
-	MOVQ CX, DX
-	ADDQ $0x00000003, DX
+	MOVQ    x+0(FP), AX
+	MOVQ    y+8(FP), CX
+	MOVQ    CX, DX
+	ADDQ    $0x00000000, DX
+	MOVQ    DX, (SP)
+	MOVQ    CX, DX
+	ADDQ    $0x00000001, DX
+	MOVQ    DX, 8(SP)
+	MOVQ    CX, DX
+	ADDQ    $0x00000002, DX
+	MOVQ    DX, 16(SP)
+	MOVQ    CX, DX
+	ADDQ    $0x00000003, DX
+	MOVQ    DX, 24(SP)
+	MOVQ    16(SP), DX
+	ADDQ    DX, 16(SP)
+	ADDQ    DX, AX
+	MOVQ    8(SP), DX
+	MOVQ    DX, BX
+	SHRQ    $0x08, BX
+	MOVBQZX BL, BX
+	ADDQ    BX, AX
+	XORQ    DX, AX
+	ROLQ    $0x07, AX
+	XORQ    CX, AX
+	MOVQ    AX, 8(SP)
+	MOVQ    24(SP), DX
+	MOVQ    DX, BX
+	SHLQ    $0x05, BX
+	XORQ    BX, AX
+	ADDQ    DX, AX
+	MOVQ    (SP), DX
+	MOVQ    DX, BX
+	SHRQ    $0x08, BX
+	MOVBQZX BL, BX
+	ADDQ    BX, AX
+	XORQ    DX, AX
+	MOVQ    24(SP), DX
+	ADDQ    DX, 24(SP)
+	ADDQ    DX, AX
+	ROLQ    $0x07, AX
+	XORQ    CX, AX
+	MOVQ    24(SP), DX
+	CMPQ    AX, CX
+	JCS     foldprop49_8_skip
+	ADDQ    CX, DX
+
+foldprop49_8_skip:
 	MOVQ DX, 24(SP)
-	MOVQ 16(SP), DX
-	MOVQ $0x00000002, BX
-
-foldprop49_0_loop:
-	ADDQ DX, AX
-	MOVQ AX, 16(SP)
-	SUBQ $0x00000001, BX
-	JNE  foldprop49_0_loop
-	MOVQ 8(SP), DX
-	ANDQ $0x00000003, DX
-	MOVQ DX, 8(SP)
-
-foldprop49_1_loop:
-	MOVQ 8(SP), DX
-	CMPQ DX, $0x00000000
-	JEQ  foldprop49_1_done
-	ADDQ DX, AX
-	ROLQ $0x03, AX
-	MOVQ 8(SP), DX
-	SUBQ $0x00000001, DX
-	MOVQ DX, 8(SP)
-	JMP  foldprop49_1_loop
-
-foldprop49_1_done:
-	MOVQ  $0x80000003, 24(SP)
-	MOVQ  24(SP), DX
-	ADDQ  DX, AX
-	TESTQ AX, 8(SP)
-	JEQ   foldprop49_3_skip
-	ADDQ  CX, AX
-
-foldprop49_3_skip:
-	MOVQ 24(SP), DX
-	MOVQ DX, (SP)
-	ADDQ DX, AX
 	MOVQ (SP), DX
-	ADDQ CX, DX
-	MOVQ DX, (SP)
-	ADDQ AX, 24(SP)
-	ROLQ $0x07, AX
-	XORQ CX, AX
-	ADDQ AX, 24(SP)
-	MOVQ $0x80000000, (SP)
-	MOVQ (SP), CX
-	ADDQ CX, AX
+	MOVQ DX, BX
+	ADDQ CX, BX
+	MOVQ BX, (SP)
+	ADDQ DX, AX
 	ANDQ $0x00000003, 24(SP)
 
 foldprop49_10_loop:
@@ -8614,14 +8608,17 @@ foldprop49_10_loop:
 	JMP  foldprop49_10_loop
 
 foldprop49_10_done:
-	MOVQ 8(SP), CX
-	MOVQ $0x00000002, DX
+	ANDQ $0x00000003, 8(SP)
 
 foldprop49_11_loop:
-	ADDQ CX, AX
-	MOVQ AX, 8(SP)
-	SUBQ $0x00000001, DX
-	JNE  foldprop49_11_loop
+	CMPQ 8(SP), $0x00000000
+	JEQ  foldprop49_11_done
+	ADDQ 8(SP), AX
+	ROLQ $0x03, AX
+	DECQ 8(SP)
+	JMP  foldprop49_11_loop
+
+foldprop49_11_done:
 	MOVQ (SP), CX
 	ADDQ CX, AX
 	MOVQ 8(SP), CX
@@ -8649,62 +8646,176 @@ TEXT ·FoldProp50(SB), NOSPLIT, $32-24
 	MOVQ CX, DX
 	ADDQ $0x00000003, DX
 	MOVQ DX, 24(SP)
+	MOVQ CX, DX
+	CMPQ AX, CX
+	JCS  foldprop50_0_skip
 	MOVQ 24(SP), DX
-	MOVQ $0x00000002, BX
 
-foldprop50_0_loop:
-	MOVQ AX, 24(SP)
-	ADDQ BX, AX
-	SUBQ $0x00000001, BX
-	JNE  foldprop50_0_loop
+foldprop50_0_skip:
 	ADDQ DX, AX
-	ADDQ AX, 16(SP)
-	MOVQ 24(SP), DX
-	MOVQ $0x00000002, BX
+	ANDQ $0x00000003, 16(SP)
 
-foldprop50_2_loop:
-	MOVQ    AX, 24(SP)
-	ADDQ    BX, AX
-	SUBQ    $0x00000001, BX
-	JNE     foldprop50_2_loop
-	ADDQ    DX, AX
+foldprop50_1_loop:
+	CMPQ 16(SP), $0x00000000
+	JEQ  foldprop50_1_done
+	ADDQ 16(SP), AX
+	ROLQ $0x03, AX
+	DECQ 16(SP)
+	JMP  foldprop50_1_loop
+
+foldprop50_1_done:
+	CMPQ CX, 24(SP)
+	JCS  foldprop50_2_skip
+	XORQ CX, AX
+
+foldprop50_2_skip:
+	MOVQ 8(SP), DX
+	ADDQ DX, 8(SP)
+	ADDQ DX, AX
+	ANDQ $0x00000003, (SP)
+
+foldprop50_4_loop:
+	CMPQ (SP), $0x00000000
+	JEQ  foldprop50_4_done
+	ADDQ (SP), AX
+	ROLQ $0x03, AX
+	DECQ (SP)
+	JMP  foldprop50_4_loop
+
+foldprop50_4_done:
+	MOVQ CX, DX
+	CMPQ AX, CX
+	JCS  foldprop50_5_skip
+	MOVQ (SP), DX
+
+foldprop50_5_skip:
+	ADDQ DX, AX
+	MOVQ 16(SP), DX
+	ANDQ $0x00000003, DX
+	MOVQ DX, 16(SP)
+
+foldprop50_6_loop:
+	MOVQ 16(SP), DX
+	CMPQ DX, $0x00000000
+	JEQ  foldprop50_6_done
+	ADDQ DX, AX
+	ROLQ $0x03, AX
+	MOVQ 16(SP), DX
+	SUBQ $0x00000001, DX
+	MOVQ DX, 16(SP)
+	JMP  foldprop50_6_loop
+
+foldprop50_6_done:
+	MOVQ 16(SP), DX
+	CMPQ AX, CX
+	JCS  foldprop50_7_skip
+	ADDQ CX, DX
+
+foldprop50_7_skip:
+	MOVQ DX, 16(SP)
+	MOVQ 16(SP), DX
+	MOVQ 16(SP), BX
+	ROLQ $0x09, BX
+	ADDQ DX, BX
+	XORQ BX, AX
+	MOVQ 16(SP), DX
+	ADDQ DX, 16(SP)
+	ADDQ DX, AX
+	MOVQ (SP), DX
+	ANDQ $0x00000003, DX
+	MOVQ DX, (SP)
+
+foldprop50_10_loop:
+	MOVQ (SP), DX
+	CMPQ DX, $0x00000000
+	JEQ  foldprop50_10_done
+	ADDQ DX, AX
+	ROLQ $0x03, AX
+	MOVQ (SP), DX
+	SUBQ $0x00000001, DX
+	MOVQ DX, (SP)
+	JMP  foldprop50_10_loop
+
+foldprop50_10_done:
+	MOVQ CX, DX
+	CMPQ AX, CX
+	JCS  foldprop50_11_skip
+	MOVQ 16(SP), DX
+
+foldprop50_11_skip:
+	ADDQ DX, AX
+	MOVQ (SP), CX
+	ADDQ CX, AX
+	MOVQ 8(SP), CX
+	ADDQ CX, AX
+	MOVQ 16(SP), CX
+	ADDQ CX, AX
+	MOVQ 24(SP), CX
+	ADDQ CX, AX
+	MOVQ AX, ret+16(FP)
+	RET
+
+// func FoldProp51(x uint64, y uint64) uint64
+TEXT ·FoldProp51(SB), NOSPLIT, $32-24
+	MOVQ x+0(FP), AX
+	MOVQ y+8(FP), CX
+	MOVQ CX, DX
+	ADDQ $0x00000000, DX
+	MOVQ DX, (SP)
+	MOVQ CX, DX
+	ADDQ $0x00000001, DX
+	MOVQ DX, 8(SP)
+	MOVQ CX, DX
+	ADDQ $0x00000002, DX
+	MOVQ DX, 16(SP)
+	MOVQ CX, DX
+	ADDQ $0x00000003, DX
+	MOVQ DX, 24(SP)
+	CMPQ CX, 24(SP)
+	JCS  foldprop51_0_skip
+	XORQ CX, AX
+
+foldprop51_0_skip:
+	MOVQ 24(SP), DX
+	MOVQ AX, 24(SP)
+	ADDQ DX, AX
+	MOVQ (SP), DX
+	MOVQ DX, 8(SP)
+	ADDQ DX, AX
+	MOVQ AX, 8(SP)
+	MOVQ 8(SP), DX
+	CMPQ AX, CX
+	JCS  foldprop51_4_skip
+	ADDQ CX, DX
+
+foldprop51_4_skip:
+	MOVQ DX, 8(SP)
+	ROLQ $0x07, AX
+	XORQ CX, AX
+	CMPQ CX, 16(SP)
+	JCS  foldprop51_6_skip
+	XORQ CX, AX
+
+foldprop51_6_skip:
+	MOVQ    8(SP), CX
 	MOVQ    8(SP), DX
-	MOVQ    AX, 8(SP)
-	ADDQ    DX, AX
-	MOVQ    (SP), DX
-	ADDQ    DX, (SP)
-	ADDQ    DX, AX
-	MOVQ    (SP), DX
-	MOVQ    DX, BX
-	SHLQ    $0x05, BX
-	XORQ    BX, AX
-	ADDQ    DX, AX
-	MOVQ    16(SP), DX
-	MOVQ    16(SP), BX
-	ROLQ    $0x09, BX
-	ADDQ    DX, BX
-	XORQ    BX, AX
-	MOVQ    16(SP), DX
-	MOVQ    DX, BX
-	SHRQ    $0x08, BX
-	MOVBQZX BL, BX
-	ADDQ    BX, AX
+	ROLQ    $0x09, DX
+	ADDQ    CX, DX
 	XORQ    DX, AX
-	MOVQ    16(SP), DX
-	MOVQ    16(SP), BX
-	ROLQ    $0x09, BX
-	ADDQ    DX, BX
-	XORQ    BX, AX
-	MOVQ    $0x80000002, 16(SP)
-	MOVQ    16(SP), DX
-	ADDQ    DX, AX
-	MOVQ    (SP), DX
-	MOVQ    DX, BX
-	ADDQ    CX, BX
-	MOVQ    BX, (SP)
-	ADDQ    DX, AX
-	MOVQ    $0x80000002, 16(SP)
+	ADDQ    AX, 8(SP)
 	MOVQ    16(SP), CX
+	ADDQ    CX, 16(SP)
+	ADDQ    CX, AX
+	MOVQ    8(SP), CX
+	MOVQ    CX, DX
+	SHRQ    $0x08, DX
+	MOVBQZX DL, DX
+	ADDQ    DX, AX
+	XORQ    CX, AX
+	MOVQ    16(SP), CX
+	MOVQ    CX, DX
+	SHLQ    $0x05, DX
+	XORQ    DX, AX
 	ADDQ    CX, AX
 	MOVQ    (SP), CX
 	ADDQ    CX, AX
@@ -8715,102 +8826,6 @@ foldprop50_2_loop:
 	MOVQ    24(SP), CX
 	ADDQ    CX, AX
 	MOVQ    AX, ret+16(FP)
-	RET
-
-// func FoldProp51(x uint64, y uint64) uint64
-TEXT ·FoldProp51(SB), NOSPLIT, $32-24
-	MOVQ  x+0(FP), AX
-	MOVQ  y+8(FP), CX
-	MOVQ  CX, DX
-	ADDQ  $0x00000000, DX
-	MOVQ  DX, (SP)
-	MOVQ  CX, DX
-	ADDQ  $0x00000001, DX
-	MOVQ  DX, 8(SP)
-	MOVQ  CX, DX
-	ADDQ  $0x00000002, DX
-	MOVQ  DX, 16(SP)
-	MOVQ  CX, DX
-	ADDQ  $0x00000003, DX
-	MOVQ  DX, 24(SP)
-	TESTQ AX, 24(SP)
-	JEQ   foldprop51_0_skip
-	ADDQ  CX, AX
-
-foldprop51_0_skip:
-	MOVQ 24(SP), DX
-	CMPQ AX, CX
-	JCS  foldprop51_1_skip
-	ADDQ CX, DX
-
-foldprop51_1_skip:
-	MOVQ DX, 24(SP)
-	MOVQ (SP), DX
-	MOVQ DX, 8(SP)
-	ADDQ DX, AX
-	MOVQ 8(SP), DX
-	MOVQ DX, BX
-	SHLQ $0x05, BX
-	XORQ BX, AX
-	ADDQ DX, AX
-	MOVQ $0x00000002, DX
-
-foldprop51_4_loop:
-	MOVQ 8(SP), BX
-	ADDQ BX, AX
-	MOVQ CX, BX
-	ADDQ AX, BX
-	SUBQ $0x00000001, DX
-	JNE  foldprop51_4_loop
-	MOVQ BX, 8(SP)
-	MOVQ $0x00000002, DX
-
-foldprop51_5_loop:
-	MOVQ 8(SP), BX
-	ADDQ BX, AX
-	MOVQ CX, BX
-	ADDQ AX, BX
-	SUBQ $0x00000001, DX
-	JNE  foldprop51_5_loop
-	MOVQ BX, 8(SP)
-	MOVQ 16(SP), DX
-	MOVQ (SP), BX
-	MOVQ BX, 16(SP)
-	MOVQ DX, (SP)
-	MOVQ 8(SP), DX
-	MOVQ DX, BX
-	SHLQ $0x05, BX
-	XORQ BX, AX
-	ADDQ DX, AX
-	MOVQ 8(SP), DX
-	MOVQ 8(SP), BX
-	ROLQ $0x09, BX
-	ADDQ DX, BX
-	XORQ BX, AX
-	CMPQ CX, 16(SP)
-	JCS  foldprop51_9_skip
-	XORQ CX, AX
-
-foldprop51_9_skip:
-	MOVQ CX, DX
-	CMPQ AX, CX
-	JCS  foldprop51_10_skip
-	MOVQ 8(SP), DX
-
-foldprop51_10_skip:
-	ADDQ DX, AX
-	MOVQ 16(SP), CX
-	ADDQ CX, 16(SP)
-	ADDQ CX, AX
-	MOVQ (SP), CX
-	ADDQ CX, AX
-	MOVQ 8(SP), CX
-	ADDQ CX, AX
-	MOVQ 16(SP), CX
-	ADDQ CX, AX
-	MOVQ 24(SP), CX
-	ADDQ CX, AX
-	MOVQ AX, ret+16(FP)
 	RET
 
 // func FoldProp52(x uint64, y uint64) uint64
@@ -8834,70 +8849,66 @@ TEXT ·FoldProp52(SB), NOSPLIT, $32-24
 	XORQ CX, AX
 
 foldprop52_0_skip:
-	MOVQ  $0x80000000, (SP)
-	MOVQ  (SP), DX
-	ADDQ  DX, AX
-	MOVQ  8(SP), DX
-	MOVQ  8(SP), BX
-	ROLQ  $0x09, BX
-	ADDQ  DX, BX
-	XORQ  BX, AX
-	NEGQ  8(SP)
-	NOTQ  16(SP)
-	TESTQ AX, (SP)
-	JEQ   foldprop52_4_skip
-	ADDQ  CX, AX
-
-foldprop52_4_skip:
 	MOVQ (SP), DX
-	MOVQ 16(SP), BX
-	MOVQ BX, (SP)
-	MOVQ DX, 16(SP)
+	MOVQ $0x00000002, BX
+
+foldprop52_1_loop:
+	ADDQ DX, AX
+	MOVQ AX, (SP)
+	SUBQ $0x00000001, BX
+	JNE  foldprop52_1_loop
+	CMPQ CX, 8(SP)
+	JCS  foldprop52_2_skip
+	XORQ CX, AX
+
+foldprop52_2_skip:
 	MOVQ 8(SP), DX
-	ANDQ $0x00000003, DX
-	MOVQ DX, 8(SP)
+	MOVQ DX, BX
+	SHLQ $0x05, BX
+	XORQ BX, AX
+	ADDQ DX, AX
+	MOVQ AX, (SP)
+	MOVQ (SP), DX
+	CMPQ AX, CX
+	JCS  foldprop52_5_skip
+	ADDQ CX, DX
+
+foldprop52_5_skip:
+	MOVQ DX, (SP)
+	MOVQ 8(SP), DX
+	MOVQ $0x00000002, BX
 
 foldprop52_6_loop:
-	MOVQ 8(SP), DX
-	CMPQ DX, $0x00000000
-	JEQ  foldprop52_6_done
+	MOVQ AX, 8(SP)
+	ADDQ BX, AX
+	SUBQ $0x00000001, BX
+	JNE  foldprop52_6_loop
 	ADDQ DX, AX
-	ROLQ $0x03, AX
-	MOVQ 8(SP), DX
-	SUBQ $0x00000001, DX
-	MOVQ DX, 8(SP)
-	JMP  foldprop52_6_loop
+	ADDQ AX, 24(SP)
+	MOVQ (SP), DX
+	MOVQ $0x00000002, BX
 
-foldprop52_6_done:
-	TESTQ AX, 24(SP)
-	JEQ   foldprop52_7_skip
-	ADDQ  CX, AX
-
-foldprop52_7_skip:
-	MOVQ    (SP), CX
-	MOVQ    CX, DX
-	SHRQ    $0x08, DX
-	MOVBQZX DL, DX
-	ADDQ    DX, AX
-	XORQ    CX, AX
-	MOVQ    (SP), CX
-	MOVQ    (SP), DX
-	ROLQ    $0x09, DX
-	ADDQ    CX, DX
-	XORQ    DX, AX
-	MOVQ    16(SP), CX
-	MOVQ    $0x00000002, DX
-
-foldprop52_10_loop:
-	MOVQ AX, 16(SP)
+foldprop52_8_loop:
+	MOVQ AX, (SP)
+	ADDQ BX, AX
+	SUBQ $0x00000001, BX
+	JNE  foldprop52_8_loop
 	ADDQ DX, AX
-	SUBQ $0x00000001, DX
-	JNE  foldprop52_10_loop
-	ADDQ CX, AX
+	MOVQ (SP), DX
+	CMPQ AX, CX
+	JCS  foldprop52_9_skip
+	ADDQ CX, DX
+
+foldprop52_9_skip:
+	MOVQ DX, (SP)
+	MOVQ 16(SP), DX
+	MOVQ DX, BX
+	ADDQ CX, BX
+	MOVQ BX, 16(SP)
+	ADDQ DX, AX
 	MOVQ 8(SP), CX
-	MOVQ 24(SP), DX
-	MOVQ DX, 8(SP)
-	MOVQ CX, 24(SP)
+	MOVQ CX, 16(SP)
+	ADDQ CX, AX
 	MOVQ (SP), CX
 	ADDQ CX, AX
 	MOVQ 8(SP), CX
@@ -8925,42 +8936,45 @@ TEXT ·FoldProp53(SB), NOSPLIT, $32-24
 	MOVQ CX, DX
 	ADDQ $0x00000003, DX
 	MOVQ DX, 24(SP)
-	ADDQ AX, 8(SP)
 	MOVQ 8(SP), DX
-	MOVQ 24(SP), BX
-	MOVQ BX, 8(SP)
-	MOVQ DX, 24(SP)
-	MOVQ 24(SP), DX
-	ANDQ $0x00000003, DX
-	MOVQ DX, 24(SP)
+	MOVQ DX, BX
+	SHLQ $0x05, BX
+	XORQ BX, AX
+	ADDQ DX, AX
+	MOVQ CX, DX
+	CMPQ AX, CX
+	JCS  foldprop53_1_skip
+	MOVQ 8(SP), DX
+
+foldprop53_1_skip:
+	ADDQ DX, AX
+	ANDQ $0x00000003, 24(SP)
 
 foldprop53_2_loop:
-	MOVQ 24(SP), DX
-	CMPQ DX, $0x00000000
+	CMPQ 24(SP), $0x00000000
 	JEQ  foldprop53_2_done
-	ADDQ DX, AX
+	ADDQ 24(SP), AX
 	ROLQ $0x03, AX
-	MOVQ 24(SP), DX
-	SUBQ $0x00000001, DX
-	MOVQ DX, 24(SP)
+	DECQ 24(SP)
 	JMP  foldprop53_2_loop
 
 foldprop53_2_done:
-	MOVQ AX, 8(SP)
 	MOVQ 8(SP), DX
-	MOVQ DX, 16(SP)
+	MOVQ DX, BX
+	SHLQ $0x05, BX
+	XORQ BX, AX
 	ADDQ DX, AX
+	ADDQ AX, 8(SP)
+	MOVQ CX, DX
+	CMPQ AX, CX
+	JCS  foldprop53_5_skip
 	MOVQ 8(SP), DX
-	MOVQ $0x00000002, BX
 
-foldprop53_5_loop:
+foldprop53_5_skip:
 	ADDQ DX, AX
-	MOVQ AX, 8(SP)
-	SUBQ $0x00000001, BX
-	JNE  foldprop53_5_loop
-	ADDQ AX, 16(SP)
+	MOVQ AX, 16(SP)
 	MOVQ (SP), DX
-	ADDQ DX, (SP)
+	MOVQ AX, (SP)
 	ADDQ DX, AX
 	MOVQ 8(SP), DX
 	ANDQ $0x00000003, DX
@@ -8978,30 +8992,32 @@ foldprop53_8_loop:
 	JMP  foldprop53_8_loop
 
 foldprop53_8_done:
-	MOVQ (SP), DX
-	CMPQ AX, CX
-	JCS  foldprop53_9_skip
-	ADDQ CX, DX
+	MOVQ $0x00000002, DX
 
-foldprop53_9_skip:
-	MOVQ DX, (SP)
-	MOVQ 24(SP), CX
-	MOVQ 8(SP), DX
-	MOVQ DX, 24(SP)
-	MOVQ CX, 8(SP)
-	MOVQ (SP), CX
-	MOVQ 16(SP), DX
-	MOVQ DX, (SP)
-	MOVQ CX, 16(SP)
-	MOVQ (SP), CX
-	ADDQ CX, AX
-	MOVQ 8(SP), CX
-	ADDQ CX, AX
-	MOVQ 16(SP), CX
-	ADDQ CX, AX
-	MOVQ 24(SP), CX
-	ADDQ CX, AX
-	MOVQ AX, ret+16(FP)
+foldprop53_9_loop:
+	MOVQ    (SP), BX
+	ADDQ    BX, AX
+	MOVQ    CX, BX
+	ADDQ    AX, BX
+	SUBQ    $0x00000001, DX
+	JNE     foldprop53_9_loop
+	MOVQ    BX, (SP)
+	MOVQ    AX, 24(SP)
+	MOVQ    (SP), CX
+	MOVQ    CX, DX
+	SHRQ    $0x08, DX
+	MOVBQZX DL, DX
+	ADDQ    DX, AX
+	XORQ    CX, AX
+	MOVQ    (SP), CX
+	ADDQ    CX, AX
+	MOVQ    8(SP), CX
+	ADDQ    CX, AX
+	MOVQ    16(SP), CX
+	ADDQ    CX, AX
+	MOVQ    24(SP), CX
+	ADDQ    CX, AX
+	MOVQ    AX, ret+16(FP)
 	RET
 
 // func FoldProp54(x uint64, y uint64) uint64
@@ -9020,70 +9036,97 @@ TEXT ·FoldProp54(SB), NOSPLIT, $32-24
 	MOVQ CX, DX
 	ADDQ $0x00000003, DX
 	MOVQ DX, 24(SP)
-	MOVQ $0x80000000, (SP)
 	MOVQ (SP), DX
-	ADDQ DX, AX
-	MOVQ 24(SP), DX
-	ADDQ CX, DX
-	MOVQ DX, 24(SP)
-	MOVQ 16(SP), DX
-	MOVQ 16(SP), BX
-	ROLQ $0x09, BX
-	ADDQ DX, BX
-	XORQ BX, AX
-	MOVQ 16(SP), DX
 	MOVQ $0x00000002, BX
 
-foldprop54_3_loop:
-	MOVQ AX, 16(SP)
+foldprop54_0_loop:
+	ADDQ DX, AX
+	MOVQ AX, (SP)
+	SUBQ $0x00000001, BX
+	JNE  foldprop54_0_loop
+	MOVQ 24(SP), DX
+	MOVQ $0x00000002, BX
+
+foldprop54_1_loop:
+	MOVQ AX, 24(SP)
 	ADDQ BX, AX
 	SUBQ $0x00000001, BX
+	JNE  foldprop54_1_loop
+	ADDQ DX, AX
+	MOVQ 16(SP), DX
+	ADDQ DX, 16(SP)
+	ADDQ DX, AX
+	MOVQ $0x00000002, DX
+
+foldprop54_3_loop:
+	MOVQ 16(SP), BX
+	ADDQ BX, AX
+	MOVQ CX, BX
+	ADDQ AX, BX
+	SUBQ $0x00000001, DX
 	JNE  foldprop54_3_loop
-	ADDQ DX, AX
-	MOVQ CX, DX
-	CMPQ AX, CX
-	JCS  foldprop54_4_skip
+	MOVQ BX, 16(SP)
 	MOVQ 16(SP), DX
-
-foldprop54_4_skip:
-	ADDQ DX, AX
-	NEGQ 24(SP)
-	NOTQ (SP)
-	ANDQ $0x00000003, (SP)
-
-foldprop54_6_loop:
-	CMPQ (SP), $0x00000000
-	JEQ  foldprop54_6_done
-	ADDQ (SP), AX
-	ROLQ $0x03, AX
-	DECQ (SP)
-	JMP  foldprop54_6_loop
-
-foldprop54_6_done:
-	NEGQ 24(SP)
-	NOTQ (SP)
-	ANDQ $0x00000003, 24(SP)
-
-foldprop54_8_loop:
-	CMPQ 24(SP), $0x00000000
-	JEQ  foldprop54_8_done
-	ADDQ 24(SP), AX
-	ROLQ $0x03, AX
-	DECQ 24(SP)
-	JMP  foldprop54_8_loop
-
-foldprop54_8_done:
-	MOVQ 16(SP), DX
-	ADDQ CX, DX
-	MOVQ DX, 16(SP)
-	MOVQ 24(SP), DX
-	MOVQ AX, 24(SP)
-	ADDQ DX, AX
-	MOVQ 8(SP), DX
 	MOVQ DX, BX
 	ADDQ CX, BX
-	MOVQ BX, 8(SP)
+	MOVQ BX, 16(SP)
 	ADDQ DX, AX
+	MOVQ 24(SP), DX
+	MOVQ $0x00000002, BX
+
+foldprop54_5_loop:
+	MOVQ AX, 24(SP)
+	ADDQ BX, AX
+	SUBQ $0x00000001, BX
+	JNE  foldprop54_5_loop
+	ADDQ DX, AX
+	MOVQ $0x00000002, DX
+
+foldprop54_6_loop:
+	MOVQ (SP), BX
+	ADDQ BX, AX
+	MOVQ CX, BX
+	ADDQ AX, BX
+	SUBQ $0x00000001, DX
+	JNE  foldprop54_6_loop
+	MOVQ BX, (SP)
+	MOVQ 24(SP), CX
+	MOVQ 8(SP), DX
+	MOVQ DX, 24(SP)
+	MOVQ CX, 8(SP)
+	MOVQ 24(SP), CX
+	ADDQ CX, 24(SP)
+	ADDQ CX, AX
+	ANDQ $0x00000003, 16(SP)
+
+foldprop54_9_loop:
+	CMPQ 16(SP), $0x00000000
+	JEQ  foldprop54_9_done
+	ADDQ 16(SP), AX
+	ROLQ $0x03, AX
+	DECQ 16(SP)
+	JMP  foldprop54_9_loop
+
+foldprop54_9_done:
+	MOVQ 24(SP), CX
+	ANDQ $0x00000003, CX
+	MOVQ CX, 24(SP)
+
+foldprop54_10_loop:
+	MOVQ 24(SP), CX
+	CMPQ CX, $0x00000000
+	JEQ  foldprop54_10_done
+	ADDQ CX, AX
+	ROLQ $0x03, AX
+	MOVQ 24(SP), CX
+	SUBQ $0x00000001, CX
+	MOVQ CX, 24(SP)
+	JMP  foldprop54_10_loop
+
+foldprop54_10_done:
+	MOVQ 8(SP), CX
+	ADDQ CX, 8(SP)
+	ADDQ CX, AX
 	MOVQ (SP), CX
 	ADDQ CX, AX
 	MOVQ 8(SP), CX
@@ -9097,87 +9140,76 @@ foldprop54_8_done:
 
 // func FoldProp55(x uint64, y uint64) uint64
 TEXT ·FoldProp55(SB), NOSPLIT, $32-24
-	MOVQ x+0(FP), AX
-	MOVQ y+8(FP), CX
-	MOVQ CX, DX
-	ADDQ $0x00000000, DX
-	MOVQ DX, (SP)
-	MOVQ CX, DX
-	ADDQ $0x00000001, DX
-	MOVQ DX, 8(SP)
-	MOVQ CX, DX
-	ADDQ $0x00000002, DX
-	MOVQ DX, 16(SP)
-	MOVQ CX, DX
-	ADDQ $0x00000003, DX
-	MOVQ DX, 24(SP)
-	MOVQ $0x00000002, DX
-
-foldprop55_0_loop:
-	MOVQ 8(SP), BX
-	ADDQ BX, AX
-	MOVQ CX, BX
-	ADDQ AX, BX
-	SUBQ $0x00000001, DX
-	JNE  foldprop55_0_loop
-	MOVQ BX, 8(SP)
-	MOVQ (SP), DX
-	MOVQ $0x00000002, BX
-
-foldprop55_1_loop:
-	ADDQ DX, AX
-	MOVQ AX, (SP)
-	SUBQ $0x00000001, BX
-	JNE  foldprop55_1_loop
-	CMPQ CX, 24(SP)
-	JCS  foldprop55_2_skip
-	XORQ CX, AX
-
-foldprop55_2_skip:
+	MOVQ    x+0(FP), AX
+	MOVQ    y+8(FP), CX
+	MOVQ    CX, DX
+	ADDQ    $0x00000000, DX
+	MOVQ    DX, (SP)
+	MOVQ    CX, DX
+	ADDQ    $0x00000001, DX
+	MOVQ    DX, 8(SP)
+	MOVQ    CX, DX
+	ADDQ    $0x00000002, DX
+	MOVQ    DX, 16(SP)
+	MOVQ    CX, DX
+	ADDQ    $0x00000003, DX
+	MOVQ    DX, 24(SP)
+	ROLQ    $0x07, AX
+	XORQ    CX, AX
+	MOVQ    (SP), DX
+	ADDQ    CX, DX
+	MOVQ    DX, (SP)
+	MOVQ    24(SP), DX
+	ADDQ    DX, 24(SP)
+	ADDQ    DX, AX
+	MOVQ    8(SP), DX
+	MOVQ    DX, BX
+	ADDQ    CX, BX
+	MOVQ    BX, 8(SP)
+	ADDQ    DX, AX
+	MOVQ    24(SP), DX
+	MOVQ    DX, BX
+	SHLQ    $0x05, BX
+	XORQ    BX, AX
+	ADDQ    DX, AX
 	MOVQ    8(SP), DX
 	MOVQ    DX, BX
 	SHRQ    $0x08, BX
 	MOVBQZX BL, BX
 	ADDQ    BX, AX
 	XORQ    DX, AX
-	MOVQ    24(SP), DX
-	MOVQ    8(SP), BX
-	MOVQ    BX, 24(SP)
-	MOVQ    DX, 8(SP)
-	MOVQ    8(SP), DX
-	ADDQ    CX, DX
-	MOVQ    DX, 8(SP)
-	MOVQ    8(SP), DX
-	CMPQ    AX, CX
+	CMPQ    CX, 8(SP)
 	JCS     foldprop55_6_skip
-	ADDQ    CX, DX
+	XORQ    CX, AX
 
 foldprop55_6_skip:
-	MOVQ DX, 8(SP)
+	ADDQ AX, (SP)
 	MOVQ (SP), DX
-	MOVQ $0x00000002, BX
-
-foldprop55_7_loop:
+	MOVQ DX, BX
+	ADDQ CX, BX
+	MOVQ BX, (SP)
 	ADDQ DX, AX
-	MOVQ AX, (SP)
-	SUBQ $0x00000001, BX
-	JNE  foldprop55_7_loop
-	MOVQ (SP), DX
-	CMPQ AX, CX
-	JCS  foldprop55_8_skip
-	ADDQ CX, DX
+	MOVQ 24(SP), DX
+	ANDQ $0x00000003, DX
+	MOVQ DX, 24(SP)
 
-foldprop55_8_skip:
-	MOVQ DX, (SP)
-	CMPQ CX, 24(SP)
-	JCS  foldprop55_9_skip
+foldprop55_9_loop:
+	MOVQ 24(SP), DX
+	CMPQ DX, $0x00000000
+	JEQ  foldprop55_9_done
+	ADDQ DX, AX
+	ROLQ $0x03, AX
+	MOVQ 24(SP), DX
+	SUBQ $0x00000001, DX
+	MOVQ DX, 24(SP)
+	JMP  foldprop55_9_loop
+
+foldprop55_9_done:
+	MOVQ 8(SP), DX
+	MOVQ AX, 8(SP)
+	ADDQ DX, AX
+	ROLQ $0x07, AX
 	XORQ CX, AX
-
-foldprop55_9_skip:
-	MOVQ 8(SP), CX
-	MOVQ AX, 8(SP)
-	ADDQ CX, AX
-	MOVQ AX, 8(SP)
 	MOVQ (SP), CX
 	ADDQ CX, AX
 	MOVQ 8(SP), CX
@@ -9206,70 +9238,64 @@ TEXT ·FoldProp56(SB), NOSPLIT, $32-24
 	ADDQ $0x00000003, DX
 	MOVQ DX, 24(SP)
 	MOVQ (SP), DX
-	CMPQ AX, CX
-	JCS  foldprop56_0_skip
 	ADDQ CX, DX
-
-foldprop56_0_skip:
 	MOVQ DX, (SP)
-	CMPQ CX, 8(SP)
-	JCS  foldprop56_1_skip
-	XORQ CX, AX
-
-foldprop56_1_skip:
-	TESTQ AX, (SP)
-	JEQ   foldprop56_2_skip
-	ADDQ  CX, AX
-
-foldprop56_2_skip:
-	ANDQ $0x00000003, 16(SP)
-
-foldprop56_3_loop:
-	CMPQ 16(SP), $0x00000000
-	JEQ  foldprop56_3_done
-	ADDQ 16(SP), AX
-	ROLQ $0x03, AX
-	DECQ 16(SP)
-	JMP  foldprop56_3_loop
-
-foldprop56_3_done:
-	NEGQ (SP)
-	NOTQ 8(SP)
-	MOVQ (SP), DX
-	MOVQ AX, (SP)
-	ADDQ DX, AX
+	MOVQ $0x80000001, 8(SP)
 	MOVQ 8(SP), DX
-	MOVQ DX, BX
-	SHLQ $0x05, BX
-	XORQ BX, AX
 	ADDQ DX, AX
-	ANDQ $0x00000003, 16(SP)
-
-foldprop56_7_loop:
-	CMPQ 16(SP), $0x00000000
-	JEQ  foldprop56_7_done
-	ADDQ 16(SP), AX
-	ROLQ $0x03, AX
-	DECQ 16(SP)
-	JMP  foldprop56_7_loop
-
-foldprop56_7_done:
 	ROLQ $0x07, AX
 	XORQ CX, AX
-	CMPQ CX, (SP)
-	JCS  foldprop56_9_skip
+	ROLQ $0x07, AX
 	XORQ CX, AX
+	MOVQ CX, DX
+	CMPQ AX, CX
+	JCS  foldprop56_4_skip
+	MOVQ (SP), DX
+
+foldprop56_4_skip:
+	ADDQ DX, AX
+	MOVQ (SP), DX
+	MOVQ $0x00000002, BX
+
+foldprop56_5_loop:
+	MOVQ AX, (SP)
+	ADDQ BX, AX
+	SUBQ $0x00000001, BX
+	JNE  foldprop56_5_loop
+	ADDQ DX, AX
+	MOVQ 8(SP), DX
+	ADDQ DX, 8(SP)
+	ADDQ DX, AX
+	ADDQ AX, 16(SP)
+	MOVQ $0x80000003, 24(SP)
+	MOVQ 24(SP), DX
+	ADDQ DX, AX
+	MOVQ CX, DX
+	CMPQ AX, CX
+	JCS  foldprop56_9_skip
+	MOVQ (SP), DX
 
 foldprop56_9_skip:
-	MOVQ (SP), CX
-	MOVQ CX, DX
-	SHLQ $0x05, DX
-	XORQ DX, AX
-	ADDQ CX, AX
+	ADDQ DX, AX
+	ANDQ $0x00000003, (SP)
+
+foldprop56_10_loop:
+	CMPQ (SP), $0x00000000
+	JEQ  foldprop56_10_done
+	ADDQ (SP), AX
+	ROLQ $0x03, AX
+	DECQ (SP)
+	JMP  foldprop56_10_loop
+
+foldprop56_10_done:
 	MOVQ 8(SP), CX
-	MOVQ CX, DX
-	SHLQ $0x05, DX
-	XORQ DX, AX
+	MOVQ $0x00000002, DX
+
+foldprop56_11_loop:
+	MOVQ AX, 8(SP)
+	ADDQ DX, AX
+	SUBQ $0x00000001, DX
+	JNE  foldprop56_11_loop
 	ADDQ CX, AX
 	MOVQ (SP), CX
 	ADDQ CX, AX
@@ -9284,78 +9310,97 @@ foldprop56_9_skip:
 
 // func FoldProp57(x uint64, y uint64) uint64
 TEXT ·FoldProp57(SB), NOSPLIT, $32-24
-	MOVQ    x+0(FP), AX
-	MOVQ    y+8(FP), CX
-	MOVQ    CX, DX
-	ADDQ    $0x00000000, DX
-	MOVQ    DX, (SP)
-	MOVQ    CX, DX
-	ADDQ    $0x00000001, DX
-	MOVQ    DX, 8(SP)
-	MOVQ    CX, DX
-	ADDQ    $0x00000002, DX
-	MOVQ    DX, 16(SP)
-	MOVQ    CX, DX
-	ADDQ    $0x00000003, DX
-	MOVQ    DX, 24(SP)
-	MOVQ    24(SP), DX
-	MOVQ    DX, BX
-	SHRQ    $0x08, BX
-	MOVBQZX BL, BX
-	ADDQ    BX, AX
-	XORQ    DX, AX
-	CMPQ    CX, 16(SP)
-	JCS     foldprop57_1_skip
-	XORQ    CX, AX
-
-foldprop57_1_skip:
-	CMPQ CX, (SP)
-	JCS  foldprop57_2_skip
-	XORQ CX, AX
-
-foldprop57_2_skip:
-	MOVQ 16(SP), DX
-	MOVQ DX, BX
-	ADDQ CX, BX
-	MOVQ BX, 16(SP)
-	ADDQ DX, AX
-	ADDQ AX, 8(SP)
-	ROLQ $0x07, AX
-	XORQ CX, AX
-	CMPQ CX, (SP)
-	JCS  foldprop57_6_skip
-	XORQ CX, AX
-
-foldprop57_6_skip:
-	MOVQ (SP), DX
-	MOVQ 16(SP), BX
-	MOVQ BX, (SP)
+	MOVQ x+0(FP), AX
+	MOVQ y+8(FP), CX
+	MOVQ CX, DX
+	ADDQ $0x00000000, DX
+	MOVQ DX, (SP)
+	MOVQ CX, DX
+	ADDQ $0x00000001, DX
+	MOVQ DX, 8(SP)
+	MOVQ CX, DX
+	ADDQ $0x00000002, DX
 	MOVQ DX, 16(SP)
-	MOVQ $0x00000002, DX
+	MOVQ CX, DX
+	ADDQ $0x00000003, DX
+	MOVQ DX, 24(SP)
+	MOVQ 24(SP), DX
+	MOVQ $0x00000002, BX
 
-foldprop57_8_loop:
-	MOVQ (SP), BX
-	ADDQ BX, AX
-	MOVQ CX, BX
-	ADDQ AX, BX
+foldprop57_0_loop:
+	ADDQ DX, AX
+	MOVQ AX, 24(SP)
+	SUBQ $0x00000001, BX
+	JNE  foldprop57_0_loop
+	MOVQ 16(SP), DX
+	ANDQ $0x00000003, DX
+	MOVQ DX, 16(SP)
+
+foldprop57_1_loop:
+	MOVQ 16(SP), DX
+	CMPQ DX, $0x00000000
+	JEQ  foldprop57_1_done
+	ADDQ DX, AX
+	ROLQ $0x03, AX
+	MOVQ 16(SP), DX
 	SUBQ $0x00000001, DX
-	JNE  foldprop57_8_loop
-	MOVQ BX, (SP)
+	MOVQ DX, 16(SP)
+	JMP  foldprop57_1_loop
+
+foldprop57_1_done:
+	MOVQ (SP), DX
+	MOVQ $0x00000002, BX
+
+foldprop57_2_loop:
+	ADDQ DX, AX
+	MOVQ AX, (SP)
+	SUBQ $0x00000001, BX
+	JNE  foldprop57_2_loop
 	MOVQ 16(SP), DX
 	CMPQ AX, CX
-	JCS  foldprop57_9_skip
+	JCS  foldprop57_3_skip
 	ADDQ CX, DX
 
-foldprop57_9_skip:
-	MOVQ  DX, 16(SP)
-	MOVQ  24(SP), DX
-	ADDQ  DX, 24(SP)
-	ADDQ  DX, AX
-	TESTQ AX, (SP)
-	JEQ   foldprop57_11_skip
-	ADDQ  CX, AX
+foldprop57_3_skip:
+	MOVQ DX, 16(SP)
+	ANDQ $0x00000003, 8(SP)
+
+foldprop57_4_loop:
+	CMPQ 8(SP), $0x00000000
+	JEQ  foldprop57_4_done
+	ADDQ 8(SP), AX
+	ROLQ $0x03, AX
+	DECQ 8(SP)
+	JMP  foldprop57_4_loop
+
+foldprop57_4_done:
+	MOVQ 24(SP), DX
+	ADDQ CX, DX
+	MOVQ DX, 24(SP)
+	MOVQ (SP), DX
+	ADDQ DX, (SP)
+	ADDQ DX, AX
+	MOVQ (SP), DX
+	ADDQ CX, DX
+	MOVQ DX, (SP)
+	MOVQ (SP), DX
+	MOVQ DX, BX
+	SHLQ $0x05, BX
+	XORQ BX, AX
+	ADDQ DX, AX
+	MOVQ $0x80000002, 16(SP)
+	MOVQ 16(SP), DX
+	ADDQ DX, AX
+	MOVQ $0x80000003, 24(SP)
+	MOVQ 24(SP), DX
+	ADDQ DX, AX
+	MOVQ (SP), DX
+	CMPQ AX, CX
+	JCS  foldprop57_11_skip
+	ADDQ CX, DX
 
 foldprop57_11_skip:
+	MOVQ DX, (SP)
 	MOVQ (SP), CX
 	ADDQ CX, AX
 	MOVQ 8(SP), CX
@@ -9383,82 +9428,66 @@ TEXT ·FoldProp58(SB), NOSPLIT, $32-24
 	MOVQ CX, DX
 	ADDQ $0x00000003, DX
 	MOVQ DX, 24(SP)
-	ANDQ $0x00000003, 8(SP)
-
-foldprop58_0_loop:
-	CMPQ 8(SP), $0x00000000
-	JEQ  foldprop58_0_done
-	ADDQ 8(SP), AX
-	ROLQ $0x03, AX
-	DECQ 8(SP)
-	JMP  foldprop58_0_loop
-
-foldprop58_0_done:
-	MOVQ 24(SP), DX
-	ADDQ DX, 24(SP)
-	ADDQ DX, AX
 	MOVQ 8(SP), DX
+	MOVQ AX, 8(SP)
+	ADDQ DX, AX
+	CMPQ CX, 24(SP)
+	JCS  foldprop58_1_skip
+	XORQ CX, AX
+
+foldprop58_1_skip:
+	CMPQ CX, 8(SP)
+	JCS  foldprop58_2_skip
+	XORQ CX, AX
+
+foldprop58_2_skip:
+	CMPQ CX, 16(SP)
+	JCS  foldprop58_3_skip
+	XORQ CX, AX
+
+foldprop58_3_skip:
+	MOVQ 16(SP), DX
 	MOVQ DX, BX
 	SHLQ $0x05, BX
 	XORQ BX, AX
 	ADDQ DX, AX
 	MOVQ 16(SP), DX
-	MOVQ DX, BX
-	ADDQ CX, BX
-	MOVQ BX, 16(SP)
-	ADDQ DX, AX
-	MOVQ 16(SP), DX
 	ANDQ $0x00000003, DX
 	MOVQ DX, 16(SP)
 
-foldprop58_4_loop:
+foldprop58_5_loop:
 	MOVQ 16(SP), DX
 	CMPQ DX, $0x00000000
-	JEQ  foldprop58_4_done
+	JEQ  foldprop58_5_done
 	ADDQ DX, AX
 	ROLQ $0x03, AX
 	MOVQ 16(SP), DX
 	SUBQ $0x00000001, DX
 	MOVQ DX, 16(SP)
-	JMP  foldprop58_4_loop
+	JMP  foldprop58_5_loop
 
-foldprop58_4_done:
+foldprop58_5_done:
+	MOVQ 8(SP), DX
+	MOVQ 24(SP), BX
+	MOVQ BX, 8(SP)
+	MOVQ DX, 24(SP)
+	MOVQ 16(SP), DX
+	MOVQ DX, 24(SP)
+	ADDQ DX, AX
+	MOVQ 16(SP), DX
+	MOVQ DX, BX
+	ADDQ CX, BX
+	MOVQ BX, 16(SP)
+	ADDQ DX, AX
+	MOVQ CX, DX
+	CMPQ AX, CX
+	JCS  foldprop58_9_skip
+	MOVQ 16(SP), DX
+
+foldprop58_9_skip:
+	ADDQ DX, AX
 	ADDQ AX, 16(SP)
-	MOVQ 8(SP), DX
-	ANDQ $0x00000003, DX
-	MOVQ DX, 8(SP)
-
-foldprop58_6_loop:
-	MOVQ 8(SP), DX
-	CMPQ DX, $0x00000000
-	JEQ  foldprop58_6_done
-	ADDQ DX, AX
-	ROLQ $0x03, AX
-	MOVQ 8(SP), DX
-	SUBQ $0x00000001, DX
-	MOVQ DX, 8(SP)
-	JMP  foldprop58_6_loop
-
-foldprop58_6_done:
-	MOVQ 16(SP), DX
-	MOVQ DX, BX
-	ADDQ CX, BX
-	MOVQ BX, 16(SP)
-	ADDQ DX, AX
-	NEGQ 16(SP)
-	NOTQ 24(SP)
 	MOVQ AX, 16(SP)
-	ADDQ AX, 16(SP)
-	MOVQ $0x00000002, DX
-
-foldprop58_11_loop:
-	MOVQ 16(SP), BX
-	ADDQ BX, AX
-	MOVQ CX, BX
-	ADDQ AX, BX
-	SUBQ $0x00000001, DX
-	JNE  foldprop58_11_loop
-	MOVQ BX, 16(SP)
 	MOVQ (SP), CX
 	ADDQ CX, AX
 	MOVQ 8(SP), CX
@@ -9472,186 +9501,110 @@ foldprop58_11_loop:
 
 // func FoldProp59(x uint64, y uint64) uint64
 TEXT ·FoldProp59(SB), NOSPLIT, $32-24
-	MOVQ x+0(FP), AX
-	MOVQ y+8(FP), CX
-	MOVQ CX, DX
-	ADDQ $0x00000000, DX
-	MOVQ DX, (SP)
-	MOVQ CX, DX
-	ADDQ $0x00000001, DX
-	MOVQ DX, 8(SP)
-	MOVQ CX, DX
-	ADDQ $0x00000002, DX
-	MOVQ DX, 16(SP)
-	MOVQ CX, DX
-	ADDQ $0x00000003, DX
-	MOVQ DX, 24(SP)
-	MOVQ (SP), DX
-	ANDQ $0x00000003, DX
-	MOVQ DX, (SP)
+	MOVQ    x+0(FP), AX
+	MOVQ    y+8(FP), CX
+	MOVQ    CX, DX
+	ADDQ    $0x00000000, DX
+	MOVQ    DX, (SP)
+	MOVQ    CX, DX
+	ADDQ    $0x00000001, DX
+	MOVQ    DX, 8(SP)
+	MOVQ    CX, DX
+	ADDQ    $0x00000002, DX
+	MOVQ    DX, 16(SP)
+	MOVQ    CX, DX
+	ADDQ    $0x00000003, DX
+	MOVQ    DX, 24(SP)
+	MOVQ    (SP), DX
+	MOVQ    DX, BX
+	SHRQ    $0x08, BX
+	MOVBQZX BL, BX
+	ADDQ    BX, AX
+	XORQ    DX, AX
+	MOVQ    (SP), DX
+	MOVQ    DX, BX
+	ADDQ    CX, BX
+	MOVQ    BX, (SP)
+	ADDQ    DX, AX
+	MOVQ    24(SP), DX
+	MOVQ    $0x00000002, BX
 
-foldprop59_0_loop:
-	MOVQ (SP), DX
-	CMPQ DX, $0x00000000
-	JEQ  foldprop59_0_done
-	ADDQ DX, AX
-	ROLQ $0x03, AX
-	MOVQ (SP), DX
-	SUBQ $0x00000001, DX
-	MOVQ DX, (SP)
-	JMP  foldprop59_0_loop
-
-foldprop59_0_done:
-	MOVQ (SP), DX
-	ADDQ CX, DX
-	MOVQ DX, (SP)
-	MOVQ $0x80000003, 24(SP)
-	MOVQ 24(SP), DX
-	ADDQ DX, AX
-	NEGQ 16(SP)
-	NOTQ 24(SP)
-	CMPQ CX, 24(SP)
-	JCS  foldprop59_4_skip
-	XORQ CX, AX
-
-foldprop59_4_skip:
-	ANDQ $0x00000003, 8(SP)
-
-foldprop59_5_loop:
-	CMPQ 8(SP), $0x00000000
-	JEQ  foldprop59_5_done
-	ADDQ 8(SP), AX
-	ROLQ $0x03, AX
-	DECQ 8(SP)
-	JMP  foldprop59_5_loop
-
-foldprop59_5_done:
+foldprop59_2_loop:
 	MOVQ AX, 24(SP)
+	ADDQ BX, AX
+	SUBQ $0x00000001, BX
+	JNE  foldprop59_2_loop
+	ADDQ DX, AX
+	MOVQ CX, DX
+	CMPQ AX, CX
+	JCS  foldprop59_3_skip
+	MOVQ 16(SP), DX
+
+foldprop59_3_skip:
+	ADDQ DX, AX
+	ROLQ $0x07, AX
+	XORQ CX, AX
+	MOVQ $0x80000001, 8(SP)
+	MOVQ 8(SP), DX
+	ADDQ DX, AX
+	MOVQ 24(SP), DX
+	MOVQ DX, BX
+	ADDQ CX, BX
+	MOVQ BX, 24(SP)
+	ADDQ DX, AX
 	MOVQ (SP), DX
 	MOVQ $0x00000002, BX
 
 foldprop59_7_loop:
+	ADDQ DX, AX
 	MOVQ AX, (SP)
-	ADDQ BX, AX
 	SUBQ $0x00000001, BX
 	JNE  foldprop59_7_loop
-	ADDQ DX, AX
+	MOVQ CX, DX
+	CMPQ AX, CX
+	JCS  foldprop59_8_skip
 	MOVQ 16(SP), DX
-	ADDQ DX, 16(SP)
+
+foldprop59_8_skip:
 	ADDQ DX, AX
 	MOVQ 24(SP), DX
-	CMPQ AX, CX
-	JCS  foldprop59_9_skip
-	ADDQ CX, DX
-
-foldprop59_9_skip:
+	ANDQ $0x00000003, DX
 	MOVQ DX, 24(SP)
-	MOVQ (SP), DX
-	MOVQ DX, BX
-	ADDQ CX, BX
-	MOVQ BX, (SP)
+
+foldprop59_9_loop:
+	MOVQ 24(SP), DX
+	CMPQ DX, $0x00000000
+	JEQ  foldprop59_9_done
 	ADDQ DX, AX
-	MOVQ (SP), CX
-	MOVQ (SP), DX
-	ROLQ $0x09, DX
-	ADDQ CX, DX
-	XORQ DX, AX
-	MOVQ (SP), CX
-	ADDQ CX, AX
-	MOVQ 8(SP), CX
-	ADDQ CX, AX
-	MOVQ 16(SP), CX
-	ADDQ CX, AX
-	MOVQ 24(SP), CX
-	ADDQ CX, AX
-	MOVQ AX, ret+16(FP)
+	ROLQ $0x03, AX
+	MOVQ 24(SP), DX
+	SUBQ $0x00000001, DX
+	MOVQ DX, 24(SP)
+	JMP  foldprop59_9_loop
+
+foldprop59_9_done:
+	MOVQ    (SP), DX
+	ADDQ    CX, DX
+	MOVQ    DX, (SP)
+	MOVQ    (SP), CX
+	MOVQ    CX, DX
+	SHRQ    $0x08, DX
+	MOVBQZX DL, DX
+	ADDQ    DX, AX
+	XORQ    CX, AX
+	MOVQ    (SP), CX
+	ADDQ    CX, AX
+	MOVQ    8(SP), CX
+	ADDQ    CX, AX
+	MOVQ    16(SP), CX
+	ADDQ    CX, AX
+	MOVQ    24(SP), CX
+	ADDQ    CX, AX
+	MOVQ    AX, ret+16(FP)
 	RET
 
 // func FoldProp60(x uint64, y uint64) uint64
 TEXT ·FoldProp60(SB), NOSPLIT, $32-24
-	MOVQ x+0(FP), AX
-	MOVQ y+8(FP), CX
-	MOVQ CX, DX
-	ADDQ $0x00000000, DX
-	MOVQ DX, (SP)
-	MOVQ CX, DX
-	ADDQ $0x00000001, DX
-	MOVQ DX, 8(SP)
-	MOVQ CX, DX
-	ADDQ $0x00000002, DX
-	MOVQ DX, 16(SP)
-	MOVQ CX, DX
-	ADDQ $0x00000003, DX
-	MOVQ DX, 24(SP)
-	MOVQ $0x80000002, 16(SP)
-	MOVQ 16(SP), DX
-	ADDQ DX, AX
-	MOVQ 16(SP), DX
-	ADDQ DX, 16(SP)
-	ADDQ DX, AX
-	MOVQ (SP), DX
-	ADDQ CX, DX
-	MOVQ DX, (SP)
-	MOVQ 16(SP), CX
-	MOVQ AX, 16(SP)
-	ADDQ CX, AX
-	MOVQ 24(SP), CX
-	ADDQ CX, 24(SP)
-	ADDQ CX, AX
-	MOVQ 8(SP), CX
-	MOVQ CX, 16(SP)
-	ADDQ CX, AX
-	MOVQ 24(SP), CX
-	MOVQ 24(SP), DX
-	ROLQ $0x09, DX
-	ADDQ CX, DX
-	XORQ DX, AX
-	MOVQ 16(SP), CX
-	MOVQ CX, DX
-	SHLQ $0x05, DX
-	XORQ DX, AX
-	ADDQ CX, AX
-	MOVQ 16(SP), CX
-	ANDQ $0x00000003, CX
-	MOVQ CX, 16(SP)
-
-foldprop60_8_loop:
-	MOVQ 16(SP), CX
-	CMPQ CX, $0x00000000
-	JEQ  foldprop60_8_done
-	ADDQ CX, AX
-	ROLQ $0x03, AX
-	MOVQ 16(SP), CX
-	SUBQ $0x00000001, CX
-	MOVQ CX, 16(SP)
-	JMP  foldprop60_8_loop
-
-foldprop60_8_done:
-	ADDQ AX, 8(SP)
-	MOVQ 16(SP), CX
-	MOVQ $0x00000002, DX
-
-foldprop60_10_loop:
-	ADDQ CX, AX
-	MOVQ AX, 16(SP)
-	SUBQ $0x00000001, DX
-	JNE  foldprop60_10_loop
-	MOVQ 8(SP), CX
-	ADDQ CX, 8(SP)
-	ADDQ CX, AX
-	MOVQ (SP), CX
-	ADDQ CX, AX
-	MOVQ 8(SP), CX
-	ADDQ CX, AX
-	MOVQ 16(SP), CX
-	ADDQ CX, AX
-	MOVQ 24(SP), CX
-	ADDQ CX, AX
-	MOVQ AX, ret+16(FP)
-	RET
-
-// func FoldProp61(x uint64, y uint64) uint64
-TEXT ·FoldProp61(SB), NOSPLIT, $32-24
 	MOVQ    x+0(FP), AX
 	MOVQ    y+8(FP), CX
 	MOVQ    CX, DX
@@ -9672,73 +9625,149 @@ TEXT ·FoldProp61(SB), NOSPLIT, $32-24
 	MOVBQZX BL, BX
 	ADDQ    BX, AX
 	XORQ    DX, AX
-	MOVQ    24(SP), DX
-	MOVQ    DX, BX
-	ADDQ    CX, BX
-	MOVQ    BX, 24(SP)
+	MOVQ    16(SP), DX
+	MOVQ    AX, 16(SP)
 	ADDQ    DX, AX
 	MOVQ    (SP), DX
-	ANDQ    $0x00000003, DX
+	MOVQ    DX, BX
+	ADDQ    CX, BX
+	MOVQ    BX, (SP)
+	ADDQ    DX, AX
+	MOVQ    16(SP), DX
+	MOVQ    (SP), BX
+	MOVQ    BX, 16(SP)
 	MOVQ    DX, (SP)
+	MOVQ    24(SP), DX
+	MOVQ    $0x00000002, BX
 
-foldprop61_2_loop:
-	MOVQ (SP), DX
-	CMPQ DX, $0x00000000
-	JEQ  foldprop61_2_done
+foldprop60_4_loop:
 	ADDQ DX, AX
-	ROLQ $0x03, AX
-	MOVQ (SP), DX
-	SUBQ $0x00000001, DX
-	MOVQ DX, (SP)
-	JMP  foldprop61_2_loop
-
-foldprop61_2_done:
-	MOVQ 16(SP), DX
-	MOVQ DX, 24(SP)
-	ADDQ DX, AX
-	MOVQ 8(SP), DX
-	ADDQ DX, 8(SP)
-	ADDQ DX, AX
-	MOVQ 24(SP), DX
-	ANDQ $0x00000003, DX
-	MOVQ DX, 24(SP)
-
-foldprop61_5_loop:
-	MOVQ 24(SP), DX
-	CMPQ DX, $0x00000000
-	JEQ  foldprop61_5_done
-	ADDQ DX, AX
-	ROLQ $0x03, AX
-	MOVQ 24(SP), DX
-	SUBQ $0x00000001, DX
-	MOVQ DX, 24(SP)
-	JMP  foldprop61_5_loop
-
-foldprop61_5_done:
-	TESTQ AX, 16(SP)
-	JEQ   foldprop61_6_skip
-	ADDQ  CX, AX
-
-foldprop61_6_skip:
-	MOVQ AX, (SP)
+	MOVQ AX, 24(SP)
+	SUBQ $0x00000001, BX
+	JNE  foldprop60_4_loop
 	MOVQ CX, DX
 	CMPQ AX, CX
-	JCS  foldprop61_8_skip
+	JCS  foldprop60_5_skip
 	MOVQ 8(SP), DX
 
-foldprop61_8_skip:
+foldprop60_5_skip:
 	ADDQ DX, AX
-	MOVQ $0x80000001, 8(SP)
-	MOVQ 8(SP), DX
+	MOVQ $0x80000003, 24(SP)
+	MOVQ 24(SP), DX
 	ADDQ DX, AX
+	MOVQ 16(SP), DX
+	ANDQ $0x00000003, DX
+	MOVQ DX, 16(SP)
+
+foldprop60_7_loop:
+	MOVQ 16(SP), DX
+	CMPQ DX, $0x00000000
+	JEQ  foldprop60_7_done
+	ADDQ DX, AX
+	ROLQ $0x03, AX
+	MOVQ 16(SP), DX
+	SUBQ $0x00000001, DX
+	MOVQ DX, 16(SP)
+	JMP  foldprop60_7_loop
+
+foldprop60_7_done:
+	MOVQ    16(SP), DX
+	MOVQ    DX, BX
+	SHRQ    $0x08, BX
+	MOVBQZX BL, BX
+	ADDQ    BX, AX
+	XORQ    DX, AX
+	MOVQ    $0x80000001, 8(SP)
+	MOVQ    8(SP), DX
+	ADDQ    DX, AX
+	MOVQ    16(SP), DX
+	MOVQ    DX, BX
+	ADDQ    CX, BX
+	MOVQ    BX, 16(SP)
+	ADDQ    DX, AX
+	MOVQ    8(SP), CX
+	MOVQ    CX, DX
+	SHRQ    $0x08, DX
+	MOVBQZX DL, DX
+	ADDQ    DX, AX
+	XORQ    CX, AX
+	MOVQ    (SP), CX
+	ADDQ    CX, AX
+	MOVQ    8(SP), CX
+	ADDQ    CX, AX
+	MOVQ    16(SP), CX
+	ADDQ    CX, AX
+	MOVQ    24(SP), CX
+	ADDQ    CX, AX
+	MOVQ    AX, ret+16(FP)
+	RET
+
+// func FoldProp61(x uint64, y uint64) uint64
+TEXT ·FoldProp61(SB), NOSPLIT, $32-24
+	MOVQ x+0(FP), AX
+	MOVQ y+8(FP), CX
+	MOVQ CX, DX
+	ADDQ $0x00000000, DX
+	MOVQ DX, (SP)
+	MOVQ CX, DX
+	ADDQ $0x00000001, DX
+	MOVQ DX, 8(SP)
+	MOVQ CX, DX
+	ADDQ $0x00000002, DX
+	MOVQ DX, 16(SP)
+	MOVQ CX, DX
+	ADDQ $0x00000003, DX
+	MOVQ DX, 24(SP)
+	MOVQ AX, 16(SP)
+	MOVQ $0x80000003, 24(SP)
+	MOVQ 24(SP), DX
+	ADDQ DX, AX
+	ADDQ AX, (SP)
+	MOVQ 16(SP), DX
+	MOVQ (SP), BX
+	MOVQ BX, 16(SP)
+	MOVQ DX, (SP)
+	MOVQ CX, DX
+	CMPQ AX, CX
+	JCS  foldprop61_4_skip
 	MOVQ 8(SP), DX
+
+foldprop61_4_skip:
+	ADDQ DX, AX
+	MOVQ 24(SP), DX
+	MOVQ DX, BX
+	ADDQ CX, BX
+	MOVQ BX, 24(SP)
+	ADDQ DX, AX
+	MOVQ 16(SP), DX
 	MOVQ DX, BX
 	SHLQ $0x05, BX
 	XORQ BX, AX
 	ADDQ DX, AX
 	MOVQ (SP), DX
+	MOVQ DX, BX
+	ADDQ CX, BX
+	MOVQ BX, (SP)
+	ADDQ DX, AX
+	ROLQ $0x07, AX
+	XORQ CX, AX
+	MOVQ 8(SP), DX
 	ADDQ CX, DX
-	MOVQ DX, (SP)
+	MOVQ DX, 8(SP)
+	MOVQ 8(SP), CX
+	MOVQ $0x00000002, DX
+
+foldprop61_10_loop:
+	MOVQ AX, 8(SP)
+	ADDQ DX, AX
+	SUBQ $0x00000001, DX
+	JNE  foldprop61_10_loop
+	ADDQ CX, AX
+	MOVQ (SP), CX
+	MOVQ (SP), DX
+	ROLQ $0x09, DX
+	ADDQ CX, DX
+	XORQ DX, AX
 	MOVQ (SP), CX
 	ADDQ CX, AX
 	MOVQ 8(SP), CX
@@ -9766,159 +9795,62 @@ TEXT ·FoldProp62(SB), NOSPLIT, $32-24
 	MOVQ CX, DX
 	ADDQ $0x00000003, DX
 	MOVQ DX, 24(SP)
+	CMPQ CX, 16(SP)
+	JCS  foldprop62_0_skip
+	XORQ CX, AX
+
+foldprop62_0_skip:
+	MOVQ    (SP), DX
+	ADDQ    CX, DX
+	MOVQ    DX, (SP)
+	MOVQ    8(SP), DX
+	MOVQ    DX, BX
+	SHRQ    $0x08, BX
+	MOVBQZX BL, BX
+	ADDQ    BX, AX
+	XORQ    DX, AX
+	MOVQ    16(SP), DX
+	MOVQ    DX, BX
+	SHRQ    $0x08, BX
+	MOVBQZX BL, BX
+	ADDQ    BX, AX
+	XORQ    DX, AX
+	MOVQ    8(SP), DX
+	MOVQ    DX, 16(SP)
+	ADDQ    DX, AX
+	MOVQ    CX, DX
+	CMPQ    AX, CX
+	JCS     foldprop62_5_skip
+	MOVQ    16(SP), DX
+
+foldprop62_5_skip:
+	ADDQ DX, AX
+	MOVQ 24(SP), DX
+	MOVQ 8(SP), BX
+	MOVQ BX, 24(SP)
+	MOVQ DX, 8(SP)
+	MOVQ 16(SP), DX
+	ADDQ DX, 16(SP)
+	ADDQ DX, AX
+	MOVQ 8(SP), DX
+	MOVQ DX, BX
+	ADDQ CX, BX
+	MOVQ BX, 8(SP)
+	ADDQ DX, AX
 	MOVQ $0x00000002, DX
 
-foldprop62_0_loop:
-	MOVQ 16(SP), BX
+foldprop62_9_loop:
+	MOVQ 24(SP), BX
 	ADDQ BX, AX
 	MOVQ CX, BX
 	ADDQ AX, BX
 	SUBQ $0x00000001, DX
-	JNE  foldprop62_0_loop
-	MOVQ BX, 16(SP)
-	MOVQ (SP), DX
-	MOVQ DX, 8(SP)
-	ADDQ DX, AX
-	ANDQ $0x00000003, 8(SP)
-
-foldprop62_2_loop:
-	CMPQ 8(SP), $0x00000000
-	JEQ  foldprop62_2_done
-	ADDQ 8(SP), AX
-	ROLQ $0x03, AX
-	DECQ 8(SP)
-	JMP  foldprop62_2_loop
-
-foldprop62_2_done:
-	ROLQ $0x07, AX
-	XORQ CX, AX
-	MOVQ AX, 8(SP)
-	MOVQ 16(SP), DX
-	ANDQ $0x00000003, DX
-	MOVQ DX, 16(SP)
-
-foldprop62_5_loop:
-	MOVQ 16(SP), DX
-	CMPQ DX, $0x00000000
-	JEQ  foldprop62_5_done
-	ADDQ DX, AX
-	ROLQ $0x03, AX
-	MOVQ 16(SP), DX
-	SUBQ $0x00000001, DX
-	MOVQ DX, 16(SP)
-	JMP  foldprop62_5_loop
-
-foldprop62_5_done:
-	MOVQ 24(SP), DX
-	MOVQ $0x00000002, BX
-
-foldprop62_6_loop:
-	ADDQ    DX, AX
-	MOVQ    AX, 24(SP)
-	SUBQ    $0x00000001, BX
-	JNE     foldprop62_6_loop
-	MOVQ    16(SP), DX
-	MOVQ    DX, BX
-	SHRQ    $0x08, BX
-	MOVBQZX BL, BX
-	ADDQ    BX, AX
-	XORQ    DX, AX
-	MOVQ    8(SP), DX
-	ADDQ    CX, DX
-	MOVQ    DX, 8(SP)
-	MOVQ    24(SP), DX
-	MOVQ    8(SP), BX
-	MOVQ    BX, 24(SP)
-	MOVQ    DX, 8(SP)
-	MOVQ    24(SP), DX
-	MOVQ    DX, BX
-	ADDQ    CX, BX
-	MOVQ    BX, 24(SP)
-	ADDQ    DX, AX
-	MOVQ    24(SP), CX
-	ADDQ    CX, 24(SP)
-	ADDQ    CX, AX
-	MOVQ    (SP), CX
-	ADDQ    CX, AX
-	MOVQ    8(SP), CX
-	ADDQ    CX, AX
-	MOVQ    16(SP), CX
-	ADDQ    CX, AX
-	MOVQ    24(SP), CX
-	ADDQ    CX, AX
-	MOVQ    AX, ret+16(FP)
-	RET
-
-// func FoldProp63(x uint64, y uint64) uint64
-TEXT ·FoldProp63(SB), NOSPLIT, $32-24
-	MOVQ    x+0(FP), AX
-	MOVQ    y+8(FP), CX
-	MOVQ    CX, DX
-	ADDQ    $0x00000000, DX
-	MOVQ    DX, (SP)
-	MOVQ    CX, DX
-	ADDQ    $0x00000001, DX
-	MOVQ    DX, 8(SP)
-	MOVQ    CX, DX
-	ADDQ    $0x00000002, DX
-	MOVQ    DX, 16(SP)
-	MOVQ    CX, DX
-	ADDQ    $0x00000003, DX
-	MOVQ    DX, 24(SP)
-	MOVQ    AX, 24(SP)
-	ROLQ    $0x07, AX
-	XORQ    CX, AX
-	MOVQ    16(SP), DX
-	MOVQ    DX, BX
-	SHRQ    $0x08, BX
-	MOVBQZX BL, BX
-	ADDQ    BX, AX
-	XORQ    DX, AX
-	MOVQ    16(SP), DX
-	ADDQ    CX, DX
-	MOVQ    DX, 16(SP)
-	ROLQ    $0x07, AX
-	XORQ    CX, AX
-	ADDQ    AX, 8(SP)
-	MOVQ    8(SP), CX
-	MOVQ    $0x00000002, DX
-
-foldprop63_6_loop:
-	ADDQ    CX, AX
-	MOVQ    AX, 8(SP)
-	SUBQ    $0x00000001, DX
-	JNE     foldprop63_6_loop
-	MOVQ    (SP), CX
-	MOVQ    CX, DX
-	SHRQ    $0x08, DX
-	MOVBQZX DL, DX
-	ADDQ    DX, AX
-	XORQ    CX, AX
-	MOVQ    8(SP), CX
-	MOVQ    8(SP), DX
-	ROLQ    $0x09, DX
-	ADDQ    CX, DX
-	XORQ    DX, AX
-	MOVQ    AX, (SP)
-	MOVQ    24(SP), CX
-	MOVQ    $0x00000002, DX
-
-foldprop63_10_loop:
-	ADDQ CX, AX
+	JNE  foldprop62_9_loop
+	MOVQ BX, 24(SP)
+	MOVQ 24(SP), CX
 	MOVQ AX, 24(SP)
-	SUBQ $0x00000001, DX
-	JNE  foldprop63_10_loop
-	ANDQ $0x00000003, (SP)
-
-foldprop63_11_loop:
-	CMPQ (SP), $0x00000000
-	JEQ  foldprop63_11_done
-	ADDQ (SP), AX
-	ROLQ $0x03, AX
-	DECQ (SP)
-	JMP  foldprop63_11_loop
-
-foldprop63_11_done:
+	ADDQ CX, AX
+	ADDQ AX, 24(SP)
 	MOVQ (SP), CX
 	ADDQ CX, AX
 	MOVQ 8(SP), CX
@@ -9928,6 +9860,90 @@ foldprop63_11_done:
 	MOVQ 24(SP), CX
 	ADDQ CX, AX
 	MOVQ AX, ret+16(FP)
+	RET
+
+// func FoldProp63(x uint64, y uint64) uint64
+TEXT ·FoldProp63(SB), NOSPLIT, $32-24
+	MOVQ x+0(FP), AX
+	MOVQ y+8(FP), CX
+	MOVQ CX, DX
+	ADDQ $0x00000000, DX
+	MOVQ DX, (SP)
+	MOVQ CX, DX
+	ADDQ $0x00000001, DX
+	MOVQ DX, 8(SP)
+	MOVQ CX, DX
+	ADDQ $0x00000002, DX
+	MOVQ DX, 16(SP)
+	MOVQ CX, DX
+	ADDQ $0x00000003, DX
+	MOVQ DX, 24(SP)
+	MOVQ 24(SP), DX
+	ADDQ DX, 24(SP)
+	ADDQ DX, AX
+	MOVQ 8(SP), DX
+	ADDQ CX, DX
+	MOVQ DX, 8(SP)
+	ROLQ $0x07, AX
+	XORQ CX, AX
+	MOVQ 16(SP), DX
+	MOVQ DX, BX
+	SHLQ $0x05, BX
+	XORQ BX, AX
+	ADDQ DX, AX
+	MOVQ CX, DX
+	CMPQ AX, CX
+	JCS  foldprop63_4_skip
+	MOVQ 16(SP), DX
+
+foldprop63_4_skip:
+	ADDQ DX, AX
+	ROLQ $0x07, AX
+	XORQ CX, AX
+	MOVQ 8(SP), DX
+	MOVQ DX, BX
+	SHLQ $0x05, BX
+	XORQ BX, AX
+	ADDQ DX, AX
+	MOVQ CX, DX
+	CMPQ AX, CX
+	JCS  foldprop63_7_skip
+	MOVQ (SP), DX
+
+foldprop63_7_skip:
+	ADDQ DX, AX
+	MOVQ CX, DX
+	CMPQ AX, CX
+	JCS  foldprop63_8_skip
+	MOVQ 8(SP), DX
+
+foldprop63_8_skip:
+	ADDQ DX, AX
+	MOVQ $0x80000000, (SP)
+	MOVQ (SP), DX
+	ADDQ DX, AX
+	MOVQ CX, DX
+	CMPQ AX, CX
+	JCS  foldprop63_10_skip
+	MOVQ 24(SP), DX
+
+foldprop63_10_skip:
+	ADDQ    DX, AX
+	MOVQ    (SP), CX
+	MOVQ    CX, DX
+	SHRQ    $0x08, DX
+	MOVBQZX DL, DX
+	ADDQ    DX, AX
+	XORQ    CX, AX
+	MOVQ    (SP), CX
+	ADDQ    CX, AX
+	MOVQ    8(SP), CX
+	ADDQ    CX, AX
+	MOVQ    16(SP), CX
+	ADDQ    CX, AX
+	MOVQ    24(SP), CX
+	ADDQ    CX, AX
+	MOVQ    AX, ret+16(FP)
 	RET
 
 // func BtBranch(x uint64) uint64

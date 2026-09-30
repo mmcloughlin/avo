@@ -936,33 +936,6 @@ var FoldOps = []SlotOp{
 			return acc + old
 		},
 	},
-	{
-		Name: "NegNotSlots",
-		Emit: func(acc, y reg.GPVirtual, s [4]operand.Mem, k int, lbl string) {
-			build.NEGQ(s[k])
-			build.NOTQ(s[(k+1)%4])
-		},
-		Ref: func(acc, y uint64, s *[4]uint64, k int) uint64 {
-			s[k] = -s[k]
-			s[(k+1)%4] = ^s[(k+1)%4]
-			return acc
-		},
-	},
-	{
-		Name: "TestSlot",
-		Emit: func(acc, y reg.GPVirtual, s [4]operand.Mem, k int, lbl string) {
-			build.TESTQ(acc, s[k])
-			build.JEQ(operand.LabelRef(lbl + "_skip"))
-			build.ADDQ(y, acc)
-			build.Label(lbl + "_skip")
-		},
-		Ref: func(acc, y uint64, s *[4]uint64, k int) uint64 {
-			if acc&s[k] != 0 {
-				acc += y
-			}
-			return acc
-		},
-	},
 }
 
 // FoldProgram is SlotProgram for the FoldOps vocabulary.

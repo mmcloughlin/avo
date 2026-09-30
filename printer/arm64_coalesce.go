@@ -185,6 +185,16 @@ func coalesceSlots(nodes []ir.Node, slotReg map[int]string, excluded map[int]boo
 			w.ok = false // may carry a value from the caller
 		}
 	}
+	// Unreachable code is never renamed, so the validator, which only walks
+	// reachable instructions, checks everything that is.
+	reach := g.reachable()
+	for _, w := range webs {
+		for _, k := range w.mentions {
+			if !reach[k] {
+				w.ok = false
+			}
+		}
+	}
 
 	// Slot accesses. Promotion guarantees every access to a promoted slot is a
 	// slotEffect: a clean MOVQ load or store (a copy between the slot and a
@@ -486,6 +496,27 @@ func buildCFG(nodes []ir.Node) (g cfg, ok bool) {
 		}
 	}
 	return g, true
+}
+
+// reachable reports which instructions control can reach from the entry.
+func (g cfg) reachable() []bool {
+	seen := make([]bool, len(g.ins))
+	if len(g.ins) == 0 {
+		return seen
+	}
+	stack := []int{0}
+	seen[0] = true
+	for len(stack) > 0 {
+		k := stack[len(stack)-1]
+		stack = stack[:len(stack)-1]
+		for _, s := range g.succ[k] {
+			if !seen[s] {
+				seen[s] = true
+				stack = append(stack, s)
+			}
+		}
+	}
+	return seen
 }
 
 // reachingDefs solves reaching definitions for one variable whose definitions

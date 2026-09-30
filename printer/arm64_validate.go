@@ -27,7 +27,8 @@ import (
 //
 // It also rejects renaming at an instruction a cross-instruction fold rewrites,
 // renaming to anything but a promoted slot's register, renaming a family the
-// instruction does not name, and the two renamings that equal values do not make safe: two
+// instruction does not name, renaming in unreachable code (which the analysis
+// never visits), and the two renamings that equal values do not make safe: two
 // families named by one register in a non-copy instruction (lowerings assume
 // distinct x86 registers are distinct arm64 registers), and a renamed family
 // the instruction also touches implicitly (renaming reaches only explicit
@@ -79,6 +80,13 @@ func validateCoalesce(nodes []ir.Node, slotReg map[int]string, plan coalescePlan
 		return nil // move-only promotion; nothing here to check
 	}
 	n := len(g.ins)
+	reach := g.reachable()
+	for k := range g.ins {
+		if !reach[k] && plan[g.node[k]] != nil {
+			return fmt.Errorf("%s (instruction %d): renamed in unreachable code, which is not checked",
+				g.ins[k].Opcode, g.node[k])
+		}
+	}
 
 	// Variables: families 0-15, then promoted slots.
 	const nfam = 16

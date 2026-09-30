@@ -137,6 +137,16 @@ func TestCoalesceRules(t *testing.T) {
 			ctx.add(x86.MOVQ(s0, reg.RDX))
 			ctx.add(x86.ADDQ(reg.RDX, reg.RAX))
 		}, []int{famDX}, []int{famCX}},
+		{"unreachable code", func(ctx *fnBuilder, s0, s8 operand.Mem) {
+			ctx.add(x86.MOVQ(reg.RAX, s0))
+			ctx.add(x86.JMP(operand.LabelRef("done")))
+			ctx.add(x86.MOVQ(s0, reg.RCX))
+			ctx.add(x86.ADDQ(operand.U32(9), reg.RCX))
+			ctx.add(x86.MOVQ(reg.RCX, s0))
+			ctx.f.AddLabel("done")
+			ctx.add(x86.MOVQ(s0, reg.RDX))
+			ctx.add(x86.ADDQ(reg.RDX, reg.RAX))
+		}, []int{famDX}, []int{famCX}},
 		{"live around a back edge", func(ctx *fnBuilder, s0, s8 operand.Mem) {
 			ctx.add(x86.MOVQ(reg.RAX, s0))
 			ctx.add(x86.MOVQ(s0, reg.RCX))
@@ -281,6 +291,18 @@ func TestValidateCoalesceRejects(t *testing.T) {
 			p[c.at(loadCX)] = map[int]string{famCX: "R16"}
 			return p
 		}, "not a promoted slot's register"},
+		{"renamed in unreachable code", func(ctx *fnBuilder, s0, s8 operand.Mem) {
+			ctx.add(x86.MOVQ(reg.RAX, s0))
+			ctx.add(x86.JMP(operand.LabelRef("done")))
+			ctx.add(x86.MOVQ(s0, reg.RCX))
+			ctx.add(x86.MOVQ(reg.RCX, s0))
+			ctx.f.AddLabel("done")
+			ctx.add(x86.RET())
+		}, func(c coalesceCase) coalescePlan {
+			p := clonePlan(c.plan)
+			p[c.at(3)] = map[int]string{famCX: c.slotReg[0]}
+			return p
+		}, "unreachable"},
 		{"implicit operand renamed", func(ctx *fnBuilder, s0, s8 operand.Mem) {
 			ctx.add(x86.MOVQ(reg.RAX, s0))
 			ctx.add(x86.MOVQ(s0, reg.RCX))
