@@ -493,8 +493,8 @@ const ProgramLength = 12
 // SlotOp is one step of a frame-slot program. Four adjacent 8-byte frame
 // slots s[0..3] (one AllocLocal) hold state alongside acc; k picks the slot an
 // op works on and lbl is a label prefix unique to this step. The mix decides
-// which slots stack-slot promotion may keep in registers: whole-slot MOVQs
-// keep a slot eligible, and a read-modify-write or a narrower write disqualifies
+// which slots stack-slot promotion may keep in registers: whole-slot MOVQs and
+// 64-bit ALU operations keep a slot eligible, and a narrower write disqualifies
 // it, so different programs promote different subsets.
 type SlotOp struct {
 	Name string
@@ -598,7 +598,8 @@ const (
 )
 
 // FoldOps is a frame-slot vocabulary aimed at stack-slot coalescing: every
-// slot access is a whole-slot MOVQ, so all four slots stay promotable, and the
+// slot access is a whole-slot MOVQ or 64-bit ALU operation, so all four slots
+// stay promotable, and the
 // ops put temporaries in the shapes coalescing must fold (a read-modify-write
 // through a temporary, a copy chain, a slot-held loop counter across a back
 // edge) and the ones it must refuse (a temporary live across a store to its
@@ -877,6 +878,90 @@ var FoldOps = []SlotOp{
 			build.XORQ(t, acc) // keeps t live, so the copy stays a copy
 		},
 		Ref: func(acc, y uint64, s *[4]uint64, k int) uint64 { return (acc + s[k]>>8&0xff) ^ s[k] },
+	},
+	{
+		Name: "AddToSlot",
+		Emit: func(acc, y reg.GPVirtual, s [4]operand.Mem, k int, lbl string) { build.ADDQ(acc, s[k]) },
+		Ref:  func(acc, y uint64, s *[4]uint64, k int) uint64 { s[k] += acc; return acc },
+	},
+	{
+		// A loop counter kept in the slot and updated in place.
+		Name: "DecLoop",
+		Emit: func(acc, y reg.GPVirtual, s [4]operand.Mem, k int, lbl string) {
+			build.ANDQ(operand.U32(3), s[k])
+			build.Label(lbl + "_loop")
+			build.CMPQ(s[k], operand.U32(0))
+			build.JEQ(operand.LabelRef(lbl + "_done"))
+			build.ADDQ(s[k], acc)
+			build.ROLQ(operand.U8(3), acc)
+			build.DECQ(s[k])
+			build.JMP(operand.LabelRef(lbl + "_loop"))
+			build.Label(lbl + "_done")
+		},
+		Ref: func(acc, y uint64, s *[4]uint64, k int) uint64 {
+			for s[k] &= 3; s[k] != 0; s[k]-- {
+				acc = bits.RotateLeft64(acc+s[k], 3)
+			}
+			return acc
+		},
+	},
+	{
+		Name: "CmpSlotBranch",
+		Emit: func(acc, y reg.GPVirtual, s [4]operand.Mem, k int, lbl string) {
+			build.CMPQ(y, s[k])
+			build.JCS(operand.LabelRef(lbl + "_skip"))
+			build.XORQ(y, acc)
+			build.Label(lbl + "_skip")
+		},
+		Ref: func(acc, y uint64, s *[4]uint64, k int) uint64 {
+			if !(y < s[k]) {
+				acc ^= y
+			}
+			return acc
+		},
+	},
+	{
+		// A copy of the slot added back into it: coalescing the copy into
+		// the slot's register would name that register twice.
+		Name: "SlotSelfAdd",
+		Emit: func(acc, y reg.GPVirtual, s [4]operand.Mem, k int, lbl string) {
+			t := build.GP64()
+			build.MOVQ(s[k], t)
+			build.ADDQ(t, s[k])
+			build.ADDQ(t, acc)
+		},
+		Ref: func(acc, y uint64, s *[4]uint64, k int) uint64 {
+			old := s[k]
+			s[k] += old
+			return acc + old
+		},
+	},
+	{
+		Name: "NegNotSlots",
+		Emit: func(acc, y reg.GPVirtual, s [4]operand.Mem, k int, lbl string) {
+			build.NEGQ(s[k])
+			build.NOTQ(s[(k+1)%4])
+		},
+		Ref: func(acc, y uint64, s *[4]uint64, k int) uint64 {
+			s[k] = -s[k]
+			s[(k+1)%4] = ^s[(k+1)%4]
+			return acc
+		},
+	},
+	{
+		Name: "TestSlot",
+		Emit: func(acc, y reg.GPVirtual, s [4]operand.Mem, k int, lbl string) {
+			build.TESTQ(acc, s[k])
+			build.JEQ(operand.LabelRef(lbl + "_skip"))
+			build.ADDQ(y, acc)
+			build.Label(lbl + "_skip")
+		},
+		Ref: func(acc, y uint64, s *[4]uint64, k int) uint64 {
+			if acc&s[k] != 0 {
+				acc += y
+			}
+			return acc
+		},
 	},
 }
 

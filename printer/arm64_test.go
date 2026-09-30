@@ -896,11 +896,18 @@ func TestARM64PromotionRules(t *testing.T) {
 		{"imm store stays promotable", func(ctx *build.Context, s0, s8 operand.Mem) {
 			ctx.MOVQ(operand.I32(-5), s0)
 		}, 2},
-		{"rmw poisons its slot", func(ctx *build.Context, s0, s8 operand.Mem) {
+		{"64-bit rmw keeps its slot", func(ctx *build.Context, s0, s8 operand.Mem) {
 			ctx.ADDQ(reg.RAX, s0)
-		}, 1},
-		{"compare poisons its slot", func(ctx *build.Context, s0, s8 operand.Mem) {
+			ctx.DECQ(s0)
+		}, 2},
+		{"64-bit compare keeps its slot", func(ctx *build.Context, s0, s8 operand.Mem) {
 			ctx.CMPQ(s8, reg.RAX)
+		}, 2},
+		{"32-bit rmw poisons its slot", func(ctx *build.Context, s0, s8 operand.Mem) {
+			ctx.ADDL(reg.EAX, s0)
+		}, 1},
+		{"multiply from a slot poisons it", func(ctx *build.Context, s0, s8 operand.Mem) {
+			ctx.IMULQ(s8, reg.RAX)
 		}, 1},
 		{"narrow write inside a slot", func(ctx *build.Context, s0, s8 operand.Mem) {
 			ctx.MOVL(reg.EAX, s0.Offset(4))

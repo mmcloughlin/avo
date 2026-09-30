@@ -183,27 +183,29 @@ func coalesceSlots(nodes []ir.Node, slotReg map[int]string, excluded map[int]boo
 	}
 
 	// Slot accesses. Promotion guarantees every access to a promoted slot is a
-	// clean MOVQ, so each is a load into a register, or a store of a register
-	// or an immediate.
+	// slotEffect: a clean MOVQ load or store (a copy between the slot and a
+	// register, or an immediate store) or an ALU operation on the slot.
 	type slotAccess struct {
-		load  bool
-		other *web // the register side's web; nil for an immediate store
+		use, def bool
+		copyWeb  *web // the other side of a MOVQ copy; nil otherwise
 	}
 	access := make([]map[int]slotAccess, n) // instruction -> slot disp -> access
 	for k, ins := range g.ins {
-		d, clean := cleanSlotMove(ins)
-		if !clean {
+		d, use, def, ok := slotEffect(ins)
+		if !ok {
 			continue
 		}
 		if _, promoted := slotReg[d]; !promoted {
 			continue
 		}
-		src, dst := ins.Operands[0], ins.Operands[1]
-		var a slotAccess
-		if _, isSlot := frameSlot(src); isSlot {
-			a = slotAccess{load: true, other: mentionWeb[k][regFamily(dst)]}
-		} else if f := regFamily(src); f >= 0 {
-			a = slotAccess{other: mentionWeb[k][f]}
+		a := slotAccess{use: use, def: def}
+		if ins.Opcode == "MOVQ" {
+			src, dst := ins.Operands[0], ins.Operands[1]
+			if use {
+				a.copyWeb = mentionWeb[k][regFamily(dst)]
+			} else if f := regFamily(src); f >= 0 {
+				a.copyWeb = mentionWeb[k][f]
+			}
 		}
 		access[k] = map[int]slotAccess{d: a}
 	}
@@ -228,8 +230,8 @@ func coalesceSlots(nodes []ir.Node, slotReg map[int]string, excluded map[int]boo
 			return l
 		}
 		l := liveOut(g, func(k int) (use, kill bool) {
-			a, ok := access[k][d]
-			return ok && a.load, ok && !a.load
+			a := access[k][d]
+			return a.use, a.def
 		})
 		slotLive[d] = l
 		return l
@@ -261,7 +263,14 @@ func coalesceSlots(nodes []ir.Node, slotReg map[int]string, excluded map[int]boo
 		}
 		wl := liveOfWeb(w)
 		for k := 0; k < n; k++ {
-			if a, ok := access[k][s]; ok && !a.load && wl[k] && !isCopy(k, w, noSlot, nil, s) {
+			if a, ok := access[k][s]; ok && a.def && wl[k] && !isCopy(k, w, noSlot, nil, s) {
+				return true
+			}
+		}
+		// An ALU operation on the slot naming the web too would name one
+		// register twice.
+		for _, k := range w.mentions {
+			if a, ok := access[k][s]; ok && a.copyWeb == nil {
 				return true
 			}
 		}
@@ -300,13 +309,13 @@ func coalesceSlots(nodes []ir.Node, slotReg map[int]string, excluded map[int]boo
 	score := map[*web]map[int]int{}
 	for k := 0; k < n; k++ {
 		for d, a := range access[k] {
-			if a.other == nil || !a.other.ok {
+			if a.copyWeb == nil || !a.copyWeb.ok {
 				continue
 			}
-			if score[a.other] == nil {
-				score[a.other] = map[int]int{}
+			if score[a.copyWeb] == nil {
+				score[a.copyWeb] = map[int]int{}
 			}
-			score[a.other][d]++
+			score[a.copyWeb][d]++
 		}
 	}
 	for w, m := range score {

@@ -207,6 +207,59 @@ func cleanSlotMove(in *ir.Instruction) (disp int, clean bool) {
 	return 0, false
 }
 
+// slotALUOps are the 64-bit integer instructions whose frame-slot operand a
+// promoted register can stand in for: each reads exactly the slot's 8 bytes,
+// and writes them unless it only sets flags, with the same result on a
+// register as on memory.
+var slotALUOps = map[string]bool{
+	"ADDQ": true, "SUBQ": true, "ANDQ": true, "ORQ": true, "XORQ": true,
+	"CMPQ": true, "TESTQ": true,
+	"INCQ": true, "DECQ": true, "NEGQ": true, "NOTQ": true,
+}
+
+// aluSlotAccess reports whether in is one of slotALUOps whose only memory
+// operand is an 8-aligned frame slot, every other operand being a
+// general-purpose register or an immediate, and the slot's displacement.
+func aluSlotAccess(in *ir.Instruction) (disp int, ok bool) {
+	if !slotALUOps[in.Opcode] {
+		return 0, false
+	}
+	found := false
+	for _, op := range in.Operands {
+		if _, isMem := op.(operand.Mem); isMem {
+			d, isSlot := frameSlot(op)
+			if !isSlot || d%8 != 0 || found {
+				return 0, false
+			}
+			disp, found = d, true
+			continue
+		}
+		if _, isImm := op.(operand.Constant); !isImm && !isGPReg(op) {
+			return 0, false
+		}
+	}
+	return disp, found
+}
+
+// slotEffect is how in accesses a frame slot a promoted register can stand in
+// for: a clean MOVQ load (use) or store (def), or an aluSlotAccess (use, and
+// def unless the slot is only read). ok is false for any other instruction.
+func slotEffect(in *ir.Instruction) (disp int, use, def, ok bool) {
+	if d, clean := cleanSlotMove(in); clean {
+		_, load := frameSlot(in.Operands[0])
+		return d, load, !load, true
+	}
+	if d, alu := aluSlotAccess(in); alu {
+		for _, op := range in.Outputs {
+			if _, isMem := op.(operand.Mem); isMem {
+				def = true
+			}
+		}
+		return d, true, def, true
+	}
+	return 0, false, false, false
+}
+
 // frameAccessWidth is the number of bytes an integer x86 instruction reads or
 // writes through its memory operand, for the opcodes whose width is spelled by
 // their size suffix. ok is false for anything else (vector, string, and all
@@ -266,9 +319,11 @@ func (p *arm64) stackSlotPromotions(f *ir.Function) map[int]string {
 	type access struct {
 		disp, width int
 		clean       bool
+		weight      int
 	}
 	var accesses []access
-	for _, n := range f.Nodes {
+	depth := loopDepths(f.Nodes)
+	for idx, n := range f.Nodes {
 		in, ok := n.(*ir.Instruction)
 		if !ok {
 			continue
@@ -279,8 +334,8 @@ func (p *arm64) stackSlotPromotions(f *ir.Function) map[int]string {
 			// SP implicitly, so a later disp(SP) names different bytes.
 			return nil
 		}
-		if d, clean := cleanSlotMove(in); clean {
-			accesses = append(accesses, access{d, 8, true})
+		if d, _, _, clean := slotEffect(in); clean {
+			accesses = append(accesses, access{d, 8, true, 1 << (4 * min(depth[idx], 3))})
 			continue
 		}
 		for _, op := range in.Operands {
@@ -298,7 +353,7 @@ func (p *arm64) stackSlotPromotions(f *ir.Function) map[int]string {
 			if !known {
 				return nil
 			}
-			accesses = append(accesses, access{m.Disp, w, false})
+			accesses = append(accesses, access{m.Disp, w, false, 0})
 		}
 	}
 	// Outside [0, FrameBytes) disp(SP) is the return address or the caller's
@@ -313,11 +368,12 @@ func (p *arm64) stackSlotPromotions(f *ir.Function) map[int]string {
 	counts := map[int]int{}
 	for _, a := range accesses {
 		if a.clean {
-			counts[a.disp]++
+			counts[a.disp] += a.weight
 		}
 	}
-	// Rank eligible slots by reference count so the hottest win the scarce
-	// registers. Ties break by displacement for deterministic output.
+	// Rank eligible slots by reference count, a reference inside k loops
+	// counting 16^k, so the hottest win the scarce registers. Ties break by
+	// displacement for deterministic output.
 	type slot struct {
 		disp, count int
 	}
@@ -352,6 +408,75 @@ func (p *arm64) stackSlotPromotions(f *ir.Function) map[int]string {
 		out[s.disp] = promoRegs[i]
 	}
 	return out
+}
+
+// gpByFamily are the 64-bit x86 registers by physical index.
+var gpByFamily = []reg.Physical{
+	reg.RAX, reg.RCX, reg.RDX, reg.RBX, reg.RSP, reg.RBP, reg.RSI, reg.RDI,
+	reg.R8, reg.R9, reg.R10, reg.R11, reg.R12, reg.R13, reg.R14, reg.R15,
+}
+
+// slotAsRegister returns a copy of in, an aluSlotAccess on a slot promoted to
+// r, with the slot operand replaced by a register family in names nowhere, and
+// sets p.renames so that family prints as r: the lowering then treats the slot
+// as the register it is. The instruction itself is left unchanged, since the
+// amd64 printer and the analyses share it.
+func (p *arm64) slotAsRegister(in *ir.Instruction, r string) *ir.Instruction {
+	e := familyEffects(in)
+	f := 0
+	for ; f < len(gpByFamily); f++ {
+		if f != int(reg.RSP.PhysicalIndex()) && (e.explicit|e.implicit)&(1<<f) == 0 {
+			break
+		}
+	}
+	d, _ := aluSlotAccess(in)
+	swap := func(ops []operand.Op) []operand.Op {
+		out := make([]operand.Op, len(ops))
+		for i, op := range ops {
+			if od, ok := frameSlot(op); ok && od == d {
+				op = gpByFamily[f]
+			}
+			out[i] = op
+		}
+		return out
+	}
+	c := *in
+	c.Operands, c.Inputs, c.Outputs = swap(in.Operands), swap(in.Inputs), swap(in.Outputs)
+	renames := map[int]string{f: r}
+	for k, v := range p.renames {
+		renames[k] = v
+	}
+	p.renames = renames
+	return &c
+}
+
+// loopDepths returns, for each node, how many loops contain it, taking a loop
+// to be the nodes from a label to a later branch back to it. It only ranks
+// promotion candidates, so irregular control flow costs quality, not safety.
+func loopDepths(nodes []ir.Node) []int {
+	labels := map[string]int{}
+	for idx, n := range nodes {
+		if l, ok := n.(ir.Label); ok {
+			labels[string(l)] = idx
+		}
+	}
+	depth := make([]int, len(nodes))
+	for idx, n := range nodes {
+		in, ok := n.(*ir.Instruction)
+		if !ok || len(in.Operands) == 0 {
+			continue
+		}
+		ref, ok := in.Operands[0].(operand.LabelRef)
+		if !ok {
+			continue
+		}
+		if t, found := labels[string(ref)]; found && t <= idx {
+			for j := t; j <= idx; j++ {
+				depth[j]++
+			}
+		}
+	}
+	return depth
 }
 
 // promoted reports the register a frame-slot operand was promoted to, if any.
@@ -690,6 +815,11 @@ func (p *arm64) emitNode(nodes []ir.Node, idx int, a functionAnalysis) {
 			}
 			p.emitf("%s %s", branchMnemonic(n.Opcode), n.Operands[0].Asm())
 		default:
+			if d, ok := aluSlotAccess(n); ok {
+				if r, promoted := p.slotReg[d]; promoted {
+					n = p.slotAsRegister(n, r)
+				}
+			}
 			p.lower(n, a.setflags[idx], a.subwordSafe[idx])
 		}
 		if p.inProducer && p.writerCount != 1 {

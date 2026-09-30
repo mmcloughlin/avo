@@ -130,6 +130,13 @@ func TestCoalesceRules(t *testing.T) {
 			ctx.add(x86.ADDQ(reg.RDX, reg.RAX))
 			ctx.add(x86.ADDQ(reg.RCX, reg.RAX))
 		}, nil, []int{famCX}},
+		{"copy added back into its slot", func(ctx *fnBuilder, s0, s8 operand.Mem) {
+			ctx.add(x86.MOVQ(operand.U32(3), s0))
+			ctx.add(x86.MOVQ(s0, reg.RCX))
+			ctx.add(x86.ADDQ(reg.RCX, s0))
+			ctx.add(x86.MOVQ(s0, reg.RDX))
+			ctx.add(x86.ADDQ(reg.RDX, reg.RAX))
+		}, []int{famDX}, []int{famCX}},
 		{"live around a back edge", func(ctx *fnBuilder, s0, s8 operand.Mem) {
 			ctx.add(x86.MOVQ(reg.RAX, s0))
 			ctx.add(x86.MOVQ(s0, reg.RCX))
@@ -240,6 +247,21 @@ func TestValidateCoalesceRejects(t *testing.T) {
 			}
 			return p
 		}, "cross-instruction fold"},
+		{"family and slot share a register", func(ctx *fnBuilder, s0, s8 operand.Mem) {
+			ctx.add(x86.MOVQ(operand.U32(3), s0))
+			ctx.add(x86.MOVQ(s0, reg.RCX))
+			ctx.add(x86.ADDQ(reg.RCX, s0))
+			ctx.add(x86.ADDQ(reg.RCX, reg.RAX))
+		}, func(c coalesceCase) coalescePlan {
+			p := clonePlan(c.plan)
+			for _, k := range []int{2, 3, 4} {
+				if p[c.at(k)] == nil {
+					p[c.at(k)] = map[int]string{}
+				}
+				p[c.at(k)][famCX] = c.slotReg[0]
+			}
+			return p
+		}, "both named"},
 		{"implicit operand renamed", func(ctx *fnBuilder, s0, s8 operand.Mem) {
 			ctx.add(x86.MOVQ(reg.RAX, s0))
 			ctx.add(x86.MOVQ(s0, reg.RCX))

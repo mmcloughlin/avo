@@ -165,13 +165,16 @@ func validateCoalesce(nodes []ir.Node, slotReg map[int]string, plan coalescePlan
 			}
 		}
 		var slotDef = -1
-		if d, clean := cleanSlotMove(ins); clean {
-			if v, ok := slotVar[d]; ok {
-				if _, isLoad := frameSlot(ins.Operands[0]); isLoad {
-					if in[locIdx[slotReg[d]]]&(1<<v) == 0 {
-						return nil, fmt.Errorf("reads slot %d from %s, which does not hold it", d, slotReg[d])
-					}
-				} else {
+		if d, use, def, ok := slotEffect(ins); ok {
+			if v, promoted := slotVar[d]; promoted {
+				l := locIdx[slotReg[d]]
+				if use && in[l]&(1<<v) == 0 {
+					return nil, fmt.Errorf("reads slot %d from %s, which does not hold it", d, slotReg[d])
+				}
+				if o, dup := seen[l]; dup && !isCopy {
+					return nil, fmt.Errorf("family %d and slot %d both named %s", o, d, locs[l])
+				}
+				if def {
 					slotDef = d
 				}
 			}
