@@ -3419,13 +3419,21 @@ func writesFamily(ins *ir.Instruction, family int) bool {
 	return false
 }
 
+// conditionalWrite reports whether opcode may leave its destination register
+// unchanged, so that its result depends on the old value even at full width:
+// a conditional move, or a bit scan of zero. Both the count fold (fullyWrites)
+// and stack-slot coalescing (familyEffects) rely on this one list.
+func conditionalWrite(opcode string) bool {
+	return strings.HasPrefix(opcode, "CMOV") || strings.HasPrefix(opcode, "BSF") ||
+		strings.HasPrefix(opcode, "BSR")
+}
+
 // fullyWrites reports whether every write ins makes to the given family
 // replaces the whole register: 32- and 64-bit writes do (x86 zero-extends a
 // 32-bit destination), 8- and 16-bit writes keep the bits above them, and a
 // conditional move or bit scan may leave the destination untouched.
 func fullyWrites(ins *ir.Instruction, family int) bool {
-	if strings.HasPrefix(ins.Opcode, "CMOV") || strings.HasPrefix(ins.Opcode, "BSF") ||
-		strings.HasPrefix(ins.Opcode, "BSR") {
+	if conditionalWrite(ins.Opcode) {
 		return false
 	}
 	for _, r := range ins.OutputRegisters() {

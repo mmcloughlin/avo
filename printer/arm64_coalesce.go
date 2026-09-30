@@ -2,7 +2,6 @@ package printer
 
 import (
 	"sort"
-	"strings"
 
 	"github.com/mmcloughlin/avo/ir"
 	"github.com/mmcloughlin/avo/operand"
@@ -436,13 +435,6 @@ func coalesceFamily(r reg.Register) int {
 		return -1
 	}
 	return f
-}
-
-// conditionalWrite reports whether opcode may leave its destination register
-// unchanged, so that its result depends on the old value even at full width.
-func conditionalWrite(opcode string) bool {
-	return strings.HasPrefix(opcode, "CMOV") || strings.HasPrefix(opcode, "BSF") ||
-		strings.HasPrefix(opcode, "BSR")
 }
 
 // cfg is a function's instructions with their control-flow successors.
