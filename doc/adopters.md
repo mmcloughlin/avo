@@ -64,13 +64,13 @@ High-performance Curve25519/ristretto255 for Go.
 
 An alternative interface to Sia
 
-<img src="https://images.weserv.nl?fit=cover&h=28&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Fdgryski.png&w=28" width="28" height="28" hspace="4" valign="middle" /> [dgryski / **go-sip13**](https://github.com/dgryski/go-sip13)
-
-siphash 1-3
-
 <img src="https://images.weserv.nl?fit=cover&h=28&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Forisano.png&w=28" width="28" height="28" hspace="4" valign="middle" /> [orisano / **wyhash**](https://github.com/orisano/wyhash)
 
 A pure-Go wyhash implementation.
+
+<img src="https://images.weserv.nl?fit=cover&h=28&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Fdgryski.png&w=28" width="28" height="28" hspace="4" valign="middle" /> [dgryski / **go-sip13**](https://github.com/dgryski/go-sip13)
+
+siphash 1-3
 
 <img src="https://images.weserv.nl?fit=cover&h=28&mask=circle&maxage=7d&url=https%3A%2F%2Fgithub.com%2Foasisprotocol.png&w=28" width="28" height="28" hspace="4" valign="middle" /> [oasisprotocol / **deoxysii**](https://github.com/oasisprotocol/deoxysii)
 
