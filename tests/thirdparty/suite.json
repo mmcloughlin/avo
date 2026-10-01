@@ -886,6 +886,7 @@
             },
             "default_branch": "main",
             "version": "a5eedbe96960cf0f801cf970e89f511842daee75",
+            "known_issue": 497,
             "packages": [
                 {
                     "pkg": "util/xxhash3",
