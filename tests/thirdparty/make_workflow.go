@@ -90,7 +90,7 @@ func GenerateWorkflow(s *thirdparty.Suite) ([]byte, error) {
 		g.Linef("%s:", t.ID())
 		g.Indent()
 
-		g.Linef("runs-on: ubuntu-latest")
+		g.Linef("runs-on: %s", t.Package.RunsOnOrDefault())
 		if t.Project.Skip() {
 			g.Linef("if: false # skip: %s", t.Project.Reason())
 		}

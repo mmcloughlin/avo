@@ -136,6 +136,18 @@ type Package struct {
 	// the test unless explicitly overridden.
 	SubPackage string `json:"pkg,omitempty"`
 
+	// Label disambiguates the generated job ID when more than one Package
+	// entry shares the same SubPackage, for example an amd64 and an arm64
+	// variant of the same test run on different runners. Appended to the ID
+	// as "-label"; leave empty when the SubPackage is already unique within
+	// the project.
+	Label string `json:"label,omitempty"`
+
+	// GitHub Actions runner label for this test's job, for example
+	// "ubuntu-24.04-arm" to run on a native arm64 runner. Empty means the
+	// default "ubuntu-latest".
+	RunsOn string `json:"runs_on,omitempty"`
+
 	// Path to the module file for the avo generator package. This is necessary
 	// so the integration test can insert replace directives to point at the avo
 	// version under test.
@@ -232,6 +244,15 @@ func (p *Package) IsRoot() bool {
 	return p.SubPackage == ""
 }
 
+// RunsOnOrDefault returns the GitHub Actions runner label for this test's
+// job, defaulting to "ubuntu-latest" when RunsOn is unset.
+func (p *Package) RunsOnOrDefault() string {
+	if p.RunsOn != "" {
+		return p.RunsOn
+	}
+	return "ubuntu-latest"
+}
+
 // WorkingDirectory returns the base directory for all steps in the test.
 func (p *Package) WorkingDirectory() string {
 	if p.Root != "" {
@@ -323,7 +344,11 @@ type Test struct {
 // ID returns an identifier for the test case.
 func (t *Test) ID() string {
 	pkgpath := path.Join(t.Project.Repository.String(), t.Package.SubPackage)
-	return strings.ReplaceAll(pkgpath, "/", "-")
+	id := strings.ReplaceAll(pkgpath, "/", "-")
+	if t.Package.Label != "" {
+		id += "-" + t.Package.Label
+	}
+	return id
 }
 
 // Projects is a collection of third-party integration tests.
