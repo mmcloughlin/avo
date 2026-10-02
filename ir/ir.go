@@ -176,6 +176,7 @@ type Function struct {
 	Doc        []string
 	Signature  *gotypes.Signature
 	LocalSize  int
+	IsInternal bool
 
 	Nodes []Node
 
@@ -195,7 +196,17 @@ func (f *Function) section() {}
 func NewFunction(name string) *Function {
 	return &Function{
 		Name:      name,
+		IsInternal: false,
 		Signature: gotypes.NewSignatureVoid(),
+	}
+}
+
+// NewInternalFunction builds an empty internal function (not linked to any package) of the given name.
+func NewInternalFunction(name string) *Function {
+	return &Function{
+		Name:       name,
+		IsInternal: true,
+		Signature:  gotypes.NewSignatureVoid(),
 	}
 }
 
