@@ -6,7 +6,7 @@ type Struct struct {
 	Int8       int8
 	Uint16     uint16
 	Int32      int32
-	Uint64     uint64
+	Uint64     NamedUint64
 	Float32    float32
 	Float64    float64
 	String     string
@@ -15,6 +15,8 @@ type Struct struct {
 	Complex64  complex64
 	Complex128 complex128
 }
+
+type NamedUint64 uint64
 
 // Sub is a sub-struct of Struct, to demonstrate nested datastructure accesses.
 type Sub struct {
