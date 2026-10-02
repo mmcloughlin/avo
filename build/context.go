@@ -56,6 +56,12 @@ func (c *Context) Package(path string) {
 	c.pkg = pkg
 }
 
+// IncludeHeader adds an include pre-processor directive for the provided path, if it
+// is not already present.
+func (c *Context) IncludeHeader(path string) {
+	c.file.IncludeHeader(path)
+}
+
 // Constraints sets build constraints for the file.
 func (c *Context) Constraints(t buildtags.ConstraintsConvertable) {
 	cs := t.ToConstraints()
@@ -158,6 +164,26 @@ func (c *Context) Instruction(i *ir.Instruction) {
 // Label adds a label to the active function.
 func (c *Context) Label(name string) {
 	c.activefunc().AddLabel(ir.Label(name))
+}
+
+// PreprocIfdef adds an #ifdef macro to the active function.
+func (c *Context) PreprocIfdef(condition string) {
+	c.activefunc().AddPreprocIfdef(condition)
+}
+
+// PreprocIfndef adds an #ifndef macro to the active function.
+func (c *Context) PreprocIfndef(condition string) {
+	c.activefunc().AddPreprocIfndef(condition)
+}
+
+// PreprocElse adds an #else macro to the active function.
+func (c *Context) PreprocElse() {
+	c.activefunc().AddPreprocElse()
+}
+
+// PreprocEndif adds an #endif macro to the active function.
+func (c *Context) PreprocEndif() {
+	c.activefunc().AddPreprocEndif()
 }
 
 // Comment adds comment lines to the active function.
