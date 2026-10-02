@@ -215,6 +215,10 @@ const (
 	S128 Spec = 0x1f
 	S256 Spec = 0x3f
 	S512 Spec = 0x7f
+
+	Xmm = S128
+	Ymm = S256
+	Zmm = S512
 )
 
 // Mask returns a mask representing which bytes of an underlying register are
