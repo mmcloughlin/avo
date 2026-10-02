@@ -5,13 +5,12 @@ import (
 
 	"github.com/mmcloughlin/avo/internal/api"
 	"github.com/mmcloughlin/avo/internal/inst"
-	"github.com/mmcloughlin/avo/internal/prnt"
 	"github.com/mmcloughlin/avo/printer"
 )
 
 type build struct {
 	cfg printer.Config
-	prnt.Generator
+	printer.Generator
 }
 
 // NewBuild builds a printer that will generate instruction functions in the
