@@ -30,9 +30,13 @@ runs:
     - name: Get Bot User
       id: bot
       uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+      env:
+        # Read from the environment rather than interpolated into the script,
+        # so its contents cannot be treated as JavaScript.
+        BOT: ${{ inputs.bot }}
       with:
         script: |
-          const res = await github.rest.users.getByUsername({username: '${{ inputs.bot }}'});
+          const res = await github.rest.users.getByUsername({username: process.env.BOT});
           for (const [key, value] of Object.entries(res.data)) {
             core.setOutput(key, value)
           }
@@ -42,6 +46,9 @@ runs:
       with:
         app-id: ${{ inputs.app_id }}
         private-key: ${{ inputs.app_private_key }}
+        # Only what is needed to push a branch and open a pull request.
+        permission-contents: write
+        permission-pull-requests: write
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
       with:

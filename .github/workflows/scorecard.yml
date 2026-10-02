@@ -1,0 +1,36 @@
+name: scorecard
+permissions:
+  contents: read
+on:
+  branch_protection_rule:
+  push:
+    branches:
+      - master
+  schedule:
+    - cron: "8 4 * * 2"
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      # Required to upload the results to code scanning.
+      security-events: write
+      # Required to publish the results, which is what allows the score to be
+      # read by third parties such as deps.dev.
+      id-token: write
+      actions: read
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Run Analysis
+        uses: ossf/scorecard-action@2d1146689b8cda280b9bc96326124645441f03bc # v2.4.4
+        with:
+          results_file: results.sarif
+          results_format: sarif
+          publish_results: true
+      - name: Upload Results
+        uses: github/codeql-action/upload-sarif@d1ba80a13dd99fba24a470575428917156a28b43 # v4
+        with:
+          sarif_file: results.sarif

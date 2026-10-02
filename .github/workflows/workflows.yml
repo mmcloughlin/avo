@@ -1,0 +1,45 @@
+name: workflows
+permissions:
+  contents: read
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - ".github/**"
+  pull_request:
+    paths:
+      - ".github/**"
+jobs:
+  # actionlint checks the workflow files themselves: expression syntax, runner
+  # labels, shell scripting in run steps.
+  actionlint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Go
+        uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
+        with:
+          go-version: 1.26.x
+          check-latest: true
+      - name: Checkout code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Install actionlint
+        run: go install github.com/rhysd/actionlint/cmd/actionlint@v1.7.12
+      - name: Run actionlint
+        run: actionlint
+  # zizmor audits the same files for supply-chain weaknesses, such as unpinned
+  # actions and over-broad permissions.
+  zizmor:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Run zizmor
+        uses: zizmorcore/zizmor-action@3dc1ecc9bcb9e94e9b2c709687979e1298497054 # v0.6.2

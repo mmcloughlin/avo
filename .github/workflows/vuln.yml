@@ -1,0 +1,23 @@
+name: vuln
+permissions:
+  contents: read
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+  schedule:
+    - cron: "52 7 * * 3"
+jobs:
+  govulncheck:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Run govulncheck
+        uses: golang/govulncheck-action@032d45514ae346b1db93c04b0c90b841c370344f # v1.1.0
+        with:
+          go-version-input: 1.26.x
+          check-latest: true

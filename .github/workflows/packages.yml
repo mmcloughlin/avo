@@ -1178,7 +1178,7 @@ jobs:
       - name: Setup Generator Module
         working-directory: gopkg/util/xxhash3/internal/avo
         run: |
-          sed -i.bak '/build ignore/d' *.go
+          sed -i.bak '/build ignore/d' ./*.go
           go mod init github.com/bytedance/gopkg/util/xxhash3/internal/avo
       - name: Avo Module Replacement
         working-directory: gopkg/util/xxhash3/internal/avo
