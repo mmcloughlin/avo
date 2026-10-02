@@ -24,6 +24,7 @@ var Compile = Concat(
 	FunctionPass(EnsureBasePointerCalleeSaved),
 	Func(IncludeTextFlagHeader),
 	FunctionPass(PruneSelfMoves),
+	FunctionPass(PrunePseudo),
 	FunctionPass(RequiredISAExtensions),
 )
 
