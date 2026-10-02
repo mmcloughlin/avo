@@ -27,10 +27,52 @@ func ZeroExtend32BitOutputs(i *ir.Instruction) error {
 	return nil
 }
 
+func definedness(fn *ir.Function) error {
+	is := fn.Instructions()
+
+	// Initialize.
+	for _, i := range is {
+		i.Defined = reg.NewEmptyMaskSet()
+	}
+
+	// Iterative dataflow analysis.
+	for {
+		changes := false
+
+		for _, i := range is {
+			for _, p := range i.Pred {
+				if p == nil {
+					continue
+				}
+				changes = i.Defined.Update(p.Defined) || changes
+			}
+			outs := reg.NewMaskSetFromRegisters(i.OutputRegisters())
+			for _, s := range i.Succ {
+				if s == nil {
+					continue
+				}
+				// We avoid tracking in and out separately by directly updating
+				// our successors. The set of defined registers only ever grows,
+				// we don't have to concern ourselves with kills.
+				changes = s.Defined.Update(outs) || changes
+			}
+		}
+
+		if !changes {
+			break
+		}
+	}
+	return nil
+}
+
 // Liveness computes register liveness.
 func Liveness(fn *ir.Function) error {
 	// Note this implementation is initially naive so as to be "obviously correct".
 	// There are a well-known optimizations we can apply if necessary.
+
+	if err := definedness(fn); err != nil {
+		return err
+	}
 
 	is := fn.Instructions()
 
@@ -43,6 +85,13 @@ func Liveness(fn *ir.Function) error {
 	// Initialize.
 	for _, i := range is {
 		i.LiveIn = reg.NewMaskSetFromRegisters(i.InputRegisters())
+		for id, mask := range i.LiveIn {
+			if id.IsVirtual() && !i.Defined.Has(id) {
+				// Virtual registers that haven't been written to yet aren't
+				// actually live.
+				i.LiveIn.Discard(id, mask)
+			}
+		}
 		i.LiveOut = reg.NewEmptyMaskSet()
 	}
 
