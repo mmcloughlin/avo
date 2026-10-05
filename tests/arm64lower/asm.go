@@ -1725,6 +1725,67 @@ func main() {
 		RET()
 	}
 
+	// MaddAcc: "IMULQ k, t; ADDQ a, t" folds to MADD with no liveness proof.
+	TEXT("MaddAcc", NOSPLIT, "func(x, k, a uint64) uint64")
+	{
+		t, k, a := GP64(), GP64(), GP64()
+		Load(Param("x"), t)
+		Load(Param("k"), k)
+		Load(Param("a"), a)
+		IMULQ(k, t)
+		ADDQ(a, t)
+		Store(t, ReturnIndex(0))
+		RET()
+	}
+
+	// MaddInto: "IMULQ k, t; ADDQ t, a" folds to MADD only because t is dead.
+	TEXT("MaddInto", NOSPLIT, "func(x, k, a uint64) uint64")
+	{
+		t, k, a := GP64(), GP64(), GP64()
+		Load(Param("x"), t)
+		Load(Param("k"), k)
+		Load(Param("a"), a)
+		IMULQ(k, t)
+		ADDQ(t, a)
+		Store(a, ReturnIndex(0))
+		RET()
+	}
+
+	// MaddLoop: two "IMULQ k, t; ADDQ t, acc" pairs in a loop. The first
+	// product is read again at the top of the next iteration, so it must not
+	// fold; the second is redefined first, so it may. Folding the first would
+	// leave the pre-multiply value in t for that read.
+	TEXT("MaddLoop", NOSPLIT, "func(x, k, n uint64) (a, b, c uint64)")
+	{
+		x, k, n := GP64(), GP64(), GP64()
+		Load(Param("x"), x)
+		Load(Param("k"), k)
+		Load(Param("n"), n)
+		ANDQ(operand.U8(7), n)
+		INCQ(n)
+		t, u, a, b, c := GP64(), GP64(), GP64(), GP64(), GP64()
+		XORQ(t, t)
+		XORQ(a, a)
+		XORQ(b, b)
+		XORQ(c, c)
+		Label("maddloop")
+		ADDQ(t, b) // the previous iteration's product
+		MOVQ(x, t)
+		ADDQ(n, t)
+		IMULQ(k, t)
+		ADDQ(t, a)
+		MOVQ(x, u)
+		XORQ(n, u)
+		IMULQ(k, u)
+		ADDQ(u, c)
+		DECQ(n)
+		JNZ(operand.LabelRef("maddloop"))
+		Store(a, ReturnIndex(0))
+		Store(b, ReturnIndex(1))
+		Store(c, ReturnIndex(2))
+		RET()
+	}
+
 	Generate()
 }
 

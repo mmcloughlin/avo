@@ -290,6 +290,31 @@ func TestMultiply(t *testing.T) {
 	}
 }
 
+// TestMADD checks the multiply/add pairs the arm64 lowering fuses into MADD
+// (see maddFolds), including a loop where one pair must not fuse because its
+// product is read again after the back edge.
+func TestMADD(t *testing.T) {
+	if err := quick.CheckEqual(MaddAcc, func(x, k, a uint64) uint64 { return x*k + a }, nil); err != nil {
+		t.Errorf("MaddAcc: %v", err)
+	}
+	if err := quick.CheckEqual(MaddInto, func(x, k, a uint64) uint64 { return a + x*k }, nil); err != nil {
+		t.Errorf("MaddInto: %v", err)
+	}
+	ref := func(x, k, n uint64) (a, b, c uint64) {
+		var t uint64
+		for n = n&7 + 1; n != 0; n-- {
+			b += t
+			t = (x + n) * k
+			a += t
+			c += (x ^ n) * k
+		}
+		return a, b, c
+	}
+	if err := quick.CheckEqual(MaddLoop, ref, nil); err != nil {
+		t.Errorf("MaddLoop: %v", err)
+	}
+}
+
 // TestBMI2 covers the BMI2 flag-free shifts/rotate and bit-field ops.
 //
 //nolint:gocognit // table-driven differential test; splitting the cases would only add indirection, not clarity.

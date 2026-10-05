@@ -1102,8 +1102,7 @@ TEXT ·Prop4(SB), NOSPLIT, $0-24
 	MOVD  y+8(FP), R1
 	RORW  $27, R0, R0
 	RORW  $27, R0, R0
-	MUL   R1, R0, R0
-	ADD   R1, R0, R0
+	MADD  R1, R1, R0, R0
 	MOVHU R0, R0
 	MOVD  $0, R0
 	MVN   R0, R0
@@ -9723,4 +9722,50 @@ TEXT ·SlotAddrOf(SB), NOSPLIT, $16-16
 	MOVD R0, 8(R1)
 	MOVD 16(RSP), R0
 	MOVD R0, ret+8(FP)
+	RET
+
+// func MaddAcc(x uint64, k uint64, a uint64) uint64
+TEXT ·MaddAcc(SB), NOSPLIT, $0-32
+	MOVD x+0(FP), R0
+	MOVD k+8(FP), R1
+	MOVD a+16(FP), R2
+	MADD R1, R2, R0, R0
+	MOVD R0, ret+24(FP)
+	RET
+
+// func MaddInto(x uint64, k uint64, a uint64) uint64
+TEXT ·MaddInto(SB), NOSPLIT, $0-32
+	MOVD x+0(FP), R0
+	MOVD k+8(FP), R1
+	MOVD a+16(FP), R2
+	MADD R1, R2, R0, R2
+	MOVD R2, ret+24(FP)
+	RET
+
+// func MaddLoop(x uint64, k uint64, n uint64) (a uint64, b uint64, c uint64)
+TEXT ·MaddLoop(SB), NOSPLIT, $0-48
+	MOVD x+0(FP), R0
+	MOVD k+8(FP), R1
+	MOVD n+16(FP), R2
+	AND  $0x07, R2, R2
+	ADD  $1, R2, R2
+	MOVD $0, R3
+	MOVD $0, R6
+	MOVD $0, R7
+	MOVD $0, R8
+
+maddloop:
+	ADD  R3, R7, R7
+	MOVD R0, R3
+	ADD  R2, R3, R3
+	MUL  R1, R3, R3
+	ADD  R3, R6, R6
+	MOVD R0, R5
+	EOR  R2, R5, R5
+	MADD R1, R8, R5, R8
+	SUBS $1, R2, R2
+	BNE  maddloop
+	MOVD R6, a+24(FP)
+	MOVD R7, b+32(FP)
+	MOVD R8, c+40(FP)
 	RET

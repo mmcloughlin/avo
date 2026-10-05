@@ -11196,3 +11196,52 @@ TEXT ·SlotAddrOf(SB), NOSPLIT, $16-16
 	MOVQ 8(SP), AX
 	MOVQ AX, ret+8(FP)
 	RET
+
+// func MaddAcc(x uint64, k uint64, a uint64) uint64
+TEXT ·MaddAcc(SB), NOSPLIT, $0-32
+	MOVQ  x+0(FP), AX
+	MOVQ  k+8(FP), CX
+	MOVQ  a+16(FP), DX
+	IMULQ CX, AX
+	ADDQ  DX, AX
+	MOVQ  AX, ret+24(FP)
+	RET
+
+// func MaddInto(x uint64, k uint64, a uint64) uint64
+TEXT ·MaddInto(SB), NOSPLIT, $0-32
+	MOVQ  x+0(FP), AX
+	MOVQ  k+8(FP), CX
+	MOVQ  a+16(FP), DX
+	IMULQ CX, AX
+	ADDQ  AX, DX
+	MOVQ  DX, ret+24(FP)
+	RET
+
+// func MaddLoop(x uint64, k uint64, n uint64) (a uint64, b uint64, c uint64)
+TEXT ·MaddLoop(SB), NOSPLIT, $0-48
+	MOVQ x+0(FP), AX
+	MOVQ k+8(FP), CX
+	MOVQ n+16(FP), DX
+	ANDQ $0x07, DX
+	INCQ DX
+	XORQ BX, BX
+	XORQ DI, DI
+	XORQ R8, R8
+	XORQ R9, R9
+
+maddloop:
+	ADDQ  BX, R8
+	MOVQ  AX, BX
+	ADDQ  DX, BX
+	IMULQ CX, BX
+	ADDQ  BX, DI
+	MOVQ  AX, SI
+	XORQ  DX, SI
+	IMULQ CX, SI
+	ADDQ  SI, R9
+	DECQ  DX
+	JNZ   maddloop
+	MOVQ  DI, a+24(FP)
+	MOVQ  R8, b+32(FP)
+	MOVQ  R9, c+40(FP)
+	RET

@@ -719,6 +719,11 @@ func (p *arm64) function(f *ir.Function, twins map[string]twinPair) {
 			idx += 2
 			continue
 		}
+		if a.madd[idx] {
+			p.emitMADD(nodes[idx].(*ir.Instruction), nodes[idx+1].(*ir.Instruction))
+			idx++
+			continue
+		}
 		p.emitNode(nodes, idx, a)
 	}
 	p.flush()
@@ -730,8 +735,9 @@ func (p *arm64) function(f *ir.Function, twins map[string]twinPair) {
 // needs: which instructions must be lowered as flag producers, which subword
 // compares can use the EQ/NE-only fallback, which BTL/branch pairs fuse into
 // one test-and-branch (and which branches that absorbs), which shift-copy
-// triples fold into one shift, which copies a fold absorbed, and which SETcc
-// folds fully determine their destination.
+// triples fold into one shift, which copies a fold absorbed, which SETcc
+// folds fully determine their destination, and which multiply/add pairs fuse
+// into one MADD.
 type functionAnalysis struct {
 	setflags    map[int]bool
 	subwordSafe map[int]bool
@@ -741,6 +747,7 @@ type functionAnalysis struct {
 	shifts      map[int]shiftFold
 	dropped     map[int]bool
 	setFull     map[int]bool
+	madd        map[int]bool
 }
 
 func analyzeFunction(nodes []ir.Node) functionAnalysis {
@@ -755,6 +762,7 @@ func analyzeFunction(nodes []ir.Node) functionAnalysis {
 	}
 	shifts, dropped := shiftFolds(nodes)
 	return functionAnalysis{
+		madd:        maddFolds(nodes, setflags),
 		setflags:    setflags,
 		subwordSafe: subwordSafeEqNe(nodes),
 		bt:          bt,
@@ -773,6 +781,9 @@ func (a functionAnalysis) foldGroups(nodes []ir.Node) map[int]bool {
 	for idx := range nodes {
 		if a.byteFold[idx] {
 			g[idx], g[idx+1], g[idx+2] = true, true, true
+		}
+		if a.madd[idx] {
+			g[idx], g[idx+1] = true, true
 		}
 		if a.dropped[idx] || a.setFull[idx] || a.shifts[idx] != (shiftFold{}) {
 			g[idx] = true
@@ -921,7 +932,7 @@ var arm64WritesNZCV = map[string]bool{
 	"ADD": false, "ADDW": false, "SUB": false, "SUBW": false,
 	"AND": false, "ANDW": false, "ORR": false, "ORRW": false,
 	"EOR": false, "EORW": false,
-	"MUL": false, "MULW": false, "UMULH": false, "SMULH": false,
+	"MUL": false, "MULW": false, "UMULH": false, "SMULH": false, "MADD": false,
 	"LSL": false, "LSLW": false, "LSR": false, "LSRW": false,
 	"ASR": false, "ASRW": false, "ROR": false, "RORW": false,
 	"MVN": false, "MVNW": false, "NEG": false, "NEGW": false,
@@ -3391,6 +3402,100 @@ func (p *arm64) emitShiftExtractFold(mov, shr, ext *ir.Instruction) {
 	p.inTransparent, p.transparentOp = false, ""
 	p.inProducer, p.producerOp, p.writerCount = false, "", 0
 	p.emitf("UBFX $%d, %s, $8, %s", shiftAmt, p.operandReg(mov.Operands[0]), p.operandReg(ext.Operands[1]))
+	p.constOK = false
+}
+
+// maddFolds identifies "IMULQ a, t; ADDQ x, y" pairs that arm64's MADD
+// (d = acc + n*m) computes in one instruction, and returns the set of node
+// indices where a pair starts. x86 has no multiply-add, so every "v += x*k" in
+// an avo program is a multiply into a scratch register followed by an add;
+// arm64 fuses them, which removes an instruction and, on cores that forward
+// the accumulator, a cycle of latency from the add's dependency chain.
+//
+// Both instructions must be strictly adjacent (as in shiftExtractFold) and
+// every operand a whole 64-bit general-purpose register, and the add must
+// involve the product: either it accumulates into t ("ADDQ x, t", so
+// t = t*a + x) or it adds t into another register ("ADDQ t, y", so
+// y = y + t*a). The first form needs no further proof: MADD leaves in t
+// exactly what the pair leaves there. The second form never writes the
+// product to t at all, so t must be dead after the add -- proved by a
+// whole-function liveness solve over t's register family (see buildCFG and
+// liveOut), which, unlike the straight-line scans of shiftFolds, also sees
+// across a loop's back edge. If the CFG cannot be built, only the first form
+// is folded.
+//
+// Flags: both x86 instructions write them and MADD does not. A consumer of the
+// pair's flags would find the ADDQ as its producer (it is the later writer),
+// so the pair is refused if flagProducers marked either instruction; otherwise
+// nothing reads the flags they set, and MADD leaving NZCV alone is harmless.
+func maddFolds(nodes []ir.Node, setflags map[int]bool) map[int]bool {
+	fold := make(map[int]bool)
+	var g cfg
+	var pos map[int]int // node index -> CFG instruction position
+	built := false
+	deadAfter := func(addIdx, family int) bool {
+		if !built {
+			built = true
+			var ok bool
+			if g, ok = buildCFG(nodes); ok {
+				pos = make(map[int]int, len(g.node))
+				for k, idx := range g.node {
+					pos[idx] = k
+				}
+			}
+		}
+		if pos == nil {
+			return false
+		}
+		live := liveOut(g, func(k int) (use, kill bool) {
+			ins := g.ins[k]
+			return readsFamily(ins, family),
+				writesFamily(ins, family) && fullyWrites(ins, family)
+		})
+		return !live[pos[addIdx]]
+	}
+	for j := 0; j+1 < len(nodes); j++ {
+		mul, ok := nodes[j].(*ir.Instruction)
+		if !ok || mul.Opcode != "IMULQ" || len(mul.Operands) != 2 ||
+			!isFullGP(mul.Operands[0]) || !isFullGP(mul.Operands[1]) {
+			continue
+		}
+		add, ok := nodes[j+1].(*ir.Instruction)
+		if !ok || add.Opcode != "ADDQ" || len(add.Operands) != 2 ||
+			!isFullGP(add.Operands[0]) || !isFullGP(add.Operands[1]) {
+			continue
+		}
+		if setflags[j] || setflags[j+1] {
+			continue
+		}
+		t := regFamily(mul.Operands[1])
+		x, y := regFamily(add.Operands[0]), regFamily(add.Operands[1])
+		switch {
+		case x == y:
+			// Doubling, not an accumulate.
+		case y == t:
+			fold[j] = true
+		case x == t:
+			if deadAfter(j+1, t) {
+				fold[j] = true
+			}
+		}
+	}
+	return fold
+}
+
+// emitMADD emits the fused form of a pair maddFolds matched: mul and add are
+// nodes[j] and nodes[j+1].
+func (p *arm64) emitMADD(mul, add *ir.Instruction) {
+	p.inTransparent, p.transparentOp = false, ""
+	p.inProducer, p.producerOp, p.writerCount = false, "", 0
+	a, t := p.operandReg(mul.Operands[0]), p.operandReg(mul.Operands[1])
+	x, y := p.operandReg(add.Operands[0]), p.operandReg(add.Operands[1])
+	if y == t {
+		p.emitf("MADD %s, %s, %s, %s", a, x, t, t) // t = x + t*a
+	} else {
+		p.emitf("MADD %s, %s, %s, %s", a, y, t, y) // y = y + t*a; t is dead
+	}
 	p.constOK = false
 }
 

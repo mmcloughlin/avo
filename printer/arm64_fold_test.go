@@ -335,3 +335,138 @@ func TestARM64ADCQ(t *testing.T) {
 		}), printer.NewARM64Asm)
 	})
 }
+
+// TestARM64MADDFold covers maddFolds: an adjacent "IMULQ a, t; ADDQ x, y" pair
+// becomes one MADD when the add accumulates into the product, or adds the
+// product into another register that t is provably dead after -- including
+// across a loop's back edge -- and is left alone otherwise.
+func TestARM64MADDFold(t *testing.T) {
+	cases := []struct {
+		name   string
+		body   func(ctx *build.Context)
+		want   []string
+		reject []string
+	}{
+		{
+			name: "AccumulateIntoProduct",
+			body: func(ctx *build.Context) {
+				ctx.IMULQ(reg.RBX, reg.RAX)
+				ctx.ADDQ(reg.RCX, reg.RAX) // RAX = RAX*RBX + RCX
+				ctx.ADDQ(reg.RAX, reg.RDX) // RAX stays live: this form needs no proof
+			},
+			want:   []string{"MADD R3, R1, R0, R0"},
+			reject: []string{"MUL R3, R0, R0"},
+		},
+		{
+			name: "AddProductDeadAfter",
+			body: func(ctx *build.Context) {
+				ctx.IMULQ(reg.RBX, reg.RAX)
+				ctx.ADDQ(reg.RAX, reg.RCX) // RCX += RAX*RBX
+				ctx.MOVQ(operand.U32(0), reg.RAX)
+			},
+			want:   []string{"MADD R3, R1, R0, R1"},
+			reject: []string{"MUL R3, R0, R0"},
+		},
+		{
+			name: "AddProductDeadAtReturn",
+			body: func(ctx *build.Context) {
+				ctx.IMULQ(reg.RBX, reg.RAX)
+				ctx.ADDQ(reg.RAX, reg.RCX)
+			},
+			want:   []string{"MADD R3, R1, R0, R1"},
+			reject: []string{"MUL R3, R0, R0"},
+		},
+		{
+			name: "AddProductLiveAfter",
+			body: func(ctx *build.Context) {
+				ctx.IMULQ(reg.RBX, reg.RAX)
+				ctx.ADDQ(reg.RAX, reg.RCX)
+				ctx.ADDQ(reg.RAX, reg.RDX) // reads the product MADD would never write
+			},
+			want:   []string{"MUL R3, R0, R0", "ADD R0, R1, R1"},
+			reject: []string{"MADD"},
+		},
+		{
+			name: "AddProductLiveThroughPartialRedefinition",
+			body: func(ctx *build.Context) {
+				ctx.IMULQ(reg.RBX, reg.RAX)
+				ctx.ADDQ(reg.RAX, reg.RCX)
+				ctx.MOVW(operand.U16(1), reg.AX) // keeps bits 16-63 of the product
+				ctx.ADDQ(reg.RAX, reg.RDX)
+			},
+			want:   []string{"MUL R3, R0, R0"},
+			reject: []string{"MADD"},
+		},
+		{
+			name: "AddProductLiveAcrossBackEdge",
+			body: func(ctx *build.Context) {
+				ctx.Label("loop")
+				ctx.ADDQ(reg.RAX, reg.RDX) // the previous iteration's product
+				ctx.IMULQ(reg.RBX, reg.RAX)
+				ctx.ADDQ(reg.RAX, reg.RCX)
+				ctx.DECQ(reg.RSI)
+				ctx.JNZ(operand.LabelRef("loop"))
+			},
+			want:   []string{"MUL R3, R0, R0"},
+			reject: []string{"MADD"},
+		},
+		{
+			name: "AddProductDeadAcrossBackEdge",
+			body: func(ctx *build.Context) {
+				ctx.Label("loop")
+				ctx.MOVQ(reg.RDI, reg.RAX) // redefined before any read
+				ctx.IMULQ(reg.RBX, reg.RAX)
+				ctx.ADDQ(reg.RAX, reg.RCX)
+				ctx.DECQ(reg.RSI)
+				ctx.JNZ(operand.LabelRef("loop"))
+			},
+			want:   []string{"MADD R3, R1, R0, R1"},
+			reject: []string{"MUL R3, R0, R0"},
+		},
+		{
+			name: "FlagsConsumed",
+			body: func(ctx *build.Context) {
+				ctx.IMULQ(reg.RBX, reg.RAX)
+				ctx.ADDQ(reg.RCX, reg.RAX)
+				ctx.JZ(operand.LabelRef("done")) // reads the ADDQ's flags
+				ctx.MOVQ(operand.U32(1), reg.RDX)
+				ctx.Label("done")
+			},
+			want:   []string{"MUL R3, R0, R0"},
+			reject: []string{"MADD"},
+		},
+		{
+			name: "NotAdjacent",
+			body: func(ctx *build.Context) {
+				ctx.IMULQ(reg.RBX, reg.RAX)
+				ctx.MOVQ(reg.RDX, reg.RSI)
+				ctx.ADDQ(reg.RCX, reg.RAX)
+			},
+			want:   []string{"MUL R3, R0, R0"},
+			reject: []string{"MADD"},
+		},
+		{
+			name: "Doubling",
+			body: func(ctx *build.Context) {
+				ctx.IMULQ(reg.RBX, reg.RAX)
+				ctx.ADDQ(reg.RAX, reg.RAX)
+			},
+			want:   []string{"MUL R3, R0, R0", "ADD R0, R0, R0"},
+			reject: []string{"MADD"},
+		},
+		{
+			name: "ThirtyTwoBit",
+			body: func(ctx *build.Context) {
+				ctx.IMULL(reg.EBX, reg.EAX)
+				ctx.ADDL(reg.ECX, reg.EAX)
+			},
+			reject: []string{"MADD"},
+		},
+	}
+	for _, c := range cases {
+		t.Run(c.name, func(t *testing.T) {
+			out := Print(t, foldContext(c.body), printer.NewARM64Asm)
+			expectLines(t, out, c.want, c.reject)
+		})
+	}
+}

@@ -599,3 +599,9 @@ func SlotVecOverlap(x uint64) uint64
 func SlotIndexed(x uint64, i uint64) uint64
 
 func SlotAddrOf(x uint64) uint64
+
+func MaddAcc(x uint64, k uint64, a uint64) uint64
+
+func MaddInto(x uint64, k uint64, a uint64) uint64
+
+func MaddLoop(x uint64, k uint64, n uint64) (a uint64, b uint64, c uint64)
