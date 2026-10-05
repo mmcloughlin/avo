@@ -14,6 +14,7 @@ var Compile = Concat(
 	Verify,
 	FunctionPass(PruneJumpToFollowingLabel),
 	FunctionPass(PruneDanglingLabels),
+	FunctionPass(VerifyNoLabelOnPCALIGN),
 	FunctionPass(LabelTarget),
 	FunctionPass(CFG),
 	InstructionPass(ZeroExtend32BitOutputs),
