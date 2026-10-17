@@ -63,6 +63,55 @@ func TestPruneJumpToFollowingLabel(t *testing.T) {
 	}
 }
 
+func TestPruneJumpToFollowingLabelWithComments(t *testing.T) {
+	// Construct a function with comments between the jump and following label.
+	ctx := build.NewContext()
+	ctx.Function("add_with_comments")
+	ctx.XORQ(reg.RAX, reg.RAX)
+	ctx.JMP(operand.LabelRef("target"))
+	ctx.Comment("intervening comment")
+	ctx.Label("target")
+	ctx.XORQ(reg.RAX, reg.RAX)
+
+	fn := BuildFunction(t, ctx, pass.PruneJumpToFollowingLabel)
+
+	for _, i := range fn.Instructions() {
+		if i.Opcode == "JMP" {
+			t.Fatal("JMP instruction not removed when separated by comments")
+		}
+	}
+}
+
+func TestPruneJumpToFollowingLabelPrecedingRET(t *testing.T) {
+	ctx := build.NewContext()
+	ctx.Function("jump_preceding_ret")
+	ctx.RET()
+	ctx.JMP(operand.LabelRef("exit"))
+	ctx.Label("exit")
+	ctx.RET()
+
+	// Compute initial CFG then apply pruning.
+	fn := BuildFunction(t, ctx, pass.LabelTarget, pass.CFG)
+	if err := pass.PruneJumpToFollowingLabel(fn); err != nil {
+		t.Fatal(err)
+	}
+
+	// Verify jump is pruned.
+	for _, i := range fn.Instructions() {
+		if i.Opcode == "JMP" {
+			t.Fatal("JMP preceding RET not pruned")
+		}
+	}
+
+	// Rebuilding CFG should succeed cleanly.
+	if err := pass.LabelTarget(fn); err != nil {
+		t.Fatal(err)
+	}
+	if err := pass.CFG(fn); err != nil {
+		t.Fatal(err)
+	}
+}
+
 func TestPruneDanglingLabels(t *testing.T) {
 	// Construct a function containing an unreferenced label.
 	ctx := build.NewContext()
