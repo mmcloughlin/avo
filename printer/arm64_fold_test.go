@@ -470,3 +470,142 @@ func TestARM64MADDFold(t *testing.T) {
 		})
 	}
 }
+
+// TestARM64VecPairFold covers vecPairFold: adjacent 16-byte loads or stores at
+// d and d+16 off one base become one FLDPQ or FSTPQ, and nothing else does.
+func TestARM64VecPairFold(t *testing.T) {
+	m := func(base reg.Register, disp int) operand.Mem { return operand.Mem{Base: base, Disp: disp} }
+	cases := []struct {
+		name   string
+		body   func(ctx *build.Context)
+		want   []string
+		reject []string
+	}{
+		{
+			name: "Load",
+			body: func(ctx *build.Context) {
+				ctx.MOVUPS(m(reg.RSI, 0), reg.X0)
+				ctx.MOVUPS(m(reg.RSI, 16), reg.X1)
+			},
+			want:   []string{"FLDPQ (R5), (F0, F1)"},
+			reject: []string{"FMOVQ"},
+		},
+		{
+			name: "Store",
+			body: func(ctx *build.Context) {
+				ctx.MOVUPS(reg.X2, m(reg.RDI, 32))
+				ctx.MOVUPS(reg.X3, m(reg.RDI, 48))
+			},
+			want:   []string{"FSTPQ (F2, F3), 32(R6)"},
+			reject: []string{"FMOVQ"},
+		},
+		{
+			name: "LoadsThenStores",
+			body: func(ctx *build.Context) {
+				ctx.MOVUPS(m(reg.RSI, 0), reg.X0)
+				ctx.MOVUPS(m(reg.RSI, 16), reg.X1)
+				ctx.MOVUPS(reg.X0, m(reg.RDI, 0))
+				ctx.MOVUPS(reg.X1, m(reg.RDI, 16))
+			},
+			want:   []string{"FLDPQ (R5), (F0, F1)", "FSTPQ (F0, F1), (R6)"},
+			reject: []string{"FMOVQ"},
+		},
+		{
+			name: "MaxOffset",
+			body: func(ctx *build.Context) {
+				ctx.MOVUPS(m(reg.RSI, 1008), reg.X0)
+				ctx.MOVUPS(m(reg.RSI, 1024), reg.X1)
+			},
+			want: []string{"FLDPQ 1008(R5), (F0, F1)"},
+		},
+		{
+			name: "RefusedOutOfRange",
+			body: func(ctx *build.Context) {
+				ctx.MOVUPS(m(reg.RSI, 1024), reg.X0)
+				ctx.MOVUPS(m(reg.RSI, 1040), reg.X1)
+			},
+			want:   []string{"FMOVQ 1024(R5), F0", "FMOVQ 1040(R5), F1"},
+			reject: []string{"FLDPQ"},
+		},
+		{
+			name: "RefusedSameLoadDst",
+			body: func(ctx *build.Context) {
+				ctx.MOVUPS(m(reg.RSI, 0), reg.X0)
+				ctx.MOVUPS(m(reg.RSI, 16), reg.X0)
+			},
+			reject: []string{"FLDPQ"},
+		},
+		{
+			name: "RefusedDifferentBase",
+			body: func(ctx *build.Context) {
+				ctx.MOVUPS(m(reg.RSI, 0), reg.X0)
+				ctx.MOVUPS(m(reg.RDI, 16), reg.X1)
+			},
+			reject: []string{"FLDPQ"},
+		},
+		{
+			name: "RefusedGap",
+			body: func(ctx *build.Context) {
+				ctx.MOVUPS(m(reg.RSI, 0), reg.X0)
+				ctx.MOVUPS(m(reg.RSI, 32), reg.X1)
+			},
+			reject: []string{"FLDPQ"},
+		},
+		{
+			name: "RefusedReversed",
+			body: func(ctx *build.Context) {
+				ctx.MOVUPS(m(reg.RSI, 16), reg.X0)
+				ctx.MOVUPS(m(reg.RSI, 0), reg.X1)
+			},
+			reject: []string{"FLDPQ"},
+		},
+		{
+			name: "RefusedMisaligned",
+			body: func(ctx *build.Context) {
+				ctx.MOVUPS(m(reg.RSI, 8), reg.X0)
+				ctx.MOVUPS(m(reg.RSI, 24), reg.X1)
+			},
+			reject: []string{"FLDPQ"},
+		},
+		{
+			name: "RefusedLoadAndStore",
+			body: func(ctx *build.Context) {
+				ctx.MOVUPS(m(reg.RSI, 0), reg.X0)
+				ctx.MOVUPS(reg.X1, m(reg.RSI, 16))
+			},
+			reject: []string{"FLDPQ", "FSTPQ"},
+		},
+		{
+			name: "RefusedLabelBetween",
+			body: func(ctx *build.Context) {
+				ctx.MOVUPS(reg.X0, m(reg.RDI, 0))
+				ctx.Label("join")
+				ctx.MOVUPS(reg.X1, m(reg.RDI, 16))
+			},
+			reject: []string{"FSTPQ"},
+		},
+		{
+			name: "RefusedIndexed",
+			body: func(ctx *build.Context) {
+				ctx.MOVUPS(operand.Mem{Base: reg.RSI, Index: reg.RCX, Scale: 1}, reg.X0)
+				ctx.MOVUPS(operand.Mem{Base: reg.RSI, Index: reg.RCX, Scale: 1, Disp: 16}, reg.X1)
+			},
+			reject: []string{"FLDPQ"},
+		},
+		{
+			name: "ThreeMovesPairOnce",
+			body: func(ctx *build.Context) {
+				ctx.MOVUPS(m(reg.RSI, 0), reg.X0)
+				ctx.MOVUPS(m(reg.RSI, 16), reg.X1)
+				ctx.MOVUPS(m(reg.RSI, 32), reg.X2)
+			},
+			want: []string{"FLDPQ (R5), (F0, F1)", "FMOVQ 32(R5), F2"},
+		},
+	}
+	for _, c := range cases {
+		t.Run(c.name, func(t *testing.T) {
+			out := Print(t, foldContext(c.body), printer.NewARM64Asm)
+			expectLines(t, out, c.want, c.reject)
+		})
+	}
+}
