@@ -1,6 +1,7 @@
 package pass_test
 
 import (
+	"reflect"
 	"testing"
 
 	"github.com/mmcloughlin/avo/attr"
@@ -204,3 +205,62 @@ func TestEnsureBasePointerCalleeSavedNOFRAME(t *testing.T) {
 		t.Fatal("expected error from NOFRAME function that clobbers base pointer")
 	}
 }
+
+func TestIssue83RegisterAllocationStabilityAcrossRET(t *testing.T) {
+	// Construct two functions: one with a dead jump preceding RET and one without.
+	// Verifies that CFG liveness isolation across RET prevents register allocation churn.
+	buildFn := func(withJump bool) *ir.Function {
+		ctx := build.NewContext()
+		ctx.Function("Issue83")
+		ctx.SignatureExpr("func(cond, a, b uint64) uint64")
+		cond := ctx.Load(ctx.Param("cond"), ctx.GP64())
+		a := ctx.Load(ctx.Param("a"), ctx.GP64())
+		b := ctx.Load(ctx.Param("b"), ctx.GP64())
+		ctx.CMPQ(cond, operand.Imm(0))
+		ctx.JE(operand.LabelRef("false"))
+		ctx.Store(a, ctx.ReturnIndex(0))
+		ctx.RET()
+		if withJump {
+			ctx.JMP(operand.LabelRef("false"))
+		}
+		ctx.Label("false")
+		ctx.Store(b, ctx.ReturnIndex(0))
+		ctx.RET()
+
+		return BuildFunction(t, ctx,
+			pass.PruneJumpToFollowingLabel,
+			pass.PruneDanglingLabels,
+			pass.LabelTarget,
+			pass.CFG,
+			pass.Liveness,
+			pass.AllocateRegisters,
+			pass.BindRegisters,
+			pass.VerifyAllocation,
+		)
+	}
+
+	fnWith := buildFn(true)
+	fnWithout := buildFn(false)
+
+	// Confirm no jump remains in fnWith after pruning.
+	for _, i := range fnWith.Instructions() {
+		if i.Opcode == "JMP" {
+			t.Fatal("expected dead JMP instruction to be pruned")
+		}
+	}
+
+	// Confirm RET instructions have empty successor sets.
+	for _, fn := range []*ir.Function{fnWith, fnWithout} {
+		for _, i := range fn.Instructions() {
+			if i.IsTerminal && len(i.Succ) != 0 {
+				t.Fatalf("terminal instruction %s has non-empty successor set", i.Opcode)
+			}
+		}
+	}
+
+	// Confirm register allocation stability: both allocations must match identically.
+	if !reflect.DeepEqual(fnWith.Allocation, fnWithout.Allocation) {
+		t.Fatalf("register allocation mismatch: with_jump=%v without_jump=%v", fnWith.Allocation, fnWithout.Allocation)
+	}
+}
+

@@ -223,6 +223,94 @@ func TestCFGMissingLabel(t *testing.T) {
 	}
 }
 
+func TestCFGTerminalRETDoesNotFallThrough(t *testing.T) {
+	f := ir.NewFunction("retisolation")
+	f.AddInstruction(&ir.Instruction{Opcode: "A"})
+	f.AddInstruction(Terminal("RET"))
+	f.AddLabel(ir.Label("lblB"))
+	f.AddInstruction(&ir.Instruction{Opcode: "B"})
+	f.AddInstruction(Terminal("RET2"))
+
+	if err := ComputeCFG(t, f); err != nil {
+		t.Fatal(err)
+	}
+
+	AssertSuccessors(t, f, map[string][]string{
+		"A":    {"RET"},
+		"RET":  {},
+		"B":    {"RET2"},
+		"RET2": {},
+	})
+
+	AssertPredecessors(t, f, map[string][]string{
+		"A":    {},
+		"RET":  {"A"},
+		"B":    {},
+		"RET2": {"B"},
+	})
+}
+
+func TestCFGIdempotentReset(t *testing.T) {
+	f := ir.NewFunction("idempotent")
+	f.AddInstruction(&ir.Instruction{Opcode: "A"})
+	f.AddInstruction(&ir.Instruction{Opcode: "B"})
+	f.AddInstruction(Terminal("RET"))
+
+	if err := ComputeCFG(t, f); err != nil {
+		t.Fatal(err)
+	}
+	// Re-run CFG. Predecessors and successors should not duplicate.
+	if err := CFG(f); err != nil {
+		t.Fatal(err)
+	}
+
+	AssertSuccessors(t, f, map[string][]string{
+		"A":   {"B"},
+		"B":   {"RET"},
+		"RET": {},
+	})
+
+	AssertPredecessors(t, f, map[string][]string{
+		"A":   {},
+		"B":   {"A"},
+		"RET": {"B"},
+	})
+}
+
+func TestCFGPreserveAcrossRETWhenPruningJumps(t *testing.T) {
+	f := ir.NewFunction("jump_pruning_ret")
+	f.AddInstruction(CondBranch("JE", "target"))
+	f.AddInstruction(&ir.Instruction{Opcode: "A"})
+	f.AddInstruction(Terminal("RET"))
+	f.AddInstruction(UncondBranch("JMP", "target"))
+	f.AddLabel(ir.Label("target"))
+	f.AddInstruction(&ir.Instruction{Opcode: "B"})
+	f.AddInstruction(Terminal("RET2"))
+
+	if err := PruneJumpToFollowingLabel(f); err != nil {
+		t.Fatal(err)
+	}
+	if err := ComputeCFG(t, f); err != nil {
+		t.Fatal(err)
+	}
+
+	AssertSuccessors(t, f, map[string][]string{
+		"JE":   {"A", "B"},
+		"A":    {"RET"},
+		"RET":  {},
+		"B":    {"RET2"},
+		"RET2": {},
+	})
+
+	AssertPredecessors(t, f, map[string][]string{
+		"JE":   {},
+		"A":    {"JE"},
+		"RET":  {"A"},
+		"B":    {"JE"},
+		"RET2": {"B"},
+	})
+}
+
 // Terminal builds a terminal instruction.
 func Terminal(opcode string) *ir.Instruction {
 	return &ir.Instruction{Opcode: opcode, IsTerminal: true}

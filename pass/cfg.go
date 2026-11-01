@@ -38,6 +38,12 @@ func CFG(fn *ir.Function) error {
 	is := fn.Instructions()
 	n := len(is)
 
+	// Reset predecessors and successors.
+	for _, i := range is {
+		i.Pred = nil
+		i.Succ = nil
+	}
+
 	// Populate successors.
 	for i := range n {
 		cur := is[i]

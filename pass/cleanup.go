@@ -8,9 +8,12 @@ import (
 // PruneJumpToFollowingLabel removes jump instructions that target an
 // immediately following label.
 func PruneJumpToFollowingLabel(fn *ir.Function) error {
+	// Removal of instructions has the potential to invalidate CFG structures.
+	// Clear them to prevent accidental use of stale structures after this pass.
+	invalidatecfg(fn)
+
 	for i := 0; i+1 < len(fn.Nodes); i++ {
 		node := fn.Nodes[i]
-		next := fn.Nodes[i+1]
 
 		// This node is an unconditional jump.
 		inst, ok := node.(*ir.Instruction)
@@ -23,9 +26,19 @@ func PruneJumpToFollowingLabel(fn *ir.Function) error {
 			continue
 		}
 
-		// And the jump target is the immediately following node.
-		lbl, ok := next.(ir.Label)
-		if !ok || lbl != *target {
+		// Look ahead to find the following label, skipping non-code nodes like comments.
+		var nextLabel *ir.Label
+		for j := i + 1; j < len(fn.Nodes); j++ {
+			switch n := fn.Nodes[j].(type) {
+			case *ir.Comment:
+				continue
+			case ir.Label:
+				nextLabel = &n
+			}
+			break
+		}
+
+		if nextLabel == nil || *nextLabel != *target {
 			continue
 		}
 
@@ -39,6 +52,9 @@ func PruneJumpToFollowingLabel(fn *ir.Function) error {
 
 // PruneDanglingLabels removes labels that are not referenced by any branches.
 func PruneDanglingLabels(fn *ir.Function) error {
+	// Removal of labels has the potential to invalidate CFG structures.
+	invalidatecfg(fn)
+
 	// Count label references.
 	count := map[ir.Label]int{}
 	for _, n := range fn.Nodes {
@@ -100,6 +116,7 @@ func removeinstructions(fn *ir.Function, predicate func(*ir.Instruction) bool) e
 		}
 
 		fn.Nodes = deletenode(fn.Nodes, i)
+		i--
 	}
 
 	return nil
