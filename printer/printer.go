@@ -53,6 +53,14 @@ type Config struct {
 	// a wash to a slight regression (+0.2% to +0.4% geomean) on both Neoverse
 	// N1 and V2, so the benefit does not generalize across arm64 cores.
 	ARM64PromoteStackSlots bool
+
+	// ARM64PairVectorMoves enables the EXPERIMENTAL arm64 lowering printer's
+	// pairing of adjacent 16-byte vector loads or stores into FLDPQ/FSTPQ (see
+	// vecPairFold). Off by default so it is opt-in per generator: it is 1-2.5%
+	// faster in klauspost/compress's zstd match copy on Neoverse N1, but a
+	// wash with up to +3% on 256-byte blocks in its s2 encoders on Graviton
+	// 2-5, where it mostly pairs hash-table zeroing.
+	ARM64PairVectorMoves bool
 }
 
 // NewDefaultConfig produces a config with Name "avo".

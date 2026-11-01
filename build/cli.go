@@ -61,6 +61,7 @@ type Flags struct {
 	arch           string
 	arm64BMI2      bool
 	arm64PromoSlot bool
+	arm64VecPair   bool
 	goasm          *printerValue
 	arm64          *printerValue
 	stubs          *printerValue
@@ -93,6 +94,7 @@ func NewFlags(fs *flag.FlagSet) *Flags {
 
 	fs.BoolVar(&f.arm64BMI2, "arm64-prefer-bmi2", false, "EXPERIMENTAL arm64 lowering: prefer a function's BMI2 twin over its generic one when both exist (default prefers generic; BMI2 x86 code is tuned for x86 and is not reliably faster once lowered -- measure before enabling)")
 	fs.BoolVar(&f.arm64PromoSlot, "arm64-promote-stack-slots", false, "EXPERIMENTAL arm64 lowering: keep whole-8-byte frame slots in spare arm64 registers instead of the stack, folding away most of their loads and stores (measure)")
+	fs.BoolVar(&f.arm64VecPair, "arm64-pair-vector-moves", false, "EXPERIMENTAL arm64 lowering: pair adjacent 16-byte vector loads or stores into FLDPQ/FSTPQ (measure)")
 
 	f.goasm = newLazyPrinterValue(printer.NewGoAsm, os.Stdout)
 	fs.Var(f.goasm, "out", "assembly output (or, with -arch, the base path)")
@@ -116,6 +118,7 @@ func (f *Flags) Config() *Config {
 	}
 	pc.ARM64PreferBMI2 = f.arm64BMI2
 	pc.ARM64PromoteStackSlots = f.arm64PromoSlot
+	pc.ARM64PairVectorMoves = f.arm64VecPair
 
 	passes := []pass.Interface{pass.Compile}
 	if f.arch != "" {

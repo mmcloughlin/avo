@@ -602,10 +602,18 @@ func TestARM64VecPairFold(t *testing.T) {
 			want: []string{"FLDPQ (R5), (F0, F1)", "FMOVQ 32(R5), F2"},
 		},
 	}
+	paired := func(cfg printer.Config) printer.Printer {
+		cfg.ARM64PairVectorMoves = true
+		return printer.NewARM64Asm(cfg)
+	}
 	for _, c := range cases {
 		t.Run(c.name, func(t *testing.T) {
-			out := Print(t, foldContext(c.body), printer.NewARM64Asm)
+			out := Print(t, foldContext(c.body), paired)
 			expectLines(t, out, c.want, c.reject)
 		})
 	}
+	t.Run("OffByDefault", func(t *testing.T) {
+		out := Print(t, foldContext(cases[0].body), printer.NewARM64Asm)
+		expectLines(t, out, []string{"FMOVQ (R5), F0", "FMOVQ 16(R5), F1"}, []string{"FLDPQ"})
+	})
 }

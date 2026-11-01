@@ -706,6 +706,9 @@ func (p *arm64) function(f *ir.Function, twins map[string]twinPair) {
 	p.clear = true
 	nodes := f.Nodes
 	a := analyzeFunction(nodes)
+	if !p.cfg.ARM64PairVectorMoves {
+		a.vecPair = nil
+	}
 	p.slotReg = p.stackSlotPromotions(f)
 	groups := a.foldGroups(nodes)
 	p.coalesce = coalesceSlots(nodes, p.slotReg, groups)
