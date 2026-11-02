@@ -5,12 +5,13 @@ import (
 	"github.com/mmcloughlin/avo/operand"
 )
 
-// PruneJumpToFollowingLabel removes jump instructions that target an
-// immediately following label.
+// PruneJumpToFollowingLabel removes jump instructions that target the label
+// that follows them, allowing only alignment padding (PCALIGN) and comments in
+// between. Neither emits code that changes state, so falling through the
+// padding reaches the label exactly as the jump would.
 func PruneJumpToFollowingLabel(fn *ir.Function) error {
 	for i := 0; i+1 < len(fn.Nodes); i++ {
 		node := fn.Nodes[i]
-		next := fn.Nodes[i+1]
 
 		// This node is an unconditional jump.
 		inst, ok := node.(*ir.Instruction)
@@ -23,8 +24,15 @@ func PruneJumpToFollowingLabel(fn *ir.Function) error {
 			continue
 		}
 
-		// And the jump target is the immediately following node.
-		lbl, ok := next.(ir.Label)
+		// And the jump target is the next label, with only padding between.
+		next := i + 1
+		for next < len(fn.Nodes) && isPadding(fn.Nodes[next]) {
+			next++
+		}
+		if next == len(fn.Nodes) {
+			continue
+		}
+		lbl, ok := fn.Nodes[next].(ir.Label)
 		if !ok || lbl != *target {
 			continue
 		}
@@ -35,6 +43,18 @@ func PruneJumpToFollowingLabel(fn *ir.Function) error {
 	}
 
 	return nil
+}
+
+// isPadding reports whether n emits no code that changes state: a comment, or
+// a PCALIGN pseudo-instruction, whose padding is no-ops.
+func isPadding(n ir.Node) bool {
+	switch n := n.(type) {
+	case *ir.Comment:
+		return true
+	case *ir.Instruction:
+		return n.Opcode == "PCALIGN"
+	}
+	return false
 }
 
 // PruneDanglingLabels removes labels that are not referenced by any branches.

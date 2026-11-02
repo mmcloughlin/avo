@@ -10031,6 +10031,24 @@ var Instructions = []Instruction{
 		},
 	},
 	{
+		Opcode:  "PCALIGN",
+		Summary: "Align the next instruction to the specified boundary",
+		Forms: []Form{
+			{
+				Operands: []Operand{
+					{Type: "imm16", Action: 0x0},
+				},
+				EncodingType: 0x0,
+			},
+			{
+				Operands: []Operand{
+					{Type: "imm8", Action: 0x0},
+				},
+				EncodingType: 0x0,
+			},
+		},
+	},
+	{
 		Opcode:  "PCLMULQDQ",
 		Summary: "Carry-Less Quadword Multiplication",
 		Forms: []Form{

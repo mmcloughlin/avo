@@ -30,6 +30,37 @@ type Config struct {
 
 	// Name of Go package the generated code will belong to.
 	Pkg string
+
+	// ARM64PreferBMI2 controls the EXPERIMENTAL arm64 lowering printer's choice
+	// when a function has both a generic and a BMI2 twin: true lowers the BMI2
+	// twin, false (the default) lowers the generic one. BMI2 x86 code is tuned
+	// for x86 (e.g. BEXTR packs what arm64 needs two UBFX instructions to
+	// unpack), so mechanically lowering it is not reliably faster on arm64 --
+	// measure before setting this. A function with only a BMI2 variant (no
+	// generic twin) is unaffected and always lowered.
+	ARM64PreferBMI2 bool
+
+	// ARM64PromoteStackSlots enables the EXPERIMENTAL arm64 lowering printer's
+	// stack-slot promotion: frame slots (AllocLocal memory, which generators use
+	// where x86's registers run out) are kept in otherwise-unused arm64
+	// registers, turning per-access loads/stores in the hot path into register
+	// moves. A slot is promoted only if every access overlapping its bytes is a
+	// whole 8-byte MOVQ at its displacement, and not at all in a function that
+	// takes the frame's address, indexes into it, calls out, or touches it with
+	// an instruction of unknown width; see stackSlotPromotions. Off by default
+	// so the transform is opt-in per generator -- measure before setting this. It is a real win on Cortex-A72 (-1.46%
+	// geomean, up to -6.9%, on klauspost/compress's zstd sequence decoder) but
+	// a wash to a slight regression (+0.2% to +0.4% geomean) on both Neoverse
+	// N1 and V2, so the benefit does not generalize across arm64 cores.
+	ARM64PromoteStackSlots bool
+
+	// ARM64PairVectorMoves enables the EXPERIMENTAL arm64 lowering printer's
+	// pairing of adjacent 16-byte vector loads or stores into FLDPQ/FSTPQ (see
+	// vecPairFold). Off by default so it is opt-in per generator: it is 1-2.5%
+	// faster in klauspost/compress's zstd match copy on Neoverse N1, but a
+	// wash with up to +3% on 256-byte blocks in its s2 encoders on Graviton
+	// 2-5, where it mostly pairs hash-table zeroing.
+	ARM64PairVectorMoves bool
 }
 
 // NewDefaultConfig produces a config with Name "avo".

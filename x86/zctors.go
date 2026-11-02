@@ -4371,6 +4371,16 @@ func PBLENDW(i, mx, x operand.Op) (*intrep.Instruction, error) {
 	return build(opcPBLENDW.Forms(), sffxs{}, []operand.Op{i, mx, x})
 }
 
+// PCALIGN: Align the next instruction to the specified boundary.
+//
+// Forms:
+//
+//	PCALIGN imm16
+//	PCALIGN imm8
+func PCALIGN(i operand.Op) (*intrep.Instruction, error) {
+	return build(opcPCALIGN.Forms(), sffxs{}, []operand.Op{i})
+}
+
 // PCLMULQDQ: Carry-Less Quadword Multiplication.
 //
 // Forms:

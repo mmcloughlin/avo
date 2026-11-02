@@ -63,6 +63,56 @@ func TestPruneJumpToFollowingLabel(t *testing.T) {
 	}
 }
 
+func TestPruneJumpOverPadding(t *testing.T) {
+	cases := []struct {
+		name    string
+		between func(ctx *build.Context)
+		pruned  bool
+	}{
+		{"alignment", func(ctx *build.Context) { ctx.PCALIGN(operand.Imm(16)) }, true},
+		{"comment", func(ctx *build.Context) { ctx.Comment("between") }, true},
+		{"alignment and comments", func(ctx *build.Context) {
+			ctx.Comment("before")
+			ctx.PCALIGN(operand.Imm(16))
+			ctx.Comment("after")
+		}, true},
+		{"instruction", func(ctx *build.Context) {
+			ctx.PCALIGN(operand.Imm(16))
+			ctx.XORQ(reg.RAX, reg.RAX)
+		}, false},
+		{"other label", func(ctx *build.Context) {
+			ctx.PCALIGN(operand.Imm(16))
+			ctx.Label("other")
+		}, false},
+	}
+	for _, c := range cases {
+		t.Run(c.name, func(t *testing.T) {
+			ctx := build.NewContext()
+			ctx.Function("add")
+			ctx.XORQ(reg.RAX, reg.RAX)
+			ctx.JMP(operand.LabelRef("next"))
+			c.between(ctx)
+			ctx.Label("next")
+			ctx.XORQ(reg.RAX, reg.RAX)
+			ctx.JMP(operand.LabelRef("end"))
+			ctx.Label("end")
+			ctx.RET()
+
+			fn := BuildFunction(t, ctx, pass.PruneJumpToFollowingLabel)
+
+			kept := false
+			for _, i := range fn.Instructions() {
+				if i.Opcode == "JMP" && i.TargetLabel() != nil && *i.TargetLabel() == "next" {
+					kept = true
+				}
+			}
+			if kept == c.pruned {
+				t.Errorf("jump to next kept = %v, want %v", kept, !c.pruned)
+			}
+		})
+	}
+}
+
 func TestPruneDanglingLabels(t *testing.T) {
 	// Construct a function containing an unreferenced label.
 	ctx := build.NewContext()

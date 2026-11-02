@@ -6,7 +6,7 @@
   <a href="https://goreportcard.com/report/github.com/mmcloughlin/avo"><img src="https://goreportcard.com/badge/github.com/mmcloughlin/avo?style=flat-square" alt="Go Report Card" /></a>
 </p>
 
-<p align="center">Generate x86 Assembly with Go</p>
+<p align="center">Generate x86 and arm64 Assembly with Go</p>
 
 `avo` makes high-performance Go assembly easier to write, review and maintain. The `avo` package presents a familiar assembly-like interface that simplifies development without sacrificing performance:
 
@@ -14,6 +14,7 @@
 * **Register allocation**: write functions with virtual registers and `avo` assigns physical registers for you
 * **Automatically load arguments and store return values**: ensure memory offsets are correct for complex structures
 * **Generation of stub files** to interface with your Go package
+* **arm64 output (experimental)**: `-arch amd64,arm64` also lowers the program to Go arm64 assembly, so one generator serves both architectures
 
 For more about `avo`:
 

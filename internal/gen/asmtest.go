@@ -90,6 +90,17 @@ func (a asmtest) args(opcode string, ops []inst.Operand) ([]string, error) {
 		return []string{a.sym}, nil
 	}
 
+	// Special case for PCALIGN, since the assembler requires a power of two in
+	// the range [8, 2048].
+	if opcode == "PCALIGN" && len(ops) == 1 {
+		switch ops[0].Type {
+		case "imm8":
+			return []string{"$64"}, nil
+		case "imm16":
+			return []string{"$1024"}, nil
+		}
+	}
+
 	as := make([]string, len(ops))
 	for i, op := range ops {
 		a := a.arg(op.Type, i)
