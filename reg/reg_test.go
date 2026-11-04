@@ -178,3 +178,22 @@ func TestLookupIDSelf(t *testing.T) {
 		}
 	}
 }
+
+func TestVectorSpecAliases(t *testing.T) {
+	cases := []struct {
+		Alias Spec
+		Spec  Spec
+	}{
+		{Xmm, S128},
+		{Ymm, S256},
+		{Zmm, S512},
+	}
+	for _, c := range cases {
+		if c.Alias != c.Spec {
+			t.Errorf("alias %v does not match %v", c.Alias, c.Spec)
+		}
+		if Vector.Lookup(0, c.Alias) == nil {
+			t.Errorf("no vector register at spec %v", c.Alias)
+		}
+	}
+}
