@@ -290,8 +290,7 @@
                 "stars": 128
             },
             "default_branch": "master",
-            "version": "0902316dce158c154b958ee5cfc706c62af29a42",
-            "known_issue": 494,
+            "version": "7e4f8ecd2df8dac358ccc2312c9d4be1ced4a80d",
             "packages": [
                 {
                     "module": "avo/go.mod",
@@ -314,7 +313,7 @@
                             "name": "Setup Generator Module",
                             "dir": "avo",
                             "commands": [
-                                "sed -i.bak '/+build ignore/d' asm.go",
+                                "sed -i.bak '/build ignore/d' asm.go",
                                 "go mod init github.com/dgryski/go-bloomindex/avo"
                             ]
                         }
